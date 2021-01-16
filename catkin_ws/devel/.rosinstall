@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/paal/Tetrapod-Robot/catkin_ws/devel/setup.sh

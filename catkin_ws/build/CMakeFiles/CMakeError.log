@@ -1,0 +1,58 @@
+Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /home/paal/Tetrapod-Robot/catkin_ws/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/bin/make cmTC_bf5bf/fast && /bin/make -f CMakeFiles/cmTC_bf5bf.dir/build.make CMakeFiles/cmTC_bf5bf.dir/build
+make[1]: Entering directory '/home/paal/Tetrapod-Robot/catkin_ws/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_bf5bf.dir/src.c.o
+/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_bf5bf.dir/src.c.o   -c /home/paal/Tetrapod-Robot/catkin_ws/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_bf5bf
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bf5bf.dir/link.txt --verbose=1
+/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD    -rdynamic CMakeFiles/cmTC_bf5bf.dir/src.c.o  -o cmTC_bf5bf 
+/bin/ld: CMakeFiles/cmTC_bf5bf.dir/src.c.o: in function `main':
+src.c:(.text+0x46): undefined reference to `pthread_create'
+/bin/ld: src.c:(.text+0x52): undefined reference to `pthread_detach'
+/bin/ld: src.c:(.text+0x63): undefined reference to `pthread_join'
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_bf5bf.dir/build.make:87: cmTC_bf5bf] Error 1
+make[1]: Leaving directory '/home/paal/Tetrapod-Robot/catkin_ws/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:121: cmTC_bf5bf/fast] Error 2
+
+
+Source file was:
+#include <pthread.h>
+
+void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/paal/Tetrapod-Robot/catkin_ws/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/bin/make cmTC_668dd/fast && /bin/make -f CMakeFiles/cmTC_668dd.dir/build.make CMakeFiles/cmTC_668dd.dir/build
+make[1]: Entering directory '/home/paal/Tetrapod-Robot/catkin_ws/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_668dd.dir/CheckFunctionExists.c.o
+/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_668dd.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.16/Modules/CheckFunctionExists.c
+Linking C executable cmTC_668dd
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_668dd.dir/link.txt --verbose=1
+/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_668dd.dir/CheckFunctionExists.c.o  -o cmTC_668dd  -lpthreads 
+/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_668dd.dir/build.make:87: cmTC_668dd] Error 1
+make[1]: Leaving directory '/home/paal/Tetrapod-Robot/catkin_ws/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:121: cmTC_668dd/fast] Error 2
+
+
+
