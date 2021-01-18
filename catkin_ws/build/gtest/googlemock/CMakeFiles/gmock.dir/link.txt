@@ -1,1 +1,0 @@
-/bin/c++ -fPIC   -shared -Wl,-soname,libgmock.so -o ../../lib/libgmock.so CMakeFiles/gmock.dir/src/gmock-all.cc.o  -Wl,-rpath,/home/paal/Tetrapod-Robot/catkin_ws/build/lib ../../lib/libgtest.so -lpthread 
