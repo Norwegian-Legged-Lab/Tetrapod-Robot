@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <sdf version="1.7">
-    <world name="car_world">
+    <world name="tetrapod_world">
         <physics name="1ms" type="ignored">
             <max_step_size>0.001</max_step_size>
             <real_time_factor>1.0</real_time_factor>
@@ -128,5 +128,13 @@
                 </visual>
             </link>
         </model>
+
+
+        <!-- Load Tetrapod Model -->
+        <include>
+            <uri>
+            model://tetrapod
+            </uri>
+        </include>
     </world>
 </sdf>
