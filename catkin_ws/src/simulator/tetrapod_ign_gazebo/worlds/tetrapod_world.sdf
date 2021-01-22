@@ -133,7 +133,7 @@
         <!-- Load Tetrapod Model -->
         <include>
             <uri>
-            model://tetrapod
+            model://tetrapod_description
             </uri>
         </include>
     </world>
