@@ -22,3 +22,6 @@ source /opt/ros/noetic/setup.bash
 
 # Build using catkin_make
 catkin_make
+
+# Add the workspace to ROS env
+source $SCRIPTPATH/devel/setup.bash
