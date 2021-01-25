@@ -1,4 +1,30 @@
 <?xml version="1.0"?>
+
+<!--
+Base to shoulder yaw:
+dX = 201
+dY = 205
+
+Shoulder yaw to shoulder pitch:
+dX = 129mm
+
+Shoulder pitch to knee pitch:
+dX = 329mm
+
+Knee pitch to foot:
+dX = 482mm (joint to foot center)
+dX = 512mm (joint to tip)
+
+-->
+
+<!--Parameters
+x_0 = 0.201
+y_0 = 0.205
+z_0 = 0.0
+
+
+-->
+
 <sdf version='1.7'>
     <model name="Tetrapod">
         <pose>0 0 1 0 0 0</pose>
@@ -22,15 +48,15 @@
 
             <visual name="body_visual">
                 <geometry>
-                    <box>
-                        <size>0.5 0.3 0.1</size>
-                    </box>
+                    <mesh>
+                        <uri>file:///home/omicron/Desktop/Tetrapod-Robot/Models/Robot/Meshes/base.dae</uri>
+                    </mesh>  
                 </geometry>
             </visual>
             <collision name="body_collision">
                 <geometry>
                     <box>
-                        <size>0.5 0.3 0.1</size>
+                        <size>0.5 0.5 0.15</size>
                     </box>
                 </geometry>
             </collision>
@@ -40,17 +66,21 @@
 <!-- FRONT LEFT LEG -->
 
         <link name="front_left_hip">
-            <pose>0.25 0.15 0 0 0 1.5708</pose>
-            <visual name="front_left_hip_visual">
-                <geometry>
-                    <cylinder>
-                        <radius>0.05</radius>
-                        <length>0.1</length>
-                    </cylinder>
-                </geometry>
-            </visual>
+            <!-- Let the pose of the link coincide with the joint position -->
+            <!--
+                x = x_0
+                y = y_0
+                z = z_0
+                r = 0
+                p = 0
+                y = 0
+            -->
+            <pose>0.201 0.205 0 0 0 0</pose>
+
             <inertial>
-                <pose>0 0 0 0 0 0</pose>
+                <!-- Position of front_left_hip CoM relative to joint position. Obtained from Solidworks-->
+                <pose>0 0.0 0 0 0 0</pose>
+
                 <mass>1.0</mass>
                 <inertia>
                 <ixx>0.1</ixx>
@@ -61,17 +91,28 @@
                 <izz>0.1</izz>
                 </inertia>
             </inertial>
+
+            <visual name="front_left_hip_visual">
+                <geometry>
+                    <mesh>
+                        <uri>file:///home/omicron/Desktop/Tetrapod-Robot/Models/Robot/Meshes/left_shoulder.dae</uri>
+                    </mesh>  
+                </geometry>
+            </visual>
+
         </link>
 
         <joint name="front_left_hip_yaw" type="revolute">
-            <pose>0 0 0 0 0 0</pose>
+            <!-- Use zero as joint and link position coincide-->
+            <pose>0 0 0 0 0 0</pose> 
+
             <child>front_left_hip</child>
             <parent>body</parent>
             <axis>
                 <xyz>0 0 1</xyz>
                 <limit>
-                    <lower>-1.5708</lower>
-                    <upper>1.5708</upper>
+                    <lower>0</lower>
+                    <upper>3.14</upper>
                     <effort>30</effort>
                     <velocity>1000</velocity>
                 </limit>
@@ -79,16 +120,37 @@
         </joint>
 
         <link name="front_left_upper_leg">
-            <pose>0.25 0.30 0 -1.5708 0 0</pose>
-            <visual name="left_upper_leg">
+            <!-- Let the pose of the link coincide with the hip pitch joint position -->
+            <!--
+                x = x_0 + r1
+                y = y_0
+                z = z_0 + d1
+                r = -1.5708 (rotate the leg)
+                p = 0
+                y = 0
+            -->
+            <pose>0.330 0.201 0 -1.5708 0 0</pose>
+
+            <collision name="front_left_upper_leg_collision">
+                <!-- Add pose for collision-->
+                <pose>0.1645 0 0 0 1.5708 0</pose>
                 <geometry>
                     <cylinder>
-                        <radius>0.02</radius>
-                        <length>0.3</length>
+                        <radius>0.01</radius>
+                        <length>0.329</length>
                     </cylinder>
+                </geometry>
+            </collision>
+            <visual name="front_left_upper_leg">
+                <pose>0 0 0 0 0 0</pose>
+                <geometry>
+                    <mesh>
+                        <uri>file:///home/omicron/Desktop/Tetrapod-Robot/Models/Robot/Meshes/upper_leg.dae</uri>
+                    </mesh>                    
                 </geometry>
             </visual>
             <inertial>
+                <!-- Position of upper_leg CoM relative to hip pitch joint position. Obtained from Solidworks-->
                 <pose>0 0 0 0 0 0</pose>
                 <mass>1.0</mass>
                 <inertia>
@@ -105,9 +167,10 @@
         <joint name="front_left_hip_pitch" type="revolute">
             <parent>front_left_hip</parent>
             <child>front_left_upper_leg</child>
-            <pose frame="front_left_hip">0 0 -0.15 0 0 0</pose>
+            <!-- Use zero as joint and link position coincide-->
+            <pose frame="front_left_hip">0 0 0 0 0 0</pose>
             <axis>
-                <xyz>1 0 0</xyz>
+                <xyz>0 0 1</xyz>
                 <limit>
                     <lower>-2.5</lower>
                     <upper>2.5</upper>
@@ -118,24 +181,44 @@
         </joint>
 
         <link name="front_left_lower_leg">
-            <pose>0.25 0.65 0 -1.5708 0 0</pose>
+            <!-- Let the pose of the link coincide with the knee pitch joint position -->
+            <!--
+                x = x_0 + r1 + r2
+                y = y_0
+                z = z_0 + d1
+                r = -1.5708
+                p = 0
+                y = 0
+            -->
+            <pose>0.659 0.205 0 -1.5708 0 0</pose>
             <visual name="front_left_lower_leg_visual">
+                <pose>0 0 0 0 0 0</pose>
                 <geometry>
-                    <cylinder>
-                        <radius>0.02</radius>
-                        <length>0.4</length>
-                    </cylinder>
+                    <mesh>
+                        <uri>file:///home/omicron/Desktop/Tetrapod-Robot/Models/Robot/Meshes/lower_leg.dae</uri>
+                    </mesh>
                 </geometry>
             </visual>
-            <collision name="front_left_collision">
+            <collision name="front_left_lower_leg_collision">
+                <!-- Add pose for collision-->
+                <pose>0.241 0 0 0 1.5708 0</pose>
                 <geometry>
                     <cylinder>
-                        <radius>0.02</radius>
-                        <length>0.4</length>
+                        <radius>0.01</radius>
+                        <length>0.482</length>
+                    </cylinder>
+                </geometry>
+            </collision>
+            <collision name="front_left_knee_collision">
+                <geometry>
+                    <cylinder>
+                        <radius>0.035</radius>
+                        <length>0.06</length>
                     </cylinder>
                 </geometry>
             </collision>
             <inertial>
+                <!-- Position of lower_leg CoM relative to knee pitch joint position. Obtained from Solidworks-->
                 <pose>0 0 0 0 0 0</pose>
                 <mass>1.0</mass>
                 <inertia>
@@ -152,9 +235,9 @@
         <joint name="front_left_knee_joint" type="revolute">
             <parent>front_left_upper_leg</parent>
             <child>front_left_lower_leg</child>
-            <pose>0 0 -0.2 0 0 0</pose>
+            <pose>0 0 0 0 0 0</pose>
             <axis>
-                <xyz>1 0 0</xyz>
+                <xyz>0 0 1</xyz>
                 <limit>
                     <lower>-2.5</lower>
                     <upper>2.5</upper>
@@ -165,7 +248,17 @@
         </joint>
 
         <link name="front_left_foot">
-            <pose>0.25 0.85 0 0 0 0</pose>
+            <!-- Let the pose of the link coincide with the foot position -->
+            <!--
+                x = x_0 + r1 + r2 + r3
+                y = y_0
+                z = z_0 + d1
+                r = 1.5708
+                p = 0
+                y = 0
+            -->
+            <pose>1.141 0.205 0 1.5708 0 0</pose>
+
             <inertial>
                 <pose>0 0 0 0 0 0</pose>
                 <mass>0.1</mass>
@@ -178,36 +271,19 @@
                     <izz>0.01</izz>
                 </inertia>
             </inertial>
-            <visual name="left_front_foot_visual">
-                <pose>0 0 0 0 0 0</pose>
-                <geometry>
-                    <sphere>
-                        <radius>0.05</radius>
-                    </sphere>
-                </geometry>             
-            </visual>
             <collision name="front_left_foot_collision">
                 <geometry>
                     <sphere>
-                        <radius>0.05</radius>
+                        <radius>0.03</radius>
                     </sphere>
                 </geometry>
                 <surface>
-                    <!--bounce>
-                        <restitution_coefficient>1.0</restitution_coefficient>
-                        <threshold>1.0</threshold>
-                    </bounce-->
                     <friction>
                         <ode>
                             <mu>0.7</mu>
                         </ode>
                     </friction>
                 </surface>
-                <!--contact>
-                    <ode>  
-                        <max_vel>0.1</max_vel>
-                    </ode>
-                </contact-->
             </collision>
         </link>
 
@@ -218,21 +294,25 @@
         </joint>
 
 
-<!-- FRONT RIGHT LEG-->
 
+<!-- FRONT RIGHT LEG -->
 
         <link name="front_right_hip">
-            <pose>0.25 -0.15 0 0 0 1.5708</pose>
-            <visual name="front_right_hip_visual">
-                <geometry>
-                    <cylinder>
-                        <radius>0.05</radius>
-                        <length>0.1</length>
-                    </cylinder>
-                </geometry>
-            </visual>
+            <!-- Let the pose of the link coincide with the joint position -->
+            <!--
+                x = x_0
+                y = -y_0
+                z = z_0
+                r = 0
+                p = 0
+                y = 0
+            -->
+            <pose>0.201 -0.205 0 0 0 0</pose>
+
             <inertial>
-                <pose>0 0 0 0 0 0</pose>
+                <!-- Position of front_right_hip CoM relative to joint position. Obtained from Solidworks-->
+                <pose>0 0.0 0 0 0 0</pose>
+
                 <mass>1.0</mass>
                 <inertia>
                 <ixx>0.1</ixx>
@@ -243,17 +323,28 @@
                 <izz>0.1</izz>
                 </inertia>
             </inertial>
+
+            <visual name="front_right_hip_visual">
+                <geometry>
+                    <mesh>
+                        <uri>file:///home/omicron/Desktop/Tetrapod-Robot/Models/Robot/Meshes/right_shoulder.dae</uri>
+                    </mesh>  
+                </geometry>
+            </visual>
+
         </link>
 
         <joint name="front_right_hip_yaw" type="revolute">
-            <pose>0 0 0 0 0 0</pose>
+            <!-- Use zero as joint and link position coincide-->
+            <pose>0 0 0 0 0 0</pose> 
+
             <child>front_right_hip</child>
             <parent>body</parent>
             <axis>
                 <xyz>0 0 1</xyz>
                 <limit>
-                    <lower>-1.5708</lower>
-                    <upper>1.5708</upper>
+                    <lower>-3.14</lower>
+                    <upper>0.0</upper>
                     <effort>30</effort>
                     <velocity>1000</velocity>
                 </limit>
@@ -261,16 +352,37 @@
         </joint>
 
         <link name="front_right_upper_leg">
-            <pose>0.25 -0.30 0 -1.5708 0 0</pose>
-            <visual name="right_upper_leg">
+            <!-- Let the pose of the link coincide with the hip pitch joint position -->
+            <!--
+                x = x_0 + r1
+                y = -y_0
+                z = z_0 + d1
+                r = 1.5708 (rotate the leg)
+                p = 0
+                y = 0
+            -->
+            <pose>0.330 -0.201 0 1.5708 0 0</pose>
+
+            <collision name="front_right_upper_leg_collision">
+                <!-- Add pose for collision-->
+                <pose>0.1645 0 0 0 1.5708 0</pose>
                 <geometry>
                     <cylinder>
-                        <radius>0.02</radius>
-                        <length>0.3</length>
+                        <radius>0.01</radius>
+                        <length>0.329</length>
                     </cylinder>
+                </geometry>
+            </collision>
+            <visual name="front_right_upper_leg">
+                <pose>0 0 0 0 0 0</pose>
+                <geometry>
+                    <mesh>
+                        <uri>file:///home/omicron/Desktop/Tetrapod-Robot/Models/Robot/Meshes/upper_leg.dae</uri>
+                    </mesh>                    
                 </geometry>
             </visual>
             <inertial>
+                <!-- Position of upper_leg CoM relative to hip pitch joint position. Obtained from Solidworks-->
                 <pose>0 0 0 0 0 0</pose>
                 <mass>1.0</mass>
                 <inertia>
@@ -287,9 +399,10 @@
         <joint name="front_right_hip_pitch" type="revolute">
             <parent>front_right_hip</parent>
             <child>front_right_upper_leg</child>
-            <pose frame="front_right_hip">0 0 0.15 0 0 0</pose>
+            <!-- Use zero as joint and link position coincide-->
+            <pose frame="front_right_hip">0 0 0 0 0 0</pose>
             <axis>
-                <xyz>1 0 0</xyz>
+                <xyz>0 0 1</xyz>
                 <limit>
                     <lower>-2.5</lower>
                     <upper>2.5</upper>
@@ -300,24 +413,44 @@
         </joint>
 
         <link name="front_right_lower_leg">
-            <pose>0.25 -0.65 0 -1.5708 0 0</pose>
+            <!-- Let the pose of the link coincide with the knee pitch joint position -->
+            <!--
+                x = x_0 + r1 + r2
+                y = -y_0
+                z = z_0 + d1
+                r = 1.5708
+                p = 0
+                y = 0
+            -->
+            <pose>0.659 -0.205 0 1.5708 0 0</pose>
             <visual name="front_right_lower_leg_visual">
+                <pose>0 0 0 0 0 0</pose>
                 <geometry>
-                    <cylinder>
-                        <radius>0.02</radius>
-                        <length>0.4</length>
-                    </cylinder>
+                    <mesh>
+                        <uri>file:///home/omicron/Desktop/Tetrapod-Robot/Models/Robot/Meshes/lower_leg.dae</uri>
+                    </mesh>
                 </geometry>
             </visual>
-            <collision name="front_right_collision">
+            <collision name="front_right_lower_leg_collision">
+                <!-- Add pose for collision-->
+                <pose>0.241 0 0 0 1.5708 0</pose>
                 <geometry>
                     <cylinder>
-                        <radius>0.02</radius>
-                        <length>0.4</length>
+                        <radius>0.01</radius>
+                        <length>0.482</length>
+                    </cylinder>
+                </geometry>
+            </collision>
+            <collision name="front_right_knee_collision">
+                <geometry>
+                    <cylinder>
+                        <radius>0.035</radius>
+                        <length>0.06</length>
                     </cylinder>
                 </geometry>
             </collision>
             <inertial>
+                <!-- Position of lower_leg CoM relative to knee pitch joint position. Obtained from Solidworks-->
                 <pose>0 0 0 0 0 0</pose>
                 <mass>1.0</mass>
                 <inertia>
@@ -334,9 +467,9 @@
         <joint name="front_right_knee_joint" type="revolute">
             <parent>front_right_upper_leg</parent>
             <child>front_right_lower_leg</child>
-            <pose>0 0 0.2 0 0 0</pose>
+            <pose>0 0 0 0 0 0</pose>
             <axis>
-                <xyz>1 0 0</xyz>
+                <xyz>0 0 1</xyz>
                 <limit>
                     <lower>-2.5</lower>
                     <upper>2.5</upper>
@@ -347,7 +480,17 @@
         </joint>
 
         <link name="front_right_foot">
-            <pose>0.25 -0.85 0 0 0 0</pose>
+            <!-- Let the pose of the link coincide with the foot position -->
+            <!--
+                x = x_0 + r1 + r2 + r3
+                y = -y_0
+                z = z_0 + d1
+                r = 1.5708
+                p = 0
+                y = 0
+            -->
+            <pose>1.141 -0.205 0 1.5708 0 0</pose>
+
             <inertial>
                 <pose>0 0 0 0 0 0</pose>
                 <mass>0.1</mass>
@@ -360,18 +503,10 @@
                     <izz>0.01</izz>
                 </inertia>
             </inertial>
-            <visual name="front_right_foot_visual">
-                <pose>0 0 0 0 0 0</pose>
-                <geometry>
-                    <sphere>
-                        <radius>0.05</radius>
-                    </sphere>
-                </geometry>             
-            </visual>
             <collision name="front_right_foot_collision">
                 <geometry>
                     <sphere>
-                        <radius>0.05</radius>
+                        <radius>0.03</radius>
                     </sphere>
                 </geometry>
                 <surface>
@@ -395,17 +530,21 @@
 <!-- REAR LEFT LEG -->
 
         <link name="rear_left_hip">
-            <pose>-0.25 0.15 0 0 0 1.5708</pose>
-            <visual name="rear_left_hip_visual">
-                <geometry>
-                    <cylinder>
-                        <radius>0.05</radius>
-                        <length>0.1</length>
-                    </cylinder>
-                </geometry>
-            </visual>
+            <!-- Let the pose of the link coincide with the joint position -->
+            <!--
+                x = -x_0
+                y = y_0
+                z = z_0
+                r = 0
+                p = 0
+                y = 0
+            -->
+            <pose>-0.201 0.205 0 0 0 0</pose>
+
             <inertial>
-                <pose>0 0 0 0 0 0</pose>
+                <!-- Position of rear_left_hip CoM relative to joint position. Obtained from Solidworks-->
+                <pose>0 0.0 0 0 0 0</pose>
+
                 <mass>1.0</mass>
                 <inertia>
                 <ixx>0.1</ixx>
@@ -416,17 +555,28 @@
                 <izz>0.1</izz>
                 </inertia>
             </inertial>
+
+            <visual name="rear_left_hip_visual">
+                <geometry>
+                    <mesh>
+                        <uri>file:///home/omicron/Desktop/Tetrapod-Robot/Models/Robot/Meshes/right_shoulder.dae</uri>
+                    </mesh>  
+                </geometry>
+            </visual>
+
         </link>
 
         <joint name="rear_left_hip_yaw" type="revolute">
-            <pose>0 0 0 0 0 0</pose>
+            <!-- Use zero as joint and link position coincide-->
+            <pose>0 0 0 0 0 0</pose> 
+
             <child>rear_left_hip</child>
             <parent>body</parent>
             <axis>
                 <xyz>0 0 1</xyz>
                 <limit>
-                    <lower>-1.5708</lower>
-                    <upper>1.5708</upper>
+                    <lower>0</lower>
+                    <upper>3.14</upper>
                     <effort>30</effort>
                     <velocity>1000</velocity>
                 </limit>
@@ -434,16 +584,37 @@
         </joint>
 
         <link name="rear_left_upper_leg">
-            <pose>-0.25 0.30 0 -1.5708 0 0</pose>
-            <visual name="left_upper_leg">
+            <!-- Let the pose of the link coincide with the hip pitch joint position -->
+            <!--
+                x = -x_0 + r1
+                y = y_0
+                z = z_0 + d1
+                r = 1.5708 (rotate the leg)
+                p = 0
+                y = 0
+            -->
+            <pose>-0.072 0.201 0 1.5708 0 0</pose>
+
+            <collision name="rear_left_upper_leg_collision">
+                <!-- Add pose for collision-->
+                <pose>0.1645 0 0 0 1.5708 0</pose>
                 <geometry>
                     <cylinder>
-                        <radius>0.02</radius>
-                        <length>0.3</length>
+                        <radius>0.01</radius>
+                        <length>0.329</length>
                     </cylinder>
+                </geometry>
+            </collision>
+            <visual name="rear_left_upper_leg">
+                <pose>0 0 0 0 0 0</pose>
+                <geometry>
+                    <mesh>
+                        <uri>file:///home/omicron/Desktop/Tetrapod-Robot/Models/Robot/Meshes/upper_leg.dae</uri>
+                    </mesh>                    
                 </geometry>
             </visual>
             <inertial>
+                <!-- Position of upper_leg CoM relative to hip pitch joint position. Obtained from Solidworks-->
                 <pose>0 0 0 0 0 0</pose>
                 <mass>1.0</mass>
                 <inertia>
@@ -460,9 +631,10 @@
         <joint name="rear_left_hip_pitch" type="revolute">
             <parent>rear_left_hip</parent>
             <child>rear_left_upper_leg</child>
-            <pose frame="rear_left_hip">0 0 -0.15 0 0 0</pose>
+            <!-- Use zero as joint and link position coincide-->
+            <pose frame="rear_left_hip">0 0 0 0 0 0</pose>
             <axis>
-                <xyz>1 0 0</xyz>
+                <xyz>0 0 1</xyz>
                 <limit>
                     <lower>-2.5</lower>
                     <upper>2.5</upper>
@@ -473,33 +645,53 @@
         </joint>
 
         <link name="rear_left_lower_leg">
-            <pose>-0.25 0.65 0 -1.5708 0 0</pose>
+            <!-- Let the pose of the link coincide with the knee pitch joint position -->
+            <!--
+                x = -x_0 + r1 + r2
+                y = y_0
+                z = z_0 + d1
+                r = 1.5708
+                p = 0
+                y = 0
+            -->
+            <pose>0.257 0.205 0 1.5708 0 0</pose>
             <visual name="rear_left_lower_leg_visual">
+                <pose>0 0 0 0 0 0</pose>
                 <geometry>
-                    <cylinder>
-                        <radius>0.02</radius>
-                        <length>0.4</length>
-                    </cylinder>
+                    <mesh>
+                        <uri>file:///home/omicron/Desktop/Tetrapod-Robot/Models/Robot/Meshes/lower_leg.dae</uri>
+                    </mesh>
                 </geometry>
             </visual>
-            <collision name="rear_left_collision">
+            <collision name="rear_left_lower_leg_collision">
+                <!-- Add pose for collision-->
+                <pose>0.241 0 0 0 1.5708 0</pose>
                 <geometry>
                     <cylinder>
-                        <radius>0.02</radius>
-                        <length>0.4</length>
+                        <radius>0.01</radius>
+                        <length>0.482</length>
+                    </cylinder>
+                </geometry>
+            </collision>
+            <collision name="rear_left_knee_collision">
+                <geometry>
+                    <cylinder>
+                        <radius>0.035</radius>
+                        <length>0.06</length>
                     </cylinder>
                 </geometry>
             </collision>
             <inertial>
+                <!-- Position of lower_leg CoM relative to knee pitch joint position. Obtained from Solidworks-->
                 <pose>0 0 0 0 0 0</pose>
                 <mass>1.0</mass>
                 <inertia>
-                <ixx>0.1</ixx>
-                <ixy>0</ixy>
-                <ixz>0</ixz>
-                <iyy>0.1</iyy>
-                <iyz>0.0</iyz>
-                <izz>0.1</izz>
+                    <ixx>0.1</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.1</iyy>
+                    <iyz>0.0</iyz>
+                    <izz>0.1</izz>
                 </inertia>
             </inertial>
         </link>
@@ -507,9 +699,9 @@
         <joint name="rear_left_knee_joint" type="revolute">
             <parent>rear_left_upper_leg</parent>
             <child>rear_left_lower_leg</child>
-            <pose>0 0 -0.2 0 0 0</pose>
+            <pose>0 0 0 0 0 0</pose>
             <axis>
-                <xyz>1 0 0</xyz>
+                <xyz>0 0 1</xyz>
                 <limit>
                     <lower>-2.5</lower>
                     <upper>2.5</upper>
@@ -520,7 +712,17 @@
         </joint>
 
         <link name="rear_left_foot">
-            <pose>-0.25 0.85 0 0 0 0</pose>
+            <!-- Let the pose of the link coincide with the foot position -->
+            <!--
+                x = x_0 + r1 + r2 + r3
+                y = y_0
+                z = z_0 + d1
+                r = 1.5708
+                p = 0
+                y = 0
+            -->
+            <pose>0.739 0.205 0 1.5708 0 0</pose>
+
             <inertial>
                 <pose>0 0 0 0 0 0</pose>
                 <mass>0.1</mass>
@@ -533,18 +735,10 @@
                     <izz>0.01</izz>
                 </inertia>
             </inertial>
-            <visual name="rear_left_foot_visual">
-                <pose>0 0 0 0 0 0</pose>
-                <geometry>
-                    <sphere>
-                        <radius>0.05</radius>
-                    </sphere>
-                </geometry>             
-            </visual>
             <collision name="rear_left_foot_collision">
                 <geometry>
                     <sphere>
-                        <radius>0.05</radius>
+                        <radius>0.03</radius>
                     </sphere>
                 </geometry>
                 <surface>
@@ -563,21 +757,26 @@
             <pose>0 0 0 0 0 0</pose>
         </joint>
 
-<!-- REAR RIGHT LEG-->
 
+
+<!-- REAR RIGHT LEG -->
 
         <link name="rear_right_hip">
-            <pose>-0.25 -0.15 0 0 0 1.5708</pose>
-            <visual name="rear_right_hip_visual">
-                <geometry>
-                    <cylinder>
-                        <radius>0.05</radius>
-                        <length>0.1</length>
-                    </cylinder>
-                </geometry>
-            </visual>
+            <!-- Let the pose of the link coincide with the joint position -->
+            <!--
+                x = -x_0
+                y = -y_0
+                z = z_0
+                r = 0
+                p = 0
+                y = 0
+            -->
+            <pose>-0.201 -0.205 0 0 0 0</pose>
+
             <inertial>
-                <pose>0 0 0 0 0 0</pose>
+                <!-- Position of rear_right_hip CoM relative to joint position. Obtained from Solidworks-->
+                <pose>0 0.0 0 0 0 0</pose>
+
                 <mass>1.0</mass>
                 <inertia>
                 <ixx>0.1</ixx>
@@ -588,17 +787,27 @@
                 <izz>0.1</izz>
                 </inertia>
             </inertial>
+
+            <visual name="rear_right_hip_visual">
+                <geometry>
+                    <mesh>
+                        <uri>file:///home/omicron/Desktop/Tetrapod-Robot/Models/Robot/Meshes/left_shoulder.dae</uri>
+                    </mesh>  
+                </geometry>
+            </visual>
         </link>
 
         <joint name="rear_right_hip_yaw" type="revolute">
-            <pose>0 0 0 0 0 0</pose>
+            <!-- Use zero as joint and link position coincide-->
+            <pose>0 0 0 0 0 0</pose> 
+
             <child>rear_right_hip</child>
             <parent>body</parent>
             <axis>
                 <xyz>0 0 1</xyz>
                 <limit>
-                    <lower>-1.5708</lower>
-                    <upper>1.5708</upper>
+                    <lower>-3.14</lower>
+                    <upper>0.0</upper>
                     <effort>30</effort>
                     <velocity>1000</velocity>
                 </limit>
@@ -606,16 +815,37 @@
         </joint>
 
         <link name="rear_right_upper_leg">
-            <pose>-0.25 -0.30 0 -1.5708 0 0</pose>
-            <visual name="right_upper_leg">
+            <!-- Let the pose of the link coincide with the hip pitch joint position -->
+            <!--
+                x = -x_0 + r1
+                y = -y_0
+                z = z_0 + d1
+                r = -1.5708 (rotate the leg)
+                p = 0
+                y = 0
+            -->
+            <pose>-0.072 -0.201 0 -1.5708 0 0</pose>
+
+            <collision name="rear_right_upper_leg_collision">
+                <!-- Add pose for collision-->
+                <pose>0.1645 0 0 0 1.5708 0</pose>
                 <geometry>
                     <cylinder>
-                        <radius>0.02</radius>
-                        <length>0.3</length>
+                        <radius>0.01</radius>
+                        <length>0.329</length>
                     </cylinder>
+                </geometry>
+            </collision>
+            <visual name="rear_right_upper_leg">
+                <pose>0 0 0 0 0 0</pose>
+                <geometry>
+                    <mesh>
+                        <uri>file:///home/omicron/Desktop/Tetrapod-Robot/Models/Robot/Meshes/upper_leg.dae</uri>
+                    </mesh>                    
                 </geometry>
             </visual>
             <inertial>
+                <!-- Position of upper_leg CoM relative to hip pitch joint position. Obtained from Solidworks-->
                 <pose>0 0 0 0 0 0</pose>
                 <mass>1.0</mass>
                 <inertia>
@@ -632,9 +862,10 @@
         <joint name="rear_right_hip_pitch" type="revolute">
             <parent>rear_right_hip</parent>
             <child>rear_right_upper_leg</child>
-            <pose frame="rear_right_hip">0 0 0.15 0 0 0</pose>
+            <!-- Use zero as joint and link position coincide-->
+            <pose frame="rear_right_hip">0 0 0 0 0 0</pose>
             <axis>
-                <xyz>1 0 0</xyz>
+                <xyz>0 0 1</xyz>
                 <limit>
                     <lower>-2.5</lower>
                     <upper>2.5</upper>
@@ -645,33 +876,53 @@
         </joint>
 
         <link name="rear_right_lower_leg">
-            <pose>-0.25 -0.65 0 -1.5708 0 0</pose>
+            <!-- Let the pose of the link coincide with the knee pitch joint position -->
+            <!--
+                x = -x_0 + r1 + r2
+                y = y_0
+                z = z_0 + d1
+                r = 1.5708
+                p = 0
+                y = 0
+            -->
+            <pose>0.257 -0.205 0 -1.5708 0 0</pose>
             <visual name="rear_right_lower_leg_visual">
+                <pose>0 0 0 0 0 0</pose>
                 <geometry>
-                    <cylinder>
-                        <radius>0.02</radius>
-                        <length>0.4</length>
-                    </cylinder>
+                    <mesh>
+                        <uri>file:///home/omicron/Desktop/Tetrapod-Robot/Models/Robot/Meshes/lower_leg.dae</uri>
+                    </mesh>
                 </geometry>
             </visual>
-            <collision name="rear_right_collision">
+            <collision name="rear_right_lower_leg_collision">
+                <!-- Add pose for collision-->
+                <pose>0.241 0 0 0 1.5708 0</pose>
                 <geometry>
                     <cylinder>
-                        <radius>0.02</radius>
-                        <length>0.4</length>
+                        <radius>0.01</radius>
+                        <length>0.482</length>
+                    </cylinder>
+                </geometry>
+            </collision>
+            <collision name="rear_right_knee_collision">
+                <geometry>
+                    <cylinder>
+                        <radius>0.035</radius>
+                        <length>0.06</length>
                     </cylinder>
                 </geometry>
             </collision>
             <inertial>
+                <!-- Position of lower_leg CoM relative to knee pitch joint position. Obtained from Solidworks-->
                 <pose>0 0 0 0 0 0</pose>
                 <mass>1.0</mass>
                 <inertia>
-                <ixx>0.1</ixx>
-                <ixy>0</ixy>
-                <ixz>0</ixz>
-                <iyy>0.1</iyy>
-                <iyz>0.0</iyz>
-                <izz>0.1</izz>
+                    <ixx>0.1</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.1</iyy>
+                    <iyz>0.0</iyz>
+                    <izz>0.1</izz>
                 </inertia>
             </inertial>
         </link>
@@ -679,9 +930,9 @@
         <joint name="rear_right_knee_joint" type="revolute">
             <parent>rear_right_upper_leg</parent>
             <child>rear_right_lower_leg</child>
-            <pose>0 0 0.2 0 0 0</pose>
+            <pose>0 0 0 0 0 0</pose>
             <axis>
-                <xyz>1 0 0</xyz>
+                <xyz>0 0 1</xyz>
                 <limit>
                     <lower>-2.5</lower>
                     <upper>2.5</upper>
@@ -692,7 +943,17 @@
         </joint>
 
         <link name="rear_right_foot">
-            <pose>-0.25 -0.85 0 0 0 0</pose>
+            <!-- Let the pose of the link coincide with the foot position -->
+            <!--
+                x = -x_0 + r1 + r2 + r3
+                y = -y_0
+                z = z_0 + d1
+                r = 1.5708
+                p = 0
+                y = 0
+            -->
+            <pose>0.739 -0.205 0 -1.5708 0 0</pose>
+
             <inertial>
                 <pose>0 0 0 0 0 0</pose>
                 <mass>0.1</mass>
@@ -705,18 +966,10 @@
                     <izz>0.01</izz>
                 </inertia>
             </inertial>
-            <visual name="rear_right_foot_visual">
-                <pose>0 0 0 0 0 0</pose>
-                <geometry>
-                    <sphere>
-                        <radius>0.05</radius>
-                    </sphere>
-                </geometry>             
-            </visual>
             <collision name="rear_right_foot_collision">
                 <geometry>
                     <sphere>
-                        <radius>0.05</radius>
+                        <radius>0.03</radius>
                     </sphere>
                 </geometry>
                 <surface>
@@ -733,7 +986,7 @@
             <parent>rear_right_lower_leg</parent>
             <child>rear_right_foot</child>
             <pose>0 0 0 0 0 0</pose>
-        </joint>        
+        </joint>
 
     </model>
 </sdf>
