@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="world" default="empty"/>
+  <arg name="ign_args" default=""/>
+
+  <include file="$(find ros_ign_gazebo)/launch/ign_gazebo.launch">
+    <arg name="ign_args" value="-r -v 3 $(arg world).sdf"/>
+  </include>
+
+  <!-- SDF from file, package model -->
+  <node
+    pkg="ros_ign_gazebo"
+    type="create"
+    name="$(anon ros_ign_tetrapod)"
+    output="screen"
+    args="-world $(arg world) -file $(find tetrapod_description)/model.sdf -name spawned -allow_renaming true -z 10 -y -2">
+  </node>
+
+</launch>
