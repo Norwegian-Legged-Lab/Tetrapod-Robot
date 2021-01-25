@@ -49,7 +49,7 @@ z_0 = 0.0
             <visual name="body_visual">
                 <geometry>
                     <mesh>
-                        <uri>file:///home/omicron/Desktop/Tetrapod-Robot/Models/Robot/Meshes/base.dae</uri>
+                        <uri>model://tetrapod_description/Meshes/base.dae</uri>
                     </mesh>  
                 </geometry>
             </visual>
@@ -95,7 +95,7 @@ z_0 = 0.0
             <visual name="front_left_hip_visual">
                 <geometry>
                     <mesh>
-                        <uri>file:///home/omicron/Desktop/Tetrapod-Robot/Models/Robot/Meshes/left_shoulder.dae</uri>
+                        <uri>model://tetrapod_description/Meshes/left_shoulder.dae</uri>
                     </mesh>  
                 </geometry>
             </visual>
@@ -145,7 +145,7 @@ z_0 = 0.0
                 <pose>0 0 0 0 0 0</pose>
                 <geometry>
                     <mesh>
-                        <uri>file:///home/omicron/Desktop/Tetrapod-Robot/Models/Robot/Meshes/upper_leg.dae</uri>
+                        <uri>model://tetrapod_description/Meshes/upper_leg.dae</uri>
                     </mesh>                    
                 </geometry>
             </visual>
@@ -195,7 +195,7 @@ z_0 = 0.0
                 <pose>0 0 0 0 0 0</pose>
                 <geometry>
                     <mesh>
-                        <uri>file:///home/omicron/Desktop/Tetrapod-Robot/Models/Robot/Meshes/lower_leg.dae</uri>
+                        <uri>model://tetrapod_description/Meshes/lower_leg.dae</uri>
                     </mesh>
                 </geometry>
             </visual>
@@ -327,7 +327,7 @@ z_0 = 0.0
             <visual name="front_right_hip_visual">
                 <geometry>
                     <mesh>
-                        <uri>file:///home/omicron/Desktop/Tetrapod-Robot/Models/Robot/Meshes/right_shoulder.dae</uri>
+                        <uri>model://tetrapod_description/Meshes/right_shoulder.dae</uri>
                     </mesh>  
                 </geometry>
             </visual>
@@ -377,7 +377,7 @@ z_0 = 0.0
                 <pose>0 0 0 0 0 0</pose>
                 <geometry>
                     <mesh>
-                        <uri>file:///home/omicron/Desktop/Tetrapod-Robot/Models/Robot/Meshes/upper_leg.dae</uri>
+                        <uri>model://tetrapod_description/Meshes/upper_leg.dae</uri>
                     </mesh>                    
                 </geometry>
             </visual>
@@ -427,7 +427,7 @@ z_0 = 0.0
                 <pose>0 0 0 0 0 0</pose>
                 <geometry>
                     <mesh>
-                        <uri>file:///home/omicron/Desktop/Tetrapod-Robot/Models/Robot/Meshes/lower_leg.dae</uri>
+                        <uri>model://tetrapod_description/Meshes/lower_leg.dae</uri>
                     </mesh>
                 </geometry>
             </visual>
@@ -559,7 +559,7 @@ z_0 = 0.0
             <visual name="rear_left_hip_visual">
                 <geometry>
                     <mesh>
-                        <uri>file:///home/omicron/Desktop/Tetrapod-Robot/Models/Robot/Meshes/right_shoulder.dae</uri>
+                        <uri>model://tetrapod_description/Meshes/right_shoulder.dae</uri>
                     </mesh>  
                 </geometry>
             </visual>
@@ -609,7 +609,7 @@ z_0 = 0.0
                 <pose>0 0 0 0 0 0</pose>
                 <geometry>
                     <mesh>
-                        <uri>file:///home/omicron/Desktop/Tetrapod-Robot/Models/Robot/Meshes/upper_leg.dae</uri>
+                        <uri>model://tetrapod_description/Meshes/upper_leg.dae</uri>
                     </mesh>                    
                 </geometry>
             </visual>
@@ -659,7 +659,7 @@ z_0 = 0.0
                 <pose>0 0 0 0 0 0</pose>
                 <geometry>
                     <mesh>
-                        <uri>file:///home/omicron/Desktop/Tetrapod-Robot/Models/Robot/Meshes/lower_leg.dae</uri>
+                        <uri>model://tetrapod_description/Meshes/lower_leg.dae</uri>
                     </mesh>
                 </geometry>
             </visual>
@@ -791,7 +791,7 @@ z_0 = 0.0
             <visual name="rear_right_hip_visual">
                 <geometry>
                     <mesh>
-                        <uri>file:///home/omicron/Desktop/Tetrapod-Robot/Models/Robot/Meshes/left_shoulder.dae</uri>
+                        <uri>model://tetrapod_description/Meshes/left_shoulder.dae</uri>
                     </mesh>  
                 </geometry>
             </visual>
@@ -840,7 +840,7 @@ z_0 = 0.0
                 <pose>0 0 0 0 0 0</pose>
                 <geometry>
                     <mesh>
-                        <uri>file:///home/omicron/Desktop/Tetrapod-Robot/Models/Robot/Meshes/upper_leg.dae</uri>
+                        <uri>model://tetrapod_description/Meshes/upper_leg.dae</uri>
                     </mesh>                    
                 </geometry>
             </visual>
@@ -890,7 +890,7 @@ z_0 = 0.0
                 <pose>0 0 0 0 0 0</pose>
                 <geometry>
                     <mesh>
-                        <uri>file:///home/omicron/Desktop/Tetrapod-Robot/Models/Robot/Meshes/lower_leg.dae</uri>
+                        <uri>model://tetrapod_description/Meshes/lower_leg.dae</uri>
                     </mesh>
                 </geometry>
             </visual>
