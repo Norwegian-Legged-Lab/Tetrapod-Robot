@@ -1,3 +1,4 @@
 [submodule "catkin_ws/src/utilities/ros_ign"]
 	path = catkin_ws/src/utilities/ros_ign
 	url = https://github.com/osrf/ros_ign.git
+	branch = noetic
