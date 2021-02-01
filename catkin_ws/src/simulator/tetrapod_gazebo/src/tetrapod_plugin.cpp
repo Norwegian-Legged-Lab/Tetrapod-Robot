@@ -35,9 +35,9 @@ namespace gazebo
 
                 this->model = _model;
 
-                this->joint = _model->GetJoints()[0];
+                this->joint = _model->GetJoints()[1];
 
-                this->pid = common::PID(0.1, 0, 0);
+                this->pid = common::PID(10, 0, 0);
 
                 this->model->GetJointController()->SetVelocityPID(
                     this->joint->GetScopedName(), this->pid);
@@ -77,12 +77,13 @@ namespace gazebo
                     this->joint->GetScopedName(),
                     _vel
                 );
+                //ROS_INFO("Setting velocity for joint %s")
             }
 
             void OnRosMsg(const std_msgs::Float32ConstPtr &_msg)
             {
                 this->SetVelocity(_msg->data);
-                ROS_DEBUG("OnRosMsg setting velocity to %f", _msg->data);
+                ROS_INFO("OnRosMsg setting velocity to %f", _msg->data);
             }
 
             void QueueThread()
