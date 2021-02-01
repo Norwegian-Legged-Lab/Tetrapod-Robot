@@ -11,10 +11,14 @@
     </include>
 
     <!-- A testing model that includes the Velodyne sensor model -->
-    <model name="Tetrapod">
+    <model name="tetrapod">
       <include>
         <uri>model://tetrapod_description</uri>
       </include>
+
+      <!-- Attach the plugin to this model -->
+      <plugin name="tetrapod_control" filename="libtetrapod_plugin.so"/>
+
     </model>
 
   </world>
