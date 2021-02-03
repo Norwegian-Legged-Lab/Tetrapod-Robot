@@ -11,7 +11,7 @@
     </include>
 
     <!-- A testing model that includes the Velodyne sensor model -->
-    <model name="tetrapod">
+    <model name="my_robot">
       <include>
         <uri>model://tetrapod_description</uri>
       </include>
