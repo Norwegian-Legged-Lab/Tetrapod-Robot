@@ -15,6 +15,8 @@
 #include "ros/subscribe_options.h"
 #include "std_msgs/Float32.h"
 
+#include <typeinfo>
+
 namespace gazebo
 {
     class TetrapodPlugin : public ModelPlugin
@@ -35,7 +37,38 @@ namespace gazebo
 
                 this->model = _model;
 
-                this->joint = _model->GetJoints()[1];
+                //this->joint = _model->GetJoints()[0]
+                if (!_model->GetJoint("tetrapod::front_left_hip_yaw"))
+                {
+                    ROS_ERROR("Could not load front_left_hip_yaw_joint");
+                    return;
+                }
+
+                this->joint = _model->GetJoint("tetrapod::front_left_hip_yaw");
+
+                //this->front_left_hip_yaw_joint     = _model->GetJoint("front_left_hip_yaw");
+                //this->front_left_hip_pitch_joint   = _model->GetJoint("front_left_hip_pitch");
+                //this->front_left_knee_joint        = _model->GetJoint("front_left_knee_joint");
+                //this->front_left_foot_joint        = _model->GetJoint("front_left_foot_joint");
+
+                //this->front_right_hip_yaw_joint    = _model->GetJoint("front_right_hip_yaw");
+                //this->front_right_hip_pitch_joint  = _model->GetJoint("front_right_hip_pitch");
+                //this->front_right_knee_joint       = _model->GetJoint("front_right_knee_joint");
+                //this->front_right_foot_joint       = _model->GetJoint("front_right_foot_joint");
+            
+                //this->rear_left_hip_yaw_joint      = _model->GetJoint("rear_left_hip_yaw");
+                //this->rear_left_hip_pitch_joint    = _model->GetJoint("rear_left_hip_pitch");
+                //this->rear_left_knee_joint         = _model->GetJoint("rear_left_knee_joint");
+                //this->rear_left_foot_joint         = _model->GetJoint("rear_left_foot_joint");
+
+                //this->rear_right_hip_yaw_joint     = _model->GetJoint("rear_right_hip_yaw");
+                //this->rear_right_hip_pitch_joint   = _model->GetJoint("rear_right_hip_pitch");
+                //this->rear_right_knee_joint        = _model->GetJoint("rear_right_knee_joint");
+                //this->rear_right_foot_joint        = _model->GetJoint("rear_right_foot_joint");
+
+                std::string joint_name = this->joint->GetScopedName();
+
+                ROS_INFO_STREAM("Loaded joint: " << joint_name);
 
                 this->pid = common::PID(10, 0, 0);
 
@@ -98,6 +131,26 @@ namespace gazebo
             physics::ModelPtr model;
 
             physics::JointPtr joint;
+
+            physics::JointPtr front_left_hip_yaw_joint;
+            physics::JointPtr front_left_hip_pitch_joint;
+            physics::JointPtr front_left_knee_joint;
+            physics::JointPtr front_left_foot_joint;
+
+            physics::JointPtr front_right_hip_yaw_joint;
+            physics::JointPtr front_right_hip_pitch_joint;
+            physics::JointPtr front_right_knee_joint;
+            physics::JointPtr front_right_foot_joint;
+            
+            physics::JointPtr rear_left_hip_yaw_joint;
+            physics::JointPtr rear_left_hip_pitch_joint;
+            physics::JointPtr rear_left_knee_joint;
+            physics::JointPtr rear_left_foot_joint;
+
+            physics::JointPtr rear_right_hip_yaw_joint;
+            physics::JointPtr rear_right_hip_pitch_joint;
+            physics::JointPtr rear_right_knee_joint;
+            physics::JointPtr rear_right_foot_joint;
 
             common::PID pid;
 
