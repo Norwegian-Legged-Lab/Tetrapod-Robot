@@ -26,7 +26,7 @@ z_0 = 0.0
 -->
 
 <sdf version='1.7'>
-    <model name="Tetrapod">
+    <model name="tetrapod">
         <pose>0 0 1 0 0 0</pose>
         <static>false</static>
 
