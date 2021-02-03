@@ -50,3 +50,7 @@ qtcreator-*
 
 # Catkin custom files
 CATKIN_IGNORE
+
+# Ignore ignition gazebo models
+dolly_ignition/
+casual_female/
