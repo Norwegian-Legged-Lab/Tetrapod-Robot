@@ -39,9 +39,18 @@
 #include "ros/callback_queue.h"
 #include "ros/subscribe_options.h"
 #include "std_msgs/Float32.h"
+#include "std_msgs/Float64MultiArray.h"
+
+// Eigen
+#include <Eigen/Core>
 
 namespace gazebo
 {
+    /// \brief Fixed variable for num joints
+    static constexpr unsigned int NUMJOINTS = 12;
+
+    using JointVelocities = Eigen::Matrix<double, 12, 1>;
+    
     /// \brief A plugin to control the tetrapod robot.
     class TetrapodPlugin : public ModelPlugin
     {
@@ -63,12 +72,11 @@ namespace gazebo
         /// \param[in] _vel New target velocity
         public: void SetVelocity(const double &_vel);
 
-
         /// \brief The OnRosMsg function handles an incoming
         /// message from ROS.
         /// \param[in] _msg A floatt value used to set the 
         /// velocity of the joint.
-        public: void OnRosMsg(const std_msgs::Float32ConstPtr &_msg);
+        public: void OnRosMsg(const std_msgs::Float64MultiArrayConstPtr &_msg);
 
         /// \brief The QueueThread function is a ROS helper function
         /// that processes messages.

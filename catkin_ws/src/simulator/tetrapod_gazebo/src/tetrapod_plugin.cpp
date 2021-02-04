@@ -39,7 +39,6 @@ TetrapodPlugin::~TetrapodPlugin()
     this->rosQueue.clear();
     this->rosQueue.disable();
     this->rosQueueThread.join();
-    delete this->rosNode;
 };
 
 // Load Plugin 
@@ -61,7 +60,7 @@ void TetrapodPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
     );
 
     // Initialize ROS
-    initRos();
+    InitRos();
 
 };
 
@@ -75,24 +74,24 @@ void TetrapodPlugin::SetVelocity(const double &_vel)
 }
 
 // Callback for ROS messages
-void TetrapodPlugin::OnRosMsg(const double &_vel)
+void TetrapodPlugin::OnRosMsg(const std_msgs::Float64MultiArrayConstPtr &_msg)
 {
-    this->SetVelocity(_msg->data);
-    ROS_INFO("[TetrapodPlugin::OnRosMsg] Setting velocity to %f", _msg->data);
+    this->SetVelocity(_msg->data[0]);
+    ROS_INFO("[TetrapodPlugin::OnRosMsg] Setting velocity to %f", _msg->data[0]);
 }
 
 // Setup thread to process messages
 void TetrapodPlugin::QueueThread()
 {
     static const double timeout = 0.01;
-    while (this->rosNode->ok()
+    while (this->rosNode->ok())
     {
         this->rosQueue.callAvailable(ros::WallDuration(timeout));
     }
-}
+};
 
 // Initialize ROS
-void TetrapodPlugin::initROS()
+void TetrapodPlugin::InitRos()
 {
     if (!ros::isInitialized())
     {
@@ -109,7 +108,7 @@ void TetrapodPlugin::initROS()
     this->rosNode.reset(new ros::NodeHandle("gazebo_client"));
 
     ros::SubscribeOptions so = 
-        ros::SubscribeOptions::create<std_msgs::Float32>(
+        ros::SubscribeOptions::create<std_msgs::Float64MultiArray>(
             "/" + this->model->GetName() + "/vel_cmd",
             1,
             boost::bind(&TetrapodPlugin::OnRosMsg, this, _1),
