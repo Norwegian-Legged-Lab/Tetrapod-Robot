@@ -1,170 +1,128 @@
-#ifndef _TETRAPOD_PLUGIN_HH_
-#define _TETRAPOD_PLUGIN_HH_
+/*******************************************************************/
+/*    AUTHOR: Paal Arthur S. Thorseth                              */
+/*    ORGN:   Dept of Eng Cybernetics, NTNU Trondheim              */
+/*    FILE:   tetrapod_plugin.h                                    */
+/*    DATE:   Feb 4, 2021                                          */
+/*                                                                 */
+/* Copyright (C) 2021 Paal Arthur S. Thorseth,                     */
+/*                    Adrian B. Ghansah                            */
+/*                                                                 */
+/* This program is free software: you can redistribute it          */
+/* and/or modify it under the terms of the GNU General             */
+/* Public License as published by the Free Software Foundation,    */
+/* either version 3 of the License, or (at your option) any        */
+/* later version.                                                  */
+/*                                                                 */
+/* This program is distributed in the hope that it will be useful, */
+/* but WITHOUT ANY WARRANTY; without even the implied warranty     */
+/* of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.         */
+/* See the GNU General Public License for more details.            */
+/*                                                                 */
+/* You should have received a copy of the GNU General Public       */
+/* License along with this program. If not, see                    */
+/* <https://www.gnu.org/licenses/>.                                */
+/*                                                                 */
+/*******************************************************************/
 
-// Gazebo
-#include <gazebo/gazebo.hh>
-#include <gazebo/physics/physics.hh>
-#include <gazebo/transport/transport.hh>
-#include <gazebo/msgs/msgs.hh>
 
-// ROS
-#include <thread>
-#include "ros/ros.h"
-#include "ros/console.h"
-#include "ros/callback_queue.h"
-#include "ros/subscribe_options.h"
-#include "std_msgs/Float32.h"
+#include <tetrapod_gazebo/tetrapod_plugin.h>
 
-#include <typeinfo>
+namespace gazebo {
 
-namespace gazebo
+// Constructor
+TetrapodPlugin::TetrapodPlugin() {};
+
+// Destructor
+TetrapodPlugin::~TetrapodPlugin() 
 {
-    class TetrapodPlugin : public ModelPlugin
+    this->rosNode->shutdown();
+    this->rosQueue.clear();
+    this->rosQueue.disable();
+    this->rosQueueThread.join();
+    delete this->rosNode;
+};
+
+// Load Plugin 
+void TetrapodPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
+{
+    // Store model pointer
+    this->model = _model;
+
+    // Store joint pointer
+    this->joint = model->GetJoints()[0];
+
+    // Setup P-controller
+    this->pid = common::PID(10, 0, 0);
+
+    // Apply P-controller
+    this->model->GetJointController()->SetVelocityPID(
+        this->joint->GetScopedName(),
+        this->pid
+    );
+
+    // Initialize ROS
+    initRos();
+
+};
+
+// Set the joints target velocity
+void TetrapodPlugin::SetVelocity(const double &_vel)
+{
+    this->model->GetJointController()->SetVelocityTarget(
+        this->joint->GetScopedName(),
+        _vel
+    );
+}
+
+// Callback for ROS messages
+void TetrapodPlugin::OnRosMsg(const double &_vel)
+{
+    this->SetVelocity(_msg->data);
+    ROS_INFO("[TetrapodPlugin::OnRosMsg] Setting velocity to %f", _msg->data);
+}
+
+// Setup thread to process messages
+void TetrapodPlugin::QueueThread()
+{
+    static const double timeout = 0.01;
+    while (this->rosNode->ok()
     {
-        public:
-            
-            TetrapodPlugin() {};
+        this->rosQueue.callAvailable(ros::WallDuration(timeout));
+    }
+}
 
-            virtual void Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
-            {
-                if (_model->GetJointCount() == 0)
-                {
-                    ROS_ERROR("Invalid joint count, Tetrapod plugin not loaded\n");
-                    return;
-                }
+// Initialize ROS
+void TetrapodPlugin::initROS()
+{
+    if (!ros::isInitialized())
+    {
+        int argc = 0;
+        char **argv = NULL;
+        ros::init(
+            argc,
+            argv,
+            "gazebo_client",
+            ros::init_options::NoSigintHandler
+        );
+    }
 
-                double velocity = 0;
+    this->rosNode.reset(new ros::NodeHandle("gazebo_client"));
 
-                this->model = _model;
+    ros::SubscribeOptions so = 
+        ros::SubscribeOptions::create<std_msgs::Float32>(
+            "/" + this->model->GetName() + "/vel_cmd",
+            1,
+            boost::bind(&TetrapodPlugin::OnRosMsg, this, _1),
+            ros::VoidPtr(),
+            &this->rosQueue
+            );
 
-                //this->joint = _model->GetJoints()[0]
-                if (!_model->GetJoint("tetrapod::front_left_hip_yaw"))
-                {
-                    ROS_ERROR("Could not load front_left_hip_yaw_joint");
-                    return;
-                }
+    this->rosSub = this->rosNode->subscribe(so);
 
-                this->joint = _model->GetJoint("tetrapod::front_left_hip_yaw");
+    this->rosQueueThread = std::thread(
+        std::bind(&TetrapodPlugin::QueueThread, this)
+    );
+};
 
-                //this->front_left_hip_yaw_joint     = _model->GetJoint("front_left_hip_yaw");
-                //this->front_left_hip_pitch_joint   = _model->GetJoint("front_left_hip_pitch");
-                //this->front_left_knee_joint        = _model->GetJoint("front_left_knee_joint");
-                //this->front_left_foot_joint        = _model->GetJoint("front_left_foot_joint");
-
-                //this->front_right_hip_yaw_joint    = _model->GetJoint("front_right_hip_yaw");
-                //this->front_right_hip_pitch_joint  = _model->GetJoint("front_right_hip_pitch");
-                //this->front_right_knee_joint       = _model->GetJoint("front_right_knee_joint");
-                //this->front_right_foot_joint       = _model->GetJoint("front_right_foot_joint");
-            
-                //this->rear_left_hip_yaw_joint      = _model->GetJoint("rear_left_hip_yaw");
-                //this->rear_left_hip_pitch_joint    = _model->GetJoint("rear_left_hip_pitch");
-                //this->rear_left_knee_joint         = _model->GetJoint("rear_left_knee_joint");
-                //this->rear_left_foot_joint         = _model->GetJoint("rear_left_foot_joint");
-
-                //this->rear_right_hip_yaw_joint     = _model->GetJoint("rear_right_hip_yaw");
-                //this->rear_right_hip_pitch_joint   = _model->GetJoint("rear_right_hip_pitch");
-                //this->rear_right_knee_joint        = _model->GetJoint("rear_right_knee_joint");
-                //this->rear_right_foot_joint        = _model->GetJoint("rear_right_foot_joint");
-
-                std::string joint_name = this->joint->GetScopedName();
-
-                ROS_INFO_STREAM("Loaded joint: " << joint_name);
-
-                this->pid = common::PID(10, 0, 0);
-
-                this->model->GetJointController()->SetVelocityPID(
-                    this->joint->GetScopedName(), this->pid);
-
-                if (!ros::isInitialized())
-                {
-                    int argc = 0;
-                    char **argv = NULL;
-                    ros::init(
-                        argc,argv,
-                        "gazebo_cleint",
-                        ros::init_options::NoSigintHandler
-                    );
-                }
-
-                this->rosNode.reset(new ros::NodeHandle("gazebo_client"));
-
-                ros::SubscribeOptions so = 
-                    ros::SubscribeOptions::create<std_msgs::Float32>(
-                        "/" + this->model->GetName() + "/vel_cmd",
-                        1,
-                        boost::bind(&TetrapodPlugin::OnRosMsg, this, _1),
-                        ros::VoidPtr(), &this->rosQueue
-                    );
-
-                this->rosSub = this->rosNode->subscribe(so);
-
-                this->rosQueueThread =
-                    std::thread(std::bind(&TetrapodPlugin::QueueThread, this));
-            }
-
-        private:
-
-            void SetVelocity(const double &_vel)
-            {
-                this->model->GetJointController()->SetVelocityTarget(
-                    this->joint->GetScopedName(),
-                    _vel
-                );
-                //ROS_INFO("Setting velocity for joint %s")
-            }
-
-            void OnRosMsg(const std_msgs::Float32ConstPtr &_msg)
-            {
-                this->SetVelocity(_msg->data);
-                ROS_INFO("OnRosMsg setting velocity to %f", _msg->data);
-            }
-
-            void QueueThread()
-            {
-                static const double timeout = 0.01;
-                while (this->rosNode->ok())
-                {
-                    this->rosQueue.callAvailable(ros::WallDuration(timeout));
-                }
-            }
-
-            physics::ModelPtr model;
-
-            physics::JointPtr joint;
-
-            physics::JointPtr front_left_hip_yaw_joint;
-            physics::JointPtr front_left_hip_pitch_joint;
-            physics::JointPtr front_left_knee_joint;
-            physics::JointPtr front_left_foot_joint;
-
-            physics::JointPtr front_right_hip_yaw_joint;
-            physics::JointPtr front_right_hip_pitch_joint;
-            physics::JointPtr front_right_knee_joint;
-            physics::JointPtr front_right_foot_joint;
-            
-            physics::JointPtr rear_left_hip_yaw_joint;
-            physics::JointPtr rear_left_hip_pitch_joint;
-            physics::JointPtr rear_left_knee_joint;
-            physics::JointPtr rear_left_foot_joint;
-
-            physics::JointPtr rear_right_hip_yaw_joint;
-            physics::JointPtr rear_right_hip_pitch_joint;
-            physics::JointPtr rear_right_knee_joint;
-            physics::JointPtr rear_right_foot_joint;
-
-            common::PID pid;
-
-            std::unique_ptr<ros::NodeHandle> rosNode;
-
-            ros::Subscriber rosSub;
-
-            ros::CallbackQueue rosQueue;
-
-            std::thread rosQueueThread;
-    };
-
-    GZ_REGISTER_MODEL_PLUGIN(TetrapodPlugin)
 
 } // namespace gazebo
-
-#endif
