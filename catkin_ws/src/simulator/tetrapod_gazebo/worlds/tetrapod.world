@@ -5,6 +5,13 @@
     <include>
       <uri>model://sun</uri>
     </include>
+
+    <!-- Remove shadows -->
+    <scene>
+      <ambient>0.0 0.0 0.0 0.1</ambient>
+      <shadows>0</shadows>
+    </scene>
+
     <!-- A ground plane -->
     <include>
       <uri>model://ground_plane</uri>
