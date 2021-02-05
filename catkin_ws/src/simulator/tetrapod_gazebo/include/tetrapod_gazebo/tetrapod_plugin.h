@@ -117,8 +117,14 @@ namespace gazebo
         /// \brief Vector of joint names
         private: std::vector<std::string> joint_names;
 
-        /// \brief Vector of P-gains
-        private: std::vector<double> p_gains;
+        /// \brief Vector of Velocity P-gains
+        private: std::vector<double> vel_p_gains;
+
+        /// \brief Vector of Velocity I-gains
+        private: std::vector<double> vel_i_gains;
+
+        /// \brief Vector of Velocity D-gains
+        private: std::vector<double> vel_d_gains;
 
         /// \brief Node used for ROS transport.
         private: std::unique_ptr<ros::NodeHandle> rosNode;

@@ -145,13 +145,27 @@ bool TetrapodPlugin::LoadParametersRos()
         return false;
     }
 
-    if (!this->rosNode->getParam("joint_velocity_controller/p_gains", this->p_gains))
+    if (!this->rosNode->getParam("joint_velocity_controller/p_gains", this->vel_p_gains))
     {
-        ROS_ERROR("Could not read P-gains from parameter server.");
+        ROS_ERROR("Could not read velocity P-gains from parameter server.");
         return false;
     }
 
-    if (joint_names.size() != p_gains.size())
+    if (!this->rosNode->getParam("joint_velocity_controller/i_gains", this->vel_i_gains))
+    {
+        ROS_ERROR("Could not read velocity I-gains from parameter server.");
+        return false;
+    }
+
+    if (!this->rosNode->getParam("joint_velocity_controller/d_gains", this->vel_d_gains))
+    {
+        ROS_ERROR("Could not read velocity D-gains from parameter server.");
+        return false;
+    }
+
+    if (joint_names.size() != vel_p_gains.size() ||
+        joint_names.size() != vel_i_gains.size() ||
+        joint_names.size() != vel_d_gains.size())
     {
         ROS_ERROR("Mismatch in number of joints and number of gains.");
         return false;
@@ -167,7 +181,7 @@ void TetrapodPlugin::InitJointControllers()
     {
         this->model->GetJointController()->SetVelocityPID(
             "my_robot::tetrapod::" + joint_names[i],
-            common::PID(p_gains[i],0,0)
+            common::PID(vel_p_gains[i], vel_i_gains[i], vel_d_gains[i])
         );
     }
 };
