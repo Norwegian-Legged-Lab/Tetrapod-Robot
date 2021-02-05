@@ -70,7 +70,7 @@ void TetrapodPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
 void TetrapodPlugin::SetJointVelocity(const std::string &_joint_name, const double &_vel)
 {
     this->model->GetJointController()->SetVelocityTarget(
-        joint_name,
+        _joint_name,
         _vel
     );
 }
