@@ -74,8 +74,9 @@ namespace gazebo
         public: virtual void Load(physics::ModelPtr _model, sdf::ElementPtr _sdf);
 
         /// \brief Set the velocity of the joint.
+        /// \param[in] _joint_name Desired joint
         /// \param[in] _vel New target velocity
-        public: void SetVelocity(const double &_vel);
+        public: void SetJointVelocity(const std::string &_joint_name, const double &_vel);
 
         /// \brief Set the velocity of the joint.
         /// \param[in] _vel New target velocity

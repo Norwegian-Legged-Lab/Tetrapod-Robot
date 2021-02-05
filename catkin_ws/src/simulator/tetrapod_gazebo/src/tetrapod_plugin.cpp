@@ -74,11 +74,11 @@ void TetrapodPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
 
 };
 
-// Set the joints target velocity
-void TetrapodPlugin::SetVelocity(const double &_vel)
+// Set the a single joints target velocity
+void TetrapodPlugin::SetJointVelocity(const std::string &_joint_name, const double &_vel)
 {
     this->model->GetJointController()->SetVelocityTarget(
-        this->joint->GetScopedName(),
+        joint_name,
         _vel
     );
 }
