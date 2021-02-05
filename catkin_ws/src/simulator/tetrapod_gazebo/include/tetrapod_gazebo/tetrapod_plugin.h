@@ -35,6 +35,7 @@
 // ROS
 #include <thread>
 #include "ros/ros.h"
+#include "ros/package.h"
 #include "ros/console.h"
 #include "ros/callback_queue.h"
 #include "ros/subscribe_options.h"
@@ -43,6 +44,10 @@
 
 // Eigen
 #include <Eigen/Core>
+
+// Standard library
+#include <vector>
+#include <map>
 
 namespace gazebo
 {
@@ -72,6 +77,10 @@ namespace gazebo
         /// \param[in] _vel New target velocity
         public: void SetVelocity(const double &_vel);
 
+        /// \brief Set the velocity of the joint.
+        /// \param[in] _vel New target velocity
+        public: void SetJointVelocities(const std::vector<double> &_vel);
+
         /// \brief The OnRosMsg function handles an incoming
         /// message from ROS.
         /// \param[in] _msg A floatt value used to set the 
@@ -82,8 +91,19 @@ namespace gazebo
         /// that processes messages.
         public: void QueueThread();
 
+        // TODO REMOVE
+        public: void printMap(const std::map<std::string,physics::JointPtr> &_map);
+
         /// \brief The initRos function is called to initialize ROS
         protected: void InitRos();
+
+        /// \brief The LoadParametersRos function is called to load 
+        /// configuration from the parameter server.
+        protected: bool LoadParametersRos();
+
+        /// \brief The InitJointControllers function is called to 
+        /// setup joint PID controllers.
+        protected: void InitJointControllers();
 
         /// \brief Pointer to the model.
         private: physics::ModelPtr model;
@@ -91,8 +111,22 @@ namespace gazebo
         /// \brief Pointer to the joint.
         private: physics::JointPtr joint;
 
+        /// \brief Pointers to the joints.
+        //private: std::vector<physics::JointPtr> joints;
+        //private: physics::Joint_V joints;
+        private: std::map<std::string, physics::JointPtr> joints;
+
+        /// \brief Vector of joint names
+        private: std::vector<std::string> joint_names;
+
+        /// \brief Vector of P-gains
+        private: std::vector<double> p_gains;
+
         /// \brief PID controller for the joint.
         private: common::PID pid;
+
+        /// \brief PID controllers for the joints.
+        private: std::vector<common::PID> pids;
 
         /// \brief Node used for ROS transport.
         private: std::unique_ptr<ros::NodeHandle> rosNode;

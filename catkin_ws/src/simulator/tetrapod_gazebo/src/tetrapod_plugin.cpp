@@ -46,21 +46,31 @@ void TetrapodPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
 {
     // Store model pointer
     this->model = _model;
+    ROS_INFO_STREAM("Model name: " << this->model->GetName());
 
     // Store joint pointer
-    this->joint = model->GetJoints()[0];
+    //this->joint = model->GetJoints()[0];
 
-    // Setup P-controller
-    this->pid = common::PID(10, 0, 0);
+    // Store joints 
+    this->joints = this->model->GetJointController()->GetJoints();
+    //printMap(joints);
 
-    // Apply P-controller
-    this->model->GetJointController()->SetVelocityPID(
-        this->joint->GetScopedName(),
-        this->pid
-    );
+    // Test access to a single joint
+    //this->joint = this->joints["my_robot::tetrapod::front_left_hip_yaw"];
 
     // Initialize ROS
     InitRos();
+
+    // Load parameters from config
+    if (!LoadParametersRos())
+    {
+        ROS_ERROR("Could not load parameters.");
+        return;
+    }
+
+    // Initialize Joint Controllers
+    InitJointControllers();
+
 
 };
 
@@ -73,11 +83,22 @@ void TetrapodPlugin::SetVelocity(const double &_vel)
     );
 }
 
+// Set joint target velocities
+void TetrapodPlugin::SetJointVelocities(const std::vector<double> &_vel)
+{
+    for (size_t i = 0; i < this->joint_names.size(); i++)
+    {
+        this->model->GetJointController()->SetVelocityTarget(
+            "my_robot::tetrapod::" + joint_names[i],
+            _vel[i]
+        );
+    }
+}
+
 // Callback for ROS messages
 void TetrapodPlugin::OnRosMsg(const std_msgs::Float64MultiArrayConstPtr &_msg)
 {
-    this->SetVelocity(_msg->data[0]);
-    ROS_INFO("[TetrapodPlugin::OnRosMsg] Setting velocity to %f", _msg->data[0]);
+    this->SetJointVelocities(_msg->data);
 }
 
 // Setup thread to process messages
@@ -123,5 +144,40 @@ void TetrapodPlugin::InitRos()
     );
 };
 
+// Load configuration
+bool TetrapodPlugin::LoadParametersRos()
+{
+    if (!this->rosNode->getParam("joint_velocity_controller/joint_names", this->joint_names))
+    {
+        ROS_ERROR("Could not read joint names from parameter server.");
+        return false;
+    }
+
+    if (!this->rosNode->getParam("joint_velocity_controller/p_gains", this->p_gains))
+    {
+        ROS_ERROR("Could not read P-gains from parameter server.");
+        return false;
+    }
+
+    if (joint_names.size() != p_gains.size())
+    {
+        ROS_ERROR("Mismatch in number of joints and number of gains.");
+        return false;
+    }
+
+    return true;
+};
+
+// Initialize Joint Controllers
+void TetrapodPlugin::InitJointControllers()
+{
+    for (size_t i = 0; i < this->joint_names.size(); i++)
+    {
+        this->model->GetJointController()->SetVelocityPID(
+            "my_robot::tetrapod::" + joint_names[i],
+            common::PID(p_gains[i],0,0)
+        );
+    }
+};
 
 } // namespace gazebo
