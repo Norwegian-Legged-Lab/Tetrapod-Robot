@@ -48,15 +48,9 @@ void TetrapodPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
     this->model = _model;
     ROS_INFO_STREAM("Model name: " << this->model->GetName());
 
-    // Store joint pointer
-    //this->joint = model->GetJoints()[0];
-
     // Store joints 
     this->joints = this->model->GetJointController()->GetJoints();
     //printMap(joints);
-
-    // Test access to a single joint
-    //this->joint = this->joints["my_robot::tetrapod::front_left_hip_yaw"];
 
     // Initialize ROS
     InitRos();

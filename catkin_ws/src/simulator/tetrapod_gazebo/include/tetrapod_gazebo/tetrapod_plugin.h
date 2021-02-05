@@ -109,9 +109,6 @@ namespace gazebo
         /// \brief Pointer to the model.
         private: physics::ModelPtr model;
 
-        /// \brief Pointer to the joint.
-        private: physics::JointPtr joint;
-
         /// \brief Pointers to the joints.
         //private: std::vector<physics::JointPtr> joints;
         //private: physics::Joint_V joints;
