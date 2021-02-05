@@ -62,10 +62,8 @@ void TetrapodPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
         return;
     }
 
-    // Initialize Joint Controllers
+    // Setup Joint Controllers
     InitJointControllers();
-
-
 };
 
 // Set the a single joints target velocity
