@@ -123,12 +123,6 @@ namespace gazebo
         /// \brief Vector of P-gains
         private: std::vector<double> p_gains;
 
-        /// \brief PID controller for the joint.
-        private: common::PID pid;
-
-        /// \brief PID controllers for the joints.
-        private: std::vector<common::PID> pids;
-
         /// \brief Node used for ROS transport.
         private: std::unique_ptr<ros::NodeHandle> rosNode;
 
