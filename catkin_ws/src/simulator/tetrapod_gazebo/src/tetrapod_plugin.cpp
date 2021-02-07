@@ -87,10 +87,28 @@ void TetrapodPlugin::SetJointVelocities(const std::vector<double> &_vel)
     }
 }
 
-// Callback for ROS messages
-void TetrapodPlugin::OnRosMsg(const std_msgs::Float64MultiArrayConstPtr &_msg)
+// Set joint target positions
+void TetrapodPlugin::SetJointPositions(const std::vector<double> &_pos)
+{
+    for (size_t i = 0; i < this->joint_names.size(); i++)
+    {
+        this->model->GetJointController()->SetJointPosition(
+            "my_robot::tetrapod::" + joint_names[i],
+            _pos[i]
+        );
+    }
+}
+
+// Callback for ROS Velocity messages
+void TetrapodPlugin::OnVelMsg(const std_msgs::Float64MultiArrayConstPtr &_msg)
 {
     this->SetJointVelocities(_msg->data);
+}
+
+// Callback for ROS Position messages
+void TetrapodPlugin::OnVelMsg(const std_msgs::Float64MultiArrayConstPtr &_msg)
+{
+    this->SetJointPositions(_msg->data);
 }
 
 // Setup thread to process messages
@@ -120,16 +138,27 @@ void TetrapodPlugin::InitRos()
 
     this->rosNode.reset(new ros::NodeHandle("gazebo_client"));
 
-    ros::SubscribeOptions so = 
+    ros::SubscribeOptions vel_so = 
         ros::SubscribeOptions::create<std_msgs::Float64MultiArray>(
             "/" + this->model->GetName() + "/vel_cmd",
             1,
-            boost::bind(&TetrapodPlugin::OnRosMsg, this, _1),
+            boost::bind(&TetrapodPlugin::OnVelMsg, this, _1),
             ros::VoidPtr(),
             &this->rosQueue
             );
 
-    this->rosSub = this->rosNode->subscribe(so);
+    ros::SubscribeOptions pos_so = 
+        ros::SubscribeOptions::create<std_msgs::Float64MultiArray>(
+            "/" + this->model->GetName() + "/pos_cmd",
+            1,
+            boost::bind(&TetrapodPlugin::OnPosMsg, this, _1),
+            ros::VoidPtr(),
+            &this->rosQueue
+            );
+
+    this->velSub = this->rosNode->subscribe(vel_so);
+
+    this->posSub = this->rosNode->subscribe(pos_so);
 
     this->rosQueueThread = std::thread(
         std::bind(&TetrapodPlugin::QueueThread, this)
@@ -163,9 +192,30 @@ bool TetrapodPlugin::LoadParametersRos()
         return false;
     }
 
+    if (!this->rosNode->getParam("joint_position_controller/p_gains", this->pos_p_gains))
+    {
+        ROS_ERROR("Could not read position P-gains from parameter server.");
+        return false;
+    }
+
+    if (!this->rosNode->getParam("joint_position_controller/i_gains", this->pos_i_gains))
+    {
+        ROS_ERROR("Could not read position I-gains from parameter server.");
+        return false;
+    }
+
+    if (!this->rosNode->getParam("joint_position_controller/d_gains", this->pos_d_gains))
+    {
+        ROS_ERROR("Could not read position D-gains from parameter server.");
+        return false;
+    }
+
     if (joint_names.size() != vel_p_gains.size() ||
         joint_names.size() != vel_i_gains.size() ||
-        joint_names.size() != vel_d_gains.size())
+        joint_names.size() != vel_d_gains.size() ||
+        joint_names.size() != pos_p_gains.size() ||
+        joint_names.size() != pos_i_gains.size() ||
+        joint_names.size() != pos_d_gains.size())
     {
         ROS_ERROR("Mismatch in number of joints and number of gains.");
         return false;
@@ -182,6 +232,11 @@ void TetrapodPlugin::InitJointControllers()
         this->model->GetJointController()->SetVelocityPID(
             "my_robot::tetrapod::" + joint_names[i],
             common::PID(vel_p_gains[i], vel_i_gains[i], vel_d_gains[i])
+        );
+
+        this->model->GetJointController->SetPositionPID(
+            "my_robot::tetrapod::" + joint_names[i],
+            common::PID(pos_p_gains[i], pos_i_gains[i], pos_d_gains[i])
         );
     }
 };

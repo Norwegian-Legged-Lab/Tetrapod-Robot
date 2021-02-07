@@ -78,15 +78,25 @@ namespace gazebo
         /// \param[in] _vel New target velocity
         public: void SetJointVelocity(const std::string &_joint_name, const double &_vel);
 
-        /// \brief Set the velocity of the joint.
+        /// \brief Set the velocity of the joints.
         /// \param[in] _vel New target velocity
         public: void SetJointVelocities(const std::vector<double> &_vel);
+        
+        /// \brief Set the position of the joints.
+        /// \param[in] _pos New target position
+        public: void SetJointPositions(const std::vector<double> &_pos);
 
-        /// \brief The OnRosMsg function handles an incoming
+        /// \brief The OnRosMsg function handles an incoming velocity
         /// message from ROS.
-        /// \param[in] _msg A floatt value used to set the 
-        /// velocity of the joint.
-        public: void OnRosMsg(const std_msgs::Float64MultiArrayConstPtr &_msg);
+        /// \param[in] _msg A float array used to set the 
+        /// velocity of the joints.
+        public: void OnVelMsg(const std_msgs::Float64MultiArrayConstPtr &_msg);
+
+        /// \brief The OnRosMsg function handles an incoming velocity
+        /// message from ROS.
+        /// \param[in] _msg A float array used to set the 
+        /// position of the joints.
+        public: void OnPosMsg(const std_msgs::Float64MultiArrayConstPtr &_msg);
 
         /// \brief The QueueThread function is a ROS helper function
         /// that processes messages.
@@ -126,11 +136,23 @@ namespace gazebo
         /// \brief Vector of Velocity D-gains
         private: std::vector<double> vel_d_gains;
 
+        /// \brief Vector of Position P-gains
+        private: std::vector<double> pos_p_gains;
+
+        /// \brief Vector of Position I-gains
+        private: std::vector<double> pos_i_gains;
+
+        /// \brief Vector of Position D-gains
+        private: std::vector<double> pos_d_gains;
+
         /// \brief Node used for ROS transport.
         private: std::unique_ptr<ros::NodeHandle> rosNode;
 
-        /// \brief ROS Subscriber.
-        private: ros::Subscriber rosSub;
+        /// \brief ROS Velocity Subscriber.
+        private: ros::Subscriber velSub;
+
+        /// \brief ROS Position Subscriber.
+        private: ros::Subscriber posSub;
 
         /// \brief ROS callbackque that helps process messages.
         private: ros::CallbackQueue rosQueue;
