@@ -106,7 +106,7 @@ void TetrapodPlugin::OnVelMsg(const std_msgs::Float64MultiArrayConstPtr &_msg)
 }
 
 // Callback for ROS Position messages
-void TetrapodPlugin::OnVelMsg(const std_msgs::Float64MultiArrayConstPtr &_msg)
+void TetrapodPlugin::OnPosMsg(const std_msgs::Float64MultiArrayConstPtr &_msg)
 {
     this->SetJointPositions(_msg->data);
 }
@@ -234,7 +234,7 @@ void TetrapodPlugin::InitJointControllers()
             common::PID(vel_p_gains[i], vel_i_gains[i], vel_d_gains[i])
         );
 
-        this->model->GetJointController->SetPositionPID(
+        this->model->GetJointController()->SetPositionPID(
             "my_robot::tetrapod::" + joint_names[i],
             common::PID(pos_p_gains[i], pos_i_gains[i], pos_d_gains[i])
         );
