@@ -92,7 +92,7 @@ void TetrapodPlugin::SetJointPositions(const std::vector<double> &_pos)
 {
     for (size_t i = 0; i < this->joint_names.size(); i++)
     {
-        this->model->GetJointController()->SetJointPosition(
+        this->model->GetJointController()->SetPositionTarget(
             "my_robot::tetrapod::" + joint_names[i],
             _pos[i]
         );
