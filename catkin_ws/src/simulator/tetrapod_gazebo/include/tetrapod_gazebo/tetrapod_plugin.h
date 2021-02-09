@@ -42,6 +42,9 @@
 #include "std_msgs/Float32.h"
 #include "std_msgs/Float64MultiArray.h"
 
+// ROS Package Libraries
+#include<angle_utils/angle_utils.h>
+
 // Eigen
 #include <Eigen/Core>
 

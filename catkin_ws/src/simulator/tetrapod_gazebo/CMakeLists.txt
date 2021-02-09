@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
   gazebo_ros
+  angle_utils
 )
 
 ## System dependencies are found with CMake's conventions
@@ -106,7 +107,11 @@ find_package(gazebo REQUIRED)
 catkin_package(
   INCLUDE_DIRS include
 #  LIBRARIES tetrapod_gazebo
-  CATKIN_DEPENDS roscpp std_msgs gazebo_ros
+  CATKIN_DEPENDS 
+    roscpp 
+    std_msgs 
+    gazebo_ros 
+    angle_utils
 #  DEPENDS system_lib
 )
 
