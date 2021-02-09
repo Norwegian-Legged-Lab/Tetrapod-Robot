@@ -109,12 +109,17 @@ namespace gazebo
         protected: void InitRos();
 
         /// \brief The LoadParametersRos function is called to load 
-        /// configuration from the parameter server.
+        /// conffloatiguration from the parameter server.
+        /// \return True if parameters loaded successfully.
         protected: bool LoadParametersRos();
 
         /// \brief The InitJointControllers function is called to 
         /// setup joint PID controllers.
         protected: void InitJointControllers();
+
+        /// \brief The InitJointConfiguration function is called to 
+        /// initialize the desired joint configuration
+        protected: void InitJointConfiguration();
 
         /// \brief Pointer to the model.
         private: physics::ModelPtr model;
@@ -126,6 +131,9 @@ namespace gazebo
 
         /// \brief Vector of joint names
         private: std::vector<std::string> joint_names;
+
+        /// \brief Vector of joint configuration
+        private: std::vector<double> joint_config;
 
         /// \brief Vector of Velocity P-gains
         private: std::vector<double> vel_p_gains;

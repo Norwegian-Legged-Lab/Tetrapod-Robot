@@ -1,7 +1,7 @@
 /*******************************************************************/
 /*    AUTHOR: Paal Arthur S. Thorseth                              */
 /*    ORGN:   Dept of Eng Cybernetics, NTNU Trondheim              */
-/*    FILE:   tetrapod_plugin.h                                    */
+/*    FILE:   tetrapod_plugin.cpp                                  */
 /*    DATE:   Feb 4, 2021                                          */
 /*                                                                 */
 /* Copyright (C) 2021 Paal Arthur S. Thorseth,                     */
@@ -64,6 +64,9 @@ void TetrapodPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
 
     // Setup Joint Controllers
     InitJointControllers();
+
+    // Configure initial joint states
+    InitJointConfiguration();
 };
 
 // Set the a single joints target velocity
@@ -168,9 +171,15 @@ void TetrapodPlugin::InitRos()
 // Load configuration
 bool TetrapodPlugin::LoadParametersRos()
 {
-    if (!this->rosNode->getParam("joint_velocity_controller/joint_names", this->joint_names))
+    if (!this->rosNode->getParam("joint_names", this->joint_names))
     {
         ROS_ERROR("Could not read joint names from parameter server.");
+        return false;
+    }
+
+    if (!this->rosNode->getParam("joint_config", this->joint_config))
+    {
+        ROS_ERROR("Could not read joint config from parameter server.");
         return false;
     }
 
@@ -239,6 +248,20 @@ void TetrapodPlugin::InitJointControllers()
             common::PID(pos_p_gains[i], pos_i_gains[i], pos_d_gains[i])
         );
     }
+};
+
+// Initialize joint configuration
+void TetrapodPlugin::InitJointConfiguration()
+{
+    for (size_t i = 0; i < this->joint_names.size(); i++)
+    {
+        this->model->GetJointController()->SetJointPosition(
+            "my_robot::tetrapod::" + this->joint_names[i],
+            this->joint_config[i]
+        );
+    }
+
+    this->SetJointPositions(this->joint_config);
 };
 
 } // namespace gazebo

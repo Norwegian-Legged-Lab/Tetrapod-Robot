@@ -3,11 +3,32 @@
   <!-- Load joint controller configurations from YAML file to parameter server -->
   <rosparam file="$(find tetrapod_gazebo)/config/tetrapod_control.yaml" command="load"/>
 
+  <!-- Set description param -->
+  <param name="tetrapod_description" textfile="$(find tetrapod_description)/model.sdf"/>
+
   <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="verbose" value="true"/>
+    <arg name="paused" value="true"/>
     <arg name="world_name" value="$(find tetrapod_gazebo)/worlds/tetrapod.world"/>
     <!-- more default parameters can be changed here -->
   </include>
+
+  <!--
+  <node name="spawn_sdf" pkg="gazebo_ros" type="spawn_model"
+        args="-param tetrapod_description -sdf -model tetrapod
+             -J front_left_hip_yaw 1.2
+             -J front_left_hip_pitch 0.6
+             -J front_left_knee_joint 0.6
+             -J front_right_hip_yaw -1.2
+             -J front_right_hip_pitch -0.6
+             -J front_right_knee_joint -0.6
+             -J rear_left_hip_yaw 1.8
+             -J rear_left_hip_pitch -0.6
+             -J rear_left_knee_joint -0.6
+             -J rear_right_hip_yaw -1.8
+             -J rear_right_hip_pitch 0.6
+             -J rear_right_knee_joint 0.6"/>
+  -->
 
 </launch>
