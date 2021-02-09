@@ -14,7 +14,7 @@ gazebo_client:
     - rear_right_knee_joint     
 
   joint_config: [
-    1.2,0.6,0.6,-1.2,-0.6,-0.6,1.8,-0.6,-0.6,-1.8,0.6,0.6
+    75, 40, 40, -75, -40, -40, 120, -40, -40, -120, 40, 40 
   ]
 
   joint_velocity_controller:
