@@ -86,7 +86,7 @@ namespace gazebo
         public: void SetJointVelocities(const std::vector<double> &_vel);
         
         /// \brief Set the position of the joints.
-        /// \param[in] _pos New target position
+        /// \param[in] _pos New target position vector in degrees
         public: void SetJointPositions(const std::vector<double> &_pos);
 
         /// \brief The OnRosMsg function handles an incoming velocity

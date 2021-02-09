@@ -97,7 +97,7 @@ void TetrapodPlugin::SetJointPositions(const std::vector<double> &_pos)
     {
         this->model->GetJointController()->SetPositionTarget(
             "my_robot::tetrapod::" + joint_names[i],
-            _pos[i]
+            angle_utils::degToRad(_pos[i])
         );
     }
 }
@@ -257,7 +257,7 @@ void TetrapodPlugin::InitJointConfiguration()
     {
         this->model->GetJointController()->SetJointPosition(
             "my_robot::tetrapod::" + this->joint_names[i],
-            this->joint_config[i]
+            angle_utils::degToRad(this->joint_config[i])
         );
     }
 
