@@ -30,7 +30,7 @@
 namespace gazebo {
 
 // Constructor
-TetrapodPlugin::TetrapodPlugin() {};
+TetrapodPlugin::TetrapodPlugin() {}
 
 // Destructor
 TetrapodPlugin::~TetrapodPlugin() 
@@ -39,7 +39,7 @@ TetrapodPlugin::~TetrapodPlugin()
     this->rosQueue.clear();
     this->rosQueue.disable();
     this->rosQueueThread.join();
-};
+}
 
 // Load Plugin 
 void TetrapodPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
@@ -67,7 +67,7 @@ void TetrapodPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
 
     // Configure initial joint states
     InitJointConfiguration();
-};
+}
 
 // Set the a single joints target velocity
 void TetrapodPlugin::SetJointVelocity(const std::string &_joint_name, const double &_vel)
@@ -122,7 +122,7 @@ void TetrapodPlugin::QueueThread()
     {
         this->rosQueue.callAvailable(ros::WallDuration(timeout));
     }
-};
+}
 
 // Initialize ROS
 void TetrapodPlugin::InitRos()
@@ -166,7 +166,7 @@ void TetrapodPlugin::InitRos()
     this->rosQueueThread = std::thread(
         std::bind(&TetrapodPlugin::QueueThread, this)
     );
-};
+}
 
 // Load configuration
 bool TetrapodPlugin::LoadParametersRos()
@@ -231,7 +231,7 @@ bool TetrapodPlugin::LoadParametersRos()
     }
 
     return true;
-};
+}
 
 // Initialize Joint Controllers
 void TetrapodPlugin::InitJointControllers()
@@ -248,7 +248,7 @@ void TetrapodPlugin::InitJointControllers()
             common::PID(pos_p_gains[i], pos_i_gains[i], pos_d_gains[i])
         );
     }
-};
+}
 
 // Initialize joint configuration
 void TetrapodPlugin::InitJointConfiguration()
@@ -262,6 +262,6 @@ void TetrapodPlugin::InitJointConfiguration()
     }
 
     this->SetJointPositions(this->joint_config);
-};
+}
 
 } // namespace gazebo
