@@ -34,8 +34,32 @@
 
 namespace angle_utils
 {
+    /// \brief Define 2PI
+    static constexpr double TWO_PI = boost::math::constants::two_pi<double>(); 
+
+    /// \brief Define 4PI/3
+    static constexpr double FOUR_THIRDS_PI = boost::math::constants::four_thirds_pi<double>(); 
+
     /// \brief Define PI
     static constexpr double PI = boost::math::constants::pi<double>(); 
+
+    /// \brief Define 3PI/4
+    static constexpr double THREE_QUARTERS_PI = boost::math::constants::three_quarters_pi<double>(); 
+
+    /// \brief Define 2PI/3
+    static constexpr double TWO_THIRDS_PI = boost::math::constants::two_thirds_pi<double>(); 
+
+    /// \brief Define PI/2
+    static constexpr double HALF_PI = boost::math::constants::half_pi<double>(); 
+
+    /// \brief Define PI/3
+    static constexpr double THIRD_PI = boost::math::constants::third_pi<double>(); 
+
+    /// \brief Define PI/6
+    static constexpr double SIXTH_PI = boost::math::constants::sixth_pi<double>(); 
+
+    /// \brief Define 1/2PI
+    static constexpr double ONE_DIV_TWO_PI = boost::math::constants::one_div_two_pi<double>(); 
 
     /// \brief The degToRad function converts degrees to radians.
     /// \param[in] _deg Angle in degrees.
@@ -63,7 +87,7 @@ namespace angle_utils
     /// between two given angles in the interval [0, pi)
     /// \param[in] _ang1 First angle in radians
     /// \param[in] _ang2 Second angle in radians
-    /// \return Angle difference in the interval [0, pi)
+    /// \return Angle difference from _ang1 relative _ang2 
     double angleDiff(const double &_ang1, const double &_ang2);
 
 } // namespace angle_utils
