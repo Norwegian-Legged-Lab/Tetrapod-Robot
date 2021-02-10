@@ -68,10 +68,10 @@ double wrapAngleTo2Pi(const double &_rad)
     return ret;
 }
 
-// Angle difference in the interval [0, pi)
+// Angle difference 
 double angleDiff(const double &_ang1, const double &_ang2)
 {
-    double diff = std::fmod(_ang2 - _ang1 + PI, 2*PI);
+    double diff = std::fmod(_ang2 - _ang1 + PI, 2 * PI);
 
     if (diff < 0)
     {
