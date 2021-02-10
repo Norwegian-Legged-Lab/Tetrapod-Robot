@@ -76,6 +76,15 @@ namespace gazebo
         /// \param[in] _sdf A pointer to the plugin's SDF element.
         public: virtual void Load(physics::ModelPtr _model, sdf::ElementPtr _sdf);
 
+        /// \brief Apply force at a specific joint 
+        /// \param[in] _joint_name Desired joint
+        /// \param[in] _force Force to apply
+        public: void SetJointForce(const std::string &_joint_name, const double &_force);
+
+        /// \brief Apply joint forces
+        /// \param[in] _forces Forces to apply
+        public: void SetJointForces(const std::vector<double> &_forces);
+
         /// \brief Set the velocity of the joint.
         /// \param[in] _joint_name Desired joint
         /// \param[in] _vel New target velocity
@@ -88,6 +97,12 @@ namespace gazebo
         /// \brief Set the position of the joints.
         /// \param[in] _pos New target position vector in degrees
         public: void SetJointPositions(const std::vector<double> &_pos);
+
+        /// \brief The OnRosMsg function handles an incoming force
+        /// message from ROS.
+        /// \param[in] _msg A float array used to set the 
+        /// force of the joints.
+        public: void OnForceMsg(const std_msgs::Float64MultiArrayConstPtr &_msg);
 
         /// \brief The OnRosMsg function handles an incoming velocity
         /// message from ROS.
@@ -158,6 +173,9 @@ namespace gazebo
 
         /// \brief Node used for ROS transport.
         private: std::unique_ptr<ros::NodeHandle> rosNode;
+
+        /// \brief ROS Force Subscriber.
+        private: ros::Subscriber forceSub;
 
         /// \brief ROS Velocity Subscriber.
         private: ros::Subscriber velSub;

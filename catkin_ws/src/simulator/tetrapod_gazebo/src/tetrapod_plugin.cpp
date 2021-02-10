@@ -50,7 +50,7 @@ void TetrapodPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
 
     // Store joints 
     this->joints = this->model->GetJointController()->GetJoints();
-    //printMap(joints);
+    //printMap(joints); TODO remove
 
     // Initialize ROS
     InitRos();
@@ -69,11 +69,32 @@ void TetrapodPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
     InitJointConfiguration();
 }
 
+// Apply force at a single joint
+void TetrapodPlugin::SetJointForce(const std::string &_joint_name, const double &_force)
+{
+    this->model->GetJointController()->SetForce(
+        "my_robot::tetrapod::" + _joint_name,
+        _force
+    );
+}
+
+// Apply joint forces
+void TetrapodPlugin::SetJointForces(const std::vector<double> &_forces)
+{
+    for (size_t i = 0; i < this->joint_names.size(); i++)
+    {
+        this->model->GetJointController()->SetForce(
+            "my_robot::tetrapod::" + joint_names[i],
+            _forces[i]
+        );
+    }
+}
+
 // Set the a single joints target velocity
 void TetrapodPlugin::SetJointVelocity(const std::string &_joint_name, const double &_vel)
 {
     this->model->GetJointController()->SetVelocityTarget(
-        _joint_name,
+        "my_robot::tetrapod::" + _joint_name,
         _vel
     );
 }
@@ -97,9 +118,15 @@ void TetrapodPlugin::SetJointPositions(const std::vector<double> &_pos)
     {
         this->model->GetJointController()->SetPositionTarget(
             "my_robot::tetrapod::" + joint_names[i],
-            angle_utils::wrapAngleTo2Pi(angle_utils::degToRad(_pos[i]))
+            angle_utils::wrapAngleToPi(angle_utils::degToRad(_pos[i]))
         );
     }
+}
+
+// Callback for ROS Force messages
+void TetrapodPlugin::OnForceMsg(const std_msgs::Float64MultiArrayConstPtr &_msg)
+{
+    this->SetJointForces(_msg->data);
 }
 
 // Callback for ROS Velocity messages
@@ -141,6 +168,15 @@ void TetrapodPlugin::InitRos()
 
     this->rosNode.reset(new ros::NodeHandle("gazebo_client"));
 
+    ros::SubscribeOptions force_so = 
+        ros::SubscribeOptions::create<std_msgs::Float64MultiArray>(
+            "/" + this->model->GetName() + "/force_cmd",
+            1,
+            boost::bind(&TetrapodPlugin::OnForceMsg, this, _1),
+            ros::VoidPtr(),
+            &this->rosQueue
+            );
+
     ros::SubscribeOptions vel_so = 
         ros::SubscribeOptions::create<std_msgs::Float64MultiArray>(
             "/" + this->model->GetName() + "/vel_cmd",
@@ -158,6 +194,8 @@ void TetrapodPlugin::InitRos()
             ros::VoidPtr(),
             &this->rosQueue
             );
+
+    this->forceSub = this->rosNode->subscribe(force_so);
 
     this->velSub = this->rosNode->subscribe(vel_so);
 
@@ -257,11 +295,11 @@ void TetrapodPlugin::InitJointConfiguration()
     {
         this->model->GetJointController()->SetJointPosition(
             "my_robot::tetrapod::" + this->joint_names[i],
-            angle_utils::wrapAngleTo2Pi(angle_utils::degToRad(this->joint_config[i]))
+            angle_utils::wrapAngleToPi(angle_utils::degToRad(this->joint_config[i]))
         );
     }
 
-    this->SetJointPositions(this->joint_config);
+    //this->SetJointPositions(this->joint_config);
 }
 
 } // namespace gazebo
