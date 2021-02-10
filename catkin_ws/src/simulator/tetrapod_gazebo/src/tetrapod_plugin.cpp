@@ -299,7 +299,7 @@ void TetrapodPlugin::InitJointConfiguration()
         );
     }
 
-    //this->SetJointPositions(this->joint_config);
+    this->SetJointPositions(this->joint_config);
 }
 
 } // namespace gazebo
