@@ -5,8 +5,8 @@
 
 Serial_CAN can;
 
-#define can_tx  0           // tx of serial can module connect to D2
-#define can_rx  1           // rx of serial can module connect to D3
+#define can_tx  0           // tx pin on canbus board to 0 on teensy
+#define can_rx  1           // rx pin on canbus board to 1 on teensy
 
 void setup()
 {
