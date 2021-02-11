@@ -46,7 +46,12 @@ void TetrapodPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
 {
     // Store model pointer
     this->model = _model;
-    ROS_INFO_STREAM("Model name: " << this->model->GetName());
+
+    // Store model name
+    this->model_name = _model->GetName();
+    // ROS_INFO_STREAM("Model name: " << model_name); TODO REMOVE
+
+
 
     // Store joints 
     this->joints = this->model->GetJointController()->GetJoints();
@@ -73,7 +78,7 @@ void TetrapodPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
 void TetrapodPlugin::SetJointForce(const std::string &_joint_name, const double &_force)
 {
     this->model->GetJointController()->SetForce(
-        "my_robot::tetrapod::" + _joint_name,
+        this->model_name + "::" + _joint_name,
         _force
     );
 }
@@ -84,7 +89,7 @@ void TetrapodPlugin::SetJointForces(const std::vector<double> &_forces)
     for (size_t i = 0; i < this->joint_names.size(); i++)
     {
         this->model->GetJointController()->SetForce(
-            "my_robot::tetrapod::" + joint_names[i],
+            this->model_name + "::" + this->joint_names[i],
             _forces[i]
         );
     }
@@ -94,7 +99,7 @@ void TetrapodPlugin::SetJointForces(const std::vector<double> &_forces)
 void TetrapodPlugin::SetJointVelocity(const std::string &_joint_name, const double &_vel)
 {
     this->model->GetJointController()->SetVelocityTarget(
-        "my_robot::tetrapod::" + _joint_name,
+        this->model_name + "::" + _joint_name, 
         _vel
     );
 }
@@ -105,7 +110,7 @@ void TetrapodPlugin::SetJointVelocities(const std::vector<double> &_vel)
     for (size_t i = 0; i < this->joint_names.size(); i++)
     {
         this->model->GetJointController()->SetVelocityTarget(
-            "my_robot::tetrapod::" + joint_names[i],
+            this->model_name + "::" + this->joint_names[i],
             _vel[i]
         );
     }
@@ -117,7 +122,7 @@ void TetrapodPlugin::SetJointPositions(const std::vector<double> &_pos)
     for (size_t i = 0; i < this->joint_names.size(); i++)
     {
         this->model->GetJointController()->SetPositionTarget(
-            "my_robot::tetrapod::" + joint_names[i],
+            this->model_name + "::" + this->joint_names[i],
             angle_utils::wrapAngleToPi(angle_utils::degToRad(_pos[i]))
         );
     }
@@ -277,12 +282,12 @@ void TetrapodPlugin::InitJointControllers()
     for (size_t i = 0; i < this->joint_names.size(); i++)
     {
         this->model->GetJointController()->SetVelocityPID(
-            "my_robot::tetrapod::" + joint_names[i],
+            this->model_name + "::" + this->joint_names[i],
             common::PID(vel_p_gains[i], vel_i_gains[i], vel_d_gains[i])
         );
 
         this->model->GetJointController()->SetPositionPID(
-            "my_robot::tetrapod::" + joint_names[i],
+            this->model_name + "::" + this->joint_names[i],
             common::PID(pos_p_gains[i], pos_i_gains[i], pos_d_gains[i])
         );
     }
@@ -294,7 +299,7 @@ void TetrapodPlugin::InitJointConfiguration()
     for (size_t i = 0; i < this->joint_names.size(); i++)
     {
         this->model->GetJointController()->SetJointPosition(
-            "my_robot::tetrapod::" + this->joint_names[i],
+            this->model_name + "::" + this->joint_names[i],
             angle_utils::wrapAngleToPi(angle_utils::degToRad(this->joint_config[i]))
         );
     }
