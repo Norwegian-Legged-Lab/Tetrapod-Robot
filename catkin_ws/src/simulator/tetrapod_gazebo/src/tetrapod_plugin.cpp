@@ -27,6 +27,7 @@
 
 #include <tetrapod_gazebo/tetrapod_plugin.h>
 
+
 namespace gazebo {
 
 // Constructor
@@ -86,6 +87,10 @@ void TetrapodPlugin::SetJointForce(const std::string &_joint_name, const double 
 // Apply joint forces
 void TetrapodPlugin::SetJointForces(const std::vector<double> &_forces)
 {
+    auto start = std::chrono::steady_clock::now();
+
+    this->model->GetJointController()->Reset();
+
     for (size_t i = 0; i < this->joint_names.size(); i++)
     {
         this->model->GetJointController()->SetForce(
@@ -93,6 +98,12 @@ void TetrapodPlugin::SetJointForces(const std::vector<double> &_forces)
             _forces[i]
         );
     }
+
+    auto end = std::chrono::steady_clock::now();
+
+    std::chrono::duration<double,std::micro> diff = end - start;
+
+    ROS_DEBUG_STREAM("Time spent resetting commands and applying torques: " << diff.count() << " microseconds.");
 }
 
 // Set the a single joints target velocity
@@ -107,6 +118,10 @@ void TetrapodPlugin::SetJointVelocity(const std::string &_joint_name, const doub
 // Set joint target velocities
 void TetrapodPlugin::SetJointVelocities(const std::vector<double> &_vel)
 {
+    auto start = std::chrono::steady_clock::now();
+
+    this->model->GetJointController()->Reset();
+
     for (size_t i = 0; i < this->joint_names.size(); i++)
     {
         this->model->GetJointController()->SetVelocityTarget(
@@ -114,11 +129,21 @@ void TetrapodPlugin::SetJointVelocities(const std::vector<double> &_vel)
             _vel[i]
         );
     }
+
+    auto end = std::chrono::steady_clock::now();
+
+    std::chrono::duration<double,std::micro> diff = end - start;
+
+    ROS_DEBUG_STREAM("Time spent resetting commands and setting velocity targets: " << diff.count() << " microseconds.");
 }
 
 // Set joint target positions
 void TetrapodPlugin::SetJointPositions(const std::vector<double> &_pos)
 {
+    auto start = std::chrono::steady_clock::now();
+
+    this->model->GetJointController()->Reset();
+
     for (size_t i = 0; i < this->joint_names.size(); i++)
     {
         this->model->GetJointController()->SetPositionTarget(
@@ -126,6 +151,12 @@ void TetrapodPlugin::SetJointPositions(const std::vector<double> &_pos)
             angle_utils::wrapAngleToPi(angle_utils::degToRad(_pos[i]))
         );
     }
+
+    auto end = std::chrono::steady_clock::now();
+
+    std::chrono::duration<double,std::micro> diff = end - start;
+
+    ROS_DEBUG_STREAM("Time spent resetting commands and setting position targets: " << diff.count() << " microseconds.");
 }
 
 // Callback for ROS Joint State messages
