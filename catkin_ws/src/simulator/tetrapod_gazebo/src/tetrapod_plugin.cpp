@@ -128,6 +128,25 @@ void TetrapodPlugin::SetJointPositions(const std::vector<double> &_pos)
     }
 }
 
+// Callback for ROS Joint State messages
+void TetrapodPlugin::OnJointStateMsg(const sensor_msgs::JointStateConstPtr &_msg)
+{
+    if ((!_msg->position.empty()) && (_msg->position.size() == NUMJOINTS))
+    {
+        this->SetJointPositions(_msg->position);
+    }
+
+    if ((!_msg->velocity.empty()) && (_msg->velocity.size() == NUMJOINTS))
+    {
+        this->SetJointVelocities(_msg->velocity);
+    }
+
+    if ((!_msg->effort.empty()) && (_msg->effort.size() == NUMJOINTS))
+    {
+        this->SetJointForces(_msg->effort);
+    }
+}
+
 // Callback for ROS Force messages
 void TetrapodPlugin::OnForceMsg(const std_msgs::Float64MultiArrayConstPtr &_msg)
 {
@@ -173,6 +192,15 @@ void TetrapodPlugin::InitRos()
 
     this->rosNode.reset(new ros::NodeHandle("gazebo_client"));
 
+    ros::SubscribeOptions joint_state_so = 
+        ros::SubscribeOptions::create<sensor_msgs::JointState>(
+            "/" + this->model->GetName() + "/joint_state_cmd",
+            1,
+            boost::bind(&TetrapodPlugin::OnJointStateMsg, this, _1),
+            ros::VoidPtr(),
+            &this->rosQueue
+            );
+
     ros::SubscribeOptions force_so = 
         ros::SubscribeOptions::create<std_msgs::Float64MultiArray>(
             "/" + this->model->GetName() + "/force_cmd",
@@ -199,6 +227,8 @@ void TetrapodPlugin::InitRos()
             ros::VoidPtr(),
             &this->rosQueue
             );
+
+    this->jointStateSub = this->rosNode->subscribe(joint_state_so);
 
     this->forceSub = this->rosNode->subscribe(force_so);
 

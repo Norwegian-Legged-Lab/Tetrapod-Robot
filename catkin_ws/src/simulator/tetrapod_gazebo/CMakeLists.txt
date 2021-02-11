@@ -10,6 +10,7 @@ project(tetrapod_gazebo)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
+  sensor_msgs
   gazebo_ros
   angle_utils
 )
@@ -110,6 +111,7 @@ catkin_package(
   CATKIN_DEPENDS 
     roscpp 
     std_msgs 
+    sensor_msgs
     gazebo_ros 
     angle_utils
 #  DEPENDS system_lib

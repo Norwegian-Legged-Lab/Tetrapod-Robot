@@ -41,6 +41,7 @@
 #include "ros/subscribe_options.h"
 #include "std_msgs/Float32.h"
 #include "std_msgs/Float64MultiArray.h"
+#include "sensor_msgs/JointState.h"
 
 // ROS Package Libraries
 #include<angle_utils/angle_utils.h>
@@ -97,6 +98,15 @@ namespace gazebo
         /// \brief Set the position of the joints.
         /// \param[in] _pos New target position vector in degrees
         public: void SetJointPositions(const std::vector<double> &_pos);
+
+        /// \brief The OnJointStateMsg function handles an incoming joint state
+        /// message from ROS.
+        /// \param[in] _msg A message holding data to describe the state
+        /// of a set of controlled joints. The state is defined by 
+        /// * the position of the joint,
+        /// * the velocity of the joint and
+        /// * the effort (torque) that is applied in the joint.
+        public: void OnJointStateMsg(const sensor_msgs::JointStateConstPtr &_msg);
 
         /// \brief The OnRosMsg function handles an incoming force
         /// message from ROS.
@@ -176,6 +186,9 @@ namespace gazebo
 
         /// \brief Node used for ROS transport.
         private: std::unique_ptr<ros::NodeHandle> rosNode;
+
+        /// \brief ROS Joint State Subscriber.
+        private: ros::Subscriber jointStateSub;
 
         /// \brief ROS Force Subscriber.
         private: ros::Subscriber forceSub;
