@@ -10,7 +10,7 @@ Serial_CAN can;
 
 void setup()
 {
-    Serial.begin(115200);
+    Serial.begin(9600);
     delay(1000);
     can.begin(can_tx, can_rx, 9600);      // tx, rx
     Serial.println("begin");
