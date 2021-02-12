@@ -27,10 +27,17 @@ unsigned char can_message[8];
 void loop()
 {
     double timer = micros();
-    motor_interface.readPIDParameters(can_message);
+    motor_interface.writeAccelerationToRAM(can_message, 2864434431);
     can.send(0x55, 0, 0, 8, can_message);   // SEND TO ID:0X55
-    Serial.println(micros() - timer);
-    delay(1000);
+    Serial.print(micros() - timer); Serial.print("\t");
+    for(int i=0; i<8; i++)
+    {
+        Serial.print("0x");
+        Serial.print(can_message[i], HEX);
+        Serial.print('\t');
+    }
+    Serial.println("");
+    delay(3000);
 }
 
 // END FILE
