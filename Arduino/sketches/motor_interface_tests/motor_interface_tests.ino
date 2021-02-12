@@ -8,8 +8,8 @@
 MotorInterface motor_interface;
 Serial_CAN can;
 
-#define can_tx  4           // tx of serial can module connect to D2
-#define can_rx  6           // rx of serial can module connect to D3
+#define can_tx  0           // tx of serial can module connect to D2
+#define can_rx  1           // rx of serial can module connect to D3
 
 void setup()
 {
