@@ -3,9 +3,9 @@
 
 #include "Arduino.h"
 
-#define MOTOR_COMMAND_READ_PID 0x30
-#define MOTOR_COMMAND_WRITE_PID_TO_RAM 0x31
-#define MOTOR_COMMAND_WRITE_PID_TO_ROM 0x32
+#define MOTOR_COMMAND_READ_PID_PARAMETERS 0x30
+#define MOTOR_COMMAND_WRITE_PID_PARAMETERS_TO_RAM 0x31
+#define MOTOR_COMMAND_WRITE_PID_PARAMETERS_TO_ROM 0x32
 #define MOTOR_COMMAND_READ_ACCELERATION 0x33
 #define MOTOR_COMMAND_WRITE_ACCELERATION 0x34
 #define MOTOR_COMMAND_READ_ENCODER 0x90
@@ -34,7 +34,23 @@ class MotorInterface
 public:
     MotorInterface(){}
     void readPIDParameters(unsigned char* can_message);
-
+    void writePIDParametersToRAM(unsigned char* can_message, 
+        unsigned char k_p_position, 
+        unsigned char k_i_position, 
+        unsigned char k_p_speed, 
+        unsigned char k_i_speed,
+        unsigned char k_p_torque,
+        unsigned char k_i_torque);
+    void writePIDParametersToROM(unsigned char* can_message, 
+        unsigned char k_p_position, 
+        unsigned char k_i_position, 
+        unsigned char k_p_speed, 
+        unsigned char k_i_speed,
+        unsigned char k_p_torque,
+        unsigned char k_i_torque);
+    void readAcceleration(unsigned char* can_message);
+    //void writeAccelerationToRAM(unsigned* char can_message...)
+    void readEncoder(unsigned char* can_message);
 private:
     //unsigned char can_message[MESSAGE_SIZE];
     void emptyCanMessage(unsigned char* can_message);

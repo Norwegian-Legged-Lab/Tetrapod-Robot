@@ -4,7 +4,7 @@
 #include "motor_interface.h"
 
 #include <Serial_CAN_Module.h>
-#include <SoftwareSerial.h>
+//#include <SoftwareSerial.h>
 MotorInterface motor_interface;
 Serial_CAN can;
 
@@ -26,9 +26,10 @@ unsigned char can_message[8];
 // send(unsigned long id, byte ext, byte rtrBit, byte len, const byte *buf);
 void loop()
 {
+    double timer = micros();
     motor_interface.readPIDParameters(can_message);
     can.send(0x55, 0, 0, 8, can_message);   // SEND TO ID:0X55
-    //Serial.println("Message sent");
+    Serial.println(micros() - timer);
     delay(1000);
 }
 
