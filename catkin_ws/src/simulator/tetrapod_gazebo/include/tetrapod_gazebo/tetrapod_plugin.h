@@ -77,6 +77,21 @@ namespace gazebo
         /// \param[in] _sdf A pointer to the plugin's SDF element.
         public: virtual void Load(physics::ModelPtr _model, sdf::ElementPtr _sdf);
 
+        /// \brief Get currently applied force at a specific joint 
+        /// \param[in] _joint_name Desired joint
+        /// \return Current joint force
+        public: double GetJointForce(const std::string &_joint_name);
+
+        /// \brief Get current velocity at a specific joint 
+        /// \param[in] _joint_name Desired joint
+        /// \return Current joint velocity
+        public: double GetJointVelocity(const std::string &_joint_name);
+
+        /// \brief Get current position at a specific joint 
+        /// \param[in] _joint_name Desired joint
+        /// \return Current joint position
+        public: double GetJointPosition(const std::string &_joint_name);
+
         /// \brief Apply force at a specific joint 
         /// \param[in] _joint_name Desired joint
         /// \param[in] _force Force to apply

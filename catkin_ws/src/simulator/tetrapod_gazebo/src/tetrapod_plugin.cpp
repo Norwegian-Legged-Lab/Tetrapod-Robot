@@ -75,6 +75,32 @@ void TetrapodPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
     InitJointConfiguration();
 }
 
+// Get joint force at _joint_name 
+// TODO Implement.
+double TetrapodPlugin::GetJointForce(const std::string &_joint_name)
+{
+    //this->joints[joint_name]->
+
+    return 0;
+}
+
+// Get joint velocity at _joint_name
+double TetrapodPlugin::GetJointVelocity(const std::string &_joint_name)
+{
+    double vel = this->joints[_joint_name]->GetVelocity();
+
+    return vel;
+}
+
+// Get joint position at _joint_name
+double TetrapodPlugin::GetJointPosition(const std::string &_joint_name)
+{
+    double pos = this->joints[_joint_name]->Position();
+
+    return pos;
+}
+
+
 // Apply force at a single joint
 void TetrapodPlugin::SetJointForce(const std::string &_joint_name, const double &_force)
 {
