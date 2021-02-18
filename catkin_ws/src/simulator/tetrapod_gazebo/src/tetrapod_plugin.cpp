@@ -58,13 +58,18 @@ void TetrapodPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
     this->joints = this->model->GetJointController()->GetJoints();
     //printMap(joints); TODO remove
 
+    for (auto& t: joints)
+    {
+        ROS_INFO_STREAM(t.first);
+    }
+
     // Initialize ROS
     InitRos();
 
     // Load parameters from config
     if (!LoadParametersRos())
     {
-        ROS_ERROR("Could not load parameters.");
+        ROS_ERROR("Could not loaJointd parameters.");
         return;
     }
 
@@ -73,6 +78,10 @@ void TetrapodPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
 
     // Configure initial joint states
     InitJointConfiguration();
+
+    double some_joint_pos = this->GetJointPosition(joint_names[0]);
+    ROS_INFO_STREAM("The position of joint: " << joint_names[0] 
+        << " is " << angle_utils::radToDeg(some_joint_pos));
 }
 
 // Get joint force at _joint_name 
@@ -87,7 +96,7 @@ double TetrapodPlugin::GetJointForce(const std::string &_joint_name)
 // Get joint velocity at _joint_name
 double TetrapodPlugin::GetJointVelocity(const std::string &_joint_name)
 {
-    double vel = this->joints[_joint_name]->GetVelocity();
+    double vel = this->joints[this->model_name + "::" + _joint_name]->GetVelocity(0);
 
     return vel;
 }
@@ -95,7 +104,7 @@ double TetrapodPlugin::GetJointVelocity(const std::string &_joint_name)
 // Get joint position at _joint_name
 double TetrapodPlugin::GetJointPosition(const std::string &_joint_name)
 {
-    double pos = this->joints[_joint_name]->Position();
+    double pos = this->joints[this->model_name + "::" + _joint_name]->Position();
 
     return pos;
 }
