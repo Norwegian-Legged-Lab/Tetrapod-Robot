@@ -1,5 +1,19 @@
 #include "motor_interface.h"
 
+void print_can_message(unsigned long _id_sender, unsigned char* _can_message)
+{
+    Serial.print("Received message from:\t");
+    Serial.print(_id_sender, HEX);
+    Serial.print("\t");
+    for(int i = 0; i < 8; i++)
+    {
+        Serial.print("0x");
+        Serial.print(_can_message[i]);
+        Serial.print("\t");
+    }
+    Serial.println("");
+}
+
 void MotorInterface::emptyCanMessage(unsigned char* _can_message)
 {
     for(int i = 0; i < MESSAGE_SIZE; i++)

@@ -96,4 +96,6 @@ private:
     void emptyCanMessage(unsigned char* _can_message);
 };
 
+void print_can_message(unsigned long _id_sender, unsigned char* _can_message);
+
 #endif
