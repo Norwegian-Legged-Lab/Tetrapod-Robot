@@ -41,6 +41,7 @@ unsigned char Serial_CAN::recv(unsigned long *id, uchar *buf)
 {
     if(canSerial->available())
     {
+        Serial.println("Data available");
         unsigned long timer_s = millis();
         
         int len = 0;
@@ -88,7 +89,7 @@ unsigned char Serial_CAN::recv(unsigned long *id, uchar *buf)
             
         }
     }
-    
+    Serial.println("No data in buffer");
     return 0;
 }
 
