@@ -2,7 +2,7 @@
 
 void print_can_message(unsigned long _id_sender, unsigned char* _can_message)
 {
-    Serial.print("Received message from:\t");
+    Serial.print("Message ID:\t");
     Serial.print(_id_sender, HEX);
     Serial.print("\t");
     for(int i = 0; i < 8; i++)
