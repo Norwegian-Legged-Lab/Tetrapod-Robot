@@ -1,7 +1,7 @@
 /*******************************************************************/
 /*    AUTHOR: Paal Arthur S. Thorseth                              */
 /*    ORGN:   Dept of Eng Cybernetics, NTNU Trondheim              */
-/*    FILE:   inverse_kinematics.h                                 */
+/*    FILE:   kinematics.h                                         */
 /*    DATE:   Feb 4, 2021                                          */
 /*                                                                 */
 /* Copyright (C) 2021 Paal Arthur S. Thorseth,                     */
@@ -30,15 +30,28 @@
 #include <Eigen/Core>
 
 /// \brief A class for analytical Inverse Kinematics Solving
-class InverseKinematics
+class Kinematics
 {
+    using GeneralizedCoordinates = Eigen::Matrix<double, 18, 1>;
+    using FootstepPositions = Eigen::Matrix<Eigen::Vector3d, 4, 1>;
     using JointSpaceVector = Eigen::Matrix<double, 12, 1>;
 
     /// \brief Constructor
-    public: InverseKinematics();
+    public: Kinematics();
 
     /// \brief Destructor
-    public: virtual ~InverseKinematics();
+    public: virtual ~Kinematics();
+
+    /// \brief The SolveForwardKinematics function calculates
+    /// the Inverse Kinematics, i.e. maps a coordinate point 
+    /// in the Coordinate Space to joint angles in the Joint Space.
+    /// \param[in] _q Generalized coordinates containing the floating base
+    /// and joint positions.
+    /// \param[out] _fPos Footstep positions generated from solving the forward
+    /// kinematics.
+    /// \return Evaluates true if an Forward Kinematics solution is found,
+    /// and false if not.
+    public: bool SolveForwardKinematics(const GeneralizedCoordinates &_q, FootstepPositions &_fPos);
 
     /// \brief The SolveInverseKinematics function calculates
     /// the Inverse Kinematics, i.e. maps a coordinate point 

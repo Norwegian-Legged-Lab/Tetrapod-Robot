@@ -1,7 +1,7 @@
 /*******************************************************************/
 /*    AUTHOR: Paal Arthur S. Thorseth                              */
 /*    ORGN:   Dept of Eng Cybernetics, NTNU Trondheim              */
-/*    FILE:   forward_kinematics.h                                 */
+/*    FILE:   forward_kinematics.cpp                               */
 /*    DATE:   Mar 1, 2021                                          */
 /*                                                                 */
 /* Copyright (C) 2021 Paal Arthur S. Thorseth,                     */
@@ -24,32 +24,21 @@
 /*                                                                 */
 /*******************************************************************/
 
-#pragma once
 
-// Eigen
-#include <Eigen/Core>
+#include <kinematics/kinematics.h>
 
-/// \brief A class for analytical Inverse Kinematics Solving
-class ForwardKinematics
+// Constructor
+Kinematics::Kinematics() {}
+
+// Destructor
+Kinematics::~Kinematics() {}
+
+// Solve forward kinematics
+Kinematics::SolveForwardKinematics(const GeneralizedCoordinates &_q, FootstepPositions &_fPos )
 {
-    using GeneralizedCoordinates = Eigen::Matrix<double, 18, 1>;
-    using FootstepPositions = Eigen::Matrix<Eigen::Vector3d, 4, 1>;
 
-    /// \brief Constructor
-    public: ForwardKinematics();
 
-    /// \brief Destructor
-    public: virtual ~ForwardKinematics();
+}
 
-    /// \brief The SolveForwardKinematics function calculates
-    /// the Inverse Kinematics, i.e. maps a coordinate point 
-    /// in the Coordinate Space to joint angles in the Joint Space.
-    /// \param[in] _q Generalized coordinates containing the floating base
-    /// and joint positions.
-    /// \param[out] _fPos Footstep positions generated from solving the forward
-    /// kinematics.
-    /// \return Evaluates true if an Forward Kinematics solution is found,
-    /// and false if not.
-    public: bool SolveForwardKinematics(const GeneralizedCoordinates &_q, FootstepPositions &_fPos );
 
-};
+
