@@ -2,3 +2,6 @@
 	path = catkin_ws/src/utilities/ros_ign
 	url = https://github.com/osrf/ros_ign.git
 	branch = noetic
+[submodule "catkin_ws/src/utilities/kindr"]
+	path = catkin_ws/src/utilities/kindr
+	url = git@github.com:anybotics/kindr.git
