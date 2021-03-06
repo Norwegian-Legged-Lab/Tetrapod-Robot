@@ -28,16 +28,28 @@
 #include <kinematics/kinematics.h>
 
 // Constructor
-Kinematics::Kinematics() {}
+Kinematics::Kinematics() 
+{
+    // Set link lenghts
+    this->L1 = 1;
+    this->L2 = 1;
+    this->L3 = 1;
+}
 
 // Destructor
 Kinematics::~Kinematics() {}
 
 // Solve forward kinematics
 Kinematics::SolveForwardKinematics(const GeneralizedCoordinates &_q, FootstepPositions &_fPos )
-{
+{   
+    // TODO Remove these 
+    double yaw = 0.3;
+    double pitch = 0.2;
+    double roll = 0.1;
 
+    kindr::EulerAnglesZyxD R1(roll, pitch, yaw);
 
+    return true;
 }
 
 

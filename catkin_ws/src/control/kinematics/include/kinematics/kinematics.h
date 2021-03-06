@@ -29,6 +29,9 @@
 // Eigen
 #include <Eigen/Core>
 
+// Kindr
+#include <kindr/Core>
+
 /// \brief A class for analytical Inverse Kinematics Solving
 class Kinematics
 {
@@ -73,4 +76,15 @@ class Kinematics
 
     /// \brief Maximum joint limits.
     private: JointSpaceVector max_angles;
+
+    /// \brief Hip link length
+    private: double L1;
+
+    /// \brief Thigh (Femur) link length
+    private: double L2;
+
+    /// \brief Leg (Fibula & Tibia) link length
+    private: double L3;
+
+
 };
