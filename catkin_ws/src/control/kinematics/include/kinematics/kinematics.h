@@ -32,12 +32,14 @@
 // Kindr
 #include <kindr/Core>
 
-/// \brief A class for analytical Inverse Kinematics Solving
+using GeneralizedCoordinates = Eigen::Matrix<double, 18, 1>;
+using FootstepPositions = Eigen::Matrix<Eigen::Vector3d, 4, 1>;
+using JointSpaceVector = Eigen::Matrix<double, 12, 1>;
+using TransMatrix = kindr::HomTransformMatrixD;
+
+/// \brief A class for analytical Kinematics Solving
 class Kinematics
 {
-    using GeneralizedCoordinates = Eigen::Matrix<double, 18, 1>;
-    using FootstepPositions = Eigen::Matrix<Eigen::Vector3d, 4, 1>;
-    using JointSpaceVector = Eigen::Matrix<double, 12, 1>;
 
     /// \brief Constructor
     public: Kinematics();
@@ -64,6 +66,15 @@ class Kinematics
     /// \return Evaluates true if an Inverse Kinematics solution is found,
     /// and false if not.
     public: bool SolveInverseKinematics(const Eigen::Vector3d &_pos, JointSpaceVector &_q_r);
+
+    /// \brief The GetDhTransform function returns the Denavit-Hartenberg
+    /// transformation from frame A to frame B.
+    /// \param[in] _a Link length
+    /// \param[in] _alpha Link twist
+    /// \param[in] _d Link offset
+    /// \param[in] _theta Joint angle
+    /// \return Returns a kindr homogeneous transformation matrix.
+    public: TransMatrix GetDhTransform(const double &_a, const double &_alpha, const double &_d, const double &_theta);
 
     /// \brief The ValidateSolution function evaluates whether
     /// a set of joint angles is within joint limits. 

@@ -27,6 +27,7 @@
 
 #include <kinematics/kinematics.h>
 
+
 // Constructor
 Kinematics::Kinematics() 
 {
@@ -42,15 +43,22 @@ Kinematics::~Kinematics() {}
 // Solve forward kinematics
 bool Kinematics::SolveForwardKinematics(const GeneralizedCoordinates &_q, FootstepPositions &_fPos)
 {   
-    // TODO Remove these 
-    double yaw = 0.3;
-    double pitch = 0.2;
-    double roll = 0.1;
-
-    kindr::EulerAnglesZyxD R1(roll, pitch, yaw);
-
     return true;
 }
 
+// Denavit-Hartenberg Transformation
+TransMatrix Kinematics::GetDhTransform(const double &_a, const double &_alpha, const double &_d, const double &_theta)
+{
+    Eigen::Vector3d unit_z(0,0,1);
+    Eigen::Vector3d unit_x(1,0,0);
 
+    kindr::RotationMatrixD R_z(kindr::AngleAxisD(_theta, unit_z));
+    kindr::RotationMatrixD R_x(kindr::AngleAxisD(_alpha, unit_x));
 
+    kindr::Position3D position(_a*R_z.matrix()*unit_x + _d*unit_z);
+    kindr::RotationMatrixD rotation = R_z*R_x;
+
+    kindr::HomTransformMatrixD transformationAToB(position, rotation);
+
+    return transformationAToB;
+}
