@@ -40,7 +40,7 @@ Kinematics::Kinematics()
 Kinematics::~Kinematics() {}
 
 // Solve forward kinematics
-Kinematics::SolveForwardKinematics(const GeneralizedCoordinates &_q, FootstepPositions &_fPos )
+bool Kinematics::SolveForwardKinematics(const GeneralizedCoordinates &_q, FootstepPositions &_fPos)
 {   
     // TODO Remove these 
     double yaw = 0.3;
