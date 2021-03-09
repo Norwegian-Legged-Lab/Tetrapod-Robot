@@ -35,6 +35,12 @@ Kinematics::Kinematics()
     this->L1 = 1;
     this->L2 = 1;
     this->L3 = 1;
+
+    // Set position vectors
+    this->positionBaseToFrontLeft << 1, 1, 0;
+    this->positionBaseToFrontRight << 1, -1, 0;
+    this->positionBaseToRearLeft << -1, 1, 0;
+    this->positionBaseToRearRight << -1, -1, 0;
 }
 
 // Destructor
@@ -43,7 +49,27 @@ Kinematics::~Kinematics() {}
 // Solve forward kinematics
 bool Kinematics::SolveForwardKinematics(const GeneralizedCoordinates &_q, 
                                         FootstepPositions &_fPos)
-{   
+{  
+    kindr::Position3D base_position(_q.block(0,0,2,0));
+    kindr::Position3D base_orientation(_q.block(3,0,5,0));
+
+    kindr::RotationMatrixD base_rotation(kindr::EulerAnglesZyxD(base_orientation(2),
+                                                                base_orientation(1),
+                                                                base_orientation(0))
+                                        );
+
+    kindr::HomTransformMatrixD transformBaseToHip(base_position, base_rotation);
+
+    Eigen::Vector3d front_left_hip_pos = transformBaseToHip.transform(kindr::Position3D(this->positionBaseToFrontLeft)).vector();
+    Eigen::Vector3d front_right_hip_pos = transformBaseToHip.transform(kindr::Position3D(this->positionBaseToFrontRight)).vector();
+    Eigen::Vector3d rear_left_hip_pos = transformBaseToHip.transform(kindr::Position3D(this->positionBaseToRearLeft)).vector();
+    Eigen::Vector3d rear_right_hip_pos = transformBaseToHip.transform(kindr::Position3D(this->positionBaseToRearRight)).vector();
+
+    _fPos(0) = front_left_hip_pos;
+    _fPos(1) = front_right_hip_pos;
+    _fPos(2) = rear_left_hip_pos;
+    _fPos(3) = rear_right_hip_pos;
+
     return true;
 }
 

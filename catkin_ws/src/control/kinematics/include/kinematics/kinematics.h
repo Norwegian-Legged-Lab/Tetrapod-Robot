@@ -38,6 +38,7 @@
 using GeneralizedCoordinates = Eigen::Matrix<double, 18, 1>;
 using FootstepPositions = Eigen::Matrix<Eigen::Vector3d, 4, 1>;
 using JointSpaceVector = Eigen::Matrix<double, 12, 1>;
+using Twist = Eigen::Matrix<double, 6, 1>;
 using Vector3d = Eigen::Vector3d;
 using TransMatrix = kindr::HomTransformMatrixD;
 
@@ -100,6 +101,22 @@ class Kinematics
 
     /// \brief Maximum joint limits.
     private: JointSpaceVector max_angles;
+
+    /// \brief Position vector relating the base coordinates to 
+    /// the front left hip
+    private: Vector3d positionBaseToFrontLeft;
+
+    /// \brief Position vector relating the base coordinates to 
+    /// the front right hip
+    private: Vector3d positionBaseToFrontRight;
+
+    /// \brief Position vector relating the base coordinates to 
+    /// the rear left hip
+    private: Vector3d positionBaseToRearLeft;
+
+    /// \brief Position vector relating the base coordinates to 
+    /// the rear right hip
+    private: Vector3d positionBaseToRearRight;
 
     /// \brief Hip link length
     private: double L1;
