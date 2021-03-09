@@ -1,4 +1,4 @@
-//TODO remove
+//TODO remove this code
 #include "ros/ros.h"
 
 #include <kindr/Core>
@@ -8,6 +8,7 @@
 #include <angle_utils/angle_utils.h>
 
 #include <kinematics/kinematics.h>
+
 
 void someRandomTesting()
 {
@@ -44,26 +45,49 @@ void someRandomTesting()
     ROS_INFO_STREAM("t2: " << t2);
 }
 
+void testDhTransform()
+{
+    // ---------- D-H Transform --------------
+    double alpha_1 = -angle_utils::HALF_PI;
+    double theta_1 = angle_utils::THIRD_PI;
+    double a_1 = 1;
+    double d_1 = 0;
+
+    Kinematics K;
+    kindr::HomTransformMatrixD t1 = K.GetDhTransform(a_1, alpha_1, d_1, theta_1);
+    ROS_INFO_STREAM("t1: " << t1);
+
+    kindr::Position3D pos = t1.transform(kindr::Position3D(0,0,0));
+
+    ROS_INFO_STREAM("pos: " << pos);
+}
+
+void testSingleLegKinematics()
+{
+    Kinematics K;
+
+    Eigen::Vector3d h_pos(0,0,0);
+
+    double theta_hy = 0;
+    double theta_hp = angle_utils::HALF_PI;
+    double theta_kp = -angle_utils::HALF_PI;
+
+    Eigen::Vector3d pos = K.SolveSingleLegForwardKinematics(h_pos,
+                                                            theta_hy,
+                                                            theta_hp,
+                                                            theta_kp);
+    
+    ROS_INFO_STREAM("pos: " << pos);
+}
+
 
 int main(int argc, char **argv)
 {
     ros::init(argc, argv, "kinematics_node");
     ros::NodeHandle nh;
 
-
-    // ---------- D-H Transform --------------
-    double alpha_1 = 0;
-    double theta_1 = angle_utils::PI;
-    double a_1 = 1;
-    double d_1 = 0;
-
-    Kinematics K;
-
-    kindr::HomTransformMatrixD t1 = K.GetDhTransform(a_1, alpha_1, d_1, theta_1);
-
-    //double a = angle_utils::degToRad(90);
-
-    ROS_INFO_STREAM("t1: " << t1);
+    testSingleLegKinematics();
+    //testDhTransform();
 
     ros::spin();
     return 0;
