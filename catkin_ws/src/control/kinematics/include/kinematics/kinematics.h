@@ -26,6 +26,9 @@
 
 #pragma once
 
+// ROS Package Libraries
+#include <angle_utils/angle_utils.h>
+
 // Eigen
 #include <Eigen/Core>
 
@@ -35,6 +38,7 @@
 using GeneralizedCoordinates = Eigen::Matrix<double, 18, 1>;
 using FootstepPositions = Eigen::Matrix<Eigen::Vector3d, 4, 1>;
 using JointSpaceVector = Eigen::Matrix<double, 12, 1>;
+using Vector3d = Eigen::Vector3d;
 using TransMatrix = kindr::HomTransformMatrixD;
 
 /// \brief A class for analytical Kinematics Solving
@@ -48,8 +52,8 @@ class Kinematics
     public: virtual ~Kinematics();
 
     /// \brief The SolveForwardKinematics function calculates
-    /// the Inverse Kinematics, i.e. maps a coordinate point 
-    /// in the Coordinate Space to joint angles in the Joint Space.
+    /// the Forward Kinematics, i.e. maps joint angles in Joint Space
+    /// to a coordinate point in Coordinate Space.
     /// \param[in] _q Generalized coordinates containing the floating base
     /// and joint positions.
     /// \param[out] _fPos Footstep positions generated from solving the forward
@@ -65,7 +69,16 @@ class Kinematics
     /// \param[out] _q_r Joint angles from the Inverse Kinematics solution.
     /// \return Evaluates true if an Inverse Kinematics solution is found,
     /// and false if not.
-    public: bool SolveInverseKinematics(const Eigen::Vector3d &_pos, JointSpaceVector &_q_r);
+    public: bool SolveInverseKinematics(const Vector3d &_pos, JointSpaceVector &_q_r);
+
+    /// \brief The SolveSingleLegForwardKinematics function calculates
+    /// the Forward Kinematics for a single leg.
+    /// \param[in] _h_pos Hip position
+    /// \param[in] _theta_hy Hip yaw angle
+    /// \param[in] _theta_hp Hip pitch angle
+    /// \param[in] _theta_kp Knee pitch angle
+    /// \return Returns end-effector position in Coordinate Space.
+    public: Vector3d SolveSingleLegForwardKinematics(const Vector3d &_h_pos, const double &_theta_hy, const double &_theta_hp, const double &_theta_kp); 
 
     /// \brief The GetDhTransform function returns the Denavit-Hartenberg
     /// transformation from frame A to frame B.

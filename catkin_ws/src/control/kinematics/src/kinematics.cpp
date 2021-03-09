@@ -1,7 +1,7 @@
 /*******************************************************************/
 /*    AUTHOR: Paal Arthur S. Thorseth                              */
 /*    ORGN:   Dept of Eng Cybernetics, NTNU Trondheim              */
-/*    FILE:   forward_kinematics.cpp                               */
+/*    FILE:   kinematics.cpp                                       */
 /*    DATE:   Mar 1, 2021                                          */
 /*                                                                 */
 /* Copyright (C) 2021 Paal Arthur S. Thorseth,                     */
@@ -41,13 +41,50 @@ Kinematics::Kinematics()
 Kinematics::~Kinematics() {}
 
 // Solve forward kinematics
-bool Kinematics::SolveForwardKinematics(const GeneralizedCoordinates &_q, FootstepPositions &_fPos)
+bool Kinematics::SolveForwardKinematics(const GeneralizedCoordinates &_q, 
+                                        FootstepPositions &_fPos)
 {   
     return true;
 }
 
+// Solve single leg forward kinematics
+Vector3d Kinematics::SolveSingleLegForwardKinematics(const Vector3d &_h_pos,
+                                                     const double &_theta_hy, 
+                                                     const double &_theta_hp,
+                                                     const double &_theta_kp)
+{
+    // First D-H transformation
+    kindr::HomTransformMatrixD t1 = this->GetDhTransform(this->L1,
+                                                         -angle_utils::HALF_PI,
+                                                         0,
+                                                         _theta_hy);
+
+    // Second D-H transformation
+    kindr::HomTransformMatrixD t2 = this->GetDhTransform(this->L2,
+                                                         0,
+                                                         0,
+                                                         _theta_hp);
+
+    // Third D-H transformation
+    kindr::HomTransformMatrixD t3 = this->GetDhTransform(this->L3,
+                                                         0,
+                                                         0,
+                                                         _theta_kp);
+
+    // Complete D-H transformation
+    kindr::HomTransformMatrixD transformation = t1*t2*t3;
+
+    // End-effector position
+    Eigen::Vector3d pos = transformation.transform(kindr::Position3D(_h_pos)).vector();
+
+    return pos;
+}
+
 // Denavit-Hartenberg Transformation
-TransMatrix Kinematics::GetDhTransform(const double &_a, const double &_alpha, const double &_d, const double &_theta)
+TransMatrix Kinematics::GetDhTransform(const double &_a, 
+                                       const double &_alpha, 
+                                       const double &_d, 
+                                       const double &_theta)
 {
     Eigen::Vector3d unit_z(0,0,1);
     Eigen::Vector3d unit_x(1,0,0);
