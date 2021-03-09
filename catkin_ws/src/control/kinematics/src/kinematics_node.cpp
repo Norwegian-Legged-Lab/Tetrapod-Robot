@@ -80,14 +80,59 @@ void testSingleLegKinematics()
     ROS_INFO_STREAM("pos: " << pos);
 }
 
+void testEigen()
+{
+    Eigen::Matrix<double, 6, 1> twist;
+
+    twist << 1,
+             2,
+             3,
+             4,
+             5,
+             6;
+    
+    ROS_INFO_STREAM("twist: " << twist);
+
+    //Eigen::Matrix<double, 3, 1> pos = twist.block(0,0,2,0);
+    Eigen::Matrix<double, 3, 1> pos = twist.block(3,0,5,0);
+
+    ROS_INFO_STREAM("pos: " << pos);
+    
+    Eigen::Vector3d pos2;
+    pos2 << 1,2,3;
+
+    ROS_INFO_STREAM("pos2: " << pos2);
+}
+
+void testForwardKinematics()
+{
+    Kinematics K;
+
+    GeneralizedCoordinates q = GeneralizedCoordinates::Constant(0);
+
+    ROS_INFO_STREAM("q: " << q);
+
+    FootstepPositions fPos;
+
+    bool FK = K.SolveForwardKinematics(q, fPos);
+
+    ROS_INFO_STREAM("fpos(0): " << fPos(0));
+    ROS_INFO_STREAM("fpos(1): " << fPos(1));
+    ROS_INFO_STREAM("fpos(2): " << fPos(2));
+    ROS_INFO_STREAM("fpos(3): " << fPos(3));
+
+}
+
 
 int main(int argc, char **argv)
 {
     ros::init(argc, argv, "kinematics_node");
     ros::NodeHandle nh;
 
-    testSingleLegKinematics();
+    //testSingleLegKinematics();
     //testDhTransform();
+    //testEigen();
+    testForwardKinematics();
 
     ros::spin();
     return 0;
