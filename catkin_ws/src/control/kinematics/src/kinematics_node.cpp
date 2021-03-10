@@ -110,7 +110,15 @@ void testForwardKinematics()
 
     GeneralizedCoordinates q = GeneralizedCoordinates::Constant(0);
 
+    q << 0, // base_x
+         0, // base_y
+         0, // base_z
+         0, // base_roll
+         0, // base_pitch
+         0; // base_yaw
+    
     ROS_INFO_STREAM("q: " << q);
+
 
     FootstepPositions fPos;
 
