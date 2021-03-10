@@ -74,20 +74,28 @@ class Kinematics
 
     /// \brief The SolveSingleLegForwardKinematics function calculates
     /// the Forward Kinematics for a single leg.
-    /// \param[in] _h_pos Hip position
-    /// \param[in] _theta_hy Hip yaw angle
-    /// \param[in] _theta_hp Hip pitch angle
-    /// \param[in] _theta_kp Knee pitch angle
+    /// \param[in] _h_pos Hip position.
+    /// \param[in] _theta_hy Hip yaw angle.
+    /// \param[in] _theta_hp Hip pitch angle.
+    /// \param[in] _theta_kp Knee pitch angle.
     /// \return Returns end-effector position in Coordinate Space.
     public: Vector3d SolveSingleLegForwardKinematics(const Vector3d &_h_pos, const double &_theta_hy, const double &_theta_hp, const double &_theta_kp); 
 
+    /// \brief The GetHipToFootTransform function returns the homogeneous
+    /// transformation from the Hip frame to the Foot frame.
+    /// \param[in] _theta_hy Hip yaw angle.
+    /// \param[in] _theta_hp Hip pitch angle.
+    /// \param[in] _theta_kp Knee pitch angle.
+    /// \return Returns the kindr homogeneous transformation matrix from Hip to Foot.
+    public: TransMatrix GetHipToFootTransform(const double &_theta_hy, const double &_theta_hp, const double &_theta_kp);
+
     /// \brief The GetDhTransform function returns the Denavit-Hartenberg
     /// transformation from frame A to frame B.
-    /// \param[in] _a Link length
-    /// \param[in] _alpha Link twist
-    /// \param[in] _d Link offset
-    /// \param[in] _theta Joint angle
-    /// \return Returns a kindr homogeneous transformation matrix.
+    /// \param[in] _a Link length.
+    /// \param[in] _alpha Link twist.
+    /// \param[in] _d Link offset.
+    /// \param[in] _theta Joint angle.
+    /// \return Returns the kindr homogeneous transformation matrix from frame A to frame B.
     public: TransMatrix GetDhTransform(const double &_a, const double &_alpha, const double &_d, const double &_theta);
 
     /// \brief The ValidateSolution function evaluates whether

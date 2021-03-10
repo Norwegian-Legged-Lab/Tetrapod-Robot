@@ -65,10 +65,22 @@ bool Kinematics::SolveForwardKinematics(const GeneralizedCoordinates &_q,
     Eigen::Vector3d rear_left_hip_pos = transformBaseToHip.transform(kindr::Position3D(this->positionBaseToRearLeft)).vector();
     Eigen::Vector3d rear_right_hip_pos = transformBaseToHip.transform(kindr::Position3D(this->positionBaseToRearRight)).vector();
 
-    _fPos(0) = front_left_hip_pos;
-    _fPos(1) = front_right_hip_pos;
-    _fPos(2) = rear_left_hip_pos;
-    _fPos(3) = rear_right_hip_pos;
+    _fPos(0) = this->SolveSingleLegForwardKinematics(front_left_hip_pos,
+                                                     _q(6),
+                                                     _q(7),
+                                                     _q(8));
+    _fPos(1) = this->SolveSingleLegForwardKinematics(front_right_hip_pos,
+                                                     _q(9),
+                                                     _q(10),
+                                                     _q(11));
+    _fPos(2) = this->SolveSingleLegForwardKinematics(rear_left_hip_pos,
+                                                     _q(12),
+                                                     _q(13),
+                                                     _q(14));
+    _fPos(3) = this->SolveSingleLegForwardKinematics(rear_right_hip_pos,
+                                                     _q(15),
+                                                     _q(16),
+                                                     _q(17));
 
     return true;
 }
