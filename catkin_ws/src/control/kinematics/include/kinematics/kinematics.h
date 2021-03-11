@@ -112,19 +112,19 @@ class Kinematics
 
     /// \brief Position vector relating the base coordinates to 
     /// the front left hip
-    private: Vector3d positionBaseToFrontLeft;
+    private: Vector3d positionBaseToFrontLeftInB;
 
     /// \brief Position vector relating the base coordinates to 
     /// the front right hip
-    private: Vector3d positionBaseToFrontRight;
+    private: Vector3d positionBaseToFrontRightInB;
 
     /// \brief Position vector relating the base coordinates to 
     /// the rear left hip
-    private: Vector3d positionBaseToRearLeft;
+    private: Vector3d positionBaseToRearLeftInB;
 
     /// \brief Position vector relating the base coordinates to 
     /// the rear right hip
-    private: Vector3d positionBaseToRearRight;
+    private: Vector3d positionBaseToRearRightInB;
 
     /// \brief Hip link length
     private: double L1;

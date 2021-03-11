@@ -37,10 +37,10 @@ Kinematics::Kinematics()
     this->L3 = 1;
 
     // Set position vectors
-    this->positionBaseToFrontLeft << 1, 1, 0;
-    this->positionBaseToFrontRight << 1, -1, 0;
-    this->positionBaseToRearLeft << -1, 1, 0;
-    this->positionBaseToRearRight << -1, -1, 0;
+    this->positionBaseToFrontLeftInB << 1, 1, 0;
+    this->positionBaseToFrontRightInB << 1, -1, 0;
+    this->positionBaseToRearLeftInB << -1, 1, 0;
+    this->positionBaseToRearRightInB << -1, -1, 0;
 }
 
 // Destructor
@@ -50,37 +50,53 @@ Kinematics::~Kinematics() {}
 bool Kinematics::SolveForwardKinematics(const GeneralizedCoordinates &_q, 
                                         FootstepPositions &_fPos)
 {  
+
+    // Base Pose
     kindr::Position3D base_position(_q.block(0,0,2,0));
     kindr::Position3D base_orientation(_q.block(3,0,5,0));
 
-    kindr::RotationMatrixD base_rotation(kindr::EulerAnglesZyxD(base_orientation(2),
+    // Rotation from Body to World frame
+    kindr::RotationMatrixD rotationBToW(kindr::EulerAnglesZyxD(base_orientation(2),
                                                                 base_orientation(1),
                                                                 base_orientation(0))
                                         );
 
-    kindr::HomTransformMatrixD transformBaseToHip(base_position, base_rotation);
+    kindr::Position3D positionBaseToFrontLeftInW(rotationBToW.matrix()*positionBaseToFrontLeftInB);
+    kindr::Position3D positionBaseToFrontRightInW(rotationBToW.matrix()*positionBaseToFrontRightInB);
+    kindr::Position3D positionBaseToRearLeftInW(rotationBToW.matrix()*positionBaseToRearLeftInB);
+    kindr::Position3D positionBaseToRearRightInW(rotationBToW.matrix()*positionBaseToRearRightInB);
 
-    Eigen::Vector3d front_left_hip_pos = transformBaseToHip.transform(kindr::Position3D(this->positionBaseToFrontLeft)).vector();
-    Eigen::Vector3d front_right_hip_pos = transformBaseToHip.transform(kindr::Position3D(this->positionBaseToFrontRight)).vector();
-    Eigen::Vector3d rear_left_hip_pos = transformBaseToHip.transform(kindr::Position3D(this->positionBaseToRearLeft)).vector();
-    Eigen::Vector3d rear_right_hip_pos = transformBaseToHip.transform(kindr::Position3D(this->positionBaseToRearRight)).vector();
 
-    _fPos(0) = this->SolveSingleLegForwardKinematics(front_left_hip_pos,
-                                                     _q(6),
-                                                     _q(7),
-                                                     _q(8));
-    _fPos(1) = this->SolveSingleLegForwardKinematics(front_right_hip_pos,
-                                                     _q(9),
-                                                     _q(10),
-                                                     _q(11));
-    _fPos(2) = this->SolveSingleLegForwardKinematics(rear_left_hip_pos,
-                                                     _q(12),
-                                                     _q(13),
-                                                     _q(14));
-    _fPos(3) = this->SolveSingleLegForwardKinematics(rear_right_hip_pos,
-                                                     _q(15),
-                                                     _q(16),
-                                                     _q(17));
+    kindr::HomTransformMatrixD transformBaseToFrontLeftHip(positionBaseToFrontLeftInW, rotationBToW);
+    kindr::HomTransformMatrixD transformBaseToFrontRightHip(positionBaseToFrontRightInW, rotationBToW);
+    kindr::HomTransformMatrixD transformBaseToRearLeftHip(positionBaseToRearLeftInW, rotationBToW);
+    kindr::HomTransformMatrixD transformBaseToRearRightHip(positionBaseToRearRightInW, rotationBToW);
+
+    kindr::HomTransformMatrixD transformFrontLeftHipToFoot = this->GetHipToFootTransform(_q(6),
+                                                                                         _q(7),
+                                                                                         _q(8));
+    kindr::HomTransformMatrixD transformFrontRightHipToFoot = this->GetHipToFootTransform(_q(9),
+                                                                                          _q(10),
+                                                                                          _q(11));
+
+    kindr::HomTransformMatrixD transformRearLeftHipToFoot = this->GetHipToFootTransform(_q(12),
+                                                                                        _q(13),
+                                                                                        _q(14));
+
+    kindr::HomTransformMatrixD transformRearRightHipToFoot = this->GetHipToFootTransform(_q(15),
+                                                                                         _q(16),
+                                                                                         _q(17));
+
+    kindr::HomTransformMatrixD transformBaseToFrontLeftFoot = transformBaseToFrontLeftHip*transformFrontLeftHipToFoot;
+    kindr::HomTransformMatrixD transformBaseToFrontRightFoot = transformBaseToFrontRightHip*transformFrontRightHipToFoot;
+    kindr::HomTransformMatrixD transformBaseToRearLeftFoot = transformBaseToRearLeftHip*transformRearRightHipToFoot;
+    kindr::HomTransformMatrixD transformBaseToRearRightFoot = transformBaseToRearRightHip*transformRearRightHipToFoot;
+
+    //_fPos(0) = transformBaseToFrontLeftFoot.transform(kindr::Position3D(this->positionBaseToFrontLeft)).vector();
+    _fPos(0) = transformBaseToFrontLeftFoot.transform(base_position).vector();
+    _fPos(1) = transformBaseToFrontRightFoot.transform(base_position).vector();
+    _fPos(2) = transformBaseToRearLeftFoot.transform(base_position).vector();
+    _fPos(3) = transformBaseToRearRightFoot.transform(base_position).vector();
 
     return true;
 }
@@ -90,6 +106,22 @@ Vector3d Kinematics::SolveSingleLegForwardKinematics(const Vector3d &_h_pos,
                                                      const double &_theta_hy, 
                                                      const double &_theta_hp,
                                                      const double &_theta_kp)
+{
+    // Complete D-H transformation
+    kindr::HomTransformMatrixD transformation = this->GetHipToFootTransform(_theta_hy,
+                                                                            _theta_hp,
+                                                                            _theta_kp); 
+
+    // End-effector position
+    Eigen::Vector3d pos = transformation.transform(kindr::Position3D(_h_pos)).vector();
+
+    return pos;
+}
+
+// HipToFootTransform
+TransMatrix Kinematics::GetHipToFootTransform(const double &_theta_hy, 
+                                              const double &_theta_hp, 
+                                              const double &_theta_kp)
 {
     // First D-H transformation
     kindr::HomTransformMatrixD t1 = this->GetDhTransform(this->L1,
@@ -112,10 +144,7 @@ Vector3d Kinematics::SolveSingleLegForwardKinematics(const Vector3d &_h_pos,
     // Complete D-H transformation
     kindr::HomTransformMatrixD transformation = t1*t2*t3;
 
-    // End-effector position
-    Eigen::Vector3d pos = transformation.transform(kindr::Position3D(_h_pos)).vector();
-
-    return pos;
+    return transformation;
 }
 
 // Denavit-Hartenberg Transformation
