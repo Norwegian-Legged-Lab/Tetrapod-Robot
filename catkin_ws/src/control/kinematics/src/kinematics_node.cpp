@@ -115,7 +115,7 @@ void testForwardKinematics()
          0, // base_z
          0, // base_roll
          0, // base_pitch
-         0; // base_yaw
+         angle_utils::THREE_QUARTERS_PI; // base_yaw
     
     ROS_INFO_STREAM("q: " << q);
 
@@ -131,6 +131,19 @@ void testForwardKinematics()
 
 }
 
+void testSingeLegInverseKinematics()
+{
+    Kinematics K;
+    Eigen::Vector3d h_pos(0,0,0);
+    ROS_INFO_STREAM("h_pos: " << h_pos);
+
+    Eigen::Vector3d f_pos(0,1,2);
+    ROS_INFO_STREAM("f_pos: " << f_pos);
+
+    Eigen::Vector3d joint_angles = K.SolveSingleLegInverseKinematics(h_pos, f_pos);
+    ROS_INFO_STREAM("joint_angles: " << joint_angles);
+}
+
 
 int main(int argc, char **argv)
 {
@@ -140,7 +153,8 @@ int main(int argc, char **argv)
     //testSingleLegKinematics();
     //testDhTransform();
     //testEigen();
-    testForwardKinematics();
+    //testForwardKinematics();
+    testSingeLegInverseKinematics();
 
     ros::spin();
     return 0;
