@@ -48,7 +48,7 @@ Kinematics::~Kinematics() {}
 
 // Solve forward kinematics
 bool Kinematics::SolveForwardKinematics(const GeneralizedCoordinates &_q, 
-                                        FootstepPositions &_fPos)
+                                        FootstepPositions &_f_pos)
 {  
 
     // Base Pose
@@ -61,44 +61,45 @@ bool Kinematics::SolveForwardKinematics(const GeneralizedCoordinates &_q,
                                                                 base_orientation(0))
                                         );
 
+    // Base to hip positions in World Frame.
     kindr::Position3D positionBaseToFrontLeftInW(rotationBToW.matrix()*positionBaseToFrontLeftInB);
     kindr::Position3D positionBaseToFrontRightInW(rotationBToW.matrix()*positionBaseToFrontRightInB);
     kindr::Position3D positionBaseToRearLeftInW(rotationBToW.matrix()*positionBaseToRearLeftInB);
     kindr::Position3D positionBaseToRearRightInW(rotationBToW.matrix()*positionBaseToRearRightInB);
 
-
+    // Base to hip transformations
     kindr::HomTransformMatrixD transformBaseToFrontLeftHip(positionBaseToFrontLeftInW, rotationBToW);
     kindr::HomTransformMatrixD transformBaseToFrontRightHip(positionBaseToFrontRightInW, rotationBToW);
     kindr::HomTransformMatrixD transformBaseToRearLeftHip(positionBaseToRearLeftInW, rotationBToW);
     kindr::HomTransformMatrixD transformBaseToRearRightHip(positionBaseToRearRightInW, rotationBToW);
 
+    // Hip to foot transformations
     kindr::HomTransformMatrixD transformFrontLeftHipToFoot = this->GetHipToFootTransform(_q(6),
                                                                                          _q(7),
                                                                                          _q(8));
     kindr::HomTransformMatrixD transformFrontRightHipToFoot = this->GetHipToFootTransform(_q(9),
                                                                                           _q(10),
                                                                                           _q(11));
-
     kindr::HomTransformMatrixD transformRearLeftHipToFoot = this->GetHipToFootTransform(_q(12),
                                                                                         _q(13),
                                                                                         _q(14));
-
     kindr::HomTransformMatrixD transformRearRightHipToFoot = this->GetHipToFootTransform(_q(15),
                                                                                          _q(16),
                                                                                          _q(17));
 
+    // Base to foot transformations
     kindr::HomTransformMatrixD transformBaseToFrontLeftFoot = transformBaseToFrontLeftHip*transformFrontLeftHipToFoot;
     kindr::HomTransformMatrixD transformBaseToFrontRightFoot = transformBaseToFrontRightHip*transformFrontRightHipToFoot;
     kindr::HomTransformMatrixD transformBaseToRearLeftFoot = transformBaseToRearLeftHip*transformRearRightHipToFoot;
     kindr::HomTransformMatrixD transformBaseToRearRightFoot = transformBaseToRearRightHip*transformRearRightHipToFoot;
 
-    //_fPos(0) = transformBaseToFrontLeftFoot.transform(kindr::Position3D(this->positionBaseToFrontLeft)).vector();
-    _fPos(0) = transformBaseToFrontLeftFoot.transform(base_position).vector();
-    _fPos(1) = transformBaseToFrontRightFoot.transform(base_position).vector();
-    _fPos(2) = transformBaseToRearLeftFoot.transform(base_position).vector();
-    _fPos(3) = transformBaseToRearRightFoot.transform(base_position).vector();
+    // Foot positions
+    _f_pos(0) = transformBaseToFrontLeftFoot.transform(base_position).vector();
+    _f_pos(1) = transformBaseToFrontRightFoot.transform(base_position).vector();
+    _f_pos(2) = transformBaseToRearLeftFoot.transform(base_position).vector();
+    _f_pos(3) = transformBaseToRearRightFoot.transform(base_position).vector();
 
-    return true;
+    return true; //TODO do some criteria evaluation here
 }
 
 // Solve single leg forward kinematics
@@ -116,6 +117,43 @@ Vector3d Kinematics::SolveSingleLegForwardKinematics(const Vector3d &_h_pos,
     Eigen::Vector3d pos = transformation.transform(kindr::Position3D(_h_pos)).vector();
 
     return pos;
+}
+Vector3d Kinematics::SolveSingleLegInverseKinematics(const Vector3d &_h_pos, const Vector3d &_f_pos)
+{
+    // Define joint angles vector
+    Eigen::Vector3d joint_angles;
+
+    // Change of variables to center hip position.
+    double x_e = _f_pos(0) - _h_pos(0);
+    double y_e = _f_pos(1) - _h_pos(1);
+    double z_e = _f_pos(2) - _h_pos(2);
+
+    // Distance from hip to foot in the X-Y plane
+    double normHipToFootInXY = std::sqrt( std::pow(x_e, 2) + std::pow(y_e, 2) );
+
+    // Distance between hip pitch joint and foot
+    double normHipPitchToFoot = std::sqrt( std::pow(normHipToFootInXY - this->L1, 2) + std::pow(z_e, 2) );
+
+    // Angle from x-axis to the line going through the
+    // foot point and hip pitch joint
+    double zeta = std::atan2(-z_e, normHipToFootInXY - this->L1);
+
+    // Angle between foot-knee-hip pitch joints
+    double alpha = std::acos( ( std::pow(this->L2, 2) + std::pow(this->L3, 2) - std::pow(normHipPitchToFoot, 2) ) / ( 2 * this->L2 * this->L3 ) );
+
+    // Angle between foot-hip pitch-knee joints
+    double beta = std::acos( ( std::pow(normHipPitchToFoot, 2) + std::pow(this->L2, 2) - std::pow(this->L3, 2) ) / ( 2 * normHipPitchToFoot * this->L2 ) );
+
+    // Calculate theta_hy
+    joint_angles(0) = std::atan2(y_e, x_e);
+
+    // Calculate theta_hp
+    joint_angles(1) = angle_utils::HALF_PI - beta + zeta;
+
+    // Calculate theta_kp
+    joint_angles(2) = angle_utils::PI - alpha;
+
+    return joint_angles;
 }
 
 // HipToFootTransform

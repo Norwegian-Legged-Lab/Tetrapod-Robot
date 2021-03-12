@@ -26,6 +26,9 @@
 
 #pragma once
 
+// C++ Standard Library
+#include <cmath>
+
 // ROS Package Libraries
 #include <angle_utils/angle_utils.h>
 
@@ -57,11 +60,11 @@ class Kinematics
     /// to a coordinate point in Coordinate Space.
     /// \param[in] _q Generalized coordinates containing the floating base
     /// and joint positions.
-    /// \param[out] _fPos Footstep positions generated from solving the forward
+    /// \param[out] _f_pos Footstep positions generated from solving the forward
     /// kinematics.
     /// \return Evaluates true if an Forward Kinematics solution is found,
     /// and false if not.
-    public: bool SolveForwardKinematics(const GeneralizedCoordinates &_q, FootstepPositions &_fPos);
+    public: bool SolveForwardKinematics(const GeneralizedCoordinates &_q, FootstepPositions &_f_pos);
 
     /// \brief The SolveInverseKinematics function calculates
     /// the Inverse Kinematics, i.e. maps a coordinate point 
@@ -74,12 +77,19 @@ class Kinematics
 
     /// \brief The SolveSingleLegForwardKinematics function calculates
     /// the Forward Kinematics for a single leg.
-    /// \param[in] _h_pos Hip position.
+    /// \param[in] _h_pos Hip position in world frame.
     /// \param[in] _theta_hy Hip yaw angle.
     /// \param[in] _theta_hp Hip pitch angle.
     /// \param[in] _theta_kp Knee pitch angle.
     /// \return Returns end-effector position in Coordinate Space.
     public: Vector3d SolveSingleLegForwardKinematics(const Vector3d &_h_pos, const double &_theta_hy, const double &_theta_hp, const double &_theta_kp); 
+
+    /// \brief The SolveSingeLegInverseKinematics function calculates
+    /// the inverse kinematics for a single leg.
+    /// \param[in] _h_pos Hip position in world frame.
+    /// \param[in] _f_pos Foot position in world frame.
+    /// \return Returns a joint positions in Joint Space for a single leg, i.e. theta_hy, theta_hp & theta_kp.
+    public: Vector3d SolveSingleLegInverseKinematics(const Vector3d &_h_pos, const Vector3d &_f_pos);
 
     /// \brief The GetHipToFootTransform function returns the homogeneous
     /// transformation from the Hip frame to the Foot frame.
