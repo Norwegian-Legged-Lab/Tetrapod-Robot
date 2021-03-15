@@ -41,7 +41,7 @@ public:
     /// \brief Class constructor for a MotorControl class.
     /// Motor ID and CAN port are set
     /// \param[in] _id ID of the motor [1 - 32]
-    MotorControl(uint8_t _id);
+    MotorControl(uint8_t _id, int _number_of_inner_motor_rotations);
 
     /// \brief Set the desired multiturn motor angle.
     /// \param[in] _angle Setpoint motor angle in radians
@@ -65,29 +65,30 @@ public:
     /// \brief Set the motor PID parameters and store them temporary in RAM
     /// \param[in] _PIDParameters Motor PID parameters 
     /// (kp_pos, ki_pos, kp_speed, ki_speed, kp_torque, ki_torque)   
-    void writePIDParametersToRAM(Eigen::Matrix<double, 6, 1> _PID_parameters);
+    bool writePIDParametersToRAM(Eigen::Matrix<double, 6, 1> _PID_parameters);
 
     /// \brief Set the motor PID parameters and store the values in memory 
     /// \param[in] _PIDParameters Motor PID parameters 
     /// (kp_pos, ki_pos, kp_speed, ki_speed, kp_torque, ki_torque)   
-    void writePIDParametersToROM(Eigen::Matrix<double, 6, 1> _PID_parameters);
+    bool writePIDParametersToROM(Eigen::Matrix<double, 6, 1> _PID_parameters);
 
     /// \brief Stop the motor without turning it off
-    void stopMotor();
+    bool stopMotor();
 
     /// \brief Turn off the motor
-    void turnOffMotor();
+    bool turnOffMotor();
 
     /// \brief Read the motor PID parameters
     /// The private PID parameters are updated
     /// \return PID parameters as 6 dimensional vector
     /// (kp_pos, ki_pos, kp_speed, ki_speed, kp_torque, ki_torque)
-    Eigen::Matrix<double, 6, 1> readPIDParameters();
+    bool readPIDParameters(Eigen::Matrix<double, 6, 1> &_PID_parameters);
 
     /// \brief Read the current motor position
     /// \return Motor position in radians
     double readCurrentPosition();
 
+    /// \brief Read 
 private:
     /// \brief Motor ID set through Serial configurator [1 - 32]
     uint8_t id;
@@ -96,9 +97,17 @@ private:
     /// (kp_pos, ki_pos, kp_speed, ki_speed, kp_torque, ki_torque)
     Eigen::Matrix<double, 6, 1> PID_parameters;
 
+    /// \brief Number of rotations of the inner motor during startup
+    /// This is needed to create position commands
+    int initial_number_of_inner_motor_rotations;
+
     /// \brief Number of rotations of the built-in motor, 
     /// not the output-shaft
-    double number_inner_motor_rotations;
+    double number_of_inner_motor_rotations;
+
+    /// \brief Keep track of previous encoder position.
+    /// This way you can detect turns
+    uint16_t previous_encoder_value;
 
     /// \brief Latest measured position of the shaft in radians
     double position;
@@ -116,6 +125,9 @@ private:
     /// Only buf field is set for every message sent
     CAN_message_t can_message;
 
+    /// \brief CAN message object used to receive incomming CAN messages
+    CAN_message_t received_can_message;
+
     /// \brief CAN port used for this motor.
     /// Port can be CAN1 or CAN2
     FlexCAN_T4<CAN1, RX_SIZE_256, TX_SIZE_16> can_port;
@@ -123,7 +135,6 @@ private:
     /// \brief Contains functions creating CAN messages 
     /// following the motor protocol
     MotorMessageGenerator motor_message_generator;
-
 
 
     // Motor specific parameters
@@ -138,7 +149,19 @@ private:
 
     /// \brief The 16 bit encoder measures the position 
     /// of the inner DC motor, not the shaft
-    uint16_t max_encoder_value = 65536;
+    uint16_t max_encoder_value;
+
+    /// \brief If the change in encoder value is larger than this
+    /// it is safe to assume that the inner motor completed a turn
+    uint16_t encoder_turn_threshold;
+
+    /// \brief This function checks if the inner motor completed a turn.
+    /// Depending on the difference between the new and previous encoder value
+    /// we can determine if the motor completed a turn a direction or not
+    /// \param[in] _previous_encoder_value The previously measured encoder value
+    /// \param[in] _new_encoder_value The newly measured encoder value
+    /// \return If new << old return 1, if old << new return -1, else return 0
+    int innerMotorTurnCompleted(uint16_t _previous_encoder_value, uint16_t _new_encoder_value);
 };
 
 void delay_microseconds(double microsecond_delay);
