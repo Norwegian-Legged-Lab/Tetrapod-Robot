@@ -69,11 +69,12 @@ class Kinematics
     /// \brief The SolveInverseKinematics function calculates
     /// the Inverse Kinematics, i.e. maps a coordinate point 
     /// in the Coordinate Space to joint angles in the Joint Space.
-    /// \param[in] _pos Cartesian coordinates to solve for.
+    /// \param[in] _q_b Base Pose in the world frame.
+    /// \param[in] _f_pos Footstep positions in the world frame.
     /// \param[out] _q_r Joint angles from the Inverse Kinematics solution.
     /// \return Evaluates true if an Inverse Kinematics solution is found,
     /// and false if not.
-    public: bool SolveInverseKinematics(const Vector3d &_pos, JointSpaceVector &_q_r);
+    public: bool SolveInverseKinematics(const Twist &_q_b, const FootstepPositions &_f_pos, JointSpaceVector &_q_r);
 
     /// \brief The SolveSingleLegForwardKinematics function calculates
     /// the Forward Kinematics for a single leg.

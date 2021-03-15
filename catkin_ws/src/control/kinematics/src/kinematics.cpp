@@ -46,6 +46,48 @@ Kinematics::Kinematics()
 // Destructor
 Kinematics::~Kinematics() {}
 
+// Solve inverse kinematics
+bool Kinematics::SolveInverseKinematics(const Twist &_q_b, const FootstepPositions &_f_pos, JointSpaceVector &_q_r)
+{
+    // Base Pose
+    kindr::Position3D base_position(_q_b.block(0,0,2,0));
+    kindr::Position3D base_orientation(_q_b.block(3,0,5,0));
+
+    // Rotation from Body to World frame
+    kindr::RotationMatrixD rotationBToW(kindr::EulerAnglesZyxD(base_orientation(2),
+                                                                base_orientation(1),
+                                                                base_orientation(0))
+                                        );
+
+    // Base to hip positions in World Frame.
+    kindr::Position3D positionBaseToFrontLeftInW(rotationBToW.matrix()*positionBaseToFrontLeftInB);
+    kindr::Position3D positionBaseToFrontRightInW(rotationBToW.matrix()*positionBaseToFrontRightInB);
+    kindr::Position3D positionBaseToRearLeftInW(rotationBToW.matrix()*positionBaseToRearLeftInB);
+    kindr::Position3D positionBaseToRearRightInW(rotationBToW.matrix()*positionBaseToRearRightInB);
+
+    // Base to hip transformations
+    kindr::HomTransformMatrixD transformBaseToFrontLeftHip(positionBaseToFrontLeftInW, rotationBToW);
+    kindr::HomTransformMatrixD transformBaseToFrontRightHip(positionBaseToFrontRightInW, rotationBToW);
+    kindr::HomTransformMatrixD transformBaseToRearLeftHip(positionBaseToRearLeftInW, rotationBToW);
+    kindr::HomTransformMatrixD transformBaseToRearRightHip(positionBaseToRearRightInW, rotationBToW);
+
+    // Hip positions
+    Eigen::Matrix<Eigen::Vector3d, 4, 1> h_pos;
+
+    h_pos(0) = transformBaseToFrontLeftHip.transform(base_position).vector();
+    h_pos(1) = transformBaseToFrontRightHip.transform(base_position).vector();
+    h_pos(2) = transformBaseToRearLeftHip.transform(base_position).vector();
+    h_pos(3) = transformBaseToRearRightHip.transform(base_position).vector();
+
+    // Joint angles
+    _q_r.block(0,0,2,0) = this->SolveSingleLegInverseKinematics(h_pos(0), _f_pos(0));
+    _q_r.block(3,0,5,0) = this->SolveSingleLegInverseKinematics(h_pos(1), _f_pos(1));
+    _q_r.block(6,0,8,0) = this->SolveSingleLegInverseKinematics(h_pos(2), _f_pos(2));
+    _q_r.block(9,0,11,0) = this->SolveSingleLegInverseKinematics(h_pos(3), _f_pos(3));
+
+    return true; // TODO: Fix solution validation.
+}
+
 // Solve forward kinematics
 bool Kinematics::SolveForwardKinematics(const GeneralizedCoordinates &_q, 
                                         FootstepPositions &_f_pos)
@@ -118,6 +160,7 @@ Vector3d Kinematics::SolveSingleLegForwardKinematics(const Vector3d &_h_pos,
 
     return pos;
 }
+
 Vector3d Kinematics::SolveSingleLegInverseKinematics(const Vector3d &_h_pos, const Vector3d &_f_pos)
 {
     // Define joint angles vector
