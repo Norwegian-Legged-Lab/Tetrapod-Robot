@@ -80,6 +80,8 @@ void MotorMessageGenerator::writeAccelerationToRAM(unsigned char* _can_message, 
     _can_message[7] = *((uint8_t *)(&_acceleration) + 3);
 }
 
+/// \brief The command requests the current single turn encoder position (true - offset),
+/// the true encoder position and the offset 
 void MotorMessageGenerator::readEncoderPosition(unsigned char* _can_message)
 {
     emptyCanMessage(_can_message);
