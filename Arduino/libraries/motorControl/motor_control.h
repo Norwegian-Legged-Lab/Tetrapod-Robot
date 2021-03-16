@@ -88,7 +88,11 @@ public:
     /// \return Motor position in radians
     double readCurrentPosition();
 
-    /// \brief Read 
+    double get_position(){return position;}
+
+    double get_velocity(){return speed;}
+
+    double get_torque(){return torque;}
 private:
     /// \brief Motor ID set through Serial configurator [1 - 32]
     uint8_t id;
