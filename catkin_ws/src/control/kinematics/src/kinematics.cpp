@@ -191,7 +191,7 @@ Vector3d Kinematics::SolveSingleLegInverseKinematics(const Vector3d &_h_pos, con
     joint_angles(0) = std::atan2(y_e, x_e);
 
     // Calculate theta_hp
-    joint_angles(1) = angle_utils::HALF_PI - beta + zeta;
+    joint_angles(1) = - beta + zeta;
 
     // Calculate theta_kp
     joint_angles(2) = angle_utils::PI - alpha;
