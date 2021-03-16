@@ -115,7 +115,19 @@ void testForwardKinematics()
          0, // base_z
          0, // base_roll
          0, // base_pitch
-         angle_utils::THREE_QUARTERS_PI; // base_yaw
+         0*angle_utils::THREE_QUARTERS_PI, // base_yaw
+         0*angle_utils::HALF_PI, // FL-theta_hy
+         0, // FL-theta_hp
+         0, // FL-theta_kp
+         0, // FR-theta_hy
+         0, // FR-theta_hp
+         0, // FR-theta_kp
+         0, // RL-theta_hy
+         0, // RL-theta_hp
+         0, // RL-theta_kp
+         0, // RR-theta_hy
+         0, // RR-theta_hp
+         0; // RR-theta_kp
     
     ROS_INFO_STREAM("q: " << q);
 
@@ -134,16 +146,40 @@ void testForwardKinematics()
 void testSingeLegInverseKinematics()
 {
     Kinematics K;
-    Eigen::Vector3d h_pos(0,0,0);
+    Eigen::Vector3d h_pos(1,1,0);
     ROS_INFO_STREAM("h_pos: " << h_pos);
 
-    Eigen::Vector3d f_pos(0,1,2);
+    Eigen::Vector3d f_pos(3,1,1.5);
     ROS_INFO_STREAM("f_pos: " << f_pos);
 
     Eigen::Vector3d joint_angles = K.SolveSingleLegInverseKinematics(h_pos, f_pos);
     ROS_INFO_STREAM("joint_angles: " << joint_angles);
 }
 
+void testInverseKinematics()
+{
+    Kinematics K;
+
+    Twist q_b = Twist::Constant(0);
+    ROS_INFO_STREAM("q_b: " << q_b);
+
+    FootstepPositions f_pos;
+
+    f_pos(0) = Eigen::Vector3d(4,1,0);
+    f_pos(1) = Eigen::Vector3d(4,-1,0);
+    f_pos(2) = Eigen::Vector3d(2,1,0);
+    f_pos(3) = Eigen::Vector3d(2,-1,0);
+    ROS_INFO_STREAM("f_pos(0): " << f_pos(0));
+    ROS_INFO_STREAM("f_pos(1): " << f_pos(1));
+    ROS_INFO_STREAM("f_pos(2): " << f_pos(2));
+    ROS_INFO_STREAM("f_pos(3): " << f_pos(3));
+
+    JointSpaceVector q_r;
+
+    bool IK = K.SolveInverseKinematics(q_b, f_pos, q_r);
+
+    ROS_INFO_STREAM("q_r: " << q_r);
+}
 
 int main(int argc, char **argv)
 {
@@ -153,8 +189,12 @@ int main(int argc, char **argv)
     //testSingleLegKinematics();
     //testDhTransform();
     //testEigen();
-    //testForwardKinematics();
+    ROS_INFO_STREAM("--------------- Test FK --------------");
+    testForwardKinematics();
+    ROS_INFO_STREAM("--------------- Test Single Leg IK --------------");
     testSingeLegInverseKinematics();
+    //ROS_INFO_STREAM("--------------- Test IK --------------");
+    //testInverseKinematics(); 
 
     ros::spin();
     return 0;
