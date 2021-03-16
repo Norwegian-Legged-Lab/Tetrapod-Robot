@@ -7,6 +7,7 @@
 
 const double GEAR_REDUCTION = 6.0;
 const double ROTATION_DISTANCE = 60.0;
+const int MOTOR_BAUD_RATE = 1000000;
 #define MOTOR_ADDRESS_OFFSET 0x140
 
 // A list of the different motor commands
@@ -37,6 +38,8 @@ const double ROTATION_DISTANCE = 60.0;
 class MotorControl
 {
 public:
+    /// \brief Default constructor needed for initializing array
+    MotorControl(){}
 
     /// \brief Class constructor for a MotorControl class.
     /// Motor ID and CAN port are set
