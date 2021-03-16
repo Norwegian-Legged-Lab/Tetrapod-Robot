@@ -8,18 +8,30 @@
 #include "motor_control.h"
 #include "FlexCAN_T4.h"
 
+// Number of motors 
+const int NUMBER_OF_MOTORS = 4;
+int NUMBER_OF_MOTORS_PER_PORT = 2;
+
+// Create a vector of MotorControl elements, one for each motor
+MotorControl* motors = new MotorControl[NUMBER_OF_MOTORS];
+
 // Create a ROS node handle
 ros::NodeHandle nh;
 
 // Set the name of the Teensy board
 char teensy_frame[] = "/teensy_front_legs";
 
+// Create objects for the two CAN ports
 FlexCAN_T4<CAN1, RX_SIZE_256, TX_SIZE_16> can_port1;
 FlexCAN_T4<CAN2, RX_SIZE_256, TX_SIZE_16> can_port2;
 
+CAN_message_t can_message;
+
+// Create a jointState message for sending motor states back to the mother computer
 sensor_msgs::JointState joint_state_reply;
 
-CAN_message_t can_message;
+// Must be declared before callbacks where it is being used
+ros::Publisher motor_state_publisher("motor_states", &joint_state_reply);
 
 void controlCommandCallback(const sensor_msgs::JointState& joint_state_msg)
 {
@@ -79,26 +91,53 @@ void controlCommandCallback(const sensor_msgs::JointState& joint_state_msg)
   // Add message header
   joint_state_reply.header.frame_id = teensy_frame;
 
+  // Add time stamp to the message
   joint_state_reply.header.stamp = nh.now();
+
+  motor_state_publisher.publish(&joint_state_reply);
   
 }
 
 ros::Subscriber<sensor_msgs::JointState> subscriber_control_commands("motor_control_commands", &controlCommandCallback);
 
-void setup() {
+void setup() 
+{
   // Set the baud rate for the serial communication
   Serial.begin(250000);
   delay_microseconds(100000.0);
 
+  // Initialize CAN ports. 
+  // DO NOT ATTEMPT TO SEND DATA OVER THE TEENSY CAN PORTS WITHOUT RUNNING CAN_PORT*.BEGIN()
+  can_port1.begin();
+  can_port1.setBaudRate(MOTOR_BAUD_RATE);
+  can_port2.begin();
+  can_port2.setBaudRate(MOTOR_BAUD_RATE);
+
   // Initialize the ROS node
   nh.initNode();
+
+  // Setup subcriber for initializing the motors and wait for initial number of rotations
+
+  // Initialize the motor controllers
+  for (int i = 0; i < NUMBER_OF_MOTORS; i++)
+  {
+    // CAN port 1 should be used
+    if(i < NUMBER_OF_MOTORS_PORT)
+    {
+      motors[i] = MotorControl(i + 1, 0);
+    }
+    // CAN port 2 should be used
+    else
+    {
+      motors[i] = MotorControl(i + 1, 0);
+    }
+  }
+  
+  nh.advertise(motor_state_publisher);
   nh.subscribe(subscriber_control_commands);
 }
 
-void loop() {
-  motor1.setSpeedReference(2*M_PI);
-  Serial.println("Speed set");
-
-  delay_microseconds(10*1000000.0);
-  while(true);
+void loop() 
+{
+  
 }
