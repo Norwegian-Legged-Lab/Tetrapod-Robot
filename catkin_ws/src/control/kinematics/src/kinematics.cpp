@@ -24,6 +24,7 @@
 /*                                                                 */
 /*******************************************************************/
 
+#include "ros/ros.h"
 
 #include <kinematics/kinematics.h>
 
@@ -79,11 +80,17 @@ bool Kinematics::SolveInverseKinematics(const Twist &_q_b, const FootstepPositio
     h_pos(2) = transformBaseToRearLeftHip.transform(base_position).vector();
     h_pos(3) = transformBaseToRearRightHip.transform(base_position).vector();
 
+    // TODO remove uneccesarry prints
+    ROS_INFO_STREAM("h_pos(0): " << h_pos(0));
+    ROS_INFO_STREAM("h_pos(1): " << h_pos(1));
+    ROS_INFO_STREAM("h_pos(2): " << h_pos(2));
+    ROS_INFO_STREAM("h_pos(3): " << h_pos(3));
+
     // Joint angles
-    _q_r.block(0,0,2,0) = this->SolveSingleLegInverseKinematics(h_pos(0), _f_pos(0));
-    _q_r.block(3,0,5,0) = this->SolveSingleLegInverseKinematics(h_pos(1), _f_pos(1));
-    _q_r.block(6,0,8,0) = this->SolveSingleLegInverseKinematics(h_pos(2), _f_pos(2));
-    _q_r.block(9,0,11,0) = this->SolveSingleLegInverseKinematics(h_pos(3), _f_pos(3));
+    _q_r.block(0,0,2,0) << this->SolveSingleLegInverseKinematics(h_pos(0), _f_pos(0));
+    _q_r.block(3,0,5,0) << this->SolveSingleLegInverseKinematics(h_pos(1), _f_pos(1));
+    _q_r.block(6,0,8,0) << this->SolveSingleLegInverseKinematics(h_pos(2), _f_pos(2));
+    _q_r.block(9,0,11,0) << this->SolveSingleLegInverseKinematics(h_pos(3), _f_pos(3));
 
     return true; // TODO: Fix solution validation.
 }
