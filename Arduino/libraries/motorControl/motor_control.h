@@ -44,7 +44,7 @@ public:
     /// \brief Class constructor for a MotorControl class.
     /// Motor ID and CAN port are set
     /// \param[in] _id ID of the motor [1 - 32]
-    MotorControl(uint8_t _id, int _number_of_inner_motor_rotations);
+    MotorControl(uint8_t _id, int _number_of_inner_motor_rotations, FlexCAN_T4<CAN1> &_can_port);
 
     /// \brief Set the desired multiturn motor angle.
     /// \param[in] _angle Setpoint motor angle in radians
@@ -137,7 +137,11 @@ private:
 
     /// \brief CAN port used for this motor.
     /// Port can be CAN1 or CAN2
-    FlexCAN_T4<CAN1, RX_SIZE_256, TX_SIZE_16> can_port;
+    //FlexCAN_T4<CAN1> *can_port;
+
+    template<class T>
+
+    FlexCAN_T4<CAN_DEV_TABLE> *okerogk;
 
     /// \brief Contains functions creating CAN messages 
     /// following the motor protocol

@@ -25,6 +25,10 @@ char teensy_frame[] = "/teensy_front_legs";
 FlexCAN_T4<CAN1, RX_SIZE_256, TX_SIZE_16> can_port1;
 FlexCAN_T4<CAN2, RX_SIZE_256, TX_SIZE_16> can_port2;
 
+// Declare CAN pointers
+FlexCAN_T4<CAN1, RX_SIZE_256, TX_SIZE_16> *ptr_can_port1; // = &can_port1;
+FlexCAN_T4<CAN1, RX_SIZE_256, TX_SIZE_16> *ptr_can_port2; // = &can_port2;
+
 CAN_message_t can_message;
 
 // Create a jointState message for sending motor states back to the mother computer
@@ -60,6 +64,8 @@ void controlCommandCallback(const sensor_msgs::JointState& joint_state_msg)
 
   // Add a small delay to allow so that the motors have time to send back replies
   delay_microseconds(2000.0);
+
+
 
   // Go through all the replies and update the motor states
   while(can_port1.read(can_message) || can_port2.read(can_message))
@@ -116,20 +122,21 @@ void setup()
   // Initialize the ROS node
   nh.initNode();
 
+
   // Setup subcriber for initializing the motors and wait for initial number of rotations
 
   // Initialize the motor controllers
   for (int i = 0; i < NUMBER_OF_MOTORS; i++)
   {
     // CAN port 1 should be used
-    if(i < NUMBER_OF_MOTORS_PORT)
+    if(i < NUMBER_OF_MOTORS_PER_PORT)
     {
-      motors[i] = MotorControl(i + 1, 0);
+      motors[i] = MotorControl(i + 1, 0, ptr_can_port1);
     }
     // CAN port 2 should be used
     else
     {
-      motors[i] = MotorControl(i + 1, 0);
+      motors[i] = MotorControl(i + 1, 0, ptr_can_port2);
     }
   }
   
