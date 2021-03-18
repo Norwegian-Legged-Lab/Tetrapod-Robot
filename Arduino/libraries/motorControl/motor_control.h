@@ -35,16 +35,20 @@ const int MOTOR_BAUD_RATE = 1000000;
 #define MOTOR_COMMAND_POSITION_CLOSED_LOOP_3 0xA5
 #define MOTOR_COMMAND_POSITION_CLOSED_LOOP_4 0xA6
 
+
+
 class MotorControl
 {
 public:
+
     /// \brief Default constructor needed for initializing array
-    MotorControl(){}
+    MotorControl() {}
 
     /// \brief Class constructor for a MotorControl class.
     /// Motor ID and CAN port are set
     /// \param[in] _id ID of the motor [1 - 32]
-    MotorControl(uint8_t _id, int _number_of_inner_motor_rotations, FlexCAN_T4<CAN1> &_can_port);
+    template <CAN_DEV_TABLE CAN>
+    MotorControl(uint8_t _id, int _number_of_inner_motor_rotations, FlexCAN_T4<CAN> &_can_port);
 
     /// \brief Set the desired multiturn motor angle.
     /// \param[in] _angle Setpoint motor angle in radians
@@ -137,11 +141,7 @@ private:
 
     /// \brief CAN port used for this motor.
     /// Port can be CAN1 or CAN2
-    //FlexCAN_T4<CAN1> *can_port;
-
-    template<class T>
-
-    FlexCAN_T4<CAN_DEV_TABLE> *okerogk;
+    template <CAN_DEV_TABLE CAN> FlexCAN_T4<CAN> *can_port;
 
     /// \brief Contains functions creating CAN messages 
     /// following the motor protocol

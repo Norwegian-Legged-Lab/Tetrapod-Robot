@@ -1,6 +1,6 @@
 #include "motor_control.h"
 
-MotorControl::MotorControl(uint8_t _id, int _number_of_inner_motor_rotations, FlexCAN_T4* _can_port)
+MotorControl::MotorControl(uint8_t _id, int _number_of_inner_motor_rotations, FlexCAN_T4<CAN>* _can_port)
 {
     id = _id;
 

@@ -25,9 +25,6 @@ char teensy_frame[] = "/teensy_front_legs";
 FlexCAN_T4<CAN1, RX_SIZE_256, TX_SIZE_16> can_port1;
 FlexCAN_T4<CAN2, RX_SIZE_256, TX_SIZE_16> can_port2;
 
-// Declare CAN pointers
-FlexCAN_T4<CAN1, RX_SIZE_256, TX_SIZE_16> *ptr_can_port1; // = &can_port1;
-FlexCAN_T4<CAN1, RX_SIZE_256, TX_SIZE_16> *ptr_can_port2; // = &can_port2;
 
 CAN_message_t can_message;
 
@@ -131,12 +128,12 @@ void setup()
     // CAN port 1 should be used
     if(i < NUMBER_OF_MOTORS_PER_PORT)
     {
-      motors[i] = MotorControl(i + 1, 0, ptr_can_port1);
+      motors[i] = MotorControl(i + 1, 0, &can_port1);
     }
     // CAN port 2 should be used
     else
     {
-      motors[i] = MotorControl(i + 1, 0, ptr_can_port2);
+      motors[i] = MotorControl(i + 1, 0, &can_port2);
     }
   }
   
