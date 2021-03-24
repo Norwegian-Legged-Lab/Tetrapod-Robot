@@ -1,9 +1,40 @@
+/*******************************************************************/
+/*    AUTHOR: Adrian B. Ghansah                                    */
+/*    ORGN:   Dept of Eng Cybernetics, NTNU Trondheim              */
+/*    FILE:   motor_control.h                                      */
+/*    DATE:   Mar 24, 2021                                         */
+/*                                                                 */
+/* Copyright (C) 2021 Paal Arthur S. Thorseth,                     */
+/*                    Adrian B. Ghansah                            */
+/*                                                                 */
+/* This program is free software: you can redistribute it          */
+/* and/or modify it under the terms of the GNU General             */
+/* Public License as published by the Free Software Foundation,    */
+/* either version 3 of the License, or (at your option) any        */
+/* later version.                                                  */
+/*                                                                 */
+/* This program is distributed in the hope that it will be useful, */
+/* but WITHOUT ANY WARRANTY; without even the implied warranty     */
+/* of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.         */
+/* See the GNU General Public License for more details.            */
+/*                                                                 */
+/* You should have received a copy of the GNU General Public       */
+/* License along with this program. If not, see                    */
+/* <https://www.gnu.org/licenses/>.                                */
+/*                                                                 */
+/*******************************************************************/
+
 #ifndef motor_control_h
 #define motor_control_h
 
+// Eigen
 #include <Eigen30.h>
-#include "motor_message_generator.h"
+
+// FlexCAN_T4 library
 #include "FlexCAN_T4.h"
+
+// Message generator
+#include "motor_message_generator.h"
 
 const double GEAR_REDUCTION = 6.0;
 const double ROTATION_DISTANCE = 60.0;
@@ -36,7 +67,6 @@ const int MOTOR_BAUD_RATE = 1000000;
 #define MOTOR_COMMAND_POSITION_CLOSED_LOOP_4 0xA6
 
 
-
 class MotorControl
 {
 public:
@@ -47,53 +77,82 @@ public:
     /// \brief Class constructor for a MotorControl class.
     /// Motor ID and CAN port are set
     /// \param[in] _id ID of the motor [1 - 32]
-    template <CAN_DEV_TABLE CAN>
-    MotorControl(uint8_t _id, int _number_of_inner_motor_rotations, FlexCAN_T4<CAN> &_can_port);
+    template <typename T>
+    MotorControl(uint8_t _id, int _number_of_inner_motor_rotations, T &_can_port);
 
     /// \brief Set the desired multiturn motor angle.
     /// \param[in] _angle Setpoint motor angle in radians
-    void setPositionReference(double _angle);
+    template <typename T>
+    void setPositionReference(double _angle, T &_can_port);
 
     //void setPositionReferenceReply();
 
     /// \brief Set the desired motor speed.
     /// \param[in] _speed Setpoint motor speed in radians/second
-    void setSpeedReference(double _speed);
+    /// \param[in] _can_port CAN port used for this motor.
+    /// Port can be CAN1 or CAN2
+    template <typename T>
+    void setSpeedReference(double _speed, T &_can_port);
 
     /// \brief Set the desired motor torque.
     /// \param[in] _torque Setpoint motor torque in Nm
-    void setTorqueReference(double _torque);
+    /// \param[in] _can_port CAN port used for this motor.
+    /// Port can be CAN1 or CAN2
+    template <typename T>
+    void setTorqueReference(double _torque, T &_can_port);
 
     /// \brief Setting position, speed and torque all results in
     /// the same reply being sent from the motor.
     /// The states are stored in the private variables
+    // TODO: find a better suting name for this function
     void replyControlCommand(unsigned char* _can_message);
 
     /// \brief Set the motor PID parameters and store them temporary in RAM
     /// \param[in] _PIDParameters Motor PID parameters 
     /// (kp_pos, ki_pos, kp_speed, ki_speed, kp_torque, ki_torque)   
-    bool writePIDParametersToRAM(Eigen::Matrix<double, 6, 1> _PID_parameters);
+    /// \param[in] _can_port CAN port used for this motor.
+    /// Port can be CAN1 or CAN2
+    template <typename T>
+    bool writePIDParametersToRAM(Eigen::Matrix<double, 6, 1> _PID_parameters, T &_can_port);
 
     /// \brief Set the motor PID parameters and store the values in memory 
     /// \param[in] _PIDParameters Motor PID parameters 
     /// (kp_pos, ki_pos, kp_speed, ki_speed, kp_torque, ki_torque)   
-    bool writePIDParametersToROM(Eigen::Matrix<double, 6, 1> _PID_parameters);
+    /// \param[in] _can_port CAN port used for this motor.
+    /// Port can be CAN1 or CAN2
+    template <typename T>
+    bool writePIDParametersToROM(Eigen::Matrix<double, 6, 1> _PID_parameters, T &_can_port);
 
     /// \brief Stop the motor without turning it off
-    bool stopMotor();
+    /// \param[in] _can_port CAN port used for this motor.
+    /// Port can be CAN1 or CAN2
+    /// \return Returns true if the motor was successfully stopped, false if not.
+    template <typename T>
+    bool stopMotor(T &_can_port);
 
     /// \brief Turn off the motor
-    bool turnOffMotor();
+    /// \param[in] _can_port CAN port used for this motor.
+    /// Port can be CAN1 or CAN2
+    /// \return Returns true if the motor was succesfully turned off, false if not.
+    template <typename T>
+    bool turnOffMotor(T &_can_port);
 
     /// \brief Read the motor PID parameters
     /// The private PID parameters are updated
-    /// \return PID parameters as 6 dimensional vector
+    /// \param[in] _can_port CAN port used for this motor.
+    /// Port can be CAN1 or CAN2
+    /// \param[out] _PID_parameters PID parameters as 6 dimensional vector
     /// (kp_pos, ki_pos, kp_speed, ki_speed, kp_torque, ki_torque)
-    bool readPIDParameters(Eigen::Matrix<double, 6, 1> &_PID_parameters);
+    /// \return Returns true if parameters was successfully read, false if not.
+    template <typename T>
+    bool readPIDParameters(Eigen::Matrix<double, 6, 1> &_PID_parameters, T &_can_port);
 
     /// \brief Read the current motor position
+    /// \param[in] _can_port CAN port used for this motor.
+    /// Port can be CAN1 or CAN2
     /// \return Motor position in radians
-    double readCurrentPosition();
+    template <typename T>
+    double readCurrentPosition(T &_can_port);
 
     double get_position(){return position;}
 
@@ -139,14 +198,10 @@ private:
     /// \brief CAN message object used to receive incomming CAN messages
     CAN_message_t received_can_message;
 
-    /// \brief CAN port used for this motor.
-    /// Port can be CAN1 or CAN2
-    template <CAN_DEV_TABLE CAN> FlexCAN_T4<CAN> *can_port;
-
     /// \brief Contains functions creating CAN messages 
     /// following the motor protocol
+    // TODO: create namespace for the class functionality.
     MotorMessageGenerator motor_message_generator;
-
 
     // Motor specific parameters
 

@@ -6,7 +6,7 @@
 
 // Inlucde other libraries
 #include "motor_control.h"
-//#include "FlexCAN_T4.h" // TODO remove FlexCAN_T4 already included in motor_control.h
+//#include "FlexCAN_T4.h"
 
 // Number of motors 
 const int NUMBER_OF_MOTORS = 4;
@@ -128,12 +128,12 @@ void setup()
     // CAN port 1 should be used
     if(i < NUMBER_OF_MOTORS_PER_PORT)
     {
-      motors[i] = MotorControl(i + 1, 0, &can_port1);
+      motors[i] = MotorControl(i + 1, 0, can_port1);
     }
     // CAN port 2 should be used
     else
     {
-      motors[i] = MotorControl(i + 1, 0, &can_port2);
+      motors[i] = MotorControl(i + 1, 0, can_port2);
     }
   }
   
