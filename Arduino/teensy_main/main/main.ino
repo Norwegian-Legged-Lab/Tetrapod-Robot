@@ -6,7 +6,7 @@
 
 // Inlucde other libraries
 #include "motor_control.h"
-#include "FlexCAN_T4.h"
+//#include "FlexCAN_T4.h" // TODO remove FlexCAN_T4 already included in motor_control.h
 
 // Number of motors 
 const int NUMBER_OF_MOTORS = 4;
