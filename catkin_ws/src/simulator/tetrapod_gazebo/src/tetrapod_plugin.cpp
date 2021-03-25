@@ -80,12 +80,6 @@ void TetrapodPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
     // Configure initial joint states
     InitJointConfiguration();
 
-    double some_joint_pos = this->GetJointPosition(joint_names[0]);
-    ROS_INFO_STREAM("The position of joint: " << joint_names[0] 
-        << " is " << angle_utils::radToDeg(some_joint_pos));
-
-    // test base pos
-    GetBasePose();
 }
 
 // Get base pose
