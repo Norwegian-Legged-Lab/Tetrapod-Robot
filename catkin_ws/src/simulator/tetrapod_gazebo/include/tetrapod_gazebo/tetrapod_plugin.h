@@ -77,6 +77,11 @@ namespace gazebo
         /// \param[in] _sdf A pointer to the plugin's SDF element.
         public: virtual void Load(physics::ModelPtr _model, sdf::ElementPtr _sdf);
 
+        /// \brief Get current base pose for the robot.
+        /// \return Returns base pose: q_b = (x, y, z, roll, pitch, yaw) 
+        /// in the world frame.
+        public: Eigen::Matrix<double, 6, 1> GetBasePose();
+
         /// \brief Get currently applied force at a specific joint 
         /// \param[in] _joint_name Desired joint
         /// \return Current joint force
@@ -169,6 +174,9 @@ namespace gazebo
 
         /// \brief Model name
         private: std::string model_name;
+
+        /// \brief Pointer to the body link
+        private: physics::LinkPtr base;
 
         /// \brief Pointers to the joints.
         //private: std::vector<physics::JointPtr> joints;

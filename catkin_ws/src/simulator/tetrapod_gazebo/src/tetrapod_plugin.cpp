@@ -89,25 +89,20 @@ void TetrapodPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
 }
 
 // Get base pose
-void TetrapodPlugin::GetBasePose()
+Eigen::Matrix<double, 6, 1> TetrapodPlugin::GetBasePose()
 {
-    ignition::math::Pose3d base_pose = this->base->WorldCoGPose();
-    ignition::math::Pose3d model_pose = this->model->WorldPose();
     ignition::math::Pose3d base_pose = this->base->WorldPose();
 
-    ROS_INFO_STREAM( "base_pose: " << base_pose);
-    ROS_INFO_STREAM( "model_pose: " << model_pose);
-    ROS_INFO_STREAM( "base_pose2: " << base_pose2);
+    Eigen::Matrix<double, 6, 1> q_b;
 
-    Eigen::Matrix<double, 6,1> q_b(0,0,0,0,0,0);
+    q_b(0) = base_pose.X();
+    q_b(1) = base_pose.Y();
+    q_b(2) = base_pose.Z();
+    q_b(3) = base_pose.Roll();
+    q_b(4) = base_pose.Pitch();
+    q_b(5) = base_pose.Yaw();
 
-    Eigen::Vector3d base_pos = ignition::math::eigen3::convert(base_pose.Pos());
-    Eigen::Vector3d model_pos = ignition::math::eigen3::convert(model_pose.Pos());
-    Eigen::Vector3d base_pos2 = ignition::math::eigen3::convert(base_pose2.Pos());
-
-    ROS_INFO_STREAM( "base_pos: " << base_pos);
-    ROS_INFO_STREAM( "model_pos: " << model_pos);
-    ROS_INFO_STREAM( "base_pos2: " << base_pos2);
+    return q_b;
 }
 
 // Get joint force at _joint_name 
