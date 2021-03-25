@@ -52,7 +52,8 @@ void TetrapodPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
     this->model_name = _model->GetName();
     // ROS_INFO_STREAM("Model name: " << model_name); TODO REMOVE
 
-
+    // Store base link
+    this->base = _model->GetLink(this->model_name + "::tetrapod::body");
 
     // Store joints 
     this->joints = this->model->GetJointController()->GetJoints();
@@ -69,7 +70,7 @@ void TetrapodPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
     // Load parameters from config
     if (!LoadParametersRos())
     {
-        ROS_ERROR("Could not loaJointd parameters.");
+        ROS_ERROR("Could not load parameters.");
         return;
     }
 
@@ -82,6 +83,31 @@ void TetrapodPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
     double some_joint_pos = this->GetJointPosition(joint_names[0]);
     ROS_INFO_STREAM("The position of joint: " << joint_names[0] 
         << " is " << angle_utils::radToDeg(some_joint_pos));
+
+    // test base pos
+    GetBasePose();
+}
+
+// Get base pose
+void TetrapodPlugin::GetBasePose()
+{
+    ignition::math::Pose3d base_pose = this->base->WorldCoGPose();
+    ignition::math::Pose3d model_pose = this->model->WorldPose();
+    ignition::math::Pose3d base_pose = this->base->WorldPose();
+
+    ROS_INFO_STREAM( "base_pose: " << base_pose);
+    ROS_INFO_STREAM( "model_pose: " << model_pose);
+    ROS_INFO_STREAM( "base_pose2: " << base_pose2);
+
+    Eigen::Matrix<double, 6,1> q_b(0,0,0,0,0,0);
+
+    Eigen::Vector3d base_pos = ignition::math::eigen3::convert(base_pose.Pos());
+    Eigen::Vector3d model_pos = ignition::math::eigen3::convert(model_pose.Pos());
+    Eigen::Vector3d base_pos2 = ignition::math::eigen3::convert(base_pose2.Pos());
+
+    ROS_INFO_STREAM( "base_pos: " << base_pos);
+    ROS_INFO_STREAM( "model_pos: " << model_pos);
+    ROS_INFO_STREAM( "base_pos2: " << base_pos2);
 }
 
 // Get joint force at _joint_name 
@@ -222,7 +248,8 @@ void TetrapodPlugin::OnForceMsg(const std_msgs::Float64MultiArrayConstPtr &_msg)
 // Callback for ROS Velocity messages
 void TetrapodPlugin::OnVelMsg(const std_msgs::Float64MultiArrayConstPtr &_msg)
 {
-    this->SetJointVelocities(_msg->data);
+    //this->SetJointVelocities(_msg->data);
+    this->GetBasePose();
 }
 
 // Callback for ROS Position messages
