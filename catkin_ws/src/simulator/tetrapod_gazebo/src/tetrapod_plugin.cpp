@@ -52,7 +52,8 @@ void TetrapodPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
     this->model_name = _model->GetName();
     // ROS_INFO_STREAM("Model name: " << model_name); TODO REMOVE
 
-
+    // Store base link
+    this->base = _model->GetLink(this->model_name + "::tetrapod::body");
 
     // Store joints 
     this->joints = this->model->GetJointController()->GetJoints();
@@ -69,7 +70,7 @@ void TetrapodPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
     // Load parameters from config
     if (!LoadParametersRos())
     {
-        ROS_ERROR("Could not loaJointd parameters.");
+        ROS_ERROR("Could not load parameters.");
         return;
     }
 
@@ -79,9 +80,23 @@ void TetrapodPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
     // Configure initial joint states
     InitJointConfiguration();
 
-    double some_joint_pos = this->GetJointPosition(joint_names[0]);
-    ROS_INFO_STREAM("The position of joint: " << joint_names[0] 
-        << " is " << angle_utils::radToDeg(some_joint_pos));
+}
+
+// Get base pose
+Eigen::Matrix<double, 6, 1> TetrapodPlugin::GetBasePose()
+{
+    ignition::math::Pose3d base_pose = this->base->WorldPose();
+
+    Eigen::Matrix<double, 6, 1> q_b;
+
+    q_b(0) = base_pose.X();
+    q_b(1) = base_pose.Y();
+    q_b(2) = base_pose.Z();
+    q_b(3) = base_pose.Roll();
+    q_b(4) = base_pose.Pitch();
+    q_b(5) = base_pose.Yaw();
+
+    return q_b;
 }
 
 // Get joint force at _joint_name 
