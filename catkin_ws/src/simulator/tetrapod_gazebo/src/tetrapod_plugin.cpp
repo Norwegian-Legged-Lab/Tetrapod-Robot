@@ -237,8 +237,7 @@ void TetrapodPlugin::OnForceMsg(const std_msgs::Float64MultiArrayConstPtr &_msg)
 // Callback for ROS Velocity messages
 void TetrapodPlugin::OnVelMsg(const std_msgs::Float64MultiArrayConstPtr &_msg)
 {
-    //this->SetJointVelocities(_msg->data);
-    ROS_INFO_STREAM("q_b: " << this->GetBasePose());
+    this->SetJointVelocities(_msg->data);
 }
 
 // Callback for ROS Position messages
