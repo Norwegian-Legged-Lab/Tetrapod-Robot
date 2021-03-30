@@ -4,6 +4,9 @@
 #include <sensor_msgs/JointState.h>
 #include <std_msgs/String.h>
 
+// C++ includes
+#include <vector>
+
 // Inlucde other libraries
 #include "motor_control.h"
 //#include "FlexCAN_T4.h"
@@ -128,12 +131,12 @@ void setup()
     // CAN port 1 should be used
     if(i < NUMBER_OF_MOTORS_PER_PORT)
     {
-      motors[i] = MotorControl(i + 1, 0, can_port1);
+      motors[i] = MotorControl(i + 1, 0);
     }
     // CAN port 2 should be used
     else
     {
-      motors[i] = MotorControl(i + 1, 0, can_port2);
+      motors[i] = MotorControl(i + 1, 0);
     }
   }
   
