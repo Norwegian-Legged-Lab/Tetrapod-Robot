@@ -121,19 +121,22 @@ void setup()
 
 
   // Setup subcriber for initializing the motors and wait for initial number of rotations
-
+  
   // Initialize the motor controllers
   for (int i = 0; i < NUMBER_OF_MOTORS; i++)
   {
+  
     // CAN port 1 should be used
     if(i < NUMBER_OF_MOTORS_PER_PORT)
     {
+      // Second argument should be number of inner turns completed 
       motors[i] = MotorControl(i + 1, 0, can_port1);
     }
     // CAN port 2 should be used
     else
     {
-      motors[i] = MotorControl(i + 1, 0, can_port2);
+      // Second argument should be number of inner turns completed 
+      //motors[i] = MotorControl(i + 1, 0, can_port2);
     }
   }
   
