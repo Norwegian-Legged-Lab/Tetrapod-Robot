@@ -43,10 +43,6 @@ MotorControl::MotorControl(uint8_t _id, int _number_of_inner_motor_rotations)
     // encoder resolution and large enough so that no inner motor turns are skipped
     encoder_turn_threshold = (max_encoder_value + 1)/4;
 
-    // Updates the position measurement 
-    // TODO implement this in init func
-    //readCurrentPosition(_can_port); 
-
     // Initialize at zero speed
     speed = 0.0;
 
@@ -56,7 +52,13 @@ MotorControl::MotorControl(uint8_t _id, int _number_of_inner_motor_rotations)
 
     initial_number_of_inner_motor_rotations = _number_of_inner_motor_rotations;
     number_of_inner_motor_rotations = _number_of_inner_motor_rotations;
-    // The CAN port should be an input argument and be set here
+}
+
+template <typename T>
+void MotorControl::initialize(T &_can_port)
+{
+    // Updates the position measurement
+    readCurrentPosition(_can_port);
 }
 
 void MotorControl::readMotorControlCommandReply(unsigned char* _can_message)

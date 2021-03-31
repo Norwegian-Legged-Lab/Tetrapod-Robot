@@ -51,6 +51,10 @@ public:
     /// \param[in] _id ID of the motor [1 - 32]
     MotorControl(uint8_t _id, int _number_of_inner_motor_rotations);
 
+    /// \brief Ensure that the current position is stored in the motor
+    template <typename T>
+    void initialize(T &_can_port);
+
     /// \brief Set the desired multiturn motor angle.
     /// \param[in] _angle Setpoint motor angle in radians
     /// \param[in] _can_port CAN port used for this motor.
