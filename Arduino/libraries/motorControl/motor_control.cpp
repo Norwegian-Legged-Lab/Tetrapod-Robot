@@ -26,8 +26,7 @@
 
 #include "motor_control.h"
 
-template <typename T>
-MotorControl::MotorControl(uint8_t _id, int _number_of_inner_motor_rotations, T &_can_port)
+MotorControl::MotorControl(uint8_t _id, int _number_of_inner_motor_rotations)
 {
     id = _id;
 
@@ -44,8 +43,9 @@ MotorControl::MotorControl(uint8_t _id, int _number_of_inner_motor_rotations, T 
     // encoder resolution and large enough so that no inner motor turns are skipped
     encoder_turn_threshold = (max_encoder_value + 1)/4;
 
-    // Updates the position measurement
-    readCurrentPosition(_can_port); 
+    // Updates the position measurement 
+    // TODO implement this in init func
+    //readCurrentPosition(_can_port); 
 
     // Initialize at zero speed
     speed = 0.0;

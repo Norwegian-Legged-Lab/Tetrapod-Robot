@@ -129,14 +129,12 @@ void setup()
     // CAN port 1 should be used
     if(i < NUMBER_OF_MOTORS_PER_PORT)
     {
-      // Second argument should be number of inner turns completed 
-      motors[i] = MotorControl(i + 1, 0, can_port1);
+      motors[i] = MotorControl(i + 1, 0);
     }
     // CAN port 2 should be used
     else
     {
-      // Second argument should be number of inner turns completed 
-      //motors[i] = MotorControl(i + 1, 0, can_port2);
+      motors[i] = MotorControl(i + 1, 0);
     }
   }
   

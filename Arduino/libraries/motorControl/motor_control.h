@@ -49,11 +49,12 @@ public:
     /// \brief Class constructor for a MotorControl class.
     /// Motor ID and CAN port are set
     /// \param[in] _id ID of the motor [1 - 32]
-    template <typename T>
-    MotorControl(uint8_t _id, int _number_of_inner_motor_rotations, T &_can_port);
+    MotorControl(uint8_t _id, int _number_of_inner_motor_rotations);
 
     /// \brief Set the desired multiturn motor angle.
     /// \param[in] _angle Setpoint motor angle in radians
+    /// \param[in] _can_port CAN port used for this motor.
+    /// Port can be CAN1 or CAN2
     template <typename T>
     void setPositionReference(double _angle, T &_can_port);
 
