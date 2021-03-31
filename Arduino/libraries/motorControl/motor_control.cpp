@@ -59,7 +59,7 @@ MotorControl::MotorControl(uint8_t _id, int _number_of_inner_motor_rotations, T 
     // The CAN port should be an input argument and be set here
 }
 
-void MotorControl::replyControlCommand(unsigned char* _can_message)
+void MotorControl::readMotorControlCommandReply(unsigned char* _can_message)
 {
     // Encoder position. 16 bits represents one inner motor rotation
     int16_t new_encoder_value = _can_message[7]*256 + _can_message[6];
@@ -90,7 +90,7 @@ void MotorControl::setPositionReference(double _angle, T &_can_port)
     double inner_motor_reference_angle = ((int)(6*_angle*180.0/PI) - initial_number_of_inner_motor_rotations*ROTATION_DISTANCE)*100;
 
     // Create a position control can message
-    motor_message_generator.positionControl1(can_message.buf, inner_motor_reference_angle);
+    MOTOR_CAN_MESSAGE_GENERATOR::positionControl1(can_message.buf, inner_motor_reference_angle);
 
     // Send the CAN message
     (_can_port).write(can_message);
@@ -103,7 +103,7 @@ void MotorControl::setSpeedReference(double _speed, T &_can_port)
     int32_t speed_001dps = (int)round(GEAR_REDUCTION*_speed*100.0*180.0/M_PI);
 
     // Create a CAN message for motor speed control
-    motor_message_generator.speedControl(can_message.buf, speed_001dps);
+    MOTOR_CAN_MESSAGE_GENERATOR::speedControl(can_message.buf, speed_001dps);
 
     // Send CAN message
     (_can_port).write(can_message);
@@ -126,7 +126,7 @@ void MotorControl::setTorqueReference(double _torque, T &_can_port)
     int16_t current_torque = (int) round(max_torque_current*_torque/max_torque);
 
     // Create a CAN message for current torque control
-    motor_message_generator.torqueCurrentControl(can_message.buf, current_torque);
+    MOTOR_CAN_MESSAGE_GENERATOR::torqueCurrentControl(can_message.buf, current_torque);
 
     // Send CAN message
     (_can_port).write(can_message); 
@@ -136,7 +136,7 @@ template <typename T>
 bool MotorControl::writePIDParametersToRAM(Eigen::Matrix<double, 6, 1> _PID_parameters, T &_can_port)
 {
     // Create a CAN message for writing PID parameters to RAM
-    motor_message_generator.writePIDParametersToRAM(can_message.buf, 
+    MOTOR_CAN_MESSAGE_GENERATOR::writePIDParametersToRAM(can_message.buf, 
         _PID_parameters(0),
         _PID_parameters(1),
         _PID_parameters(2),
@@ -170,7 +170,7 @@ template <typename T>
 bool MotorControl::writePIDParametersToROM(Eigen::Matrix<double, 6, 1> _PID_parameters, T &_can_port)
 {
     // Create a CAN message for writing PID parameters to ROM
-    motor_message_generator.writePIDParametersToROM(can_message.buf, 
+    MOTOR_CAN_MESSAGE_GENERATOR::writePIDParametersToROM(can_message.buf, 
         _PID_parameters(0),
         _PID_parameters(1),
         _PID_parameters(2),
@@ -204,7 +204,7 @@ template <typename T>
 bool MotorControl::stopMotor(T &_can_port)
 {
     // Create a CAN Message instructing the motor to stop
-    motor_message_generator.motorStop(can_message.buf);
+    MOTOR_CAN_MESSAGE_GENERATOR::motorStop(can_message.buf);
 
     // Send CAN message
     (_can_port).write(can_message);
@@ -230,7 +230,7 @@ template <typename T>
 bool MotorControl::turnOffMotor(T &_can_port)
 {
     // Create a CAN message instructing the motor to turn off
-    motor_message_generator.motorOff(can_message.buf);
+    MOTOR_CAN_MESSAGE_GENERATOR::motorOff(can_message.buf);
 
     // Send CAN message
     (_can_port).write(can_message);
@@ -256,7 +256,7 @@ template <typename T>
 bool MotorControl::readPIDParameters(Eigen::Matrix<double, 6, 1> &_PID_parameters, T &_can_port)
 {
     // Create a CAN message for requesting the motor PID parameters
-    motor_message_generator.readPIDParameters(can_message.buf);
+    MOTOR_CAN_MESSAGE_GENERATOR::readPIDParameters(can_message.buf);
 
     // Send CAN message
     (_can_port).write(can_message);
@@ -292,7 +292,7 @@ template <typename T>
 double MotorControl::readCurrentPosition(T &_can_port)
 {
     // Create a CAN message requesting the current encoder position
-    motor_message_generator.readEncoderPosition(can_message.buf);
+    MOTOR_CAN_MESSAGE_GENERATOR::readEncoderPosition(can_message.buf);
 
     // Send the CAN message
     (_can_port).write(can_message);
