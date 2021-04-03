@@ -16,11 +16,11 @@ public:
     /// \brief Class constructor for a MotorControl class.
     /// Motor ID and CAN port are set
     /// \param[in] _id ID of the motor [1 - 32]
-    MotorControl(uint8_t _id, int _number_of_inner_motor_rotations);
+    MotorControl(uint8_t _id, uint8_t _can_port_id, int _number_of_inner_motor_rotations);
 
     /// \brief Set the desired multiturn motor angle.
     /// \param[in] _angle Setpoint motor angle in radians
-    void setPositionReference(double _angle);
+    //void setPositionReference(double _angle);
 
     //void setPositionReferenceReply();
 
@@ -30,42 +30,45 @@ public:
 
     /// \brief Set the desired motor torque.
     /// \param[in] _torque Setpoint motor torque in Nm
-    void setTorqueReference(double _torque);
+    //void setTorqueReference(double _torque);
 
     /// \brief Setting position, speed and torque all results in
     /// the same reply being sent from the motor.
     /// The states are stored in the private variables
-    void replyControlCommand(unsigned char* _can_message);
+    //void replyControlCommand(unsigned char* _can_message);
 
     /// \brief Set the motor PID parameters and store them temporary in RAM
     /// \param[in] _PIDParameters Motor PID parameters 
     /// (kp_pos, ki_pos, kp_speed, ki_speed, kp_torque, ki_torque)   
-    bool writePIDParametersToRAM(Eigen::Matrix<double, 6, 1> _PID_parameters);
+    //bool writePIDParametersToRAM(Eigen::Matrix<double, 6, 1> _PID_parameters);
 
     /// \brief Stop the motor without turning it off
-    bool stopMotor();
+    //bool stopMotor();
 
     /// \brief Turn off the motor
-    bool turnOffMotor();
+    //bool turnOffMotor();
 
     /// \brief Read the motor PID parameters
     /// The private PID parameters are updated
     /// \return PID parameters as 6 dimensional vector
     /// (kp_pos, ki_pos, kp_speed, ki_speed, kp_torque, ki_torque)
-    bool readPIDParameters(Eigen::Matrix<double, 6, 1> &_PID_parameters);
+    //bool readPIDParameters(Eigen::Matrix<double, 6, 1> &_PID_parameters);
 
     /// \brief Read the current motor position
     /// \return Motor position in radians
-    double readCurrentPosition();
+    //double readCurrentPosition();
 
-    double get_position(){return position;}
+    //double get_position(){return position;}
 
-    double get_velocity(){return speed;}
+    //double get_velocity(){return speed;}
 
-    double get_torque(){return torque;}
+    //double get_torque(){return torque;}
 private:
     /// \brief Motor ID set through Serial configurator [1 - 32]
     uint8_t id;
+
+    /// \brief Used to decide which CAN port to use. Possible values {1, 2}
+    uint8_t can_port_id;
 
     /// \brief Motor PID Parameters
     /// (kp_pos, ki_pos, kp_speed, ki_speed, kp_torque, ki_torque)
@@ -131,6 +134,10 @@ private:
     /// \param[in] _new_encoder_value The newly measured encoder value
     /// \return If new << old return 1, if old << new return -1, else return 0
     int innerMotorTurnCompleted(uint16_t _previous_encoder_value, uint16_t _new_encoder_value);
+
+    void sendMessage(CAN_message_t _can_message);
+
+    int readMessage(CAN_message_t &_can_message);
 };
 
 void delay_microseconds(double microsecond_delay);

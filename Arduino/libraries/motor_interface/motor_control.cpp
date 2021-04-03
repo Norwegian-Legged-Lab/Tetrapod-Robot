@@ -1,15 +1,14 @@
 #include "motor_control.h"
 
-MotorControl::MotorControl(uint8_t _id, int _number_of_inner_motor_rotations)
+MotorControl::MotorControl(uint8_t _id, uint8_t _can_port_id, int _number_of_inner_motor_rotations)
 {
     id = _id;
 
-    can_port1.begin();
-    can_port1.setBaudRate(1000000);
-
     can_message.id = MOTOR_ADDRESS_OFFSET + id;
 
-    max_encoder_value = 65535;
+    can_port_id = _can_port_id;
+
+    max_encoder_value = MAX_ENCODER_VALUE;
 
     // To check if the inner motor has completed a turn we check for a large jump
     // in the encoder value. To prevent an acceidental jump initially we start at
@@ -21,7 +20,7 @@ MotorControl::MotorControl(uint8_t _id, int _number_of_inner_motor_rotations)
     encoder_turn_threshold = (max_encoder_value + 1)/4;
 
     // Updates the position measurement
-    readCurrentPosition(); 
+    //readCurrentPosition(); 
 
     // Initialize at zero speed
     speed = 0.0;
@@ -34,7 +33,7 @@ MotorControl::MotorControl(uint8_t _id, int _number_of_inner_motor_rotations)
     number_of_inner_motor_rotations = _number_of_inner_motor_rotations;
     // The CAN port should be an input argument and be set here
 }
-
+/*
 void MotorControl::replyControlCommand(unsigned char* _can_message)
 {
     // Encoder position. 16 bits represents one inner motor rotation
@@ -58,7 +57,8 @@ void MotorControl::replyControlCommand(unsigned char* _can_message)
     // Convert the torque current into actual current
     torque = max_torque*torque_current/max_torque_current;
 }
-
+*/
+/*
 void MotorControl::setPositionReference(double _angle)
 {
     // Convert the desired shaft angle in radians into an inner motor angle in 0.01 degrees 
@@ -68,9 +68,9 @@ void MotorControl::setPositionReference(double _angle)
     MOTOR_CAN_MESSAGE_GENERATOR::positionControl1(can_message.buf, inner_motor_reference_angle);
 
     // Send the CAN message
-    can_port1.write(can_message);
+    sendMessage(can_message);
 }
-
+*/
 void MotorControl::setSpeedReference(double _speed)
 {
     // Convert speed in rad/s to 0.01 deg/sec
@@ -80,9 +80,9 @@ void MotorControl::setSpeedReference(double _speed)
     MOTOR_CAN_MESSAGE_GENERATOR::speedControl(can_message.buf, speed_001dps);
 
     // Send CAN message
-    can_port1.write(can_message);
+    sendMessage(can_message);
 }
-
+/*
 void MotorControl::setTorqueReference(double _torque)
 {
     // Saturate desired torque to be within maximum limits
@@ -102,9 +102,10 @@ void MotorControl::setTorqueReference(double _torque)
     MOTOR_CAN_MESSAGE_GENERATOR::torqueCurrentControl(can_message.buf, current_torque);
 
     // Send CAN message
-    can_port1.write(can_message); 
+    sendMessage(can_message); 
 }
-
+*/
+/*
 bool MotorControl::writePIDParametersToRAM(Eigen::Matrix<double, 6, 1> _PID_parameters)
 {
     // Create a CAN message for writing PID parameters to RAM
@@ -118,13 +119,13 @@ bool MotorControl::writePIDParametersToRAM(Eigen::Matrix<double, 6, 1> _PID_para
     );
 
     // Send CAN message
-    can_port1.write(can_message);
+    sendMessage(can_message);
 
     // Wait 0.010 seconds for a reply from the motor
     delay_microseconds(10000.0);
 
     // Check if we received a reply from the motor
-    if(can_port1.read(received_can_message))
+    if(readMessage(received_can_message))
     {
         // Can add test to see if the incomming message is correct
 
@@ -137,19 +138,20 @@ bool MotorControl::writePIDParametersToRAM(Eigen::Matrix<double, 6, 1> _PID_para
         return false;
     }
 }
-
+*/
+/*
 bool MotorControl::stopMotor()
 {
     // Create a CAN Message instructing the motor to stop
     MOTOR_CAN_MESSAGE_GENERATOR::motorStop(can_message.buf);
 
     // Send CAN message
-    can_port1.write(can_message);
+    sendMessage(can_message);
 
     // Wait 0.010 seconds for a reply from the motor
     delay_microseconds(10000.0);
 
-    if(can_port1.read(received_can_message))
+    if(readMessage(received_can_message))
     {
         // Can add test to see if the incomming message is correct
 
@@ -162,19 +164,20 @@ bool MotorControl::stopMotor()
         return false;
     }
 }
-
+*/
+/*
 bool MotorControl::turnOffMotor()
 {
     // Create a CAN message instructing the motor to turn off
     MOTOR_CAN_MESSAGE_GENERATOR::motorOff(can_message.buf);
 
     // Send CAN message
-    can_port1.write(can_message);
+    sendMessage(can_message);
 
     // Wait 0.010 seconds for a reply from the motor
     delay_microseconds(10000.0);
 
-    if(can_port1.read(received_can_message))
+    if(readMessage(received_can_message))
     {
         // Can add test to see if the incomming message is correct
 
@@ -187,20 +190,21 @@ bool MotorControl::turnOffMotor()
         return false;
     }
 }
-
+*/
+/*
 bool MotorControl::readPIDParameters(Eigen::Matrix<double, 6, 1> &_PID_parameters)
 {
     // Create a CAN message for requesting the motor PID parameters
     MOTOR_CAN_MESSAGE_GENERATOR::readPIDParameters(can_message.buf);
 
     // Send CAN message
-    can_port1.write(can_message);
+    sendMessage(can_message);
 
     // Wait 0.010 seconds for a reply from the motor
     delay_microseconds(10000.0);
 
     // Check if we received a reply
-    if(can_port1.read(received_can_message))
+    if(readMessage(received_can_message))
     {
         // Store the PID parameters in the class
         PID_parameters(0) = received_can_message.buf[2];
@@ -222,20 +226,21 @@ bool MotorControl::readPIDParameters(Eigen::Matrix<double, 6, 1> &_PID_parameter
         return false;
     }
 }
-
+*/
+/*
 double MotorControl::readCurrentPosition()
 {
     // Create a CAN message requesting the current encoder position
     MOTOR_CAN_MESSAGE_GENERATOR::readEncoderPosition(can_message.buf);
 
     // Send the CAN message
-    can_port1.write(can_message);
+    sendMessage(can_message);
 
     // Wait 0.010 seconds for reply from motor
     delay_microseconds(10000.0);
 
     // Receive the reply from the motor and store it in a CAN message
-    can_port1.read(received_can_message);
+    readMessage(received_can_message);
 
     // encoder position = true encoder measurement - the encoder offset
     double new_encoder_value = received_can_message.buf[3]*256 + received_can_message.buf[2];
@@ -246,6 +251,7 @@ double MotorControl::readCurrentPosition()
     // Update the shaft position in radians
     position = (number_of_inner_motor_rotations + new_encoder_value/max_encoder_value)*ROTATION_DISTANCE*M_PI/180.0;
 }
+*/
 
 int MotorControl::innerMotorTurnCompleted(uint16_t _previous_encoder_value, uint16_t _new_encoder_value)
 {
@@ -265,6 +271,42 @@ int MotorControl::innerMotorTurnCompleted(uint16_t _previous_encoder_value, uint
         return 0;
     }
     
+}
+
+void MotorControl::sendMessage(CAN_message_t _can_message)
+{
+    if(can_port_id == 1)
+    {
+        can_port_1.write(_can_message);
+    }
+    else if(can_port_id == 2)
+    {
+        can_port_2.write(_can_message);
+    }
+    else
+    {
+        // TODO - Add proper error handling
+        Serial.println("ERROR: WRITE FAILED. CAN PORT DOES NOT EXIST");
+        while(true);
+    }
+}
+
+int MotorControl::readMessage(CAN_message_t &_can_message)
+{
+    if(can_port_id == 1)
+    {
+        return can_port_1.read(_can_message);
+    }
+    else if(can_port_id == 2)
+    {
+        return can_port_2.read(_can_message);
+    }
+    else
+    {
+        // TODO - Add proper error handling
+        Serial.println("ERROR: READ FAILED. CAN PORT DOES NOT EXIST");
+        while(true);
+    }
 }
 
 void delay_microseconds(double microsecond_delay)

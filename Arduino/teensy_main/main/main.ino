@@ -21,10 +21,6 @@ ros::NodeHandle nh;
 // Set the name of the Teensy board
 char teensy_frame[] = "/teensy_front_legs";
 
-// Create objects for the two CAN ports
-FlexCAN_T4<CAN1, RX_SIZE_256, TX_SIZE_16> can_port1;
-FlexCAN_T4<CAN2, RX_SIZE_256, TX_SIZE_16> can_port2;
-
 CAN_message_t can_message;
 
 // Create a jointState message for sending motor states back to the mother computer
