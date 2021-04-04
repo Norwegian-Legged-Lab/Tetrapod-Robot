@@ -42,11 +42,15 @@ public:
     /// (kp_pos, ki_pos, kp_speed, ki_speed, kp_torque, ki_torque)   
     //bool writePIDParametersToRAM(Eigen::Matrix<double, 6, 1> _PID_parameters);
 
-    /// \brief Stop the motor without turning it off
-    //bool stopMotor();
+    /// \brief Stop the motor
+    /// The motor operating state and previously received control commands are not cleared
+    /// If a new control command is received the motor will start moving again.
+    bool stopMotor();
 
-    /// \brief Turn off the motor
-    //bool turnOffMotor();
+    /// \brief Stop the motor
+    /// The motor operating state and previously received control commands are cleared
+    /// If a new control command is received the motor will start moving again.
+    bool turnOffMotor();
 
     /// \brief Read the motor PID parameters
     /// The private PID parameters are updated

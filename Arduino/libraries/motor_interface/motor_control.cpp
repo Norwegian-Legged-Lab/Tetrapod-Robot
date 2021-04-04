@@ -139,7 +139,7 @@ bool MotorControl::writePIDParametersToRAM(Eigen::Matrix<double, 6, 1> _PID_para
     }
 }
 */
-/*
+
 bool MotorControl::stopMotor()
 {
     // Create a CAN Message instructing the motor to stop
@@ -161,11 +161,13 @@ bool MotorControl::stopMotor()
     else
     {
         // Report that we failed to stop the motor
+        errorMessage();
+        Serial.println("Failed to stop the motor");
         return false;
     }
 }
-*/
-/*
+
+
 bool MotorControl::turnOffMotor()
 {
     // Create a CAN message instructing the motor to turn off
@@ -187,11 +189,12 @@ bool MotorControl::turnOffMotor()
     else
     {
         // Report that we failed to turn off the motor
-        Serial.println("ERROR: Failed to turn of ")
+        errorMessage();
+        Serial.println("ERROR: Failed to turn off the motor");
         return false;
     }
 }
-*/
+
 /*
 bool MotorControl::readPIDParameters(Eigen::Matrix<double, 6, 1> &_PID_parameters)
 {
