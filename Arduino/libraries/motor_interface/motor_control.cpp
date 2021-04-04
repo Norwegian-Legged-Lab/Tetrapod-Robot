@@ -177,7 +177,7 @@ bool MotorControl::writePIDParametersToRAM
     {
         // Report that we failed to write the PID parameters to RAM
         errorMessage();
-        Serial.println("Failed to write PID parameters to RAM. Wrong reply received.");
+        Serial.println("Failed to write PID parameters to RAM. No reply received.");
         return false;
     }
 }

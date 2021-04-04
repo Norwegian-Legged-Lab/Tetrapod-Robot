@@ -19,10 +19,15 @@ void setup() {
 
   // Initialize the two motors
   motor_array[0] = MotorControl(6, 1, 0);
+
+  // 
+  motor_array[0].writePIDParametersToRAM(50, 1, 50, 1, 50, 1);
 }
 
 double torque_current = 0.0;
 CAN_message_t can_message;
+double timer;
+double timeout_micros = 5000000;
 
 void loop() {
 
@@ -31,7 +36,12 @@ void loop() {
     String torque_current_string = Serial.readStringUntil('\n');
     torque_current = torque_current_string.toFloat();
     Serial.print("Torque Current:\t"); Serial.println(torque_current);
-  }  
+    timer = micros();
+  }
+  if(micros() > timer + timeout_micros)
+  {
+    torque_current = 0; 
+  }
   
   // Send CAN command
   motor_array[0].setTorqueCurrent(torque_current);
@@ -54,5 +64,5 @@ void loop() {
   motor_array[0].printState();
 
   //Serial.println("");
-  delay_microseconds(1000000.0);
+  delay_microseconds(50000.0);
 }
