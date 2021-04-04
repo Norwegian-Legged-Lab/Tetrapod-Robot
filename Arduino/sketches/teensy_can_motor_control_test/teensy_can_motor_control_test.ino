@@ -17,8 +17,8 @@ void setup() {
   can_port_2.setBaudRate(MOTOR_BAUD_RATE);
 
   // Initialize the two motors
-  motor_array[0] = MotorControl(1, 0, 1);
-  motor_array[1] = MotorControl(2, 0, 1);
+  motor_array[0] = MotorControl(1, 1, 0);
+  motor_array[1] = MotorControl(2, 1, 0);
 }
 
 bool state = true;
@@ -46,7 +46,7 @@ void loop() {
 
   while(can_port_2.read(can_message))
   {
-    Serial.print(can_message.id); Serial.print("\t");
+    Serial.print(can_message.id, HEX); Serial.print("\t");
     for(int i = 0; i < 8; i++)
     {
       Serial.print(can_message.buf[i]); Serial.print("\t");
@@ -56,5 +56,5 @@ void loop() {
 
   // Wait
   Serial.println("");
-  delay_microseconds(1000);
+  delay_microseconds(3000000.0);
 }
