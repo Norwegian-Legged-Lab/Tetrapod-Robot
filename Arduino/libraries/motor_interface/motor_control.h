@@ -95,7 +95,7 @@ private:
     uint8_t id;
     
     /// \brief Motor address = ID + 0x140. Declared for convenience
-    uint8_t address;
+    uint16_t address;
 
     /// \brief Used to decide which CAN port to use. Possible values {1, 2}
     uint8_t can_port_id;
