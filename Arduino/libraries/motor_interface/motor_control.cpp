@@ -33,8 +33,8 @@ MotorControl::MotorControl(uint8_t _id, uint8_t _can_port_id, int _number_of_inn
     number_of_inner_motor_rotations = _number_of_inner_motor_rotations;
     // The CAN port should be an input argument and be set here
 }
-/*
-void MotorControl::replyControlCommand(unsigned char* _can_message)
+
+void MotorControl::readMotorControlCommandReply(unsigned char* _can_message)
 {
     // Encoder position. 16 bits represents one inner motor rotation
     int16_t new_encoder_value = _can_message[7]*256 + _can_message[6];
@@ -57,7 +57,7 @@ void MotorControl::replyControlCommand(unsigned char* _can_message)
     // Convert the torque current into actual current
     torque = max_torque*torque_current/max_torque_current;
 }
-*/
+
 /*
 void MotorControl::setPositionReference(double _angle)
 {
@@ -187,6 +187,7 @@ bool MotorControl::turnOffMotor()
     else
     {
         // Report that we failed to turn off the motor
+        Serial.println("ERROR: Failed to turn of ")
         return false;
     }
 }
@@ -304,9 +305,26 @@ int MotorControl::readMessage(CAN_message_t &_can_message)
     else
     {
         // TODO - Add proper error handling
-        Serial.println("ERROR: READ FAILED. CAN PORT DOES NOT EXIST");
+        errorMessage();
+        Serial.println("READ FAILED. CAN PORT DOES NOT EXIST");
         while(true);
     }
+}
+
+void MotorControl::errorMessage()
+{
+    Serial.print("ERROR - Motor ");
+    Serial.print(id);
+    Serial.print("\t");
+}
+
+void MotorControl::printState()
+{
+    Serial.print("ID: "); Serial.print(id); Serial.print("\t");
+    Serial.print("Pos: "); Serial.print(position); Serial.print("\t");
+    Serial.print("Vel: "); Serial.print(speed); Serial.print("\t");
+    Serial.print("Tor: "); Serial.print(torque); Serial.print("\t");
+    Serial.println("");
 }
 
 void delay_microseconds(double microsecond_delay)

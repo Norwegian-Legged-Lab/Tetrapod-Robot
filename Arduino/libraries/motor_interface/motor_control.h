@@ -35,7 +35,7 @@ public:
     /// \brief Setting position, speed and torque all results in
     /// the same reply being sent from the motor.
     /// The states are stored in the private variables
-    //void replyControlCommand(unsigned char* _can_message);
+    void readMotorControlCommandReply(unsigned char* _can_message);
 
     /// \brief Set the motor PID parameters and store them temporary in RAM
     /// \param[in] _PIDParameters Motor PID parameters 
@@ -58,11 +58,15 @@ public:
     /// \return Motor position in radians
     //double readCurrentPosition();
 
+    uint8_t get_id(){return id;}
+
     //double get_position(){return position;}
 
     //double get_velocity(){return speed;}
 
     //double get_torque(){return torque;}
+
+    void printState();
 private:
     /// \brief Motor ID set through Serial configurator [1 - 32]
     uint8_t id;
@@ -138,6 +142,8 @@ private:
     void sendMessage(CAN_message_t _can_message);
 
     int readMessage(CAN_message_t &_can_message);
+
+    void errorMessage();
 };
 
 void delay_microseconds(double microsecond_delay);
