@@ -27,7 +27,7 @@ void loop() {
   motor_array[1].readPIDParameters();
   motor_array[1].printPIDParameters();
   Serial.println("");
-  motor_array[1].writePIDParametersToRAM(50, 1, 50, 1, 50, 1);
+  motor_array[1].writePIDParametersToRAM(4, 3, 4, 50, 6, 70);
   motor_array[1].printPIDParameters();
   Serial.println("");
   motor_array[1].readPIDParameters();
