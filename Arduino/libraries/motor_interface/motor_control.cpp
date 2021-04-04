@@ -4,7 +4,9 @@ MotorControl::MotorControl(uint8_t _id, uint8_t _can_port_id, int _number_of_inn
 {
     id = _id;
 
-    can_message.id = MOTOR_ADDRESS_OFFSET + id;
+    address = id + MOTOR_ADDRESS_OFFSET;
+
+    can_message.id = address;
 
     can_port_id = _can_port_id;
 
@@ -105,40 +107,67 @@ void MotorControl::setTorqueReference(double _torque)
     sendMessage(can_message); 
 }
 */
-/*
-bool MotorControl::writePIDParametersToRAM(Eigen::Matrix<double, 6, 1> _PID_parameters)
+
+bool MotorControl::writePIDParametersToRAM
+(
+    double _kp_pos,
+    double _ki_pos,
+    double _kp_speed,
+    double _ki_speed,
+    double _kp_torque,
+    double _ki_torque
+)
 {
     // Create a CAN message for writing PID parameters to RAM
     MOTOR_CAN_MESSAGE_GENERATOR::writePIDParametersToRAM(can_message.buf, 
-        _PID_parameters(0),
-        _PID_parameters(1),
-        _PID_parameters(2),
-        _PID_parameters(3),
-        _PID_parameters(4),
-        _PID_parameters(5)
+        _kp_pos,
+        _ki_pos,
+        _kp_speed,
+        _ki_speed,
+        _kp_torque,
+        _ki_torque
     );
 
     // Send CAN message
     sendMessage(can_message);
 
-    // Wait 0.010 seconds for a reply from the motor
-    delay_microseconds(10000.0);
+    // Wait 0.10 seconds for a reply from the motor
+    delay_microseconds(100000.0);
 
     // Check if we received a reply from the motor
     if(readMessage(received_can_message))
     {
-        // Can add test to see if the incomming message is correct
+        Serial.println("New message");
+        Serial.println(received_can_message.id, HEX);
+        Serial.println(received_can_message.buf[0], HEX);
 
-        // Report that PID parameters were successfully written to RAM
-        return true;
+        // Check that the incomming message is the one we anticipated
+        if((received_can_message.id == address) && (received_can_message.buf[0] == MOTOR_COMMAND_WRITE_PID_PARAMETERS_TO_RAM))
+        {
+            // Update the PID parameters to the new ones from the motor
+            kp_pos = received_can_message.buf[2];
+            ki_pos = received_can_message.buf[3];
+            kp_speed = received_can_message.buf[4];
+            ki_speed = received_can_message.buf[5];
+            kp_torque = received_can_message.buf[6];
+            ki_torque = received_can_message.buf[7];
+            return true;
+        }
+        else
+        {
+            errorMessage();
+            Serial.println("Failed to write PID parameters to RAM. Wrong reply received.");
+            return false;
+        }
     } 
     else
     {
         // Report that we failed to write the PID parameters to RAM
+        errorMessage();
+        Serial.println("Failed to write PID parameters to RAM. Wrong reply received.");
         return false;
     }
 }
-*/
 
 bool MotorControl::stopMotor()
 {
@@ -153,16 +182,22 @@ bool MotorControl::stopMotor()
 
     if(readMessage(received_can_message))
     {
-        // Can add test to see if the incomming message is correct
-
-        // Report that the motor was successfully stopped
-        return true;
+        if((received_can_message.id == address) && (received_can_message.buf[0] == MOTOR_COMMAND_MOTOR_STOP))
+        {
+            return true;
+        }
+        else
+        {
+            errorMessage();
+            Serial.println("Failed to stop the motor. Incorrect reply received.");
+            return false;
+        }
     } 
     else
     {
         // Report that we failed to stop the motor
         errorMessage();
-        Serial.println("Failed to stop the motor");
+        Serial.println("Failed to stop the motor. No reply received.");
         return false;
     }
 }
@@ -181,22 +216,28 @@ bool MotorControl::turnOffMotor()
 
     if(readMessage(received_can_message))
     {
-        // Can add test to see if the incomming message is correct
-
-        // Report that the motor was successfully turned off
-        return true;
+        if((received_can_message.id == address) && (received_can_message.buf[0] == MOTOR_COMMAND_MOTOR_OFF))
+        {
+            return true;
+        }
+        else
+        {
+            errorMessage();
+            Serial.println("Failed to turn off the motor. Incorrect reply received.");
+            return false;
+        }
     }
     else
     {
         // Report that we failed to turn off the motor
         errorMessage();
-        Serial.println("ERROR: Failed to turn off the motor");
+        Serial.println("ERROR: Failed to turn off the motor. No reply received.");
         return false;
     }
 }
 
-/*
-bool MotorControl::readPIDParameters(Eigen::Matrix<double, 6, 1> &_PID_parameters)
+
+bool MotorControl::readPIDParameters()
 {
     // Create a CAN message for requesting the motor PID parameters
     MOTOR_CAN_MESSAGE_GENERATOR::readPIDParameters(can_message.buf);
@@ -204,33 +245,41 @@ bool MotorControl::readPIDParameters(Eigen::Matrix<double, 6, 1> &_PID_parameter
     // Send CAN message
     sendMessage(can_message);
 
-    // Wait 0.010 seconds for a reply from the motor
-    delay_microseconds(10000.0);
+    // Wait 0.10 seconds for a reply from the motor
+    delay_microseconds(100000.0);
 
     // Check if we received a reply
     if(readMessage(received_can_message))
     {
-        // Store the PID parameters in the class
-        PID_parameters(0) = received_can_message.buf[2];
-        PID_parameters(1) = received_can_message.buf[3];
-        PID_parameters(2) = received_can_message.buf[4];
-        PID_parameters(3) = received_can_message.buf[5];
-        PID_parameters(4) = received_can_message.buf[6];
-        PID_parameters(5) = received_can_message.buf[7];
+        if((received_can_message.id == address) && (received_can_message.buf[0] == MOTOR_COMMAND_READ_PID_PARAMETERS))
+        {
+            // Store the PID parameters in the class
+            kp_pos = received_can_message.buf[2];
+            ki_pos = received_can_message.buf[3];
+            kp_speed = received_can_message.buf[4];
+            ki_speed = received_can_message.buf[5];
+            kp_torque = received_can_message.buf[6];
+            ki_torque = received_can_message.buf[7];
 
-        // Update the input parameters
-        _PID_parameters = PID_parameters;
-
-        // Report that we successfully managed to read the PID parameters
-        return true;
+            // Report that we successfully managed to read the PID parameters
+            return true;
+        }
+        else
+        {
+            errorMessage();
+            Serial.println("Failed to read PID parameters. Wrong reply received.");
+            return false; 
+        }
     }
     else
     {
         // Report that we failed to read the PID parameters
+        errorMessage();
+        Serial.println("Failed to read PID parameters. No reply received.");
         return false;
     }
 }
-*/
+
 /*
 double MotorControl::readCurrentPosition()
 {
@@ -312,6 +361,32 @@ int MotorControl::readMessage(CAN_message_t &_can_message)
         Serial.println("READ FAILED. CAN PORT DOES NOT EXIST");
         while(true);
     }
+}
+
+void MotorControl::getPIDParameters(
+    double &_kp_pos,
+    double &_ki_pos,
+    double &_kp_speed,
+    double &_ki_speed,
+    double &_kp_torque,
+    double &_ki_torque)
+{
+    _kp_pos = kp_pos;
+    _ki_pos = ki_pos;
+    _kp_speed = kp_speed;
+    _ki_speed = ki_speed;
+    _kp_torque = kp_torque;
+    _ki_torque = ki_torque;
+}
+
+void MotorControl::printPIDParameters()
+{
+    Serial.print("kp_pos:\t"); Serial.println(kp_pos);
+    Serial.print("ki_pos:\t"); Serial.println(ki_pos);
+    Serial.print("kp_vel:\t"); Serial.println(kp_speed);
+    Serial.print("kp_vel:\t"); Serial.println(kp_speed);
+    Serial.print("kp_tor:\t"); Serial.println(kp_torque);
+    Serial.print("kp_tor:\t"); Serial.println(kp_torque);
 }
 
 void MotorControl::errorMessage()

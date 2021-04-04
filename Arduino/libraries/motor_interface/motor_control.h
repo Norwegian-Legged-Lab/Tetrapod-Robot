@@ -40,7 +40,15 @@ public:
     /// \brief Set the motor PID parameters and store them temporary in RAM
     /// \param[in] _PIDParameters Motor PID parameters 
     /// (kp_pos, ki_pos, kp_speed, ki_speed, kp_torque, ki_torque)   
-    //bool writePIDParametersToRAM(Eigen::Matrix<double, 6, 1> _PID_parameters);
+    bool writePIDParametersToRAM
+    (
+        double _kp_pos,
+        double _ki_pos,
+        double _kp_speed,
+        double _ki_speed,
+        double _kp_torque,
+        double _ki_torque
+    ); 
 
     /// \brief Stop the motor
     /// The motor operating state and previously received control commands are not cleared
@@ -56,12 +64,13 @@ public:
     /// The private PID parameters are updated
     /// \return PID parameters as 6 dimensional vector
     /// (kp_pos, ki_pos, kp_speed, ki_speed, kp_torque, ki_torque)
-    //bool readPIDParameters(Eigen::Matrix<double, 6, 1> &_PID_parameters);
+    bool readPIDParameters();
 
     /// \brief Read the current motor position
     /// \return Motor position in radians
     //double readCurrentPosition();
 
+    // TODO change to camelcase - also in related functions
     uint8_t get_id(){return id;}
 
     //double get_position(){return position;}
@@ -70,17 +79,34 @@ public:
 
     //double get_torque(){return torque;}
 
+    void getPIDParameters(
+        double &_kp_pos,
+        double &_ki_pos,
+        double &_kp_speed,
+        double &_ki_speed,
+        double &_kp_torque,
+        double &_ki_torque);  
+
+    void printPIDParameters();
+
     void printState();
 private:
     /// \brief Motor ID set through Serial configurator [1 - 32]
     uint8_t id;
+    
+    /// \brief Motor address = ID + 0x140. Declared for convenience
+    uint8_t address;
 
     /// \brief Used to decide which CAN port to use. Possible values {1, 2}
     uint8_t can_port_id;
 
     /// \brief Motor PID Parameters
-    /// (kp_pos, ki_pos, kp_speed, ki_speed, kp_torque, ki_torque)
-    Eigen::Matrix<double, 6, 1> PID_parameters;
+    double kp_pos;
+    double ki_pos;
+    double kp_speed;
+    double ki_speed;
+    double kp_torque;
+    double ki_torque;
 
     /// \brief Number of rotations of the inner motor during startup
     /// This is needed to create position commands
