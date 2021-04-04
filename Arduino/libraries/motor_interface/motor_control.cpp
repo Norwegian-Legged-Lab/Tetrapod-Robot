@@ -84,7 +84,7 @@ void MotorControl::setSpeedReference(double _speed)
     // Send CAN message
     sendMessage(can_message);
 }
-/*
+
 void MotorControl::setTorqueReference(double _torque)
 {
     // Saturate desired torque to be within maximum limits
@@ -106,7 +106,24 @@ void MotorControl::setTorqueReference(double _torque)
     // Send CAN message
     sendMessage(can_message); 
 }
-*/
+
+void MotorControl::setTorqueCurrent(int _torque_current)
+{
+    if(_torque_current > max_torque_current)
+    {
+        _torque_current = max_torque_current;
+    }
+    else if(_torque_current < -max_torque_current)
+    {
+        _torque_current = -max_torque_current;
+    }
+
+    Serial.print(_torque_current); Serial.print("\t");
+
+    MOTOR_CAN_MESSAGE_GENERATOR::torqueCurrentControl(can_message.buf, _torque_current);
+
+    sendMessage(can_message);
+}
 
 bool MotorControl::writePIDParametersToRAM
 (

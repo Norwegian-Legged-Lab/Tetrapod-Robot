@@ -30,7 +30,9 @@ public:
 
     /// \brief Set the desired motor torque.
     /// \param[in] _torque Setpoint motor torque in Nm
-    //void setTorqueReference(double _torque);
+    void setTorqueReference(double _torque);
+
+    void setTorqueCurrent(int _torque_current);
 
     /// \brief Setting position, speed and torque all results in
     /// the same reply being sent from the motor.
@@ -138,10 +140,6 @@ private:
 
     /// \brief CAN message object used to receive incomming CAN messages
     CAN_message_t received_can_message;
-
-    /// \brief CAN port used for this motor.
-    /// Port can be CAN1 or CAN2
-//    FlexCAN_T4<CAN1, RX_SIZE_256, TX_SIZE_16> can_port1;
 
     // Motor specific parameters
 
