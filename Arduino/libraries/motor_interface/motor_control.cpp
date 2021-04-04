@@ -137,10 +137,6 @@ bool MotorControl::writePIDParametersToRAM
     // Check if we received a reply from the motor
     if(readMessage(received_can_message))
     {
-        Serial.println("New message");
-        Serial.println(received_can_message.id, HEX);
-        Serial.println(received_can_message.buf[0], HEX);
-
         // Check that the incomming message is the one we anticipated
         if((received_can_message.id == address) && (received_can_message.buf[0] == MOTOR_COMMAND_WRITE_PID_PARAMETERS_TO_RAM))
         {
@@ -384,9 +380,9 @@ void MotorControl::printPIDParameters()
     Serial.print("kp_pos:\t"); Serial.println(kp_pos);
     Serial.print("ki_pos:\t"); Serial.println(ki_pos);
     Serial.print("kp_vel:\t"); Serial.println(kp_speed);
-    Serial.print("kp_vel:\t"); Serial.println(kp_speed);
+    Serial.print("kp_vel:\t"); Serial.println(ki_speed);
     Serial.print("kp_tor:\t"); Serial.println(kp_torque);
-    Serial.print("kp_tor:\t"); Serial.println(kp_torque);
+    Serial.print("kp_tor:\t"); Serial.println(ki_torque);
 }
 
 void MotorControl::errorMessage()
