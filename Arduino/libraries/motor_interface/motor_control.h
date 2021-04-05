@@ -39,6 +39,8 @@ public:
     /// The states are stored in the private variables
     void readMotorControlCommandReply(unsigned char* _can_message);
 
+    bool readMotorStatus();
+
     /// \brief Set the motor PID parameters and store them temporary in RAM
     /// \param[in] _PIDParameters Motor PID parameters 
     /// (kp_pos, ki_pos, kp_speed, ki_speed, kp_torque, ki_torque)   
@@ -68,18 +70,20 @@ public:
     /// (kp_pos, ki_pos, kp_speed, ki_speed, kp_torque, ki_torque)
     bool readPIDParameters();
 
-    /// \brief Read the current motor position
-    /// \return Motor position in radians
-    double readCurrentPosition();
+    /// \brief Read the current motor position and update position
+    /// \return True if the position was successfully read
+    bool readCurrentPosition();
 
     // TODO change to camelcase - also in related functions
     uint8_t get_id(){return id;}
 
-    //double get_position(){return position;}
+    double getPosition(){return position;}
 
     //double get_velocity(){return speed;}
 
     //double get_torque(){return torque;}
+
+    double get_encoder_value(){return previous_encoder_value;}
 
     void getPIDParameters(
         double &_kp_pos,
@@ -112,7 +116,7 @@ private:
 
     /// \brief Number of rotations of the inner motor during startup
     /// This is needed to create position commands
-    int initial_number_of_inner_motor_rotations;
+    double initial_number_of_inner_motor_rotations;
 
     /// \brief Number of rotations of the built-in motor, 
     /// not the output-shaft
@@ -165,7 +169,7 @@ private:
     /// \param[in] _previous_encoder_value The previously measured encoder value
     /// \param[in] _new_encoder_value The newly measured encoder value
     /// \return If new << old return 1, if old << new return -1, else return 0
-    int innerMotorTurnCompleted(uint16_t _previous_encoder_value, uint16_t _new_encoder_value);
+    double innerMotorTurnCompleted(uint16_t _previous_encoder_value, uint16_t _new_encoder_value);
 
     void sendMessage(CAN_message_t _can_message);
 
