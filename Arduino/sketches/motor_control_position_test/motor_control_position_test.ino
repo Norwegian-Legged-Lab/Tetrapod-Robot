@@ -39,7 +39,7 @@ void loop() {
   //Serial.print("Motor: 1, Pos:\t"); Serial.println(pos);
 
   // Wait for reply
-  delay_microseconds(2000);
+  delay_microseconds(5000);
 
   while(can_port_1.read(can_message))
   {
