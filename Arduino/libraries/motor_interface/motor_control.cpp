@@ -26,7 +26,10 @@ MotorControl::MotorControl(uint8_t _id, uint8_t _can_port_id, int _number_of_inn
     encoder_turn_threshold = (max_encoder_value + 1)/2;
 
     // Updates the position measurement
-    readCurrentPosition(); 
+    while(!readCurrentPosition())
+    {
+        delay_microseconds(100000.0);
+    } 
 
     // Initialize at zero speed
     speed = 0.0;
@@ -44,18 +47,18 @@ void MotorControl::readMotorControlCommandReply(unsigned char* _can_message)
 {
     // Encoder position. 16 bits represents one inner motor rotation
     uint16_t new_encoder_value = _can_message[7]*256 + _can_message[6];
-    Serial.print("Encoder new:\t"); Serial.print(new_encoder_value); Serial.print("\t");
-    Serial.print("Encoder prev:\t"); Serial.print(previous_encoder_value); Serial.print("\t");
+    //Serial.print("Encoder new:\t"); Serial.print(new_encoder_value); Serial.print("\t");
+    //Serial.print("Encoder prev:\t"); Serial.print(previous_encoder_value); Serial.print("\t");
     // Update the number of completed turns for the inner motor 
     number_of_inner_motor_rotations += innerMotorTurnCompleted(previous_encoder_value, new_encoder_value);
-    Serial.print("Inner rot:\t"); Serial.print(number_of_inner_motor_rotations); Serial.print("\t");
+    Serial.print("IRs:\t"); Serial.print(number_of_inner_motor_rotations); Serial.print("\t");
 
     //Serial.print("Encoder new:\t"); Serial.print(new_encoder_value); Serial.print("\t");
     //Serial.print("Encoder prev:\t"); Serial.print(previous_encoder_value); Serial.print("\t");
     previous_encoder_value = new_encoder_value;
 
     // Update the shaft position in radians
-    position = (number_of_inner_motor_rotations + (double)new_encoder_value/(double)max_encoder_value)*ROTATION_DISTANCE*M_PI/180.0;
+    position = (number_of_inner_motor_rotations + 1.0 - (double)new_encoder_value/(double)max_encoder_value)*ROTATION_DISTANCE*M_PI/180.0;
 
     // Get the speed of the inner motor in degrees per second
     int16_t speed_motor_dps = _can_message[5]*256 + _can_message[4];
@@ -72,7 +75,7 @@ void MotorControl::readMotorControlCommandReply(unsigned char* _can_message)
     torque = max_torque*torque_current/max_torque_current;
 }
 
-double MotorControl::readCurrentPosition()
+bool MotorControl::readCurrentPosition()
 {
     // Create a CAN message requesting the current encoder position
     MOTOR_CAN_MESSAGE_GENERATOR::readEncoderPosition(can_message.buf);
@@ -84,46 +87,96 @@ double MotorControl::readCurrentPosition()
     delay_microseconds(10000.0);
 
     // Receive the reply from the motor and store it in a CAN message
-    readMessage(received_can_message);
+    if(readMessage(received_can_message))
+    {
+        if((received_can_message.id == address) && (received_can_message.buf[0] == MOTOR_COMMAND_READ_ENCODER_POSITION))
+        {
+            // encoder position = true encoder measurement - the encoder offset
+            double new_encoder_value = received_can_message.buf[3]*256 + received_can_message.buf[2];
 
-    // encoder position = true encoder measurement - the encoder offset
-    double new_encoder_value = received_can_message.buf[3]*256 + received_can_message.buf[2];
+            // Update the number of completed turns for the inner motor 
+            number_of_inner_motor_rotations += innerMotorTurnCompleted(previous_encoder_value, new_encoder_value);
 
-    // Update the number of completed turns for the inner motor 
-    number_of_inner_motor_rotations += innerMotorTurnCompleted(previous_encoder_value, new_encoder_value);
+            previous_encoder_value = new_encoder_value;
 
-    previous_encoder_value = new_encoder_value;
-
-    // Update the shaft position in radians
-    position = (number_of_inner_motor_rotations + new_encoder_value/max_encoder_value)*ROTATION_DISTANCE*M_PI/180.0;
+            // Update the shaft position in radians
+            position = (number_of_inner_motor_rotations + 1.0 - (double)new_encoder_value/(double)max_encoder_value)*ROTATION_DISTANCE*M_PI/180.0;
+        
+            return true;
+        }
+        else
+        {
+            errorMessage();
+            Serial.println("readEncoderPosition - wrong reply received.");
+            return false;
+        }
+    }
+    else
+    {
+        errorMessage();
+        Serial.println("readEncoderPosition - no reply received.");
+        return false;
+    }
 }
 
-int MotorControl::innerMotorTurnCompleted(uint16_t _previous_encoder_value, uint16_t _new_encoder_value)
+double MotorControl::innerMotorTurnCompleted(uint16_t _previous_encoder_value, uint16_t _new_encoder_value)
 {
-    // If old >> new a CC turn was completed
+    // If old >> new a CW turn was completed
     if(_previous_encoder_value - _new_encoder_value > encoder_turn_threshold)
     {
-        Serial.print("Turn 1\t");
-        return -1;
+        Serial.print("Turn-1\t");
+        return -1.0;
     }
-    // If new >> old a CW turn was completed
+    // If new >> old a CCW turn was completed
     else if(_new_encoder_value - _previous_encoder_value > encoder_turn_threshold)
     {
-        Serial.print("Turn-1\t");
-        return 1;
+        Serial.print("Turn+1\t");
+        return 1.0;
     }
     // No turn was completed
     else
     {
         Serial.print("Turn 0\t");
-        return 0;
+        return 0.0;
+    }
+}
+
+bool MotorControl::readMotorStatus()
+{
+    MOTOR_CAN_MESSAGE_GENERATOR::readMotorStatus2(can_message.buf);
+
+    sendMessage(can_message);
+
+    delay_microseconds(10000.0);
+
+    if(readMessage(received_can_message))
+    {
+        if((received_can_message.id == address) && (received_can_message.buf[0] == MOTOR_COMMAND_READ_MOTOR_STATUS_2))
+        {
+            readMotorControlCommandReply(received_can_message.buf);
+            return true;
+        }
+        else
+        {
+            errorMessage();
+            Serial.println("readMotorStatus - wrong reply received.");
+            return false;
+        }
+    }
+    else
+    {
+        errorMessage();
+        Serial.println("readMotorStatus - no reply received.");
+        return false;
     }
 }
 
 void MotorControl::setPositionReference(double _angle)
 {
     // Convert the desired shaft angle in radians into an inner motor angle in 0.01 degrees 
-    double inner_motor_reference_angle = ((int)(6*_angle*180.0/PI) - initial_number_of_inner_motor_rotations*ROTATION_DISTANCE)*100;
+    double inner_motor_reference_angle = (-(GEAR_REDUCTION*_angle*180.0/PI - GEAR_REDUCTION*ROTATION_DISTANCE) - initial_number_of_inner_motor_rotations*ROTATION_DISTANCE)*100.0;
+
+    //double inner_motor_reference_angle = (())
 
     // Create a position control can message
     MOTOR_CAN_MESSAGE_GENERATOR::positionControl1(can_message.buf, inner_motor_reference_angle);
@@ -424,6 +477,7 @@ void MotorControl::errorMessage()
 void MotorControl::printState()
 {
     Serial.print("ID: "); Serial.print(id); Serial.print("\t");
+    Serial.print("Enc: "); Serial.print(previous_encoder_value); Serial.print("\t");
     Serial.print("Pos: "); Serial.print(position*180.0/M_PI); Serial.print("\t");
     Serial.print("Vel: "); Serial.print(speed); Serial.print("\t");
     Serial.print("Tor: "); Serial.print(torque); Serial.print("\t");

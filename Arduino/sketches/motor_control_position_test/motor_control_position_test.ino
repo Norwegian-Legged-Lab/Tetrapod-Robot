@@ -4,7 +4,11 @@
 #include "motor_constants.h"
 #include "Arduino.h"
 
-MotorControl* motor_array = new MotorControl[2];
+MotorControl* motor_array = new MotorControl[1];
+double pos = 0.0;
+CAN_message_t can_message;
+int INITIAL_INNER_MOTOR_ROTATIONS = 3;
+uint8_t CAN_PORT = 1;
 
 void setup() {
   Serial.begin(250000);
@@ -18,23 +22,38 @@ void setup() {
   can_port_2.setBaudRate(MOTOR_BAUD_RATE);
 
   // Initialize the two motors
-  motor_array[0] = MotorControl(1, 1, 0);
+  motor_array[0] = MotorControl(1, CAN_PORT, INITIAL_INNER_MOTOR_ROTATIONS);
   motor_array[0].writePIDParametersToRAM(10, 1, 50, 5, 50, 5);
-}
 
-bool state = true;
-double pos = 0.01;
-CAN_message_t can_message;
+  pos = motor_array[0].getPosition();
+  motor_array[0].printState(); 
+  
+  while(!motor_array[0].readMotorStatus()){delay_microseconds(1000000.0);}
+  motor_array[0].printState(); 
+  
+  Serial.println("START");
+  
+  delay_microseconds(100000);
+}
 
 void loop() {
 
   if(Serial.available())
   {
     String pos_string = Serial.readStringUntil('\n');
-    pos = pos_string.toFloat();
+    double pos_test = pos_string.toFloat();
+    if(pos_test != 0.5)
+    {
+      pos = pos_test*M_PI/180.0;
+    }
+    else
+    {
+      motor_array[0].turnOffMotor();
+    }
   }  
   
   // Send CAN command
+  /*
   motor_array[0].setPositionReference(pos);
   //Serial.print("Motor: 1, Pos:\t"); Serial.println(pos);
 
@@ -52,8 +71,9 @@ void loop() {
       Serial.print("No motor with ID = "); Serial.println(can_message.id); 
     }
   }
-  
-  motor_array[0].printState();
+  */
+  motor_array[0].readMotorStatus();
+  motor_array[0].printState(); 
 
   //Serial.println("");
   delay_microseconds(1000.0);
