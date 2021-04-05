@@ -145,11 +145,11 @@ private:
 
     /// \brief The torque in Newton meter has to lie in the interval
     /// [-max_torque, max_torque]
-    double max_torque = 30.0;
+    double max_torque;
 
     /// \brief All torque values are scaled to the interval 
     /// [-max_torque_current, max_torque_current]
-    int max_torque_current = 2000;
+    int max_torque_current;
 
     /// \brief The 16 bit encoder measures the position 
     /// of the inner DC motor, not the shaft

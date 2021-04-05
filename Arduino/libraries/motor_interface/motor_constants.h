@@ -16,6 +16,12 @@ const int MOTOR_BAUD_RATE = 1000000;
 // Number of encoder values for one revolution of the inner motor
 const int MAX_ENCODER_VALUE = 65535; // 16 bit encoders are used in the motors 2^16 -> [0, 65536]
 
+// Maximum possible torque current
+const int MAX_TORQUE_CURRENT = 1200;
+
+// Torque corresponding to maximum torque current
+const double MAX_TORQUE = 27.2;
+
 // The address of a motor with ID = n is given by: address of motor n = MOTOR_ADDRESS_OFFSET + n
 #define MOTOR_ADDRESS_OFFSET 0x140
 

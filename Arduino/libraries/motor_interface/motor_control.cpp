@@ -12,6 +12,10 @@ MotorControl::MotorControl(uint8_t _id, uint8_t _can_port_id, int _number_of_inn
 
     max_encoder_value = MAX_ENCODER_VALUE;
 
+    max_torque = MAX_TORQUE;
+
+    max_torque_current = MAX_TORQUE_CURRENT;
+
     // To check if the inner motor has completed a turn we check for a large jump
     // in the encoder value. To prevent an acceidental jump initially we start at
     // the middle value, minimizing this from happening
