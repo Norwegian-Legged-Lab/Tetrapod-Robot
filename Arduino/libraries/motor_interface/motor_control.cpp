@@ -56,6 +56,8 @@ void MotorControl::readMotorControlCommandReply(unsigned char* _can_message)
     // Get the torque current 
     int16_t torque_current = _can_message[3]*256 + _can_message[2];
     
+    Serial.print(torque_current); Serial.print("\t");
+
     // Convert the torque current into actual current
     torque = max_torque*torque_current/max_torque_current;
 }

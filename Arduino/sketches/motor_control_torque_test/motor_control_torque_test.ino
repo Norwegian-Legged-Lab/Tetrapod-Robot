@@ -21,13 +21,14 @@ void setup() {
   motor_array[0] = MotorControl(6, 1, 0);
 
   // 
-  motor_array[0].writePIDParametersToRAM(50, 1, 50, 1, 50, 1);
+  motor_array[0].writePIDParametersToRAM(50, 1, 50, 1, 100, 10);
+  motor_array[0].printPIDParameters();
 }
 
 double torque_current = 0.0;
 CAN_message_t can_message;
 double timer;
-double timeout_micros = 5000000;
+double timeout_micros = 2500000;
 
 void loop() {
 
