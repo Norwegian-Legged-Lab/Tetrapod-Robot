@@ -7,7 +7,7 @@
 MotorControl* motor_array = new MotorControl[1];
 double pos = 0.0;
 CAN_message_t can_message;
-int INITIAL_INNER_MOTOR_ROTATIONS = 3;
+int INITIAL_INNER_MOTOR_ROTATIONS = 1;
 uint8_t CAN_PORT = 1;
 
 void setup() {
@@ -29,11 +29,16 @@ void setup() {
   motor_array[0].printState(); 
   
   while(!motor_array[0].readMotorStatus()){delay_microseconds(1000000.0);}
-  motor_array[0].printState(); 
+  motor_array[0].printState();
+
+  motor_array[0].readCompleteEncoderPosition();
   
+  for(int i = 5; i > 1; i--)
+  {
+    Serial.println(i);
+    delay_microseconds(1000000);
+  }
   Serial.println("START");
-  
-  delay_microseconds(100000);
 }
 
 void loop() {
@@ -44,7 +49,8 @@ void loop() {
     double pos_test = pos_string.toFloat();
     if(pos_test != 0.5)
     {
-      pos = pos_test*M_PI/180.0;
+      //pos = pos_test*M_PI/180.0;
+      pos = pos_test;
     }
     else
     {
@@ -53,7 +59,7 @@ void loop() {
   }  
   
   // Send CAN command
-  /*
+  
   motor_array[0].setPositionReference(pos);
   //Serial.print("Motor: 1, Pos:\t"); Serial.println(pos);
 
@@ -71,8 +77,8 @@ void loop() {
       Serial.print("No motor with ID = "); Serial.println(can_message.id); 
     }
   }
-  */
-  motor_array[0].readMotorStatus();
+  
+  //motor_array[0].readMotorStatus();
   motor_array[0].printState(); 
 
   //Serial.println("");

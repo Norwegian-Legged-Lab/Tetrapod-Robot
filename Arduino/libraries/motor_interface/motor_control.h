@@ -23,6 +23,7 @@ public:
     void setPositionReference(double _angle);
 
     //void setPositionReferenceReply();
+    bool readCompleteEncoderPosition();
 
     /// \brief Set the desired motor speed.
     /// \param[in] _speed Setpoint motor speed in radians/second
