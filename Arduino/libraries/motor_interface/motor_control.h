@@ -20,7 +20,7 @@ public:
 
     /// \brief Set the desired multiturn motor angle.
     /// \param[in] _angle Setpoint motor angle in radians
-    //void setPositionReference(double _angle);
+    void setPositionReference(double _angle);
 
     //void setPositionReferenceReply();
 
@@ -70,7 +70,7 @@ public:
 
     /// \brief Read the current motor position
     /// \return Motor position in radians
-    //double readCurrentPosition();
+    double readCurrentPosition();
 
     // TODO change to camelcase - also in related functions
     uint8_t get_id(){return id;}
