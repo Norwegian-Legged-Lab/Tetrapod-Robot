@@ -24,7 +24,7 @@
 /*                                                                 */
 /*******************************************************************/
 
-#include "ros/ros.h"
+#include "ros/ros.h" // TODO remove when removing prints
 
 #include <kinematics/kinematics.h>
 
