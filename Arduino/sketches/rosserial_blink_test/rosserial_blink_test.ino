@@ -18,12 +18,14 @@ void messageCb( const std_msgs::Empty& toggle_msg)
     // Turn light on
     digitalWrite(ledPin, HIGH);
     light_on = true;
+    Serial.println("ON");
   }
   else
   {
     // Turn light off
     digitalWrite(ledPin, LOW);
     light_on = false;
+    Serial.println("OFF");
   }
 }
 
