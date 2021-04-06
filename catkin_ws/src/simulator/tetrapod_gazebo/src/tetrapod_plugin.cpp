@@ -108,6 +108,34 @@ double TetrapodPlugin::GetJointForce(const std::string &_joint_name)
     return 0;
 }
 
+// Get joint forces
+Eigen::Matrix<double, 12, 1> TetrapodPlugin::GetJointForces()
+{
+    Eigen::Matrix<double, 12, 1> tau_r;
+
+    // Front left
+    tau_r(0) = this->GetJointForce(this->joint_names[0]);
+    tau_r(1) = this->GetJointForce(this->joint_names[1]);
+    tau_r(2) = this->GetJointForce(this->joint_names[2]);
+
+    // Front right
+    tau_r(3) = this->GetJointForce(this->joint_names[3]);
+    tau_r(4) = this->GetJointForce(this->joint_names[4]);
+    tau_r(5) = this->GetJointForce(this->joint_names[5]);
+
+    // Rear left
+    tau_r(6) = this->GetJointForce(this->joint_names[6]);
+    tau_r(7) = this->GetJointForce(this->joint_names[7]);
+    tau_r(8) = this->GetJointForce(this->joint_names[8]);
+
+    // Rear right
+    tau_r(9) = this->GetJointForce(this->joint_names[9]);
+    tau_r(10) = this->GetJointForce(this->joint_names[10]);
+    tau_r(11) = this->GetJointForce(this->joint_names[11]);
+
+    return tau_r;
+}
+
 // Get joint velocity at _joint_name
 double TetrapodPlugin::GetJointVelocity(const std::string &_joint_name)
 {
@@ -116,12 +144,68 @@ double TetrapodPlugin::GetJointVelocity(const std::string &_joint_name)
     return vel;
 }
 
+// Get joint velocities
+Eigen::Matrix<double, 12, 1> TetrapodPlugin::GetJointVelocities()
+{
+    Eigen::Matrix<double, 12, 1> dot_q_r;
+
+    // Front left
+    dot_q_r(0) = this->GetJointVelocity(this->joint_names[0]);
+    dot_q_r(1) = this->GetJointVelocity(this->joint_names[1]);
+    dot_q_r(2) = this->GetJointVelocity(this->joint_names[2]);
+
+    // Front right
+    dot_q_r(3) = this->GetJointVelocity(this->joint_names[3]);
+    dot_q_r(4) = this->GetJointVelocity(this->joint_names[4]);
+    dot_q_r(5) = this->GetJointVelocity(this->joint_names[5]);
+
+    // Rear left
+    dot_q_r(6) = this->GetJointVelocity(this->joint_names[6]);
+    dot_q_r(7) = this->GetJointVelocity(this->joint_names[7]);
+    dot_q_r(8) = this->GetJointVelocity(this->joint_names[8]);
+
+    // Rear right
+    dot_q_r(9) = this->GetJointVelocity(this->joint_names[9]);
+    dot_q_r(10) = this->GetJointVelocity(this->joint_names[10]);
+    dot_q_r(11) = this->GetJointVelocity(this->joint_names[11]);
+
+    return dot_q_r;
+}
+
 // Get joint position at _joint_name
 double TetrapodPlugin::GetJointPosition(const std::string &_joint_name)
 {
     double pos = this->joints[this->model_name + "::" + _joint_name]->Position();
 
     return pos;
+}
+
+// Get joint positions
+Eigen::Matrix<double, 12, 1> TetrapodPlugin::GetJointPositions()
+{
+    Eigen::Matrix<double, 12, 1> q_r;
+
+    // Front left
+    q_r(0) = this->GetJointPosition(this->joint_names[0]);
+    q_r(1) = this->GetJointPosition(this->joint_names[1]);
+    q_r(2) = this->GetJointPosition(this->joint_names[2]);
+
+    // Front right
+    q_r(3) = this->GetJointPosition(this->joint_names[3]);
+    q_r(4) = this->GetJointPosition(this->joint_names[4]);
+    q_r(5) = this->GetJointPosition(this->joint_names[5]);
+
+    // Rear left
+    q_r(6) = this->GetJointPosition(this->joint_names[6]);
+    q_r(7) = this->GetJointPosition(this->joint_names[7]);
+    q_r(8) = this->GetJointPosition(this->joint_names[8]);
+
+    // Rear right
+    q_r(9) = this->GetJointPosition(this->joint_names[9]);
+    q_r(10) = this->GetJointPosition(this->joint_names[10]);
+    q_r(11) = this->GetJointPosition(this->joint_names[11]);
+
+    return q_r;
 }
 
 

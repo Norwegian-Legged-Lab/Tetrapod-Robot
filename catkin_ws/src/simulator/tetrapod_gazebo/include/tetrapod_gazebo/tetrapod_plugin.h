@@ -87,15 +87,27 @@ namespace gazebo
         /// \return Current joint force
         public: double GetJointForce(const std::string &_joint_name);
 
+        /// \brief Get current joint forces for the robot
+        /// \return Returns joint velocities : tau_r //TODO maybe the use of tau_r needs change  
+        public: Eigen::Matrix<double, 12, 1> GetJointForces();
+
         /// \brief Get current velocity at a specific joint 
         /// \param[in] _joint_name Desired joint
         /// \return Current joint velocity
         public: double GetJointVelocity(const std::string &_joint_name);
 
+        /// \brief Get current joint velocities for the robot
+        /// \return Returns joint velocities : dot_q_r  
+        public: Eigen::Matrix<double, 12, 1> GetJointVelocities();
+
         /// \brief Get current position at a specific joint 
         /// \param[in] _joint_name Desired joint
         /// \return Current joint position
         public: double GetJointPosition(const std::string &_joint_name);
+
+        /// \brief Get current joint positions for the robot
+        /// \return Returns joint configuration : q_r  
+        public: Eigen::Matrix<double, 12, 1> GetJointPositions();
 
         /// \brief Apply force at a specific joint 
         /// \param[in] _joint_name Desired joint
