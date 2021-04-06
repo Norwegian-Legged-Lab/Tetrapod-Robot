@@ -83,9 +83,9 @@ public:
 
     double getPosition(){return position;}
 
-    //double get_velocity(){return speed;}
+    double getVelocity(){return speed;}
 
-    //double get_torque(){return torque;}
+    double getTorque(){return torque;}
 
     double get_encoder_value(){return previous_encoder_value;}
 
