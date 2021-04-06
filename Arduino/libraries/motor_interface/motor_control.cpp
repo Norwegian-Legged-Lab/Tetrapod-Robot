@@ -136,7 +136,7 @@ bool MotorControl::readCurrentPosition()
     MOTOR_CAN_MESSAGE_GENERATOR::readEncoderPosition(can_message.buf);
 
     // Send the CAN message
-    sendMessage(can_message);
+    this->sendMessage(can_message);
 
     // Wait 0.010 seconds for reply from motor
     delay_microseconds(10000.0);
@@ -152,7 +152,7 @@ bool MotorControl::readCurrentPosition()
             // Update the number of completed turns for the inner motor 
             number_of_inner_motor_rotations += innerMotorTurnCompleted(previous_encoder_value, new_encoder_value);
 
-            previous_encoder_value = new_encoder_value;
+            this->previous_encoder_value = new_encoder_value;
 
             // Update the shaft position in radians
             position = (number_of_inner_motor_rotations + 1.0 - (double)new_encoder_value/(double)max_encoder_value)*ROTATION_DISTANCE*M_PI/180.0;

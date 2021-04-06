@@ -6,6 +6,8 @@
 
 // Inlucde other libraries
 #include "motor_control.h"
+#include "motor_constants.h"
+#include "teensy_can_ports.h"
 #include "FlexCAN_T4.h"
 
 // Number of motors 
@@ -39,18 +41,22 @@ void controlCommandCallback(const sensor_msgs::JointState& joint_state_msg)
     if(joint_state_msg.position[i] != NULL)
     {
       // Tell motor i to move to the desired position
+      motors[i].setPositionReference(joint_state_msg.position[i]);
     }
     else if(joint_state_msg.velocity[i] != NULL)
     {
       // Tell motor i to move a the desired velocity
+      motors[i].setSpeedReference(joint_state_msg.velocity[i]);
     }
     else if(joint_state_msg.effort[i] != NULL)
     {
       // Tell motor i to output a certain torque 
+      motors[i].setTorqueReference(joint_state_msg.effort[i]);
     }
     else
     {
       // Report error. No valid control command for joint i
+      Serial.println("ERROR: Invalid joint state message. Index: "); Serial.println(i);
     }
   }
 
@@ -63,25 +69,25 @@ void controlCommandCallback(const sensor_msgs::JointState& joint_state_msg)
     // The motor IDs are [1 - 32]. The lower numbers are used first
     uint8_t id = can_message.id - MOTOR_ADDRESS_OFFSET;
 
-    //
-    if(id <= number_of_control_commands)
+    // Check if the incomming message belongs to any of the motors
+    if((id <= number_of_control_commands) && (id >= 1))
     {
       // Update states of motor with id
+      motors[id - 1].readMotorControlCommandReply(can_message.buf);
     }
     else
     {
       // Report error. No motor with the corresponding ID
+      Serial.println("ERROR: No motor ID corresponds to the incomming message");
     }
   }
 
   // Update the joint state reply message
   for(int i = 0; i < number_of_control_commands; i++)
   {
-    /*
     joint_state_reply.position[i] = motors[i].get_position();
     joint_state_reply.velocity[i] = motors[i].get_velocity();
-    joint_state_reply.velocity[i] = motors[i].get_torque();
-    */
+    joint_state_reply.effort[i] = motors[i].get_torque();
   }
 
   // Add message header
@@ -91,7 +97,6 @@ void controlCommandCallback(const sensor_msgs::JointState& joint_state_msg)
   joint_state_reply.header.stamp = nh.now();
 
   motor_state_publisher.publish(&joint_state_reply);
-  
 }
 
 ros::Subscriber<sensor_msgs::JointState> subscriber_control_commands("motor_control_commands", &controlCommandCallback);
@@ -120,12 +125,12 @@ void setup()
     // CAN port 1 should be used
     if(i < NUMBER_OF_MOTORS_PORT)
     {
-      motors[i] = MotorControl(i + 1, 0);
+      motors[i] = MotorControl(i + 1, CAN_PORT_1, 0);
     }
     // CAN port 2 should be used
     else
     {
-      motors[i] = MotorControl(i + 1, 0);
+      motors[i] = MotorControl(i + 1, CAN_PORT_2, 0);
     }
   }
   
