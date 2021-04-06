@@ -25,6 +25,9 @@ const double MAX_TORQUE = 27.2;
 // The address of a motor with ID = n is given by: address of motor n = MOTOR_ADDRESS_OFFSET + n
 #define MOTOR_ADDRESS_OFFSET 0x140
 
+// TODO - Add description
+const double MULTI_TURN_THRESHOLD = 60.0; // 
+
 // A list of the different motor command ids defined in the motor
 #define MOTOR_COMMAND_READ_PID_PARAMETERS 0x30
 #define MOTOR_COMMAND_WRITE_PID_PARAMETERS_TO_RAM 0x31

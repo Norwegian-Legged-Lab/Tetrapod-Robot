@@ -31,8 +31,14 @@ MotorControl::MotorControl(uint8_t _id, uint8_t _can_port_id, int _number_of_inn
     // Updates the position measurement
     while(!readCurrentPosition())
     {
-        delay_microseconds(100000.0);
+        delay_microseconds(1000000.0);
     } 
+
+    while(!readMultiTurnAngle()){delay_microseconds(1000000.0);}
+    if(abs(multi_turn_angle) < MULTI_TURN_THRESHOLD)
+    {
+        target_position_offset = 1;
+    }
 
     // Initialize at zero speed
     speed = 0.0;
@@ -75,6 +81,53 @@ void MotorControl::readMotorControlCommandReply(unsigned char* _can_message)
 
     // Convert the torque current into actual current
     torque = max_torque*torque_current/max_torque_current;
+}
+
+bool MotorControl::readMultiTurnAngle()
+{
+    MOTOR_CAN_MESSAGE_GENERATOR::readMultiTurnAngle(can_message.buf);
+    
+    sendMessage(can_message);
+
+    delay_microseconds(10000.0);
+
+    if(readMessage(received_can_message))
+    {
+        if((received_can_message.id == address) && (received_can_message.buf[0] == MOTOR_COMMAND_READ_MULTI_TURN_ANGLE))
+        {
+            int32_t multi_turn_angle_001lsb = 0;
+            /*
+            for(int i = 1; i < 7; i++)
+            {
+                multi_turn_angle_001lsb += received_can_message.buf[i]*pow(8, i-1);
+            }
+            */
+            multi_turn_angle_001lsb 
+            = received_can_message.buf[1]
+            + received_can_message.buf[2]*256
+            + received_can_message.buf[3]*655536
+            + received_can_message.buf[4]*16777216
+            + received_can_message.buf[5]*4294967296;
+            //+ received_can_message.buf[6]*1099511627776
+            //+ received_can_message.buf[7]*1099511627776*256;
+            Serial.print(received_can_message.buf[6]); Serial.print("\t");
+            double multi_turn_angle_dps = multi_turn_angle_001lsb/100;
+            multi_turn_angle = multi_turn_angle_dps*M_PI/(180.0*6.0);
+            return true;
+        }
+        else
+        {
+            errorMessage();
+            Serial.println("readMultiTurnAngle - wrong reply received.");
+            return false;
+        }
+    }
+    else
+    {
+        errorMessage();
+        Serial.println("readMultiTurnAngle - wrong reply received.");
+        return false;        
+    }
 }
 
 bool MotorControl::readCurrentPosition()
@@ -208,7 +261,7 @@ void MotorControl::setPositionReference(double _angle)
     // Convert the desired shaft angle in radians into an inner motor angle in 0.01 degrees 
     //double inner_motor_reference_angle = (-(GEAR_REDUCTION*_angle*180.0/PI - GEAR_REDUCTION*ROTATION_DISTANCE) - initial_number_of_inner_motor_rotations*ROTATION_DISTANCE)*100.0;
     Serial.print("INIMR:\t"); Serial.print(initial_number_of_inner_motor_rotations); Serial.print("\t");
-    double inner_motor_reference_angle = _angle + initial_number_of_inner_motor_rotations*ROTATION_DISTANCE*GEAR_REDUCTION*100.0;
+    double inner_motor_reference_angle = _angle + (initial_number_of_inner_motor_rotations + target_position_offset)*ROTATION_DISTANCE*GEAR_REDUCTION*100.0;
 
     // Create a position control can message
     MOTOR_CAN_MESSAGE_GENERATOR::positionControl1(can_message.buf, inner_motor_reference_angle);
@@ -510,6 +563,7 @@ void MotorControl::printState()
 {
     Serial.print("ID: "); Serial.print(id); Serial.print("\t");
     Serial.print("Enc: "); Serial.print(previous_encoder_value); Serial.print("\t");
+    Serial.print("MLT: "); Serial.print(multi_turn_angle*180.0/M_PI); Serial.print("\t");
     Serial.print("Pos: "); Serial.print(position*180.0/M_PI); Serial.print("\t");
     Serial.print("Vel: "); Serial.print(speed); Serial.print("\t");
     Serial.print("Tor: "); Serial.print(torque); Serial.print("\t");

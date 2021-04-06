@@ -6,6 +6,7 @@
 #include "teensy_can_ports.h"
 #include "motor_can_message_generator.h"
 #include "FlexCAN_T4.h"
+#include <math.h>
 
 class MotorControl
 {
@@ -24,6 +25,8 @@ public:
 
     //void setPositionReferenceReply();
     bool readCompleteEncoderPosition();
+
+    bool readMultiTurnAngle();
 
     /// \brief Set the desired motor speed.
     /// \param[in] _speed Setpoint motor speed in radians/second
@@ -86,6 +89,8 @@ public:
 
     double get_encoder_value(){return previous_encoder_value;}
 
+    double get_multi_turn_angle(){return multi_turn_angle;}
+
     void getPIDParameters(
         double &_kp_pos,
         double &_ki_pos,
@@ -126,6 +131,13 @@ private:
     /// \brief Keep track of previous encoder position.
     /// This way you can detect turns
     uint16_t previous_encoder_value;
+
+    double multi_turn_angle;
+
+    /// \brief If the motor is initialized in certain positions the 
+    /// setPosition function will have zero offset of 60 degrees. 
+    // This parameters keeps track of whether or not this is the case.
+    uint8_t target_position_offset;
 
     /// \brief Latest measured position of the shaft in radians
     double position;
