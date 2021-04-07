@@ -9,4 +9,13 @@ const uint8_t CAN_PORT_2 = 2;
 static FlexCAN_T4<CAN1, RX_SIZE_256, TX_SIZE_16> can_port_1;
 static FlexCAN_T4<CAN2, RX_SIZE_256, TX_SIZE_16> can_port_2;
 
+/*
+void EmptyCANBuffers()
+{
+    CAN_message_t msg;
+    while(can_port_1.read(msg));
+    while(can_port_2.read(msg));
+}
+*/
+
 #endif
