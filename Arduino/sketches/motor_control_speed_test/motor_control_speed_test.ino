@@ -4,7 +4,7 @@
 #include "motor_constants.h"
 #include "Arduino.h"
 
-MotorControl* motor_array = new MotorControl[2];
+MotorControl* motor_array = new MotorControl[1];
 
 void setup() {
   Serial.begin(250000);
@@ -18,8 +18,8 @@ void setup() {
   can_port_2.setBaudRate(MOTOR_BAUD_RATE);
 
   // Initialize the two motors
-  motor_array[0] = MotorControl(1, 1, 0);
-  motor_array[1] = MotorControl(2, 1, 0);
+  motor_array[0] = MotorControl(2, 2, 0);
+  //motor_array[1] = MotorControl(1, 1, 0);
 }
 
 bool state = true;
@@ -41,7 +41,7 @@ void loop() {
   // Wait for reply
   delay_microseconds(1000);
 
-  while(can_port_1.read(can_message))
+  while(can_port_2.read(can_message))
   {
     if(can_message.id - MOTOR_ADDRESS_OFFSET == motor_array[0].get_id())
     {
@@ -56,5 +56,5 @@ void loop() {
   motor_array[0].printState();
 
   //Serial.println("");
-  delay_microseconds(1000000.0);
+  delay_microseconds(10000.0);
 }

@@ -71,16 +71,16 @@ void MotorControl::readMotorControlCommandReply(unsigned char* _can_message)
     // Get the speed of the inner motor in degrees per second
     int16_t speed_motor_dps = _can_message[5]*256 + _can_message[4];
 
-    // Convert the motor speed to shaft speed in radians per second
-    speed = (double)(speed_motor_dps)*M_PI/(180.0*GEAR_REDUCTION);
+    // Convert the motor speed to shaft speed in radians per second. NB! Notice the minus sign
+    speed = -(double)(speed_motor_dps)*M_PI/(180.0*GEAR_REDUCTION);
 
     // Get the torque current 
     int16_t torque_current = _can_message[3]*256 + _can_message[2];
     
     //Serial.print(torque_current); Serial.print("\t");
 
-    // Convert the torque current into actual current
-    torque = max_torque*torque_current/max_torque_current;
+    // Convert the torque current into actual current. NB! Notice the minus sign
+    torque = -max_torque*torque_current/max_torque_current;
 }
 
 bool MotorControl::readMultiTurnAngle()
@@ -261,7 +261,9 @@ void MotorControl::setPositionReference(double _angle)
     // Convert the desired shaft angle in radians into an inner motor angle in 0.01 degrees 
     //double inner_motor_reference_angle = (-(GEAR_REDUCTION*_angle*180.0/PI - GEAR_REDUCTION*ROTATION_DISTANCE) - initial_number_of_inner_motor_rotations*ROTATION_DISTANCE)*100.0;
     Serial.print("INIMR:\t"); Serial.print(initial_number_of_inner_motor_rotations); Serial.print("\t");
-    double inner_motor_reference_angle = _angle + (initial_number_of_inner_motor_rotations + target_position_offset)*ROTATION_DISTANCE*GEAR_REDUCTION*100.0;
+    //double inner_motor_reference_angle = _angle + (initial_number_of_inner_motor_rotations + target_position_offset)*ROTATION_DISTANCE*GEAR_REDUCTION*100.0;
+    double inner_motor_reference_angle = (ROTATION_DISTANCE*0.0 - _angle*180.0/M_PI)*GEAR_REDUCTION*100.0 + (initial_number_of_inner_motor_rotations + target_position_offset)*ROTATION_DISTANCE*GEAR_REDUCTION*100.0;
+
 
     // Create a position control can message
     MOTOR_CAN_MESSAGE_GENERATOR::positionControl1(can_message.buf, inner_motor_reference_angle);
@@ -272,7 +274,9 @@ void MotorControl::setPositionReference(double _angle)
 
 void MotorControl::setSpeedReference(double _speed)
 {
-    // Convert speed in rad/s to 0.01 deg/sec
+    _speed = -_speed;
+
+    // Convert speed in rad/s to 0.01 deg/sec.
     int32_t speed_001dps = (int)round(GEAR_REDUCTION*_speed*100.0*180.0/M_PI);
 
     // Create a CAN message for motor speed control
@@ -284,6 +288,8 @@ void MotorControl::setSpeedReference(double _speed)
 
 void MotorControl::setTorqueReference(double _torque)
 {
+    _torque = -_torque;
+
     // Saturate desired torque to be within maximum limits
     if (_torque > max_torque)
     {
@@ -306,6 +312,8 @@ void MotorControl::setTorqueReference(double _torque)
 
 void MotorControl::setTorqueCurrent(int _torque_current)
 {
+    _torque_current = -_torque_current;
+    
     if(_torque_current > max_torque_current)
     {
         _torque_current = max_torque_current;

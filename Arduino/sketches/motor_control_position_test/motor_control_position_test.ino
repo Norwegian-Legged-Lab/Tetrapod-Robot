@@ -4,11 +4,11 @@
 #include "motor_constants.h"
 #include "Arduino.h"
 
-int MOTOR_ID = 2;
+int MOTOR_ID = 1;
 MotorControl* motor_array = new MotorControl[1];
 double pos = 0.0;
 CAN_message_t can_message;
-int INITIAL_INNER_MOTOR_ROTATIONS = 2;
+int INITIAL_INNER_MOTOR_ROTATIONS = -1;
 uint8_t CAN_PORT = 1;
 
 void setup() {
