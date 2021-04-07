@@ -21,14 +21,12 @@ TEENSY_LED led;
 const int NUMBER_OF_MOTORS = 2;
 int NUMBER_OF_MOTORS_PER_PORT = 1;
 
-/*
-float *position_array = new float [NUMBER_OF_MOTORS];
-
-//char *a[] = {"FL", "FR", "BR", "BL"}; // F: Front - B: Back - R: Right - L: Left
-float pos[2]; /// stores arduino time
+// Declare 
+char *joint_name[2] = {"mot1", "mot2"};
+float pos[2]; 
 float vel[2];
 float eff[2];
-*/
+
 
 // Create a vector of MotorControl elements, one for each motor
 MotorControl* motors = new MotorControl[NUMBER_OF_MOTORS];
@@ -201,6 +199,25 @@ void loop()
       nh.loginfo("ERROR: No motor ID corresponds to the incomming message");
     }
   }
+
+  
+  joint_state_reply.name_length = 2;
+  joint_state_reply.position_length = 2;
+  joint_state_reply.velocity_length = 2;
+  joint_state_reply.effort_length = 2;
+  
+  
+  pos[0] = 1.0;
+  pos[1] = 1.0;
+  vel[0] = 1.0;
+  vel[1] = 1.0;
+  eff[0] = 1.0;
+  eff[1] = 1.0;
+
+  joint_state_reply.name = joint_name;
+  joint_state_reply.position = pos;
+  joint_state_reply.velocity = vel;
+  joint_state_reply.effort = eff;
   
   
   // Update the joint state reply message
@@ -213,29 +230,8 @@ void loop()
     nh.loginfo("States updated");
   }
   */
-  /*
-  pos[0] = 1.0;
-  pos[1] = 1.0;
-  vel[0] = 1.0;
-  vel[1] = 1.0;
-  eff[0] = 1.0;
-  eff[1] = 1.0
-  */
-  
 
-  //joint_state_reply.position.data.resize(2);
-  //joint_state_reply.position.data[0] = 9.2;
 
-  //pos[0] = 1.4;
-
-  //joint_state_reply.position = pos;
-  
-  /*
-  position_array[0] = 1.0;
-  position_array[1] = 2.0;
-  joint_state.position = position_array;
-  */
-  //joint_state_reply = joint_state;
   
   // Add message header
   joint_state_reply.header.frame_id = teensy_frame;
