@@ -21,12 +21,11 @@ TEENSY_LED led;
 const int NUMBER_OF_MOTORS = 2;
 int NUMBER_OF_MOTORS_PER_PORT = 1;
 
-// Declare 
-char *joint_name[2] = {"mot1", "mot2"};
-float pos[2]; 
-float vel[2];
-float eff[2];
-
+// Arrays needed to publish jointState messages back
+char *joint_names[1] = {"placeHolder"};
+float position_array[NUMBER_OF_MOTORS]; 
+float velocity_array[NUMBER_OF_MOTORS];
+float torque_array[NUMBER_OF_MOTORS];
 
 // Create a vector of MotorControl elements, one for each motor
 MotorControl* motors = new MotorControl[NUMBER_OF_MOTORS];
@@ -47,60 +46,33 @@ ros::Publisher motor_state_publisher("motor_states", &joint_state_reply);
 
 void controlCommandCallback(const sensor_msgs::JointState& joint_state_msg)
 {
-  
-  // Determine the number of control commands being sent
-  //uint8_t number_of_control_commands = sizeof(joint_state_msg.position)/sizeof(joint_state_msg.position[0]);
-
   // TODO get size from incoming message
   uint8_t number_of_control_commands = NUMBER_OF_MOTORS;
   
-  /// TEMP_START
-  //led.blink(number_of_control_commands);
-  //led.pause();
-  /// TEMP_END
-
   for(int i = 0; i < number_of_control_commands; i++)
   {
-    //if(joint_state_msg.position[i] != NULL)
     if(joint_state_msg.position[i] != 1000)
     {
       // Tell motor i to move to the desired position
       motors[i].setPositionReference(joint_state_msg.position[i]);
-
-      /// TEMP_START
-      //led.blink(1);
-      //led.pause();
-      /// TEMP_END
       
     }
-    //else if(joint_state_msg.velocity[i] != NULL)
     else if(joint_state_msg.velocity[i] != 1000)
     {
       // Tell motor i to move a the desired velocity
       motors[i].setSpeedReference(joint_state_msg.velocity[i]);
-      /// TEMP_START
-      //led.blink(2);
-      //led.pause();
-      /// TEMP_END
     }
-    //else if(joint_state_msg.effort[i] != NULL)
     else if(joint_state_msg.effort[i] != 1000)
     {
       // Tell motor i to output a certain torque 
       motors[i].setTorqueReference(joint_state_msg.effort[i]);
-      /// TEMP_START
-      //led.blink(3);
-      //led.pause();
-      /// TEMP_END
     }
     else
     {
       // Report error. No valid control command for joint i
-      Serial.println("ERROR: Invalid joint state message. Index: "); Serial.println(i);
-      /// TEMP_START
-      //led.blink(4);
-      //led.pause();
-      /// TEMP_END
+      //Serial.println("ERROR: Invalid joint state message. Index: "); Serial.println(i);
+      nh.loginfo("ERROR: Invalid joint state message. Index: ");
+
     }
   } 
 }
@@ -120,6 +92,11 @@ void setup()
   can_port_1.setBaudRate(MOTOR_BAUD_RATE);
   can_port_2.begin();
   can_port_2.setBaudRate(MOTOR_BAUD_RATE);
+
+  joint_state_reply.name_length = 1;
+  joint_state_reply.position_length = NUMBER_OF_MOTORS;
+  joint_state_reply.velocity_length = NUMBER_OF_MOTORS;
+  joint_state_reply.effort_length = NUMBER_OF_MOTORS;
   
   // Initialize the ROS node
   nh.initNode();
@@ -143,53 +120,34 @@ void setup()
   
   nh.advertise(motor_state_publisher);
   nh.subscribe(subscriber_control_commands);
-  /*
-  joint_state_reply.name_length = 0;
-  joint_state_reply.position_length = 2;
-  joint_state_reply.velocity_length = 2;
-  joint_state_reply.effort_length = 2;
-  */
 }
 
 void loop() 
 {
   nh.spinOnce();
-  //delay_microseconds(100000);
   
-  nh.loginfo("Empty buffers");
-  //delay_microseconds(2000);
+  // Empty the CAN buffers
   while(can_port_1.read(can_message));
   while(can_port_2.read(can_message));
-  //EmptyCANBuffers();
-  nh.loginfo("Buffers emptied");
-  
+
+  // Send messages to the motors to update their positions
   for(int i = 0; i < NUMBER_OF_MOTORS; i++)
   {
-    nh.loginfo("Send to");
-    //nh.loginfo(i);
     motors[i].requestMotorStatus();
   }
   
-  delay_microseconds(1000);
-
-  nh.loginfo("Check for new messages");
-  
+  delay_microseconds(3000);
   
   // Go through all the replies and update the motor states
   while(can_port_1.read(can_message) || can_port_2.read(can_message))
   {
     // The motor IDs are [1 - 32]. The lower numbers are used first
     uint8_t id = can_message.id - MOTOR_ADDRESS_OFFSET;
-    nh.loginfo("New message for ID");
-    //led.blink(id);
-    //led.pause();
-    //nh.loginfo(id);
-    // Check if the incomming message belongs to any of the motors
     
+    // Check if the incomming message belongs to any of the motors
     if((id <= NUMBER_OF_MOTORS) && (id >= 1))
     {
       // Update states of motor with id
-      nh.loginfo("Ok");
       motors[id - 1].readMotorControlCommandReply(can_message.buf);
     }
     else
@@ -199,40 +157,21 @@ void loop()
       nh.loginfo("ERROR: No motor ID corresponds to the incomming message");
     }
   }
-
-  
-  joint_state_reply.name_length = 2;
-  joint_state_reply.position_length = 2;
-  joint_state_reply.velocity_length = 2;
-  joint_state_reply.effort_length = 2;
-  
-  
-  pos[0] = 1.0;
-  pos[1] = 1.0;
-  vel[0] = 1.0;
-  vel[1] = 1.0;
-  eff[0] = 1.0;
-  eff[1] = 1.0;
-
-  joint_state_reply.name = joint_name;
-  joint_state_reply.position = pos;
-  joint_state_reply.velocity = vel;
-  joint_state_reply.effort = eff;
-  
-  
+ 
   // Update the joint state reply message
-  /*
+  
   for(int i = 0; i < NUMBER_OF_MOTORS; i++)
   {
-    joint_state_reply.position[i] = motors[i].getPosition();
-    joint_state_reply.velocity[i] = motors[i].getVelocity();
-    joint_state_reply.effort[i] = motors[i].getTorque();
-    nh.loginfo("States updated");
+    position_array[i] = motors[i].getPosition();
+    velocity_array[i] = motors[i].getVelocity();
+    torque_array[i] = motors[i].getTorque();
   }
-  */
-
-
   
+  joint_state_reply.name = joint_names;
+  joint_state_reply.position = position_array;
+  joint_state_reply.velocity = velocity_array;
+  joint_state_reply.effort = torque_array;
+
   // Add message header
   joint_state_reply.header.frame_id = teensy_frame;
   
@@ -240,8 +179,4 @@ void loop()
   joint_state_reply.header.stamp = nh.now();
   
   motor_state_publisher.publish(&joint_state_reply);
-  nh.loginfo("Reply sent");
-  
-  nh.loginfo("");
-  delay_microseconds(1000000.0);
 }
