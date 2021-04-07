@@ -233,7 +233,7 @@ bool MotorControl::readMotorStatus()
     sendMessage(can_message);
 
     delay_microseconds(10000.0);
-
+    
     if(readMessage(received_can_message))
     {
         if((received_can_message.id == address) && (received_can_message.buf[0] == MOTOR_COMMAND_READ_MOTOR_STATUS_2))
@@ -254,6 +254,13 @@ bool MotorControl::readMotorStatus()
         Serial.println("readMotorStatus - no reply received.");
         return false;
     }
+}
+
+void MotorControl::requestMotorStatus()
+{
+    MOTOR_CAN_MESSAGE_GENERATOR::readMotorStatus2(can_message.buf);
+
+    sendMessage(can_message);
 }
 
 void MotorControl::setPositionReference(double _angle)

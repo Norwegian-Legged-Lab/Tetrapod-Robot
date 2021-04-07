@@ -45,6 +45,8 @@ public:
 
     bool readMotorStatus();
 
+    void requestMotorStatus();
+
     /// \brief Set the motor PID parameters and store them temporary in RAM
     /// \param[in] _PIDParameters Motor PID parameters 
     /// (kp_pos, ki_pos, kp_speed, ki_speed, kp_torque, ki_torque)   
