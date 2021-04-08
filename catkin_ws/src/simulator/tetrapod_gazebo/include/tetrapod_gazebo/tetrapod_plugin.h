@@ -39,6 +39,7 @@
 #include "ros/console.h"
 #include "ros/callback_queue.h"
 #include "ros/subscribe_options.h"
+#include "eigen_conversions/eigen_msg.h"
 #include "std_msgs/Float32.h"
 #include "std_msgs/Float64MultiArray.h"
 #include "sensor_msgs/JointState.h"
@@ -158,15 +159,23 @@ namespace gazebo
         /// position of the joints.
         public: void OnPosMsg(const std_msgs::Float64MultiArrayConstPtr &_msg);
 
-        /// \brief The QueueThread function is a ROS helper function
+        /// \brief The ProcessQueueThread function is a ROS helper function
         /// that processes messages.
-        public: void QueueThread();
+        public: void ProcessQueueThread();
+
+        /// \brief The PublishQueueThread function is a ROS helper function
+        /// that publish state messages.
+        public: void PublishQueueThread();
 
         // TODO REMOVE
         public: void printMap(const std::map<std::string,physics::JointPtr> &_map);
 
         /// \brief The initRos function is called to initialize ROS
         protected: void InitRos();
+
+        /// \brief The InitRosQueueThreads function is called to initialize
+        /// the ROS Publish and Process Queue Threads
+        protected: void InitRosQueueThreads();
 
         /// \brief The LoadParametersRos function is called to load 
         /// conffloatiguration from the parameter server.
@@ -222,6 +231,9 @@ namespace gazebo
         /// \brief Node used for ROS transport.
         private: std::unique_ptr<ros::NodeHandle> rosNode;
 
+        /// \brief ROS Generalized Coordinates Publisher.
+        private: ros::Publisher genCoordPub;
+
         /// \brief ROS Joint State Subscriber.
         private: ros::Subscriber jointStateSub;
 
@@ -235,10 +247,16 @@ namespace gazebo
         private: ros::Subscriber posSub;
 
         /// \brief ROS callbackque that helps process messages.
-        private: ros::CallbackQueue rosQueue;
+        private: ros::CallbackQueue rosProcessQueue;
 
-        /// \brief Thread running the rosQueue.
-        private: std::thread rosQueueThread;
+        /// \brief ROS callbackque that helps publish messages.
+        private: ros::CallbackQueue rosPublishQueue;
+
+        /// \brief Thread running the rosProcessQueue.
+        private: std::thread rosProcessQueueThread;
+
+        /// \brief Thread running the rosPublishQueue.
+        private: std::thread rosPublishQueueThread;
     };
 
     // Tell Gazebo about this plugin, so that Gazebo can call Load on this plugin.

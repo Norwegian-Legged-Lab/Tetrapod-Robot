@@ -37,9 +37,14 @@ TetrapodPlugin::TetrapodPlugin() {}
 TetrapodPlugin::~TetrapodPlugin() 
 {
     this->rosNode->shutdown();
-    this->rosQueue.clear();
-    this->rosQueue.disable();
-    this->rosQueueThread.join();
+
+    this->rosProcessQueue.clear();
+    this->rosProcessQueue.disable();
+    this->rosProcessQueueThread.join();
+
+    this->rosPublishQueue.clear();
+    this->rosPublishQueue.disable();
+    this->rosPublishQueueThread.join();
 }
 
 // Load Plugin 
@@ -80,6 +85,8 @@ void TetrapodPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
     // Configure initial joint states
     InitJointConfiguration();
 
+    // Initialize ROS Queue Threads
+    InitRosQueueThreads();
 }
 
 // Get base pose
@@ -331,12 +338,33 @@ void TetrapodPlugin::OnPosMsg(const std_msgs::Float64MultiArrayConstPtr &_msg)
 }
 
 // Setup thread to process messages
-void TetrapodPlugin::QueueThread()
+void TetrapodPlugin::ProcessQueueThread()
 {
     static const double timeout = 0.01;
     while (this->rosNode->ok())
     {
-        this->rosQueue.callAvailable(ros::WallDuration(timeout));
+        this->rosProcessQueue.callAvailable(ros::WallDuration(timeout));
+    }
+}
+
+// Setup thread to process messages
+void TetrapodPlugin::PublishQueueThread()
+{
+    ros::Rate loop_rate(10);
+    while (this->rosNode->ok())
+    {
+        Eigen::Matrix<double, 18, 1> q;
+
+        q.block(0,0,5,0) << this->GetBasePose();
+        q.block(6,0,17,0) << this->GetJointPositions();
+
+        std_msgs::Float64MultiArray msg;
+
+        tf::matrixEigenToMsg(q, msg);
+
+        this->genCoordPub.publish(msg);
+
+        loop_rate.sleep();
     }
 }
 
@@ -357,13 +385,23 @@ void TetrapodPlugin::InitRos()
 
     this->rosNode.reset(new ros::NodeHandle("gazebo_client"));
 
+    ros::AdvertiseOptions gen_coord_ao =
+        ros::AdvertiseOptions::create<std_msgs::Float64MultiArray>(
+            "/" + this->model->GetName() + "/gen_coord",
+            1,
+            ros::SubscriberStatusCallback(),
+            ros::SubscriberStatusCallback(),
+            ros::VoidPtr(),
+            &this->rosPublishQueue
+        );
+
     ros::SubscribeOptions joint_state_so = 
         ros::SubscribeOptions::create<sensor_msgs::JointState>(
             "/" + this->model->GetName() + "/joint_state_cmd",
             1,
             boost::bind(&TetrapodPlugin::OnJointStateMsg, this, _1),
             ros::VoidPtr(),
-            &this->rosQueue
+            &this->rosProcessQueue
             );
 
     ros::SubscribeOptions force_so = 
@@ -372,7 +410,7 @@ void TetrapodPlugin::InitRos()
             1,
             boost::bind(&TetrapodPlugin::OnForceMsg, this, _1),
             ros::VoidPtr(),
-            &this->rosQueue
+            &this->rosProcessQueue
             );
 
     ros::SubscribeOptions vel_so = 
@@ -381,7 +419,7 @@ void TetrapodPlugin::InitRos()
             1,
             boost::bind(&TetrapodPlugin::OnVelMsg, this, _1),
             ros::VoidPtr(),
-            &this->rosQueue
+            &this->rosProcessQueue
             );
 
     ros::SubscribeOptions pos_so = 
@@ -390,8 +428,10 @@ void TetrapodPlugin::InitRos()
             1,
             boost::bind(&TetrapodPlugin::OnPosMsg, this, _1),
             ros::VoidPtr(),
-            &this->rosQueue
+            &this->rosProcessQueue
             );
+
+    this->genCoordPub = this->rosNode->advertise(gen_coord_ao);
 
     this->jointStateSub = this->rosNode->subscribe(joint_state_so);
 
@@ -401,8 +441,17 @@ void TetrapodPlugin::InitRos()
 
     this->posSub = this->rosNode->subscribe(pos_so);
 
-    this->rosQueueThread = std::thread(
-        std::bind(&TetrapodPlugin::QueueThread, this)
+}
+
+// Initialize ROS Publish and Process Queue Threads
+void TetrapodPlugin::InitRosQueueThreads()
+{
+    this->rosPublishQueueThread = std::thread(
+        std::bind(&TetrapodPlugin::PublishQueueThread, this)
+    );
+
+    this->rosProcessQueueThread = std::thread(
+        std::bind(&TetrapodPlugin::ProcessQueueThread, this)
     );
 }
 
