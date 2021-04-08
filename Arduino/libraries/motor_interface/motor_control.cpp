@@ -584,9 +584,3 @@ void MotorControl::printState()
     Serial.print("Tor: "); Serial.print(torque); Serial.print("\t");
     Serial.println("");
 }
-
-void delay_microseconds(double microsecond_delay)
-{
-    double timer = micros();
-    while(timer + microsecond_delay > micros());
-}

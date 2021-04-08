@@ -3,6 +3,7 @@
 #include "motor_control.h"
 #include "motor_constants.h"
 #include "Arduino.h"
+#include "utilities.h"
 
 MotorControl* motor_array = new MotorControl[2];
 

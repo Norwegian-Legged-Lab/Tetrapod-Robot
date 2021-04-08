@@ -11,6 +11,7 @@
 #include "teensy_can_ports.h"
 #include "FlexCAN_T4.h"
 #include "Eigen30.h"
+#include "utilities.h"
 
 /// TEMP_START
 #include "teensy_blinker.h"

@@ -7,6 +7,7 @@
 #include "make_can_msg.h"
 #include "FlexCAN_T4.h"
 #include <math.h>
+#include "utilities.h"
 
 class MotorControl
 {
@@ -186,13 +187,14 @@ private:
     /// \return If new << old return 1, if old << new return -1, else return 0
     double innerMotorTurnCompleted(uint16_t _previous_encoder_value, uint16_t _new_encoder_value);
 
+    /// \brief This function ensures that the message is sent to the correct CAN port
     void sendMessage(CAN_message_t _can_message);
 
+    /// \brief This function ensures that the message on the correct CAN port is read
     int readMessage(CAN_message_t &_can_message);
 
+    // TODO Remove
     void errorMessage();
 };
-
-void delay_microseconds(double microsecond_delay);
 
 #endif
