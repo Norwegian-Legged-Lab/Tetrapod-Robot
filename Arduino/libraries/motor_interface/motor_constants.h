@@ -1,9 +1,6 @@
 #ifndef motor_constants_h
 #define motor_constants_h
 
-// Data size in bytes of the CAN messages used
-#define CAN_DATA_SIZE 8
-
 // Gear ratio between the inner DC motor and output shaft
 const double GEAR_REDUCTION = 6.0;
 
@@ -25,7 +22,7 @@ const double MAX_TORQUE = 27.2;
 // The address of a motor with ID = n is given by: address of motor n = MOTOR_ADDRESS_OFFSET + n
 #define MOTOR_ADDRESS_OFFSET 0x140
 
-// TODO - Add description
+// The initial multi turn angle is either in the interval [0, 60] or >> 60
 const double MULTI_TURN_THRESHOLD = 60.0; // 
 
 // A list of the different motor command ids defined in the motor
