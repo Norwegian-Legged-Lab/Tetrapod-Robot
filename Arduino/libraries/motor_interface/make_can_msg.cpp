@@ -1,5 +1,5 @@
 #include "make_can_msg.h"
-
+ 
 void make_can_msg::readPIDParameters(unsigned char* _can_message)
 {
     emptyCanMessage(_can_message);

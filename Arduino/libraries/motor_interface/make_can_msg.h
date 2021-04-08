@@ -4,7 +4,7 @@
 #include "Arduino.h"
 #include "motor_constants.h"
 #include "utilities.h"
-
+ 
 /// \brief The functions within this namespace converts the incomming 8-byte arrays to 
 /// CAN data messages for the RMDX motors. 
 /// Please see the attached pdf, RMD_servo_motor_control_protocol for details
