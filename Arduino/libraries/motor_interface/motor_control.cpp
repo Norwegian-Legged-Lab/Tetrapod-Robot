@@ -85,7 +85,7 @@ void MotorControl::readMotorControlCommandReply(unsigned char* _can_message)
 
 bool MotorControl::readMultiTurnAngle()
 {
-    MOTOR_CAN_MESSAGE_GENERATOR::readMultiTurnAngle(can_message.buf);
+    make_can_msg::readMultiTurnAngle(can_message.buf);
     
     sendMessage(can_message);
 
@@ -133,7 +133,7 @@ bool MotorControl::readMultiTurnAngle()
 bool MotorControl::readCurrentPosition()
 {
     // Create a CAN message requesting the current encoder position
-    MOTOR_CAN_MESSAGE_GENERATOR::readEncoderPosition(can_message.buf);
+    make_can_msg::readEncoderPosition(can_message.buf);
 
     // Send the CAN message
     this->sendMessage(can_message);
@@ -176,7 +176,7 @@ bool MotorControl::readCurrentPosition()
 
 bool MotorControl::readCompleteEncoderPosition()
 {
-    MOTOR_CAN_MESSAGE_GENERATOR::readEncoderPosition(can_message.buf);
+    make_can_msg::readEncoderPosition(can_message.buf);
 
     sendMessage(can_message);
 
@@ -228,7 +228,7 @@ double MotorControl::innerMotorTurnCompleted(uint16_t _previous_encoder_value, u
 
 bool MotorControl::readMotorStatus()
 {
-    MOTOR_CAN_MESSAGE_GENERATOR::readMotorStatus2(can_message.buf);
+    make_can_msg::readMotorStatus2(can_message.buf);
 
     sendMessage(can_message);
 
@@ -258,7 +258,7 @@ bool MotorControl::readMotorStatus()
 
 void MotorControl::requestMotorStatus()
 {
-    MOTOR_CAN_MESSAGE_GENERATOR::readMotorStatus2(can_message.buf);
+    make_can_msg::readMotorStatus2(can_message.buf);
 
     sendMessage(can_message);
 }
@@ -273,7 +273,7 @@ void MotorControl::setPositionReference(double _angle)
 
 
     // Create a position control can message
-    MOTOR_CAN_MESSAGE_GENERATOR::positionControl1(can_message.buf, inner_motor_reference_angle);
+    make_can_msg::positionControl1(can_message.buf, inner_motor_reference_angle);
 
     // Send the CAN message
     sendMessage(can_message);
@@ -287,7 +287,7 @@ void MotorControl::setSpeedReference(double _speed)
     int32_t speed_001dps = (int)round(GEAR_REDUCTION*_speed*100.0*180.0/M_PI);
 
     // Create a CAN message for motor speed control
-    MOTOR_CAN_MESSAGE_GENERATOR::speedControl(can_message.buf, speed_001dps);
+    make_can_msg::speedControl(can_message.buf, speed_001dps);
 
     // Send CAN message
     sendMessage(can_message);
@@ -311,7 +311,7 @@ void MotorControl::setTorqueReference(double _torque)
     int16_t current_torque = (int) round(max_torque_current*_torque/max_torque);
 
     // Create a CAN message for current torque control
-    MOTOR_CAN_MESSAGE_GENERATOR::torqueCurrentControl(can_message.buf, current_torque);
+    make_can_msg::torqueCurrentControl(can_message.buf, current_torque);
 
     // Send CAN message
     sendMessage(can_message); 
@@ -332,7 +332,7 @@ void MotorControl::setTorqueCurrent(int _torque_current)
 
     Serial.print(_torque_current); Serial.print("\t");
 
-    MOTOR_CAN_MESSAGE_GENERATOR::torqueCurrentControl(can_message.buf, _torque_current);
+    make_can_msg::torqueCurrentControl(can_message.buf, _torque_current);
 
     sendMessage(can_message);
 }
@@ -348,7 +348,7 @@ bool MotorControl::writePIDParametersToRAM
 )
 {
     // Create a CAN message for writing PID parameters to RAM
-    MOTOR_CAN_MESSAGE_GENERATOR::writePIDParametersToRAM(can_message.buf, 
+    make_can_msg::writePIDParametersToRAM(can_message.buf, 
         _kp_pos,
         _ki_pos,
         _kp_speed,
@@ -397,7 +397,7 @@ bool MotorControl::writePIDParametersToRAM
 bool MotorControl::stopMotor()
 {
     // Create a CAN Message instructing the motor to stop
-    MOTOR_CAN_MESSAGE_GENERATOR::motorStop(can_message.buf);
+    make_can_msg::motorStop(can_message.buf);
 
     // Send CAN message
     sendMessage(can_message);
@@ -431,7 +431,7 @@ bool MotorControl::stopMotor()
 bool MotorControl::turnOffMotor()
 {
     // Create a CAN message instructing the motor to turn off
-    MOTOR_CAN_MESSAGE_GENERATOR::motorOff(can_message.buf);
+    make_can_msg::motorOff(can_message.buf);
 
     // Send CAN message
     sendMessage(can_message);
@@ -464,7 +464,7 @@ bool MotorControl::turnOffMotor()
 bool MotorControl::readPIDParameters()
 {
     // Create a CAN message for requesting the motor PID parameters
-    MOTOR_CAN_MESSAGE_GENERATOR::readPIDParameters(can_message.buf);
+    make_can_msg::readPIDParameters(can_message.buf);
 
     // Send CAN message
     sendMessage(can_message);

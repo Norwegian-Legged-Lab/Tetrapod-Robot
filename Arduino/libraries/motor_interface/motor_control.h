@@ -4,7 +4,7 @@
 #include <Eigen30.h>
 #include "motor_constants.h"
 #include "teensy_can_ports.h"
-#include "motor_can_message_generator.h"
+#include "make_can_msg.h"
 #include "FlexCAN_T4.h"
 #include <math.h>
 
