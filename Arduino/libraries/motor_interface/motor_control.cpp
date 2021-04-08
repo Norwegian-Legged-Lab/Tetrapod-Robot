@@ -18,7 +18,7 @@ MotorControl::MotorControl(uint8_t _id, uint8_t _can_port_id, int _number_of_inn
 
     // To check if the inner motor has completed a turn we check for a large jump
     // in the encoder value. To prevent an acceidental jump initially we start at
-    // the middle value, minimizing this from happening
+    // the middle value, preventing this from happening. 
     previous_encoder_value = (max_encoder_value + 1)/2;
 
     // This value is somewhat arbitrary. It should be scaled relative to the 
@@ -26,6 +26,7 @@ MotorControl::MotorControl(uint8_t _id, uint8_t _can_port_id, int _number_of_inn
     encoder_turn_threshold = (max_encoder_value + 1)/2;
 
     initial_number_of_inner_motor_rotations = _number_of_inner_motor_rotations;
+
     number_of_inner_motor_rotations = _number_of_inner_motor_rotations;
 
     // Updates the position measurement
@@ -34,6 +35,7 @@ MotorControl::MotorControl(uint8_t _id, uint8_t _can_port_id, int _number_of_inn
         delay_microseconds(1000000.0);
     } 
 
+    // The multi turn angle is necessary to decide whether or not an offset should be added to the position setpoint function
     while(!readMultiTurnAngle()){delay_microseconds(1000000.0);}
     if(abs(multi_turn_angle) < MULTI_TURN_THRESHOLD)
     {
@@ -43,26 +45,63 @@ MotorControl::MotorControl(uint8_t _id, uint8_t _can_port_id, int _number_of_inn
     // Initialize at zero speed
     speed = 0.0;
 
-    // Might need to do something more here later
     // Initialize at zero torque. 
     torque = 0.0;
+}
 
+bool MotorControl::readPIDParameters()
+{
+    // Create a CAN message for requesting the motor PID parameters
+    make_can_msg::readPIDParameters(can_message.buf);
 
-    // The CAN port should be an input argument and be set here
+    // Send CAN message
+    sendMessage(can_message);
+
+    // Wait 0.010 seconds for a reply from the motor
+    delay_microseconds(10000.0);
+
+    // Check if we received a reply
+    if(readMessage(received_can_message))
+    {
+        if((received_can_message.id == address) && (received_can_message.buf[0] == MOTOR_COMMAND_READ_PID_PARAMETERS))
+        {
+            // Store the PI parameters in the class
+            kp_pos = received_can_message.buf[2];
+            ki_pos = received_can_message.buf[3];
+            kp_speed = received_can_message.buf[4];
+            ki_speed = received_can_message.buf[5];
+            kp_torque = received_can_message.buf[6];
+            ki_torque = received_can_message.buf[7];
+
+            // Report that we successfully managed to read the PID parameters
+            return true;
+        }
+        else
+        {
+            // Report that the reply we received was incorrect
+            errorMessage();
+            Serial.println("Failed to read PID parameters. Wrong reply received.");
+            return false; 
+        }
+    }
+    else
+    {
+        // Report that we failed to read the PID parameters
+        errorMessage();
+        Serial.println("Failed to read PID parameters. No reply received.");
+        return false;
+    }
 }
 
 void MotorControl::readMotorControlCommandReply(unsigned char* _can_message)
 {
     // Encoder position. 16 bits represents one inner motor rotation
     uint16_t new_encoder_value = _can_message[7]*256 + _can_message[6];
-    //Serial.print("Encoder new:\t"); Serial.print(new_encoder_value); Serial.print("\t");
-    //Serial.print("Encoder prev:\t"); Serial.print(previous_encoder_value); Serial.print("\t");
+
     // Update the number of completed turns for the inner motor 
     number_of_inner_motor_rotations += innerMotorTurnCompleted(previous_encoder_value, new_encoder_value);
-    Serial.print("IRs:\t"); Serial.print(number_of_inner_motor_rotations); Serial.print("\t");
 
-    //Serial.print("Encoder new:\t"); Serial.print(new_encoder_value); Serial.print("\t");
-    //Serial.print("Encoder prev:\t"); Serial.print(previous_encoder_value); Serial.print("\t");
+    // Update the latest received encoder value as the innerMotorTurnCompleted function has already been executed
     previous_encoder_value = new_encoder_value;
 
     // Update the shaft position in radians
@@ -71,15 +110,13 @@ void MotorControl::readMotorControlCommandReply(unsigned char* _can_message)
     // Get the speed of the inner motor in degrees per second
     int16_t speed_motor_dps = _can_message[5]*256 + _can_message[4];
 
-    // Convert the motor speed to shaft speed in radians per second. NB! Notice the minus sign
+    // Convert the motor speed to shaft speed in radians per second
     speed = -(double)(speed_motor_dps)*M_PI/(180.0*GEAR_REDUCTION);
 
     // Get the torque current 
     int16_t torque_current = _can_message[3]*256 + _can_message[2];
-    
-    //Serial.print(torque_current); Serial.print("\t");
 
-    // Convert the torque current into actual current. NB! Notice the minus sign
+    // Convert the torque current into torque through a linear scaling
     torque = -max_torque*torque_current/max_torque_current;
 }
 
@@ -467,48 +504,7 @@ bool MotorControl::turnOffMotor()
     }
 }
 
-bool MotorControl::readPIDParameters()
-{
-    // Create a CAN message for requesting the motor PID parameters
-    make_can_msg::readPIDParameters(can_message.buf);
 
-    // Send CAN message
-    sendMessage(can_message);
-
-    // Wait 0.10 seconds for a reply from the motor
-    delay_microseconds(100000.0);
-
-    // Check if we received a reply
-    if(readMessage(received_can_message))
-    {
-        if((received_can_message.id == address) && (received_can_message.buf[0] == MOTOR_COMMAND_READ_PID_PARAMETERS))
-        {
-            // Store the PID parameters in the class
-            kp_pos = received_can_message.buf[2];
-            ki_pos = received_can_message.buf[3];
-            kp_speed = received_can_message.buf[4];
-            ki_speed = received_can_message.buf[5];
-            kp_torque = received_can_message.buf[6];
-            ki_torque = received_can_message.buf[7];
-
-            // Report that we successfully managed to read the PID parameters
-            return true;
-        }
-        else
-        {
-            errorMessage();
-            Serial.println("Failed to read PID parameters. Wrong reply received.");
-            return false; 
-        }
-    }
-    else
-    {
-        // Report that we failed to read the PID parameters
-        errorMessage();
-        Serial.println("Failed to read PID parameters. No reply received.");
-        return false;
-    }
-}
 
 void MotorControl::sendMessage(CAN_message_t _can_message)
 {
