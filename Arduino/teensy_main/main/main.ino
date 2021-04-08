@@ -11,6 +11,7 @@
 #include "teensy_can_ports.h"
 #include "FlexCAN_T4.h"
 #include "utilities.h"
+#include "ros_node_handle.h"
 
 /// TEMP_START
 #include "teensy_blinker.h"
@@ -29,9 +30,6 @@ float torque_array[NUMBER_OF_MOTORS];
 
 // Create a vector of MotorControl elements, one for each motor
 MotorControl* motors = new MotorControl[NUMBER_OF_MOTORS];
-
-// Create a ROS node handle
-ros::NodeHandle nh;
 
 // Set the name of the Teensy board
 char teensy_frame[] = "/teensy_front_legs";
@@ -71,7 +69,7 @@ void controlCommandCallback(const sensor_msgs::JointState& joint_state_msg)
     {
       // Report error. No valid control command for joint i
       //Serial.println("ERROR: Invalid joint state message. Index: "); Serial.println(i);
-      nh.loginfo("ERROR: Invalid joint state message. Index: ");
+      ROS_NODE_HANDLE.loginfo("ERROR: Invalid joint state message. Index: ");
 
     }
   } 
@@ -99,7 +97,7 @@ void setup()
   joint_state_reply.effort_length = NUMBER_OF_MOTORS;
   
   // Initialize the ROS node
-  nh.initNode();
+  ROS_NODE_HANDLE.initNode();
 
   // Setup subcriber for initializing the motors and wait for initial number of rotations
   
@@ -118,13 +116,13 @@ void setup()
     }
   }
   
-  nh.advertise(motor_state_publisher);
-  nh.subscribe(subscriber_control_commands);
+  ROS_NODE_HANDLE.advertise(motor_state_publisher);
+  ROS_NODE_HANDLE.subscribe(subscriber_control_commands);
 }
 
 void loop() 
 {
-  nh.spinOnce();
+  ROS_NODE_HANDLE.spinOnce();
   
   // Empty the CAN buffers
   while(can_port_1.read(can_message));
@@ -154,7 +152,7 @@ void loop()
     {
       // Report error. No motor with the corresponding ID
       //Serial.println("ERROR: No motor ID corresponds to the incomming message");
-      nh.loginfo("ERROR: No motor ID corresponds to the incomming message");
+      ROS_NODE_HANDLE.loginfo("ERROR: No motor ID corresponds to the incomming message");
     }
   }
  
@@ -176,7 +174,7 @@ void loop()
   joint_state_reply.header.frame_id = teensy_frame;
   
   // Add time stamp to the message
-  joint_state_reply.header.stamp = nh.now();
+  joint_state_reply.header.stamp = ROS_NODE_HANDLE.now();
   
   motor_state_publisher.publish(&joint_state_reply);
 }
