@@ -195,11 +195,17 @@ bool MotorControl::readCompleteEncoderPosition()
             Serial.print("ENC OFF:\t"); Serial.print(encoder_offset); Serial.print("\t");
             Serial.println("");
         }
+        else
+        {
+            errorMessage();
+            Serial.println("getCompleteEncoderPosition - wrong reply received.");
+            return false;        
+        }
     }
     else
     {
         errorMessage();
-        Serial.println("getCompleteEncoderPosition - no reply.");
+        Serial.println("getCompleteEncoderPosition - no reply received.");
         return false;
     }
 }

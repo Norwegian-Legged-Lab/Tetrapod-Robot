@@ -15,42 +15,25 @@ public:
     /// \brief Default constructor needed for initializing array
     MotorControl(){}
 
-    /// \brief Class constructor for a MotorControl class.
+    /// \brief Constructor for a MotorControl object.
     /// Motor ID and CAN port are set
     /// \param[in] _id ID of the motor [1 - 32]
     MotorControl(uint8_t _id, uint8_t _can_port_id, int _number_of_inner_motor_rotations);
 
-    /// \brief Set the desired multiturn motor angle.
-    /// \param[in] _angle Setpoint motor angle in radians
-    void setPositionReference(double _angle);
+    /// \brief Read the motor PI parameters and update the private PI values.
+    /// \return If the PI parameters were successfully read, return true.
+    /// Otherwise return false.
+    bool readPIDParameters();
 
-    //void setPositionReferenceReply();
-    bool readCompleteEncoderPosition();
-
-    bool readMultiTurnAngle();
-
-    /// \brief Set the desired motor speed.
-    /// \param[in] _speed Setpoint motor speed in radians/second
-    void setSpeedReference(double _speed);
-
-    /// \brief Set the desired motor torque.
-    /// \param[in] _torque Setpoint motor torque in Nm
-    void setTorqueReference(double _torque);
-
-    void setTorqueCurrent(int _torque_current);
-
-    /// \brief Setting position, speed and torque all results in
-    /// the same reply being sent from the motor.
-    /// The states are stored in the private variables
-    void readMotorControlCommandReply(unsigned char* _can_message);
-
-    bool readMotorStatus();
-
-    void requestMotorStatus();
-
-    /// \brief Set the motor PID parameters and store them temporary in RAM
-    /// \param[in] _PIDParameters Motor PID parameters 
-    /// (kp_pos, ki_pos, kp_speed, ki_speed, kp_torque, ki_torque)   
+    /// \brief Set the motor PI parameters and store them temporary in RAM
+    /// \param[in] _kp_pos Desired proportional position gain
+    /// \param[in] _ki_pos Desired integral position gain
+    /// \param[in] _kp_speed Desired proportional speed gain
+    /// \param[in] _ki_speed Desired integral speed gain
+    /// \param[in] _kp_torque Desired proportional torque gain
+    /// \param[in] _ki_torque Desired integral torque gain  
+    /// \return If the PI parameters were successfully set true is returned.
+    /// Otherwise false is returned. 
     bool writePIDParametersToRAM
     (
         double _kp_pos,
@@ -61,39 +44,92 @@ public:
         double _ki_torque
     ); 
 
-    /// \brief Stop the motor
-    /// The motor operating state and previously received control commands are not cleared
-    /// If a new control command is received the motor will start moving again.
+    /// \brief Set the desired multi turn motor angle.
+    /// \param[in] _angle Setpoint motor angle in radians
+    void setPositionReference(double _angle);
+
+    /// \brief Set the desired motor speed.
+    /// \param[in] _speed Setpoint motor speed in radians/second
+    void setSpeedReference(double _speed);
+
+    /// \brief Set the desired motor torque.
+    /// \param[in] _torque Setpoint motor torque in Nm
+    void setTorqueReference(double _torque);
+
+    /// \brief Set the desired motor torque current. Scales linearly with torque.
+    /// \param[in] _torque_current Setpoint torque current
+    void setTorqueCurrent(int _torque_current);
+
+    /// \brief The state variables position, velocity, and torque are updated based on
+    /// the latest information from the motor.
+    /// \param[in] _can_message An 8 dimensional array containing the data of a CAN message
+    void readMotorControlCommandReply(unsigned char* _can_message);
+
+    /// \brief The motor stops exerting a control output.
+    /// The motor will remain idle until a new control command or motor resume command is received.
+    /// \return If the motor is successfully stopped true is returned, otherwise false.
     bool stopMotor();
 
-    /// \brief Stop the motor
-    /// The motor operating state and previously received control commands are cleared
+    /// \brief The motor stops exerting a control output.
+    /// The motor's operating state and previously received control commands are cleared.
     /// If a new control command is received the motor will start moving again.
+    /// \return If the motor is successfully turned off true is returned, otherwise false.
     bool turnOffMotor();
 
-    /// \brief Read the motor PID parameters
-    /// The private PID parameters are updated
-    /// \return PID parameters as 6 dimensional vector
-    /// (kp_pos, ki_pos, kp_speed, ki_speed, kp_torque, ki_torque)
-    bool readPIDParameters();
+    /// \brief All the encoder data from the motor is read and printed.
+    /// This includes the encoder value, raw encoder value, and encoder offset.
+    /// This is mainly for debugging.
+    /// \return If the encoder data was successfully read true is returned, otherwise false.
+    bool readCompleteEncoderPosition();
 
-    /// \brief Read the current motor position and update position
+    /// \brief The multi turn angle of the motor updated.
+    /// \return If the multi turn angle was successfully updated return true, otherwise false.
+    bool readMultiTurnAngle();
+
+    /// \brief A request is sent to the motor asking it to send back its state. The private state varibles
+    /// position, velocity, and torque are then updated.
+    /// \return If the private state variables were successfully updated return true, otherwise return false.
+    bool readMotorStatus();
+
+    /// \brief A request is sent to the motor asking it to send back its state, position, velocity, and torque.
+    void requestMotorStatus();
+
+    /// \brief Read the current motor position and update the position state variable.
     /// \return True if the position was successfully read
     bool readCurrentPosition();
 
     // TODO change to camelcase - also in related functions
+    /// \brief Return the ID of the MotorClass object.
+    /// \return The ID of the MotorClass object.
     uint8_t get_id(){return id;}
 
+    /// \brief Return the position of the MotorClass object.
+    /// \return The position of the MotorClass object.
     double getPosition(){return position;}
 
+    /// \brief Return the velocity of the MotorClass object.
+    /// \return The velocity of the MotorClass object.
     double getVelocity(){return speed;}
 
+    /// \brief Return the torque of the MotorClass object.
+    /// \return The torque of the MotorClass object.
     double getTorque(){return torque;}
 
+    /// \brief Return the latest received encoder value from the motor
+    /// \return The latest received encoder value from the motor
     double get_encoder_value(){return previous_encoder_value;}
 
+    /// \brief Return the latest received multi turn angle from the motor
+    /// \return The latest received received multi turn angle from the motor
     double get_multi_turn_angle(){return multi_turn_angle;}
 
+    /// \brief The input parameters are updated to match the PI parameters of the motor
+    /// \param[in] _kp_pos Proportional position gain
+    /// \param[in] _ki_pos Integral position gain
+    /// \param[in] _kp_speed Proportional speed gain
+    /// \param[in] _ki_speed Integral speed gain
+    /// \param[in] _kp_torque Proportional torque gain
+    /// \param[in] _ki_torque Integral torque gain  
     void getPIDParameters(
         double &_kp_pos,
         double &_ki_pos,
@@ -102,11 +138,14 @@ public:
         double &_kp_torque,
         double &_ki_torque);  
 
+    /// \brief The function prints the PI parameters of the motor
     void printPIDParameters();
 
+    /// \brief The ID, encoder value, multi turn angle, position, speed and torque 
+    /// of the motor are printed
     void printState();
 private:
-    /// \brief Motor ID set through Serial configurator [1 - 32]
+    /// \brief Motor ID set through the Serial configurator [1 - 32]
     uint8_t id;
     
     /// \brief Motor address = ID + 0x140. Declared for convenience
@@ -132,9 +171,10 @@ private:
     double number_of_inner_motor_rotations;
 
     /// \brief Keep track of previous encoder position.
-    /// This way you can detect turns
+    /// This way you can detect turns. See innerMotorTurnCompleted().
     uint16_t previous_encoder_value;
 
+    /// \brief This parameter is used to decide the setpoint position offset.
     double multi_turn_angle;
 
     /// \brief If the motor is initialized in certain positions the 
