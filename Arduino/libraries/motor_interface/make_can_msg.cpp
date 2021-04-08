@@ -1,24 +1,5 @@
 #include "make_can_msg.h"
 
-void printCANMessageData(unsigned char* _can_message)
-{
-    for(int i = 0; i < 8; i++)
-    {
-        Serial.print("0x");
-        Serial.print(_can_message[i]);
-        Serial.print("\t");
-    }
-    Serial.println("");
-}
-
-void emptyCanMessage(unsigned char* _can_message)
-{
-    for(int i = 0; i < CAN_DATA_SIZE; i++)
-    {
-        _can_message[i] = 0;
-    }
-}
-
 void make_can_msg::readPIDParameters(unsigned char* _can_message)
 {
     emptyCanMessage(_can_message);

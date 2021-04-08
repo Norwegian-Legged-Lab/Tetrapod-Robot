@@ -3,7 +3,11 @@
 
 #include "Arduino.h"
 #include "motor_constants.h"
+#include "utilities.h"
 
+/// \brief The functions within this namespace converts the incomming 8-byte arrays to 
+/// CAN data messages for the RMDX motors. 
+/// Please see the attached pdf, RMD_servo_motor_control_protocol for details
 namespace make_can_msg
 {
     void readPIDParameters(unsigned char* _can_message);
@@ -64,9 +68,5 @@ namespace make_can_msg
 
     void positionControl4(unsigned char* _can_message, uint16_t _single_turn_angle, uint8_t _spin_direction, uint16_t max_speed);
 }
-
-void emptyCanMessage(unsigned char* _can_message);
-
-void printCANMessageData(unsigned char* _can_message);
 
 #endif
