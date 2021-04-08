@@ -1,7 +1,6 @@
 #ifndef motor_control_h
 #define motor_control_h
 
-#include <Eigen30.h>
 #include "motor_constants.h"
 #include "teensy_can_ports.h"
 #include "make_can_msg.h"
