@@ -143,6 +143,8 @@ public:
     void printState();
 
     int64_t GOD_ANGLE;
+
+    double raw_position_reference;
 private:
     /// \brief Motor ID set through the Serial configurator [1 - 32]
     uint8_t id;
