@@ -76,12 +76,6 @@ public:
     /// \return If the motor is successfully turned off true is returned, otherwise false.
     bool turnOffMotor();
 
-    /// \brief All the encoder data from the motor is read and printed.
-    /// This includes the encoder value, raw encoder value, and encoder offset.
-    /// This is mainly for debugging.
-    /// \return If the encoder data was successfully read true is returned, otherwise false.
-    bool readCompleteEncoderPosition();
-
     /// \brief The multi turn angle of the motor updated.
     /// \return If the multi turn angle was successfully updated return true, otherwise false.
     bool readMultiTurnAngle();

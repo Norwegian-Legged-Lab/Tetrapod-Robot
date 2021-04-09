@@ -390,65 +390,6 @@ bool MotorControl::turnOffMotor()
     }
 }
 
-// TODO Delete this. Not needed anymore
-bool MotorControl::readCompleteEncoderPosition()
-{
-    make_can_msg::readEncoderPosition(can_message.buf);
-
-    sendMessage(can_message);
-
-    delay_microseconds(10000.0);
-
-    if(readMessage(received_can_message))
-    {
-        if((received_can_message.id == address) && (received_can_message.buf[0]) == MOTOR_COMMAND_READ_ENCODER_POSITION)
-        {
-            double encoder_with_offset = received_can_message.buf[3]*256 + received_can_message.buf[0]; 
-            double encoder_raw = received_can_message.buf[5]*256 + received_can_message.buf[4];
-            double encoder_offset = received_can_message.buf[7]*256 + received_can_message.buf[6];
-
-            Serial.print("ENC W/O:\t"); Serial.print(encoder_with_offset); Serial.print("\t");
-            Serial.print("ENC RAW:\t"); Serial.print(encoder_raw); Serial.print("\t");
-            Serial.print("ENC OFF:\t"); Serial.print(encoder_offset); Serial.print("\t");
-            Serial.println("");
-        }
-        else
-        {
-            #if ROS_PRINT
-                char id_str[3];
-                char port_str[3];
-                dtostrf(id, 1, 0, id_str);
-                dtostrf(can_port_id, 1, 0, port_str);
-                char warning_message[96];
-                sprintf(warning_message, "Motor %s - CAN %s: In function readCompleteEncoderPosition an incorrect reply was received", id_str, port_str);
-                ROS_NODE_HANDLE.logwarn(warning_message);
-            #else if SERIAL_PRINT
-                errorMessage();
-                Serial.println("getCompleteEncoderPosition - wrong reply received.");
-            #endif
-
-            return false;        
-        }
-    }
-    else
-    {
-        #if ROS_PRINT
-            char id_str[3];
-            char port_str[3];
-            dtostrf(id, 1, 0, id_str);
-            dtostrf(can_port_id, 1, 0, port_str);
-            char warning_message[86];
-            sprintf(warning_message, "Motor %s - CAN %s: In function readCompleteEncoderPosition no reply was received", id_str, port_str);
-            ROS_NODE_HANDLE.logwarn(warning_message);
-        #else if SERIAL_PRINT
-            errorMessage();
-            Serial.println("getCompleteEncoderPosition - no reply received.");
-        #endif
-        
-        return false;
-    }
-}
-
 bool MotorControl::readMultiTurnAngle()
 {
     // Create a CAN message which requests the motor to send back its multi turn angle
