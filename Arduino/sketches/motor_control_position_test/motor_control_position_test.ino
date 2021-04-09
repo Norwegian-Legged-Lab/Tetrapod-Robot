@@ -9,7 +9,7 @@ int MOTOR_ID = 1;
 MotorControl* motor_array = new MotorControl[1];
 double pos = 0.0;
 CAN_message_t can_message;
-int INITIAL_INNER_MOTOR_ROTATIONS = -1;
+int INITIAL_INNER_MOTOR_ROTATIONS = 0;
 uint8_t CAN_PORT = 1;
 
 void setup() {
@@ -25,7 +25,7 @@ void setup() {
 
   // Initialize the two motors
   motor_array[0] = MotorControl(MOTOR_ID, CAN_PORT, INITIAL_INNER_MOTOR_ROTATIONS);
-  motor_array[0].writePIDParametersToRAM(10, 1, 50, 5, 50, 5);
+  //motor_array[0].writePIDParametersToRAM(10, 1, 50, 5, 50, 5);
 
   while(!motor_array[0].readMultiTurnAngle()){delay_microseconds(1000000.0);};
 
@@ -82,8 +82,9 @@ void loop() {
     }
   }
   
-  //motor_array[0].readMotorStatus();
-  //motor_array[0].readMultiTurnAngle();
+  motor_array[0].readMotorStatus();
+  motor_array[0].readMultiTurnAngle();
+  Serial.print("Goal pos:\t"); Serial.print(pos); Serial.print("\t");
   motor_array[0].printState(); 
 
   //Serial.println("");

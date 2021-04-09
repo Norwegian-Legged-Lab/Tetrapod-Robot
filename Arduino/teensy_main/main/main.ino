@@ -164,6 +164,9 @@ void loop()
     velocity_array[i] = motors[i].getVelocity();
     torque_array[i] = motors[i].getTorque();
   }
+
+  motors[0].readMultiTurnAngle();
+  motors[0].printState();
   
   joint_state_reply.name = joint_names;
   joint_state_reply.position = position_array;

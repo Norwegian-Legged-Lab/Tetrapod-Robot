@@ -1,7 +1,7 @@
 #ifndef motor_constants_h
 #define motor_constants_h
 
-#define ROS_PRINT false
+#define ROS_PRINT true
 #define SERIAL_PRINT false
 
 // Gear ratio between the inner DC motor and output shaft

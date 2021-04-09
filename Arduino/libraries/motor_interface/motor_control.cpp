@@ -29,10 +29,18 @@ MotorControl::MotorControl(uint8_t _id, uint8_t _can_port_id, int _number_of_inn
 
     number_of_inner_motor_rotations = _number_of_inner_motor_rotations;
 
+    // Set the PID parameters in the motor
+    /*
+    while(!writePIDParametersToRAM(10, 1, 50, 5, 50, 5))
+    {
+        delay_microseconds(1000000.0);
+    }
+    */
+
     // Get the initial states from the motor
     while(!readMotorStatus())
     {
-        ROS_NODE_HANDLE.logwarn("cannot readMotorStatus()");
+        //ROS_NODE_HANDLE.logwarn("cannot readMotorStatus()");
         delay_microseconds(1000000.0);
     } 
 
@@ -83,7 +91,7 @@ bool MotorControl::readPIDParameters()
                 char port_str[3];
                 dtostrf(id, 1, 0, id_str);
                 dtostrf(can_port_id, 1, 0, port_str);
-                char warning_message[86];
+                char warning_message[90];
                 sprintf(warning_message, "Motor %s - CAN %s: In the function readPIDParameters an incorrect reply was received", id_str, port_str);
                 ROS_NODE_HANDLE.logwarn(warning_message);
             #else if SERIAL_PRINT
@@ -102,7 +110,7 @@ bool MotorControl::readPIDParameters()
             char port_str[3];
             dtostrf(id, 1, 0, id_str);
             dtostrf(can_port_id, 1, 0, port_str);
-            char warning_message[86];
+            char warning_message[80];
             sprintf(warning_message, "Motor %s - CAN %s: In the function readPIDParameters no reply was received", id_str, port_str);
             ROS_NODE_HANDLE.logwarn(warning_message);
         #else if SERIAL_PRINT
@@ -134,6 +142,8 @@ bool MotorControl::writePIDParametersToRAM
         _ki_torque
     );
 
+    //clearCANBuffer();
+
     // Send CAN message
     sendMessage(can_message);
 
@@ -163,7 +173,7 @@ bool MotorControl::writePIDParametersToRAM
                 char port_str[3];
                 dtostrf(id, 1, 0, id_str);
                 dtostrf(can_port_id, 1, 0, port_str);
-                char warning_message[86];
+                char warning_message[96];
                 sprintf(warning_message, "Motor %s - CAN %s: In the function writePIDParametersToRAM an incorrect reply was received", id_str, port_str);
                 ROS_NODE_HANDLE.logwarn(warning_message);
             #else if SERIAL_PRINT
@@ -298,7 +308,7 @@ bool MotorControl::stopMotor()
                 char port_str[3];
                 dtostrf(id, 1, 0, id_str);
                 dtostrf(can_port_id, 1, 0, port_str);
-                char warning_message[86];
+                char warning_message[82];
                 sprintf(warning_message, "Motor %s - CAN %s: In the function stopMotor an incorrect reply was received", id_str, port_str);
                 ROS_NODE_HANDLE.logwarn(warning_message);
             #else if SERIAL_PRINT
@@ -317,7 +327,7 @@ bool MotorControl::stopMotor()
             char port_str[3];
             dtostrf(id, 1, 0, id_str);
             dtostrf(can_port_id, 1, 0, port_str);
-            char warning_message[86];
+            char warning_message[75];
             sprintf(warning_message, "Motor %s - CAN %s: In the function stopMotor an no reply was received", id_str, port_str);
             ROS_NODE_HANDLE.logwarn(warning_message);
         #else if SERIAL_PRINT
@@ -354,7 +364,7 @@ bool MotorControl::turnOffMotor()
                 char port_str[3];
                 dtostrf(id, 1, 0, id_str);
                 dtostrf(can_port_id, 1, 0, port_str);
-                char warning_message[86];
+                char warning_message[85];
                 sprintf(warning_message, "Motor %s - CAN %s: In the function turnOffMotor an incorrect reply was received", id_str, port_str);
                 ROS_NODE_HANDLE.logwarn(warning_message);
             #else if SERIAL_PRINT
@@ -373,7 +383,7 @@ bool MotorControl::turnOffMotor()
             char port_str[3];
             dtostrf(id, 1, 0, id_str);
             dtostrf(can_port_id, 1, 0, port_str);
-            char warning_message[86];
+            char warning_message[75];
             sprintf(warning_message, "Motor %s - CAN %s: In the function turnOffMotor no reply was received", id_str, port_str);
             ROS_NODE_HANDLE.logwarn(warning_message);
         #else if SERIAL_PRINT
@@ -394,7 +404,7 @@ bool MotorControl::readMultiTurnAngle()
     sendMessage(can_message);
 
     // Wait 0.010 seconds for a reply from the motor
-    delay_microseconds(10000.0);
+    delay_microseconds(1000.0);
 
     if(readMessage(received_can_message))
     {
@@ -423,7 +433,7 @@ bool MotorControl::readMultiTurnAngle()
                 char port_str[3];
                 dtostrf(id, 1, 0, id_str);
                 dtostrf(can_port_id, 1, 0, port_str);
-                char warning_message[86];
+                char warning_message[91];
                 sprintf(warning_message, "Motor %s - CAN %s: In the function readMultiTurnAngle an incorrect reply was received", id_str, port_str);
                 ROS_NODE_HANDLE.logwarn(warning_message);
             #else if SERIAL_PRINT
@@ -442,7 +452,7 @@ bool MotorControl::readMultiTurnAngle()
             char port_str[3];
             dtostrf(id, 1, 0, id_str);
             dtostrf(can_port_id, 1, 0, port_str);
-            char warning_message[86];
+            char warning_message[75];
             sprintf(warning_message, "Motor %s - CAN %s: In the function readMultiTurnAngle no reply was received", id_str, port_str);
             ROS_NODE_HANDLE.logwarn(warning_message);
         #else if SERIAL_PRINT
@@ -477,7 +487,7 @@ bool MotorControl::readMotorStatus()
                 char port_str[3];
                 dtostrf(id, 1, 0, id_str);
                 dtostrf(can_port_id, 1, 0, port_str);
-                char warning_message[86];
+                char warning_message[88];
                 sprintf(warning_message, "Motor %s - CAN %s: In the function readMotorStatus an incorrect reply was received", id_str, port_str);
                 ROS_NODE_HANDLE.logwarn(warning_message);
             #else if SERIAL_PRINT
@@ -496,7 +506,7 @@ bool MotorControl::readMotorStatus()
             char port_str[3];
             dtostrf(id, 1, 0, id_str);
             dtostrf(can_port_id, 1, 0, port_str);
-            char warning_message[86];
+            char warning_message[78];
             sprintf(warning_message, "Motor %s - CAN %s: In the function readMotorStatus no reply was received", id_str, port_str);
             ROS_NODE_HANDLE.logwarn(warning_message);
         #else if SERIAL_PRINT
@@ -515,6 +525,64 @@ void MotorControl::requestMotorStatus()
 
     // Send the CAN message
     sendMessage(can_message);
+}
+
+bool MotorControl::readCompleteEncoderPosition()
+{
+    make_can_msg::readEncoderPosition(can_message.buf);
+
+    sendMessage(can_message);
+
+    delay_microseconds(10000.0);
+
+    if(readMessage(received_can_message))
+    {
+        if((received_can_message.id == address) && (received_can_message.buf[0]) == MOTOR_COMMAND_READ_ENCODER_POSITION)
+        {
+            double encoder_with_offset = received_can_message.buf[3]*256 + received_can_message.buf[0]; 
+            double encoder_raw = received_can_message.buf[5]*256 + received_can_message.buf[4];
+            double encoder_offset = received_can_message.buf[7]*256 + received_can_message.buf[6];
+
+            Serial.print("ENC W/O:\t"); Serial.print(encoder_with_offset); Serial.print("\t");
+            Serial.print("ENC RAW:\t"); Serial.print(encoder_raw); Serial.print("\t");
+            Serial.print("ENC OFF:\t"); Serial.print(encoder_offset); Serial.print("\t");
+            Serial.println("");
+        }
+        else
+        {
+            #if ROS_PRINT
+                char id_str[3];
+                char port_str[3];
+                dtostrf(id, 1, 0, id_str);
+                dtostrf(can_port_id, 1, 0, port_str);
+                char warning_message[96];
+                sprintf(warning_message, "Motor %s - CAN %s: In function readCompleteEncoderPosition an incorrect reply was received", id_str, port_str);
+                ROS_NODE_HANDLE.logwarn(warning_message);
+            #else if SERIAL_PRINT
+                errorMessage();
+                Serial.println("getCompleteEncoderPosition - wrong reply received.");
+            #endif
+
+            return false;        
+        }
+    }
+    else
+    {
+        #if ROS_PRINT
+            char id_str[3];
+            char port_str[3];
+            dtostrf(id, 1, 0, id_str);
+            dtostrf(can_port_id, 1, 0, port_str);
+            char warning_message[86];
+            sprintf(warning_message, "Motor %s - CAN %s: In function readCompleteEncoderPosition no reply was received", id_str, port_str);
+            ROS_NODE_HANDLE.logwarn(warning_message);
+        #else if SERIAL_PRINT
+            errorMessage();
+            Serial.println("getCompleteEncoderPosition - no reply received.");
+        #endif
+
+        return false;
+    }
 }
 
 void MotorControl::getPIDParameters(
@@ -540,7 +608,7 @@ void MotorControl::printPIDParameters()
         char port_str[3];
         dtostrf(id, 1, 0, id_str);
         dtostrf(can_port_id, 1, 0, port_str);
-        char log_message[86];
+        char log_message[40];
         sprintf(log_message, "Motor %s - CAN %s: PID Parameters:", id_str, port_str);
         ROS_NODE_HANDLE.loginfo(log_message);
 
@@ -562,7 +630,6 @@ void MotorControl::printPIDParameters()
         sprintf(log_message, "ki tor: %s", ki_torque);
         ROS_NODE_HANDLE.loginfo(log_message);
     #else if SERIAL_PRINT
-        Serial.println("In the function readMultiTurnAngle no reply was received");
         Serial.print("Motor "); Serial.print(id); Serial.print(" - CAN "); Serial.print(can_port_id); Serial.println(" ");
         Serial.print("kp_pos:\t"); Serial.println(kp_pos);
         Serial.print("ki_pos:\t"); Serial.println(ki_pos);
@@ -581,31 +648,34 @@ void MotorControl::printState()
         char pos_str[6];
         char vel_str[6];
         char tor_str[6];
+        char mta_str[12];
+        char enc_str[9];
+        char imr_str[6];
+
         dtostrf(id, 1, 0, id_str);
         dtostrf(can_port_id, 1, 0, port_str);
         dtostrf(position, 1, 3, pos_str);
         dtostrf(speed, 1, 3, vel_str);
         dtostrf(torque, 1, 3, tor_str);
-        char log_message[86];
-        sprintf(log_message, "Motor %s, CAN %s - Pos: %s [rad], Vel: %s [rad/s], Tor: %s [Nm]", 
-            id_str, port_str, pos_str, vel_str, tor_str);
+        dtostrf(multi_turn_angle, 1, 6, mta_str);
+        dtostrf(previous_encoder_value, 1, 1, enc_str);
+        dtostrf(number_of_inner_motor_rotations, 1, 1, imr_str);
+        char log_message[145];
+        sprintf(log_message, "Motor %s, CAN %s - Pos: %s [rad], Vel: %s [rad/s], Tor: %s [Nm], MTA: %s, Enc: %s, IMR: %s", 
+            id_str, port_str, pos_str, vel_str, tor_str, mta_str, enc_str, imr_str);
         ROS_NODE_HANDLE.loginfo(log_message);
     #else if SERIAL_PRINT
         Serial.print("Motor "); Serial.print(id); Serial.print(", CAN "); Serial.print(can_port_id); Serial.print(" - ");
         Serial.print("Pos: "); Serial.print(position); Serial.print("[rad]\t");
         Serial.print("Vel: "); Serial.print(speed); Serial.print("[rad/s]\t");
         Serial.print("Tor: "); Serial.print(torque); Serial.print("[Nm]\t");
+        Serial.print("MTA: "); Serial.print(multi_turn_angle); Serial.print("\t");
+        Serial.print("Enc: "); Serial.print(previous_encoder_value); Serial.print("\t");
+        Serial.print("IMR: "); Serial.print(number_of_inner_motor_rotations); Serial.print("\t");
         Serial.println("");
     #endif
 
 }
-
-
-
-
-
-
-
 
 void MotorControl::setTorqueCurrent(int _torque_current)
 {
@@ -620,7 +690,7 @@ void MotorControl::setTorqueCurrent(int _torque_current)
         _torque_current = -max_torque_current;
     }
 
-    Serial.print(_torque_current); Serial.print("\t");
+    //Serial.print(_torque_current); Serial.print("\t");
 
     make_can_msg::torqueCurrentControl(can_message.buf, _torque_current);
 
@@ -650,11 +720,17 @@ void MotorControl::sendMessage(CAN_message_t _can_message)
 {
     if(can_port_id == CAN_PORT_1)
     {
-        can_port_1.write(_can_message);
+        #if ROS_PRINT
+            //ROS_NODE_HANDLE.loginfo("Sent message to PORT 1");
+            can_port_1.write(_can_message);
+        #endif
     }
     else if(can_port_id == CAN_PORT_2)
     {
-        can_port_2.write(_can_message);
+        #if ROS_PRINT
+            //ROS_NODE_HANDLE.loginfo("Sent message to PORT 2");
+            can_port_2.write(_can_message);
+        #endif
     }
     else
     {

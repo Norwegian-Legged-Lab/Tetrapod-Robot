@@ -88,6 +88,12 @@ public:
     /// \brief A request is sent to the motor asking it to send back its state, position, velocity, and torque.
     void requestMotorStatus();
 
+    /// \brief All the encoder data from the motor is read and printed.
+    /// This includes the encoder value, raw encoder value, and encoder offset.
+    /// This is mainly for debugging.
+    /// \return If the encoder data was successfully read true is returned, otherwise false.
+    bool readCompleteEncoderPosition();
+
     // TODO change to camelcase - also in related functions
     /// \brief Return the ID of the MotorClass object.
     /// \return The ID of the MotorClass object.
