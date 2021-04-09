@@ -29,9 +29,10 @@ MotorControl::MotorControl(uint8_t _id, uint8_t _can_port_id, int _number_of_inn
 
     number_of_inner_motor_rotations = _number_of_inner_motor_rotations;
 
-    // Updates the position measurement
-    while(!readCurrentPosition())
+    // Get the initial states from the motor
+    while(!readMotorStatus())
     {
+        ROS_NODE_HANDLE.logwarn("cannot readMotorStatus()");
         delay_microseconds(1000000.0);
     } 
 
@@ -45,12 +46,6 @@ MotorControl::MotorControl(uint8_t _id, uint8_t _can_port_id, int _number_of_inn
     {
         target_position_offset = 1;
     }
-
-    // Initialize at zero speed
-    speed = 0.0;
-
-    // Initialize at zero torque. 
-    torque = 0.0;
 }
 
 bool MotorControl::readPIDParameters()
@@ -520,70 +515,6 @@ void MotorControl::requestMotorStatus()
 
     // Send the CAN message
     sendMessage(can_message);
-}
-
-// TODO DELETE
-bool MotorControl::readCurrentPosition()
-{
-    // Create a CAN message requesting the current encoder position
-    make_can_msg::readEncoderPosition(can_message.buf);
-
-    // Send the CAN message
-    this->sendMessage(can_message);
-
-    // Wait 0.010 seconds for reply from motor
-    delay_microseconds(10000.0);
-
-    // Receive the reply from the motor and store it in a CAN message
-    if(readMessage(received_can_message))
-    {
-        if((received_can_message.id == address) && (received_can_message.buf[0] == MOTOR_COMMAND_READ_ENCODER_POSITION))
-        {
-            // encoder position = true encoder measurement - the encoder offset
-            double new_encoder_value = received_can_message.buf[3]*256 + received_can_message.buf[2];
-
-            // Update the number of completed turns for the inner motor 
-            number_of_inner_motor_rotations += innerMotorTurnCompleted(previous_encoder_value, new_encoder_value);
-
-            this->previous_encoder_value = new_encoder_value;
-
-            // Update the shaft position in radians
-            position = (number_of_inner_motor_rotations + 1.0 - (double)new_encoder_value/(double)max_encoder_value)*ROTATION_DISTANCE*M_PI/180.0;
-        
-            return true;
-        }
-        else
-        {
-            #if ROS_PRINT
-                    char id_str[3];
-                    char port_str[3];
-                    dtostrf(id, 1, 0, id_str);
-                    dtostrf(can_port_id, 1, 0, port_str);
-                    char warning_message[83];
-                    sprintf(warning_message, "Motor %s - CAN %s: In function readCurrentPosition a wrong reply was received", id_str, port_str);
-                    ROS_NODE_HANDLE.logwarn(warning_message);
-            #endif
-
-            //errorMessage();
-            //Serial.println("readEncoderPosition - wrong reply received.");
-            return false;
-        }
-    }
-    else
-    {
-        #if ROS_PRINT
-            char id_str[3];
-            char port_str[3];
-            dtostrf(id, 1, 0, id_str);
-            dtostrf(can_port_id, 1, 0, port_str);
-            char warning_message[78];
-            sprintf(warning_message, "Motor %s - CAN %s: In function readCurrentPosition no reply was received", id_str, port_str);
-            ROS_NODE_HANDLE.logwarn(warning_message);
-        #endif
-        //errorMessage();
-        //Serial.println("readEncoderPosition - no reply received.");
-        return false;
-    }
 }
 
 void MotorControl::getPIDParameters(

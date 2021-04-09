@@ -88,10 +88,6 @@ public:
     /// \brief A request is sent to the motor asking it to send back its state, position, velocity, and torque.
     void requestMotorStatus();
 
-    /// \brief Read the current motor position and update the position state variable.
-    /// \return True if the position was successfully read
-    bool readCurrentPosition();
-
     // TODO change to camelcase - also in related functions
     /// \brief Return the ID of the MotorClass object.
     /// \return The ID of the MotorClass object.
