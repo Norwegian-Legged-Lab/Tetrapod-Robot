@@ -58,8 +58,6 @@ void make_can_msg::writeAccelerationToRAM(unsigned char* _can_message, int32_t _
     _can_message[7] = *((uint8_t *)(&_acceleration) + 3);
 }
 
-/// \brief The command requests the current single turn encoder position (true - offset),
-/// the true encoder position and the offset 
 void make_can_msg::readEncoderPosition(unsigned char* _can_message)
 {
     emptyCanMessage(_can_message);
