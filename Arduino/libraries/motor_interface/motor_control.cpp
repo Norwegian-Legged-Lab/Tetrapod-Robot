@@ -1,5 +1,5 @@
 #include "motor_control.h"
- 
+
 MotorControl::MotorControl(uint8_t _id, uint8_t _can_port_id, int _number_of_inner_motor_rotations)
 {
     id = _id;
@@ -54,6 +54,11 @@ MotorControl::MotorControl(uint8_t _id, uint8_t _can_port_id, int _number_of_inn
     {
         target_position_offset = 1;
     }
+    else
+    {
+        target_position_offset = 0;
+    }
+    
 }
 
 bool MotorControl::readPIDParameters()
@@ -208,7 +213,7 @@ void MotorControl::setPositionReference(double _angle)
 {
     // Convert the desired shaft angle in radians into an inner motor angle in 0.01 degrees 
     double inner_motor_reference_angle = (ROTATION_DISTANCE*0.0 - _angle*180.0/M_PI)*GEAR_REDUCTION*100.0 + (initial_number_of_inner_motor_rotations + target_position_offset)*ROTATION_DISTANCE*GEAR_REDUCTION*100.0;
-
+    raw_position_reference = inner_motor_reference_angle;
     // Create a position control can message
     make_can_msg::positionControl1(can_message.buf, inner_motor_reference_angle);
 
@@ -660,6 +665,7 @@ void MotorControl::printState()
         char enc_str[9];
         char imr_str[6];
         char GOD_BUF[30];
+        char raw_position_reference_buf[12];
 
         dtostrf(id, 1, 0, id_str);
         dtostrf(can_port_id, 1, 0, port_str);
@@ -670,9 +676,10 @@ void MotorControl::printState()
         dtostrf(previous_encoder_value, 1, 1, enc_str);
         dtostrf(number_of_inner_motor_rotations, 1, 1, imr_str);
         dtostrf(GOD_ANGLE, 20, 5, GOD_BUF);
-        char log_message[175];
-        sprintf(log_message, "Motor %s, CAN %s - Pos: %s [rad], Vel: %s [rad/s], Tor: %s [Nm], MTA: %s, Enc: %s, IMR: %s, GOD: %s", 
-            id_str, port_str, pos_str, vel_str, tor_str, mta_str, enc_str, imr_str, GOD_BUF);
+        dtostrf(raw_position_reference, 5, 3, raw_position_reference_buf);
+        char log_message[187];
+        sprintf(log_message, "Motor %s, CAN %s - Pos: %s [rad], Vel: %s [rad/s], Tor: %s [Nm], MTA: %s, Enc: %s, IMR: %s, GOD: %s, PST: %s", 
+            id_str, port_str, pos_str, vel_str, tor_str, mta_str, enc_str, imr_str, GOD_BUF, raw_position_reference_buf);
         ROS_NODE_HANDLE.loginfo(log_message);
     #else if SERIAL_PRINT
         Serial.print("Motor "); Serial.print(id); Serial.print(", CAN "); Serial.print(can_port_id); Serial.print(" - ");
