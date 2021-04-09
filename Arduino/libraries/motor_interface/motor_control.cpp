@@ -459,6 +459,69 @@ bool MotorControl::readMultiTurnAngle()
     }
 }
 
+bool MotorControl::readMotorStatus()
+{
+    make_can_msg::readMotorStatus2(can_message.buf);
+
+    sendMessage(can_message);
+
+    delay_microseconds(10000.0);
+    
+    if(readMessage(received_can_message))
+    {
+        if((received_can_message.id == address) && (received_can_message.buf[0] == MOTOR_COMMAND_READ_MOTOR_STATUS_2))
+        {
+            readMotorControlCommandReply(received_can_message.buf);
+            return true;
+        }
+        else
+        {
+            // Report that the reply we received was incorrect
+            #if ROS_PRINT
+                char id_str[3];
+                char port_str[3];
+                dtostrf(id, 1, 0, id_str);
+                dtostrf(can_port_id, 1, 0, port_str);
+                char warning_message[86];
+                sprintf(warning_message, "Motor %s - CAN %s: In the function readMotorStatus an incorrect reply was received", id_str, port_str);
+                ROS_NODE_HANDLE.logwarn(warning_message);
+            #else if SERIAL_PRINT
+                errorMessage();
+                Serial.println("In the function readMotorStatus an incorrect reply was received");
+            #endif
+
+            return false;
+        }
+    }
+    else
+    {
+        // Report that no reply was received
+        #if ROS_PRINT
+            char id_str[3];
+            char port_str[3];
+            dtostrf(id, 1, 0, id_str);
+            dtostrf(can_port_id, 1, 0, port_str);
+            char warning_message[86];
+            sprintf(warning_message, "Motor %s - CAN %s: In the function readMotorStatus no reply was received", id_str, port_str);
+            ROS_NODE_HANDLE.logwarn(warning_message);
+        #else if SERIAL_PRINT
+            errorMessage();
+            Serial.println("In the function readMotorStatus no reply was received");
+        #endif
+
+        return false;
+    }
+}
+
+void MotorControl::requestMotorStatus()
+{
+    // Create a CAN message which requests the motor to send back a reply
+    make_can_msg::readMotorStatus2(can_message.buf);
+
+    // Send the CAN message
+    sendMessage(can_message);
+}
+
 // TODO DELETE
 bool MotorControl::readCurrentPosition()
 {
@@ -608,42 +671,6 @@ void MotorControl::printState()
 
 
 
-bool MotorControl::readMotorStatus()
-{
-    make_can_msg::readMotorStatus2(can_message.buf);
-
-    sendMessage(can_message);
-
-    delay_microseconds(10000.0);
-    
-    if(readMessage(received_can_message))
-    {
-        if((received_can_message.id == address) && (received_can_message.buf[0] == MOTOR_COMMAND_READ_MOTOR_STATUS_2))
-        {
-            readMotorControlCommandReply(received_can_message.buf);
-            return true;
-        }
-        else
-        {
-            errorMessage();
-            Serial.println("readMotorStatus - wrong reply received.");
-            return false;
-        }
-    }
-    else
-    {
-        errorMessage();
-        Serial.println("readMotorStatus - no reply received.");
-        return false;
-    }
-}
-
-void MotorControl::requestMotorStatus()
-{
-    make_can_msg::readMotorStatus2(can_message.buf);
-
-    sendMessage(can_message);
-}
 
 
 
