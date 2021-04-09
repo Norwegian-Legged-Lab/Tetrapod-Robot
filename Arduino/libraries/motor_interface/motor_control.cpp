@@ -411,6 +411,14 @@ bool MotorControl::readMultiTurnAngle()
         if((received_can_message.id == address) && (received_can_message.buf[0] == MOTOR_COMMAND_READ_MULTI_TURN_ANGLE))
         {
             int32_t multi_turn_angle_001lsb = 0;
+            GOD_ANGLE = 0;
+            *(uint8_t *)(& GOD_ANGLE) = received_can_message.buf[1];
+            *((uint8_t *)(& GOD_ANGLE)+1) = received_can_message.buf[2];
+            *((uint8_t *)(& GOD_ANGLE)+2) = received_can_message.buf[3];
+            *((uint8_t *)(& GOD_ANGLE)+3) = received_can_message.buf[4];
+            *((uint8_t *)(& GOD_ANGLE)+4) = received_can_message.buf[5];
+            *((uint8_t *)(& GOD_ANGLE)+5) = received_can_message.buf[6];
+            *((uint8_t *)(& GOD_ANGLE)+6) = received_can_message.buf[7];
 
             multi_turn_angle_001lsb 
             = received_can_message.buf[1]
@@ -651,6 +659,7 @@ void MotorControl::printState()
         char mta_str[12];
         char enc_str[9];
         char imr_str[6];
+        char GOD_BUF[30];
 
         dtostrf(id, 1, 0, id_str);
         dtostrf(can_port_id, 1, 0, port_str);
@@ -660,9 +669,10 @@ void MotorControl::printState()
         dtostrf(multi_turn_angle, 1, 6, mta_str);
         dtostrf(previous_encoder_value, 1, 1, enc_str);
         dtostrf(number_of_inner_motor_rotations, 1, 1, imr_str);
-        char log_message[145];
-        sprintf(log_message, "Motor %s, CAN %s - Pos: %s [rad], Vel: %s [rad/s], Tor: %s [Nm], MTA: %s, Enc: %s, IMR: %s", 
-            id_str, port_str, pos_str, vel_str, tor_str, mta_str, enc_str, imr_str);
+        dtostrf(GOD_ANGLE, 20, 5, GOD_BUF);
+        char log_message[175];
+        sprintf(log_message, "Motor %s, CAN %s - Pos: %s [rad], Vel: %s [rad/s], Tor: %s [Nm], MTA: %s, Enc: %s, IMR: %s, GOD: %s", 
+            id_str, port_str, pos_str, vel_str, tor_str, mta_str, enc_str, imr_str, GOD_BUF);
         ROS_NODE_HANDLE.loginfo(log_message);
     #else if SERIAL_PRINT
         Serial.print("Motor "); Serial.print(id); Serial.print(", CAN "); Serial.print(can_port_id); Serial.print(" - ");

@@ -8,6 +8,7 @@
 #include <math.h>
 #include "utilities.h"
 #include "ros_node_handle.h"
+#include "Arduino.h"
 
 class MotorControl
 {
@@ -140,6 +141,8 @@ public:
     /// \brief The ID, encoder value, multi turn angle, position, speed and torque 
     /// of the motor are printed
     void printState();
+
+    int64_t GOD_ANGLE;
 private:
     /// \brief Motor ID set through the Serial configurator [1 - 32]
     uint8_t id;

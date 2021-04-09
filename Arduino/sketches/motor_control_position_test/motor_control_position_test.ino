@@ -84,6 +84,8 @@ void loop() {
   
   motor_array[0].readMotorStatus();
   motor_array[0].readMultiTurnAngle();
+  double a = motor_array[0].GOD_ANGLE;
+  Serial.print("GOD ANGLE:\t"); Serial.print(a); Serial.print("\t");
   Serial.print("Goal pos:\t"); Serial.print(pos); Serial.print("\t");
   motor_array[0].printState(); 
 
