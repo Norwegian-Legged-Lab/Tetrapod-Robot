@@ -637,50 +637,35 @@ void MotorControl::printPIDParameters()
         Serial.print("kp_tor:\t"); Serial.println(ki_torque);
     #endif
 }
-/// CONTINUE HERE ///
+
 void MotorControl::printState()
 {
     #if ROS_PRINT
         char id_str[3];
         char port_str[3];
+        char pos_str[6];
+        char vel_str[6];
+        char tor_str[6];
         dtostrf(id, 1, 0, id_str);
         dtostrf(can_port_id, 1, 0, port_str);
+        dtostrf(position, 1, 3, pos_str);
+        dtostrf(speed, 1, 3, vel_str);
+        dtostrf(torque, 1, 3, tor_str);
         char log_message[86];
-        sprintf(log_message, "Motor %s - CAN %s: Position: ", id_str, port_str);
+        sprintf(log_message, "Motor %s, CAN %s - Pos: %s [rad], Vel: %s [rad/s], Tor: %s [Nm]", 
+            id_str, port_str, pos_str, vel_str, tor_str);
         ROS_NODE_HANDLE.loginfo(log_message);
-    #else if
-
+    #else if SERIAL_PRINT
+        Serial.print("Motor "); Serial.print(id); Serial.print(", CAN "); Serial.print(can_port_id); Serial.print(" - ");
+        Serial.print("Pos: "); Serial.print(position); Serial.print("[rad]\t");
+        Serial.print("Vel: "); Serial.print(speed); Serial.print("[rad/s]\t");
+        Serial.print("Tor: "); Serial.print(torque); Serial.print("[Nm]\t");
+        Serial.println("");
     #endif
-    Serial.print("ID: "); Serial.print(id); Serial.print("\t");
-    Serial.print("Enc: "); Serial.print(previous_encoder_value); Serial.print("\t");
-    Serial.print("MLT: "); Serial.print(multi_turn_angle*180.0/M_PI); Serial.print("\t");
-    Serial.print("Pos: "); Serial.print(position*180.0/M_PI); Serial.print("\t");
-    Serial.print("Vel: "); Serial.print(speed); Serial.print("\t");
-    Serial.print("Tor: "); Serial.print(torque); Serial.print("\t");
-    Serial.println("");
+
 }
 
-double MotorControl::innerMotorTurnCompleted(uint16_t _previous_encoder_value, uint16_t _new_encoder_value)
-{
-    // If old >> new a CW turn was completed
-    if(_previous_encoder_value - _new_encoder_value > encoder_turn_threshold)
-    {
-        Serial.print("Turn-1\t");
-        return -1.0;
-    }
-    // If new >> old a CCW turn was completed
-    else if(_new_encoder_value - _previous_encoder_value > encoder_turn_threshold)
-    {
-        Serial.print("Turn+1\t");
-        return 1.0;
-    }
-    // No turn was completed
-    else
-    {
-        Serial.print("Turn 0\t");
-        return 0.0;
-    }
-}
+
 
 bool MotorControl::readMotorStatus()
 {
@@ -743,20 +728,50 @@ void MotorControl::setTorqueCurrent(int _torque_current)
     sendMessage(can_message);
 }
 
+double MotorControl::innerMotorTurnCompleted(uint16_t _previous_encoder_value, uint16_t _new_encoder_value)
+{
+    // If old >> new a CW turn was completed
+    if(_previous_encoder_value - _new_encoder_value > encoder_turn_threshold)
+    {
+        return -1.0;
+    }
+    // If new >> old a CCW turn was completed
+    else if(_new_encoder_value - _previous_encoder_value > encoder_turn_threshold)
+    {
+        return 1.0;
+    }
+    // No turn was completed
+    else
+    {
+        return 0.0;
+    }
+}
+
 void MotorControl::sendMessage(CAN_message_t _can_message)
 {
-    if(can_port_id == 1)
+    if(can_port_id == CAN_PORT_1)
     {
         can_port_1.write(_can_message);
     }
-    else if(can_port_id == 2)
+    else if(can_port_id == CAN_PORT_2)
     {
         can_port_2.write(_can_message);
     }
     else
     {
-        // TODO - Add proper error handling
-        Serial.println("ERROR: WRITE FAILED. CAN PORT DOES NOT EXIST");
+        #if ROS_PRINT
+            char id_str[3];
+            char port_str[3];
+            dtostrf(id, 1, 0, id_str);
+            dtostrf(can_port_id, 1, 0, port_str);
+            char error_message[86];
+            sprintf(error_message, "Motor %s - CAN %s: In the function sendMessage, an invalid CAN port was selected", id_str, port_str);
+            ROS_NODE_HANDLE.logerror(error_message);
+        #else if SERIAL_PRINT
+            errorMessage();
+            Serial.println("In the function sendMessage, an invalid CAN port was selected");
+        #endif
+
         while(true);
     }
 }
@@ -773,16 +788,24 @@ int MotorControl::readMessage(CAN_message_t &_can_message)
     }
     else
     {
-        // TODO - Add proper error handling
-        errorMessage();
-        Serial.println("READ FAILED. CAN PORT DOES NOT EXIST");
-        while(true);
+        #if ROS_PRINT
+            char id_str[3];
+            char port_str[3];
+            dtostrf(id, 1, 0, id_str);
+            dtostrf(can_port_id, 1, 0, port_str);
+            char error_message[86];
+            sprintf(error_message, "Motor %s - CAN %s: In the function readMessage, an invalid CAN port was selected", id_str, port_str);
+            ROS_NODE_HANDLE.logerror(error_message);
+        #else if SERIAL_PRINT
+            errorMessage();
+            Serial.println("In the function readMessage, an invalid CAN port was selected");
+        #endif
     }
 }
 
 void MotorControl::errorMessage()
 {
     Serial.print("ERROR - Motor "); Serial.print(id); 
-    Serial.print("CAN: "); Serial.print(can_port_id); 
-    Serial.print(":\t");
+    Serial.print(", CAN "); Serial.print(can_port_id); 
+    Serial.print("-\t");
 }
