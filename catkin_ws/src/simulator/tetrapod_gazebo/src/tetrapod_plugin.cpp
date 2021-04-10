@@ -542,13 +542,19 @@ void TetrapodPlugin::InitJointConfiguration()
 {
     for (size_t i = 0; i < this->joint_names.size(); i++)
     {
+        // Set default position 
         this->model->GetJointController()->SetJointPosition(
+            this->model_name + "::" + this->joint_names[i],
+            angle_utils::wrapAngleToPi(angle_utils::degToRad(this->joint_config[i]))
+        );
+
+        // Set controller position reference
+        this->model->GetJointController()->SetPositionTarget(
             this->model_name + "::" + this->joint_names[i],
             angle_utils::wrapAngleToPi(angle_utils::degToRad(this->joint_config[i]))
         );
     }
 
-    this->SetJointPositions(this->joint_config);
 }
 
 } // namespace gazebo
