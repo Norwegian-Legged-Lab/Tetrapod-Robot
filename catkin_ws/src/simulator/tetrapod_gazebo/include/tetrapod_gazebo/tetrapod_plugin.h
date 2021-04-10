@@ -129,7 +129,7 @@ namespace gazebo
         public: void SetJointVelocities(const std::vector<double> &_vel);
         
         /// \brief Set the position of the joints.
-        /// \param[in] _pos New target position vector in degrees
+        /// \param[in] _pos New target position vector in radians
         public: void SetJointPositions(const std::vector<double> &_pos);
 
         /// \brief The OnJointStateMsg function handles an incoming joint state

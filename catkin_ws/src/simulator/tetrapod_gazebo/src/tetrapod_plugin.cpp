@@ -289,7 +289,7 @@ void TetrapodPlugin::SetJointPositions(const std::vector<double> &_pos)
     {
         this->model->GetJointController()->SetPositionTarget(
             this->model_name + "::" + this->joint_names[i],
-            angle_utils::wrapAngleToPi(angle_utils::degToRad(_pos[i]))
+            angle_utils::wrapAngleToPi(_pos[i])
         );
     }
 
