@@ -45,6 +45,24 @@ void someRandomTesting()
     ROS_INFO_STREAM("t2: " << t2);
 }
 
+void testKindr()
+{
+    double x_angle = angle_utils::HALF_PI;
+    double z_angle = angle_utils::TWO_THIRDS_PI;
+
+    Eigen::Vector3d unit_x(1,0,0);
+    Eigen::Vector3d unit_z(0,0,1);
+
+    kindr::RotationMatrixD R_z(kindr::AngleAxisD(z_angle, unit_z));
+    kindr::RotationMatrixD R_x(kindr::AngleAxisD(x_angle, unit_x));
+
+    kindr::RotationMatrixD R = R_z*R_x;
+
+    ROS_INFO_STREAM("R_z: \n" << R_z.matrix());
+    ROS_INFO_STREAM("R_x: \n" << R_x.matrix());
+    ROS_INFO_STREAM("R = R_z*R_x: \n" << R.matrix());
+}
+
 void testDhTransform()
 {
     // ---------- D-H Transform --------------
@@ -104,15 +122,33 @@ void testEigen()
     ROS_INFO_STREAM("pos2: " << pos2);
 }
 
+void testHipToFootTransform()
+{
+    Kinematics K;
+
+    kindr::HomTransformMatrixD transformHipToFoot = K.GetHipToFootTransform(false,
+                                                                            angle_utils::HALF_PI,
+                                                                            0,
+                                                                            0);
+
+    kindr::Position3D hip_position(10,10,10);
+
+    kindr::Position3D positionHipToFoot = transformHipToFoot.transform(kindr::Position3D(0,0,0));
+
+    Eigen::Vector3d f_pos = hip_position.vector() + positionHipToFoot.vector();
+
+    ROS_INFO_STREAM("f_pos: \n" << f_pos);
+}
+
 void testForwardKinematics()
 {
     Kinematics K;
 
     GeneralizedCoordinates q = GeneralizedCoordinates::Constant(0);
 
-    q << 0, // base_x
-         0, // base_y
-         0, // base_z
+    q << 10, // base_x
+         10, // base_y
+         10, // base_z
          0, // base_roll
          0, // base_pitch
          0*angle_utils::THREE_QUARTERS_PI, // base_yaw
@@ -136,10 +172,10 @@ void testForwardKinematics()
 
     bool FK = K.SolveForwardKinematics(q, fPos);
 
-    ROS_INFO_STREAM("fpos(0): " << fPos(0));
-    ROS_INFO_STREAM("fpos(1): " << fPos(1));
-    ROS_INFO_STREAM("fpos(2): " << fPos(2));
-    ROS_INFO_STREAM("fpos(3): " << fPos(3));
+    ROS_INFO_STREAM("fpos(0): \n" << fPos(0));
+    ROS_INFO_STREAM("fpos(1): \n" << fPos(1));
+    ROS_INFO_STREAM("fpos(2): \n" << fPos(2));
+    ROS_INFO_STREAM("fpos(3): \n" << fPos(3));
 
 }
 
@@ -152,7 +188,7 @@ void testSingeLegInverseKinematics()
     Eigen::Vector3d f_pos(4,-1,0);
     ROS_INFO_STREAM("f_pos: " << f_pos);
 
-    Eigen::Vector3d joint_angles = K.SolveSingleLegInverseKinematics(h_pos, f_pos);
+    Eigen::Vector3d joint_angles = K.SolveSingleLegInverseKinematics(false, h_pos, f_pos);
     ROS_INFO_STREAM("joint_angles: " << joint_angles);
 }
 
@@ -169,10 +205,10 @@ void testInverseKinematics()
     f_pos(1) = Eigen::Vector3d(4,-1,0);
     f_pos(2) = Eigen::Vector3d(2,1,0);
     f_pos(3) = Eigen::Vector3d(2,-1,0);
-    ROS_INFO_STREAM("f_pos(0): " << f_pos(0));
-    ROS_INFO_STREAM("f_pos(1): " << f_pos(1));
-    ROS_INFO_STREAM("f_pos(2): " << f_pos(2));
-    ROS_INFO_STREAM("f_pos(3): " << f_pos(3));
+    ROS_INFO_STREAM("f_pos(0): \n" << f_pos(0));
+    ROS_INFO_STREAM("f_pos(1): \n" << f_pos(1));
+    ROS_INFO_STREAM("f_pos(2): \n" << f_pos(2));
+    ROS_INFO_STREAM("f_pos(3): \n" << f_pos(3));
 
     JointSpaceVector q_r;
 
@@ -189,12 +225,16 @@ int main(int argc, char **argv)
     //testSingleLegKinematics();
     //testDhTransform();
     //testEigen();
+    //ROS_INFO_STREAM("--------------- Test Kindr --------------");
+    //testKindr();
+    //ROS_INFO_STREAM("--------------- Test Hip to Foot Transform --------------");
+    //testHipToFootTransform();
     ROS_INFO_STREAM("--------------- Test FK --------------");
     testForwardKinematics();
     //ROS_INFO_STREAM("--------------- Test Single Leg IK --------------");
     //testSingeLegInverseKinematics();
-    ROS_INFO_STREAM("--------------- Test IK --------------");
-    testInverseKinematics(); 
+    //ROS_INFO_STREAM("--------------- Test IK --------------");
+    //testInverseKinematics(); 
 
     ros::spin();
     return 0;
