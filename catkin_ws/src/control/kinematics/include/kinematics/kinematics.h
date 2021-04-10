@@ -87,18 +87,24 @@ class Kinematics
 
     /// \brief The SolveSingeLegInverseKinematics function calculates
     /// the inverse kinematics for a single leg.
+    /// \param[in] _offset Bool indicating whether the leg is roll
+    /// offset to -90 or 90 degrees. True indicates roll offset of
+    /// of 90 deg, false indicates roll offset of -90 degrees.
     /// \param[in] _h_pos Hip position in world frame.
     /// \param[in] _f_pos Foot position in world frame.
     /// \return Returns a joint positions in Joint Space for a single leg, i.e. theta_hy, theta_hp & theta_kp.
-    public: Vector3d SolveSingleLegInverseKinematics(const Vector3d &_h_pos, const Vector3d &_f_pos);
+    public: Vector3d SolveSingleLegInverseKinematics(const bool &_offset, const Vector3d &_h_pos, const Vector3d &_f_pos);
 
     /// \brief The GetHipToFootTransform function returns the homogeneous
     /// transformation from the Hip frame to the Foot frame.
+    /// \param[in] _offset Bool indicating whether roll offset
+    /// should be set to -90 or 90 degrees. True indicates roll offset
+    /// of 90 deg, false indicates roll offset of -90 degrees.
     /// \param[in] _theta_hy Hip yaw angle.
     /// \param[in] _theta_hp Hip pitch angle.
     /// \param[in] _theta_kp Knee pitch angle.
     /// \return Returns the kindr homogeneous transformation matrix from Hip to Foot.
-    public: TransMatrix GetHipToFootTransform(const double &_theta_hy, const double &_theta_hp, const double &_theta_kp);
+    public: TransMatrix GetHipToFootTransform(const bool &_offset, const double &_theta_hy, const double &_theta_hp, const double &_theta_kp);
 
     /// \brief The GetDhTransform function returns the Denavit-Hartenberg
     /// transformation from frame A to frame B.
@@ -146,5 +152,15 @@ class Kinematics
     /// \brief Leg (Fibula & Tibia) link length
     private: double L3;
 
+    /// \brief Front Left offset
+    private: bool flOffset;
 
+    /// \brief Front Right offset
+    private: bool frOffset;
+
+    /// \brief Rear Left offset
+    private: bool rlOffset;
+
+    /// \brief Rear Right offset
+    private: bool rrOffset;
 };

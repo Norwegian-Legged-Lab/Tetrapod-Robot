@@ -33,15 +33,21 @@
 Kinematics::Kinematics() 
 {
     // Set link lenghts
-    this->L1 = 1;
-    this->L2 = 1;
-    this->L3 = 1;
+    this->L1 = 0.127;
+    this->L2 = 0.302;
+    this->L3 = 0.4645;
 
     // Set position vectors
-    this->positionBaseToFrontLeftInB << 1, 1, 0;
-    this->positionBaseToFrontRightInB << 1, -1, 0;
-    this->positionBaseToRearLeftInB << -1, 1, 0;
-    this->positionBaseToRearRightInB << -1, -1, 0;
+    this->positionBaseToFrontLeftInB << 0.151, 0.185, 0;
+    this->positionBaseToFrontRightInB << 0.151, -0.185, 0;
+    this->positionBaseToRearLeftInB << -0.151, 0.185, 0;
+    this->positionBaseToRearRightInB << -0.151, -0.185, 0;
+
+    // Set offsets
+    this->flOffset = false;
+    this->frOffset = true;
+    this->rlOffset = true;
+    this->rrOffset = false;
 }
 
 // Destructor
@@ -87,10 +93,10 @@ bool Kinematics::SolveInverseKinematics(const Twist &_q_b, const FootstepPositio
     ROS_INFO_STREAM("h_pos(3): " << h_pos(3));
 
     // Joint angles
-    _q_r.block(0,0,2,0) << this->SolveSingleLegInverseKinematics(h_pos(0), _f_pos(0));
-    _q_r.block(3,0,5,0) << this->SolveSingleLegInverseKinematics(h_pos(1), _f_pos(1));
-    _q_r.block(6,0,8,0) << this->SolveSingleLegInverseKinematics(h_pos(2), _f_pos(2));
-    _q_r.block(9,0,11,0) << this->SolveSingleLegInverseKinematics(h_pos(3), _f_pos(3));
+    _q_r.block(0,0,2,0) << this->SolveSingleLegInverseKinematics(this->flOffset, h_pos(0), _f_pos(0));
+    _q_r.block(3,0,5,0) << this->SolveSingleLegInverseKinematics(this->frOffset, h_pos(1), _f_pos(1));
+    _q_r.block(6,0,8,0) << this->SolveSingleLegInverseKinematics(this->rlOffset, h_pos(2), _f_pos(2));
+    _q_r.block(9,0,11,0) << this->SolveSingleLegInverseKinematics(this->rrOffset, h_pos(3), _f_pos(3));
 
     return true; // TODO: Fix solution validation.
 }
@@ -123,16 +129,20 @@ bool Kinematics::SolveForwardKinematics(const GeneralizedCoordinates &_q,
     kindr::HomTransformMatrixD transformBaseToRearRightHip(positionBaseToRearRightInW, rotationBToW);
 
     // Hip to foot transformations
-    kindr::HomTransformMatrixD transformFrontLeftHipToFoot = this->GetHipToFootTransform(_q(6),
+    kindr::HomTransformMatrixD transformFrontLeftHipToFoot = this->GetHipToFootTransform(this->flOffset,
+                                                                                         _q(6),
                                                                                          _q(7),
                                                                                          _q(8));
-    kindr::HomTransformMatrixD transformFrontRightHipToFoot = this->GetHipToFootTransform(_q(9),
+    kindr::HomTransformMatrixD transformFrontRightHipToFoot = this->GetHipToFootTransform(this->frOffset,
+                                                                                          _q(9),
                                                                                           _q(10),
                                                                                           _q(11));
-    kindr::HomTransformMatrixD transformRearLeftHipToFoot = this->GetHipToFootTransform(_q(12),
+    kindr::HomTransformMatrixD transformRearLeftHipToFoot = this->GetHipToFootTransform(this->rlOffset,
+                                                                                        _q(12),
                                                                                         _q(13),
                                                                                         _q(14));
-    kindr::HomTransformMatrixD transformRearRightHipToFoot = this->GetHipToFootTransform(_q(15),
+    kindr::HomTransformMatrixD transformRearRightHipToFoot = this->GetHipToFootTransform(this->rrOffset,
+                                                                                         _q(15),
                                                                                          _q(16),
                                                                                          _q(17));
 
@@ -143,10 +153,10 @@ bool Kinematics::SolveForwardKinematics(const GeneralizedCoordinates &_q,
     kindr::HomTransformMatrixD transformBaseToRearRightFoot = transformBaseToRearRightHip*transformRearRightHipToFoot;
 
     // Foot positions
-    _f_pos(0) = transformBaseToFrontLeftFoot.transform(base_position).vector();
-    _f_pos(1) = transformBaseToFrontRightFoot.transform(base_position).vector();
-    _f_pos(2) = transformBaseToRearLeftFoot.transform(base_position).vector();
-    _f_pos(3) = transformBaseToRearRightFoot.transform(base_position).vector();
+    _f_pos(0) = base_position.vector() + transformBaseToFrontLeftFoot.transform(kindr::Position3D(0,0,0)).vector();
+    _f_pos(1) = base_position.vector() + transformBaseToFrontRightFoot.transform(kindr::Position3D(0,0,0)).vector();
+    _f_pos(2) = base_position.vector() + transformBaseToRearLeftFoot.transform(kindr::Position3D(0,0,0)).vector();
+    _f_pos(3) = base_position.vector() + transformBaseToRearRightFoot.transform(kindr::Position3D(0,0,0)).vector();
 
     return true; //TODO do some criteria evaluation here
 }
@@ -158,7 +168,8 @@ Vector3d Kinematics::SolveSingleLegForwardKinematics(const Vector3d &_h_pos,
                                                      const double &_theta_kp)
 {
     // Complete D-H transformation
-    kindr::HomTransformMatrixD transformation = this->GetHipToFootTransform(_theta_hy,
+    kindr::HomTransformMatrixD transformation = this->GetHipToFootTransform(false,
+                                                                            _theta_hy,
                                                                             _theta_hp,
                                                                             _theta_kp); 
 
@@ -168,7 +179,7 @@ Vector3d Kinematics::SolveSingleLegForwardKinematics(const Vector3d &_h_pos,
     return pos;
 }
 
-Vector3d Kinematics::SolveSingleLegInverseKinematics(const Vector3d &_h_pos, const Vector3d &_f_pos)
+Vector3d Kinematics::SolveSingleLegInverseKinematics(const bool &_offset, const Vector3d &_h_pos, const Vector3d &_f_pos)
 {
     // Define joint angles vector
     Eigen::Vector3d joint_angles;
@@ -194,26 +205,53 @@ Vector3d Kinematics::SolveSingleLegInverseKinematics(const Vector3d &_h_pos, con
     // Angle between foot-hip pitch-knee joints
     double beta = std::acos( ( std::pow(normHipPitchToFoot, 2) + std::pow(this->L2, 2) - std::pow(this->L3, 2) ) / ( 2 * normHipPitchToFoot * this->L2 ) );
 
-    // Calculate theta_hy
-    joint_angles(0) = std::atan2(y_e, x_e);
+    // Check offset and set angles accordingly
+    if (_offset)
+    {
+        // Calculate theta_hy
+        joint_angles(0) = std::atan2(y_e, x_e);
 
-    // Calculate theta_hp
-    joint_angles(1) = - beta + zeta;
+        // Calculate theta_hp
+        joint_angles(1) = beta - zeta;
 
-    // Calculate theta_kp
-    joint_angles(2) = angle_utils::PI - alpha;
+        // Calculate theta_kp
+        joint_angles(2) = alpha - angle_utils::PI;
+    }
+    else
+    {
+        // Calculate theta_hy
+        joint_angles(0) = std::atan2(y_e, x_e);
+
+        // Calculate theta_hp
+        joint_angles(1) = - beta + zeta;
+
+        // Calculate theta_kp
+        joint_angles(2) = angle_utils::PI - alpha;
+    }
 
     return joint_angles;
 }
 
 // HipToFootTransform
-TransMatrix Kinematics::GetHipToFootTransform(const double &_theta_hy, 
+TransMatrix Kinematics::GetHipToFootTransform(const bool &_offset,
+                                              const double &_theta_hy, 
                                               const double &_theta_hp, 
                                               const double &_theta_kp)
 {
+    // Check offset for D-H transformation
+    double roll_offset = 0;
+
+    if (_offset)
+    {
+        roll_offset = angle_utils::HALF_PI;
+    } else
+    {
+        roll_offset = -angle_utils::HALF_PI;
+    }
+
     // First D-H transformation
     kindr::HomTransformMatrixD t1 = this->GetDhTransform(this->L1,
-                                                         -angle_utils::HALF_PI,
+                                                         roll_offset,
                                                          0,
                                                          _theta_hy);
 
