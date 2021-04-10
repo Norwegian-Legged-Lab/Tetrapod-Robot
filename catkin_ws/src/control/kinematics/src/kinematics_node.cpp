@@ -126,12 +126,12 @@ void testHipToFootTransform()
 {
     Kinematics K;
 
-    kindr::HomTransformMatrixD transformHipToFoot = K.GetHipToFootTransform(false,
-                                                                            angle_utils::HALF_PI,
-                                                                            0,
-                                                                            0);
+    kindr::HomTransformMatrixD transformHipToFoot = K.GetHipToFootTransform(true,
+                                                                            angle_utils::degToRad(135),
+                                                                            angle_utils::degToRad(20),
+                                                                            angle_utils::degToRad(-90));
 
-    kindr::Position3D hip_position(10,10,10);
+    kindr::Position3D hip_position(-0.151,0.185,1);
 
     kindr::Position3D positionHipToFoot = transformHipToFoot.transform(kindr::Position3D(0,0,0));
 
@@ -146,24 +146,24 @@ void testForwardKinematics()
 
     GeneralizedCoordinates q = GeneralizedCoordinates::Constant(0);
 
-    q << 10, // base_x
-         10, // base_y
-         10, // base_z
+    q << 0, // base_x
+         0, // base_y
+         1, // base_z
          0, // base_roll
          0, // base_pitch
-         0*angle_utils::THREE_QUARTERS_PI, // base_yaw
-         0*angle_utils::HALF_PI, // FL-theta_hy
-         0, // FL-theta_hp
-         0, // FL-theta_kp
-         0, // FR-theta_hy
-         0, // FR-theta_hp
-         0, // FR-theta_kp
-         0, // RL-theta_hy
-         0, // RL-theta_hp
-         0, // RL-theta_kp
-         0, // RR-theta_hy
-         0, // RR-theta_hp
-         0; // RR-theta_kp
+         0, // base_yaw
+         angle_utils::degToRad(45), // FL-theta_hy
+         angle_utils::degToRad(-20), // FL-theta_hp
+         angle_utils::degToRad(90), // FL-theta_kp
+         angle_utils::degToRad(-45), // FR-theta_hy
+         angle_utils::degToRad(20), // FR-theta_hp
+         angle_utils::degToRad(-90), // FR-theta_kp
+         angle_utils::degToRad(135), // RL-theta_hy
+         angle_utils::degToRad(20), // RL-theta_hp
+         angle_utils::degToRad(-90), // RL-theta_kp
+         angle_utils::degToRad(-135), // RR-theta_hy
+         angle_utils::degToRad(-20), // RR-theta_hp
+         angle_utils::degToRad(90); // RR-theta_kp
     
     ROS_INFO_STREAM("q: " << q);
 
@@ -227,10 +227,10 @@ int main(int argc, char **argv)
     //testEigen();
     //ROS_INFO_STREAM("--------------- Test Kindr --------------");
     //testKindr();
-    //ROS_INFO_STREAM("--------------- Test Hip to Foot Transform --------------");
-    //testHipToFootTransform();
-    ROS_INFO_STREAM("--------------- Test FK --------------");
-    testForwardKinematics();
+    ROS_INFO_STREAM("--------------- Test Hip to Foot Transform --------------");
+    testHipToFootTransform();
+    //ROS_INFO_STREAM("--------------- Test FK --------------");
+    //testForwardKinematics();
     //ROS_INFO_STREAM("--------------- Test Single Leg IK --------------");
     //testSingeLegInverseKinematics();
     //ROS_INFO_STREAM("--------------- Test IK --------------");
