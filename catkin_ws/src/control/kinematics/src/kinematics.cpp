@@ -32,6 +32,33 @@
 // Constructor
 Kinematics::Kinematics() 
 {
+    // Set min/max angles
+    this->min_angles(0) = angle_utils::degToRad(0);      // fl, hy
+    this->min_angles(1) = angle_utils::degToRad(-90);    // fl, hp
+    this->min_angles(2) = angle_utils::degToRad(-115);   // fl, kp
+    this->min_angles(3) = angle_utils::degToRad(-170);   // fr, hy
+    this->min_angles(4) = angle_utils::degToRad(-90);    // fr, hp
+    this->min_angles(5) = angle_utils::degToRad(-115);   // fr, kp
+    this->min_angles(6) = angle_utils::degToRad(10);     // rl, hy
+    this->min_angles(7) = angle_utils::degToRad(-90);    // rl, hp
+    this->min_angles(8) = angle_utils::degToRad(-115);   // rl, kp
+    this->min_angles(9) = angle_utils::degToRad(-180);   // rr, hy
+    this->min_angles(10) = angle_utils::degToRad(-90);   // rr, hp
+    this->min_angles(11) = angle_utils::degToRad(-115);  // rr, kp
+
+    this->max_angles(0) = angle_utils::degToRad(170);    // fl, hy
+    this->max_angles(1) = angle_utils::degToRad(90);     // fl, hp
+    this->max_angles(2) = angle_utils::degToRad(115);    // fl, kp
+    this->max_angles(3) = angle_utils::degToRad(0);      // fr, hy
+    this->max_angles(4) = angle_utils::degToRad(90);     // fr, hp
+    this->max_angles(5) = angle_utils::degToRad(115);    // fr, kp
+    this->max_angles(6) = angle_utils::degToRad(180);    // rl, hy
+    this->max_angles(7) = angle_utils::degToRad(90);     // rl, hp
+    this->max_angles(8) = angle_utils::degToRad(115);    // rl, kp
+    this->max_angles(9) = angle_utils::degToRad(-10);    // rr, hy
+    this->max_angles(10) = angle_utils::degToRad(90);    // rr, hp
+    this->max_angles(11) = angle_utils::degToRad(115);   // rr, kp
+
     // Set link lenghts
     this->L1 = 0.127;
     this->L2 = 0.302;
@@ -87,10 +114,10 @@ bool Kinematics::SolveInverseKinematics(const Twist &_q_b, const FootstepPositio
     h_pos(3) = transformBaseToRearRightHip.transform(base_position).vector();
 
     // TODO remove uneccesarry prints
-    ROS_INFO_STREAM("h_pos(0): " << h_pos(0));
-    ROS_INFO_STREAM("h_pos(1): " << h_pos(1));
-    ROS_INFO_STREAM("h_pos(2): " << h_pos(2));
-    ROS_INFO_STREAM("h_pos(3): " << h_pos(3));
+    //ROS_INFO_STREAM("h_pos(0): " << h_pos(0));
+    //ROS_INFO_STREAM("h_pos(1): " << h_pos(1));
+    //ROS_INFO_STREAM("h_pos(2): " << h_pos(2));
+    //ROS_INFO_STREAM("h_pos(3): " << h_pos(3));
 
     // Joint angles
     _q_r.block(0,0,2,0) << this->SolveSingleLegInverseKinematics(this->flOffset, h_pos(0), _f_pos(0));
@@ -98,7 +125,7 @@ bool Kinematics::SolveInverseKinematics(const Twist &_q_b, const FootstepPositio
     _q_r.block(6,0,8,0) << this->SolveSingleLegInverseKinematics(this->rlOffset, h_pos(2), _f_pos(2));
     _q_r.block(9,0,11,0) << this->SolveSingleLegInverseKinematics(this->rrOffset, h_pos(3), _f_pos(3));
 
-    return true; // TODO: Fix solution validation.
+    return this->ValidateSolution(_q_r); 
 }
 
 // Solve forward kinematics
@@ -291,4 +318,23 @@ TransMatrix Kinematics::GetDhTransform(const double &_a,
     kindr::HomTransformMatrixD transformationAToB(position, rotation);
 
     return transformationAToB;
+}
+
+// Validate IK solution
+bool Kinematics::ValidateSolution(const Eigen::Matrix<double, 12, 1> &_q_r)
+{
+    if (_q_r.hasNaN())
+    {
+        return false;
+    }
+
+    for (size_t i = 0; i < _q_r.size(); i++)
+    {
+        if (_q_r(i) < this->min_angles(i) || _q_r(i) > this->max_angles(i))
+        {
+            return false;
+        }
+    }
+
+    return true;
 }
