@@ -34,6 +34,7 @@
 #include "eigen_conversions/eigen_msg.h"
 
 //ROS Package Libraries
+#include <debug_utils/debug_utils.h>
 #include <kinematics/kinematics.h>
 
 // Standard library
