@@ -63,6 +63,8 @@
   <exec_depend>sensor_msgs</exec_depend>
 
   <depend>angle_utils</depend>
+  <depend>debug_utils</depend>
+  <depend>eigen_conversions</depend>
 
 
   <!-- The export tag contains other, unspecified, tags -->
