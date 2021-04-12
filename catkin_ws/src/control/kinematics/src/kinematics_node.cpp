@@ -9,6 +9,8 @@
 
 #include <kinematics/kinematics.h>
 
+#include <debug_utils/debug_utils.h>
+
 
 void someRandomTesting()
 {
@@ -197,24 +199,28 @@ void testInverseKinematics()
     Kinematics K;
 
     Twist q_b = Twist::Constant(0);
+
+    q_b(0) = 0.0105679;
+    q_b(1) = -0.315821;
+    q_b(2) = 0.205248;
+    q_b(3) = 0.35;
+    q_b(4) = 0;
+    q_b(5) = 0;
+
     ROS_INFO_STREAM("q_b: " << q_b);
 
     FootstepPositions f_pos;
 
     f_pos(0) = Eigen::Vector3d(4,1,0);
-    f_pos(1) = Eigen::Vector3d(4,-1,0);
+    f_pos(1) = Eigen::Vector3d(0.8455, -0.3499, 0.02500);
     f_pos(2) = Eigen::Vector3d(2,1,0);
     f_pos(3) = Eigen::Vector3d(2,-1,0);
-    ROS_INFO_STREAM("f_pos(0): \n" << f_pos(0));
-    ROS_INFO_STREAM("f_pos(1): \n" << f_pos(1));
-    ROS_INFO_STREAM("f_pos(2): \n" << f_pos(2));
-    ROS_INFO_STREAM("f_pos(3): \n" << f_pos(3));
 
     JointSpaceVector q_r;
 
     bool IK = K.SolveInverseKinematics(q_b, f_pos, q_r);
 
-    ROS_INFO_STREAM("q_r: " << q_r);
+    debug_utils::printJointState(q_r);
 }
 
 int main(int argc, char **argv)
@@ -227,14 +233,14 @@ int main(int argc, char **argv)
     //testEigen();
     //ROS_INFO_STREAM("--------------- Test Kindr --------------");
     //testKindr();
-    ROS_INFO_STREAM("--------------- Test Hip to Foot Transform --------------");
-    testHipToFootTransform();
+    //ROS_INFO_STREAM("--------------- Test Hip to Foot Transform --------------");
+    //testHipToFootTransform();
     //ROS_INFO_STREAM("--------------- Test FK --------------");
     //testForwardKinematics();
     //ROS_INFO_STREAM("--------------- Test Single Leg IK --------------");
     //testSingeLegInverseKinematics();
-    //ROS_INFO_STREAM("--------------- Test IK --------------");
-    //testInverseKinematics(); 
+    ROS_INFO_STREAM("--------------- Test IK --------------");
+    testInverseKinematics(); 
 
     ros::spin();
     return 0;
