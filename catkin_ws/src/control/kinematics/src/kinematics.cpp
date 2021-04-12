@@ -229,8 +229,20 @@ Vector3d Kinematics::SolveSingleLegInverseKinematics(const bool &_offset, const 
     // Angle between foot-knee-hip pitch joints
     double alpha = std::acos( ( std::pow(this->L2, 2) + std::pow(this->L3, 2) - std::pow(normHipPitchToFoot, 2) ) / ( 2 * this->L2 * this->L3 ) );
 
+    if (std::isnan(alpha))
+    {
+        ROS_INFO_STREAM("IK alpha returned nan, nominator was: " <<  ( std::pow(this->L2, 2) + std::pow(this->L3, 2) - std::pow(normHipPitchToFoot, 2) ) / ( 2 * this->L2 * this->L3 )
+                        << " and normHipPitchToFoot was: " << normHipPitchToFoot );
+    }
+
     // Angle between foot-hip pitch-knee joints
     double beta = std::acos( ( std::pow(normHipPitchToFoot, 2) + std::pow(this->L2, 2) - std::pow(this->L3, 2) ) / ( 2 * normHipPitchToFoot * this->L2 ) );
+
+    if (std::isnan(beta))
+    {
+        ROS_INFO_STREAM("IK beta returned nan, nominator was: " <<  ( std::pow(normHipPitchToFoot, 2) + std::pow(this->L2, 2) - std::pow(this->L3, 2) ) / ( 2 * normHipPitchToFoot * this->L2 )
+                        << " and normHipPitchToFoot was: " << normHipPitchToFoot );
+    }
 
     // Check offset and set angles accordingly
     if (_offset)
