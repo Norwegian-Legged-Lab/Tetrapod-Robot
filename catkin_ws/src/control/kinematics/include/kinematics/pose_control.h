@@ -48,7 +48,7 @@ class PoseControl
     /// \brief Destructor
     public: virtual ~PoseControl();
 
-    public: void SetPose(const Eigen::Matrix<double, 6, 1> &_q_b);
+    public: void SetBasePose(const Eigen::Matrix<double, 6, 1> &_q_b);
 
     /// \brief The OnGenCoordMsg function handles an incoming 
     /// generalized coordinates message from ROS.
@@ -56,11 +56,23 @@ class PoseControl
     /// coordinates.
     public: void OnGenCoordMsg(const std_msgs::Float64MultiArrayConstPtr &_msg);
 
-    /// \brief The OnPoseMsg function handles an incoming 
+    /// \brief The OnBasePoseMsg function handles an incoming 
     /// pose messages from ROS.
     /// \param[in] _msg A float array containing the desired 
-    /// pose command.
-    public: void OnPoseMsg(const std_msgs::Float64MultiArrayConstPtr &_msg);
+    /// base pose command.
+    public: void OnBasePoseMsg(const std_msgs::Float64MultiArrayConstPtr &_msg);
+
+    /// \brief The OnBasePositionMsg function handles an incoming 
+    /// base position messages from ROS.
+    /// \param[in] _msg A float array containing the desired 
+    /// base position command.
+    public: void OnBasePositionMsg(const std_msgs::Float64MultiArrayConstPtr &_msg);
+
+    /// \brief The OnBaseOrientationMsg function handles an incoming 
+    /// base orientation messages from ROS.
+    /// \param[in] _msg A float array containing the desired 
+    /// base orientation command.
+    public: void OnBaseOrientationMsg(const std_msgs::Float64MultiArrayConstPtr &_msg);
 
     /// \brief The ProcessQueueThread function is a ROS helper function
     /// that processes messages.
@@ -92,8 +104,14 @@ class PoseControl
     /// \brief ROS Generalized Coordinates Subscriber.
     private: ros::Subscriber genCoordSub;
 
-    /// \brief ROS Pose Subscriber
-    private: ros::Subscriber poseSub;
+    /// \brief ROS Base Pose Subscriber
+    private: ros::Subscriber basePoseSub;
+
+    /// \brief ROS Base Pose Subscriber
+    private: ros::Subscriber basePositionSub;
+
+    /// \brief ROS Base Pose Subscriber
+    private: ros::Subscriber baseOrientationSub;
 
     /// \brief ROS Joint State Publisher
     private: ros::Publisher jointStatePub;
