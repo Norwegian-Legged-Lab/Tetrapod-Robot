@@ -125,6 +125,18 @@ void PoseControl::OnBasePositionMsg(const std_msgs::Float64MultiArrayConstPtr &_
     this->SetBasePose(q_b);
 }
 
+// Callback for ROS Base Position messages
+void PoseControl::OnBaseHeightMsg(const std_msgs::Float64ConstPtr &_msg)
+{
+    double data = _msg->data;
+
+    Eigen::Matrix<double, 6, 1> q_b = this->genCoord.block(0,0,5,0);
+
+    q_b(2) = data;
+
+    this->SetBasePose(q_b);
+}
+
 // Callback for ROS Base Orientation messages
 void PoseControl::OnBaseOrientationMsg(const std_msgs::Float64MultiArrayConstPtr &_msg)
 {
@@ -211,6 +223,15 @@ void PoseControl::InitRos()
             &this->rosProcessQueue
             );
 
+    ros::SubscribeOptions base_height_so = 
+        ros::SubscribeOptions::create<std_msgs::Float64>(
+            "/my_robot/base_height_cmd",
+            1,
+            boost::bind(&PoseControl::OnBaseHeightMsg, this, _1),
+            ros::VoidPtr(),
+            &this->rosProcessQueue
+            );
+
     ros::SubscribeOptions base_orientation_so = 
         ros::SubscribeOptions::create<std_msgs::Float64MultiArray>(
             "/my_robot/base_orientation_cmd",
@@ -225,6 +246,8 @@ void PoseControl::InitRos()
     this->basePoseSub = this->rosNode->subscribe(base_pose_so);
 
     this->basePositionSub = this->rosNode->subscribe(base_position_so);
+
+    this->baseHeightSub = this->rosNode->subscribe(base_height_so);
 
     this->baseOrientationSub = this->rosNode->subscribe(base_orientation_so);
 

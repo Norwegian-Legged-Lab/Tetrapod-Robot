@@ -30,6 +30,7 @@
 #include "ros/ros.h"
 #include "ros/callback_queue.h"
 #include "sensor_msgs/JointState.h"
+#include "std_msgs/Float64.h"
 #include "std_msgs/Float64MultiArray.h"
 #include "eigen_conversions/eigen_msg.h"
 
@@ -68,6 +69,12 @@ class PoseControl
     /// \param[in] _msg A float array containing the desired 
     /// base position command.
     public: void OnBasePositionMsg(const std_msgs::Float64MultiArrayConstPtr &_msg);
+
+    /// \brief The OnBaseHeightMsg function handles an incoming 
+    /// base height messages from ROS.
+    /// \param[in] _msg A float array containing the desired 
+    /// base height command.
+    public: void OnBaseHeightMsg(const std_msgs::Float64ConstPtr &_msg);
 
     /// \brief The OnBaseOrientationMsg function handles an incoming 
     /// base orientation messages from ROS.
@@ -110,6 +117,9 @@ class PoseControl
 
     /// \brief ROS Base Pose Subscriber
     private: ros::Subscriber basePositionSub;
+
+    /// \brief ROS Base Height Subscriber
+    private: ros::Subscriber baseHeightSub;
 
     /// \brief ROS Base Pose Subscriber
     private: ros::Subscriber baseOrientationSub;
