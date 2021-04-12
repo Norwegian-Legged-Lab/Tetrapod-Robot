@@ -54,9 +54,10 @@ void PoseControl::SetBasePose(const Eigen::Matrix<double, 6, 1> &_q_b)
 
     if(!this->kinematics.SolveInverseKinematics(_q_b, this->fPos, q_r))
     {
-        ROS_ERROR_STREAM("Could not solve inverse kinematics for pose control. The Footstep positions was, fPos(0): \n" 
-                        << this->fPos(0) << "\n fPos(1): \n" << this->fPos(1) << "\n fPos(2) \n" << this->fPos(2) << "\n fPos(3) \n" << this->fPos(3) 
-                        << "\n Solution found was in degrees, q_r: \n" << q_r * 360 * angle_utils::ONE_DIV_TWO_PI);
+        ROS_ERROR_STREAM("Could not solve inverse kinematics for pose control."); 
+        debug_utils::printBaseState(_q_b);
+        debug_utils::printFootstepPositions(fPos);
+        debug_utils::printJointState(q_r);
     }
     else
     {
