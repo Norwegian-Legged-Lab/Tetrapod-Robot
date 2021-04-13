@@ -1,6 +1,6 @@
 #include "motor_control.h"
 
-MotorControl::MotorControl(uint8_t _id, uint8_t _can_port_id, int _number_of_inner_motor_rotations)
+MotorControl::MotorControl(uint8_t _id, uint8_t _can_port_id, int _number_of_inner_motor_rotations, double _position_offset)
 {
     id = _id;
 
@@ -9,6 +9,8 @@ MotorControl::MotorControl(uint8_t _id, uint8_t _can_port_id, int _number_of_inn
     can_message.id = address;
 
     can_port_id = _can_port_id;
+
+    position_offset = _position_offset;
 
     max_encoder_value = MAX_ENCODER_VALUE;
 
@@ -212,7 +214,7 @@ bool MotorControl::writePIDParametersToRAM
 void MotorControl::setPositionReference(double _angle)
 {
     // Convert the desired shaft angle in radians into an inner motor angle in 0.01 degrees 
-    double inner_motor_reference_angle = (ROTATION_DISTANCE*0.0 - _angle*180.0/M_PI)*GEAR_REDUCTION*100.0 + (initial_number_of_inner_motor_rotations + target_position_offset)*ROTATION_DISTANCE*GEAR_REDUCTION*100.0;
+    double inner_motor_reference_angle = -(_angle + position_offset)*GEAR_REDUCTION*100.0*180.0/M_PI + (initial_number_of_inner_motor_rotations + target_position_offset)*ROTATION_DISTANCE*GEAR_REDUCTION*100.0;
     raw_position_reference = inner_motor_reference_angle;
     // Create a position control can message
     make_can_msg::positionControl1(can_message.buf, inner_motor_reference_angle);
@@ -273,7 +275,7 @@ void MotorControl::readMotorControlCommandReply(unsigned char* _can_message)
     previous_encoder_value = new_encoder_value;
 
     // Update the shaft position in radians
-    position = (number_of_inner_motor_rotations + 1.0 - (double)new_encoder_value/(double)max_encoder_value)*ROTATION_DISTANCE*M_PI/180.0;
+    position = (number_of_inner_motor_rotations + 1.0 - (double)new_encoder_value/(double)max_encoder_value)*ROTATION_DISTANCE*M_PI/180.0 - position_offset;
 
     // Get the speed of the inner motor in degrees per second
     int16_t speed_motor_dps = _can_message[5]*256 + _can_message[4];

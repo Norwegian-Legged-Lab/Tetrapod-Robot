@@ -19,7 +19,7 @@ public:
     /// \brief Constructor for a MotorControl object.
     /// Motor ID and CAN port are set
     /// \param[in] _id ID of the motor [1 - 32]
-    MotorControl(uint8_t _id, uint8_t _can_port_id, int _number_of_inner_motor_rotations);
+    MotorControl(uint8_t _id, uint8_t _can_port_id, int _number_of_inner_motor_rotations, double _position_offset);
 
     /// \brief Read the motor PI parameters and update the private PI values.
     /// \return If the PI parameters were successfully read, return true.
@@ -182,6 +182,9 @@ private:
     /// setPosition function will have zero offset of 60 degrees. 
     // This parameters keeps track of whether or not this is the case.
     uint8_t target_position_offset;
+
+    /// \brief position offset = true position - position
+    double position_offset = 0.0;
 
     /// \brief Latest measured position of the shaft in radians
     double position;

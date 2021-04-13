@@ -12,6 +12,7 @@
 #include "FlexCAN_T4.h"
 #include "utilities.h"
 #include "ros_node_handle.h"
+#include "config_motor_interface.h"
 
 /// TEMP_START
 #include "teensy_blinker.h"
@@ -19,7 +20,7 @@ TEENSY_LED led;
 /// TEMP_END
 
 // Number of motors 
-const int NUMBER_OF_MOTORS = 2;
+const int NUMBER_OF_MOTORS = 1;
 int NUMBER_OF_MOTORS_PER_PORT = 1;
 
 // Arrays needed to publish jointState messages back
@@ -107,12 +108,12 @@ void setup()
     // CAN port 1 should be used
     if(i < NUMBER_OF_MOTORS_PER_PORT)
     {
-      motors[i] = MotorControl(i + 1, CAN_PORT_1, 0);
+      motors[i] = MotorControl(i + 1, CAN_PORT_1, INITIAL_NUMBER_OF_MOTOR_ROTATIONS[i], POSITION_OFFSET[i]);
     }
     // CAN port 2 should be used
     else
     {
-      motors[i] = MotorControl(i + 1, CAN_PORT_2, 0);
+      motors[i] = MotorControl(i + 1, CAN_PORT_2, INITIAL_NUMBER_OF_MOTOR_ROTATIONS[i], POSITION_OFFSET[i]);
     }
   }
   
