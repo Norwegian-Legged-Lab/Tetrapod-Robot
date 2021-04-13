@@ -3,7 +3,7 @@
 
 
 // Hip pitch offset 0.371 rad
-
+ 
 #define position_offset_motor1 0.5236
 #define position_offset_motor2 0.0 
 #define position_offset_motor3 0.0
