@@ -61,18 +61,6 @@ void PoseControl::SetBasePose(const Eigen::Matrix<double, 6, 1> &_q_b)
     }
     else
     {
-        Eigen::Matrix<double, 6, 1> curr_q_b = this->genCoord.block(0,0,5,0);
-        Eigen::Matrix<double, 12, 1> curr_q_r = this->genCoord.block(6,0,17,0);
-
-        ROS_INFO_STREAM("Current base pose, q_b: \n" << curr_q_b);
-        ROS_INFO_STREAM("Desired base pose, des_q_b: \n" << _q_b);
-        //ROS_INFO_STREAM("fPos(0): \n" << this->fPos(0));
-        //ROS_INFO_STREAM("fPos(1): \n" << this->fPos(1));
-        //ROS_INFO_STREAM("fPos(2): \n" << this->fPos(2));
-        //ROS_INFO_STREAM("fPos(3): \n" << this->fPos(3));
-        //ROS_INFO_STREAM("Current state in degrees, q_r: \n" << curr_q_r * 360 * angle_utils::ONE_DIV_TWO_PI);
-        //ROS_INFO_STREAM("Found IK solution in degrees, des_q_r: \n" << q_r * 360 * angle_utils::ONE_DIV_TWO_PI);
-
         std_msgs::Float64MultiArray pos_msg;
 
         tf::matrixEigenToMsg(q_r, pos_msg);
@@ -83,6 +71,94 @@ void PoseControl::SetBasePose(const Eigen::Matrix<double, 6, 1> &_q_b)
 
         this->jointStatePub.publish(joint_state_msg);
     }
+}
+
+
+// Set Position
+void PoseControl::SetBasePosition(const Eigen::Matrix<double, 3, 1> &_base_position)
+{
+    Eigen::Matrix<double, 12, 1> q_r;
+
+    Eigen::Matrix<double, 6, 1> q_b = this->genCoord.block(0,0,5,0);
+
+    q_b.block(0,0,2,0) << _base_position;
+
+    if(!this->kinematics.SolveInverseKinematics(q_b, this->fPos, q_r))
+    {
+        ROS_ERROR_STREAM("Could not solve inverse kinematics for pose control."); 
+        debug_utils::printBaseState(_q_b);
+        debug_utils::printFootstepPositions(fPos);
+        debug_utils::printJointState(q_r);
+    }
+    else
+    {
+        std_msgs::Float64MultiArray pos_msg;
+
+        tf::matrixEigenToMsg(q_r, pos_msg);
+
+        sensor_msgs::JointState joint_state_msg;
+
+        joint_state_msg.position = pos_msg.data;
+
+        this->jointStatePub.publish(joint_state_msg);
+}
+
+// Set Orientation
+void PoseControl::SetBaseOrientation(const Eigen::Matrix<double, 3, 1> &_base_orientation)
+{
+    Eigen::Matrix<double, 12, 1> q_r;
+
+    Eigen::Matrix<double, 6, 1> q_b = this->genCoord.block(0,0,5,0);
+
+    q_b.block(3,0,5,0) << _base_orientation;
+
+    if(!this->kinematics.SolveInverseKinematics(q_b, this->fPos, q_r))
+    {
+        ROS_ERROR_STREAM("Could not solve inverse kinematics for pose control."); 
+        debug_utils::printBaseState(_q_b);
+        debug_utils::printFootstepPositions(fPos);
+        debug_utils::printJointState(q_r);
+    }
+    else
+    {
+        std_msgs::Float64MultiArray pos_msg;
+
+        tf::matrixEigenToMsg(q_r, pos_msg);
+
+        sensor_msgs::JointState joint_state_msg;
+
+        joint_state_msg.position = pos_msg.data;
+
+        this->jointStatePub.publish(joint_state_msg);
+}
+
+// Set Height
+void PoseControl::SetBaseHeight(const double &_base_height)
+{
+    Eigen::Matrix<double, 12, 1> q_r;
+
+    Eigen::Matrix<double, 6, 1> q_b = this->genCoord.block(0,0,5,0);
+
+    q_b(2) << _base_height;
+
+    if(!this->kinematics.SolveInverseKinematics(q_b, this->fPos, q_r))
+    {
+        ROS_ERROR_STREAM("Could not solve inverse kinematics for pose control."); 
+        debug_utils::printBaseState(_q_b);
+        debug_utils::printFootstepPositions(fPos);
+        debug_utils::printJointState(q_r);
+    }
+    else
+    {
+        std_msgs::Float64MultiArray pos_msg;
+
+        tf::matrixEigenToMsg(q_r, pos_msg);
+
+        sensor_msgs::JointState joint_state_msg;
+
+        joint_state_msg.position = pos_msg.data;
+
+        this->jointStatePub.publish(joint_state_msg);
 }
 
 // Callback for ROS Generalized Coordinates messages
@@ -226,7 +302,24 @@ void PoseControl::InitRos()
     ros::SubscribeOptions base_height_so = 
         ros::SubscribeOptions::create<std_msgs::Float64>(
             "/my_robot/base_height_cmd",
-            1,
+            1,    if(!this->kinematics.SolveInverseKinematics(_q_b, this->fPos, q_r))
+    {
+        ROS_ERROR_STREAM("Could not solve inverse kinematics for pose control."); 
+        debug_utils::printBaseState(_q_b);
+        debug_utils::printFootstepPositions(fPos);
+        debug_utils::printJointState(q_r);
+    }
+    else
+    {
+        std_msgs::Float64MultiArray pos_msg;
+
+        tf::matrixEigenToMsg(q_r, pos_msg);
+
+        sensor_msgs::JointState joint_state_msg;
+
+        joint_state_msg.position = pos_msg.data;
+
+        this->jointStatePub.publish(joint_state_msg);
             boost::bind(&PoseControl::OnBaseHeightMsg, this, _1),
             ros::VoidPtr(),
             &this->rosProcessQueue
