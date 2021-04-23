@@ -52,6 +52,13 @@ class PoseControl
 
     public: void SetBasePose(const Eigen::Matrix<double, 6, 1> &_q_b);
 
+    public: void SetBasePosition(const Eigen::Matrix<double, 3, 1> &_base_position);
+    
+    public: void SetBaseOrientation(const Eigen::Matrix<double, 3, 1> &_base_orientation);
+    
+    public: void SetBaseHeight(const double &_base_height);
+
+
     /// \brief The OnGenCoordMsg function handles an incoming 
     /// generalized coordinates message from ROS.
     /// \param[in] _msg A float array containing the generalized
