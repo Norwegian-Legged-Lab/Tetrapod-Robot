@@ -37,6 +37,7 @@
 // Standard library
 #include <thread>
 
+
 /// \brief A class to control and distribute motor position, velocity and torque information.
 class MotorInterface
 {
@@ -45,6 +46,12 @@ class MotorInterface
 
     /// \brief Destructor
     public: virtual ~MotorInterface();
+
+    /// \brief The OnMotorStateCMsg function handles an incoming 
+    /// generalized coordinates message from ROS.
+    /// \param[in] _msg A float array containing the generalized
+    /// coordinates.
+    public: void OnMotorStateMsg(const sensor_msgs::JointStateConstPtr &_msg);
 
     /// \brief The ProcessQueueThread function is a ROS helper function
     /// that processes messages.
@@ -63,6 +70,12 @@ class MotorInterface
 
     /// \brief Node used for ROS transport.
     private: std::unique_ptr<ros::NodeHandle> rosNode;
+
+    /// \brief ROS Motor State Subscriber.
+    private: ros::Subscriber motorStateSub;
+
+    /// \brief ROS Joint State Publisher
+    private: ros::Publisher motorStateCmdPub;
 
     /// \brief ROS Joint State Publisher
     private: ros::Publisher jointStatePub;

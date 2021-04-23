@@ -47,6 +47,12 @@ MotorInterface::~MotorInterface()
     this->rosPublishQueueThread.join();
 }
 
+// Callback for ROS Base Pose messages
+void MotorInterface::OnMotorStateMsg(const sensor_msgs::JointStateConstPtr &_msg)
+{
+    int a = 0;
+}
+
 // Setup thread to process messages
 void MotorInterface::ProcessQueueThread()
 {
@@ -84,6 +90,25 @@ void MotorInterface::InitRos()
 
     this->rosNode.reset(new ros::NodeHandle("motor_interface_node"));
 
+    ros::SubscribeOptions motor_state_so = 
+        ros::SubscribeOptions::create<sensor_msgs::JointState>(
+            "/my_robot/motor_state",
+            1,
+            boost::bind(&MotorInterface::OnMotorStateMsg, this, _1),
+            ros::VoidPtr(),
+            &this->rosProcessQueue
+            );
+
+    ros::AdvertiseOptions motor_state_cmd_ao =
+        ros::AdvertiseOptions::create<sensor_msgs::JointState>(
+            "/my_robot/motor_state_cmd",
+            1,
+            ros::SubscriberStatusCallback(),
+            ros::SubscriberStatusCallback(),
+            ros::VoidPtr(),
+            &this->rosPublishQueue
+        );
+
     ros::AdvertiseOptions joint_state_ao =
         ros::AdvertiseOptions::create<sensor_msgs::JointState>(
             "/my_robot/joint_state",
@@ -93,6 +118,10 @@ void MotorInterface::InitRos()
             ros::VoidPtr(),
             &this->rosPublishQueue
         );
+
+    this->motorStateSub = this->rosNode->subscribe(motor_state_so);
+
+    this->motorStateCmdPub = this->rosNode->advertise(motor_state_cmd_ao);
 
     this->jointStatePub = this->rosNode->advertise(joint_state_ao);
 }
