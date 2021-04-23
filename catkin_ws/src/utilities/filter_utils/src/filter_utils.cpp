@@ -1,4 +1,4 @@
-#include "filter_utils.h"
+#include <filter_utils/filter_utils.h>
 
 ThirdOrderFilter::ThirdOrderFilter(double _dt, double _x_current, double _x_goal, double _omega, double _zeta)
 {
