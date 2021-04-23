@@ -57,8 +57,8 @@ void printJointState(const Eigen::Matrix<double, 12, 1> &_joint_state)
     ROS_INFO_STREAM("rl,hp: \t" << _joint_state(7) * 360 * angle_utils::ONE_DIV_TWO_PI);
     ROS_INFO_STREAM("rl,kp: \t" << _joint_state(8) * 360 * angle_utils::ONE_DIV_TWO_PI);
     ROS_INFO_STREAM("rr,hy: \t" << _joint_state(9) * 360 * angle_utils::ONE_DIV_TWO_PI);
-    ROS_INFO_STREAM("rr,hp: \t" << _joint_state(10));
-    ROS_INFO_STREAM("rr,kp: \t" << _joint_state(11));
+    ROS_INFO_STREAM("rr,hp: \t" << _joint_state(10) * 360 * angle_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM("rr,kp: \t" << _joint_state(11) * 360 * angle_utils::ONE_DIV_TWO_PI);
     ROS_INFO_STREAM(" ------------------------------------------ ");
 }
 
