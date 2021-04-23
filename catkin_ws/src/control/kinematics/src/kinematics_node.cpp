@@ -200,10 +200,10 @@ void testInverseKinematics()
 
     Twist q_b = Twist::Constant(0);
 
-    q_b(0) = 0.0105679;
-    q_b(1) = -0.315821;
-    q_b(2) = 0.205248;
-    q_b(3) = 0.35;
+    q_b(0) = 0;
+    q_b(1) = 0;
+    q_b(2) = 1;
+    q_b(3) = 0;
     q_b(4) = 0;
     q_b(5) = 0;
 
@@ -211,10 +211,10 @@ void testInverseKinematics()
 
     FootstepPositions f_pos;
 
-    f_pos(0) = Eigen::Vector3d(4,1,0);
-    f_pos(1) = Eigen::Vector3d(0.8455, -0.3499, 0.02500);
-    f_pos(2) = Eigen::Vector3d(2,1,0);
-    f_pos(3) = Eigen::Vector3d(2,-1,0);
+    f_pos(0) = Eigen::Vector3d(0.553807,0.587807,0.666803);
+    f_pos(1) = Eigen::Vector3d(0.553807, -0.587807, 0.66803);
+    f_pos(2) = Eigen::Vector3d(-0.553807,0.587807,0.66803);
+    f_pos(3) = Eigen::Vector3d(-0.553807,-0.587807,0.666803);
 
     JointSpaceVector q_r;
 
@@ -235,8 +235,8 @@ int main(int argc, char **argv)
     //testKindr();
     //ROS_INFO_STREAM("--------------- Test Hip to Foot Transform --------------");
     //testHipToFootTransform();
-    //ROS_INFO_STREAM("--------------- Test FK --------------");
-    //testForwardKinematics();
+    ROS_INFO_STREAM("--------------- Test FK --------------");
+    testForwardKinematics();
     //ROS_INFO_STREAM("--------------- Test Single Leg IK --------------");
     //testSingeLegInverseKinematics();
     ROS_INFO_STREAM("--------------- Test IK --------------");
