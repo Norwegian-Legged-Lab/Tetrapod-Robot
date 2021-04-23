@@ -1,5 +1,5 @@
-#ifndef motor_control_h
-#define motor_control_h
+#ifndef motor_driver_h
+#define motor_driver_h
 
 #include "motor_constants.h"
 #include "teensy_can_ports.h"

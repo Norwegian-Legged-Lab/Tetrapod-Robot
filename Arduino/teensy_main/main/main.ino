@@ -6,7 +6,7 @@
 
 
 // Inlucde other libraries
-#include "motor_control.h"
+#include "motor_driver.h"
 #include "motor_constants.h"
 #include "teensy_can_ports.h"
 #include "FlexCAN_T4.h"
@@ -76,7 +76,7 @@ void controlCommandCallback(const sensor_msgs::JointState& joint_state_msg)
   } 
 }
 
-ros::Subscriber<sensor_msgs::JointState> subscriber_control_commands("motor_control_commands", &controlCommandCallback);
+ros::Subscriber<sensor_msgs::JointState> subscriber_control_commands("motor_driver_commands", &controlCommandCallback);
 
 void setup() 
 {

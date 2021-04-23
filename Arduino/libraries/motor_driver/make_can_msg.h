@@ -7,7 +7,7 @@
  
 /// \brief The functions within this namespace converts the incomming 8-byte arrays to 
 /// CAN data messages for RMDX motors.
-/// Please see the attached pdf, RMD_servo_motor_control_protocol for full details.
+/// Please see the attached pdf, RMD_servo_motor_driver_protocol for full details.
 /// NB! All messages are related to the inner motor, not the output shaft
 namespace make_can_msg
 {
