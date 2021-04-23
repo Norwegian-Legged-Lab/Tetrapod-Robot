@@ -83,47 +83,50 @@ Kinematics::~Kinematics() {}
 // Solve inverse kinematics
 bool Kinematics::SolveInverseKinematics(const Twist &_q_b, const FootstepPositions &_f_pos, JointSpaceVector &_q_r)
 {
-    // Base Pose
-    kindr::Position3D base_position(_q_b.block(0,0,2,0));
-    kindr::Position3D base_orientation(_q_b.block(3,0,5,0));
+    // Base world position
+    Vector3d basePositionInW(_q_b.block<3, 1>(0, 0));
 
-    // Rotation from Body to World frame
-    kindr::RotationMatrixD rotationBToW(kindr::EulerAnglesZyxD(base_orientation(2),
-                                                                base_orientation(1),
-                                                                base_orientation(0))
+    // Base orientation
+    Vector3d baseOrientation(_q_b.block<3, 1>(3, 0));
+
+    Vector3d positionFrontLeftFootInW(_f_pos(0));
+    Vector3d positionFrontRightFootInW(_f_pos(1));
+    Vector3d positionRearLeftFootInW(_f_pos(2));
+    Vector3d positionRearRightFootInW(_f_pos(3));
+
+    // Transformation matrix from Body to World frame (R_b^w)
+    kindr::RotationMatrixD transformationBToW(kindr::EulerAnglesZyxD(baseOrientation(2),
+                                                                baseOrientation(1),
+                                                                baseOrientation(0))
                                         );
 
-    // Base to hip positions in World Frame.
-    kindr::Position3D positionBaseToFrontLeftInW(rotationBToW.matrix()*positionBaseToFrontLeftInB);
-    kindr::Position3D positionBaseToFrontRightInW(rotationBToW.matrix()*positionBaseToFrontRightInB);
-    kindr::Position3D positionBaseToRearLeftInW(rotationBToW.matrix()*positionBaseToRearLeftInB);
-    kindr::Position3D positionBaseToRearRightInW(rotationBToW.matrix()*positionBaseToRearRightInB);
+    // Transformation matrix from World to Body frame (R_w^b)
+    kindr::RotationMatrixD transformationWToB(transformationBToW.transpose());
 
-    // Base to hip transformations
-    kindr::HomTransformMatrixD transformBaseToFrontLeftHip(positionBaseToFrontLeftInW, rotationBToW);
-    kindr::HomTransformMatrixD transformBaseToFrontRightHip(positionBaseToFrontRightInW, rotationBToW);
-    kindr::HomTransformMatrixD transformBaseToRearLeftHip(positionBaseToRearLeftInW, rotationBToW);
-    kindr::HomTransformMatrixD transformBaseToRearRightHip(positionBaseToRearRightInW, rotationBToW);
-
-    // Hip positions
-    Eigen::Matrix<Eigen::Vector3d, 4, 1> h_pos;
-
-    h_pos(0) = transformBaseToFrontLeftHip.transform(base_position).vector();
-    h_pos(1) = transformBaseToFrontRightHip.transform(base_position).vector();
-    h_pos(2) = transformBaseToRearLeftHip.transform(base_position).vector();
-    h_pos(3) = transformBaseToRearRightHip.transform(base_position).vector();
-
+    // The vector from the desired base position to the current foot position in the desired base frame 
+    Vector3d positionFrontLeftFootInB(transformationWToB.matrix()*(positionFrontLeftFootInW - basePositionInW));
+    Vector3d positionFrontRightFootInB(transformationWToB.matrix()*(positionFrontRightFootInW - basePositionInW));
+    Vector3d positionRearLeftFootInB(transformationWToB.matrix()*(positionRearLeftFootInW - basePositionInW));
+    Vector3d positionRearRightFootInB(transformationWToB.matrix()*(positionRearRightFootInW - basePositionInW));
+    
+    // A vector of hip positions given in the desired base frame
+    Eigen::Matrix<Eigen::Vector3d, 4, 1> positionHipsInB;
+    positionHipsInB(0) = positionBaseToFrontLeftInB;
+    positionHipsInB(1) = positionBaseToFrontRightInB;
+    positionHipsInB(2) = positionBaseToRearLeftInB;
+    positionHipsInB(3) = positionBaseToRearRightInB;
+    
     // TODO remove uneccesarry prints
-    //ROS_INFO_STREAM("h_pos(0): " << h_pos(0));
-    //ROS_INFO_STREAM("h_pos(1): " << h_pos(1));
-    //ROS_INFO_STREAM("h_pos(2): " << h_pos(2));
-    //ROS_INFO_STREAM("h_pos(3): " << h_pos(3));
-
+    //ROS_INFO_STREAM("h_pos(0): " << positionHips(0));
+    //ROS_INFO_STREAM("h_pos(1): " << positionHips(1));
+    //ROS_INFO_STREAM("h_pos(2): " << positionHips(2));
+    //ROS_INFO_STREAM("h_pos(3): " << positionHips(3));
+        
     // Joint angles
-    _q_r.block(0,0,2,0) << this->SolveSingleLegInverseKinematics(this->flOffset, h_pos(0), _f_pos(0));
-    _q_r.block(3,0,5,0) << this->SolveSingleLegInverseKinematics(this->frOffset, h_pos(1), _f_pos(1));
-    _q_r.block(6,0,8,0) << this->SolveSingleLegInverseKinematics(this->rlOffset, h_pos(2), _f_pos(2));
-    _q_r.block(9,0,11,0) << this->SolveSingleLegInverseKinematics(this->rrOffset, h_pos(3), _f_pos(3));
+    _q_r.block<3, 1>(0, 0) = this->SolveSingleLegInverseKinematics(this->flOffset, positionHipsInB(0), positionFrontLeftFootInB);
+    _q_r.block<3, 1>(3, 0) = this->SolveSingleLegInverseKinematics(this->frOffset, positionHipsInB(1), positionFrontRightFootInB);
+    _q_r.block<3, 1>(6, 0) = this->SolveSingleLegInverseKinematics(this->rlOffset, positionHipsInB(2), positionRearLeftFootInB);
+    _q_r.block<3, 1>(9, 0) = this->SolveSingleLegInverseKinematics(this->rrOffset, positionHipsInB(3), positionRearRightFootInB);
 
     return this->ValidateSolution(_q_r); 
 }
