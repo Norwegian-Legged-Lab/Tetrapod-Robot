@@ -1,5 +1,5 @@
-#ifndef motor_interface_config_h
-#define motor_interface_config_h
+#ifndef motor_driver_config_h
+#define motor_driver_config_h
 
 
 // Hip pitch offset 0.371 rad

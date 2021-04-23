@@ -12,7 +12,7 @@
 #include "FlexCAN_T4.h"
 #include "utilities.h"
 #include "ros_node_handle.h"
-#include "config_motor_interface.h"
+#include "config_motor_driver.h"
 
 /// TEMP_START
 #include "teensy_blinker.h"

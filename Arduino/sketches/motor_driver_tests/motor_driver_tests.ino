@@ -1,11 +1,11 @@
 // SEND EXAMPLE OF SERIAL CAN MODULE
 // unsigned char send(unsigned long id, uchar ext, uchar rtrBit, uchar len, const uchar *buf);
 // SUPPORT: joney.sui@longan-labs.cc
-#include "motor_interface.h"
+#include "motor_driver.h"
 
 #include <Serial_CAN_Module.h>
 //#include <SoftwareSerial.h>
-MotorInterface motor_interface;
+MotorDriver motor_driver;
 Serial_CAN can;
 
 #define can_tx  0           // tx of serial can module connect to D2
@@ -49,8 +49,8 @@ void loop()
 {
     can.debugMode();
     
-    motor_interface.readPIDParameters(can_message);
-    //motor_interface.readEncoderPosition(can_message);
+    motor_driver.readPIDParameters(can_message);
+    //motor_driver.readEncoderPosition(can_message);
     can.send(0x141, 0, 0, 8, can_message);
 
     // Print the canbus message that we sent
