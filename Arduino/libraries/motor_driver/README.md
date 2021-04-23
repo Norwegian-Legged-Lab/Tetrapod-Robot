@@ -11,7 +11,7 @@ blablabla
 #### make_can_msg.h/cpp
 The header file make_can_msg.h contains functions that transforms the data segment of a CAN message into a CAN message that correponds to the protocols used for the motor. Please take a look at the official protocol guide for a complete description over the commands: https://www.dropbox.com/s/2yzt90i10d6dn27/RMD%20servo%20motor%20control%20protocol%20%28CAN%20BUS%20%29V1.61.pdf?dl=0
 
-#### motor_control.h/cpp
+#### motor_driver.h/cpp
 This contains a class named MotorControl. One MotorControl object should be made for every physical motor. All communication with the motors goes through MotorClass objects.
 
 #### motor_constants.h

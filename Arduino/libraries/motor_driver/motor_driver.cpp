@@ -1,4 +1,4 @@
-#include "motor_control.h"
+#include "motor_driver.h"
 
 MotorControl::MotorControl(uint8_t _id, uint8_t _can_port_id, int _number_of_inner_motor_rotations, double _position_offset)
 {

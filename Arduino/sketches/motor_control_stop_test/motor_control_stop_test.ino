@@ -1,6 +1,6 @@
 #include "FlexCAN_T4.h"
 #include "teensy_can_ports.h"
-#include "motor_control.h"
+#include "motor_driver.h"
 #include "motor_constants.h"
 #include "Arduino.h"
 
