@@ -50,7 +50,13 @@ MotorInterface::~MotorInterface()
 // Callback for ROS Base Pose messages
 void MotorInterface::OnMotorStateMsg(const sensor_msgs::JointStateConstPtr &_msg)
 {
-    int a = 0;
+    std::string motor_category = _msg->name;
+
+    std::vector<double> pos_data = _msg->position;
+
+    std::vector<double> vel_data = _msg->velocity;
+
+    
 }
 
 // Setup thread to process messages

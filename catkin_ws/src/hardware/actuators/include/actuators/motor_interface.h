@@ -37,6 +37,9 @@
 // Standard library
 #include <thread>
 
+// Eigen
+#include <Eigen/Core>
+
 
 /// \brief A class to control and distribute motor position, velocity and torque information.
 class MotorInterface
@@ -67,6 +70,9 @@ class MotorInterface
     /// \brief The InitRosQueueThreads function is called to initialize
     /// the ROS Publish and Process Queue Threads
     protected: void InitRosQueueThreads();
+
+    /// \brief Joint State
+    protected: Eigen::Matrix<double, 12, 1> jointState;
 
     /// \brief Node used for ROS transport.
     private: std::unique_ptr<ros::NodeHandle> rosNode;
