@@ -20,7 +20,7 @@ ThirdOrderFilter::ThirdOrderFilter(double _dt, double _x_current, double _x_goal
     B_d(2) = _omega*_omega*_omega;
 }
 
-ThirdOrderFilter::updateFilter()
+void ThirdOrderFilter::updateFilter()
 {
     Eigen::Matrix<double, 3, 1> X_dot = A_d*X + B_d*x_goal;
     X += X_dot*dt;
