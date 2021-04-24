@@ -63,9 +63,13 @@ void MotorInterface::OnMotorStateMsg(const sensor_msgs::JointStateConstPtr &_msg
 
         jointState.block<6,1>(0,0) << Eigen::Map<Eigen::MatrixXd>(pos_data.data(), 6, 1);
 
-        std_msgs::Float64MultiArray joint_state_msg;
+        std_msgs::Float64MultiArray pos_msg;
 
-        tf::matrixEigenToMsg(jointState, joint_state_msg);
+        tf::matrixEigenToMsg(jointState, pos_msg);
+
+        sensor_msgs::JointState joint_state_msg
+
+        joint_state_msg.position = pos_msg.data;
 
         this->jointStatePub.publish(joint_state_msg);
     }
@@ -76,9 +80,13 @@ void MotorInterface::OnMotorStateMsg(const sensor_msgs::JointStateConstPtr &_msg
 
         jointState.block<6,1>(6,0) << Eigen::Map<Eigen::MatrixXd>(pos_data.data(), 6, 1);
 
-        std_msgs::Float64MultiArray joint_state_msg;
+        std_msgs::Float64MultiArray pos_msg;
 
-        tf::matrixEigenToMsg(jointState, joint_state_msg);
+        tf::matrixEigenToMsg(jointState, pos_msg);
+
+        sensor_msgs::JointState joint_state_msg
+
+        joint_state_msg.position = pos_msg.data;
 
         this->jointStatePub.publish(joint_state_msg);
     }
