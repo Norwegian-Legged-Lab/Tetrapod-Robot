@@ -67,7 +67,7 @@ void MotorInterface::OnMotorStateMsg(const sensor_msgs::JointStateConstPtr &_msg
 
         tf::matrixEigenToMsg(jointState, pos_msg);
 
-        sensor_msgs::JointState joint_state_msg
+        sensor_msgs::JointState joint_state_msg;
 
         joint_state_msg.position = pos_msg.data;
 
@@ -84,7 +84,7 @@ void MotorInterface::OnMotorStateMsg(const sensor_msgs::JointStateConstPtr &_msg
 
         tf::matrixEigenToMsg(jointState, pos_msg);
 
-        sensor_msgs::JointState joint_state_msg
+        sensor_msgs::JointState joint_state_msg;
 
         joint_state_msg.position = pos_msg.data;
 
