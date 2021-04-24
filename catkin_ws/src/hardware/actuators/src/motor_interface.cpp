@@ -50,13 +50,13 @@ MotorInterface::~MotorInterface()
 // Callback for ROS Base Pose messages
 void MotorInterface::OnMotorStateMsg(const sensor_msgs::JointStateConstPtr &_msg)
 {
-    std::string motor_category = _msg->name(0);
+    std::vector<std::string> motor_category = _msg->name;
 
     std::vector<double> pos_data = _msg->position;
 
     std::vector<double> vel_data = _msg->velocity;
 
-    if (!std::strcmp(motor_category, "Front"))
+    if (!std::strcmp(motor_category(0), "Front"))
     {
         //ROS_DEBUG_STREAM("Received Front Motor State message. \n Position: \n" << pos_data << "\n Velocity: \n" << vel_data);
 
@@ -72,7 +72,7 @@ void MotorInterface::OnMotorStateMsg(const sensor_msgs::JointStateConstPtr &_msg
 
         this->jointStatePub.publish(joint_state_msg);
     }
-    else if (!std::strcmp(motor_category, "Rear"))
+    else if (!std::strcmp(motor_category(0), "Rear"))
     {
         //ROS_DEBUG_STREAM("Received Rear Motor State message. \n Position: \n" << pos_data << "\n Velocity: \n" << vel_data);
 
