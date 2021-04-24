@@ -1,7 +1,7 @@
 /*******************************************************************/
 /*    AUTHOR: Paal Arthur S. Thorseth                              */
 /*    ORGN:   Dept of Eng Cybernetics, NTNU Trondheim              */
-/*    FILE:   pose_control.cpp                                     */
+/*    FILE:   motor_interface.cpp                                  */
 /*    DATE:   Apr 23, 2021                                         */
 /*                                                                 */
 /* Copyright (C) 2021 Paal Arthur S. Thorseth,                     */
@@ -56,7 +56,7 @@ void MotorInterface::OnMotorStateMsg(const sensor_msgs::JointStateConstPtr &_msg
 
     std::vector<double> vel_data = _msg->velocity;
 
-    if (!std::strcmp(motor_category.front(), "Front"))
+    if (!motor_category[0].compare("Front"))
     {
         //ROS_DEBUG_STREAM("Received Front Motor State message. \n Position: \n" << pos_data << "\n Velocity: \n" << vel_data);
 
@@ -72,7 +72,7 @@ void MotorInterface::OnMotorStateMsg(const sensor_msgs::JointStateConstPtr &_msg
 
         this->jointStatePub.publish(joint_state_msg);
     }
-    else if (!std::strcmp(motor_category.front(), "Rear"))
+    else if (!motor_category[0].compare("Rear"))
     {
         //ROS_DEBUG_STREAM("Received Rear Motor State message. \n Position: \n" << pos_data << "\n Velocity: \n" << vel_data);
 
