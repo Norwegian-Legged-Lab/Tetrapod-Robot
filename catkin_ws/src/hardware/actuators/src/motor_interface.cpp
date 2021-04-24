@@ -56,7 +56,36 @@ void MotorInterface::OnMotorStateMsg(const sensor_msgs::JointStateConstPtr &_msg
 
     std::vector<double> vel_data = _msg->velocity;
 
-    
+    if (!std::strcmp(motor_category, "Front"))
+    {
+        ROS_DEBUG_STREAM("Received Front Motor State message. \n Position: \n" 
+            << pos_data << "\n Velocity: \n" << vel_data);
+
+        jointState.block<6,1>(0,0) << Eigen::Map<Eigen::MatrixXd>(pos_data.data(), 6, 1);
+
+        std_msgs::Float64MultiArray joint_state_msg;
+
+        tf::matrixEigenToMsg(jointState, joint_state_msg);
+
+        this->jointStatePub.publish(joint_state_msg);
+    }
+    else if (!std::strcmp(motor_category, "Rear"))
+    {
+        ROS_DEBUG_STREAM("Received Rear Motor State message. \n Position: \n" 
+            << pos_data << "\n Velocity: \n" << vel_data);
+
+        jointState.block<6,1>(6,0) << Eigen::Map<Eigen::MatrixXd>(pos_data.data(), 6, 1);
+
+        std_msgs::Float64MultiArray joint_state_msg;
+
+        tf::matrixEigenToMsg(jointState, joint_state_msg);
+
+        this->jointStatePub.publish(joint_state_msg);
+    }
+    else
+    {
+        ROS_ERROR_STREAM("Motor Category was could not be determined as Front or Rear.");
+    }
 }
 
 // Setup thread to process messages

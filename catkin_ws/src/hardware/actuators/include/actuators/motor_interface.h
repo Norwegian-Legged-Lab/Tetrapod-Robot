@@ -33,6 +33,7 @@
 #include "sensor_msgs/JointState.h"
 #include "std_msgs/Float64.h"
 #include "std_msgs/Float64MultiArray.h"
+#include "eigen_conversions/eigen_msg.h"
 
 // Standard library
 #include <thread>

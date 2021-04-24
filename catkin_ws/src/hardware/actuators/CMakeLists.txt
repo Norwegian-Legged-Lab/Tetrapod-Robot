@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   sensor_msgs
   std_msgs
+  eigen_conversions
 )
 
 ## System dependencies are found with CMake's conventions
@@ -111,6 +112,7 @@ catkin_package(
     roscpp 
     std_msgs
     sensor_msgs 
+    eigen_conversions
 #  DEPENDS system_lib
 )
 
