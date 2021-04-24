@@ -58,8 +58,7 @@ void MotorInterface::OnMotorStateMsg(const sensor_msgs::JointStateConstPtr &_msg
 
     if (!std::strcmp(motor_category, "Front"))
     {
-        ROS_DEBUG_STREAM("Received Front Motor State message. \n Position: \n" 
-            << pos_data << "\n Velocity: \n" << vel_data);
+        ROS_DEBUG_STREAM("Received Front Motor State message. \n Position: \n" << pos_data << "\n Velocity: \n" << vel_data);
 
         jointState.block<6,1>(0,0) << Eigen::Map<Eigen::MatrixXd>(pos_data.data(), 6, 1);
 
@@ -75,8 +74,7 @@ void MotorInterface::OnMotorStateMsg(const sensor_msgs::JointStateConstPtr &_msg
     }
     else if (!std::strcmp(motor_category, "Rear"))
     {
-        ROS_DEBUG_STREAM("Received Rear Motor State message. \n Position: \n" 
-            << pos_data << "\n Velocity: \n" << vel_data);
+        ROS_DEBUG_STREAM("Received Rear Motor State message. \n Position: \n" << pos_data << "\n Velocity: \n" << vel_data);
 
         jointState.block<6,1>(6,0) << Eigen::Map<Eigen::MatrixXd>(pos_data.data(), 6, 1);
 
