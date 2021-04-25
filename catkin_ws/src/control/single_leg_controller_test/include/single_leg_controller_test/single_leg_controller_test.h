@@ -22,10 +22,10 @@ class SingleLegController
 {
     public:
         /// \brief Constructor
-        SingleLegController();
+        SingleLegController(double _dt);
 
         /// \brief Destructor
-        virtual ~SingleLegController();
+        virtual ~SingleLegController(){};
 
         /// \brief The joint states for the leg is updated
         /// \param[in] _msg A float array containing the generalized coordinates 

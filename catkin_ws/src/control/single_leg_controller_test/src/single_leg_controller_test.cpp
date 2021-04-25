@@ -1,5 +1,12 @@
 #include "single_leg_controller_test/single_leg_controller_test.h"
 
+SingleLegController::SingleLegController(double _dt)
+{
+    filter_ref_foot_speed_x.setTimestep(_dt);
+    filter_ref_foot_speed_y.setTimestep(_dt);
+    filter_ref_foot_speed_z.setTimestep(_dt);
+}
+
 void SingleLegController::generalizedCoordinatesCallback(const sensor_msgs::JointStateConstPtr &_msg)
 {
     for(int i = 0; i < 3; i++)
@@ -12,7 +19,7 @@ void SingleLegController::readyToMoveCallback(const std_msgs::Bool &_msg)
 {
     ready_to_move = _msg.data;
 }
-
+/*
 int main(int argc, char **argv)
 {
     SingleLegController single_leg_controller;
@@ -21,7 +28,7 @@ int main(int argc, char **argv)
 
     return 0;
 }
-
+*/
 void SingleLegController::initROS()
 {
     // Check if ROS has been initialized. If false, initialize ROS.

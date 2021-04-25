@@ -33,11 +33,13 @@ add_library(${PROJECT_NAME}
    src/single_leg_controller_test.cpp
 )
 
-#add_executable(${PROJECT_NAME}_node src/single_leg_controller_test.cpp)
-
 target_link_libraries(${PROJECT_NAME}
    ${catkin_LIBRARIES}
  )
+
+#add_executable(speed_test_node src/speed_test_node.cpp)
+#target_link_libraries(speed_test_node ${catkin_LIBRARIES})
+#add_dependencies(speed_test_node single_leg_controller_test)
 
 ## Mark libraries for installation
 ## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_libraries.html
