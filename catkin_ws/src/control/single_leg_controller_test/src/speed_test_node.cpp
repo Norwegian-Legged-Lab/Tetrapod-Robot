@@ -43,9 +43,47 @@ int main(int argc, char **argv)
     
     single_leg_controller.initROS();
 
-    ROS_INFO("Hello World");
+    int timestep_middle = TIME_MIDDLE/TIMESTEP;
+    int timestep_end = TIME_END/TIMESTEP;
+    int current_timestep = 0;
+
+
+
+    ROS_INFO("Initialization complete");
+
+    ros::Rate check_for_ready_message_rate(1);
+
+    ros::Rate send_control_command_rate(1.0/TIMESTEP);
+
+    while(!single_leg_controller.checkIfReadyToMove())
+    {
+        single_leg_controller.checkForNewMessages();
+        check_for_ready_message_rate.sleep();
+        ROS_INFO("WAITING...");
+    }
+
+    while(current_timestep < timestep_middle)
+    {
+        single_leg_controller.updateSpeedControlCommands();
+        single_leg_controller.sendJointCommand();
+        current_timestep++;
+        send_control_command_rate.sleep();
+    }
+
+    single_leg_controller.setCurrentReferencePosition(END_POS_X, END_POS_Y, END_POS_Z);
+    while(current_timestep < timestep_end)
+    {
+        single_leg_controller.updateSpeedControlCommands();
+        single_leg_controller.sendJointCommand();
+        current_timestep++;
+        send_control_command_rate.sleep();
+    }
+
+    ROS_INFO("COMPLETE");
 
     ros::spinOnce();
+
+
 
     return 0;
 }

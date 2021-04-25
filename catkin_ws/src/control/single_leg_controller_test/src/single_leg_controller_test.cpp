@@ -5,6 +5,13 @@ SingleLegController::SingleLegController(double _dt)
     filter_ref_foot_speed_x.setTimestep(_dt);
     filter_ref_foot_speed_y.setTimestep(_dt);
     filter_ref_foot_speed_z.setTimestep(_dt);
+
+    for(int i = 0; i < 3; i++)
+    {
+        motor_command_msg.position.push_back(1000);
+        motor_command_msg.velocity.push_back(1000);
+        motor_command_msg.effort.push_back(1000);
+    }
 }
 
 void SingleLegController::generalizedCoordinatesCallback(const sensor_msgs::JointStateConstPtr &_msg)
@@ -67,6 +74,11 @@ void SingleLegController::initROS()
     jointCommandPublisher = nodeHandle->advertise<sensor_msgs::JointState>("/joint_command", 10);
 }
 
+void SingleLegController::checkForNewMessages()
+{
+    ros::spinOnce();
+}
+
 void SingleLegController::setFootGoalPos(double _desired_foot_pos_x, double _desired_foot_pos_y, double _desired_foot_pos_z)
 {
     filter_ref_foot_speed_x.setReference(_desired_foot_pos_x);
@@ -108,4 +120,14 @@ void SingleLegController::updateSpeedControlCommands()
     for(int i = 0; i < 3; i++){foot_jacobian(i, i) = 1.0;} // TODO Replace with true Jacobian
 
     joint_velocities = foot_jacobian.inverse()*vel_foot;
+}
+
+void SingleLegController::sendJointCommand()
+{
+    for(int i = 0; i < 3; i++)
+    {
+        motor_command_msg.velocity[i] = joint_velocities(i);
+    }
+    motor_command_msg.header.stamp = ros::Time::now();
+    jointCommandPublisher.publish(motor_command_msg);
 }
