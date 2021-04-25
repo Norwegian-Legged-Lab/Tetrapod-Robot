@@ -1,4 +1,5 @@
 #include "ros/ros.h"
+#include <ros/console.h>
 
 #include "single_leg_controller_test/single_leg_controller_test.h"
 
@@ -42,7 +43,9 @@ int main(int argc, char **argv)
     
     single_leg_controller.initROS();
 
-    
+    ROS_INFO("Hello World");
+
+    ros::spinOnce();
 
     return 0;
 }

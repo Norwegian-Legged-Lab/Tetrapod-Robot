@@ -14,13 +14,15 @@ find_package(Eigen3 REQUIRED)
 catkin_package(
   INCLUDE_DIRS include
     ${EIGEN3_INCLUDE_DIR}
-  LIBRARIES single_leg_controller_test
+  LIBRARIES ${PROJECT_NAME}
   CATKIN_DEPENDS 
     roscpp 
     std_msgs
     sensor_msgs
     filter_utils
     kinematics
+  DEPENDS
+    eigen
 )
 
 include_directories(
@@ -29,13 +31,15 @@ include_directories(
   ${EIGEN3_INCLUDE_DIR}
 )
 
-add_library(${PROJECT_NAME}
-   src/single_leg_controller_test.cpp
+add_executable(speed_test_node src/speed_test_node.cpp src/single_leg_controller_test.cpp)
+
+add_library(
+  ${PROJECT_NAME} src/single_leg_controller_test.cpp src/speed_test_node.cpp
+  #${${PROJECT_NAME}_SRCS}
 )
 
-target_link_libraries(${PROJECT_NAME}
-   ${catkin_LIBRARIES}
- )
+target_link_libraries(speed_test_node 
+                        ${catkin_LIBRARIES})
 
 #add_executable(speed_test_node src/speed_test_node.cpp)
 #target_link_libraries(speed_test_node ${catkin_LIBRARIES})
@@ -43,15 +47,15 @@ target_link_libraries(${PROJECT_NAME}
 
 ## Mark libraries for installation
 ## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_libraries.html
-install(TARGETS ${PROJECT_NAME}
-  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-  RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
-)
+#install(TARGETS ${PROJECT_NAME}
+#  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+#  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+#  RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
+#)
 
 ## Mark cpp header files for installation
-install(DIRECTORY include/${PROJECT_NAME}/
-  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
-  FILES_MATCHING PATTERN "*.h"
-  PATTERN ".svn" EXCLUDE
-)
+#install(DIRECTORY include/${PROJECT_NAME}/
+#  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+#  FILES_MATCHING PATTERN "*.h"
+#  PATTERN ".svn" EXCLUDE
+#)
