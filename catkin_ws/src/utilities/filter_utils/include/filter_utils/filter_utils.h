@@ -9,10 +9,13 @@ public:
     ThirdOrderFilter(){}
     ThirdOrderFilter(double _dt, double _x_current, double _x_goal, double _omega, double _zeta);
     void setReference(double _x_goal){x_goal = _x_goal;};
-    void updateFilter();
     void setParameters(double _frequency, double _damping);
-    double getSpeed() {return X(1);}
+    void setTimestep(double _dt){dt = _dt;}
     void setCurrentPos(double _x_current){X(0) = _x_current;}
+    double getPosition(){return X(0);}
+    double getSpeed(){return X(1);}
+    double getAcceleration(){return X(2);}
+    void updateFilter();
     Eigen::Matrix<double, 3, 1> getState() {return X;}
 private:
     Eigen::Matrix<double, 3, 1> X;
