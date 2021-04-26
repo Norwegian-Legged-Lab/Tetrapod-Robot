@@ -73,7 +73,8 @@ class MotorInterface
     protected: void InitRosQueueThreads();
 
     /// \brief Joint State
-    protected: Eigen::Matrix<double, 12, 1> jointState;
+    //protected: Eigen::Matrix<double, 12, 1> jointState; TODO Remove
+    protected: sensor_msgs::JointState jointState;
 
     /// \brief Node used for ROS transport.
     private: std::unique_ptr<ros::NodeHandle> rosNode;

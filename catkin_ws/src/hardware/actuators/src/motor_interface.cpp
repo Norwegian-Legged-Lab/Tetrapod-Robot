@@ -29,6 +29,49 @@
 // Constructor
 MotorInterface::MotorInterface() 
 {
+    this->jointState.position.resize(12);
+    this->jointState.velocity.resize(12);
+    this->jointState.effort.resize(12);
+
+    this->jointState.position[0] = 0;
+    this->jointState.position[1] = 0;
+    this->jointState.position[2] = 0;
+    this->jointState.position[3] = 0;
+    this->jointState.position[4] = 0;
+    this->jointState.position[5] = 0;
+    this->jointState.position[6] = 0;
+    this->jointState.position[7] = 0;
+    this->jointState.position[8] = 0;
+    this->jointState.position[9] = 0;
+    this->jointState.position[10] = 0;
+    this->jointState.position[11] = 0;
+
+    this->jointState.velocity[0] = 0;
+    this->jointState.velocity[1] = 0;
+    this->jointState.velocity[2] = 0;
+    this->jointState.velocity[3] = 0;
+    this->jointState.velocity[4] = 0;
+    this->jointState.velocity[5] = 0;
+    this->jointState.velocity[6] = 0;
+    this->jointState.velocity[7] = 0;
+    this->jointState.velocity[8] = 0;
+    this->jointState.velocity[9] = 0;
+    this->jointState.velocity[10] = 0;
+    this->jointState.velocity[11] = 0;
+
+    this->jointState.effort[0] = 0;
+    this->jointState.effort[1] = 0;
+    this->jointState.effort[2] = 0;
+    this->jointState.effort[3] = 0;
+    this->jointState.effort[4] = 0;
+    this->jointState.effort[5] = 0;
+    this->jointState.effort[6] = 0;
+    this->jointState.effort[7] = 0;
+    this->jointState.effort[8] = 0;
+    this->jointState.effort[9] = 0;
+    this->jointState.effort[10] = 0;
+    this->jointState.effort[11] = 0;
+
     this->InitRos();
     this->InitRosQueueThreads();
 }
@@ -52,41 +95,64 @@ void MotorInterface::OnMotorStateMsg(const sensor_msgs::JointStateConstPtr &_msg
 {
     std::vector<std::string> motor_category = _msg->name;
 
-    std::vector<double> pos_data = _msg->position;
-
-    std::vector<double> vel_data = _msg->velocity;
-
     if (!motor_category[0].compare("Front"))
     {
-        //ROS_DEBUG_STREAM("Received Front Motor State message. \n Position: \n" << pos_data << "\n Velocity: \n" << vel_data);
+        //ROS_DEBUG_STREAM("Received Front Motor State message. \n Position: \n" << _msg->position << "\n Velocity: \n" << _msg->velocity);
 
-        jointState.block<6,1>(0,0) << Eigen::Map<Eigen::MatrixXd>(pos_data.data(), 6, 1);
+        this->jointState.position[0] = _msg->position[0];
+        this->jointState.position[1] = _msg->position[1];
+        this->jointState.position[2] = _msg->position[2];
+        this->jointState.position[3] = _msg->position[3];
+        this->jointState.position[4] = _msg->position[4];
+        this->jointState.position[5] = _msg->position[5];
 
-        std_msgs::Float64MultiArray pos_msg;
+        this->jointState.velocity[0] = _msg->velocity[0];
+        this->jointState.velocity[1] = _msg->velocity[1];
+        this->jointState.velocity[2] = _msg->velocity[2];
+        this->jointState.velocity[3] = _msg->velocity[3];
+        this->jointState.velocity[4] = _msg->velocity[4];
+        this->jointState.velocity[5] = _msg->velocity[5];
 
-        tf::matrixEigenToMsg(jointState, pos_msg);
+        this->jointState.effort[0] = _msg->effort[0];
+        this->jointState.effort[1] = _msg->effort[1];
+        this->jointState.effort[2] = _msg->effort[2];
+        this->jointState.effort[3] = _msg->effort[3];
+        this->jointState.effort[4] = _msg->effort[4];
+        this->jointState.effort[5] = _msg->effort[5];
 
-        sensor_msgs::JointState joint_state_msg;
+        this->jointState.header.stamp = ros::Time::now();
 
-        joint_state_msg.position = pos_msg.data;
-
-        this->jointStatePub.publish(joint_state_msg);
+        this->jointStatePub.publish(this->jointState);
     }
     else if (!motor_category[0].compare("Rear"))
     {
-        //ROS_DEBUG_STREAM("Received Rear Motor State message. \n Position: \n" << pos_data << "\n Velocity: \n" << vel_data);
+        //ROS_DEBUG_STREAM("Received Rear Motor State message. \n Position: \n" << _msg->position << "\n Velocity: \n" << _msg->velocity);
 
-        jointState.block<6,1>(6,0) << Eigen::Map<Eigen::MatrixXd>(pos_data.data(), 6, 1);
+        this->jointState.position[6] = _msg->position[0];
+        this->jointState.position[7] = _msg->position[1];
+        this->jointState.position[8] = _msg->position[2];
+        this->jointState.position[9] = _msg->position[3];
+        this->jointState.position[10] = _msg->position[4];
+        this->jointState.position[11] = _msg->position[5];
 
-        std_msgs::Float64MultiArray pos_msg;
+        this->jointState.velocity[6] = _msg->velocity[0];
+        this->jointState.velocity[7] = _msg->velocity[1];
+        this->jointState.velocity[8] = _msg->velocity[2];
+        this->jointState.velocity[9] = _msg->velocity[3];
+        this->jointState.velocity[10] = _msg->velocity[4];
+        this->jointState.velocity[11] = _msg->velocity[5];
 
-        tf::matrixEigenToMsg(jointState, pos_msg);
+        this->jointState.effort[6] = _msg->effort[0];
+        this->jointState.effort[7] = _msg->effort[1];
+        this->jointState.effort[8] = _msg->effort[2];
+        this->jointState.effort[9] = _msg->effort[3];
+        this->jointState.effort[10] = _msg->effort[4];
+        this->jointState.effort[11] = _msg->effort[5];
 
-        sensor_msgs::JointState joint_state_msg;
+        this->jointState.header.stamp = ros::Time::now();
 
-        joint_state_msg.position = pos_msg.data;
+        this->jointStatePub.publish(this->jointState);
 
-        this->jointStatePub.publish(joint_state_msg);
     }
     else
     {
