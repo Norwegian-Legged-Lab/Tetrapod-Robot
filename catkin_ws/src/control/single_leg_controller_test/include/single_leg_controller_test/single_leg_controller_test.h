@@ -136,6 +136,9 @@ class SingleLegController
 
         /// \brief Variable indicating wheher or not we have reached the goal
         bool goal_reached = false;
+
+        /// \brief Kinematics object
+        Kinematics kinematics;
 };
 
 #endif
