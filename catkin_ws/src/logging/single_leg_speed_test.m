@@ -76,8 +76,8 @@ figure(2)
 subplot(3, 1, 1)
 hold on 
 grid on
-plot(reference_position(1, :)', reference_position(2, :)');
-plot(system_position(1, :)', system_position(2, :)');
+plot(reference_velocity(1, :)', reference_velocity(2, :)');
+plot(system_velocity(1, :)', system_velocity(2, :)');
 legend("\omega_{hy, ref}", "\omega_{hy}");
 %xlabel("time [s]");
 %ylabel("angular rate [deg/s]");
@@ -87,7 +87,7 @@ subplot(3, 1, 2)
 hold on 
 grid on
 plot(reference_position(1, :)', reference_position(3, :)');
-plot(system_position(1, :)', system_position(3, :)');
+plot(system_velocity(1, :)', system_velocity(3, :)');
 legend("\omega_{hp, ref}", "\omega_{hp}");
 %xlabel("time [s]");
 ylabel("angular rate [deg/s]");
@@ -96,8 +96,8 @@ hold off
 subplot(3, 1, 3)
 hold on 
 grid on
-plot(reference_position(1, :)', reference_position(4, :)');
-plot(system_position(1, :)', system_position(4, :)');
+plot(reference_velocity(1, :)', reference_velocity(4, :)');
+plot(system_velocity(1, :)', system_velocity(4, :)');
 legend("\omega_{kp, ref}", "\omega_{kp}");
 xlabel("time [s]");
 %ylabel("angular rate [deg/s]");

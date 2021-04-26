@@ -12,6 +12,6 @@ function states = get_joint_position_states(bag)
     for i = 1:number_of_messages
         message = messages(i);
         joint_state_message = message{1, 1};
-        states(2:4, i) = joint_state_message.Velocity;
+        states(2:4, i) = joint_state_message.Position;
     end
 end
