@@ -3,9 +3,9 @@
 
 #include "single_leg_controller_test/single_leg_controller_test.h"
 
-#define FREQUENCY_X 1.0
-#define FREQUENCY_Y 1.0
-#define FREQUENCY_Z 1.0
+#define FREQUENCY_X 2.5
+#define FREQUENCY_Y 2.0
+#define FREQUENCY_Z 8.0
 #define DAMPING_X 1.0
 #define DAMPING_Y 1.0
 #define DAMPING_Z 1.0
@@ -14,7 +14,7 @@
 #define START_POS_Y 0.0
 #define START_POS_Z 0.0
 
-#define MIDDLE_POS_X 0.2
+#define MIDDLE_POS_X 1.0
 #define MIDDLE_POS_Y 0.0
 #define MIDDLE_POS_Z 0.2
 
@@ -65,7 +65,7 @@ int main(int argc, char **argv)
     while(current_timestep < timestep_middle)
     {
         single_leg_controller.updateSpeedControlCommands();
-        single_leg_controller.sendJointCommand();
+        single_leg_controller.sendSpeedJointCommand();
         current_timestep++;
         send_control_command_rate.sleep();
     }
@@ -74,7 +74,7 @@ int main(int argc, char **argv)
     while(current_timestep < timestep_end)
     {
         single_leg_controller.updateSpeedControlCommands();
-        single_leg_controller.sendJointCommand();
+        single_leg_controller.sendSpeedJointCommand();
         current_timestep++;
         send_control_command_rate.sleep();
     }

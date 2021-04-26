@@ -39,7 +39,8 @@ class SingleLegController
         /*/// \return If we failed to update the speed commands report false. Otherwise return true*/
         void updateSpeedControlCommands();
 
-        void sendJointCommand();
+        /// \brief Populates the joint command message with joint velocity commands and sends it to the Teensy
+        void sendSpeedJointCommand();
 
         /// \brief Set the frequency and damping parameters for the three references
         /// \param[in] _omega_x Frequency of x reference
@@ -66,6 +67,7 @@ class SingleLegController
         /// \param[in] _desired_foot_vel_z The desired foot speed in the z direction
         void setFootGoalPos(double _desired_foot_pos_x, double _desired_foot_pos_y, double _desired_foot_pos_z);
 
+        /// \brief Function used to check if any new ROS messages has been received
         void checkForNewMessages();
 
         /// \brief This is a ROS helper function that process messages.
@@ -80,8 +82,10 @@ class SingleLegController
         /// \brief This function initializes the ROS publish and process queue threads
         //void initROSQueueThreads();
 
+        /// \brief Check whether or not the ready to move message has been received
         bool checkIfReadyToMove(){return ready_to_move;}
 
+        /// \brief Check if the target position has been reached
         bool checkIfTargetIsReached(){return goal_reached;}
 
     private:
@@ -103,6 +107,7 @@ class SingleLegController
         /// \brief Publishes velocity commands to the teensy to control the motors
         ros::Publisher jointCommandPublisher;
 
+        /// \brief The joint state message that is sent to the Teensy
         sensor_msgs::JointState motor_command_msg;
 
         /// \brief ROS callback queue that helps processing messages
