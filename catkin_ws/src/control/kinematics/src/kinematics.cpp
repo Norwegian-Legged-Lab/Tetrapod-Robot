@@ -336,9 +336,9 @@ TransMatrix Kinematics::GetDhTransform(const double &_a,
 }
 
 // Single Leg Jacobian
-Eigen::Matrix<double, 3, 4> Kinematics::GetSingleLegJacobian(const double &_z_b, const double &_theta_hy, const double &_theta_hp, const double &_theta_kp)
+Eigen::Matrix<double, 3, 3> Kinematics::GetSingleLegJacobian(const double &_theta_hy, const double &_theta_hp, const double &_theta_kp)
 {
-    Eigen::Matrix<double, 3, 4> J;
+    Eigen::Matrix<double, 3, 3> J;
 
     double c1 = std::cos(_theta_hy);
     double s1 = std::sin(_theta_hy);
@@ -349,21 +349,17 @@ Eigen::Matrix<double, 3, 4> Kinematics::GetSingleLegJacobian(const double &_z_b,
     double c23 = std::cos(_theta_hp + _theta_kp);
     double s23 = std::sin(_theta_hp + _theta_kp);
 
-    J(0,0) = 0;
-    J(1,0) = 0;
-    J(2,0) = 1;
+    J(0,0) = -(this->L1 + this->L2 * c2 + this->L3 * c23) * s1;
+    J(1,0) = (this->L1 + this->L2 * c2 + this->L3 * c23) * c1;
+    J(2,0) = 0;
 
-    J(0,1) = -(this->L1 + this->L2 * c2 + this->L3 * c23) * s1;
-    J(1,1) = (this->L1 + this->L2 * c2 + this->L3 * c23) * c1;
-    J(2,1) = 0;
+    J(0,1) = (- this->L2 * s2 - this->L3 * s23) * c1;
+    J(1,1) = (- this->L2 * s2 - this->L3 * s23) * s1;
+    J(2,1) = this->L2 * c2 + this->L3 * c23;
 
-    J(0,2) = (- this->L2 * s2 - this->L3 * s23) * c1;
-    J(1,2) = (- this->L2 * s2 - this->L3 * s23) * s1;
-    J(2,2) = this->L2 * c2 + this->L3 * c23;
-
-    J(0,3) = (- this->L3 * s23) * c1;
-    J(1,3) = (- this->L3 * s23) * s1;
-    J(2,3) = this->L3 * c23;
+    J(0,2) = (- this->L3 * s23) * c1;
+    J(1,2) = (- this->L3 * s23) * s1;
+    J(2,2) = this->L3 * c23;
 
     return J;
 }
