@@ -2,10 +2,12 @@
 
 SingleLegController::SingleLegController(double _dt)
 {
+    // Set the timestep for all the reference generators
     filter_ref_foot_speed_x.setTimestep(_dt);
     filter_ref_foot_speed_y.setTimestep(_dt);
     filter_ref_foot_speed_z.setTimestep(_dt);
 
+    // Populate the joint state message with idle commands for each joint
     for(int i = 0; i < 3; i++)
     {
         motor_command_msg.position.push_back(1000);
@@ -26,16 +28,7 @@ void SingleLegController::readyToMoveCallback(const std_msgs::Bool &_msg)
 {
     ready_to_move = _msg.data;
 }
-/*
-int main(int argc, char **argv)
-{
-    SingleLegController single_leg_controller;
 
-    ros::spin();
-
-    return 0;
-}
-*/
 void SingleLegController::initROS()
 {
     // Check if ROS has been initialized. If false, initialize ROS.
@@ -55,6 +48,7 @@ void SingleLegController::initROS()
     // WHY DO THIS?
     nodeHandle.reset(new ros::NodeHandle("single_leg_controller_test_node"));
 
+    // Initialize the generalized coordinates subscriber
     generalizedCoordinatesSubscriber = nodeHandle->subscribe
     (
         "/generalized_coordinates", 
@@ -63,6 +57,7 @@ void SingleLegController::initROS()
         this
     );
 
+    // Initialize the ready to move subscriber
     readyToMoveSubscriber = nodeHandle->subscribe
     (
         "/ready_to_move",
@@ -71,6 +66,7 @@ void SingleLegController::initROS()
         this
     );
 
+    // Initialize the joint command publisher
     jointCommandPublisher = nodeHandle->advertise<sensor_msgs::JointState>("/joint_command", 10);
 }
 
@@ -106,15 +102,18 @@ void SingleLegController::setCurrentReferencePosition(double _pos_x, double _pos
 
 void SingleLegController::updateSpeedControlCommands()
 {
+    // Update the filter references based on current value,target value, and filter parameters
     filter_ref_foot_speed_x.updateFilter();
     filter_ref_foot_speed_y.updateFilter();
     filter_ref_foot_speed_z.updateFilter();
 
+    // Get the desired foot velocity 
     Eigen::Matrix<double, 3, 1> vel_foot;
     vel_foot(0) = filter_ref_foot_speed_x.getSpeed();
     vel_foot(1) = filter_ref_foot_speed_y.getSpeed();
     vel_foot(2) = filter_ref_foot_speed_z.getSpeed();
 
+    // Convert the desired foot velocity into desired joint angles
     Eigen::Matrix<double, 3, 3> foot_jacobian = Eigen::Matrix<double, 3, 3>::Zero();
     //foot_jacobian = kinematics::getFootJacobian(joint_angles); 
     for(int i = 0; i < 3; i++){foot_jacobian(i, i) = 1.0;} // TODO Replace with true Jacobian
@@ -122,7 +121,7 @@ void SingleLegController::updateSpeedControlCommands()
     joint_velocities = foot_jacobian.inverse()*vel_foot;
 }
 
-void SingleLegController::sendJointCommand()
+void SingleLegController::sendSpeedJointCommand()
 {
     for(int i = 0; i < 3; i++)
     {
