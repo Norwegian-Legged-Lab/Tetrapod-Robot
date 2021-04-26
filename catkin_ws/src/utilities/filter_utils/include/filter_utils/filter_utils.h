@@ -18,7 +18,7 @@ public:
     void updateFilter();
     Eigen::Matrix<double, 3, 1> getState() {return X;}
 private:
-    Eigen::Matrix<double, 3, 1> X;
+    Eigen::Matrix<double, 3, 1> X = Eigen::Matrix<double, 3, 1>::Zero();
     double x_goal;
     double dt;
     Eigen::Matrix<double, 3, 3> A_d;

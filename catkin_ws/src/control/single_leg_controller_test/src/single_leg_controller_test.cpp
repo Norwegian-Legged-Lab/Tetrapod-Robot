@@ -116,10 +116,11 @@ void SingleLegController::updateSpeedControlCommands()
     // Convert the desired foot velocity into desired joint angles
     //Eigen::Matrix<double, 3, 3> foot_jacobian = kinematics.GetSingleLegJocobian(0.0, joint_angles(0), joint_angles(1), joint_angles(2)); 
 
-    Eigen::Matrix<double, 3, 3> foot_jacobian = Eigen::Matrix<double, 3, 3>::Zero();
-    for(int i = 0; i < 3; i++){foot_jacobian(i, i) = 1.0;} // TODO Replace with true Jacobian
+    //Eigen::Matrix<double, 3, 3> foot_jacobian = Eigen::Matrix<double, 3, 3>::Zero();
+    //for(int i = 0; i < 3; i++){foot_jacobian(i, i) = 1.0;} // TODO Replace with true Jacobian
 
-    joint_velocities = foot_jacobian.inverse()*vel_foot;
+    //joint_velocities = foot_jacobian.inverse()*vel_foot;
+    joint_velocities = vel_foot;
 }
 
 void SingleLegController::sendSpeedJointCommand()
