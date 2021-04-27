@@ -8,9 +8,9 @@ The Gazebo Simulator depends a number of environment variables to locate files, 
 
 `GAZEBO_MODEL_PATH`: A colon-separated set of directories where Gazebo will search for models.
 
-```GAZEBO_RESOURCE_PATH```: A colon-separated set of directories where Gazebo will search for other resources such as world and media files.
+`GAZEBO_RESOURCE_PATH`: A colon-separated set of directories where Gazebo will search for other resources such as world and media files.
 
-Assuming the [github repository](https://github.com/Pathorse/Tetrapod-Robot) is located at your home folder, i.e., at ```~/```, the following set of lines can be added to set the needed enviroment variables.
+Assuming the [github repository](https://github.com/Pathorse/Tetrapod-Robot) is located at your home folder, i.e., at `~/`, the following set of lines can be added to set the needed enviroment variables.
 
 ```bash
 #-------------------------------------------------------
@@ -22,10 +22,3 @@ export GAZEBO_MODEL_PATH=~/Tetrapod-Robot/catkin_ws/src/simulator
 export GAZEBO_MODEL_PATH=~/Tetrapod-Robot/catkin_ws/src/simulator/tetrapod_gazebo/models:$GAZEBO_MODEL_PATH
 export GAZEBO_RESOURCE_PATH=~/Tetrapod-Robot/catkin_ws/src/simulator/tetrapod_gazebo/worlds:$GAZEBO_RESOURCE_PATH
 ```
-
-
-
-
-
-Gazebo offers the ability to accurately and efficiently simulate populations of robots in various environments, and is a open-source platform designed for robotic simulation.
- 
