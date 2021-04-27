@@ -18,6 +18,9 @@
 // Utilities
 #include <filter_utils/filter_utils.h>
 
+const double CONTROL_IDLE  = 1000.0;
+const double POSITION_CONVERGENCE_CRITERIA = 0.0010; // Cirka 1 degree error for all joints
+
 class SingleLegController
 {
     public:
@@ -34,6 +37,9 @@ class SingleLegController
         /// \brief The ready_to_move parameter is changed based on the incomming message
         /// \param[in] _msg A bool message deciding if it is safe to move the leg or not
         void readyToMoveCallback(const std_msgs::Bool &_msg);
+
+        /// \brief Updates the joint position control commands based on the desired foot position
+        void sendJointPositionCommand();
 
         /// \brief Updates the joint speed control commands based on foot vel references and jacobian
         /*/// \return If we failed to update the speed commands report false. Otherwise return true*/
@@ -67,6 +73,13 @@ class SingleLegController
         /// \param[in] _desired_foot_vel_z The desired foot speed in the z direction
         void setFootGoalPos(double _desired_foot_pos_x, double _desired_foot_pos_y, double _desired_foot_pos_z);
 
+        /// \brief The function tries to move the foot to the position given by the input parameters.
+        /// This is done by calculating the inverse kinematics and giving the motors position references
+        /// \param[in] _foot_pos_x The target foot x position
+        /// \param[in] _foot_pos_y The target foot y position
+        /// \param[in] _foot_pos_z The target foot z position
+        bool moveFootToPosition(double _foot_pos_x, double _foot_pos_y, double _foot_pos_z);
+
         /// \brief Function used to check if any new ROS messages has been received
         void checkForNewMessages();
 
@@ -85,8 +98,16 @@ class SingleLegController
         /// \brief Check whether or not the ready to move message has been received
         bool checkIfReadyToMove(){return ready_to_move;}
 
+        void setNotReadyToMove(){ready_to_move = false;}
+
         /// \brief Check if the target position has been reached
-        bool checkIfTargetIsReached(){return goal_reached;}
+        bool checkIfTargetIsReached(){return is_target_position_reached;}
+
+        /// \brief Check if the squared error between the current joint angles and target joint angles 
+        /// is smaller than some threshold.
+        bool isTargetPositionReached();
+
+        void setTargetPositionToNotReached() {is_target_position_reached = false;}
 
     private:
         /// \brief The joint angles of the leg
@@ -135,7 +156,10 @@ class SingleLegController
         bool ready_to_move = false;
 
         /// \brief Variable indicating wheher or not we have reached the goal
-        bool goal_reached = false;
+        bool is_target_position_reached = false;
+
+        /// 
+        Eigen::Matrix<double, 3, 1> position_controller_joint_target = Eigen::Matrix<double, 3, 1>::Zero();
 
         /// \brief Kinematics object
         Kinematics kinematics;

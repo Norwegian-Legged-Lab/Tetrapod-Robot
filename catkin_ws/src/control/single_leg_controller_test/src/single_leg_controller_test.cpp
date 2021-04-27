@@ -67,7 +67,7 @@ void SingleLegController::initROS()
     );
 
     // Initialize the joint command publisher
-    jointCommandPublisher = nodeHandle->advertise<sensor_msgs::JointState>("/joint_command", 10);
+    jointCommandPublisher = nodeHandle->advertise<sensor_msgs::JointState>("/joint_command", 100);
 }
 
 void SingleLegController::checkForNewMessages()
@@ -127,8 +127,77 @@ void SingleLegController::sendSpeedJointCommand()
 {
     for(int i = 0; i < 3; i++)
     {
+        motor_command_msg.position[i] = CONTROL_IDLE;
         motor_command_msg.velocity[i] = joint_velocities(i);
+        motor_command_msg.effort[i] = CONTROL_IDLE;
     }
     motor_command_msg.header.stamp = ros::Time::now();
     jointCommandPublisher.publish(motor_command_msg);
+}
+
+bool SingleLegController::moveFootToPosition(double _foot_pos_x, double _foot_pos_y, double _foot_pos_z)
+{
+    Eigen::Matrix<double, 3, 1> hip_position = Eigen::Matrix<double, 3, 1>::Zero();
+
+    Eigen::Matrix<double, 3, 1> foot_target_pos(_foot_pos_x, _foot_pos_y, _foot_pos_z);
+
+    if(kinematics.SolveSingleLegInverseKinematics(false, hip_position, foot_target_pos, position_controller_joint_target))
+    {   
+        ROS_INFO("Found solution to ik problem");
+        //ros::Rate send_position_command_rate(1);
+
+        while(!is_target_position_reached)
+        {
+            if(isTargetPositionReached())
+            {
+                ROS_INFO("Set target position");
+                is_target_position_reached = true;
+            }
+            else
+            {
+                ROS_INFO("Send joint position command");
+                sendJointPositionCommand();
+
+                ROS_INFO("Sleep");
+                sleep(0.1);
+                //send_position_command_rate.sleep();
+                ROS_INFO("Sleep_complete");
+            }
+            
+        }
+        return true;
+    }
+    else
+    {
+        ROS_WARN("Failed to find solution to ik problem");
+        return false;
+    }
+}
+
+void SingleLegController::sendJointPositionCommand()
+{
+    for(int i = 0; i < 3; i++)
+    {
+        motor_command_msg.position[i] = position_controller_joint_target(i);
+        motor_command_msg.velocity[i] = CONTROL_IDLE;
+        motor_command_msg.effort[i] = CONTROL_IDLE;
+    }
+
+    motor_command_msg.header.stamp = ros::Time::now();
+
+    jointCommandPublisher.publish(motor_command_msg.header.stamp);
+}
+
+bool SingleLegController::isTargetPositionReached()
+{
+    Eigen::Matrix<double, 3, 1> joint_error = joint_angles - position_controller_joint_target;
+
+    if(joint_error.transpose()*joint_error < POSITION_CONVERGENCE_CRITERIA)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }

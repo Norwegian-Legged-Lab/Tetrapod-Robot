@@ -10,17 +10,17 @@
 #define DAMPING_Y 1.0
 #define DAMPING_Z 1.0
 
-#define START_POS_X 0.0
-#define START_POS_Y 0.0
-#define START_POS_Z 0.0
+#define START_POS_X 0.433
+#define START_POS_Y 0.25
+#define START_POS_Z -0.25
 
-#define MIDDLE_POS_X 1.0
-#define MIDDLE_POS_Y 0.0
-#define MIDDLE_POS_Z 0.2
+#define MIDDLE_POS_X 0.0
+#define MIDDLE_POS_Y 0.25
+#define MIDDLE_POS_Z -0.10
 
-#define END_POS_X 1.0
-#define END_POS_Y 0.0
-#define END_POS_Z 0.0
+#define END_POS_X -0.433
+#define END_POS_Y 0.25
+#define END_POS_Z -0.25
 
 #define TIMESTEP 0.02
 #define TIME_END 2.0
@@ -47,21 +47,38 @@ int main(int argc, char **argv)
     int timestep_end = TIME_END/TIMESTEP;
     int current_timestep = 0;
 
-
-
     ROS_INFO("Initialization complete");
 
     ros::Rate check_for_ready_message_rate(1);
 
     ros::Rate send_control_command_rate(1.0/TIMESTEP);
 
+    // Wait for a confirmation message before moving on
     while(!single_leg_controller.checkIfReadyToMove())
     {
         single_leg_controller.checkForNewMessages();
         check_for_ready_message_rate.sleep();
-        ROS_INFO("WAITING...");
+        ROS_INFO("WAITING FOR POSITION CONTROL START MESSAGE");
     }
 
+    // Use the position controller to move the leg to the desired start position
+    while(!single_leg_controller.moveFootToPosition(START_POS_X, START_POS_Y, START_POS_Z));
+    
+    // Reset the is_target_position_reached flag 
+    single_leg_controller.setTargetPositionToNotReached();
+    /*
+    // Reset the ready_to_move flag
+    single_leg_controller.setNotReadyToMove();
+
+    // Wait for a confirmation message before starting speed control
+    while(!single_leg_controller.checkIfReadyToMove())
+    {
+        single_leg_controller.checkForNewMessages();
+        check_for_ready_message_rate.sleep();
+        ROS_INFO("WAITING FOR START MESSAGE FOR VELOCITY CONTROL");
+    }
+
+    // Use velocity control to move the foot to the mid position
     while(current_timestep < timestep_middle)
     {
         single_leg_controller.updateSpeedControlCommands();
@@ -70,6 +87,7 @@ int main(int argc, char **argv)
         send_control_command_rate.sleep();
     }
 
+    // Use velocity control to move the foot to the end position
     single_leg_controller.setCurrentReferencePosition(END_POS_X, END_POS_Y, END_POS_Z);
     while(current_timestep < timestep_end)
     {
@@ -78,7 +96,7 @@ int main(int argc, char **argv)
         current_timestep++;
         send_control_command_rate.sleep();
     }
-
+    */
     ROS_INFO("COMPLETE");
 
     ros::spinOnce();
