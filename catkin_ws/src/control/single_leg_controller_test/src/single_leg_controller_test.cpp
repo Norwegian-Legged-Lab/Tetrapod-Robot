@@ -169,6 +169,7 @@ bool SingleLegController::moveFootToPosition(double _foot_pos_x, double _foot_po
                 ROS_INFO("Error too large");
                 simulatorSendJointPositionCommand();
                 sendJointPositionCommand();
+                ros::spinOnce();
                 send_position_command_rate.sleep();
             }
             
@@ -200,6 +201,8 @@ void SingleLegController::sendJointPositionCommand()
 bool SingleLegController::isTargetPositionReached()
 {
     Eigen::Matrix<double, 3, 1> joint_error = joint_angles - position_controller_joint_target;
+    ROS_INFO("Current joint angles: %f, %f, %f", joint_angles(0), joint_angles(1), joint_angles(2));
+    ROS_INFO("Target joint angles: %f, %f, %f", position_controller_joint_target(0), position_controller_joint_target(1), position_controller_joint_target(2));
     ROS_INFO("dx = %f, dy = %f, dz = %f", joint_error(0), joint_error(1), joint_error(2));
     if(joint_error.transpose()*joint_error < POSITION_CONVERGENCE_CRITERIA)
     {
@@ -221,6 +224,8 @@ void SingleLegController::simulatorGeneralizedCoordinateCallback(const std_msgs:
     joint_angles(0) = simulator_joint_angles(0);
     joint_angles(1) = simulator_joint_angles(1);
     joint_angles(2) = simulator_joint_angles(2);
+
+    ROS_INFO("Joint angles updated");
 }
 
 //*** FOR SIMULATOR ***//
