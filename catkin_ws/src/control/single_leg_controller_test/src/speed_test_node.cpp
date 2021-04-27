@@ -3,7 +3,7 @@
 
 #include "single_leg_controller_test/single_leg_controller_test.h"
 
-#define FREQUENCY_X 2.5
+#define FREQUENCY_X 5.0
 #define FREQUENCY_Y 2.0
 #define FREQUENCY_Z 8.0
 #define DAMPING_X 1.0
@@ -12,7 +12,7 @@
 
 #define START_POS_X 0.433
 #define START_POS_Y 0.25
-#define START_POS_Z -0.25
+#define START_POS_Z -0.25 //-0.05 //-0.25
 
 #define MIDDLE_POS_X 0.0
 #define MIDDLE_POS_Y 0.25
@@ -57,6 +57,7 @@ int main(int argc, char **argv)
     while(!single_leg_controller.checkIfReadyToMove())
     {
         single_leg_controller.checkForNewMessages();
+        ros::spinOnce();
         check_for_ready_message_rate.sleep();
         ROS_INFO("WAITING FOR POSITION CONTROL START MESSAGE");
     }
