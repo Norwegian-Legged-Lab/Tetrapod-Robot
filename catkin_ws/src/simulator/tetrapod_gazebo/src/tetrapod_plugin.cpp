@@ -283,7 +283,7 @@ void TetrapodPlugin::SetJointPositions(const std::vector<double> &_pos)
 {
     auto start = std::chrono::steady_clock::now();
 
-    this->model->GetJointController()->Reset();
+    //this->model->GetJointController()->Reset();
 
     for (size_t i = 0; i < this->joint_names.size(); i++)
     {
@@ -340,7 +340,7 @@ void TetrapodPlugin::OnPosMsg(const std_msgs::Float64MultiArrayConstPtr &_msg)
 // Setup thread to process messages
 void TetrapodPlugin::ProcessQueueThread()
 {
-    static const double timeout = 0.01;
+    static const double timeout = 0.000001;
     while (this->rosNode->ok())
     {
         this->rosProcessQueue.callAvailable(ros::WallDuration(timeout));
