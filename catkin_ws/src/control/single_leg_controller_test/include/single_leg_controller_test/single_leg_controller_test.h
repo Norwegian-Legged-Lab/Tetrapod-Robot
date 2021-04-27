@@ -8,6 +8,8 @@
 #include "std_msgs/Float64.h"
 #include "std_msgs/Float64MultiArray.h"
 #include "sensor_msgs/JointState.h"
+#include "eigen_conversions/eigen_msg.h"
+
 // Eigen
 #include <Eigen/Core>
 
@@ -167,6 +169,20 @@ class SingleLegController
 
         /// \brief Kinematics object
         Kinematics kinematics;
+
+
+        //*** FOR SIMULATOR ***//
+
+        /// \brief Simulator joint angles
+        Eigen::Matrix<double, 12, 1> simulator_joint_angles;
+
+        ros::Subscriber simulator_generalized_coordinates_subscriber;
+
+        ros::Publisher simulator_joint_state_publisher;
+
+        void simulatorGeneralizedCoordinateCallback(const std_msgs::Float64MultiArrayConstPtr &_msg);
+
+        void simulatorSendJointPositionCommand();
 };
 
 #endif

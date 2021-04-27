@@ -15,6 +15,7 @@ find_package(catkin REQUIRED COMPONENTS
   debug_utils
   filter_utils
   kinematics
+  eigen_conversions
 )
 
 ## System dependencies are found with CMake's conventions
@@ -119,6 +120,7 @@ catkin_package(
     debug_utils
     filter_utils
     kinematics
+    eigen_conversions
 #  DEPENDS system_lib
 )
 

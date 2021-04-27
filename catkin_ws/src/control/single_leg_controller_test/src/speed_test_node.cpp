@@ -63,6 +63,7 @@ int main(int argc, char **argv)
 
     // Use the position controller to move the leg to the desired start position
     while(!single_leg_controller.moveFootToPosition(START_POS_X, START_POS_Y, START_POS_Z));
+    ROS_INFO("DESIRED POSITION REACHED");
     
     // Reset the is_target_position_reached flag 
     single_leg_controller.setTargetPositionToNotReached();

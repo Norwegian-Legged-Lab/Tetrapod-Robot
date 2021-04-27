@@ -26,6 +26,7 @@
   <depend>debug_utils</depend>
   <depend>filter_utils</depend>
   <depend>kinematics</depend>
+  <depend>eigen_conversions</depend>
 
   <depend>eigen</depend>
 

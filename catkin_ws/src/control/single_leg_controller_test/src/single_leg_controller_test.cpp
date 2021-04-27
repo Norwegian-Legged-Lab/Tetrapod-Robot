@@ -40,8 +40,8 @@ void SingleLegController::initROS()
         (
             argc,
             argv,
-            "single_leg_controller_test_node"//,
-            //ros::init_options::NoSigintHandler
+            "single_leg_controller_test_node",
+            ros::init_options::NoSigintHandler
         );
     }
 
@@ -66,8 +66,20 @@ void SingleLegController::initROS()
         this
     );
 
+    /*** FOR SIMULATOR ***/
+    simulator_generalized_coordinates_subscriber = nodeHandle->subscribe
+    (
+        "/my_robot/gen_coord",
+        10,
+        &SingleLegController::simulatorGeneralizedCoordinateCallback,
+        this
+    );
+
+    /*** FOR SIMULATOR ***/
+    simulator_joint_state_publisher = nodeHandle->advertise<sensor_msgs::JointState>("/my_robot/joint_state_cmd", 100);
+
     // Initialize the joint command publisher
-    jointCommandPublisher = nodeHandle->advertise<sensor_msgs::JointState>("/joint_command", 100);
+    jointCommandPublisher = nodeHandle->advertise<sensor_msgs::JointState>("/joint_command", 10);
 }
 
 void SingleLegController::checkForNewMessages()
@@ -143,21 +155,25 @@ bool SingleLegController::moveFootToPosition(double _foot_pos_x, double _foot_po
 
     if(kinematics.SolveSingleLegInverseKinematics(false, hip_position, foot_target_pos, position_controller_joint_target))
     {   
-        ros::Rate send_position_command_rate(50);
+        ros::Rate send_position_command_rate(10);
 
         while(!is_target_position_reached)
         {
             if(isTargetPositionReached())
             {
+                ROS_INFO("Success, close enough");
                 is_target_position_reached = true;
             }
             else
             {
+                ROS_INFO("Error too large");
+                simulatorSendJointPositionCommand();
                 sendJointPositionCommand();
                 send_position_command_rate.sleep();
             }
             
         }
+        ROS_INFO("Successfully reached target position");
         return true;
     }
     else
@@ -184,7 +200,7 @@ void SingleLegController::sendJointPositionCommand()
 bool SingleLegController::isTargetPositionReached()
 {
     Eigen::Matrix<double, 3, 1> joint_error = joint_angles - position_controller_joint_target;
-
+    ROS_INFO("dx = %f, dy = %f, dz = %f", joint_error(0), joint_error(1), joint_error(2));
     if(joint_error.transpose()*joint_error < POSITION_CONVERGENCE_CRITERIA)
     {
         return true;
@@ -193,4 +209,36 @@ bool SingleLegController::isTargetPositionReached()
     {
         return false;
     }
+}
+
+//*** FOR SIMULATOR ***//
+void SingleLegController::simulatorGeneralizedCoordinateCallback(const std_msgs::Float64MultiArrayConstPtr &msg)
+{
+    for(int i = 0; i < 12; i++)
+    {
+        simulator_joint_angles(i) = msg->data[i + 6];
+    }
+    joint_angles(0) = simulator_joint_angles(0);
+    joint_angles(1) = simulator_joint_angles(1);
+    joint_angles(2) = simulator_joint_angles(2);
+}
+
+//*** FOR SIMULATOR ***//
+void SingleLegController::simulatorSendJointPositionCommand()
+{
+    std_msgs::Float64MultiArray pos_msg;
+
+    tf::matrixEigenToMsg(simulator_joint_angles, pos_msg);
+
+    pos_msg.data[0] = position_controller_joint_target(0);
+    pos_msg.data[1] = position_controller_joint_target(1);
+    pos_msg.data[2] = position_controller_joint_target(2);
+
+    sensor_msgs::JointState joint_state_msg;
+    
+    joint_state_msg.header.stamp = ros::Time::now();
+    
+    joint_state_msg.position = pos_msg.data;
+
+    simulator_joint_state_publisher.publish(joint_state_msg);
 }
