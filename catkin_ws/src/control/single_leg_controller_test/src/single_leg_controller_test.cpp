@@ -143,25 +143,18 @@ bool SingleLegController::moveFootToPosition(double _foot_pos_x, double _foot_po
 
     if(kinematics.SolveSingleLegInverseKinematics(false, hip_position, foot_target_pos, position_controller_joint_target))
     {   
-        ROS_INFO("Found solution to ik problem");
-        //ros::Rate send_position_command_rate(1);
+        ros::Rate send_position_command_rate(50);
 
         while(!is_target_position_reached)
         {
             if(isTargetPositionReached())
             {
-                ROS_INFO("Set target position");
                 is_target_position_reached = true;
             }
             else
             {
-                ROS_INFO("Send joint position command");
                 sendJointPositionCommand();
-
-                ROS_INFO("Sleep");
-                sleep(0.1);
-                //send_position_command_rate.sleep();
-                ROS_INFO("Sleep_complete");
+                send_position_command_rate.sleep();
             }
             
         }
@@ -185,7 +178,7 @@ void SingleLegController::sendJointPositionCommand()
 
     motor_command_msg.header.stamp = ros::Time::now();
 
-    jointCommandPublisher.publish(motor_command_msg.header.stamp);
+    jointCommandPublisher.publish(motor_command_msg);
 }
 
 bool SingleLegController::isTargetPositionReached()
