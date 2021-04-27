@@ -84,15 +84,15 @@ Kinematics::~Kinematics() {}
 bool Kinematics::SolveInverseKinematics(const Twist &_q_b, const FootstepPositions &_f_pos, JointSpaceVector &_q_r)
 {
     // Base world position
-    Vector3d basePositionInW(_q_b.block<3, 1>(0, 0));
+    Eigen::Vector3d basePositionInW(_q_b.block<3, 1>(0, 0));
 
     // Base orientation
-    Vector3d baseOrientation(_q_b.block<3, 1>(3, 0));
+    Eigen::Vector3d baseOrientation(_q_b.block<3, 1>(3, 0));
 
-    Vector3d positionFrontLeftFootInW(_f_pos(0));
-    Vector3d positionFrontRightFootInW(_f_pos(1));
-    Vector3d positionRearLeftFootInW(_f_pos(2));
-    Vector3d positionRearRightFootInW(_f_pos(3));
+    Eigen::Vector3d positionFrontLeftFootInW(_f_pos(0));
+    Eigen::Vector3d positionFrontRightFootInW(_f_pos(1));
+    Eigen::Vector3d positionRearLeftFootInW(_f_pos(2));
+    Eigen::Vector3d positionRearRightFootInW(_f_pos(3));
 
     // Transformation matrix from Body to World frame (R_b^w)
     kindr::RotationMatrixD transformationBToW(kindr::EulerAnglesZyxD(baseOrientation(2),
@@ -116,17 +116,27 @@ bool Kinematics::SolveInverseKinematics(const Twist &_q_b, const FootstepPositio
     positionHipsInB(2) = positionBaseToRearLeftInB;
     positionHipsInB(3) = positionBaseToRearRightInB;
     
-    // TODO remove uneccesarry prints
-    //ROS_INFO_STREAM("h_pos(0): " << positionHips(0));
-    //ROS_INFO_STREAM("h_pos(1): " << positionHips(1));
-    //ROS_INFO_STREAM("h_pos(2): " << positionHips(2));
-    //ROS_INFO_STREAM("h_pos(3): " << positionHips(3));
-        
     // Joint angles
-    _q_r.block<3, 1>(0, 0) = this->SolveSingleLegInverseKinematics(this->flOffset, positionHipsInB(0), positionFrontLeftFootInB);
-    _q_r.block<3, 1>(3, 0) = this->SolveSingleLegInverseKinematics(this->frOffset, positionHipsInB(1), positionFrontRightFootInB);
-    _q_r.block<3, 1>(6, 0) = this->SolveSingleLegInverseKinematics(this->rlOffset, positionHipsInB(2), positionRearLeftFootInB);
-    _q_r.block<3, 1>(9, 0) = this->SolveSingleLegInverseKinematics(this->rrOffset, positionHipsInB(3), positionRearRightFootInB);
+    //_q_r.block<3, 1>(0, 0) = this->SolveSingleLegInverseKinematics(this->flOffset, positionHipsInB(0), positionFrontLeftFootInB);
+    //_q_r.block<3, 1>(3, 0) = this->SolveSingleLegInverseKinematics(this->frOffset, positionHipsInB(1), positionFrontRightFootInB);
+    //_q_r.block<3, 1>(6, 0) = this->SolveSingleLegInverseKinematics(this->rlOffset, positionHipsInB(2), positionRearLeftFootInB);
+    //_q_r.block<3, 1>(9, 0) = this->SolveSingleLegInverseKinematics(this->rrOffset, positionHipsInB(3), positionRearRightFootInB);
+
+    // Joint angles
+    Eigen::Vector3d q_r_fl;
+    Eigen::Vector3d q_r_fr;
+    Eigen::Vector3d q_r_rl;
+    Eigen::Vector3d q_r_rr;
+
+    this->SolveSingleLegInverseKinematics(this->flOffset, positionHipsInB(0), positionFrontLeftFootInB, q_r_fl); 
+    this->SolveSingleLegInverseKinematics(this->frOffset, positionHipsInB(1), positionFrontRightFootInB, q_r_fr);
+    this->SolveSingleLegInverseKinematics(this->rlOffset, positionHipsInB(2), positionRearLeftFootInB, q_r_rl);
+    this->SolveSingleLegInverseKinematics(this->rrOffset, positionHipsInB(3), positionRearRightFootInB, q_r_rr);
+
+    _q_r.block<3, 1>(0, 0) = q_r_fl;
+    _q_r.block<3, 1>(3, 0) = q_r_fr;
+    _q_r.block<3, 1>(6, 0) = q_r_rl;
+    _q_r.block<3, 1>(9, 0) = q_r_rr;
 
     return this->ValidateSolution(_q_r); 
 }
@@ -209,11 +219,8 @@ Vector3d Kinematics::SolveSingleLegForwardKinematics(const Vector3d &_h_pos,
     return pos;
 }
 
-Vector3d Kinematics::SolveSingleLegInverseKinematics(const bool &_offset, const Vector3d &_h_pos, const Vector3d &_f_pos)
+bool Kinematics::SolveSingleLegInverseKinematics(const bool &_offset, const Vector3d &_h_pos, const Vector3d &_f_pos, Vector3d &_joint_angles)
 {
-    // Define joint angles vector
-    Eigen::Vector3d joint_angles;
-
     // Change of variables to center hip position.
     double x_e = _f_pos(0) - _h_pos(0);
     double y_e = _f_pos(1) - _h_pos(1);
@@ -236,6 +243,8 @@ Vector3d Kinematics::SolveSingleLegInverseKinematics(const bool &_offset, const 
     {
         ROS_INFO_STREAM("IK alpha returned nan, nominator was: " <<  ( std::pow(this->L2, 2) + std::pow(this->L3, 2) - std::pow(normHipPitchToFoot, 2) ) / ( 2 * this->L2 * this->L3 )
                         << " and normHipPitchToFoot was: " << normHipPitchToFoot );
+        
+        return false;
     }
 
     // Angle between foot-hip pitch-knee joints
@@ -245,33 +254,35 @@ Vector3d Kinematics::SolveSingleLegInverseKinematics(const bool &_offset, const 
     {
         ROS_INFO_STREAM("IK beta returned nan, nominator was: " <<  ( std::pow(normHipPitchToFoot, 2) + std::pow(this->L2, 2) - std::pow(this->L3, 2) ) / ( 2 * normHipPitchToFoot * this->L2 )
                         << " and normHipPitchToFoot was: " << normHipPitchToFoot );
+        
+        return false;
     }
 
     // Check offset and set angles accordingly
     if (_offset)
     {
         // Calculate theta_hy
-        joint_angles(0) = std::atan2(y_e, x_e);
+        _joint_angles(0) = std::atan2(y_e, x_e);
 
         // Calculate theta_hp
-        joint_angles(1) = beta - zeta;
+        _joint_angles(1) = beta - zeta;
 
         // Calculate theta_kp
-        joint_angles(2) = alpha - angle_utils::PI;
+        _joint_angles(2) = alpha - angle_utils::PI;
     }
     else
     {
         // Calculate theta_hy
-        joint_angles(0) = std::atan2(y_e, x_e);
+        _joint_angles(0) = std::atan2(y_e, x_e);
 
         // Calculate theta_hp
-        joint_angles(1) = - beta + zeta;
+        _joint_angles(1) = - beta + zeta;
 
         // Calculate theta_kp
-        joint_angles(2) = angle_utils::PI - alpha;
+        _joint_angles(2) = angle_utils::PI - alpha;
     }
 
-    return joint_angles;
+    return true;
 }
 
 // HipToFootTransform

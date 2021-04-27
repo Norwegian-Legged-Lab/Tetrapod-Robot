@@ -190,7 +190,10 @@ void testSingeLegInverseKinematics()
     Eigen::Vector3d f_pos(4,-1,0);
     ROS_INFO_STREAM("f_pos: " << f_pos);
 
-    Eigen::Vector3d joint_angles = K.SolveSingleLegInverseKinematics(false, h_pos, f_pos);
+    Eigen::Vector3d joint_angles;
+    
+    K.SolveSingleLegInverseKinematics(false, h_pos, f_pos, joint_angles);
+    
     ROS_INFO_STREAM("joint_angles: " << joint_angles);
 }
 
@@ -235,8 +238,8 @@ int main(int argc, char **argv)
     //testKindr();
     //ROS_INFO_STREAM("--------------- Test Hip to Foot Transform --------------");
     //testHipToFootTransform();
-    ROS_INFO_STREAM("--------------- Test FK --------------");
-    testForwardKinematics();
+    //ROS_INFO_STREAM("--------------- Test FK --------------");
+    //testForwardKinematics();
     //ROS_INFO_STREAM("--------------- Test Single Leg IK --------------");
     //testSingeLegInverseKinematics();
     ROS_INFO_STREAM("--------------- Test IK --------------");

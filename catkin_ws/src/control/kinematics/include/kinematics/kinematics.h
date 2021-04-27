@@ -92,8 +92,11 @@ class Kinematics
     /// of 90 deg, false indicates roll offset of -90 degrees.
     /// \param[in] _h_pos Hip position in world frame.
     /// \param[in] _f_pos Foot position in world frame.
-    /// \return Returns a joint positions in Joint Space for a single leg, i.e. theta_hy, theta_hp & theta_kp.
-    public: Vector3d SolveSingleLegInverseKinematics(const bool &_offset, const Vector3d &_h_pos, const Vector3d &_f_pos);
+    /// \param[out] _joint_angles Joint angles from the Inverse Kinematics solution
+    /// for a single-leg (sl).
+    /// \return Evaluates true if an Inverse Kinematics solution is found, 
+    /// and false if not.
+    public: bool SolveSingleLegInverseKinematics(const bool &_offset, const Vector3d &_h_pos, const Vector3d &_f_pos, Vector3d &_joint_angles);
 
     /// \brief The GetHipToFootTransform function returns the homogeneous
     /// transformation from the Hip frame to the Foot frame.
