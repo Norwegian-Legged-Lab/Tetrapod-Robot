@@ -5,6 +5,8 @@
 #include "ros/ros.h"
 #include "std_msgs/Empty.h"
 #include "std_msgs/Bool.h"
+#include "std_msgs/Float64.h"
+#include "std_msgs/Float64MultiArray.h"
 #include "sensor_msgs/JointState.h"
 // Eigen
 #include <Eigen/Core>
@@ -98,6 +100,7 @@ class SingleLegController
         /// \brief Check whether or not the ready to move message has been received
         bool checkIfReadyToMove(){return ready_to_move;}
 
+        /// \brief Set the ready_to_move flag to false
         void setNotReadyToMove(){ready_to_move = false;}
 
         /// \brief Check if the target position has been reached
@@ -107,6 +110,7 @@ class SingleLegController
         /// is smaller than some threshold.
         bool isTargetPositionReached();
 
+        /// \brief Set the target_position_reached flag to false
         void setTargetPositionToNotReached() {is_target_position_reached = false;}
 
     private:
@@ -158,7 +162,7 @@ class SingleLegController
         /// \brief Variable indicating wheher or not we have reached the goal
         bool is_target_position_reached = false;
 
-        /// 
+        /// \brief Angles used for the joint position setpoint controller
         Eigen::Matrix<double, 3, 1> position_controller_joint_target = Eigen::Matrix<double, 3, 1>::Zero();
 
         /// \brief Kinematics object
