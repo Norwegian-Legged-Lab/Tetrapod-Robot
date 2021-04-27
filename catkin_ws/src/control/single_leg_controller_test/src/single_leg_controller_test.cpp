@@ -218,6 +218,9 @@ void SingleLegController::simulatorGeneralizedCoordinateCallback(const std_msgs:
     {
         simulator_joint_angles(i) = msg->data[i + 6];
     }
+    joint_angles(0) = simulator_joint_angles(0);
+    joint_angles(1) = simulator_joint_angles(1);
+    joint_angles(2) = simulator_joint_angles(2);
 }
 
 //*** FOR SIMULATOR ***//
