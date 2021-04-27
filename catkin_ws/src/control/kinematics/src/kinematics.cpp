@@ -347,7 +347,7 @@ TransMatrix Kinematics::GetDhTransform(const double &_a,
 }
 
 // Single Leg Jacobian
-Eigen::Matrix<double, 3, 3> Kinematics::GetSingleLegJacobian(const double &_theta_hy, const double &_theta_hp, const double &_theta_kp)
+Eigen::Matrix<double, 3, 3> Kinematics::GetTranslationJacobianInB(const double &_theta_hy, const double &_theta_hp, const double &_theta_kp)
 {
     Eigen::Matrix<double, 3, 3> J;
 

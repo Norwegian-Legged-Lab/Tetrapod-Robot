@@ -124,7 +124,7 @@ class Kinematics
     /// \param[in] _theta_hp Hip pitch angle.
     /// \param[in] _theta_kp Knee pitch angle.
     /// \return Returns the Jacobian Matrix relating end-effector velocities to joint velocities.
-    public: Eigen::Matrix<double, 3, 3> GetSingleLegJacobian(const double &_theta_hy, const double &_theta_hp, const double &_theta_kp);
+    public: Eigen::Matrix<double, 3, 3> GetTranslationJacobianInB(const double &_theta_hy, const double &_theta_hp, const double &_theta_kp);
 
     /// \brief The ValidateSolution function evaluates whether
     /// a set of joint angles is within joint limits. 
