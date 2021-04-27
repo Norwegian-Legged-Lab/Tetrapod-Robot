@@ -60,6 +60,8 @@ namespace gazebo
     static constexpr unsigned int NUMJOINTS = 12;
 
     using JointVelocities = Eigen::Matrix<double, 12, 1>;
+
+    enum ControlMode { position = 1, velocity = 2, torque = 3 };
     
     /// \brief A plugin to control the tetrapod robot.
     class TetrapodPlugin : public ModelPlugin
@@ -227,6 +229,10 @@ namespace gazebo
 
         /// \brief Vector of Position D-gains
         private: std::vector<double> pos_d_gains;
+
+        /// \brief Control mode indicator
+        /// { position = 1, velocity = 2, torque = 3 }
+        private: ControlMode controlMode;
 
         /// \brief Node used for ROS transport.
         private: std::unique_ptr<ros::NodeHandle> rosNode;

@@ -230,7 +230,12 @@ void TetrapodPlugin::SetJointForces(const std::vector<double> &_forces)
 {
     auto start = std::chrono::steady_clock::now();
 
-    this->model->GetJointController()->Reset();
+    if (this->controlMode != 3)
+    {
+        this->model->GetJointController()->Reset();
+
+        this->controlMode = ControlMode::torque;
+    }
 
     for (size_t i = 0; i < this->joint_names.size(); i++)
     {
@@ -261,7 +266,12 @@ void TetrapodPlugin::SetJointVelocities(const std::vector<double> &_vel)
 {
     auto start = std::chrono::steady_clock::now();
 
-    this->model->GetJointController()->Reset();
+    if (this->controlMode != 2)
+    {
+        this->model->GetJointController()->Reset();
+
+        this->controlMode = ControlMode::velocity;
+    }
 
     for (size_t i = 0; i < this->joint_names.size(); i++)
     {
@@ -283,7 +293,12 @@ void TetrapodPlugin::SetJointPositions(const std::vector<double> &_pos)
 {
     auto start = std::chrono::steady_clock::now();
 
-    //this->model->GetJointController()->Reset();
+    if (this->controlMode != 1)
+    {
+        this->model->GetJointController()->Reset();
+
+        this->controlMode = ControlMode::position;
+    }
 
     for (size_t i = 0; i < this->joint_names.size(); i++)
     {
@@ -540,6 +555,8 @@ void TetrapodPlugin::InitJointControllers()
 // Initialize joint configuration
 void TetrapodPlugin::InitJointConfiguration()
 {
+    this->controlMode = ControlMode::position;
+
     for (size_t i = 0; i < this->joint_names.size(); i++)
     {
         // Set default position 
