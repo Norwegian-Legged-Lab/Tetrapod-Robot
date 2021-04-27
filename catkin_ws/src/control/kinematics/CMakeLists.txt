@@ -152,6 +152,10 @@ add_executable(pose_control_node
   src/pose_control.cpp
   src/kinematics.cpp
 )
+add_executable(gait_control_node
+  src/gait_control.cpp
+  src/kinematics.cpp
+)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -173,6 +177,10 @@ target_link_libraries(${PROJECT_NAME}_node
 )
 
 target_link_libraries(pose_control_node
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(gait_control_node
   ${catkin_LIBRARIES}
 )
 
