@@ -22,8 +22,11 @@
 // Utilities
 #include <filter_utils/filter_utils.h>
 
+/// \brief Variable indicate no control effort
 const double CONTROL_IDLE  = 1000.0;
-const double POSITION_CONVERGENCE_CRITERIA = 0.0010; // Cirka 1 degree error for all joints
+
+/// \brief Convergence crieria for position control test
+const double POSITION_CONVERGENCE_CRITERIA = 0.010; // Cirka 1 degree error for all joints
 
 class SingleLegController
 {
@@ -115,6 +118,9 @@ class SingleLegController
         /// \brief Set the target_position_reached flag to false
         void setTargetPositionToNotReached() {is_target_position_reached = false;}
 
+        /// \brief Sends a command to the motors telling them to stand still
+        void setJointVelocityToZero();
+
     private:
         /// \brief The joint angles of the leg
         Eigen::Matrix<double, 3, 1> joint_angles = Eigen::Matrix<double, 3, 1>::Zero();
@@ -167,6 +173,9 @@ class SingleLegController
         /// \brief Angles used for the joint position setpoint controller
         Eigen::Matrix<double, 3, 1> position_controller_joint_target = Eigen::Matrix<double, 3, 1>::Zero();
 
+        /// \brief Setpoint joint velocity for velocity control
+        Eigen::Matrix<double, 3, 1> velocity_controller_joint_target = Eigen::Matrix<double, 3, 1>::Zero();
+
         /// \brief Kinematics object
         Kinematics kinematics;
 
@@ -174,7 +183,7 @@ class SingleLegController
         //*** FOR SIMULATOR ***//
 
         /// \brief Simulator joint angles
-        Eigen::Matrix<double, 12, 1> simulator_joint_angles;
+        //Eigen::Matrix<double, 12, 1> simulator_joint_angles;
 
         ros::Subscriber simulator_generalized_coordinates_subscriber;
 
@@ -183,6 +192,8 @@ class SingleLegController
         void simulatorGeneralizedCoordinateCallback(const std_msgs::Float64MultiArrayConstPtr &_msg);
 
         void simulatorSendJointPositionCommand();
+
+    public: void simulatorSendJointVelocityCommand();
 };
 
 #endif

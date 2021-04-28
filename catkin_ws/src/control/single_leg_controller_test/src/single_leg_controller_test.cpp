@@ -126,13 +126,13 @@ void SingleLegController::updateSpeedControlCommands()
     vel_foot(2) = filter_ref_foot_speed_z.getSpeed();
 
     // Convert the desired foot velocity into desired joint angles
-    //Eigen::Matrix<double, 3, 3> foot_jacobian = kinematics.GetSingleLegJocobian(0.0, joint_angles(0), joint_angles(1), joint_angles(2)); 
+    Eigen::Matrix<double, 3, 3> foot_jacobian = kinematics.GetTranslationJacobianInB(joint_angles(0), joint_angles(1), joint_angles(2)); 
 
     //Eigen::Matrix<double, 3, 3> foot_jacobian = Eigen::Matrix<double, 3, 3>::Zero();
     //for(int i = 0; i < 3; i++){foot_jacobian(i, i) = 1.0;} // TODO Replace with true Jacobian
 
-    //joint_velocities = foot_jacobian.inverse()*vel_foot;
-    joint_velocities = vel_foot;
+    velocity_controller_joint_target = foot_jacobian.inverse()*vel_foot;
+    //joint_velocities = vel_foot;
 }
 
 void SingleLegController::sendSpeedJointCommand()
@@ -140,7 +140,7 @@ void SingleLegController::sendSpeedJointCommand()
     for(int i = 0; i < 3; i++)
     {
         motor_command_msg.position[i] = CONTROL_IDLE;
-        motor_command_msg.velocity[i] = joint_velocities(i);
+        motor_command_msg.velocity[i] = velocity_controller_joint_target(i);
         motor_command_msg.effort[i] = CONTROL_IDLE;
     }
     motor_command_msg.header.stamp = ros::Time::now();
@@ -214,16 +214,22 @@ bool SingleLegController::isTargetPositionReached()
     }
 }
 
+void SingleLegController::setJointVelocityToZero()
+{
+    velocity_controller_joint_target = Eigen::Matrix<double, 3, 1>::Zero();
+    
+    sendSpeedJointCommand();
+
+    simulatorSendJointVelocityCommand();
+}
+
 //*** FOR SIMULATOR ***//
 void SingleLegController::simulatorGeneralizedCoordinateCallback(const std_msgs::Float64MultiArrayConstPtr &msg)
 {
-    for(int i = 0; i < 12; i++)
+    for(int i = 0; i < 3; i++)
     {
-        simulator_joint_angles(i) = msg->data[i + 6];
+        joint_angles(i) = msg->data[i + 6];
     }
-    joint_angles(0) = simulator_joint_angles(0);
-    joint_angles(1) = simulator_joint_angles(1);
-    joint_angles(2) = simulator_joint_angles(2);
 
     ROS_INFO("Joint angles updated");
 }
@@ -233,17 +239,28 @@ void SingleLegController::simulatorSendJointPositionCommand()
 {
     std_msgs::Float64MultiArray pos_msg;
 
-    tf::matrixEigenToMsg(simulator_joint_angles, pos_msg);
-
-    pos_msg.data[0] = position_controller_joint_target(0);
-    pos_msg.data[1] = position_controller_joint_target(1);
-    pos_msg.data[2] = position_controller_joint_target(2);
+    tf::matrixEigenToMsg(position_controller_joint_target, pos_msg);
 
     sensor_msgs::JointState joint_state_msg;
     
     joint_state_msg.header.stamp = ros::Time::now();
     
     joint_state_msg.position = pos_msg.data;
+
+    simulator_joint_state_publisher.publish(joint_state_msg);
+}
+
+void SingleLegController::simulatorSendJointVelocityCommand()
+{
+    std_msgs::Float64MultiArray vel_msg;
+
+    tf::matrixEigenToMsg(velocity_controller_joint_target, vel_msg);
+
+    sensor_msgs::JointState joint_state_msg;
+
+    joint_state_msg.header.stamp = ros::Time::now();
+
+    joint_state_msg.velocity = vel_msg.data;
 
     simulator_joint_state_publisher.publish(joint_state_msg);
 }
