@@ -336,7 +336,7 @@ void SingleLegPlugin::ProcessQueueThread()
 // Setup thread to process messages
 void SingleLegPlugin::PublishQueueThread()
 {
-    ros::Rate loop_rate(10);
+    ros::Rate loop_rate(100);
     while (this->rosNode->ok())
     {
         Eigen::Matrix<double, 9, 1> q; // generalized coordinates

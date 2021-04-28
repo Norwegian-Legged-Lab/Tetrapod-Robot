@@ -1,10 +1,12 @@
 <launch>
 
+<node pkg="single_leg_controller_test" type="speed_test_node" name="speed_test_node" output="screen"/>
+
 <!-- ******************************************** -->
 <!--                  Arguments                   -->
 <!-- ******************************************** -->
 <arg name="record_sys" default="true" />
-<arg name="record_directory" default="/home/paal/logtests" />
+<arg name="record_directory" default="/home/omicron/Tetrapod-Robot/logs" />
 
 <!-- ******************************************** -->
 <!--                  Logging                     -->
@@ -18,8 +20,15 @@
       args="record -o $(arg record_directory)/sys /my_robot/joint_state /my_robot/whatevertopic "
       if="$(arg record_sys)" />
 
+<node pkg="rosbag" type="record" name="rosbag_joint_states"
+      args="record -o $(arg record_directory)/states /single_leg/joint_states"
+      if="$(arg record_sys)" />
+
+<node pkg="rosbag" type="record" name="rosbag_joint_commands"
+      args="record -o $(arg record_directory)/commands /single_leg/joint_commands"
+      if="$(arg record_sys)" />
+
 <node pkg="rosbag" type="record" name="rosbag_record_diag"
       args="record -o $(arg record_directory)/diag /diagnostics /rosout" />
-
 
 </launch>

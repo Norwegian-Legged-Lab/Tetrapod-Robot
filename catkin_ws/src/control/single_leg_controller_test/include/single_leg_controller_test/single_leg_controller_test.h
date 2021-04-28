@@ -121,12 +121,16 @@ class SingleLegController
         /// \brief Sends a command to the motors telling them to stand still
         void setJointVelocityToZero();
 
+        /// \brief Function that publishes joint states and commands.
+        /// The messages are stored in seperate ros bags
+        void logStatesAndCommands();
+
     private:
         /// \brief The joint angles of the leg
         Eigen::Matrix<double, 3, 1> joint_angles = Eigen::Matrix<double, 3, 1>::Zero();
 
-        /// \brief Desired joint velocities
-        Eigen::Matrix<double, 3, 1> joint_velocities = Eigen::Matrix<double, 3, 1>::Zero();
+        /// \brief Desired joint velocity
+        Eigen::Matrix<double, 3, 1> joint_velocity = Eigen::Matrix<double, 3, 1>::Zero();
 
         /// \brief ROS node handle
         std::unique_ptr<ros::NodeHandle> nodeHandle;
@@ -187,13 +191,22 @@ class SingleLegController
 
         ros::Subscriber simulator_generalized_coordinates_subscriber;
 
+        ros::Subscriber simulator_generalized_velocity_subscriber;
+
         ros::Publisher simulator_joint_state_publisher;
 
         void simulatorGeneralizedCoordinateCallback(const std_msgs::Float64MultiArrayConstPtr &_msg);
 
+        void simulatorGeneralizedVelocityCallback(const std_msgs::Float64MultiArrayConstPtr &_msg);
+
         void simulatorSendJointPositionCommand();
 
     public: void simulatorSendJointVelocityCommand();
+
+    //*** For logging ***//
+    private:    ros::Publisher log_state_publisher;
+
+    private:    ros::Publisher log_command_publisher;
 };
 
 #endif

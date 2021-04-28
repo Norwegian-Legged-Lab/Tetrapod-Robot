@@ -22,7 +22,7 @@
 #define END_POS_Y 0.25
 #define END_POS_Z -0.25
 
-#define TIMESTEP 0.02
+#define TIMESTEP 0.01
 #define TIME_END 2.0
 #define TIME_MIDDLE 1.0
 
@@ -99,6 +99,8 @@ int main(int argc, char **argv)
 
         current_timestep++;
 
+        single_leg_controller.logStatesAndCommands();
+
         send_control_command_rate.sleep();
     }
 
@@ -116,6 +118,8 @@ int main(int argc, char **argv)
         ros::spinOnce();
 
         current_timestep++;
+
+        single_leg_controller.logStatesAndCommands();
 
         send_control_command_rate.sleep();
     }
