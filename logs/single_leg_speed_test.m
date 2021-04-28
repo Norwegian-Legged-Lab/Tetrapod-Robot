@@ -3,9 +3,9 @@ clear
 clc
 
 %% Extract ROSbag data
-reference_position_bag = rosbag('2021-04-26-14-46-51.bag');
-reference_velocity_bag = rosbag('2021-04-26-14-46-51.bag');
-system_bag = rosbag('2021-04-26-14-46-51.bag');
+reference_position_bag = rosbag('commands_2021-04-28-14-17-12.bag');
+reference_velocity_bag = rosbag('commands_2021-04-28-14-17-12.bag');
+system_bag = rosbag("states_2021-04-28-14-17-12.bag");
 
 %% Initialize state vectors 
 reference_position = get_joint_position_states(reference_position_bag);
