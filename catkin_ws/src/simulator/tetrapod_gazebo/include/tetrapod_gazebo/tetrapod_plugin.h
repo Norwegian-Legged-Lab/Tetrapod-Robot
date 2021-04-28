@@ -85,6 +85,12 @@ namespace gazebo
         /// in the world frame.
         public: Eigen::Matrix<double, 6, 1> GetBasePose();
 
+        /// \brief Get current base twist for the robot.
+        /// \return Returns base twist: 
+        /// u_b = (x_vel, y_vel, z_vel, roll_rate, pitch_rate, yaw_rate) 
+        /// in the world frame.
+        public: Eigen::Matrix<double, 6, 1> GetBaseTwist();
+
         /// \brief Get currently applied force at a specific joint 
         /// \param[in] _joint_name Desired joint
         /// \return Current joint force
@@ -239,6 +245,9 @@ namespace gazebo
 
         /// \brief ROS Generalized Coordinates Publisher.
         private: ros::Publisher genCoordPub;
+
+        /// \brief ROS Generalized Velocities Publisher.
+        private: ros::Publisher genVelPub;
 
         /// \brief ROS Joint State Subscriber.
         private: ros::Subscriber jointStateSub;
