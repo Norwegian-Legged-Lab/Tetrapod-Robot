@@ -134,8 +134,8 @@ z_0 = 0.5
             <axis>
                 <xyz>0 0 1</xyz>
                 <limit>
-                    <lower>0.14</lower>
-                    <upper>0.96</upper>
+                    <lower>-0.36</lower>
+                    <upper>0.46</upper>
                 </limit>
             </axis>
         </joint>
