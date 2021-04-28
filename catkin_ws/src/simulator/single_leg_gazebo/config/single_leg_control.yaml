@@ -1,0 +1,39 @@
+gazebo_client:
+  joint_names:
+    - tetrapod::front_left_hip_yaw
+    - tetrapod::front_left_hip_pitch
+    - tetrapod::front_left_knee_joint     
+    - tetrapod::front_right_hip_yaw
+    - tetrapod::front_right_hip_pitch
+    - tetrapod::front_right_knee_joint    
+    - tetrapod::rear_left_hip_yaw
+    - tetrapod::rear_left_hip_pitch
+    - tetrapod::rear_left_knee_joint      
+    - tetrapod::rear_right_hip_yaw
+    - tetrapod::rear_right_hip_pitch
+    - tetrapod::rear_right_knee_joint     
+
+  joint_config: [
+    45, -20, 90
+  ]
+
+  joint_velocity_controller:
+    p_gains: [
+      200, 200, 200
+    ]
+    i_gains: [
+      0, 0, 0
+    ]
+    d_gains: [
+      20, 20, 20
+    ]
+  joint_position_controller:
+    p_gains: [
+      500, 500, 500
+    ]
+    i_gains: [
+      5, 5, 5
+    ]
+    d_gains: [
+      50,50,50
+    ]
