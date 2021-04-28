@@ -106,6 +106,25 @@ Eigen::Matrix<double, 6, 1> TetrapodPlugin::GetBasePose()
     return q_b;
 }
 
+// Get base twist
+Eigen::Matrix<double, 6, 1> TetrapodPlugin::GetBaseTwist()
+{
+    ignition::math::Vector3d base_linear_velocity = this->base->WorldLinearVel();
+
+    ignition::math::Vector3d base_angular_velocity = this->base->WorldAngularVel();
+
+    Eigen::Matrix<double, 6, 1> u_b;
+
+    u_b(0) = base_linear_velocity.X();
+    u_b(1) = base_linear_velocity.Y();
+    u_b(2) = base_linear_velocity.Z();
+    u_b(3) = base_angular_velocity.X();
+    u_b(4) = base_angular_velocity.Y();
+    u_b(5) = base_angular_velocity.Z();
+
+    return u_b;
+}
+
 // Get joint force at _joint_name 
 // TODO Implement.
 double TetrapodPlugin::GetJointForce(const std::string &_joint_name)
@@ -368,16 +387,23 @@ void TetrapodPlugin::PublishQueueThread()
     ros::Rate loop_rate(10);
     while (this->rosNode->ok())
     {
-        Eigen::Matrix<double, 18, 1> q;
+        Eigen::Matrix<double, 18, 1> q; // generalized coordinates
+        Eigen::Matrix<double, 18, 1> u; // generalized velocities
 
         q.block(0,0,5,0) << this->GetBasePose();
         q.block(6,0,17,0) << this->GetJointPositions();
 
-        std_msgs::Float64MultiArray msg;
+        u.block(0,0,5,0) << this->GetBaseTwist();
+        u.block(6,0,17,0) << this->GetJointVelocities();
 
-        tf::matrixEigenToMsg(q, msg);
+        std_msgs::Float64MultiArray gen_coord_msg;
+        std_msgs::Float64MultiArray gen_vel_msg;
 
-        this->genCoordPub.publish(msg);
+        tf::matrixEigenToMsg(q, gen_coord_msg);
+        tf::matrixEigenToMsg(u, gen_vel_msg);
+
+        this->genCoordPub.publish(gen_coord_msg);
+        this->genVelPub.publish(gen_vel_msg);
 
         loop_rate.sleep();
     }
@@ -403,6 +429,16 @@ void TetrapodPlugin::InitRos()
     ros::AdvertiseOptions gen_coord_ao =
         ros::AdvertiseOptions::create<std_msgs::Float64MultiArray>(
             "/" + this->model->GetName() + "/gen_coord",
+            1,
+            ros::SubscriberStatusCallback(),
+            ros::SubscriberStatusCallback(),
+            ros::VoidPtr(),
+            &this->rosPublishQueue
+        );
+
+    ros::AdvertiseOptions gen_vel_ao =
+        ros::AdvertiseOptions::create<std_msgs::Float64MultiArray>(
+            "/" + this->model->GetName() + "/gen_vel",
             1,
             ros::SubscriberStatusCallback(),
             ros::SubscriberStatusCallback(),
@@ -447,6 +483,8 @@ void TetrapodPlugin::InitRos()
             );
 
     this->genCoordPub = this->rosNode->advertise(gen_coord_ao);
+
+    this->genVelPub = this->rosNode->advertise(gen_vel_ao);
 
     this->jointStateSub = this->rosNode->subscribe(joint_state_so);
 
