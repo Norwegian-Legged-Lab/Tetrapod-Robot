@@ -5,7 +5,7 @@ This library can be used control Gyems RMDX Motors through Arduino and ROS using
 The library offers the opportunity to use multiturn position control, speed control, and torque control. There also exists functions to read/write the PI parameters of the motor and to log the motor states. 
 
 ## Use:
-blablabla
+TODO
 
 ## Code overview:
 #### make_can_msg.h/cpp
@@ -27,4 +27,4 @@ This file contains static definitions of the two non-FD CAN ports in the Teensy 
 This is the script that runs on the Teensy. The script initializes the CAN ports and the ROS node. 
 
 ## Other comments
-blablablabla
+TODO
