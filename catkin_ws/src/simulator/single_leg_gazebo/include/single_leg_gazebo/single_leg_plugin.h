@@ -1,7 +1,7 @@
 /*******************************************************************/
 /*    AUTHOR: Paal Arthur S. Thorseth & Adrian B. Ghansah          */
 /*    ORGN:   Dept of Eng Cybernetics, NTNU Trondheim              */
-/*    FILE:   single_leg_plugin.h                                    */
+/*    FILE:   single_leg_plugin.h                                  */
 /*    DATE:   Feb 4, 2021                                          */
 /*                                                                 */
 /* Copyright (C) 2021 Paal Arthur S. Thorseth,                     */
@@ -57,9 +57,9 @@
 namespace gazebo
 {
     /// \brief Fixed variable for num joints
-    static constexpr unsigned int NUMJOINTS = 12;
+    static constexpr unsigned int NUMJOINTS = 3;
 
-    using JointVelocities = Eigen::Matrix<double, 12, 1>;
+    using JointVelocities = Eigen::Matrix<double, 3, 1>;
 
     enum ControlMode { position = 1, velocity = 2, torque = 3 };
     
@@ -92,7 +92,7 @@ namespace gazebo
 
         /// \brief Get current joint forces for the robot
         /// \return Returns joint velocities : tau_r //TODO maybe the use of tau_r needs change  
-        public: Eigen::Matrix<double, 12, 1> GetJointForces();
+        public: Eigen::Matrix<double, 3, 1> GetJointForces();
 
         /// \brief Get current velocity at a specific joint 
         /// \param[in] _joint_name Desired joint
@@ -101,7 +101,7 @@ namespace gazebo
 
         /// \brief Get current joint velocities for the robot
         /// \return Returns joint velocities : dot_q_r  
-        public: Eigen::Matrix<double, 12, 1> GetJointVelocities();
+        public: Eigen::Matrix<double, 3, 1> GetJointVelocities();
 
         /// \brief Get current position at a specific joint 
         /// \param[in] _joint_name Desired joint
@@ -110,7 +110,7 @@ namespace gazebo
 
         /// \brief Get current joint positions for the robot
         /// \return Returns joint configuration : q_r  
-        public: Eigen::Matrix<double, 12, 1> GetJointPositions();
+        public: Eigen::Matrix<double, 3, 1> GetJointPositions();
 
         /// \brief Apply force at a specific joint 
         /// \param[in] _joint_name Desired joint

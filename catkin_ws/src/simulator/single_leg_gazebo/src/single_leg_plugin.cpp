@@ -1,7 +1,7 @@
 /*******************************************************************/
-/*    AUTHOR: Paal Arthur S. Thorseth                              */
+/*    AUTHOR: Paal Arthur S. Thorseth & Adrian B. Ghansah          */
 /*    ORGN:   Dept of Eng Cybernetics, NTNU Trondheim              */
-/*    FILE:   single_leg_plugin.cpp                                  */
+/*    FILE:   single_leg_plugin.cpp                                */
 /*    DATE:   Feb 4, 2021                                          */
 /*                                                                 */
 /* Copyright (C) 2021 Paal Arthur S. Thorseth,                     */
@@ -58,7 +58,7 @@ void SingleLegPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
     // ROS_INFO_STREAM("Model name: " << model_name); TODO REMOVE
 
     // Store base link
-    this->base = _model->GetLink(this->model_name + "::single_leg::body"); /// SDF uses sliding base instead of body
+    this->base = _model->GetLink(this->model_name + "::single_leg::base"); // SDF uses sliding base instead of body
 
     // Store joints 
     this->joints = this->model->GetJointController()->GetJoints();
@@ -116,29 +116,13 @@ double SingleLegPlugin::GetJointForce(const std::string &_joint_name)
 }
 
 // Get joint forces
-Eigen::Matrix<double, 12, 1> SingleLegPlugin::GetJointForces()
+Eigen::Matrix<double, 3, 1> SingleLegPlugin::GetJointForces()
 {
-    Eigen::Matrix<double, 12, 1> tau_r;
+    Eigen::Matrix<double, 3, 1> tau_r;
 
-    // Front left
     tau_r(0) = this->GetJointForce(this->joint_names[0]);
     tau_r(1) = this->GetJointForce(this->joint_names[1]);
     tau_r(2) = this->GetJointForce(this->joint_names[2]);
-
-    // Front right
-    tau_r(3) = this->GetJointForce(this->joint_names[3]);
-    tau_r(4) = this->GetJointForce(this->joint_names[4]);
-    tau_r(5) = this->GetJointForce(this->joint_names[5]);
-
-    // Rear left
-    tau_r(6) = this->GetJointForce(this->joint_names[6]);
-    tau_r(7) = this->GetJointForce(this->joint_names[7]);
-    tau_r(8) = this->GetJointForce(this->joint_names[8]);
-
-    // Rear right
-    tau_r(9) = this->GetJointForce(this->joint_names[9]);
-    tau_r(10) = this->GetJointForce(this->joint_names[10]);
-    tau_r(11) = this->GetJointForce(this->joint_names[11]);
 
     return tau_r;
 }
@@ -152,29 +136,13 @@ double SingleLegPlugin::GetJointVelocity(const std::string &_joint_name)
 }
 
 // Get joint velocities
-Eigen::Matrix<double, 12, 1> SingleLegPlugin::GetJointVelocities()
+Eigen::Matrix<double, 3, 1> SingleLegPlugin::GetJointVelocities()
 {
-    Eigen::Matrix<double, 12, 1> dot_q_r;
+    Eigen::Matrix<double, 3, 1> dot_q_r;
 
-    // Front left
     dot_q_r(0) = this->GetJointVelocity(this->joint_names[0]);
     dot_q_r(1) = this->GetJointVelocity(this->joint_names[1]);
     dot_q_r(2) = this->GetJointVelocity(this->joint_names[2]);
-
-    // Front right
-    dot_q_r(3) = this->GetJointVelocity(this->joint_names[3]);
-    dot_q_r(4) = this->GetJointVelocity(this->joint_names[4]);
-    dot_q_r(5) = this->GetJointVelocity(this->joint_names[5]);
-
-    // Rear left
-    dot_q_r(6) = this->GetJointVelocity(this->joint_names[6]);
-    dot_q_r(7) = this->GetJointVelocity(this->joint_names[7]);
-    dot_q_r(8) = this->GetJointVelocity(this->joint_names[8]);
-
-    // Rear right
-    dot_q_r(9) = this->GetJointVelocity(this->joint_names[9]);
-    dot_q_r(10) = this->GetJointVelocity(this->joint_names[10]);
-    dot_q_r(11) = this->GetJointVelocity(this->joint_names[11]);
 
     return dot_q_r;
 }
@@ -188,29 +156,13 @@ double SingleLegPlugin::GetJointPosition(const std::string &_joint_name)
 }
 
 // Get joint positions
-Eigen::Matrix<double, 12, 1> SingleLegPlugin::GetJointPositions()
+Eigen::Matrix<double, 3, 1> SingleLegPlugin::GetJointPositions()
 {
-    Eigen::Matrix<double, 12, 1> q_r;
+    Eigen::Matrix<double, 3, 1> q_r;
 
-    // Front left
     q_r(0) = this->GetJointPosition(this->joint_names[0]);
     q_r(1) = this->GetJointPosition(this->joint_names[1]);
     q_r(2) = this->GetJointPosition(this->joint_names[2]);
-
-    // Front right
-    q_r(3) = this->GetJointPosition(this->joint_names[3]);
-    q_r(4) = this->GetJointPosition(this->joint_names[4]);
-    q_r(5) = this->GetJointPosition(this->joint_names[5]);
-
-    // Rear left
-    q_r(6) = this->GetJointPosition(this->joint_names[6]);
-    q_r(7) = this->GetJointPosition(this->joint_names[7]);
-    q_r(8) = this->GetJointPosition(this->joint_names[8]);
-
-    // Rear right
-    q_r(9) = this->GetJointPosition(this->joint_names[9]);
-    q_r(10) = this->GetJointPosition(this->joint_names[10]);
-    q_r(11) = this->GetJointPosition(this->joint_names[11]);
 
     return q_r;
 }
@@ -371,7 +323,7 @@ void SingleLegPlugin::PublishQueueThread()
         Eigen::Matrix<double, 18, 1> q;
 
         q.block(0,0,5,0) << this->GetBasePose();
-        q.block(6,0,17,0) << this->GetJointPositions();
+        q.block(6,0,8,0) << this->GetJointPositions();
 
         std_msgs::Float64MultiArray msg;
 

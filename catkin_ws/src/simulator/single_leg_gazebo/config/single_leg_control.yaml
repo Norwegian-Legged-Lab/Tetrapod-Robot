@@ -1,17 +1,8 @@
 gazebo_client:
   joint_names:
-    - tetrapod::front_left_hip_yaw
-    - tetrapod::front_left_hip_pitch
-    - tetrapod::front_left_knee_joint     
-    - tetrapod::front_right_hip_yaw
-    - tetrapod::front_right_hip_pitch
-    - tetrapod::front_right_knee_joint    
-    - tetrapod::rear_left_hip_yaw
-    - tetrapod::rear_left_hip_pitch
-    - tetrapod::rear_left_knee_joint      
-    - tetrapod::rear_right_hip_yaw
-    - tetrapod::rear_right_hip_pitch
-    - tetrapod::rear_right_knee_joint     
+    - single_leg::front_left_hip_yaw
+    - single_leg::front_left_hip_pitch
+    - single_leg::front_left_knee_joint     
 
   joint_config: [
     45, -20, 90
