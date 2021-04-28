@@ -58,7 +58,7 @@ void SingleLegPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
     // ROS_INFO_STREAM("Model name: " << model_name); TODO REMOVE
 
     // Store base link
-    this->base = _model->GetLink(this->model_name + "::single_leg::base"); // SDF uses sliding base instead of body
+    this->base = _model->GetLink(this->model_name + "::single_leg::sliding_base"); // SDF uses sliding base instead of body
 
     // Store joints 
     this->joints = this->model->GetJointController()->GetJoints();
@@ -320,7 +320,7 @@ void SingleLegPlugin::PublishQueueThread()
     ros::Rate loop_rate(10);
     while (this->rosNode->ok())
     {
-        Eigen::Matrix<double, 18, 1> q;
+        Eigen::Matrix<double, 9, 1> q;
 
         q.block(0,0,5,0) << this->GetBasePose();
         q.block(6,0,8,0) << this->GetJointPositions();

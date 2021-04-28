@@ -109,7 +109,7 @@ z_0 = 0.5
                     <izz>1</izz>
                 </inertia>
             </inertial>
-            <visual name="sliding_base">
+            <visual name="sliding_base_visual">
                 <pose>0 0 0 0 0 0</pose>
                 <geometry>
                     <box>
