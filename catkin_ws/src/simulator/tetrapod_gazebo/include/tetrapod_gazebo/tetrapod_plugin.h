@@ -61,11 +61,12 @@ namespace gazebo
 
     using JointVelocities = Eigen::Matrix<double, 12, 1>;
 
-    enum ControlMode { position = 1, velocity = 2, torque = 3 };
     
     /// \brief A plugin to control the tetrapod robot.
     class TetrapodPlugin : public ModelPlugin
     {
+        /// \brief Control mode enumerator
+        public: enum ControlMode { position = 1, velocity = 2, torque = 3 };
 
         /// \brief Constructor
         public: TetrapodPlugin();
