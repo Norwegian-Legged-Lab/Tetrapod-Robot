@@ -96,8 +96,8 @@ bool Kinematics::SolveInverseKinematics(const Twist &_q_b, const FootstepPositio
 
     // Transformation matrix from Body to World frame (R_b^w)
     kindr::RotationMatrixD transformationBToW(kindr::EulerAnglesZyxD(baseOrientation(2),
-                                                                baseOrientation(1),
-                                                                baseOrientation(0))
+                                                                     baseOrientation(1),
+                                                                     baseOrientation(0))
                                         );
 
     // Transformation matrix from World to Body frame (R_w^b)
@@ -150,23 +150,23 @@ bool Kinematics::SolveForwardKinematics(const GeneralizedCoordinates &_q,
     kindr::Position3D base_position(_q.block(0,0,2,0));
     kindr::Position3D base_orientation(_q.block(3,0,5,0));
 
-    // Rotation from Body to World frame
-    kindr::RotationMatrixD rotationBToW(kindr::EulerAnglesZyxD(base_orientation(2),
-                                                                base_orientation(1),
-                                                                base_orientation(0))
+    // Rotation from World to Body frame (transform from Body to World)
+    kindr::RotationMatrixD rotationWToB(kindr::EulerAnglesZyxD(base_orientation(2),
+                                                               base_orientation(1),
+                                                               base_orientation(0))
                                         );
 
     // Base to hip positions in World Frame.
-    kindr::Position3D positionBaseToFrontLeftInW(rotationBToW.matrix()*positionBaseToFrontLeftInB);
-    kindr::Position3D positionBaseToFrontRightInW(rotationBToW.matrix()*positionBaseToFrontRightInB);
-    kindr::Position3D positionBaseToRearLeftInW(rotationBToW.matrix()*positionBaseToRearLeftInB);
-    kindr::Position3D positionBaseToRearRightInW(rotationBToW.matrix()*positionBaseToRearRightInB);
+    kindr::Position3D positionBaseToFrontLeftInW(rotationWToB.matrix()*positionBaseToFrontLeftInB);
+    kindr::Position3D positionBaseToFrontRightInW(rotationWToB.matrix()*positionBaseToFrontRightInB);
+    kindr::Position3D positionBaseToRearLeftInW(rotationWToB.matrix()*positionBaseToRearLeftInB);
+    kindr::Position3D positionBaseToRearRightInW(rotationWToB.matrix()*positionBaseToRearRightInB);
 
     // Base to hip transformations
-    kindr::HomTransformMatrixD transformBaseToFrontLeftHip(positionBaseToFrontLeftInW, rotationBToW);
-    kindr::HomTransformMatrixD transformBaseToFrontRightHip(positionBaseToFrontRightInW, rotationBToW);
-    kindr::HomTransformMatrixD transformBaseToRearLeftHip(positionBaseToRearLeftInW, rotationBToW);
-    kindr::HomTransformMatrixD transformBaseToRearRightHip(positionBaseToRearRightInW, rotationBToW);
+    kindr::HomTransformMatrixD transformBaseToFrontLeftHip(positionBaseToFrontLeftInW, rotationWToB);
+    kindr::HomTransformMatrixD transformBaseToFrontRightHip(positionBaseToFrontRightInW, rotationWToB);
+    kindr::HomTransformMatrixD transformBaseToRearLeftHip(positionBaseToRearLeftInW, rotationWToB);
+    kindr::HomTransformMatrixD transformBaseToRearRightHip(positionBaseToRearRightInW, rotationWToB);
 
     // Hip to foot transformations
     kindr::HomTransformMatrixD transformFrontLeftHipToFoot = this->GetHipToFootTransform(this->flOffset,
@@ -285,6 +285,63 @@ bool Kinematics::SolveSingleLegInverseKinematics(const bool &_offset, const Vect
     return true;
 }
 
+// Get position vector from base to foot in body
+Eigen::Matrix<double, 3, 1> Kinematics::GetPositionBaseToFootInB(const TetrapodLeg &_leg,
+                                                                 const Eigen::Matrix<double, 18, 1> &_q)
+{
+    Eigen::Matrix<double, 3, 1> positionBaseToFootInB;
+
+    Eigen::Matrix<double, 3, 1> positionBaseToHipInB;
+
+    kindr::HomTransformMatrixD transformHipToFoot;
+
+    if (_leg == TetrapodLeg::frontLeft)
+    {
+        transformHipToFoot = this->GetHipToFootTransform(this->flOffset,
+                                                                                    _q(6),
+                                                                                    _q(7),
+                                                                                    _q(8));
+
+        positionBaseToHipInB = this->positionBaseToFrontLeftInB;
+    }
+    else if (_leg == TetrapodLeg::frontRight)
+    {
+        transformHipToFoot = this->GetHipToFootTransform(this->frOffset,
+                                                                                    _q(9),
+                                                                                    _q(10),
+                                                                                    _q(11));
+
+        positionBaseToHipInB = this->positionBaseToFrontRightInB;
+    }
+    else if (_leg == TetrapodLeg::rearLeft)
+    {
+        transformHipToFoot = this->GetHipToFootTransform(this->rlOffset,
+                                                                                    _q(12),
+                                                                                    _q(13),
+                                                                                    _q(14));
+
+        positionBaseToHipInB = this->positionBaseToRearLeftInB;
+    }
+    else if (_leg == TetrapodLeg::rearRight)
+    {
+        transformHipToFoot = this->GetHipToFootTransform(this->rrOffset,
+                                                                                    _q(15),
+                                                                                    _q(16),
+                                                                                    _q(17));
+
+        positionBaseToHipInB = this->positionBaseToRearRightInB;
+    }
+    else
+    {
+        ROS_ERROR_STREAM("Leg type could not be determined when finding positionBaseToFootInB!");
+    }
+
+    positionBaseToFootInB = positionBaseToHipInB + transformHipToFoot.transform(kindr::Position3D(0,0,0)).vector();
+
+
+    return positionBaseToFootInB;
+}
+
 // HipToFootTransform
 TransMatrix Kinematics::GetHipToFootTransform(const bool &_offset,
                                               const double &_theta_hy, 
@@ -346,8 +403,10 @@ TransMatrix Kinematics::GetDhTransform(const double &_a,
     return transformationAToB;
 }
 
-// Single Leg Jacobian
-Eigen::Matrix<double, 3, 3> Kinematics::GetTranslationJacobianInB(const double &_theta_hy, const double &_theta_hp, const double &_theta_kp)
+// Leg state single leg translation Jacobian in body frame
+Eigen::Matrix<double, 3, 3> Kinematics::GetSingleLegTranslationJacobianInB(const double &_theta_hy, 
+                                                                           const double &_theta_hp, 
+                                                                           const double &_theta_kp)
 {
     Eigen::Matrix<double, 3, 3> J;
 
@@ -371,6 +430,154 @@ Eigen::Matrix<double, 3, 3> Kinematics::GetTranslationJacobianInB(const double &
     J(0,2) = (- this->L3 * s23) * c1;
     J(1,2) = (- this->L3 * s23) * s1;
     J(2,2) = this->L3 * c23;
+
+    return J;
+}
+
+// Joint state single leg translation Jacobian in body frame
+Eigen::Matrix<double, 3, 12> Kinematics::GetSingleLegTranslationJacobianInB(const TetrapodLeg &_leg, 
+                                                                            const Eigen::Matrix<double, 12, 1> &_q_r)
+{
+    Eigen::Matrix<double, 3, 12> J = Eigen::Matrix<double, 3, 12>::Constant(0);
+
+    if (_leg == TetrapodLeg::frontLeft)
+    {
+        J.block<3, 3>(0,0) = this->GetSingleLegTranslationJacobianInB(_q_r(0), 
+                                                                      _q_r(1), 
+                                                                      _q_r(2));
+    }
+    else if (_leg == TetrapodLeg::frontRight)
+    {
+        J.block<3, 3>(0,3) = this->GetSingleLegTranslationJacobianInB(_q_r(3), 
+                                                                      _q_r(4), 
+                                                                      _q_r(5));
+    }
+    else if (_leg == TetrapodLeg::rearLeft)
+    {
+        J.block<3, 3>(0,6) = this->GetSingleLegTranslationJacobianInB(_q_r(6), 
+                                                                      _q_r(7), 
+                                                                      _q_r(8));
+    }
+    else if (_leg == TetrapodLeg::rearRight)
+    {
+        J.block<3, 3>(0,9) = this->GetSingleLegTranslationJacobianInB(_q_r(9), 
+                                                                      _q_r(10), 
+                                                                      _q_r(11));
+    }
+    else
+    {
+        ROS_ERROR_STREAM("Leg type could not be determined when finding SingeLegTranslationJacobianInB!");
+    }
+
+    return J;
+}
+
+// Full state single leg translation Jacobian in world frame
+Eigen::Matrix<double, 3, 18> Kinematics::GetTranslationJacobianInW(const TetrapodLeg &_leg,
+                                                                   const Eigen::Matrix<double, 18, 1> &_q)
+{
+    // Jacobian
+    Eigen::Matrix<double, 3, 18> J;
+
+    // Rotation from World to Body frame (transform from Body to World)
+    kindr::RotationMatrixD rotationWToB(kindr::EulerAnglesZyxD(_q(5),
+                                                               _q(4),
+                                                               _q(3))
+                                        );
+
+    Eigen::Matrix<double, 3, 1> positionBaseToFootInB = this->GetPositionBaseToFootInB(_leg, _q);
+
+    Eigen::Matrix<double, 3, 12> translationJacobianInB = this->GetSingleLegTranslationJacobianInB(_leg, _q.block<12, 1>(6,0));
+
+    J.block<3, 3>(0,0).setIdentity();
+    J.block<3, 3>(0,3) = - rotationWToB.matrix() * kindr::getSkewMatrixFromVector(positionBaseToFootInB);
+    J.block<3, 12>(0,6) = rotationWToB.matrix() * translationJacobianInB; 
+
+    return J;
+} 
+
+// Leg state single leg rotational Jacobian in body frame
+Eigen::Matrix<double, 3, 3> Kinematics::GetSingleLegRotationJacobianInB(const bool &_offset,
+                                                                        const double &_theta_hy, 
+                                                                        const double &_theta_hp, 
+                                                                        const double &_theta_kp)
+{
+    Eigen::Matrix<double, 3, 3> J;
+
+    double c1 = std::cos(_theta_hy);
+    double s1 = std::sin(_theta_hy);
+
+    if (_offset)
+    {
+        J(0,0) = 0;
+        J(1,0) = 0;
+        J(2,0) = 1;
+
+        J(0,1) = - s1;
+        J(1,1) = c1;
+        J(2,1) = 0;
+
+        J(0,2) = - s1;
+        J(1,2) = c1;
+        J(2,2) = 0;
+    }
+    else
+    {
+
+        J(0,0) = 0;
+        J(1,0) = 0;
+        J(2,0) = 1;
+
+        J(0,1) = s1;
+        J(1,1) = - c1;
+        J(2,1) = 0;
+
+        J(0,2) = s1;
+        J(1,2) = - c1;
+        J(2,2) = 0;
+    }
+
+    return J;
+}
+
+// Joint state single leg rotation Jacobian in body frame
+Eigen::Matrix<double, 3, 12> Kinematics::GetSingleLegRotationJacobianInB(const TetrapodLeg &_leg, 
+                                                                         const Eigen::Matrix<double, 12, 1> &_q_r)
+{
+    Eigen::Matrix<double, 3, 12> J = Eigen::Matrix<double, 3, 12>::Constant(0);
+
+    if (_leg == TetrapodLeg::frontLeft)
+    {
+        J.block<3, 3>(0,0) = this->GetSingleLegRotationJacobianInB(this->flOffset,
+                                                                   _q_r(0), 
+                                                                   _q_r(1), 
+                                                                   _q_r(2));
+    }
+    else if (_leg == TetrapodLeg::frontRight)
+    {
+        J.block<3, 3>(0,3) = this->GetSingleLegRotationJacobianInB(this->frOffset,
+                                                                   _q_r(3), 
+                                                                   _q_r(4), 
+                                                                   _q_r(5));
+    }
+    else if (_leg == TetrapodLeg::rearLeft)
+    {
+        J.block<3, 3>(0,6) = this->GetSingleLegRotationJacobianInB(this->rlOffset,
+                                                                   _q_r(6), 
+                                                                   _q_r(7), 
+                                                                   _q_r(8));
+    }
+    else if (_leg == TetrapodLeg::rearRight)
+    {
+        J.block<3, 3>(0,9) = this->GetSingleLegRotationJacobianInB(this->rrOffset,
+                                                                   _q_r(9), 
+                                                                   _q_r(10), 
+                                                                   _q_r(11));
+    }
+    else
+    {
+        ROS_ERROR_STREAM("Leg type could not be determined when finding SingeLegTranslationJacobianInB!");
+    }
 
     return J;
 }
