@@ -22,7 +22,7 @@
 #define END_POS_Y 0.25
 #define END_POS_Z -0.25
 
-#define TIMESTEP 0.02
+#define TIMESTEP 0.01
 #define TIME_END 2.0
 #define TIME_MIDDLE 1.0
 
@@ -44,7 +44,9 @@ int main(int argc, char **argv)
     single_leg_controller.initROS();
 
     int timestep_middle = TIME_MIDDLE/TIMESTEP;
+
     int timestep_end = TIME_END/TIMESTEP;
+
     int current_timestep = 0;
 
     ROS_INFO("Initialization complete");
@@ -57,18 +59,22 @@ int main(int argc, char **argv)
     while(!single_leg_controller.checkIfReadyToMove())
     {
         single_leg_controller.checkForNewMessages();
+
         ros::spinOnce();
+
         check_for_ready_message_rate.sleep();
+
         ROS_INFO("WAITING FOR POSITION CONTROL START MESSAGE");
     }
 
     // Use the position controller to move the leg to the desired start position
     while(!single_leg_controller.moveFootToPosition(START_POS_X, START_POS_Y, START_POS_Z));
+
     ROS_INFO("DESIRED POSITION REACHED");
     
     // Reset the is_target_position_reached flag 
     single_leg_controller.setTargetPositionToNotReached();
-    /*
+    
     // Reset the ready_to_move flag
     single_leg_controller.setNotReadyToMove();
 
@@ -76,7 +82,9 @@ int main(int argc, char **argv)
     while(!single_leg_controller.checkIfReadyToMove())
     {
         single_leg_controller.checkForNewMessages();
+
         check_for_ready_message_rate.sleep();
+
         ROS_INFO("WAITING FOR START MESSAGE FOR VELOCITY CONTROL");
     }
 
@@ -84,21 +92,40 @@ int main(int argc, char **argv)
     while(current_timestep < timestep_middle)
     {
         single_leg_controller.updateSpeedControlCommands();
-        single_leg_controller.sendSpeedJointCommand();
+
+        //single_leg_controller.sendSpeedJointCommand();
+
+        single_leg_controller.simulatorSendJointVelocityCommand();
+
         current_timestep++;
+
+        single_leg_controller.logStatesAndCommands();
+
         send_control_command_rate.sleep();
     }
 
     // Use velocity control to move the foot to the end position
     single_leg_controller.setCurrentReferencePosition(END_POS_X, END_POS_Y, END_POS_Z);
+
     while(current_timestep < timestep_end)
     {
         single_leg_controller.updateSpeedControlCommands();
-        single_leg_controller.sendSpeedJointCommand();
+
+        //single_leg_controller.sendSpeedJointCommand();
+
+        single_leg_controller.simulatorSendJointVelocityCommand();
+
+        ros::spinOnce();
+
         current_timestep++;
+
+        single_leg_controller.logStatesAndCommands();
+
         send_control_command_rate.sleep();
     }
-    */
+
+    single_leg_controller.setJointVelocityToZero();
+    
     ROS_INFO("COMPLETE");
 
     ros::spinOnce();

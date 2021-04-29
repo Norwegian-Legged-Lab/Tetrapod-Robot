@@ -127,7 +127,8 @@ z_0 = 0.5
             </visual>
         </link>
 
-        <joint name="sliding_base_joint" type="prismatic">
+        <!--joint name="sliding_base_joint" type="prismatic"-->
+        <joint name="sliding_base_joint" type="fixed">
             <pose>0 0 0 0 0 0</pose>
             <parent>base</parent>
             <child>sliding_base</child>
