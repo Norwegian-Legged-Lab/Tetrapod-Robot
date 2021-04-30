@@ -293,6 +293,42 @@ void testTranslationJacobian()
 
 }
 
+void testRotationJacobian()
+{
+    Kinematics K;
+
+    GeneralizedCoordinates q = GeneralizedCoordinates::Constant(0);
+
+    q << 0, // base_x
+         0, // base_y
+         0, // base_z
+         0, // base_roll
+         0, // base_pitch
+         0, // base_yaw
+         angle_utils::degToRad(45), // FL-theta_hy
+         0*angle_utils::degToRad(-20), // FL-theta_hp
+         0*angle_utils::degToRad(90), // FL-theta_kp
+         0*angle_utils::degToRad(-45), // FR-theta_hy
+         0*angle_utils::degToRad(20), // FR-theta_hp
+         0*angle_utils::degToRad(-90), // FR-theta_kp
+         0*angle_utils::degToRad(135), // RL-theta_hy
+         0*angle_utils::degToRad(20), // RL-theta_hp
+         0*angle_utils::degToRad(-90), // RL-theta_kp
+         0*angle_utils::degToRad(-135), // RR-theta_hy
+         0*angle_utils::degToRad(-20), // RR-theta_hp
+         0*angle_utils::degToRad(90); // RR-theta_kp
+
+    Eigen::Matrix<double, 3, 18> J_fl = K.GetRotationJacobianInW(Kinematics::TetrapodLeg::frontLeft, q);
+    Eigen::Matrix<double, 3, 18> J_fr = K.GetRotationJacobianInW(Kinematics::TetrapodLeg::frontRight, q);
+    Eigen::Matrix<double, 3, 18> J_rl = K.GetRotationJacobianInW(Kinematics::TetrapodLeg::rearLeft, q);
+    Eigen::Matrix<double, 3, 18> J_rr = K.GetRotationJacobianInW(Kinematics::TetrapodLeg::rearRight, q);
+
+    ROS_INFO_STREAM("Rotation Jacobian front left, J_R: \n" << J_fl);
+    ROS_INFO_STREAM("Rotation Jacobian front right, J_R: \n" << J_fr);
+    ROS_INFO_STREAM("Rotation Jacobian rear left, J_R: \n" << J_rl);
+    ROS_INFO_STREAM("Rotation Jacobian rear right, J_R: \n" << J_rr);
+}
+
 int main(int argc, char **argv)
 {
     ros::init(argc, argv, "kinematics_node");
@@ -313,8 +349,10 @@ int main(int argc, char **argv)
     //testInverseKinematics(); 
     //ROS_INFO_STREAM("--------------- Test positionBaseToFoot --------------");
     //testPositionBaseToFoot();
-    ROS_INFO_STREAM("--------------- Test translationJacobian --------------");
-    testTranslationJacobian();
+    //ROS_INFO_STREAM("--------------- Test translationJacobian --------------");
+    //testTranslationJacobian();
+    ROS_INFO_STREAM("--------------- Test rotationJacobian --------------");
+    testRotationJacobian();
 
     ros::spin();
     return 0;
