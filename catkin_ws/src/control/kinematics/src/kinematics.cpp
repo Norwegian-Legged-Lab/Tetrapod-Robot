@@ -513,12 +513,12 @@ Eigen::Matrix<double, 3, 3> Kinematics::GetSingleLegRotationJacobianInB(const bo
         J(1,0) = 0;
         J(2,0) = 1;
 
-        J(0,1) = - s1;
-        J(1,1) = c1;
+        J(0,1) = s1;
+        J(1,1) = - c1;
         J(2,1) = 0;
 
-        J(0,2) = - s1;
-        J(1,2) = c1;
+        J(0,2) = s1;
+        J(1,2) = - c1;
         J(2,2) = 0;
     }
     else
@@ -528,12 +528,12 @@ Eigen::Matrix<double, 3, 3> Kinematics::GetSingleLegRotationJacobianInB(const bo
         J(1,0) = 0;
         J(2,0) = 1;
 
-        J(0,1) = s1;
-        J(1,1) = - c1;
+        J(0,1) = - s1;
+        J(1,1) = c1;
         J(2,1) = 0;
 
-        J(0,2) = s1;
-        J(1,2) = - c1;
+        J(0,2) = - s1;
+        J(1,2) = c1;
         J(2,2) = 0;
     }
 
@@ -578,6 +578,40 @@ Eigen::Matrix<double, 3, 12> Kinematics::GetSingleLegRotationJacobianInB(const T
     {
         ROS_ERROR_STREAM("Leg type could not be determined when finding SingeLegTranslationJacobianInB!");
     }
+
+    return J;
+}
+
+// Full state single leg rotation Jacobian in world frame
+Eigen::Matrix<double, 3, 18> Kinematics::GetRotationJacobianInW(const TetrapodLeg &_leg,
+                                                                const Eigen::Matrix<double, 18, 1> &_q)
+{
+    // Jacobian
+    Eigen::Matrix<double, 3, 18> J;
+
+    // Rotation from World to Body frame (transform from Body to World)
+    kindr::RotationMatrixD rotationWToB(kindr::EulerAnglesZyxD(_q(5),
+                                                               _q(4),
+                                                               _q(3))
+                                        );
+
+    Eigen::Matrix<double, 3, 12> rotationJacobianInB = this->GetSingleLegRotationJacobianInB(_leg, _q.block<12, 1>(6,0));
+
+    J.block<3, 3>(0,0).setZero();
+    J.block<3, 3>(0,3) = rotationWToB.matrix();
+    J.block<3, 12>(0,6) = rotationWToB.matrix() * rotationJacobianInB; 
+
+    return J;
+} 
+
+// Full state single leg rotation Jacobian in world frame
+Eigen::Matrix<double, 6, 18> Kinematics::GetJacobianInW(const TetrapodLeg &_leg,
+                                                        const Eigen::Matrix<double, 18, 1> &_q)
+{
+    Eigen::Matrix<double, 6, 18> J;
+
+    J.block<3, 18>(0,0) = this->GetTranslationJacobianInW(_leg, _q);
+    J.block<3, 18>(3,0) = this->GetRotationJacobianInW(_leg, _q);
 
     return J;
 }

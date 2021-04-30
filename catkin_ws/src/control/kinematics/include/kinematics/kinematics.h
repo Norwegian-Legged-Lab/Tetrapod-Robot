@@ -168,7 +168,7 @@ class Kinematics
     /// to operational space twist of the leg frame.
     /// \param[in] _leg Tetrapod leg
     /// \param[in] _q Generalized coordinates
-    /// \return Returns the Jacobian Matrix mapping from generalized coordinates to
+    /// \return Returns the translation Jacobian Matrix mapping from generalized coordinates to
     /// the operational space twist of the leg frame.
     public: Eigen::Matrix<double, 3, 18> GetTranslationJacobianInW(const TetrapodLeg &_leg,
                                                                    const Eigen::Matrix<double, 18, 1> &_q);
@@ -194,6 +194,26 @@ class Kinematics
     /// \return Returns the Jacobian Matrix relating end-effector velocities to joint velocities.
     public: Eigen::Matrix<double, 3, 12> GetSingleLegRotationJacobianInB(const TetrapodLeg &_leg, 
                                                                          const Eigen::Matrix<double, 12, 1> &_q_r);
+
+    /// \brief The GetRotationJacobianInW function returns the
+    /// spatial rotation Jacobian mapping generalized velocities
+    /// to operational space twist of the leg frame.
+    /// \param[in] _leg Tetrapod leg
+    /// \param[in] _q Generalized coordinates
+    /// \return Returns the rotation Jacobian Matrix mapping from generalized coordinates to
+    /// the operational space twist of the leg frame.
+    public: Eigen::Matrix<double, 3, 18> GetRotationJacobianInW(const TetrapodLeg &_leg,
+                                                                const Eigen::Matrix<double, 18, 1> &_q);
+
+    /// \brief The GetJacobianInW function returns the
+    /// spatial Jacobian mapping generalized velocities
+    /// to operational space twist of the leg frame.
+    /// \param[in] _leg Tetrapod leg
+    /// \param[in] _q Generalized coordinates
+    /// \return Returns the Jacobian Matrix mapping from generalized coordinates to
+    /// the operational space twist of the leg frame.
+    public: Eigen::Matrix<double, 6, 18> GetJacobianInW(const TetrapodLeg &_leg,
+                                                        const Eigen::Matrix<double, 18, 1> &_q);
 
     /// \brief The ValidateSolution function evaluates whether
     /// a set of joint angles is within joint limits. 
