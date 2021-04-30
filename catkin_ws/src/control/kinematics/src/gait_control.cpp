@@ -61,6 +61,15 @@ void GaitControl::OnGenCoordMsg(const std_msgs::Float64MultiArrayConstPtr &_msg)
 
 }
 
+// Callback for ROS Generalized Velocities messages
+void GaitControl::OnGenVelMsg(const std_msgs::Float64MultiArrayConstPtr &_msg)
+{
+    std::vector<double> data = _msg->data;
+
+    this->genVel = Eigen::Map<Eigen::MatrixXd>(data.data(), 18, 1); 
+
+}
+
 // Setup thread to process messages
 void GaitControl::ProcessQueueThread()
 {
@@ -107,6 +116,15 @@ void GaitControl::InitRos()
             &this->rosProcessQueue
             );
 
+    ros::SubscribeOptions gen_vel_so = 
+        ros::SubscribeOptions::create<std_msgs::Float64MultiArray>(
+            "/my_robot/gen_vel",
+            1,
+            boost::bind(&GaitControl::OnGenVelMsg, this, _1),
+            ros::VoidPtr(),
+            &this->rosProcessQueue
+            );
+
     ros::AdvertiseOptions joint_state_ao =
         ros::AdvertiseOptions::create<sensor_msgs::JointState>(
             "/my_robot/joint_state_cmd",
@@ -118,6 +136,8 @@ void GaitControl::InitRos()
         );
 
     this->genCoordSub = this->rosNode->subscribe(gen_coord_so);
+
+    this->genVelSub = this->rosNode->subscribe(gen_vel_so);
 
     this->jointStatePub = this->rosNode->advertise(joint_state_ao);
 }

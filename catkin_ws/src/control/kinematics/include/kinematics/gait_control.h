@@ -55,6 +55,12 @@ class GaitControl
     /// coordinates.
     public: void OnGenCoordMsg(const std_msgs::Float64MultiArrayConstPtr &_msg);
 
+    /// \brief The OnGenVelMsg function handles an incoming 
+    /// generalized velocities message from ROS.
+    /// \param[in] _msg A float array containing the generalized
+    /// velocities.
+    public: void OnGenVelMsg(const std_msgs::Float64MultiArrayConstPtr &_msg);
+
     /// \brief The ProcessQueueThread function is a ROS helper function
     /// that processes messages.
     public: void ProcessQueueThread();
@@ -76,6 +82,9 @@ class GaitControl
     /// \brief Generalized Coordinates
     private: Eigen::Matrix<double, 18, 1> genCoord;
 
+    /// \brief Generalized Velocities
+    private: Eigen::Matrix<double, 18, 1> genVel;
+
     /// \brief Footstep positions
     private: Eigen::Matrix<Eigen::Vector3d, 4, 1> fPos;
 
@@ -84,6 +93,9 @@ class GaitControl
 
     /// \brief ROS Generalized Coordinates Subscriber.
     private: ros::Subscriber genCoordSub;
+
+    /// \brief ROS Generalized Coordinates Subscriber.
+    private: ros::Subscriber genVelSub;
 
     /// \brief ROS Joint State Publisher
     private: ros::Publisher jointStatePub;
