@@ -47,6 +47,48 @@ GaitControl::~GaitControl()
     this->rosPublishQueueThread.join();
 }
 
+// Gait planner
+void GaitControl::SingleLegGaitPlanner()
+{
+    double amplitude = 0.2;
+    double period = 0.2;
+    double y_offset_left = 0.25;
+    double y_offset_right = -0.25;
+     
+    Eigen::Matrix<double, 3, 1> delta_position_in_W;
+    Eigen::Matrix<double, 3, 1> desired_position_in_W;
+    Eigen::Matrix<double, 3, 1> position_in_W;
+}
+
+// Position Trajectory
+Eigen::Matrix<double, 3, 1> GaitControl::GetPositionTrajectory(const double &_A,
+                                                               const double &_P,
+                                                               const double &_y_offset,
+                                                               const double &_t)
+{
+    Eigen::Matrix<double, 3, 1> positionInB;
+
+    if (_t >= 0 && _t <= _P/2)
+    {
+        positionInB(0) = _t;
+        positionInB(1) = _y_offset;
+        positionInB(2) = _A * std::sin( angle_utils::TWO_PI / _P * _t );
+    }
+    else if (_t > _P/2 && _t <= _P)
+    {
+
+        positionInB(0) = _P - _t;
+        positionInB(1) = _y_offset;
+        positionInB(2) = 0;
+    }
+    else
+    {
+        ROS_ERROR_STREAM("Could not retrieve position trajectory as _t is out of range.");
+    }
+
+    return positionInB;
+}
+
 // Callback for ROS Generalized Coordinates messages
 void GaitControl::OnGenCoordMsg(const std_msgs::Float64MultiArrayConstPtr &_msg)
 {
@@ -154,10 +196,32 @@ void GaitControl::InitRosQueueThreads()
     );
 }
 
+void testGaitTrajectory(GaitControl &_gc)
+{
+    double A = 1;
+    double P = 1;
+    double y_offset = 0;
+
+    Eigen::Matrix<double, 3, 1> positionInB;    
+    double t = 0;
+
+    while (t <= P)
+    {
+        positionInB = _gc.GetPositionTrajectory(A, P, y_offset, t);
+
+        ROS_INFO_STREAM("Position at t: " << t << " is r: \n" << positionInB << "\n");
+
+        t += 0.05;
+    }
+
+}
+
 // Main
 int main(int argc, char **argv)
 {
     GaitControl gait_controller;
+
+    testGaitTrajectory(gait_controller);
 
     ros::spin();
 
