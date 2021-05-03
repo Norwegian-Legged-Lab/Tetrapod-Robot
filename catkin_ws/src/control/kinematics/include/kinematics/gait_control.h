@@ -32,6 +32,7 @@
 #include "sensor_msgs/JointState.h"
 #include "std_msgs/Float64.h"
 #include "std_msgs/Float64MultiArray.h"
+#include "eigen_conversions/eigen_msg.h"
 
 // ROS Package Libraries
 #include <angle_utils/angle_utils.h>
@@ -56,9 +57,9 @@ class GaitControl
     /// \brief Destructor
     public: virtual ~GaitControl();
 
-    /// \brief The GaitPlanner function plans a gait pattern
+    /// \brief The PositionTrajectoryControl function plans a gait pattern
     /// for the tetrapod and publishes a joint state command.
-    public: void SingleLegGaitPlanner();
+    public: void PositionTrajectoryControl();
 
     /// \brief The GetPositionTrajectory function returns
     /// a position trajectory in body as a function of time.

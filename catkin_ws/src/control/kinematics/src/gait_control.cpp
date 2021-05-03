@@ -48,16 +48,82 @@ GaitControl::~GaitControl()
 }
 
 // Gait planner
-void GaitControl::SingleLegGaitPlanner()
+void GaitControl::PositionTrajectoryControl()
 {
     double amplitude = 0.2;
     double period = 0.2;
     double y_offset_left = 0.25;
     double y_offset_right = -0.25;
+
+    double kpp = 1;
      
     Eigen::Matrix<double, 3, 1> delta_position_in_W;
     Eigen::Matrix<double, 3, 1> desired_position_in_W;
     Eigen::Matrix<double, 3, 1> position_in_W;
+    Eigen::Matrix<double, 3, 1> desired_velocity_in_W;
+
+    kindr::RotationMatrixD rotationWToB;
+
+    Eigen::Matrix<double, 3, 18> J;
+    Eigen::Matrix<double, 18, 3> pinvJ;
+
+    Eigen::Matrix<double, 18, 1>  desired_gen_vel;
+
+    double t = 0;
+    while (t <= period)
+    {
+        // Update current position
+        position_in_W = this->fPos(0);
+
+        // Update rotation matrix
+        rotationWToB = kindr::RotationMatrixD(kindr::EulerAnglesZyxD(this->genCoord(5),
+                                                                     this->genCoord(4),
+                                                                     this->genCoord(3))
+                                             );
+
+        // Update desired position in world frame
+        desired_position_in_W = rotationWToB.matrix() * 
+                                this->GetPositionTrajectory(amplitude,
+                                                            period,
+                                                            y_offset_left,
+                                                            t);
+
+        // Update position delta
+        delta_position_in_W = desired_position_in_W - position_in_W;
+
+        // Update desired velocity in world frame
+        desired_velocity_in_W = Eigen::Matrix<double, 3, 1>::Constant(0);
+
+        // Update Jacobian
+        J = this->kinematics.GetTranslationJacobianInW(Kinematics::TetrapodLeg::frontLeft,
+                                                       this->genCoord);
+
+        // Calculate pseudoInverse
+        if (!kindr::pseudoInverse(J, pinvJ))
+        {
+            ROS_ERROR_STREAM("Failed to find pseudo-inverse Jacobian in Position Trajectory Control.");
+        } 
+
+        // Calculate desired generalized velocities
+        desired_gen_vel = pinvJ * (desired_velocity_in_W + kpp * delta_position_in_W);
+
+        debug_utils::printGeneralizedVelocities(desired_gen_vel);
+
+        // Publish desired generalized velocities
+        std_msgs::Float64MultiArray vel_msg;
+
+        tf::matrixEigenToMsg(desired_gen_vel.block<12, 1>(6,0), vel_msg);
+
+        sensor_msgs::JointState joint_state_msg;
+
+        joint_state_msg.velocity = vel_msg.data;
+
+        ROS_INFO("Publishing.");
+        this->jointStatePub.publish(joint_state_msg);
+
+        // Increment
+        t += 0.01;
+    }
 }
 
 // Position Trajectory
@@ -128,6 +194,11 @@ void GaitControl::PublishQueueThread()
     ros::Rate loop_rate(10);
     while (this->rosNode->ok())
     {
+        this->rosPublishQueue.callAvailable();
+
+        sensor_msgs::JointState msg;
+        this->jointStatePub.publish(msg);
+
         loop_rate.sleep();
     }
 }
@@ -221,7 +292,7 @@ int main(int argc, char **argv)
 {
     GaitControl gait_controller;
 
-    testGaitTrajectory(gait_controller);
+    gait_controller.PositionTrajectoryControl();
 
     ros::spin();
 
