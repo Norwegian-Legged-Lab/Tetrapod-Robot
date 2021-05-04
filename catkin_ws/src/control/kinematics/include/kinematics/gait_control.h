@@ -29,9 +29,14 @@
 // ROS
 #include "ros/ros.h"
 #include "ros/callback_queue.h"
-#include "sensor_msgs/JointState.h"
+#include "ros/advertise_options.h"
+
+// ROS messages
 #include "std_msgs/Float64.h"
 #include "std_msgs/Float64MultiArray.h"
+#include "sensor_msgs/JointState.h"
+
+// ROS messages to eigen
 #include "eigen_conversions/eigen_msg.h"
 
 // ROS Package Libraries

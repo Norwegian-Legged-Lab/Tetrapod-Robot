@@ -116,6 +116,7 @@ void GaitControl::PositionTrajectoryControl()
 
         sensor_msgs::JointState joint_state_msg;
 
+        joint_state_msg.header.stamp = ros::Time::now();
         joint_state_msg.velocity = vel_msg.data;
 
         ROS_INFO("Publishing.");
@@ -191,15 +192,10 @@ void GaitControl::ProcessQueueThread()
 // Setup thread to process messages
 void GaitControl::PublishQueueThread()
 {
-    ros::Rate loop_rate(10);
+    static const double timeout = 0.01;
     while (this->rosNode->ok())
     {
-        this->rosPublishQueue.callAvailable();
-
-        sensor_msgs::JointState msg;
-        this->jointStatePub.publish(msg);
-
-        loop_rate.sleep();
+        this->rosPublishQueue.callAvailable(ros::WallDuration(timeout));
     }
 }
 
