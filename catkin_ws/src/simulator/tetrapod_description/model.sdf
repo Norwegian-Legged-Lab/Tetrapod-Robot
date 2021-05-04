@@ -129,7 +129,7 @@ z_0 = 0.0
                 <limit>
                     <lower>0</lower>
                     <upper>3.14</upper>
-                    <effort>30</effort>
+                    <effort>40</effort>
                     <velocity>1000</velocity>
                 </limit>
             </axis>
@@ -190,7 +190,7 @@ z_0 = 0.0
                 <limit>
                     <lower>-2.5</lower>
                     <upper>2.5</upper>
-                    <effort>30</effort>
+                    <effort>40</effort>
                     <velocity>1000</velocity>
                 </limit>
             </axis>
@@ -257,7 +257,7 @@ z_0 = 0.0
                 <limit>
                     <lower>-2.5</lower>
                     <upper>2.5</upper>
-                    <effort>30</effort>
+                    <effort>40</effort>
                     <velocity>1000</velocity>
                 </limit>
             </axis> 
@@ -362,7 +362,7 @@ z_0 = 0.0
                 <limit>
                     <lower>-3.14</lower>
                     <upper>0.0</upper>
-                    <effort>30</effort>
+                    <effort>40</effort>
                     <velocity>1000</velocity>
                 </limit>
             </axis>
@@ -423,7 +423,7 @@ z_0 = 0.0
                 <limit>
                     <lower>-2.5</lower>
                     <upper>2.5</upper>
-                    <effort>30</effort>
+                    <effort>40</effort>
                     <velocity>1000</velocity>
                 </limit>
             </axis>
@@ -490,7 +490,7 @@ z_0 = 0.0
                 <limit>
                     <lower>-2.5</lower>
                     <upper>2.5</upper>
-                    <effort>30</effort>
+                    <effort>40</effort>
                     <velocity>1000</velocity>
                 </limit>
             </axis> 
@@ -595,7 +595,7 @@ z_0 = 0.0
                 <limit>
                     <lower>0</lower>
                     <upper>3.14</upper>
-                    <effort>30</effort>
+                    <effort>40</effort>
                     <velocity>1000</velocity>
                 </limit>
             </axis>
@@ -656,7 +656,7 @@ z_0 = 0.0
                 <limit>
                     <lower>-2.5</lower>
                     <upper>2.5</upper>
-                    <effort>30</effort>
+                    <effort>40</effort>
                     <velocity>1000</velocity>
                 </limit>
             </axis>
@@ -723,7 +723,7 @@ z_0 = 0.0
                 <limit>
                     <lower>-2.5</lower>
                     <upper>2.5</upper>
-                    <effort>30</effort>
+                    <effort>40</effort>
                     <velocity>1000</velocity>
                 </limit>
             </axis> 
@@ -827,7 +827,7 @@ z_0 = 0.0
                 <limit>
                     <lower>-3.14</lower>
                     <upper>0.0</upper>
-                    <effort>30</effort>
+                    <effort>40</effort>
                     <velocity>1000</velocity>
                 </limit>
             </axis>
@@ -888,7 +888,7 @@ z_0 = 0.0
                 <limit>
                     <lower>-2.5</lower>
                     <upper>2.5</upper>
-                    <effort>30</effort>
+                    <effort>40</effort>
                     <velocity>1000</velocity>
                 </limit>
             </axis>
@@ -955,7 +955,7 @@ z_0 = 0.0
                 <limit>
                     <lower>-2.5</lower>
                     <upper>2.5</upper>
-                    <effort>30</effort>
+                    <effort>40</effort>
                     <velocity>1000</velocity>
                 </limit>
             </axis> 
