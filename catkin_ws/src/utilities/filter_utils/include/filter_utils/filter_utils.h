@@ -17,6 +17,7 @@ public:
     double getAcceleration(){return X(2);}
     void updateFilter();
     Eigen::Matrix<double, 3, 1> getState() {return X;}
+    double getGoalPos(){return x_goal;}
 private:
     Eigen::Matrix<double, 3, 1> X = Eigen::Matrix<double, 3, 1>::Zero();
     double x_goal;
