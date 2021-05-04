@@ -12,7 +12,7 @@
 
 #define START_POS_X 0.433
 #define START_POS_Y 0.25
-#define START_POS_Z -0.25 //-0.05 //-0.25
+#define START_POS_Z -0.25 
 
 #define MIDDLE_POS_X 0.0
 #define MIDDLE_POS_Y 0.25
@@ -29,7 +29,6 @@
 int main(int argc, char **argv)
 {
     SingleLegController single_leg_controller(TIMESTEP);
-
 
     single_leg_controller.setReferenceParameters
     (
@@ -105,7 +104,7 @@ int main(int argc, char **argv)
     }
 
     // Use velocity control to move the foot to the end position
-    single_leg_controller.setCurrentReferencePosition(END_POS_X, END_POS_Y, END_POS_Z);
+    single_leg_controller.setFootGoalPos(END_POS_X, END_POS_Y, END_POS_Z);
 
     while(current_timestep < timestep_end)
     {

@@ -198,6 +198,34 @@ bool SingleLegController::moveFootToPosition(double _foot_pos_x, double _foot_po
     }
 }
 
+void SingleLegController::setJointPositions(double _theta_hy, double _theta_hp, double _theta_kp)
+{
+    position_controller_joint_target(0) = _theta_hy;
+    position_controller_joint_target(1) = _theta_hp;
+    position_controller_joint_target(2) = _theta_kp;
+
+    ros::Rate send_position_command_rate(10);
+
+    while(!is_target_position_reached)
+    {
+        if(isTargetPositionReached())
+        {
+            ROS_INFO("Success, close enough");
+            is_target_position_reached = true;
+        }
+        else
+        {
+            ROS_INFO("Error too large");
+            simulatorSendJointPositionCommand();
+            sendJointPositionCommand();
+            ros::spinOnce();
+            send_position_command_rate.sleep();
+        }
+        
+    }
+    ROS_INFO("Successfully reached target position");
+}
+
 void SingleLegController::sendJointPositionCommand()
 {
     for(int i = 0; i < 3; i++)

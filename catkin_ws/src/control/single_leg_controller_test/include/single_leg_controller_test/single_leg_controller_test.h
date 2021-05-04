@@ -125,6 +125,8 @@ class SingleLegController
         /// The messages are stored in seperate ros bags
         void logStatesAndCommands();
 
+        void setJointPositions(double _theta_hy, double _theta_hp, double _theta_kp);
+
     private:
         /// \brief The joint angles of the leg
         Eigen::Matrix<double, 3, 1> joint_angles = Eigen::Matrix<double, 3, 1>::Zero();
