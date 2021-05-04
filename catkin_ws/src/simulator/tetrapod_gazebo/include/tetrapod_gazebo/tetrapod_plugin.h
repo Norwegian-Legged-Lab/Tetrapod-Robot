@@ -137,6 +137,11 @@ namespace gazebo
         /// \param[in] _vel New target velocity
         public: void SetJointVelocities(const std::vector<double> &_vel);
         
+        /// \brief Set the position of the joint.
+        /// \param[in] _joint_name Desired joint
+        /// \param[in] _pos New target position in radians
+        public: void SetJointPosition(const std::string &_joint_name, const double &_pos);
+
         /// \brief Set the position of the joints.
         /// \param[in] _pos New target position vector in radians
         public: void SetJointPositions(const std::vector<double> &_pos);
@@ -149,6 +154,15 @@ namespace gazebo
         /// * the velocity of the joint and
         /// * the effort (torque) that is applied in the joint.
         public: void OnJointStateMsg(const sensor_msgs::JointStateConstPtr &_msg);
+
+        /// \brief The OnFlJointStateMsg function handles an incoming joint state
+        /// message for the front left leg from ROS.
+        /// \param[in] _msg A message holding data to describe the state
+        /// of a set of controlled joints. The state is defined by 
+        /// * the position of the joint,
+        /// * the velocity of the joint and
+        /// * the effort (torque) that is applied in the joint.
+        public: void OnFlJointStateMsg(const sensor_msgs::JointStateConstPtr &_msg);
 
         /// \brief The OnRosMsg function handles an incoming force
         /// message from ROS.
@@ -252,6 +266,9 @@ namespace gazebo
 
         /// \brief ROS Joint State Subscriber.
         private: ros::Subscriber jointStateSub;
+
+        /// \brief ROS Joint State Subscriber.
+        private: ros::Subscriber flJointStateSub;
 
         /// \brief ROS Force Subscriber.
         private: ros::Subscriber forceSub;
