@@ -31,6 +31,10 @@ GaitControl::GaitControl()
 {
     this->InitRos();
     this->InitRosQueueThreads();
+
+    ros::Duration(2.0).sleep();
+
+    this->PositionTrajectoryControl();
 }
 
 // Destructor
@@ -112,7 +116,7 @@ void GaitControl::PositionTrajectoryControl()
         // Publish desired generalized velocities
         std_msgs::Float64MultiArray vel_msg;
 
-        tf::matrixEigenToMsg(desired_gen_vel.block<12, 1>(6,0), vel_msg);
+        tf::matrixEigenToMsg(desired_gen_vel.block<3, 1>(6,0), vel_msg);
 
         sensor_msgs::JointState joint_state_msg;
 
@@ -120,7 +124,7 @@ void GaitControl::PositionTrajectoryControl()
         joint_state_msg.velocity = vel_msg.data;
 
         ROS_INFO("Publishing.");
-        this->jointStatePub.publish(joint_state_msg);
+        //this->jointStatePub.publish(joint_state_msg);
 
         // Increment
         t += 0.01;
@@ -236,8 +240,8 @@ void GaitControl::InitRos()
 
     ros::AdvertiseOptions joint_state_ao =
         ros::AdvertiseOptions::create<sensor_msgs::JointState>(
-            "/my_robot/joint_state_cmd",
-            1,
+            "/my_robot/fl_joint_state_cmd",
+            100,
             ros::SubscriberStatusCallback(),
             ros::SubscriberStatusCallback(),
             ros::VoidPtr(),
@@ -287,8 +291,6 @@ void testGaitTrajectory(GaitControl &_gc)
 int main(int argc, char **argv)
 {
     GaitControl gait_controller;
-
-    gait_controller.PositionTrajectoryControl();
 
     ros::spin();
 
