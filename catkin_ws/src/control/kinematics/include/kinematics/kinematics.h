@@ -48,6 +48,8 @@ using TransMatrix = kindr::HomTransformMatrixD;
 /// \brief A class for analytical Kinematics Solving
 class Kinematics
 {
+    /// \brief Tetrapod leg enumerator
+    public: enum TetrapodLeg { frontLeft = 1, frontRight = 2, rearLeft = 3, rearRight = 4 };
 
     /// \brief Constructor
     public: Kinematics();
@@ -64,7 +66,8 @@ class Kinematics
     /// kinematics.
     /// \return Evaluates true if an Forward Kinematics solution is found,
     /// and false if not.
-    public: bool SolveForwardKinematics(const GeneralizedCoordinates &_q, FootstepPositions &_f_pos);
+    public: bool SolveForwardKinematics(const GeneralizedCoordinates &_q, 
+                                        FootstepPositions &_f_pos);
 
     /// \brief The SolveInverseKinematics function calculates
     /// the Inverse Kinematics, i.e. maps a coordinate point 
@@ -74,7 +77,9 @@ class Kinematics
     /// \param[out] _q_r Joint angles from the Inverse Kinematics solution.
     /// \return Evaluates true if an Inverse Kinematics solution is found,
     /// and false if not.
-    public: bool SolveInverseKinematics(const Twist &_q_b, const FootstepPositions &_f_pos, JointSpaceVector &_q_r);
+    public: bool SolveInverseKinematics(const Twist &_q_b, 
+                                        const FootstepPositions &_f_pos, 
+                                        JointSpaceVector &_q_r);
 
     /// \brief The SolveSingleLegForwardKinematics function calculates
     /// the Forward Kinematics for a single leg.
@@ -83,7 +88,10 @@ class Kinematics
     /// \param[in] _theta_hp Hip pitch angle.
     /// \param[in] _theta_kp Knee pitch angle.
     /// \return Returns end-effector position in Coordinate Space.
-    public: Vector3d SolveSingleLegForwardKinematics(const Vector3d &_h_pos, const double &_theta_hy, const double &_theta_hp, const double &_theta_kp); 
+    public: Vector3d SolveSingleLegForwardKinematics(const Vector3d &_h_pos, 
+                                                     const double &_theta_hy, 
+                                                     const double &_theta_hp, 
+                                                     const double &_theta_kp); 
 
     /// \brief The SolveSingeLegInverseKinematics function calculates
     /// the inverse kinematics for a single leg.
@@ -96,7 +104,19 @@ class Kinematics
     /// for a single-leg (sl).
     /// \return Evaluates true if an Inverse Kinematics solution is found, 
     /// and false if not.
-    public: bool SolveSingleLegInverseKinematics(const bool &_offset, const Vector3d &_h_pos, const Vector3d &_f_pos, Vector3d &_joint_angles);
+    public: bool SolveSingleLegInverseKinematics(const bool &_offset, 
+                                                 const Vector3d &_h_pos, 
+                                                 const Vector3d &_f_pos, 
+                                                 Vector3d &_joint_angles);
+
+    /// \brief The GetPositionBaseToFootInB returns the position vector
+    /// from base origin to end-effector (foot) position in body for
+    /// a given leg.
+    /// \param[in] _leg Tetrapod leg.
+    /// \param[in] _q Generalized coordinates.
+    /// \return Returns the position vector from base to foot.
+    public: Eigen::Matrix<double, 3, 1> GetPositionBaseToFootInB(const TetrapodLeg &_leg,
+                                                                 const Eigen::Matrix<double, 18, 1> &_q);
 
     /// \brief The GetHipToFootTransform function returns the homogeneous
     /// transformation from the Hip frame to the Foot frame.
@@ -107,7 +127,10 @@ class Kinematics
     /// \param[in] _theta_hp Hip pitch angle.
     /// \param[in] _theta_kp Knee pitch angle.
     /// \return Returns the kindr homogeneous transformation matrix from Hip to Foot.
-    public: TransMatrix GetHipToFootTransform(const bool &_offset, const double &_theta_hy, const double &_theta_hp, const double &_theta_kp);
+    public: TransMatrix GetHipToFootTransform(const bool &_offset, 
+                                              const double &_theta_hy, 
+                                              const double &_theta_hp, 
+                                              const double &_theta_kp);
 
     /// \brief The GetDhTransform function returns the Denavit-Hartenberg
     /// transformation from frame A to frame B.
@@ -116,15 +139,81 @@ class Kinematics
     /// \param[in] _d Link offset.
     /// \param[in] _theta Joint angle.
     /// \return Returns the kindr homogeneous transformation matrix from frame A to frame B.
-    public: TransMatrix GetDhTransform(const double &_a, const double &_alpha, const double &_d, const double &_theta);
-
-    /// \brief The GetSingleLegJacobian function returns the Jacobian matrix
-    /// relating end-effector velocities to generalized coordinates' velocities
+    public: TransMatrix GetDhTransform(const double &_a, 
+                                       const double &_alpha, 
+                                       const double &_d, 
+                                       const double &_theta);
+                                    
+    /// \brief The GetSingleLegTranslationJacobianInB function returns the 
+    /// Jacobian matrix for end-effector linear velocities in body for the leg state.
     /// \param[in] _theta_hy Hip yaw angle.
     /// \param[in] _theta_hp Hip pitch angle.
     /// \param[in] _theta_kp Knee pitch angle.
     /// \return Returns the Jacobian Matrix relating end-effector velocities to joint velocities.
-    public: Eigen::Matrix<double, 3, 3> GetTranslationJacobianInB(const double &_theta_hy, const double &_theta_hp, const double &_theta_kp);
+    public: Eigen::Matrix<double, 3, 3> GetSingleLegTranslationJacobianInB(const double &_theta_hy, 
+                                                                           const double &_theta_hp, 
+                                                                           const double &_theta_kp);
+
+    /// \brief The GetSingleLegTranslationJacobianInB function returns the
+    /// Jacobian matrix for end-effector linear velocities in body for the joint state.
+    /// \param[in] _leg Tetrapod leg
+    /// \param[in] _q_r Joint coordinates
+    /// \return Returns the Jacobian Matrix relating end-effector velocities to joint velocities.
+    public: Eigen::Matrix<double, 3, 12> GetSingleLegTranslationJacobianInB(const TetrapodLeg &_leg, 
+                                                                            const Eigen::Matrix<double, 12, 1> &_q_r);
+
+
+    /// \brief The GetTranslationJacobianInW function returns the
+    /// spatial translation Jacobian mapping generalized velocities
+    /// to operational space twist of the leg frame.
+    /// \param[in] _leg Tetrapod leg
+    /// \param[in] _q Generalized coordinates
+    /// \return Returns the translation Jacobian Matrix mapping from generalized coordinates to
+    /// the operational space twist of the leg frame.
+    public: Eigen::Matrix<double, 3, 18> GetTranslationJacobianInW(const TetrapodLeg &_leg,
+                                                                   const Eigen::Matrix<double, 18, 1> &_q);
+
+    /// \brief The GetSingleLegRotationJacobianInB function returns the 
+    /// Jacobian matrix for end-effector angular velocities in body for the leg state.
+    /// \param[in] _offset Bool indicating whether roll offset
+    /// should be set to -90 or 90 degrees. True indicates roll offset
+    /// of 90 deg, false indicates roll offset of -90 degrees.
+    /// \param[in] _theta_hy Hip yaw angle.
+    /// \param[in] _theta_hp Hip pitch angle.
+    /// \param[in] _theta_kp Knee pitch angle.
+    /// \return Returns the Jacobian Matrix relating end-effector velocities to joint velocities.
+    public: Eigen::Matrix<double, 3, 3> GetSingleLegRotationJacobianInB(const bool &_offset,
+                                                                        const double &_theta_hy, 
+                                                                        const double &_theta_hp, 
+                                                                        const double &_theta_kp);
+
+    /// \brief The GetSingleLegRotationJacobianInB function returns the
+    /// Jacobian matrix for end-effector angular velocities in body for the joint state.
+    /// \param[in] _leg Tetrapod leg
+    /// \param[in] _q_r Joint coordinates
+    /// \return Returns the Jacobian Matrix relating end-effector velocities to joint velocities.
+    public: Eigen::Matrix<double, 3, 12> GetSingleLegRotationJacobianInB(const TetrapodLeg &_leg, 
+                                                                         const Eigen::Matrix<double, 12, 1> &_q_r);
+
+    /// \brief The GetRotationJacobianInW function returns the
+    /// spatial rotation Jacobian mapping generalized velocities
+    /// to operational space twist of the leg frame.
+    /// \param[in] _leg Tetrapod leg
+    /// \param[in] _q Generalized coordinates
+    /// \return Returns the rotation Jacobian Matrix mapping from generalized coordinates to
+    /// the operational space twist of the leg frame.
+    public: Eigen::Matrix<double, 3, 18> GetRotationJacobianInW(const TetrapodLeg &_leg,
+                                                                const Eigen::Matrix<double, 18, 1> &_q);
+
+    /// \brief The GetJacobianInW function returns the
+    /// spatial Jacobian mapping generalized velocities
+    /// to operational space twist of the leg frame.
+    /// \param[in] _leg Tetrapod leg
+    /// \param[in] _q Generalized coordinates
+    /// \return Returns the Jacobian Matrix mapping from generalized coordinates to
+    /// the operational space twist of the leg frame.
+    public: Eigen::Matrix<double, 6, 18> GetJacobianInW(const TetrapodLeg &_leg,
+                                                        const Eigen::Matrix<double, 18, 1> &_q);
 
     /// \brief The ValidateSolution function evaluates whether
     /// a set of joint angles is within joint limits. 

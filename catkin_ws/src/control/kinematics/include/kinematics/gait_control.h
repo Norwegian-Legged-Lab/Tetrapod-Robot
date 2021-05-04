@@ -29,16 +29,29 @@
 // ROS
 #include "ros/ros.h"
 #include "ros/callback_queue.h"
-#include "sensor_msgs/JointState.h"
+#include "ros/advertise_options.h"
+
+// ROS messages
 #include "std_msgs/Float64.h"
 #include "std_msgs/Float64MultiArray.h"
+#include "sensor_msgs/JointState.h"
+
+// ROS messages to eigen
+#include "eigen_conversions/eigen_msg.h"
 
 // ROS Package Libraries
+#include <angle_utils/angle_utils.h>
 #include <debug_utils/debug_utils.h>
 #include <kinematics/kinematics.h>
 
 // Standard library
 #include <thread>
+
+// Eigen
+#include <Eigen/Core>
+
+// Kindr
+#include <kindr/Core>
 
 /// \brief A class to control gaits for the tetrapod
 class GaitControl
@@ -49,11 +62,35 @@ class GaitControl
     /// \brief Destructor
     public: virtual ~GaitControl();
 
+    /// \brief The PositionTrajectoryControl function plans a gait pattern
+    /// for the tetrapod and publishes a joint state command.
+    public: void PositionTrajectoryControl();
+
+    /// \brief The GetPositionTrajectory function returns
+    /// a position trajectory in body as a function of time.
+    /// The current trajectory is based of half a period of
+    /// a Sine function.
+    /// \param[in] _A Amplitude.
+    /// \param[in] _P Period.
+    /// \param[in] _y_offset Offset from the body along y-axis.
+    /// \param[in] _t Time in seconds.
+    /// \return Returns the position in body at time instance t of the trajectory.
+    public: Eigen::Matrix<double, 3, 1> GetPositionTrajectory(const double &_A, 
+                                                              const double &_P,
+                                                              const double &_y_offset,
+                                                              const double &_t);
+
     /// \brief The OnGenCoordMsg function handles an incoming 
     /// generalized coordinates message from ROS.
     /// \param[in] _msg A float array containing the generalized
     /// coordinates.
     public: void OnGenCoordMsg(const std_msgs::Float64MultiArrayConstPtr &_msg);
+
+    /// \brief The OnGenVelMsg function handles an incoming 
+    /// generalized velocities message from ROS.
+    /// \param[in] _msg A float array containing the generalized
+    /// velocities.
+    public: void OnGenVelMsg(const std_msgs::Float64MultiArrayConstPtr &_msg);
 
     /// \brief The ProcessQueueThread function is a ROS helper function
     /// that processes messages.
@@ -76,6 +113,9 @@ class GaitControl
     /// \brief Generalized Coordinates
     private: Eigen::Matrix<double, 18, 1> genCoord;
 
+    /// \brief Generalized Velocities
+    private: Eigen::Matrix<double, 18, 1> genVel;
+
     /// \brief Footstep positions
     private: Eigen::Matrix<Eigen::Vector3d, 4, 1> fPos;
 
@@ -84,6 +124,9 @@ class GaitControl
 
     /// \brief ROS Generalized Coordinates Subscriber.
     private: ros::Subscriber genCoordSub;
+
+    /// \brief ROS Generalized Coordinates Subscriber.
+    private: ros::Subscriber genVelSub;
 
     /// \brief ROS Joint State Publisher
     private: ros::Publisher jointStatePub;

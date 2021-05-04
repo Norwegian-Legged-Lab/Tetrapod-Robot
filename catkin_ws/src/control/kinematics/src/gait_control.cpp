@@ -31,6 +31,10 @@ GaitControl::GaitControl()
 {
     this->InitRos();
     this->InitRosQueueThreads();
+
+    ros::Duration(2.0).sleep();
+
+    this->PositionTrajectoryControl();
 }
 
 // Destructor
@@ -47,6 +51,115 @@ GaitControl::~GaitControl()
     this->rosPublishQueueThread.join();
 }
 
+// Gait planner
+void GaitControl::PositionTrajectoryControl()
+{
+    double amplitude = 0.2;
+    double period = 0.2;
+    double y_offset_left = 0.25;
+    double y_offset_right = -0.25;
+
+    double kpp = 1;
+     
+    Eigen::Matrix<double, 3, 1> delta_position_in_W;
+    Eigen::Matrix<double, 3, 1> desired_position_in_W;
+    Eigen::Matrix<double, 3, 1> position_in_W;
+    Eigen::Matrix<double, 3, 1> desired_velocity_in_W;
+
+    kindr::RotationMatrixD rotationWToB;
+
+    Eigen::Matrix<double, 3, 18> J;
+    Eigen::Matrix<double, 18, 3> pinvJ;
+
+    Eigen::Matrix<double, 18, 1>  desired_gen_vel;
+
+    double t = 0;
+    while (t <= period)
+    {
+        // Update current position
+        position_in_W = this->fPos(0);
+
+        // Update rotation matrix
+        rotationWToB = kindr::RotationMatrixD(kindr::EulerAnglesZyxD(this->genCoord(5),
+                                                                     this->genCoord(4),
+                                                                     this->genCoord(3))
+                                             );
+
+        // Update desired position in world frame
+        desired_position_in_W = rotationWToB.matrix() * 
+                                this->GetPositionTrajectory(amplitude,
+                                                            period,
+                                                            y_offset_left,
+                                                            t);
+
+        // Update position delta
+        delta_position_in_W = desired_position_in_W - position_in_W;
+
+        // Update desired velocity in world frame
+        desired_velocity_in_W = Eigen::Matrix<double, 3, 1>::Constant(0);
+
+        // Update Jacobian
+        J = this->kinematics.GetTranslationJacobianInW(Kinematics::TetrapodLeg::frontLeft,
+                                                       this->genCoord);
+
+        // Calculate pseudoInverse
+        if (!kindr::pseudoInverse(J, pinvJ))
+        {
+            ROS_ERROR_STREAM("Failed to find pseudo-inverse Jacobian in Position Trajectory Control.");
+        } 
+
+        // Calculate desired generalized velocities
+        desired_gen_vel = pinvJ * (desired_velocity_in_W + kpp * delta_position_in_W);
+
+        debug_utils::printGeneralizedVelocities(desired_gen_vel);
+
+        // Publish desired generalized velocities
+        std_msgs::Float64MultiArray vel_msg;
+
+        tf::matrixEigenToMsg(desired_gen_vel.block<3, 1>(6,0), vel_msg);
+
+        sensor_msgs::JointState joint_state_msg;
+
+        joint_state_msg.header.stamp = ros::Time::now();
+        joint_state_msg.velocity = vel_msg.data;
+
+        ROS_INFO("Publishing.");
+        //this->jointStatePub.publish(joint_state_msg);
+
+        // Increment
+        t += 0.01;
+    }
+}
+
+// Position Trajectory
+Eigen::Matrix<double, 3, 1> GaitControl::GetPositionTrajectory(const double &_A,
+                                                               const double &_P,
+                                                               const double &_y_offset,
+                                                               const double &_t)
+{
+    Eigen::Matrix<double, 3, 1> positionInB;
+
+    if (_t >= 0 && _t <= _P/2)
+    {
+        positionInB(0) = _t;
+        positionInB(1) = _y_offset;
+        positionInB(2) = _A * std::sin( angle_utils::TWO_PI / _P * _t );
+    }
+    else if (_t > _P/2 && _t <= _P)
+    {
+
+        positionInB(0) = _P - _t;
+        positionInB(1) = _y_offset;
+        positionInB(2) = 0;
+    }
+    else
+    {
+        ROS_ERROR_STREAM("Could not retrieve position trajectory as _t is out of range.");
+    }
+
+    return positionInB;
+}
+
 // Callback for ROS Generalized Coordinates messages
 void GaitControl::OnGenCoordMsg(const std_msgs::Float64MultiArrayConstPtr &_msg)
 {
@@ -58,6 +171,15 @@ void GaitControl::OnGenCoordMsg(const std_msgs::Float64MultiArrayConstPtr &_msg)
     {
         ROS_ERROR("Could not solve forward kinematics for pose control.");
     }
+
+}
+
+// Callback for ROS Generalized Velocities messages
+void GaitControl::OnGenVelMsg(const std_msgs::Float64MultiArrayConstPtr &_msg)
+{
+    std::vector<double> data = _msg->data;
+
+    this->genVel = Eigen::Map<Eigen::MatrixXd>(data.data(), 18, 1); 
 
 }
 
@@ -74,10 +196,10 @@ void GaitControl::ProcessQueueThread()
 // Setup thread to process messages
 void GaitControl::PublishQueueThread()
 {
-    ros::Rate loop_rate(10);
+    static const double timeout = 0.01;
     while (this->rosNode->ok())
     {
-        loop_rate.sleep();
+        this->rosPublishQueue.callAvailable(ros::WallDuration(timeout));
     }
 }
 
@@ -107,10 +229,19 @@ void GaitControl::InitRos()
             &this->rosProcessQueue
             );
 
+    ros::SubscribeOptions gen_vel_so = 
+        ros::SubscribeOptions::create<std_msgs::Float64MultiArray>(
+            "/my_robot/gen_vel",
+            1,
+            boost::bind(&GaitControl::OnGenVelMsg, this, _1),
+            ros::VoidPtr(),
+            &this->rosProcessQueue
+            );
+
     ros::AdvertiseOptions joint_state_ao =
         ros::AdvertiseOptions::create<sensor_msgs::JointState>(
-            "/my_robot/joint_state_cmd",
-            1,
+            "/my_robot/fl_joint_state_cmd",
+            100,
             ros::SubscriberStatusCallback(),
             ros::SubscriberStatusCallback(),
             ros::VoidPtr(),
@@ -118,6 +249,8 @@ void GaitControl::InitRos()
         );
 
     this->genCoordSub = this->rosNode->subscribe(gen_coord_so);
+
+    this->genVelSub = this->rosNode->subscribe(gen_vel_so);
 
     this->jointStatePub = this->rosNode->advertise(joint_state_ao);
 }
@@ -132,6 +265,26 @@ void GaitControl::InitRosQueueThreads()
     this->rosProcessQueueThread = std::thread(
         std::bind(&GaitControl::ProcessQueueThread, this)
     );
+}
+
+void testGaitTrajectory(GaitControl &_gc)
+{
+    double A = 1;
+    double P = 1;
+    double y_offset = 0;
+
+    Eigen::Matrix<double, 3, 1> positionInB;    
+    double t = 0;
+
+    while (t <= P)
+    {
+        positionInB = _gc.GetPositionTrajectory(A, P, y_offset, t);
+
+        ROS_INFO_STREAM("Position at t: " << t << " is r: \n" << positionInB << "\n");
+
+        t += 0.05;
+    }
+
 }
 
 // Main

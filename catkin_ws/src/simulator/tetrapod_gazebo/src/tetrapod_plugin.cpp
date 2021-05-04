@@ -307,6 +307,15 @@ void TetrapodPlugin::SetJointVelocities(const std::vector<double> &_vel)
     ROS_DEBUG_STREAM("Time spent resetting commands and setting velocity targets: " << diff.count() << " microseconds.");
 }
 
+// Set the a single joints target position
+void TetrapodPlugin::SetJointPosition(const std::string &_joint_name, const double &_pos)
+{
+    this->model->GetJointController()->SetPositionTarget(
+        this->model_name + "::" + _joint_name, 
+        _pos
+    );
+}
+
 // Set joint target positions
 void TetrapodPlugin::SetJointPositions(const std::vector<double> &_pos)
 {
@@ -350,6 +359,31 @@ void TetrapodPlugin::OnJointStateMsg(const sensor_msgs::JointStateConstPtr &_msg
     if ((!_msg->effort.empty()) && (_msg->effort.size() == NUMJOINTS))
     {
         this->SetJointForces(_msg->effort);
+    }
+}
+
+// Callback for ROS Joint State messages
+void TetrapodPlugin::OnFlJointStateMsg(const sensor_msgs::JointStateConstPtr &_msg)
+{
+    if ((!_msg->position.empty()) && (_msg->position.size() == 3))
+    {
+        this->SetJointPosition(this->joint_names[0], _msg->position[0]);
+        this->SetJointPosition(this->joint_names[1], _msg->position[1]);
+        this->SetJointPosition(this->joint_names[2], _msg->position[2]);
+    }
+
+    if ((!_msg->velocity.empty()) && (_msg->velocity.size() == 3))
+    {
+        this->SetJointVelocity(this->joint_names[0], _msg->velocity[0]);
+        this->SetJointVelocity(this->joint_names[1], _msg->velocity[1]);
+        this->SetJointVelocity(this->joint_names[2], _msg->velocity[2]);
+    }
+
+    if ((!_msg->effort.empty()) && (_msg->effort.size() == 3))
+    {
+        this->SetJointForce(this->joint_names[0], _msg->effort[0]);
+        this->SetJointForce(this->joint_names[1], _msg->effort[1]);
+        this->SetJointForce(this->joint_names[2], _msg->effort[2]);
     }
 }
 
@@ -455,6 +489,15 @@ void TetrapodPlugin::InitRos()
             &this->rosProcessQueue
             );
 
+    ros::SubscribeOptions fl_joint_state_so = 
+        ros::SubscribeOptions::create<sensor_msgs::JointState>(
+            "/" + this->model->GetName() + "/fl_joint_state_cmd",
+            1,
+            boost::bind(&TetrapodPlugin::OnFlJointStateMsg, this, _1),
+            ros::VoidPtr(),
+            &this->rosProcessQueue
+            );
+
     ros::SubscribeOptions force_so = 
         ros::SubscribeOptions::create<std_msgs::Float64MultiArray>(
             "/" + this->model->GetName() + "/force_cmd",
@@ -487,6 +530,8 @@ void TetrapodPlugin::InitRos()
     this->genVelPub = this->rosNode->advertise(gen_vel_ao);
 
     this->jointStateSub = this->rosNode->subscribe(joint_state_so);
+
+    this->flJointStateSub = this->rosNode->subscribe(fl_joint_state_so);
 
     this->forceSub = this->rosNode->subscribe(force_so);
 

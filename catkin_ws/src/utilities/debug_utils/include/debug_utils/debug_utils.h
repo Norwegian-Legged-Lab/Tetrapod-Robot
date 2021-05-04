@@ -40,20 +40,35 @@
 
 namespace debug_utils
 {
-    /// \brief The printJointState function prints a given base-
+    /// \brief The printBaseState function prints a given base-
     /// state to ROS using print level INFO.
     /// \param[in] _base_state Base State (x,y,z,roll,pitch,yaw)
     void printBaseState(const Eigen::Matrix<double, 6, 1> &_base_state);
+
+    /// \brief The printBaseTwist function prints a given base-
+    /// twist to ROS using print level INFO.
+    /// \param[in] _base_twist Base Twist (x_vel,y_vel,z_vel,roll_rate,pitch_rate,yaw_rate)
+    void printBaseTwist(const Eigen::Matrix<double, 6, 1> &_base_twist);
 
     /// \brief The printJointState function prints a given joint-
     /// state to ROS using print level INFO.
     /// \param[in] _joint_state Joint angles
     void printJointState(const Eigen::Matrix<double, 12, 1> &_joint_state);
 
+    /// \brief The printJointVelocities function prints given joint-
+    /// velocities to ROS using print level INFO.
+    /// \param[in] _joint_vel Joint velocities
+    void printJointVelocities(const Eigen::Matrix<double, 12, 1> &_joint_vel);
+
     /// \brief The printGeneralizedCoordinates function prints a given set
     /// of generalized coordinates to ROS using print level INFO.
     /// \param[in] _gen_coord  Generalized coordinates
     void printGeneralizedCoordinates(const Eigen::Matrix<double, 18, 1> &_gen_coord);
+
+    /// \brief The printGeneralizedVelocities function prints a given set
+    /// of generalized velocities to ROS using print level INFO.
+    /// \param[in] _gen_vel  Generalized velocities
+    void printGeneralizedVelocities(const Eigen::Matrix<double, 18, 1> &_gen_vel);
 
     /// \brief The printFootstepPositions function prints a given set
     /// of footstep positions to ROS using print level INFO.
