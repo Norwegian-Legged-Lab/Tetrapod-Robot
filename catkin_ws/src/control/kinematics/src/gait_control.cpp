@@ -51,7 +51,7 @@ GaitControl::~GaitControl()
     this->rosPublishQueueThread.join();
 }
 
-// Gait planner
+// Position Trajectory Control
 void GaitControl::PositionTrajectoryControl()
 {
     double amplitude = 0.2;
@@ -130,6 +130,40 @@ void GaitControl::PositionTrajectoryControl()
         t += 0.01;
     }
 }
+
+// Numerical Inverse Kinematics Control
+void GaitControl::NumericalInverseKinematicsControl()
+{
+    Eigen::Matrix<double, 6, 1> pose;
+    Eigen::Matrix<double, 6, 1> desired_pose;
+    Eigen::Matrix<double, 6, 1> delta_pose;
+
+    Eigen::Matrix<double, 6, 18> J;
+    Eigen::Matrix<double, 18, 6> pinvJ;
+
+    Eigen::Matrix<double, 18, 1> desired_gen_coord;
+
+    double tol = 0.01;
+
+    do 
+    {
+        pose = this->genCoord.block<6,1>(0,0);
+        desired_pose = Eigen::Matrix<double, 6, 1>::Constant(0);
+        delta_pose = desired_pose - pose;
+
+        J = this->kinematics.GetTranslationJacobianInW(Kinematics::TetrapodLeg::frontLeft,
+                                                       this->genCoord);
+
+        if (!kindr::pseudoInverse(J, pinvJ))
+        {
+            ROS_ERROR_STREAM("Failed to find pseudo-inverse Jacobian in Position Trajectory Control.");
+        } 
+
+        desired_gen_coord = this->genCoord + pinvJ * delta_pose;
+
+    } while (delta_pose.norm() > tol);
+}
+
 
 // Position Trajectory
 Eigen::Matrix<double, 3, 1> GaitControl::GetPositionTrajectory(const double &_A,

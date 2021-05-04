@@ -66,6 +66,11 @@ class GaitControl
     /// for the tetrapod and publishes a joint state command.
     public: void PositionTrajectoryControl();
 
+    /// \brief The NumericalInverseKinematicsControl function plans joint
+    /// positions using inverse kinematics to iteratively solve the desired
+    /// end-effector configuration
+    public: void NumericalInverseKinematicsControl();
+
     /// \brief The GetPositionTrajectory function returns
     /// a position trajectory in body as a function of time.
     /// The current trajectory is based of half a period of
