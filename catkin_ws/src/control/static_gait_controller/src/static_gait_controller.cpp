@@ -350,6 +350,72 @@ void StaticGaitController::logStatesAndCommands()
 */
 
 
+bool StaticGaitController::setInitialConfiguration()
+{
+    rl_foot_position_in_body = calculateStanceLegFootPositionInBody(-step_width, 3.0, -x_offset_min + step_length); // Is this correct offset?
+    fl_foot_position_in_body = calculateStanceLegFootPositionInBody( step_width, 2.0, x_offset_min);
+    rr_foot_position_in_body = calculateStanceLegFootPositionInBody(-step_width, 1.0,-(x_offset_min + step_length));
+    fr_foot_position_in_body = calculateStanceLegFootPositionInBody( step_width, 0.0, x_offset_min);
+
+    if(!moveFootToBodyPosition(fl_foot_position_in_body, fl_offset, 0))
+    {
+        ROS_ERROR("Failed to move front left foot to the initial position");
+        return false;
+    }
+
+    if(!moveFootToBodyPosition(fr_foot_position_in_body, fr_offset, 3))
+    {
+        ROS_ERROR("Failed to move front right foot to the intial position");
+        return false;
+    }
+
+    if(!moveFootToBodyPosition(rl_foot_position_in_body, rl_offset, 6))
+    {
+        ROS_ERROR("Failed to move rear left foot to the initial position");
+        return false;
+    }
+
+    if(!moveFootToBodyPosition(rr_foot_position_in_body, rr_offset, 9))
+    {
+        ROS_ERROR("Failed to move rear right foot to the initial position");
+        return false;
+    }
+
+    current_gait_phase = swing_rl;
+
+    return true;
+}
+
+bool StaticGaitController::moveFootToBodyPosition(Eigen::Matrix<double, 3, 1> _foot_pos, bool _offset, int _leg_index)
+{
+    Eigen::Matrix<double, 3, 1> hip_position = Eigen::Matrix<double, 3, 1>::Zero();
+
+    Eigen::Matrix<double, 3, 1> single_leg_joint_targets;
+
+    Eigen::Matrix<double, 3, 1> single_leg_joint_error(1.0, 1.0, 1.0);
+
+    if(kinematics.SolveSingleLegInverseKinematics(_offset, hip_position, _foot_pos, single_leg_joint_targets))
+    {
+        ros::Rate send_position_command_rate(10);
+
+        while(single_leg_joint_error.transpose()*single_leg_joint_error > 0.023) // Approximately 5 degrees error for each joint
+        {
+            ROS_INFO("Error too large");
+            //sendJointPositionCommands();
+            single_leg_joint_error = joint_angles.block<3, 1>(_leg_index, 0) - single_leg_joint_targets;
+            ros::spinOnce();
+            send_position_command_rate.sleep();
+        }
+        return true;
+    }
+    else
+    {
+        ROS_WARN("Failed to find solution to ik problem");
+        return false;
+    }
+    
+}
+
 void StaticGaitController::updateFeetReferencePositionsInBody()
 {
     switch(current_gait_phase)
