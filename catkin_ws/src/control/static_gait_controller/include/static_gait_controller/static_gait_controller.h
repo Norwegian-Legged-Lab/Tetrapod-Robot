@@ -76,6 +76,14 @@ class StaticGaitController
 
         private: double shoulder_height_over_ground;
 
+        private: bool fl_offset = true;
+
+        private: bool rr_offset = true;
+
+        private: bool fr_offset = false;
+
+        private: bool rl_offset = false;
+
         /// \brief Desired feet positions in the body frame
         private: Eigen::Matrix<double, 4, 1> feet_positions_in_body;
 
@@ -94,12 +102,12 @@ class StaticGaitController
         public: void updateFeetReferencePositionsInBody();
 
         /// \brief The reference joint angles are calculated through inverse kinematics based on reference feet positions
-        public: void updateReferenceJointAngles();
+        public: bool updateReferenceJointAngles();
 
         /// \brief Calculate the desired swing leg position for the input leg
         /// \param [in] _step_width The distance from the hip to the foot position i the body y direction
         /// \return A vector containing the desired swing leg position in the hip frame
-        public: Eigen::Matrix<double, 3, 1> calculateSwingLegFootPositionInBody(double _step_width);
+        public: Eigen::Matrix<double, 3, 1> calculateSwingLegFootPositionInBody(double _step_width, double _x_offset);
 
         public: Eigen::Matrix<double, 3, 1> calculateStanceLegFootPositionInBody(double _step_width, double _phase_offset, double _x_offset);
 
@@ -118,6 +126,8 @@ class StaticGaitController
 
         /// \brief Subscribes to generalized coordinates messages
         ros::Subscriber generalizedCoordinatesSubscriber;
+
+        Kinematics kinematics;
 
         void calculateSwingLegHeight();
 };
