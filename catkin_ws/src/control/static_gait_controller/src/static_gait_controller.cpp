@@ -355,20 +355,32 @@ void StaticGaitController::updateFeetReferencePositionsInBody()
     switch(current_gait_phase)
     {
         case swing_rl:
-            rl_foot_position_in_body = calculateSwingLegFootPositionInBody(-step_width);
+            rl_foot_position_in_body = calculateSwingLegFootPositionInBody(-step_width, -(x_offset_min + step_length));
+            fl_foot_position_in_body = calculateStanceLegFootPositionInBody( step_width, 2.0, x_offset_min);
+            rr_foot_position_in_body = calculateStanceLegFootPositionInBody(-step_width, 1.0,-(x_offset_min + step_length));
+            fr_foot_position_in_body = calculateStanceLegFootPositionInBody( step_width, 0.0, x_offset_min);
             break;
         case swing_fl:
-            fl_foot_position_in_body = calculateSwingLegFootPositionInBody(step_width);
+            fl_foot_position_in_body = calculateSwingLegFootPositionInBody( step_width, x_offset_min);
+            rr_foot_position_in_body = calculateStanceLegFootPositionInBody(-step_width, 2.0, -(x_offset_min + step_length));
+            fr_foot_position_in_body = calculateStanceLegFootPositionInBody( step_width, 1.0, x_offset_min);  
+            rl_foot_position_in_body = calculateStanceLegFootPositionInBody(-step_width, 0.0, -(x_offset_min + step_length));          
             break;
         case swing_rr:
-            rr_foot_position_in_body = calculateSwingLegFootPositionInBody(-step_width);
+            rr_foot_position_in_body = calculateSwingLegFootPositionInBody(-step_width, -(x_offset_min + step_length));
+            fr_foot_position_in_body = calculateStanceLegFootPositionInBody( step_width, 2.0, x_offset_min);  
+            rl_foot_position_in_body = calculateStanceLegFootPositionInBody(-step_width, 1.0, -(x_offset_min + step_length));  
+            fl_foot_position_in_body = calculateStanceLegFootPositionInBody( step_width, 0.0, x_offset_min);
             break;
         case swing_fr:
-            fr_foot_position_in_body = calculateSwingLegFootPositionInBody(step_width);
+            fr_foot_position_in_body = calculateSwingLegFootPositionInBody(step_width, x_offset_min);
+            rr_foot_position_in_body = calculateStanceLegFootPositionInBody(-step_width, 2.0, -(x_offset_min + step_length));
+            fl_foot_position_in_body = calculateStanceLegFootPositionInBody(step_width, 1.0, x_offset_min);
+            rl_foot_position_in_body = calculateStanceLegFootPositionInBody(-step_width, 0.0, -(x_offset_min + step_length));
             break;
         default:
         {
-            
+            ROS_WARN("Gait phase is not set");
         }
     }
 
@@ -403,7 +415,7 @@ void StaticGaitController::updateFeetReferencePositionsInBody()
     
 }
 
-Eigen::Matrix<double, 3, 1> StaticGaitController::calculateSwingLegFootPositionInBody(double _step_width)
+Eigen::Matrix<double, 3, 1> StaticGaitController::calculateSwingLegFootPositionInBody(double _step_width, double _x_offset)
 {
     // Initialize the foot position vector given in the hip frame
     Eigen::Matrix<double, 3, 1> foot_position_in_hip_frame;
@@ -411,7 +423,7 @@ Eigen::Matrix<double, 3, 1> StaticGaitController::calculateSwingLegFootPositionI
     // The x coordinate is 
     double x = step_length*iteration/iteration_max;
 
-    foot_position_in_hip_frame(0) = x;
+    foot_position_in_hip_frame(0) = x + _x_offset;
     foot_position_in_hip_frame(1) = _step_width;
 
     double a = - 4*step_max_height/(step_length*step_length);

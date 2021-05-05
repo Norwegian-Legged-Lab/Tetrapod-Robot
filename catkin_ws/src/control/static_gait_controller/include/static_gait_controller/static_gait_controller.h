@@ -99,7 +99,7 @@ class StaticGaitController
         /// \brief Calculate the desired swing leg position for the input leg
         /// \param [in] _step_width The distance from the hip to the foot position i the body y direction
         /// \return A vector containing the desired swing leg position in the hip frame
-        public: Eigen::Matrix<double, 3, 1> calculateSwingLegFootPositionInBody(double _step_width);
+        public: Eigen::Matrix<double, 3, 1> calculateSwingLegFootPositionInBody(double _step_width, double _x_offset);
 
         public: Eigen::Matrix<double, 3, 1> calculateStanceLegFootPositionInBody(double _step_width, double _phase_offset, double _x_offset);
 
