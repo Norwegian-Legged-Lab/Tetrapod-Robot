@@ -214,7 +214,7 @@ Vector3d Kinematics::SolveSingleLegForwardKinematics(const Vector3d &_h_pos,
                                                                             _theta_kp); 
 
     // End-effector position
-    Eigen::Vector3d pos = transformation.transform(kindr::Position3D(_h_pos)).vector();
+    Eigen::Vector3d pos = _h_pos + transformation.transform(kindr::Position3D(0,0,0)).vector(); 
 
     return pos;
 }
@@ -336,7 +336,8 @@ Eigen::Matrix<double, 3, 1> Kinematics::GetPositionBaseToFootInB(const TetrapodL
         ROS_ERROR_STREAM("Leg type could not be determined when finding positionBaseToFootInB!");
     }
 
-    positionBaseToFootInB = positionBaseToHipInB + transformHipToFoot.transform(kindr::Position3D(0,0,0)).vector();
+    // TODO remove this zero
+    positionBaseToFootInB = 0*positionBaseToHipInB + transformHipToFoot.transform(kindr::Position3D(0,0,0)).vector();
 
 
     return positionBaseToFootInB;
