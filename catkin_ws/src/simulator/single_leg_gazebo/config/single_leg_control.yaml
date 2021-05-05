@@ -22,11 +22,11 @@ gazebo_client:
     ]
   joint_position_controller:
     p_gains: [
-      500, 500, 500
-    ]
-    i_gains: [
       50, 50, 50
     ]
+    i_gains: [
+      0, 0, 0
+    ]
     d_gains: [
-      100,100,100
+      10,10,10
     ]
