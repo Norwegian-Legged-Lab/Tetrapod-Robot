@@ -13,7 +13,7 @@ int main(int argc, char **argv)
     double gait_period = step_length/gait_speed;
 
     double iterations_per_gait_period = 100.0;
-    ros::Rate control_rate(iterations_per_period/gait_period);
+    ros::Rate control_rate(iterations_per_gait_period/gait_period);
     
     ros::Rate check_for_messages_rate(1);
 
@@ -34,9 +34,9 @@ int main(int argc, char **argv)
     while(ros::ok())
     {
         ros::spinOnce();
-        updateFeetReferencePositionsInBody();
-        updateReferenceJointAngles();
-        sendJointPositionCommand();
+        controller.updateFeetReferencePositionsInBody();
+        controller.updateReferenceJointAngles();
+        controller.sendJointPositionCommand();
         control_rate.sleep();
 
     }

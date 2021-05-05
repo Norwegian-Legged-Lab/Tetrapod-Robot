@@ -63,7 +63,7 @@ bool StaticGaitController::moveFootToBodyPosition(Eigen::Matrix<double, 3, 1> _f
         while(single_leg_joint_error.transpose()*single_leg_joint_error > 0.023) // Approximately 5 degrees error for each joint
         {
             ROS_INFO("Error too large");
-            //sendJointPositionCommands();
+            sendJointPositionCommand();
             single_leg_joint_error = joint_angles.block<3, 1>(_leg_index, 0) - single_leg_joint_targets;
             ros::spinOnce();
             send_position_command_rate.sleep();

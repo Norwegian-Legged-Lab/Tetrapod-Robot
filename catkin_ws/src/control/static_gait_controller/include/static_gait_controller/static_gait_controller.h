@@ -34,7 +34,18 @@ class StaticGaitController
     public: StaticGaitController(double _step_length, double _step_width, double _iterations_per_gait_period);
 
     /// \brief Destructor
-    virtual ~StaticGaitController(){};
+    public: virtual ~StaticGaitController(){};
+
+    /// \brief Calculates the desired footstep positions in the body frame
+    public: void updateFeetReferencePositionsInBody();
+
+    /// \brief The reference joint angles are calculated through inverse kinematics based on reference feet positions
+    public: bool updateReferenceJointAngles();
+
+    /// \brief This functions updates the joint commands based on the previous state and latest command
+    public: bool updateJointCommands();
+
+    public: void sendJointPositionCommand();
 
     /// \brief The joint states for the leg is updated
     /// \param[in] _msg A float array containing the generalized coordinates 
@@ -46,8 +57,6 @@ class StaticGaitController
 
     public: void checkForNewMessages();
 
-    public: void sendJointPositionCommand();
-
     /// \brief This function initilizes ROS
     public: void initROS();
 
@@ -58,12 +67,6 @@ class StaticGaitController
 
     /// \brief This variable keeps track of which leg to move
     private: int gait_phase;
-
-    /// \brief This functions updates the joint commands based on the previous state and latest command
-    public: bool updateJointCommands();
-
-    /// \brief This function publishes the latest joint commands to the motors
-    public: void publishJointCommands();
 
     /// \brief Distance from CoM to foot in y direction in the body frame
     private: double step_width = 0.3;
@@ -101,13 +104,9 @@ class StaticGaitController
     private: Eigen::Matrix<double, 3, 1> rr_foot_position_in_body;
 
     /// \brief 
-    GaitPhase current_gait_phase = GaitPhase::no_gait_phase;
+    private: GaitPhase current_gait_phase = GaitPhase::no_gait_phase;
 
-    /// \brief Calculates the desired footstep positions in the body frame
-    public: void updateFeetReferencePositionsInBody();
 
-    /// \brief The reference joint angles are calculated through inverse kinematics based on reference feet positions
-    public: bool updateReferenceJointAngles();
 
     /// \brief Calculate the desired swing leg position for the input leg
     /// \param [in] _step_width The distance from the hip to the foot position i the body y direction
