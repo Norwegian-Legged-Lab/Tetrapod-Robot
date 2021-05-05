@@ -66,6 +66,9 @@ class GaitControl
     /// for the tetrapod and publishes a joint state command.
     public: void PositionTrajectoryControl();
 
+    // TODO Describe
+    public: void PositionTrajectoryIKControl();
+
     /// \brief The NumericalInverseKinematicsControl function plans joint
     /// positions using inverse kinematics to iteratively solve the desired
     /// end-effector configuration

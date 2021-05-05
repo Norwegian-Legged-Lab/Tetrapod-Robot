@@ -34,7 +34,19 @@ GaitControl::GaitControl()
 
     ros::Duration(2.0).sleep();
 
-    this->PositionTrajectoryControl();
+    //this->PositionTrajectoryIKControl();
+    //Eigen::Matrix<double, 6, 1> desired_pose;
+    //desired_pose(0) = 0.5;
+    //desired_pose(1) = 0.5;
+    //desired_pose(2) = 0.5;
+    //desired_pose(3) = 0;
+    //desired_pose(4) = 0;
+    //desired_pose(5) = 0;
+
+    //double tol = 0.01;
+    //double k = 0.6;
+
+    //this->NumericalInverseKinematicsControl(desired_pose, tol, k);
 }
 
 // Destructor
@@ -74,6 +86,8 @@ void GaitControl::PositionTrajectoryControl()
     Eigen::Matrix<double, 18, 1>  desired_gen_vel;
 
     double t = 0;
+    double delta_t = 0.01;
+
     while (t <= period)
     {
         // Update current position
@@ -124,10 +138,57 @@ void GaitControl::PositionTrajectoryControl()
         joint_state_msg.velocity = vel_msg.data;
 
         ROS_INFO("Publishing.");
-        //this->jointStatePub.publish(joint_state_msg);
+        this->jointStatePub.publish(joint_state_msg);
 
         // Increment
-        t += 0.01;
+        t += delta_t;
+    }
+}
+
+// Position trajectory inverse kinematics control
+void GaitControl::PositionTrajectoryIKControl()
+{
+
+    double amplitude = 0.2;
+    double period = 0.2;
+    double y_offset_left = 0.25;
+    double y_offset_right = -0.25;
+
+    double t = 0;
+    double delta_t = 0.01;
+
+    double tol = 0.01;
+    double k = 0.6;
+
+    kindr::RotationMatrixD rotationWToB;
+
+    Eigen::Matrix<double, 6, 1> desired_pose_in_W;
+
+    while (t <= period)
+    {
+        // Update rotation matrix
+        rotationWToB = kindr::RotationMatrixD(kindr::EulerAnglesZyxD(this->genCoord(5),
+                                                                     this->genCoord(4),
+                                                                     this->genCoord(3))
+                                             );
+        rotationWToB.setIdentity();
+
+        // Update desired position in world frame
+        desired_pose_in_W.block<3,1>(0,0) = rotationWToB.matrix() * 
+                                            this->GetPositionTrajectory(amplitude,
+                                                                        period,
+                                                                        y_offset_left,
+                                                                        t);
+        desired_pose_in_W.block<3,1>(3,0) = Eigen::Matrix<double, 3, 1>::Constant(0);
+
+
+        // Iterate
+        this->NumericalInverseKinematicsControl(desired_pose_in_W,
+                                                tol,
+                                                k);
+
+        // Increment
+        t += delta_t;
     }
 }
 
@@ -136,6 +197,7 @@ void GaitControl::NumericalInverseKinematicsControl(const Eigen::Matrix<double, 
                                                     const double &_tol,
                                                     const double &_k)
 {
+    Eigen::Matrix<double, 6, 1> pose;
     Eigen::Matrix<double, 6, 1> delta_pose;
 
     Eigen::Matrix<double, 6, 18> J;
@@ -145,15 +207,18 @@ void GaitControl::NumericalInverseKinematicsControl(const Eigen::Matrix<double, 
 
     do 
     {
-        J = this->kinematics.GetTranslationJacobianInW(Kinematics::TetrapodLeg::frontLeft,
-                                                       this->genCoord);
+        J = this->kinematics.GetJacobianInW(Kinematics::TetrapodLeg::frontLeft,
+                                            this->genCoord);
 
         if (!kindr::pseudoInverse(J, pinvJ))
         {
             ROS_ERROR_STREAM("Failed to find pseudo-inverse Jacobian in Numerical Inverse Kinematics Control.");
         } 
 
-        delta_pose = _des_pose - this->genCoord.block<6,1>(0,0);
+        pose.block<3,1>(0,0) = this->fPos(0);
+        pose.block<3,1>(3,0) = Eigen::Matrix<double, 3, 1>::Constant(0);
+
+        delta_pose = _des_pose - pose;
 
         desired_gen_coord = this->genCoord + _k * pinvJ * delta_pose;
 
@@ -169,6 +234,8 @@ void GaitControl::NumericalInverseKinematicsControl(const Eigen::Matrix<double, 
         this->jointStatePub.publish(joint_state_msg);
 
     } while (delta_pose.norm() > _tol);
+
+    ROS_INFO("Terminated at solution within tolerance.");
 }
 
 
@@ -206,7 +273,12 @@ void GaitControl::OnGenCoordMsg(const std_msgs::Float64MultiArrayConstPtr &_msg)
 {
     std::vector<double> data = _msg->data;
 
-    this->genCoord = Eigen::Map<Eigen::MatrixXd>(data.data(), 18, 1); 
+    Eigen::Matrix<double, 9, 1> single_leg_gen_coord;
+
+    single_leg_gen_coord = Eigen::Map<Eigen::MatrixXd>(data.data(), 9, 1); 
+
+    this->genCoord.block<9,1>(0,0) = single_leg_gen_coord;
+    this->genCoord.block<9,1>(9,0) = Eigen::Matrix<double, 9, 1>::Constant(0);
 
     if (!this->kinematics.SolveForwardKinematics(genCoord, fPos))
     {
@@ -281,7 +353,7 @@ void GaitControl::InitRos()
 
     ros::AdvertiseOptions joint_state_ao =
         ros::AdvertiseOptions::create<sensor_msgs::JointState>(
-            "/my_robot/fl_joint_state_cmd",
+            "/my_robot/joint_state_cmd",
             100,
             ros::SubscriberStatusCallback(),
             ros::SubscriberStatusCallback(),
