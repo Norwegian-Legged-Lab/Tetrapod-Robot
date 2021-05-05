@@ -31,7 +31,7 @@ enum GaitPhase {swing_rl = 0, swing_fl = 1, swing_rr = 2, swing_fr = 3, no_gait_
 class StaticGaitController
 {
     /// \brief Constructor
-    public: StaticGaitController(double _step_length, double _step_width, double _iterations_per_gait_period);
+    public: StaticGaitController(double _step_length, double _step_width, double _iterations_per_gait_period, double _shoulder_height);
 
     /// \brief Destructor
     public: virtual ~StaticGaitController(){};
@@ -84,13 +84,13 @@ class StaticGaitController
 
     private: double shoulder_height_over_ground;
 
-    private: bool fl_offset = true;
+    private: bool fl_offset = false;
 
-    private: bool rr_offset = true;
+    private: bool rr_offset = false;
 
-    private: bool fr_offset = false;
+    private: bool fr_offset = true;
 
-    private: bool rl_offset = false;
+    private: bool rl_offset = true;
 
     /// \brief Desired feet positions in the body frame
     private: Eigen::Matrix<double, 4, 1> feet_positions_in_body;
@@ -151,6 +151,8 @@ class StaticGaitController
     public: void waitForReadyToProceedMessage();
 
     public: void waitForPositionJointStates();
+
+    private: sensor_msgs::JointState joint_command_msg;
 };
 
 #endif

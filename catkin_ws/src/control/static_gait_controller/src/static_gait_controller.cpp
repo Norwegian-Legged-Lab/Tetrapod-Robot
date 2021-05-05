@@ -1,48 +1,60 @@
 #include "static_gait_controller/static_gait_controller.h"
 
-StaticGaitController::StaticGaitController(double _step_length, double _step_width, double _iterations_per_gait_period)
+StaticGaitController::StaticGaitController(double _step_length, double _step_width, double _iterations_per_gait_period, double _shoulder_height)
 {
     step_length = _step_length;
     step_width = _step_width;
     iteration_max = _iterations_per_gait_period/4.0 - 1.0;
+    shoulder_height_over_ground = _shoulder_height;
 
     for(int i = 0; i < 12; i++)
     {
         joint_angles(i) = UNINITIALIZED_JOINT_STATE;
+
+        joint_command_msg.position.push_back(1000);
+        //joint_command_msg.velocity.push_back(1000); // Needed for real system
+        //joint_command_msg.effort.push_back(1000);
     }
 }
 
 bool StaticGaitController::setInitialConfiguration()
 {
-    rl_foot_position_in_body = calculateStanceLegFootPositionInBody(-step_width, 3.0, -x_offset_min + step_length); // Is this correct offset?
+
+    rl_foot_position_in_body = calculateStanceLegFootPositionInBody( step_width, 3.0, -x_offset_min + step_length); // Is this correct offset?
     fl_foot_position_in_body = calculateStanceLegFootPositionInBody( step_width, 2.0, x_offset_min);
     rr_foot_position_in_body = calculateStanceLegFootPositionInBody(-step_width, 1.0,-(x_offset_min + step_length));
-    fr_foot_position_in_body = calculateStanceLegFootPositionInBody( step_width, 0.0, x_offset_min);
+    fr_foot_position_in_body = calculateStanceLegFootPositionInBody(-step_width, 0.0, x_offset_min);
+
+    ROS_INFO("Initial foot positions calculated");
+    ROS_INFO("FL: %f, %f, %f", fl_foot_position_in_body(0), fl_foot_position_in_body(1), fl_foot_position_in_body(2));
+    ROS_INFO("FR: %f, %f, %f", fr_foot_position_in_body(0), fr_foot_position_in_body(1), fr_foot_position_in_body(2));
+    ROS_INFO("RL: %f, %f, %f", rl_foot_position_in_body(0), rl_foot_position_in_body(1), rl_foot_position_in_body(2));
+    ROS_INFO("RR: %f, %f, %f", rr_foot_position_in_body(0), rr_foot_position_in_body(1), rr_foot_position_in_body(2));
 
     if(!moveFootToBodyPosition(fl_foot_position_in_body, fl_offset, 0))
     {
         ROS_ERROR("Failed to move front left foot to the initial position");
         return false;
     }
-
+    ROS_INFO("FL moved successfully");
     if(!moveFootToBodyPosition(fr_foot_position_in_body, fr_offset, 3))
     {
         ROS_ERROR("Failed to move front right foot to the intial position");
         return false;
     }
-
+    ROS_INFO("FR moved successfully");
     if(!moveFootToBodyPosition(rl_foot_position_in_body, rl_offset, 6))
     {
         ROS_ERROR("Failed to move rear left foot to the initial position");
         return false;
     }
-
+    ROS_INFO("RL moved successfully");
     if(!moveFootToBodyPosition(rr_foot_position_in_body, rr_offset, 9))
     {
         ROS_ERROR("Failed to move rear right foot to the initial position");
         return false;
     }
-
+    ROS_INFO("RR moved successfully");
     current_gait_phase = swing_rl;
 
     return true;
@@ -52,6 +64,8 @@ bool StaticGaitController::moveFootToBodyPosition(Eigen::Matrix<double, 3, 1> _f
 {
     Eigen::Matrix<double, 3, 1> hip_position = Eigen::Matrix<double, 3, 1>::Zero();
 
+    Eigen::Matrix<double, 3, 1> single_leg_joint_values;
+
     Eigen::Matrix<double, 3, 1> single_leg_joint_targets;
 
     Eigen::Matrix<double, 3, 1> single_leg_joint_error(1.0, 1.0, 1.0);
@@ -60,11 +74,16 @@ bool StaticGaitController::moveFootToBodyPosition(Eigen::Matrix<double, 3, 1> _f
     {
         ros::Rate send_position_command_rate(10);
 
+        joint_angle_commands.block<3, 1>(_leg_index, 0) = single_leg_joint_targets;
+
         while(single_leg_joint_error.transpose()*single_leg_joint_error > 0.023) // Approximately 5 degrees error for each joint
         {
             ROS_INFO("Error too large");
             sendJointPositionCommand();
-            single_leg_joint_error = joint_angles.block<3, 1>(_leg_index, 0) - single_leg_joint_targets;
+            single_leg_joint_values = joint_angles.block<3, 1>(_leg_index, 0);
+            ROS_INFO("Current: %f, %f, %f", single_leg_joint_values(0), single_leg_joint_values(1), single_leg_joint_values(2));
+            ROS_INFO("Target: %f, %f, %f", single_leg_joint_targets(0), single_leg_joint_targets(1), single_leg_joint_targets(2));
+            single_leg_joint_error = single_leg_joint_values - single_leg_joint_targets;
             ros::spinOnce();
             send_position_command_rate.sleep();
         }
@@ -83,28 +102,28 @@ void StaticGaitController::updateFeetReferencePositionsInBody()
     switch(current_gait_phase)
     {
         case swing_rl:
-            rl_foot_position_in_body = calculateSwingLegFootPositionInBody(-step_width, -(x_offset_min + step_length));
+            rl_foot_position_in_body = calculateSwingLegFootPositionInBody(step_width, -(x_offset_min + step_length));
             fl_foot_position_in_body = calculateStanceLegFootPositionInBody( step_width, 2.0, x_offset_min);
             rr_foot_position_in_body = calculateStanceLegFootPositionInBody(-step_width, 1.0,-(x_offset_min + step_length));
-            fr_foot_position_in_body = calculateStanceLegFootPositionInBody( step_width, 0.0, x_offset_min);
+            fr_foot_position_in_body = calculateStanceLegFootPositionInBody(-step_width, 0.0, x_offset_min);
             break;
         case swing_fl:
             fl_foot_position_in_body = calculateSwingLegFootPositionInBody( step_width, x_offset_min);
             rr_foot_position_in_body = calculateStanceLegFootPositionInBody(-step_width, 2.0, -(x_offset_min + step_length));
-            fr_foot_position_in_body = calculateStanceLegFootPositionInBody( step_width, 1.0, x_offset_min);  
-            rl_foot_position_in_body = calculateStanceLegFootPositionInBody(-step_width, 0.0, -(x_offset_min + step_length));          
+            fr_foot_position_in_body = calculateStanceLegFootPositionInBody(-step_width, 1.0, x_offset_min);  
+            rl_foot_position_in_body = calculateStanceLegFootPositionInBody(step_width, 0.0, -(x_offset_min + step_length));          
             break;
         case swing_rr:
             rr_foot_position_in_body = calculateSwingLegFootPositionInBody(-step_width, -(x_offset_min + step_length));
-            fr_foot_position_in_body = calculateStanceLegFootPositionInBody( step_width, 2.0, x_offset_min);  
-            rl_foot_position_in_body = calculateStanceLegFootPositionInBody(-step_width, 1.0, -(x_offset_min + step_length));  
+            fr_foot_position_in_body = calculateStanceLegFootPositionInBody(-step_width, 2.0, x_offset_min);  
+            rl_foot_position_in_body = calculateStanceLegFootPositionInBody(step_width, 1.0, -(x_offset_min + step_length));  
             fl_foot_position_in_body = calculateStanceLegFootPositionInBody( step_width, 0.0, x_offset_min);
             break;
         case swing_fr:
-            fr_foot_position_in_body = calculateSwingLegFootPositionInBody(step_width, x_offset_min);
+            fr_foot_position_in_body = calculateSwingLegFootPositionInBody(-step_width, x_offset_min);
             rr_foot_position_in_body = calculateStanceLegFootPositionInBody(-step_width, 2.0, -(x_offset_min + step_length));
             fl_foot_position_in_body = calculateStanceLegFootPositionInBody(step_width, 1.0, x_offset_min);
-            rl_foot_position_in_body = calculateStanceLegFootPositionInBody(-step_width, 0.0, -(x_offset_min + step_length));
+            rl_foot_position_in_body = calculateStanceLegFootPositionInBody(step_width, 0.0, -(x_offset_min + step_length));
             break;
         default:
         {
@@ -278,7 +297,7 @@ void StaticGaitController::generalizedPositionCallback(const std_msgs::Float64Mu
 {
     for(int i = 0; i < 12; i++)
     {
-        joint_angles(i) = _msg->data[i];
+        joint_angles(i) = _msg->data[i + 6];
     }
 }
 
@@ -286,7 +305,7 @@ void StaticGaitController::generalizedVelocityCallback(const std_msgs::Float64Mu
 {
     for(int i = 0; i < 12; i++)
     {
-        joint_velocities(i) = _msg->data[i];
+        joint_velocities(i) = _msg->data[i + 6];
     }
 }
 
@@ -303,8 +322,6 @@ void StaticGaitController::checkForNewMessages()
 
 void StaticGaitController::sendJointPositionCommand()
 {
-    sensor_msgs::JointState joint_command_msg;
-
     for(int i = 0; i < 12; i++)
     {
         joint_command_msg.position[i] = joint_angle_commands(i);
@@ -347,5 +364,6 @@ void StaticGaitController::waitForPositionJointStates()
     for(int i = 0; i < 12; i++)
     {
         joint_angle_commands(i) = joint_angles(i);
+        ROS_INFO("%f", joint_angle_commands(i));
     }
 }
