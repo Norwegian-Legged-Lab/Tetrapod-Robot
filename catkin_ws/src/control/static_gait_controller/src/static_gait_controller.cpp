@@ -1,80 +1,11 @@
 #include "static_gait_controller/static_gait_controller.h"
-/*
 
-
-
-
-
-
-// FOR SIMULATOR //
-void StaticGaitController::simulatorGeneralizedCoordinateCallback(const std_msgs::Float64MultiArrayConstPtr &msg)
+StaticGaitController::StaticGaitController(double _step_length, double _step_width, double _iterations_per_gait_period)
 {
-    for(int i = 0; i < 3; i++)
-    {
-        joint_angles(i) = msg->data[i + 6];
-    }
-
-    //ROS_INFO("Joint angles updated");
+    step_length = _step_length;
+    step_width = _step_width;
+    iteration_max = _iterations_per_gait_period/4.0 - 1.0;
 }
-
-void StaticGaitController::simulatorGeneralizedVelocityCallback(const std_msgs::Float64MultiArrayConstPtr &msg)
-{
-    for(int i = 0; i < 3; i++)
-    {
-        joint_velocity(i) = msg->data[i + 6];
-    }
-
-    //ROS_INFO("Joint angles updated");
-}
-
-void StaticGaitController::simulatorSendJointPositionCommand()
-{
-    std_msgs::Float64MultiArray pos_msg;
-
-    tf::matrixEigenToMsg(position_controller_joint_target, pos_msg);
-
-    sensor_msgs::JointState joint_state_msg;
-    
-    joint_state_msg.header.stamp = ros::Time::now();
-    
-    joint_state_msg.position = pos_msg.data;
-
-    simulator_joint_state_publisher.publish(joint_state_msg);
-}
-
-void StaticGaitController::logStatesAndCommands()
-{
-    sensor_msgs::JointState joint_state_msg;
-    joint_state_msg.header.stamp = ros::Time::now();
-
-    std_msgs::Float64MultiArray pos_msg;
-    std_msgs::Float64MultiArray vel_msg;
-
-    // Log state
-    tf::matrixEigenToMsg(joint_angles, pos_msg);
-    tf::matrixEigenToMsg(joint_velocity, vel_msg);
-
-    joint_state_msg.position = pos_msg.data;
-    joint_state_msg.velocity = vel_msg.data;
-
-    log_state_publisher.publish(joint_state_msg);
-
-    // Log commands
-    tf::matrixEigenToMsg(position_controller_joint_target, pos_msg);
-    tf::matrixEigenToMsg(velocity_controller_joint_target, vel_msg);
-
-    joint_state_msg.position = pos_msg.data;
-    joint_state_msg.velocity = vel_msg.data;
-
-    log_command_publisher.publish(joint_state_msg);
-}
-
-
-
-
-
-*/
-
 
 bool StaticGaitController::setInitialConfiguration()
 {
@@ -381,4 +312,18 @@ void StaticGaitController::sendJointPositionCommand()
     joint_command_msg.header.stamp = ros::Time::now();
 
     joint_command_publisher.publish(joint_command_msg);
+}
+
+void StaticGaitController::waitForReadyToProceedMessage()
+{
+    ros::Rate check_for_messages_rate(1);
+
+    while(!ready_to_proceed)
+    {
+        ros::spinOnce();
+
+        check_for_messages_rate.sleep();
+    }
+
+    ready_to_proceed = false;
 }
