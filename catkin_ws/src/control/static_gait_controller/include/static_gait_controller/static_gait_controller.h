@@ -26,17 +26,11 @@ enum LegID {fl = 0, fr = 1, rl = 2, rr = 3};
 
 enum GaitPhase {swing_rl = 0, swing_fl = 1, swing_rr = 2, swing_fr = 3, no_gait_phase = 4};
 
-/// \brief Variable indicate no control effort
-const double CONTROL_IDLE  = 1000.0;
-
-/// \brief Convergence crieria for position control test
-const double POSITION_CONVERGENCE_CRITERIA = 0.010; // Cirka 1 degree error for all joints
-
 class StaticGaitController
 {
     public:
         /// \brief Constructor
-        StaticGaitController(double _dt);
+        StaticGaitController();
 
         /// \brief Destructor
         virtual ~StaticGaitController(){};
@@ -49,7 +43,9 @@ class StaticGaitController
         void initROS();
 
         /// \brief This functions moves each of the robot's legs so that it is ready to perform locomotion
-        void setInitialConfiguration();
+        bool setInitialConfiguration();
+
+        bool moveFootToBodyPosition(Eigen::Matrix<double, 3, 1> _foot_pos, bool _offset, int _leg_index);
 
         /// \brief This variable keeps track of which leg to move
         private: int gait_phase;
