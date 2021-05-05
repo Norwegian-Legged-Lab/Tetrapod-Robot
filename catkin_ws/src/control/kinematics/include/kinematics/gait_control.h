@@ -69,7 +69,13 @@ class GaitControl
     /// \brief The NumericalInverseKinematicsControl function plans joint
     /// positions using inverse kinematics to iteratively solve the desired
     /// end-effector configuration
-    public: void NumericalInverseKinematicsControl();
+    /// \param[in] _des_pose Desired end-effector configuration.
+    /// \param[in] _tol Termination tolerance such that || delta_pose || < tol.
+    /// \param[in] _k Scaling factor (0,1] to remain within the validity region of the
+    /// linearization and avoid overshooting or divergence.
+    public: void NumericalInverseKinematicsControl(const Eigen::Matrix<double, 6, 1> &_des_pose,
+                                                   const double &_tol,
+                                                   const double &_k);
 
     /// \brief The GetPositionTrajectory function returns
     /// a position trajectory in body as a function of time.
