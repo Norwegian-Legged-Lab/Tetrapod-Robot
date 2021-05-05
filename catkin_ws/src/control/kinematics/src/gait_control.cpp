@@ -34,19 +34,18 @@ GaitControl::GaitControl()
 
     ros::Duration(2.0).sleep();
 
-    //this->PositionTrajectoryIKControl();
-    //Eigen::Matrix<double, 6, 1> desired_pose;
-    //desired_pose(0) = 0.5;
-    //desired_pose(1) = 0.5;
-    //desired_pose(2) = 0.5;
-    //desired_pose(3) = 0;
-    //desired_pose(4) = 0;
-    //desired_pose(5) = 0;
+    Eigen::Matrix<double, 6, 1> desired_pose;
+    desired_pose(0) = 0.2;
+    desired_pose(1) = 0.2;
+    desired_pose(2) = 0.2;
+    desired_pose(3) = 0;
+    desired_pose(4) = 0;
+    desired_pose(5) = 0;
 
-    //double tol = 0.01;
-    //double k = 0.6;
+    double tol = 0.1;
+    double k = 0.6;
 
-    //this->NumericalInverseKinematicsControl(desired_pose, tol, k);
+    this->NumericalInverseKinematicsControl(desired_pose, tol, k);
 }
 
 // Destructor
@@ -91,7 +90,7 @@ void GaitControl::PositionTrajectoryControl()
     while (t <= period)
     {
         // Update current position
-        position_in_W = this->fPos(0);
+        position_in_W = this->fPos;
 
         // Update rotation matrix
         rotationWToB = kindr::RotationMatrixD(kindr::EulerAnglesZyxD(this->genCoord(5),
@@ -215,12 +214,16 @@ void GaitControl::NumericalInverseKinematicsControl(const Eigen::Matrix<double, 
             ROS_ERROR_STREAM("Failed to find pseudo-inverse Jacobian in Numerical Inverse Kinematics Control.");
         } 
 
-        pose.block<3,1>(0,0) = this->fPos(0);
+        ROS_INFO_STREAM("J: \n" << J);
+
+        pose.block<3,1>(0,0) = this->fPos;
         pose.block<3,1>(3,0) = Eigen::Matrix<double, 3, 1>::Constant(0);
 
         delta_pose = _des_pose - pose;
 
         desired_gen_coord = this->genCoord + _k * pinvJ * delta_pose;
+
+        //debug_utils::printGeneralizedCoordinates(desired_gen_coord);
 
         std_msgs::Float64MultiArray pos_msg;
 
@@ -280,11 +283,13 @@ void GaitControl::OnGenCoordMsg(const std_msgs::Float64MultiArrayConstPtr &_msg)
     this->genCoord.block<9,1>(0,0) = single_leg_gen_coord;
     this->genCoord.block<9,1>(9,0) = Eigen::Matrix<double, 9, 1>::Constant(0);
 
-    if (!this->kinematics.SolveForwardKinematics(genCoord, fPos))
-    {
-        ROS_ERROR("Could not solve forward kinematics for pose control.");
-    }
+    this->fPos = kinematics.SolveSingleLegForwardKinematics(this->genCoord.block<3,1>(0,0),
+                                                            this->genCoord(6),
+                                                            this->genCoord(7),
+                                                            this->genCoord(8));
 
+    // TODO remove this when not using single leg
+    this->fPos(1) += 0.1;
 }
 
 // Callback for ROS Generalized Velocities messages

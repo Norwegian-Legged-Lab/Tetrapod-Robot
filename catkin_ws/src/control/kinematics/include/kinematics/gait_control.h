@@ -131,7 +131,8 @@ class GaitControl
     private: Eigen::Matrix<double, 18, 1> genVel;
 
     /// \brief Footstep positions
-    private: Eigen::Matrix<Eigen::Vector3d, 4, 1> fPos;
+    //private: Eigen::Matrix<Eigen::Vector3d, 4, 1> fPos;
+    Eigen::Vector3d fPos;
 
     /// \brief Node used for ROS transport.
     private: std::unique_ptr<ros::NodeHandle> rosNode;
