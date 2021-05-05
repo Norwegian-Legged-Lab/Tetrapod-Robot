@@ -127,8 +127,8 @@ z_0 = 0.5
             </visual>
         </link>
 
-        <joint name="sliding_base_joint" type="prismatic">
-        <!-- <joint name="sliding_base_joint" type="fixed"> -->
+        <!-- <joint name="sliding_base_joint" type="prismatic"> -->
+        <joint name="sliding_base_joint" type="fixed">
             <pose>0 0 0 0 0 0</pose>
             <parent>base</parent>
             <child>sliding_base</child>
@@ -190,7 +190,7 @@ z_0 = 0.5
                 <limit>
                     <lower>0</lower>
                     <upper>3.14</upper>
-                    <effort>60</effort>
+                    <effort>5</effort>
                     <velocity>1000</velocity>
                 </limit>
             </axis>
@@ -251,7 +251,7 @@ z_0 = 0.5
                 <limit>
                     <lower>-2.5</lower>
                     <upper>2.5</upper>
-                    <effort>60</effort>
+                    <effort>5</effort>
                     <velocity>1000</velocity>
                 </limit>
             </axis>
@@ -318,7 +318,7 @@ z_0 = 0.5
                 <limit>
                     <lower>-2.5</lower>
                     <upper>2.5</upper>
-                    <effort>60</effort>
+                    <effort>5</effort>
                     <velocity>1000</velocity>
                 </limit>
             </axis> 
