@@ -61,16 +61,20 @@ class StaticGaitController
         public: void publishJointCommands();
 
         /// \brief Distance from CoM to foot in y direction in the body frame
-        private: double step_width;
+        private: double step_width = 0.3;
 
         /// \brief Length of each step in the body x direction
-        private: double step_length;
+        private: double step_length = 0.4;
+
+        private: double step_max_height = 0.20;
 
         /// \brief Minimum distance between the body and foot in the x direction
         private: double x_offset_min;
 
         /// \brief Maximum distance between the body and foot in the x direction
         private: double x_offset_max;
+
+        private: double shoulder_height_over_ground;
 
         /// \brief Desired feet positions in the body frame
         private: Eigen::Matrix<double, 4, 1> feet_positions_in_body;
@@ -84,14 +88,23 @@ class StaticGaitController
         private: Eigen::Matrix<double, 3, 1> rr_foot_position_in_body;
 
         /// \brief 
-        GaitPhase current_gait_phase = no_gait_phase;
+        GaitPhase current_gait_phase = GaitPhase::no_gait_phase;
 
         /// \brief Calculates the desired footstep positions in the body frame
-        public: bool updateFeetReferencePositionsInBody();
+        public: void updateFeetReferencePositionsInBody();
+
+        /// \brief The reference joint angles are calculated through inverse kinematics based on reference feet positions
+        public: void updateReferenceJointAngles();
 
         /// \brief Calculate the desired swing leg position for the input leg
-        /// \param [in] _foot_position The foot position for the swing leg
-        public: Eigen::Matrix<double, 3, 1> calculateSwingLegFootPositionInBody(Eigen::Matrix<double, 3, 1> &_foot_position);
+        /// \param [in] _step_width The distance from the hip to the foot position i the body y direction
+        /// \return A vector containing the desired swing leg position in the hip frame
+        public: Eigen::Matrix<double, 3, 1> calculateSwingLegFootPositionInBody(double _step_width);
+
+        public: Eigen::Matrix<double, 3, 1> calculateStanceLegFootPositionInBody(double _step_width, double _phase_offset, double _x_offset);
+
+        double iteration = 0;
+        double iteration_max = 99;
 
     private:
         /// \brief The joint angles of the leg
@@ -105,6 +118,8 @@ class StaticGaitController
 
         /// \brief Subscribes to generalized coordinates messages
         ros::Subscriber generalizedCoordinatesSubscriber;
+
+        void calculateSwingLegHeight();
 };
 
 #endif

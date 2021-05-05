@@ -349,30 +349,89 @@ void StaticGaitController::logStatesAndCommands()
 
 */
 
-/*
-bool StaticGaitController::updateFeetReferencePositionsInBody()
+
+void StaticGaitController::updateFeetReferencePositionsInBody()
 {
     switch(current_gait_phase)
     {
         case swing_rl:
-            rl_foot_position_in_body = calculateSwingLegFootPositionInBody()
+            rl_foot_position_in_body = calculateSwingLegFootPositionInBody(-step_width);
             break;
         case swing_fl:
-
+            fl_foot_position_in_body = calculateSwingLegFootPositionInBody(step_width);
             break;
         case swing_rr:
-            
+            rr_foot_position_in_body = calculateSwingLegFootPositionInBody(-step_width);
             break;
         case swing_fr:
-
+            fr_foot_position_in_body = calculateSwingLegFootPositionInBody(step_width);
             break;
         default:
-
+        {
+            
+        }
     }
+
+    // Check if it is the end of a gait cycle
+    if(iteration == iteration_max)
+    {
+        iteration = 0;
+        switch(current_gait_phase)
+        {
+            case swing_rl:
+                current_gait_phase = swing_fl;
+                break;
+            case swing_fl:
+                current_gait_phase = swing_rr;
+                break;
+            case swing_rr:
+                current_gait_phase = swing_fr;
+                break;
+            case swing_fr:
+                current_gait_phase = swing_rl;
+                break;
+            default:
+            {
+                ROS_WARN("Gait phase is not set");
+            }
+        }
+    }
+    else
+    {
+        iteration++;
+    }
+    
 }
 
-Eigen::Matrix<double, 3, 1> calculateSwingLegFootPositionInBody(Eigen::Matrix<double, 3, 1> &_foot_position)
+Eigen::Matrix<double, 3, 1> StaticGaitController::calculateSwingLegFootPositionInBody(double _step_width)
 {
+    // Initialize the foot position vector given in the hip frame
+    Eigen::Matrix<double, 3, 1> foot_position_in_hip_frame;
 
+    // The x coordinate is 
+    double x = step_length*iteration/iteration_max;
+
+    foot_position_in_hip_frame(0) = x;
+    foot_position_in_hip_frame(1) = _step_width;
+
+    double a = - 4*step_max_height/(step_length*step_length);
+
+    double step_height_over_ground = step_max_height + a*(x - step_length/2.0)*(x - step_length/2.0);
+
+    foot_position_in_hip_frame(2) = step_height_over_ground - shoulder_height_over_ground;
+
+    return foot_position_in_hip_frame;
 }
-*/
+
+Eigen::Matrix<double, 3, 1> StaticGaitController::calculateStanceLegFootPositionInBody(double _step_width, double _phase_offset, double _x_offset)
+{
+    Eigen::Matrix<double, 3, 1> foot_position_in_hip_frame;
+
+    double x = step_length*(1.0 - (_phase_offset + iteration/iteration_max)/3.0);
+
+    foot_position_in_hip_frame(0) = x + _x_offset;
+    foot_position_in_hip_frame(1) = _step_width;
+    foot_position_in_hip_frame(2) = -shoulder_height_over_ground;
+
+    return foot_position_in_hip_frame;
+}
