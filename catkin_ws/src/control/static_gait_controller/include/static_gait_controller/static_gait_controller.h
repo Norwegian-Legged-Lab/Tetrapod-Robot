@@ -30,14 +30,22 @@ class StaticGaitController
 {
     public:
         /// \brief Constructor
-        StaticGaitController();
+        StaticGaitController(){};
 
         /// \brief Destructor
         virtual ~StaticGaitController(){};
 
         /// \brief The joint states for the leg is updated
         /// \param[in] _msg A float array containing the generalized coordinates 
-        void generalizedCoordinatesCallback(const sensor_msgs::JointStateConstPtr &_msg);
+        void generalizedPositionCallback(const std_msgs::Float64MultiArrayConstPtr &_msg);
+
+        void generalizedVelocityCallback(const std_msgs::Float64MultiArrayConstPtr &_msg);
+
+        void readyToProceedCallback(const std_msgs::Bool &_msg);
+
+        void checkForNewMessages();
+
+        void sendJointPositionCommand();
 
         /// \brief This function initilizes ROS
         void initROS();
@@ -111,21 +119,33 @@ class StaticGaitController
         double iteration_max = 99;
 
     private:
+        private: Eigen::Matrix<double, 12, 1> joint_angle_commands = Eigen::Matrix<double, 12, 1>::Zero();
+
         /// \brief The joint angles of the leg
-        Eigen::Matrix<double, 12, 1> joint_angles = Eigen::Matrix<double, 12, 1>::Zero();
+        private: Eigen::Matrix<double, 12, 1> joint_angles = Eigen::Matrix<double, 12, 1>::Zero();
 
         /// \brief Desired joint velocity
-        Eigen::Matrix<double, 12, 1> joint_velocities = Eigen::Matrix<double, 12, 1>::Zero();
+        private: Eigen::Matrix<double, 12, 1> joint_velocities = Eigen::Matrix<double, 12, 1>::Zero();
 
         /// \brief ROS node handle
-        std::unique_ptr<ros::NodeHandle> nodeHandle;
+        private: std::unique_ptr<ros::NodeHandle> nodeHandle;
+
+        private: ros::Subscriber ready_to_proceed_subscriber;
 
         /// \brief Subscribes to generalized coordinates messages
-        ros::Subscriber generalizedCoordinatesSubscriber;
+        private: ros::Subscriber generalized_position_subscriber;
 
-        Kinematics kinematics;
+        private: ros::Subscriber generalized_velocity_subscriber;
+
+        private: ros::Publisher joint_command_publisher;
+
+        private: Kinematics kinematics;
 
         void calculateSwingLegHeight();
+
+        private: bool ready_to_proceed = false;
+
+        public: bool readyToProceed(){return ready_to_proceed;}
 };
 
 #endif
