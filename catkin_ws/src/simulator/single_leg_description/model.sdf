@@ -190,7 +190,7 @@ z_0 = 0.5
                 <limit>
                     <lower>0</lower>
                     <upper>3.14</upper>
-                    <effort>30</effort>
+                    <effort>1000</effort>
                     <velocity>1000</velocity>
                 </limit>
             </axis>
@@ -251,7 +251,7 @@ z_0 = 0.5
                 <limit>
                     <lower>-2.5</lower>
                     <upper>2.5</upper>
-                    <effort>30</effort>
+                    <effort>1000</effort>
                     <velocity>1000</velocity>
                 </limit>
             </axis>
@@ -318,7 +318,7 @@ z_0 = 0.5
                 <limit>
                     <lower>-2.5</lower>
                     <upper>2.5</upper>
-                    <effort>30</effort>
+                    <effort>1000</effort>
                     <velocity>1000</velocity>
                 </limit>
             </axis> 
