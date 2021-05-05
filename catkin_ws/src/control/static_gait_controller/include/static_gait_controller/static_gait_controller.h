@@ -22,6 +22,8 @@
 // Utilities
 #include <filter_utils/filter_utils.h>
 
+#define UNINITIALIZED_JOINT_STATE 10.0
+
 enum LegID {fl = 0, fr = 1, rl = 2, rr = 3};
 
 enum GaitPhase {swing_rl = 0, swing_fl = 1, swing_rr = 2, swing_fr = 3, no_gait_phase = 4};
@@ -148,6 +150,8 @@ class StaticGaitController
     public: void setReadyToProceedToFalse(){ready_to_proceed = false;}
 
     public: void waitForReadyToProceedMessage();
+
+    public: void waitForPositionJointStates();
 };
 
 #endif

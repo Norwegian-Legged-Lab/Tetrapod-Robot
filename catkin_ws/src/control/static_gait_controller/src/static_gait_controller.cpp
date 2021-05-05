@@ -5,6 +5,11 @@ StaticGaitController::StaticGaitController(double _step_length, double _step_wid
     step_length = _step_length;
     step_width = _step_width;
     iteration_max = _iterations_per_gait_period/4.0 - 1.0;
+
+    for(int i = 0; i < 12; i++)
+    {
+        joint_angles(i) = UNINITIALIZED_JOINT_STATE;
+    }
 }
 
 bool StaticGaitController::setInitialConfiguration()
@@ -326,4 +331,21 @@ void StaticGaitController::waitForReadyToProceedMessage()
     }
 
     ready_to_proceed = false;
+}
+
+void StaticGaitController::waitForPositionJointStates()
+{
+    ros::Rate check_for_messages_rate(1);
+
+    while(joint_angles(11) == UNINITIALIZED_JOINT_STATE)
+    {
+        ros::spinOnce();
+
+        check_for_messages_rate.sleep();
+    }
+
+    for(int i = 0; i < 12; i++)
+    {
+        joint_angle_commands(i) = joint_angles(i);
+    }
 }

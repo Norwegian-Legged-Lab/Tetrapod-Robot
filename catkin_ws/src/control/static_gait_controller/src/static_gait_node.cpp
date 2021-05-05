@@ -25,7 +25,7 @@ int main(int argc, char **argv)
 
     controller.waitForReadyToProceedMessage();
 
-    // Set the position controllers to the initial values
+    controller.waitForPositionJointStates();
 
     controller.setInitialConfiguration();
 
