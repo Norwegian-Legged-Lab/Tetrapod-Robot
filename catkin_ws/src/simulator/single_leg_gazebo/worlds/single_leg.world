@@ -13,11 +13,11 @@
     </scene>
 
     <!-- A ground plane -->
-    <!-- <include>
+    <include>
       <uri>model://ground_plane</uri>
-    </include> -->
+    </include> 
 
-    <model name="gplane">
+    <!-- <model name="gplane">
       <pose>0.000000 0.000000 0.000000 0.000000 -0.000000 0.000000</pose>
       <link name="plane">
         <pose>0.000000 0.000000 0.000000 0.000000 -0.000000 0.000000</pose>
@@ -60,7 +60,7 @@
         <kinematic>0</kinematic>
       </link>
       <static>1</static>
-    </model>
+    </model> -->
 
     <!-- A testing model that includes the Velodyne sensor model -->
     <model name="my_robot">
