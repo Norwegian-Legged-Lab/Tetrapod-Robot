@@ -6,8 +6,8 @@
 
 int main(int argc, char **argv)
 {
-    double gait_speed = 0.2;
-    double step_length = 0.3;
+    double gait_speed = 0.6;
+    double step_length = 0.35;
     double gait_width = 0.45;
     double shoulder_height = 0.34;
 

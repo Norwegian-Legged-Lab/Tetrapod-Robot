@@ -77,7 +77,7 @@ class StaticGaitController
     private: double step_max_height = 0.20;
 
     /// \brief Minimum distance between the body and foot in the x direction
-    private: double x_offset_min;
+    private: double x_offset_min = 0.1;
 
     /// \brief Maximum distance between the body and foot in the x direction
     private: double x_offset_max;
