@@ -447,3 +447,50 @@ Eigen::Matrix<double, 3, 1> StaticGaitController::calculateStanceLegFootPosition
 
     return foot_position_in_hip_frame;
 }
+
+bool StaticGaitController::updateReferenceJointAngles()
+{
+    bool found_solution = true;
+
+    Eigen::Matrix<double, 3, 1> zero_vector = Eigen::Matrix<double, 3, 1>::Zero();
+
+    Eigen::Matrix<double, 3, 1> single_leg_joint_angles = Eigen::Matrix<double, 3, 1>::Zero();
+
+    if(!kinematics.SolveSingleLegInverseKinematics(fl_offset, zero_vector, fl_foot_position_in_body, single_leg_joint_angles))
+    {
+        found_solution = false;
+    }
+    else
+    {
+        joint_angles.block<3, 1>(0, 0) = single_leg_joint_angles;
+    }
+
+    if(!kinematics.SolveSingleLegInverseKinematics(fr_offset, zero_vector, fr_foot_position_in_body, single_leg_joint_angles))
+    {
+        found_solution = false;
+    }
+    else
+    {
+        joint_angles.block<3, 1>(3, 0) = single_leg_joint_angles;
+    }
+
+    if(!kinematics.SolveSingleLegInverseKinematics(rl_offset, zero_vector, rl_foot_position_in_body, single_leg_joint_angles))
+    {
+        found_solution = false;
+    }
+    else
+    {
+        joint_angles.block<3, 1>(6, 0) = single_leg_joint_angles;
+    }
+
+    if(!kinematics.SolveSingleLegInverseKinematics(rr_offset, zero_vector, rr_foot_position_in_body, single_leg_joint_angles))
+    {
+        found_solution = false;
+    }
+    else
+    {
+        joint_angles.block<3, 1>(9, 0) = single_leg_joint_angles;
+    }
+    
+    return found_solution;
+}
