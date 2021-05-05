@@ -348,3 +348,31 @@ void StaticGaitController::logStatesAndCommands()
 
 
 */
+
+/*
+bool StaticGaitController::updateFeetReferencePositionsInBody()
+{
+    switch(current_gait_phase)
+    {
+        case swing_rl:
+            rl_foot_position_in_body = calculateSwingLegFootPositionInBody()
+            break;
+        case swing_fl:
+
+            break;
+        case swing_rr:
+            
+            break;
+        case swing_fr:
+
+            break;
+        default:
+
+    }
+}
+
+Eigen::Matrix<double, 3, 1> calculateSwingLegFootPositionInBody(Eigen::Matrix<double, 3, 1> &_foot_position)
+{
+
+}
+*/

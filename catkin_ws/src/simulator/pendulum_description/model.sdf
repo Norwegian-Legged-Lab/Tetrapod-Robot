@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+
+<sdf version='1.7'>
+    <model name="pendulum">
+        <pose>0 0 0 0 0 0</pose>
+        <static>false</static>
+
+        <link name="base">
+            <pose>0 0 0 0 0 0</pose>
+
+            <!--We use some large inertial values to prevent the base from moving-->
+            <inertial>
+                <pose>0 0 0 0 0 0</pose>
+                <mass>10000</mass>
+                <inertia>
+                <ixx>10000</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>10000</iyy>
+                <iyz>0.0</iyz>
+                <izz>10000</izz>
+                </inertia>
+            </inertial>
+
+            <visual name="base_ground">
+                <pose>0 0 0.05 0 0 0</pose>
+                <geometry>
+                    <box>
+                        <size>1.0 1.0 0.10</size>
+                    </box>
+                </geometry>
+            </visual>
+            <collision name="base_ground_collision">
+                <pose>0 0 0.05 0 0 0</pose>
+                <geometry>
+                    <box>
+                        <size>1.0 1.0 0.10</size>
+                    </box>
+                </geometry>
+            </collision>
+        </link>
+
+    </model>
+</sdf>
