@@ -20,7 +20,7 @@ dX = 489.5mm (joint to tip)
 <!--Parameters
 x_0 = 0.151
 y_0 = 0.1
-z_0 = 0.5
+z_0 = 0.8
 
 
 -->
@@ -96,7 +96,7 @@ z_0 = 0.5
         </link>
 
         <link name="sliding_base">
-            <pose>0 0 0.5 0 0 0</pose>
+            <pose>0 0 0.8 0 0 0</pose>
             <inertial>
                 <pose>0 0 0 0 0 0</pose>
                 <mass>1.5</mass>
@@ -152,7 +152,7 @@ z_0 = 0.5
                 p = 0
                 y = 0
             -->
-            <pose>0 0.1 0.5 0 0 0</pose>
+            <pose>0 0.1 0.8 0 0 0</pose>
 
             <inertial>
                 <!-- Position of front_left_hip CoM relative to joint position. Obtained from Solidworks-->
@@ -206,7 +206,7 @@ z_0 = 0.5
                 p = 0
                 y = 0
             -->
-            <pose>0.127 0.1 0.5 -1.5708 0 0</pose>
+            <pose>0.127 0.1 0.8 -1.5708 0 0</pose>
 
             <collision name="front_left_upper_leg_collision">
                 <!-- Add pose for collision-->
@@ -267,7 +267,7 @@ z_0 = 0.5
                 p = 0
                 y = 0
             -->
-            <pose>0.429 0.1 0.5 -1.5708 0 0</pose>
+            <pose>0.429 0.1 0.8 -1.5708 0 0</pose>
             <visual name="front_left_lower_leg_visual">
                 <pose>0 0 0 0 0 0</pose>
                 <geometry>
@@ -334,7 +334,7 @@ z_0 = 0.5
                 p = 0
                 y = 0
             -->
-            <pose>0.8935 0.1 0.5 1.5708 0 0</pose>
+            <pose>0.8935 0.1 0.8 1.5708 0 0</pose>
 
             <inertial>
                 <pose>0 0 0 0 0 0</pose>
