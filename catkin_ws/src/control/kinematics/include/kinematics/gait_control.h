@@ -69,10 +69,19 @@ class GaitControl
     // TODO Describe
     public: void PositionTrajectoryIKControl();
 
+    // TODO describe
+    /// \param[in] _des_pos Desired end-effector position.
+    /// \param[in] _tol Termination tolerance such that || delta_pose || < tol.
+    /// \param[in] _k Scaling factor (0,1] to remain within the validity region of the
+    /// linearization and avoid overshooting or divergence.
+    public: void NumericalIKPositionControl(const Eigen::Matrix<double, 3, 1> &_des_pos,
+                                                   const double &_tol,
+                                                   const double &_k);
+
+
     /// \brief The NumericalInverseKinematicsControl function plans joint
     /// positions using inverse kinematics to iteratively solve the desired
     /// end-effector configuration
-    /// \param[in] _des_pose Desired end-effector configuration.
     /// \param[in] _tol Termination tolerance such that || delta_pose || < tol.
     /// \param[in] _k Scaling factor (0,1] to remain within the validity region of the
     /// linearization and avoid overshooting or divergence.

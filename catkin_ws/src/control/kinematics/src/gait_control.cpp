@@ -35,17 +35,23 @@ GaitControl::GaitControl()
     ros::Duration(2.0).sleep();
 
     Eigen::Matrix<double, 6, 1> desired_pose;
-    desired_pose(0) = 0.2;
-    desired_pose(1) = 0.2;
-    desired_pose(2) = 0.2;
+    desired_pose(0) = 0.3;
+    desired_pose(1) = 0.3;
+    desired_pose(2) = 0.5;
     desired_pose(3) = 0;
     desired_pose(4) = 0;
     desired_pose(5) = 0;
 
+    Eigen::Matrix<double, 3, 1> desired_pos;
+    desired_pos(0) = 0.3;
+    desired_pos(1) = 0.3;
+    desired_pos(2) = 0.5;
+
     double tol = 0.1;
     double k = 0.6;
 
-    this->NumericalInverseKinematicsControl(desired_pose, tol, k);
+    this->NumericalIKPositionControl(desired_pos, tol, k);
+    //this->NumericalInverseKinematicsControl(desired_pose, tol, k);
 }
 
 // Destructor
@@ -190,6 +196,54 @@ void GaitControl::PositionTrajectoryIKControl()
         t += delta_t;
     }
 }
+
+// Numerical IK Position Control
+void GaitControl::NumericalIKPositionControl(const Eigen::Matrix<double, 3, 1> &_des_pos,
+                                             const double &_tol,
+                                             const double &_k)
+{
+    Eigen::Matrix<double, 3, 1> pos;
+    Eigen::Matrix<double, 3, 1> delta_pos;
+
+    Eigen::Matrix<double, 3, 3> J;
+    Eigen::Matrix<double, 3, 3> pinvJ;
+
+    Eigen::Matrix<double, 3, 1> desired_joint_state;
+
+    do 
+    {
+        J = this->kinematics.GetSingleLegTranslationJacobianInB(this->genCoord(6),
+                                                                this->genCoord(7),
+                                                                this->genCoord(8));
+        if (!kindr::pseudoInverse(J, pinvJ))
+        {
+            ROS_ERROR_STREAM("Failed to find pseudo-inverse Jacobian in Numerical Inverse Kinematics Control.");
+        } 
+
+        ROS_INFO_STREAM("J: \n" << J);
+
+        pos = this->fPos;
+
+        delta_pos = _des_pos - pos;
+
+        desired_joint_state = this->genCoord.block<3,1>(6,0) + _k * pinvJ * delta_pos;
+
+        std_msgs::Float64MultiArray pos_msg;
+
+        tf::matrixEigenToMsg(desired_joint_state, pos_msg);
+
+        sensor_msgs::JointState joint_state_msg;
+
+        joint_state_msg.header.stamp = ros::Time::now();
+        joint_state_msg.position = pos_msg.data;
+
+        this->jointStatePub.publish(joint_state_msg);
+
+    } while (delta_pos.norm() > _tol);
+
+    ROS_INFO("Terminated at solution within tolerance.");
+}
+
 
 // Numerical Inverse Kinematics Control
 void GaitControl::NumericalInverseKinematicsControl(const Eigen::Matrix<double, 6, 1> &_des_pose,
