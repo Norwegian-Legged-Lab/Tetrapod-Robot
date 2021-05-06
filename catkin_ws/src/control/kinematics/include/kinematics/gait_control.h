@@ -74,7 +74,7 @@ class GaitControl
     /// \param[in] _tol Termination tolerance such that || delta_pose || < tol.
     /// \param[in] _k Scaling factor (0,1] to remain within the validity region of the
     /// linearization and avoid overshooting or divergence.
-    public: void NumericalIKPositionControl(const Eigen::Matrix<double, 3, 1> &_des_pos,
+    public: void NumericalIKPositionControl(const Eigen::Matrix<double, 6, 1> &_des_pose,
                                                    const double &_tol,
                                                    const double &_k);
 
@@ -85,7 +85,7 @@ class GaitControl
     /// \param[in] _tol Termination tolerance such that || delta_pose || < tol.
     /// \param[in] _k Scaling factor (0,1] to remain within the validity region of the
     /// linearization and avoid overshooting or divergence.
-    public: void NumericalInverseKinematicsControl(const Eigen::Matrix<double, 6, 1> &_des_pose,
+    public: void NumericalInverseKinematicsControl(const Eigen::Matrix<double, 3, 1> &_des_pose,
                                                    const double &_tol,
                                                    const double &_k);
 
