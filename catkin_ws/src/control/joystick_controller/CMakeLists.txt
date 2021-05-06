@@ -29,8 +29,8 @@ add_library(${PROJECT_NAME}
   src/joystick_controller.cpp
 )
 
-add_executable(joystick_node
-  src/joystick_node.cpp
+add_executable(joystick_controller_node
+  src/joystick_controller_node.cpp
   src/joystick_controller.cpp
 )
 
@@ -38,7 +38,7 @@ target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
 )
 
-target_link_libraries(joystick_node
+target_link_libraries(joystick_controller_node
   ${catkin_LIBRARIES}
 )
 

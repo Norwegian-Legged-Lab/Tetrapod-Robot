@@ -71,10 +71,19 @@ class StaticGaitController
     /// \brief Distance from CoM to foot in y direction in the body frame
     private: double step_width = 0.3;
 
+    private: double max_step_width = 0.5;
+
     /// \brief Length of each step in the body x direction
     private: double step_length = 0.4;
 
     private: double step_max_height = 0.20;
+
+    /// For swing leg controller
+    private: double max_hip_turning_angle = M_PI/3.0;
+
+    private: double x_distance_from_CoM_to_hip = 0.151;
+    
+    private: double y_distance_from_CoM_to_hip = 0.185;
 
     /// \brief Minimum distance between the body and foot in the x direction
     private: double x_offset_min = 0.1;

@@ -195,6 +195,17 @@ Eigen::Matrix<double, 3, 1> StaticGaitController::calculateStanceLegFootPosition
     return foot_position_in_hip_frame;
 }
 
+/*
+Eigen::Matrix3d<double, 3, 1> calculateTurningStanceFootPositionInBody(double _x_offset, double _phase_offset, double side_sign)
+{
+    // front left leg
+    Eigen::Matrix<double, 3, 1> foot_position_in_hip_frame;
+
+    double x = step_length*(1.0 - )
+
+}
+*/
+
 bool StaticGaitController::updateReferenceJointAngles()
 {
     bool found_solution = true;
@@ -367,3 +378,4 @@ void StaticGaitController::waitForPositionJointStates()
         ROS_INFO("%f", joint_angle_commands(i));
     }
 }
+
