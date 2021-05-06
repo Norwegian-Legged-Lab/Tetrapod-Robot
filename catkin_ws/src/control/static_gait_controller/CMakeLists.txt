@@ -41,18 +41,18 @@ add_library(${PROJECT_NAME}
   src/static_gait_controller.cpp
 )
 
-#add_executable(static_gait_node
-#  src/static_gait_node.cpp
-#  src/static_gait_controller.cpp
-#)
+add_executable(static_gait_node
+  src/static_gait_node.cpp
+  src/static_gait_controller.cpp
+)
 
 target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
 )
 
-#target_link_libraries(static_gait_node
-#  ${catkin_LIBRARIES}
-#)
+target_link_libraries(static_gait_node
+  ${catkin_LIBRARIES}
+)
 
 
 install(TARGETS ${PROJECT_NAME}

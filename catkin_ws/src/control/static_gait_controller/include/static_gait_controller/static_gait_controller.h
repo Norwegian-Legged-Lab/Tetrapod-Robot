@@ -22,110 +22,137 @@
 // Utilities
 #include <filter_utils/filter_utils.h>
 
+#define UNINITIALIZED_JOINT_STATE 10.0
+
 enum LegID {fl = 0, fr = 1, rl = 2, rr = 3};
 
 enum GaitPhase {swing_rl = 0, swing_fl = 1, swing_rr = 2, swing_fr = 3, no_gait_phase = 4};
 
 class StaticGaitController
 {
-    public:
-        /// \brief Constructor
-        StaticGaitController();
+    /// \brief Constructor
+    public: StaticGaitController(double _step_length, double _step_width, double _iterations_per_gait_period, double _shoulder_height);
 
-        /// \brief Destructor
-        virtual ~StaticGaitController(){};
+    /// \brief Destructor
+    public: virtual ~StaticGaitController(){};
 
-        /// \brief The joint states for the leg is updated
-        /// \param[in] _msg A float array containing the generalized coordinates 
-        void generalizedCoordinatesCallback(const sensor_msgs::JointStateConstPtr &_msg);
+    /// \brief Calculates the desired footstep positions in the body frame
+    public: void updateFeetReferencePositionsInBody();
 
-        /// \brief This function initilizes ROS
-        void initROS();
+    /// \brief The reference joint angles are calculated through inverse kinematics based on reference feet positions
+    public: bool updateReferenceJointAngles();
 
-        /// \brief This functions moves each of the robot's legs so that it is ready to perform locomotion
-        bool setInitialConfiguration();
+    /// \brief This functions updates the joint commands based on the previous state and latest command
+    public: bool updateJointCommands();
 
-        bool moveFootToBodyPosition(Eigen::Matrix<double, 3, 1> _foot_pos, bool _offset, int _leg_index);
+    public: void sendJointPositionCommand();
 
-        /// \brief This variable keeps track of which leg to move
-        private: int gait_phase;
+    /// \brief The joint states for the leg is updated
+    /// \param[in] _msg A float array containing the generalized coordinates 
+    private: void generalizedPositionCallback(const std_msgs::Float64MultiArrayConstPtr &_msg);
 
-        /// \brief This functions updates the joint commands based on the previous state and latest command
-        public: bool updateJointCommands();
+    private: void generalizedVelocityCallback(const std_msgs::Float64MultiArrayConstPtr &_msg);
 
-        /// \brief This function publishes the latest joint commands to the motors
-        public: void publishJointCommands();
+    private: void readyToProceedCallback(const std_msgs::Bool &_msg);
 
-        /// \brief Distance from CoM to foot in y direction in the body frame
-        private: double step_width = 0.3;
+    public: void checkForNewMessages();
 
-        /// \brief Length of each step in the body x direction
-        private: double step_length = 0.4;
+    /// \brief This function initilizes ROS
+    public: void initROS();
 
-        private: double step_max_height = 0.20;
+    /// \brief This functions moves each of the robot's legs so that it is ready to perform locomotion
+    public: bool setInitialConfiguration();
 
-        /// \brief Minimum distance between the body and foot in the x direction
-        private: double x_offset_min;
+    private: bool moveFootToBodyPosition(Eigen::Matrix<double, 3, 1> _foot_pos, bool _offset, int _leg_index);
 
-        /// \brief Maximum distance between the body and foot in the x direction
-        private: double x_offset_max;
+    /// \brief This variable keeps track of which leg to move
+    private: int gait_phase;
 
-        private: double shoulder_height_over_ground;
+    /// \brief Distance from CoM to foot in y direction in the body frame
+    private: double step_width = 0.3;
 
-        private: bool fl_offset = true;
+    /// \brief Length of each step in the body x direction
+    private: double step_length = 0.4;
 
-        private: bool rr_offset = true;
+    private: double step_max_height = 0.20;
 
-        private: bool fr_offset = false;
+    /// \brief Minimum distance between the body and foot in the x direction
+    private: double x_offset_min = 0.1;
 
-        private: bool rl_offset = false;
+    /// \brief Maximum distance between the body and foot in the x direction
+    private: double x_offset_max;
 
-        /// \brief Desired feet positions in the body frame
-        private: Eigen::Matrix<double, 4, 1> feet_positions_in_body;
+    private: double shoulder_height_over_ground;
 
-        private: Eigen::Matrix<double, 3, 1> fl_foot_position_in_body;
+    private: bool fl_offset = false;
 
-        private: Eigen::Matrix<double, 3, 1> fr_foot_position_in_body;
+    private: bool rr_offset = false;
 
-        private: Eigen::Matrix<double, 3, 1> rl_foot_position_in_body;
+    private: bool fr_offset = true;
 
-        private: Eigen::Matrix<double, 3, 1> rr_foot_position_in_body;
+    private: bool rl_offset = true;
 
-        /// \brief 
-        GaitPhase current_gait_phase = GaitPhase::no_gait_phase;
+    /// \brief Desired feet positions in the body frame
+    private: Eigen::Matrix<double, 4, 1> feet_positions_in_body;
 
-        /// \brief Calculates the desired footstep positions in the body frame
-        public: void updateFeetReferencePositionsInBody();
+    private: Eigen::Matrix<double, 3, 1> fl_foot_position_in_body;
 
-        /// \brief The reference joint angles are calculated through inverse kinematics based on reference feet positions
-        public: bool updateReferenceJointAngles();
+    private: Eigen::Matrix<double, 3, 1> fr_foot_position_in_body;
 
-        /// \brief Calculate the desired swing leg position for the input leg
-        /// \param [in] _step_width The distance from the hip to the foot position i the body y direction
-        /// \return A vector containing the desired swing leg position in the hip frame
-        public: Eigen::Matrix<double, 3, 1> calculateSwingLegFootPositionInBody(double _step_width, double _x_offset);
+    private: Eigen::Matrix<double, 3, 1> rl_foot_position_in_body;
 
-        public: Eigen::Matrix<double, 3, 1> calculateStanceLegFootPositionInBody(double _step_width, double _phase_offset, double _x_offset);
+    private: Eigen::Matrix<double, 3, 1> rr_foot_position_in_body;
 
-        double iteration = 0;
-        double iteration_max = 99;
+    /// \brief 
+    private: GaitPhase current_gait_phase = GaitPhase::no_gait_phase;
 
-    private:
-        /// \brief The joint angles of the leg
-        Eigen::Matrix<double, 12, 1> joint_angles = Eigen::Matrix<double, 12, 1>::Zero();
 
-        /// \brief Desired joint velocity
-        Eigen::Matrix<double, 12, 1> joint_velocities = Eigen::Matrix<double, 12, 1>::Zero();
 
-        /// \brief ROS node handle
-        std::unique_ptr<ros::NodeHandle> nodeHandle;
+    /// \brief Calculate the desired swing leg position for the input leg
+    /// \param [in] _step_width The distance from the hip to the foot position i the body y direction
+    /// \return A vector containing the desired swing leg position in the hip frame
+    private: Eigen::Matrix<double, 3, 1> calculateSwingLegFootPositionInBody(double _step_width, double _x_offset);
 
-        /// \brief Subscribes to generalized coordinates messages
-        ros::Subscriber generalizedCoordinatesSubscriber;
+    private: Eigen::Matrix<double, 3, 1> calculateStanceLegFootPositionInBody(double _step_width, double _phase_offset, double _x_offset);
 
-        Kinematics kinematics;
+    private: double iteration = 0;
+    private: double iteration_max = 24;
 
-        void calculateSwingLegHeight();
+    private: Eigen::Matrix<double, 12, 1> joint_angle_commands = Eigen::Matrix<double, 12, 1>::Zero();
+
+    /// \brief The joint angles of the leg
+    private: Eigen::Matrix<double, 12, 1> joint_angles = Eigen::Matrix<double, 12, 1>::Zero();
+
+    /// \brief Desired joint velocity
+    private: Eigen::Matrix<double, 12, 1> joint_velocities = Eigen::Matrix<double, 12, 1>::Zero();
+
+    /// \brief ROS node handle
+    private: std::unique_ptr<ros::NodeHandle> nodeHandle;
+
+    private: ros::Subscriber ready_to_proceed_subscriber;
+
+    /// \brief Subscribes to generalized coordinates messages
+    private: ros::Subscriber generalized_position_subscriber;
+
+    private: ros::Subscriber generalized_velocity_subscriber;
+
+    private: ros::Publisher joint_command_publisher;
+
+    private: Kinematics kinematics;
+
+    private: void calculateSwingLegHeight();
+
+    private: bool ready_to_proceed = false;
+
+    public: bool readyToProceed(){return ready_to_proceed;}
+
+    public: void setReadyToProceedToFalse(){ready_to_proceed = false;}
+
+    public: void waitForReadyToProceedMessage();
+
+    public: void waitForPositionJointStates();
+
+    private: sensor_msgs::JointState joint_command_msg;
 };
 
 #endif
