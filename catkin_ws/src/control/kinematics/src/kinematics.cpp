@@ -60,15 +60,15 @@ Kinematics::Kinematics()
     this->max_angles(11) = angle_utils::degToRad(115);   // rr, kp
 
     // Set link lenghts
-    this->L1 = 0.127;
-    this->L2 = 0.302;
-    this->L3 = 0.4645;
+    this->L1 = 0.130;
+    this->L2 = 0.220;
+    this->L3 = 0.279;
 
     // Set position vectors
-    this->positionBaseToFrontLeftInB << 0.151, 0.185, 0;
-    this->positionBaseToFrontRightInB << 0.151, -0.185, 0;
-    this->positionBaseToRearLeftInB << -0.151, 0.185, 0;
-    this->positionBaseToRearRightInB << -0.151, -0.185, 0;
+    this->positionBaseToFrontLeftInB << 0.151, 0.151, 0;
+    this->positionBaseToFrontRightInB << 0.151, -0.151, 0;
+    this->positionBaseToRearLeftInB << -0.151, 0.151, 0;
+    this->positionBaseToRearRightInB << -0.151, -0.151, 0;
 
     // Set offsets
     this->flOffset = false;

@@ -25,6 +25,31 @@ z_0 = 0.8
 
 -->
 
+<!--
+Base to shoulder yaw:
+dX = 151
+dY = 151
+
+Shoulder yaw to shoulder pitch:
+dX = r1 = 130mm
+
+Shoulder pitch to knee pitch:
+dX = r2 = 220mm
+
+Knee pitch to foot:
+dX = r3 = 279mm (joint to foot center)
+dX = 281mm (joint to tip)
+
+-->
+
+<!--Parameters
+x_0 = 0.151
+y_0 = 0.151
+z_0 = 0.0
+
+
+-->
+
 <sdf version='1.7'>
     <model name="single_leg">
         <pose>0 0 0 0 0 0</pose>
@@ -158,14 +183,14 @@ z_0 = 0.8
                 <!-- Position of front_left_hip CoM relative to joint position. Obtained from Solidworks-->
                 <pose>0 0.0 0 0 0 0</pose>
 
-                <mass>1.544</mass>
+                <mass>1.168</mass>
                 <inertia>
-                <ixx>0.00795729837</ixx>
-                <ixy>-0.0093093434</ixy>
-                <ixz>0.00043958529</ixz>
-                <iyy>0.01464086909</iyy>
-                <iyz>-0.00030149073</iyz>
-                <izz>0.02080178339</izz>
+                <ixx>0.00875</ixx>
+                <ixy>-0.01007</ixy>
+                <ixz>0.00045</ixz>
+                <iyy>0.01534</iyy>
+                <iyz>-0.00032</iyz>
+                <izz>0.02228</izz>
                 </inertia>
             </inertial>
 
@@ -206,15 +231,15 @@ z_0 = 0.8
                 p = 0
                 y = 0
             -->
-            <pose>0.127 0.1 0.8 -1.5708 0 0</pose>
+            <pose>0.130 0.1 0.8 -1.5708 0 0</pose>
 
             <collision name="front_left_upper_leg_collision">
                 <!-- Add pose for collision-->
-                <pose>0.151 0 0 0 1.5708 0</pose>
+                <pose>0.110 0 0 0 1.5708 0</pose>
                 <geometry>
                     <cylinder>
                         <radius>0.008</radius>
-                        <length>0.302</length>
+                        <length>0.220</length>
                     </cylinder>
                 </geometry>
             </collision>
@@ -229,14 +254,14 @@ z_0 = 0.8
             <inertial>
                 <!-- Position of upper_leg CoM relative to hip pitch joint position. Obtained from Solidworks-->
                 <pose>0 0 0 0 0 0</pose>
-                <mass>1.48294</mass>
+                <mass>1.47930</mass>
                 <inertia>
-                    <ixx>0.00294737758</ixx>
-                    <ixy>0.00046832442</ixy>
-                    <ixz>-0.00000233327</ixz>
-                    <iyy>0.01775106293</iyy>
-                    <iyz>0.00000007464</iyz>
-                    <izz>0.01643813398</izz>
+                    <ixx>0.00306</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.00998</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.00855</izz>
                 </inertia>
             </inertial>
         </link>
@@ -267,7 +292,7 @@ z_0 = 0.8
                 p = 0
                 y = 0
             -->
-            <pose>0.429 0.1 0.8 -1.5708 0 0</pose>
+            <pose>0.350 0.1 0.8 -1.5708 0 0</pose>
             <visual name="front_left_lower_leg_visual">
                 <pose>0 0 0 0 0 0</pose>
                 <geometry>
@@ -278,11 +303,11 @@ z_0 = 0.8
             </visual>
             <collision name="front_left_lower_leg_collision">
                 <!-- Add pose for collision-->
-                <pose>0.23225 0 0 0 1.5708 0</pose>
+                <pose>0.1395 0 0 0 1.5708 0</pose>
                 <geometry>
                     <cylinder>
                         <radius>0.008</radius>
-                        <length>0.4645</length>
+                        <length>0.279</length>
                     </cylinder>
                 </geometry>
             </collision>
@@ -297,14 +322,14 @@ z_0 = 0.8
             <inertial>
                 <!-- Position of lower_leg CoM relative to knee pitch joint position. Obtained from Solidworks-->
                 <pose>0 0 0 0 0 0</pose>
-                <mass>0.33748</mass>
+                <mass>0.30325519</mass>
                 <inertia>
-                    <ixx>0.00006153887</ixx>
-                    <ixy>0.00000001054</ixy>
-                    <ixz>0.00005544422</ixz>
-                    <iyy>0.00174716381</iyy>
-                    <iyz>0.00000000167</iyz>
-                    <izz>0.01748405834</izz>
+                    <ixx>0.00005969</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0.00003017</ixz>
+                    <iyy>0.00548869</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.00550161</izz>
                 </inertia>
             </inertial>
         </link>
@@ -334,7 +359,7 @@ z_0 = 0.8
                 p = 0
                 y = 0
             -->
-            <pose>0.8935 0.1 0.8 1.5708 0 0</pose>
+            <pose>0.629 0.1 0.8 1.5708 0 0</pose>
 
             <inertial>
                 <pose>0 0 0 0 0 0</pose>
@@ -351,7 +376,7 @@ z_0 = 0.8
             <collision name="front_left_foot_collision">
                 <geometry>
                     <sphere>
-                        <radius>0.025</radius>
+                        <radius>0.020</radius>
                     </sphere>
                 </geometry>
                 <surface>
