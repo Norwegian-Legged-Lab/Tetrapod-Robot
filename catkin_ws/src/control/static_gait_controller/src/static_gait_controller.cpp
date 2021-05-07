@@ -421,7 +421,12 @@ void StaticGaitController::updateFootPositionsTurning()
 
     rl_foot_position_in_body = reverseXY(fr_foot_position_in_body);
 
-
+    ROS_INFO("P: %d, I2: %f, I4: %f\tFL: %f, %f, %f\tFR: %f, %f, %f\tRL: %f, %f, %f\tRR: %f, %f, %f", 
+    current_turning_phase, current_iteration_turning_double_stance, current_iteration_turning_quad_stance,
+    fl_foot_position_in_body(0), fl_foot_position_in_body(1), fl_foot_position_in_body(2),
+    fr_foot_position_in_body(0), fr_foot_position_in_body(1), fr_foot_position_in_body(2),
+    rl_foot_position_in_body(0), rl_foot_position_in_body(1), rl_foot_position_in_body(2),
+    rr_foot_position_in_body(0), rr_foot_position_in_body(1), rr_foot_position_in_body(2));
 
     if((current_iteration_turning_quad_stance == max_iteration_turning_quad_stance) && (current_turning_phase == quad_stance_before_fl_rr))
     {
@@ -501,6 +506,13 @@ Eigen::Matrix<double, 3, 1> StaticGaitController::calculateTurningSwingFootPosit
     return foot_position;
 }
 
+double StaticGaitController::calculateSwingFootHeightInHip(double _current_iteration, double _max_iteration)
+{
+    double x = _current_iteration/_max_iteration;
+
+    return 4.0*(step_max_height)*(x - x*x) - shoulder_height_over_ground;
+}
+
 Eigen::Matrix<double, 3, 1> StaticGaitController::calculateTurningStanceFootPosition(LegID _leg)
 {
     Eigen::Matrix<double, 3, 1> foot_position;
@@ -515,8 +527,6 @@ Eigen::Matrix<double, 3, 1> StaticGaitController::calculateTurningStanceFootPosi
     {
         angle = angle_offset + max_angle_deflection*(quad_stance_phase_period + double_stance_phase_period*(current_iteration_turning_double_stance/max_iteration_turning_double_stance));
     }
-
-    
 
     switch(_leg)
     {
@@ -542,6 +552,8 @@ Eigen::Matrix<double, 3, 1> StaticGaitController::calculateTurningStanceFootPosi
         }
     }
 
+    foot_position(2) = -shoulder_height_over_ground;
+
     return foot_position;
 }
 
@@ -554,23 +566,23 @@ Eigen::Matrix<double, 3, 1> StaticGaitController::calculateTurningQuadStanceFoot
     if((current_turning_phase == quad_stance_before_fl_rr) && ((_leg == fl) || (_leg == rr)))
     {
         angle = angle_offset + max_angle_deflection*quad_stance_phase_period*(1.0 - current_iteration_turning_quad_stance/max_iteration_turning_quad_stance);
-        ROS_INFO("Angle 1: %f", angle);
+        //ROS_INFO("Angle 1: %f", angle);
         //M_PI/2.0 - (angle_offset + max_angle_defelction*(quad_stance_phase_period + double_stance_phase_period + quad_stance_phase_period*current_iteration_turning_quad_stance/max_iteration_turning_quad_stance));
     }
     else if((current_turning_phase == quad_stance_before_fl_rr) && ((_leg == fr) || (_leg == rl)))
     {
         angle = angle_offset + max_angle_deflection*quad_stance_phase_period*current_iteration_turning_quad_stance/max_iteration_turning_quad_stance;
-        ROS_INFO("Angle 2: %f", angle);
+        //ROS_INFO("Angle 2: %f", angle);
     }
     else if((current_turning_phase == quad_stance_before_fr_rl) && ((_leg == fl) || (_leg == rr)))
     {
         angle = M_PI/2.0 - (angle_offset + max_angle_deflection*quad_stance_phase_period*current_iteration_turning_quad_stance/max_iteration_turning_quad_stance);
-        ROS_INFO("Angle 3: %f", angle);
+        //ROS_INFO("Angle 3: %f", angle);
     }
     else
     {
         angle = angle_offset + max_angle_deflection*(quad_stance_phase_period + double_stance_phase_period + quad_stance_phase_period*current_iteration_turning_quad_stance/max_iteration_turning_quad_stance);
-        ROS_INFO("Angle 4: %f", angle);
+        //ROS_INFO("Angle 4: %f", angle);
     }
     
     switch(_leg)
@@ -606,13 +618,6 @@ Eigen::Matrix<double, 3, 1> StaticGaitController::reverseXY(Eigen::Matrix<double
 {
     Eigen::Matrix<double, 3, 1> v_out(-_v_in(0), -_v_in(1), _v_in(2));
     return v_out;
-}
-
-double StaticGaitController::calculateSwingFootHeightInHip(double _current_iteration, double _max_iteration)
-{
-    double x = _current_iteration/_max_iteration;
-
-    return 4.0*(step_max_height - shoulder_height_over_ground)*(x - x*x);
 }
 
 bool StaticGaitController::prepareForTurning()

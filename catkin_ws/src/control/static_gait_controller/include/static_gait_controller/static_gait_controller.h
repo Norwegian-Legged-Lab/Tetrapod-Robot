@@ -189,9 +189,9 @@ class StaticGaitController
 
     private: double current_iteration_turning_quad_stance = 0.0;
 
-    private: double max_iteration_turning_double_stance = 100.0;
+    private: double max_iteration_turning_double_stance = 20.0;
 
-    private: double max_iteration_turning_quad_stance = 20.0;
+    private: double max_iteration_turning_quad_stance = 40.0;
 
     private: double max_angle_deflection = M_PI*3.0/10.0;
 
