@@ -189,7 +189,7 @@ class StaticGaitController
 
     private: double current_iteration_turning_quad_stance = 0.0;
 
-    private: double max_iteration_turning_double_stance = 20.0;
+    private: double max_iteration_turning_double_stance = 120.0;
 
     private: double max_iteration_turning_quad_stance = 40.0;
 
@@ -198,9 +198,9 @@ class StaticGaitController
     private: double angle_offset = (M_PI/2.0 - max_angle_deflection)/2.0; // 2*angle_offset + max_angle_deflection = 90 deg
 
     /// \brief 2*quad_stance_phase_period + double_stance_phase_period = 1.0
-    private: double quad_stance_phase_period = 0.2;
+    private: double quad_stance_phase_period = 0.1;
 
-    private: double double_stance_phase_period = 0.6;
+    private: double double_stance_phase_period = 1.0 - 2.0*quad_stance_phase_period;
 
     private: double distance_body_to_hip = 0.15;
 
