@@ -31,14 +31,14 @@ int main(int argc, char **argv)
 
     ROS_INFO("Position joint states received");
 
-    controller.prepareForTurning();
+    controller.setInitialConfiguration();
 
     controller.waitForReadyToProceedMessage();
 
     while(ros::ok())
     {
         ros::spinOnce();
-        controller.updateFootPositionsTurning();
+        controller.updateFeetReferencePositionsInBody();
         controller.updateReferenceJointAngles();
         controller.sendJointPositionCommand();
         control_rate.sleep();

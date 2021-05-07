@@ -78,7 +78,7 @@ bool StaticGaitController::moveFootToBodyPosition(Eigen::Matrix<double, 3, 1> _f
 
         while(single_leg_joint_error.transpose()*single_leg_joint_error > 0.023) // Approximately 5 degrees error for each joint
         {
-            ROS_INFO("Error too large");
+            ROS_INFO("Error too large. Foot %d", _leg_index);
             sendJointPositionCommand();
             single_leg_joint_values = joint_angles.block<3, 1>(_leg_index, 0);
             ROS_INFO("Current: %f, %f, %f", single_leg_joint_values(0), single_leg_joint_values(1), single_leg_joint_values(2));
@@ -387,21 +387,29 @@ void StaticGaitController::updateFootPositionsTurning()
             fl_foot_position_in_body = calculateTurningQuadStanceFootPosition(fl);
 
             fr_foot_position_in_body = calculateTurningQuadStanceFootPosition(fr);
+
+            current_iteration_turning_quad_stance++;
             break;
         case swing_fl_rr:
             fl_foot_position_in_body = calculateTurningSwingFootPosition(fl);
             
             fr_foot_position_in_body = calculateTurningStanceFootPosition(fr);
+
+            current_iteration_turning_double_stance++;
             break;
         case quad_stance_before_fr_rl:
             fl_foot_position_in_body = calculateTurningQuadStanceFootPosition(fl);
             
             fr_foot_position_in_body = calculateTurningQuadStanceFootPosition(fr);
+
+            current_iteration_turning_quad_stance++;
             break;
         case swing_fr_rl:
             fl_foot_position_in_body = calculateTurningStanceFootPosition(fl);
 
             fr_foot_position_in_body = calculateTurningSwingFootPosition(fr);
+
+            current_iteration_turning_double_stance++;
             break;
         default:
         {
@@ -465,23 +473,23 @@ Eigen::Matrix<double, 3, 1> StaticGaitController::calculateTurningSwingFootPosit
 
     if(_foot == fl)
     {
-        foot_position(0) = turning_radius*cos(angle);
-        foot_position(1) = turning_radius*sin(angle);
+        foot_position(0) = turning_radius*cos(angle) - distance_body_to_hip;
+        foot_position(1) = turning_radius*sin(angle) - distance_body_to_hip;
     }
     else if(_foot == fr)
     {
-        foot_position(0) = turning_radius*cos(angle);
-        foot_position(1) = - turning_radius*cos(angle);
+        foot_position(0) = turning_radius*cos(angle) - distance_body_to_hip;
+        foot_position(1) = - turning_radius*sin(angle) + distance_body_to_hip;
     }
     else if(_foot == rl)
     {
-        foot_position(0) = - turning_radius*cos(angle);
-        foot_position(1) = turning_radius*sin(angle);
+        foot_position(0) = - turning_radius*cos(angle) + distance_body_to_hip;
+        foot_position(1) = turning_radius*sin(angle) - distance_body_to_hip;
     }
     else if(_foot == rr)
     {
-        foot_position(0) = - turning_radius*cos(angle);
-        foot_position(1) = - turning_radius*sin(angle);
+        foot_position(0) = - turning_radius*cos(angle) + distance_body_to_hip;
+        foot_position(1) = - turning_radius*sin(angle) + distance_body_to_hip;
     }
     else
     {
@@ -508,23 +516,25 @@ Eigen::Matrix<double, 3, 1> StaticGaitController::calculateTurningStanceFootPosi
         angle = angle_offset + max_angle_deflection*(quad_stance_phase_period + double_stance_phase_period*(current_iteration_turning_double_stance/max_iteration_turning_double_stance));
     }
 
+    
+
     switch(_leg)
     {
         case fl:
-            foot_position(0) = turning_radius*cos(angle);
-            foot_position(1) = turning_radius*sin(angle);
+            foot_position(0) = turning_radius*cos(angle) - distance_body_to_hip;
+            foot_position(1) = turning_radius*sin(angle) - distance_body_to_hip;
             break;
         case fr:
-            foot_position(0) = turning_radius*cos(angle);
-            foot_position(1) =-turning_radius*sin(angle);
+            foot_position(0) = turning_radius*cos(angle) - distance_body_to_hip;
+            foot_position(1) =-turning_radius*sin(angle) + distance_body_to_hip;
             break;
         case rl:
-            foot_position(0) =-turning_radius*cos(angle);
-            foot_position(1) = turning_radius*sin(angle); 
+            foot_position(0) =-turning_radius*cos(angle) + distance_body_to_hip;
+            foot_position(1) = turning_radius*sin(angle) - distance_body_to_hip; 
             break;
         case rr:
-            foot_position(0) =-turning_radius*cos(angle);
-            foot_position(1) =-turning_radius*sin(angle);
+            foot_position(0) =-turning_radius*cos(angle) + distance_body_to_hip;
+            foot_position(1) =-turning_radius*sin(angle) + distance_body_to_hip;
             break;
         default:
         {
@@ -541,34 +551,45 @@ Eigen::Matrix<double, 3, 1> StaticGaitController::calculateTurningQuadStanceFoot
 
     double angle; 
 
-    if(current_turning_phase == quad_stance_before_fl_rr)
+    if((current_turning_phase == quad_stance_before_fl_rr) && ((_leg == fl) || (_leg == rr)))
     {
         angle = angle_offset + max_angle_deflection*quad_stance_phase_period*(1.0 - current_iteration_turning_quad_stance/max_iteration_turning_quad_stance);
-        
+        ROS_INFO("Angle 1: %f", angle);
         //M_PI/2.0 - (angle_offset + max_angle_defelction*(quad_stance_phase_period + double_stance_phase_period + quad_stance_phase_period*current_iteration_turning_quad_stance/max_iteration_turning_quad_stance));
+    }
+    else if((current_turning_phase == quad_stance_before_fl_rr) && ((_leg == fr) || (_leg == rl)))
+    {
+        angle = angle_offset + max_angle_deflection*quad_stance_phase_period*current_iteration_turning_quad_stance/max_iteration_turning_quad_stance;
+        ROS_INFO("Angle 2: %f", angle);
+    }
+    else if((current_turning_phase == quad_stance_before_fr_rl) && ((_leg == fl) || (_leg == rr)))
+    {
+        angle = M_PI/2.0 - (angle_offset + max_angle_deflection*quad_stance_phase_period*current_iteration_turning_quad_stance/max_iteration_turning_quad_stance);
+        ROS_INFO("Angle 3: %f", angle);
     }
     else
     {
-        angle = M_PI/2.0 - (angle_offset + max_angle_deflection*(quad_stance_phase_period*current_iteration_turning_quad_stance/max_iteration_turning_quad_stance));
+        angle = angle_offset + max_angle_deflection*(quad_stance_phase_period + double_stance_phase_period + quad_stance_phase_period*current_iteration_turning_quad_stance/max_iteration_turning_quad_stance);
+        ROS_INFO("Angle 4: %f", angle);
     }
     
     switch(_leg)
     {
         case fl:
-            foot_position(0) = turning_radius*cos(angle);
-            foot_position(1) = turning_radius*sin(angle);
+            foot_position(0) = turning_radius*cos(angle) - distance_body_to_hip;
+            foot_position(1) = turning_radius*sin(angle) - distance_body_to_hip;
             break;
         case fr:
-            foot_position(0) = turning_radius*cos(angle);
-            foot_position(1) =-turning_radius*sin(angle);
+            foot_position(0) = turning_radius*cos(angle) - distance_body_to_hip;
+            foot_position(1) =-turning_radius*sin(angle) + distance_body_to_hip;
             break;
         case rl:
-            foot_position(0) =-turning_radius*cos(angle);
-            foot_position(1) = turning_radius*sin(angle); 
+            foot_position(0) =-turning_radius*cos(angle) + distance_body_to_hip;
+            foot_position(1) = turning_radius*sin(angle) - distance_body_to_hip; 
             break;
         case rr:
-            foot_position(0) =-turning_radius*cos(angle);
-            foot_position(1) =-turning_radius*sin(angle);
+            foot_position(0) =-turning_radius*cos(angle) + distance_body_to_hip;
+            foot_position(1) =-turning_radius*sin(angle) + distance_body_to_hip;
             break;
         default:
         {
@@ -596,6 +617,9 @@ double StaticGaitController::calculateSwingFootHeightInHip(double _current_itera
 
 bool StaticGaitController::prepareForTurning()
 {
+    ROS_INFO("Max angle deflection: %f", max_angle_deflection*180.0/M_PI);
+
+    ROS_INFO("Angle_offset: %f", angle_offset*180.0/M_PI);
     current_turning_phase = quad_stance_before_fl_rr;
     
     current_iteration_turning_quad_stance = 0.0;

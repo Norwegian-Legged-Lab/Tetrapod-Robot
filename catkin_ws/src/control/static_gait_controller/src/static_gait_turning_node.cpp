@@ -6,10 +6,10 @@
 
 int main(int argc, char **argv)
 {
-    double gait_speed = 0.6;
+    double gait_speed = 0.3;
     double step_length = 0.5;
     double gait_width = 0.45;
-    double shoulder_height = 0.25;
+    double shoulder_height = 0.4;
 
     double gait_period = step_length/gait_speed;
 
@@ -31,14 +31,14 @@ int main(int argc, char **argv)
 
     ROS_INFO("Position joint states received");
 
-    controller.setInitialConfiguration();
+    controller.prepareForTurning();
 
     controller.waitForReadyToProceedMessage();
 
     while(ros::ok())
     {
         ros::spinOnce();
-        controller.updateFeetReferencePositionsInBody();
+        controller.updateFootPositionsTurning();
         controller.updateReferenceJointAngles();
         controller.sendJointPositionCommand();
         control_rate.sleep();
