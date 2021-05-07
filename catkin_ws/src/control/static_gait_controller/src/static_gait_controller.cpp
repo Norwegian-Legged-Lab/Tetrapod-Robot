@@ -250,6 +250,14 @@ bool StaticGaitController::updateReferenceJointAngles()
         joint_angle_commands.block<3, 1>(9, 0) = single_leg_joint_angles;
     }
     
+    ROS_INFO("P: %d, I2: %f, I4: %f\tYaw: %f, %f, %f, %f\tFL: %f, %f, %f\tFR: %f, %f, %f\tRL: %f, %f, %f\tRR: %f, %f, %f", 
+    current_turning_phase, current_iteration_turning_double_stance, current_iteration_turning_quad_stance,
+    joint_angle_commands(0), joint_angle_commands(3), joint_angle_commands(6), joint_angle_commands(9),
+    fl_foot_position_in_body(0), fl_foot_position_in_body(1), fl_foot_position_in_body(2),
+    fr_foot_position_in_body(0), fr_foot_position_in_body(1), fr_foot_position_in_body(2),
+    rl_foot_position_in_body(0), rl_foot_position_in_body(1), rl_foot_position_in_body(2),
+    rr_foot_position_in_body(0), rr_foot_position_in_body(1), rr_foot_position_in_body(2));
+
     return found_solution;
 }
 
@@ -421,12 +429,7 @@ void StaticGaitController::updateFootPositionsTurning()
 
     rl_foot_position_in_body = reverseXY(fr_foot_position_in_body);
 
-    ROS_INFO("P: %d, I2: %f, I4: %f\tFL: %f, %f, %f\tFR: %f, %f, %f\tRL: %f, %f, %f\tRR: %f, %f, %f", 
-    current_turning_phase, current_iteration_turning_double_stance, current_iteration_turning_quad_stance,
-    fl_foot_position_in_body(0), fl_foot_position_in_body(1), fl_foot_position_in_body(2),
-    fr_foot_position_in_body(0), fr_foot_position_in_body(1), fr_foot_position_in_body(2),
-    rl_foot_position_in_body(0), rl_foot_position_in_body(1), rl_foot_position_in_body(2),
-    rr_foot_position_in_body(0), rr_foot_position_in_body(1), rr_foot_position_in_body(2));
+
 
     if((current_iteration_turning_quad_stance == max_iteration_turning_quad_stance) && (current_turning_phase == quad_stance_before_fl_rr))
     {
@@ -443,7 +446,7 @@ void StaticGaitController::updateFootPositionsTurning()
         current_turning_phase = swing_fr_rl;
         current_iteration_turning_double_stance = 0.0;
     }
-    else if((current_iteration_turning_double_stance == max_iteration_turning_quad_stance) && (current_turning_phase == swing_fr_rl))
+    else if((current_iteration_turning_double_stance == max_iteration_turning_double_stance) && (current_turning_phase == swing_fr_rl))
     {
         current_turning_phase = quad_stance_before_fl_rr;
         current_iteration_turning_quad_stance = 0.0;
@@ -474,7 +477,17 @@ Eigen::Matrix<double, 3, 1> StaticGaitController::calculateTurningSwingFootPosit
 {
     Eigen::Matrix<double, 3, 1> foot_position;
 
-    double angle = angle_offset + max_angle_deflection*(current_iteration_turning_double_stance/max_iteration_turning_double_stance);
+    double angle;
+
+    if(current_turning_phase == swing_fl_rr)
+    {
+        angle = angle_offset + max_angle_deflection*(current_iteration_turning_double_stance/max_iteration_turning_double_stance);
+    }
+    else
+    {
+        angle = M_PI/2.0 - (angle_offset + max_angle_deflection*current_iteration_turning_double_stance/max_iteration_turning_double_stance);
+    }
+    
 
     if(_foot == fl)
     {
