@@ -54,6 +54,19 @@ target_link_libraries(static_gait_node
   ${catkin_LIBRARIES}
 )
 
+add_executable(static_gait_turning_node
+  src/static_gait_turning_node.cpp
+  src/static_gait_controller.cpp
+)
+
+target_link_libraries(${PROJECT_NAME}
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(static_gait_turning_node
+  ${catkin_LIBRARIES}
+)
+
 
 install(TARGETS ${PROJECT_NAME}
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}

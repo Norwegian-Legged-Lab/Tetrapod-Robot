@@ -28,6 +28,15 @@ enum LegID {fl = 0, fr = 1, rl = 2, rr = 3};
 
 enum GaitPhase {swing_rl = 0, swing_fl = 1, swing_rr = 2, swing_fr = 3, no_gait_phase = 4};
 
+enum TurningPhase 
+{
+    quad_stance_before_fl_rr = 0, 
+    swing_fl_rr = 1, 
+    quad_stance_before_fr_rl = 2, 
+    swing_fr_rl = 3, 
+    no_turning_phase = 4
+};
+
 class StaticGaitController
 {
     /// \brief Constructor
@@ -69,21 +78,21 @@ class StaticGaitController
     private: int gait_phase;
 
     /// \brief Distance from CoM to foot in y direction in the body frame
-    private: double step_width = 0.3;
+    private: double step_width = 0.25;
 
-    private: double max_step_width = 0.5;
+    private: double max_step_width = 0.4;
 
     /// \brief Length of each step in the body x direction
-    private: double step_length = 0.4;
+    private: double step_length = 0.3;
 
-    private: double step_max_height = 0.20;
+    private: double step_max_height = 0.15;
 
     /// For swing leg controller
     private: double max_hip_turning_angle = M_PI/3.0;
 
     private: double x_distance_from_CoM_to_hip = 0.151;
     
-    private: double y_distance_from_CoM_to_hip = 0.185;
+    private: double y_distance_from_CoM_to_hip = 0.151;
 
     /// \brief Minimum distance between the body and foot in the x direction
     private: double x_offset_min = 0.1;
@@ -149,8 +158,6 @@ class StaticGaitController
 
     private: Kinematics kinematics;
 
-    private: void calculateSwingLegHeight();
-
     private: bool ready_to_proceed = false;
 
     public: bool readyToProceed(){return ready_to_proceed;}
@@ -162,6 +169,44 @@ class StaticGaitController
     public: void waitForPositionJointStates();
 
     private: sensor_msgs::JointState joint_command_msg;
+
+
+    private: TurningPhase current_turning_phase = no_turning_phase;
+
+    public: void updateFootPositionsTurning();
+
+    private: void updateTurningPhase();
+
+    private: Eigen::Matrix<double, 3, 1> calculateTurningSwingFootPosition(LegID _foot);
+
+    private: Eigen::Matrix<double, 3, 1> calculateTurningStanceFootPosition(LegID _foot);
+
+    private: Eigen::Matrix<double, 3, 1> calculateTurningQuadStanceFootPosition(LegID _foot);
+
+    private: Eigen::Matrix<double, 3, 1> reverseXY(Eigen::Matrix<double, 3, 1> _v_in);
+
+    private: double current_iteration_turning_double_stance = 0.0;
+
+    private: double current_iteration_turning_quad_stance = 0.0;
+
+    private: double max_iteration_turning_double_stance = 100.0;
+
+    private: double max_iteration_turning_quad_stance = 20.0;
+
+    private: double max_angle_deflection = M_PI/3.0;
+
+    private: double angle_offset = M_PI/12.0; // 2*angle_offset + max_angle_deflection = 90 deg
+
+    /// \brief 2*quad_stance_phase_period + double_stance_phase_period = 1.0
+    private: double quad_stance_phase_period = 0.2;
+
+    private: double double_stance_phase_period = 0.6;
+
+    private: double turning_radius = 0.5;
+
+    private: double calculateSwingFootHeightInHip(double _current_iteration, double _max_iteration);
+
+    public: bool prepareForTurning();
 };
 
 #endif

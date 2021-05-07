@@ -379,3 +379,265 @@ void StaticGaitController::waitForPositionJointStates()
     }
 }
 
+void StaticGaitController::updateFootPositionsTurning()
+{
+    switch(current_turning_phase)
+    {
+        case quad_stance_before_fl_rr:
+            fl_foot_position_in_body = calculateTurningQuadStanceFootPosition(fl);
+
+            fr_foot_position_in_body = calculateTurningQuadStanceFootPosition(fr);
+            break;
+        case swing_fl_rr:
+            fl_foot_position_in_body = calculateTurningSwingFootPosition(fl);
+            
+            fr_foot_position_in_body = calculateTurningStanceFootPosition(fr);
+            break;
+        case quad_stance_before_fr_rl:
+            fl_foot_position_in_body = calculateTurningQuadStanceFootPosition(fl);
+            
+            fr_foot_position_in_body = calculateTurningQuadStanceFootPosition(fr);
+            break;
+        case swing_fr_rl:
+            fl_foot_position_in_body = calculateTurningStanceFootPosition(fl);
+
+            fr_foot_position_in_body = calculateTurningSwingFootPosition(fr);
+            break;
+        default:
+        {
+            ROS_WARN("Turning gait phase not set");
+        }
+    }
+
+    rr_foot_position_in_body = reverseXY(fl_foot_position_in_body);
+
+    rl_foot_position_in_body = reverseXY(fr_foot_position_in_body);
+
+
+
+    if((current_iteration_turning_quad_stance == max_iteration_turning_quad_stance) && (current_turning_phase == quad_stance_before_fl_rr))
+    {
+        current_turning_phase = swing_fl_rr;
+        current_iteration_turning_double_stance = 0.0;
+    }
+    else if((current_iteration_turning_double_stance == max_iteration_turning_double_stance) && (current_turning_phase == swing_fl_rr))
+    {
+        current_turning_phase = quad_stance_before_fr_rl;
+        current_iteration_turning_quad_stance = 0.0;
+    }
+    else if((current_iteration_turning_quad_stance == max_iteration_turning_quad_stance) && (current_turning_phase == quad_stance_before_fr_rl))
+    {
+        current_turning_phase = swing_fr_rl;
+        current_iteration_turning_double_stance = 0.0;
+    }
+    else if((current_iteration_turning_double_stance == max_iteration_turning_quad_stance) && (current_turning_phase == swing_fr_rl))
+    {
+        current_turning_phase = quad_stance_before_fl_rr;
+        current_iteration_turning_quad_stance = 0.0;
+    }
+}
+
+void StaticGaitController::updateTurningPhase()
+{
+    if((current_iteration_turning_quad_stance == max_iteration_turning_quad_stance) && (current_turning_phase == quad_stance_before_fl_rr))
+    {
+        current_turning_phase = swing_fl_rr;
+    }
+    else if((current_iteration_turning_double_stance == max_iteration_turning_double_stance) && (current_turning_phase == swing_fl_rr))
+    {
+        current_turning_phase = quad_stance_before_fr_rl;
+    }
+    else if((current_iteration_turning_quad_stance == max_iteration_turning_quad_stance) && (current_turning_phase == quad_stance_before_fr_rl))
+    {
+        current_turning_phase = swing_fr_rl;
+    }
+    else if((current_iteration_turning_double_stance == max_iteration_turning_quad_stance) && (current_turning_phase == swing_fr_rl))
+    {
+        current_turning_phase = quad_stance_before_fl_rr;
+    }
+}
+
+Eigen::Matrix<double, 3, 1> StaticGaitController::calculateTurningSwingFootPosition(LegID _foot)
+{
+    Eigen::Matrix<double, 3, 1> foot_position;
+
+    double angle = angle_offset + max_angle_deflection*(current_iteration_turning_double_stance/max_iteration_turning_double_stance);
+
+    if(_foot == fl)
+    {
+        foot_position(0) = turning_radius*cos(angle);
+        foot_position(1) = turning_radius*sin(angle);
+    }
+    else if(_foot == fr)
+    {
+        foot_position(0) = turning_radius*cos(angle);
+        foot_position(1) = - turning_radius*cos(angle);
+    }
+    else if(_foot == rl)
+    {
+        foot_position(0) = - turning_radius*cos(angle);
+        foot_position(1) = turning_radius*sin(angle);
+    }
+    else if(_foot == rr)
+    {
+        foot_position(0) = - turning_radius*cos(angle);
+        foot_position(1) = - turning_radius*sin(angle);
+    }
+    else
+    {
+        ROS_WARN("Invalid foot selected");
+    }
+
+    foot_position(2) = calculateSwingFootHeightInHip(current_iteration_turning_double_stance, max_iteration_turning_double_stance);
+
+    return foot_position;
+}
+
+Eigen::Matrix<double, 3, 1> StaticGaitController::calculateTurningStanceFootPosition(LegID _leg)
+{
+    Eigen::Matrix<double, 3, 1> foot_position;
+
+    double angle;
+
+    if(current_turning_phase == swing_fr_rl)
+    {
+        angle = angle_offset + max_angle_deflection*(quad_stance_phase_period + double_stance_phase_period*(1.0 - current_iteration_turning_double_stance/max_iteration_turning_double_stance));
+    }
+    else
+    {
+        angle = angle_offset + max_angle_deflection*(quad_stance_phase_period + double_stance_phase_period*(current_iteration_turning_double_stance/max_iteration_turning_double_stance));
+    }
+
+    switch(_leg)
+    {
+        case fl:
+            foot_position(0) = turning_radius*cos(angle);
+            foot_position(1) = turning_radius*sin(angle);
+            break;
+        case fr:
+            foot_position(0) = turning_radius*cos(angle);
+            foot_position(1) =-turning_radius*sin(angle);
+            break;
+        case rl:
+            foot_position(0) =-turning_radius*cos(angle);
+            foot_position(1) = turning_radius*sin(angle); 
+            break;
+        case rr:
+            foot_position(0) =-turning_radius*cos(angle);
+            foot_position(1) =-turning_radius*sin(angle);
+            break;
+        default:
+        {
+            ROS_WARN("Leg does not exist");
+        }
+    }
+
+    return foot_position;
+}
+
+Eigen::Matrix<double, 3, 1> StaticGaitController::calculateTurningQuadStanceFootPosition(LegID _leg)
+{
+    Eigen::Matrix<double, 3, 1> foot_position;
+
+    double angle; 
+
+    if(current_turning_phase == quad_stance_before_fl_rr)
+    {
+        angle = angle_offset + max_angle_deflection*quad_stance_phase_period*(1.0 - current_iteration_turning_quad_stance/max_iteration_turning_quad_stance);
+        
+        //M_PI/2.0 - (angle_offset + max_angle_defelction*(quad_stance_phase_period + double_stance_phase_period + quad_stance_phase_period*current_iteration_turning_quad_stance/max_iteration_turning_quad_stance));
+    }
+    else
+    {
+        angle = M_PI/2.0 - (angle_offset + max_angle_deflection*(quad_stance_phase_period*current_iteration_turning_quad_stance/max_iteration_turning_quad_stance));
+    }
+    
+    switch(_leg)
+    {
+        case fl:
+            foot_position(0) = turning_radius*cos(angle);
+            foot_position(1) = turning_radius*sin(angle);
+            break;
+        case fr:
+            foot_position(0) = turning_radius*cos(angle);
+            foot_position(1) =-turning_radius*sin(angle);
+            break;
+        case rl:
+            foot_position(0) =-turning_radius*cos(angle);
+            foot_position(1) = turning_radius*sin(angle); 
+            break;
+        case rr:
+            foot_position(0) =-turning_radius*cos(angle);
+            foot_position(1) =-turning_radius*sin(angle);
+            break;
+        default:
+        {
+            ROS_WARN("Leg does not exist");
+        }
+    }
+
+    foot_position(2) = -shoulder_height_over_ground;
+
+    return foot_position;
+}
+
+Eigen::Matrix<double, 3, 1> StaticGaitController::reverseXY(Eigen::Matrix<double, 3, 1> _v_in)
+{
+    Eigen::Matrix<double, 3, 1> v_out(-_v_in(0), -_v_in(1), _v_in(2));
+    return v_out;
+}
+
+double StaticGaitController::calculateSwingFootHeightInHip(double _current_iteration, double _max_iteration)
+{
+    double x = _current_iteration/_max_iteration;
+
+    return 4.0*(step_max_height - shoulder_height_over_ground)*(x - x*x);
+}
+
+bool StaticGaitController::prepareForTurning()
+{
+    current_turning_phase = quad_stance_before_fl_rr;
+    
+    current_iteration_turning_quad_stance = 0.0;
+
+    fl_foot_position_in_body = calculateTurningQuadStanceFootPosition(fl);
+    fr_foot_position_in_body = calculateTurningQuadStanceFootPosition(fr);
+    rl_foot_position_in_body = calculateTurningQuadStanceFootPosition(rl);
+    rr_foot_position_in_body = calculateTurningQuadStanceFootPosition(rr);
+
+    ROS_INFO("Initial foot rotation position");
+    ROS_INFO("FL: %f, %f, %f", fl_foot_position_in_body(0), fl_foot_position_in_body(1), fl_foot_position_in_body(2));
+    ROS_INFO("FR: %f, %f, %f", fr_foot_position_in_body(0), fr_foot_position_in_body(1), fr_foot_position_in_body(2));
+    ROS_INFO("RL: %f, %f, %f", rl_foot_position_in_body(0), rl_foot_position_in_body(1), rl_foot_position_in_body(2));
+    ROS_INFO("RR: %f, %f, %f", rr_foot_position_in_body(0), rr_foot_position_in_body(1), rr_foot_position_in_body(2));
+
+    if(!moveFootToBodyPosition(fl_foot_position_in_body, fl_offset, 0))
+    {
+        ROS_ERROR("Failed to move front left foot to the initial position");
+        return false;
+    }
+    ROS_INFO("FL moved successfully");
+
+    if(!moveFootToBodyPosition(fr_foot_position_in_body, fr_offset, 3))
+    {
+        ROS_ERROR("Failed to move front right foot to the intial position");
+        return false;
+    }
+    ROS_INFO("FR moved successfully");
+
+    if(!moveFootToBodyPosition(rl_foot_position_in_body, rl_offset, 6))
+    {
+        ROS_ERROR("Failed to move rear left foot to the initial position");
+        return false;
+    }
+    ROS_INFO("RL moved successfully");
+
+    if(!moveFootToBodyPosition(rr_foot_position_in_body, rr_offset, 9))
+    {
+        ROS_ERROR("Failed to move rear right foot to the initial position");
+        return false;
+    }
+    ROS_INFO("RR moved successfully");
+
+    return true;
+}
