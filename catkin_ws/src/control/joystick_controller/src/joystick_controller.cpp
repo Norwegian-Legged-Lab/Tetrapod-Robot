@@ -39,8 +39,34 @@ void JoystickController::initROS()
     twist_command_publisher = nodeHandle->advertise<geometry_msgs::Twist>("/twist_command", 10);
 }
 
+bool JoystickController::readyToChangeLinearMultiplier()
+{
+    if(minimum_seconds_between_limit_change + time_of_last_linear_limit_change < ros::Time::now().toSec())
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+bool JoystickController::readyToChangeRotationalMultiplier()
+{
+    if(minimum_seconds_between_limit_change + time_of_last_rotational_limit_change < ros::Time::now().toSec())
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 void JoystickController::joystickCallback(const sensor_msgs::JoyConstPtr &_msg)
 {
+    double t = ros::Time::now().toSec();
+
     if(_msg->buttons[START] == 1)
     {
         if(pause == false)
@@ -55,20 +81,36 @@ void JoystickController::joystickCallback(const sensor_msgs::JoyConstPtr &_msg)
 
     if((_msg->buttons[TRIANGLE] == 1) && (_msg->buttons[CROSS] == 0))
     {
-        changeLinearMultiplier(true);
+        if(readyToChangeLinearMultiplier())
+        {
+            time_of_last_linear_limit_change = ros::Time::now().toSec();
+            changeLinearMultiplier(true);
+        }
     }
     else if((_msg->buttons[TRIANGLE] == 0) && (_msg->buttons[CROSS] == 1))
     {
-        changeLinearMultiplier(false);
+        if(readyToChangeLinearMultiplier())
+        {
+            time_of_last_linear_limit_change = ros::Time::now().toSec();
+            changeLinearMultiplier(false);
+        }
     }
 
     if((_msg->buttons[SQUARE] == 1) && (_msg->buttons[CIRCLE] == 0))
     {
-        changeRotationalMultiplier(true);
+        if(readyToChangeRotationalMultiplier())
+        {
+            time_of_last_rotational_limit_change = ros::Time::now().toSec();
+            changeRotationalMultiplier(true);
+        }
     }
     else if((_msg->buttons[SQUARE] == 0) && (_msg->buttons[CIRCLE] == 1))
     {
-        changeRotationalMultiplier(false);
+        if(readyToChangeRotationalMultiplier())
+        {
+            time_of_last_rotational_limit_change = ros::Time::now().toSec();
+            changeRotationalMultiplier(false);
+        }
     }
 
     twist_command_message.linear.x = _msg->axes[LEFT_STICK_UD]*linear_rate_multiplier;

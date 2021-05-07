@@ -2,6 +2,6 @@
 
       <node pkg="joy" type="joy_node" name="joy_node" output="screen"/>
 
-      <node pkg="joystick_controller" type="joystick_node" name="joystick_node" output="screen"/>
+      <node pkg="joystick_controller" type="joystick_controller_node" name="joystick_controller_node" output="screen"/>
 
 </launch>
