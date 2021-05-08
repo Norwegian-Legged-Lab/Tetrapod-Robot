@@ -62,7 +62,7 @@
   <exec_depend>sensor_msgs</exec_depend>
   <exec_depend>gazebo_ros</exec_depend>
 
-  <depend>angle_utils</depend>
+  <depend>math_utils</depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>

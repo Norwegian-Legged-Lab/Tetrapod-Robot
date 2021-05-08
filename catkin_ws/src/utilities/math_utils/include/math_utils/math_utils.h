@@ -1,7 +1,7 @@
 /*******************************************************************/
 /*    AUTHOR: Paal Arthur S. Thorseth                              */
 /*    ORGN:   Dept of Eng Cybernetics, NTNU Trondheim              */
-/*    FILE:   angle_utils.h                                        */
+/*    FILE:   math_utils.h                                        */
 /*    DATE:   Feb 9, 2021                                          */
 /*                                                                 */
 /* Copyright (C) 2021 Paal Arthur S. Thorseth,                     */
@@ -32,7 +32,7 @@
 // Boost
 #include <boost/math/constants/constants.hpp>
 
-namespace angle_utils
+namespace math_utils
 {
     /// \brief Define 2PI
     static constexpr double TWO_PI = boost::math::constants::two_pi<double>(); 
@@ -90,4 +90,4 @@ namespace angle_utils
     /// \return Angle difference from _ang1 relative _ang2 
     double angleDiff(const double &_ang1, const double &_ang2);
 
-} // namespace angle_utils
+} // namespace math_utils

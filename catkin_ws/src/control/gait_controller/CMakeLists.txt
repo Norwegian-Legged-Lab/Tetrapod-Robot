@@ -6,7 +6,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   sensor_msgs
   geometry_msgs
-  angle_utils
+  math_utils
   debug_utils
   kinematics
   eigen_conversions
@@ -23,7 +23,7 @@ catkin_package(
     std_msgs
     sensor_msgs
     geometry_msgs
-    angle_utils
+    math_utils
     debug_utils
     kinematics
     eigen_conversions

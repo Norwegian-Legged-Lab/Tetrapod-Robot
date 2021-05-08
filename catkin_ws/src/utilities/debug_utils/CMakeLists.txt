@@ -11,7 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   sensor_msgs
   std_msgs
-  angle_utils
+  math_utils
 )
 
 ## System dependencies are found with CMake's conventions
@@ -112,7 +112,7 @@ catkin_package(
     roscpp 
     sensor_msgs 
     std_msgs
-    angle_utils
+    math_utils
 #  DEPENDS system_lib
 )
 

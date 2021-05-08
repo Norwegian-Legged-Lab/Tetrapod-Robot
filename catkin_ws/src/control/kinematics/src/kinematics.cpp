@@ -33,31 +33,31 @@
 Kinematics::Kinematics() 
 {
     // Set min/max angles
-    this->min_angles(0) = angle_utils::degToRad(0);      // fl, hy
-    this->min_angles(1) = angle_utils::degToRad(-90);    // fl, hp
-    this->min_angles(2) = angle_utils::degToRad(-115);   // fl, kp
-    this->min_angles(3) = angle_utils::degToRad(-170);   // fr, hy
-    this->min_angles(4) = angle_utils::degToRad(-90);    // fr, hp
-    this->min_angles(5) = angle_utils::degToRad(-115);   // fr, kp
-    this->min_angles(6) = angle_utils::degToRad(10);     // rl, hy
-    this->min_angles(7) = angle_utils::degToRad(-90);    // rl, hp
-    this->min_angles(8) = angle_utils::degToRad(-115);   // rl, kp
-    this->min_angles(9) = angle_utils::degToRad(-180);   // rr, hy
-    this->min_angles(10) = angle_utils::degToRad(-90);   // rr, hp
-    this->min_angles(11) = angle_utils::degToRad(-115);  // rr, kp
+    this->min_angles(0) = math_utils::degToRad(0);      // fl, hy
+    this->min_angles(1) = math_utils::degToRad(-90);    // fl, hp
+    this->min_angles(2) = math_utils::degToRad(-115);   // fl, kp
+    this->min_angles(3) = math_utils::degToRad(-170);   // fr, hy
+    this->min_angles(4) = math_utils::degToRad(-90);    // fr, hp
+    this->min_angles(5) = math_utils::degToRad(-115);   // fr, kp
+    this->min_angles(6) = math_utils::degToRad(10);     // rl, hy
+    this->min_angles(7) = math_utils::degToRad(-90);    // rl, hp
+    this->min_angles(8) = math_utils::degToRad(-115);   // rl, kp
+    this->min_angles(9) = math_utils::degToRad(-180);   // rr, hy
+    this->min_angles(10) = math_utils::degToRad(-90);   // rr, hp
+    this->min_angles(11) = math_utils::degToRad(-115);  // rr, kp
 
-    this->max_angles(0) = angle_utils::degToRad(170);    // fl, hy
-    this->max_angles(1) = angle_utils::degToRad(90);     // fl, hp
-    this->max_angles(2) = angle_utils::degToRad(115);    // fl, kp
-    this->max_angles(3) = angle_utils::degToRad(0);      // fr, hy
-    this->max_angles(4) = angle_utils::degToRad(90);     // fr, hp
-    this->max_angles(5) = angle_utils::degToRad(115);    // fr, kp
-    this->max_angles(6) = angle_utils::degToRad(180);    // rl, hy
-    this->max_angles(7) = angle_utils::degToRad(90);     // rl, hp
-    this->max_angles(8) = angle_utils::degToRad(115);    // rl, kp
-    this->max_angles(9) = angle_utils::degToRad(-10);    // rr, hy
-    this->max_angles(10) = angle_utils::degToRad(90);    // rr, hp
-    this->max_angles(11) = angle_utils::degToRad(115);   // rr, kp
+    this->max_angles(0) = math_utils::degToRad(170);    // fl, hy
+    this->max_angles(1) = math_utils::degToRad(90);     // fl, hp
+    this->max_angles(2) = math_utils::degToRad(115);    // fl, kp
+    this->max_angles(3) = math_utils::degToRad(0);      // fr, hy
+    this->max_angles(4) = math_utils::degToRad(90);     // fr, hp
+    this->max_angles(5) = math_utils::degToRad(115);    // fr, kp
+    this->max_angles(6) = math_utils::degToRad(180);    // rl, hy
+    this->max_angles(7) = math_utils::degToRad(90);     // rl, hp
+    this->max_angles(8) = math_utils::degToRad(115);    // rl, kp
+    this->max_angles(9) = math_utils::degToRad(-10);    // rr, hy
+    this->max_angles(10) = math_utils::degToRad(90);    // rr, hp
+    this->max_angles(11) = math_utils::degToRad(115);   // rr, kp
 
     // Set link lenghts
     this->L1 = 0.130;
@@ -268,7 +268,7 @@ bool Kinematics::SolveSingleLegInverseKinematics(const bool &_offset, const Vect
         _joint_angles(1) = beta - zeta;
 
         // Calculate theta_kp
-        _joint_angles(2) = alpha - angle_utils::PI;
+        _joint_angles(2) = alpha - math_utils::PI;
     }
     else
     {
@@ -279,7 +279,7 @@ bool Kinematics::SolveSingleLegInverseKinematics(const bool &_offset, const Vect
         _joint_angles(1) = - beta + zeta;
 
         // Calculate theta_kp
-        _joint_angles(2) = angle_utils::PI - alpha;
+        _joint_angles(2) = math_utils::PI - alpha;
     }
 
     return true;
@@ -354,10 +354,10 @@ TransMatrix Kinematics::GetHipToFootTransform(const bool &_offset,
 
     if (_offset)
     {
-        roll_offset = angle_utils::HALF_PI;
+        roll_offset = math_utils::HALF_PI;
     } else
     {
-        roll_offset = -angle_utils::HALF_PI;
+        roll_offset = -math_utils::HALF_PI;
     }
 
     // First D-H transformation

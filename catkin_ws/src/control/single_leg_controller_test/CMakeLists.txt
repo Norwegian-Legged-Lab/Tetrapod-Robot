@@ -11,7 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
   sensor_msgs
-  angle_utils
+  math_utils
   debug_utils
   filter_utils
   kinematics
@@ -116,7 +116,7 @@ catkin_package(
     roscpp
     std_msgs
     sensor_msgs
-    angle_utils
+    math_utils
     debug_utils
     filter_utils
     kinematics

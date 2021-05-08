@@ -12,7 +12,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
   sensor_msgs
-  angle_utils
+  math_utils
   debug_utils
   eigen_conversions
 )
@@ -114,7 +114,7 @@ catkin_package(
     roscpp
     std_msgs
     sensor_msgs
-    angle_utils
+    math_utils
     debug_utils
     eigen_conversions
 #  DEPENDS system_lib

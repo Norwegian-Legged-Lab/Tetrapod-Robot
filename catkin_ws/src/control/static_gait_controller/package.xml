@@ -22,7 +22,7 @@
   <exec_depend>std_msgs</exec_depend>
   <exec_depend>sensor_msgs</exec_depend>
 
-  <depend>angle_utils</depend>
+  <depend>math_utils</depend>
   <depend>debug_utils</depend>
   <depend>filter_utils</depend>
   <depend>kinematics</depend>

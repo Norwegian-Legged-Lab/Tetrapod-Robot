@@ -1,7 +1,7 @@
 /*******************************************************************/
 /*    AUTHOR: Paal Arthur S. Thorseth                              */
 /*    ORGN:   Dept of Eng Cybernetics, NTNU Trondheim              */
-/*    FILE:   angle_utils.cpp                                      */
+/*    FILE:   math_utils.cpp                                      */
 /*    DATE:   Feb 9, 2021                                          */
 /*                                                                 */
 /* Copyright (C) 2021 Paal Arthur S. Thorseth,                     */
@@ -24,9 +24,9 @@
 /*                                                                 */
 /*******************************************************************/
 
-#include <angle_utils/angle_utils.h>
+#include <math_utils/math_utils.h>
 
-namespace angle_utils
+namespace math_utils
 {   
 
 // Convert deg to rad
@@ -81,4 +81,4 @@ double angleDiff(const double &_ang1, const double &_ang2)
     return diff - PI;
 }
 
-}// namespace angle_utils
+}// namespace math_utils

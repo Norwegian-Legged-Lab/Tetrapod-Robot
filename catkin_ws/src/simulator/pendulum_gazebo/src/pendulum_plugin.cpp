@@ -252,13 +252,13 @@ void PendulumPlugin::InitJointConfiguration()
     // Set default position 
     this->model->GetJointController()->SetJointPosition(
         this->joint->GetScopedName(),
-        angle_utils::degToRad(90)
+        math_utils::degToRad(90)
     );
 
     // Set controller position reference
     this->model->GetJointController()->SetPositionTarget(
         this->joint->GetScopedName(),
-        angle_utils::degToRad(90)
+        math_utils::degToRad(90)
     );
 
 }
