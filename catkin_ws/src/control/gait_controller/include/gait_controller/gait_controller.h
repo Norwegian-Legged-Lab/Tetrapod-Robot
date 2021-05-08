@@ -98,7 +98,7 @@ class GaitController
 
     private: double hip_height = 0.36;
 
-    private: double max_step_height = 0.15;
+    private: double max_step_height = 0.2;
 
     private: double current_iteration_full_stance = 0.0;
 
@@ -106,7 +106,7 @@ class GaitController
 
     private: double current_iteration_swing = 0.0;
 
-    private: double max_iteration_swing = 20.0;
+    private: double max_iteration_swing = 40.0;
 
     private: double lin_vel_x = 0.0;
 
