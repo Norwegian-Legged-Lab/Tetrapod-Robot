@@ -40,7 +40,7 @@
 #include "ros/callback_queue.h"
 #include "ros/subscribe_options.h"
 #include "eigen_conversions/eigen_msg.h"
-#include "std_msgs/Float32.h"
+#include "std_msgs/Float64.h"
 #include "std_msgs/Float64MultiArray.h"
 #include "sensor_msgs/JointState.h"
 
@@ -78,6 +78,10 @@ namespace gazebo
         /// \param[in] _sdf A pointer to the plugin's SDF element.
         public: virtual void Load(physics::ModelPtr _model, sdf::ElementPtr _sdf);
 
+        /// \brief Get currently applied force at the joint 
+        /// \return Current joint force
+        public: double GetJointForce();
+
         /// \brief Apply force at a specific joint 
         /// \param[in] _force Force to apply
         public: void SetJointForce(const double &_force);
@@ -102,6 +106,10 @@ namespace gazebo
         /// \brief The ProcessQueueThread function is a ROS helper function
         /// that processes messages.
         public: void ProcessQueueThread();
+
+        /// \brief The PublishQueueThread function is a ROS helper function
+        /// that publish state messages.
+        public: void PublishQueueThread();
 
         /// \brief The initRos function is called to initialize ROS
         protected: void InitRos();
@@ -155,11 +163,20 @@ namespace gazebo
         /// \brief ROS Joint State Subscriber.
         private: ros::Subscriber jointStateSub;
 
+        /// \brief ROS Joint Force (Torque) Publisher.
+        private: ros::Publisher jointForcePub;
+
         /// \brief ROS callbackque that helps process messages.
         private: ros::CallbackQueue rosProcessQueue;
 
+        /// \brief ROS callbackque that helps publish messages.
+        private: ros::CallbackQueue rosPublishQueue;
+
         /// \brief Thread running the rosProcessQueue.
         private: std::thread rosProcessQueueThread;
+
+        /// \brief Thread running the rosPublishQueue.
+        private: std::thread rosPublishQueueThread;
 
     };
 
