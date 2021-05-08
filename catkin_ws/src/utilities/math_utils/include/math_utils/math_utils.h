@@ -29,6 +29,10 @@
 // C++ Standard Library
 #include <cmath>
 
+// Eigen
+#include <Eigen/Core>
+#include <Eigen/SVD>
+
 // Boost
 #include <boost/math/constants/constants.hpp>
 
@@ -90,4 +94,53 @@ namespace math_utils
     /// \return Angle difference from _ang1 relative _ang2 
     double angleDiff(const double &_ang1, const double &_ang2);
 
+    // Damped pseudo-inverse
+    template<typename Matrix_TypeA, typename Matrix_TypeB>
+    bool static dampedPseudoInverse(const Matrix_TypeA &_J, 
+                                    Matrix_TypeB &_dPinvJ, 
+                                    const double _epsilon = std::numeric_limits<typename Matrix_TypeA::Scalar>::epsilon())
+    {
+        // Dimensions
+        const double _lambda = 0;
+        constexpr auto rowsA = static_cast<int>(Matrix_TypeA::RowsAtCompileTime);
+        constexpr auto colsA = static_cast<int>(Matrix_TypeA::ColsAtCompileTime);
+        constexpr auto rowsB = static_cast<int>(Matrix_TypeB::RowsAtCompileTime);
+        constexpr auto colsB = static_cast<int>(Matrix_TypeB::ColsAtCompileTime);
+        constexpr auto rankA = static_cast<int>(Eigen::JacobiSVD<Matrix_TypeA>::DiagSizeAtCompileTime);
+
+        // Validate matrices
+        //static_assert(rowsA == 0 || colsA == 0,
+        //              "[math_utils::dampedPseudoInverse] Input matrix is empty.");
+        static_assert(std::is_same<typename Matrix_TypeA::Scalar, typename Matrix_TypeB::Scalar>::value,
+                      "[math_utils::dampedPseduoInverse] Matrix scalars does not match!");
+        static_assert(rowsA == colsB && colsA == rowsB,
+                      "[math_utils::dampedPseduoInverse] Input and Output matrix dimensions does not match!");
+
+        // Calculate pseudo-inverse pinv_J = V S+ U*
+        Eigen::JacobiSVD<Matrix_TypeA> svd(_J, Eigen::ComputeThinU | Eigen::ComputeThinV);
+        const Eigen::Matrix<typename Matrix_TypeA::Scalar, rowsA, rankA> U = svd.matrixU();
+        const Eigen::Matrix<typename Matrix_TypeA::Scalar, rankA, 1> SV = svd.singularValues();
+        const Eigen::Matrix<typename Matrix_TypeA::Scalar, colsA, rankA> V = svd.matrixV();
+
+        // Calculate damped singular-values
+        Eigen::Matrix<typename Matrix_TypeA::Scalar, rankA, 1> damped_SV;
+        for (size_t i = 0; i < rankA; ++i)
+        {
+            if (std::fabs(SV(i) > _epsilon))
+            {
+                damped_SV(i) = 1 / SV(i);
+            }
+            else
+            {
+                damped_SV(i) = SV(i) / ( std::pow(SV(i),2) + std::pow(_lambda, 2) ); 
+            }
+        }
+        
+        // Calculate damped pseudo-inverse
+        _dPinvJ = V * damped_SV.asDiagonal() * U.transpose();
+
+        return true;
+    
+    }
+    
 } // namespace math_utils

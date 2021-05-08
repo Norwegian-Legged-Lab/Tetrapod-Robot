@@ -365,6 +365,22 @@ void testJacobian()
     ROS_INFO_STREAM("Jacobian rear right, J: \n" << J_rr);
 }
 
+void testMathPseudoInverse()
+{
+	Eigen::Matrix<double, 2, 3> J;
+	J << 0.6339, 0.6941, 0.6122,
+			 0.7077, 0.3663, 0.1599;
+    
+    Eigen::Matrix<double, 3, 2> pinvJ;
+    Eigen::Matrix<double, 3, 2> dPinvJ;
+
+    kindr::pseudoInverse(J, pinvJ);
+    math_utils::dampedPseudoInverse(J, dPinvJ);
+
+    ROS_INFO_STREAM("kindr pinvJ: \n" << pinvJ);
+    ROS_INFO_STREAM("math_utils dPinvJ: \n" << dPinvJ);
+}
+
 int main(int argc, char **argv)
 {
     ros::init(argc, argv, "kinematics_node");
@@ -389,8 +405,9 @@ int main(int argc, char **argv)
     //testTranslationJacobian();
     //ROS_INFO_STREAM("--------------- Test rotationJacobian --------------");
     //testRotationJacobian();
-    ROS_INFO_STREAM("--------------- Test Jacobian --------------");
-    testJacobian();
+    //ROS_INFO_STREAM("--------------- Test Jacobian --------------");
+    //testJacobian();
+    testMathPseudoInverse();
 
     ros::spin();
     return 0;
