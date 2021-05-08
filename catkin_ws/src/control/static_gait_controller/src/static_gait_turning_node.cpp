@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 
     double gait_period = step_length/gait_speed;
 
-    double iterations_per_gait_period = 200.0;
+    double iterations_per_gait_period = 350.0;
 
     StaticGaitController controller(step_length, gait_width, iterations_per_gait_period, shoulder_height);
 
