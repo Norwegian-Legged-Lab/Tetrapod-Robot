@@ -441,14 +441,24 @@ void TetrapodPlugin::PublishQueueThread()
         std_msgs::Float64MultiArray gen_coord_msg;
         std_msgs::Float64MultiArray gen_vel_msg;
         std_msgs::Float64MultiArray joint_forces_msg;
+        sensor_msgs::JointState joint_state_msg;
 
         tf::matrixEigenToMsg(q, gen_coord_msg);
         tf::matrixEigenToMsg(u, gen_vel_msg);
         tf::matrixEigenToMsg(tau, joint_forces_msg);
 
+        joint_state_msg.header.stamp = ros::Time::now();
+        for(int i = 0; i < 12; i++)
+        {
+            joint_state_msg.position.push_back(q(i + 6));
+            joint_state_msg.velocity.push_back(u(i + 6));
+            joint_state_msg.effort.push_back(tau(i));
+        }
+
         this->genCoordPub.publish(gen_coord_msg);
         this->genVelPub.publish(gen_vel_msg);
         this->jointForcesPub.publish(joint_forces_msg);
+        this->jointStatePub.publish(joint_state_msg);
 
         loop_rate.sleep();
     }
@@ -494,6 +504,17 @@ void TetrapodPlugin::InitRos()
     ros::AdvertiseOptions joint_forces_ao =
         ros::AdvertiseOptions::create<std_msgs::Float64MultiArray>(
             "/" + this->model->GetName() + "/joint_forces",
+            1,
+            ros::SubscriberStatusCallback(),
+            ros::SubscriberStatusCallback(),
+            ros::VoidPtr(),
+            &this->rosPublishQueue
+        );
+
+    ros::AdvertiseOptions joint_state_ao =
+        ros::AdvertiseOptions::create<sensor_msgs::JointState>
+        (
+            "/" + this->model->GetName() + "/joint_state",
             1,
             ros::SubscriberStatusCallback(),
             ros::SubscriberStatusCallback(),
@@ -551,6 +572,8 @@ void TetrapodPlugin::InitRos()
     this->genVelPub = this->rosNode->advertise(gen_vel_ao);
 
     this->jointForcesPub = this->rosNode->advertise(joint_forces_ao);
+
+    this->jointStatePub = this->rosNode->advertise(joint_state_ao);
 
     this->jointStateSub = this->rosNode->subscribe(joint_state_so);
 
