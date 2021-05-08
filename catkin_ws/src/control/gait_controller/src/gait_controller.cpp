@@ -98,9 +98,9 @@ void GaitController::twistCommandCallback(const geometry_msgs::TwistConstPtr &_m
     lin_vel_y = _msg->linear.y;
     ang_vel_z = _msg->angular.z;
 
-    dx_max = lin_vel_x;
-    dy_max = lin_vel_y;
-    dr_max = ang_vel_z;
+    dx_max = lin_vel_x*0.1;
+    dy_max = lin_vel_y*0.1;
+    dr_max = ang_vel_z*0.1;
 }
 
 void GaitController::checkForNewMessages()
