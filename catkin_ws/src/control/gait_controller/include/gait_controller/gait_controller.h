@@ -96,7 +96,7 @@ class GaitController
 
     private: Eigen::Matrix<double, 12, 1> joint_velocities = Eigen::Matrix<double, 12, 1>::Zero();
 
-    private: double hip_height = 0.4;
+    private: double hip_height = 0.36;
 
     private: double max_step_height = 0.15;
 
@@ -126,9 +126,9 @@ class GaitController
 
     private: bool ready_to_proceed = false;
 
-    private: double x_0 = 0.25;
+    private: double x_0 = 0.22;
 
-    private: double y_0 = 0.25;
+    private: double y_0 = 0.22;
 
     private: double dx_max = 0.0;
 
