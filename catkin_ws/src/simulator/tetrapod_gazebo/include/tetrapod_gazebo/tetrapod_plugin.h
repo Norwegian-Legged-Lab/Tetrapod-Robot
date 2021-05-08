@@ -264,6 +264,9 @@ namespace gazebo
         /// \brief ROS Generalized Velocities Publisher.
         private: ros::Publisher genVelPub;
 
+        /// \brief ROS Joint Forces (Torques) Publisher.
+        private: ros::Publisher jointForcesPub;
+
         /// \brief ROS Joint State Subscriber.
         private: ros::Subscriber jointStateSub;
 
