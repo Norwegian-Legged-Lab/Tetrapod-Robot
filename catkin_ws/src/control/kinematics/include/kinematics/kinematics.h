@@ -146,11 +146,15 @@ class Kinematics
                                     
     /// \brief The GetSingleLegTranslationJacobianInB function returns the 
     /// Jacobian matrix for end-effector linear velocities in body for the leg state.
+    /// \param[in] _offset Bool indicating whether roll offset
+    /// should be set to -90 or 90 degrees. True indicates roll offset
+    /// of 90 deg, false indicates roll offset of -90 degrees.
     /// \param[in] _theta_hy Hip yaw angle.
     /// \param[in] _theta_hp Hip pitch angle.
     /// \param[in] _theta_kp Knee pitch angle.
     /// \return Returns the Jacobian Matrix relating end-effector velocities to joint velocities.
-    public: Eigen::Matrix<double, 3, 3> GetSingleLegTranslationJacobianInB(const double &_theta_hy, 
+    public: Eigen::Matrix<double, 3, 3> GetSingleLegTranslationJacobianInB(const bool &_offset,
+                                                                           const double &_theta_hy, 
                                                                            const double &_theta_hp, 
                                                                            const double &_theta_kp);
 

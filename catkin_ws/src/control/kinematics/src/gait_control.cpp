@@ -219,7 +219,8 @@ void GaitControl::NumericalIKPositionControl(const Eigen::Matrix<double, 6, 1> &
 
     do 
     {
-        J.block<3,3>(0,0) = this->kinematics.GetSingleLegTranslationJacobianInB(this->genCoord(6),
+        J.block<3,3>(0,0) = this->kinematics.GetSingleLegTranslationJacobianInB(false,
+                                                                                this->genCoord(6),
                                                                                 this->genCoord(7),
                                                                                 this->genCoord(8));
 

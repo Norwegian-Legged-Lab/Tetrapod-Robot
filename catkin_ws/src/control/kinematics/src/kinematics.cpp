@@ -405,20 +405,44 @@ TransMatrix Kinematics::GetDhTransform(const double &_a,
 }
 
 // Leg state single leg translation Jacobian in body frame
-Eigen::Matrix<double, 3, 3> Kinematics::GetSingleLegTranslationJacobianInB(const double &_theta_hy, 
+Eigen::Matrix<double, 3, 3> Kinematics::GetSingleLegTranslationJacobianInB(const bool &_offset,
+                                                                           const double &_theta_hy, 
                                                                            const double &_theta_hp, 
                                                                            const double &_theta_kp)
 {
     Eigen::Matrix<double, 3, 3> J;
 
-    double c1 = std::cos(_theta_hy);
-    double s1 = std::sin(_theta_hy);
+    double c1;
+    double s1;
 
-    double c2 = std::cos(_theta_hp);
-    double s2 = std::sin(_theta_hp);
+    double c2;
+    double s2;
 
-    double c23 = std::cos(_theta_hp + _theta_kp);
-    double s23 = std::sin(_theta_hp + _theta_kp);
+    double c23;
+    double s23;
+
+    if (_offset)
+    {
+        c1 = std::cos(_theta_hy);
+        s1 = std::sin(_theta_hy);
+
+        c2 = std::cos(_theta_hp);
+        s2 = std::sin(_theta_hp);
+
+        c23 = std::cos(_theta_hp + _theta_kp);
+        s23 = std::sin(_theta_hp + _theta_kp);
+    }
+    else
+    {
+        c1 = std::cos(_theta_hy);
+        s1 = std::sin(_theta_hy);
+
+        c2 = std::cos(-_theta_hp);
+        s2 = std::sin(-_theta_hp);
+
+        c23 = std::cos(-_theta_hp - _theta_kp);
+        s23 = std::sin(-_theta_hp - _theta_kp);
+    }
 
     J(0,0) = -(this->L1 + this->L2 * c2 + this->L3 * c23) * s1;
     J(1,0) = (this->L1 + this->L2 * c2 + this->L3 * c23) * c1;
@@ -443,25 +467,29 @@ Eigen::Matrix<double, 3, 12> Kinematics::GetSingleLegTranslationJacobianInB(cons
 
     if (_leg == TetrapodLeg::frontLeft)
     {
-        J.block<3, 3>(0,0) = this->GetSingleLegTranslationJacobianInB(_q_r(0), 
+        J.block<3, 3>(0,0) = this->GetSingleLegTranslationJacobianInB(this->flOffset,
+                                                                      _q_r(0), 
                                                                       _q_r(1), 
                                                                       _q_r(2));
     }
     else if (_leg == TetrapodLeg::frontRight)
     {
-        J.block<3, 3>(0,3) = this->GetSingleLegTranslationJacobianInB(_q_r(3), 
+        J.block<3, 3>(0,3) = this->GetSingleLegTranslationJacobianInB(this->frOffset,
+                                                                      _q_r(3), 
                                                                       _q_r(4), 
                                                                       _q_r(5));
     }
     else if (_leg == TetrapodLeg::rearLeft)
     {
-        J.block<3, 3>(0,6) = this->GetSingleLegTranslationJacobianInB(_q_r(6), 
+        J.block<3, 3>(0,6) = this->GetSingleLegTranslationJacobianInB(this->rlOffset,
+                                                                      _q_r(6), 
                                                                       _q_r(7), 
                                                                       _q_r(8));
     }
     else if (_leg == TetrapodLeg::rearRight)
     {
-        J.block<3, 3>(0,9) = this->GetSingleLegTranslationJacobianInB(_q_r(9), 
+        J.block<3, 3>(0,9) = this->GetSingleLegTranslationJacobianInB(this-rrOffset,
+                                                                      _q_r(9), 
                                                                       _q_r(10), 
                                                                       _q_r(11));
     }
