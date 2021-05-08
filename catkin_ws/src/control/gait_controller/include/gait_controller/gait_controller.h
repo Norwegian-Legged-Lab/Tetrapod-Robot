@@ -102,11 +102,11 @@ class GaitController
 
     private: double current_iteration_full_stance = 0.0;
 
-    private: double max_iteration_full_stance = 5.0;
+    private: double max_iteration_full_stance = 10.0;
 
     private: double current_iteration_swing = 0.0;
 
-    private: double max_iteration_swing = 10.0;
+    private: double max_iteration_swing = 20.0;
 
     private: double lin_vel_x = 0.0;
 
@@ -130,11 +130,11 @@ class GaitController
 
     private: double y_0 = 0.25;
 
-    private: double dx_max = 0.1;
+    private: double dx_max = 0.0;
 
-    private: double dy_max = 0.1;
+    private: double dy_max = 0.0;
 
-    private: double dr_max = 0.5;
+    private: double dr_max = 0.0;
 
     private: double t_full = 0.1;
 
