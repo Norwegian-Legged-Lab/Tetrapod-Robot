@@ -1,13 +1,13 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(static_gait_controller)
+project(gait_controller)
 
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
   sensor_msgs
+  geometry_msgs
   angle_utils
   debug_utils
-  filter_utils
   kinematics
   eigen_conversions
 )
@@ -17,14 +17,14 @@ find_package(Eigen3 REQUIRED)
 catkin_package(
   INCLUDE_DIRS include
     ${EIGEN3_INCLUDE_DIR}
-  LIBRARIES static_gait_controller
+  LIBRARIES gait_controller
   CATKIN_DEPENDS
     roscpp
     std_msgs
     sensor_msgs
+    geometry_msgs
     angle_utils
     debug_utils
-    filter_utils
     kinematics
     eigen_conversions
 #  DEPENDS system_lib
@@ -38,35 +38,21 @@ include_directories(
 
 ## Declare a C++ library
 add_library(${PROJECT_NAME}
-  src/static_gait_controller.cpp
+  src/gait_controller.cpp
 )
 
-add_executable(static_gait_node
-  src/static_gait_node.cpp
-  src/static_gait_controller.cpp
-)
-
-target_link_libraries(${PROJECT_NAME}
-  ${catkin_LIBRARIES}
-)
-
-target_link_libraries(static_gait_node
-  ${catkin_LIBRARIES}
-)
-
-add_executable(static_gait_turning_node
-  src/static_gait_turning_node.cpp
-  src/static_gait_controller.cpp
+add_executable(gait_controller_node
+  src/gait_controller_node.cpp
+  src/gait_controller.cpp
 )
 
 target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
 )
 
-target_link_libraries(static_gait_turning_node
+target_link_libraries(gait_controller_node
   ${catkin_LIBRARIES}
 )
-
 
 install(TARGETS ${PROJECT_NAME}
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}

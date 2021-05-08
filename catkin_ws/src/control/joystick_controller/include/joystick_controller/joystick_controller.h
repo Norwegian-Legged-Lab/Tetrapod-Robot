@@ -80,6 +80,16 @@ class JoystickController
     public: bool isControllerPaused(){return pause;}
 
     public: void publishTwistCommand();
+
+    private: bool readyToChangeLinearMultiplier();
+
+    private: bool readyToChangeRotationalMultiplier();
+
+    private: double minimum_seconds_between_limit_change = 0.1;
+
+    private: double time_of_last_linear_limit_change = 0.0;
+
+    private: double time_of_last_rotational_limit_change = 0.0;
 };
 
 #endif
