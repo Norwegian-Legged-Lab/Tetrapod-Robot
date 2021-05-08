@@ -389,6 +389,8 @@ Eigen::Matrix<double, 3, 1> GaitController::calculateFullStanceFootPosition(LegI
         t_offset = t_full + t_double + current_iteration_full_stance/max_iteration_full_stance;
     }
     
+    t_offset = 2.0*(t_offset - 0.5);
+
     switch(_leg)
     {
         case fl:
@@ -423,6 +425,8 @@ Eigen::Matrix<double, 3, 1> GaitController::calculateStanceFootPosition(LegID _l
     Eigen::Matrix<double, 3, 1> foot_position;
 
     double t_offset = t_full + t_double*current_iteration_swing/max_iteration_swing;
+
+    t_offset = 2.0*(t_offset - 0.5);
 
     switch(_leg)
     {
@@ -459,6 +463,8 @@ Eigen::Matrix<double, 3, 1> GaitController::calculateSwingFootPosition(LegID _le
     Eigen::Matrix<double, 3, 1> foot_position;
 
     double t_offset = 1.0 - current_iteration_swing/max_iteration_swing;
+
+    t_offset = 2.0*(t_offset - 0.5);
 
     switch(_leg)
     {
