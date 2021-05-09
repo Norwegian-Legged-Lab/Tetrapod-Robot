@@ -120,7 +120,7 @@ void GaitControl::PositionTrajectoryControl()
         desired_velocity_in_W = Eigen::Matrix<double, 3, 1>::Constant(0);
 
         // Update Jacobian
-        J = this->kinematics.GetTranslationJacobianInW(Kinematics::TetrapodLeg::frontLeft,
+        J = this->kinematics.GetTranslationJacobianInW(Kinematics::LegType::frontLeft,
                                                        this->genCoord);
 
         // Calculate pseudoInverse
@@ -279,7 +279,7 @@ void GaitControl::NumericalInverseKinematicsControl(const Eigen::Matrix<double, 
 
     do 
     {
-        J = this->kinematics.GetSingleLegTranslationJacobianInB(Kinematics::TetrapodLeg::frontLeft,
+        J = this->kinematics.GetSingleLegTranslationJacobianInB(Kinematics::LegType::frontLeft,
                                                                 this->genCoord.block<12,1>(6,0));
 
         if (!kindr::pseudoInverse(J, pinvJ))

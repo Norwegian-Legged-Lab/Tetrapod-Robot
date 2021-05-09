@@ -5,7 +5,7 @@
 
 #include <Eigen/Core>
 
-#include <math_utils/math_utils.h>
+#include <math_utils/Core>
 
 #include <kinematics/kinematics.h>
 
@@ -248,10 +248,10 @@ void testPositionBaseToFoot()
     
     FootstepPositions f_pos;
 
-    f_pos(0) = K.GetPositionBaseToFootInB(Kinematics::TetrapodLeg::frontLeft, q);
-    f_pos(1) = K.GetPositionBaseToFootInB(Kinematics::TetrapodLeg::frontRight, q);
-    f_pos(2) = K.GetPositionBaseToFootInB(Kinematics::TetrapodLeg::rearLeft, q);
-    f_pos(3) = K.GetPositionBaseToFootInB(Kinematics::TetrapodLeg::rearRight, q);
+    f_pos(0) = K.GetPositionBaseToFootInB(Kinematics::LegType::frontLeft, q);
+    f_pos(1) = K.GetPositionBaseToFootInB(Kinematics::LegType::frontRight, q);
+    f_pos(2) = K.GetPositionBaseToFootInB(Kinematics::LegType::rearLeft, q);
+    f_pos(3) = K.GetPositionBaseToFootInB(Kinematics::LegType::rearRight, q);
 
     debug_utils::printFootstepPositions(f_pos);
 }
@@ -281,10 +281,10 @@ void testTranslationJacobian()
          0*math_utils::degToRad(-20), // RR-theta_hp
          0*math_utils::degToRad(90); // RR-theta_kp
 
-    Eigen::Matrix<double, 3, 18> J_fl = K.GetTranslationJacobianInW(Kinematics::TetrapodLeg::frontLeft, q);
-    Eigen::Matrix<double, 3, 18> J_fr = K.GetTranslationJacobianInW(Kinematics::TetrapodLeg::frontRight, q);
-    Eigen::Matrix<double, 3, 18> J_rl = K.GetTranslationJacobianInW(Kinematics::TetrapodLeg::rearLeft, q);
-    Eigen::Matrix<double, 3, 18> J_rr = K.GetTranslationJacobianInW(Kinematics::TetrapodLeg::rearRight, q);
+    Eigen::Matrix<double, 3, 18> J_fl = K.GetTranslationJacobianInW(Kinematics::LegType::frontLeft, q);
+    Eigen::Matrix<double, 3, 18> J_fr = K.GetTranslationJacobianInW(Kinematics::LegType::frontRight, q);
+    Eigen::Matrix<double, 3, 18> J_rl = K.GetTranslationJacobianInW(Kinematics::LegType::rearLeft, q);
+    Eigen::Matrix<double, 3, 18> J_rr = K.GetTranslationJacobianInW(Kinematics::LegType::rearRight, q);
 
     ROS_INFO_STREAM("Translation Jacobian front left, J_P: \n" << J_fl);
     ROS_INFO_STREAM("Translation Jacobian front right, J_P: \n" << J_fr);
@@ -318,10 +318,10 @@ void testRotationJacobian()
          0*math_utils::degToRad(-20), // RR-theta_hp
          0*math_utils::degToRad(90); // RR-theta_kp
 
-    Eigen::Matrix<double, 3, 18> J_fl = K.GetRotationJacobianInW(Kinematics::TetrapodLeg::frontLeft, q);
-    Eigen::Matrix<double, 3, 18> J_fr = K.GetRotationJacobianInW(Kinematics::TetrapodLeg::frontRight, q);
-    Eigen::Matrix<double, 3, 18> J_rl = K.GetRotationJacobianInW(Kinematics::TetrapodLeg::rearLeft, q);
-    Eigen::Matrix<double, 3, 18> J_rr = K.GetRotationJacobianInW(Kinematics::TetrapodLeg::rearRight, q);
+    Eigen::Matrix<double, 3, 18> J_fl = K.GetRotationJacobianInW(Kinematics::LegType::frontLeft, q);
+    Eigen::Matrix<double, 3, 18> J_fr = K.GetRotationJacobianInW(Kinematics::LegType::frontRight, q);
+    Eigen::Matrix<double, 3, 18> J_rl = K.GetRotationJacobianInW(Kinematics::LegType::rearLeft, q);
+    Eigen::Matrix<double, 3, 18> J_rr = K.GetRotationJacobianInW(Kinematics::LegType::rearRight, q);
 
     ROS_INFO_STREAM("Rotation Jacobian front left, J_R: \n" << J_fl);
     ROS_INFO_STREAM("Rotation Jacobian front right, J_R: \n" << J_fr);
@@ -354,15 +354,56 @@ void testJacobian()
          0*math_utils::degToRad(-20), // RR-theta_hp
          0*math_utils::degToRad(90); // RR-theta_kp
 
-    Eigen::Matrix<double, 6, 18> J_fl = K.GetJacobianInW(Kinematics::TetrapodLeg::frontLeft, q);
-    Eigen::Matrix<double, 6, 18> J_fr = K.GetJacobianInW(Kinematics::TetrapodLeg::frontRight, q);
-    Eigen::Matrix<double, 6, 18> J_rl = K.GetJacobianInW(Kinematics::TetrapodLeg::rearLeft, q);
-    Eigen::Matrix<double, 6, 18> J_rr = K.GetJacobianInW(Kinematics::TetrapodLeg::rearRight, q);
+    Eigen::Matrix<double, 6, 18> J_fl = K.GetJacobianInW(Kinematics::LegType::frontLeft, q);
+    Eigen::Matrix<double, 6, 18> J_fr = K.GetJacobianInW(Kinematics::LegType::frontRight, q);
+    Eigen::Matrix<double, 6, 18> J_rl = K.GetJacobianInW(Kinematics::LegType::rearLeft, q);
+    Eigen::Matrix<double, 6, 18> J_rr = K.GetJacobianInW(Kinematics::LegType::rearRight, q);
 
     ROS_INFO_STREAM("Jacobian front left, J: \n" << J_fl);
     ROS_INFO_STREAM("Jacobian front right, J: \n" << J_fr);
     ROS_INFO_STREAM("Jacobian rear left, J: \n" << J_rl);
     ROS_INFO_STREAM("Jacobian rear right, J: \n" << J_rr);
+}
+
+void testMathPseudoInverse()
+{
+	Eigen::Matrix<double, 2, 3> J;
+	J << 0.6339, 0.6941, 0.6122,
+			 0.7077, 0.3663, 0.1599;
+
+    Eigen::Matrix<double, 3, 2> pinvJ;
+    Eigen::Matrix<double, 3, 2> dPinvJ;
+
+    kindr::pseudoInverse(J, pinvJ);
+    math_utils::dampedPseudoInverse(J, dPinvJ, 0.1);
+
+	Eigen::Matrix<double, 3, 2> A;
+	A << 0.3862, 0.2766,
+			 0.3341, 0.0151,
+			 0.4047, 0.3581;
+    
+    Eigen::Matrix<double, 2, 3> pinvA;
+    Eigen::Matrix<double, 2, 3> dPinvA;
+
+    kindr::pseudoInverse(A, pinvA);
+    math_utils::dampedPseudoInverse(A, dPinvA, 0.1);
+
+	Eigen::Matrix2d B;
+    B << 	61.6806, 345.8256,
+				176.1109,  605.4883;
+
+    Eigen::Matrix2d pinvB;
+    Eigen::Matrix2d dPinvB;
+
+    kindr::pseudoInverse(B, pinvB);
+    math_utils::dampedPseudoInverse(B, dPinvB, 0.1);
+
+    ROS_INFO_STREAM("kindr pinvJ: \n" << pinvJ);
+    ROS_INFO_STREAM("angle_utils dPinvJ: \n" << dPinvJ);
+    ROS_INFO_STREAM("kindr pinvA: \n" << pinvA);
+    ROS_INFO_STREAM("angle_utils dPinvA: \n" << dPinvA);
+    ROS_INFO_STREAM("kindr pinvB: \n" << pinvB);
+    ROS_INFO_STREAM("angle_utils dPinvB: \n" << dPinvB);
 }
 
 int main(int argc, char **argv)
@@ -389,8 +430,9 @@ int main(int argc, char **argv)
     //testTranslationJacobian();
     //ROS_INFO_STREAM("--------------- Test rotationJacobian --------------");
     //testRotationJacobian();
-    ROS_INFO_STREAM("--------------- Test Jacobian --------------");
-    testJacobian();
+    //ROS_INFO_STREAM("--------------- Test Jacobian --------------");
+    //testJacobian();
+    testMathPseudoInverse();
 
     ros::spin();
     return 0;
