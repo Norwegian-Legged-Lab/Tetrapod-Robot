@@ -1,8 +1,8 @@
 /*******************************************************************/
 /*    AUTHOR: Paal Arthur S. Thorseth                              */
 /*    ORGN:   Dept of Eng Cybernetics, NTNU Trondheim              */
-/*    FILE:   angle_utils.cpp                                      */
-/*    DATE:   Feb 9, 2021                                          */
+/*    FILE:   Core                                                 */
+/*    DATE:   May 9, 2021                                          */
 /*                                                                 */
 /* Copyright (C) 2021 Paal Arthur S. Thorseth,                     */
 /*                    Adrian B. Ghansah                            */
@@ -24,62 +24,7 @@
 /*                                                                 */
 /*******************************************************************/
 
+#pragma once
+
 #include <math_utils/angle_utils.h>
-
-namespace math_utils
-{   
-
-// Convert deg to rad
-double degToRad(const double &_deg)
-{
-    return (_deg/180.0) * PI;
-}
-
-// Convert rad to deg
-double radToDeg(const double &_rad)
-{
-    return (_rad/PI) * 180;
-}
-
-// Wrap angle to the interval [-pi, pi)
-double wrapAngleToPi(const double &_rad)
-{
-    double ret = std::fmod(_rad + PI, 2 * PI);
-
-    if (ret < 0)
-    {
-        ret += 2 * PI;
-    }
-
-    return ret - PI;
-}
-
-
-// Wrap angle to the interval [0, 2pi)
-double wrapAngleTo2Pi(const double &_rad)
-{
-    double ret = std::fmod(_rad, 2 * PI);
-
-    if (ret < 0)
-    {
-        ret += 2 * PI;
-    }
-
-    return ret;
-}
-
-// Angle difference 
-double angleDiff(const double &_ang1, const double &_ang2)
-{
-    double diff = std::fmod(_ang2 - _ang1 + PI, 2 * PI);
-
-    if (diff < 0)
-    {
-        diff += 2*PI;
-    }
-
-    return diff - PI;
-}
-
-
-}// namespace angle_utils
+#include <math_utils/linalg_utils.h>

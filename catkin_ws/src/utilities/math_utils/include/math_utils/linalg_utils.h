@@ -33,7 +33,7 @@
 #include <Eigen/Core>
 #include <Eigen/SVD>
 
-namespace linalg_utils
+namespace math_utils
 {
     /// \brief The dampedPseudoInverse function calculates the damped
     /// pseudo-inverse of a matrix using SVD.
@@ -87,4 +87,4 @@ namespace linalg_utils
         return true;
     }
 
-} // namespace linalg_utils
+} // namespace math_utils
