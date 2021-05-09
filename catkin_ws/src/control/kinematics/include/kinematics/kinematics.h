@@ -146,11 +146,15 @@ class Kinematics
                                     
     /// \brief The GetSingleLegTranslationJacobianInB function returns the 
     /// Jacobian matrix for end-effector linear velocities in body for the leg state.
+    /// \param[in] _offset Bool indicating whether roll offset
+    /// should be set to -90 or 90 degrees. True indicates roll offset
+    /// of 90 deg, false indicates roll offset of -90 degrees.
     /// \param[in] _theta_hy Hip yaw angle.
     /// \param[in] _theta_hp Hip pitch angle.
     /// \param[in] _theta_kp Knee pitch angle.
     /// \return Returns the Jacobian Matrix relating end-effector velocities to joint velocities.
-    public: Eigen::Matrix<double, 3, 3> GetSingleLegTranslationJacobianInB(const double &_theta_hy, 
+    public: Eigen::Matrix<double, 3, 3> GetSingleLegTranslationJacobianInB(const bool &_offset,
+                                                                           const double &_theta_hy, 
                                                                            const double &_theta_hp, 
                                                                            const double &_theta_kp);
 
@@ -162,6 +166,74 @@ class Kinematics
     public: Eigen::Matrix<double, 3, 12> GetSingleLegTranslationJacobianInB(const TetrapodLeg &_leg, 
                                                                             const Eigen::Matrix<double, 12, 1> &_q_r);
 
+    /// \brief The GetSingleLegTranslationLegJacobianInB function returns the 
+    /// Jacobian matrix for the lower leg CoM linear velocities in body for the leg state.
+    /// \param[in] _offset Bool indicating whether roll offset
+    /// should be set to -90 or 90 degrees. True indicates roll offset
+    /// of 90 deg, false indicates roll offset of -90 degrees.
+    /// \param[in] _theta_hy Hip yaw angle.
+    /// \param[in] _theta_hp Hip pitch angle.
+    /// \param[in] _theta_kp Knee pitch angle.
+    /// \return Returns the Jacobian Matrix relating the lower leg CoM velocities to joint velocities.
+    public: Eigen::Matrix<double, 3, 3> GetSingleLegTranslationLegJacobianInB(const bool &_offset,
+                                                                           const double &_theta_hy, 
+                                                                           const double &_theta_hp, 
+                                                                           const double &_theta_kp);
+
+    /// \brief The GetSingleLegTranslationLegJacobianInB function returns the
+    /// Jacobian matrix for the lower leg CoM linear velocities in body for the joint state.
+    /// \param[in] _leg Tetrapod leg
+    /// \param[in] _q_r Joint coordinates
+    /// \return Returns the Jacobian Matrix relating the lower leg CoM velocities to joint velocities.
+    public: Eigen::Matrix<double, 3, 12> GetSingleLegTranslationLegJacobianInB(const TetrapodLeg &_leg, 
+                                                                            const Eigen::Matrix<double, 12, 1> &_q_r);
+
+
+
+
+    /// \brief The GetSingleLegTranslationHipJacobianInB function returns the 
+    /// Jacobian matrix for the hip CoM linear velocities in body for the leg state.
+    /// \param[in] _offset Bool indicating whether roll offset
+    /// should be set to -90 or 90 degrees. True indicates roll offset
+    /// of 90 deg, false indicates roll offset of -90 degrees.
+    /// \param[in] _theta_hy Hip yaw angle.
+    /// \param[in] _theta_hp Hip pitch angle.
+    /// \param[in] _theta_kp Knee pitch angle.
+    /// \return Returns the Jacobian Matrix relating the hip CoM velocities to joint velocities.
+    public: Eigen::Matrix<double, 3, 3> GetSingleLegTranslationHipJacobianInB(const bool &_offset,
+                                                                              const double &_theta_hy, 
+                                                                              const double &_theta_hp, 
+                                                                              const double &_theta_kp);
+
+    /// \brief The GetSingleLegTranslationHipJacobianInB function returns the
+    /// Jacobian matrix for the hip linear velocities in body for the joint state.
+    /// \param[in] _leg Tetrapod leg
+    /// \param[in] _q_r Joint coordinates
+    /// \return Returns the Jacobian Matrix relating the hip CoM velocities to joint velocities.
+    public: Eigen::Matrix<double, 3, 12> GetSingleLegTranslationHipJacobianInB(const TetrapodLeg &_leg, 
+                                                                               const Eigen::Matrix<double, 12, 1> &_q_r);
+
+    /// \brief The GetSingleLegTranslationShoulderJacobianInB function returns the 
+    /// Jacobian matrix for the shoulder CoM linear velocities in body for the leg state.
+    /// \param[in] _offset Bool indicating whether roll offset
+    /// should be set to -90 or 90 degrees. True indicates roll offset
+    /// of 90 deg, false indicates roll offset of -90 degrees.
+    /// \param[in] _theta_hy Hip yaw angle.
+    /// \param[in] _theta_hp Hip pitch angle.
+    /// \param[in] _theta_kp Knee pitch angle.
+    /// \return Returns the Jacobian Matrix relating the shoulder CoM velocities to joint velocities.
+    public: Eigen::Matrix<double, 3, 3> GetSingleLegTranslationShoulderJacobianInB(const bool &_offset,
+                                                                                   const double &_theta_hy, 
+                                                                                   const double &_theta_hp, 
+                                                                                   const double &_theta_kp);
+
+    /// \brief The GetSingleLegTranslationShoulderJacobianInB function returns the
+    /// Jacobian matrix for the shoulder linear velocities in body for the joint state.
+    /// \param[in] _leg Tetrapod leg
+    /// \param[in] _q_r Joint coordinates
+    /// \return Returns the Jacobian Matrix relating the shoulder CoM velocities to joint velocities.
+    public: Eigen::Matrix<double, 3, 12> GetSingleLegTranslationShoulderJacobianInB(const TetrapodLeg &_leg, 
+                                                                                    const Eigen::Matrix<double, 12, 1> &_q_r);
 
     /// \brief The GetTranslationJacobianInW function returns the
     /// spatial translation Jacobian mapping generalized velocities
@@ -251,6 +323,15 @@ class Kinematics
 
     /// \brief Leg (Fibula & Tibia) link length
     private: double L3;
+
+    /// \brief Shoulder yaw joint to shoulder CoM length
+    private: double LC1;
+
+    /// \brief Hip pitch joint to thigh CoM length
+    private: double LC2;
+
+    /// \brief Knee pitch joint to leg CoM length
+    private: double LC3;
 
     /// \brief Front Left offset
     private: bool flOffset;

@@ -405,9 +405,95 @@ TransMatrix Kinematics::GetDhTransform(const double &_a,
 }
 
 // Leg state single leg translation Jacobian in body frame
-Eigen::Matrix<double, 3, 3> Kinematics::GetSingleLegTranslationJacobianInB(const double &_theta_hy, 
+Eigen::Matrix<double, 3, 3> Kinematics::GetSingleLegTranslationJacobianInB(const bool &_offset,
+                                                                           const double &_theta_hy, 
                                                                            const double &_theta_hp, 
                                                                            const double &_theta_kp)
+{
+    Eigen::Matrix<double, 3, 3> J;
+
+    /*
+    double c1;
+    double s1;
+
+    double c2;
+    double s2;
+
+    double c23;
+    double s23;
+
+    if (_offset)
+    {
+        c1 = std::cos(_theta_hy);
+        s1 = std::sin(_theta_hy);
+
+        c2 = std::cos(_theta_hp);
+        s2 = std::sin(_theta_hp);
+
+        c23 = std::cos(_theta_hp + _theta_kp);
+        s23 = std::sin(_theta_hp + _theta_kp);
+    }
+    else
+    {
+        c1 = std::cos(_theta_hy);
+        s1 = std::sin(_theta_hy);
+
+        c2 = std::cos(-_theta_hp);
+        s2 = std::sin(-_theta_hp);
+
+        c23 = std::cos(-_theta_hp - _theta_kp);
+        s23 = std::sin(-_theta_hp - _theta_kp);
+    }
+
+    J(0,0) = -(this->L1 + this->L2 * c2 + this->L3 * c23) * s1;
+    J(1,0) = (this->L1 + this->L2 * c2 + this->L3 * c23) * c1;
+    J(2,0) = 0;
+
+    J(0,1) = (- this->L2 * s2 - this->L3 * s23) * c1;
+    J(1,1) = (- this->L2 * s2 - this->L3 * s23) * s1;
+    J(2,1) = - this->L2 * c2 - this->L3 * c23;
+
+    J(0,2) = (- this->L3 * s23) * c1;
+    J(1,2) = (- this->L3 * s23) * s1;
+    J(2,2) = - this->L3 * c23;
+    */
+
+    double c1 = std::cos(_theta_hy);
+    double s1 = std::sin(_theta_hy);
+
+    double c2 = std::cos(_theta_hp);
+    double s2 = std::sin(_theta_hp);
+
+    double c23 = std::cos(_theta_hp + _theta_kp);
+    double s23 = std::sin(_theta_hp + _theta_kp);
+
+    J(0, 0) = (this->L1 + this->L2*c2 + this->L3*c23)*(-s1);
+    J(1, 0) = (this->L1 + this->L2*c2 + this->L3*c23)*( c1);
+    J(2, 0) = 0.0;
+
+    J(0, 1) = (-this->L2*s2 - this->L3*s23)*c1;
+    J(1, 1) = (-this->L2*s2 - this->L3*s23)*s1;
+    J(2, 1) = -this->L2*c2 -this->L3*c23;
+
+    J(0, 2) = -this->L3*s23*c1;
+    J(1, 2) = -this->L3*s23*s1;
+    J(2, 2) = -this->L3*c23;
+
+    // For front right and rear left foot positive angles causes increase in height
+    if(_offset)
+    {
+        J(2, 1) = - J(2, 1); 
+        J(2, 2) = - J(2, 2);
+    }
+
+    return J;
+}
+
+// Leg state single leg translation Jacobian in body frame
+Eigen::Matrix<double, 3, 3> Kinematics::GetSingleLegTranslationLegJacobianInB(const bool &_offset,
+                                                                              const double &_theta_hy, 
+                                                                              const double &_theta_hp, 
+                                                                              const double &_theta_kp)
 {
     Eigen::Matrix<double, 3, 3> J;
 
@@ -420,17 +506,72 @@ Eigen::Matrix<double, 3, 3> Kinematics::GetSingleLegTranslationJacobianInB(const
     double c23 = std::cos(_theta_hp + _theta_kp);
     double s23 = std::sin(_theta_hp + _theta_kp);
 
-    J(0,0) = -(this->L1 + this->L2 * c2 + this->L3 * c23) * s1;
-    J(1,0) = (this->L1 + this->L2 * c2 + this->L3 * c23) * c1;
-    J(2,0) = 0;
+    J(0, 0) = (this->L1 + this->L2*c2 + this->LC3*c23)*(-s1);
+    J(1, 0) = (this->L1 + this->L2*c2 + this->LC3*c23)*( c1);
+    J(2, 0) = 0.0;
 
-    J(0,1) = (- this->L2 * s2 - this->L3 * s23) * c1;
-    J(1,1) = (- this->L2 * s2 - this->L3 * s23) * s1;
-    J(2,1) = this->L2 * c2 + this->L3 * c23;
+    J(0, 1) = (-this->L2*s2 - this->LC3*s23)*c1;
+    J(1, 1) = (-this->L2*s2 - this->LC3*s23)*s1;
+    J(2, 1) = -this->L2*c2 -this->LC3*c23;
 
-    J(0,2) = (- this->L3 * s23) * c1;
-    J(1,2) = (- this->L3 * s23) * s1;
-    J(2,2) = this->L3 * c23;
+    J(0, 2) = -this->LC3*s23*c1;
+    J(1, 2) = -this->LC3*s23*s1;
+    J(2, 2) = -this->LC3*c23;
+
+    // For front right and rear left foot positive angles causes increase in height
+    if(_offset)
+    {
+        J(2, 1) = - J(2, 1); 
+        J(2, 2) = - J(2, 2);
+    }
+
+    return J;
+}
+
+// Leg state single leg translation Jacobian in body frame
+Eigen::Matrix<double, 3, 3> Kinematics::GetSingleLegTranslationHipJacobianInB(const bool &_offset,
+                                                                              const double &_theta_hy, 
+                                                                              const double &_theta_hp, 
+                                                                              const double &_theta_kp)
+{
+    Eigen::Matrix<double, 3, 3> J = Eigen::Matrix<double, 3, 3>::Zero();
+
+    double c1 = std::cos(_theta_hy);
+    double s1 = std::sin(_theta_hy);
+
+    double c2 = std::cos(_theta_hp);
+    double s2 = std::sin(_theta_hp);
+
+    J(0, 0) = (this->L1 + this->LC2*c2)*(-s1);
+    J(1, 0) = (this->L1 + this->LC2*c2)*( c1);
+    J(2, 0) = 0.0;
+
+    J(0, 1) = (-this->LC2*s2)*c1;
+    J(1, 1) = (-this->LC2*s2)*s1;
+    J(2, 1) = -this->LC2*c2;
+
+    // For front right and rear left foot positive angles causes increase in height
+    if(_offset)
+    {
+        J(2, 1) = - J(2, 1); 
+    }
+
+    return J;
+}
+
+// Leg state single leg translation Jacobian in body frame
+Eigen::Matrix<double, 3, 3> Kinematics::GetSingleLegTranslationShoulderJacobianInB(const bool &_offset,
+                                                                              const double &_theta_hy, 
+                                                                              const double &_theta_hp, 
+                                                                              const double &_theta_kp)
+{
+    Eigen::Matrix<double, 3, 3> J = Eigen::Matrix<double, 3, 3>::Zero();
+
+    double c1 = std::cos(_theta_hy);
+    double s1 = std::sin(_theta_hy);
+
+    J(0, 0) = (this->LC1)*(-s1);
+    J(1, 0) = (this->LC1)*( c1);
 
     return J;
 }
@@ -443,25 +584,29 @@ Eigen::Matrix<double, 3, 12> Kinematics::GetSingleLegTranslationJacobianInB(cons
 
     if (_leg == TetrapodLeg::frontLeft)
     {
-        J.block<3, 3>(0,0) = this->GetSingleLegTranslationJacobianInB(_q_r(0), 
+        J.block<3, 3>(0,0) = this->GetSingleLegTranslationJacobianInB(this->flOffset,
+                                                                      _q_r(0), 
                                                                       _q_r(1), 
                                                                       _q_r(2));
     }
     else if (_leg == TetrapodLeg::frontRight)
     {
-        J.block<3, 3>(0,3) = this->GetSingleLegTranslationJacobianInB(_q_r(3), 
+        J.block<3, 3>(0,3) = this->GetSingleLegTranslationJacobianInB(this->frOffset,
+                                                                      _q_r(3), 
                                                                       _q_r(4), 
                                                                       _q_r(5));
     }
     else if (_leg == TetrapodLeg::rearLeft)
     {
-        J.block<3, 3>(0,6) = this->GetSingleLegTranslationJacobianInB(_q_r(6), 
+        J.block<3, 3>(0,6) = this->GetSingleLegTranslationJacobianInB(this->rlOffset,
+                                                                      _q_r(6), 
                                                                       _q_r(7), 
                                                                       _q_r(8));
     }
     else if (_leg == TetrapodLeg::rearRight)
     {
-        J.block<3, 3>(0,9) = this->GetSingleLegTranslationJacobianInB(_q_r(9), 
+        J.block<3, 3>(0,9) = this->GetSingleLegTranslationJacobianInB(this-rrOffset,
+                                                                      _q_r(9), 
                                                                       _q_r(10), 
                                                                       _q_r(11));
     }
@@ -472,6 +617,134 @@ Eigen::Matrix<double, 3, 12> Kinematics::GetSingleLegTranslationJacobianInB(cons
 
     return J;
 }
+
+
+// Joint state single leg translation shoulder Jacobian in body frame
+Eigen::Matrix<double, 3, 12> Kinematics::GetSingleLegTranslationShoulderJacobianInB(const TetrapodLeg &_leg,
+                                                                                      const Eigen::Matrix<double, 12, 1> &_q_r)
+{
+    Eigen::Matrix<double, 3, 12> J = Eigen::Matrix<double, 3, 12>::Zero();
+
+    if (_leg == TetrapodLeg::frontLeft)
+    {
+        J.block<3, 3>(0, 0) = this->GetSingleLegTranslationShoulderJacobianInB(this->flOffset,
+                                                                               _q_r(0),
+                                                                               _q_r(1),
+                                                                               _q_r(2));
+    }
+    else if (_leg == TetrapodLeg::frontRight)
+    {
+        J.block<3, 3>(0, 3) = this->GetSingleLegTranslationShoulderJacobianInB(this->frOffset,
+                                                                               _q_r(3),
+                                                                               _q_r(4),
+                                                                               _q_r(5));
+    }
+    else if (_leg == TetrapodLeg::rearLeft)
+    {
+        J.block<3, 3>(0, 6) = this->GetSingleLegTranslationShoulderJacobianInB(this->rlOffset,
+                                                                               _q_r(6),
+                                                                               _q_r(7),
+                                                                               _q_r(8));
+    }
+    else if (_leg == TetrapodLeg::rearRight)
+    {
+        J.block<3, 3>(0, 9) = this->GetSingleLegTranslationShoulderJacobianInB(this->rrOffset,
+                                                                               _q_r(9),
+                                                                               _q_r(10),
+                                                                               _q_r(11));
+    }
+    else
+    {
+        ROS_ERROR_STREAM("Leg type could not be determined when finding SingeLegTranslationShoulderJacobianInB!");
+    }
+
+    return J;
+}
+
+// Joint state single leg translation hip Jacobian in body frame
+Eigen::Matrix<double, 3, 12> Kinematics::GetSingleLegTranslationLegJacobianInB(const TetrapodLeg &_leg,
+                                                                                      const Eigen::Matrix<double, 12, 1> &_q_r)
+{
+    Eigen::Matrix<double, 3, 12> J = Eigen::Matrix<double, 3, 12>::Zero();
+
+    if (_leg == TetrapodLeg::frontLeft)
+    {
+        J.block<3, 3>(0, 0) = this->GetSingleLegTranslationLegJacobianInB(this->flOffset,
+                                                                               _q_r(0),
+                                                                               _q_r(1),
+                                                                               _q_r(2));
+    }
+    else if (_leg == TetrapodLeg::frontRight)
+    {
+        J.block<3, 3>(0, 3) = this->GetSingleLegTranslationLegJacobianInB(this->frOffset,
+                                                                               _q_r(3),
+                                                                               _q_r(4),
+                                                                               _q_r(5));
+    }
+    else if (_leg == TetrapodLeg::frontRight)
+    {
+        J.block<3, 3>(0, 6) = this->GetSingleLegTranslationLegJacobianInB(this->rlOffset,
+                                                                               _q_r(6),
+                                                                               _q_r(7),
+                                                                               _q_r(8));
+    }
+    else if (_leg == TetrapodLeg::frontRight)
+    {
+        J.block<3, 3>(0, 9) = this->GetSingleLegTranslationLegJacobianInB(this->rrOffset,
+                                                                               _q_r(9),
+                                                                               _q_r(10),
+                                                                               _q_r(11));
+    }
+    else
+    {
+        ROS_ERROR_STREAM("Leg type could not be determined when finding SingeLegTranslationLegJacobianInB!");
+    }
+
+    return J;
+}
+
+// Joint state single leg translational  Jacobian in body frame
+Eigen::Matrix<double, 3, 12> Kinematics::GetSingleLegTranslationalHipJacobianInB(const TetrapodLeg &_leg,
+                                                                                      const Eigen::Matrix<double, 12, 1> &_q_r)
+{
+    Eigen::Matrix<double, 3, 12> J = Eigen::Matrix<double, 3, 12>::Zero();
+
+    if (_leg == TetrapodLeg::frontLeft)
+    {
+        J.block<3, 3>(0, 0) = this->GetSingleLegTranslationalHipJacobianInB(this->flOffset,
+                                                                               _q_r(0),
+                                                                               _q_r(1),
+                                                                               _q_r(2));
+    }
+    else if (_leg == TetrapodLeg::frontRight)
+    {
+        J.block<3, 3>(0, 3) = this->GetSingleLegTranslationalHipJacobianInB(this->frOffset,
+                                                                               _q_r(3),
+                                                                               _q_r(4),
+                                                                               _q_r(5));
+    }
+    else if (_leg == TetrapodLeg::frontRight)
+    {
+        J.block<3, 3>(0, 6) = this->GetSingleLegTranslationalHipJacobianInB(this->rlOffset,
+                                                                               _q_r(6),
+                                                                               _q_r(7),
+                                                                               _q_r(8));
+    }
+    else if (_leg == TetrapodLeg::frontRight)
+    {
+        J.block<3, 3>(0, 9) = this->GetSingleLegTranslationalHipJacobianInB(this->rrOffset,
+                                                                               _q_r(9),
+                                                                               _q_r(10),
+                                                                               _q_r(11));
+    }
+    else
+    {
+        ROS_ERROR_STREAM("Leg type could not be determined when finding SingeLegTranslationHipJacobianInB!");
+    }
+
+    return J;
+}
+
 
 // Full state single leg translation Jacobian in world frame
 Eigen::Matrix<double, 3, 18> Kinematics::GetTranslationJacobianInW(const TetrapodLeg &_leg,
