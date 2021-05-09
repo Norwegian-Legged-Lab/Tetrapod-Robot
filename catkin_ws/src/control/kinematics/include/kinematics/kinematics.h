@@ -49,10 +49,10 @@ using TransMatrix = kindr::HomTransformMatrixD;
 class Kinematics
 {
     /// \brief Tetrapod leg enumerator
-    public: enum LegType { frontLeft = 1, frontRight = 2, rearLeft = 3, rearRight = 4 };
+    public: enum LegType { frontLeft = 1, frontRight = 2, rearLeft = 3, rearRight = 4, NONE };
 
     /// \brief Leg enumerator
-    public: enum BodyType { base = 1, femur = 2, fibula = 3 };
+    public: enum BodyType { base = 1, shoulder = 2, femur = 3, fibula = 4 };
 
     /// \brief Constructor
     public: Kinematics();

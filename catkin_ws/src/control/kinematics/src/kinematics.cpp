@@ -645,6 +645,174 @@ Eigen::Matrix<double, 6, 18> Kinematics::GetJacobianInW(const LegType &_leg,
     return J;
 }
 
+// Single body mass matrix
+Eigen::Matrix<double, 18, 18> Kinematics::GetSingleBodyMassMatrix(const LegType &_leg,
+                                                                  const BodyType &_body,
+                                                                  const Eigen::Matrix<double, 18, 1> &_q)
+{
+    Eigen::Matrix<double, 3, 18> J_COM;  // Translation Jacobian about COM of the body
+    Eigen::Matrix<double, 3, 18> J_R;    // Rotation Jacobian for the body
+
+    Eigen::Matrix<double, 3, 3> I_COM;   // Inertia matrix for the COM of the body
+
+    double m; // Mass of the body
+
+    // TODO Implement functionality here
+
+
+
+    return m * J_COM.transpose() * J_COM + J_R.transpose() * I_COM * J_R;
+}
+
+// Mass matrix
+Eigen::Matrix<double, 18, 18> Kinematics::GetMassMatrix(const Eigen::Matrix<double, 18, 1> &_q)
+{
+    Eigen::Matrix<double, 18, 18> M = Eigen::Matrix<double, 18, 18>::Constant(0); // Mass matrix
+
+
+    static const std::vector<BodyType> bodies{ BodyType::base,
+                                               BodyType::shoulder,
+                                               BodyType::femur,
+                                               BodyType::fibula };
+
+    static const std::vector<LegType> legs{ LegType::frontLeft, 
+                                            LegType::frontRight,
+                                            LegType::rearLeft,
+                                            LegType::rearRight };
+
+    for (const auto body : bodies)
+    {
+        if (body == BodyType::base)
+        {
+            M += this->GetSingleBodyMassMatrix(LegType::NONE, body, _q);
+        }
+        else
+        {
+            for (const auto leg : legs)
+            {
+                M += this->GetSingleBodyMassMatrix(leg, body, _q);
+            }
+        }
+    }
+
+    return M;
+}
+
+// Single body coriolis and centrifugal terms
+Eigen::Matrix<double, 18, 1> Kinematics::GetSingleBodyCoriolisAndCentrifugalTerms(const LegType &_leg,
+                                                                                  const BodyType &_body,
+                                                                                  const Eigen::Matrix<double, 18, 1> &_q,
+                                                                                  const Eigen::Matrix<double, 18, 1> &_u)
+{
+    Eigen::Matrix<double, 3, 18> J_COM;  // Translation Jacobian about COM of the body
+    Eigen::Matrix<double, 3, 18> J_R;    // Rotation Jacobian for the body
+
+    Eigen::Matrix<double, 3, 18> dot_J_COM;  // Time derivative of translation Jacobian about COM of the body
+    Eigen::Matrix<double, 3, 18> dot_J_R;    // Time derivative of rotation Jacobian for the body
+
+    Eigen::Matrix<double, 3, 3> I_COM;   // Inertia matrix for the COM of the body
+
+    Eigen::Matrix<double, 3, 1> omega_inW = J_R * _u;
+
+    double m; // Mass of the body
+
+    // TODO Implement
+
+
+
+
+
+    return m * J_COM.transpose() * dot_J_COM * _u + J_R.transpose() * ( I_COM * dot_J_R * _u + kindr::getSkewMatrixFromVector(omega_inW) * I_COM * omega_inW);
+}
+
+// Coriolis and centrifugal terms
+Eigen::Matrix<double, 18, 1> Kinematics::GetCoriolisAndCentrifugalTerms(const Eigen::Matrix<double, 18, 1> &_q,
+                                                                        const Eigen::Matrix<double, 18, 1> &_u)
+{
+    Eigen::Matrix<double, 18, 1> b = Eigen::Matrix<double, 18, 1>::Constant(0); // Coriolis and centrifugal terms. 
+
+
+    static const std::vector<BodyType> bodies{ BodyType::base,
+                                               BodyType::shoulder,
+                                               BodyType::femur,
+                                               BodyType::fibula };
+
+    static const std::vector<LegType> legs{ LegType::frontLeft, 
+                                            LegType::frontRight,
+                                            LegType::rearLeft,
+                                            LegType::rearRight };
+
+    for (const auto body : bodies)
+    {
+        if (body == BodyType::base)
+        {
+            b += this->GetSingleBodyCoriolisAndCentrifugalTerms(LegType::NONE, body, _q, _u);
+        }
+        else
+        {
+            for (const auto leg : legs)
+            {
+                b += this->GetSingleBodyCoriolisAndCentrifugalTerms(leg, body, _q, _u);
+            }
+        }
+    }
+
+    return b;
+}
+
+// Single body gravitational terms
+Eigen::Matrix<double, 18, 1> Kinematics::GetSingleBodyGravitationalTerms(const LegType &_leg,
+                                                                         const BodyType &_body,
+                                                                         const Eigen::Matrix<double, 18, 1> &_q)
+{
+    Eigen::Matrix<double, 3, 18> J_COM;  // Translation Jacobian about COM of the body
+
+    Eigen::Matrix<double, 3, 1> F_g;     // Gravitational force
+
+    double g = 9.81; // Gravitational constant
+    double m; // Mass
+
+    // TODO Implement
+
+    F_g = m * g * Eigen::Matrix<double, 3, 1>(0,0,1);
+    
+    return - J_COM.transpose() * F_g;
+}
+
+// Gravitational terms
+Eigen::Matrix<double, 18, 1> Kinematics::GetGravitationalTerms(const Eigen::Matrix<double, 18, 1> &_q)
+{
+    Eigen::Matrix<double, 18, 1> g = Eigen::Matrix<double, 18, 1>::Constant(0); // Gravitational terms
+
+
+    static const std::vector<BodyType> bodies{ BodyType::base,
+                                               BodyType::shoulder,
+                                               BodyType::femur,
+                                               BodyType::fibula };
+
+    static const std::vector<LegType> legs{ LegType::frontLeft, 
+                                            LegType::frontRight,
+                                            LegType::rearLeft,
+                                            LegType::rearRight };
+
+    for (const auto body : bodies)
+    {
+        if (body == BodyType::base)
+        {
+            g += this->GetSingleBodyGravitationalTerms(LegType::NONE, body, _q);
+        }
+        else
+        {
+            for (const auto leg : legs)
+            {
+                g += this->GetSingleBodyGravitationalTerms(leg, body, _q);
+            }
+        }
+    }
+
+    return g;
+}
+
 // Validate IK solution
 bool Kinematics::ValidateSolution(const Eigen::Matrix<double, 12, 1> &_q_r)
 {
