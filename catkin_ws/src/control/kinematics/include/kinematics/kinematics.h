@@ -195,10 +195,8 @@ class Kinematics
     /// \param[in] _q_r Joint coordinates
     /// \return Returns the Jacobian Matrix relating the leg link CoM velocities to joint velocities.
     public: Eigen::Matrix<double, 3, 12> GetSingleLegLinkTranslationJacobianInB(const LegType &_leg, 
-                                                                               const Eigen::Matrix<double, 12, 1> &_q_r,
-                                                                               const double &_length_link_1,
-                                                                               const double &_length_link_2,
-                                                                               const double &_length_link_3);
+                                                                                const BodyType &_body,
+                                                                                const Eigen::Matrix<double, 12, 1> &_q_r);
 
     /// \brief The GetTranslationJacobianInW function returns the
     /// spatial translation Jacobian mapping generalized velocities

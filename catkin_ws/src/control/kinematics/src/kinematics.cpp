@@ -502,57 +502,91 @@ Eigen::Matrix<double, 3, 12> Kinematics::GetSingleLegTranslationJacobianInB(cons
 }
 
 Eigen::Matrix<double, 3, 12> Kinematics::GetSingleLegLinkTranslationJacobianInB(const LegType &_leg,
-                                                                            const Eigen::Matrix<double, 12, 1> &_q_r,
-                                                                            const double &_length_link_1,
-                                                                            const double &_length_link_2,
-                                                                            const double &_length_link_3)
+                                                                                const BodyType &_body,
+                                                                                const Eigen::Matrix<double, 12, 1> &_q_r)
 {
     Eigen::Matrix<double, 3, 12> J = Eigen::Matrix<double, 3, 12>::Zero();
 
-    if (_leg == LegType::frontLeft)
+    int leg_index;
+
+    bool leg_offset;
+
+    double theta_hy;
+    double theta_hp;
+    double theta_kp;
+
+    double link_length_1 = 0.0;
+    double link_length_2 = 0.0;
+    double link_length_3 = 0.0;
+
+    switch (_leg)
     {
-        J.block<3, 3>(0, 0) = this->GetSingleLegLinkTranslationJacobianInB(this->flOffset,
-                                                                               _q_r(0),
-                                                                               _q_r(1),
-                                                                               _q_r(2),
-                                                                               _length_link_1,
-                                                                               _length_link_2,
-                                                                               _length_link_3);
+        case LegType::frontLeft:
+            leg_offset = this->flOffset;
+            leg_index = 0;
+            break;
+
+        case LegType::frontRight:
+            leg_offset = this->frOffset;
+            leg_index = 3;
+            break;
+
+        case LegType::rearLeft:
+            leg_offset = this->rlOffset;
+            leg_index = 6;
+            break;
+
+        case LegType::rearRight:
+            leg_offset = this->rrOffset;
+            leg_index = 9;
+            break;
+
+        default:
+            ROS_ERROR_STREAM("Leg type could not be determined when finding SingeLegLinkTranslationJacobianInB!");
+            break;
     }
-    else if (_leg == LegType::frontRight)
+
+    switch (_body)
     {
-        J.block<3, 3>(0, 3) = this->GetSingleLegLinkTranslationJacobianInB(this->frOffset,
-                                                                               _q_r(3),
-                                                                               _q_r(4),
-                                                                               _q_r(5),
-                                                                               _length_link_1,
-                                                                               _length_link_2,
-                                                                               _length_link_3);
+        case BodyType::base:
+            link_length_1 = 0.0;
+            link_length_2 = 0.0;
+            link_length_3 = 0.0;
+            break;
+
+        case BodyType::shoulder:
+            link_length_1 = LC1;
+            link_length_2 = 0.0;
+            link_length_3 = 0.0;
+            break;
+
+        case BodyType::femur:
+            link_length_1 = L1;
+            link_length_2 = LC2;
+            link_length_3 = 0.0;
+            break;
+
+        case BodyType::fibula:
+            link_length_1 = L1;
+            link_length_2 = L2;
+            link_length_3 = LC3;
+            break;
+
+        default:
+            ROS_ERROR_STREAM("In function SingleLegLinkTranslationJacobianInB the body type could not be determined!");
     }
-    else if (_leg == LegType::frontRight)
-    {
-        J.block<3, 3>(0, 6) = this->GetSingleLegLinkTranslationJacobianInB(this->rlOffset,
-                                                                               _q_r(6),
-                                                                               _q_r(7),
-                                                                               _q_r(8),
-                                                                               _length_link_1,
-                                                                               _length_link_2,
-                                                                               _length_link_3);
-    }
-    else if (_leg == LegType::frontRight)
-    {
-        J.block<3, 3>(0, 9) = this->GetSingleLegLinkTranslationJacobianInB(this->rrOffset,
-                                                                               _q_r(9),
-                                                                               _q_r(10),
-                                                                               _q_r(11),
-                                                                               _length_link_1,
-                                                                               _length_link_2,
-                                                                               _length_link_3);
-    }
-    else
-    {
-        ROS_ERROR_STREAM("Leg type could not be determined when finding SingeLegTranslationLegJacobianInB!");
-    }
+
+    theta_hy = _q_r(leg_index);
+    theta_hp = _q_r(leg_index + 1);
+    theta_kp = _q_r(leg_index + 2);
+
+    J.block<3, 3>(0, leg_index) = this->GetSingleLegLinkTranslationJacobianInB(leg_offset,
+                                                                               theta_hy,
+                                                                               theta_hp,
+                                                                               theta_kp,
+                                                                               link_length_1,
+                                                                               link_length_2,
+                                                                               link_length_3);
 
     return J;
 }
