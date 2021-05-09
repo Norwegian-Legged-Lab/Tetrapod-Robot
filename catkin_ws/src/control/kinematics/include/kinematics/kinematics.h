@@ -51,6 +51,9 @@ class Kinematics
     /// \brief Tetrapod leg enumerator
     public: enum LegType { frontLeft = 1, frontRight = 2, rearLeft = 3, rearRight = 4 };
 
+    /// \brief Leg enumerator
+    public: enum LinkType { femur = 1, fibula = 2 };
+
     /// \brief Constructor
     public: Kinematics();
 
