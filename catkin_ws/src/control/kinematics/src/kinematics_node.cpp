@@ -248,10 +248,10 @@ void testPositionBaseToFoot()
     
     FootstepPositions f_pos;
 
-    f_pos(0) = K.GetPositionBaseToFootInB(Kinematics::TetrapodLeg::frontLeft, q);
-    f_pos(1) = K.GetPositionBaseToFootInB(Kinematics::TetrapodLeg::frontRight, q);
-    f_pos(2) = K.GetPositionBaseToFootInB(Kinematics::TetrapodLeg::rearLeft, q);
-    f_pos(3) = K.GetPositionBaseToFootInB(Kinematics::TetrapodLeg::rearRight, q);
+    f_pos(0) = K.GetPositionBaseToFootInB(Kinematics::LegType::frontLeft, q);
+    f_pos(1) = K.GetPositionBaseToFootInB(Kinematics::LegType::frontRight, q);
+    f_pos(2) = K.GetPositionBaseToFootInB(Kinematics::LegType::rearLeft, q);
+    f_pos(3) = K.GetPositionBaseToFootInB(Kinematics::LegType::rearRight, q);
 
     debug_utils::printFootstepPositions(f_pos);
 }
@@ -281,10 +281,10 @@ void testTranslationJacobian()
          0*math_utils::degToRad(-20), // RR-theta_hp
          0*math_utils::degToRad(90); // RR-theta_kp
 
-    Eigen::Matrix<double, 3, 18> J_fl = K.GetTranslationJacobianInW(Kinematics::TetrapodLeg::frontLeft, q);
-    Eigen::Matrix<double, 3, 18> J_fr = K.GetTranslationJacobianInW(Kinematics::TetrapodLeg::frontRight, q);
-    Eigen::Matrix<double, 3, 18> J_rl = K.GetTranslationJacobianInW(Kinematics::TetrapodLeg::rearLeft, q);
-    Eigen::Matrix<double, 3, 18> J_rr = K.GetTranslationJacobianInW(Kinematics::TetrapodLeg::rearRight, q);
+    Eigen::Matrix<double, 3, 18> J_fl = K.GetTranslationJacobianInW(Kinematics::LegType::frontLeft, q);
+    Eigen::Matrix<double, 3, 18> J_fr = K.GetTranslationJacobianInW(Kinematics::LegType::frontRight, q);
+    Eigen::Matrix<double, 3, 18> J_rl = K.GetTranslationJacobianInW(Kinematics::LegType::rearLeft, q);
+    Eigen::Matrix<double, 3, 18> J_rr = K.GetTranslationJacobianInW(Kinematics::LegType::rearRight, q);
 
     ROS_INFO_STREAM("Translation Jacobian front left, J_P: \n" << J_fl);
     ROS_INFO_STREAM("Translation Jacobian front right, J_P: \n" << J_fr);
@@ -318,10 +318,10 @@ void testRotationJacobian()
          0*math_utils::degToRad(-20), // RR-theta_hp
          0*math_utils::degToRad(90); // RR-theta_kp
 
-    Eigen::Matrix<double, 3, 18> J_fl = K.GetRotationJacobianInW(Kinematics::TetrapodLeg::frontLeft, q);
-    Eigen::Matrix<double, 3, 18> J_fr = K.GetRotationJacobianInW(Kinematics::TetrapodLeg::frontRight, q);
-    Eigen::Matrix<double, 3, 18> J_rl = K.GetRotationJacobianInW(Kinematics::TetrapodLeg::rearLeft, q);
-    Eigen::Matrix<double, 3, 18> J_rr = K.GetRotationJacobianInW(Kinematics::TetrapodLeg::rearRight, q);
+    Eigen::Matrix<double, 3, 18> J_fl = K.GetRotationJacobianInW(Kinematics::LegType::frontLeft, q);
+    Eigen::Matrix<double, 3, 18> J_fr = K.GetRotationJacobianInW(Kinematics::LegType::frontRight, q);
+    Eigen::Matrix<double, 3, 18> J_rl = K.GetRotationJacobianInW(Kinematics::LegType::rearLeft, q);
+    Eigen::Matrix<double, 3, 18> J_rr = K.GetRotationJacobianInW(Kinematics::LegType::rearRight, q);
 
     ROS_INFO_STREAM("Rotation Jacobian front left, J_R: \n" << J_fl);
     ROS_INFO_STREAM("Rotation Jacobian front right, J_R: \n" << J_fr);
@@ -354,10 +354,10 @@ void testJacobian()
          0*math_utils::degToRad(-20), // RR-theta_hp
          0*math_utils::degToRad(90); // RR-theta_kp
 
-    Eigen::Matrix<double, 6, 18> J_fl = K.GetJacobianInW(Kinematics::TetrapodLeg::frontLeft, q);
-    Eigen::Matrix<double, 6, 18> J_fr = K.GetJacobianInW(Kinematics::TetrapodLeg::frontRight, q);
-    Eigen::Matrix<double, 6, 18> J_rl = K.GetJacobianInW(Kinematics::TetrapodLeg::rearLeft, q);
-    Eigen::Matrix<double, 6, 18> J_rr = K.GetJacobianInW(Kinematics::TetrapodLeg::rearRight, q);
+    Eigen::Matrix<double, 6, 18> J_fl = K.GetJacobianInW(Kinematics::LegType::frontLeft, q);
+    Eigen::Matrix<double, 6, 18> J_fr = K.GetJacobianInW(Kinematics::LegType::frontRight, q);
+    Eigen::Matrix<double, 6, 18> J_rl = K.GetJacobianInW(Kinematics::LegType::rearLeft, q);
+    Eigen::Matrix<double, 6, 18> J_rr = K.GetJacobianInW(Kinematics::LegType::rearRight, q);
 
     ROS_INFO_STREAM("Jacobian front left, J: \n" << J_fl);
     ROS_INFO_STREAM("Jacobian front right, J: \n" << J_fr);

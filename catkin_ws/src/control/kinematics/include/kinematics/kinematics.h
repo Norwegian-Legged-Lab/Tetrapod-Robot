@@ -49,7 +49,7 @@ using TransMatrix = kindr::HomTransformMatrixD;
 class Kinematics
 {
     /// \brief Tetrapod leg enumerator
-    public: enum TetrapodLeg { frontLeft = 1, frontRight = 2, rearLeft = 3, rearRight = 4 };
+    public: enum LegType { frontLeft = 1, frontRight = 2, rearLeft = 3, rearRight = 4 };
 
     /// \brief Constructor
     public: Kinematics();
@@ -115,7 +115,7 @@ class Kinematics
     /// \param[in] _leg Tetrapod leg.
     /// \param[in] _q Generalized coordinates.
     /// \return Returns the position vector from base to foot.
-    public: Eigen::Matrix<double, 3, 1> GetPositionBaseToFootInB(const TetrapodLeg &_leg,
+    public: Eigen::Matrix<double, 3, 1> GetPositionBaseToFootInB(const LegType &_leg,
                                                                  const Eigen::Matrix<double, 18, 1> &_q);
 
     /// \brief The GetHipToFootTransform function returns the homogeneous
@@ -163,7 +163,7 @@ class Kinematics
     /// \param[in] _leg Tetrapod leg
     /// \param[in] _q_r Joint coordinates
     /// \return Returns the Jacobian Matrix relating end-effector velocities to joint velocities.
-    public: Eigen::Matrix<double, 3, 12> GetSingleLegTranslationJacobianInB(const TetrapodLeg &_leg, 
+    public: Eigen::Matrix<double, 3, 12> GetSingleLegTranslationJacobianInB(const LegType &_leg, 
                                                                             const Eigen::Matrix<double, 12, 1> &_q_r);
 
 
@@ -174,7 +174,7 @@ class Kinematics
     /// \param[in] _q Generalized coordinates
     /// \return Returns the translation Jacobian Matrix mapping from generalized coordinates to
     /// the operational space twist of the leg frame.
-    public: Eigen::Matrix<double, 3, 18> GetTranslationJacobianInW(const TetrapodLeg &_leg,
+    public: Eigen::Matrix<double, 3, 18> GetTranslationJacobianInW(const LegType &_leg,
                                                                    const Eigen::Matrix<double, 18, 1> &_q);
 
     /// \brief The GetSingleLegRotationJacobianInB function returns the 
@@ -196,7 +196,7 @@ class Kinematics
     /// \param[in] _leg Tetrapod leg
     /// \param[in] _q_r Joint coordinates
     /// \return Returns the Jacobian Matrix relating end-effector velocities to joint velocities.
-    public: Eigen::Matrix<double, 3, 12> GetSingleLegRotationJacobianInB(const TetrapodLeg &_leg, 
+    public: Eigen::Matrix<double, 3, 12> GetSingleLegRotationJacobianInB(const LegType &_leg, 
                                                                          const Eigen::Matrix<double, 12, 1> &_q_r);
 
     /// \brief The GetRotationJacobianInW function returns the
@@ -206,7 +206,7 @@ class Kinematics
     /// \param[in] _q Generalized coordinates
     /// \return Returns the rotation Jacobian Matrix mapping from generalized coordinates to
     /// the operational space twist of the leg frame.
-    public: Eigen::Matrix<double, 3, 18> GetRotationJacobianInW(const TetrapodLeg &_leg,
+    public: Eigen::Matrix<double, 3, 18> GetRotationJacobianInW(const LegType &_leg,
                                                                 const Eigen::Matrix<double, 18, 1> &_q);
 
     /// \brief The GetJacobianInW function returns the
@@ -216,8 +216,10 @@ class Kinematics
     /// \param[in] _q Generalized coordinates
     /// \return Returns the Jacobian Matrix mapping from generalized coordinates to
     /// the operational space twist of the leg frame.
-    public: Eigen::Matrix<double, 6, 18> GetJacobianInW(const TetrapodLeg &_leg,
+    public: Eigen::Matrix<double, 6, 18> GetJacobianInW(const LegType &_leg,
                                                         const Eigen::Matrix<double, 18, 1> &_q);
+
+    public: Eigen::Matrix<double, 18, 18> Get
 
     /// \brief The ValidateSolution function evaluates whether
     /// a set of joint angles is within joint limits. 
