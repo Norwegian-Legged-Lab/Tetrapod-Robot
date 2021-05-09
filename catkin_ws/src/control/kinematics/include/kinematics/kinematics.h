@@ -52,7 +52,7 @@ class Kinematics
     public: enum LegType { frontLeft = 1, frontRight = 2, rearLeft = 3, rearRight = 4 };
 
     /// \brief Leg enumerator
-    public: enum LinkType { femur = 1, fibula = 2 };
+    public: enum BodyType { base = 1, femur = 2, fibula = 3 };
 
     /// \brief Constructor
     public: Kinematics();
@@ -63,7 +63,7 @@ class Kinematics
     /// \brief The SolveForwardKinematics function calculates
     /// the Forward Kinematics, i.e. maps joint angles in Joint Space
     /// to a coordinate point in Coordinate Space.
-    /// \param[in] _q Generalized coordinates containing the floating base
+    /// \param[in] _q Generalized coordinates. containing the floating base
     /// and joint positions.
     /// \param[out] _f_pos Footstep positions generated from solving the forward
     /// kinematics.
@@ -115,7 +115,7 @@ class Kinematics
     /// \brief The GetPositionBaseToFootInB returns the position vector
     /// from base origin to end-effector (foot) position in body for
     /// a given leg.
-    /// \param[in] _leg Tetrapod leg.
+    /// \param[in] _leg Leg type..
     /// \param[in] _q Generalized coordinates.
     /// \return Returns the position vector from base to foot.
     public: Eigen::Matrix<double, 3, 1> GetPositionBaseToFootInB(const LegType &_leg,
@@ -163,8 +163,8 @@ class Kinematics
 
     /// \brief The GetSingleLegTranslationJacobianInB function returns the
     /// Jacobian matrix for end-effector linear velocities in body for the joint state.
-    /// \param[in] _leg Tetrapod leg
-    /// \param[in] _q_r Joint coordinates
+    /// \param[in] _leg Leg type.
+    /// \param[in] _q_r Joint coordinates.
     /// \return Returns the Jacobian Matrix relating end-effector velocities to joint velocities.
     public: Eigen::Matrix<double, 3, 12> GetSingleLegTranslationJacobianInB(const LegType &_leg, 
                                                                             const Eigen::Matrix<double, 12, 1> &_q_r);
@@ -173,8 +173,8 @@ class Kinematics
     /// \brief The GetTranslationJacobianInW function returns the
     /// spatial translation Jacobian mapping generalized velocities
     /// to operational space twist of the leg frame.
-    /// \param[in] _leg Tetrapod leg
-    /// \param[in] _q Generalized coordinates
+    /// \param[in] _leg Leg type.
+    /// \param[in] _q Generalized coordinates.
     /// \return Returns the translation Jacobian Matrix mapping from generalized coordinates to
     /// the operational space twist of the leg frame.
     public: Eigen::Matrix<double, 3, 18> GetTranslationJacobianInW(const LegType &_leg,
@@ -196,8 +196,8 @@ class Kinematics
 
     /// \brief The GetSingleLegRotationJacobianInB function returns the
     /// Jacobian matrix for end-effector angular velocities in body for the joint state.
-    /// \param[in] _leg Tetrapod leg
-    /// \param[in] _q_r Joint coordinates
+    /// \param[in] _leg Leg type.
+    /// \param[in] _q_r Joint coordinates.
     /// \return Returns the Jacobian Matrix relating end-effector velocities to joint velocities.
     public: Eigen::Matrix<double, 3, 12> GetSingleLegRotationJacobianInB(const LegType &_leg, 
                                                                          const Eigen::Matrix<double, 12, 1> &_q_r);
@@ -205,8 +205,8 @@ class Kinematics
     /// \brief The GetRotationJacobianInW function returns the
     /// spatial rotation Jacobian mapping generalized velocities
     /// to operational space twist of the leg frame.
-    /// \param[in] _leg Tetrapod leg
-    /// \param[in] _q Generalized coordinates
+    /// \param[in] _leg Leg type.
+    /// \param[in] _q Generalized coordinates.
     /// \return Returns the rotation Jacobian Matrix mapping from generalized coordinates to
     /// the operational space twist of the leg frame.
     public: Eigen::Matrix<double, 3, 18> GetRotationJacobianInW(const LegType &_leg,
@@ -215,14 +215,64 @@ class Kinematics
     /// \brief The GetJacobianInW function returns the
     /// spatial Jacobian mapping generalized velocities
     /// to operational space twist of the leg frame.
-    /// \param[in] _leg Tetrapod leg
-    /// \param[in] _q Generalized coordinates
+    /// \param[in] _leg Leg type.
+    /// \param[in] _q Generalized coordinates.
     /// \return Returns the Jacobian Matrix mapping from generalized coordinates to
     /// the operational space twist of the leg frame.
     public: Eigen::Matrix<double, 6, 18> GetJacobianInW(const LegType &_leg,
                                                         const Eigen::Matrix<double, 18, 1> &_q);
 
-    public: Eigen::Matrix<double, 18, 18> Get
+    /// \brief The GetSingleBodyMassMatrix function returns the
+    /// mass matrix for a single body in the system. 
+    /// \param[in] _leg Leg type.
+    /// \param[in] _body Body type.
+    /// \param[in] _q Generalized coordinates.
+    /// \return Returns a single body mass matrix as specified by leg and body type.
+    public: Eigen::Matrix<double, 18, 18> GetSingleBodyMassMatrix(const LegType &_leg,
+                                                                  const BodyType &_body,
+                                                                  const Eigen::Matrix<double, 18, 1> &_q);
+
+    /// \brief The GetMassMatrix function returns the
+    /// mass matrix for the floating base system.
+    /// \param[in] _q Generalized coordinates.
+    /// \return Returns an orthogonal mass matrix (n_q x n_q) for the floating base system.
+    public: Eigen::Matrix<double, 18, 18> GetMassMatrix(const Eigen::Matrix<double, 18, 1> &_q);
+
+    /// \brief The GetSingleBodyCoriolisAndCentrifugalTerms function returns the
+    /// coriolis and centrifugal terms for a single body in the system. 
+    /// \param[in] _leg Leg type.
+    /// \param[in] _body Body type.
+    /// \param[in] _q Generalized coordinates.
+    /// \param[in] _u Generalized velocities.
+    /// \return Returns a single body coriolis and centrifugal terms as specified by leg and body type.
+    public: Eigen::Matrix<double, 18, 1> GetSingleBodyCoriolisAndCentrifugalTerms(const LegType &_leg,
+                                                                                  const BodyType &_body,
+                                                                                  const Eigen::Matrix<double, 18, 1> &_q,
+                                                                                  const Eigen::Matrix<double, 18, 1> &_u);
+
+    /// \brief The GetCoriolisAndCentrifugalTerms function returns the
+    /// coriolis and centrifugal terms for the floating base system.
+    /// \param[in] _q Generalized coordinates.
+    /// \param[in] _u Generalized velocities.
+    /// \return Returns coriolis and centrifugal terms for the floating base system. 
+    public: Eigen::Matrix<double, 18, 1> GetCoriolisAndCentrifugalTerms(const Eigen::Matrix<double, 18, 1> &_q,
+                                                                        const Eigen::Matrix<double, 18, 1> &_u);
+
+    /// \brief The GetSingleBodyGravitationalTerms function returns the
+    /// gravitational terms for a single body in the system. 
+    /// \param[in] _leg Leg type.
+    /// \param[in] _body Body type.
+    /// \param[in] _q Generalized coordinates.
+    /// \return Returns a single body gravitational terms as specified by leg and body type.
+    public: Eigen::Matrix<double, 18, 1> GetSingleBodyGravitationalTerms(const LegType &_leg,
+                                                                         const BodyType &_body,
+                                                                         const Eigen::Matrix<double, 18, 1> &_q);
+
+    /// \brief The GetGravitationalTerms function returns the
+    /// gravitational terms for the floating base system.
+    /// \param[in] _q Generalized coordinates.
+    /// \return Returns gravitational terms for the floating base system. 
+    public: Eigen::Matrix<double, 18, 1> GetGravitationalTerms(const Eigen::Matrix<double, 18, 1> &_q);
 
     /// \brief The ValidateSolution function evaluates whether
     /// a set of joint angles is within joint limits. 
