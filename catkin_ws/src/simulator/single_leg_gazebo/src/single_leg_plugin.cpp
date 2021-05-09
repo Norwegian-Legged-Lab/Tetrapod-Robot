@@ -275,7 +275,7 @@ void SingleLegPlugin::SetJointPositions(const std::vector<double> &_pos)
     {
         this->model->GetJointController()->SetPositionTarget(
             this->model_name + "::" + this->joint_names[i],
-            math_utils::wrapAngleToPi(_pos[i])
+            angle_utils::wrapAngleToPi(_pos[i])
         );
     }
 
@@ -552,13 +552,13 @@ void SingleLegPlugin::InitJointConfiguration()
         // Set default position 
         this->model->GetJointController()->SetJointPosition(
             this->model_name + "::" + this->joint_names[i],
-            math_utils::wrapAngleToPi(math_utils::degToRad(this->joint_config[i]))
+            angle_utils::wrapAngleToPi(angle_utils::degToRad(this->joint_config[i]))
         );
 
         // Set controller position reference
         this->model->GetJointController()->SetPositionTarget(
             this->model_name + "::" + this->joint_names[i],
-            math_utils::wrapAngleToPi(math_utils::degToRad(this->joint_config[i]))
+            angle_utils::wrapAngleToPi(angle_utils::degToRad(this->joint_config[i]))
         );
     }
 

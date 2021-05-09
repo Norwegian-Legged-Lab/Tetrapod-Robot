@@ -329,7 +329,7 @@ Eigen::Matrix<double, 3, 1> GaitControl::GetPositionTrajectory(const double &_A,
     {
         positionInB(0) = _t;
         positionInB(1) = _y_offset;
-        positionInB(2) = _A * std::sin( math_utils::TWO_PI / _P * _t ) + 0.6;
+        positionInB(2) = _A * std::sin( angle_utils::TWO_PI / _P * _t ) + 0.6;
     }
     else if (_t > _P/2 && _t <= _P)
     {

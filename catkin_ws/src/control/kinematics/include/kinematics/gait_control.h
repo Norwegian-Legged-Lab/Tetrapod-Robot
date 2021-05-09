@@ -40,7 +40,7 @@
 #include "eigen_conversions/eigen_msg.h"
 
 // ROS Package Libraries
-#include <math_utils/math_utils.h>
+#include <math_utils/angle_utils.h>
 #include <debug_utils/debug_utils.h>
 #include <kinematics/kinematics.h>
 

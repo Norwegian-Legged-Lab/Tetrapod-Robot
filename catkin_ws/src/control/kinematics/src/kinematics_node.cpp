@@ -5,7 +5,8 @@
 
 #include <Eigen/Core>
 
-#include <math_utils/math_utils.h>
+#include <math_utils/angle_utils.h>
+#include <math_utils/linalg_utils.h>
 
 #include <kinematics/kinematics.h>
 
@@ -15,8 +16,8 @@
 void someRandomTesting()
 {
     // TODO Remove these 
-    double yaw = math_utils::HALF_PI;
-    double pitch = math_utils::HALF_PI;
+    double yaw = angle_utils::HALF_PI;
+    double pitch = angle_utils::HALF_PI;
     double roll = 0;
 
     kindr::EulerAnglesZyxD R1(yaw, pitch, roll);
@@ -49,8 +50,8 @@ void someRandomTesting()
 
 void testKindr()
 {
-    double x_angle = math_utils::HALF_PI;
-    double z_angle = math_utils::TWO_THIRDS_PI;
+    double x_angle = angle_utils::HALF_PI;
+    double z_angle = angle_utils::TWO_THIRDS_PI;
 
     Eigen::Vector3d unit_x(1,0,0);
     Eigen::Vector3d unit_z(0,0,1);
@@ -68,8 +69,8 @@ void testKindr()
 void testDhTransform()
 {
     // ---------- D-H Transform --------------
-    double alpha_1 = -math_utils::HALF_PI;
-    double theta_1 = math_utils::THIRD_PI;
+    double alpha_1 = -angle_utils::HALF_PI;
+    double theta_1 = angle_utils::THIRD_PI;
     double a_1 = 1;
     double d_1 = 0;
 
@@ -89,8 +90,8 @@ void testSingleLegKinematics()
     Eigen::Vector3d h_pos(0,0,0);
 
     double theta_hy = 0;
-    double theta_hp = math_utils::HALF_PI;
-    double theta_kp = -math_utils::HALF_PI;
+    double theta_hp = angle_utils::HALF_PI;
+    double theta_kp = -angle_utils::HALF_PI;
 
     Eigen::Vector3d pos = K.SolveSingleLegForwardKinematics(h_pos,
                                                             theta_hy,
@@ -129,9 +130,9 @@ void testHipToFootTransform()
     Kinematics K;
 
     kindr::HomTransformMatrixD transformHipToFoot = K.GetHipToFootTransform(true,
-                                                                            math_utils::degToRad(135),
-                                                                            math_utils::degToRad(20),
-                                                                            math_utils::degToRad(-90));
+                                                                            angle_utils::degToRad(135),
+                                                                            angle_utils::degToRad(20),
+                                                                            angle_utils::degToRad(-90));
 
     kindr::Position3D hip_position(-0.151,0.185,1);
 
@@ -154,18 +155,18 @@ void testForwardKinematics()
          0, // base_roll
          0, // base_pitch
          0, // base_yaw
-         math_utils::degToRad(45), // FL-theta_hy
-         math_utils::degToRad(-20), // FL-theta_hp
-         math_utils::degToRad(90), // FL-theta_kp
-         math_utils::degToRad(-45), // FR-theta_hy
-         math_utils::degToRad(20), // FR-theta_hp
-         math_utils::degToRad(-90), // FR-theta_kp
-         math_utils::degToRad(135), // RL-theta_hy
-         math_utils::degToRad(20), // RL-theta_hp
-         math_utils::degToRad(-90), // RL-theta_kp
-         math_utils::degToRad(-135), // RR-theta_hy
-         math_utils::degToRad(-20), // RR-theta_hp
-         math_utils::degToRad(90); // RR-theta_kp
+         angle_utils::degToRad(45), // FL-theta_hy
+         angle_utils::degToRad(-20), // FL-theta_hp
+         angle_utils::degToRad(90), // FL-theta_kp
+         angle_utils::degToRad(-45), // FR-theta_hy
+         angle_utils::degToRad(20), // FR-theta_hp
+         angle_utils::degToRad(-90), // FR-theta_kp
+         angle_utils::degToRad(135), // RL-theta_hy
+         angle_utils::degToRad(20), // RL-theta_hp
+         angle_utils::degToRad(-90), // RL-theta_kp
+         angle_utils::degToRad(-135), // RR-theta_hy
+         angle_utils::degToRad(-20), // RR-theta_hp
+         angle_utils::degToRad(90); // RR-theta_kp
     
 
     FootstepPositions fPos;
@@ -233,18 +234,18 @@ void testPositionBaseToFoot()
          0, // base_roll
          0, // base_pitch
          0, // base_yaw
-         math_utils::degToRad(45), // FL-theta_hy
-         math_utils::degToRad(-20), // FL-theta_hp
-         math_utils::degToRad(90), // FL-theta_kp
-         math_utils::degToRad(-45), // FR-theta_hy
-         math_utils::degToRad(20), // FR-theta_hp
-         math_utils::degToRad(-90), // FR-theta_kp
-         math_utils::degToRad(135), // RL-theta_hy
-         math_utils::degToRad(20), // RL-theta_hp
-         math_utils::degToRad(-90), // RL-theta_kp
-         math_utils::degToRad(-135), // RR-theta_hy
-         math_utils::degToRad(-20), // RR-theta_hp
-         math_utils::degToRad(90); // RR-theta_kp
+         angle_utils::degToRad(45), // FL-theta_hy
+         angle_utils::degToRad(-20), // FL-theta_hp
+         angle_utils::degToRad(90), // FL-theta_kp
+         angle_utils::degToRad(-45), // FR-theta_hy
+         angle_utils::degToRad(20), // FR-theta_hp
+         angle_utils::degToRad(-90), // FR-theta_kp
+         angle_utils::degToRad(135), // RL-theta_hy
+         angle_utils::degToRad(20), // RL-theta_hp
+         angle_utils::degToRad(-90), // RL-theta_kp
+         angle_utils::degToRad(-135), // RR-theta_hy
+         angle_utils::degToRad(-20), // RR-theta_hp
+         angle_utils::degToRad(90); // RR-theta_kp
     
     FootstepPositions f_pos;
 
@@ -268,18 +269,18 @@ void testTranslationJacobian()
          0, // base_roll
          0, // base_pitch
          0, // base_yaw
-         0*math_utils::degToRad(45), // FL-theta_hy
-         0*math_utils::degToRad(-20), // FL-theta_hp
-         0*math_utils::degToRad(90), // FL-theta_kp
-         0*math_utils::degToRad(-45), // FR-theta_hy
-         0*math_utils::degToRad(20), // FR-theta_hp
-         0*math_utils::degToRad(-90), // FR-theta_kp
-         0*math_utils::degToRad(135), // RL-theta_hy
-         0*math_utils::degToRad(20), // RL-theta_hp
-         0*math_utils::degToRad(-90), // RL-theta_kp
-         0*math_utils::degToRad(-135), // RR-theta_hy
-         0*math_utils::degToRad(-20), // RR-theta_hp
-         0*math_utils::degToRad(90); // RR-theta_kp
+         0*angle_utils::degToRad(45), // FL-theta_hy
+         0*angle_utils::degToRad(-20), // FL-theta_hp
+         0*angle_utils::degToRad(90), // FL-theta_kp
+         0*angle_utils::degToRad(-45), // FR-theta_hy
+         0*angle_utils::degToRad(20), // FR-theta_hp
+         0*angle_utils::degToRad(-90), // FR-theta_kp
+         0*angle_utils::degToRad(135), // RL-theta_hy
+         0*angle_utils::degToRad(20), // RL-theta_hp
+         0*angle_utils::degToRad(-90), // RL-theta_kp
+         0*angle_utils::degToRad(-135), // RR-theta_hy
+         0*angle_utils::degToRad(-20), // RR-theta_hp
+         0*angle_utils::degToRad(90); // RR-theta_kp
 
     Eigen::Matrix<double, 3, 18> J_fl = K.GetTranslationJacobianInW(Kinematics::TetrapodLeg::frontLeft, q);
     Eigen::Matrix<double, 3, 18> J_fr = K.GetTranslationJacobianInW(Kinematics::TetrapodLeg::frontRight, q);
@@ -305,18 +306,18 @@ void testRotationJacobian()
          0, // base_roll
          0, // base_pitch
          0, // base_yaw
-         math_utils::degToRad(45), // FL-theta_hy
-         0*math_utils::degToRad(-20), // FL-theta_hp
-         0*math_utils::degToRad(90), // FL-theta_kp
-         0*math_utils::degToRad(-45), // FR-theta_hy
-         0*math_utils::degToRad(20), // FR-theta_hp
-         0*math_utils::degToRad(-90), // FR-theta_kp
-         0*math_utils::degToRad(135), // RL-theta_hy
-         0*math_utils::degToRad(20), // RL-theta_hp
-         0*math_utils::degToRad(-90), // RL-theta_kp
-         0*math_utils::degToRad(-135), // RR-theta_hy
-         0*math_utils::degToRad(-20), // RR-theta_hp
-         0*math_utils::degToRad(90); // RR-theta_kp
+         angle_utils::degToRad(45), // FL-theta_hy
+         0*angle_utils::degToRad(-20), // FL-theta_hp
+         0*angle_utils::degToRad(90), // FL-theta_kp
+         0*angle_utils::degToRad(-45), // FR-theta_hy
+         0*angle_utils::degToRad(20), // FR-theta_hp
+         0*angle_utils::degToRad(-90), // FR-theta_kp
+         0*angle_utils::degToRad(135), // RL-theta_hy
+         0*angle_utils::degToRad(20), // RL-theta_hp
+         0*angle_utils::degToRad(-90), // RL-theta_kp
+         0*angle_utils::degToRad(-135), // RR-theta_hy
+         0*angle_utils::degToRad(-20), // RR-theta_hp
+         0*angle_utils::degToRad(90); // RR-theta_kp
 
     Eigen::Matrix<double, 3, 18> J_fl = K.GetRotationJacobianInW(Kinematics::TetrapodLeg::frontLeft, q);
     Eigen::Matrix<double, 3, 18> J_fr = K.GetRotationJacobianInW(Kinematics::TetrapodLeg::frontRight, q);
@@ -340,19 +341,19 @@ void testJacobian()
          0, // base_z
          0, // base_roll
          0, // base_pitch
-         math_utils::degToRad(90), // base_yaw
-         0*math_utils::degToRad(45), // FL-theta_hy
-         0*math_utils::degToRad(-20), // FL-theta_hp
-         0*math_utils::degToRad(90), // FL-theta_kp
-         0*math_utils::degToRad(-45), // FR-theta_hy
-         0*math_utils::degToRad(20), // FR-theta_hp
-         0*math_utils::degToRad(-90), // FR-theta_kp
-         0*math_utils::degToRad(135), // RL-theta_hy
-         0*math_utils::degToRad(20), // RL-theta_hp
-         0*math_utils::degToRad(-90), // RL-theta_kp
-         0*math_utils::degToRad(-135), // RR-theta_hy
-         0*math_utils::degToRad(-20), // RR-theta_hp
-         0*math_utils::degToRad(90); // RR-theta_kp
+         angle_utils::degToRad(90), // base_yaw
+         0*angle_utils::degToRad(45), // FL-theta_hy
+         0*angle_utils::degToRad(-20), // FL-theta_hp
+         0*angle_utils::degToRad(90), // FL-theta_kp
+         0*angle_utils::degToRad(-45), // FR-theta_hy
+         0*angle_utils::degToRad(20), // FR-theta_hp
+         0*angle_utils::degToRad(-90), // FR-theta_kp
+         0*angle_utils::degToRad(135), // RL-theta_hy
+         0*angle_utils::degToRad(20), // RL-theta_hp
+         0*angle_utils::degToRad(-90), // RL-theta_kp
+         0*angle_utils::degToRad(-135), // RR-theta_hy
+         0*angle_utils::degToRad(-20), // RR-theta_hp
+         0*angle_utils::degToRad(90); // RR-theta_kp
 
     Eigen::Matrix<double, 6, 18> J_fl = K.GetJacobianInW(Kinematics::TetrapodLeg::frontLeft, q);
     Eigen::Matrix<double, 6, 18> J_fr = K.GetJacobianInW(Kinematics::TetrapodLeg::frontRight, q);
@@ -370,15 +371,40 @@ void testMathPseudoInverse()
 	Eigen::Matrix<double, 2, 3> J;
 	J << 0.6339, 0.6941, 0.6122,
 			 0.7077, 0.3663, 0.1599;
-    
+
     Eigen::Matrix<double, 3, 2> pinvJ;
     Eigen::Matrix<double, 3, 2> dPinvJ;
 
     kindr::pseudoInverse(J, pinvJ);
-    math_utils::dampedPseudoInverse(J, dPinvJ);
+    linalg_utils::dampedPseudoInverse(J, dPinvJ, 0.1);
+
+	Eigen::Matrix<double, 3, 2> A;
+	A << 0.3862, 0.2766,
+			 0.3341, 0.0151,
+			 0.4047, 0.3581;
+    
+    Eigen::Matrix<double, 2, 3> pinvA;
+    Eigen::Matrix<double, 2, 3> dPinvA;
+
+    kindr::pseudoInverse(A, pinvA);
+    linalg_utils::dampedPseudoInverse(A, dPinvA, 0.1);
+
+	Eigen::Matrix2d B;
+    B << 	61.6806, 345.8256,
+				176.1109,  605.4883;
+
+    Eigen::Matrix2d pinvB;
+    Eigen::Matrix2d dPinvB;
+
+    kindr::pseudoInverse(B, pinvB);
+    linalg_utils::dampedPseudoInverse(B, dPinvB, 0.1);
 
     ROS_INFO_STREAM("kindr pinvJ: \n" << pinvJ);
-    ROS_INFO_STREAM("math_utils dPinvJ: \n" << dPinvJ);
+    ROS_INFO_STREAM("angle_utils dPinvJ: \n" << dPinvJ);
+    ROS_INFO_STREAM("kindr pinvA: \n" << pinvA);
+    ROS_INFO_STREAM("angle_utils dPinvA: \n" << dPinvA);
+    ROS_INFO_STREAM("kindr pinvB: \n" << pinvB);
+    ROS_INFO_STREAM("angle_utils dPinvB: \n" << dPinvB);
 }
 
 int main(int argc, char **argv)

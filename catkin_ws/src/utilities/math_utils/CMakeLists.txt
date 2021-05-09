@@ -121,7 +121,8 @@ include_directories(
 
 ## Declare a C++ library
 add_library(${PROJECT_NAME}
-  src/math_utils.cpp
+  src/angle_utils.cpp
+  src/linalg_utils.cpp
 )
 
 ## Add cmake target dependencies of the library
@@ -132,7 +133,7 @@ add_library(${PROJECT_NAME}
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/math_utils_node.cpp)
+# add_executable(${PROJECT_NAME}_node src/angle_utils_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -196,7 +197,7 @@ install(DIRECTORY include/${PROJECT_NAME}/
 #############
 
 ## Add gtest based cpp test target and link libraries
-catkin_add_gtest(${PROJECT_NAME}-test test/test_math_utils.cpp)
+catkin_add_gtest(${PROJECT_NAME}-test test/test_angle_utils.cpp)
 if(TARGET ${PROJECT_NAME}-test)
   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 endif()
