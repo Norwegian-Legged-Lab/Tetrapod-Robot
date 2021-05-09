@@ -310,6 +310,20 @@ class Kinematics
     /// \return Evaluates true if IK solution is valid, and false if not.
     private: bool ValidateSolution(const JointSpaceVector &_q_r);
 
+    /// \brief The GetInertiaMatrix function returns the inertia matrix from the six inertial parameters
+    /// \param[in] _I_XX inertia about the x axis
+    /// \param[in] _I_YY inertia about the y axis
+    /// \param[in] _I_ZZ inertia about the z axis
+    /// \param[in] _I_XY inertia about the xy axis
+    /// \param[in] _I_XZ inertia about the xz axis
+    /// \param[in] _I_YZ inertia about the yz axis
+    private: Eigen::Matrix<double, 3, 3> GetInertiaMatrix(const double &_I_XX,
+                                                          const double &_I_YY,
+                                                          const double &_I_ZZ,
+                                                          const double &_I_XY,
+                                                          const double &_I_XZ,
+                                                          const double &_I_YZ);
+
     /// \brief Minimum joint limits.
     private: JointSpaceVector min_angles;
 
@@ -341,7 +355,7 @@ class Kinematics
     /// \brief Leg (Fibula & Tibia) link length
     private: double L3;
 
-    /// \brief Shoulder yaw joint to shoulder CoM length
+    /// \brief Hip yaw joint to hip CoM length
     private: double LC1;
 
     /// \brief Hip pitch joint to thigh CoM length
@@ -361,4 +375,28 @@ class Kinematics
 
     /// \brief Rear Right offset
     private: bool rrOffset;
+
+    /// \brief Body link mass
+    private: double M0;
+
+    /// \brief Hip link mass
+    private: double M1;
+
+    /// \brief Thigh link mass
+    private: double M2; 
+
+    /// \brief Leg link mass
+    private: double M3;
+
+    /// \brief Body link inertia matrix
+    private: Eigen::Matrix<double, 3, 3> I0;
+
+    /// \brief Hip link inertia matrix
+    private: Eigen::Matrix<double, 3, 3> I1;
+
+    /// \brief Thigh link inertia matrix
+    private: Eigen::Matrix<double, 3, 3> I2;
+
+    /// \brief Leg link inertia matrix
+    private: Eigen::Matrix<double, 3, 3> I3;
 };

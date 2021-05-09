@@ -64,6 +64,10 @@ Kinematics::Kinematics()
     this->L2 = 0.220;
     this->L3 = 0.279;
 
+    this->LC1 = 0.0;
+    this->LC2 = 0.0;
+    this->LC3 = 0.0;
+
     // Set position vectors
     this->positionBaseToFrontLeftInB << 0.151, 0.151, 0;
     this->positionBaseToFrontRightInB << 0.151, -0.151, 0;
@@ -75,6 +79,18 @@ Kinematics::Kinematics()
     this->frOffset = true;
     this->rlOffset = true;
     this->rrOffset = false;
+
+    // Set masses
+    this->M0 = 10.1;
+    this->M1 = 1.168;
+    this->M2 = 1.479;
+    this->M3 = 0.303;
+
+    // Set inertias
+    this->I0 = GetInertiaMatrix(0.141, 0.143, 0.254, 0.0, 0.0, 0.0);
+    this->I1 = GetInertiaMatrix(0.00875, 0.01534, 0.0223, -0.0101, 0.00045, -0.00032);
+    this->I2 = GetInertiaMatrix(0.00306, 0.00998, 0.0085, 0.0, 0.0, 0.0);
+    this->I3 = GetInertiaMatrix(0.0000597, 0.00548, 0.0055, 0.0, 0.0, 0.0);
 }
 
 // Destructor
@@ -912,4 +928,25 @@ bool Kinematics::ValidateSolution(const Eigen::Matrix<double, 12, 1> &_q_r)
     }
 
     return true;
+}
+
+Eigen::Matrix<double, 3, 3> Kinematics::GetInertiaMatrix(const double &_I_XX,
+                                                         const double &_I_YY,
+                                                         const double &_I_ZZ,
+                                                         const double &_I_XY,
+                                                         const double &_I_XZ,
+                                                         const double &_I_YZ)
+{
+    Eigen::Matrix<double, 3, 3> I;
+    I(0, 0) = _I_XX;
+    I(1, 1) = _I_YY;
+    I(2, 2) = _I_ZZ;
+    I(0, 1) = _I_XY;
+    I(1, 0) = _I_XY;
+    I(0, 2) = _I_XZ;
+    I(2, 0) = _I_XZ;
+    I(1, 2) = _I_YZ;
+    I(2, 1) = _I_YZ;
+
+    return I;
 }
