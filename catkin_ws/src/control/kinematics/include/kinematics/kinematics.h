@@ -187,7 +187,7 @@ class Kinematics
                                                                    const BodyType &_body,
                                                                    const Eigen::Matrix<double, 18, 1> &_q);
 
-    /// \brief The GetSingleLegRotationJacobianInB function returns the 
+    /// \brief The GetRotationJacobianInB function returns the 3x3
     /// Jacobian matrix for end-effector angular velocities in body for the leg state.
     /// \param[in] _offset Bool indicating whether roll offset
     /// should be set to -90 or 90 degrees. True indicates roll offset
@@ -196,17 +196,17 @@ class Kinematics
     /// \param[in] _theta_hp Hip pitch angle.
     /// \param[in] _theta_kp Knee pitch angle.
     /// \return Returns the Jacobian Matrix relating end-effector velocities to joint velocities.
-    public: Eigen::Matrix<double, 3, 3> GetSingleLegRotationJacobianInB(const bool &_offset,
+    public: Eigen::Matrix<double, 3, 3> GetRotationJacobianInB(const bool &_offset,
                                                                         const double &_theta_hy, 
                                                                         const double &_theta_hp, 
                                                                         const double &_theta_kp);
 
-    /// \brief The GetSingleLegRotationJacobianInB function returns the
+    /// \brief The GetRotationJacobianInB function returns the
     /// Jacobian matrix for end-effector angular velocities in body for the joint state.
     /// \param[in] _leg Leg type.
     /// \param[in] _q_r Joint coordinates.
     /// \return Returns the Jacobian Matrix relating end-effector velocities to joint velocities.
-    public: Eigen::Matrix<double, 3, 12> GetSingleLegRotationJacobianInB(const LegType &_leg, 
+    public: Eigen::Matrix<double, 3, 12> GetRotationJacobianInB(const LegType &_leg, 
                                                                          const Eigen::Matrix<double, 12, 1> &_q_r);
 
     /// \brief The GetRotationJacobianInW function returns the

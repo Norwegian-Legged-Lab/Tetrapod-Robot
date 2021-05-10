@@ -772,7 +772,7 @@ Eigen::Matrix<double, 3, 18> Kinematics::GetTranslationJacobianInW(const LegType
 } 
 
 // Leg state single leg rotational Jacobian in body frame
-Eigen::Matrix<double, 3, 3> Kinematics::GetSingleLegRotationJacobianInB(const bool &_offset,
+Eigen::Matrix<double, 3, 3> Kinematics::GetRotationJacobianInB(const bool &_offset,
                                                                         const double &_theta_hy, 
                                                                         const double &_theta_hp, 
                                                                         const double &_theta_kp)
@@ -816,35 +816,35 @@ Eigen::Matrix<double, 3, 3> Kinematics::GetSingleLegRotationJacobianInB(const bo
 }
 
 // Joint state single leg rotation Jacobian in body frame
-Eigen::Matrix<double, 3, 12> Kinematics::GetSingleLegRotationJacobianInB(const LegType &_leg, 
+Eigen::Matrix<double, 3, 12> Kinematics::GetRotationJacobianInB(const LegType &_leg, 
                                                                          const Eigen::Matrix<double, 12, 1> &_q_r)
 {
     Eigen::Matrix<double, 3, 12> J = Eigen::Matrix<double, 3, 12>::Constant(0);
 
     if (_leg == LegType::frontLeft)
     {
-        J.block<3, 3>(0,0) = this->GetSingleLegRotationJacobianInB(this->flOffset,
+        J.block<3, 3>(0,0) = this->GetRotationJacobianInB(this->flOffset,
                                                                    _q_r(0), 
                                                                    _q_r(1), 
                                                                    _q_r(2));
     }
     else if (_leg == LegType::frontRight)
     {
-        J.block<3, 3>(0,3) = this->GetSingleLegRotationJacobianInB(this->frOffset,
+        J.block<3, 3>(0,3) = this->GetRotationJacobianInB(this->frOffset,
                                                                    _q_r(3), 
                                                                    _q_r(4), 
                                                                    _q_r(5));
     }
     else if (_leg == LegType::rearLeft)
     {
-        J.block<3, 3>(0,6) = this->GetSingleLegRotationJacobianInB(this->rlOffset,
+        J.block<3, 3>(0,6) = this->GetRotationJacobianInB(this->rlOffset,
                                                                    _q_r(6), 
                                                                    _q_r(7), 
                                                                    _q_r(8));
     }
     else if (_leg == LegType::rearRight)
     {
-        J.block<3, 3>(0,9) = this->GetSingleLegRotationJacobianInB(this->rrOffset,
+        J.block<3, 3>(0,9) = this->GetRotationJacobianInB(this->rrOffset,
                                                                    _q_r(9), 
                                                                    _q_r(10), 
                                                                    _q_r(11));
@@ -870,7 +870,7 @@ Eigen::Matrix<double, 3, 18> Kinematics::GetRotationJacobianInW(const LegType &_
                                                                _q(3))
                                         );
 
-    Eigen::Matrix<double, 3, 12> rotationJacobianInB = this->GetSingleLegRotationJacobianInB(_leg, _q.block<12, 1>(6,0));
+    Eigen::Matrix<double, 3, 12> rotationJacobianInB = this->GetRotationJacobianInB(_leg, _q.block<12, 1>(6,0));
 
     J.block<3, 3>(0,0).setZero();
     J.block<3, 3>(0,3) = rotationWToB.matrix();
