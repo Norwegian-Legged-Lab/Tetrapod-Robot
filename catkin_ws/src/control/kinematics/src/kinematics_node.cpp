@@ -249,10 +249,18 @@ void testPositionBaseToFoot()
     
     FootstepPositions f_pos;
 
-    f_pos(0) = K.GetPositionBaseToFootInB(Kinematics::LegType::frontLeft, q);
-    f_pos(1) = K.GetPositionBaseToFootInB(Kinematics::LegType::frontRight, q);
-    f_pos(2) = K.GetPositionBaseToFootInB(Kinematics::LegType::rearLeft, q);
-    f_pos(3) = K.GetPositionBaseToFootInB(Kinematics::LegType::rearRight, q);
+    f_pos(0) = K.GetPositionBaseToBodyInB(Kinematics::LegType::frontLeft,
+                                          Kinematics::BodyType::foot,
+                                          q);
+    f_pos(1) = K.GetPositionBaseToBodyInB(Kinematics::LegType::frontRight,
+                                          Kinematics::BodyType::foot,
+                                          q);
+    f_pos(2) = K.GetPositionBaseToBodyInB(Kinematics::LegType::rearLeft,
+                                          Kinematics::BodyType::foot,
+                                          q);
+    f_pos(3) = K.GetPositionBaseToBodyInB(Kinematics::LegType::rearRight,
+                                          Kinematics::BodyType::foot,
+                                          q);
 
     debug_utils::printFootstepPositions(f_pos);
 }
@@ -407,15 +415,6 @@ void testMathPseudoInverse()
     ROS_INFO_STREAM("angle_utils dPinvB: \n" << dPinvB);
 }
 
-void testsome()
-{
-    Kinematics K;
-
-    kindr::HomTransformMatrixD t = K.GetDhTransform(0,0,0,1);
-
-    ROS_INFO_STREAM("Transform: \n" << t.getTransformationMatrix());
-}
-
 int main(int argc, char **argv)
 {
     ros::init(argc, argv, "kinematics_node");
@@ -434,8 +433,8 @@ int main(int argc, char **argv)
     //testSingeLegInverseKinematics();
     //ROS_INFO_STREAM("--------------- Test IK --------------");
     //testInverseKinematics(); 
-    //ROS_INFO_STREAM("--------------- Test positionBaseToFoot --------------");
-    //testPositionBaseToFoot();
+    ROS_INFO_STREAM("--------------- Test positionBaseToFoot --------------");
+    testPositionBaseToFoot();
     //ROS_INFO_STREAM("--------------- Test translationJacobian --------------");
     //testTranslationJacobian();
     //ROS_INFO_STREAM("--------------- Test rotationJacobian --------------");
@@ -443,7 +442,6 @@ int main(int argc, char **argv)
     //ROS_INFO_STREAM("--------------- Test Jacobian --------------");
     //testJacobian();
     //testMathPseudoInverse();
-    testsome();
 
     ros::spin();
     return 0;

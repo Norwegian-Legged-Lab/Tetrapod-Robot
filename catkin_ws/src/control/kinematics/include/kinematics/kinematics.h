@@ -138,16 +138,6 @@ class Kinematics
                                               const double &_theta_hp, 
                                               const double &_theta_kp);
 
-    // TODO REMOVE
-    /// \brief The GetPositionBaseToFootInB returns the position vector
-    /// from base origin to end-effector (foot) position in body for
-    /// a given leg.
-    /// \param[in] _leg Leg type.
-    /// \param[in] _q Generalized coordinates.
-    /// \return Returns the position vector from base to foot.
-    public: Eigen::Matrix<double, 3, 1> GetPositionBaseToFootInB(const LegType &_leg,
-                                                                 const Eigen::Matrix<double, 18, 1> &_q);
-
     /// \brief The GetPositionBaseToBodyInB returns the position vector
     /// from base origin to COM position in body-frame for
     /// a given body.
