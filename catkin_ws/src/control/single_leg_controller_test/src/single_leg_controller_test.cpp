@@ -140,7 +140,11 @@ void SingleLegController::updateSpeedControlCommands()
     vel_foot(2) = filter_ref_foot_speed_z.getSpeed();
 
     // Convert the desired foot velocity into desired joint angles
-    Eigen::Matrix<double, 3, 3> foot_jacobian = kinematics.GetTranslationJacobianInB(false, joint_angles(0), joint_angles(1), joint_angles(2)); 
+    Eigen::Matrix<double, 3, 3> foot_jacobian = kinematics.GetTranslationJacobianInB(Kinematics::LegType::frontLeft, 
+                                                                                     Kinematics::BodyType::foot, 
+                                                                                     joint_angles(0),
+                                                                                     joint_angles(1),
+                                                                                     joint_angles(2)); 
 
     //Eigen::Matrix<double, 3, 3> foot_jacobian = Eigen::Matrix<double, 3, 3>::Zero();
     //for(int i = 0; i < 3; i++){foot_jacobian(i, i) = 1.0;} // TODO Replace with true Jacobian

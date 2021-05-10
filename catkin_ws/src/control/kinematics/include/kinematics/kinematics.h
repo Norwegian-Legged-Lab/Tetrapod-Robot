@@ -149,26 +149,30 @@ class Kinematics
                                                                  const BodyType &_body, 
                                                                  const Eigen::Matrix<double, 18, 1> &_q);
 
-    /// \brief The GetTranslationJacobianInB function returns the 
-    /// Jacobian matrix for end-effector linear velocities in body for the leg state.
-    /// \param[in] _offset Bool indicating whether roll offset
-    /// should be set to -90 or 90 degrees. True indicates roll offset
-    /// of 90 deg, false indicates roll offset of -90 degrees.
+    /// \brief The GetTranslationJacobianInB function returns the 3x3
+    /// Jacobian matrix for body linear velocities in the body(base)-frame for
+    /// a given state.
+    /// \param[in] _leg Leg type.
+    /// \param[in] _body Body type.
     /// \param[in] _theta_hy Hip yaw angle.
     /// \param[in] _theta_hp Hip pitch angle.
     /// \param[in] _theta_kp Knee pitch angle.
     /// \return Returns the Jacobian Matrix relating end-effector velocities to joint velocities.
-    public: Eigen::Matrix<double, 3, 3> GetTranslationJacobianInB(const bool &_offset,
+    public: Eigen::Matrix<double, 3, 3> GetTranslationJacobianInB(const LegType &_leg,
+                                                                  const BodyType &_body,
                                                                   const double &_theta_hy, 
                                                                   const double &_theta_hp, 
                                                                   const double &_theta_kp);
 
-    /// \brief The GetTranslationJacobianInB function returns the
-    /// Jacobian matrix for end-effector linear velocities in body for the joint state.
+    /// \brief The GetTranslationJacobianInB function returns the 3x12
+    /// Jacobian matrix for body linear velocities in the body(base)-frame for
+    /// given states.
     /// \param[in] _leg Leg type.
+    /// \param[in] _body Body type.
     /// \param[in] _q_r Joint coordinates.
     /// \return Returns the Jacobian Matrix relating end-effector velocities to joint velocities.
     public: Eigen::Matrix<double, 3, 12> GetTranslationJacobianInB(const LegType &_leg, 
+                                                                   const BodyType &_body,
                                                                    const Eigen::Matrix<double, 12, 1> &_q_r);
 
     /// \brief The GetLinkTranslationJacobianInB function returns the 

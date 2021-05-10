@@ -219,10 +219,11 @@ void GaitControl::NumericalIKPositionControl(const Eigen::Matrix<double, 6, 1> &
 
     do 
     {
-        J.block<3,3>(0,0) = this->kinematics.GetTranslationJacobianInB(false,
-                                                                                this->genCoord(6),
-                                                                                this->genCoord(7),
-                                                                                this->genCoord(8));
+        J.block<3,3>(0,0) = this->kinematics.GetTranslationJacobianInB(Kinematics::LegType::frontLeft,
+                                                                       Kinematics::BodyType::foot,
+                                                                       this->genCoord(6),
+                                                                       this->genCoord(7),
+                                                                       this->genCoord(8));
 
         J.block<3,3>(3,0) = this->kinematics.GetSingleLegRotationJacobianInB(false,
                                                                              this->genCoord(6),
@@ -280,7 +281,8 @@ void GaitControl::NumericalInverseKinematicsControl(const Eigen::Matrix<double, 
     do 
     {
         J = this->kinematics.GetTranslationJacobianInB(Kinematics::LegType::frontLeft,
-                                                                this->genCoord.block<12,1>(6,0));
+                                                       Kinematics::BodyType::foot,
+                                                       this->genCoord.block<12,1>(6,0));
 
         if (!kindr::pseudoInverse(J, pinvJ))
         {

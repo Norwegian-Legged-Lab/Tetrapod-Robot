@@ -550,39 +550,121 @@ Eigen::Matrix<double, 3, 1> Kinematics::GetPositionBaseToBodyInB(const LegType &
 }
 
 // Leg state single leg translation Jacobian in body frame
-Eigen::Matrix<double, 3, 3> Kinematics::GetTranslationJacobianInB(const bool &_offset,
+Eigen::Matrix<double, 3, 3> Kinematics::GetTranslationJacobianInB(const LegType &_leg,
+                                                                  const BodyType &_body,
                                                                   const double &_theta_hy, 
                                                                   const double &_theta_hp, 
                                                                   const double &_theta_kp)
 {
-    Eigen::Matrix<double, 3, 3> J;
+    Eigen::Matrix<double, 3, 3> J; // 3x3 Translation Jacobian
 
-    double c1 = std::cos(_theta_hy);
-    double s1 = std::sin(_theta_hy);
+    double l1; // Length of link 1, if any, zero elsewise
+    double l2; // Length of link 2, if any, zero elsewise 
+    double l3; // Length of link 3, if any, zero elsewise
 
-    double c2 = std::cos(_theta_hp);
-    double s2 = std::sin(_theta_hp);
+    double c1 = std::cos(_theta_hy); // cos(theta1)
+    double s1 = std::sin(_theta_hy); // sin(theta1)
 
-    double c23 = std::cos(_theta_hp + _theta_kp);
-    double s23 = std::sin(_theta_hp + _theta_kp);
+    double c2 = std::cos(_theta_hp); // cos(theta2)
+    double s2 = std::sin(_theta_hp); // sin(theta2)
 
-    J(0, 0) = (this->L1 + this->L2*c2 + this->L3*c23)*(-s1);
-    J(1, 0) = (this->L1 + this->L2*c2 + this->L3*c23)*( c1);
-    J(2, 0) = 0.0;
+    double c23 = std::cos(_theta_hp + _theta_kp); // cos(theta2 + theta3)
+    double s23 = std::sin(_theta_hp + _theta_kp); // sin(theta2 + theta3)
 
-    J(0, 1) = (-this->L2*s2 - this->L3*s23)*c1;
-    J(1, 1) = (-this->L2*s2 - this->L3*s23)*s1;
-    J(2, 1) = -this->L2*c2 -this->L3*c23;
-
-    J(0, 2) = -this->L3*s23*c1;
-    J(1, 2) = -this->L3*s23*s1;
-    J(2, 2) = -this->L3*c23;
-
-    // For front right and rear left foot positive angles causes increase in height
-    if(_offset)
+    switch (_body)
     {
-        J(2, 1) = - J(2, 1); 
-        J(2, 2) = - J(2, 2);
+        case base:
+        {
+            l1 = 0;
+            l2 = 0;
+            l3 = 0;
+
+            break;
+        } 
+        case hip:
+        {
+            l1 = this->LC1;
+            l2 = 0;
+            l3 = 0;
+
+            break;
+        } 
+        case thigh:
+        {
+            l1 = this->L1;
+            l2 = this->LC2;
+            l3 = 0;
+
+            break;
+        } 
+        case leg:
+        {
+            l1 = this->L1;
+            l2 = this->L2;
+            l3 = this->LC3;
+
+            break;
+        } 
+        case foot:
+        {
+            l1 = this->L1;
+            l2 = this->L2;
+            l3 = this->L3;
+
+            break;
+        } 
+        default:
+        {
+            ROS_ERROR_STREAM("[Kinematics::GetTranslationJacobianInB] Could not determine body type!");
+
+            break;
+        }
+    }
+
+    switch (_leg)
+    {
+        // Equivalent of case frontLeft || rearRight:
+        case frontLeft:
+        case rearRight:
+        {
+            J(0, 0) = (l1 + l2 * c2 + l3 * c23) * (-s1);
+            J(1, 0) = (l1 + l2 * c2 + l3 * c23) * ( c1);
+            J(2, 0) = 0.0;
+
+            J(0, 1) = (-l2 * s2 - l3 * s23) * c1;
+            J(1, 1) = (-l2 * s2 - l3 * s23) * s1;
+            J(2, 1) = -l2 * c2 - l3 * c23;
+
+            J(0, 2) = -l3 * s23 * c1;
+            J(1, 2) = -l3 * s23 * s1;
+            J(2, 2) = -l3 * c23;
+
+            break;
+        }
+        // Equivalent of case frontRight || rearLeft:
+        case frontRight:
+        case rearLeft:
+        {
+            J(0, 0) = (l1 + l2 * c2 + l3 * c23) * (-s1);
+            J(1, 0) = (l1 + l2 * c2 + l3 * c23) * ( c1);
+            J(2, 0) = 0.0;
+
+            J(0, 1) = (-l2 * s2 - l3 * s23) * c1;
+            J(1, 1) = (-l2 * s2 - l3 * s23) * s1;
+            J(2, 1) = l2 * c2 + l3 * c23;
+
+            J(0, 2) = -l3 * s23 * c1;
+            J(1, 2) = -l3 * s23 * s1;
+            J(2, 2) = l3 * c23;
+
+            break;
+        }
+        default:
+        {
+            ROS_ERROR_STREAM("[Kinematics::GetTranslationJacobianInB] Could not determine leg type!");
+
+            break;
+        }
     }
 
     return J;
@@ -590,42 +672,69 @@ Eigen::Matrix<double, 3, 3> Kinematics::GetTranslationJacobianInB(const bool &_o
 
 // Joint state single leg translation Jacobian in body frame
 Eigen::Matrix<double, 3, 12> Kinematics::GetTranslationJacobianInB(const LegType &_leg, 
+                                                                   const BodyType &_body,
                                                                    const Eigen::Matrix<double, 12, 1> &_q_r)
 {
-    Eigen::Matrix<double, 3, 12> J = Eigen::Matrix<double, 3, 12>::Constant(0);
+    Eigen::Matrix<double, 3, 12> J = Eigen::Matrix<double, 3, 12>::Constant(0); // 3x12 Translation Jacobian
 
-    if (_leg == LegType::frontLeft)
+    int col = 0;     // Jacobian placement column index
+    double theta_hy; // Hip yaw angle
+    double theta_hp; // Hip pitch angle
+    double theta_kp; // Knee pitch angle
+
+    switch (_leg)
     {
-        J.block<3, 3>(0,0) = this->GetTranslationJacobianInB(this->flOffset,
-                                                                      _q_r(0), 
-                                                                      _q_r(1), 
-                                                                      _q_r(2));
+        case frontLeft:
+        {
+            col = 0;
+            theta_hy = _q_r(0);
+            theta_hp = _q_r(1);
+            theta_kp = _q_r(2);
+
+            break;
+        }
+        case frontRight:
+        {
+            col = 3;
+            theta_hy = _q_r(3);
+            theta_hp = _q_r(4);
+            theta_kp = _q_r(5);
+
+            break;
+        }
+        case rearRight:
+        {
+            col = 6;
+            theta_hy = _q_r(6);
+            theta_hp = _q_r(7);
+            theta_kp = _q_r(8);
+
+            break;
+        }
+        case rearLeft:
+        {
+            col = 9;
+            theta_hy = _q_r(9);
+            theta_hp = _q_r(10);
+            theta_kp = _q_r(11);
+
+            break;
+        }
+        default:
+        {
+            ROS_ERROR_STREAM("[Kinematics::GetTranslationJacobianInB] Could not determine leg type!");
+
+            break;
+        }
+
     }
-    else if (_leg == LegType::frontRight)
-    {
-        J.block<3, 3>(0,3) = this->GetTranslationJacobianInB(this->frOffset,
-                                                                      _q_r(3), 
-                                                                      _q_r(4), 
-                                                                      _q_r(5));
-    }
-    else if (_leg == LegType::rearLeft)
-    {
-        J.block<3, 3>(0,6) = this->GetTranslationJacobianInB(this->rlOffset,
-                                                                      _q_r(6), 
-                                                                      _q_r(7), 
-                                                                      _q_r(8));
-    }
-    else if (_leg == LegType::rearRight)
-    {
-        J.block<3, 3>(0,9) = this->GetTranslationJacobianInB(this-rrOffset,
-                                                                      _q_r(9), 
-                                                                      _q_r(10), 
-                                                                      _q_r(11));
-    }
-    else
-    {
-        ROS_ERROR_STREAM("Leg type could not be determined when finding SingeLegTranslationJacobianInB!");
-    }
+
+    // Place 3x3 Jacobian at desired columns
+    J.block<3,3>(0, col) = this->GetTranslationJacobianInB(_leg,
+                                                           _body,
+                                                           theta_hy,
+                                                           theta_hp,
+                                                           theta_kp);
 
     return J;
 }
@@ -777,7 +886,7 @@ Eigen::Matrix<double, 3, 18> Kinematics::GetTranslationJacobianInW(const LegType
 
     Eigen::Matrix<double, 3, 1> positionBaseToFootInB = this->GetPositionBaseToBodyInB(_leg, BodyType::foot, _q);
 
-    Eigen::Matrix<double, 3, 12> translationJacobianInB = this->GetTranslationJacobianInB(_leg, _q.block<12, 1>(6,0));
+    Eigen::Matrix<double, 3, 12> translationJacobianInB = this->GetTranslationJacobianInB(_leg, BodyType::foot, _q.block<12, 1>(6,0));
 
     J.block<3, 3>(0,0).setIdentity();
     J.block<3, 3>(0,3) = - rotationWToB.matrix() * kindr::getSkewMatrixFromVector(positionBaseToFootInB);
