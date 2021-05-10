@@ -702,7 +702,7 @@ Eigen::Matrix<double, 3, 12> Kinematics::GetTranslationJacobianInB(const LegType
 
             break;
         }
-        case rearRight:
+        case rearLeft:
         {
             col = 6;
             theta_hy = _q_r(6);
@@ -711,7 +711,7 @@ Eigen::Matrix<double, 3, 12> Kinematics::GetTranslationJacobianInB(const LegType
 
             break;
         }
-        case rearLeft:
+        case rearRight:
         {
             col = 9;
             theta_hy = _q_r(9);
@@ -917,7 +917,7 @@ Eigen::Matrix<double, 3, 12> Kinematics::GetRotationJacobianInB(const LegType &_
 
             break;
         }
-        case rearRight:
+        case rearLeft:
         {
             col = 6;
             theta_hy = _q_r(6);
@@ -926,7 +926,7 @@ Eigen::Matrix<double, 3, 12> Kinematics::GetRotationJacobianInB(const LegType &_
 
             break;
         }
-        case rearLeft:
+        case rearRight:
         {
             col = 9;
             theta_hy = _q_r(9);
