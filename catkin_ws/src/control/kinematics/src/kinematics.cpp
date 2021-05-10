@@ -371,6 +371,10 @@ TransMatrix Kinematics::GetHipToBodyTransform(const LegType &_leg,
         {
             ROS_ERROR_STREAM("[Kinematics::GetHipToBodyTransform] Could not determine leg type!");
 
+
+            std::abort();
+            std::abort();
+
             break;
         }
 
@@ -533,6 +537,8 @@ Eigen::Matrix<double, 3, 1> Kinematics::GetPositionBaseToBodyInB(const LegType &
         {
             ROS_ERROR_STREAM("[Kinematics::GetPositionBaseToBodyInB] Could not determine leg type!");
 
+            std::abort();
+
             break;
         }
     }
@@ -609,6 +615,8 @@ Eigen::Matrix<double, 3, 3> Kinematics::GetTranslationJacobianInB(const LegType 
         {
             ROS_ERROR_STREAM("[Kinematics::GetTranslationJacobianInB] Could not determine body type!");
 
+            std::abort();
+
             break;
         }
     }
@@ -654,6 +662,8 @@ Eigen::Matrix<double, 3, 3> Kinematics::GetTranslationJacobianInB(const LegType 
         default:
         {
             ROS_ERROR_STREAM("[Kinematics::GetTranslationJacobianInB] Could not determine leg type!");
+
+            std::abort();
 
             break;
         }
@@ -716,6 +726,8 @@ Eigen::Matrix<double, 3, 12> Kinematics::GetTranslationJacobianInB(const LegType
         {
             ROS_ERROR_STREAM("[Kinematics::GetTranslationJacobianInB] Could not determine leg type!");
 
+            std::abort();
+
             break;
         }
 
@@ -776,6 +788,8 @@ Eigen::Matrix<double, 3, 18> Kinematics::GetTranslationJacobianInW(const LegType
         default:
         {
             ROS_ERROR_STREAM("[Kinematics::GetTranslationJacobianInW] Could not determine body type!");
+
+            std::abort();
 
             break;
         }
@@ -842,6 +856,8 @@ Eigen::Matrix<double, 3, 3> Kinematics::GetRotationJacobianInB(const LegType &_l
                 {
                     ROS_ERROR_STREAM("[Kinematics::GetRotationJacobianInB] Could not determine body type!");
 
+                    std::abort();
+
                     break;
                 }
             }
@@ -887,6 +903,8 @@ Eigen::Matrix<double, 3, 3> Kinematics::GetRotationJacobianInB(const LegType &_l
                 {
                     ROS_ERROR_STREAM("[Kinematics::GetRotationJacobianInB] Could not determine body type!");
 
+                    std::abort();
+
                     break;
                 }
             }
@@ -895,6 +913,8 @@ Eigen::Matrix<double, 3, 3> Kinematics::GetRotationJacobianInB(const LegType &_l
         default:
         {
             ROS_ERROR_STREAM("[Kinematics::GetRotationJacobianInB] Could not determine leg type!");
+
+            std::abort();
 
             break;
         }
@@ -957,6 +977,8 @@ Eigen::Matrix<double, 3, 12> Kinematics::GetRotationJacobianInB(const LegType &_
         {
             ROS_ERROR_STREAM("[Kinematics::GetRotationJacobianInB] Could not determine leg type!");
 
+            std::abort();
+
             break;
         }
 
@@ -1011,6 +1033,8 @@ Eigen::Matrix<double, 3, 18> Kinematics::GetRotationJacobianInW(const LegType &_
         {
             ROS_ERROR_STREAM("[Kinematics::GetRotationJacobianInW] Could not determine body type!");
 
+            std::abort();
+
             break;
         }
     }
@@ -1052,8 +1076,6 @@ Eigen::Matrix<double, 18, 18> Kinematics::GetSingleBodyMassMatrix(const LegType 
 
     double m; // Mass of the body
 
-    // TODO Implement functionality here
-
     J_COM = this->GetTranslationJacobianInW(_leg, _body, _q);
     J_R = this->GetRotationJacobianInW(_leg, _body, _q);
 
@@ -1090,6 +1112,8 @@ Eigen::Matrix<double, 18, 18> Kinematics::GetSingleBodyMassMatrix(const LegType 
         default:
         {
             ROS_ERROR_STREAM("[Kinematics::GetSingleBodyMassMatrix] Could not determine body type!");
+
+            std::abort();
 
             break;
         }

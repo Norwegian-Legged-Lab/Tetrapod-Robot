@@ -400,9 +400,40 @@ void testBaseJacobian()
          0*math_utils::degToRad(90); // RR-theta_kp
 
         
-    Eigen::Matrix<double, 6, 18> J = K.GetJacobianInW(Kinematics::LegType::rearRight, Kinematics::BodyType::base, q);
+    Eigen::Matrix<double, 3, 18> J = K.GetTranslationJacobianInW(Kinematics::LegType::rearRight, Kinematics::BodyType::base, q);
 
-    ROS_INFO_STREAM("Jacobian, J: \n" << J);
+    ROS_INFO_STREAM("Jacobian, J: \n" << J.transpose() * J);
+}
+
+void testMassMatrix()
+{
+    Kinematics K;
+
+    GeneralizedCoordinates q = GeneralizedCoordinates::Constant(0);
+
+    q << 0, // base_x
+         0, // base_y
+         0, // base_z
+         0, // base_roll
+         0, // base_pitch
+         0*math_utils::degToRad(90), // base_yaw
+         0*math_utils::degToRad(45), // FL-theta_hy
+         0*math_utils::degToRad(-20), // FL-theta_hp
+         0*math_utils::degToRad(90), // FL-theta_kp
+         0*math_utils::degToRad(-45), // FR-theta_hy
+         0*math_utils::degToRad(20), // FR-theta_hp
+         0*math_utils::degToRad(-90), // FR-theta_kp
+         0*math_utils::degToRad(135), // RL-theta_hy
+         0*math_utils::degToRad(20), // RL-theta_hp
+         0*math_utils::degToRad(-90), // RL-theta_kp
+         0*math_utils::degToRad(-135), // RR-theta_hy
+         0*math_utils::degToRad(-20), // RR-theta_hp
+         0*math_utils::degToRad(90); // RR-theta_kp
+
+    Eigen::Matrix<double, 18, 18> M = K.GetSingleBodyMassMatrix(Kinematics::LegType::rearRight, Kinematics::BodyType::base, q);
+    //Eigen::Matrix<double, 18, 18> M = K.GetMassMatrix(q);
+
+    ROS_INFO_STREAM("Mass matrix, M: \n" << M);
 }
 
 
@@ -430,8 +461,10 @@ int main(int argc, char **argv)
     //testTranslationJacobian();
     //ROS_INFO_STREAM("--------------- Test rotationJacobian --------------");
     //testRotationJacobian();
-    ROS_INFO_STREAM("--------------- Test Jacobian --------------");
-    testBaseJacobian();
+    //ROS_INFO_STREAM("--------------- Test Jacobian --------------");
+    //testBaseJacobian();
+    ROS_INFO_STREAM("--------------- Test Mass Matrix -----------");
+    testMassMatrix();
 
     ros::spin();
     return 0;
