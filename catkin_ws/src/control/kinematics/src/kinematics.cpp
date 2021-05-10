@@ -86,7 +86,7 @@ Kinematics::Kinematics()
     this->M2 = 1.479;
     this->M3 = 0.303;
 
-    // Set inertias
+    // Set inertia matrices
     this->I0 = GetInertiaMatrix(0.141, 0.143, 0.254, 0.0, 0.0, 0.0);
     this->I1 = GetInertiaMatrix(0.00875, 0.01534, 0.0223, -0.0101, 0.00045, -0.00032);
     this->I2 = GetInertiaMatrix(0.00306, 0.00998, 0.0085, 0.0, 0.0, 0.0);
@@ -185,19 +185,23 @@ bool Kinematics::SolveForwardKinematics(const GeneralizedCoordinates &_q,
     kindr::HomTransformMatrixD transformBaseToRearRightHip(positionBaseToRearRightInW, rotationWToB);
 
     // Hip to foot transformations
-    kindr::HomTransformMatrixD transformFrontLeftHipToFoot = this->GetHipToFootTransform(this->flOffset,
+    kindr::HomTransformMatrixD transformFrontLeftHipToFoot = this->GetHipToBodyTransform(LegType::frontLeft,
+                                                                                         BodyType::foot,
                                                                                          _q(6),
                                                                                          _q(7),
                                                                                          _q(8));
-    kindr::HomTransformMatrixD transformFrontRightHipToFoot = this->GetHipToFootTransform(this->frOffset,
+    kindr::HomTransformMatrixD transformFrontRightHipToFoot = this->GetHipToBodyTransform(LegType::frontRight,
+                                                                                          BodyType::foot,
                                                                                           _q(9),
                                                                                           _q(10),
                                                                                           _q(11));
-    kindr::HomTransformMatrixD transformRearLeftHipToFoot = this->GetHipToFootTransform(this->rlOffset,
+    kindr::HomTransformMatrixD transformRearLeftHipToFoot = this->GetHipToBodyTransform(LegType::rearLeft,
+                                                                                        BodyType::foot,
                                                                                         _q(12),
                                                                                         _q(13),
                                                                                         _q(14));
-    kindr::HomTransformMatrixD transformRearRightHipToFoot = this->GetHipToFootTransform(this->rrOffset,
+    kindr::HomTransformMatrixD transformRearRightHipToFoot = this->GetHipToBodyTransform(LegType::rearRight,
+                                                                                         BodyType::foot,
                                                                                          _q(15),
                                                                                          _q(16),
                                                                                          _q(17));
@@ -224,7 +228,8 @@ Vector3d Kinematics::SolveSingleLegForwardKinematics(const Vector3d &_h_pos,
                                                      const double &_theta_kp)
 {
     // Complete D-H transformation
-    kindr::HomTransformMatrixD transformation = this->GetHipToFootTransform(false,
+    kindr::HomTransformMatrixD transformation = this->GetHipToBodyTransform(LegType::frontLeft,
+                                                                            BodyType::foot,
                                                                             _theta_hy,
                                                                             _theta_hp,
                                                                             _theta_kp); 
@@ -301,105 +306,6 @@ bool Kinematics::SolveSingleLegInverseKinematics(const bool &_offset, const Vect
     return true;
 }
 
-// Get position vector from base to foot in body
-Eigen::Matrix<double, 3, 1> Kinematics::GetPositionBaseToFootInB(const LegType &_leg,
-                                                                 const Eigen::Matrix<double, 18, 1> &_q)
-{
-    Eigen::Matrix<double, 3, 1> positionBaseToFootInB;
-
-    Eigen::Matrix<double, 3, 1> positionBaseToHipInB;
-
-    kindr::HomTransformMatrixD transformHipToFoot;
-
-    if (_leg == LegType::frontLeft)
-    {
-        transformHipToFoot = this->GetHipToFootTransform(this->flOffset,
-                                                                                    _q(6),
-                                                                                    _q(7),
-                                                                                    _q(8));
-
-        positionBaseToHipInB = this->positionBaseToFrontLeftInB;
-    }
-    else if (_leg == LegType::frontRight)
-    {
-        transformHipToFoot = this->GetHipToFootTransform(this->frOffset,
-                                                                                    _q(9),
-                                                                                    _q(10),
-                                                                                    _q(11));
-
-        positionBaseToHipInB = this->positionBaseToFrontRightInB;
-    }
-    else if (_leg == LegType::rearLeft)
-    {
-        transformHipToFoot = this->GetHipToFootTransform(this->rlOffset,
-                                                                                    _q(12),
-                                                                                    _q(13),
-                                                                                    _q(14));
-
-        positionBaseToHipInB = this->positionBaseToRearLeftInB;
-    }
-    else if (_leg == LegType::rearRight)
-    {
-        transformHipToFoot = this->GetHipToFootTransform(this->rrOffset,
-                                                                                    _q(15),
-                                                                                    _q(16),
-                                                                                    _q(17));
-
-        positionBaseToHipInB = this->positionBaseToRearRightInB;
-    }
-    else
-    {
-        ROS_ERROR_STREAM("Leg type could not be determined when finding positionBaseToFootInB!");
-    }
-
-    // TODO remove this zero
-    positionBaseToFootInB = 0*positionBaseToHipInB + transformHipToFoot.transform(kindr::Position3D(0,0,0)).vector();
-
-
-    return positionBaseToFootInB;
-}
-
-// HipToFootTransform
-TransMatrix Kinematics::GetHipToFootTransform(const bool &_offset,
-                                              const double &_theta_hy, 
-                                              const double &_theta_hp, 
-                                              const double &_theta_kp)
-{
-    // Check offset for D-H transformation
-    double roll_offset = 0;
-
-    if (_offset)
-    {
-        roll_offset = math_utils::HALF_PI;
-    } else
-    {
-        roll_offset = -math_utils::HALF_PI;
-    }
-
-    // First D-H transformation
-    kindr::HomTransformMatrixD t1 = this->GetDhTransform(this->L1,
-                                                         roll_offset,
-                                                         0,
-                                                         _theta_hy);
-
-    // Second D-H transformation
-    kindr::HomTransformMatrixD t2 = this->GetDhTransform(this->L2,
-                                                         0,
-                                                         0,
-                                                         _theta_hp);
-
-    // Third D-H transformation
-    kindr::HomTransformMatrixD t3 = this->GetDhTransform(this->L3,
-                                                         0,
-                                                         0,
-                                                         _theta_kp);
-
-    // Complete D-H transformation
-    kindr::HomTransformMatrixD transformation = t1*t2*t3;
-
-    return transformation;
-}
-
 // Denavit-Hartenberg Transformation
 TransMatrix Kinematics::GetDhTransform(const double &_a, 
                                        const double &_alpha, 
@@ -420,11 +326,214 @@ TransMatrix Kinematics::GetDhTransform(const double &_a,
     return transformationAToB;
 }
 
+// HipToFootTransform
+TransMatrix Kinematics::GetHipToBodyTransform(const LegType &_leg,
+                                              const BodyType &_body,
+                                              const double &_theta_hy, 
+                                              const double &_theta_hp, 
+                                              const double &_theta_kp)
+{
+    // Declare possible transforms
+    kindr::HomTransformMatrixD t1;
+    kindr::HomTransformMatrixD t2;
+    kindr::HomTransformMatrixD t3;
+
+    // Check offset for D-H transformation
+    double roll_offset = 0;
+
+    switch (_leg)
+    {
+        case frontLeft:
+        {
+            roll_offset = - math_utils::HALF_PI;
+
+            break;
+        }
+        case frontRight:
+        {
+            roll_offset = math_utils::HALF_PI;
+
+            break;
+        }
+        case rearLeft:
+        {
+            roll_offset = math_utils::HALF_PI;
+
+            break;
+        }
+        case rearRight:
+        {
+            roll_offset = - math_utils::HALF_PI;
+
+            break;
+        }
+        default:
+        {
+            ROS_ERROR_STREAM("[Kinematics::GetHipToBodyTransform] Could not determine leg type!");
+        }
+
+    }
+
+
+    switch (_body)
+    {
+        case hip:
+        {
+            // First D-H transformation
+            t1 = this->GetDhTransform(this->LC1,
+                                      roll_offset,
+                                      0,
+                                      _theta_hy);
+            
+            // Second D-H transformation (not applicable for hip)
+            t2.setIdentity();
+
+            // Third D-H transformation (not applicable for hip)
+            t3.setIdentity();
+
+            break;
+        }
+        case thigh:
+        {
+            // First D-H transformation
+            t1 = this->GetDhTransform(this->L1,
+                                      roll_offset,
+                                      0,
+                                      _theta_hy);
+            
+            // Second D-H transformation
+            t2 = this->GetDhTransform(this->LC2,
+                                      0,
+                                      0,
+                                      _theta_hp);
+
+            // Third D-H transformation (not applicable for thigh)
+            t3.setIdentity();
+
+            break;
+        }
+        case leg:
+        {
+            // First D-H transformation
+            t1 = this->GetDhTransform(this->L1,
+                                      roll_offset,
+                                      0,
+                                      _theta_hy);
+            
+            // Second D-H transformation
+            t2 = this->GetDhTransform(this->L2,
+                                      0,
+                                      0,
+                                      _theta_hp);
+
+            // Third D-H transformation
+            t3 = this->GetDhTransform(this->LC3,
+                                      0,
+                                      0,
+                                      _theta_kp);
+
+            break;
+        }
+        case foot:
+        {
+            // First D-H transformation
+            t1 = this->GetDhTransform(this->L1,
+                                      roll_offset,
+                                      0,
+                                      _theta_hy);
+            
+            // Second D-H transformation
+            t2 = this->GetDhTransform(this->L2,
+                                      0,
+                                      0,
+                                      _theta_hp);
+
+            // Third D-H transformation
+            t3 = this->GetDhTransform(this->L3,
+                                      0,
+                                      0,
+                                      _theta_kp);
+
+            break;
+        }
+        default:
+        {
+            ROS_ERROR_STREAM("[Kinematics::GetHipToBodyTransform] Could not determine body type!");
+        }
+    }
+
+    // Complete D-H transformation
+    kindr::HomTransformMatrixD transformation = t1*t2*t3;
+
+    return transformation;
+}
+
+
+
+// TODO REMOVE
+// Get position vector from base to foot in body
+Eigen::Matrix<double, 3, 1> Kinematics::GetPositionBaseToFootInB(const LegType &_leg,
+                                                                 const Eigen::Matrix<double, 18, 1> &_q)
+{
+    Eigen::Matrix<double, 3, 1> positionBaseToFootInB;
+
+    Eigen::Matrix<double, 3, 1> positionBaseToHipInB;
+
+    kindr::HomTransformMatrixD transformHipToFoot;
+
+    //if (_leg == LegType::frontLeft)
+    //{
+    //    transformHipToFoot = this->GetHipToBodyTransform(this->flOffset,
+    //                                                     _q(6),
+    //                                                     _q(7),
+    //                                                    _q(8));
+
+    //    positionBaseToHipInB = this->positionBaseToFrontLeftInB;
+    //}
+    //else if (_leg == LegType::frontRight)
+    //{
+    //    transformHipToFoot = this->GetHipToFootTransform(this->frOffset,
+    //                                                     _q(9),
+    //                                                     _q(10),
+    //                                                     _q(11));
+
+    //    positionBaseToHipInB = this->positionBaseToFrontRightInB;
+    //}
+    //else if (_leg == LegType::rearLeft)
+    //{
+    //    transformHipToFoot = this->GetHipToFootTransform(this->rlOffset,
+    //                                                     _q(12),
+    //                                                     _q(13),
+    //                                                     _q(14));
+
+    //    positionBaseToHipInB = this->positionBaseToRearLeftInB;
+    //}
+    //else if (_leg == LegType::rearRight)
+    //{
+    //    transformHipToFoot = this->GetHipToFootTransform(this->rrOffset,
+    //                                                     _q(15),
+    //                                                     _q(16),
+    //                                                     _q(17));
+
+    //    positionBaseToHipInB = this->positionBaseToRearRightInB;
+    //}
+    //else
+    //{
+    //    ROS_ERROR_STREAM("Leg type could not be determined when finding positionBaseToFootInB!");
+    //}
+
+    // TODO remove this zero
+    positionBaseToFootInB = 0*positionBaseToHipInB + transformHipToFoot.transform(kindr::Position3D(0,0,0)).vector();
+
+
+    return positionBaseToFootInB;
+}
+
 // Leg state single leg translation Jacobian in body frame
-Eigen::Matrix<double, 3, 3> Kinematics::GetSingleLegTranslationJacobianInB(const bool &_offset,
-                                                                           const double &_theta_hy, 
-                                                                           const double &_theta_hp, 
-                                                                           const double &_theta_kp)
+Eigen::Matrix<double, 3, 3> Kinematics::GetTranslationJacobianInB(const bool &_offset,
+                                                                  const double &_theta_hy, 
+                                                                  const double &_theta_hp, 
+                                                                  const double &_theta_kp)
 {
     Eigen::Matrix<double, 3, 3> J;
 
@@ -460,35 +569,35 @@ Eigen::Matrix<double, 3, 3> Kinematics::GetSingleLegTranslationJacobianInB(const
 }
 
 // Joint state single leg translation Jacobian in body frame
-Eigen::Matrix<double, 3, 12> Kinematics::GetSingleLegTranslationJacobianInB(const LegType &_leg, 
-                                                                            const Eigen::Matrix<double, 12, 1> &_q_r)
+Eigen::Matrix<double, 3, 12> Kinematics::GetTranslationJacobianInB(const LegType &_leg, 
+                                                                   const Eigen::Matrix<double, 12, 1> &_q_r)
 {
     Eigen::Matrix<double, 3, 12> J = Eigen::Matrix<double, 3, 12>::Constant(0);
 
     if (_leg == LegType::frontLeft)
     {
-        J.block<3, 3>(0,0) = this->GetSingleLegTranslationJacobianInB(this->flOffset,
+        J.block<3, 3>(0,0) = this->GetTranslationJacobianInB(this->flOffset,
                                                                       _q_r(0), 
                                                                       _q_r(1), 
                                                                       _q_r(2));
     }
     else if (_leg == LegType::frontRight)
     {
-        J.block<3, 3>(0,3) = this->GetSingleLegTranslationJacobianInB(this->frOffset,
+        J.block<3, 3>(0,3) = this->GetTranslationJacobianInB(this->frOffset,
                                                                       _q_r(3), 
                                                                       _q_r(4), 
                                                                       _q_r(5));
     }
     else if (_leg == LegType::rearLeft)
     {
-        J.block<3, 3>(0,6) = this->GetSingleLegTranslationJacobianInB(this->rlOffset,
+        J.block<3, 3>(0,6) = this->GetTranslationJacobianInB(this->rlOffset,
                                                                       _q_r(6), 
                                                                       _q_r(7), 
                                                                       _q_r(8));
     }
     else if (_leg == LegType::rearRight)
     {
-        J.block<3, 3>(0,9) = this->GetSingleLegTranslationJacobianInB(this-rrOffset,
+        J.block<3, 3>(0,9) = this->GetTranslationJacobianInB(this-rrOffset,
                                                                       _q_r(9), 
                                                                       _q_r(10), 
                                                                       _q_r(11));
@@ -501,9 +610,9 @@ Eigen::Matrix<double, 3, 12> Kinematics::GetSingleLegTranslationJacobianInB(cons
     return J;
 }
 
-Eigen::Matrix<double, 3, 12> Kinematics::GetSingleLegLinkTranslationJacobianInB(const LegType &_leg,
-                                                                                const BodyType &_body,
-                                                                                const Eigen::Matrix<double, 12, 1> &_q_r)
+Eigen::Matrix<double, 3, 12> Kinematics::GetLinkTranslationJacobianInB(const LegType &_leg,
+                                                                       const BodyType &_body,
+                                                                       const Eigen::Matrix<double, 12, 1> &_q_r)
 {
     Eigen::Matrix<double, 3, 12> J = Eigen::Matrix<double, 3, 12>::Zero();
 
@@ -542,7 +651,7 @@ Eigen::Matrix<double, 3, 12> Kinematics::GetSingleLegLinkTranslationJacobianInB(
             break;
 
         default:
-            ROS_ERROR_STREAM("Leg type could not be determined when finding SingeLegLinkTranslationJacobianInB!");
+            ROS_ERROR_STREAM("Leg type could not be determined when finding LinkTranslationJacobianInB!");
             break;
     }
 
@@ -554,50 +663,50 @@ Eigen::Matrix<double, 3, 12> Kinematics::GetSingleLegLinkTranslationJacobianInB(
             link_length_3 = 0.0;
             break;
 
-        case BodyType::shoulder:
+        case BodyType::hip:
             link_length_1 = LC1;
             link_length_2 = 0.0;
             link_length_3 = 0.0;
             break;
 
-        case BodyType::femur:
+        case BodyType::thigh:
             link_length_1 = L1;
             link_length_2 = LC2;
             link_length_3 = 0.0;
             break;
 
-        case BodyType::fibula:
+        case BodyType::leg:
             link_length_1 = L1;
             link_length_2 = L2;
             link_length_3 = LC3;
             break;
 
         default:
-            ROS_ERROR_STREAM("In function SingleLegLinkTranslationJacobianInB the body type could not be determined!");
+            ROS_ERROR_STREAM("In function GetLinkTranslationJacobianInB the body type could not be determined!");
     }
 
     theta_hy = _q_r(leg_index);
     theta_hp = _q_r(leg_index + 1);
     theta_kp = _q_r(leg_index + 2);
 
-    J.block<3, 3>(0, leg_index) = this->GetSingleLegLinkTranslationJacobianInB(leg_offset,
-                                                                               theta_hy,
-                                                                               theta_hp,
-                                                                               theta_kp,
-                                                                               link_length_1,
-                                                                               link_length_2,
-                                                                               link_length_3);
+    J.block<3, 3>(0, leg_index) = this->GetLinkTranslationJacobianInB(leg_offset,
+                                                                      theta_hy,
+                                                                      theta_hp,
+                                                                      theta_kp,
+                                                                      link_length_1,
+                                                                      link_length_2,
+                                                                      link_length_3);
 
     return J;
 }
 
-Eigen::Matrix<double, 3, 3> Kinematics::GetSingleLegLinkTranslationJacobianInB(const bool &_offset,
-                                                                               const double &_theta_hy, 
-                                                                               const double &_theta_hp, 
-                                                                               const double &_theta_kp,
-                                                                               const double &_link_length_1,
-                                                                               const double &_link_length_2,
-                                                                               const double &_link_length_3)
+Eigen::Matrix<double, 3, 3> Kinematics::GetLinkTranslationJacobianInB(const bool &_offset,
+                                                                      const double &_theta_hy, 
+                                                                      const double &_theta_hp, 
+                                                                      const double &_theta_kp,
+                                                                      const double &_link_length_1,
+                                                                      const double &_link_length_2,
+                                                                      const double &_link_length_3)
 {
     Eigen::Matrix<double, 3, 3> J;
 
@@ -648,7 +757,7 @@ Eigen::Matrix<double, 3, 18> Kinematics::GetTranslationJacobianInW(const LegType
 
     Eigen::Matrix<double, 3, 1> positionBaseToFootInB = this->GetPositionBaseToFootInB(_leg, _q);
 
-    Eigen::Matrix<double, 3, 12> translationJacobianInB = this->GetSingleLegTranslationJacobianInB(_leg, _q.block<12, 1>(6,0));
+    Eigen::Matrix<double, 3, 12> translationJacobianInB = this->GetTranslationJacobianInB(_leg, _q.block<12, 1>(6,0));
 
     J.block<3, 3>(0,0).setIdentity();
     J.block<3, 3>(0,3) = - rotationWToB.matrix() * kindr::getSkewMatrixFromVector(positionBaseToFootInB);
@@ -803,9 +912,9 @@ Eigen::Matrix<double, 18, 18> Kinematics::GetMassMatrix(const Eigen::Matrix<doub
 
 
     static const std::vector<BodyType> bodies{ BodyType::base,
-                                               BodyType::shoulder,
-                                               BodyType::femur,
-                                               BodyType::fibula };
+                                               BodyType::hip,
+                                               BodyType::thigh,
+                                               BodyType::leg };
 
     static const std::vector<LegType> legs{ LegType::frontLeft, 
                                             LegType::frontRight,
@@ -865,9 +974,9 @@ Eigen::Matrix<double, 18, 1> Kinematics::GetCoriolisAndCentrifugalTerms(const Ei
 
 
     static const std::vector<BodyType> bodies{ BodyType::base,
-                                               BodyType::shoulder,
-                                               BodyType::femur,
-                                               BodyType::fibula };
+                                               BodyType::hip,
+                                               BodyType::thigh,
+                                               BodyType::leg };
 
     static const std::vector<LegType> legs{ LegType::frontLeft, 
                                             LegType::frontRight,
@@ -918,9 +1027,9 @@ Eigen::Matrix<double, 18, 1> Kinematics::GetGravitationalTerms(const Eigen::Matr
 
 
     static const std::vector<BodyType> bodies{ BodyType::base,
-                                               BodyType::shoulder,
-                                               BodyType::femur,
-                                               BodyType::fibula };
+                                               BodyType::hip,
+                                               BodyType::thigh,
+                                               BodyType::leg };
 
     static const std::vector<LegType> legs{ LegType::frontLeft, 
                                             LegType::frontRight,
@@ -964,6 +1073,7 @@ bool Kinematics::ValidateSolution(const Eigen::Matrix<double, 12, 1> &_q_r)
     return true;
 }
 
+// Inertia matrix
 Eigen::Matrix<double, 3, 3> Kinematics::GetInertiaMatrix(const double &_I_XX,
                                                          const double &_I_YY,
                                                          const double &_I_ZZ,

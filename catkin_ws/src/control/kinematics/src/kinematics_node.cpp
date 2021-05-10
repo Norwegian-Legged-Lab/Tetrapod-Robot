@@ -128,7 +128,8 @@ void testHipToFootTransform()
 {
     Kinematics K;
 
-    kindr::HomTransformMatrixD transformHipToFoot = K.GetHipToFootTransform(true,
+    kindr::HomTransformMatrixD transformHipToFoot = K.GetHipToBodyTransform(Kinematics::LegType::frontLeft,
+                                                                            Kinematics::BodyType::foot,
                                                                             math_utils::degToRad(135),
                                                                             math_utils::degToRad(20),
                                                                             math_utils::degToRad(-90));
@@ -406,6 +407,15 @@ void testMathPseudoInverse()
     ROS_INFO_STREAM("angle_utils dPinvB: \n" << dPinvB);
 }
 
+void testsome()
+{
+    Kinematics K;
+
+    kindr::HomTransformMatrixD t = K.GetDhTransform(0,0,0,1);
+
+    ROS_INFO_STREAM("Transform: \n" << t.getTransformationMatrix());
+}
+
 int main(int argc, char **argv)
 {
     ros::init(argc, argv, "kinematics_node");
@@ -432,7 +442,8 @@ int main(int argc, char **argv)
     //testRotationJacobian();
     //ROS_INFO_STREAM("--------------- Test Jacobian --------------");
     //testJacobian();
-    testMathPseudoInverse();
+    //testMathPseudoInverse();
+    testsome();
 
     ros::spin();
     return 0;

@@ -52,7 +52,7 @@ class Kinematics
     public: enum LegType { frontLeft = 1, frontRight = 2, rearLeft = 3, rearRight = 4, NONE };
 
     /// \brief Leg enumerator
-    public: enum BodyType { base = 1, shoulder = 2, femur = 3, fibula = 4 };
+    public: enum BodyType { base = 1, hip = 2, thigh = 3, leg = 4, foot = 5 };
 
     /// \brief Constructor
     public: Kinematics();
@@ -112,29 +112,6 @@ class Kinematics
                                                  const Vector3d &_f_pos, 
                                                  Vector3d &_joint_angles);
 
-    /// \brief The GetPositionBaseToFootInB returns the position vector
-    /// from base origin to end-effector (foot) position in body for
-    /// a given leg.
-    /// \param[in] _leg Leg type..
-    /// \param[in] _q Generalized coordinates.
-    /// \return Returns the position vector from base to foot.
-    public: Eigen::Matrix<double, 3, 1> GetPositionBaseToFootInB(const LegType &_leg,
-                                                                 const Eigen::Matrix<double, 18, 1> &_q);
-
-    /// \brief The GetHipToFootTransform function returns the homogeneous
-    /// transformation from the Hip frame to the Foot frame.
-    /// \param[in] _offset Bool indicating whether roll offset
-    /// should be set to -90 or 90 degrees. True indicates roll offset
-    /// of 90 deg, false indicates roll offset of -90 degrees.
-    /// \param[in] _theta_hy Hip yaw angle.
-    /// \param[in] _theta_hp Hip pitch angle.
-    /// \param[in] _theta_kp Knee pitch angle.
-    /// \return Returns the kindr homogeneous transformation matrix from Hip to Foot.
-    public: TransMatrix GetHipToFootTransform(const bool &_offset, 
-                                              const double &_theta_hy, 
-                                              const double &_theta_hp, 
-                                              const double &_theta_kp);
-
     /// \brief The GetDhTransform function returns the Denavit-Hartenberg
     /// transformation from frame A to frame B.
     /// \param[in] _a Link length.
@@ -146,8 +123,43 @@ class Kinematics
                                        const double &_alpha, 
                                        const double &_d, 
                                        const double &_theta);
-                                    
-    /// \brief The GetSingleLegTranslationJacobianInB function returns the 
+
+    /// \brief The GetHipToBodyTransform function returns the homogeneous
+    /// transformation from the hip frame to the specified body frame.
+    /// \param[in] _leg Leg type.
+    /// \param[in] _body Body type.
+    /// \param[in] _theta_hy Hip yaw angle.
+    /// \param[in] _theta_hp Hip pitch angle.
+    /// \param[in] _theta_kp Knee pitch angle.
+    /// \return Returns the kindr homogeneous transformation matrix from hip to body.
+    public: TransMatrix GetHipToBodyTransform(const LegType &_leg,
+                                              const BodyType &_body,
+                                              const double &_theta_hy, 
+                                              const double &_theta_hp, 
+                                              const double &_theta_kp);
+
+    // TODO REMOVE
+    /// \brief The GetPositionBaseToFootInB returns the position vector
+    /// from base origin to end-effector (foot) position in body for
+    /// a given leg.
+    /// \param[in] _leg Leg type.
+    /// \param[in] _q Generalized coordinates.
+    /// \return Returns the position vector from base to foot.
+    public: Eigen::Matrix<double, 3, 1> GetPositionBaseToFootInB(const LegType &_leg,
+                                                                 const Eigen::Matrix<double, 18, 1> &_q);
+
+    /// \brief The GetPositionBaseToBodyInB returns the position vector
+    /// from base origin to COM position in body-frame for
+    /// a given body.
+    /// \param[in] _leg Leg type.
+    /// \param[in] _body Body type.
+    /// \param[in] _q Generalized coordinates.
+    /// \return Returns the position vector from base to foot.
+    public: Eigen::Matrix<double, 3, 1> GetPositionBaseToBodyInB(const LegType &_leg,
+                                                                 const BodyType &_body, 
+                                                                 const Eigen::Matrix<double, 18, 1> &_q);
+
+    /// \brief The GetTranslationJacobianInB function returns the 
     /// Jacobian matrix for end-effector linear velocities in body for the leg state.
     /// \param[in] _offset Bool indicating whether roll offset
     /// should be set to -90 or 90 degrees. True indicates roll offset
@@ -156,20 +168,20 @@ class Kinematics
     /// \param[in] _theta_hp Hip pitch angle.
     /// \param[in] _theta_kp Knee pitch angle.
     /// \return Returns the Jacobian Matrix relating end-effector velocities to joint velocities.
-    public: Eigen::Matrix<double, 3, 3> GetSingleLegTranslationJacobianInB(const bool &_offset,
-                                                                           const double &_theta_hy, 
-                                                                           const double &_theta_hp, 
-                                                                           const double &_theta_kp);
+    public: Eigen::Matrix<double, 3, 3> GetTranslationJacobianInB(const bool &_offset,
+                                                                  const double &_theta_hy, 
+                                                                  const double &_theta_hp, 
+                                                                  const double &_theta_kp);
 
-    /// \brief The GetSingleLegTranslationJacobianInB function returns the
+    /// \brief The GetTranslationJacobianInB function returns the
     /// Jacobian matrix for end-effector linear velocities in body for the joint state.
     /// \param[in] _leg Leg type.
     /// \param[in] _q_r Joint coordinates.
     /// \return Returns the Jacobian Matrix relating end-effector velocities to joint velocities.
-    public: Eigen::Matrix<double, 3, 12> GetSingleLegTranslationJacobianInB(const LegType &_leg, 
-                                                                            const Eigen::Matrix<double, 12, 1> &_q_r);
+    public: Eigen::Matrix<double, 3, 12> GetTranslationJacobianInB(const LegType &_leg, 
+                                                                   const Eigen::Matrix<double, 12, 1> &_q_r);
 
-    /// \brief The GetSingleLegLinkTranslationJacobianInB function returns the 
+    /// \brief The GetLinkTranslationJacobianInB function returns the 
     /// Jacobian matrix relating the linear body velocities to joint rates for a leg link
     /// \param[in] _offset Bool indicating whether roll offset
     /// should be set to -90 or 90 degrees. True indicates roll offset
@@ -177,26 +189,26 @@ class Kinematics
     /// \param[in] _theta_hy Hip yaw angle.
     /// \param[in] _theta_hp Hip pitch angle.
     /// \param[in] _theta_kp Knee pitch angle.
-    /// \param[in] _link_length_1 Distance from shoulder joint to next link point
-    /// \param[in] _link_length_2 Distance from shoulder pitch joint to next link point
+    /// \param[in] _link_length_1 Distance from hip joint to next link point
+    /// \param[in] _link_length_2 Distance from hip pitch joint to next link point
     /// \param[in] _link_length_3 Distance from knee pitch joint to next link point
     /// \return Returns the Jacobian Matrix relating the link CoM velocities to joint velocities.
-    public: Eigen::Matrix<double, 3, 3> GetSingleLegLinkTranslationJacobianInB(const bool &_offset,
-                                                                              const double &_theta_hy, 
-                                                                              const double &_theta_hp, 
-                                                                              const double &_theta_kp,
-                                                                              const double &_link_length_1,
-                                                                              const double &_link_length_2,
-                                                                              const double &_link_length_3);
+    public: Eigen::Matrix<double, 3, 3> GetLinkTranslationJacobianInB(const bool &_offset,
+                                                                      const double &_theta_hy, 
+                                                                      const double &_theta_hp, 
+                                                                      const double &_theta_kp,
+                                                                      const double &_link_length_1,
+                                                                      const double &_link_length_2,
+                                                                      const double &_link_length_3);
 
-    /// \brief The GetSingleLegLinkTranslationJacobianInB function returns the translational
+    /// \brief The GetLinkTranslationJacobianInB function returns the translational
     /// Jacobian matrix for a leg link in body frame for the joint state.
-    /// \param[in] _leg Leg Type
+    /// \param[in] _leg Leg type
     /// \param[in] _q_r Joint coordinates
     /// \return Returns the Jacobian Matrix relating the leg link CoM velocities to joint velocities.
-    public: Eigen::Matrix<double, 3, 12> GetSingleLegLinkTranslationJacobianInB(const LegType &_leg, 
-                                                                                const BodyType &_body,
-                                                                                const Eigen::Matrix<double, 12, 1> &_q_r);
+    public: Eigen::Matrix<double, 3, 12> GetLinkTranslationJacobianInB(const LegType &_leg, 
+                                                                       const BodyType &_body,
+                                                                       const Eigen::Matrix<double, 12, 1> &_q_r);
 
     /// \brief The GetTranslationJacobianInW function returns the
     /// spatial translation Jacobian mapping generalized velocities
