@@ -980,14 +980,20 @@ Eigen::Matrix<double, 3, 18> Kinematics::GetRotationJacobianInW(const LegType &_
     return J;
 } 
 
-// Full state single leg rotation Jacobian in world frame
+// 6x18 Spatial Jacobian in world frame
 Eigen::Matrix<double, 6, 18> Kinematics::GetJacobianInW(const LegType &_leg,
+                                                        const BodyType &_body,
                                                         const Eigen::Matrix<double, 18, 1> &_q)
 {
-    Eigen::Matrix<double, 6, 18> J;
+    Eigen::Matrix<double, 6, 18> J; // 6x18 Spatial Jacobian in World frame
 
-    J.block<3, 18>(0,0) = this->GetTranslationJacobianInW(_leg, BodyType::foot, _q);
-    J.block<3, 18>(3,0) = this->GetRotationJacobianInW(_leg, BodyType::foot, _q);
+    J.block<3, 18>(0,0) = this->GetTranslationJacobianInW(_leg, 
+                                                          _body,
+                                                          _q);
+
+    J.block<3, 18>(3,0) = this->GetRotationJacobianInW(_leg,
+                                                       _body,
+                                                       _q);
 
     return J;
 }

@@ -229,14 +229,15 @@ class Kinematics
                                                                 const BodyType &_body,
                                                                 const Eigen::Matrix<double, 18, 1> &_q);
 
-    /// \brief The GetJacobianInW function returns the
+    /// \brief The GetJacobianInW function returns the 6x18
     /// spatial Jacobian mapping generalized velocities
-    /// to operational space twist of the leg frame.
+    /// to operational space twist of the body attached frame.
     /// \param[in] _leg Leg type.
     /// \param[in] _q Generalized coordinates.
-    /// \return Returns the Jacobian Matrix mapping from generalized coordinates to
-    /// the operational space twist of the leg frame.
+    /// \return Returns the spatial Jacobian Matrix mapping from generalized velocities to
+    /// the operational space (world-frame) twist of the body attached frame. 
     public: Eigen::Matrix<double, 6, 18> GetJacobianInW(const LegType &_leg,
+                                                        const BodyType &_body,
                                                         const Eigen::Matrix<double, 18, 1> &_q);
 
     /// \brief The GetSingleBodyMassMatrix function returns the
