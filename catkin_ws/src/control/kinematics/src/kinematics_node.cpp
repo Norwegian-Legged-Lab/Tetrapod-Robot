@@ -327,10 +327,10 @@ void testRotationJacobian()
          0*math_utils::degToRad(-20), // RR-theta_hp
          0*math_utils::degToRad(90); // RR-theta_kp
 
-    Eigen::Matrix<double, 3, 18> J_fl = K.GetRotationJacobianInW(Kinematics::LegType::frontLeft, q);
-    Eigen::Matrix<double, 3, 18> J_fr = K.GetRotationJacobianInW(Kinematics::LegType::frontRight, q);
-    Eigen::Matrix<double, 3, 18> J_rl = K.GetRotationJacobianInW(Kinematics::LegType::rearLeft, q);
-    Eigen::Matrix<double, 3, 18> J_rr = K.GetRotationJacobianInW(Kinematics::LegType::rearRight, q);
+    Eigen::Matrix<double, 3, 18> J_fl = K.GetRotationJacobianInW(Kinematics::LegType::frontLeft, Kinematics::BodyType::foot, q);
+    Eigen::Matrix<double, 3, 18> J_fr = K.GetRotationJacobianInW(Kinematics::LegType::frontRight, Kinematics::BodyType::foot, q);
+    Eigen::Matrix<double, 3, 18> J_rl = K.GetRotationJacobianInW(Kinematics::LegType::rearLeft, Kinematics::BodyType::foot, q);
+    Eigen::Matrix<double, 3, 18> J_rr = K.GetRotationJacobianInW(Kinematics::LegType::rearRight, Kinematics::BodyType::foot, q);
 
     ROS_INFO_STREAM("Rotation Jacobian front left, J_R: \n" << J_fl);
     ROS_INFO_STREAM("Rotation Jacobian front right, J_R: \n" << J_fr);

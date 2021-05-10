@@ -157,7 +157,8 @@ class Kinematics
     /// \param[in] _theta_hy Hip yaw angle.
     /// \param[in] _theta_hp Hip pitch angle.
     /// \param[in] _theta_kp Knee pitch angle.
-    /// \return Returns the Jacobian Matrix relating body velocities to joint velocities.
+    /// \return Returns the 3x3 translation Jacobian Matrix relating 
+    /// body linear velocities to joint velocities.
     public: Eigen::Matrix<double, 3, 3> GetTranslationJacobianInB(const LegType &_leg,
                                                                   const BodyType &_body,
                                                                   const double &_theta_hy, 
@@ -170,7 +171,8 @@ class Kinematics
     /// \param[in] _leg Leg type.
     /// \param[in] _body Body type.
     /// \param[in] _q_r Joint coordinates.
-    /// \return Returns the Jacobian Matrix relating end-effector velocities to joint velocities.
+    /// \return Returns the 3x12 translation Jacobian Matrix relating 
+    /// body linear velocities to joint velocities.
     public: Eigen::Matrix<double, 3, 12> GetTranslationJacobianInB(const LegType &_leg, 
                                                                    const BodyType &_body,
                                                                    const Eigen::Matrix<double, 12, 1> &_q_r);
@@ -181,7 +183,7 @@ class Kinematics
     /// \param[in] _leg Leg type.
     /// \param[in] _body Body type.
     /// \param[in] _q Generalized coordinates.
-    /// \return Returns the translation Jacobian Matrix mapping from generalized coordinates to
+    /// \return Returns the translation Jacobian Matrix mapping from generalized velocities to
     /// the operational space (world-frame) twist of the body attached frame.
     public: Eigen::Matrix<double, 3, 18> GetTranslationJacobianInW(const LegType &_leg,
                                                                    const BodyType &_body,
@@ -195,7 +197,8 @@ class Kinematics
     /// \param[in] _theta_hy Hip yaw angle.
     /// \param[in] _theta_hp Hip pitch angle.
     /// \param[in] _theta_kp Knee pitch angle.
-    /// \return Returns the Jacobian Matrix relating body velocities to joint velocities.
+    /// \return Returns the 3x3 rotation Jacobian Matrix relating 
+    /// body angular velocities to joint velocities.
     public: Eigen::Matrix<double, 3, 3> GetRotationJacobianInB(const LegType &_leg,
                                                                const BodyType &_body,
                                                                const double &_theta_hy, 
@@ -208,19 +211,22 @@ class Kinematics
     /// \param[in] _leg Leg type.
     /// \param[in] _body Body type.
     /// \param[in] _q_r Joint coordinates.
-    /// \return Returns the Jacobian Matrix relating end-effector velocities to joint velocities.
+    /// \return Returns the 3x12 rotation Jacobian Matrix relating 
+    /// body angular velocities to joint velocities.
     public: Eigen::Matrix<double, 3, 12> GetRotationJacobianInB(const LegType &_leg, 
-                                                               const BodyType &_body,
-                                                               const Eigen::Matrix<double, 12, 1> &_q_r);
+                                                                const BodyType &_body,
+                                                                const Eigen::Matrix<double, 12, 1> &_q_r);
 
-    /// \brief The GetRotationJacobianInW function returns the
+    /// \brief The GetRotationJacobianInW function returns the 3x18
     /// spatial rotation Jacobian mapping generalized velocities
-    /// to operational space twist of the leg frame.
+    /// to operational space twist of the body attached frame.
     /// \param[in] _leg Leg type.
+    /// \param[in] _body Body type.
     /// \param[in] _q Generalized coordinates.
-    /// \return Returns the rotation Jacobian Matrix mapping from generalized coordinates to
-    /// the operational space twist of the leg frame.
+    /// \return Returns the rotation Jacobian Matrix mapping from generalized velocities to
+    /// the operational space (world-frame) twist of the body attached frame.
     public: Eigen::Matrix<double, 3, 18> GetRotationJacobianInW(const LegType &_leg,
+                                                                const BodyType &_body,
                                                                 const Eigen::Matrix<double, 18, 1> &_q);
 
     /// \brief The GetJacobianInW function returns the
