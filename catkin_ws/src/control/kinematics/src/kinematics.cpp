@@ -573,14 +573,6 @@ Eigen::Matrix<double, 3, 3> Kinematics::GetTranslationJacobianInB(const LegType 
 
     switch (_body)
     {
-        case base:
-        {
-            l1 = 0;
-            l2 = 0;
-            l3 = 0;
-
-            break;
-        } 
         case hip:
         {
             l1 = this->LC1;
@@ -756,13 +748,39 @@ Eigen::Matrix<double, 3, 18> Kinematics::GetTranslationJacobianInW(const LegType
                                                                  _q(3))
                                          );
 
-    positionBaseToBodyInB = this->GetPositionBaseToBodyInB(_leg, 
-                                                           _body,
-                                                           _q);
+    switch (_body)
+    {
+        case base:
+        {
+            translationJacobianInB.setZero();
+            positionBaseToBodyInB.setZero();
 
-    translationJacobianInB = this->GetTranslationJacobianInB(_leg, 
-                                                             _body,
-                                                             _q.block<12, 1>(6,0));
+            break;
+        }
+        // Equivalent of case hip || thigh || leg || foot:
+        case hip:
+        case thigh:
+        case leg:
+        case foot:
+        {
+            positionBaseToBodyInB = this->GetPositionBaseToBodyInB(_leg, 
+                                                                   _body,
+                                                                   _q);
+
+            translationJacobianInB = this->GetTranslationJacobianInB(_leg, 
+                                                                     _body,
+                                                                     _q.block<12, 1>(6,0));
+
+            break;
+        }
+        default:
+        {
+            ROS_ERROR_STREAM("[Kinematics::GetTranslationJacobianInW] Could not determine body type!");
+
+            break;
+        }
+    }
+
 
     J.block<3, 3>(0,0).setIdentity();
     J.block<3, 3>(0,3) = - rotationWToB.matrix() * kindr::getSkewMatrixFromVector(positionBaseToBodyInB);
@@ -969,9 +987,33 @@ Eigen::Matrix<double, 3, 18> Kinematics::GetRotationJacobianInW(const LegType &_
                                                                  _q(3))
                                          );
 
-    rotationJacobianInB = this->GetRotationJacobianInB(_leg, 
-                                                       _body,
-                                                       _q.block<12, 1>(6,0));
+    switch (_body)
+    {
+        case base:
+        {
+            rotationJacobianInB.setZero();
+
+            break;
+        }
+        // Equivalent of case hip || thigh || leg || foot:
+        case hip:
+        case thigh:
+        case leg:
+        case foot:
+        {
+            rotationJacobianInB = this->GetRotationJacobianInB(_leg, 
+                                                               _body,
+                                                               _q.block<12, 1>(6,0));
+
+            break;
+        }
+        default:
+        {
+            ROS_ERROR_STREAM("[Kinematics::GetRotationJacobianInW] Could not determine body type!");
+
+            break;
+        }
+    }
 
     J.block<3, 3>(0,0).setZero();
     J.block<3, 3>(0,3) = rotationWToB.matrix();
@@ -1012,7 +1054,46 @@ Eigen::Matrix<double, 18, 18> Kinematics::GetSingleBodyMassMatrix(const LegType 
 
     // TODO Implement functionality here
 
+    J_COM = this->GetTranslationJacobianInW(_leg, _body, _q);
+    J_R = this->GetRotationJacobianInW(_leg, _body, _q);
 
+    switch (_body)
+    {
+        case base:
+        {
+            I_COM = this->I0;
+            m = this->M0;
+
+            break;
+        }
+        case hip:
+        {
+            I_COM = this->I1;
+            m = this->M1;
+
+            break;
+        }
+        case thigh:
+        {
+            I_COM = this->I2;
+            m = this->M2;
+
+            break;
+        }
+        case leg:
+        {
+            I_COM = this->I3;
+            m = this->M3;
+
+            break;
+        }
+        default:
+        {
+            ROS_ERROR_STREAM("[Kinematics::GetSingleBodyMassMatrix] Could not determine body type!");
+
+            break;
+        }
+    }
 
     return m * J_COM.transpose() * J_COM + J_R.transpose() * I_COM * J_R;
 }
