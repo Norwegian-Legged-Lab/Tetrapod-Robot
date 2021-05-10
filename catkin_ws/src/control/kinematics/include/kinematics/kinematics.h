@@ -175,35 +175,6 @@ class Kinematics
                                                                    const BodyType &_body,
                                                                    const Eigen::Matrix<double, 12, 1> &_q_r);
 
-    /// \brief The GetLinkTranslationJacobianInB function returns the 
-    /// Jacobian matrix relating the linear body velocities to joint rates for a leg link
-    /// \param[in] _offset Bool indicating whether roll offset
-    /// should be set to -90 or 90 degrees. True indicates roll offset
-    /// of 90 deg, false indicates roll offset of -90 degrees.
-    /// \param[in] _theta_hy Hip yaw angle.
-    /// \param[in] _theta_hp Hip pitch angle.
-    /// \param[in] _theta_kp Knee pitch angle.
-    /// \param[in] _link_length_1 Distance from hip joint to next link point
-    /// \param[in] _link_length_2 Distance from hip pitch joint to next link point
-    /// \param[in] _link_length_3 Distance from knee pitch joint to next link point
-    /// \return Returns the Jacobian Matrix relating the link CoM velocities to joint velocities.
-    public: Eigen::Matrix<double, 3, 3> GetLinkTranslationJacobianInB(const bool &_offset,
-                                                                      const double &_theta_hy, 
-                                                                      const double &_theta_hp, 
-                                                                      const double &_theta_kp,
-                                                                      const double &_link_length_1,
-                                                                      const double &_link_length_2,
-                                                                      const double &_link_length_3);
-
-    /// \brief The GetLinkTranslationJacobianInB function returns the translational
-    /// Jacobian matrix for a leg link in body frame for the joint state.
-    /// \param[in] _leg Leg type
-    /// \param[in] _q_r Joint coordinates
-    /// \return Returns the Jacobian Matrix relating the leg link CoM velocities to joint velocities.
-    public: Eigen::Matrix<double, 3, 12> GetLinkTranslationJacobianInB(const LegType &_leg, 
-                                                                       const BodyType &_body,
-                                                                       const Eigen::Matrix<double, 12, 1> &_q_r);
-
     /// \brief The GetTranslationJacobianInW function returns the
     /// spatial translation Jacobian mapping generalized velocities
     /// to operational space twist of the leg frame.
