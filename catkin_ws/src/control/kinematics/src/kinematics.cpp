@@ -549,7 +549,7 @@ Eigen::Matrix<double, 3, 1> Kinematics::GetPositionBaseToBodyInB(const LegType &
     return positionBaseToBodyInB;
 }
 
-// Leg state single leg translation Jacobian in body frame
+// 3x3 Translation Jacobian in body frame
 Eigen::Matrix<double, 3, 3> Kinematics::GetTranslationJacobianInB(const LegType &_leg,
                                                                   const BodyType &_body,
                                                                   const double &_theta_hy, 
@@ -670,7 +670,7 @@ Eigen::Matrix<double, 3, 3> Kinematics::GetTranslationJacobianInB(const LegType 
     return J;
 }
 
-// Joint state single leg translation Jacobian in body frame
+// 3x12 Translation Jacobian in body frame
 Eigen::Matrix<double, 3, 12> Kinematics::GetTranslationJacobianInB(const LegType &_leg, 
                                                                    const BodyType &_body,
                                                                    const Eigen::Matrix<double, 12, 1> &_q_r)
@@ -739,25 +739,33 @@ Eigen::Matrix<double, 3, 12> Kinematics::GetTranslationJacobianInB(const LegType
     return J;
 }
 
-// Full state single leg translation Jacobian in world frame
+// 3x18 Translation Jacobian in world frame
 Eigen::Matrix<double, 3, 18> Kinematics::GetTranslationJacobianInW(const LegType &_leg,
+                                                                   const BodyType &_body,
                                                                    const Eigen::Matrix<double, 18, 1> &_q)
 {
-    // Jacobian
-    Eigen::Matrix<double, 3, 18> J;
+    
+    Eigen::Matrix<double, 3, 18> J;                      // 3x18 Translation Jacobian in World frame
+    Eigen::Matrix<double, 3, 12> translationJacobianInB; // 3x12 Translation Jacobian in Body frame
+    Eigen::Matrix<double, 3, 1> positionBaseToBodyInB;   // Position vector from base to Body in Body(Base)-frame
 
-    // Rotation from World to Body frame (transform from Body to World)
-    kindr::RotationMatrixD rotationWToB(kindr::EulerAnglesZyxD(_q(5),
-                                                               _q(4),
-                                                               _q(3))
-                                        );
+    kindr::RotationMatrixD rotationWToB; // Rotation from World to Body frame (transform from Body to World)
 
-    Eigen::Matrix<double, 3, 1> positionBaseToFootInB = this->GetPositionBaseToBodyInB(_leg, BodyType::foot, _q);
+    rotationWToB = kindr::RotationMatrixD(kindr::EulerAnglesZyxD(_q(5),
+                                                  _q(4),
+                                                  _q(3))
+                                         );
 
-    Eigen::Matrix<double, 3, 12> translationJacobianInB = this->GetTranslationJacobianInB(_leg, BodyType::foot, _q.block<12, 1>(6,0));
+    positionBaseToBodyInB = this->GetPositionBaseToBodyInB(_leg, 
+                                                           _body,
+                                                           _q);
+
+    translationJacobianInB = this->GetTranslationJacobianInB(_leg, 
+                                                             _body,
+                                                             _q.block<12, 1>(6,0));
 
     J.block<3, 3>(0,0).setIdentity();
-    J.block<3, 3>(0,3) = - rotationWToB.matrix() * kindr::getSkewMatrixFromVector(positionBaseToFootInB);
+    J.block<3, 3>(0,3) = - rotationWToB.matrix() * kindr::getSkewMatrixFromVector(positionBaseToBodyInB);
     J.block<3, 12>(0,6) = rotationWToB.matrix() * translationJacobianInB; 
 
     return J;
@@ -853,8 +861,8 @@ Eigen::Matrix<double, 3, 12> Kinematics::GetSingleLegRotationJacobianInB(const L
 Eigen::Matrix<double, 3, 18> Kinematics::GetRotationJacobianInW(const LegType &_leg,
                                                                 const Eigen::Matrix<double, 18, 1> &_q)
 {
-    // Jacobian
-    Eigen::Matrix<double, 3, 18> J;
+    // 3x18 Rotation Jacobian
+    Eigen::Matrix<double, 3, 18> J; 
 
     // Rotation from World to Body frame (transform from Body to World)
     kindr::RotationMatrixD rotationWToB(kindr::EulerAnglesZyxD(_q(5),
@@ -877,7 +885,7 @@ Eigen::Matrix<double, 6, 18> Kinematics::GetJacobianInW(const LegType &_leg,
 {
     Eigen::Matrix<double, 6, 18> J;
 
-    J.block<3, 18>(0,0) = this->GetTranslationJacobianInW(_leg, _q);
+    J.block<3, 18>(0,0) = this->GetTranslationJacobianInW(_leg, BodyType::foot, _q);
     J.block<3, 18>(3,0) = this->GetRotationJacobianInW(_leg, _q);
 
     return J;

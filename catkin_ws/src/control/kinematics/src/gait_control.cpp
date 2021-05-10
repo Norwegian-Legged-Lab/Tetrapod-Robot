@@ -121,6 +121,7 @@ void GaitControl::PositionTrajectoryControl()
 
         // Update Jacobian
         J = this->kinematics.GetTranslationJacobianInW(Kinematics::LegType::frontLeft,
+                                                       Kinematics::BodyType::foot,
                                                        this->genCoord);
 
         // Calculate pseudoInverse
