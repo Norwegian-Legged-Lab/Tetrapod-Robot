@@ -349,7 +349,7 @@ void testJacobian()
          0, // base_z
          0, // base_roll
          0, // base_pitch
-         math_utils::degToRad(90), // base_yaw
+         0*math_utils::degToRad(90), // base_yaw
          0*math_utils::degToRad(45), // FL-theta_hy
          0*math_utils::degToRad(-20), // FL-theta_hp
          0*math_utils::degToRad(90), // FL-theta_kp
@@ -363,10 +363,10 @@ void testJacobian()
          0*math_utils::degToRad(-20), // RR-theta_hp
          0*math_utils::degToRad(90); // RR-theta_kp
 
-    Eigen::Matrix<double, 6, 18> J_fl = K.GetJacobianInW(Kinematics::LegType::frontLeft, Kinematics::BodyType::foot, q);
-    Eigen::Matrix<double, 6, 18> J_fr = K.GetJacobianInW(Kinematics::LegType::frontRight, Kinematics::BodyType::foot, q);
-    Eigen::Matrix<double, 6, 18> J_rl = K.GetJacobianInW(Kinematics::LegType::rearLeft, Kinematics::BodyType::foot, q);
-    Eigen::Matrix<double, 6, 18> J_rr = K.GetJacobianInW(Kinematics::LegType::rearRight, Kinematics::BodyType::foot, q);
+    Eigen::Matrix<double, 6, 18> J_fl = K.GetJacobianInW(Kinematics::LegType::frontLeft, Kinematics::BodyType::hip, q);
+    Eigen::Matrix<double, 6, 18> J_fr = K.GetJacobianInW(Kinematics::LegType::frontRight, Kinematics::BodyType::hip, q);
+    Eigen::Matrix<double, 6, 18> J_rl = K.GetJacobianInW(Kinematics::LegType::rearLeft, Kinematics::BodyType::hip, q);
+    Eigen::Matrix<double, 6, 18> J_rr = K.GetJacobianInW(Kinematics::LegType::rearRight, Kinematics::BodyType::hip, q);
 
     ROS_INFO_STREAM("Jacobian front left, J: \n" << J_fl);
     ROS_INFO_STREAM("Jacobian front right, J: \n" << J_fr);
@@ -374,46 +374,6 @@ void testJacobian()
     ROS_INFO_STREAM("Jacobian rear right, J: \n" << J_rr);
 }
 
-void testMathPseudoInverse()
-{
-	Eigen::Matrix<double, 2, 3> J;
-	J << 0.6339, 0.6941, 0.6122,
-			 0.7077, 0.3663, 0.1599;
-
-    Eigen::Matrix<double, 3, 2> pinvJ;
-    Eigen::Matrix<double, 3, 2> dPinvJ;
-
-    kindr::pseudoInverse(J, pinvJ);
-    math_utils::dampedPseudoInverse(J, dPinvJ, 0.1);
-
-	Eigen::Matrix<double, 3, 2> A;
-	A << 0.3862, 0.2766,
-			 0.3341, 0.0151,
-			 0.4047, 0.3581;
-    
-    Eigen::Matrix<double, 2, 3> pinvA;
-    Eigen::Matrix<double, 2, 3> dPinvA;
-
-    kindr::pseudoInverse(A, pinvA);
-    math_utils::dampedPseudoInverse(A, dPinvA, 0.1);
-
-	Eigen::Matrix2d B;
-    B << 	61.6806, 345.8256,
-				176.1109,  605.4883;
-
-    Eigen::Matrix2d pinvB;
-    Eigen::Matrix2d dPinvB;
-
-    kindr::pseudoInverse(B, pinvB);
-    math_utils::dampedPseudoInverse(B, dPinvB, 0.1);
-
-    ROS_INFO_STREAM("kindr pinvJ: \n" << pinvJ);
-    ROS_INFO_STREAM("angle_utils dPinvJ: \n" << dPinvJ);
-    ROS_INFO_STREAM("kindr pinvA: \n" << pinvA);
-    ROS_INFO_STREAM("angle_utils dPinvA: \n" << dPinvA);
-    ROS_INFO_STREAM("kindr pinvB: \n" << pinvB);
-    ROS_INFO_STREAM("angle_utils dPinvB: \n" << dPinvB);
-}
 
 int main(int argc, char **argv)
 {
@@ -433,15 +393,14 @@ int main(int argc, char **argv)
     //testSingeLegInverseKinematics();
     //ROS_INFO_STREAM("--------------- Test IK --------------");
     //testInverseKinematics(); 
-    ROS_INFO_STREAM("--------------- Test positionBaseToFoot --------------");
-    testPositionBaseToFoot();
+    //ROS_INFO_STREAM("--------------- Test positionBaseToFoot --------------");
+    //testPositionBaseToFoot();
     //ROS_INFO_STREAM("--------------- Test translationJacobian --------------");
     //testTranslationJacobian();
     //ROS_INFO_STREAM("--------------- Test rotationJacobian --------------");
     //testRotationJacobian();
-    //ROS_INFO_STREAM("--------------- Test Jacobian --------------");
-    //testJacobian();
-    //testMathPseudoInverse();
+    ROS_INFO_STREAM("--------------- Test Jacobian --------------");
+    testJacobian();
 
     ros::spin();
     return 0;
