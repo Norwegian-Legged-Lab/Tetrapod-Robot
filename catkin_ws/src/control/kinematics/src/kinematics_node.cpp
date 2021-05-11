@@ -436,6 +436,46 @@ void testMassMatrix()
     ROS_INFO_STREAM("Mass matrix, M: \n" << M);
 }
 
+void testGravitationalTerms()
+{
+    Kinematics K;
+
+    GeneralizedCoordinates q = GeneralizedCoordinates::Constant(0);
+
+    q << 0, // base_x
+         0, // base_y
+         0, // base_z
+         0, // base_roll
+         0, // base_pitch
+         0*math_utils::degToRad(90), // base_yaw
+         0*math_utils::degToRad(45), // FL-theta_hy
+         0*math_utils::degToRad(-20), // FL-theta_hp
+         0*math_utils::degToRad(90), // FL-theta_kp
+         0*math_utils::degToRad(-45), // FR-theta_hy
+         0*math_utils::degToRad(20), // FR-theta_hp
+         0*math_utils::degToRad(-90), // FR-theta_kp
+         0*math_utils::degToRad(135), // RL-theta_hy
+         0*math_utils::degToRad(20), // RL-theta_hp
+         0*math_utils::degToRad(-90), // RL-theta_kp
+         0*math_utils::degToRad(-135), // RR-theta_hy
+         0*math_utils::degToRad(-20), // RR-theta_hp
+         0*math_utils::degToRad(90); // RR-theta_kp
+
+    Eigen::Matrix<double, 18, 1> g = K.GetSingleBodyGravitationalTerms(Kinematics::LegType::frontRight, Kinematics::BodyType::leg, q);
+    //Eigen::Matrix<double, 18, 1> g = K.GetMassMatrix(q);
+
+    ROS_INFO_STREAM("Mass matrix, M: \n" << g);
+}
+
+void testEulerDiff()
+{
+    Kinematics K;
+
+    Eigen::Matrix<double, 3, 3> rotationDiff = K.GetRotationMatrixWToBDiff(0,0,0,1,2,3);
+
+    ROS_INFO_STREAM("Rotation derivative, rotationDiff: \n" << rotationDiff);
+}
+
 
 int main(int argc, char **argv)
 {
@@ -463,8 +503,12 @@ int main(int argc, char **argv)
     //testRotationJacobian();
     //ROS_INFO_STREAM("--------------- Test Jacobian --------------");
     //testBaseJacobian();
-    ROS_INFO_STREAM("--------------- Test Mass Matrix -----------");
-    testMassMatrix();
+    //ROS_INFO_STREAM("--------------- Test Mass Matrix -----------");
+    //testMassMatrix();
+    //ROS_INFO_STREAM("--------------- Test Gravitational Terms -----------");
+    //testGravitationalTerms();
+    ROS_INFO_STREAM("--------------- Test Rotation Derivative -------");
+    testEulerDiff();
 
     ros::spin();
     return 0;
