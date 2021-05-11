@@ -467,6 +467,15 @@ void testGravitationalTerms()
     ROS_INFO_STREAM("Mass matrix, M: \n" << g);
 }
 
+void testEulerDiff()
+{
+    Kinematics K;
+
+    Eigen::Matrix<double, 3, 3> rotationDiff = K.GetRotationMatrixWToBDiff(0,0,0,1,2,3);
+
+    ROS_INFO_STREAM("Rotation derivative, rotationDiff: \n" << rotationDiff);
+}
+
 
 int main(int argc, char **argv)
 {
@@ -496,8 +505,10 @@ int main(int argc, char **argv)
     //testBaseJacobian();
     //ROS_INFO_STREAM("--------------- Test Mass Matrix -----------");
     //testMassMatrix();
-    ROS_INFO_STREAM("--------------- Test Gravitational Terms -----------");
-    testGravitationalTerms();
+    //ROS_INFO_STREAM("--------------- Test Gravitational Terms -----------");
+    //testGravitationalTerms();
+    ROS_INFO_STREAM("--------------- Test Rotation Derivative -------");
+    testEulerDiff();
 
     ros::spin();
     return 0;

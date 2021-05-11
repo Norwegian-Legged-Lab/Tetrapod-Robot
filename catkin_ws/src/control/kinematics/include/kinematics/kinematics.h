@@ -137,6 +137,33 @@ class Kinematics
                                               const double &_theta_hy, 
                                               const double &_theta_hp, 
                                               const double &_theta_kp);
+    
+    /// \brief The GetRotationMatrixWToB function returns the 
+    /// Euler Angles ZYX rotation matrix from World to Body frame,
+    /// i.e., the transform from Body to World.
+    /// \param[in] _roll Roll angle (x-axis).
+    /// \param[in] _pitch Pitch angle (y-axis).
+    /// \param[in] _yaw Yaw angle (z-axis).
+    /// \return Returns the rotation matrix from World to Body frame
+    /// (transform from Body to World), using the Euler Angles ZYX convention.
+    public: Eigen::Matrix<double, 3, 3> GetRotationMatrixWToB(const double &_roll,
+                                                              const double &_pitch,
+                                                              const double &_yaw);
+
+    /// \brief The GetRotationMatrixWToB function returns the 
+    /// time derivative of the Euler Angles ZYX rotation matrix 
+    /// from World to Body frame.
+    /// \param[in] _roll Roll angle (x-axis).
+    /// \param[in] _pitch Pitch angle (y-axis).
+    /// \param[in] _yaw Yaw angle (z-axis).
+    /// \return Returns the time derivative of the rotation matrix 
+    /// from World to Body frame, using the Euler Angles ZYX convention.
+    public: Eigen::Matrix<double, 3, 3> GetRotationMatrixWToBDiff(const double &_roll,
+                                                                  const double &_pitch,
+                                                                  const double &_yaw,
+                                                                  const double &_roll_rate,
+                                                                  const double &_pitch_rate,
+                                                                  const double &_yaw_rate);
 
     /// \brief The GetPositionBaseToBodyInB returns the position vector
     /// from base origin to COM position in body-frame for
@@ -188,6 +215,51 @@ class Kinematics
     public: Eigen::Matrix<double, 3, 18> GetTranslationJacobianInW(const LegType &_leg,
                                                                    const BodyType &_body,
                                                                    const Eigen::Matrix<double, 18, 1> &_q);
+
+    /// \brief The GetTranslationJacobianDerivativeInB function returns the 
+    /// time derivative of the 3x3 translation Jacobian matrix.
+    /// \param[in] _leg Leg type.
+    /// \param[in] _body Body type.
+    /// \param[in] _theta_hy Hip yaw angle.
+    /// \param[in] _theta_hp Hip pitch angle.
+    /// \param[in] _theta_kp Knee pitch angle.
+    /// \param[in] _dot_theta_hy Hip yaw rate.
+    /// \param[in] _dot_theta_hp Hip pitch rate.
+    /// \param[in] _dot_theta_kp Knee pitch rate.
+    /// \return Returns the 3x3 time derivative of the translation Jacobian Matrix.
+    public: Eigen::Matrix<double, 3, 3> GetTranslationJacobianInBDiff(const LegType &_leg,
+                                                                       const BodyType &_body,
+                                                                       const double &_theta_hy, 
+                                                                       const double &_theta_hp, 
+                                                                       const double &_theta_kp,
+                                                                       const double &_dot_theta_hy,
+                                                                       const double &_dot_theta_hp,
+                                                                       const double &_dot_theta_kp);
+
+    /// \brief The GetTranslationJacobianDerivativeInB function returns the 
+    /// time derivative of the 3x12 translation Jacobian matrix.
+    /// \param[in] _leg Leg type.
+    /// \param[in] _body Body type.
+    /// \param[in] _q_r Joint coordinates.
+    /// \param[in] _dot_q_r Joint velocities.
+    /// \return Returns the 3x12 time derivative of the translation Jacobian Matrix.
+    public: Eigen::Matrix<double, 3, 12> GetTranslationJacobianInBDiff(const LegType &_leg,
+                                                                       const BodyType &_body,
+                                                                       const Eigen::Matrix<double, 12, 1> &_q_r,
+                                                                       const Eigen::Matrix<double, 12, 1> &_dot_q_r);
+
+    /// \brief The GetTranslationJacobianInWDiff function returns the 
+    /// time derivative of the 3x18 spatial translation Jacobian.
+    /// \param[in] _leg Leg type.
+    /// \param[in] _body Body type.
+    /// \param[in] _q Generalized coordinates.
+    /// \param[in] _u Generalized velocities.
+    /// \return Returns the 3x18 time derivative of the translation Jacobian Matrix.
+    public: Eigen::Matrix<double, 3, 18> GetTranslationJacobianInWDiff(const LegType &_leg,
+                                                                       const BodyType &_body,
+                                                                       const Eigen::Matrix<double, 18, 1> &_q,
+                                                                       const Eigen::Matrix<double, 18, 1> &_u);
+
 
     /// \brief The GetRotationJacobianInB function returns the 3x3
     /// Jacobian matrix for body angular velocities in the body(base)-frame for
