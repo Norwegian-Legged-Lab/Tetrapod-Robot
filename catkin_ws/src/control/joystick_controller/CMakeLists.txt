@@ -6,6 +6,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   geometry_msgs
   sensor_msgs
+  keyboard
 )
 
 catkin_package(
@@ -16,6 +17,7 @@ catkin_package(
     std_msgs
     sensor_msgs
     geometry_msgs
+    keyboard
 #  DEPENDS system_lib
 )
 
@@ -42,6 +44,17 @@ target_link_libraries(joystick_controller_node
   ${catkin_LIBRARIES}
 )
 
+add_executable(keyboard_controller_node
+  src/keyboard_controller_node.cpp
+)
+
+target_link_libraries(${PROJECT_NAME}
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(keyboard_controller_node
+  ${catkin_LIBRARIES}
+)
 
 install(TARGETS ${PROJECT_NAME}
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}

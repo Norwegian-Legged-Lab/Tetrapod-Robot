@@ -11,6 +11,15 @@ JoystickController::JoystickController()
     twist_command_message.angular.z = 0.0;
 }
 
+JoystickController::~JoystickController()
+{
+    nodeHandle->shutdown();
+
+    //this->listenerThread.clear();
+    //this->listenerThread.disable();
+    //nodeHandle->keyboardListenerThread.join();
+}
+
 void JoystickController::initROS()
 {
     if(!ros::isInitialized())
@@ -36,8 +45,25 @@ void JoystickController::initROS()
         this
     );
 
+    keyboard_button_pressed_subscriber = nodeHandle->subscribe
+    (
+        "/keyboard/keydown",
+        10,
+        &JoystickController::keyboardButtonPressedCallback,
+        this
+    );
+
+    keyboard_button_released_subscriber = nodeHandle->subscribe
+    (
+        "/keyboard/keyup",
+        10,
+        &JoystickController::keyboardButtonReleasedCallback,
+        this
+    );
+
     twist_command_publisher = nodeHandle->advertise<geometry_msgs::Twist>("/twist_command", 10);
 }
+
 
 bool JoystickController::readyToChangeLinearMultiplier()
 {
@@ -127,6 +153,149 @@ void JoystickController::joystickCallback(const sensor_msgs::JoyConstPtr &_msg)
     else
     {
         twist_command_message.angular.z = 0.0;
+    }
+}
+
+void JoystickController::keyboardButtonPressedCallback(const keyboard::KeyConstPtr &_msg)
+{
+    switch (_msg->code)
+    {
+    case KEY_UP:
+        FORWARD = PRESSED;
+        twist_command_message.linear.x = linear_rate_multiplier;
+        break;
+    case KEY_DOWN:
+        BACKWARD = PRESSED;
+        twist_command_message.linear.x =-linear_rate_multiplier;
+        break;
+    case KEY_RIGHT:
+        RIGHT = PRESSED;
+        twist_command_message.linear.y =-linear_rate_multiplier;
+        break;
+    case KEY_LEFT:
+        LEFT = PRESSED;
+        twist_command_message.linear.y = linear_rate_multiplier;
+        break;
+    case KEY_CLOCKWISE_ROTATION:
+        CLOCKWISE_ROTATION = PRESSED;
+        twist_command_message.angular.z =-rotational_rate_multiplier;
+        break;
+    case KEY_COUNTER_CLOCKWISE_ROTATION:
+        COUNTER_CLOCKWISE_ROTATION = PRESSED;
+        twist_command_message.angular.z = rotational_rate_multiplier;
+        break;
+    case KEY_LINEAR_SPEED_INCREASE:
+        LINEAR_SPEED_INCREASE = PRESSED;
+        changeLinearMultiplier(true);
+        if(FORWARD == PRESSED)
+        {
+            twist_command_message.linear.x = linear_rate_multiplier;
+        }
+        else if(BACKWARD == PRESSED)
+        {
+            twist_command_message.linear.x =-linear_rate_multiplier;
+        }
+
+        if(LEFT == PRESSED)
+        {
+            twist_command_message.linear.y = linear_rate_multiplier;
+        }
+        else if(RIGHT == PRESSED)
+        {
+            twist_command_message.linear.y =-linear_rate_multiplier;
+        }
+        break;
+    case KEY_LINEAR_SPEED_DECREASE:
+        LINEAR_SPEED_DECREASE = PRESSED;
+        changeLinearMultiplier(false);
+        if(FORWARD == PRESSED)
+        {
+            twist_command_message.linear.x = linear_rate_multiplier;
+        }
+        else if(BACKWARD == PRESSED)
+        {
+            twist_command_message.linear.x =-linear_rate_multiplier;
+        }
+
+        if(LEFT == PRESSED)
+        {
+            twist_command_message.linear.y = linear_rate_multiplier;
+        }
+        else if(RIGHT == PRESSED)
+        {
+            twist_command_message.linear.y =-linear_rate_multiplier;
+        }
+        break;
+    case KEY_ANGULAR_RATE_INCREASE:
+        ANGULAR_RATE_INCREASE = PRESSED;
+        changeRotationalMultiplier(true);
+        if(COUNTER_CLOCKWISE_ROTATION)
+        {
+            twist_command_message.angular.z = rotational_rate_multiplier;
+        }
+        else if(CLOCKWISE_ROTATION)
+        {
+            twist_command_message.angular.z =-rotational_rate_multiplier;
+        } 
+        break;
+    case KEY_ANGULAR_RATE_DECREASE:
+        ANGULAR_RATE_DECREASE = PRESSED;
+        changeRotationalMultiplier(false);
+        if(COUNTER_CLOCKWISE_ROTATION)
+        {
+            twist_command_message.angular.z = rotational_rate_multiplier;
+        }
+        else if(CLOCKWISE_ROTATION)
+        {
+            twist_command_message.angular.z =-rotational_rate_multiplier;
+        } 
+        break;
+    case KEY_PAUSE:
+        PAUSE = RELEASED;
+        if(pause == false)
+        {
+            pause = true;
+        }
+        else
+        {
+            pause = false;
+        }
+        break;
+    default:
+        break;
+    }
+}
+
+void JoystickController::keyboardButtonReleasedCallback(const keyboard::KeyConstPtr &_msg)
+{
+    switch (_msg->code)
+    {
+    case KEY_UP:
+        FORWARD = RELEASED;
+        twist_command_message.linear.x = 0.0;
+        break;
+    case KEY_DOWN:
+        BACKWARD = RELEASED;
+        twist_command_message.linear.x = 0.0;
+        break;
+    case KEY_RIGHT:
+        RIGHT = RELEASED;
+        twist_command_message.linear.y = 0.0;
+        break;
+    case KEY_LEFT:
+        LEFT = RELEASED;
+        twist_command_message.linear.y = 0.0;
+        break;
+    case KEY_CLOCKWISE_ROTATION:
+        CLOCKWISE_ROTATION = RELEASED;
+        twist_command_message.angular.z = 0.0;
+        break;
+    case KEY_COUNTER_CLOCKWISE_ROTATION:
+        COUNTER_CLOCKWISE_ROTATION = RELEASED;
+        twist_command_message.angular.z = 0.0;
+        break;
+    default:
+        break;
     }
 }
 
