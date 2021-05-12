@@ -236,7 +236,7 @@ class Kinematics
                                                                        const double &_dot_theta_hp,
                                                                        const double &_dot_theta_kp);
 
-    /// \brief The GetTranslationJacobianDerivativeInB function returns the 
+    /// \brief The GetTranslationJacobianInBDiff function returns the 
     /// time derivative of the 3x12 translation Jacobian matrix.
     /// \param[in] _leg Leg type.
     /// \param[in] _body Body type.
@@ -301,6 +301,50 @@ class Kinematics
                                                                 const BodyType &_body,
                                                                 const Eigen::Matrix<double, 18, 1> &_q);
 
+    /// \brief The GetRotationJacobianInBDiff function returns the 
+    /// time derivative of the 3x3 Rotation Jacobian matrix.
+    /// \param[in] _leg Leg type.
+    /// \param[in] _body Body type.
+    /// \param[in] _theta_hy Hip yaw angle.
+    /// \param[in] _theta_hp Hip pitch angle.
+    /// \param[in] _theta_kp Knee pitch angle.
+    /// \param[in] _dot_theta_hy Hip yaw rate.
+    /// \param[in] _dot_theta_hp Hip pitch rate.
+    /// \param[in] _dot_theta_kp Knee pitch rate.
+    /// \return Returns the 3x3 time derivative of the Rotation Jacobian Matrix.
+    public: Eigen::Matrix<double, 3, 3> GetRotationJacobianInBDiff(const LegType &_leg,
+                                                                   const BodyType &_body,
+                                                                   const double &_theta_hy, 
+                                                                   const double &_theta_hp, 
+                                                                   const double &_theta_kp,
+                                                                   const double &_dot_theta_hy,
+                                                                   const double &_dot_theta_hp,
+                                                                   const double &_dot_theta_kp);
+
+    /// \brief The GetRotationJacobianDerivativeInB function returns the 
+    /// time derivative of the 3x12 Rotation Jacobian matrix.
+    /// \param[in] _leg Leg type.
+    /// \param[in] _body Body type.
+    /// \param[in] _q_r Joint coordinates.
+    /// \param[in] _dot_q_r Joint velocities.
+    /// \return Returns the 3x12 time derivative of the Rotation Jacobian Matrix.
+    public: Eigen::Matrix<double, 3, 12> GetRotationJacobianInBDiff(const LegType &_leg,
+                                                                    const BodyType &_body,
+                                                                    const Eigen::Matrix<double, 12, 1> &_q_r,
+                                                                    const Eigen::Matrix<double, 12, 1> &_dot_q_r);
+
+    /// \brief The GetRotationJacobianInWDiff function returns the 
+    /// time derivative of the 3x18 spatial Rotation Jacobian.
+    /// \param[in] _leg Leg type.
+    /// \param[in] _body Body type.
+    /// \param[in] _q Generalized coordinates.
+    /// \param[in] _u Generalized velocities.
+    /// \return Returns the 3x18 time derivative of the Rotation Jacobian Matrix.
+    public: Eigen::Matrix<double, 3, 18> GetRotationJacobianInWDiff(const LegType &_leg,
+                                                                    const BodyType &_body,
+                                                                    const Eigen::Matrix<double, 18, 1> &_q,
+                                                                    const Eigen::Matrix<double, 18, 1> &_u);
+
     /// \brief The GetJacobianInW function returns the 6x18
     /// spatial Jacobian mapping generalized velocities
     /// to operational space twist of the body attached frame.
@@ -311,6 +355,17 @@ class Kinematics
     public: Eigen::Matrix<double, 6, 18> GetJacobianInW(const LegType &_leg,
                                                         const BodyType &_body,
                                                         const Eigen::Matrix<double, 18, 1> &_q);
+
+    /// \brief The GetJacobianInW function returns the
+    /// time derivative of the 6x18 spatial Jacobian.
+    /// \param[in] _leg Leg type.
+    /// \param[in] _q Generalized coordinates.
+    /// \param[in] _u Generalized velocities.
+    /// \return Returns the time derivative of the spatial Jacobian Matrix.
+    public: Eigen::Matrix<double, 6, 18> GetJacobianInWDiff(const LegType &_leg,
+                                                            const BodyType &_body,
+                                                            const Eigen::Matrix<double, 18, 1> &_q,
+                                                            const Eigen::Matrix<double, 18, 1> &_u);
 
     /// \brief The GetSingleBodyMassMatrix function returns the
     /// mass matrix for a single body in the system. 
