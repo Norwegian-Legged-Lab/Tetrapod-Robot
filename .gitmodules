@@ -5,3 +5,6 @@
 [submodule "catkin_ws/src/utilities/kindr"]
 	path = catkin_ws/src/utilities/kindr
 	url = git@github.com:anybotics/kindr.git
+[submodule "catkin_ws/src/utilities/ros-keyboard"]
+	path = catkin_ws/src/utilities/ros-keyboard
+	url = git@github.com:lrse/ros-keyboard.git
