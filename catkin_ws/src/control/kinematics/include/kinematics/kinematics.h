@@ -29,6 +29,9 @@
 // C++ Standard Library
 #include <cmath>
 
+// ROS
+#include "ros/ros.h" 
+
 // ROS Package Libraries
 #include <math_utils/angle_utils.h>
 
