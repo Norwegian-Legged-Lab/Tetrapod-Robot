@@ -521,6 +521,56 @@ void testEulerDiff()
     ROS_INFO_STREAM("Rotation derivative, rotationDiff: \n" << rotationDiff);
 }
 
+void testCoriolisAndCentrifugalTerms()
+{
+    Kinematics K;
+
+    GeneralizedCoordinates q = GeneralizedCoordinates::Constant(0);
+    GeneralizedCoordinates u = GeneralizedCoordinates::Constant(0);
+
+    q << 0, // base_x
+         0, // base_y
+         0, // base_z
+         0, // base_roll
+         0, // base_pitch
+         math_utils::degToRad(90), // base_yaw
+         0*math_utils::degToRad(45), // FL-theta_hy
+         0*math_utils::degToRad(-20), // FL-theta_hp
+         0*math_utils::degToRad(90), // FL-theta_kp
+         0*math_utils::degToRad(-45), // FR-theta_hy
+         0*math_utils::degToRad(20), // FR-theta_hp
+         0*math_utils::degToRad(-90), // FR-theta_kp
+         0*math_utils::degToRad(135), // RL-theta_hy
+         0*math_utils::degToRad(20), // RL-theta_hp
+         0*math_utils::degToRad(-90), // RL-theta_kp
+         0*math_utils::degToRad(-135), // RR-theta_hy
+         0*math_utils::degToRad(-20), // RR-theta_hp
+         0*math_utils::degToRad(90); // RR-theta_kp
+
+    u << 0, // base_x
+         0, // base_y
+         0, // base_z
+         1, // base_roll
+         2, // base_pitch
+         3, // base_yaw
+         0*math_utils::degToRad(45), // FL-theta_hy
+         0*math_utils::degToRad(-20), // FL-theta_hp
+         0*math_utils::degToRad(90), // FL-theta_kp
+         0*math_utils::degToRad(-45), // FR-theta_hy
+         0*math_utils::degToRad(20), // FR-theta_hp
+         0*math_utils::degToRad(-90), // FR-theta_kp
+         0*math_utils::degToRad(135), // RL-theta_hy
+         0*math_utils::degToRad(20), // RL-theta_hp
+         0*math_utils::degToRad(-90), // RL-theta_kp
+         0*math_utils::degToRad(-135), // RR-theta_hy
+         0*math_utils::degToRad(-20), // RR-theta_hp
+         0*math_utils::degToRad(90); // RR-theta_kp
+
+    Eigen::Matrix<double, 18, 1> CCTerms = K.GetCoriolisAndCentrifugalTerms(q, u);
+
+    ROS_INFO_STREAM("Coriolis and Centrifugal terms, CCTerms: \n" << CCTerms);
+}
+
 
 int main(int argc, char **argv)
 {
@@ -552,8 +602,10 @@ int main(int argc, char **argv)
     //testMassMatrix();
     //ROS_INFO_STREAM("--------------- Test Gravitational Terms -----------");
     //testGravitationalTerms();
-    ROS_INFO_STREAM("--------------- Test Rotation Derivative -------");
-    testEulerDiff();
+    //ROS_INFO_STREAM("--------------- Test Rotation Derivative -------");
+    //testEulerDiff();
+    ROS_INFO_STREAM("--------------- Test Coriolis And Centrifugal terms --------------");
+    testCoriolisAndCentrifugalTerms();
 
     ros::spin();
     return 0;
