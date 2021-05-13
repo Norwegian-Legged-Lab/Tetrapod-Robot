@@ -8,3 +8,6 @@
 [submodule "catkin_ws/src/utilities/ros-keyboard"]
 	path = catkin_ws/src/utilities/ros-keyboard
 	url = git@github.com:lrse/ros-keyboard.git
+[submodule "catkin_ws/src/utilities/joystick_drivers"]
+	path = catkin_ws/src/utilities/joystick_drivers
+	url = git@github.com:ros-drivers/joystick_drivers.git
