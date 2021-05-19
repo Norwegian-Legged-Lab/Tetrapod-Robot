@@ -29,6 +29,9 @@
 // C++ Standard Library
 #include <cmath>
 
+// Kindr
+#include <kindr/Core>
+
 // Eigen
 #include <Eigen/Core>
 #include <Eigen/SVD>
@@ -42,6 +45,7 @@ namespace math_utils
     /// \param[in] _lambda Damping factor. Defaults to zero, i.e. the moore-penrose pseudo-inverse.
     /// \param[in] _epsilon Numerical precision (singular value threshold).
     /// \returns Returns true if the damped pseudo-inverse is calculated successfully.
+    // TODO Fix Singularity issue, as it stands now the pseudo inverse fails when the input matrix is singular.
     template<typename Matrix_TypeA, typename Matrix_TypeB>
     bool static dampedPseudoInverse(const Matrix_TypeA &_J, 
                                     Matrix_TypeB &_dPinvJ, 
@@ -95,7 +99,7 @@ namespace math_utils
     /// \param[in] _alpha Scalar parameter between 0 and 1 used to
     /// regulate the priority between two tasks (if used in a hierarchical
     /// control approach).
-    /// \return Returns true if a null-space projector is found successfully.
+    /// \return Returns true if a null-space projecto peB>
     template<typename Matrix_TypeA, typename Matrix_TypeB>
     bool static nullSpaceProjector(const Matrix_TypeA &_A,
                                    Matrix_TypeB &_N,
@@ -115,8 +119,7 @@ namespace math_utils
         // Calculate pseudo-inverse of A
         Eigen::Matrix<typename Matrix_TypeA::Scalar, colsA, rowsA> pinvA;
 
-        static_assert(dampedPseudoInverse(_A, pinvA),
-                     "[angle_utils::nullSpaceProjector] Could not find pseudo-inverse of the input matrix!");
+        kindr::pseudoInverse(_A, pinvA);
 
         // Set identity matrix
         Eigen::Matrix<typename Matrix_TypeA::Scalar, colsA, colsA> I = Eigen::Matrix<typename Matrix_TypeA::Scalar, colsA, colsA>::Identity();
