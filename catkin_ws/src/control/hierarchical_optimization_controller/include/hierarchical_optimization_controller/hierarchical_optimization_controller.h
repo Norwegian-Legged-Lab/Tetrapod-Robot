@@ -28,15 +28,99 @@
 
 // C++ Standard Library
 #include <cmath>
+#include <thread>
 
 // ROS
 #include "ros/ros.h" 
+#include "ros/callback_queue.h"
+
+// ROS messages
+#include "std_msgs/Float64MultiArray.h"
+#include "sensor_msgs/JointState.h"
 
 // ROS Package Libraries
+#include <kinematics/kinematics.h>
 #include <math_utils/angle_utils.h>
+#include <debug_utils/debug_utils.h>
 
 // Eigen
 #include <Eigen/Core>
 
 // Kindr
 #include <kindr/Core>
+
+/// \brief A class for hierarchical optimization control
+class HierarchicalOptimizationControl
+{
+    /// \brief Leg type enumerator
+    public: enum LegType { frontLeft = 1, frontRight = 2, rearLeft = 3, rearRight = 4, NONE };
+
+    /// \brief Body type enumerator
+    public: enum BodyType { base = 1, hip = 2, thigh = 3, leg = 4, foot = 5 };
+
+    /// \brief Constructor
+    public: HierarchicalOptimizationControl();
+
+    /// \brief Destructor
+    public: virtual ~HierarchicalOptimizationControl();
+
+    /// \brief The OnGenCoordMsg function handles an incoming 
+    /// generalized coordinates message from ROS.
+    /// \param[in] _msg A float array containing the generalized
+    /// coordinates.
+    public: void OnGenCoordMsg(const std_msgs::Float64MultiArrayConstPtr &_msg);
+
+    /// \brief The OnGenVelMsg function handles an incoming 
+    /// generalized velocities message from ROS.
+    /// \param[in] _msg A float array containing the generalized
+    /// velocities.
+    public: void OnGenVelMsg(const std_msgs::Float64MultiArrayConstPtr &_msg);
+
+    /// \brief The ProcessQueueThread function is a ROS helper function
+    /// that processes messages.
+    public: void ProcessQueueThread();
+
+    /// \brief The PublishQueueThread function is a ROS helper function
+    /// that publish state messages.
+    public: void PublishQueueThread();
+
+    /// \brief The InitRos function is called to initialize ROS 
+    protected: void InitRos();
+
+    /// \brief The InitRosQueueThreads function is called to initialize
+    /// the ROS Publish and Process Queue Threads
+    protected: void InitRosQueueThreads();
+
+    /// \brief Kinematics
+    private: Kinematics kinematics;
+
+    /// \brief Generalized Coordinates
+    private: Eigen::Matrix<double, 18, 1> genCoord;
+
+    /// \brief Generalized Velocities
+    private: Eigen::Matrix<double, 18, 1> genVel;
+
+    /// \brief Node used for ROS transport.
+    private: std::unique_ptr<ros::NodeHandle> rosNode;
+
+    /// \brief ROS Generalized Coordinates Subscriber.
+    private: ros::Subscriber genCoordSub;
+
+    /// \brief ROS Generalized Coordinates Subscriber.
+    private: ros::Subscriber genVelSub;
+
+    /// \brief ROS Joint State Publisher
+    private: ros::Publisher jointStatePub;
+
+    /// \brief ROS callbackque that helps process messages.
+    private: ros::CallbackQueue rosProcessQueue;
+
+    /// \brief ROS callbackque that helps publish messages.
+    private: ros::CallbackQueue rosPublishQueue;
+
+    /// \brief Thread running the rosProcessQueue.
+    private: std::thread rosProcessQueueThread;
+
+    /// \brief Thread running the rosPublishQueue.
+    private: std::thread rosPublishQueueThread;
+};

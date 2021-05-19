@@ -25,3 +25,125 @@
 /*******************************************************************/
 
 #include <hierarchical_optimization_controller/hierarchical_optimization_controller.h>
+
+// Constructor
+HierarchicalOptimizationControl::HierarchicalOptimizationControl()
+{
+    this->InitRos();
+    this->InitRosQueueThreads();
+}
+
+// Destructor
+HierarchicalOptimizationControl::~HierarchicalOptimizationControl()
+{
+    this->rosNode->shutdown();
+
+    this->rosProcessQueue.clear();
+    this->rosProcessQueue.disable();
+    this->rosProcessQueueThread.join();
+
+    this->rosPublishQueue.clear();
+    this->rosPublishQueue.disable();
+    this->rosPublishQueueThread.join();
+}
+
+// Callback for ROS Generalized Coordinates messages
+void HierarchicalOptimizationControl::OnGenCoordMsg(const std_msgs::Float64MultiArrayConstPtr &_msg)
+{
+    std::vector<double> data = _msg->data;
+
+    this->genCoord = Eigen::Map<Eigen::MatrixXd>(data.data(), 18, 1);
+}
+
+// Callback for ROS Generalized Velocities messages
+void HierarchicalOptimizationControl::OnGenVelMsg(const std_msgs::Float64MultiArrayConstPtr &_msg)
+{
+    std::vector<double> data = _msg->data;
+
+    this->genVel = Eigen::Map<Eigen::MatrixXd>(data.data(), 18, 1); 
+
+}
+
+// Setup thread to process messages
+void HierarchicalOptimizationControl::ProcessQueueThread()
+{
+    static const double timeout = 0.01;
+    while (this->rosNode->ok())
+    {
+        this->rosProcessQueue.callAvailable(ros::WallDuration(timeout));
+    }
+}
+
+// Setup thread to publish messages
+void HierarchicalOptimizationControl::PublishQueueThread()
+{
+    static const double timeout = 0.01;
+    while (this->rosNode->ok())
+    {
+        this->rosPublishQueue.callAvailable(ros::WallDuration(timeout));
+    }
+}
+
+// Initialize ROS
+void HierarchicalOptimizationControl::InitRos()
+{
+    if (!ros::isInitialized())
+    {
+        int argc = 0;
+        char **argv = NULL;
+        ros::init(
+            argc,
+            argv,
+            "hierarchical_optimization_control_node",
+            ros::init_options::NoSigintHandler
+        );
+    }
+
+    this->rosNode.reset(new ros::NodeHandle("hierarchical_optimization_control_node"));
+
+    ros::SubscribeOptions gen_coord_so = 
+        ros::SubscribeOptions::create<std_msgs::Float64MultiArray>(
+            "/my_robot/gen_coord",
+            1,
+            boost::bind(&HierarchicalOptimizationControl::OnGenCoordMsg, this, _1),
+            ros::VoidPtr(),
+            &this->rosProcessQueue
+            );
+
+    ros::SubscribeOptions gen_vel_so = 
+        ros::SubscribeOptions::create<std_msgs::Float64MultiArray>(
+            "/my_robot/gen_vel",
+            1,
+            boost::bind(&HierarchicalOptimizationControl::OnGenVelMsg, this, _1),
+            ros::VoidPtr(),
+            &this->rosProcessQueue
+            );
+
+    ros::AdvertiseOptions joint_state_ao =
+        ros::AdvertiseOptions::create<sensor_msgs::JointState>(
+            "/my_robot/joint_state_cmd",
+            100,
+            ros::SubscriberStatusCallback(),
+            ros::SubscriberStatusCallback(),
+            ros::VoidPtr(),
+            &this->rosPublishQueue
+        );
+
+    this->genCoordSub = this->rosNode->subscribe(gen_coord_so);
+
+    this->genVelSub = this->rosNode->subscribe(gen_vel_so);
+
+    this->jointStatePub = this->rosNode->advertise(joint_state_ao);
+}
+
+// Initialize ROS Publish and Process Queue Threads
+void HierarchicalOptimizationControl::InitRosQueueThreads()
+{
+    this->rosPublishQueueThread = std::thread(
+        std::bind(&HierarchicalOptimizationControl::PublishQueueThread, this)
+    );
+
+    this->rosProcessQueueThread = std::thread(
+        std::bind(&HierarchicalOptimizationControl::ProcessQueueThread, this)
+    );
+}
