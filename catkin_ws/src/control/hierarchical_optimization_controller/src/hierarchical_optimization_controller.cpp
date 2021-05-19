@@ -47,6 +47,12 @@ HierarchicalOptimizationControl::~HierarchicalOptimizationControl()
     this->rosPublishQueueThread.join();
 }
 
+// Hierarchical Least-Square Optimization
+void HierarchicalOptimizationControl::HierarchicalLeastSquareOptimization()
+{
+    
+}
+
 // Callback for ROS Generalized Coordinates messages
 void HierarchicalOptimizationControl::OnGenCoordMsg(const std_msgs::Float64MultiArrayConstPtr &_msg)
 {

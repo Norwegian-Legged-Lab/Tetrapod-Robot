@@ -64,6 +64,9 @@ class HierarchicalOptimizationControl
     /// \brief Destructor
     public: virtual ~HierarchicalOptimizationControl();
 
+    // TODO Describe
+    public: void HierarchicalLeastSquareOptimization();
+
     /// \brief The OnGenCoordMsg function handles an incoming 
     /// generalized coordinates message from ROS.
     /// \param[in] _msg A float array containing the generalized
