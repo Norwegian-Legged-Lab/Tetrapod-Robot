@@ -200,9 +200,14 @@ install(DIRECTORY include/${PROJECT_NAME}/
 #############
 
 ## Add gtest based cpp test target and link libraries
-catkin_add_gtest(${PROJECT_NAME}-test test/test_angle_utils.cpp)
-if(TARGET ${PROJECT_NAME}-test)
-  target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
+catkin_add_gtest(angle_utils-test test/test_angle_utils.cpp)
+if(TARGET angle_utils-test)
+  target_link_libraries(angle_utils-test ${PROJECT_NAME})
+endif()
+
+catkin_add_gtest(linalg_utils-test test/test_linalg_utils.cpp)
+if(TARGET linalg_utils-test)
+  target_link_libraries(linalg_utils-test ${PROJECT_NAME})
 endif()
 
 ## Add folders to be run by python nosetests

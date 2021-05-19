@@ -10,7 +10,7 @@ TEST(LinalgUtils, nullSpaceProjector)
 {
     Eigen::Matrix<double, 3, 2> A;
     
-    A << 0, 0,
+    A << 1, 0,
          0, 0, 
          0, 0;
 
@@ -21,9 +21,9 @@ TEST(LinalgUtils, nullSpaceProjector)
     Eigen::Matrix<double, 2, 2> expectedN;
 
     expectedN << 0, 0,
-                 0, 0;
+                 0, 1;
 
-    // TODO Add test
+    ASSERT_TRUE(N.isApprox(expectedN, 0.0001));
 }
 
 
