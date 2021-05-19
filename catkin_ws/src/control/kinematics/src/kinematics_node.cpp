@@ -571,6 +571,27 @@ void testCoriolisAndCentrifugalTerms()
     ROS_INFO_STREAM("Coriolis and Centrifugal terms, CCTerms: \n" << CCTerms);
 }
 
+void testNullSpaceProjector()
+{
+    Eigen::Matrix<double, 2, 3> A;
+    
+    A << 1, 0, 0,
+         0, 0, 0;
+
+    Eigen::Matrix<double, 3, 3> N;
+
+    math_utils::nullSpaceProjector(A,N);
+
+    Eigen::Matrix<double, 3, 2> pinvA;
+
+    kindr::pseudoInverse(A, pinvA);
+
+    Eigen::Matrix<double, 3, 3> N_test = Eigen::Matrix<double, 3, 3>::Identity() - pinvA * A;
+
+    ROS_INFO_STREAM("Null-space projector, N: \n" << N);
+    ROS_INFO_STREAM("Null-space projector test, N: \n" << N_test);
+}
+
 
 int main(int argc, char **argv)
 {
@@ -604,8 +625,10 @@ int main(int argc, char **argv)
     //testGravitationalTerms();
     //ROS_INFO_STREAM("--------------- Test Rotation Derivative -------");
     //testEulerDiff();
-    ROS_INFO_STREAM("--------------- Test Coriolis And Centrifugal terms --------------");
-    testCoriolisAndCentrifugalTerms();
+    //ROS_INFO_STREAM("--------------- Test Coriolis And Centrifugal terms --------------");
+    //testCoriolisAndCentrifugalTerms();
+    ROS_INFO_STREAM("--------------- Test null-space projector ------------------------");
+    testNullSpaceProjector();
 
     ros::spin();
     return 0;
