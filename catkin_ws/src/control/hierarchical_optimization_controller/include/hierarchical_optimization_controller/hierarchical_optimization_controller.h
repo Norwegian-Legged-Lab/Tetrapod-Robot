@@ -35,6 +35,7 @@
 #include "ros/callback_queue.h"
 
 // ROS messages
+#include "std_msgs/Int8MultiArray.h"
 #include "std_msgs/Float64MultiArray.h"
 #include "sensor_msgs/JointState.h"
 
@@ -79,6 +80,11 @@ class HierarchicalOptimizationControl
     /// velocities.
     public: void OnGenVelMsg(const std_msgs::Float64MultiArrayConstPtr &_msg);
 
+    /// \brief The OnContactStateMsg function handles an incoming 
+    /// contact state message from ROS.
+    /// \param[in] _msg A float array containing the contact state.
+    public: void OnContactStateMsg(const std_msgs::Int8MultiArrayConstPtr &_msg);
+
     /// \brief The ProcessQueueThread function is a ROS helper function
     /// that processes messages.
     public: void ProcessQueueThread();
@@ -103,6 +109,9 @@ class HierarchicalOptimizationControl
     /// \brief Generalized Velocities
     private: Eigen::Matrix<double, 18, 1> genVel;
 
+    /// \brief Contact State
+    private: int contactState[4];
+
     /// \brief Node used for ROS transport.
     private: std::unique_ptr<ros::NodeHandle> rosNode;
 
@@ -111,6 +120,9 @@ class HierarchicalOptimizationControl
 
     /// \brief ROS Generalized Coordinates Subscriber.
     private: ros::Subscriber genVelSub;
+
+    /// \brief ROS Contact State Subscriber.
+    private: ros::Subscriber contactStateSub;
 
     /// \brief ROS Joint State Publisher
     private: ros::Publisher jointStatePub;
