@@ -2,7 +2,7 @@
 /*    AUTHOR: Paal Arthur S. Thorseth                              */
 /*    ORGN:   Dept of Eng Cybernetics, NTNU Trondheim              */
 /*    FILE:   kinematics.h                                         */
-/*    DATE:   Feb 4, 2021                                          */
+/*    DATE:   Mar 1, 2021                                          */
 /*                                                                 */
 /* Copyright (C) 2021 Paal Arthur S. Thorseth,                     */
 /*                    Adrian B. Ghansah                            */
@@ -28,6 +28,7 @@
 
 // C++ Standard Library
 #include <cmath>
+#include <algorithm>
 
 // ROS
 #include "ros/ros.h" 
@@ -369,6 +370,16 @@ class Kinematics
                                                             const BodyType &_body,
                                                             const Eigen::Matrix<double, 18, 1> &_q,
                                                             const Eigen::Matrix<double, 18, 1> &_u);
+
+    /// \brief The GetContactJacobianInW function returns the 3*n_cx18
+    /// support Jacobian mapping reaction forces at the contact points
+    /// to generalized coordinate space.
+    /// \param[in] _legs A vector of leg types containing the contact points.
+    /// \param[in] _q Generalized coordinates.
+    /// \return Returns the spatial Jacobian Matrix mapping from generalized velocities to
+    /// the operational space (world-frame) twist of the body attached frame. 
+    public: Eigen::Matrix<double, Eigen::Dynamic, 18> GetContactJacobianInW(std::vector<LegType> &_legs,
+                                                                            const Eigen::Matrix<double, 18, 1> &_q);
 
     /// \brief The GetSingleBodyMassMatrix function returns the
     /// mass matrix for a single body in the system. 

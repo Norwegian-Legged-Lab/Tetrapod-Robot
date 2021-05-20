@@ -1704,6 +1704,55 @@ Eigen::Matrix<double, 6, 18> Kinematics::GetJacobianInWDiff(const LegType &_leg,
     return dot_J;
 }
 
+// 3*n_cx18 Contact Support Jacobian in world frame
+Eigen::Matrix<double, Eigen::Dynamic, 18> Kinematics::GetContactJacobianInW(std::vector<LegType> &_legs,
+                                                                            const Eigen::Matrix<double, 18, 1> &_q)
+{
+    Eigen::MatrixXd J;                     // Contact Support Jacobian
+
+    const unsigned int n_c = _legs.size(); // Number of contact points
+
+    // Validate number of contact points
+    if (n_c == 0)
+    {
+        ROS_ERROR_STREAM("[Kinematics::GetContactJacobianInW] Zero contact points were given!");
+
+        std::abort();
+    }
+    else if (n_c > 4)
+    {
+
+        ROS_ERROR_STREAM("[Kinematics::GetContactJacobianInW] More than four contact points were given!");
+
+        std::abort();
+    }
+
+    // Set Jacobian dimensions
+    J.resize(3*n_c, 18);
+
+    // Default Jacobian to zero
+    J.setZero();
+
+    // Sort vector of legs to ensure correct filling of partial Jacobians
+    std::sort(_legs.begin(), _legs.end());
+
+    // Index to track which index the partial Jacobian 
+    // should be filled into in the complete Jacobian.
+    int row = 0;
+
+    for (LegType leg : _legs)
+    {
+        // Fill Jacobian
+        J.block<3,18>(row,0) = this->GetTranslationJacobianInW(leg, BodyType::foot, _q);
+
+        // Increment
+        row += 3; 
+    }
+
+
+    return J;
+}
+
 // Single body mass matrix
 Eigen::Matrix<double, 18, 18> Kinematics::GetSingleBodyMassMatrix(const LegType &_leg,
                                                                   const BodyType &_body,
