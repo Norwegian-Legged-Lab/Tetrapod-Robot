@@ -592,6 +592,39 @@ void testNullSpaceProjector()
     ROS_INFO_STREAM("Null-space projector test, N: \n" << N_test);
 }
 
+void testContactJacobian()
+{
+    Kinematics K;
+
+    GeneralizedCoordinates q = GeneralizedCoordinates::Constant(0);
+
+    q << 0, // base_x
+         0, // base_y
+         0, // base_z
+         0, // base_roll
+         0, // base_pitch
+         0*math_utils::degToRad(90), // base_yaw
+         0*math_utils::degToRad(45), // FL-theta_hy
+         0*math_utils::degToRad(-20), // FL-theta_hp
+         0*math_utils::degToRad(90), // FL-theta_kp
+         0*math_utils::degToRad(-45), // FR-theta_hy
+         0*math_utils::degToRad(20), // FR-theta_hp
+         0*math_utils::degToRad(-90), // FR-theta_kp
+         0*math_utils::degToRad(135), // RL-theta_hy
+         0*math_utils::degToRad(20), // RL-theta_hp
+         0*math_utils::degToRad(-90), // RL-theta_kp
+         0*math_utils::degToRad(-135), // RR-theta_hy
+         0*math_utils::degToRad(-20), // RR-theta_hp
+         0*math_utils::degToRad(90); // RR-theta_kp
+
+        
+    std::vector<Kinematics::LegType> legs {Kinematics::LegType::rearLeft, Kinematics::LegType::frontLeft, Kinematics::LegType::rearRight};
+
+    Eigen::MatrixXd J = K.GetContactJacobianInW(legs, q);
+
+    ROS_INFO_STREAM("Contact Jacobian, J_c: \n" << J);
+}
+
 
 int main(int argc, char **argv)
 {
@@ -627,8 +660,10 @@ int main(int argc, char **argv)
     //testEulerDiff();
     //ROS_INFO_STREAM("--------------- Test Coriolis And Centrifugal terms --------------");
     //testCoriolisAndCentrifugalTerms();
-    ROS_INFO_STREAM("--------------- Test null-space projector ------------------------");
-    testNullSpaceProjector();
+    //ROS_INFO_STREAM("--------------- Test null-space projector ------------------------");
+    //testNullSpaceProjector();
+    ROS_INFO_STREAM("--------------- Test contact Jacobian ----------------------------");
+    testContactJacobian();
 
     ros::spin();
     return 0;

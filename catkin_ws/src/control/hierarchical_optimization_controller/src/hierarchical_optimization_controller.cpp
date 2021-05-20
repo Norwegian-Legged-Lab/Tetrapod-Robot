@@ -70,6 +70,22 @@ void HierarchicalOptimizationControl::OnGenVelMsg(const std_msgs::Float64MultiAr
 
 }
 
+// Callback for ROS Contact State messages
+void HierarchicalOptimizationControl::OnContactStateMsg(const std_msgs::Int8MultiArrayConstPtr &_msg)
+{
+    if (_msg->data.size() == 4)
+    {
+        ROS_ERROR("[HierarchicalOptimizationControl::OnContactStateMsg] Received contact message with wrong size!");
+    }
+    else
+    {
+        this->contactState[0] = _msg->data[0];
+        this->contactState[1] = _msg->data[1];
+        this->contactState[2] = _msg->data[2];
+        this->contactState[3] = _msg->data[3];
+    }
+}
+
 // Setup thread to process messages
 void HierarchicalOptimizationControl::ProcessQueueThread()
 {
@@ -125,10 +141,19 @@ void HierarchicalOptimizationControl::InitRos()
             &this->rosProcessQueue
             );
 
+    ros::SubscribeOptions contact_state_so = 
+        ros::SubscribeOptions::create<std_msgs::Int8MultiArray>(
+            "/my_robot/contact_state",
+            1,
+            boost::bind(&HierarchicalOptimizationControl::OnContactStateMsg, this, _1),
+            ros::VoidPtr(),
+            &this->rosProcessQueue
+            );
+
     ros::AdvertiseOptions joint_state_ao =
         ros::AdvertiseOptions::create<sensor_msgs::JointState>(
             "/my_robot/joint_state_cmd",
-            100,
+            1,
             ros::SubscriberStatusCallback(),
             ros::SubscriberStatusCallback(),
             ros::VoidPtr(),
@@ -138,6 +163,8 @@ void HierarchicalOptimizationControl::InitRos()
     this->genCoordSub = this->rosNode->subscribe(gen_coord_so);
 
     this->genVelSub = this->rosNode->subscribe(gen_vel_so);
+
+    this->contactStateSub = this->rosNode->subscribe(contact_state_so);
 
     this->jointStatePub = this->rosNode->advertise(joint_state_ao);
 }
