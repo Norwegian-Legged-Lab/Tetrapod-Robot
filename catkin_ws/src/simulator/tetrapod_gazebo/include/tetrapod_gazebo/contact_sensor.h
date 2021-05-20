@@ -36,7 +36,7 @@
 // ROS
 #include "ros/ros.h"
 #include "ros/callback_queue.h"
-#include "std_msgs/Float64MultiArray.h"
+#include "std_msgs/Int8MultiArray.h"
 
 // Boost
 #include <boost/algorithm/string.hpp>

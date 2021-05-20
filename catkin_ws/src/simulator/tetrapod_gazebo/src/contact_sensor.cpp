@@ -106,7 +106,7 @@ void ContactSensor::PublishQueueThread()
     ros::Rate publish_rate(200);
     while (this->rosNode->ok())
     {
-        std_msgs::Float64MultiArray contacts_msg; 
+        std_msgs::Int8MultiArray contacts_msg; 
 
         contacts_msg.data.resize(4);
 
@@ -165,7 +165,7 @@ void ContactSensor::InitRos()
     this->rosNode.reset(new ros::NodeHandle("contact_sensor_node"));
 
     ros::AdvertiseOptions contact_state_ao =
-        ros::AdvertiseOptions::create<std_msgs::Float64MultiArray>(
+        ros::AdvertiseOptions::create<std_msgs::Int8MultiArray>(
             "/my_robot/contact_state",
             1,
             ros::SubscriberStatusCallback(),
