@@ -84,7 +84,8 @@ class ContactSensor
     /// the ROS Publish and Process Queue Threads
     protected: void InitRosQueueThreads();
 
-    /// \brief Vector of foot contacts
+    /// \brief Vector of foot contacts, zero indicates no contact and
+    /// one indicates contact.
     private: int footContacts[4];
 
     /// \brief Node used for Gazebo transport.
