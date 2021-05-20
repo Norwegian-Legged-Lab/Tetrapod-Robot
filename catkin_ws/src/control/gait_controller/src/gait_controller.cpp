@@ -101,6 +101,8 @@ void GaitController::twistCommandCallback(const geometry_msgs::TwistConstPtr &_m
     dx_max = lin_vel_x*0.1;
     dy_max = lin_vel_y*0.1;
     dr_max = ang_vel_z*0.1;
+
+    max_pronk_travel_distance = lin_vel_x*0.3;
 }
 
 void GaitController::checkForNewMessages()
@@ -500,4 +502,142 @@ double GaitController::calculateSwingFootHeight(double _current_iteration, doubl
     double x = _current_iteration/_max_iteration;
 
     return 4.0*(max_step_height)*(x - x*x) - hip_height;
+}
+
+double GaitController::calculateSwingFootHeight(double _hip_height, double _max_swing_foot_height, double _current_iteration, double _max_iteration)
+{
+    double x = _current_iteration/_max_iteration;
+
+    return 4.0*(_max_swing_foot_height)*(x - x*x) - _hip_height;
+}
+
+bool GaitController::initializePronking()
+{
+    current_pronk_iteration = 0.0;
+
+    pronk_phase = PronkPhase::swing_rear;
+
+    fl_foot_position_in_body = calculatePronkStanceFootPosition(LegID::fl);
+    fr_foot_position_in_body = calculatePronkStanceFootPosition(LegID::fr);
+    rl_foot_position_in_body = calculatePronkStanceFootPosition(LegID::rl);
+    rr_foot_position_in_body = calculatePronkStanceFootPosition(LegID::rr);
+
+    ROS_INFO("Initial pronking foot positions calculated");
+    ROS_INFO("FL: %f, %f, %f", fl_foot_position_in_body(0), fl_foot_position_in_body(1), fl_foot_position_in_body(2));
+    ROS_INFO("FR: %f, %f, %f", fr_foot_position_in_body(0), fr_foot_position_in_body(1), fr_foot_position_in_body(2));
+    ROS_INFO("RL: %f, %f, %f", rl_foot_position_in_body(0), rl_foot_position_in_body(1), rl_foot_position_in_body(2));
+    ROS_INFO("RR: %f, %f, %f", rr_foot_position_in_body(0), rr_foot_position_in_body(1), rr_foot_position_in_body(2));
+
+    if(!moveFootToPosition(fl_foot_position_in_body, fl_offset, 0))
+    {
+        ROS_ERROR("Failed to move front left foot to the initial position");
+        return false;
+    }
+    ROS_INFO("FL moved successfully");
+    if(!moveFootToPosition(fr_foot_position_in_body, fr_offset, 3))
+    {
+        ROS_ERROR("Failed to move front right foot to the intial position");
+        return false;
+    }
+    ROS_INFO("FR moved successfully");
+    if(!moveFootToPosition(rl_foot_position_in_body, rl_offset, 6))
+    {
+        ROS_ERROR("Failed to move rear left foot to the initial position");
+        return false;
+    }
+    ROS_INFO("RL moved successfully");
+    if(!moveFootToPosition(rr_foot_position_in_body, rr_offset, 9))
+    {
+        ROS_ERROR("Failed to move rear right foot to the initial position");
+        return false;
+    }
+    ROS_INFO("RR moved successfully");    
+
+    return true;
+}
+
+void GaitController::updatePronkController()
+{
+    switch (pronk_phase)
+    {
+    case PronkPhase::swing_front:
+        fl_foot_position_in_body = calculatePronkSwingFootPosition(LegID::fl);
+        fr_foot_position_in_body = calculatePronkSwingFootPosition(LegID::fr);
+        rl_foot_position_in_body = calculatePronkStanceFootPosition(LegID::rl);
+        rr_foot_position_in_body = calculatePronkStanceFootPosition(LegID::rr);
+        break;
+    case PronkPhase::swing_rear:
+        fl_foot_position_in_body = calculatePronkStanceFootPosition(LegID::fl);
+        fr_foot_position_in_body = calculatePronkStanceFootPosition(LegID::fr);
+        rl_foot_position_in_body = calculatePronkSwingFootPosition(LegID::rl);
+        rr_foot_position_in_body = calculatePronkSwingFootPosition(LegID::rr);        
+        break;
+    default:
+        break;
+    }
+
+    current_pronk_iteration++;
+
+    if(current_pronk_iteration == max_pronk_iteration)
+    {
+        current_pronk_iteration = 0.0;
+        if(pronk_phase == PronkPhase::swing_front)
+        {
+            pronk_phase = PronkPhase::swing_rear;
+        }
+        else if(pronk_phase == PronkPhase::swing_rear)
+        {
+            pronk_phase = PronkPhase::swing_front;
+        }
+        else
+        {
+            ROS_WARN("Pronk phase does not exist");
+        }
+    }
+}
+
+Eigen::Matrix<double, 3, 1> GaitController::calculatePronkStanceFootPosition(LegID _leg)
+{
+    Eigen::Matrix<double, 3, 1> stance_foot_position;
+
+    stance_foot_position(0) = x_0 + max_pronk_travel_distance*(1.0 - 2.0*current_pronk_iteration/max_pronk_iteration);
+
+    if((_leg == LegID::rl) || (_leg == LegID::rr))
+    {
+        stance_foot_position(0) = - stance_foot_position(0);
+    }
+
+    stance_foot_position(1) = 0.001;
+
+    if((_leg == LegID::fl) || (_leg == LegID::rr))
+    {
+        stance_foot_position(1) = - stance_foot_position(1);
+    }
+    
+    stance_foot_position(2) = - pronk_height;
+
+    return stance_foot_position;
+}
+
+Eigen::Matrix<double, 3, 1> GaitController::calculatePronkSwingFootPosition(LegID _leg)
+{
+    Eigen::Matrix<double, 3, 1> swing_foot_position;
+
+    swing_foot_position(0) = x_0 + max_pronk_travel_distance*(2.0*current_pronk_iteration/max_pronk_iteration - 1.0);
+
+    if((_leg == LegID::rl) || (_leg == LegID::rr))
+    {
+        swing_foot_position(0) = - swing_foot_position(0);
+    }
+
+    swing_foot_position(1) = 0.001;
+
+    if((_leg == LegID::fl) || (_leg == LegID::rr))
+    {
+        swing_foot_position(1) = - swing_foot_position(1);
+    }
+
+    swing_foot_position(2) = calculateSwingFootHeight(pronk_height, 0.1, current_pronk_iteration, max_pronk_iteration);
+
+    return swing_foot_position;
 }
