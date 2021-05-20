@@ -46,11 +46,21 @@ add_executable(gait_controller_node
   src/gait_controller.cpp
 )
 
+add_executable(pronk_controller_node
+  src/pronk_controller_node.cpp
+  src/gait_controller.cpp
+)
+
+
 target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
 )
 
 target_link_libraries(gait_controller_node
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(pronk_controller_node
   ${catkin_LIBRARIES}
 )
 
