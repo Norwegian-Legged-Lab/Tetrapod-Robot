@@ -397,6 +397,9 @@ class Kinematics
     /// \return Returns an orthogonal mass matrix (n_q x n_q) for the floating base system.
     public: Eigen::Matrix<double, 18, 18> GetMassMatrix(const Eigen::Matrix<double, 18, 1> &_q);
 
+
+    public: Eigen::Matrix<double, 3, 3> GetSingleLegMassMatrix(const Eigen::Matrix<double, 3, 1> &_q);
+
     /// \brief The GetSingleBodyCoriolisAndCentrifugalTerms function returns the
     /// coriolis and centrifugal terms for a single body in the system. 
     /// \param[in] _leg Leg type.
@@ -417,6 +420,10 @@ class Kinematics
     public: Eigen::Matrix<double, 18, 1> GetCoriolisAndCentrifugalTerms(const Eigen::Matrix<double, 18, 1> &_q,
                                                                         const Eigen::Matrix<double, 18, 1> &_u);
 
+
+    public: Eigen::Matrix<double, 3, 1> GetSingleLegCoriolisAndCentrifugalTerms(const Eigen::Matrix<double, 3, 1> &_q,
+                                                                                const Eigen::Matrix<double, 3, 1> &_u);
+
     /// \brief The GetSingleBodyGravitationalTerms function returns the
     /// gravitational terms for a single body in the system. 
     /// \param[in] _leg Leg type.
@@ -432,6 +439,8 @@ class Kinematics
     /// \param[in] _q Generalized coordinates.
     /// \return Returns gravitational terms for the floating base system. 
     public: Eigen::Matrix<double, 18, 1> GetGravitationalTerms(const Eigen::Matrix<double, 18, 1> &_q);
+
+    public: Eigen::Matrix<double, 3, 1> GetSingleLegGravitationalTerms(const Eigen::Matrix<double, 3, 1> &_q);
 
     /// \brief The ValidateSolution function evaluates whether
     /// a set of joint angles is within joint limits. 
@@ -452,6 +461,10 @@ class Kinematics
                                                           const double &_I_XY,
                                                           const double &_I_XZ,
                                                           const double &_I_YZ);
+
+    private: double GetBodyMass(BodyType _body);
+
+    private: Eigen::Matrix<double, 3, 3> GetBodyInertia(BodyType _body);
 
     /// \brief Minimum joint limits.
     private: JointSpaceVector min_angles;

@@ -1845,6 +1845,28 @@ Eigen::Matrix<double, 18, 18> Kinematics::GetMassMatrix(const Eigen::Matrix<doub
     return M;
 }
 
+Eigen::Matrix<double, 3, 3> Kinematics::GetSingleLegMassMatrix(const Eigen::Matrix<double, 3, 1> &_q)
+{
+    Eigen::Matrix<double, 3, 3> M = Eigen::Matrix<double, 3, 3>::Zero();
+
+    static const std::vector<BodyType> bodies{ BodyType::hip,
+                                               BodyType::thigh,
+                                               BodyType::leg };
+
+    Eigen::Matrix<double, 3, 3> J_s;
+
+    Eigen::Matrix<double, 3, 3> J_r;
+
+    for (const auto body : bodies)
+    {
+        J_s = GetTranslationJacobianInB(LegType::frontLeft, body, _q(0), _q(1), _q(2));
+        J_r = GetRotationJacobianInB(LegType::frontLeft, body, _q(0), _q(1), _q(2));
+        M += J_s.transpose()*GetBodyMass(body)*J_s + J_r.transpose()*GetBodyInertia(body)*J_r;
+    }
+
+    return M;
+}
+
 // Single body coriolis and centrifugal terms
 Eigen::Matrix<double, 18, 1> Kinematics::GetSingleBodyCoriolisAndCentrifugalTerms(const LegType &_leg,
                                                                                   const BodyType &_body,
@@ -1950,6 +1972,40 @@ Eigen::Matrix<double, 18, 1> Kinematics::GetCoriolisAndCentrifugalTerms(const Ei
     return b;
 }
 
+Eigen::Matrix<double, 3, 1> Kinematics::GetSingleLegCoriolisAndCentrifugalTerms(const Eigen::Matrix<double, 3, 1> &_q,
+                                                                                const Eigen::Matrix<double, 3, 1> &_u)
+{
+    Eigen::Matrix<double, 3, 1> b = Eigen::Matrix<double, 3, 1>::Zero();
+
+    static const std::vector<BodyType> bodies{ BodyType::hip,
+                                               BodyType::thigh,
+                                               BodyType::leg };
+
+    double m;
+    Eigen::Matrix<double, 3, 3> I;
+    Eigen::Matrix<double, 3, 3> J_s;
+    Eigen::Matrix<double, 3, 3> J_s_d; 
+    Eigen::Matrix<double, 3, 3> J_r;
+    Eigen::Matrix<double, 3, 3> J_r_d;
+    Eigen::Matrix<double, 3, 1> omega;
+   
+    
+
+    for (const auto body : bodies)
+    {
+        m = GetBodyMass(body);
+        I = GetBodyInertia(body);
+        J_s = GetTranslationJacobianInB(LegType::frontLeft, body, _q(0), _q(1), _q(2));
+        J_s_d = GetTranslationJacobianInBDiff(LegType::frontLeft, body, _q(0), _q(1), _q(2), _u(0), _u(1), _u(2));
+        J_r = GetRotationJacobianInB(LegType::frontLeft, body, _q(0), _q(1), _q(2));
+        J_r_d = GetRotationJacobianInBDiff(LegType::frontLeft, body, _q(0), _q(1), _q(2), _u(0), _u(1), _u(2));
+        omega = J_r*_u;
+        b += J_s.transpose()*m*J_s_d*_u + J_r.transpose()*(I*J_r_d*_u + kindr::getSkewMatrixFromVector(omega)*I*omega);
+    }
+
+    return b;
+}                                                                                
+
 // Single body gravitational terms
 Eigen::Matrix<double, 18, 1> Kinematics::GetSingleBodyGravitationalTerms(const LegType &_leg,
                                                                          const BodyType &_body,
@@ -2039,6 +2095,30 @@ Eigen::Matrix<double, 18, 1> Kinematics::GetGravitationalTerms(const Eigen::Matr
     return g;
 }
 
+Eigen::Matrix<double, 3, 1> Kinematics::GetSingleLegGravitationalTerms(const Eigen::Matrix<double, 3, 1> &_q)
+{
+    Eigen::Matrix<double, 3, 1> G = Eigen::Matrix<double, 3, 1>::Zero();
+
+    double g = 9.81;
+
+    static const std::vector<BodyType> bodies{ BodyType::hip,
+                                               BodyType::thigh,
+                                               BodyType::leg };
+
+    Eigen::Matrix<double, 3, 3> J_s;
+
+    Eigen::Matrix<double, 3, 1> F;
+
+    for (const auto body : bodies)
+    {
+        J_s = GetTranslationJacobianInB(LegType::frontLeft, body, _q(0), _q(1), _q(2));
+        F = GetBodyMass(body) * g * Eigen::Matrix<double, 3, 1>(0.0, 0.0, 1.0);
+        G += J_s.transpose()*F;
+    }
+
+    return G;
+}
+
 // Validate IK solution
 bool Kinematics::ValidateSolution(const Eigen::Matrix<double, 12, 1> &_q_r)
 {
@@ -2076,6 +2156,90 @@ Eigen::Matrix<double, 3, 3> Kinematics::GetInertiaMatrix(const double &_I_XX,
     I(2, 0) = _I_XZ;
     I(1, 2) = _I_YZ;
     I(2, 1) = _I_YZ;
+
+    return I;
+}
+
+double Kinematics::GetBodyMass(BodyType _body)
+{
+    double m;
+
+    switch (_body)
+    {
+    case base:
+    {
+        m = this->M0;
+
+        break;
+    }
+
+    case hip:
+    {
+        m = this->M1;
+
+        break;
+    }
+    case thigh:
+    {
+        m = this->M2;
+
+        break;
+    }
+    case leg:
+    {
+        m = this->M3;
+
+        break;
+    }
+    default:
+        ROS_ERROR_STREAM("[Kinematics::GetBodyMass] Could not determine body type");
+
+        std::abort();
+
+        break;
+    }
+
+    return m;
+}
+
+Eigen::Matrix<double, 3, 3> Kinematics::GetBodyInertia(BodyType _body)
+{
+    Eigen::Matrix<double, 3, 3> I;
+
+    switch (_body)
+    {
+    case base:
+    {
+        I = this->I0;
+
+        break;
+    }
+
+    case hip:
+    {
+        I = this->I1;
+
+        break;
+    }
+    case thigh:
+    {
+        I = this->I2;
+
+        break;
+    }
+    case leg:
+    {
+        I = this->I3;
+
+        break;
+    }
+    default:
+        ROS_ERROR_STREAM("[Kinematics::GetBodyInertia] Could not determine body type");
+
+        std::abort();
+
+        break;
+    }
 
     return I;
 }
