@@ -7,7 +7,9 @@ project(math_utils)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED)
+find_package(catkin REQUIRED COMPONENTS
+  kindr
+)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -103,7 +105,8 @@ catkin_package(
   INCLUDE_DIRS include
     ${EIGEN3_INCLUDE_DIR}
   LIBRARIES math_utils
-#  CATKIN_DEPENDS other_catkin_pkg
+  CATKIN_DEPENDS 
+    kindr
 #  DEPENDS system_lib
 )
 
@@ -197,9 +200,14 @@ install(DIRECTORY include/${PROJECT_NAME}/
 #############
 
 ## Add gtest based cpp test target and link libraries
-catkin_add_gtest(${PROJECT_NAME}-test test/test_angle_utils.cpp)
-if(TARGET ${PROJECT_NAME}-test)
-  target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
+catkin_add_gtest(angle_utils-test test/test_angle_utils.cpp)
+if(TARGET angle_utils-test)
+  target_link_libraries(angle_utils-test ${PROJECT_NAME})
+endif()
+
+catkin_add_gtest(linalg_utils-test test/test_linalg_utils.cpp)
+if(TARGET linalg_utils-test)
+  target_link_libraries(linalg_utils-test ${PROJECT_NAME})
 endif()
 
 ## Add folders to be run by python nosetests

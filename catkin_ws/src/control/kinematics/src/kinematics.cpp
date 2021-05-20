@@ -24,8 +24,6 @@
 /*                                                                 */
 /*******************************************************************/
 
-#include "ros/ros.h" // TODO remove when removing prints
-
 #include <kinematics/kinematics.h>
 
 
@@ -1810,19 +1808,62 @@ Eigen::Matrix<double, 18, 1> Kinematics::GetSingleBodyCoriolisAndCentrifugalTerm
     Eigen::Matrix<double, 3, 18> dot_J_COM;  // Time derivative of translation Jacobian about COM of the body
     Eigen::Matrix<double, 3, 18> dot_J_R;    // Time derivative of rotation Jacobian for the body
 
+    Eigen::Matrix<double, 3, 1> Omega; // Absolute angular velocities of the body wrt to the world (inertial) frame
+
     Eigen::Matrix<double, 3, 3> I_COM;   // Inertia matrix for the COM of the body
 
-    Eigen::Matrix<double, 3, 1> omega_inW = J_R * _u;
 
     double m; // Mass of the body
 
-    // TODO Implement
+    J_COM = this->GetTranslationJacobianInW(_leg, _body, _q);
+    J_R = this->GetRotationJacobianInW(_leg, _body, _q);
+    
+    dot_J_COM = this->GetTranslationJacobianInWDiff(_leg, _body, _q, _u);
+    dot_J_R = this->GetRotationJacobianInWDiff(_leg, _body, _q, _u);
 
+    Omega = J_R * _u;
 
+    switch (_body)
+    {
+        case base:
+        {
+            I_COM = this->I0;
+            m = this->M0;
 
+            break;
+        }
+        case hip:
+        {
+            I_COM = this->I1;
+            m = this->M1;
 
+            break;
+        }
+        case thigh:
+        {
+            I_COM = this->I2;
+            m = this->M2;
 
-    return m * J_COM.transpose() * dot_J_COM * _u + J_R.transpose() * ( I_COM * dot_J_R * _u + kindr::getSkewMatrixFromVector(omega_inW) * I_COM * omega_inW);
+            break;
+        }
+        case leg:
+        {
+            I_COM = this->I3;
+            m = this->M3;
+
+            break;
+        }
+        default:
+        {
+            ROS_ERROR_STREAM("[Kinematics::GetSingleBodyCoriolisAndCentrifugalTerms] Could not determine body type!");
+
+            std::abort();
+
+            break;
+        }
+    }
+
+    return m * J_COM.transpose() * dot_J_COM * _u + J_R.transpose() * ( I_COM * dot_J_R * _u + kindr::getSkewMatrixFromVector(Omega) * I_COM * Omega);
 }
 
 // Coriolis and centrifugal terms

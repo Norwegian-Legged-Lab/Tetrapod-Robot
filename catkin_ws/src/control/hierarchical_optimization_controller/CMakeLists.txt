@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(tetrapod_gazebo)
+project(hierarchical_optimization_controller)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -8,16 +8,18 @@ project(tetrapod_gazebo)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  roscpp
-  std_msgs
-  sensor_msgs
-  gazebo_ros
+  debug_utils
+  kindr
+  kinematics
   math_utils
+  roscpp
+  sensor_msgs
+  std_msgs
 )
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
-find_package(gazebo REQUIRED)
+find_package(Eigen3 REQUIRED)
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -73,7 +75,7 @@ find_package(gazebo REQUIRED)
 ## Generate added messages and services with any dependencies listed here
 # generate_messages(
 #   DEPENDENCIES
-#   std_msgs  # Or other packages containing msgs
+#   sensor_msgs#   std_msgs
 # )
 
 ################################################
@@ -107,13 +109,9 @@ find_package(gazebo REQUIRED)
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
   INCLUDE_DIRS include
-#  LIBRARIES tetrapod_gazebo
-  CATKIN_DEPENDS 
-    roscpp 
-    std_msgs 
-    sensor_msgs
-    gazebo_ros 
-    math_utils
+    ${EIGEN3_INCLUDE_DIR}
+  LIBRARIES hierarchical_optimization_controller
+  CATKIN_DEPENDS debug_utils kindr kinematics math_utils roscpp sensor_msgs std_msgs
 #  DEPENDS system_lib
 )
 
@@ -121,30 +119,17 @@ catkin_package(
 ## Build ##
 ###########
 
-## Gazebo flags
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GAZEBO_CXX_FLAGS}")
-
-## Gazebo link dir
-link_directories(${GAZEBO_LIBRARY_DIRS})
-
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
   include
   ${catkin_INCLUDE_DIRS}
-  ${GAZEBO_INCLUDE_DIRS}
+  ${EIGEN3_INCLUDE_DIR}
 )
 
 ## Declare a C++ library
-# add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/tetrapod_gazebo.cpp
-# )
-add_library(tetrapod_plugin
-  src/tetrapod_plugin.cpp
-)
-
-add_library(contact_plugin
-  src/contact_plugin.cpp
+add_library(${PROJECT_NAME}
+  src/hierarchical_optimization_controller.cpp
 )
 
 ## Add cmake target dependencies of the library
@@ -155,9 +140,10 @@ add_library(contact_plugin
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/tetrapod_gazebo_node.cpp)
-add_executable(contact_sensor
-  src/contact_sensor.cpp
+# add_executable(${PROJECT_NAME}_node src/hierarchical_optimization_controller_node.cpp)
+add_executable(${PROJECT_NAME}_node
+  src/hierarchical_optimization_controller_node.cpp
+  src/hierarchical_optimization_controller.cpp
 )
 
 ## Rename C++ executable without prefix
@@ -169,29 +155,18 @@ add_executable(contact_sensor
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-#add_dependencies(contact_sensor 
-#  ${catkin_EXPORTED_TARGETS}
-#)
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(tetrapod_plugin
+# target_link_libraries(${PROJECT_NAME}_node
+#   ${catkin_LIBRARIES}
+# )
+target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
-  ${GAZEBO_LIBRARIES}
 )
 
-target_link_libraries(contact_plugin
+target_link_libraries(${PROJECT_NAME}_node
   ${catkin_LIBRARIES}
-  ${GAZEBO_LIBRARIES}
 )
-
-target_link_libraries(contact_sensor
-  ${catkin_LIBRARIES}
-  ${GAZEBO_LIBRARIES}
-)
-
-
-## Add environment hooks
-#catkin_add_env_hooks(tetrapod_gazebo SHELLS sh DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/env-hooks)
 
 #############
 ## Install ##
@@ -215,11 +190,11 @@ target_link_libraries(contact_sensor
 
 ## Mark libraries for installation
 ## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_libraries.html
-# install(TARGETS ${PROJECT_NAME}
-#   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-#   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-#   RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
-# )
+install(TARGETS ${PROJECT_NAME}
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
+)
 
 ## Mark cpp header files for installation
 install(DIRECTORY include/${PROJECT_NAME}/
@@ -234,19 +209,13 @@ install(DIRECTORY include/${PROJECT_NAME}/
 #   # myfile2
 #   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 # )
-install(DIRECTORY launch
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-)
-
-# install(DIRECTORY worlds
-#   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 
 #############
 ## Testing ##
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_tetrapod_gazebo.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_hierarchical_optimization_controller.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()

@@ -390,7 +390,7 @@ void GaitControl::ProcessQueueThread()
     }
 }
 
-// Setup thread to process messages
+// Setup thread to publish messages
 void GaitControl::PublishQueueThread()
 {
     static const double timeout = 0.01;

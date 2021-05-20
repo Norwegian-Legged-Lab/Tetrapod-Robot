@@ -29,6 +29,9 @@
 // C++ Standard Library
 #include <cmath>
 
+// ROS
+#include "ros/ros.h" 
+
 // ROS Package Libraries
 #include <math_utils/angle_utils.h>
 
@@ -48,10 +51,10 @@ using TransMatrix = kindr::HomTransformMatrixD;
 /// \brief A class for analytical Kinematics Solving
 class Kinematics
 {
-    /// \brief Tetrapod leg enumerator
+    /// \brief Leg type enumerator
     public: enum LegType { frontLeft = 1, frontRight = 2, rearLeft = 3, rearRight = 4, NONE };
 
-    /// \brief Leg enumerator
+    /// \brief Body type enumerator
     public: enum BodyType { base = 1, hip = 2, thigh = 3, leg = 4, foot = 5 };
 
     /// \brief Constructor
