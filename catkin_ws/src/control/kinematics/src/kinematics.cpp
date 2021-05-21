@@ -62,9 +62,9 @@ Kinematics::Kinematics()
     this->L2 = 0.220;
     this->L3 = 0.279;
 
-    this->LC1 = 1.0;
-    this->LC2 = 1.0;
-    this->LC3 = 1.0;
+    this->LC1 = 0.0;
+    this->LC2 = 0.0;
+    this->LC3 = 0.0;
 
     // Set position vectors
     this->positionBaseToFrontLeftInB << 0.151, 0.151, 0;
@@ -83,12 +83,20 @@ Kinematics::Kinematics()
     this->M1 = 1.168;
     this->M2 = 1.479;
     this->M3 = 0.303;
-
+    
     // Set inertia matrices
     this->I0 = GetInertiaMatrix(0.141, 0.143, 0.254, 0.0, 0.0, 0.0);
     this->I1 = GetInertiaMatrix(0.00875, 0.01534, 0.0223, -0.0101, 0.00045, -0.00032);
     this->I2 = GetInertiaMatrix(0.00306, 0.00998, 0.0085, 0.0, 0.0, 0.0);
     this->I3 = GetInertiaMatrix(0.0000597, 0.00548, 0.0055, 0.0, 0.0, 0.0);
+    
+    
+    // TODO: Should be removed when the SDF is updated. This is needed because the foot couldn't be massless
+    double M_foot = 0.1;
+    Eigen::Matrix<double, 3, 3> I_foot= GetInertiaMatrix(0.01, 0.01, 0.01, 0.0, 0.0, 0.0); 
+    this->I3 += I_foot;
+    this->I3(1, 1) += M_foot*L3*L3;
+    this->I3(2, 2) += M_foot*L3*L3;
 }
 
 // Destructor
