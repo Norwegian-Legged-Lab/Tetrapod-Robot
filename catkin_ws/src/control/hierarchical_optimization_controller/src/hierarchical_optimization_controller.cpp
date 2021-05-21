@@ -50,7 +50,60 @@ HierarchicalOptimizationControl::~HierarchicalOptimizationControl()
 // Hierarchical Least-Square Optimization
 void HierarchicalOptimizationControl::HierarchicalLeastSquareOptimization()
 {
-    
+    Eigen::Matrix<double, 18, 1> desired_dot_u;            // 18x1 Desired Generalized accelerations
+    Eigen::Matrix<double, Eigen::Dynamic, 1> desired_F_c;  // 3*n_cx1 Desired Contact forces
+
+    Eigen::Matrix<double, Eigen::Dynamic, 1> x;            // (18 + 3*n_c)x1 Optimization variable
+
+    // Matrices and terms used to enfore equations of motion 
+    // for the floating base system dynamics (the first six
+    // rows of the respective matrices and terms).
+    Eigen::Matrix<double, 18, 18> M_fb;                    // 18x18 Floating base Mass matrix
+    Eigen::Matrix<double, 18, 1> b_fb;                     // 18x1 Floating base Coriolis and centrifugal terms
+    Eigen::Matrix<double, 18, 1> g_fb;                     // 18x1 Floating base Gravitational terms
+    Eigen::Matrix<double, Eigen::Dynamic, 18> J_c_fb;      // (3*n_c)x18 Floating base Contact Jacobian
+
+    std::vector<Kinematics::LegType> contact_legs; // Vector of contact points (legs)
+
+    ros::Rate control_rate(200); 
+    while (this->rosNode->ok())
+    {
+        // Clear contact points
+        contact_legs.clear();
+
+        // Fill contact points
+        for (size_t i = 0; i < 4; i++)
+        {
+            // Contact State is assumed sorted by fl, fr, rl, rr
+            if (contactState[i])
+            {
+                // fl = 1, fr = 2, rl = 3, rr = 4
+                contact_legs.push_back(Kinematics::LegType(i + 1));
+            }
+        }
+
+        // Number of contact points
+        const unsigned int n_c = contact_legs.size();
+
+        // Resize dynamic matrices and terms
+        x.resize(18 + 3*n_c, 1);
+        J_c_fb.resize(3*n_c, 18);
+
+        // Update matrices used by EOMs
+        M_fb = kinematics.GetMassMatrix(this->genCoord);
+        M_fb.bottomRows(12).setZero();
+
+        b_fb = kinematics.GetCoriolisAndCentrifugalTerms(this->genCoord, this->genVel);
+        b_fb.bottomRows(12).setZero();
+
+        g_fb = kinematics.GetGravitationalTerms(this->genCoord);
+        g_fb.bottomRows(12).setZero();
+
+        J_c_fb = kinematics.GetContactJacobianInW(contact_legs, this->genCoord);
+        J_c_fb.rightCols(12).setZero();
+
+        control_rate.sleep();
+    }
 }
 
 // Callback for ROS Generalized Coordinates messages
