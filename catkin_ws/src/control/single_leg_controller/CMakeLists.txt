@@ -159,6 +159,10 @@ add_executable(joint_torque_function_test
   src/single_leg_controller.cpp
 )
 
+add_executable(position_control
+  src/position_control.cpp
+  src/single_leg_controller.cpp
+)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -180,6 +184,10 @@ target_link_libraries(single_leg_controller_node
 )
 
 target_link_libraries(joint_torque_function_test
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(position_control
   ${catkin_LIBRARIES}
 )
 

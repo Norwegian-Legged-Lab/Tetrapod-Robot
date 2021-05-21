@@ -244,7 +244,7 @@ void SingleLegController::sendJointPositionCommand()
     jointCommandPublisher.publish(motor_command_msg);
 }
 
-bool SingleLegController::isTargetPositionReached()
+bool SingleLegController::isTargetPositionReached(Eigen::Matrix<double, 3, 1> _q_ref)
 {
     Eigen::Matrix<double, 3, 1> joint_error = joint_angles - position_controller_joint_target;
     ROS_INFO("Current joint angles: %f, %f, %f", joint_angles(0), joint_angles(1), joint_angles(2));
