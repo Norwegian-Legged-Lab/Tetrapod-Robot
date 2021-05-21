@@ -376,10 +376,20 @@ class Kinematics
     /// to generalized coordinate space.
     /// \param[in] _legs A vector of leg types containing the contact points.
     /// \param[in] _q Generalized coordinates.
-    /// \return Returns the spatial Jacobian Matrix mapping from generalized velocities to
-    /// the operational space (world-frame) twist of the body attached frame. 
+    /// \return Returns the contact Jacobian Matrix mapping reaction (contact) forces
+    /// to generalized coordinate space.
     public: Eigen::Matrix<double, Eigen::Dynamic, 18> GetContactJacobianInW(std::vector<LegType> &_legs,
                                                                             const Eigen::Matrix<double, 18, 1> &_q);
+
+    /// \brief The GetContactJacobianInWDiff function returns the
+    /// time derivative of the (3*n_c)x18 support Jacobian.
+    /// \param[in] _legs A vector of leg types containing the contact points.
+    /// \param[in] _q Generalized coordinates.
+    /// \param[in] _u Generalized velocities.
+    /// \return Returns the time derivative of the contact Jacobian Matrix.
+    public: Eigen::Matrix<double, Eigen::Dynamic, 18> GetContactJacobianInWDiff(std::vector<LegType> &_legs,
+                                                                                const Eigen::Matrix<double, 18, 1> &_q,
+                                                                                const Eigen::Matrix<double, 18, 1> &_u);
 
     /// \brief The GetSingleBodyMassMatrix function returns the
     /// mass matrix for a single body in the system. 

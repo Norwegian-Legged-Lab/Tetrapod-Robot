@@ -1704,7 +1704,7 @@ Eigen::Matrix<double, 6, 18> Kinematics::GetJacobianInWDiff(const LegType &_leg,
     return dot_J;
 }
 
-// 3*n_cx18 Contact Support Jacobian in world frame
+// (3*n_c)x18 Contact Support Jacobian in world frame
 Eigen::Matrix<double, Eigen::Dynamic, 18> Kinematics::GetContactJacobianInW(std::vector<LegType> &_legs,
                                                                             const Eigen::Matrix<double, 18, 1> &_q)
 {
@@ -1751,6 +1751,56 @@ Eigen::Matrix<double, Eigen::Dynamic, 18> Kinematics::GetContactJacobianInW(std:
 
 
     return J;
+}
+
+// (3*n_c)x18 Contact Support Jacobian in world frame
+Eigen::Matrix<double, Eigen::Dynamic, 18> Kinematics::GetContactJacobianInWDiff(std::vector<LegType> &_legs,
+                                                                                const Eigen::Matrix<double, 18, 1> &_q,
+                                                                                const Eigen::Matrix<double, 18, 1> &_u)
+{
+    Eigen::MatrixXd dot_J;                 // Time derivative of the Contact Support Jacobian
+
+    const unsigned int n_c = _legs.size(); // Number of contact points
+
+    // Validate number of contact points
+    if (n_c == 0)
+    {
+        ROS_ERROR_STREAM("[Kinematics::GetContactJacobianInW] Zero contact points were given!");
+
+        std::abort();
+    }
+    else if (n_c > 4)
+    {
+
+        ROS_ERROR_STREAM("[Kinematics::GetContactJacobianInW] More than four contact points were given!");
+
+        std::abort();
+    }
+
+    // Set Jacobian dimensions
+    dot_J.resize(3*n_c, 18);
+
+    // Default Jacobian to zero
+    dot_J.setZero();
+
+    // Sort vector of legs to ensure correct filling of partial Jacobians
+    std::sort(_legs.begin(), _legs.end());
+
+    // Index to track which index the partial Jacobian 
+    // should be filled into in the complete Jacobian.
+    int row = 0;
+
+    for (LegType leg : _legs)
+    {
+        // Fill Jacobian
+        dot_J.block<3,18>(row,0) = this->GetTranslationJacobianInWDiff(leg, BodyType::foot, _q, _u);
+
+        // Increment
+        row += 3; 
+    }
+
+
+    return dot_J;
 }
 
 // Single body mass matrix
