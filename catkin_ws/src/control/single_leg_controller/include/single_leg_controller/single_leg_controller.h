@@ -24,6 +24,8 @@
 
 class SingleLegController
 {
+    public: enum State {stance = 1, swing = 2, uninitialized = 3};
+
     /*** Constructor/Destructor ***/
 
     /// \brief Constructor
@@ -52,6 +54,13 @@ class SingleLegController
 
 
     /*** CONTROL FUNCTIONS ***/
+    public: bool updateState();
+
+    private: Eigen::Matrix<double, 3, 1> calculateSwingLegHeightTrajectory(double _percentage, double _period, double _max_swing_height, double _hip_height);
+
+    public: void updateStanceFootPositionTrajectory();
+
+    public: void updateSwingFootPositionTrajectory();
 
     public: void updateJointReferences();
 
@@ -78,6 +87,8 @@ class SingleLegController
     /// \param[in] _foot_pos_z The target foot z position
     public: bool moveJointsToSetpoints();
 
+    public: bool moveJointsToCenter();
+
 
     /*** HELPER FUNCTIONS ***/
 
@@ -100,8 +111,23 @@ class SingleLegController
 
     public: void printTorques();
 
+    public: void printSpatialTrajectories();
+
+    public: void printJointTrajectories();
+
+    public: void printPercentage();
+
+    public: void printAllStates();
+
+    public: State getState(){return state;}
+
 
     /*** STATE VARIABLES ***/
+    private: Eigen::Matrix<double, 3, 1> pos = Eigen::Matrix<double, 3, 1>::Zero();
+
+    private: Eigen::Matrix<double, 3, 1> vel = Eigen::Matrix<double, 3, 1>::Zero();
+
+    private: Eigen::Matrix<double, 3, 1> acc = Eigen::Matrix<double, 3, 1>::Zero();
 
     /// \brief The joint angles of the leg
     private: Eigen::Matrix<double, 3, 1> q = Eigen::Matrix<double, 3, 1>::Zero();
@@ -117,13 +143,33 @@ class SingleLegController
 
     private: Eigen::Matrix<double, 3, 1> tau = Eigen::Matrix<double, 3, 1>::Zero();
 
-    private: double timer = 0.0;
+    private: State state = State::uninitialized;
+
+    private: double swing_current_time = 0.0;
+
+    private: double swing_start_time = 0.0;
+
+    private: double swing_percentage = 0.0;
 
     /// \brief Variable deciding whether or not we want to move the leg
     private: bool ready_to_proceed = false;
 
 
     /*** PARAMETERS ***/
+
+    private: double swing_period = 2.0;
+
+    private: double hip_height = 0.35;
+
+    private: double x_center = 0.3;
+
+    private: double y_center = 0.3;
+
+    private: double x_offset = 0.2;
+
+    private: double y_offset = 0.0;
+
+    private: double max_swing_height = 0.2; 
 
     private: Eigen::Matrix<double, 3, 3> K_p = Eigen::Matrix<double, 3, 3>::Zero();
 

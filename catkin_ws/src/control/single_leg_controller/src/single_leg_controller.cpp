@@ -14,6 +14,8 @@ SingleLegController::SingleLegController()
     K_d(0, 0) = 20.0;
     K_d(1, 1) = 20.0;
     K_d(2, 2) = 30.0;
+
+    swing_start_time = - 2.0*swing_period;
 }
 
 
@@ -107,31 +109,96 @@ void SingleLegController::jointSetpointCallback(const std_msgs::Float64MultiArra
 
 
 /*** CONTROL FUNCTIONS ***/
+bool SingleLegController::updateState()
+{
+    bool new_state = false;
+
+    swing_current_time = ros::Time::now().toSec();
+
+    // If one period is over we shoudl switch phase
+    if(swing_current_time - swing_start_time >= swing_period)
+    {
+        swing_start_time = ros::Time::now().toSec();
+        if(state != State::stance)
+        {
+            state = State::stance;
+        }
+        else
+        {
+            state = State::swing;
+        }
+        new_state = true;  
+    }
+
+    swing_percentage = (swing_current_time - swing_start_time)/swing_period;
+
+    return new_state;
+}
+
+Eigen::Matrix<double, 3, 1> SingleLegController::calculateSwingLegHeightTrajectory(double _percentage, double _period, double _max_swing_height, double _hip_height)
+{
+    double c = _max_swing_height;
+    double a = c/pow(0.5, 4.0);
+    double b = -2.0*a*pow(0.5, 2.0);
+
+    Eigen::Matrix<double, 3, 1> trajectory;
+
+    double x = _percentage - 0.5;
+
+    trajectory(0) = a*pow(x, 4.0) + b*pow(x, 2.0) + c - _hip_height;
+
+    trajectory(1) = (4.0*a*pow(x, 3.0) + 2.0*b)/_period;
+
+    trajectory(2) = (12.0*a*pow(x, 2.0) + 2.0*b)/pow(_period, 2.0);
+
+    return trajectory;
+}
+
+void SingleLegController::updateSwingFootPositionTrajectory()
+{
+    pos(0) = x_center - x_offset*(1.0 - swing_percentage);
+    vel(0) = - x_offset/swing_period;
+    acc(0) = 0.0;
+
+    pos(1) = y_center - y_offset*(1.0 - swing_percentage);
+    vel(1) = - y_offset/swing_period;
+    acc(1) = 0.0;
+
+    Eigen::Matrix<double, 3, 1> z = calculateSwingLegHeightTrajectory(swing_percentage, swing_period, max_swing_height, hip_height);
+    pos(2) = z(0);
+    vel(2) = z(1);
+    acc(2) = z(2);
+}
+
+void SingleLegController::updateStanceFootPositionTrajectory()
+{
+    pos(0) = x_center - x_offset*swing_percentage;
+    vel(0) = - x_offset/swing_period;
+    acc(0) = 0.0;
+
+    pos(1) = y_center - y_offset*swing_percentage;
+    vel(1) = - y_offset/swing_period;
+    acc(1) = 0.0;
+
+    pos(2) = - hip_height;
+    vel(2) = 0.0;
+    acc(2) = 0.0;
+}
 
 void SingleLegController::updateJointReferences()
 {
-    double theta_hip_start = M_PI/6.0;
-    double theta_hip_end = M_PI*5.0/6.0;
-    double theta_travel = theta_hip_end - theta_hip_start;
-    double T = 2.0;
-
-    q_ref(0) = theta_travel*theta_travel*timer/T;
-    q_ref(1) = M_PI/6;
-    q_ref(2) = M_PI/4;
-
-    q_d_ref(0) = theta_travel/T;
-    q_d_ref(1) = 0.0;
-    q_d_ref(2) = 0.0;
-
-    q_dd_ref(0) = 0.0;
-    q_dd_ref(1) = 0.0;
-    q_dd_ref(2) = 0.0;
-
-    if(timer >= T)
+    Eigen::Matrix<double, 3, 1> zero = Eigen::Matrix<double, 3, 1>::Zero();
+    if(!kinematics.SolveSingleLegInverseKinematics(false, zero, pos, q_ref))
     {
-        q_d_ref = Eigen::Matrix<double, 3, 1>::Zero();
-        q_dd_ref = Eigen::Matrix<double, 3, 1>::Zero();
+        ROS_WARN("[updateJointReferences] Failed to solve inverse kinematics");
     }
+
+    Eigen::Matrix<double, 3, 3> J_s = kinematics.GetTranslationJacobianInB(Kinematics::LegType::frontLeft, Kinematics::BodyType::foot, q(0), q(1), q(2));
+    Eigen::Matrix<double, 3, 3> J_s_d = kinematics.GetTranslationJacobianInBDiff(Kinematics::LegType::frontLeft, Kinematics::BodyType::foot, q(0), q(1), q(2), q_d(0), q_d(1), q_d(2));
+
+    q_d = J_s.inverse()*vel;
+
+    q_d_ref = J_s.inverse()*(acc - J_s_d*vel);
 }
 
 void SingleLegController::updateJointTorques
@@ -143,11 +210,11 @@ void SingleLegController::updateJointTorques
     const Eigen::Matrix<double, 3, 1> &_q_d
 )
 {
-    Eigen::Matrix<double, 3, 1> normalized_joint_torques = _q_dd_ref - K_p*(_q - _q_ref) - K_d*(_q_d - _q_d_ref);
+    Eigen::Matrix<double, 3, 1> normalized_joint_torques = _q_dd_ref*0.0 - K_p*(_q - _q_ref) - K_d*(_q_d - 0.0*_q_d_ref);
 
     Eigen::Matrix<double, 3, 3> M = kinematics.GetSingleLegMassMatrix(_q);
 
-    Eigen::Matrix<double, 3, 1> b = kinematics.GetSingleLegCoriolisAndCentrifugalTerms(_q, _q_d);
+    Eigen::Matrix<double, 3, 1> b = 0.0*kinematics.GetSingleLegCoriolisAndCentrifugalTerms(_q, _q_d);
 
     Eigen::Matrix<double, 3, 1> g = kinematics.GetSingleLegGravitationalTerms(_q);
 
@@ -234,7 +301,45 @@ bool SingleLegController::moveJointsToSetpoints()
 
     return true;
 }
-    
+
+bool SingleLegController::moveJointsToCenter()
+{
+    ros::Rate command_send_rate(80.0);
+
+    swing_percentage = 0.0;
+
+    updateStanceFootPositionTrajectory();
+
+    updateJointReferences();
+
+    q_d_ref = Eigen::Matrix<double, 3, 1>::Zero();
+
+    q_dd_ref = Eigen::Matrix<double, 3, 1>::Zero();
+
+    bool is_joint_target_reached = false;
+
+    while(!is_joint_target_reached)
+    {
+        if(isTargetPositionReached() && readyToProceed())
+        {
+            is_joint_target_reached = true;
+
+            command_send_rate.sleep();
+        }
+        else
+        {
+            ros::spinOnce();
+
+            updateJointTorques();
+
+            sendTorqueCommand();
+
+            command_send_rate.sleep();
+        }
+    }
+
+    return true;
+}
 
 /*** HELPER FUNCTIONS ***/
 
@@ -286,4 +391,19 @@ bool SingleLegController::initialStateReceived()
 void SingleLegController::printTorques()
 {
     ROS_INFO("T1: %f\tT2: %f\tT3: %f", tau(0), tau(1), tau(2));
+}
+
+void SingleLegController::printSpatialTrajectories()
+{
+    ROS_INFO("Pos: %f, %f, %f\tVel: %f, %f, %f\tAcc: %f, %f, %f", pos(0), pos(1), pos(2), vel(0), vel(1), vel(2), acc(0), acc(1), acc(2));
+}
+
+void SingleLegController::printJointTrajectories()
+{
+    ROS_INFO("q_ref: %f, %f, %f\tq_d_ref: %f, %f, %f\tq_dd_ref: %f, %f, %f", q_ref(0), q_ref(1), q_ref(2), q_d_ref(0), q_d_ref(1), q_d_ref(2), q_dd_ref(0), q_dd_ref(1), q_dd_ref(2));
+}
+
+void SingleLegController::printPercentage()
+{
+    ROS_INFO("Progress: %f", swing_percentage);
 }
