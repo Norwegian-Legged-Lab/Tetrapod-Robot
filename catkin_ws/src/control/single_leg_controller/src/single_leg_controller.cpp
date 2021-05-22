@@ -210,7 +210,7 @@ void SingleLegController::updateJointTorques
     const Eigen::Matrix<double, 3, 1> &_q_d
 )
 {
-    Eigen::Matrix<double, 3, 1> normalized_joint_torques = _q_dd_ref*0.0 - K_p*(_q - _q_ref) - K_d*(_q_d - 0.0*_q_d_ref);
+    Eigen::Matrix<double, 3, 1> normalized_joint_torques = _q_dd_ref*0.0 - K_p*(_q - _q_ref) - K_d*(_q_d - 0*_q_d_ref);
 
     Eigen::Matrix<double, 3, 3> M = kinematics.GetSingleLegMassMatrix(_q);
 
@@ -231,7 +231,7 @@ void SingleLegController::updateJointTorques
     ROS_INFO("g1: %f\tg2: %f\tg3: %f", g(0), g(1), g(2));
     */
 
-    tau = -b + g + M*normalized_joint_torques;
+    tau = b + g + M*normalized_joint_torques;
 }
 
 void SingleLegController::updateJointTorques()
