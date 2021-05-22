@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 
     ros::Rate check_for_messages_rate(1);
 
-    ros::Rate send_control_command_rate(120.0);
+    ros::Rate send_control_command_rate(50.0);
 
     while(!controller.initialStateReceived())
     {
@@ -39,6 +39,20 @@ int main(int argc, char **argv)
 
     controller.moveJointsToCenter();
 
+    
+    while(true)
+    {
+        controller.checkForNewMessages();
+        controller.increaseIterator();
+        controller.updateSimpleFootTrajectory();
+        controller.updateJointReferences();
+        controller.updateJointTorques();
+        controller.printAllStates();
+        controller.sendTorqueCommand();
+        send_control_command_rate.sleep();
+    }
+    
+    
     while(controller.getState() != SingleLegController::State::swing)
     {
         controller.checkForNewMessages();
@@ -53,7 +67,6 @@ int main(int argc, char **argv)
         controller.sendTorqueCommand();
         send_control_command_rate.sleep();
     }
-
-
+    
     return 0;
 }

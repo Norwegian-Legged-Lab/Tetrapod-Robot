@@ -15,6 +15,8 @@
 
 // Standard Library
 #include <thread>
+#include <iostream>
+#include <iomanip>
 
 // Kinematics
 #include <kinematics/kinematics.h>
@@ -89,6 +91,10 @@ class SingleLegController
 
     public: bool moveJointsToCenter();
 
+    public: bool updateSimpleFootTrajectory();
+
+    public: void increaseIterator();
+
 
     /*** HELPER FUNCTIONS ***/
 
@@ -154,18 +160,22 @@ class SingleLegController
     /// \brief Variable deciding whether or not we want to move the leg
     private: bool ready_to_proceed = false;
 
+    private: double current_iteration = 0;
+
+    private: double final_iteration = 100.0;
+
 
     /*** PARAMETERS ***/
 
     private: double swing_period = 2.0;
 
-    private: double hip_height = 0.35;
+    private: double hip_height = 0.3;
 
     private: double x_center = 0.3;
 
-    private: double y_center = 0.3;
+    private: double y_center = 0.35;
 
-    private: double x_offset = 0.2;
+    private: double x_offset = -0.3;
 
     private: double y_offset = 0.0;
 

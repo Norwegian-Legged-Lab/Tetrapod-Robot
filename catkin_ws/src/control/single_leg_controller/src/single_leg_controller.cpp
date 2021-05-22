@@ -8,12 +8,12 @@ SingleLegController::SingleLegController()
     }
 
     K_p(0, 0) = 100.0;
-    K_p(1, 1) = 100.0;
-    K_p(2, 2) = 150.0;
+    K_p(1, 1) = 200.0;
+    K_p(2, 2) = 100.0;
 
     K_d(0, 0) = 20.0;
-    K_d(1, 1) = 20.0;
-    K_d(2, 2) = 30.0;
+    K_d(1, 1) = 40.0;
+    K_d(2, 2) = 20.0;
 
     swing_start_time = - 2.0*swing_period;
 }
@@ -196,9 +196,9 @@ void SingleLegController::updateJointReferences()
     Eigen::Matrix<double, 3, 3> J_s = kinematics.GetTranslationJacobianInB(Kinematics::LegType::frontLeft, Kinematics::BodyType::foot, q(0), q(1), q(2));
     Eigen::Matrix<double, 3, 3> J_s_d = kinematics.GetTranslationJacobianInBDiff(Kinematics::LegType::frontLeft, Kinematics::BodyType::foot, q(0), q(1), q(2), q_d(0), q_d(1), q_d(2));
 
-    q_d = J_s.inverse()*vel;
+    q_d_ref = J_s.inverse()*vel;
 
-    q_d_ref = J_s.inverse()*(acc - J_s_d*vel);
+    q_dd_ref = J_s.inverse()*(acc - J_s_d*vel);
 }
 
 void SingleLegController::updateJointTorques
@@ -214,7 +214,7 @@ void SingleLegController::updateJointTorques
 
     Eigen::Matrix<double, 3, 3> M = kinematics.GetSingleLegMassMatrix(_q);
 
-    Eigen::Matrix<double, 3, 1> b = 0.0*kinematics.GetSingleLegCoriolisAndCentrifugalTerms(_q, _q_d);
+    Eigen::Matrix<double, 3, 1> b = kinematics.GetSingleLegCoriolisAndCentrifugalTerms(_q, _q_d);
 
     Eigen::Matrix<double, 3, 1> g = kinematics.GetSingleLegGravitationalTerms(_q);
 
@@ -231,7 +231,7 @@ void SingleLegController::updateJointTorques
     ROS_INFO("g1: %f\tg2: %f\tg3: %f", g(0), g(1), g(2));
     */
 
-    tau = b + g + M*normalized_joint_torques;
+    tau = -b + g + M*normalized_joint_torques;
 }
 
 void SingleLegController::updateJointTorques()
@@ -323,7 +323,7 @@ bool SingleLegController::moveJointsToCenter()
         if(isTargetPositionReached() && readyToProceed())
         {
             is_joint_target_reached = true;
-
+            ROS_INFO("Print Target Reached");
             command_send_rate.sleep();
         }
         else
@@ -341,6 +341,25 @@ bool SingleLegController::moveJointsToCenter()
     return true;
 }
 
+bool SingleLegController::updateSimpleFootTrajectory()
+{
+    pos(0) = x_center + x_offset*current_iteration/final_iteration;
+    pos(1) = y_center + y_offset*current_iteration/final_iteration;
+    pos(2) = - hip_height;
+
+    return true;
+}
+
+void SingleLegController::increaseIterator()
+{
+    current_iteration++;
+    if(current_iteration >= final_iteration)
+    {
+        current_iteration = final_iteration;
+    }
+}
+
+
 /*** HELPER FUNCTIONS ***/
 
 void SingleLegController::checkForNewMessages()
@@ -355,6 +374,7 @@ bool SingleLegController::isTargetPositionReached()
     ROS_INFO("q: %f, %f, %f\t q_ref: %f, %f, %f\t Error q_d: %f", q(0), q(1), q(2), q_ref(0), q_ref(1), q_ref(2), q_speed);
     if((joint_error.transpose()*joint_error < POSITION_CONVERGENCE_CRITERIA) && (q_speed < 0.050))
     {
+        ROS_INFO("Target Reached");
         return true;
     }
     else
@@ -406,4 +426,15 @@ void SingleLegController::printJointTrajectories()
 void SingleLegController::printPercentage()
 {
     ROS_INFO("Progress: %f", swing_percentage);
+}
+
+void SingleLegController::printAllStates()
+{
+    ROS_INFO("I: %.0f\tP: %.3f, %.3f, %.3f\tV: %.3f, %.3f, %.3f\tA: %.3f, %.3f, %.3f\tq_r: %.3f, %.3f, %.3f\tq_d_r: %.3f, %.3f, %.3f\tq_dd_r: %.3f, %.3f, %.3f\tq: %.3f, %.3f, %.3f\tq_d: %.3f, %.3f, %.3f\tT:  %.3f, %.3f, %.3f",
+    current_iteration,
+    pos(0), pos(1), pos(2), vel(0), vel(1), vel(2), acc(0), acc(1), acc(2),
+    q_ref(0), q_ref(1), q_ref(2), q_d_ref(0), q_d_ref(1), q_d_ref(2), q_dd_ref(0), q_dd_ref(1), q_dd_ref(2),
+    q(0), q(1), q(2), q_d(0), q_d(1), q_d(2),
+    tau(0), tau(1), tau(2)
+    );
 }
