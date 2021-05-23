@@ -322,6 +322,8 @@ void GaitController::waitForPositionJointStates()
         joint_angle_commands(i) = joint_angles(i);
         ROS_INFO("%f", joint_angle_commands(i));
     }
+
+    joint_states_received = true;
 }
 
 bool GaitController::moveFootToPosition(Eigen::Matrix<double, 3, 1> _foot_pos, bool _offset, int _leg_index)
@@ -494,4 +496,21 @@ double GaitController::calculateSwingFootHeight(double _current_iteration, doubl
     double x = _current_iteration/_max_iteration;
 
     return 4.0*(max_step_height)*(x - x*x) - hip_height;
+}
+
+bool GaitController::standUp()
+{
+    // Get Initial States
+    if(!joint_states_received)
+    {
+        waitForPositionJointStates();
+    }
+
+    //Eigen::Matrix<double, 3, 1> front_left_foot_position = kinematics.
+
+    // Set joint pitch angles to zero
+
+    // Set yaw to initial
+
+    return true;
 }

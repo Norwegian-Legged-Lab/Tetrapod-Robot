@@ -74,6 +74,8 @@ class GaitController
 
     private: double calculateSwingFootHeight(double _current_iteration, double _max_iteration);
 
+    public: bool standUp();
+
     /*** Variables ***/
 
     private: std::unique_ptr<ros::NodeHandle> nodeHandle;
@@ -149,6 +151,8 @@ class GaitController
     private: Eigen::Matrix<double, 3, 1> rr_foot_position_in_body;
 
     private: sensor_msgs::JointState joint_command_msg;
+
+    private: double joint_states_received = false;
 };
 
 #endif
