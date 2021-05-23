@@ -246,6 +246,13 @@ Vector3d Kinematics::SolveSingleLegForwardKinematics(const Vector3d &_h_pos,
     return pos;
 }
 
+Vector3d Kinematics::SolveSingleLegForwardKinematics(const Vector3d &_joint_angles)
+{
+    Eigen::Matrix<double, 3, 1> zero = Eigen::Matrix<double, 3, 1>::Zero();
+
+    return SolveSingleLegForwardKinematics(zero, _joint_angles(0), _joint_angles(1), _joint_angles(2));
+}
+
 bool Kinematics::SolveSingleLegInverseKinematics(const bool &_offset, const Vector3d &_h_pos, const Vector3d &_f_pos, Vector3d &_joint_angles)
 {
     // Change of variables to center hip position.
@@ -310,6 +317,12 @@ bool Kinematics::SolveSingleLegInverseKinematics(const bool &_offset, const Vect
     }
 
     return true;
+}
+
+bool Kinematics::SolveSingleLegInverseKinematics(const bool &_offset, const Vector3d &_f_pos, Vector3d &_joint_angles)
+{
+    Eigen::Matrix<double, 3, 1> zero = Eigen::Matrix<double, 3, 1>::Zero();
+    return SolveSingleLegInverseKinematics(_offset, zero, _f_pos, _joint_angles);
 }
 
 // Denavit-Hartenberg Transformation
