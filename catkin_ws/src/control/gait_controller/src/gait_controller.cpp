@@ -541,6 +541,8 @@ double GaitController::calculateSwingFootHeight(double _current_iteration, doubl
 
 bool GaitController::standUp()
 {
+    ros::Rate publish_rate(1);
+
     double x_0_start = 0.3;
     double y_0_start = 0.3;
 
@@ -548,9 +550,7 @@ bool GaitController::standUp()
     if(!joint_states_received)
     {
         waitForPositionJointStates();
-
         ROS_INFO("JOINT STATES RECEIVED!");
-
     }
     
     joint_angle_commands = Eigen::Matrix<double, 12, 1>::Zero();
@@ -573,6 +573,9 @@ bool GaitController::standUp()
     printJointCommandStates();
     updateFeetPositions();
     printFeetPositions();
+
+    double x_start = feet_positions(0);
+    double y_start = feet_positions(0);
     //while(true);
 
     joint_angle_commands(0) = M_PI/4.0;
@@ -589,12 +592,12 @@ bool GaitController::standUp()
     updateFeetPositions();
     printFeetPositions();
 
-    fl_foot_position_in_body(0) = x_0_start;
-    fl_foot_position_in_body(1) = y_0_start;
-    fl_foot_position_in_body(2) = 0.0;
+    fl_foot_position_in_body = feet_positions.block<3, 1>(0, 0);
+    fr_foot_position_in_body = feet_positions.block<3, 1>(3, 0);
+    //rl_foot_position_in_body = feet_positions.block<3, 1>(6, 0);
+    //rr_foot_position_in_body = feet_positions.block<3, 1>(9, 0);
 
-    fr_foot_position_in_body(0) = x_0_start;
-    fr_foot_position_in_body(1) = - y_0_start;
+    fl_foot_position_in_body(2) = 0.0;
     fr_foot_position_in_body(2) = 0.0;
 
     rl_foot_position_in_body = - fr_foot_position_in_body;
@@ -602,6 +605,32 @@ bool GaitController::standUp()
 
     updateJointCommands();
     moveJointsToSetpoints();
+
+    double number_of_steps = (fl_foot_position_in_body(0) - x_0_start)*100.0;
+
+    ROS_INFO("Steps: %f", number_of_steps);
+
+    publish_rate = number_of_steps*0.5;
+
+    for(int i = 1; i < number_of_steps; i++)
+    {
+        checkForNewMessages();
+
+        fl_foot_position_in_body(0) -= 0.01;
+        fl_foot_position_in_body(1) -= 0.01;
+
+        fr_foot_position_in_body(0) -= 0.01;
+        fr_foot_position_in_body(1) += 0.01;
+
+        rl_foot_position_in_body = - fr_foot_position_in_body;
+        rr_foot_position_in_body = - fl_foot_position_in_body;
+
+        updateJointCommands();
+
+        publishJointCommands();
+
+        publish_rate.sleep();
+    }
 
     ROS_INFO("Stage 3 complete");
 
@@ -614,7 +643,7 @@ bool GaitController::standUp()
 
     Eigen::Matrix<double, 3, 1> single_leg_joint_angles;
 
-    ros::Rate publish_rate(number_of_elevation_steps*0.5);
+    publish_rate = (number_of_elevation_steps*0.5);
 
     for(int i = 1; i < number_of_elevation_steps; i++)
     {
