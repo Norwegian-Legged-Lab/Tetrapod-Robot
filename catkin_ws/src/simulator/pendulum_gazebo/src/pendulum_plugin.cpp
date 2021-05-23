@@ -77,6 +77,14 @@ void PendulumPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
     InitRosQueueThreads();
 }
 
+// Get joint force
+double PendulumPlugin::GetJointForce()
+{
+    double force = this->joint->GetForce(0);
+
+    return force;
+}
+
 // Apply force at a single joint
 void PendulumPlugin::SetJointForce(const double &_force)
 {
@@ -156,6 +164,21 @@ void PendulumPlugin::ProcessQueueThread()
     }
 }
 
+// Setup thread to process messages
+void PendulumPlugin::PublishQueueThread()
+{
+    ros::Rate loop_rate(10);
+    while (this->rosNode->ok())
+    {
+        std_msgs::Float64 joint_force_msg;
+
+        joint_force_msg.data = this->GetJointForce();
+
+        this->jointForcePub.publish(joint_force_msg);
+
+        loop_rate.sleep();
+    }
+}
 // Initialize ROS
 void PendulumPlugin::InitRos()
 {
@@ -182,12 +205,28 @@ void PendulumPlugin::InitRos()
             &this->rosProcessQueue
             );
 
+    ros::AdvertiseOptions joint_force_ao =
+        ros::AdvertiseOptions::create<std_msgs::Float64>(
+            "/" + this->model->GetName() + "/joint_force",
+            1,
+            ros::SubscriberStatusCallback(),
+            ros::SubscriberStatusCallback(),
+            ros::VoidPtr(),
+            &this->rosPublishQueue
+        );
+
     this->jointStateSub = this->rosNode->subscribe(joint_state_so);
+
+    this->jointForcePub = this->rosNode->advertise(joint_force_ao);
 }
 
 // Initialize ROS Publish and Process Queue Threads
 void PendulumPlugin::InitRosQueueThreads()
 {
+    this->rosPublishQueueThread = std::thread(
+        std::bind(&PendulumPlugin::PublishQueueThread, this)
+    );
+
     this->rosProcessQueueThread = std::thread(
         std::bind(&PendulumPlugin::ProcessQueueThread, this)
     );
@@ -213,13 +252,13 @@ void PendulumPlugin::InitJointConfiguration()
     // Set default position 
     this->model->GetJointController()->SetJointPosition(
         this->joint->GetScopedName(),
-        angle_utils::degToRad(90)
+        math_utils::degToRad(90)
     );
 
     // Set controller position reference
     this->model->GetJointController()->SetPositionTarget(
         this->joint->GetScopedName(),
-        angle_utils::degToRad(90)
+        math_utils::degToRad(90)
     );
 
 }

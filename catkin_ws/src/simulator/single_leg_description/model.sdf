@@ -215,7 +215,7 @@ z_0 = 0.0
                 <limit>
                     <lower>0</lower>
                     <upper>3.14</upper>
-                    <effort>5</effort>
+                    <effort>40</effort>
                     <velocity>1000</velocity>
                 </limit>
             </axis>
@@ -276,7 +276,7 @@ z_0 = 0.0
                 <limit>
                     <lower>-2.5</lower>
                     <upper>2.5</upper>
-                    <effort>5</effort>
+                    <effort>40</effort>
                     <velocity>1000</velocity>
                 </limit>
             </axis>
@@ -324,9 +324,9 @@ z_0 = 0.0
                 <pose>0 0 0 0 0 0</pose>
                 <mass>0.30325519</mass>
                 <inertia>
-                    <ixx>0.00005969</ixx>
+                    <ixx>0.005969</ixx>
                     <ixy>0</ixy>
-                    <ixz>0.00003017</ixz>
+                    <ixz>0.003017</ixz>
                     <iyy>0.00548869</iyy>
                     <iyz>0</iyz>
                     <izz>0.00550161</izz>
@@ -343,7 +343,7 @@ z_0 = 0.0
                 <limit>
                     <lower>-2.5</lower>
                     <upper>2.5</upper>
-                    <effort>5</effort>
+                    <effort>40</effort>
                     <velocity>1000</velocity>
                 </limit>
             </axis> 

@@ -4,6 +4,11 @@
 #include "ros/ros.h"
 #include "geometry_msgs/Twist.h"
 #include "sensor_msgs/Joy.h"
+#include "keyboard/Key.h"
+#include <thread>
+#include <fcntl.h>
+#include <unistd.h>
+#include <sys/select.h>
 
 #define BUTTON_ERROR 0.01
 
@@ -39,13 +44,64 @@ enum JoyButtonIndices
 
 class JoystickController
 {
+    enum ButtonStatus {PRESSED = 0, RELEASED = 1};
+
+    enum KeyboardMapping 
+    {
+        KEY_UP = 273, // up
+        KEY_DOWN = 274, // down
+        KEY_LEFT = 276, // left
+        KEY_RIGHT = 275, // right
+        KEY_COUNTER_CLOCKWISE_ROTATION = 97, // a
+        KEY_CLOCKWISE_ROTATION = 100, // d
+        KEY_LINEAR_SPEED_INCREASE = 109, // m
+        KEY_LINEAR_SPEED_DECREASE = 110, // n
+        KEY_ANGULAR_RATE_INCREASE = 120,  // x
+        KEY_ANGULAR_RATE_DECREASE = 122, // z
+        KEY_PAUSE = 32 // space
+    };
+
     public: JoystickController();
 
-    public: virtual ~JoystickController(){};
+    public: virtual ~JoystickController();
 
     public: void initROS();
 
+    public: void initThreads();
+
+    public: void listenerThread();
+
     private: void joystickCallback(const sensor_msgs::JoyConstPtr &_msg);
+
+    private: void keyboardButtonReleasedCallback(const keyboard::KeyConstPtr &_msg);
+
+    private: void keyboardButtonPressedCallback(const keyboard::KeyConstPtr &_msg);
+
+    private: ros::Subscriber keyboard_button_pressed_subscriber;
+
+    private: ros::Subscriber keyboard_button_released_subscriber;
+
+    private: ButtonStatus FORWARD = RELEASED;
+
+    private: ButtonStatus BACKWARD = RELEASED;
+
+    private: ButtonStatus LEFT = RELEASED;
+
+    private: ButtonStatus RIGHT = RELEASED;
+
+    private: ButtonStatus CLOCKWISE_ROTATION = RELEASED;
+
+    private: ButtonStatus COUNTER_CLOCKWISE_ROTATION = RELEASED;
+
+    private: ButtonStatus LINEAR_SPEED_INCREASE = RELEASED;
+
+    private: ButtonStatus LINEAR_SPEED_DECREASE = RELEASED;
+
+    private: ButtonStatus ANGULAR_RATE_INCREASE = RELEASED;
+
+    private: ButtonStatus ANGULAR_RATE_DECREASE = RELEASED;
+
+    private: ButtonStatus PAUSE = RELEASED;
 
     private: void changeLinearMultiplier(bool _increase);
 

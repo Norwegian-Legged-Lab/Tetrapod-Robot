@@ -26,6 +26,8 @@ enum LegID {fl = 0, fr = 1, rl = 2, rr = 3};
 
 enum GaitPhase {pre_swing_fl_rr = 0, swing_fl_rr = 1, pre_swing_fr_rl = 2, swing_fr_rl = 3, gait_phase_not_set = 4};
 
+enum PronkPhase {pre_swing_front = 0, swing_front = 1, pre_swing_rear = 2, swing_rear = 3};
+
 class GaitController
 {
     public: GaitController();
@@ -75,6 +77,7 @@ class GaitController
     private: double calculateSwingFootHeight(double _current_iteration, double _max_iteration);
 
     public: bool standUp();
+    private: double calculateSwingFootHeight(double _hip_height, double _max_swing_foot_height, double _current_iteration, double _max_iteration);
 
     /*** Variables ***/
 
@@ -153,6 +156,24 @@ class GaitController
     private: sensor_msgs::JointState joint_command_msg;
 
     private: double joint_states_received = false;
+
+    public: bool initializePronking();
+
+    public: void updatePronkController();
+
+    private: PronkPhase pronk_phase;
+
+    private: double pronk_height = 0.3;
+
+    private: double max_pronk_travel_distance = 0.2;
+
+    private: double current_pronk_iteration = 0.0;
+
+    private: double max_pronk_iteration = 30;
+
+    private: Eigen::Matrix<double, 3, 1> calculatePronkStanceFootPosition(LegID _leg);
+
+    private: Eigen::Matrix<double, 3, 1> calculatePronkSwingFootPosition(LegID _leg);
 };
 
 #endif

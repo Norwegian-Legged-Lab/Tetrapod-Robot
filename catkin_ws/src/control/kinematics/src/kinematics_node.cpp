@@ -5,7 +5,7 @@
 
 #include <Eigen/Core>
 
-#include <angle_utils/angle_utils.h>
+#include <math_utils/Core>
 
 #include <kinematics/kinematics.h>
 
@@ -15,8 +15,8 @@
 void someRandomTesting()
 {
     // TODO Remove these 
-    double yaw = angle_utils::HALF_PI;
-    double pitch = angle_utils::HALF_PI;
+    double yaw = math_utils::HALF_PI;
+    double pitch = math_utils::HALF_PI;
     double roll = 0;
 
     kindr::EulerAnglesZyxD R1(yaw, pitch, roll);
@@ -49,8 +49,8 @@ void someRandomTesting()
 
 void testKindr()
 {
-    double x_angle = angle_utils::HALF_PI;
-    double z_angle = angle_utils::TWO_THIRDS_PI;
+    double x_angle = math_utils::HALF_PI;
+    double z_angle = math_utils::TWO_THIRDS_PI;
 
     Eigen::Vector3d unit_x(1,0,0);
     Eigen::Vector3d unit_z(0,0,1);
@@ -68,8 +68,8 @@ void testKindr()
 void testDhTransform()
 {
     // ---------- D-H Transform --------------
-    double alpha_1 = -angle_utils::HALF_PI;
-    double theta_1 = angle_utils::THIRD_PI;
+    double alpha_1 = -math_utils::HALF_PI;
+    double theta_1 = math_utils::THIRD_PI;
     double a_1 = 1;
     double d_1 = 0;
 
@@ -89,8 +89,8 @@ void testSingleLegKinematics()
     Eigen::Vector3d h_pos(0,0,0);
 
     double theta_hy = 0;
-    double theta_hp = angle_utils::HALF_PI;
-    double theta_kp = -angle_utils::HALF_PI;
+    double theta_hp = math_utils::HALF_PI;
+    double theta_kp = -math_utils::HALF_PI;
 
     Eigen::Vector3d pos = K.SolveSingleLegForwardKinematics(h_pos,
                                                             theta_hy,
@@ -128,10 +128,11 @@ void testHipToFootTransform()
 {
     Kinematics K;
 
-    kindr::HomTransformMatrixD transformHipToFoot = K.GetHipToFootTransform(true,
-                                                                            angle_utils::degToRad(135),
-                                                                            angle_utils::degToRad(20),
-                                                                            angle_utils::degToRad(-90));
+    kindr::HomTransformMatrixD transformHipToFoot = K.GetHipToBodyTransform(Kinematics::LegType::frontLeft,
+                                                                            Kinematics::BodyType::foot,
+                                                                            math_utils::degToRad(135),
+                                                                            math_utils::degToRad(20),
+                                                                            math_utils::degToRad(-90));
 
     kindr::Position3D hip_position(-0.151,0.185,1);
 
@@ -154,18 +155,18 @@ void testForwardKinematics()
          0, // base_roll
          0, // base_pitch
          0, // base_yaw
-         angle_utils::degToRad(45), // FL-theta_hy
-         angle_utils::degToRad(-20), // FL-theta_hp
-         angle_utils::degToRad(90), // FL-theta_kp
-         angle_utils::degToRad(-45), // FR-theta_hy
-         angle_utils::degToRad(20), // FR-theta_hp
-         angle_utils::degToRad(-90), // FR-theta_kp
-         angle_utils::degToRad(135), // RL-theta_hy
-         angle_utils::degToRad(20), // RL-theta_hp
-         angle_utils::degToRad(-90), // RL-theta_kp
-         angle_utils::degToRad(-135), // RR-theta_hy
-         angle_utils::degToRad(-20), // RR-theta_hp
-         angle_utils::degToRad(90); // RR-theta_kp
+         math_utils::degToRad(45), // FL-theta_hy
+         math_utils::degToRad(-20), // FL-theta_hp
+         math_utils::degToRad(90), // FL-theta_kp
+         math_utils::degToRad(-45), // FR-theta_hy
+         math_utils::degToRad(20), // FR-theta_hp
+         math_utils::degToRad(-90), // FR-theta_kp
+         math_utils::degToRad(135), // RL-theta_hy
+         math_utils::degToRad(20), // RL-theta_hp
+         math_utils::degToRad(-90), // RL-theta_kp
+         math_utils::degToRad(-135), // RR-theta_hy
+         math_utils::degToRad(-20), // RR-theta_hp
+         math_utils::degToRad(90); // RR-theta_kp
     
 
     FootstepPositions fPos;
@@ -233,25 +234,33 @@ void testPositionBaseToFoot()
          0, // base_roll
          0, // base_pitch
          0, // base_yaw
-         angle_utils::degToRad(45), // FL-theta_hy
-         angle_utils::degToRad(-20), // FL-theta_hp
-         angle_utils::degToRad(90), // FL-theta_kp
-         angle_utils::degToRad(-45), // FR-theta_hy
-         angle_utils::degToRad(20), // FR-theta_hp
-         angle_utils::degToRad(-90), // FR-theta_kp
-         angle_utils::degToRad(135), // RL-theta_hy
-         angle_utils::degToRad(20), // RL-theta_hp
-         angle_utils::degToRad(-90), // RL-theta_kp
-         angle_utils::degToRad(-135), // RR-theta_hy
-         angle_utils::degToRad(-20), // RR-theta_hp
-         angle_utils::degToRad(90); // RR-theta_kp
+         math_utils::degToRad(45), // FL-theta_hy
+         math_utils::degToRad(-20), // FL-theta_hp
+         math_utils::degToRad(90), // FL-theta_kp
+         math_utils::degToRad(-45), // FR-theta_hy
+         math_utils::degToRad(20), // FR-theta_hp
+         math_utils::degToRad(-90), // FR-theta_kp
+         math_utils::degToRad(135), // RL-theta_hy
+         math_utils::degToRad(20), // RL-theta_hp
+         math_utils::degToRad(-90), // RL-theta_kp
+         math_utils::degToRad(-135), // RR-theta_hy
+         math_utils::degToRad(-20), // RR-theta_hp
+         math_utils::degToRad(90); // RR-theta_kp
     
     FootstepPositions f_pos;
 
-    f_pos(0) = K.GetPositionBaseToFootInB(Kinematics::TetrapodLeg::frontLeft, q);
-    f_pos(1) = K.GetPositionBaseToFootInB(Kinematics::TetrapodLeg::frontRight, q);
-    f_pos(2) = K.GetPositionBaseToFootInB(Kinematics::TetrapodLeg::rearLeft, q);
-    f_pos(3) = K.GetPositionBaseToFootInB(Kinematics::TetrapodLeg::rearRight, q);
+    f_pos(0) = K.GetPositionBaseToBodyInB(Kinematics::LegType::frontLeft,
+                                          Kinematics::BodyType::foot,
+                                          q);
+    f_pos(1) = K.GetPositionBaseToBodyInB(Kinematics::LegType::frontRight,
+                                          Kinematics::BodyType::foot,
+                                          q);
+    f_pos(2) = K.GetPositionBaseToBodyInB(Kinematics::LegType::rearLeft,
+                                          Kinematics::BodyType::foot,
+                                          q);
+    f_pos(3) = K.GetPositionBaseToBodyInB(Kinematics::LegType::rearRight,
+                                          Kinematics::BodyType::foot,
+                                          q);
 
     debug_utils::printFootstepPositions(f_pos);
 }
@@ -268,23 +277,23 @@ void testTranslationJacobian()
          0, // base_roll
          0, // base_pitch
          0, // base_yaw
-         0*angle_utils::degToRad(45), // FL-theta_hy
-         0*angle_utils::degToRad(-20), // FL-theta_hp
-         0*angle_utils::degToRad(90), // FL-theta_kp
-         0*angle_utils::degToRad(-45), // FR-theta_hy
-         0*angle_utils::degToRad(20), // FR-theta_hp
-         0*angle_utils::degToRad(-90), // FR-theta_kp
-         0*angle_utils::degToRad(135), // RL-theta_hy
-         0*angle_utils::degToRad(20), // RL-theta_hp
-         0*angle_utils::degToRad(-90), // RL-theta_kp
-         0*angle_utils::degToRad(-135), // RR-theta_hy
-         0*angle_utils::degToRad(-20), // RR-theta_hp
-         0*angle_utils::degToRad(90); // RR-theta_kp
+         0*math_utils::degToRad(45), // FL-theta_hy
+         0*math_utils::degToRad(-20), // FL-theta_hp
+         0*math_utils::degToRad(90), // FL-theta_kp
+         0*math_utils::degToRad(-45), // FR-theta_hy
+         0*math_utils::degToRad(20), // FR-theta_hp
+         0*math_utils::degToRad(-90), // FR-theta_kp
+         0*math_utils::degToRad(135), // RL-theta_hy
+         0*math_utils::degToRad(20), // RL-theta_hp
+         0*math_utils::degToRad(-90), // RL-theta_kp
+         0*math_utils::degToRad(-135), // RR-theta_hy
+         0*math_utils::degToRad(-20), // RR-theta_hp
+         0*math_utils::degToRad(90); // RR-theta_kp
 
-    Eigen::Matrix<double, 3, 18> J_fl = K.GetTranslationJacobianInW(Kinematics::TetrapodLeg::frontLeft, q);
-    Eigen::Matrix<double, 3, 18> J_fr = K.GetTranslationJacobianInW(Kinematics::TetrapodLeg::frontRight, q);
-    Eigen::Matrix<double, 3, 18> J_rl = K.GetTranslationJacobianInW(Kinematics::TetrapodLeg::rearLeft, q);
-    Eigen::Matrix<double, 3, 18> J_rr = K.GetTranslationJacobianInW(Kinematics::TetrapodLeg::rearRight, q);
+    Eigen::Matrix<double, 3, 18> J_fl = K.GetTranslationJacobianInW(Kinematics::LegType::frontLeft, Kinematics::BodyType::foot, q);
+    Eigen::Matrix<double, 3, 18> J_fr = K.GetTranslationJacobianInW(Kinematics::LegType::frontRight, Kinematics::BodyType::foot, q);
+    Eigen::Matrix<double, 3, 18> J_rl = K.GetTranslationJacobianInW(Kinematics::LegType::rearLeft, Kinematics::BodyType::foot, q);
+    Eigen::Matrix<double, 3, 18> J_rr = K.GetTranslationJacobianInW(Kinematics::LegType::rearRight, Kinematics::BodyType::foot, q);
 
     ROS_INFO_STREAM("Translation Jacobian front left, J_P: \n" << J_fl);
     ROS_INFO_STREAM("Translation Jacobian front right, J_P: \n" << J_fr);
@@ -305,23 +314,23 @@ void testRotationJacobian()
          0, // base_roll
          0, // base_pitch
          0, // base_yaw
-         angle_utils::degToRad(45), // FL-theta_hy
-         0*angle_utils::degToRad(-20), // FL-theta_hp
-         0*angle_utils::degToRad(90), // FL-theta_kp
-         0*angle_utils::degToRad(-45), // FR-theta_hy
-         0*angle_utils::degToRad(20), // FR-theta_hp
-         0*angle_utils::degToRad(-90), // FR-theta_kp
-         0*angle_utils::degToRad(135), // RL-theta_hy
-         0*angle_utils::degToRad(20), // RL-theta_hp
-         0*angle_utils::degToRad(-90), // RL-theta_kp
-         0*angle_utils::degToRad(-135), // RR-theta_hy
-         0*angle_utils::degToRad(-20), // RR-theta_hp
-         0*angle_utils::degToRad(90); // RR-theta_kp
+         math_utils::degToRad(45), // FL-theta_hy
+         0*math_utils::degToRad(-20), // FL-theta_hp
+         0*math_utils::degToRad(90), // FL-theta_kp
+         0*math_utils::degToRad(-45), // FR-theta_hy
+         0*math_utils::degToRad(20), // FR-theta_hp
+         0*math_utils::degToRad(-90), // FR-theta_kp
+         0*math_utils::degToRad(135), // RL-theta_hy
+         0*math_utils::degToRad(20), // RL-theta_hp
+         0*math_utils::degToRad(-90), // RL-theta_kp
+         0*math_utils::degToRad(-135), // RR-theta_hy
+         0*math_utils::degToRad(-20), // RR-theta_hp
+         0*math_utils::degToRad(90); // RR-theta_kp
 
-    Eigen::Matrix<double, 3, 18> J_fl = K.GetRotationJacobianInW(Kinematics::TetrapodLeg::frontLeft, q);
-    Eigen::Matrix<double, 3, 18> J_fr = K.GetRotationJacobianInW(Kinematics::TetrapodLeg::frontRight, q);
-    Eigen::Matrix<double, 3, 18> J_rl = K.GetRotationJacobianInW(Kinematics::TetrapodLeg::rearLeft, q);
-    Eigen::Matrix<double, 3, 18> J_rr = K.GetRotationJacobianInW(Kinematics::TetrapodLeg::rearRight, q);
+    Eigen::Matrix<double, 3, 18> J_fl = K.GetRotationJacobianInW(Kinematics::LegType::frontLeft, Kinematics::BodyType::foot, q);
+    Eigen::Matrix<double, 3, 18> J_fr = K.GetRotationJacobianInW(Kinematics::LegType::frontRight, Kinematics::BodyType::foot, q);
+    Eigen::Matrix<double, 3, 18> J_rl = K.GetRotationJacobianInW(Kinematics::LegType::rearLeft, Kinematics::BodyType::foot, q);
+    Eigen::Matrix<double, 3, 18> J_rr = K.GetRotationJacobianInW(Kinematics::LegType::rearRight, Kinematics::BodyType::foot, q);
 
     ROS_INFO_STREAM("Rotation Jacobian front left, J_R: \n" << J_fl);
     ROS_INFO_STREAM("Rotation Jacobian front right, J_R: \n" << J_fr);
@@ -340,30 +349,282 @@ void testJacobian()
          0, // base_z
          0, // base_roll
          0, // base_pitch
-         angle_utils::degToRad(90), // base_yaw
-         0*angle_utils::degToRad(45), // FL-theta_hy
-         0*angle_utils::degToRad(-20), // FL-theta_hp
-         0*angle_utils::degToRad(90), // FL-theta_kp
-         0*angle_utils::degToRad(-45), // FR-theta_hy
-         0*angle_utils::degToRad(20), // FR-theta_hp
-         0*angle_utils::degToRad(-90), // FR-theta_kp
-         0*angle_utils::degToRad(135), // RL-theta_hy
-         0*angle_utils::degToRad(20), // RL-theta_hp
-         0*angle_utils::degToRad(-90), // RL-theta_kp
-         0*angle_utils::degToRad(-135), // RR-theta_hy
-         0*angle_utils::degToRad(-20), // RR-theta_hp
-         0*angle_utils::degToRad(90); // RR-theta_kp
+         0*math_utils::degToRad(90), // base_yaw
+         0*math_utils::degToRad(45), // FL-theta_hy
+         0*math_utils::degToRad(-20), // FL-theta_hp
+         0*math_utils::degToRad(90), // FL-theta_kp
+         0*math_utils::degToRad(-45), // FR-theta_hy
+         0*math_utils::degToRad(20), // FR-theta_hp
+         0*math_utils::degToRad(-90), // FR-theta_kp
+         0*math_utils::degToRad(135), // RL-theta_hy
+         0*math_utils::degToRad(20), // RL-theta_hp
+         0*math_utils::degToRad(-90), // RL-theta_kp
+         0*math_utils::degToRad(-135), // RR-theta_hy
+         0*math_utils::degToRad(-20), // RR-theta_hp
+         0*math_utils::degToRad(90); // RR-theta_kp
 
-    Eigen::Matrix<double, 6, 18> J_fl = K.GetJacobianInW(Kinematics::TetrapodLeg::frontLeft, q);
-    Eigen::Matrix<double, 6, 18> J_fr = K.GetJacobianInW(Kinematics::TetrapodLeg::frontRight, q);
-    Eigen::Matrix<double, 6, 18> J_rl = K.GetJacobianInW(Kinematics::TetrapodLeg::rearLeft, q);
-    Eigen::Matrix<double, 6, 18> J_rr = K.GetJacobianInW(Kinematics::TetrapodLeg::rearRight, q);
+    Eigen::Matrix<double, 6, 18> J_fl = K.GetJacobianInW(Kinematics::LegType::frontLeft, Kinematics::BodyType::hip, q);
+    Eigen::Matrix<double, 6, 18> J_fr = K.GetJacobianInW(Kinematics::LegType::frontRight, Kinematics::BodyType::hip, q);
+    Eigen::Matrix<double, 6, 18> J_rl = K.GetJacobianInW(Kinematics::LegType::rearLeft, Kinematics::BodyType::hip, q);
+    Eigen::Matrix<double, 6, 18> J_rr = K.GetJacobianInW(Kinematics::LegType::rearRight, Kinematics::BodyType::hip, q);
 
     ROS_INFO_STREAM("Jacobian front left, J: \n" << J_fl);
     ROS_INFO_STREAM("Jacobian front right, J: \n" << J_fr);
     ROS_INFO_STREAM("Jacobian rear left, J: \n" << J_rl);
     ROS_INFO_STREAM("Jacobian rear right, J: \n" << J_rr);
 }
+
+void testBaseJacobian()
+{
+    Kinematics K;
+
+    GeneralizedCoordinates q = GeneralizedCoordinates::Constant(0);
+
+    q << 0, // base_x
+         0, // base_y
+         0, // base_z
+         0, // base_roll
+         0, // base_pitch
+         0*math_utils::degToRad(90), // base_yaw
+         0*math_utils::degToRad(45), // FL-theta_hy
+         0*math_utils::degToRad(-20), // FL-theta_hp
+         0*math_utils::degToRad(90), // FL-theta_kp
+         0*math_utils::degToRad(-45), // FR-theta_hy
+         0*math_utils::degToRad(20), // FR-theta_hp
+         0*math_utils::degToRad(-90), // FR-theta_kp
+         0*math_utils::degToRad(135), // RL-theta_hy
+         0*math_utils::degToRad(20), // RL-theta_hp
+         0*math_utils::degToRad(-90), // RL-theta_kp
+         0*math_utils::degToRad(-135), // RR-theta_hy
+         0*math_utils::degToRad(-20), // RR-theta_hp
+         0*math_utils::degToRad(90); // RR-theta_kp
+
+        
+    Eigen::Matrix<double, 3, 18> J = K.GetTranslationJacobianInW(Kinematics::LegType::rearRight, Kinematics::BodyType::base, q);
+
+    ROS_INFO_STREAM("Jacobian, J: \n" << J.transpose() * J);
+}
+
+void testMassMatrix()
+{
+    Kinematics K;
+
+    GeneralizedCoordinates q = GeneralizedCoordinates::Constant(0);
+
+    q << 0, // base_x
+         0, // base_y
+         0, // base_z
+         0, // base_roll
+         0, // base_pitch
+         0*math_utils::degToRad(90), // base_yaw
+         0*math_utils::degToRad(45), // FL-theta_hy
+         0*math_utils::degToRad(-20), // FL-theta_hp
+         0*math_utils::degToRad(90), // FL-theta_kp
+         0*math_utils::degToRad(-45), // FR-theta_hy
+         0*math_utils::degToRad(20), // FR-theta_hp
+         0*math_utils::degToRad(-90), // FR-theta_kp
+         0*math_utils::degToRad(135), // RL-theta_hy
+         0*math_utils::degToRad(20), // RL-theta_hp
+         0*math_utils::degToRad(-90), // RL-theta_kp
+         0*math_utils::degToRad(-135), // RR-theta_hy
+         0*math_utils::degToRad(-20), // RR-theta_hp
+         0*math_utils::degToRad(90); // RR-theta_kp
+
+    Eigen::Matrix<double, 18, 18> M = K.GetSingleBodyMassMatrix(Kinematics::LegType::rearRight, Kinematics::BodyType::base, q);
+    //Eigen::Matrix<double, 18, 18> M = K.GetMassMatrix(q);
+
+    ROS_INFO_STREAM("Mass matrix, M: \n" << M);
+}
+
+void testGravitationalTerms()
+{
+    Kinematics K;
+
+    GeneralizedCoordinates q = GeneralizedCoordinates::Constant(0);
+
+    q << 0, // base_x
+         0, // base_y
+         0, // base_z
+         0, // base_roll
+         0, // base_pitch
+         0*math_utils::degToRad(90), // base_yaw
+         0*math_utils::degToRad(45), // FL-theta_hy
+         0*math_utils::degToRad(-20), // FL-theta_hp
+         0*math_utils::degToRad(90), // FL-theta_kp
+         0*math_utils::degToRad(-45), // FR-theta_hy
+         0*math_utils::degToRad(20), // FR-theta_hp
+         0*math_utils::degToRad(-90), // FR-theta_kp
+         0*math_utils::degToRad(135), // RL-theta_hy
+         0*math_utils::degToRad(20), // RL-theta_hp
+         0*math_utils::degToRad(-90), // RL-theta_kp
+         0*math_utils::degToRad(-135), // RR-theta_hy
+         0*math_utils::degToRad(-20), // RR-theta_hp
+         0*math_utils::degToRad(90); // RR-theta_kp
+
+    Eigen::Matrix<double, 18, 1> g = K.GetSingleBodyGravitationalTerms(Kinematics::LegType::frontRight, Kinematics::BodyType::leg, q);
+    //Eigen::Matrix<double, 18, 1> g = K.GetMassMatrix(q);
+
+    ROS_INFO_STREAM("Mass matrix, M: \n" << g);
+}
+
+void testEulerDiff()
+{
+    Kinematics K;
+
+    GeneralizedCoordinates q = GeneralizedCoordinates::Constant(0);
+    GeneralizedCoordinates u = GeneralizedCoordinates::Constant(1);
+
+    q << 0, // base_x
+         0, // base_y
+         0, // base_z
+         0, // base_roll
+         0, // base_pitch
+         math_utils::degToRad(90), // base_yaw
+         0*math_utils::degToRad(45), // FL-theta_hy
+         0*math_utils::degToRad(-20), // FL-theta_hp
+         0*math_utils::degToRad(90), // FL-theta_kp
+         0*math_utils::degToRad(-45), // FR-theta_hy
+         0*math_utils::degToRad(20), // FR-theta_hp
+         0*math_utils::degToRad(-90), // FR-theta_kp
+         0*math_utils::degToRad(135), // RL-theta_hy
+         0*math_utils::degToRad(20), // RL-theta_hp
+         0*math_utils::degToRad(-90), // RL-theta_kp
+         0*math_utils::degToRad(-135), // RR-theta_hy
+         0*math_utils::degToRad(-20), // RR-theta_hp
+         0*math_utils::degToRad(90); // RR-theta_kp
+
+    u << 0, // base_x
+         0, // base_y
+         0, // base_z
+         1, // base_roll
+         2, // base_pitch
+         3, // base_yaw
+         0*math_utils::degToRad(45), // FL-theta_hy
+         0*math_utils::degToRad(-20), // FL-theta_hp
+         0*math_utils::degToRad(90), // FL-theta_kp
+         0*math_utils::degToRad(-45), // FR-theta_hy
+         0*math_utils::degToRad(20), // FR-theta_hp
+         0*math_utils::degToRad(-90), // FR-theta_kp
+         0*math_utils::degToRad(135), // RL-theta_hy
+         0*math_utils::degToRad(20), // RL-theta_hp
+         0*math_utils::degToRad(-90), // RL-theta_kp
+         0*math_utils::degToRad(-135), // RR-theta_hy
+         0*math_utils::degToRad(-20), // RR-theta_hp
+         0*math_utils::degToRad(90); // RR-theta_kp
+
+    //Eigen::Matrix<double, 3, 3> rotationDiff = K.GetRotationMatrixWToBDiff(0,0,0,1,2,3);
+    Eigen::Matrix<double, 6, 18> rotationDiff = K.GetJacobianInWDiff(Kinematics::LegType::frontLeft,
+                                                                    Kinematics::BodyType::foot,
+                                                                    q,
+                                                                    u);
+
+    ROS_INFO_STREAM("Rotation derivative, rotationDiff: \n" << rotationDiff);
+}
+
+void testCoriolisAndCentrifugalTerms()
+{
+    Kinematics K;
+
+    GeneralizedCoordinates q = GeneralizedCoordinates::Constant(0);
+    GeneralizedCoordinates u = GeneralizedCoordinates::Constant(0);
+
+    q << 0, // base_x
+         0, // base_y
+         0, // base_z
+         0, // base_roll
+         0, // base_pitch
+         math_utils::degToRad(90), // base_yaw
+         0*math_utils::degToRad(45), // FL-theta_hy
+         0*math_utils::degToRad(-20), // FL-theta_hp
+         0*math_utils::degToRad(90), // FL-theta_kp
+         0*math_utils::degToRad(-45), // FR-theta_hy
+         0*math_utils::degToRad(20), // FR-theta_hp
+         0*math_utils::degToRad(-90), // FR-theta_kp
+         0*math_utils::degToRad(135), // RL-theta_hy
+         0*math_utils::degToRad(20), // RL-theta_hp
+         0*math_utils::degToRad(-90), // RL-theta_kp
+         0*math_utils::degToRad(-135), // RR-theta_hy
+         0*math_utils::degToRad(-20), // RR-theta_hp
+         0*math_utils::degToRad(90); // RR-theta_kp
+
+    u << 0, // base_x
+         0, // base_y
+         0, // base_z
+         1, // base_roll
+         2, // base_pitch
+         3, // base_yaw
+         0*math_utils::degToRad(45), // FL-theta_hy
+         0*math_utils::degToRad(-20), // FL-theta_hp
+         0*math_utils::degToRad(90), // FL-theta_kp
+         0*math_utils::degToRad(-45), // FR-theta_hy
+         0*math_utils::degToRad(20), // FR-theta_hp
+         0*math_utils::degToRad(-90), // FR-theta_kp
+         0*math_utils::degToRad(135), // RL-theta_hy
+         0*math_utils::degToRad(20), // RL-theta_hp
+         0*math_utils::degToRad(-90), // RL-theta_kp
+         0*math_utils::degToRad(-135), // RR-theta_hy
+         0*math_utils::degToRad(-20), // RR-theta_hp
+         0*math_utils::degToRad(90); // RR-theta_kp
+
+    Eigen::Matrix<double, 18, 1> CCTerms = K.GetCoriolisAndCentrifugalTerms(q, u);
+
+    ROS_INFO_STREAM("Coriolis and Centrifugal terms, CCTerms: \n" << CCTerms);
+}
+
+void testNullSpaceProjector()
+{
+    Eigen::Matrix<double, 2, 3> A;
+    
+    A << 1, 0, 0,
+         0, 0, 0;
+
+    Eigen::Matrix<double, 3, 3> N;
+
+    math_utils::nullSpaceProjector(A,N);
+
+    Eigen::Matrix<double, 3, 2> pinvA;
+
+    kindr::pseudoInverse(A, pinvA);
+
+    Eigen::Matrix<double, 3, 3> N_test = Eigen::Matrix<double, 3, 3>::Identity() - pinvA * A;
+
+    ROS_INFO_STREAM("Null-space projector, N: \n" << N);
+    ROS_INFO_STREAM("Null-space projector test, N: \n" << N_test);
+}
+
+void testContactJacobian()
+{
+    Kinematics K;
+
+    GeneralizedCoordinates q = GeneralizedCoordinates::Constant(0);
+
+    q << 0, // base_x
+         0, // base_y
+         0, // base_z
+         0, // base_roll
+         0, // base_pitch
+         0*math_utils::degToRad(90), // base_yaw
+         0*math_utils::degToRad(45), // FL-theta_hy
+         0*math_utils::degToRad(-20), // FL-theta_hp
+         0*math_utils::degToRad(90), // FL-theta_kp
+         0*math_utils::degToRad(-45), // FR-theta_hy
+         0*math_utils::degToRad(20), // FR-theta_hp
+         0*math_utils::degToRad(-90), // FR-theta_kp
+         0*math_utils::degToRad(135), // RL-theta_hy
+         0*math_utils::degToRad(20), // RL-theta_hp
+         0*math_utils::degToRad(-90), // RL-theta_kp
+         0*math_utils::degToRad(-135), // RR-theta_hy
+         0*math_utils::degToRad(-20), // RR-theta_hp
+         0*math_utils::degToRad(90); // RR-theta_kp
+
+        
+    std::vector<Kinematics::LegType> legs {Kinematics::LegType::rearLeft, Kinematics::LegType::frontLeft, Kinematics::LegType::rearRight};
+
+    Eigen::MatrixXd J = K.GetContactJacobianInW(legs, q);
+
+    ROS_INFO_STREAM("Contact Jacobian, J_c: \n" << J);
+}
+
 
 int main(int argc, char **argv)
 {
@@ -389,8 +650,20 @@ int main(int argc, char **argv)
     //testTranslationJacobian();
     //ROS_INFO_STREAM("--------------- Test rotationJacobian --------------");
     //testRotationJacobian();
-    ROS_INFO_STREAM("--------------- Test Jacobian --------------");
-    testJacobian();
+    //ROS_INFO_STREAM("--------------- Test Jacobian --------------");
+    //testBaseJacobian();
+    //ROS_INFO_STREAM("--------------- Test Mass Matrix -----------");
+    //testMassMatrix();
+    //ROS_INFO_STREAM("--------------- Test Gravitational Terms -----------");
+    //testGravitationalTerms();
+    //ROS_INFO_STREAM("--------------- Test Rotation Derivative -------");
+    //testEulerDiff();
+    //ROS_INFO_STREAM("--------------- Test Coriolis And Centrifugal terms --------------");
+    //testCoriolisAndCentrifugalTerms();
+    //ROS_INFO_STREAM("--------------- Test null-space projector ------------------------");
+    //testNullSpaceProjector();
+    ROS_INFO_STREAM("--------------- Test contact Jacobian ----------------------------");
+    testContactJacobian();
 
     ros::spin();
     return 0;

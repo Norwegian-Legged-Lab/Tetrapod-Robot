@@ -45,7 +45,7 @@
 #include "sensor_msgs/JointState.h"
 
 // ROS Package Libraries
-#include<angle_utils/angle_utils.h>
+#include<math_utils/angle_utils.h>
 
 // Eigen
 #include <Eigen/Core>
@@ -264,8 +264,14 @@ namespace gazebo
         /// \brief ROS Generalized Velocities Publisher.
         private: ros::Publisher genVelPub;
 
+        /// \brief ROS Joint Forces (Torques) Publisher.
+        private: ros::Publisher jointForcesPub;
+
         /// \brief ROS Joint State Subscriber.
         private: ros::Subscriber jointStateSub;
+
+        /// \brief 
+        private: ros::Publisher jointStatePub;
 
         /// \brief ROS Joint State Subscriber.
         private: ros::Subscriber flJointStateSub;

@@ -60,18 +60,18 @@ void printBaseTwist(const Eigen::Matrix<double, 6, 1> &_base_twist)
 void printJointState(const Eigen::Matrix<double, 12, 1> &_joint_state)
 {
     ROS_INFO_STREAM("\n ---------- Joint State [deg] ----------- ");
-    ROS_INFO_STREAM("fl,hy: \t" << _joint_state(0) * 360 * angle_utils::ONE_DIV_TWO_PI);
-    ROS_INFO_STREAM("fl,hp: \t" << _joint_state(1) * 360 * angle_utils::ONE_DIV_TWO_PI);
-    ROS_INFO_STREAM("fl,kp: \t" << _joint_state(2) * 360 * angle_utils::ONE_DIV_TWO_PI);
-    ROS_INFO_STREAM("fr,hy: \t" << _joint_state(3) * 360 * angle_utils::ONE_DIV_TWO_PI);
-    ROS_INFO_STREAM("fr,hp: \t" << _joint_state(4) * 360 * angle_utils::ONE_DIV_TWO_PI);
-    ROS_INFO_STREAM("fr,kp: \t" << _joint_state(5) * 360 * angle_utils::ONE_DIV_TWO_PI);
-    ROS_INFO_STREAM("rl,hy: \t" << _joint_state(6) * 360 * angle_utils::ONE_DIV_TWO_PI);
-    ROS_INFO_STREAM("rl,hp: \t" << _joint_state(7) * 360 * angle_utils::ONE_DIV_TWO_PI);
-    ROS_INFO_STREAM("rl,kp: \t" << _joint_state(8) * 360 * angle_utils::ONE_DIV_TWO_PI);
-    ROS_INFO_STREAM("rr,hy: \t" << _joint_state(9) * 360 * angle_utils::ONE_DIV_TWO_PI);
-    ROS_INFO_STREAM("rr,hp: \t" << _joint_state(10) * 360 * angle_utils::ONE_DIV_TWO_PI);
-    ROS_INFO_STREAM("rr,kp: \t" << _joint_state(11) * 360 * angle_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM("fl,hy: \t" << _joint_state(0) * 360 * math_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM("fl,hp: \t" << _joint_state(1) * 360 * math_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM("fl,kp: \t" << _joint_state(2) * 360 * math_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM("fr,hy: \t" << _joint_state(3) * 360 * math_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM("fr,hp: \t" << _joint_state(4) * 360 * math_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM("fr,kp: \t" << _joint_state(5) * 360 * math_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM("rl,hy: \t" << _joint_state(6) * 360 * math_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM("rl,hp: \t" << _joint_state(7) * 360 * math_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM("rl,kp: \t" << _joint_state(8) * 360 * math_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM("rr,hy: \t" << _joint_state(9) * 360 * math_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM("rr,hp: \t" << _joint_state(10) * 360 * math_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM("rr,kp: \t" << _joint_state(11) * 360 * math_utils::ONE_DIV_TWO_PI);
     ROS_INFO_STREAM(" ------------------------------------------ ");
 }
 
@@ -79,18 +79,18 @@ void printJointState(const Eigen::Matrix<double, 12, 1> &_joint_state)
 void printJointVelocities(const Eigen::Matrix<double, 12, 1> &_joint_vel)
 {
     ROS_INFO_STREAM("\n ------ Joint Velocites [deg/s] --------- ");
-    ROS_INFO_STREAM("fl,hy: \t" << _joint_vel(0) * 360 * angle_utils::ONE_DIV_TWO_PI);
-    ROS_INFO_STREAM("fl,hp: \t" << _joint_vel(1) * 360 * angle_utils::ONE_DIV_TWO_PI);
-    ROS_INFO_STREAM("fl,kp: \t" << _joint_vel(2) * 360 * angle_utils::ONE_DIV_TWO_PI);
-    ROS_INFO_STREAM("fr,hy: \t" << _joint_vel(3) * 360 * angle_utils::ONE_DIV_TWO_PI);
-    ROS_INFO_STREAM("fr,hp: \t" << _joint_vel(4) * 360 * angle_utils::ONE_DIV_TWO_PI);
-    ROS_INFO_STREAM("fr,kp: \t" << _joint_vel(5) * 360 * angle_utils::ONE_DIV_TWO_PI);
-    ROS_INFO_STREAM("rl,hy: \t" << _joint_vel(6) * 360 * angle_utils::ONE_DIV_TWO_PI);
-    ROS_INFO_STREAM("rl,hp: \t" << _joint_vel(7) * 360 * angle_utils::ONE_DIV_TWO_PI);
-    ROS_INFO_STREAM("rl,kp: \t" << _joint_vel(8) * 360 * angle_utils::ONE_DIV_TWO_PI);
-    ROS_INFO_STREAM("rr,hy: \t" << _joint_vel(9) * 360 * angle_utils::ONE_DIV_TWO_PI);
-    ROS_INFO_STREAM("rr,hp: \t" << _joint_vel(10) * 360 * angle_utils::ONE_DIV_TWO_PI);
-    ROS_INFO_STREAM("rr,kp: \t" << _joint_vel(11) * 360 * angle_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM("fl,hy: \t" << _joint_vel(0) * 360 * math_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM("fl,hp: \t" << _joint_vel(1) * 360 * math_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM("fl,kp: \t" << _joint_vel(2) * 360 * math_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM("fr,hy: \t" << _joint_vel(3) * 360 * math_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM("fr,hp: \t" << _joint_vel(4) * 360 * math_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM("fr,kp: \t" << _joint_vel(5) * 360 * math_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM("rl,hy: \t" << _joint_vel(6) * 360 * math_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM("rl,hp: \t" << _joint_vel(7) * 360 * math_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM("rl,kp: \t" << _joint_vel(8) * 360 * math_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM("rr,hy: \t" << _joint_vel(9) * 360 * math_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM("rr,hp: \t" << _joint_vel(10) * 360 * math_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM("rr,kp: \t" << _joint_vel(11) * 360 * math_utils::ONE_DIV_TWO_PI);
     ROS_INFO_STREAM(" ------------------------------------------ ");
 }
 

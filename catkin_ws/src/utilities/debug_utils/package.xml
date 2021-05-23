@@ -60,7 +60,7 @@
   <exec_depend>std_msgs</exec_depend>
 
   <depend>eigen</depend>
-  <depend>angle_utils</depend>
+  <depend>math_utils</depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>

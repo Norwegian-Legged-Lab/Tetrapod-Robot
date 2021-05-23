@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(angle_utils)
+project(single_leg_controller)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -7,10 +7,20 @@ project(angle_utils)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED)
+find_package(catkin REQUIRED COMPONENTS
+  roscpp
+  std_msgs
+  sensor_msgs
+  math_utils
+  debug_utils
+  filter_utils
+  kinematics
+  eigen_conversions
+)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
+find_package(Eigen3 REQUIRED)
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -100,8 +110,17 @@ find_package(catkin REQUIRED)
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
   INCLUDE_DIRS include
-  LIBRARIES angle_utils
-#  CATKIN_DEPENDS other_catkin_pkg
+    ${EIGEN3_INCLUDE_DIR}
+  LIBRARIES single_leg_controller
+  CATKIN_DEPENDS
+    roscpp
+    std_msgs
+    sensor_msgs
+    math_utils
+    debug_utils
+    filter_utils
+    kinematics
+    eigen_conversions
 #  DEPENDS system_lib
 )
 
@@ -114,11 +133,12 @@ catkin_package(
 include_directories(
   include
   ${catkin_INCLUDE_DIRS}
+  ${EIGEN3_INCLUDE_DIR}
 )
 
 ## Declare a C++ library
 add_library(${PROJECT_NAME}
-  src/angle_utils.cpp
+  src/single_leg_controller.cpp
 )
 
 ## Add cmake target dependencies of the library
@@ -129,7 +149,25 @@ add_library(${PROJECT_NAME}
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/angle_utils_node.cpp)
+add_executable(single_leg_controller_node
+  src/single_leg_controller_node.cpp
+  src/single_leg_controller.cpp
+)
+
+add_executable(joint_torque_function_test
+  src/joint_torque_function_test.cpp
+  src/single_leg_controller.cpp
+)
+
+add_executable(position_control
+  src/position_control.cpp
+  src/single_leg_controller.cpp
+)
+
+add_executable(trajectory_tracking
+  src/trajectory_tracking.cpp
+  src/single_leg_controller.cpp
+)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -143,6 +181,22 @@ add_library(${PROJECT_NAME}
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(${PROJECT_NAME}
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(single_leg_controller_node
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(joint_torque_function_test
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(position_control
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(trajectory_tracking
   ${catkin_LIBRARIES}
 )
 
@@ -193,10 +247,10 @@ install(DIRECTORY include/${PROJECT_NAME}/
 #############
 
 ## Add gtest based cpp test target and link libraries
-catkin_add_gtest(${PROJECT_NAME}-test test/test_angle_utils.cpp)
-if(TARGET ${PROJECT_NAME}-test)
-  target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
-endif()
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_single_leg_controller.cpp)
+# if(TARGET ${PROJECT_NAME}-test)
+#   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
+# endif()
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)

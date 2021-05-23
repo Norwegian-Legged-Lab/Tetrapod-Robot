@@ -22,3 +22,12 @@ export GAZEBO_MODEL_PATH=~/Tetrapod-Robot/catkin_ws/src/simulator
 export GAZEBO_MODEL_PATH=~/Tetrapod-Robot/catkin_ws/src/simulator/tetrapod_gazebo/models:$GAZEBO_MODEL_PATH
 export GAZEBO_RESOURCE_PATH=~/Tetrapod-Robot/catkin_ws/src/simulator/tetrapod_gazebo/worlds:$GAZEBO_RESOURCE_PATH
 ```
+
+# Keyboard Control
+To use the keyboard-ros package you need the SDL_LIBRARY which can be installed with the following two commands:
+```sudo apt-get install libsdl-image1.2-dev```
+```sudo apt-get install libsdl-dev```
+
+# Joystick Drivers
+The Joystick Drivers package depends on several debs and require the following command to be run:
+```sudo apt-get install libusb-dev libx11-dev libspnav-dev libbluetooth-dev libcwiid-dev```

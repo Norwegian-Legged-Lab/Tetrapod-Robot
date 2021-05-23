@@ -12,7 +12,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   sensor_msgs
   gazebo_ros
-  angle_utils
+  math_utils
 )
 
 ## System dependencies are found with CMake's conventions
@@ -113,7 +113,7 @@ catkin_package(
     std_msgs 
     sensor_msgs
     gazebo_ros 
-    angle_utils
+    math_utils
 #  DEPENDS system_lib
 )
 
@@ -143,6 +143,10 @@ add_library(tetrapod_plugin
   src/tetrapod_plugin.cpp
 )
 
+add_library(contact_plugin
+  src/contact_plugin.cpp
+)
+
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
@@ -152,6 +156,9 @@ add_library(tetrapod_plugin
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/tetrapod_gazebo_node.cpp)
+add_executable(contact_sensor
+  src/contact_sensor.cpp
+)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -162,12 +169,26 @@ add_library(tetrapod_plugin
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+#add_dependencies(contact_sensor 
+#  ${catkin_EXPORTED_TARGETS}
+#)
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(tetrapod_plugin
   ${catkin_LIBRARIES}
   ${GAZEBO_LIBRARIES}
 )
+
+target_link_libraries(contact_plugin
+  ${catkin_LIBRARIES}
+  ${GAZEBO_LIBRARIES}
+)
+
+target_link_libraries(contact_sensor
+  ${catkin_LIBRARIES}
+  ${GAZEBO_LIBRARIES}
+)
+
 
 ## Add environment hooks
 #catkin_add_env_hooks(tetrapod_gazebo SHELLS sh DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/env-hooks)

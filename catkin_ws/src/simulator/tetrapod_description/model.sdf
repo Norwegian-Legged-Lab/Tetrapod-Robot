@@ -301,8 +301,20 @@ z_0 = 0.0
                             <mu2>1.0</mu2>
                         </ode>
                     </friction>
+                    <contact>
+                        <ode>
+                            <min_depth>0.001</min_depth>
+                        </ode>
+                    </contact>
                 </surface>
             </collision>
+            <sensor name="front_left_contact_sensor" type="contact">
+                <!-- <plugin name="contact_plugin" filename="libcontact_plugin.so" /> -->
+                <contact>
+                    <collision>front_left_foot_collision</collision>
+                </contact>
+                <update_rate>200</update_rate>
+            </sensor>
         </link>
 
         <joint name="front_left_foot_joint" type="fixed">
@@ -534,8 +546,20 @@ z_0 = 0.0
                             <mu2>1.0</mu2>
                         </ode>
                     </friction>
+                    <contact>
+                        <ode>
+                            <min_depth>0.001</min_depth>
+                        </ode>
+                    </contact>
                 </surface>
             </collision>
+            <sensor name="front_right_contact_sensor" type="contact">
+                <!-- <plugin name="contact_plugin" filename="libcontact_plugin.so" /> -->
+                <contact>
+                    <collision>front_right_foot_collision</collision>
+                </contact>
+                <update_rate>200</update_rate>
+            </sensor>
         </link>
 
         <joint name="front_right_foot_joint" type="fixed">
@@ -767,8 +791,20 @@ z_0 = 0.0
                             <mu2>1.0</mu2>
                         </ode>
                     </friction>
+                    <contact>
+                        <ode>
+                            <min_depth>0.001</min_depth>
+                        </ode>
+                    </contact>
                 </surface>
             </collision>
+            <sensor name="rear_left_contact_sensor" type="contact">
+                <!-- <plugin name="contact_plugin" filename="libcontact_plugin.so" /> -->
+                <contact>
+                    <collision>rear_left_foot_collision</collision>
+                </contact>
+                <update_rate>200</update_rate>
+            </sensor>
         </link>
 
         <joint name="rear_left_foot_joint" type="fixed">
@@ -999,8 +1035,20 @@ z_0 = 0.0
                             <mu2>1.0</mu2>
                         </ode>
                     </friction>
+                    <contact>
+                        <ode>
+                            <min_depth>0.001</min_depth>
+                        </ode>
+                    </contact>
                 </surface>
             </collision>
+            <sensor name="rear_right_contact_sensor" type="contact">
+                <!-- <plugin name="contact_plugin" filename="libcontact_plugin.so" /> -->
+                <contact>
+                    <collision>rear_right_foot_collision</collision>
+                </contact>
+                <update_rate>200</update_rate>
+            </sensor>
         </link>
 
         <joint name="rear_right_foot_joint" type="fixed">

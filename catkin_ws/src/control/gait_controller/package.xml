@@ -25,7 +25,7 @@
   <exec_depend>sensor_msgs</exec_depend>
   <exec_depend>geomtry_msgs</exec_depend>
 
-  <depend>angle_utils</depend>
+  <depend>math_utils</depend>
   <depend>debug_utils</depend>
   <depend>kinematics</depend>
   <depend>eigen_conversions</depend>

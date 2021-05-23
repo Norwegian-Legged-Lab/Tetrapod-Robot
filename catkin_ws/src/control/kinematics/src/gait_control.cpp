@@ -35,23 +35,25 @@ GaitControl::GaitControl()
     ros::Duration(2.0).sleep();
 
     Eigen::Matrix<double, 6, 1> desired_pose;
-    desired_pose(0) = 0.3;
-    desired_pose(1) = 0.3;
-    desired_pose(2) = 0.5;
+    desired_pose(0) = 0.0;
+    desired_pose(1) = 0.5;
+    desired_pose(2) = 0.6;
     desired_pose(3) = 0;
     desired_pose(4) = 0;
     desired_pose(5) = 0;
 
     Eigen::Matrix<double, 3, 1> desired_pos;
-    desired_pos(0) = 0.3;
-    desired_pos(1) = 0.3;
-    desired_pos(2) = 0.5;
+    desired_pos(0) = 0.0;
+    desired_pos(1) = 0.5;
+    desired_pos(2) = 0.6;
 
-    double tol = 0.1;
+    double tol = 0.05;
     double k = 0.3;
 
     //this->NumericalIKPositionControl(desired_pose, tol, k);
-    this->NumericalInverseKinematicsControl(desired_pos, tol, k);
+    //this->NumericalInverseKinematicsControl(desired_pos, tol, k);
+    this->PositionTrajectoryIKControl();
+
 }
 
 // Destructor
@@ -118,7 +120,8 @@ void GaitControl::PositionTrajectoryControl()
         desired_velocity_in_W = Eigen::Matrix<double, 3, 1>::Constant(0);
 
         // Update Jacobian
-        J = this->kinematics.GetTranslationJacobianInW(Kinematics::TetrapodLeg::frontLeft,
+        J = this->kinematics.GetTranslationJacobianInW(Kinematics::LegType::frontLeft,
+                                                       Kinematics::BodyType::foot,
                                                        this->genCoord);
 
         // Calculate pseudoInverse
@@ -154,20 +157,20 @@ void GaitControl::PositionTrajectoryControl()
 void GaitControl::PositionTrajectoryIKControl()
 {
 
-    double amplitude = 0.2;
+    double amplitude = 0.1;
     double period = 0.2;
-    double y_offset_left = 0.25;
-    double y_offset_right = -0.25;
+    double y_offset_left = 0.55;
+    double y_offset_right = -0.55;
 
     double t = 0;
     double delta_t = 0.01;
 
-    double tol = 0.01;
+    double tol = 0.10;
     double k = 0.6;
 
     kindr::RotationMatrixD rotationWToB;
 
-    Eigen::Matrix<double, 6, 1> desired_pose_in_W;
+    Eigen::Matrix<double, 3, 1> desired_pose_in_W;
 
     while (t <= period)
     {
@@ -184,17 +187,20 @@ void GaitControl::PositionTrajectoryIKControl()
                                                                         period,
                                                                         y_offset_left,
                                                                         t);
-        desired_pose_in_W.block<3,1>(3,0) = Eigen::Matrix<double, 3, 1>::Constant(0);
+        //desired_pose_in_W.block<3,1>(3,0) = Eigen::Matrix<double, 3, 1>::Constant(0);
 
+        ROS_INFO_STREAM("Desired position: " << desired_pose_in_W);
 
         // Iterate
-        //this->NumericalInverseKinematicsControl(desired_pose_in_W,
-        //                                        tol,
-        //                                        k);
+        this->NumericalInverseKinematicsControl(desired_pose_in_W,
+                                                tol,
+                                                k);
 
         // Increment
         t += delta_t;
     }
+
+    ROS_INFO("DONENENE");
 }
 
 // Numerical IK Position Control
@@ -214,14 +220,17 @@ void GaitControl::NumericalIKPositionControl(const Eigen::Matrix<double, 6, 1> &
 
     do 
     {
-        J.block<3,3>(0,0) = this->kinematics.GetSingleLegTranslationJacobianInB(this->genCoord(6),
-                                                                                this->genCoord(7),
-                                                                                this->genCoord(8));
+        J.block<3,3>(0,0) = this->kinematics.GetTranslationJacobianInB(Kinematics::LegType::frontLeft,
+                                                                       Kinematics::BodyType::foot,
+                                                                       this->genCoord(6),
+                                                                       this->genCoord(7),
+                                                                       this->genCoord(8));
 
-        J.block<3,3>(3,0) = this->kinematics.GetSingleLegRotationJacobianInB(false,
-                                                                             this->genCoord(6),
-                                                                             this->genCoord(7),
-                                                                             this->genCoord(8));
+        J.block<3,3>(3,0) = this->kinematics.GetRotationJacobianInB(Kinematics::LegType::frontLeft,
+                                                                    Kinematics::BodyType::foot,
+                                                                    this->genCoord(6),
+                                                                    this->genCoord(7),
+                                                                    this->genCoord(8));
 
         if (!kindr::pseudoInverse(J, pinvJ))
         {
@@ -273,15 +282,16 @@ void GaitControl::NumericalInverseKinematicsControl(const Eigen::Matrix<double, 
 
     do 
     {
-        J = this->kinematics.GetSingleLegTranslationJacobianInB(Kinematics::TetrapodLeg::frontLeft,
-                                                                this->genCoord.block<12,1>(6,0));
+        J = this->kinematics.GetTranslationJacobianInB(Kinematics::LegType::frontLeft,
+                                                       Kinematics::BodyType::foot,
+                                                       this->genCoord.block<12,1>(6,0));
 
         if (!kindr::pseudoInverse(J, pinvJ))
         {
             ROS_ERROR_STREAM("Failed to find pseudo-inverse Jacobian in Numerical Inverse Kinematics Control.");
         } 
 
-        ROS_INFO_STREAM("J: \n" << J);
+        //ROS_INFO_STREAM("J: \n" << J);
 
         pose = this->fPos;
 
@@ -289,9 +299,11 @@ void GaitControl::NumericalInverseKinematicsControl(const Eigen::Matrix<double, 
 
         desired_gen_coord = this->genCoord.block<12,1>(6,0) + _k * pinvJ * delta_pose;
 
+        //debug_utils::printJointState(desired_gen_coord);
+
         std_msgs::Float64MultiArray pos_msg;
 
-        tf::matrixEigenToMsg(desired_gen_coord.block<3, 1>(6,0), pos_msg);
+        tf::matrixEigenToMsg(desired_gen_coord.block<3, 1>(0,0), pos_msg);
 
         sensor_msgs::JointState joint_state_msg;
 
@@ -316,18 +328,19 @@ Eigen::Matrix<double, 3, 1> GaitControl::GetPositionTrajectory(const double &_A,
 {
     Eigen::Matrix<double, 3, 1> positionInB;
 
+    // TODO fix added z offsets
     if (_t >= 0 && _t <= _P/2)
     {
         positionInB(0) = _t;
         positionInB(1) = _y_offset;
-        positionInB(2) = _A * std::sin( angle_utils::TWO_PI / _P * _t );
+        positionInB(2) = _A * std::sin( math_utils::TWO_PI / _P * _t ) + 0.6;
     }
     else if (_t > _P/2 && _t <= _P)
     {
 
         positionInB(0) = _P - _t;
         positionInB(1) = _y_offset;
-        positionInB(2) = 0;
+        positionInB(2) = 0.6;
     }
     else
     {
@@ -377,7 +390,7 @@ void GaitControl::ProcessQueueThread()
     }
 }
 
-// Setup thread to process messages
+// Setup thread to publish messages
 void GaitControl::PublishQueueThread()
 {
     static const double timeout = 0.01;

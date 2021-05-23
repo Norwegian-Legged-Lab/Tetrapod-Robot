@@ -129,9 +129,14 @@ Eigen::Matrix<double, 6, 1> TetrapodPlugin::GetBaseTwist()
 // TODO Implement.
 double TetrapodPlugin::GetJointForce(const std::string &_joint_name)
 {
-    //this->joints[joint_name]->
+    //this->joints[joint_name]-A map<joint_name, force> that contains force values set by the user of the JointController.
 
-    return 0;
+    double force = this->joints[this->model_name + "::" + _joint_name]->GetForce(0);
+    //std::map<std::string, double> force_map = this->model->GetJointController()->GetForces();
+
+    //double force = force_map[this->model_name + "::" + _joint_name];
+
+    return force;
 }
 
 // Get joint forces
@@ -332,7 +337,7 @@ void TetrapodPlugin::SetJointPositions(const std::vector<double> &_pos)
     {
         this->model->GetJointController()->SetPositionTarget(
             this->model_name + "::" + this->joint_names[i],
-            angle_utils::wrapAngleToPi(_pos[i])
+            math_utils::wrapAngleToPi(_pos[i])
         );
     }
 
@@ -418,11 +423,12 @@ void TetrapodPlugin::ProcessQueueThread()
 // Setup thread to process messages
 void TetrapodPlugin::PublishQueueThread()
 {
-    ros::Rate loop_rate(10);
+    ros::Rate loop_rate(200);
     while (this->rosNode->ok())
     {
         Eigen::Matrix<double, 18, 1> q; // generalized coordinates
         Eigen::Matrix<double, 18, 1> u; // generalized velocities
+        Eigen::Matrix<double, 12, 1> tau; // joint forces (torques)
 
         q.block(0,0,5,0) << this->GetBasePose();
         q.block(6,0,17,0) << this->GetJointPositions();
@@ -430,14 +436,29 @@ void TetrapodPlugin::PublishQueueThread()
         u.block(0,0,5,0) << this->GetBaseTwist();
         u.block(6,0,17,0) << this->GetJointVelocities();
 
+        tau = this->GetJointForces();
+
         std_msgs::Float64MultiArray gen_coord_msg;
         std_msgs::Float64MultiArray gen_vel_msg;
+        std_msgs::Float64MultiArray joint_forces_msg;
+        sensor_msgs::JointState joint_state_msg;
 
         tf::matrixEigenToMsg(q, gen_coord_msg);
         tf::matrixEigenToMsg(u, gen_vel_msg);
+        tf::matrixEigenToMsg(tau, joint_forces_msg);
+
+        joint_state_msg.header.stamp = ros::Time::now();
+        for(int i = 0; i < 12; i++)
+        {
+            joint_state_msg.position.push_back(q(i + 6));
+            joint_state_msg.velocity.push_back(u(i + 6));
+            joint_state_msg.effort.push_back(tau(i));
+        }
 
         this->genCoordPub.publish(gen_coord_msg);
         this->genVelPub.publish(gen_vel_msg);
+        this->jointForcesPub.publish(joint_forces_msg);
+        this->jointStatePub.publish(joint_state_msg);
 
         loop_rate.sleep();
     }
@@ -473,6 +494,27 @@ void TetrapodPlugin::InitRos()
     ros::AdvertiseOptions gen_vel_ao =
         ros::AdvertiseOptions::create<std_msgs::Float64MultiArray>(
             "/" + this->model->GetName() + "/gen_vel",
+            1,
+            ros::SubscriberStatusCallback(),
+            ros::SubscriberStatusCallback(),
+            ros::VoidPtr(),
+            &this->rosPublishQueue
+        );
+
+    ros::AdvertiseOptions joint_forces_ao =
+        ros::AdvertiseOptions::create<std_msgs::Float64MultiArray>(
+            "/" + this->model->GetName() + "/joint_forces",
+            1,
+            ros::SubscriberStatusCallback(),
+            ros::SubscriberStatusCallback(),
+            ros::VoidPtr(),
+            &this->rosPublishQueue
+        );
+
+    ros::AdvertiseOptions joint_state_ao =
+        ros::AdvertiseOptions::create<sensor_msgs::JointState>
+        (
+            "/" + this->model->GetName() + "/joint_state",
             1,
             ros::SubscriberStatusCallback(),
             ros::SubscriberStatusCallback(),
@@ -528,6 +570,10 @@ void TetrapodPlugin::InitRos()
     this->genCoordPub = this->rosNode->advertise(gen_coord_ao);
 
     this->genVelPub = this->rosNode->advertise(gen_vel_ao);
+
+    this->jointForcesPub = this->rosNode->advertise(joint_forces_ao);
+
+    this->jointStatePub = this->rosNode->advertise(joint_state_ao);
 
     this->jointStateSub = this->rosNode->subscribe(joint_state_so);
 
@@ -645,13 +691,13 @@ void TetrapodPlugin::InitJointConfiguration()
         // Set default position 
         this->model->GetJointController()->SetJointPosition(
             this->model_name + "::" + this->joint_names[i],
-            angle_utils::wrapAngleToPi(angle_utils::degToRad(this->joint_config[i]))
+            math_utils::wrapAngleToPi(math_utils::degToRad(this->joint_config[i]))
         );
 
         // Set controller position reference
         this->model->GetJointController()->SetPositionTarget(
             this->model_name + "::" + this->joint_names[i],
-            angle_utils::wrapAngleToPi(angle_utils::degToRad(this->joint_config[i]))
+            math_utils::wrapAngleToPi(math_utils::degToRad(this->joint_config[i]))
         );
     }
 

@@ -1,8 +1,9 @@
+
 /*******************************************************************/
 /*    AUTHOR: Paal Arthur S. Thorseth                              */
 /*    ORGN:   Dept of Eng Cybernetics, NTNU Trondheim              */
-/*    FILE:   angle_utils.cpp                                      */
-/*    DATE:   Feb 9, 2021                                          */
+/*    FILE:   hierarchical_optimization_controller_node.cpp        */
+/*    DATE:   May 15, 2021                                         */
 /*                                                                 */
 /* Copyright (C) 2021 Paal Arthur S. Thorseth,                     */
 /*                    Adrian B. Ghansah                            */
@@ -24,61 +25,16 @@
 /*                                                                 */
 /*******************************************************************/
 
-#include <angle_utils/angle_utils.h>
+#include "ros/ros.h"
 
-namespace angle_utils
-{   
+#include <hierarchical_optimization_controller/hierarchical_optimization_controller.h>
 
-// Convert deg to rad
-double degToRad(const double &_deg)
+// Main
+int main(int argc, char **argv)
 {
-    return (_deg/180.0) * PI;
+    HierarchicalOptimizationControl ho_controller;
+
+    ros::spin();
+
+    return 0;
 }
-
-// Convert rad to deg
-double radToDeg(const double &_rad)
-{
-    return (_rad/PI) * 180;
-}
-
-// Wrap angle to the interval [-pi, pi)
-double wrapAngleToPi(const double &_rad)
-{
-    double ret = std::fmod(_rad + PI, 2 * PI);
-
-    if (ret < 0)
-    {
-        ret += 2 * PI;
-    }
-
-    return ret - PI;
-}
-
-
-// Wrap angle to the interval [0, 2pi)
-double wrapAngleTo2Pi(const double &_rad)
-{
-    double ret = std::fmod(_rad, 2 * PI);
-
-    if (ret < 0)
-    {
-        ret += 2 * PI;
-    }
-
-    return ret;
-}
-
-// Angle difference 
-double angleDiff(const double &_ang1, const double &_ang2)
-{
-    double diff = std::fmod(_ang2 - _ang1 + PI, 2 * PI);
-
-    if (diff < 0)
-    {
-        diff += 2*PI;
-    }
-
-    return diff - PI;
-}
-
-}// namespace angle_utils
