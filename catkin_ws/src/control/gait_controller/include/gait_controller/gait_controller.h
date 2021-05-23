@@ -79,6 +79,18 @@ class GaitController
     public: bool standUp();
     private: double calculateSwingFootHeight(double _hip_height, double _max_swing_foot_height, double _current_iteration, double _max_iteration);
 
+    private: bool moveJointsToSetpoints();
+
+    private: bool jointSetpointsReached();
+
+    private: void printJointStates();
+
+    private: void printJointCommandStates();
+
+    private: void printFeetPositions();
+
+    private: void updateFeetPositions();
+
     /*** Variables ***/
 
     private: std::unique_ptr<ros::NodeHandle> nodeHandle;
@@ -100,6 +112,8 @@ class GaitController
     private: Eigen::Matrix<double, 12, 1> joint_angles = Eigen::Matrix<double, 12, 1>::Zero();
 
     private: Eigen::Matrix<double, 12, 1> joint_velocities = Eigen::Matrix<double, 12, 1>::Zero();
+
+    private: Eigen::Matrix<double, 12, 1> feet_positions = Eigen::Matrix<double, 12, 1>::Zero();
 
     private: double hip_height = 0.36;
 
