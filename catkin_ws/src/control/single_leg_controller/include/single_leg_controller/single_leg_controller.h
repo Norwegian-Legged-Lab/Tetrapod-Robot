@@ -197,7 +197,7 @@ class SingleLegController
     const double CONTROL_IDLE  = 1000.0;
 
     /// \brief Convergence crieria for position control test
-    const double POSITION_CONVERGENCE_CRITERIA = 0.010; // Cirka 1 degree error for all joints
+    const double POSITION_CONVERGENCE_CRITERIA = 0.01; // Cirka 1 degree error for all joints
 
 
     /*** ROS VARIABLES ***/
@@ -233,7 +233,6 @@ class SingleLegController
 
     /// \brief The joint state message that is used to log references
     private: sensor_msgs::JointState joint_reference_log_msg;
-
 
     /*** UTILITY VARIABLES ***/
 
