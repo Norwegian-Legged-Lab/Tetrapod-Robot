@@ -160,31 +160,6 @@ void SingleLegController::jointSetpointCallback(const std_msgs::Float64MultiArra
 
 
 /*** CONTROL FUNCTIONS ***/
-bool SingleLegController::updateState()
-{
-    bool new_state = false;
-
-    swing_current_time = ros::Time::now().toSec();
-
-    // If one period is over we shoudl switch phase
-    if(swing_current_time - swing_start_time >= swing_period)
-    {
-        swing_start_time = ros::Time::now().toSec();
-        if(state != State::stance)
-        {
-            state = State::stance;
-        }
-        else
-        {
-            state = State::swing;
-        }
-        new_state = true;  
-    }
-
-    swing_percentage = (swing_current_time - swing_start_time)/swing_period;
-
-    return new_state;
-}
 
 Eigen::Matrix<double, 3, 1> SingleLegController::calculateSwingLegHeightTrajectory(double _percentage, double _period, double _max_swing_height, double _hip_height)
 {
@@ -198,7 +173,7 @@ Eigen::Matrix<double, 3, 1> SingleLegController::calculateSwingLegHeightTrajecto
 
     trajectory(0) = a*pow(x, 4.0) + b*pow(x, 2.0) + c - _hip_height;
 
-    trajectory(1) = (4.0*a*pow(x, 3.0) + 2.0*b)/_period;
+    trajectory(1) = (4.0*a*pow(x, 3.0) + 2.0*b*x)/_period;
 
     trajectory(2) = (12.0*a*pow(x, 2.0) + 2.0*b)/pow(_period, 2.0);
 
@@ -227,44 +202,70 @@ void SingleLegController::calculateSingleAxisTrajectory
 
 void SingleLegController::updateSwingFootPositionTrajectory()
 {
-    pos(0) = x_center - x_offset*(1.0 - swing_percentage);
-    vel(0) = - x_offset/swing_period;
-    acc(0) = 0.0;
+    double progress = current_iteration/final_iteration;
 
-    pos(1) = y_center - y_offset*(1.0 - swing_percentage);
-    vel(1) = - y_offset/swing_period;
-    acc(1) = 0.0;
+    double foot_dx;
+    double foot_dy;
+    double foot_vel_x;
+    double foot_vel_y;
+    double foot_acc_x;
+    double foot_acc_y;
 
-    Eigen::Matrix<double, 3, 1> z = calculateSwingLegHeightTrajectory(swing_percentage, swing_period, max_swing_height, hip_height);
+    calculateSingleAxisTrajectory(progress, swing_period, x_offset, foot_dx, foot_vel_x, foot_acc_x);
+    calculateSingleAxisTrajectory(progress, swing_period, y_offset, foot_dy, foot_vel_y, foot_acc_y);
+    Eigen::Matrix<double, 3, 1> z = calculateSwingLegHeightTrajectory(progress, swing_period, max_swing_height, hip_height);
+
+    pos(0) = x_center - x_offset + foot_dx;
+    pos(1) = y_center - y_offset + foot_dy;
     pos(2) = z(0);
+
+    vel(0) = foot_vel_x;
+    vel(1) = foot_vel_y;
     vel(2) = z(1);
+
+    acc(0) = foot_acc_x;
+    acc(1) = foot_acc_y;
     acc(2) = z(2);
 }
 
 void SingleLegController::updateStanceFootPositionTrajectory()
 {
-    pos(0) = x_center - x_offset*current_iteration/final_iteration;
-    pos(1) = y_center - y_offset*current_iteration/final_iteration;
+    double progress = current_iteration/final_iteration;
+
+    double foot_dx;
+    double foot_dy;
+    double foot_vel_x;
+    double foot_vel_y;
+    double foot_acc_x;
+    double foot_acc_y;
+
+    calculateSingleAxisTrajectory(progress, swing_period, x_offset, foot_dx, foot_vel_x, foot_acc_x);
+    calculateSingleAxisTrajectory(progress, swing_period, y_offset, foot_dy, foot_vel_y, foot_acc_y);
+
+    pos(0) = x_center - foot_dx;
+    pos(1) = y_center - foot_dy;
     pos(2) = - hip_height;
 
     if(current_iteration + 1 < final_iteration)
     {
-        vel(0) = x_offset/swing_period;
-        vel(1) = y_offset/swing_period;
+        vel(0) = - foot_vel_x;
+        vel(1) = - foot_vel_y;
         vel(2) = 0.0;
+
+        acc(0) = - foot_acc_x;
+        acc(1) = - foot_acc_y;
+        acc(2) = 0.0;
     }
     else
     {
         vel(0) = 0.0;
         vel(1) = 0.0;
         vel(2) = 0.0;
+
+        acc(0) = 0.0;
+        acc(1) = 0.0;
+        acc(2) = 0.0;
     }
-
-
-    acc(0) = 0.0;
-    acc(1) = 0.0;
-    acc(2) = 0.0;
-
 }
 
 void SingleLegController::updateJointReferences()
@@ -465,6 +466,40 @@ void SingleLegController::increaseIterator()
     if(current_iteration >= final_iteration)
     {
         current_iteration = final_iteration;
+    }
+}
+
+void SingleLegController::updateState()
+{
+    current_iteration++;
+
+    if(current_iteration >= final_iteration)
+    {
+        current_iteration = 0.0;
+
+        if(state != State::stance)
+        {
+            state = State::stance;
+        }
+        else
+        {
+            state = State::swing;
+        }
+    }
+    
+}
+
+void SingleLegController::updateFootReference()
+{
+    if(state == State::swing)
+    {
+        ROS_INFO("SWING");
+        updateSwingFootPositionTrajectory();
+    }
+    else
+    {
+        ROS_INFO("STANCE");
+        updateStanceFootPositionTrajectory();
     }
 }
 
