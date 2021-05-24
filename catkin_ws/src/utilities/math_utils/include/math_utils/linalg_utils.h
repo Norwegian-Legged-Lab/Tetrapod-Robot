@@ -147,14 +147,16 @@ namespace math_utils
         Eigen::Matrix<typename Matrix_TypeA::Scalar, Eigen::Dynamic, Eigen::Dynamic> N;
 
         // Dimensions
-        constexpr auto rowsA = static_cast<int>(Matrix_TypeA::RowsAtCompileTime);
-        constexpr auto colsA = static_cast<int>(Matrix_TypeA::ColsAtCompileTime);
+        const auto rowsA = _A.rows();
+        const auto colsA = _A.cols();
 
         // Jacobi SVD
         Eigen::JacobiSVD< Eigen::Matrix<typename Matrix_TypeA::Scalar, Eigen::Dynamic, Eigen::Dynamic> > svd(_A, Eigen::ComputeThinU | Eigen::ComputeFullV);
 
         // Rank of input matrix
         const auto rankA = svd.rank();
+
+        std::cout << "print" << std::endl;
 
         // Validate
         if (rankA == colsA)
