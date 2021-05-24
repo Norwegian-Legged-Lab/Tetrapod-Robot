@@ -371,7 +371,7 @@ class Kinematics
                                                             const Eigen::Matrix<double, 18, 1> &_q,
                                                             const Eigen::Matrix<double, 18, 1> &_u);
 
-    /// \brief The GetContactJacobianInW function returns the 3*n_cx18
+    /// \brief The GetContactJacobianInW function returns the (3*n_c)x18
     /// support Jacobian mapping reaction forces at the contact points
     /// to generalized coordinate space.
     /// \param[in] _legs A vector of leg types containing the contact points.
@@ -390,6 +390,27 @@ class Kinematics
     public: Eigen::Matrix<double, Eigen::Dynamic, 18> GetContactJacobianInWDiff(std::vector<LegType> &_legs,
                                                                                 const Eigen::Matrix<double, 18, 1> &_q,
                                                                                 const Eigen::Matrix<double, 18, 1> &_u);
+
+    /// \brief The GetSwingJacobianInW function returns the (3*n_s)x18
+    /// support Jacobian mapping swing foot velocities
+    /// to generalized coordinate space. (n_s = 4 - n_c)
+    /// \param[in] _legs A vector of leg types containing the swing legs.
+    /// \param[in] _q Generalized coordinates.
+    /// \return Returns the support Jacobian Matrix mapping swing foot
+    /// velocities to generalized coordinate space.
+    public: Eigen::Matrix<double, Eigen::Dynamic, 18> GetSwingJacobianInW(std::vector<LegType> &_legs,
+                                                                          const Eigen::Matrix<double, 18, 1> &_q);
+
+    /// \brief The GetContactJacobianInWDiff function returns the
+    /// time derivative of the (3*n_s)x18 support Jacobian. (n_s = 4 - n_c)
+    /// \param[in] _legs A vector of leg types containing the swing legs.
+    /// \param[in] _q Generalized coordinates.
+    /// \param[in] _u Generalized velocities.
+    /// \return Returns the time derivative of the support 
+    /// swing-leg Jacobian Matrix.
+    public: Eigen::Matrix<double, Eigen::Dynamic, 18> GetSwingJacobianInWDiff(std::vector<LegType> &_legs,
+                                                                              const Eigen::Matrix<double, 18, 1> &_q,
+                                                                              const Eigen::Matrix<double, 18, 1> &_u);
 
     /// \brief The GetSingleBodyMassMatrix function returns the
     /// mass matrix for a single body in the system. 
