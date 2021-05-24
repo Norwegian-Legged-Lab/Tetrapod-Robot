@@ -255,7 +255,7 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
 
     // Find Pseudoinverse
     AN = A_eom * N;
-    //kindr::pseudoInverse(AN, pinvAN);
+    kindr::pseudoInverse(AN, pinvAN);
     
     // Find least squares optimal state for the at hand QP
     x_i = pinvAN * (b_eom - A_eom * x);
@@ -265,7 +265,7 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
 
     // Find new null-space projector
     A_stacked << A_eom;
-    //math_utils::nullSpaceProjector(A_stacked, N);
+    N = math_utils::SVDNullSpaceProjector(A_stacked);
 
     // ---------------- 2nd iteration - Contact Motion Constraint -----------------
 
@@ -287,6 +287,79 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
 
 
     return desired_tau;
+}
+
+// Hierarchical Least-Square Optimization
+Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalOptimizationControl::HierarchicalLeastSquareOptimization(const Eigen::Matrix<Eigen::MatrixXd, Eigen::Dynamic, 1> _A,
+                                                                                                              const Eigen::Matrix<Eigen::Matrix<double, Eigen::Dynamic, 1>, Eigen::Dynamic, 1> _b)
+{
+    // Declarations
+    Eigen::Matrix<double, Eigen::Dynamic, 1> x_opt;                 // Optimal solution
+    Eigen::Matrix<double, Eigen::Dynamic, 1> x_i;                   // Optimal solution for the at hand projected QP
+    Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> N;        // Null-space projector
+    Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> AN;       // Matrix multiplication of A and N (A*N)
+    Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> pinvAN;   // Pseudo-inverse of A*N
+    Eigen::MatrixXd A_stacked;                                      // Stacked matrix of A_i matrices
+
+    const auto rowsA = _A.rows();
+    const auto rowsb = _b.rows();
+
+    // Validate number of equations
+    if( rowsA != rowsb )
+    {
+        ROS_ERROR("[HierarchicalOptimizationControl::HierarchicalLeastSquareOptimization] _A and _b does not contain equal amount of elements!");
+
+        std::abort();
+    }
+
+    const auto state_dim = _A(0).cols();
+
+    // Validate state and equation dimensions
+    for (size_t i = 0; i < rowsA; i++)
+    {
+        if (_A(i).cols() != state_dim || _A(i).rows() != _b(i).rows() )
+        {
+            ROS_ERROR_STREAM("[HierarchicalOptimizationControl::HierarchicalLeastSquareOptimization] State or equation dimensions failed at index: i = !" << i);
+
+            std::abort();
+        }
+    }
+
+    // Setup
+    x_opt.resize(state_dim, 1);
+    N.resize(state_dim, state_dim);
+
+    // Initialize
+    x_opt.setZero();
+    N.setIdentity();
+
+    // Loop
+    for (size_t i = 0; i < rowsA; i++)
+    {
+        // Find Pseudoinverse
+        AN = _A(i) * N;
+        kindr::pseudoInverse(AN, pinvAN);
+    
+        // Find least squares optimal state for the at hand QP
+        x_i = pinvAN * (_b(i) - _A(i) * x_opt);
+
+        // Update optimal state for the hierarchical optimization
+        x_opt = x_opt + N * x_i;
+
+        // Find new null-space projector
+        Eigen::MatrixXd A_stacked_tmp = A_stacked;
+
+        A_stacked.resize(A_stacked_tmp.rows() + _A(i).rows(), state_dim);
+        A_stacked << A_stacked_tmp,
+                     _A(i);
+
+        N = math_utils::SVDNullSpaceProjector(A_stacked);
+
+        ROS_INFO_STREAM("Solution at iteration " << i << " is: \n" << x_opt);
+
+    }
+
+    return x_opt;
 }
 
 // Callback for ROS Generalized Coordinates messages
