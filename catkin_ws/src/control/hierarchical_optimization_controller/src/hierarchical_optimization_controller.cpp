@@ -246,6 +246,7 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     // Hierarchical Least Squares Optimization
     //*************************************************************************************
 
+    // Init 
     x.setZero();
     x_i.setZero();
     N.setIdentity();
@@ -254,7 +255,7 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
 
     // Find Pseudoinverse
     AN = A_eom * N;
-    kindr::pseudoInverse(AN, pinvAN);
+    //kindr::pseudoInverse(AN, pinvAN);
     
     // Find least squares optimal state for the at hand QP
     x_i = pinvAN * (b_eom - A_eom * x);
@@ -264,7 +265,7 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
 
     // Find new null-space projector
     A_stacked << A_eom;
-    math_utils::nullSpaceProjector(A_stacked, N);
+    //math_utils::nullSpaceProjector(A_stacked, N);
 
     // ---------------- 2nd iteration - Contact Motion Constraint -----------------
 
@@ -281,7 +282,7 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     // Find new null-space projector
     A_stacked << A_eom,
                  A_cmc;
-    math_utils::nullSpaceProjector(A_stacked, N);
+    //math_utils::nullSpaceProjector(A_stacked, N);
 
 
 
