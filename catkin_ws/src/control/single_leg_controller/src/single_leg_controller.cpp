@@ -16,8 +16,53 @@ SingleLegController::SingleLegController()
     K_d(2, 2) = 20.0;
 
     swing_start_time = - 2.0*swing_period;
+
+    swing_period = final_iteration/publish_frequency;
+
+    for(int i = 0; i < 3; i++)
+    {        
+        joint_state_log_msg.position.push_back(CONTROL_IDLE);
+        joint_state_log_msg.velocity.push_back(CONTROL_IDLE);
+        joint_state_log_msg.effort.push_back(CONTROL_IDLE);
+
+        joint_reference_log_msg.position.push_back(CONTROL_IDLE);
+        joint_reference_log_msg.velocity.push_back(CONTROL_IDLE);
+        joint_reference_log_msg.effort.push_back(CONTROL_IDLE);
+    }
 }
 
+SingleLegController::SingleLegController(double _publish_frequency)
+{
+    publish_frequency = _publish_frequency;
+
+    swing_period = final_iteration/publish_frequency;
+
+    for(int i = 0; i < 3; i++)
+    {
+        q(i) = uninitialized_state;
+    }
+
+    K_p(0, 0) = 200.0;
+    K_p(1, 1) = 200.0;
+    K_p(2, 2) = 200.0;
+
+    K_d(0, 0) = 40.0;
+    K_d(1, 1) = 40.0;
+    K_d(2, 2) = 40.0;
+
+    swing_start_time = - 2.0*swing_period;  
+
+    for(int i = 0; i < 3; i++)
+    {        
+        joint_state_log_msg.position.push_back(CONTROL_IDLE);
+        joint_state_log_msg.velocity.push_back(CONTROL_IDLE);
+        joint_state_log_msg.effort.push_back(CONTROL_IDLE);
+
+        joint_reference_log_msg.position.push_back(CONTROL_IDLE);
+        joint_reference_log_msg.velocity.push_back(CONTROL_IDLE);
+        joint_reference_log_msg.effort.push_back(CONTROL_IDLE);
+    }
+}
 
 /*** ROS FUNCTIONS ***/
 
@@ -76,6 +121,12 @@ void SingleLegController::initROS()
 
     // Initialize the joint state publisher
     joint_state_publisher = node_handle->advertise<sensor_msgs::JointState>("/my_robot/joint_state_cmd", 10);
+
+    // Initialize the state logging publisher
+    log_joint_states_publisher = node_handle->advertise<sensor_msgs::JointState>("/logging/joint_states", 10);
+
+    // Initialize the reference logging publisher
+    log_joint_references_publisher = node_handle->advertise<sensor_msgs::JointState>("/logging/joint_references", 10);
 }
 
 void SingleLegController::generalizedCoordinatesCallback(const std_msgs::Float64MultiArrayConstPtr &_msg)
@@ -210,7 +261,7 @@ void SingleLegController::updateJointTorques
     const Eigen::Matrix<double, 3, 1> &_q_d
 )
 {
-    Eigen::Matrix<double, 3, 1> normalized_joint_torques = _q_dd_ref*0.0 - K_p*(_q - _q_ref) - K_d*(_q_d - 0*_q_d_ref);
+    Eigen::Matrix<double, 3, 1> normalized_joint_torques = _q_dd_ref - K_p*(_q - _q_ref) - K_d*(_q_d - _q_d_ref);
 
     Eigen::Matrix<double, 3, 3> M = kinematics.GetSingleLegMassMatrix(_q);
 
@@ -347,6 +398,24 @@ bool SingleLegController::updateSimpleFootTrajectory()
     pos(1) = y_center + y_offset*current_iteration/final_iteration;
     pos(2) = - hip_height;
 
+    if(current_iteration + 1 < final_iteration)
+    {
+        vel(0) = x_offset/swing_period;
+        vel(1) = y_offset/swing_period;
+        vel(2) = 0.0;
+    }
+    else
+    {
+        vel(0) = 0.0;
+        vel(1) = 0.0;
+        vel(2) = 0.0;
+    }
+
+
+    acc(0) = 0.0;
+    acc(1) = 0.0;
+    acc(2) = 0.0;
+
     return true;
 }
 
@@ -437,4 +506,27 @@ void SingleLegController::printAllStates()
     q(0), q(1), q(2), q_d(0), q_d(1), q_d(2),
     tau(0), tau(1), tau(2)
     );
+}
+
+void SingleLegController::writeToLog()
+{
+    // Fill the log messages with the latest data
+    
+    for(int i = 0; i < 3; i++)
+    {
+        joint_state_log_msg.position[i] = q(i);
+        joint_state_log_msg.velocity[i] = q_d(i);
+        joint_state_log_msg.effort[i] = tau(i);
+
+        joint_reference_log_msg.position[i] = q_ref(i);
+        joint_reference_log_msg.velocity[i] = q_d_ref(i);
+        joint_reference_log_msg.effort[i] = q_dd_ref(i);
+    }
+    
+    // Update the time stamps
+    joint_state_log_msg.header.stamp = ros::Time::now();
+    joint_reference_log_msg.header.stamp = ros::Time::now();
+
+    log_joint_states_publisher.publish(joint_state_log_msg);
+    log_joint_references_publisher.publish(joint_reference_log_msg);
 }

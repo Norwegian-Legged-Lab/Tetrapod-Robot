@@ -33,6 +33,8 @@ class SingleLegController
     /// \brief Constructor
     public: SingleLegController();
 
+    public: SingleLegController(double _publish_frequency);
+
     /// \brief Destructor
     public: virtual ~SingleLegController(){};
 
@@ -125,6 +127,8 @@ class SingleLegController
 
     public: void printAllStates();
 
+    public: void writeToLog();
+
     public: State getState(){return state;}
 
 
@@ -167,6 +171,8 @@ class SingleLegController
 
     /*** PARAMETERS ***/
 
+    private: double publish_frequency = 100.0;
+
     private: double swing_period = 2.0;
 
     private: double hip_height = 0.3;
@@ -175,7 +181,7 @@ class SingleLegController
 
     private: double y_center = 0.35;
 
-    private: double x_offset = -0.3;
+    private: double x_offset = -0.6;
 
     private: double y_offset = 0.0;
 
@@ -215,6 +221,18 @@ class SingleLegController
 
     /// \brief The joint state message that is sent to the Teensy
     private: sensor_msgs::JointState motor_command_msg;
+
+    /// \brief Publishes joint positions for logging
+    private: ros::Publisher log_joint_states_publisher;
+
+    /// \brief The joint state message that is used to log states
+    private: sensor_msgs::JointState joint_state_log_msg;
+
+    /// \brief Publishes joint position references for logging
+    private: ros::Publisher log_joint_references_publisher;
+
+    /// \brief The joint state message that is used to log references
+    private: sensor_msgs::JointState joint_reference_log_msg;
 
 
     /*** UTILITY VARIABLES ***/
