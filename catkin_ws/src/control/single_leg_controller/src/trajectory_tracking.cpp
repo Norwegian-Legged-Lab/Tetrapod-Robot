@@ -5,7 +5,9 @@
 
 int main(int argc, char **argv)
 {
-    SingleLegController controller;
+    double publish_frequency = 100.0;
+
+    SingleLegController controller(publish_frequency);
     
     controller.initROS();
 
@@ -13,7 +15,7 @@ int main(int argc, char **argv)
 
     ros::Rate check_for_messages_rate(1);
 
-    ros::Rate send_control_command_rate(50.0);
+    ros::Rate send_control_command_rate(publish_frequency);
 
     while(!controller.initialStateReceived())
     {
@@ -38,7 +40,6 @@ int main(int argc, char **argv)
     controller.resetReadyToProceed();
 
     controller.moveJointsToCenter();
-
     
     while(true)
     {
@@ -48,6 +49,7 @@ int main(int argc, char **argv)
         controller.updateJointReferences();
         controller.updateJointTorques();
         controller.printAllStates();
+        controller.writeToLog();
         controller.sendTorqueCommand();
         send_control_command_rate.sleep();
     }
