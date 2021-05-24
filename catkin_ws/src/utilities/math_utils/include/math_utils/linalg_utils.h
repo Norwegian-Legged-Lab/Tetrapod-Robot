@@ -99,11 +99,11 @@ namespace math_utils
     /// \param[in] _alpha Scalar parameter between 0 and 1 used to
     /// regulate the priority between two tasks (if used in a hierarchical
     /// control approach).
-    /// \return Returns true if a null-space projecto peB>
+    /// \return Returns true if a null-space projector is calculated successfully.
     template<typename Matrix_TypeA, typename Matrix_TypeB>
     bool static nullSpaceProjector(const Matrix_TypeA &_A,
-                                   Matrix_TypeB &_N,
-                                   const double _alpha = 1)
+                                         Matrix_TypeB &_N,
+                                         const double _alpha = 1)
     {
         constexpr auto rowsA = static_cast<int>(Matrix_TypeA::RowsAtCompileTime);
         constexpr auto colsA = static_cast<int>(Matrix_TypeA::ColsAtCompileTime);
@@ -129,5 +129,47 @@ namespace math_utils
 
         return true;
     }
+
+    /// \brief The SVDNullSpaceProjector function calculates the null-space
+    /// projector of a given matrix. The null-space projector is calculated
+    /// using the singular-value decomposition (SVD). The null-space
+    /// projector is found as N(_A) = V_N^*, where the SVD comprises:
+    /// -------------------------------------------------------------
+    ///           A = [U_R, U_N][S, 0;[V_R^*;
+    ///                          0, 0] V_N^*]
+    /// -------------------------------------------------------------
+    /// \param[in] _A Input matrix A.
+    /// \return Returns the SVD null-space projector of the input matrix _A.
+    template<typename Matrix_TypeA> 
+    Eigen::Matrix<typename Matrix_TypeA::Scalar, Eigen::Dynamic, Eigen::Dynamic> SVDNullSpaceProjector(const Matrix_TypeA &_A)
+    {
+        // Null-space projector
+        Eigen::Matrix<typename Matrix_TypeA::Scalar, Eigen::Dynamic, Eigen::Dynamic> N;
+
+        // Dimensions
+        constexpr auto rowsA = static_cast<int>(Matrix_TypeA::RowsAtCompileTime);
+        constexpr auto colsA = static_cast<int>(Matrix_TypeA::ColsAtCompileTime);
+
+        // Jacobi SVD
+        Eigen::JacobiSVD< Eigen::Matrix<typename Matrix_TypeA::Scalar, Eigen::Dynamic, Eigen::Dynamic> > svd(_A, Eigen::ComputeThinU | Eigen::ComputeFullV);
+
+        // Rank of input matrix
+        const auto rankA = svd.rank();
+
+        // Validate
+        if (rankA == colsA)
+        {
+            N.resize(colsA, 1);
+            N.setZero();
+        }
+        else
+        {
+            N.resize(colsA, colsA - rankA);
+            N = svd.matrixV().rightCols(colsA - rankA);
+        }
+
+        return N;
+
+    }                                
 
 } // namespace math_utils
