@@ -47,15 +47,53 @@ HierarchicalOptimizationControl::~HierarchicalOptimizationControl()
     this->rosPublishQueueThread.join();
 }
 
-// Hierarchical Least-Square Optimization
-void HierarchicalOptimizationControl::HierarchicalLeastSquareOptimization()
+// Hierarchical Optimization
+Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimization(const Eigen::Vector3d &_desired_base_pos,
+                                                                                       const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_pos)
 {
-    Eigen::Matrix<double, 18, 1> desired_dot_u;            // 18x1 Desired Generalized accelerations
-    Eigen::Matrix<double, Eigen::Dynamic, 1> desired_F_c;  // 3*n_cx1 Desired Contact forces
+    //*************************************************************************************
+    // Declarations
+    //*************************************************************************************
 
-    Eigen::Matrix<double, Eigen::Dynamic, 1> x;            // (18 + 3*n_c)x1 Optimization variable
+    Eigen::Matrix<double, 12, 1> desired_tau;              // 12x1 Reference joint torques
 
-    // Matrices and terms used to enfore equations of motion 
+    // Matrices and vectors used for the QP formulation
+    // used to solve the multi-tasks control problem.
+    Eigen::Matrix<double, Eigen::Dynamic, 1> x;                     // (18 + 3*n_c)x1 Optimization variable, comprises of [dot_u^T, F_c^T]^T
+    Eigen::Matrix<double, Eigen::Dynamic, 1> x_i;                   // (18 + 3*n_c)x1 Optimization variable for the at hand QP indexed by i
+    Eigen::MatrixXd A_stacked;                                      // Stacked vector of A_i matrices
+    Eigen::MatrixXd N;                                              // Null-space projector
+    Eigen::MatrixXd AN;                                             // Matrix A_i*N_i
+    Eigen::MatrixXd pinvAN;                                         // Pseudo inverse of A_i*N_i
+
+    Eigen::Matrix<double, 18, Eigen::Dynamic> A_eom;                // 18x(18 + 3*n_c) A matrix for EOMs
+    Eigen::Matrix<double, 18, 1> b_eom;                             // 18x1 b vector for EOMs
+
+    Eigen::Matrix<double, 18, Eigen::Dynamic> A_tl;                 // 18x(18 + 3*n_c) A matrix for torque limits
+    Eigen::Matrix<double, 18, 1> b_tl;                              // 18x1 b vector for torque limits
+
+    Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> A_cmc;    // (3*n_c)x(18 + 3*n_c) A matrix for contact motion constraints
+    Eigen::Matrix<double, Eigen::Dynamic, 1> b_cmc;                 // (3*n_c)x1 b vector for contact motion constraints
+
+    Eigen::Matrix<double, 3, Eigen::Dynamic> A_mt_fb;               // 3x(18 + 3*n_c) A matrix for floating base motion tracking
+    Eigen::Matrix<double, 3, 1> b_mt_fb;                            // 3x1 b vector for floating base motion tracking
+
+    Eigen::Matrix<double, 3, Eigen::Dynamic> A_mt_fl;               // 3x(18 + 3*n_c) A matrix for front left foot motion tracking
+    Eigen::Matrix<double, 3, 1> b_mt_fl;                            // 3x1 b vector for front left foot motion tracking
+
+    Eigen::Matrix<double, 3, Eigen::Dynamic> A_mt_fr;               // 3x(18 + 3*n_c) A matrix for front right foot motion tracking
+    Eigen::Matrix<double, 3, 1> b_mt_fr;                            // 3x1 b vector for front right foot motion tracking
+    
+    Eigen::Matrix<double, 3, Eigen::Dynamic> A_mt_rl;               // 3x(18 + 3*n_c) A matrix for rear left foot motion tracking
+    Eigen::Matrix<double, 3, 1> b_mt_rl;                            // 3x1 b vector for rear left foot tracking
+
+    Eigen::Matrix<double, 3, Eigen::Dynamic> A_mt_rr;               // 3x(18 + 3*n_c) A matrix for rear right foot motion tracking
+    Eigen::Matrix<double, 3, 1> b_mt_rr;                            // 3x1 b vector for rear right foot motion tracking
+
+    Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> A_cfm;    // (3*n_c)x(18 + 3*n_c) A matrix for contact force minimization
+    Eigen::Matrix<double, Eigen::Dynamic, 1> b_cfm;                 // (3*n_c)x1 b vector for contact force minimization
+
+    // Matrices and terms used to enforce equations of motion 
     // for the floating base system dynamics (the first six
     // rows of the respective matrices and terms).
     Eigen::Matrix<double, 18, 18> M_fb;                    // 18x18 Floating base Mass matrix
@@ -63,47 +101,191 @@ void HierarchicalOptimizationControl::HierarchicalLeastSquareOptimization()
     Eigen::Matrix<double, 18, 1> g_fb;                     // 18x1 Floating base Gravitational terms
     Eigen::Matrix<double, Eigen::Dynamic, 18> J_c_fb;      // (3*n_c)x18 Floating base Contact Jacobian
 
+    // Matrices used to enforce contact motion constraints
+    Eigen::Matrix<double, Eigen::Dynamic, 18> J_c;         // (3*n_c)x18 Contact Jacobian
+    Eigen::Matrix<double, Eigen::Dynamic, 18> dot_J_c;     // (3*n_c)x18 Time derivative of the Contact Jacobian
+
+    // Matrices and parameters used to enfore motion tracking
+    Eigen::Matrix<double, 3, 18> J_P_fb;                   // 3x18 Floating base Translation Jacobian
+    Eigen::Matrix<double, 3, 18> J_P_fl;                   // 3x18 Front left foot Translation Jacobian
+    Eigen::Matrix<double, 3, 18> J_P_fr;                   // 3x18 Front right foot Translation Jacobian
+    Eigen::Matrix<double, 3, 18> J_P_rl;                   // 3x18 Rear left foot Translation Jacobian
+    Eigen::Matrix<double, 3, 18> J_P_rr;                   // 3x18 Rear right foot Translation Jacobian
+
+
     std::vector<Kinematics::LegType> contact_legs; // Vector of contact points (legs)
+    std::vector<Kinematics::LegType> swing_legs;   // Vector of swing legs
 
-    ros::Rate control_rate(200); 
-    while (this->rosNode->ok())
+    //*************************************************************************************
+    // Tuning parameters
+    //*************************************************************************************
+
+    // Motion tracking gains
+    double k_p_fb = 1;      // Floating base proportional gain
+    double k_p_fl = 1;      // Front left foot proportional gain
+    double k_p_fr = 1;      // Front right foot proportional gain
+    double k_p_rl = 1;      // Rear left foot proportional gain
+    double k_p_rr = 1;      // Rear right foot proportional gain
+
+    //*************************************************************************************
+    // Updates
+    //*************************************************************************************
+
+    // Fill contact and swing legs
+    for (size_t i = 0; i < 4; i++)
     {
-        // Clear contact points
-        contact_legs.clear();
-
-        // Fill contact points
-        for (size_t i = 0; i < 4; i++)
+        // Contact State is assumed sorted by fl, fr, rl, rr
+        if (contactState[i])
         {
-            // Contact State is assumed sorted by fl, fr, rl, rr
-            if (contactState[i])
-            {
-                // fl = 1, fr = 2, rl = 3, rr = 4
-                contact_legs.push_back(Kinematics::LegType(i + 1));
-            }
+            // fl = 1, fr = 2, rl = 3, rr = 4
+            contact_legs.push_back(Kinematics::LegType(i + 1));
         }
-
-        // Number of contact points
-        const unsigned int n_c = contact_legs.size();
-
-        // Resize dynamic matrices and terms
-        x.resize(18 + 3*n_c, 1);
-        J_c_fb.resize(3*n_c, 18);
-
-        // Update matrices used by EOMs
-        M_fb = kinematics.GetMassMatrix(this->genCoord);
-        M_fb.bottomRows(12).setZero();
-
-        b_fb = kinematics.GetCoriolisAndCentrifugalTerms(this->genCoord, this->genVel);
-        b_fb.bottomRows(12).setZero();
-
-        g_fb = kinematics.GetGravitationalTerms(this->genCoord);
-        g_fb.bottomRows(12).setZero();
-
-        J_c_fb = kinematics.GetContactJacobianInW(contact_legs, this->genCoord);
-        J_c_fb.rightCols(12).setZero();
-
-        control_rate.sleep();
+        else
+        {
+            // fl = 1, fr = 2, rl = 3, rr = 4
+            swing_legs.push_back(Kinematics::LegType(i + 1));
+        }
     }
+
+    // Number of contact and swing legs, respectively
+    const unsigned int n_c = contact_legs.size();
+    const unsigned int n_s = swing_legs.size();
+
+    // Resize dynamic matrices and terms
+    x.resize(18 + 3*n_c, 1);
+    x_i.resize(18 + 3*n_c, 1);
+    N.resize(18 + 3*n_c, 18 + 3*n_c);
+
+    A_eom.resize(18, 18 + 3*n_c);
+
+    A_cmc.resize(3*n_c, 18 + 3*n_c);
+    b_cmc.resize(3*n_c, 1);
+
+    A_mt_fb.resize(3, 18 + 3*n_c);
+    A_mt_fl.resize(3, 18 + 3*n_c);
+    A_mt_fr.resize(3, 18 + 3*n_c);
+    A_mt_rl.resize(3, 18 + 3*n_c);
+    A_mt_rr.resize(3, 18 + 3*n_c);
+
+    A_cfm.resize(3*n_c, 18 + 3*n_c);
+    b_cfm.resize(3*n_c, 1);
+
+    J_c_fb.resize(3*n_c, 18);
+    J_c.resize(3*n_c, 18);
+    dot_J_c.resize(3*n_c, 18);
+
+    // Update matrices used by EOM constraints
+    M_fb = kinematics.GetMassMatrix(this->genCoord);
+    M_fb.bottomRows(12).setZero();
+
+    b_fb = kinematics.GetCoriolisAndCentrifugalTerms(this->genCoord, this->genVel);
+    b_fb.bottomRows(12).setZero();
+
+    g_fb = kinematics.GetGravitationalTerms(this->genCoord);
+    g_fb.bottomRows(12).setZero();
+
+    J_c_fb = kinematics.GetContactJacobianInW(contact_legs, this->genCoord);
+    J_c_fb.rightCols(12).setZero();
+
+    // Update matrices used by contact motion constraints
+    J_c = kinematics.GetContactJacobianInW(contact_legs, this->genCoord);
+    dot_J_c = kinematics.GetContactJacobianInWDiff(contact_legs, this->genCoord, this->genVel);
+
+    // Update matrices used by motion tracking constraints
+    J_P_fb = kinematics.GetTranslationJacobianInW(Kinematics::LegType::NONE,
+                                                  Kinematics::BodyType::base,
+                                                  this->genCoord);
+    J_P_fl = kinematics.GetTranslationJacobianInW(Kinematics::LegType::frontLeft,
+                                                  Kinematics::BodyType::foot,
+                                                  this->genCoord);
+    J_P_fr = kinematics.GetTranslationJacobianInW(Kinematics::LegType::frontRight,
+                                                  Kinematics::BodyType::foot,
+                                                  this->genCoord);
+    J_P_rl = kinematics.GetTranslationJacobianInW(Kinematics::LegType::rearLeft,
+                                                  Kinematics::BodyType::foot,
+                                                  this->genCoord);
+    J_P_rr = kinematics.GetTranslationJacobianInW(Kinematics::LegType::rearRight,
+                                                  Kinematics::BodyType::foot,
+                                                  this->genCoord);
+
+
+    // Add updated matrices to QP matrix A and vector b
+    A_eom.leftCols(18) = M_fb;
+    A_eom.rightCols(3*n_c) = - J_c_fb.transpose();
+    b_eom = - (b_fb + g_fb);
+
+    A_cmc.leftCols(18) = J_c;
+    A_cmc.rightCols(3*n_c).setZero();
+    b_cmc = - dot_J_c * this->genVel;
+
+    A_mt_fb.leftCols(18) = J_P_fb;
+    A_mt_fb.rightCols(3*n_c).setZero();
+    b_mt_fb = k_p_fb * (_desired_base_pos - this->genCoord.topRows(3));
+
+    A_mt_fl.leftCols(18) = J_P_fl;
+    A_mt_fl.rightCols(3*n_c).setZero();
+    b_mt_fl = k_p_fl * (_desired_f_pos(0) - this->fPos(0));
+
+    A_mt_fr.leftCols(18) = J_P_fr;
+    A_mt_fr.rightCols(3*n_c).setZero();
+    b_mt_fr = k_p_fr * (_desired_f_pos(1) - this->fPos(1));
+
+    A_mt_rl.leftCols(18) = J_P_rl;
+    A_mt_rl.rightCols(3*n_c).setZero();
+    b_mt_rl = k_p_rl * (_desired_f_pos(2) - this->fPos(2));
+
+    A_mt_rr.leftCols(18) = J_P_rr;
+    A_mt_rr.rightCols(3*n_c).setZero();
+    b_mt_rr = k_p_rr * (_desired_f_pos(3) - this->fPos(3));
+
+    A_cfm.leftCols(18).setZero();
+    A_cfm.rightCols(3*n_c).setIdentity();
+    b_cfm.setZero();
+
+    //*************************************************************************************
+    // Hierarchical Least Squares Optimization
+    //*************************************************************************************
+
+    x.setZero();
+    x_i.setZero();
+    N.setIdentity();
+
+    // ---------------- 1st iteration - EOMs -----------------
+
+    // Find Pseudoinverse
+    AN = A_eom * N;
+    kindr::pseudoInverse(AN, pinvAN);
+    
+    // Find least squares optimal state for the at hand QP
+    x_i = pinvAN * (b_eom - A_eom * x);
+
+    // Update optimal state for the hierarchical optimization
+    x = x + N * x_i;
+
+    // Find new null-space projector
+    A_stacked << A_eom;
+    math_utils::nullSpaceProjector(A_stacked, N);
+
+    // ---------------- 2nd iteration - Contact Motion Constraint -----------------
+
+    // Find Pseudoinverse
+    AN = A_cmc * N;
+    kindr::pseudoInverse(AN, pinvAN);
+    
+    // Find least squares optimal state for the at hand QP
+    x_i = pinvAN * (b_cmc - A_cmc * x);
+
+    // Update optimal state for the hierarchical optimization
+    x = x + N * x_i;
+
+    // Find new null-space projector
+    A_stacked << A_eom,
+                 A_cmc;
+    math_utils::nullSpaceProjector(A_stacked, N);
+
+
+
+    return desired_tau;
 }
 
 // Callback for ROS Generalized Coordinates messages
@@ -112,6 +294,11 @@ void HierarchicalOptimizationControl::OnGenCoordMsg(const std_msgs::Float64Multi
     std::vector<double> data = _msg->data;
 
     this->genCoord = Eigen::Map<Eigen::MatrixXd>(data.data(), 18, 1);
+
+    if (!this->kinematics.SolveForwardKinematics(genCoord, fPos))
+    {
+        ROS_ERROR("[HierarchicalOptimizationControl::OnGenCoordMsg] Could not solve forward kinematics!");
+    }
 }
 
 // Callback for ROS Generalized Velocities messages

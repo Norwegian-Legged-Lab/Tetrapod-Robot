@@ -1774,7 +1774,7 @@ Eigen::Matrix<double, Eigen::Dynamic, 18> Kinematics::GetContactJacobianInW(std:
     return J;
 }
 
-// (3*n_c)x18 Contact Support Jacobian in world frame
+// (3*n_c)x18 Time derivative of the Contact Support Jacobian in world frame
 Eigen::Matrix<double, Eigen::Dynamic, 18> Kinematics::GetContactJacobianInWDiff(std::vector<LegType> &_legs,
                                                                                 const Eigen::Matrix<double, 18, 1> &_q,
                                                                                 const Eigen::Matrix<double, 18, 1> &_u)
@@ -1786,20 +1786,119 @@ Eigen::Matrix<double, Eigen::Dynamic, 18> Kinematics::GetContactJacobianInWDiff(
     // Validate number of contact points
     if (n_c == 0)
     {
-        ROS_ERROR_STREAM("[Kinematics::GetContactJacobianInW] Zero contact points were given!");
+        ROS_ERROR_STREAM("[Kinematics::GetContactJacobianInWDiff] Zero contact points were given!");
 
         std::abort();
     }
     else if (n_c > 4)
     {
 
-        ROS_ERROR_STREAM("[Kinematics::GetContactJacobianInW] More than four contact points were given!");
+        ROS_ERROR_STREAM("[Kinematics::GetContactJacobianInWDiff] More than four contact points were given!");
 
         std::abort();
     }
 
     // Set Jacobian dimensions
     dot_J.resize(3*n_c, 18);
+
+    // Default Jacobian to zero
+    dot_J.setZero();
+
+    // Sort vector of legs to ensure correct filling of partial Jacobians
+    std::sort(_legs.begin(), _legs.end());
+
+    // Index to track which index the partial Jacobian 
+    // should be filled into in the complete Jacobian.
+    int row = 0;
+
+    for (LegType leg : _legs)
+    {
+        // Fill Jacobian
+        dot_J.block<3,18>(row,0) = this->GetTranslationJacobianInWDiff(leg, BodyType::foot, _q, _u);
+
+        // Increment
+        row += 3; 
+    }
+
+
+    return dot_J;
+}
+
+// (3*n_s)x18 Swing Support Jacobian in world frame
+Eigen::Matrix<double, Eigen::Dynamic, 18> Kinematics::GetSwingJacobianInW(std::vector<LegType> &_legs,
+                                                                          const Eigen::Matrix<double, 18, 1> &_q)
+{
+    Eigen::MatrixXd J;                     // Swing Support Jacobian
+
+    const unsigned int n_s = _legs.size(); // Number of swing legs
+
+    // Validate number of swing legs
+    if (n_s == 0)
+    {
+        ROS_ERROR_STREAM("[Kinematics::GetSwingJacobianInW] Zero swing legs were given!");
+
+        std::abort();
+    }
+    else if (n_s > 4)
+    {
+
+        ROS_ERROR_STREAM("[Kinematics::GetSwingJacobianInW] More than four swing legs were given!");
+
+        std::abort();
+    }
+
+    // Set Jacobian dimensions
+    J.resize(3*n_s, 18);
+
+    // Default Jacobian to zero
+    J.setZero();
+
+    // Sort vector of legs to ensure correct filling of partial Jacobians
+    std::sort(_legs.begin(), _legs.end());
+
+    // Index to track which index the partial Jacobian 
+    // should be filled into in the complete Jacobian.
+    int row = 0;
+
+    for (LegType leg : _legs)
+    {
+        // Fill Jacobian
+        J.block<3,18>(row,0) = this->GetTranslationJacobianInW(leg, BodyType::foot, _q);
+
+        // Increment
+        row += 3; 
+    }
+
+
+    return J;
+}
+
+// (3*n_s)x18 Time derivative of the Swing Support Jacobian in world frame
+Eigen::Matrix<double, Eigen::Dynamic, 18> Kinematics::GetSwingJacobianInWDiff(std::vector<LegType> &_legs,
+                                                                              const Eigen::Matrix<double, 18, 1> &_q,
+                                                                              const Eigen::Matrix<double, 18, 1> &_u)
+{
+    Eigen::MatrixXd dot_J;                 // Swing Support Jacobian
+
+    const unsigned int n_s = _legs.size(); // Number of swing legs
+
+    // Validate number of swing legs
+    if (n_s == 0)
+    {
+        ROS_ERROR_STREAM("[Kinematics::GetSwingJacobianInW] Zero swing legs were given!");
+
+        std::abort();
+    }
+    else if (n_s > 4)
+    {
+
+        ROS_ERROR_STREAM("[Kinematics::GetSwingJacobianInW] More than four swing legs were given!");
+
+        std::abort();
+    }
+
+    // Set Jacobian dimensions
+    dot_J.resize(3*n_s, 18);
 
     // Default Jacobian to zero
     dot_J.setZero();
