@@ -69,6 +69,10 @@ class HierarchicalOptimizationControl
     public: Eigen::Matrix<double, 12, 1> HierarchicalOptimization(const Eigen::Vector3d &_desired_base_pos,
                                                                   const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_pos); 
 
+    // TODO Describe
+    public: Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalLeastSquareOptimization(const Eigen::Matrix<Eigen::MatrixXd, Eigen::Dynamic, 1> A_matrices,
+                                                                                         const Eigen::Matrix<Eigen::Matrix<double, Eigen::Dynamic, 1>, Eigen::Dynamic, 1> b_vectors);
+
     /// \brief The OnGenCoordMsg function handles an incoming 
     /// generalized coordinates message from ROS.
     /// \param[in] _msg A float array containing the generalized

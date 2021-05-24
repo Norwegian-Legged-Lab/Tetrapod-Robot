@@ -34,16 +34,45 @@ int main(int argc, char **argv)
 {
     HierarchicalOptimizationControl ho_controller;
 
-    Eigen::Vector3d desired_base_pos;
-    Eigen::Matrix<Eigen::Vector3d, 4, 1> desired_f_pos;
 
-    desired_base_pos.setZero();
-    desired_f_pos(0).setZero();
-    desired_f_pos(1).setZero();
-    desired_f_pos(2).setZero();
-    desired_f_pos(3).setZero();
+    Eigen::Matrix<double, 1, 2> A1;
+    Eigen::Matrix<double, 1, 1> b1;
 
-    ho_controller.HierarchicalOptimization(desired_base_pos, desired_f_pos);
+    Eigen::Matrix<double, 2, 2> A2;
+    Eigen::Matrix<double, 2, 1> b2;
+
+    Eigen::Matrix<double, 1, 2> A3;
+    Eigen::Matrix<double, 1, 1> b3;
+
+    A1 << 1, 1;
+
+    b1 << 10;
+
+    A2 << 1, 0,
+          0, 1;
+
+    b2 << 6,
+          3;
+
+    A3 << 0, 1;
+          
+
+    b3 << 3;
+
+    Eigen::Matrix<Eigen::MatrixXd, 3, 1> A;
+    Eigen::Matrix<Eigen::Matrix<double, Eigen::Dynamic, 1>, 3, 1> b;
+
+    A(0) = A1;
+    b(0) = b1;
+    A(1) = A2;
+    b(1) = b2;
+    A(2) = A3;
+    b(2) = b3;
+    
+    Eigen::MatrixXd x_opt = ho_controller.HierarchicalLeastSquareOptimization(A, b);
+
+    ROS_INFO_STREAM("x_opt: \n" << x_opt);
+
 
     ros::spin();
 
