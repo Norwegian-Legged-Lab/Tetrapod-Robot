@@ -62,6 +62,16 @@ class SingleLegController
 
     private: Eigen::Matrix<double, 3, 1> calculateSwingLegHeightTrajectory(double _percentage, double _period, double _max_swing_height, double _hip_height);
 
+    private: void calculateSingleAxisTrajectory
+    (
+        const double &_percentage, 
+        const double &_period, 
+        const double &_max_travel,
+        double &_x, 
+        double &_x_d, 
+        double &_x_dd
+    );
+
     public: void updateStanceFootPositionTrajectory();
 
     public: void updateSwingFootPositionTrajectory();
@@ -181,7 +191,7 @@ class SingleLegController
 
     private: double y_center = 0.35;
 
-    private: double x_offset = -0.6;
+    private: double x_offset = 0.6;
 
     private: double y_offset = 0.0;
 

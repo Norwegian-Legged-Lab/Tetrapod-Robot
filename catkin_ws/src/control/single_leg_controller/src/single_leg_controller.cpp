@@ -8,12 +8,12 @@ SingleLegController::SingleLegController()
     }
 
     K_p(0, 0) = 100.0;
-    K_p(1, 1) = 200.0;
+    K_p(1, 1) = 100.0;
     K_p(2, 2) = 100.0;
 
     K_d(0, 0) = 20.0;
-    K_d(1, 1) = 40.0;
-    K_d(2, 2) = 20.0;
+    K_d(1, 1) = 30.0;
+    K_d(2, 2) = 30.0;
 
     swing_start_time = - 2.0*swing_period;
 
@@ -205,6 +205,26 @@ Eigen::Matrix<double, 3, 1> SingleLegController::calculateSwingLegHeightTrajecto
     return trajectory;
 }
 
+void SingleLegController::calculateSingleAxisTrajectory
+(
+    const double &_percentage, 
+    const double &_period, 
+    const double &_max_travel,
+    double &_x, 
+    double &_x_d, 
+    double &_x_dd
+)
+{
+    double a = 30.0*_max_travel;
+    double b = -15.0*_max_travel;
+    double c = 1.875*_max_travel;
+    double d = -_max_travel*7.0/16.0;
+
+    _x = 0.2*a*pow((_percentage - 0.5), 5.0) + b*pow((_percentage - 0.5), 3.0)/3.0 + c*_percentage + d;
+    _x_d = (a*pow((_percentage - 0.5), 4.0) + b*pow((_percentage - 0.5), 2.0) + c)/_period;
+    _x_dd = (4.0*a*pow((_percentage - 0.5), 3.0) + 2.0*b*(_percentage - 0.5))/(_period*_period);
+}
+
 void SingleLegController::updateSwingFootPositionTrajectory()
 {
     pos(0) = x_center - x_offset*(1.0 - swing_percentage);
@@ -223,17 +243,28 @@ void SingleLegController::updateSwingFootPositionTrajectory()
 
 void SingleLegController::updateStanceFootPositionTrajectory()
 {
-    pos(0) = x_center - x_offset*swing_percentage;
-    vel(0) = - x_offset/swing_period;
-    acc(0) = 0.0;
-
-    pos(1) = y_center - y_offset*swing_percentage;
-    vel(1) = - y_offset/swing_period;
-    acc(1) = 0.0;
-
+    pos(0) = x_center - x_offset*current_iteration/final_iteration;
+    pos(1) = y_center - y_offset*current_iteration/final_iteration;
     pos(2) = - hip_height;
-    vel(2) = 0.0;
+
+    if(current_iteration + 1 < final_iteration)
+    {
+        vel(0) = x_offset/swing_period;
+        vel(1) = y_offset/swing_period;
+        vel(2) = 0.0;
+    }
+    else
+    {
+        vel(0) = 0.0;
+        vel(1) = 0.0;
+        vel(2) = 0.0;
+    }
+
+
+    acc(0) = 0.0;
+    acc(1) = 0.0;
     acc(2) = 0.0;
+
 }
 
 void SingleLegController::updateJointReferences()
@@ -394,27 +425,36 @@ bool SingleLegController::moveJointsToCenter()
 
 bool SingleLegController::updateSimpleFootTrajectory()
 {
-    pos(0) = x_center + x_offset*current_iteration/final_iteration;
-    pos(1) = y_center + y_offset*current_iteration/final_iteration;
+    double foot_dx;
+    double foot_vel_x;
+    double foot_acc_x;
+
+    calculateSingleAxisTrajectory(current_iteration/final_iteration, swing_period, x_offset, foot_dx, foot_vel_x, foot_acc_x);
+
+    pos(0) = x_center - foot_dx;
+    pos(1) = y_center;
     pos(2) = - hip_height;
 
     if(current_iteration + 1 < final_iteration)
     {
-        vel(0) = x_offset/swing_period;
-        vel(1) = y_offset/swing_period;
+        vel(0) = - foot_vel_x;
+        vel(1) = 0.0;
         vel(2) = 0.0;
+
+        acc(0) = - foot_acc_x;
+        acc(1) = 0.0;
+        acc(2) = 0.0;
     }
     else
     {
         vel(0) = 0.0;
         vel(1) = 0.0;
         vel(2) = 0.0;
+
+        acc(0) = 0.0;
+        acc(1) = 0.0;
+        acc(2) = 0.0;
     }
-
-
-    acc(0) = 0.0;
-    acc(1) = 0.0;
-    acc(2) = 0.0;
 
     return true;
 }
