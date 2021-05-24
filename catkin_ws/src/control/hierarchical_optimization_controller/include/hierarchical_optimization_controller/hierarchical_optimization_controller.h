@@ -41,8 +41,8 @@
 
 // ROS Package Libraries
 #include <kinematics/kinematics.h>
-#include <math_utils/angle_utils.h>
 #include <debug_utils/debug_utils.h>
+#include <math_utils/Core>
 
 // Eigen
 #include <Eigen/Core>
@@ -66,7 +66,8 @@ class HierarchicalOptimizationControl
     public: virtual ~HierarchicalOptimizationControl();
 
     // TODO Describe
-    public: void HierarchicalLeastSquareOptimization();
+    public: Eigen::Matrix<double, 12, 1> HierarchicalOptimization(const Eigen::Vector3d &_desired_base_pos,
+                                                                  const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_pos); 
 
     /// \brief The OnGenCoordMsg function handles an incoming 
     /// generalized coordinates message from ROS.
@@ -108,6 +109,9 @@ class HierarchicalOptimizationControl
 
     /// \brief Generalized Velocities
     private: Eigen::Matrix<double, 18, 1> genVel;
+
+    /// \brief Footstep positions
+    private: Eigen::Matrix<Eigen::Vector3d, 4, 1> fPos;
 
     /// \brief Contact State
     private: int contactState[4];

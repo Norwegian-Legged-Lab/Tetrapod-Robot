@@ -34,6 +34,17 @@ int main(int argc, char **argv)
 {
     HierarchicalOptimizationControl ho_controller;
 
+    Eigen::Vector3d desired_base_pos;
+    Eigen::Matrix<Eigen::Vector3d, 4, 1> desired_f_pos;
+
+    desired_base_pos.setZero();
+    desired_f_pos(0).setZero();
+    desired_f_pos(1).setZero();
+    desired_f_pos(2).setZero();
+    desired_f_pos(3).setZero();
+
+    ho_controller.HierarchicalOptimization(desired_base_pos, desired_f_pos);
+
     ros::spin();
 
     return 0;
