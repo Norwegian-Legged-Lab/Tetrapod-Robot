@@ -575,12 +575,15 @@ void testNullSpaceProjector()
 {
     Eigen::Matrix<double, 2, 3> A;
     
-    A << 1, 0, 0,
-         0, 0, 0;
+    A << 5, 1, 0,
+         0, 0, 1;
 
     Eigen::Matrix<double, 3, 3> N;
 
+    Eigen::MatrixXd N_svd = math_utils::SVDNullSpaceProjector(A);
+
     math_utils::nullSpaceProjector(A,N);
+
 
     Eigen::Matrix<double, 3, 2> pinvA;
 
@@ -590,6 +593,46 @@ void testNullSpaceProjector()
 
     ROS_INFO_STREAM("Null-space projector, N: \n" << N);
     ROS_INFO_STREAM("Null-space projector test, N: \n" << N_test);
+    ROS_INFO_STREAM("SVD Null-space projector, N_svd: \n" << N_svd << "\n\n");
+
+    ROS_INFO_STREAM("A*N = \n" << A*N << "\n");
+    ROS_INFO_STREAM("A*N_svd = \n" << A*N_svd << "\n");
+}
+
+void testSVDNullSpaceProjector()
+{
+    Eigen::Matrix<double, 3, 3> A;
+    Eigen::Matrix<double, 6, 4> B;
+    Eigen::Matrix<double, 2, 3> C;
+    Eigen::Matrix<double, 5, 9> D;
+
+    A << 1, 0, 0,
+         0, 1, 0,
+         0, 0, 1;
+    B << 1, 0, 0, 0,
+         0, 0, 0, 0,
+         0, 0, 0, 0,
+         0, 0, 1, 0,
+         0, 0, 0, 0,
+         0, 0, 0, 0;
+    C.setRandom();
+    D.setRandom();
+
+    Eigen::MatrixXd N_A = math_utils::SVDNullSpaceProjector(A);
+    Eigen::MatrixXd N_B = math_utils::SVDNullSpaceProjector(B);
+    Eigen::MatrixXd N_C = math_utils::SVDNullSpaceProjector(C);
+    Eigen::MatrixXd N_D = math_utils::SVDNullSpaceProjector(D);
+
+    ROS_INFO_STREAM("N_A = \n" << N_A << "\n\n\n");
+    ROS_INFO_STREAM("N_B = \n" << N_B << "\n\n\n");
+    ROS_INFO_STREAM("N_C = \n" << N_C << "\n\n\n");
+    ROS_INFO_STREAM("N_D = \n" << N_D << "\n\n\n");
+
+    ROS_INFO_STREAM("A*N_A = \n" << A*N_A << "\n\n");
+    ROS_INFO_STREAM("B*N_B = \n" << B*N_B << "\n\n");
+    ROS_INFO_STREAM("C*N_C = \n" << C*N_C << "\n\n");
+    ROS_INFO_STREAM("D*N_D = \n" << D*N_D << "\n\n");
+
 }
 
 void testContactJacobian()
@@ -623,6 +666,58 @@ void testContactJacobian()
     Eigen::MatrixXd J = K.GetContactJacobianInW(legs, q);
 
     ROS_INFO_STREAM("Contact Jacobian, J_c: \n" << J);
+}
+
+void testEigenStacking()
+{
+    Eigen::Matrix<double, 3, 18> A1;
+    Eigen::Matrix<double, 4, 18> A2;
+    Eigen::Matrix<double, 3, 18> A3;
+    Eigen::Matrix<double, 2, 18> A4;
+
+    A1.setZero();
+    A2.setIdentity();
+    A3.setConstant(100);
+    A4.setRandom();
+
+    Eigen::Matrix<Eigen::MatrixXd, Eigen::Dynamic, 1> A;
+
+    A.resize(4, 1);
+
+    A(0) = A1;
+    A(1) = A2;
+    A(2) = A3;
+    A(3) = A4;
+
+    Eigen::MatrixXd A_stacked;
+
+    for (size_t i = 0; i < A.rows(); i++)
+    {
+        Eigen::MatrixXd A_stacked_tmp = A_stacked;
+
+        A_stacked.resize(A_stacked_tmp.rows() + A(i).rows(), A(i).cols());
+
+        A_stacked << A_stacked_tmp,
+                     A(i);
+
+        ROS_INFO_STREAM("A_stacked at iteration " << i << ": \n" << A_stacked << "\n\n");
+    }
+
+
+    //A_stacked.resize(A1.rows() + A2.rows() + A3.rows(), A1.cols());
+    //A_stacked << A1,
+    //             A2,
+    //             A3;
+
+    //Eigen::MatrixXd A_stacked_tmp = A_stacked;
+
+    //A_stacked.resize(A_stacked_tmp.rows() + A4.rows(), A4.cols());
+
+    //A_stacked << A_stacked_tmp,
+    //             A3;
+
+    //ROS_INFO_STREAM("A_stacked: \n" << A_stacked);
+
 }
 
 
@@ -662,8 +757,13 @@ int main(int argc, char **argv)
     //testCoriolisAndCentrifugalTerms();
     //ROS_INFO_STREAM("--------------- Test null-space projector ------------------------");
     //testNullSpaceProjector();
-    ROS_INFO_STREAM("--------------- Test contact Jacobian ----------------------------");
-    testContactJacobian();
+    testSVDNullSpaceProjector();
+    //ROS_INFO_STREAM("--------------- Test contact Jacobian ----------------------------");
+    //testContactJacobian();
+    ROS_INFO_STREAM("--------------- Test stacking ----------------------------");
+    //testEigenStacking();
+
+
 
     ros::spin();
     return 0;
