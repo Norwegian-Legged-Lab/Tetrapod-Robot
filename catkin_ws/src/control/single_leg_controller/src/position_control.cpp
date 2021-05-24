@@ -45,45 +45,10 @@ int main(int argc, char **argv)
         ROS_INFO("WAITING FOR POSITION CONTROL START MESSAGE");
     }
 
-    ROS_INFO("Moving to initial position");
-
-    controller.resetReadyToProceed();
-
-    // Use the position controller to move the leg to the desired start position
-    while(!controller.moveJointsToSetpoints());
-
-    ROS_INFO("DESIRED POSITION REACHED");
-    /*
-    while(true);
-
-    // Wait for a confirmation message before starting speed control
-    while(!controller.readyToProceed())
+    while(true)
     {
-        controller.checkForNewMessages();
-
-        check_for_messages_rate.sleep();
-
-        ROS_INFO("WAITING FOR START EXECUTING TRAJECTORY MESSAGE");
+        controller.moveJointsToSetpoints();
     }
-
-    // Use velocity control to move the foot to the mid position
-    while(timer < time_end)
-    {
-        
-        controller.calculateJointReferences(timer, q_ref, q_d_ref, q_dd_ref);
-
-        Eigen::Matrix<double, 3, 1> torques = controller.calculateJointTorques(q_ref, q_d_ref, q_dd_ref);
-
-        controller.sendTorqueCommand(torques);
-
-        timer += time_step;
-
-        send_control_command_rate.sleep();
-        
-    }
-    */
-    
-    ROS_INFO("COMPLETE");
 
     return 0;
 }

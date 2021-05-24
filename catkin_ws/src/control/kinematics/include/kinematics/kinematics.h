@@ -100,6 +100,13 @@ class Kinematics
                                                      const double &_theta_hp, 
                                                      const double &_theta_kp); 
 
+    /// \brief The SolveSingleLegForwardKinematics function calculates
+    /// the foot position in the hip frame
+    /// \param[in] _joint_angles A vector containing the hip yaw, hip pitch and
+    /// knee pitch angles 
+    /// \return Returns end-effector position in the hip frame.
+    public: Vector3d SolveSingleLegForwardKinematics(const Vector3d &_joint_angles);
+
     /// \brief The SolveSingeLegInverseKinematics function calculates
     /// the inverse kinematics for a single leg.
     /// \param[in] _offset Bool indicating whether the leg is roll
@@ -113,6 +120,20 @@ class Kinematics
     /// and false if not.
     public: bool SolveSingleLegInverseKinematics(const bool &_offset, 
                                                  const Vector3d &_h_pos, 
+                                                 const Vector3d &_f_pos, 
+                                                 Vector3d &_joint_angles);
+
+    /// \brief The SolveSingeLegInverseKinematics function calculates
+    /// the inverse kinematics of foot in the hip frame
+    /// \param[in] _offset Bool indicating whether the leg is roll
+    /// offset to -90 or 90 degrees. True indicates roll offset of
+    /// of 90 deg, false indicates roll offset of -90 degrees.
+    /// \param[in] _f_pos Foot position in hip frame.
+    /// \param[out] _joint_angles Joint angles from the Inverse Kinematics solution
+    /// for a single-leg (sl).
+    /// \return Evaluates true if an Inverse Kinematics solution is found, 
+    /// and false if not.
+    public: bool SolveSingleLegInverseKinematics(const bool &_offset, 
                                                  const Vector3d &_f_pos, 
                                                  Vector3d &_joint_angles);
 
@@ -496,6 +517,14 @@ class Kinematics
     private: double GetBodyMass(BodyType _body);
 
     private: Eigen::Matrix<double, 3, 3> GetBodyInertia(BodyType _body);
+
+    public: bool GetflOffset() {return flOffset;}
+
+    public: bool GetfrOffset() {return frOffset;}
+
+    public: bool GetrlOffset() {return rlOffset;}
+
+    public: bool GetrrOffset() {return rrOffset;}
 
     /// \brief Minimum joint limits.
     private: JointSpaceVector min_angles;

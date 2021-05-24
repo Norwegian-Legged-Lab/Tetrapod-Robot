@@ -324,6 +324,8 @@ void GaitController::waitForPositionJointStates()
         joint_angle_commands(i) = joint_angles(i);
         ROS_INFO("%f", joint_angle_commands(i));
     }
+
+    joint_states_received = true;
 }
 
 bool GaitController::moveFootToPosition(Eigen::Matrix<double, 3, 1> _foot_pos, bool _offset, int _leg_index)
@@ -360,6 +362,39 @@ bool GaitController::moveFootToPosition(Eigen::Matrix<double, 3, 1> _foot_pos, b
         ROS_WARN("Failed to find solution to ik problem");
         return false;
     }
+}
+
+bool GaitController::moveJointsToSetpoints()
+{
+    ros::Rate publish_rate(50);
+
+    while(!jointSetpointsReached())
+    {
+        ros::spinOnce();
+
+        publishJointCommands();
+
+        publish_rate.sleep();
+    }
+
+    return true;
+}
+
+bool GaitController::jointSetpointsReached()
+{
+    Eigen::Matrix<double, 12, 1> joint_errors = joint_angle_commands - joint_angles;
+    
+    for(int i = 0; i < 12; i++)
+    {
+        if(abs(joint_errors(i)) > 3.0*M_PI/180.0)
+        {
+            ROS_INFO("Joint error %d is too large: %f [deg]", i, joint_errors(i)*180.0/M_PI);
+
+            return false;
+        }
+    }
+
+    return true;
 }
 
 Eigen::Matrix<double, 3, 1> GaitController::reverseXY(Eigen::Matrix<double, 3, 1> _v_in)
@@ -504,6 +539,133 @@ double GaitController::calculateSwingFootHeight(double _current_iteration, doubl
     return 4.0*(max_step_height)*(x - x*x) - hip_height;
 }
 
+bool GaitController::standUp()
+{
+    ros::Rate publish_rate(1);
+
+    double x_0_start = 0.3;
+    double y_0_start = 0.3;
+
+    // Get Initial States
+    if(!joint_states_received)
+    {
+        waitForPositionJointStates();
+        ROS_INFO("JOINT STATES RECEIVED!");
+    }
+    
+    joint_angle_commands = Eigen::Matrix<double, 12, 1>::Zero();
+
+    joint_angle_commands(0) = joint_angles(0);
+    joint_angle_commands(3) = joint_angles(3);
+    joint_angle_commands(6) = joint_angles(6);
+    joint_angle_commands(9) = joint_angles(9);
+
+    printJointStates();
+    printJointCommandStates();
+    updateFeetPositions();
+    printFeetPositions();
+
+    moveJointsToSetpoints();
+
+    ROS_INFO("Stage 1 complete");
+
+    printJointStates();
+    printJointCommandStates();
+    updateFeetPositions();
+    printFeetPositions();
+
+    double x_start = feet_positions(0);
+    double y_start = feet_positions(0);
+    //while(true);
+
+    joint_angle_commands(0) = M_PI/4.0;
+    joint_angle_commands(3) = - M_PI/4.0;
+    joint_angle_commands(6) = M_PI*3.0/4.0;
+    joint_angle_commands(9) = - M_PI*3.0/4.0;
+
+    moveJointsToSetpoints();
+
+    ROS_INFO("Stage 2 complete");
+
+    printJointStates();
+    printJointCommandStates();
+    updateFeetPositions();
+    printFeetPositions();
+
+    fl_foot_position_in_body = feet_positions.block<3, 1>(0, 0);
+    fr_foot_position_in_body = feet_positions.block<3, 1>(3, 0);
+    //rl_foot_position_in_body = feet_positions.block<3, 1>(6, 0);
+    //rr_foot_position_in_body = feet_positions.block<3, 1>(9, 0);
+
+    fl_foot_position_in_body(2) = 0.0;
+    fr_foot_position_in_body(2) = 0.0;
+
+    rl_foot_position_in_body = - fr_foot_position_in_body;
+    rr_foot_position_in_body = - fl_foot_position_in_body;
+
+    updateJointCommands();
+    moveJointsToSetpoints();
+
+    double number_of_steps = (fl_foot_position_in_body(0) - x_0_start)*100.0;
+
+    ROS_INFO("Steps: %f", number_of_steps);
+
+    publish_rate = number_of_steps*0.5;
+
+    for(int i = 1; i < number_of_steps; i++)
+    {
+        checkForNewMessages();
+
+        fl_foot_position_in_body(0) -= 0.01;
+        fl_foot_position_in_body(1) -= 0.01;
+
+        fr_foot_position_in_body(0) -= 0.01;
+        fr_foot_position_in_body(1) += 0.01;
+
+        rl_foot_position_in_body = - fr_foot_position_in_body;
+        rr_foot_position_in_body = - fl_foot_position_in_body;
+
+        updateJointCommands();
+
+        publishJointCommands();
+
+        publish_rate.sleep();
+    }
+
+    ROS_INFO("Stage 3 complete");
+
+    printJointStates();
+    printJointCommandStates();
+    updateFeetPositions();
+    printFeetPositions();
+
+    double number_of_elevation_steps = hip_height*100.0;
+
+    Eigen::Matrix<double, 3, 1> single_leg_joint_angles;
+
+    publish_rate = (number_of_elevation_steps*0.5);
+
+    for(int i = 1; i < number_of_elevation_steps; i++)
+    {
+        checkForNewMessages();
+
+        fl_foot_position_in_body(2) -= 0.01;
+        fr_foot_position_in_body(2) -= 0.01;
+        rl_foot_position_in_body(2) -= 0.01;
+        rr_foot_position_in_body(2) -= 0.01;
+
+        updateJointCommands();
+
+        publishJointCommands();
+
+        publish_rate.sleep();
+    }
+
+    ROS_INFO("Stage 4 complete");
+    while(true);
+
+    return true;
+}
 double GaitController::calculateSwingFootHeight(double _hip_height, double _max_swing_foot_height, double _current_iteration, double _max_iteration)
 {
     double x = _current_iteration/_max_iteration;
@@ -640,4 +802,42 @@ Eigen::Matrix<double, 3, 1> GaitController::calculatePronkSwingFootPosition(LegI
     swing_foot_position(2) = calculateSwingFootHeight(pronk_height, 0.1, current_pronk_iteration, max_pronk_iteration);
 
     return swing_foot_position;
+}
+
+void GaitController::printJointStates()
+{
+    ROS_INFO("fl: %f, %f, %f\tfr: %f, %f, %f\trl: %f, %f, %f\trr: %f, %f, %f", 
+    joint_angles(0), joint_angles(1), joint_angles(2),
+    joint_angles(3), joint_angles(4), joint_angles(5),
+    joint_angles(6), joint_angles(7), joint_angles(8),
+    joint_angles(9), joint_angles(10), joint_angles(11)
+    );
+}
+
+void GaitController::printJointCommandStates()
+{
+    ROS_INFO("fl: %f, %f, %f\tfr: %f, %f, %f\trl: %f, %f, %f\trr: %f, %f, %f", 
+    joint_angle_commands(0), joint_angle_commands(1), joint_angle_commands(2),
+    joint_angle_commands(3), joint_angle_commands(4), joint_angle_commands(5),
+    joint_angle_commands(6), joint_angle_commands(7), joint_angle_commands(8),
+    joint_angle_commands(9), joint_angle_commands(10), joint_angle_commands(11)
+    );
+}
+
+void GaitController::printFeetPositions()
+{
+    ROS_INFO("fl: %f, %f, %f\tfr: %f, %f, %f\trl: %f, %f, %f\trr: %f, %f, %f", 
+    feet_positions(0), feet_positions(1), feet_positions(2),
+    feet_positions(3), feet_positions(4), feet_positions(5),
+    feet_positions(6), feet_positions(7), feet_positions(8),
+    feet_positions(9), feet_positions(10), feet_positions(11)
+    );
+}
+
+void GaitController::updateFeetPositions()
+{
+    for(int i = 0; i < 4; i++)
+    {
+        feet_positions.block<3, 1>(3*i, 0) = kinematics.SolveSingleLegForwardKinematics(joint_angles.block<3, 1>(3*i, 0));
+    }
 }

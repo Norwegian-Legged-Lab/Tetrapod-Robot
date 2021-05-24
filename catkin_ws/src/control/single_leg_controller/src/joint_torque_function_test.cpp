@@ -7,7 +7,7 @@
 
 int main(int argc, char **argv)
 {
-    SingleLegController controller(0.1);
+    SingleLegController controller;
 
     controller.initROS();
     
@@ -19,9 +19,9 @@ int main(int argc, char **argv)
     Eigen::Matrix<double, 3, 1> q_d_ref(0.0, 0.0, 0.0);
     Eigen::Matrix<double, 3, 1> q_dd_ref(0.0, 0.0, 0.0);
 
-    T = controller.calculateJointTorques(q_ref, q_d_ref, q_dd_ref, q, q_d);
+    controller.updateJointTorques(q_ref, q_d_ref, q_dd_ref, q, q_d);
 
-    ROS_INFO("T1: %f\t T2: %f\t T3: %f", T(0), T(1), T(2));
+    //ROS_INFO("T1: %f\t T2: %f\t T3: %f", T(0), T(1), T(2));
 
     return 0;
 }
