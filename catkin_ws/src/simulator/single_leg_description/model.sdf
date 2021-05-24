@@ -363,7 +363,7 @@ z_0 = 0.0
 
             <inertial>
                 <pose>0 0 0 0 0 0</pose>
-                <mass>0.1</mass>
+                <mass>0.0001</mass>
                 <inertia>
                     <ixx>0.01</ixx>
                     <ixy>0</ixy>

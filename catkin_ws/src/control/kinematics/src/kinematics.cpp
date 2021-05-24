@@ -92,7 +92,7 @@ Kinematics::Kinematics()
     
     
     // TODO: Should be removed when the SDF is updated. This is needed because the foot couldn't be massless
-    double M_foot = 0.1;
+    double M_foot = 0.0001;
     Eigen::Matrix<double, 3, 3> I_foot= GetInertiaMatrix(0.01, 0.01, 0.01, 0.0, 0.0, 0.0); 
     this->I3 += I_foot;
     this->I3(1, 1) += M_foot*L3*L3;

@@ -355,7 +355,7 @@ bool SingleLegController::moveJointsToSetpoints()
 
 bool SingleLegController::moveJointsToCenter()
 {
-    ros::Rate command_send_rate(80.0);
+    ros::Rate command_send_rate(publish_frequency);
 
     swing_percentage = 0.0;
 
