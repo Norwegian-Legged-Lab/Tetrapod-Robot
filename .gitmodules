@@ -11,6 +11,6 @@
 [submodule "catkin_ws/src/utilities/joystick_drivers"]
 	path = catkin_ws/src/utilities/joystick_drivers
 	url = git@github.com:ros-drivers/joystick_drivers.git
-[submodule "catkin_ws/catkin_ws/src/utilities/Serial_CAN_Arduino"]
-	path = catkin_ws/catkin_ws/src/utilities/Serial_CAN_Arduino
+[submodule "catkin_ws/src/utilities/Serial_CAN_Arduino"]
+	path = catkin_ws/src/utilities/Serial_CAN_Arduino
 	url = https://github.com/Longan-Labs/Serial_CAN_Arduino.git
