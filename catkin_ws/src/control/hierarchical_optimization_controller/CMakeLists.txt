@@ -20,6 +20,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 find_package(Eigen3 REQUIRED)
+find_package(drake REQUIRED PATHS /opt/drake)
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -112,7 +113,7 @@ catkin_package(
     ${EIGEN3_INCLUDE_DIR}
   LIBRARIES hierarchical_optimization_controller
   CATKIN_DEPENDS debug_utils kindr kinematics math_utils roscpp sensor_msgs std_msgs
-#  DEPENDS system_lib
+  DEPENDS drake
 )
 
 ###########
@@ -162,6 +163,7 @@ add_executable(${PROJECT_NAME}_node
 # )
 target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
+  drake::drake
 )
 
 target_link_libraries(${PROJECT_NAME}_node
