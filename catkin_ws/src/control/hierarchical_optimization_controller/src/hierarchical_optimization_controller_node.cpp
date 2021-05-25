@@ -49,15 +49,15 @@ int main(int argc, char **argv)
     b1 << 10;
 
     A2 << 1, 0,
-          0, 1;
+          0, 0;
 
-    b2 << 6,
-          3;
+    b2 << 15,
+          0;
 
     A3 << 0, 1;
           
 
-    b3 << 3;
+    b3 << 5;
 
     Eigen::Matrix<Eigen::MatrixXd, 3, 1> A;
     Eigen::Matrix<Eigen::Matrix<double, Eigen::Dynamic, 1>, 3, 1> b;
