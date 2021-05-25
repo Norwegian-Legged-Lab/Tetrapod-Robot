@@ -44,28 +44,12 @@ int main(int argc, char **argv)
     while(true)
     {
         controller.checkForNewMessages();
-        controller.increaseIterator();
-        controller.updateSimpleFootTrajectory();
+        controller.updateState();
+        controller.updateFootReference();
         controller.updateJointReferences();
         controller.updateJointTorques();
         controller.printAllStates();
         controller.writeToLog();
-        controller.sendTorqueCommand();
-        send_control_command_rate.sleep();
-    }
-    
-    
-    while(controller.getState() != SingleLegController::State::swing)
-    {
-        controller.checkForNewMessages();
-        controller.updateState();
-        controller.printPercentage();
-        controller.updateStanceFootPositionTrajectory();
-        controller.printSpatialTrajectories();
-        controller.updateJointReferences();
-        controller.printJointTrajectories();
-        controller.updateJointTorques();
-        controller.printTorques();
         controller.sendTorqueCommand();
         send_control_command_rate.sleep();
     }

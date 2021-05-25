@@ -58,9 +58,18 @@ class SingleLegController
 
 
     /*** CONTROL FUNCTIONS ***/
-    public: bool updateState();
 
     private: Eigen::Matrix<double, 3, 1> calculateSwingLegHeightTrajectory(double _percentage, double _period, double _max_swing_height, double _hip_height);
+
+    private: void calculateSingleAxisTrajectory
+    (
+        const double &_percentage, 
+        const double &_period, 
+        const double &_max_travel,
+        double &_x, 
+        double &_x_d, 
+        double &_x_dd
+    );
 
     public: void updateStanceFootPositionTrajectory();
 
@@ -96,6 +105,10 @@ class SingleLegController
     public: bool updateSimpleFootTrajectory();
 
     public: void increaseIterator();
+
+    public: void updateState();
+
+    public: void updateFootReference();
 
 
     /*** HELPER FUNCTIONS ***/
@@ -153,7 +166,7 @@ class SingleLegController
 
     private: Eigen::Matrix<double, 3, 1> tau = Eigen::Matrix<double, 3, 1>::Zero();
 
-    private: State state = State::uninitialized;
+    private: State state = State::stance;
 
     private: double swing_current_time = 0.0;
 
@@ -179,13 +192,13 @@ class SingleLegController
 
     private: double x_center = 0.3;
 
-    private: double y_center = 0.35;
+    private: double y_center = 0.3;
 
-    private: double x_offset = -0.6;
+    private: double x_offset = 0.3;
 
     private: double y_offset = 0.0;
 
-    private: double max_swing_height = 0.2; 
+    private: double max_swing_height = 0.25; 
 
     private: Eigen::Matrix<double, 3, 3> K_p = Eigen::Matrix<double, 3, 3>::Zero();
 
