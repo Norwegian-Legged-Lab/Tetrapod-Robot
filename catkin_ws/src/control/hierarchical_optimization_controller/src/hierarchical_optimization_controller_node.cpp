@@ -29,12 +29,8 @@
 
 #include <hierarchical_optimization_controller/hierarchical_optimization_controller.h>
 
-// Main
-int main(int argc, char **argv)
+void testHLSO(HierarchicalOptimizationControl &_ho_controller)
 {
-    HierarchicalOptimizationControl ho_controller;
-
-
     Eigen::Matrix<double, 1, 2> A1;
     Eigen::Matrix<double, 1, 1> b1;
 
@@ -69,9 +65,18 @@ int main(int argc, char **argv)
     A(2) = A3;
     b(2) = b3;
     
-    Eigen::MatrixXd x_opt = ho_controller.HierarchicalLeastSquareOptimization(A, b);
+    Eigen::MatrixXd x_opt = _ho_controller.HierarchicalLeastSquareOptimization(A, b);
 
     ROS_INFO_STREAM("x_opt: \n" << x_opt);
+}
+
+// Main
+int main(int argc, char **argv)
+{
+    HierarchicalOptimizationControl ho_controller;
+
+
+    ho_controller.testDrakeQPOpt();
 
 
     ros::spin();

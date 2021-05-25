@@ -289,18 +289,88 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     return desired_tau;
 }
 
-// Hierarchical Least-Square Optimization
-Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalOptimizationControl::HierarchicalLeastSquareOptimization(const Eigen::Matrix<Eigen::MatrixXd, Eigen::Dynamic, 1> _A,
-                                                                                                              const Eigen::Matrix<Eigen::Matrix<double, Eigen::Dynamic, 1>, Eigen::Dynamic, 1> _b)
+// TODO Remove
+void HierarchicalOptimizationControl::testDrakeQPOpt()
 {
-    // Declarations
-    Eigen::Matrix<double, Eigen::Dynamic, 1> x_opt;                 // Optimal solution
-    Eigen::Matrix<double, Eigen::Dynamic, 1> x_i;                   // Optimal solution for the at hand projected QP
-    Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> N;        // Null-space projector
-    Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> AN;       // Matrix multiplication of A and N (A*N)
-    Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> pinvAN;   // Pseudo-inverse of A*N
-    Eigen::MatrixXd A_stacked;                                      // Stacked matrix of A_i matrices
+    drake::solvers::MathematicalProgram prog;
+    drake::solvers::MathematicalProgramResult result;
 
+    Eigen::Matrix<drake::symbolic::Variable, Eigen::Dynamic, 1> x = prog.NewContinuousVariables(3, "x");
+
+
+
+    prog.AddQuadraticCost(x[0] * x[0] + x[1] * x[1]);
+
+    prog.AddLinearEqualityConstraint(x[0] + 2*x[1] == 10);
+
+    prog.AddLinearEqualityConstraint(x[0] == 5);
+
+
+    result = Solve(prog);
+
+    ROS_INFO_STREAM("Solver id: " << result.get_solver_id());
+    ROS_INFO_STREAM("Found solution: " << result.is_success());
+    ROS_INFO_STREAM("Solution result: " << result.get_solution_result());
+    ROS_INFO_STREAM("Optimal solution: " << result.GetSolution(x));
+
+}
+
+
+// Hierarchical QP Optimization
+Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalOptimizationControl::HierarchicalQPOptimization(const Eigen::Matrix<Eigen::MatrixXd, Eigen::Dynamic, 1> &_A_eq,
+                                                                                                     const Eigen::Matrix<Eigen::Matrix<double, Eigen::Dynamic, 1>, Eigen::Dynamic, 1> &_b_eq,
+                                                                                                     const Eigen::Matrix<Eigen::MatrixXd, Eigen::Dynamic, 1> &_A_ineq,
+                                                                                                     const Eigen::Matrix<Eigen::Matrix<double, Eigen::Dynamic, 1>, Eigen::Dynamic, 1> &_b_ineq)
+{
+    const auto rowsA_eq = _A_eq.rows();
+    const auto rowsb_eq = _b_eq.rows();
+    const auto rowsA_ineq = _A_ineq.rows();
+    const auto rowsb_ineq = _b_ineq.rows();
+
+    // Validate number of equations
+    if( rowsA_eq != rowsb_eq )
+    {
+        ROS_ERROR("[HierarchicalOptimizationControl::HierarchicalQPOptimization] _A_eq and _b_eq does not contain equal amount of elements!");
+
+        std::abort();
+    }
+    if( rowsA_ineq != rowsb_ineq )
+    {
+        ROS_ERROR("[HierarchicalOptimizationControl::HierarchicalQPOptimization] _A_ineq and _b_ineq does not contain equal amount of elements!");
+
+        std::abort();
+    }
+
+    const auto state_dim = _A_eq(0).cols();
+
+    // Validate state and equation dimensions
+    for (size_t i = 0; i < rowsA_eq; i++)
+    {
+        if (_A_eq(i).cols() != state_dim || _A_eq(i).rows() != _b_eq(i).rows() )
+        {
+            ROS_ERROR_STREAM("[HierarchicalOptimizationControl::HierarchicalLeastSquareOptimization] State or equation dimensions failed for equality constraints at index: i = !" << i);
+
+            std::abort();
+        }
+        if (_A_ineq(i).cols() != state_dim || _A_ineq(i).rows() != _b_ineq(i).rows() )
+        {
+            ROS_ERROR_STREAM("[HierarchicalOptimizationControl::HierarchicalLeastSquareOptimization] State or equation dimensions failed for inequality constraints at index: i = !" << i);
+
+            std::abort();
+        }
+    }
+
+    // Declarations
+
+    Eigen::Vector3d d;
+
+    return d;
+}
+
+// Hierarchical Least-Square Optimization
+Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalOptimizationControl::HierarchicalLeastSquareOptimization(const Eigen::Matrix<Eigen::MatrixXd, Eigen::Dynamic, 1> &_A,
+                                                                                                              const Eigen::Matrix<Eigen::Matrix<double, Eigen::Dynamic, 1>, Eigen::Dynamic, 1> &_b)
+{
     const auto rowsA = _A.rows();
     const auto rowsb = _b.rows();
 
@@ -324,6 +394,14 @@ Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalOptimizationControl::Hierar
             std::abort();
         }
     }
+
+    // Declarations
+    Eigen::Matrix<double, Eigen::Dynamic, 1> x_opt;                 // Optimal solution
+    Eigen::Matrix<double, Eigen::Dynamic, 1> x_i;                   // Optimal solution for the at hand projected QP
+    Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> N;        // Null-space projector
+    Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> AN;       // Matrix multiplication of A and N (A*N)
+    Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> pinvAN;   // Pseudo-inverse of A*N
+    Eigen::MatrixXd A_stacked;                                      // Stacked matrix of A_i matrices
 
     // Setup
     x_opt.resize(state_dim, 1);
