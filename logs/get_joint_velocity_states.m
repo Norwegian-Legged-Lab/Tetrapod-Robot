@@ -1,17 +1,16 @@
-function states = get_joint_velocitiy_states(bag)
+function states = get_joint_velocitiy_states(bag, number_of_motors)
 
     number_of_messages = bag.NumMessages;
     messages = readMessages(bag);
     
-    time = table2array(bag.MessageList(:, 1));
-    
-    states = zeros(4, number_of_messages);
-    states(1, :) = time';
+    states = zeros(number_of_motors, number_of_messages);
 
     % [time, theta1, theta2, theta3]
     for i = 1:number_of_messages
         message = messages(i);
         joint_state_message = message{1, 1};
-        states(2:4, i) = joint_state_message.Velocity;
+        states(:, i) = joint_state_message.Velocity;
     end
+    
+    states = states';
 end

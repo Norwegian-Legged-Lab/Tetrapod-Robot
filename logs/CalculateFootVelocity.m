@@ -1,5 +1,4 @@
 function foot_vel = CalculateFootVelocity(joint_angles, joint_velocities)
-    
     l1 = 0.130;
     l2 = 0.220;
     l3 = 0.279;
@@ -7,6 +6,8 @@ function foot_vel = CalculateFootVelocity(joint_angles, joint_velocities)
     t1 = joint_angles(1);
     t2 = joint_angles(2);
     t3 = joint_angles(3);
+    
+    joint_velocities = joint_velocities';
     
     J = zeros(3, 3);
     
