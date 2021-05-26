@@ -1,9 +1,5 @@
 # Tetrapod-Robot
 
-![](https://tokei.rs/b1/github/Pathorse/Tetrapod-Robot?category=code)
-[![CodeFactor](https://www.codefactor.io/repository/github/Pathorse/Tetrapod-Robot/badge)](https://www.codefactor.io/repository/github/Pathorse/Tetrapod-Robot)
-
-
 Robot Specifications:
 Parameter | Value
 --- | ---
