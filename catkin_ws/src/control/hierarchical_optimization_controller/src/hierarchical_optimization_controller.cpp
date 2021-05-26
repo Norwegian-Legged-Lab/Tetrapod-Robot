@@ -361,6 +361,51 @@ Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalOptimizationControl::Hierar
     }
 
     // Declarations
+    Eigen::MatrixXd Q;  // Quadratic program Q matrix
+    Eigen::VectorXd b;  // Quadratic program b vector
+
+    Eigen::MatrixXd A_eq; // Quadratic program A_eq equality constraint matrix 
+    Eigen::VectorXd b_eq; // Qudratic program b_eq equality constraint vector
+
+    Eigen::MatrixXd A_ineq; // Quadratic program A_ineq inequality constraint matrix 
+    Eigen::VectorXd b_ineq; // Qudratic program b_ineq inequality constraint vector
+
+
+
+    drake::solvers::MathematicalProgram prog;                            // Create an empty MathematicalProgram
+    auto dot_u = prog.NewContinuousVariables(18, "dot_u");               // Add decision variables for the generalized acceleration
+    auto F_c   = prog.NewContinuousVariables(state_dim - 18, "F_c");     // Add decision variables for the contact forces
+    
+    Eigen::Matrix<drake::symbolic::Variable, Eigen::Dynamic, 1> x;       // Optimization variable
+    
+    x << dot_u, 
+         F_c;      
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     Eigen::Vector3d d;
 
