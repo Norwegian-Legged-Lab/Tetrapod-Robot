@@ -7,3 +7,6 @@
 [submodule "catkin_ws/src/utilities/ifopt"]
 	path = catkin_ws/src/utilities/ifopt
 	url = https://github.com/ethz-adrl/ifopt.git
+[submodule "catkin_ws/src/utilities/--force"]
+	path = catkin_ws/src/utilities/--force
+	url = https://github.com/ethz-adrl/towr.git
