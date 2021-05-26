@@ -1,3 +1,6 @@
 [submodule "catkin_ws/src/utilities/towr"]
 	path = catkin_ws/src/utilities/towr
 	url = https://github.com/ethz-adrl/towr.git
+[submodule "catkin_ws/src/utilities/xpp"]
+	path = catkin_ws/src/utilities/xpp
+	url = https://github.com/leggedrobotics/xpp.git
