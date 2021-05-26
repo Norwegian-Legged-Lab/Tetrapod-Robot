@@ -1,5 +1,8 @@
 # Tetrapod-Robot
 
+[![CodeFactor](https://www.codefactor.io/repository/github/Pathorse/Tetrapod-Robot/badge)](https://www.codefactor.io/repository/github/Pathorse/Tetrapod-Robot)
+
+
 Robot Specifications:
 Parameter | Value
 --- | ---
