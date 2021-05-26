@@ -361,6 +361,8 @@ Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalOptimizationControl::Hierar
     }
 
     // Declarations
+    int n_T = 5;        // Number of tasks
+
     Eigen::MatrixXd Q;  // Quadratic program Q matrix
     Eigen::VectorXd b;  // Quadratic program b vector
 
@@ -372,16 +374,12 @@ Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalOptimizationControl::Hierar
 
 
 
-    drake::solvers::MathematicalProgram prog;                            // Create an empty MathematicalProgram
-    auto dot_u = prog.NewContinuousVariables(18, "dot_u");               // Add decision variables for the generalized acceleration
-    auto F_c   = prog.NewContinuousVariables(state_dim - 18, "F_c");     // Add decision variables for the contact forces
-    
-    Eigen::Matrix<drake::symbolic::Variable, Eigen::Dynamic, 1> x;       // Optimization variable
-    
-    x << dot_u, 
-         F_c;      
+    // Iterate over the set of tasks 
+    for (size_t i = 0; i < n_T; i++)
+    {
+        // Updates
 
-    
+    }
 
 
 
@@ -483,6 +481,53 @@ Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalOptimizationControl::Hierar
     }
 
     return x_opt;
+}
+
+// Solve a Quadratic Program
+bool HierarchicalOptimizationControl::SolveQP(const Eigen::MatrixXd &_Q,
+                                              const Eigen::VectorXd &_c,
+                                              const Eigen::MatrixXd &_A_eq,
+                                              const Eigen::VectorXd &_b_eq,
+                                              const Eigen::MatrixXd &_A_ineq,
+                                              const Eigen::VectorXd &_b_ineq,
+                                              Eigen::VectorXd &_sol,
+                                              const int &_v)
+{
+    // Create an empty Mathematical Program
+    drake::solvers::MathematicalProgram prog;
+
+    // Add decision variables
+    auto x = prog.NewContinuousVariables(_Q.cols(), "x");
+
+    // Add quadratic cost
+    prog.AddQuadraticCost(_Q, _c, x);
+
+    // Add equality constraints
+    prog.AddLinearEqualityConstraint(_A_eq, _b_eq, x);
+
+    // Add inequality constraints
+    prog.AddLinearConstraint(_A_ineq * x <= _b_ineq);
+
+    // Solve the program
+    drake::solvers::MathematicalProgramResult result = Solve(prog);
+
+    if (!result.is_success())
+    {
+        ROS_WARN("[HierarchicalOptimizationControl::SolveQP] Failed to solve QP!");
+
+        _sol.setZero();
+
+        return false;
+    }
+
+    // Set solution
+    _sol = result.GetSolution(x);
+
+
+    // TODO add verbosity prints
+
+
+    return true;
 }
 
 // Callback for ROS Generalized Coordinates messages
