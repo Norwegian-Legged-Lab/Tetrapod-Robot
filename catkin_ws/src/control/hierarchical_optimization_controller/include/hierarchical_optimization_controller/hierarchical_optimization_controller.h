@@ -85,6 +85,18 @@ class HierarchicalOptimizationControl
     public: Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalLeastSquareOptimization(const Eigen::Matrix<Eigen::MatrixXd, Eigen::Dynamic, 1> &_A,
                                                                                          const Eigen::Matrix<Eigen::Matrix<double, Eigen::Dynamic, 1>, Eigen::Dynamic, 1> &_b);
 
+    // TODO Describe
+    // TODO Add  version where only equality constraints apply
+    public: bool SolveQP(const Eigen::MatrixXd &_Q,
+                         const Eigen::VectorXd &_c,
+                         const Eigen::MatrixXd &_A_eq,
+                         const Eigen::VectorXd &_b_eq,
+                         const Eigen::MatrixXd &_A_ineq,
+                         const Eigen::VectorXd &_b_ineq,
+                         Eigen::VectorXd &_sol,
+                         const int &_v = 0);
+
+
     // TODO Remove
     public: void testDrakeQPOpt();
 
