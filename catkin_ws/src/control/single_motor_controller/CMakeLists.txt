@@ -35,11 +35,20 @@ add_executable(control_node
   src/single_motor_controller.cpp
 )
 
+add_executable(automatic_setpoint_publisher
+  src/automatic_setpoint_publisher.cpp
+  src/single_motor_controller.cpp
+)
+
 target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
 )
 
 target_link_libraries(control_node
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(automatic_setpoint_publisher
   ${catkin_LIBRARIES}
 )
 

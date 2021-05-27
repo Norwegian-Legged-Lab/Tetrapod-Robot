@@ -26,7 +26,7 @@ void SingleMotorController::initROS()
 
     motor_state_subscriber = node_handle->subscribe
     (
-        "/motor/state",
+        "/motor/states",
         100,
         &SingleMotorController::motorStateCallback,
         this
@@ -56,13 +56,23 @@ void SingleMotorController::initROS()
         this
     );
 
-    joint_command_publisher = node_handle->advertise<sensor_msgs::JointState>("/motor/command", 10);
+    keep_logging_subscriber = node_handle->subscribe
+    (
+        "/logging/continue",
+        10,
+        &SingleMotorController::keepLoggingCallback,
+        this
+    );
 
-    motor_gain_publisher = node_handle->advertise<std_msgs::Float64MultiArray>("/motor/set_gains", 1);
+    joint_command_publisher = node_handle->advertise<sensor_msgs::JointState>("/motor/commands", 10);
+
+    motor_gain_publisher = node_handle->advertise<std_msgs::Float64MultiArray>("/motor/gains", 1);
 
     log_motor_state_publisher = node_handle->advertise<sensor_msgs::JointState>("/logging/states", 10);
 
     log_motor_reference_publisher = node_handle->advertise<sensor_msgs::JointState>("/logging/references", 10);
+
+    ROS_INFO("initROS complete");
 }
 
 void SingleMotorController::motorStateCallback(const sensor_msgs::JointStatePtr &_msg)
@@ -95,6 +105,10 @@ void SingleMotorController::motorConfirmationCallback(const std_msgs::Bool &_msg
     }
 }
 
+void SingleMotorController::keepLoggingCallback(const std_msgs::Bool &_msg)
+{
+    keep_logging = _msg.data;
+}
 
 void SingleMotorController::calculateSingleAxisTrajectory
 (
@@ -129,7 +143,7 @@ void SingleMotorController::sendJointPositionCommand()
 {
     sensor_msgs::JointState joint_command_msg;
 
-    joint_command_msg.position.push_back(angle_pos);
+    joint_command_msg.position.push_back(angle_pos_ref);
     joint_command_msg.velocity.push_back(IDLE_COMMAND);
     joint_command_msg.effort.push_back(IDLE_COMMAND);
 
@@ -190,7 +204,7 @@ void SingleMotorController::moveToZero()
     }
 }
 
-void SingleMotorController::initializeMotor(double _k_p_pos, double _k_d_pos, double _k_p_torque, double _k_d_torque)
+void SingleMotorController::initializeMotor(double _k_p_pos, double _k_i_pos, double _k_p_vel, double _k_i_vel, double _k_p_torque, double _k_i_torque)
 {
     ros::Rate set_gain_rate(0.5);
 
@@ -199,10 +213,14 @@ void SingleMotorController::initializeMotor(double _k_p_pos, double _k_d_pos, do
     std_msgs::Float64MultiArray motor_gains_msg;
 
     motor_gains_msg.data.push_back(_k_p_pos);
-    motor_gains_msg.data.push_back(_k_d_pos);
+    motor_gains_msg.data.push_back(_k_i_pos);
+    motor_gains_msg.data.push_back(_k_p_vel);
+    motor_gains_msg.data.push_back(_k_i_vel);
     motor_gains_msg.data.push_back(_k_p_torque);
-    motor_gains_msg.data.push_back(_k_d_torque);
+    motor_gains_msg.data.push_back(_k_i_torque);
     
+    ROS_INFO("Trying to set motor gains");
+
     while(!motor_initialized)
     {
         motor_gain_publisher.publish(motor_gains_msg);
@@ -219,7 +237,7 @@ void SingleMotorController::initializeMotor(double _k_p_pos, double _k_d_pos, do
 
 void SingleMotorController::initializeMotor()
 {
-    initializeMotor(k_p_pos, k_d_pos, k_p_torque, k_d_torque);
+    initializeMotor(k_p_pos, k_i_pos, k_p_vel, k_i_vel, k_p_torque, k_i_torque);
 }
 
 bool SingleMotorController::readyToProceed()

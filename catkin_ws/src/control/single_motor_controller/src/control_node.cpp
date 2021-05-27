@@ -52,7 +52,10 @@ int main(int argc, char **argv)
             controller.sendJointTorqueCommand();
         }
         controller.printAll();
-        controller.writeToLog();
+        if(controller.keepLogging())
+        {
+            controller.writeToLog();
+        }
         send_command_rate.sleep();
     }
 
