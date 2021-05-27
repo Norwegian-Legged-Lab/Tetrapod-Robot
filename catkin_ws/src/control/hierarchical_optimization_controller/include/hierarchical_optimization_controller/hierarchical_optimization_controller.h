@@ -52,13 +52,20 @@
 
 // Drake C++ Toolbox
 #include <drake/common/symbolic.h>
-#include <drake/common/eigen_types.h>
 #include <drake/solvers/mathematical_program.h>
 #include <drake/solvers/solve.h>
 
 /// \brief A class for hierarchical optimization control
 class HierarchicalOptimizationControl
 {
+    /// \brief Task struct
+    public: struct Task {
+        Eigen::MatrixXd A_eq;
+        Eigen::VectorXd b_eq;
+        Eigen::MatrixXd A_ineq;
+        Eigen::VectorXd b_ineq;
+    };
+
     /// \brief Leg type enumerator
     public: enum LegType { frontLeft = 1, frontRight = 2, rearLeft = 3, rearRight = 4, NONE };
 
@@ -76,23 +83,28 @@ class HierarchicalOptimizationControl
                                                                   const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_pos); 
 
     // TODO Describe
-    public: Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalQPOptimization(const Eigen::Matrix<Eigen::MatrixXd, Eigen::Dynamic, 1> &_A_eq,
-                                                                                const Eigen::Matrix<Eigen::Matrix<double, Eigen::Dynamic, 1>, Eigen::Dynamic, 1> &_b_eq,
-                                                                                const Eigen::Matrix<Eigen::MatrixXd, Eigen::Dynamic, 1> &_A_ineq,
-                                                                                const Eigen::Matrix<Eigen::Matrix<double, Eigen::Dynamic, 1>, Eigen::Dynamic, 1> &_b_ineq);
+    public: Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalQPOptimization(const int &_state_dim,
+                                                                                const std::vector<Task> &_tasks);
 
     // TODO Describe
     public: Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalLeastSquareOptimization(const Eigen::Matrix<Eigen::MatrixXd, Eigen::Dynamic, 1> &_A,
                                                                                          const Eigen::Matrix<Eigen::Matrix<double, Eigen::Dynamic, 1>, Eigen::Dynamic, 1> &_b);
 
     // TODO Describe
-    // TODO Add  version where only equality constraints apply
     public: bool SolveQP(const Eigen::MatrixXd &_Q,
                          const Eigen::VectorXd &_c,
-                         const Eigen::MatrixXd &_A_eq,
-                         const Eigen::VectorXd &_b_eq,
-                         const Eigen::MatrixXd &_A_ineq,
-                         const Eigen::VectorXd &_b_ineq,
+                         const Eigen::MatrixXd &_E_ineq,
+                         const Eigen::VectorXd &_f_ineq,
+                         Eigen::VectorXd &_sol,
+                         const int &_v = 0);
+
+    // TODO describe
+    public: bool SolveQP(const Eigen::MatrixXd &_Q,
+                         const Eigen::VectorXd &_c,
+                         const Eigen::MatrixXd &_E_eq,
+                         const Eigen::VectorXd &_f_eq,
+                         const Eigen::MatrixXd &_E_ineq,
+                         const Eigen::VectorXd &_f_ineq,
                          Eigen::VectorXd &_sol,
                          const int &_v = 0);
 

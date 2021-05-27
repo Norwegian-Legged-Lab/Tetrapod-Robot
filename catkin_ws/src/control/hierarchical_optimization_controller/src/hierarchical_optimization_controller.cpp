@@ -317,97 +317,120 @@ void HierarchicalOptimizationControl::testDrakeQPOpt()
 
 
 // Hierarchical QP Optimization
-Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalOptimizationControl::HierarchicalQPOptimization(const Eigen::Matrix<Eigen::MatrixXd, Eigen::Dynamic, 1> &_A_eq,
-                                                                                                     const Eigen::Matrix<Eigen::Matrix<double, Eigen::Dynamic, 1>, Eigen::Dynamic, 1> &_b_eq,
-                                                                                                     const Eigen::Matrix<Eigen::MatrixXd, Eigen::Dynamic, 1> &_A_ineq,
-                                                                                                     const Eigen::Matrix<Eigen::Matrix<double, Eigen::Dynamic, 1>, Eigen::Dynamic, 1> &_b_ineq)
+Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalOptimizationControl::HierarchicalQPOptimization(const int &_state_dim,
+                                                                                                     const std::vector<Task> &_tasks)
 {
-    const auto rowsA_eq = _A_eq.rows();
-    const auto rowsb_eq = _b_eq.rows();
-    const auto rowsA_ineq = _A_ineq.rows();
-    const auto rowsb_ineq = _b_ineq.rows();
-
-    // Validate number of equations
-    if( rowsA_eq != rowsb_eq )
-    {
-        ROS_ERROR("[HierarchicalOptimizationControl::HierarchicalQPOptimization] _A_eq and _b_eq does not contain equal amount of elements!");
-
-        std::abort();
-    }
-    if( rowsA_ineq != rowsb_ineq )
-    {
-        ROS_ERROR("[HierarchicalOptimizationControl::HierarchicalQPOptimization] _A_ineq and _b_ineq does not contain equal amount of elements!");
-
-        std::abort();
-    }
-
-    const auto state_dim = _A_eq(0).cols();
-
-    // Validate state and equation dimensions
-    for (size_t i = 0; i < rowsA_eq; i++)
-    {
-        if (_A_eq(i).cols() != state_dim || _A_eq(i).rows() != _b_eq(i).rows() )
-        {
-            ROS_ERROR_STREAM("[HierarchicalOptimizationControl::HierarchicalLeastSquareOptimization] State or equation dimensions failed for equality constraints at index: i = !" << i);
-
-            std::abort();
-        }
-        if (_A_ineq(i).cols() != state_dim || _A_ineq(i).rows() != _b_ineq(i).rows() )
-        {
-            ROS_ERROR_STREAM("[HierarchicalOptimizationControl::HierarchicalLeastSquareOptimization] State or equation dimensions failed for inequality constraints at index: i = !" << i);
-
-            std::abort();
-        }
-    }
-
     // Declarations
-    int n_T = 5;        // Number of tasks
+    Eigen::VectorXd x_opt(_state_dim);           // Optimal solution
+    Eigen::MatrixXd N(_state_dim, _state_dim);   // Null-space projector
+    Eigen::VectorXd z(_state_dim);               // Null-space vector
+    Eigen::MatrixXd stacked_A_eq;                // Stacked equality matrices 
+    Eigen::MatrixXd stacked_A_ineq;              // Stacked inequality matrices 
+    Eigen::VectorXd stacked_b_ineq;              // Stacked inequality vectors 
 
-    Eigen::MatrixXd Q;  // Quadratic program Q matrix
-    Eigen::VectorXd b;  // Quadratic program b vector
+    Eigen::MatrixXd Q;            // Quadratic program Q cost matrix
+    Eigen::VectorXd c;            // Quadratic program c cost vector
+    Eigen::MatrixXd E_ineq;       // Quadratic program E_ineq inequality constraint matrix 
+    Eigen::VectorXd f_ineq;       // Quadratic program f_ineq inequality constraint vector
+    Eigen::VectorXd xi;           // Quadratic program optimization variable, xi = [z, v]^T
+    Eigen::VectorXd v;            // Quadratic program inequality constraint slack variable
+    Eigen::VectorXd stacked_v;    // Stacked slack variables
 
-    Eigen::MatrixXd A_eq; // Quadratic program A_eq equality constraint matrix 
-    Eigen::VectorXd b_eq; // Qudratic program b_eq equality constraint vector
+    int rowsA_eq;   // Number of rows of current tasks A_eq
+    int rowsA_ineq; // Number of rows of current tasks A_ineq
+    int colsN;      // Number of cols of current null-space projector N
 
-    Eigen::MatrixXd A_ineq; // Quadratic program A_ineq inequality constraint matrix 
-    Eigen::VectorXd b_ineq; // Qudratic program b_ineq inequality constraint vector
-
-
+    // Initializations
+    x_opt.setZero();
+    N.setIdentity();
 
     // Iterate over the set of tasks 
-    for (size_t i = 0; i < n_T; i++)
+    for (Task t : _tasks)
     {
-        // Updates
+        // Update row count
+        rowsA_eq = t.A_eq.rows(); 
+        rowsA_ineq = t.A_ineq.rows();
+        colsN = N.cols();
+
+        // Update dimensions
+        z.resize(colsN, 1);
+        v.resize(rowsA_ineq, 1);
+        xi.resize(colsN + rowsA_ineq, 1);
+
+        // Update stacked equality matrices
+        Eigen::MatrixXd stacked_A_eq_tmp = stacked_A_eq;
+
+        stacked_A_eq.resize(t.A_ineq.rows() + stacked_A_eq_tmp.rows(), _state_dim); 
+        stacked_A_eq << t.A_eq,
+                          stacked_A_eq_tmp;
+
+        // Update stacked inequality matrices
+        Eigen::MatrixXd stacked_A_ineq_tmp = stacked_A_ineq;
+
+        stacked_A_ineq.resize(t.A_ineq.rows() + stacked_A_ineq_tmp.rows(), _state_dim); 
+        stacked_A_ineq << t.A_ineq,
+                          stacked_A_ineq_tmp;
+
+        // Update stacked inequality vectors
+        Eigen::VectorXd stacked_b_ineq_tmp = stacked_b_ineq;
+
+        stacked_b_ineq.resize(t.b_ineq.rows() + stacked_b_ineq_tmp.rows(), 1);
+        stacked_b_ineq << t.b_ineq,
+                          stacked_b_ineq_tmp;
+
+        // Update QP costs 
+        Q.resize(colsN + rowsA_ineq, colsN + rowsA_ineq);
+        c.resize(colsN + rowsA_ineq, 1);
+
+        Q.topLeftCorner(colsN, colsN) = N.transpose() * t.A_eq.transpose() * t.A_eq * N;
+        Q.topRightCorner(rowsA_ineq, colsN).setZero();
+        Q.bottomLeftCorner(colsN, rowsA_ineq).setZero();
+        Q.bottomRightCorner(rowsA_ineq, rowsA_ineq).setIdentity();
+
+        c.topRows(colsN) = N.transpose() * t.A_eq * (t.A_eq * x_opt - t.b_eq);
+        c.bottomRows(rowsA_ineq).setZero();
+
+        // Update inequality constraints
+        E_ineq.resize(stacked_A_ineq.rows() + rowsA_ineq, colsN + rowsA_ineq);
+        f_ineq.resize(stacked_A_ineq.rows() + rowsA_ineq, 1);
+
+        E_ineq.setZero();
+
+        E_ineq.topLeftCorner(stacked_A_ineq.rows(), colsN) = stacked_A_ineq * N;
+        E_ineq.topRightCorner(rowsA_ineq, rowsA_ineq) = - Eigen::MatrixXd::Identity(rowsA_ineq, rowsA_ineq);
+
+        E_ineq.bottomRightCorner(rowsA_ineq, rowsA_ineq) = - Eigen::MatrixXd::Identity(rowsA_ineq, rowsA_ineq);
+
+        f_ineq.topRows(stacked_b_ineq.rows()) = stacked_b_ineq - stacked_A_ineq * x_opt;
+        f_ineq.segment(rowsA_ineq, stacked_A_ineq.rows() - rowsA_ineq) += stacked_v; 
+        f_ineq.bottomRows(rowsA_ineq).setZero();
+
+        // Solve QP
+        if (!SolveQP(Q, c, E_ineq, f_ineq, xi))
+        {
+            ROS_ERROR_STREAM("[HierarchicalOptimizationControl::HierarchicalQPOptimization] Failed to solve QP!");
+        }
+
+        // Get solutions
+        z = xi.topRows(colsN);
+        v = xi.bottomRows(rowsA_ineq);
+        
+        // Update optimal state for the hierarchical optimization
+        x_opt = x_opt + N * z;
+
+        // Update the null-space projector
+        N = math_utils::SVDNullSpaceProjector(stacked_A_eq);
+
+        // Update stacked slack variables
+        Eigen::VectorXd stacked_v_tmp = stacked_v;
+
+        stacked_v.resize(v.rows() + stacked_v_tmp.rows(), 1);
+        stacked_v << v,
+                     stacked_v_tmp;
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    Eigen::Vector3d d;
-
-    return d;
+    return x_opt;
 }
 
 // Hierarchical Least-Square Optimization
@@ -486,10 +509,8 @@ Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalOptimizationControl::Hierar
 // Solve a Quadratic Program
 bool HierarchicalOptimizationControl::SolveQP(const Eigen::MatrixXd &_Q,
                                               const Eigen::VectorXd &_c,
-                                              const Eigen::MatrixXd &_A_eq,
-                                              const Eigen::VectorXd &_b_eq,
-                                              const Eigen::MatrixXd &_A_ineq,
-                                              const Eigen::VectorXd &_b_ineq,
+                                              const Eigen::MatrixXd &_E_ineq,
+                                              const Eigen::VectorXd &_f_ineq,
                                               Eigen::VectorXd &_sol,
                                               const int &_v)
 {
@@ -500,13 +521,66 @@ bool HierarchicalOptimizationControl::SolveQP(const Eigen::MatrixXd &_Q,
     auto x = prog.NewContinuousVariables(_Q.cols(), "x");
 
     // Add quadratic cost
-    prog.AddQuadraticCost(_Q, _c, x);
-
-    // Add equality constraints
-    prog.AddLinearEqualityConstraint(_A_eq, _b_eq, x);
+    prog.AddQuadraticCost(_Q, _c, x, true);
 
     // Add inequality constraints
-    prog.AddLinearConstraint(_A_ineq * x <= _b_ineq);
+    if (!_E_ineq.isZero())
+    {
+        prog.AddLinearConstraint((_E_ineq * x).array() <= _f_ineq.array());
+    }
+
+    // Solve the program
+    drake::solvers::MathematicalProgramResult result = Solve(prog);
+
+    if (!result.is_success())
+    {
+        ROS_WARN("[HierarchicalOptimizationControl::SolveQP] Failed to solve QP!");
+
+        _sol.setZero();
+
+        return false;
+    }
+
+    // Set solution
+    _sol = result.GetSolution(x);
+
+
+    // TODO add verbosity prints
+
+
+    return true;
+}
+
+// Solve a Quadratic Program
+bool HierarchicalOptimizationControl::SolveQP(const Eigen::MatrixXd &_Q,
+                                              const Eigen::VectorXd &_c,
+                                              const Eigen::MatrixXd &_E_eq,
+                                              const Eigen::VectorXd &_f_eq,
+                                              const Eigen::MatrixXd &_E_ineq,
+                                              const Eigen::VectorXd &_f_ineq,
+                                              Eigen::VectorXd &_sol,
+                                              const int &_v)
+{
+    // Create an empty Mathematical Program
+    drake::solvers::MathematicalProgram prog;
+
+    // Add decision variables
+    auto x = prog.NewContinuousVariables(_Q.cols(), "x");
+
+    // Add quadratic cost
+    prog.AddQuadraticCost(_Q, _c, x, true);
+
+    // Add equality constraints
+    if (!_E_eq.isZero())
+    {
+        prog.AddLinearEqualityConstraint(_E_eq, _f_eq, x);
+    }
+
+    // Add inequality constraints
+    if (!_E_ineq.isZero())
+    {
+        prog.AddLinearConstraint((_E_ineq * x).array() <= _f_ineq.array());
+    }
 
     // Solve the program
     drake::solvers::MathematicalProgramResult result = Solve(prog);
