@@ -156,8 +156,6 @@ namespace math_utils
         // Rank of input matrix
         const auto rankA = svd.rank();
 
-        std::cout << "print" << std::endl;
-
         // Validate
         if (rankA == colsA)
         {
@@ -171,7 +169,6 @@ namespace math_utils
         }
 
         return N;
-
     }                                
 
 } // namespace math_utils
