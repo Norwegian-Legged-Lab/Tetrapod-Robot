@@ -462,7 +462,7 @@ Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalOptimizationControl::Hierar
         }
 
         // Solve QP
-        if (!SolveQP(Q, c, E_ineq, f_ineq, xi, 0))
+        if (!SolveQP(Q, c, E_ineq, f_ineq, xi))
         {
             ROS_ERROR_STREAM("[HierarchicalOptimizationControl::HierarchicalQPOptimization] Failed to solve QP!");
         }
