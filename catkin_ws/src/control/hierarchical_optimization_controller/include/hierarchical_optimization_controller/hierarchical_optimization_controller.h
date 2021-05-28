@@ -60,10 +60,12 @@ class HierarchicalOptimizationControl
 {
     /// \brief Task struct
     public: struct Task {
-        Eigen::MatrixXd A_eq;
-        Eigen::VectorXd b_eq;
-        Eigen::MatrixXd A_ineq;
-        Eigen::VectorXd b_ineq;
+        bool has_eq_constraint = false;     ///< Bool indicating whether the task has a equality constraint.
+        bool has_ineq_constraint = false;   ///< Bool indicating whether the task has a inequality constraint.
+        Eigen::MatrixXd A_eq;               ///< Linear equality constraint matrix A.
+        Eigen::VectorXd b_eq;               ///< Linear equality constraint vector b.             
+        Eigen::MatrixXd A_ineq;             ///< Linear inequality constraint matrix A.
+        Eigen::VectorXd b_ineq;             ///< Linear inequality constraint vector b.
     };
 
     /// \brief Leg type enumerator
@@ -84,11 +86,13 @@ class HierarchicalOptimizationControl
 
     // TODO Describe
     public: Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalQPOptimization(const int &_state_dim,
-                                                                                const std::vector<Task> &_tasks);
+                                                                                const std::vector<Task> &_tasks,
+                                                                                const int &_v = 0);
 
     // TODO Describe
     public: Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalLeastSquareOptimization(const Eigen::Matrix<Eigen::MatrixXd, Eigen::Dynamic, 1> &_A,
-                                                                                         const Eigen::Matrix<Eigen::Matrix<double, Eigen::Dynamic, 1>, Eigen::Dynamic, 1> &_b);
+                                                                                         const Eigen::Matrix<Eigen::Matrix<double, Eigen::Dynamic, 1>, Eigen::Dynamic, 1> &_b,
+                                                                                         const int &_v = 0);
 
     // TODO Describe
     public: bool SolveQP(const Eigen::MatrixXd &_Q,

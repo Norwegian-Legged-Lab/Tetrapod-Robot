@@ -318,7 +318,8 @@ void HierarchicalOptimizationControl::testDrakeQPOpt()
 
 // Hierarchical QP Optimization
 Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalOptimizationControl::HierarchicalQPOptimization(const int &_state_dim,
-                                                                                                     const std::vector<Task> &_tasks)
+                                                                                                     const std::vector<Task> &_tasks,
+                                                                                                     const int &_v)
 {
     // Declarations
     Eigen::VectorXd x_opt(_state_dim);           // Optimal solution
@@ -339,6 +340,7 @@ Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalOptimizationControl::Hierar
     int rowsA_eq;   // Number of rows of current tasks A_eq
     int rowsA_ineq; // Number of rows of current tasks A_ineq
     int colsN;      // Number of cols of current null-space projector N
+    int count = 0;  // Task counter
 
     // Initializations
     x_opt.setZero();
@@ -347,48 +349,83 @@ Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalOptimizationControl::Hierar
     // Iterate over the set of tasks 
     for (Task t : _tasks)
     {
-        // Update row count
-        rowsA_eq = t.A_eq.rows(); 
-        rowsA_ineq = t.A_ineq.rows();
+        // Update count
+        count += 1;
+
+        // Update null-space dimension
         colsN = N.cols();
+
+        // If task has a equality constraint
+        if (t.has_eq_constraint)
+        {
+            // Update row count
+            rowsA_eq = t.A_eq.rows(); 
+
+            // Update stacked equality matrices
+            Eigen::MatrixXd stacked_A_eq_tmp = stacked_A_eq;
+
+            stacked_A_eq.resize(t.A_eq.rows() + stacked_A_eq_tmp.rows(), _state_dim); 
+            stacked_A_eq << t.A_eq,
+                            stacked_A_eq_tmp;
+        }
+        else
+        {
+            // Update row count
+            rowsA_eq = 0;
+        }
+
+        // If task has a inequality constraint
+        if (t.has_ineq_constraint)
+        {
+            // Update row count
+            rowsA_ineq = t.A_ineq.rows();
+
+            // Update stacked inequality matrices
+            Eigen::MatrixXd stacked_A_ineq_tmp = stacked_A_ineq;
+
+            stacked_A_ineq.resize(t.A_ineq.rows() + stacked_A_ineq_tmp.rows(), _state_dim); 
+            stacked_A_ineq << t.A_ineq,
+                              stacked_A_ineq_tmp;
+
+            // Update stacked inequality vectors
+            Eigen::VectorXd stacked_b_ineq_tmp = stacked_b_ineq;
+
+            stacked_b_ineq.resize(t.b_ineq.rows() + stacked_b_ineq_tmp.rows(), 1);
+            stacked_b_ineq << t.b_ineq,
+                              stacked_b_ineq_tmp;
+        }
+        else
+        {                
+            // Update row count
+            rowsA_ineq = 0;
+        }
 
         // Update dimensions
         z.resize(colsN, 1);
         v.resize(rowsA_ineq, 1);
         xi.resize(colsN + rowsA_ineq, 1);
 
-        // Update stacked equality matrices
-        Eigen::MatrixXd stacked_A_eq_tmp = stacked_A_eq;
-
-        stacked_A_eq.resize(t.A_ineq.rows() + stacked_A_eq_tmp.rows(), _state_dim); 
-        stacked_A_eq << t.A_eq,
-                          stacked_A_eq_tmp;
-
-        // Update stacked inequality matrices
-        Eigen::MatrixXd stacked_A_ineq_tmp = stacked_A_ineq;
-
-        stacked_A_ineq.resize(t.A_ineq.rows() + stacked_A_ineq_tmp.rows(), _state_dim); 
-        stacked_A_ineq << t.A_ineq,
-                          stacked_A_ineq_tmp;
-
-        // Update stacked inequality vectors
-        Eigen::VectorXd stacked_b_ineq_tmp = stacked_b_ineq;
-
-        stacked_b_ineq.resize(t.b_ineq.rows() + stacked_b_ineq_tmp.rows(), 1);
-        stacked_b_ineq << t.b_ineq,
-                          stacked_b_ineq_tmp;
-
         // Update QP costs 
         Q.resize(colsN + rowsA_ineq, colsN + rowsA_ineq);
         c.resize(colsN + rowsA_ineq, 1);
 
-        Q.topLeftCorner(colsN, colsN) = N.transpose() * t.A_eq.transpose() * t.A_eq * N;
+        if (t.has_eq_constraint)
+        {
+            Q.topLeftCorner(colsN, colsN) = N.transpose() * t.A_eq.transpose() * t.A_eq * N;
+            c.topRows(colsN) = N.transpose() * t.A_eq.transpose() * (t.A_eq * x_opt - t.b_eq);
+        }
+        else
+        {
+            Q.topLeftCorner(colsN, colsN).setZero();
+            c.topRows(colsN).setZero(); 
+        }
+
         Q.topRightCorner(rowsA_ineq, colsN).setZero();
         Q.bottomLeftCorner(colsN, rowsA_ineq).setZero();
         Q.bottomRightCorner(rowsA_ineq, rowsA_ineq).setIdentity();
 
-        c.topRows(colsN) = N.transpose() * t.A_eq * (t.A_eq * x_opt - t.b_eq);
         c.bottomRows(rowsA_ineq).setZero();
+
 
         // Update inequality constraints
         E_ineq.resize(stacked_A_ineq.rows() + rowsA_ineq, colsN + rowsA_ineq);
@@ -405,8 +442,27 @@ Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalOptimizationControl::Hierar
         f_ineq.segment(rowsA_ineq, stacked_A_ineq.rows() - rowsA_ineq) += stacked_v; 
         f_ineq.bottomRows(rowsA_ineq).setZero();
 
+        // Print w.r.t verbosity level
+        if (_v > 1)
+        {
+            ROS_INFO_STREAM("----------------------" << "Task: " << count << "---------------------- \n" );
+            ROS_INFO_STREAM("Q: \n" << Q << "\n");
+            ROS_INFO_STREAM("c: \n" << c << "\n");
+            ROS_INFO_STREAM("E_ineq: \n" << E_ineq << "\n");
+            ROS_INFO_STREAM("f_ineq: \n" << f_ineq << "\n");
+        }
+        if (_v > 2)
+        {
+            ROS_INFO_STREAM("N: \n" << N << "\n");
+            ROS_INFO_STREAM("A_eq: \n" << t.A_eq << "\n");
+            ROS_INFO_STREAM("b_eq: \n" << t.b_eq << "\n");
+            ROS_INFO_STREAM("stacked_A_eq: \n" << stacked_A_eq << "\n");
+            ROS_INFO_STREAM("stacked_A_ineq: \n" << stacked_A_ineq << "\n");
+            ROS_INFO_STREAM("stacked_b_ineq: \n" << stacked_b_ineq << "\n");
+        }
+
         // Solve QP
-        if (!SolveQP(Q, c, E_ineq, f_ineq, xi))
+        if (!SolveQP(Q, c, E_ineq, f_ineq, xi, 0))
         {
             ROS_ERROR_STREAM("[HierarchicalOptimizationControl::HierarchicalQPOptimization] Failed to solve QP!");
         }
@@ -414,19 +470,43 @@ Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalOptimizationControl::Hierar
         // Get solutions
         z = xi.topRows(colsN);
         v = xi.bottomRows(rowsA_ineq);
-        
+
         // Update optimal state for the hierarchical optimization
         x_opt = x_opt + N * z;
 
-        // Update the null-space projector
-        N = math_utils::SVDNullSpaceProjector(stacked_A_eq);
+        // Update the null-space projector if a equality constraint
+        // is present.
+        if (t.has_eq_constraint)
+        {
+            N = math_utils::SVDNullSpaceProjector(stacked_A_eq);
+        }
 
-        // Update stacked slack variables
-        Eigen::VectorXd stacked_v_tmp = stacked_v;
+        // Update stacked slack variables if a inequality constraint
+        // is present.
+        if (t.has_ineq_constraint)
+        {
+            Eigen::VectorXd stacked_v_tmp = stacked_v;
 
-        stacked_v.resize(v.rows() + stacked_v_tmp.rows(), 1);
-        stacked_v << v,
-                     stacked_v_tmp;
+            stacked_v.resize(v.rows() + stacked_v_tmp.rows(), 1);
+            stacked_v << v,
+                         stacked_v_tmp;
+        }
+
+        // Print w.r.t verbosity level
+        if (_v > 0 )
+        {
+            ROS_INFO_STREAM("Solution at task " << count << " is: \n" << x_opt);
+        }
+
+        // Terminate if null-space is zero (i.e. only the trivial solution exist)
+        if (N.isZero())
+        {
+            if (_v > 0)
+            {
+                ROS_INFO_STREAM("Terminating at task " << count << " due to the null-space being zero. \n");
+            }
+            break;
+        }
 
     }
 
@@ -435,7 +515,8 @@ Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalOptimizationControl::Hierar
 
 // Hierarchical Least-Square Optimization
 Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalOptimizationControl::HierarchicalLeastSquareOptimization(const Eigen::Matrix<Eigen::MatrixXd, Eigen::Dynamic, 1> &_A,
-                                                                                                              const Eigen::Matrix<Eigen::Matrix<double, Eigen::Dynamic, 1>, Eigen::Dynamic, 1> &_b)
+                                                                                                              const Eigen::Matrix<Eigen::Matrix<double, Eigen::Dynamic, 1>, Eigen::Dynamic, 1> &_b,
+                                                                                                              const int &_v)
 {
     const auto rowsA = _A.rows();
     const auto rowsb = _b.rows();
@@ -499,7 +580,11 @@ Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalOptimizationControl::Hierar
 
         N = math_utils::SVDNullSpaceProjector(A_stacked);
 
-        ROS_INFO_STREAM("Solution at iteration " << i << " is: \n" << x_opt);
+        // Print w.r.t verbosity level
+        if (_v == 1)
+        {
+            ROS_INFO_STREAM("Solution at iteration " << i << " is: \n" << x_opt);
+        }
 
     }
 
@@ -526,6 +611,12 @@ bool HierarchicalOptimizationControl::SolveQP(const Eigen::MatrixXd &_Q,
     // Add inequality constraints
     if (!_E_ineq.isZero())
     {
+        if (_v > 0)
+        {
+            ROS_INFO_STREAM("(_E_ineq * x).array(): \n" << (_E_ineq * x).array() << "\n");
+            ROS_INFO_STREAM("_f_ineq.array(): \n" << _f_ineq.array() << "\n");
+        }
+
         prog.AddLinearConstraint((_E_ineq * x).array() <= _f_ineq.array());
     }
 
