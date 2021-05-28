@@ -35,6 +35,8 @@ class SingleMotorController
 
     private: void motorConfirmationCallback(const std_msgs::Bool &_msg);
 
+    private: void keepLoggingCallback(const std_msgs::Bool &_msg);
+
     /*** CONTROL FUNCTIONS ***/
 
     public: void calculateSingleAxisTrajectory
@@ -59,7 +61,15 @@ class SingleMotorController
 
     /*** HELPER FUNCTIONS ***/
 
-    public: void initializeMotor(double _k_p_pos, double _k_d_pos, double _k_p_torque, double _k_d_torque);
+    public: void initializeMotor
+    (
+        double _k_p_pos, 
+        double _k_d_pos, 
+        double _k_p_vel, 
+        double _k_i_vel, 
+        double _k_p_torque, 
+        double _k_i_torque
+    );
 
     public: void initializeMotor();
 
@@ -72,6 +82,8 @@ class SingleMotorController
     public: void printAll();
 
     public: void writeToLog();
+
+    public: bool keepLogging(){return keep_logging;}
 
     /*** STATE VARIABLES ***/
 
@@ -95,6 +107,8 @@ class SingleMotorController
 
     double current_iteration = 0.0;
 
+    bool keep_logging = true;
+
     /*** PARAMETERS ***/
 
     private: double publish_frequency = 100.0;
@@ -103,17 +117,27 @@ class SingleMotorController
 
     private: double max_iterations;
 
-    private: double max_travel = M_PI*2.0/3.0;
+    private: double max_travel = 0.0; //M_PI*2.0/3.0;
 
-    private: double inertia = 1;
+    private: double inertia = 1.0;
 
-    private: double k_p_pos = 1.0;
+    private: double k_p_pos = 30.0;
 
-    private: double k_d_pos = 1.0;
+    private: double k_i_pos = 3.0;
 
-    private: double k_p_torque = 1.0;
+    private: double k_d_pos = 5.0;
 
-    private: double k_d_torque = 1.0;
+    private: double k_p_vel = 30.0;
+
+    private: double k_i_vel = 3.0;
+
+    private: double k_d_vel = 5.0;
+
+    private: double k_p_torque = 30.0;
+
+    private: double k_i_torque = 3.0;
+
+    private: double k_d_torque = 5.0;
 
     /*** ROS VARIABLES ***/
 
@@ -126,6 +150,8 @@ class SingleMotorController
     private: ros::Subscriber set_goal_subscriber;
 
     private: ros::Subscriber motor_confirmation_subscriber;
+
+    private: ros::Subscriber keep_logging_subscriber;
 
     private: ros::Publisher joint_command_publisher;
 
