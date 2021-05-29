@@ -89,20 +89,34 @@ class HierarchicalOptimizationControl
     /// prioritized order. The method iterates through the
     /// set of tasks and searches for a new solution in the 
     /// null-space of all higher priority equality constraints. 
-    /// At each iteration a QP problem is solved to find 
-    /// vectors lying in the row-space of the null-space of all 
+    /// At each iteration a QP problem is solved to find a 
+    /// vector lying in the row-space of the null-space of all 
     /// equality constraints, which improve on the current 
     /// solution.
     /// \param[in] _state_dim State dimension for the solution vector.
     /// \param[in] _tasks A set of tasks to be solved.
-    /// \param[in] _v Verbosity level [1,2,3].
+    /// \param[in] _v Verbosity level [0,1,2,3].
     /// \return Returns the optimal solution in a strict prioritized
     /// manner given a set of tasks. 
     public: Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalQPOptimization(const int &_state_dim,
                                                                                 const std::vector<Task> &_tasks,
                                                                                 const int &_v = 0);
 
-    // TODO Describe
+    /// \brief The HierarchicalLeastSquareOptimization function finds the
+    /// optimal solution for a set of linear equality constraints in a
+    /// strictly prioritized order. The method iterates through the set 
+    /// of equality constraints and searches for a new solution in the 
+    /// null-space of all higher priority equality constraints. At each
+    /// iteration the Moore-Penrose pseudoinverse is utilized to find
+    /// a vector lying in the row-space of the null-space of all equality
+    /// constraints, which improve on the current solution. The usage
+    /// of the Moore-Penrose pseudoinverse yield a least square solution
+    /// of the problem at hand.
+    /// \param[in] _A A set of equality constraint matrices A.
+    /// \param[in] _b A set of equality constraint vectors b.
+    /// \param[in] _v Verbosity level [0,1].
+    /// \return Returns the optimal solution in a strict prioritized
+    /// manner given a set of equality constraints.
     public: Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalLeastSquareOptimization(const Eigen::Matrix<Eigen::MatrixXd, Eigen::Dynamic, 1> &_A,
                                                                                          const Eigen::Matrix<Eigen::Matrix<double, Eigen::Dynamic, 1>, Eigen::Dynamic, 1> &_b,
                                                                                          const int &_v = 0);
