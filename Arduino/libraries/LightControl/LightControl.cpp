@@ -7,6 +7,7 @@ void LightControl::setup()
     for(int i = 0; i < lights.getDeviceCount(); i++)
     {
         lights.shutdown(i, false);
+        lights.setIntensity(i, 0);
     }
 }
 
@@ -23,7 +24,7 @@ void LightControl::setBandValues()
     {
         int address = floor(i/LEDS_PER_DISPLAY);
         int column = i - LEDS_PER_DISPLAY*address;
-        lights.setColumn(address, column, band_values(i));
+        lights.setColumn(getAddress(address), column, band_values(i));
     }
 }
 
@@ -65,4 +66,9 @@ void LightControl::printBandValues()
     {
         Serial.print("#"); Serial.print(i); Serial.print("\t"); Serial.println(band_values(i));
     }
+}
+
+uint8_t LightControl::getAddress(uint8_t _address)
+{
+    return 3 - _address;
 }

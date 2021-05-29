@@ -22,7 +22,7 @@ void loop()
 
   for(int i = 1; i < 8; i++)
   {
-    delay(300);
+    delay(300 - i*40);
     lights.decrementBandValues();
     lights.setBandValues();
   }

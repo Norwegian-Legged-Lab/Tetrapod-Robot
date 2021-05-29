@@ -47,6 +47,8 @@ class LightControl
     public: void randomizeBandValues();
 
     public: void printBandValues();
+
+    private: uint8_t getAddress(uint8_t _address);
 };
 
 #endif
