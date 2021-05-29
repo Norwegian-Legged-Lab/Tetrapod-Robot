@@ -81,7 +81,10 @@ class HierarchicalOptimizationControl
     public: virtual ~HierarchicalOptimizationControl();
 
     // TODO Describe
-    public: Eigen::Matrix<double, 12, 1> HierarchicalOptimization(const Eigen::Vector3d &_desired_base_pos,
+    public: Eigen::Matrix<double, 12, 1> SomeHierarchicalOptimization(const Eigen::Vector3d &_desired_base_pos,
+                                                                  const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_pos); 
+
+    public: Eigen::Matrix<double, 18, 1> HierarchicalOptimization(const Eigen::Vector3d &_desired_base_pos,
                                                                   const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_pos); 
 
     /// \brief The HierarchicalQPOptimization function finds the 

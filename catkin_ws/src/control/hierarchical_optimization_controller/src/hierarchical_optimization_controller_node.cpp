@@ -232,6 +232,32 @@ void testQPSolver2(HierarchicalOptimizationControl &_ho_controller)
     ROS_INFO_STREAM("x_opt: \n" << sol);
 }
 
+void testHO(HierarchicalOptimizationControl &_ho_controller)
+{
+    Eigen::Vector3d desired_base_pos;
+    Eigen::Matrix<Eigen::Vector3d, 4, 1> desired_f_pos;
+
+    desired_base_pos << 0,
+                        0,
+                        0;
+    desired_f_pos(0) << 0,
+                        0,
+                        0;
+    desired_f_pos(1) << 0,
+                        0,
+                        0;
+    desired_f_pos(2) << 0,
+                        0,
+                        0;
+    desired_f_pos(3) << 0,
+                        0,
+                        0;
+    
+    Eigen::Matrix<double, 18, 1> tau = _ho_controller.HierarchicalOptimization(desired_base_pos, 
+                                                                               desired_f_pos);
+    
+    ROS_INFO_STREAM("Tau: \n" << tau << "\n");
+}
 
 // Main
 int main(int argc, char **argv)
@@ -240,7 +266,10 @@ int main(int argc, char **argv)
 
     //testHLSO(ho_controller);
 
-    testHQPO(ho_controller);
+    //testHQPO(ho_controller);
+
+    testHO(ho_controller);
+
 
     ros::spin();
 
