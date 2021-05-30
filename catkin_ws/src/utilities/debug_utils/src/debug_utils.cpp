@@ -94,6 +94,25 @@ void printJointVelocities(const Eigen::Matrix<double, 12, 1> &_joint_vel)
     ROS_INFO_STREAM(" ------------------------------------------ ");
 }
 
+// Print Joint Torques
+void printJointTorques(const Eigen::Matrix<double, 12, 1> &_joint_trq)
+{
+    ROS_INFO_STREAM("\n ------ Joint Torques [Nm] --------- ");
+    ROS_INFO_STREAM("fl,hy: \t" << _joint_trq(0));
+    ROS_INFO_STREAM("fl,hp: \t" << _joint_trq(1));
+    ROS_INFO_STREAM("fl,kp: \t" << _joint_trq(2));
+    ROS_INFO_STREAM("fr,hy: \t" << _joint_trq(3));
+    ROS_INFO_STREAM("fr,hp: \t" << _joint_trq(4));
+    ROS_INFO_STREAM("fr,kp: \t" << _joint_trq(5));
+    ROS_INFO_STREAM("rl,hy: \t" << _joint_trq(6));
+    ROS_INFO_STREAM("rl,hp: \t" << _joint_trq(7));
+    ROS_INFO_STREAM("rl,kp: \t" << _joint_trq(8));
+    ROS_INFO_STREAM("rr,hy: \t" << _joint_trq(9));
+    ROS_INFO_STREAM("rr,hp: \t" << _joint_trq(10)); 
+    ROS_INFO_STREAM("rr,kp: \t" << _joint_trq(11));
+    ROS_INFO_STREAM(" ------------------------------------------ ");
+}
+
 // Print Generalized Coordinates
 void printGeneralizedCoordinates(const Eigen::Matrix<double, 18, 1> &_gen_coord)
 {

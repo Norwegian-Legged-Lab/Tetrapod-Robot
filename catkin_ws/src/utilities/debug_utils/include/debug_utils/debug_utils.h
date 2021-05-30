@@ -60,6 +60,11 @@ namespace debug_utils
     /// \param[in] _joint_vel Joint velocities
     void printJointVelocities(const Eigen::Matrix<double, 12, 1> &_joint_vel);
 
+    /// \brief The printJointTorques function prints given joint-
+    /// torques to ROS using print level INFO.
+    /// \param[in] _joint_trq Joint torques
+    void printJointTorques(const Eigen::Matrix<double, 12, 1> &_joint_trq);
+
     /// \brief The printGeneralizedCoordinates function prints a given set
     /// of generalized coordinates to ROS using print level INFO.
     /// \param[in] _gen_coord  Generalized coordinates
