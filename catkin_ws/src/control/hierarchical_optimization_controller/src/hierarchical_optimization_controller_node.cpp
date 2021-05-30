@@ -268,7 +268,11 @@ int main(int argc, char **argv)
 
     //testHQPO(ho_controller);
 
-    testHO(ho_controller);
+    //testHO(ho_controller);
+
+    ros::Duration(2.0).sleep();
+
+    ho_controller.StaticTorqueTest();
 
 
     ros::spin();

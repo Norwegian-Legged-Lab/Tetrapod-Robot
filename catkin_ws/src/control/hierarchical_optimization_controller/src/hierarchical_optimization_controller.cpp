@@ -52,6 +52,21 @@ HierarchicalOptimizationControl::~HierarchicalOptimizationControl()
     this->rosPublishQueueThread.join();
 }
 
+// TODO remove this
+void HierarchicalOptimizationControl::StaticTorqueTest()
+{
+    Eigen::Matrix<double, 18, 1> desired_tau;
+
+    desired_tau = this->HierarchicalOptimization(this->genCoord.topRows(3),
+                                                 this->fPos);
+    
+    debug_utils::printBaseState(this->genCoord);
+    debug_utils::printFootstepPositions(this->fPos);
+    debug_utils::printJointTorques(desired_tau.bottomRows(12));
+
+    this->PublishTorqueMsg(desired_tau.bottomRows(12));
+}
+
 Eigen::Matrix<double, 18, 1> HierarchicalOptimizationControl::HierarchicalOptimization(const Eigen::Vector3d &_desired_base_pos,
                                                                                        const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_pos)
 {
@@ -897,6 +912,42 @@ bool HierarchicalOptimizationControl::SolveQP(const Eigen::MatrixXd &_Q,
     return true;
 }
 
+// Publish function for ROS Joint State Torque messages
+void HierarchicalOptimizationControl::PublishTorqueMsg(const Eigen::Matrix<double, 12, 1> &_desired_tau)
+{
+    // Declare msg
+    sensor_msgs::JointState joint_state_msg;    
+
+    // Set dimension
+    joint_state_msg.effort.resize(12);
+
+    // Front-left 
+    joint_state_msg.effort[0] = _desired_tau(0);
+    joint_state_msg.effort[1] = _desired_tau(1);
+    joint_state_msg.effort[2] = _desired_tau(2);
+
+    // Front right
+    joint_state_msg.effort[3] = _desired_tau(3);
+    joint_state_msg.effort[4] = _desired_tau(4);
+    joint_state_msg.effort[5] = _desired_tau(5);
+
+    // Rear left
+    joint_state_msg.effort[6] = _desired_tau(6);
+    joint_state_msg.effort[7] = _desired_tau(7);
+    joint_state_msg.effort[8] = _desired_tau(8);
+
+    // Rear right
+    joint_state_msg.effort[9] = _desired_tau(9);
+    joint_state_msg.effort[10] = _desired_tau(10);
+    joint_state_msg.effort[11] = _desired_tau(11);
+
+    // Set timestamp
+    joint_state_msg.header.stamp = ros::Time::now();
+
+    // Publish
+    this->jointStatePub.publish(joint_state_msg);
+}
+
 // Callback for ROS Generalized Coordinates messages
 void HierarchicalOptimizationControl::OnGenCoordMsg(const std_msgs::Float64MultiArrayConstPtr &_msg)
 {
@@ -922,7 +973,7 @@ void HierarchicalOptimizationControl::OnGenVelMsg(const std_msgs::Float64MultiAr
 // Callback for ROS Contact State messages
 void HierarchicalOptimizationControl::OnContactStateMsg(const std_msgs::Int8MultiArrayConstPtr &_msg)
 {
-    if (_msg->data.size() == 4)
+    if (!_msg->data.size() == 4)
     {
         ROS_ERROR("[HierarchicalOptimizationControl::OnContactStateMsg] Received contact message with wrong size!");
     }

@@ -80,6 +80,8 @@ class HierarchicalOptimizationControl
     /// \brief Destructor
     public: virtual ~HierarchicalOptimizationControl();
 
+    public: void StaticTorqueTest();
+
     // TODO Describe
     public: Eigen::Matrix<double, 12, 1> SomeHierarchicalOptimization(const Eigen::Vector3d &_desired_base_pos,
                                                                   const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_pos); 
@@ -182,6 +184,12 @@ class HierarchicalOptimizationControl
 
     // TODO Remove
     public: void testDrakeQPOpt();
+
+    /// \brief The PublishTorqueMsg function publishes
+    /// a desired torque message to the ROS topic set by 
+    /// the joint state publisher.
+    /// \param[in] _desired_tau Desired torque to be published.
+    public: void PublishTorqueMsg(const Eigen::Matrix<double, 12, 1> &_desired_tau);
 
     /// \brief The OnGenCoordMsg function handles an incoming 
     /// generalized coordinates message from ROS.
