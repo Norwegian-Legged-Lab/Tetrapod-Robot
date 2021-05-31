@@ -50,7 +50,10 @@ MotorControl::MotorControl(uint8_t _id, uint8_t _can_port_id, int _number_of_inn
     // The multi turn angle is necessary to decide whether or not an offset should be added to the position setpoint function
     while(!readMultiTurnAngle())
     {
-        Serial.println("Trying to read multiturn angle");
+        #if ROS_PRINT
+            ROS_NODE_HANDLE.loginfo("Trying to read multiturn angle");
+        #endif
+        //Serial.println("Trying to read multiturn angle");
         delay_microseconds(1000000.0);
     }
 
@@ -62,7 +65,6 @@ MotorControl::MotorControl(uint8_t _id, uint8_t _can_port_id, int _number_of_inn
     {
         target_position_offset = 0;
     }
-    
 }
 
 bool MotorControl::readPIDParameters()
@@ -413,7 +415,7 @@ bool MotorControl::readMultiTurnAngle()
     sendMessage(can_message);
 
     // Wait 0.010 seconds for a reply from the motor
-    delay_microseconds(1000.0);
+    delay_microseconds(10000.0);
 
     if(readMessage(received_can_message))
     {
@@ -749,7 +751,7 @@ void MotorControl::sendMessage(CAN_message_t _can_message)
     {
         can_port_1.write(_can_message);
         #if ROS_PRINT
-            ROS_NODE_HANDLE.loginfo("Sent message to PORT 1");
+            //ROS_NODE_HANDLE.loginfo("Sent message to PORT 1");
         #endif
         
     }
@@ -757,7 +759,7 @@ void MotorControl::sendMessage(CAN_message_t _can_message)
     {
         can_port_2.write(_can_message);
         #if ROS_PRINT
-            ROS_NODE_HANDLE.loginfo("Sent message to PORT 2");
+            //ROS_NODE_HANDLE.loginfo("Sent message to PORT 2");
         #endif
     }
     else
