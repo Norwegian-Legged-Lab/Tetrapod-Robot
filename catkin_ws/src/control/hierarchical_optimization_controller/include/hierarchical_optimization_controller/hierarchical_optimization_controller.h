@@ -60,10 +60,12 @@ class HierarchicalOptimizationControl
 {
     /// \brief Task struct
     public: struct Task {
-        Eigen::MatrixXd A_eq;
-        Eigen::VectorXd b_eq;
-        Eigen::MatrixXd A_ineq;
-        Eigen::VectorXd b_ineq;
+        bool has_eq_constraint = false;     ///< Bool indicating whether the task has a linear equality constraint.
+        bool has_ineq_constraint = false;   ///< Bool indicating whether the task has a linear inequality constraint.
+        Eigen::MatrixXd A_eq;               ///< Linear equality constraint matrix A.
+        Eigen::VectorXd b_eq;               ///< Linear equality constraint vector b.             
+        Eigen::MatrixXd A_ineq;             ///< Linear inequality constraint matrix A.
+        Eigen::VectorXd b_ineq;             ///< Linear inequality constraint vector b.
     };
 
     /// \brief Leg type enumerator
@@ -78,19 +80,70 @@ class HierarchicalOptimizationControl
     /// \brief Destructor
     public: virtual ~HierarchicalOptimizationControl();
 
+    public: void StaticTorqueTest();
+
     // TODO Describe
-    public: Eigen::Matrix<double, 12, 1> HierarchicalOptimization(const Eigen::Vector3d &_desired_base_pos,
+    public: Eigen::Matrix<double, 12, 1> SomeHierarchicalOptimization(const Eigen::Vector3d &_desired_base_pos,
                                                                   const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_pos); 
 
-    // TODO Describe
+    public: Eigen::Matrix<double, 18, 1> HierarchicalOptimization(const Eigen::Vector3d &_desired_base_pos,
+                                                                  const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_pos); 
+
+    /// \brief The HierarchicalQPOptimization function finds the 
+    /// optimal solution for a set of tasks in a strictly
+    /// prioritized order. The method iterates through the
+    /// set of tasks and searches for a new solution in the 
+    /// null-space of all higher priority equality constraints. 
+    /// At each iteration a QP problem is solved to find a 
+    /// vector lying in the row-space of the null-space of all 
+    /// equality constraints, which improve on the current 
+    /// solution.
+    /// \param[in] _state_dim State dimension for the solution vector.
+    /// \param[in] _tasks A set of tasks to be solved.
+    /// \param[in] _v Verbosity level [0,1,2,3].
+    /// \return Returns the optimal solution in a strict prioritized
+    /// manner given a set of tasks. 
     public: Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalQPOptimization(const int &_state_dim,
-                                                                                const std::vector<Task> &_tasks);
+                                                                                const std::vector<Task> &_tasks,
+                                                                                const int &_v = 0);
 
-    // TODO Describe
+    /// \brief The HierarchicalLeastSquareOptimization function finds the
+    /// optimal solution for a set of linear equality constraints in a
+    /// strictly prioritized order. The method iterates through the set 
+    /// of equality constraints and searches for a new solution in the 
+    /// null-space of all higher priority equality constraints. At each
+    /// iteration the Moore-Penrose pseudoinverse is utilized to find
+    /// a vector lying in the row-space of the null-space of all equality
+    /// constraints, which improve on the current solution. The usage
+    /// of the Moore-Penrose pseudoinverse yield a least square solution
+    /// of the problem at hand.
+    /// \param[in] _A A set of equality constraint matrices A.
+    /// \param[in] _b A set of equality constraint vectors b.
+    /// \param[in] _v Verbosity level [0,1].
+    /// \return Returns the optimal solution in a strict prioritized
+    /// manner given a set of equality constraints.
     public: Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalLeastSquareOptimization(const Eigen::Matrix<Eigen::MatrixXd, Eigen::Dynamic, 1> &_A,
-                                                                                         const Eigen::Matrix<Eigen::Matrix<double, Eigen::Dynamic, 1>, Eigen::Dynamic, 1> &_b);
+                                                                                         const Eigen::Matrix<Eigen::Matrix<double, Eigen::Dynamic, 1>, Eigen::Dynamic, 1> &_b,
+                                                                                         const int &_v = 0);
 
-    // TODO Describe
+    /// \brief The SolveQP function solves a (convex) quadratic
+    /// program (QP) on the form:
+    /// -------------------------------------------------------
+    ///     min_x        0.5 x^T Q x + c^T x
+    ///      s.t.        E_ineq x <= f_ineq
+    /// -------------------------------------------------------
+    /// The toolbox uses the Drake toolbox for solving the 
+    /// problem. Currently Drake identifies the problem
+    /// and chooses an appropriate commercial solver, but
+    /// the solver can be specified (among the supported) 
+    /// by the user if one desires.
+    /// \param[in] _Q Cost matrix Q (must be positive semidefinite).
+    /// \param[in] _c Cost vector c.
+    /// \param[in] _E_ineq Linear inequality constraint matrix E_ineq;
+    /// \param[in] _f_ineq Linear inequality constraint vector f_ineq;
+    /// \param[out] _sol Solution of the QP (if it exists).
+    /// \param[in] _v Verbosity level. // TODO Update after verbosity is set
+    /// \return Returns true if a solution is found, false if not.
     public: bool SolveQP(const Eigen::MatrixXd &_Q,
                          const Eigen::VectorXd &_c,
                          const Eigen::MatrixXd &_E_ineq,
@@ -98,7 +151,27 @@ class HierarchicalOptimizationControl
                          Eigen::VectorXd &_sol,
                          const int &_v = 0);
 
-    // TODO describe
+    /// \brief The SolveQP function solves a (convex) quadratic
+    /// program (QP) on the form:
+    /// -------------------------------------------------------
+    ///     min_x        0.5 x^T Q x + c^T x
+    ///      s.t.          E_eq x  = f_eq
+    ///                  E_ineq x <= f_ineq
+    /// -------------------------------------------------------
+    /// The toolbox uses the Drake toolbox for solving the 
+    /// problem. Currently Drake identifies the problem
+    /// and chooses an appropriate commercial solver, but
+    /// the solver can be specified (among the supported) 
+    /// by the user if one desires.
+    /// \param[in] _Q Cost matrix Q (must be positive semidefinite).
+    /// \param[in] _c Cost vector c.
+    /// \param[in] _E_eq Linear equality constraint matrix E_eq;
+    /// \param[in] _f_eq Linear equality constraint vector f_eq;
+    /// \param[in] _E_ineq Linear inequality constraint matrix E_ineq;
+    /// \param[in] _f_ineq Linear inequality constraint vector f_ineq;
+    /// \param[out] _sol Solution of the QP (if it exists).
+    /// \param[in] _v Verbosity level. // TODO Update after verbosity is set
+    /// \return Returns true if a solution is found, false if not.
     public: bool SolveQP(const Eigen::MatrixXd &_Q,
                          const Eigen::VectorXd &_c,
                          const Eigen::MatrixXd &_E_eq,
@@ -111,6 +184,12 @@ class HierarchicalOptimizationControl
 
     // TODO Remove
     public: void testDrakeQPOpt();
+
+    /// \brief The PublishTorqueMsg function publishes
+    /// a desired torque message to the ROS topic set by 
+    /// the joint state publisher.
+    /// \param[in] _desired_tau Desired torque to be published.
+    public: void PublishTorqueMsg(const Eigen::Matrix<double, 12, 1> &_desired_tau);
 
     /// \brief The OnGenCoordMsg function handles an incoming 
     /// generalized coordinates message from ROS.

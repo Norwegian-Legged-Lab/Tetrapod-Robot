@@ -31,6 +31,11 @@ HierarchicalOptimizationControl::HierarchicalOptimizationControl()
 {
     this->InitRos();
     this->InitRosQueueThreads();
+
+    this->contactState[0] = 1;
+    this->contactState[1] = 1;
+    this->contactState[2] = 1;
+    this->contactState[3] = 1;
 }
 
 // Destructor
@@ -47,9 +52,259 @@ HierarchicalOptimizationControl::~HierarchicalOptimizationControl()
     this->rosPublishQueueThread.join();
 }
 
-// Hierarchical Optimization
-Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimization(const Eigen::Vector3d &_desired_base_pos,
+// TODO remove this
+void HierarchicalOptimizationControl::StaticTorqueTest()
+{
+    Eigen::Matrix<double, 18, 1> desired_tau;
+
+    desired_tau = this->HierarchicalOptimization(this->genCoord.topRows(3),
+                                                 this->fPos);
+    
+    debug_utils::printBaseState(this->genCoord);
+    debug_utils::printFootstepPositions(this->fPos);
+    debug_utils::printJointTorques(desired_tau.bottomRows(12));
+
+    this->PublishTorqueMsg(desired_tau.bottomRows(12));
+}
+
+Eigen::Matrix<double, 18, 1> HierarchicalOptimizationControl::HierarchicalOptimization(const Eigen::Vector3d &_desired_base_pos,
                                                                                        const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_pos)
+{
+    //*************************************************************************************
+    // Declarations
+    //*************************************************************************************
+
+    Eigen::Matrix<double, 18, 1> desired_tau;   // 12x1 Reference joint torques
+
+    Eigen::VectorXd x_opt;                      // Optimal solution x_opt = [dot_u_opt, F_c_opt]^T
+
+    // Tasks used to formulate the hierarchical optimization
+    // problem
+    Task t_eom;     // Task for the equations of motion
+    Task t_cmc;     // Task for the contact motion constraint
+    Task t_cftl;    // Task for the contact force and torque limits
+    Task t_mt;      // Task for the motion tracking of the floating base and swing legs
+    Task t_cfm;     // Task for the contact force minimization
+
+    std::vector<Task> tasks; // Set of tasks
+
+    // Matrices and terms used to enforce equations of motion 
+    // for the floating base system dynamics (the first six
+    // rows of the respective matrices and terms).
+    Eigen::Matrix<double, 18, 18> M_fb;                    // 18x18 Floating base Mass matrix
+    Eigen::Matrix<double, 18, 1> b_fb;                     // 18x1 Floating base Coriolis and centrifugal terms
+    Eigen::Matrix<double, 18, 1> g_fb;                     // 18x1 Floating base Gravitational terms
+    Eigen::Matrix<double, Eigen::Dynamic, 18> J_c_fb;      // (3*n_c)x18 Floating base Contact Jacobian
+
+    // Matrices used to enforce contact motion constraints
+    Eigen::Matrix<double, Eigen::Dynamic, 18> J_c;         // (3*n_c)x18 Contact Jacobian
+    Eigen::Matrix<double, Eigen::Dynamic, 18> dot_J_c;     // (3*n_c)x18 Time derivative of the Contact Jacobian
+
+    // Matrices and parameters used to enfore motion tracking
+    Eigen::Matrix<double, 3, 18> J_P_fb;                   // 3x18 Floating base Translation Jacobian
+    Eigen::Matrix<double, 3, 18> J_P_fl;                   // 3x18 Front left foot Translation Jacobian
+    Eigen::Matrix<double, 3, 18> J_P_fr;                   // 3x18 Front right foot Translation Jacobian
+    Eigen::Matrix<double, 3, 18> J_P_rl;                   // 3x18 Rear left foot Translation Jacobian
+    Eigen::Matrix<double, 3, 18> J_P_rr;                   // 3x18 Rear right foot Translation Jacobian
+
+    // Matrices and terms used to enforce contact force
+    // and torque limits for the joint dynamics (the last
+    // 12 rows of the respective matrices and terms).
+    Eigen::Matrix<double, 18, 18> M_r;                    // 18x18 Joint dynamics Mass matrix
+    Eigen::Matrix<double, 18, 1> b_r;                     // 18x1 Joint dynamics Coriolis and centrifugal terms
+    Eigen::Matrix<double, 18, 1> g_r;                     // 18x1 Joint dynamics Gravitational terms
+    Eigen::Matrix<double, Eigen::Dynamic, 18> J_c_r;      // (3*n_c)x18 Joint dynamics Contact Jacobian
+    Eigen::Matrix<double, 18, 1> tau_min;                 // 18x1 Minimum actuator torques
+    Eigen::Matrix<double, 18, 1> tau_max;                 // 18x1 Maximum actuator torques
+
+    std::vector<Kinematics::LegType> contact_legs; // Vector of contact points (legs)
+    std::vector<Kinematics::LegType> swing_legs;   // Vector of swing legs
+
+    //*************************************************************************************
+    // Tuning parameters
+    //*************************************************************************************
+
+    // Motion tracking gains
+    double k_p_fb = 1;      // Floating base proportional gain
+    double k_p_fl = 1;      // Front left foot proportional gain
+    double k_p_fr = 1;      // Front right foot proportional gain
+    double k_p_rl = 1;      // Rear left foot proportional gain
+    double k_p_rr = 1;      // Rear right foot proportional gain
+
+    //*************************************************************************************
+    // Updates
+    //*************************************************************************************
+
+    // Fill contact and swing legs
+    for (size_t i = 0; i < 4; i++)
+    {
+        // Contact State is assumed sorted by fl, fr, rl, rr
+        if (contactState[i])
+        {
+            // fl = 1, fr = 2, rl = 3, rr = 4
+            contact_legs.push_back(Kinematics::LegType(i + 1));
+        }
+        else
+        {
+            // fl = 1, fr = 2, rl = 3, rr = 4
+            swing_legs.push_back(Kinematics::LegType(i + 1));
+        }
+    }
+
+    // Number of contact and swing legs, respectively
+    const unsigned int n_c = contact_legs.size();
+    const unsigned int n_s = swing_legs.size();
+
+    // Update state dimension x = [dot_u, F_c]^T
+    const unsigned int state_dim = 18 + 3*n_c;
+
+    // Resize task dimensions
+    t_eom.A_eq.resize(18, state_dim);
+    t_eom.b_eq.resize(18, 1);
+
+    t_cmc.A_eq.resize(3*n_c, state_dim);
+    t_cmc.b_eq.resize(3*n_c, 1);
+
+    t_cftl.A_ineq.resize(36, state_dim);
+    t_cftl.b_ineq.resize(36,1);
+
+    t_mt.A_eq.resize(15, state_dim);
+    t_mt.b_eq.resize(15, 1);
+
+    t_cfm.A_eq.resize(3*n_c, state_dim);
+    t_cfm.b_eq.resize(3*n_c, 1);
+
+    // Resize dynamic matrices and terms
+    x_opt.resize(state_dim, 1);
+    J_c_fb.resize(3*n_c, 18);
+    J_c_r.resize(3*n_c, 18);
+    J_c.resize(3*n_c, 18);
+    dot_J_c.resize(3*n_c, 18);
+
+    // Update matrices used by EOM constraints
+    M_fb = kinematics.GetMassMatrix(this->genCoord);
+    M_fb.bottomRows(12).setZero();
+
+    b_fb = kinematics.GetCoriolisAndCentrifugalTerms(this->genCoord, this->genVel);
+    b_fb.bottomRows(12).setZero();
+
+    g_fb = kinematics.GetGravitationalTerms(this->genCoord);
+    g_fb.bottomRows(12).setZero();
+
+    J_c_fb = kinematics.GetContactJacobianInW(contact_legs, this->genCoord);
+    J_c_fb.rightCols(12).setZero();
+
+    // Update matrices used by contact motion constraints
+    J_c = kinematics.GetContactJacobianInW(contact_legs, this->genCoord);
+    dot_J_c = kinematics.GetContactJacobianInWDiff(contact_legs, this->genCoord, this->genVel);
+
+    // Update matrices used by contact force and torque limits constraint
+    M_r = kinematics.GetMassMatrix(this->genCoord);
+    M_r.topRows(6).setZero();
+
+    b_r = kinematics.GetCoriolisAndCentrifugalTerms(this->genCoord, this->genVel);
+    b_r.topRows(6).setZero();
+
+    g_r = kinematics.GetGravitationalTerms(this->genCoord);
+    g_r.topRows(6).setZero();
+
+    J_c_r = kinematics.GetContactJacobianInW(contact_legs, this->genCoord);
+    J_c_r.leftCols(6).setZero();
+
+    // Update matrices used by motion tracking constraints
+    J_P_fb = kinematics.GetTranslationJacobianInW(Kinematics::LegType::NONE,
+                                                  Kinematics::BodyType::base,
+                                                  this->genCoord);
+    J_P_fl = kinematics.GetTranslationJacobianInW(Kinematics::LegType::frontLeft,
+                                                  Kinematics::BodyType::foot,
+                                                  this->genCoord);
+    J_P_fr = kinematics.GetTranslationJacobianInW(Kinematics::LegType::frontRight,
+                                                  Kinematics::BodyType::foot,
+                                                  this->genCoord);
+    J_P_rl = kinematics.GetTranslationJacobianInW(Kinematics::LegType::rearLeft,
+                                                  Kinematics::BodyType::foot,
+                                                  this->genCoord);
+    J_P_rr = kinematics.GetTranslationJacobianInW(Kinematics::LegType::rearRight,
+                                                  Kinematics::BodyType::foot,
+                                                  this->genCoord);
+
+    // Update equations of motion task
+    t_eom.A_eq.leftCols(18) = M_fb;
+    t_eom.A_eq.rightCols(3*n_c) = - J_c_fb.transpose();
+    t_eom.b_eq = - (b_fb + g_fb);
+
+    // Update contact force and torque limits task
+        // Max torque limit
+    t_cftl.A_ineq.topRows(18).leftCols(18) = M_r;
+    t_cftl.A_ineq.topRows(18).rightCols(3*n_c) = - J_c_r.transpose();
+    t_cftl.b_ineq.topRows(18) = tau_max - (b_r + g_r);
+        // Min torque limit
+    t_cftl.A_ineq.bottomRows(18).leftCols(18) = - M_r;
+    t_cftl.A_ineq.bottomRows(18).rightCols(3*n_c) = J_c_r.transpose();
+    t_cftl.b_ineq.bottomRows(18) = - tau_min + (b_r + g_r);
+
+    // Update contact motion constraint task
+    t_cmc.A_eq.leftCols(18) = J_c;
+    t_cmc.A_eq.rightCols(3*n_c).setZero();
+    t_cmc.b_eq = - dot_J_c * this->genVel;
+
+    // Update motion tracking task
+        // Floating base
+    t_mt.A_eq.block(0, 0, 3, state_dim).leftCols(18) = J_P_fb;
+    t_mt.A_eq.block(0, 0, 3, state_dim).rightCols(3*n_c).setZero();
+    t_mt.b_eq.block(0, 0, 3, 1) = k_p_fb * (_desired_base_pos - this->genCoord.topRows(3));
+
+        // Front-left foot
+    t_mt.A_eq.block(3, 0, 3, state_dim).leftCols(18) = J_P_fl;
+    t_mt.A_eq.block(3, 0, 3, state_dim).rightCols(3*n_c).setZero();
+    t_mt.b_eq.block(3, 0, 3, 1) = k_p_fl * (_desired_f_pos(0) - this->fPos(0));
+
+        // Front-right foot
+    t_mt.A_eq.block(6, 0, 3, state_dim).leftCols(18) = J_P_fr;
+    t_mt.A_eq.block(6, 0, 3, state_dim).rightCols(3*n_c).setZero();
+    t_mt.b_eq.block(6, 0, 3, 1) = k_p_fr * (_desired_f_pos(1) - this->fPos(1));
+
+        // Rear-left foot
+    t_mt.A_eq.block(9, 0, 3, state_dim).leftCols(18) = J_P_rl;
+    t_mt.A_eq.block(9, 0, 3, state_dim).rightCols(3*n_c).setZero();
+    t_mt.b_eq.block(9, 0, 3, 1) = k_p_rl * (_desired_f_pos(2) - this->fPos(2));
+
+        // Rear-right foot
+    t_mt.A_eq.block(12, 0, 3, state_dim).leftCols(18) = J_P_rr;
+    t_mt.A_eq.block(12, 0, 3, state_dim).rightCols(3*n_c).setZero();
+    t_mt.b_eq.block(12, 0, 3, 1) = k_p_rr * (_desired_f_pos(3) - this->fPos(3));
+
+    // Update contact force minimization task
+    t_cfm.A_eq.leftCols(18).setZero();
+    t_cfm.A_eq.rightCols(3*n_c).setIdentity();
+    t_cfm.b_eq.setZero();
+
+    //*************************************************************************************
+    // Hierarchical QP Optimization
+    //*************************************************************************************
+
+    // Add tasks in prioritized order
+    tasks.push_back(t_eom);
+    //tasks.push_back(t_cftl);
+    tasks.push_back(t_cmc);
+    tasks.push_back(t_mt);
+    tasks.push_back(t_cfm);
+
+    // Solve the hierarchical optimization problem
+    x_opt = HierarchicalQPOptimization(state_dim, tasks);
+
+    //*************************************************************************************
+    // Compute reference joint torques
+    //*************************************************************************************
+
+    desired_tau = M_r * x_opt.topRows(18) - J_c_r.transpose() * x_opt.bottomRows(3*n_c) + (b_r + g_r);
+
+    return desired_tau;
+}
+
+// Hierarchical Optimization
+Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::SomeHierarchicalOptimization(const Eigen::Vector3d &_desired_base_pos,
+                                                                                           const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_pos)
 {
     //*************************************************************************************
     // Declarations
@@ -246,44 +501,6 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     // Hierarchical Least Squares Optimization
     //*************************************************************************************
 
-    // Init 
-    x.setZero();
-    x_i.setZero();
-    N.setIdentity();
-
-    // ---------------- 1st iteration - EOMs -----------------
-
-    // Find Pseudoinverse
-    AN = A_eom * N;
-    kindr::pseudoInverse(AN, pinvAN);
-    
-    // Find least squares optimal state for the at hand QP
-    x_i = pinvAN * (b_eom - A_eom * x);
-
-    // Update optimal state for the hierarchical optimization
-    x = x + N * x_i;
-
-    // Find new null-space projector
-    A_stacked << A_eom;
-    N = math_utils::SVDNullSpaceProjector(A_stacked);
-
-    // ---------------- 2nd iteration - Contact Motion Constraint -----------------
-
-    // Find Pseudoinverse
-    AN = A_cmc * N;
-    kindr::pseudoInverse(AN, pinvAN);
-    
-    // Find least squares optimal state for the at hand QP
-    x_i = pinvAN * (b_cmc - A_cmc * x);
-
-    // Update optimal state for the hierarchical optimization
-    x = x + N * x_i;
-
-    // Find new null-space projector
-    A_stacked << A_eom,
-                 A_cmc;
-    //math_utils::nullSpaceProjector(A_stacked, N);
-
 
 
     return desired_tau;
@@ -318,7 +535,8 @@ void HierarchicalOptimizationControl::testDrakeQPOpt()
 
 // Hierarchical QP Optimization
 Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalOptimizationControl::HierarchicalQPOptimization(const int &_state_dim,
-                                                                                                     const std::vector<Task> &_tasks)
+                                                                                                     const std::vector<Task> &_tasks,
+                                                                                                     const int &_v)
 {
     // Declarations
     Eigen::VectorXd x_opt(_state_dim);           // Optimal solution
@@ -339,6 +557,7 @@ Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalOptimizationControl::Hierar
     int rowsA_eq;   // Number of rows of current tasks A_eq
     int rowsA_ineq; // Number of rows of current tasks A_ineq
     int colsN;      // Number of cols of current null-space projector N
+    int count = 0;  // Task counter
 
     // Initializations
     x_opt.setZero();
@@ -347,48 +566,83 @@ Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalOptimizationControl::Hierar
     // Iterate over the set of tasks 
     for (Task t : _tasks)
     {
-        // Update row count
-        rowsA_eq = t.A_eq.rows(); 
-        rowsA_ineq = t.A_ineq.rows();
+        // Update count
+        count += 1;
+
+        // Update null-space dimension
         colsN = N.cols();
+
+        // If task has a equality constraint
+        if (t.has_eq_constraint)
+        {
+            // Update row count
+            rowsA_eq = t.A_eq.rows(); 
+
+            // Update stacked equality matrices
+            Eigen::MatrixXd stacked_A_eq_tmp = stacked_A_eq;
+
+            stacked_A_eq.resize(t.A_eq.rows() + stacked_A_eq_tmp.rows(), _state_dim); 
+            stacked_A_eq << t.A_eq,
+                            stacked_A_eq_tmp;
+        }
+        else
+        {
+            // Update row count
+            rowsA_eq = 0;
+        }
+
+        // If task has a inequality constraint
+        if (t.has_ineq_constraint)
+        {
+            // Update row count
+            rowsA_ineq = t.A_ineq.rows();
+
+            // Update stacked inequality matrices
+            Eigen::MatrixXd stacked_A_ineq_tmp = stacked_A_ineq;
+
+            stacked_A_ineq.resize(t.A_ineq.rows() + stacked_A_ineq_tmp.rows(), _state_dim); 
+            stacked_A_ineq << t.A_ineq,
+                              stacked_A_ineq_tmp;
+
+            // Update stacked inequality vectors
+            Eigen::VectorXd stacked_b_ineq_tmp = stacked_b_ineq;
+
+            stacked_b_ineq.resize(t.b_ineq.rows() + stacked_b_ineq_tmp.rows(), 1);
+            stacked_b_ineq << t.b_ineq,
+                              stacked_b_ineq_tmp;
+        }
+        else
+        {                
+            // Update row count
+            rowsA_ineq = 0;
+        }
 
         // Update dimensions
         z.resize(colsN, 1);
         v.resize(rowsA_ineq, 1);
         xi.resize(colsN + rowsA_ineq, 1);
 
-        // Update stacked equality matrices
-        Eigen::MatrixXd stacked_A_eq_tmp = stacked_A_eq;
-
-        stacked_A_eq.resize(t.A_ineq.rows() + stacked_A_eq_tmp.rows(), _state_dim); 
-        stacked_A_eq << t.A_eq,
-                          stacked_A_eq_tmp;
-
-        // Update stacked inequality matrices
-        Eigen::MatrixXd stacked_A_ineq_tmp = stacked_A_ineq;
-
-        stacked_A_ineq.resize(t.A_ineq.rows() + stacked_A_ineq_tmp.rows(), _state_dim); 
-        stacked_A_ineq << t.A_ineq,
-                          stacked_A_ineq_tmp;
-
-        // Update stacked inequality vectors
-        Eigen::VectorXd stacked_b_ineq_tmp = stacked_b_ineq;
-
-        stacked_b_ineq.resize(t.b_ineq.rows() + stacked_b_ineq_tmp.rows(), 1);
-        stacked_b_ineq << t.b_ineq,
-                          stacked_b_ineq_tmp;
-
         // Update QP costs 
         Q.resize(colsN + rowsA_ineq, colsN + rowsA_ineq);
         c.resize(colsN + rowsA_ineq, 1);
 
-        Q.topLeftCorner(colsN, colsN) = N.transpose() * t.A_eq.transpose() * t.A_eq * N;
+        if (t.has_eq_constraint)
+        {
+            Q.topLeftCorner(colsN, colsN) = N.transpose() * t.A_eq.transpose() * t.A_eq * N;
+            c.topRows(colsN) = N.transpose() * t.A_eq.transpose() * (t.A_eq * x_opt - t.b_eq);
+        }
+        else
+        {
+            Q.topLeftCorner(colsN, colsN).setZero();
+            c.topRows(colsN).setZero(); 
+        }
+
         Q.topRightCorner(rowsA_ineq, colsN).setZero();
         Q.bottomLeftCorner(colsN, rowsA_ineq).setZero();
         Q.bottomRightCorner(rowsA_ineq, rowsA_ineq).setIdentity();
 
-        c.topRows(colsN) = N.transpose() * t.A_eq * (t.A_eq * x_opt - t.b_eq);
         c.bottomRows(rowsA_ineq).setZero();
+
 
         // Update inequality constraints
         E_ineq.resize(stacked_A_ineq.rows() + rowsA_ineq, colsN + rowsA_ineq);
@@ -405,6 +659,25 @@ Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalOptimizationControl::Hierar
         f_ineq.segment(rowsA_ineq, stacked_A_ineq.rows() - rowsA_ineq) += stacked_v; 
         f_ineq.bottomRows(rowsA_ineq).setZero();
 
+        // Print w.r.t verbosity level
+        if (_v > 1)
+        {
+            ROS_INFO_STREAM("----------------------" << "Task: " << count << "---------------------- \n" );
+            ROS_INFO_STREAM("Q: \n" << Q << "\n");
+            ROS_INFO_STREAM("c: \n" << c << "\n");
+            ROS_INFO_STREAM("E_ineq: \n" << E_ineq << "\n");
+            ROS_INFO_STREAM("f_ineq: \n" << f_ineq << "\n");
+        }
+        if (_v > 2)
+        {
+            ROS_INFO_STREAM("N: \n" << N << "\n");
+            ROS_INFO_STREAM("A_eq: \n" << t.A_eq << "\n");
+            ROS_INFO_STREAM("b_eq: \n" << t.b_eq << "\n");
+            ROS_INFO_STREAM("stacked_A_eq: \n" << stacked_A_eq << "\n");
+            ROS_INFO_STREAM("stacked_A_ineq: \n" << stacked_A_ineq << "\n");
+            ROS_INFO_STREAM("stacked_b_ineq: \n" << stacked_b_ineq << "\n");
+        }
+
         // Solve QP
         if (!SolveQP(Q, c, E_ineq, f_ineq, xi))
         {
@@ -414,19 +687,43 @@ Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalOptimizationControl::Hierar
         // Get solutions
         z = xi.topRows(colsN);
         v = xi.bottomRows(rowsA_ineq);
-        
+
         // Update optimal state for the hierarchical optimization
         x_opt = x_opt + N * z;
 
-        // Update the null-space projector
-        N = math_utils::SVDNullSpaceProjector(stacked_A_eq);
+        // Update the null-space projector if a equality constraint
+        // is present.
+        if (t.has_eq_constraint)
+        {
+            N = math_utils::SVDNullSpaceProjector(stacked_A_eq);
+        }
 
-        // Update stacked slack variables
-        Eigen::VectorXd stacked_v_tmp = stacked_v;
+        // Update stacked slack variables if a inequality constraint
+        // is present.
+        if (t.has_ineq_constraint)
+        {
+            Eigen::VectorXd stacked_v_tmp = stacked_v;
 
-        stacked_v.resize(v.rows() + stacked_v_tmp.rows(), 1);
-        stacked_v << v,
-                     stacked_v_tmp;
+            stacked_v.resize(v.rows() + stacked_v_tmp.rows(), 1);
+            stacked_v << v,
+                         stacked_v_tmp;
+        }
+
+        // Print w.r.t verbosity level
+        if (_v > 0 )
+        {
+            ROS_INFO_STREAM("Solution at task " << count << " is: \n" << x_opt);
+        }
+
+        // Terminate if null-space is zero (i.e. only the trivial solution exist)
+        if (N.isZero())
+        {
+            if (_v > 0)
+            {
+                ROS_INFO_STREAM("Terminating at task " << count << " due to the null-space being zero. \n");
+            }
+            break;
+        }
 
     }
 
@@ -435,7 +732,8 @@ Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalOptimizationControl::Hierar
 
 // Hierarchical Least-Square Optimization
 Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalOptimizationControl::HierarchicalLeastSquareOptimization(const Eigen::Matrix<Eigen::MatrixXd, Eigen::Dynamic, 1> &_A,
-                                                                                                              const Eigen::Matrix<Eigen::Matrix<double, Eigen::Dynamic, 1>, Eigen::Dynamic, 1> &_b)
+                                                                                                              const Eigen::Matrix<Eigen::Matrix<double, Eigen::Dynamic, 1>, Eigen::Dynamic, 1> &_b,
+                                                                                                              const int &_v)
 {
     const auto rowsA = _A.rows();
     const auto rowsb = _b.rows();
@@ -499,7 +797,11 @@ Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalOptimizationControl::Hierar
 
         N = math_utils::SVDNullSpaceProjector(A_stacked);
 
-        ROS_INFO_STREAM("Solution at iteration " << i << " is: \n" << x_opt);
+        // Print w.r.t verbosity level
+        if (_v == 1)
+        {
+            ROS_INFO_STREAM("Solution at iteration " << i << " is: \n" << x_opt);
+        }
 
     }
 
@@ -526,6 +828,12 @@ bool HierarchicalOptimizationControl::SolveQP(const Eigen::MatrixXd &_Q,
     // Add inequality constraints
     if (!_E_ineq.isZero())
     {
+        if (_v > 0)
+        {
+            ROS_INFO_STREAM("(_E_ineq * x).array(): \n" << (_E_ineq * x).array() << "\n");
+            ROS_INFO_STREAM("_f_ineq.array(): \n" << _f_ineq.array() << "\n");
+        }
+
         prog.AddLinearConstraint((_E_ineq * x).array() <= _f_ineq.array());
     }
 
@@ -604,6 +912,42 @@ bool HierarchicalOptimizationControl::SolveQP(const Eigen::MatrixXd &_Q,
     return true;
 }
 
+// Publish function for ROS Joint State Torque messages
+void HierarchicalOptimizationControl::PublishTorqueMsg(const Eigen::Matrix<double, 12, 1> &_desired_tau)
+{
+    // Declare msg
+    sensor_msgs::JointState joint_state_msg;    
+
+    // Set dimension
+    joint_state_msg.effort.resize(12);
+
+    // Front-left 
+    joint_state_msg.effort[0] = _desired_tau(0);
+    joint_state_msg.effort[1] = _desired_tau(1);
+    joint_state_msg.effort[2] = _desired_tau(2);
+
+    // Front right
+    joint_state_msg.effort[3] = _desired_tau(3);
+    joint_state_msg.effort[4] = _desired_tau(4);
+    joint_state_msg.effort[5] = _desired_tau(5);
+
+    // Rear left
+    joint_state_msg.effort[6] = _desired_tau(6);
+    joint_state_msg.effort[7] = _desired_tau(7);
+    joint_state_msg.effort[8] = _desired_tau(8);
+
+    // Rear right
+    joint_state_msg.effort[9] = _desired_tau(9);
+    joint_state_msg.effort[10] = _desired_tau(10);
+    joint_state_msg.effort[11] = _desired_tau(11);
+
+    // Set timestamp
+    joint_state_msg.header.stamp = ros::Time::now();
+
+    // Publish
+    this->jointStatePub.publish(joint_state_msg);
+}
+
 // Callback for ROS Generalized Coordinates messages
 void HierarchicalOptimizationControl::OnGenCoordMsg(const std_msgs::Float64MultiArrayConstPtr &_msg)
 {
@@ -629,7 +973,7 @@ void HierarchicalOptimizationControl::OnGenVelMsg(const std_msgs::Float64MultiAr
 // Callback for ROS Contact State messages
 void HierarchicalOptimizationControl::OnContactStateMsg(const std_msgs::Int8MultiArrayConstPtr &_msg)
 {
-    if (_msg->data.size() == 4)
+    if (!_msg->data.size() == 4)
     {
         ROS_ERROR("[HierarchicalOptimizationControl::OnContactStateMsg] Received contact message with wrong size!");
     }
