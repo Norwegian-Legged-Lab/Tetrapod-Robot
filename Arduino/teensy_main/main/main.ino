@@ -233,6 +233,7 @@ void loop()
           break;
   
         default:
+          motors[i].requestMotorStatus();
           break;
       }
     } 
@@ -259,6 +260,8 @@ void loop()
       ROS_NODE_HANDLE.loginfo("ERROR: No motor ID corresponds to the incomming message");
     }
   }
+
+  motors[0].printState();
  
   // Update the joint state reply message
   
@@ -269,8 +272,7 @@ void loop()
     torque_array[i] = motors[i].getTorque();
   }
 
-  motors[0].readMultiTurnAngle();
-  motors[0].printState();
+  //motors[0].readMultiTurnAngle();
   
   joint_state_reply.name = joint_names;
   joint_state_reply.position = position_array;
