@@ -31,8 +31,6 @@ class SingleLegController
     /*** Constructor/Destructor ***/
 
     /// \brief Constructor
-    public: SingleLegController();
-
     public: SingleLegController(double _publish_frequency);
 
     /// \brief Destructor
@@ -110,6 +108,7 @@ class SingleLegController
 
     public: void updateFootReference();
 
+    public: void setMotorGains();
 
     /*** HELPER FUNCTIONS ***/
 
@@ -181,8 +180,33 @@ class SingleLegController
 
     private: double final_iteration = 100.0;
 
+    private: bool gains_set = false;
+
 
     /*** PARAMETERS ***/
+
+    double k_p_pos_hy;
+    double k_i_pos_hy;
+    double k_p_pos_hp;
+    double k_i_pos_hp;
+    double k_p_pos_kp;
+    double k_i_pos_kp;
+
+    double k_p_torque_hy;
+    double k_i_torque_hy;
+    double k_d_torque_hy;
+
+    double k_p_torque_hp;
+    double k_i_torque_hp;
+    double k_d_torque_hp;
+
+    double k_p_torque_kp;
+    double k_i_torque_kp;
+    double k_d_torque_kp;
+
+    private: Eigen::Matrix<double, 3, 3> K_p = Eigen::Matrix<double, 3, 3>::Zero();
+
+    private: Eigen::Matrix<double, 3, 3> K_d = Eigen::Matrix<double, 3, 3>::Zero();
 
     private: double publish_frequency = 100.0;
 
@@ -199,10 +223,6 @@ class SingleLegController
     private: double y_offset = 0.0;
 
     private: double max_swing_height = 0.25; 
-
-    private: Eigen::Matrix<double, 3, 3> K_p = Eigen::Matrix<double, 3, 3>::Zero();
-
-    private: Eigen::Matrix<double, 3, 3> K_d = Eigen::Matrix<double, 3, 3>::Zero();
 
     const double uninitialized_state = 100.0;
 
@@ -231,6 +251,8 @@ class SingleLegController
 
     /// \brief Publishes velocity commands to the teensy to control the motors
     private: ros::Publisher joint_state_publisher;
+
+    private: ros::Publisher motor_gain_publisher;
 
     /// \brief The joint state message that is sent to the Teensy
     private: sensor_msgs::JointState motor_command_msg;

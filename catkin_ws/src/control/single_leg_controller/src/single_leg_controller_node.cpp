@@ -14,7 +14,9 @@ int main(int argc, char **argv)
     double time_end = 2.0;
     const double time_step = 0.010;
 
-    SingleLegController controller;
+    double publish_frequency = 1.0/time_step;
+
+    SingleLegController controller(publish_frequency);
     
     controller.initROS();
 
@@ -22,7 +24,7 @@ int main(int argc, char **argv)
 
     ros::Rate check_for_messages_rate(1);
 
-    ros::Rate send_control_command_rate(1.0/time_step);
+    ros::Rate send_control_command_rate(publish_frequency);
 
     while(!controller.initialStateReceived())
     {

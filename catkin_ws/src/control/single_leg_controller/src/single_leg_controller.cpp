@@ -1,36 +1,5 @@
 #include "single_leg_controller/single_leg_controller.h"
 
-SingleLegController::SingleLegController()
-{
-    for(int i = 0; i < 3; i++)
-    {
-        q(i) = uninitialized_state;
-    }
-
-    K_p(0, 0) = 100.0;
-    K_p(1, 1) = 100.0;
-    K_p(2, 2) = 100.0;
-
-    K_d(0, 0) = 20.0;
-    K_d(1, 1) = 30.0;
-    K_d(2, 2) = 30.0;
-
-    swing_start_time = - 2.0*swing_period;
-
-    swing_period = final_iteration/publish_frequency;
-
-    for(int i = 0; i < 3; i++)
-    {        
-        joint_state_log_msg.position.push_back(CONTROL_IDLE);
-        joint_state_log_msg.velocity.push_back(CONTROL_IDLE);
-        joint_state_log_msg.effort.push_back(CONTROL_IDLE);
-
-        joint_reference_log_msg.position.push_back(CONTROL_IDLE);
-        joint_reference_log_msg.velocity.push_back(CONTROL_IDLE);
-        joint_reference_log_msg.effort.push_back(CONTROL_IDLE);
-    }
-}
-
 SingleLegController::SingleLegController(double _publish_frequency)
 {
     publish_frequency = _publish_frequency;
@@ -42,6 +11,36 @@ SingleLegController::SingleLegController(double _publish_frequency)
         q(i) = uninitialized_state;
     }
 
+    k_p_pos_hy = 1.0;
+    k_i_pos_hy = 1.0;
+
+    k_p_pos_hp = 1.0;
+    k_i_pos_hp = 1.0;
+
+    k_p_pos_kp = 1.0;
+    k_i_pos_kp = 1.0;
+
+    k_p_torque_hy = 100.0;
+    k_i_torque_hy = 5.0;
+    k_d_torque_hy = 20.0;
+
+    k_p_torque_hp = 100.0;
+    k_i_torque_hp = 5.0;
+    k_d_torque_hp = 20.0;
+
+    k_p_torque_kp = 100.0;
+    k_i_torque_kp = 5.0;
+    k_d_torque_kp = 20.0;
+
+    K_p(0, 0) = k_p_torque_hy;
+    K_p(1, 1) = k_p_torque_hp;
+    K_p(2, 2) = k_p_torque_kp;
+
+    K_d(0, 0) = k_d_torque_hy;
+    K_d(1, 1) = k_d_torque_hp;
+    K_d(2, 2) = k_d_torque_kp;
+
+    /*
     K_p(0, 0) = 200.0;
     K_p(1, 1) = 200.0;
     K_p(2, 2) = 200.0;
@@ -49,6 +48,7 @@ SingleLegController::SingleLegController(double _publish_frequency)
     K_d(0, 0) = 40.0;
     K_d(1, 1) = 40.0;
     K_d(2, 2) = 40.0;
+    */
 
     swing_start_time = - 2.0*swing_period;  
 
@@ -121,6 +121,8 @@ void SingleLegController::initROS()
 
     // Initialize the joint state publisher
     joint_state_publisher = node_handle->advertise<sensor_msgs::JointState>("/my_robot/joint_state_cmd", 10);
+
+    motor_gain_publisher = node_handle->advertise<std_msgs::Float64MultiArray>("/motor/gains", 10);
 
     // Initialize the state logging publisher
     log_joint_states_publisher = node_handle->advertise<sensor_msgs::JointState>("/logging/joint_states", 10);
@@ -604,4 +606,47 @@ void SingleLegController::writeToLog()
 
     log_joint_states_publisher.publish(joint_state_log_msg);
     log_joint_references_publisher.publish(joint_reference_log_msg);
+}
+
+void SingleLegController::setMotorGains()
+{
+    ros::Rate set_gains_rate(0.4);
+
+    gains_set = false;
+
+    std_msgs::Float64MultiArray motor_gain_msg;
+
+    motor_gain_msg.data.push_back(k_p_pos_hy);
+    motor_gain_msg.data.push_back(k_i_pos_hy);
+    motor_gain_msg.data.push_back(0.0);
+    motor_gain_msg.data.push_back(0.0);
+    motor_gain_msg.data.push_back(k_p_torque_hy);
+    motor_gain_msg.data.push_back(k_i_torque_hy);
+
+    motor_gain_msg.data.push_back(k_p_pos_hp);
+    motor_gain_msg.data.push_back(k_i_pos_hp);
+    motor_gain_msg.data.push_back(0.0);
+    motor_gain_msg.data.push_back(0.0);
+    motor_gain_msg.data.push_back(k_p_torque_hp);
+    motor_gain_msg.data.push_back(k_i_torque_hp);
+
+    motor_gain_msg.data.push_back(k_p_pos_kp);
+    motor_gain_msg.data.push_back(k_i_pos_kp);
+    motor_gain_msg.data.push_back(0.0);
+    motor_gain_msg.data.push_back(0.0);
+    motor_gain_msg.data.push_back(k_p_torque_kp);
+    motor_gain_msg.data.push_back(k_i_torque_kp);
+
+    while(!gains_set)
+    {
+        motor_gain_publisher.publish(motor_gain_msg);
+
+        ROS_INFO("Waiting for gains set confirmation message");
+
+        set_gains_rate.sleep();
+
+        ros::spinOnce();
+    }
+
+    ROS_INFO("Gains set sucessfully");
 }
