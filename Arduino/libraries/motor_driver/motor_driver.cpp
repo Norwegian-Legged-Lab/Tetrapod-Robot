@@ -43,12 +43,14 @@ MotorControl::MotorControl(uint8_t _id, uint8_t _can_port_id, int _number_of_inn
     while(!readMotorStatus())
     {
         //ROS_NODE_HANDLE.logwarn("cannot readMotorStatus()");
+        Serial.println("Trying to read motor states");
         delay_microseconds(1000000.0);
     } 
 
     // The multi turn angle is necessary to decide whether or not an offset should be added to the position setpoint function
     while(!readMultiTurnAngle())
     {
+        Serial.println("Trying to read multiturn angle");
         delay_microseconds(1000000.0);
     }
 
@@ -481,14 +483,20 @@ bool MotorControl::readMultiTurnAngle()
 
 bool MotorControl::readMotorStatus()
 {
+    //can_message.id = 0x141;
     make_can_msg::readMotorStatus2(can_message.buf);
-
+    //can_port_1.write(can_message);
+    
     sendMessage(can_message);
 
     delay_microseconds(10000.0);
     
+
+    Serial.print("can msg id: "); Serial.print(can_message.id, HEX); Serial.print("\t can_msg type:\t"); Serial.print(can_message.buf[0], HEX); Serial.println("");
+
     if(readMessage(received_can_message))
     {
+        Serial.println("Reply received");
         if((received_can_message.id == address) && (received_can_message.buf[0] == MOTOR_COMMAND_READ_MOTOR_STATUS_2))
         {
             readMotorControlCommandReply(received_can_message.buf);
@@ -739,16 +747,17 @@ void MotorControl::sendMessage(CAN_message_t _can_message)
 {
     if(can_port_id == CAN_PORT_1)
     {
+        can_port_1.write(_can_message);
         #if ROS_PRINT
-            //ROS_NODE_HANDLE.loginfo("Sent message to PORT 1");
-            can_port_1.write(_can_message);
+            ROS_NODE_HANDLE.loginfo("Sent message to PORT 1");
         #endif
+        
     }
     else if(can_port_id == CAN_PORT_2)
     {
+        can_port_2.write(_can_message);
         #if ROS_PRINT
-            //ROS_NODE_HANDLE.loginfo("Sent message to PORT 2");
-            can_port_2.write(_can_message);
+            ROS_NODE_HANDLE.loginfo("Sent message to PORT 2");
         #endif
     }
     else
