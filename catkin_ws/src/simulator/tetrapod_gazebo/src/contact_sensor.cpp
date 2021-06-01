@@ -27,13 +27,17 @@
 #include <tetrapod_gazebo/contact_sensor.h>
 
 // Constructor
-ContactSensor::ContactSensor() :
-    footContacts {0,0,0,0}
+ContactSensor::ContactSensor() 
 {
     this->InitGazebo();
 
     this->InitRos();
     this->InitRosQueueThreads();
+
+    this->footContacts[0] = 1;
+    this->footContacts[1] = 1;
+    this->footContacts[2] = 1;
+    this->footContacts[3] = 1;
 }
 
 // Destructor
