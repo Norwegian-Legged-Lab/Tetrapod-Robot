@@ -1,8 +1,8 @@
 /*******************************************************************/
 /*    AUTHOR: Paal Arthur S. Thorseth                              */
 /*    ORGN:   Dept of Eng Cybernetics, NTNU Trondheim              */
-/*    FILE:   Core                                                 */
-/*    DATE:   May 9, 2021                                          */
+/*    FILE:   const_utils.h                                        */
+/*    DATE:   June 1, 2021                                         */
 /*                                                                 */
 /* Copyright (C) 2021 Paal Arthur S. Thorseth,                     */
 /*                    Adrian B. Ghansah                            */
@@ -24,8 +24,12 @@
 /*                                                                 */
 /*******************************************************************/
 
-#pragma once
+// C++ Standard Library
+#include <numeric>
 
-#include <math_utils/angle_utils.h>
-#include <math_utils/const_utils.h>
-#include <math_utils/linalg_utils.h>
+namespace math_utils
+{
+    /// \brief Define infinity
+    static constexpr double INF = std::numeric_limits<double>::infinity();
+
+} // namespace math_utils
