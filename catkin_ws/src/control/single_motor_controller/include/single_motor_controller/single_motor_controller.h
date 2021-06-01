@@ -109,6 +109,8 @@ class SingleMotorController
 
     bool keep_logging = true;
 
+    bool gains_set = false;
+
     /*** PARAMETERS ***/
 
     private: double publish_frequency = 100.0;

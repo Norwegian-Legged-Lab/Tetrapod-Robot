@@ -5,22 +5,13 @@
 
 int main(int argc, char **argv)
 {
-    Eigen::Matrix<double, 3, 1> q_start(M_PI/6.0, 0.0, 0.0);
-    Eigen::Matrix<double, 3, 1> q_ref;
-    Eigen::Matrix<double, 3, 1> q_d_ref;
-    Eigen::Matrix<double, 3, 1> q_dd_ref;
-
-    double timer = 0.0;
-    double time_end = 2.0;
-    const double time_step = 0.010;
-
-    double publish_frequency = 1.0/time_step;
+    double publish_frequency = 100.0;
 
     SingleLegController controller(publish_frequency);
     
     controller.initROS();
 
-    ROS_INFO("Initialization complete");
+    controller.setMotorGains();
 
     ros::Rate check_for_messages_rate(1);
 
@@ -28,11 +19,11 @@ int main(int argc, char **argv)
 
     while(!controller.initialStateReceived())
     {
+        ROS_WARN("WAITING FOR INITIAL STATE");
+
         controller.checkForNewMessages();
 
         check_for_messages_rate.sleep();
-
-        ROS_INFO("WAITING FOR INITIAL STATE");
     }
 
     ROS_INFO("Initial state received");
@@ -46,11 +37,22 @@ int main(int argc, char **argv)
 
         ROS_INFO("WAITING FOR POSITION CONTROL START MESSAGE");
     }
+    controller.resetReadyToProceed();
 
+    controller.moveJointsToCenter();
+    
     while(true)
     {
-        controller.moveJointsToSetpoints();
+        controller.checkForNewMessages();
+        controller.updateState();
+        controller.updateFootReference();
+        controller.updateJointReferences();
+        controller.updateJointTorques();
+        controller.printAllStates();
+        controller.writeToLog();
+        controller.sendTorqueCommand();
+        send_control_command_rate.sleep();
     }
-
+    
     return 0;
 }
