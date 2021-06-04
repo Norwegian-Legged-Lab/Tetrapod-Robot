@@ -305,6 +305,13 @@ Eigen::Matrix<double, 18, 1> HierarchicalOptimizationControl::HierarchicalOptimi
 
     std::vector<Task> tasks; // Set of tasks
 
+    // Kinematic and dynamic matrices and terms used to
+    // enforce constraints.
+    Eigen::Matrix<double, 18, 18> M;                      // 18x18 Mass matrix
+    Eigen::Matrix<double, 18, 1> b;                       // 18x1 Coriolis and centrifugal terms
+    Eigen::Matrix<double, 18, 1> g;                       // 18x1 Gravitational terms
+    Eigen::Matrix<double, Eigen::Dynamic, 18> J_c;        // (3*n_c)x18 Contact Jacobian
+
     // Matrices and terms used to enforce equations of motion 
     // for the floating base system dynamics (the first six
     // rows of the respective matrices and terms).
@@ -314,7 +321,7 @@ Eigen::Matrix<double, 18, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     Eigen::Matrix<double, Eigen::Dynamic, 18> J_c_fb;      // (3*n_c)x18 Floating base Contact Jacobian
 
     // Matrices used to enforce contact motion constraints
-    Eigen::Matrix<double, Eigen::Dynamic, 18> J_c;         // (3*n_c)x18 Contact Jacobian
+    //Eigen::Matrix<double, Eigen::Dynamic, 18> J_c;         // (3*n_c)x18 Contact Jacobian
     Eigen::Matrix<double, Eigen::Dynamic, 18> dot_J_c;     // (3*n_c)x18 Time derivative of the Contact Jacobian
 
     // Matrices and parameters used to enfore motion tracking
@@ -377,8 +384,8 @@ Eigen::Matrix<double, 18, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     const unsigned int state_dim = 18 + 3*n_c;
 
     // Resize task dimensions
-    t_eom.A_eq.resize(18, state_dim);
-    t_eom.b_eq.resize(18, 1);
+    t_eom.A_eq.resize(6, state_dim);
+    t_eom.b_eq.resize(6, 1);
 
     t_cmc.A_eq.resize(3*n_c, state_dim);
     t_cmc.b_eq.resize(3*n_c, 1);
@@ -394,10 +401,20 @@ Eigen::Matrix<double, 18, 1> HierarchicalOptimizationControl::HierarchicalOptimi
 
     // Resize dynamic matrices and terms
     x_opt.resize(state_dim, 1);
+    J_c.resize(3*n_c, 18);
     J_c_fb.resize(3*n_c, 18);
     J_c_r.resize(3*n_c, 18);
-    J_c.resize(3*n_c, 18);
+    //J_c.resize(3*n_c, 18);
     dot_J_c.resize(3*n_c, 18);
+
+    // Update matrices and terms
+    M = kinematics.GetMassMatrix(_q);
+
+    b = kinematics.GetCoriolisAndCentrifugalTerms(_q, _u);
+
+    g = kinematics.GetGravitationalTerms(_q);
+
+    J_c = kinematics.GetContactJacobianInW(contact_legs, _q);
 
     // Update matrices used by EOM constraints
     M_fb = kinematics.GetMassMatrix(_q);
@@ -413,7 +430,7 @@ Eigen::Matrix<double, 18, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     J_c_fb.rightCols(12).setZero();
 
     // Update matrices used by contact motion constraints
-    J_c = kinematics.GetContactJacobianInW(contact_legs, _q);
+    //J_c = kinematics.GetContactJacobianInW(contact_legs, _q);
     dot_J_c = kinematics.GetContactJacobianInWDiff(contact_legs, _q, _u);
 
     // Update matrices used by contact force and torque limits constraint
@@ -452,9 +469,12 @@ Eigen::Matrix<double, 18, 1> HierarchicalOptimizationControl::HierarchicalOptimi
                                                   _q);
 
     // Update equations of motion task
-    t_eom.A_eq.leftCols(18) = M_fb;
-    t_eom.A_eq.rightCols(3*n_c) = - J_c_fb.transpose();
-    t_eom.b_eq = - (b_fb + g_fb);
+    //t_eom.A_eq.leftCols(18) = M_fb;
+    //t_eom.A_eq.rightCols(3*n_c) = - J_c_fb.transpose();
+    //t_eom.b_eq = - (b_fb + g_fb);
+    t_eom.A_eq.leftCols(18) = M.topRows(6);
+    t_eom.A_eq.rightCols(3*n_c) = - J_c_fb.transpose().topRows(6);
+    t_eom.b_eq = - (b_fb.topRows(6) + g_fb.topRows(6));
 
     // Update contact force and torque limits task
         // Max torque limit
