@@ -270,28 +270,14 @@ void HierarchicalOptimizationControl::EOMsTaskTest()
     // Solve the hierarchical optimization problem
     x_opt = HierarchicalQPOptimization(state_dim,
                                        tasks, 
-                                       SolverType::SNOPT,
-                                       2);
+                                       SolverType::OSQP,
+                                       1);
 
 
     ROS_INFO_STREAM("x_opt: \n " << x_opt << "\n");
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Hierarchical Optimization
 Eigen::Matrix<double, 18, 1> HierarchicalOptimizationControl::HierarchicalOptimization(const Eigen::Vector3d &_desired_base_pos,
                                                                                        const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_pos,
                                                                                        const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_f_pos,
@@ -529,10 +515,10 @@ Eigen::Matrix<double, 18, 1> HierarchicalOptimizationControl::HierarchicalOptimi
 
     // Add tasks in prioritized order
     tasks.push_back(t_eom);
-    tasks.push_back(t_cftl);
-    tasks.push_back(t_cmc);
-    tasks.push_back(t_mt);
-    tasks.push_back(t_cfm);
+    //tasks.push_back(t_cftl);
+    //tasks.push_back(t_cmc);
+    //tasks.push_back(t_mt);
+    //tasks.push_back(t_cfm);
 
     // Solve the hierarchical optimization problem
     x_opt = HierarchicalQPOptimization(state_dim, 
@@ -646,20 +632,20 @@ Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalOptimizationControl::Hierar
         if (t.has_eq_constraint)
         {
             Q.topLeftCorner(colsN, colsN) = N.transpose() * t.A_eq.transpose() * t.A_eq * N;
+            Q.topRightCorner(rowsA_ineq, colsN).setZero();
+            Q.bottomLeftCorner(colsN, rowsA_ineq).setZero();
+            Q.bottomRightCorner(rowsA_ineq, rowsA_ineq).setIdentity();
+
             c.topRows(colsN) = N.transpose() * t.A_eq.transpose() * (t.A_eq * x_opt - t.b_eq);
+            c.bottomRows(rowsA_ineq).setZero();
         }
         else
         {
-            Q.topLeftCorner(colsN, colsN).setZero();
-            c.topRows(colsN).setZero(); 
+            Q.setZero();
+            Q.bottomRightCorner(rowsA_ineq, rowsA_ineq).setIdentity();
+
+            c.setZero();
         }
-
-        Q.topRightCorner(rowsA_ineq, colsN).setZero();
-        Q.bottomLeftCorner(colsN, rowsA_ineq).setZero();
-        Q.bottomRightCorner(rowsA_ineq, rowsA_ineq).setIdentity();
-
-        c.bottomRows(rowsA_ineq).setZero();
-
 
         // Update inequality constraints
         E_ineq.resize(stacked_A_ineq.rows() + rowsA_ineq, colsN + rowsA_ineq);
