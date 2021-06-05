@@ -115,7 +115,8 @@ void HierarchicalOptimizationControl::StaticTorqueTest()
     desired_f_pos = f_pos;
 
     // Solve
-    Eigen::Matrix<double, 18, 1> desired_tau;
+    //Eigen::Matrix<double, 18, 1> desired_tau;
+    Eigen::Matrix<double, 12, 1> desired_tau;
 
     desired_tau = this->HierarchicalOptimization(desired_base_pos,
                                                  desired_f_pos,
@@ -126,9 +127,11 @@ void HierarchicalOptimizationControl::StaticTorqueTest()
     
     debug_utils::printBaseState(q.topRows(6));
     debug_utils::printFootstepPositions(f_pos);
-    debug_utils::printJointTorques(desired_tau.bottomRows(12));
+    //debug_utils::printJointTorques(desired_tau.bottomRows(12));
+    debug_utils::printJointTorques(desired_tau);
 
-    this->PublishTorqueMsg(desired_tau.bottomRows(12));
+    //this->PublishTorqueMsg(desired_tau.bottomRows(12));
+    this->PublishTorqueMsg(desired_tau);
 }
 
 void HierarchicalOptimizationControl::EOMsTaskTest()
@@ -278,7 +281,7 @@ void HierarchicalOptimizationControl::EOMsTaskTest()
 }
 
 // Hierarchical Optimization
-Eigen::Matrix<double, 18, 1> HierarchicalOptimizationControl::HierarchicalOptimization(const Eigen::Vector3d &_desired_base_pos,
+Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimization(const Eigen::Vector3d &_desired_base_pos,
                                                                                        const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_pos,
                                                                                        const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_f_pos,
                                                                                        const Eigen::Matrix<double, 18, 1> &_q,
@@ -289,7 +292,7 @@ Eigen::Matrix<double, 18, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     // Declarations
     //*************************************************************************************
 
-    Eigen::Matrix<double, 18, 1> desired_tau;    // 12x1 Reference joint torques
+    Eigen::Matrix<double, 12, 1> desired_tau;    // 12x1 Reference joint torques
 
     Eigen::VectorXd x_opt;                       // Optimal solution x_opt = [dot_u_opt, F_c_opt]^T
 
@@ -350,11 +353,11 @@ Eigen::Matrix<double, 18, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     //*************************************************************************************
 
     // Motion tracking gains
-    double k_p_fb = 1;      // Floating base proportional gain
-    double k_p_fl = 1;      // Front left foot proportional gain
-    double k_p_fr = 1;      // Front right foot proportional gain
-    double k_p_rl = 1;      // Rear left foot proportional gain
-    double k_p_rr = 1;      // Rear right foot proportional gain
+    double k_p_fb = 1000;      // Floating base proportional gain
+    double k_p_fl = 1000;      // Front left foot proportional gain
+    double k_p_fr = 1000;      // Front right foot proportional gain
+    double k_p_rl = 1000;      // Rear left foot proportional gain
+    double k_p_rr = 1000;      // Rear right foot proportional gain
 
     //*************************************************************************************
     // Updates
@@ -384,6 +387,8 @@ Eigen::Matrix<double, 18, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     const unsigned int state_dim = 18 + 3*n_c;
 
     // Resize task dimensions
+    //t_eom.A_eq.resize(18, state_dim);
+    //t_eom.b_eq.resize(18, 1);
     t_eom.A_eq.resize(6, state_dim);
     t_eom.b_eq.resize(6, 1);
 
@@ -473,8 +478,8 @@ Eigen::Matrix<double, 18, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     //t_eom.A_eq.rightCols(3*n_c) = - J_c_fb.transpose();
     //t_eom.b_eq = - (b_fb + g_fb);
     t_eom.A_eq.leftCols(18) = M.topRows(6);
-    t_eom.A_eq.rightCols(3*n_c) = - J_c_fb.transpose().topRows(6);
-    t_eom.b_eq = - (b_fb.topRows(6) + g_fb.topRows(6));
+    t_eom.A_eq.rightCols(3*n_c) = - J_c.transpose().topRows(6);
+    t_eom.b_eq = - (b.topRows(6) + g.topRows(6));
 
     // Update contact force and torque limits task
         // Max torque limit
@@ -534,11 +539,17 @@ Eigen::Matrix<double, 18, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     //*************************************************************************************
 
     // Add tasks in prioritized order
-    tasks.push_back(t_eom);
+    //tasks.push_back(t_eom);
     //tasks.push_back(t_cftl);
     //tasks.push_back(t_cmc);
-    //tasks.push_back(t_mt);
+    tasks.push_back(t_mt);
     //tasks.push_back(t_cfm);
+
+    Eigen::Matrix<Eigen::MatrixXd, 1, 1> A_ls;
+    Eigen::Matrix<Eigen::VectorXd, 1, 1> b_ls;
+
+    A_ls(0) = t_eom.A_eq;
+    b_ls(0) = t_eom.b_eq;
 
     // Solve the hierarchical optimization problem
     x_opt = HierarchicalQPOptimization(state_dim, 
@@ -546,11 +557,17 @@ Eigen::Matrix<double, 18, 1> HierarchicalOptimizationControl::HierarchicalOptimi
                                        solver, 
                                        _v);
 
+    //x_opt = HierarchicalLeastSquareOptimization(A_ls,
+    //                                            b_ls,
+    //                                            _v);
+
     //*************************************************************************************
     // Compute reference joint torques
     //*************************************************************************************
 
-    desired_tau = M_r * x_opt.topRows(18) - J_c_r.transpose() * x_opt.bottomRows(3*n_c) + (b_r + g_r);
+    //desired_tau = M_r * x_opt.topRows(18) - J_c_r.transpose() * x_opt.bottomRows(3*n_c) + (b_r + g_r);
+    desired_tau = M.bottomRows(12) * x_opt.topRows(18) - J_c.transpose().bottomRows(12) * x_opt.bottomRows(3*n_c) + b.bottomRows(12) + g.bottomRows(12);
+
 
     return desired_tau;
 }
