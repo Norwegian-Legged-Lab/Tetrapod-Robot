@@ -176,6 +176,7 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     Task t_cmc;     // Task for the contact motion constraint
     Task t_cftl;    // Task for the contact force and torque limits
     Task t_mt;      // Task for the motion tracking of the floating base and swing legs
+    Task t_pt;      // Task for posture tracking, for a nominal posture
     Task t_cfm;     // Task for the contact force minimization
 
     std::vector<Task> tasks; // Set of tasks
@@ -212,6 +213,9 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     Eigen::Matrix<double, 3, 18> dot_J_P_rl;               // 3x18 Time derivative of the Rear left foot Translation Jacobian
     Eigen::Matrix<double, 3, 18> dot_J_P_rr;               // 3x18 Time derivative of the Rear right foot Translation Jacobian
 
+    // Terms used to enforce posture tracking
+    Eigen::Matrix<double, 12, 1> q_nom;                    // 12x1 Nominal posture configuration
+
     // Matrices and terms used to enforce contact force
     // and torque limits for the joint dynamics (the last
     // 12 rows of the respective matrices and terms).
@@ -236,6 +240,9 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     double k_p_fr = 100;      // Front right foot proportional gain
     double k_p_rl = 100;      // Rear left foot proportional gain
     double k_p_rr = 100;      // Rear right foot proportional gain
+
+    // Posture tracking gains
+    double k_p_pt = 350;      // Posture tracking proportional gain
 
     //*************************************************************************************
     // Updates
@@ -278,6 +285,9 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
 
     t_mt.A_eq.resize(15, state_dim);
     t_mt.b_eq.resize(15, 1);
+
+    t_pt.A_eq.resize(12, state_dim);
+    t_pt.b_eq.resize(12, 1);
 
     t_cfm.A_eq.resize(3*n_c, state_dim);
     t_cfm.b_eq.resize(3*n_c, 1);
@@ -371,6 +381,19 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
                                                           Kinematics::BodyType::foot,
                                                           _q,
                                                           _u);
+    // Update terms used by posture tracking constraints
+    q_nom << math_utils::degToRad(45),
+             math_utils::degToRad(40),
+             math_utils::degToRad(35),
+             math_utils::degToRad(-45),
+             math_utils::degToRad(-40),
+             math_utils::degToRad(-35),
+             math_utils::degToRad(135),
+             math_utils::degToRad(-40),
+             math_utils::degToRad(-35),
+             math_utils::degToRad(-135),
+             math_utils::degToRad(40),
+             math_utils::degToRad(35);
 
     // Update equations of motion task
     //t_eom.A_eq.leftCols(18) = M_fb;
@@ -421,6 +444,12 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     t_mt.A_eq.block(12, 0, 3, state_dim).rightCols(3*n_c).setZero();
     t_mt.b_eq.block(12, 0, 3, 1) = - dot_J_P_rr * _u + k_p_rr * (_desired_f_pos(3) - _f_pos(3));
 
+    // Update posture tracking task
+    t_pt.A_eq.leftCols(6).setZero();
+    t_pt.A_eq.block(0, 6, 12, 12).setIdentity();
+    t_pt.A_eq.rightCols(3*n_c).setZero();
+    t_pt.b_eq = k_p_pt * (q_nom - _q.bottomRows(12));
+
     // Update contact force minimization task
     t_cfm.A_eq.leftCols(18).setZero();
     t_cfm.A_eq.rightCols(3*n_c).setIdentity();
@@ -431,7 +460,7 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     t_cftl.has_ineq_constraint = true;
     t_cmc.has_eq_constraint = true;
     t_mt.has_eq_constraint = true;
-    t_mt.has_eq_constraint = true;
+    t_pt.has_eq_constraint = true;
 
     //*************************************************************************************
     // Hierarchical QP Optimization
@@ -441,7 +470,8 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     //tasks.push_back(t_eom);
     //tasks.push_back(t_cftl);
     //tasks.push_back(t_cmc);
-    tasks.push_back(t_mt);
+    //tasks.push_back(t_mt);
+    tasks.push_back(t_pt);
     //tasks.push_back(t_cfm);
 
     Eigen::Matrix<Eigen::MatrixXd, 1, 1> A_ls;
