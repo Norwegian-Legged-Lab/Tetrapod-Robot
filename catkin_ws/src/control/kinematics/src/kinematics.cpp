@@ -1770,7 +1770,6 @@ Eigen::Matrix<double, Eigen::Dynamic, 18> Kinematics::GetContactJacobianInW(std:
         row += 3; 
     }
 
-
     return J;
 }
 
