@@ -112,172 +112,44 @@ void HierarchicalOptimizationControl::StaticTorqueTest()
                         0,
                         0.40; 
     
-    desired_f_pos = f_pos;
+    //desired_f_pos = f_pos;
+    desired_f_pos = this->fPos;
 
     // Solve
     //Eigen::Matrix<double, 18, 1> desired_tau;
     Eigen::Matrix<double, 12, 1> desired_tau;
 
-    desired_tau = this->HierarchicalOptimization(desired_base_pos,
-                                                 desired_f_pos,
-                                                 f_pos,
-                                                 q,
-                                                 u,
-                                                 2);
-    
-    debug_utils::printBaseState(q.topRows(6));
-    debug_utils::printFootstepPositions(f_pos);
-    //debug_utils::printJointTorques(desired_tau.bottomRows(12));
-    debug_utils::printJointTorques(desired_tau);
 
-    //this->PublishTorqueMsg(desired_tau.bottomRows(12));
-    this->PublishTorqueMsg(desired_tau);
-}
+    ros::Rate loop_rate(10);
 
-void HierarchicalOptimizationControl::EOMsTaskTest()
-{
-    //*************************************************************************************
-    // State Initialization
-    //*************************************************************************************
-    Eigen::Matrix<double, 18, 1> q;
-    Eigen::Matrix<double, 18, 1> u;
+    while(this->rosNode->ok())
+    {
+        //desired_f_pos = f_pos;
+        desired_f_pos = this->fPos;
 
-    q << 0,
-         0,
-         0.42,
-         0,
-         0,
-         0,
-         math_utils::degToRad(45),
-         math_utils::degToRad(40),
-         math_utils::degToRad(35),
-         math_utils::degToRad(-45),
-         math_utils::degToRad(-40),
-         math_utils::degToRad(-35),
-         math_utils::degToRad(135),
-         math_utils::degToRad(-40),
-         math_utils::degToRad(-35),
-         math_utils::degToRad(-135),
-         math_utils::degToRad(40),
-         math_utils::degToRad(35);
+        desired_base_pos = this->genCoord.topRows(3);
 
-    u << 0,
-         0,
-         0,
-         0,
-         0,
-         0,
-         0,
-         0,
-         0,
-         0,
-         0,
-         0,
-         0,
-         0,
-         0,
-         0,
-         0,
-         0;
+        desired_base_pos(2) = 0.40;
 
-    //*************************************************************************************
-    // Declarations
-    //*************************************************************************************
-    Eigen::Matrix<double, 18, 1> desired_tau;   // 12x1 Reference joint torques
+        desired_tau = this->HierarchicalOptimization(desired_base_pos,
+                                                     desired_f_pos,
+                                                     this->fPos,
+                                                     this->genCoord,
+                                                     this->genVel,
+                                                     2);
 
-    Eigen::VectorXd x_opt;                      // Optimal solution x_opt = [dot_u_opt, F_c_opt]^T
+        debug_utils::printBaseState(this->genCoord.topRows(6));
+        debug_utils::printFootstepPositions(this->fPos);
+        //debug_utils::printJointTorques(desired_tau.bottomRows(12));
+        debug_utils::printJointTorques(desired_tau);
 
-    // Tasks used to formulate the hierarchical optimization
-    // problem
-    Task t_eom;     // Task for the equations of motion
+        //this->PublishTorqueMsg(desired_tau.bottomRows(12));
+        this->PublishTorqueMsg(desired_tau);
 
-    std::vector<Task> tasks; // Set of tasks
+        //break;
 
-    // Matrices and terms used to enforce equations of motion 
-    // for the floating base system dynamics (the first six
-    // rows of the respective matrices and terms).
-    Eigen::Matrix<double, 18, 18> M_fb;                    // 18x18 Floating base Mass matrix
-    Eigen::Matrix<double, 18, 1> b_fb;                     // 18x1 Floating base Coriolis and centrifugal terms
-    Eigen::Matrix<double, 18, 1> g_fb;                     // 18x1 Floating base Gravitational terms
-    Eigen::Matrix<double, Eigen::Dynamic, 18> J_c_fb;      // (3*n_c)x18 Floating base Contact Jacobian
-
-    std::vector<Kinematics::LegType> contact_legs; // Vector of contact points (legs)
-
-    //*************************************************************************************
-    // Updates
-    //*************************************************************************************
-
-    // Update contact_legs
-    contact_legs.push_back(Kinematics::frontLeft);
-    contact_legs.push_back(Kinematics::frontRight);
-    contact_legs.push_back(Kinematics::rearLeft);
-    contact_legs.push_back(Kinematics::rearRight);
-
-    // Number of contact and swing legs, respectively
-    const unsigned int n_c = contact_legs.size();
-
-    // Update state dimension x = [dot_u, F_c]^T
-    const unsigned int state_dim = 18 + 3*n_c;
-
-    // Resize task dimensions
-    t_eom.A_eq.resize(18, state_dim);
-    t_eom.b_eq.resize(18, 1);
-
-    J_c_fb.resize(3*n_c, 18);
-
-    // Update matrices used by EOM constraints
-    M_fb = kinematics.GetMassMatrix(q);
-    M_fb.bottomRows(12).setZero();
-
-    b_fb = kinematics.GetCoriolisAndCentrifugalTerms(q, u);
-    b_fb.bottomRows(12).setZero();
-
-    g_fb = kinematics.GetGravitationalTerms(q);
-    g_fb.bottomRows(12).setZero();
-
-    J_c_fb = kinematics.GetContactJacobianInW(contact_legs, q);
-    J_c_fb.rightCols(12).setZero();
-
-    // Update equations of motion task
-    t_eom.A_eq.leftCols(18) = M_fb;
-    t_eom.A_eq.rightCols(3*n_c) = - J_c_fb.transpose();
-    t_eom.b_eq = - (b_fb + g_fb);
-    t_eom.A_ineq.setZero();
-    t_eom.b_ineq.setZero();
-
-
-    // Update task constraint setting
-    t_eom.has_eq_constraint = true;
-
-    //ROS_INFO_STREAM("M_fb: \n" << M_fb << "\n");
-    //ROS_INFO_STREAM("b_fb: \n" << b_fb << "\n");
-    //ROS_INFO_STREAM("g_fb: \n" << g_fb << "\n");
-    //ROS_INFO_STREAM("J_c_fb: \n" << J_c_fb << "\n");
-
-    //ROS_INFO_STREAM("A^T * A: \n" << t_eom.A_eq.transpose() * t_eom.A_eq << "\n");
-    //ROS_INFO_STREAM("A^T * b: \n" << t_eom.A_eq.transpose() * t_eom.b_eq << "\n");
-
-    //Eigen::VectorXd x_ones(t_eom.A_eq.rows());
-
-    //x_ones.setOnes();
-
-    //ROS_INFO_STREAM("A^T * A * x_ones: \n" << t_eom.A_eq.transpose() * t_eom.A_eq * x_ones << "\n");
-
-    //*************************************************************************************
-    // Hierarchical QP Optimization
-    //*************************************************************************************
-
-    // Add tasks in prioritized order
-    tasks.push_back(t_eom);
-
-    // Solve the hierarchical optimization problem
-    x_opt = HierarchicalQPOptimization(state_dim,
-                                       tasks, 
-                                       SolverType::OSQP,
-                                       1);
-
-
-    ROS_INFO_STREAM("x_opt: \n " << x_opt << "\n");
+        loop_rate.sleep();
+    }
 }
 
 // Hierarchical Optimization
@@ -334,6 +206,12 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     Eigen::Matrix<double, 3, 18> J_P_rl;                   // 3x18 Rear left foot Translation Jacobian
     Eigen::Matrix<double, 3, 18> J_P_rr;                   // 3x18 Rear right foot Translation Jacobian
 
+    Eigen::Matrix<double, 3, 18> dot_J_P_fb;               // 3x18 Time derivative of the Floating base Translation Jacobian
+    Eigen::Matrix<double, 3, 18> dot_J_P_fl;               // 3x18 Time derivative of the Front left foot Translation Jacobian
+    Eigen::Matrix<double, 3, 18> dot_J_P_fr;               // 3x18 Time derivative of the Front right foot Translation Jacobian
+    Eigen::Matrix<double, 3, 18> dot_J_P_rl;               // 3x18 Time derivative of the Rear left foot Translation Jacobian
+    Eigen::Matrix<double, 3, 18> dot_J_P_rr;               // 3x18 Time derivative of the Rear right foot Translation Jacobian
+
     // Matrices and terms used to enforce contact force
     // and torque limits for the joint dynamics (the last
     // 12 rows of the respective matrices and terms).
@@ -353,11 +231,11 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     //*************************************************************************************
 
     // Motion tracking gains
-    double k_p_fb = 1000;      // Floating base proportional gain
-    double k_p_fl = 1000;      // Front left foot proportional gain
-    double k_p_fr = 1000;      // Front right foot proportional gain
-    double k_p_rl = 1000;      // Rear left foot proportional gain
-    double k_p_rr = 1000;      // Rear right foot proportional gain
+    double k_p_fb = 300;      // Floating base proportional gain
+    double k_p_fl = 100;      // Front left foot proportional gain
+    double k_p_fr = 100;      // Front right foot proportional gain
+    double k_p_rl = 100;      // Rear left foot proportional gain
+    double k_p_rr = 100;      // Rear right foot proportional gain
 
     //*************************************************************************************
     // Updates
@@ -473,6 +351,27 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
                                                   Kinematics::BodyType::foot,
                                                   _q);
 
+    dot_J_P_fb = kinematics.GetTranslationJacobianInWDiff(Kinematics::LegType::NONE,
+                                                          Kinematics::BodyType::base,
+                                                          _q,
+                                                          _u);
+    dot_J_P_fl = kinematics.GetTranslationJacobianInWDiff(Kinematics::LegType::frontLeft,
+                                                          Kinematics::BodyType::foot,
+                                                          _q,
+                                                          _u);
+    dot_J_P_fr = kinematics.GetTranslationJacobianInWDiff(Kinematics::LegType::frontRight,
+                                                          Kinematics::BodyType::foot,
+                                                          _q,
+                                                          _u);
+    dot_J_P_rl = kinematics.GetTranslationJacobianInWDiff(Kinematics::LegType::rearLeft,
+                                                          Kinematics::BodyType::foot,
+                                                          _q,
+                                                          _u);
+    dot_J_P_rr = kinematics.GetTranslationJacobianInWDiff(Kinematics::LegType::rearRight,
+                                                          Kinematics::BodyType::foot,
+                                                          _q,
+                                                          _u);
+
     // Update equations of motion task
     //t_eom.A_eq.leftCols(18) = M_fb;
     //t_eom.A_eq.rightCols(3*n_c) = - J_c_fb.transpose();
@@ -500,27 +399,27 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
         // Floating base
     t_mt.A_eq.block(0, 0, 3, state_dim).leftCols(18) = J_P_fb;
     t_mt.A_eq.block(0, 0, 3, state_dim).rightCols(3*n_c).setZero();
-    t_mt.b_eq.block(0, 0, 3, 1) = k_p_fb * (_desired_base_pos - _q.topRows(3));
+    t_mt.b_eq.block(0, 0, 3, 1) = - dot_J_P_fb * _u + k_p_fb * (_desired_base_pos - _q.topRows(3));
 
         // Front-left foot
     t_mt.A_eq.block(3, 0, 3, state_dim).leftCols(18) = J_P_fl;
     t_mt.A_eq.block(3, 0, 3, state_dim).rightCols(3*n_c).setZero();
-    t_mt.b_eq.block(3, 0, 3, 1) = k_p_fl * (_desired_f_pos(0) - _f_pos(0));
+    t_mt.b_eq.block(3, 0, 3, 1) = - dot_J_P_fl * _u + k_p_fl * (_desired_f_pos(0) - _f_pos(0));
 
         // Front-right foot
     t_mt.A_eq.block(6, 0, 3, state_dim).leftCols(18) = J_P_fr;
     t_mt.A_eq.block(6, 0, 3, state_dim).rightCols(3*n_c).setZero();
-    t_mt.b_eq.block(6, 0, 3, 1) = k_p_fr * (_desired_f_pos(1) - _f_pos(1));
+    t_mt.b_eq.block(6, 0, 3, 1) = - dot_J_P_fr * _u + k_p_fr * (_desired_f_pos(1) - _f_pos(1));
 
         // Rear-left foot
     t_mt.A_eq.block(9, 0, 3, state_dim).leftCols(18) = J_P_rl;
     t_mt.A_eq.block(9, 0, 3, state_dim).rightCols(3*n_c).setZero();
-    t_mt.b_eq.block(9, 0, 3, 1) = k_p_rl * (_desired_f_pos(2) - _f_pos(2));
+    t_mt.b_eq.block(9, 0, 3, 1) = - dot_J_P_rl * _u + k_p_rl * (_desired_f_pos(2) - _f_pos(2));
 
         // Rear-right foot
     t_mt.A_eq.block(12, 0, 3, state_dim).leftCols(18) = J_P_rr;
     t_mt.A_eq.block(12, 0, 3, state_dim).rightCols(3*n_c).setZero();
-    t_mt.b_eq.block(12, 0, 3, 1) = k_p_rr * (_desired_f_pos(3) - _f_pos(3));
+    t_mt.b_eq.block(12, 0, 3, 1) = - dot_J_P_rr * _u + k_p_rr * (_desired_f_pos(3) - _f_pos(3));
 
     // Update contact force minimization task
     t_cfm.A_eq.leftCols(18).setZero();
