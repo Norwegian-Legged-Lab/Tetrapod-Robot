@@ -1738,6 +1738,10 @@ Eigen::Matrix<double, Eigen::Dynamic, 18> Kinematics::GetContactJacobianInW(std:
     {
         ROS_ERROR_STREAM("[Kinematics::GetContactJacobianInW] Zero contact points were given!");
 
+        J.setZero();
+
+        return J;
+
         std::abort();
     }
     else if (n_c > 4)
@@ -1770,7 +1774,6 @@ Eigen::Matrix<double, Eigen::Dynamic, 18> Kinematics::GetContactJacobianInW(std:
         row += 3; 
     }
 
-
     return J;
 }
 
@@ -1787,6 +1790,10 @@ Eigen::Matrix<double, Eigen::Dynamic, 18> Kinematics::GetContactJacobianInWDiff(
     if (n_c == 0)
     {
         ROS_ERROR_STREAM("[Kinematics::GetContactJacobianInWDiff] Zero contact points were given!");
+
+        dot_J.setZero();
+
+        return dot_J;
 
         std::abort();
     }
@@ -2226,7 +2233,7 @@ Eigen::Matrix<double, 18, 1> Kinematics::GetSingleBodyGravitationalTerms(const L
         }
     }
 
-    F_g = m * g * Eigen::Matrix<double, 3, 1>(0,0,1);
+    F_g = m * g * Eigen::Matrix<double, 3, 1>(0,0,-1);
     
     return - J_COM.transpose() * F_g;
 }
@@ -2261,6 +2268,8 @@ Eigen::Matrix<double, 18, 1> Kinematics::GetGravitationalTerms(const Eigen::Matr
             }
         }
     }
+
+    g(2) = - g(2); // TODO WHAT THE F*** DO I DO THIS FOR
 
     return g;
 }

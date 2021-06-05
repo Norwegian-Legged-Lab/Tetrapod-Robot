@@ -350,24 +350,26 @@ void testJacobian()
          0, // base_roll
          0, // base_pitch
          0*math_utils::degToRad(90), // base_yaw
-         0*math_utils::degToRad(45), // FL-theta_hy
-         0*math_utils::degToRad(-20), // FL-theta_hp
-         0*math_utils::degToRad(90), // FL-theta_kp
-         0*math_utils::degToRad(-45), // FR-theta_hy
-         0*math_utils::degToRad(20), // FR-theta_hp
-         0*math_utils::degToRad(-90), // FR-theta_kp
-         0*math_utils::degToRad(135), // RL-theta_hy
-         0*math_utils::degToRad(20), // RL-theta_hp
-         0*math_utils::degToRad(-90), // RL-theta_kp
-         0*math_utils::degToRad(-135), // RR-theta_hy
-         0*math_utils::degToRad(-20), // RR-theta_hp
-         0*math_utils::degToRad(90); // RR-theta_kp
+         math_utils::degToRad(45),
+         math_utils::degToRad(40),
+         math_utils::degToRad(35),
+         math_utils::degToRad(-45),
+         math_utils::degToRad(-40),
+         math_utils::degToRad(-35),
+         math_utils::degToRad(135),
+         math_utils::degToRad(-40),
+         math_utils::degToRad(-35),
+         math_utils::degToRad(-135),
+         math_utils::degToRad(40),
+         math_utils::degToRad(35);
 
-    Eigen::Matrix<double, 6, 18> J_fl = K.GetJacobianInW(Kinematics::LegType::frontLeft, Kinematics::BodyType::hip, q);
-    Eigen::Matrix<double, 6, 18> J_fr = K.GetJacobianInW(Kinematics::LegType::frontRight, Kinematics::BodyType::hip, q);
-    Eigen::Matrix<double, 6, 18> J_rl = K.GetJacobianInW(Kinematics::LegType::rearLeft, Kinematics::BodyType::hip, q);
-    Eigen::Matrix<double, 6, 18> J_rr = K.GetJacobianInW(Kinematics::LegType::rearRight, Kinematics::BodyType::hip, q);
+    Eigen::Matrix<double, 3, 18> J_fb = K.GetTranslationJacobianInW(Kinematics::LegType::NONE, Kinematics::BodyType::base, q);
+    Eigen::Matrix<double, 3, 18> J_fl = K.GetTranslationJacobianInW(Kinematics::LegType::frontLeft, Kinematics::BodyType::foot, q);
+    Eigen::Matrix<double, 3, 18> J_fr = K.GetTranslationJacobianInW(Kinematics::LegType::frontRight, Kinematics::BodyType::foot, q);
+    Eigen::Matrix<double, 3, 18> J_rl = K.GetTranslationJacobianInW(Kinematics::LegType::rearLeft, Kinematics::BodyType::foot, q);
+    Eigen::Matrix<double, 3, 18> J_rr = K.GetTranslationJacobianInW(Kinematics::LegType::rearRight, Kinematics::BodyType::foot, q);
 
+    ROS_INFO_STREAM("Jacobian floating base, J: \n" << J_fb);
     ROS_INFO_STREAM("Jacobian front left, J: \n" << J_fl);
     ROS_INFO_STREAM("Jacobian front right, J: \n" << J_fr);
     ROS_INFO_STREAM("Jacobian rear left, J: \n" << J_rl);
@@ -442,29 +444,32 @@ void testGravitationalTerms()
 
     GeneralizedCoordinates q = GeneralizedCoordinates::Constant(0);
 
-    q << 0, // base_x
-         0, // base_y
-         0, // base_z
-         0, // base_roll
-         0, // base_pitch
-         0*math_utils::degToRad(90), // base_yaw
-         0*math_utils::degToRad(45), // FL-theta_hy
-         0*math_utils::degToRad(-20), // FL-theta_hp
-         0*math_utils::degToRad(90), // FL-theta_kp
-         0*math_utils::degToRad(-45), // FR-theta_hy
-         0*math_utils::degToRad(20), // FR-theta_hp
-         0*math_utils::degToRad(-90), // FR-theta_kp
-         0*math_utils::degToRad(135), // RL-theta_hy
-         0*math_utils::degToRad(20), // RL-theta_hp
-         0*math_utils::degToRad(-90), // RL-theta_kp
-         0*math_utils::degToRad(-135), // RR-theta_hy
-         0*math_utils::degToRad(-20), // RR-theta_hp
-         0*math_utils::degToRad(90); // RR-theta_kp
+    q << 0,
+         0,
+         0.42,
+         0,
+         0,
+         0,
+         math_utils::degToRad(45),
+         math_utils::degToRad(40),
+         math_utils::degToRad(35),
+         math_utils::degToRad(-45),
+         math_utils::degToRad(-40),
+         math_utils::degToRad(-35),
+         math_utils::degToRad(135),
+         math_utils::degToRad(-40),
+         math_utils::degToRad(-35),
+         math_utils::degToRad(-135),
+         math_utils::degToRad(40),
+         math_utils::degToRad(35);
 
-    Eigen::Matrix<double, 18, 1> g = K.GetSingleBodyGravitationalTerms(Kinematics::LegType::frontRight, Kinematics::BodyType::leg, q);
-    //Eigen::Matrix<double, 18, 1> g = K.GetMassMatrix(q);
+    Eigen::Matrix<double, 18, 1> g = K.GetGravitationalTerms(q);
+    Eigen::Matrix<double, 18, 1> g_fl = K.GetSingleBodyGravitationalTerms(Kinematics::LegType::frontLeft, Kinematics::BodyType::leg, q);
+    Eigen::Matrix<double, 18, 1> g_fr = K.GetSingleBodyGravitationalTerms(Kinematics::LegType::frontRight, Kinematics::BodyType::leg, q);
 
-    ROS_INFO_STREAM("Mass matrix, M: \n" << g);
+    ROS_INFO_STREAM("Gravitational terms, g: \n" << g);
+    ROS_INFO_STREAM("Gravitational terms front left, g_fl: \n" << g_fl);
+    ROS_INFO_STREAM("Gravitational terms front_right, g_fr: \n" << g_fr);
 }
 
 void testEulerDiff()
@@ -528,30 +533,30 @@ void testCoriolisAndCentrifugalTerms()
     GeneralizedCoordinates q = GeneralizedCoordinates::Constant(0);
     GeneralizedCoordinates u = GeneralizedCoordinates::Constant(0);
 
-    q << 0, // base_x
-         0, // base_y
-         0, // base_z
-         0, // base_roll
-         0, // base_pitch
-         math_utils::degToRad(90), // base_yaw
-         0*math_utils::degToRad(45), // FL-theta_hy
-         0*math_utils::degToRad(-20), // FL-theta_hp
-         0*math_utils::degToRad(90), // FL-theta_kp
-         0*math_utils::degToRad(-45), // FR-theta_hy
-         0*math_utils::degToRad(20), // FR-theta_hp
-         0*math_utils::degToRad(-90), // FR-theta_kp
-         0*math_utils::degToRad(135), // RL-theta_hy
-         0*math_utils::degToRad(20), // RL-theta_hp
-         0*math_utils::degToRad(-90), // RL-theta_kp
-         0*math_utils::degToRad(-135), // RR-theta_hy
-         0*math_utils::degToRad(-20), // RR-theta_hp
-         0*math_utils::degToRad(90); // RR-theta_kp
+    q << 0,
+         0,
+         0.42,
+         0,
+         0,
+         0,
+         math_utils::degToRad(45),
+         math_utils::degToRad(40),
+         math_utils::degToRad(35),
+         math_utils::degToRad(-45),
+         math_utils::degToRad(-40),
+         math_utils::degToRad(-35),
+         math_utils::degToRad(135),
+         math_utils::degToRad(-40),
+         math_utils::degToRad(-35),
+         math_utils::degToRad(-135),
+         math_utils::degToRad(40),
+         math_utils::degToRad(35);
 
-    u << 0, // base_x
+    u << 1, // base_x
          0, // base_y
          0, // base_z
-         1, // base_roll
-         2, // base_pitch
+         2, // base_roll
+         3, // base_pitch
          3, // base_yaw
          0*math_utils::degToRad(45), // FL-theta_hy
          0*math_utils::degToRad(-20), // FL-theta_hp
@@ -568,7 +573,7 @@ void testCoriolisAndCentrifugalTerms()
 
     Eigen::Matrix<double, 18, 1> CCTerms = K.GetCoriolisAndCentrifugalTerms(q, u);
 
-    ROS_INFO_STREAM("Coriolis and Centrifugal terms, CCTerms: \n" << CCTerms);
+    ROS_INFO_STREAM("Coriolis and Centrifugal terms, b: \n" << CCTerms);
 }
 
 void testNullSpaceProjector()
@@ -746,21 +751,21 @@ int main(int argc, char **argv)
     //ROS_INFO_STREAM("--------------- Test rotationJacobian --------------");
     //testRotationJacobian();
     //ROS_INFO_STREAM("--------------- Test Jacobian --------------");
-    //testBaseJacobian();
+    //testJacobian();
     //ROS_INFO_STREAM("--------------- Test Mass Matrix -----------");
     //testMassMatrix();
-    //ROS_INFO_STREAM("--------------- Test Gravitational Terms -----------");
-    //testGravitationalTerms();
+    ROS_INFO_STREAM("--------------- Test Gravitational Terms -----------");
+    testGravitationalTerms();
     //ROS_INFO_STREAM("--------------- Test Rotation Derivative -------");
     //testEulerDiff();
-    //ROS_INFO_STREAM("--------------- Test Coriolis And Centrifugal terms --------------");
-    //testCoriolisAndCentrifugalTerms();
+    ROS_INFO_STREAM("--------------- Test Coriolis And Centrifugal terms --------------");
+    testCoriolisAndCentrifugalTerms();
     //ROS_INFO_STREAM("--------------- Test null-space projector ------------------------");
     //testNullSpaceProjector();
-    testSVDNullSpaceProjector();
+    //testSVDNullSpaceProjector();
     //ROS_INFO_STREAM("--------------- Test contact Jacobian ----------------------------");
     //testContactJacobian();
-    ROS_INFO_STREAM("--------------- Test stacking ----------------------------");
+    //ROS_INFO_STREAM("--------------- Test stacking ----------------------------");
     //testEigenStacking();
 
 
