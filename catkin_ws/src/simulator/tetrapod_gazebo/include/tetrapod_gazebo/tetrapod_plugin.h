@@ -264,7 +264,6 @@ namespace gazebo
         private: std::vector<double> pos_d_gains;
 
         /// \brief Control mode indicator
-        /// { position = 1, velocity = 2, torque = 3 }
         private: ControlMode controlMode;
 
         /// \brief Node used for ROS transport.
