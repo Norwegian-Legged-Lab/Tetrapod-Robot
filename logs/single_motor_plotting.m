@@ -2,7 +2,7 @@ close all
 clear
 clc
 
-timestamp = "2021-05-26-17-44-21";
+timestamp = "2021-06-02-20-43-10";
 
 number_of_motors = 1;
 
@@ -14,12 +14,12 @@ reference_bag = rosbag("references_" + timestamp + ".bag");
 state_time = get_time_states(state_bag);
 joint_pos_state = get_joint_position_states(state_bag, number_of_motors);
 joint_vel_state = get_joint_velocity_states(state_bag, number_of_motors);
-joint_torques = get_joint_effort_states(state_bag, number_of_motors);
+joint_torque = get_joint_effort_states(state_bag, number_of_motors);
 
 reference_time = get_time_states(reference_bag);
 joint_pos_reference = get_joint_position_states(reference_bag, number_of_motors);
 joint_vel_reference = get_joint_velocity_states(reference_bag, number_of_motors);
-joint_acc_reference = get_joint_effort_states(reference_bag, number_of_motors);
+joint_torque_reference = get_joint_effort_states(reference_bag, number_of_motors);
 
 %% Remove time offset from the measurements so that time zero is when the first message of one time is received
 time_offset = 0;
@@ -40,7 +40,6 @@ joint_vel_state = joint_vel_state*180.0/pi;
 
 joint_pos_reference = joint_pos_reference*180.0/pi;
 joint_vel_reference = joint_vel_reference*180.0/pi;
-joint_acc_reference = joint_acc_reference*180.0/pi;
 
 %% Plot results
 
@@ -64,16 +63,18 @@ plot(state_time, joint_vel_state);
 legend("\omega_{ref}", "\omega");
 xlabel("time [s]");
 ylabel("angular rate [deg/s]");
-hold off
+% hold off
 
 % Joint Torques
 figure(3)
 hold on
 grid on
-plot(state_time, joint_torques);
-legend("\tau");
+plot(reference_time, joint_torque_reference*1200/26.88);
+plot(state_time, joint_torque*1200/26.88);
+legend("\tau_{ref}", "\tau");
 xlabel("time [s]");
-ylabel("torque [Nm]");
+ylabel("torque current");
+%ylabel("torque [Nm]");
 hold off
 
 

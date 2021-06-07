@@ -239,7 +239,7 @@ void loop()
     } 
   }
   
-  delay_microseconds(10000); // Can be 3000
+  delay_microseconds(4000); // Can be 3000
   
   // Go through all the replies and update the motor states
   while(can_port_1.read(can_message) || can_port_2.read(can_message))
@@ -261,7 +261,8 @@ void loop()
     }
   }
 
-  motors[0].printState();
+  //motors[0].printState();
+  motors[0].printTorqueCurrents();
  
   // Update the joint state reply message
   

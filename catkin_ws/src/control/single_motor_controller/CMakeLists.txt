@@ -40,6 +40,11 @@ add_executable(automatic_setpoint_publisher
   src/single_motor_controller.cpp
 )
 
+add_executable(step_response_test
+  src/step_response_test.cpp
+  src/single_motor_controller.cpp
+)
+
 target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
 )
@@ -49,6 +54,10 @@ target_link_libraries(control_node
 )
 
 target_link_libraries(automatic_setpoint_publisher
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(step_response_test
   ${catkin_LIBRARIES}
 )
 
