@@ -77,9 +77,10 @@ void SingleMotorController::initROS()
 
 void SingleMotorController::motorStateCallback(const sensor_msgs::JointStatePtr &_msg)
 {
-    ROS_INFO("MOTOR STATE CALLBACK");
+    //ROS_INFO("MOTOR STATE CALLBACK");
     angle_pos = _msg->position[0];
     angle_vel = _msg->velocity[0];
+    torque = _msg->effort[0];
 }
 
 void SingleMotorController::readyToProceedCallback(const std_msgs::Bool &_msg)
@@ -156,11 +157,11 @@ void SingleMotorController::sendJointTorqueCommand()
 {
     sensor_msgs::JointState joint_command_msg;
 
-    torque = inertia*(angle_acc_ref + k_p_torque*(angle_pos_ref - angle_pos) + k_d_torque*(angle_vel_ref - angle_vel));
+    torque_ref = inertia*(angle_acc_ref + k_p_controller*(angle_pos_ref - angle_pos) + k_d_controller*(angle_vel_ref - angle_vel));
 
     joint_command_msg.position.push_back(IDLE_COMMAND);
     joint_command_msg.velocity.push_back(IDLE_COMMAND);
-    joint_command_msg.effort.push_back(torque);
+    joint_command_msg.effort.push_back(torque_ref);
 
     joint_command_msg.header.stamp = ros::Time::now();
 
@@ -202,6 +203,21 @@ void SingleMotorController::moveToZero()
 
         publish_position_command_rate.sleep();
     }
+}
+
+void SingleMotorController::setTorqueDirectly(double _torque)
+{
+    torque_ref = _torque;
+
+    sensor_msgs::JointState joint_command_msg;
+
+    joint_command_msg.position.push_back(IDLE_COMMAND);
+    joint_command_msg.velocity.push_back(IDLE_COMMAND);
+    joint_command_msg.effort.push_back(_torque);
+
+    joint_command_msg.header.stamp = ros::Time::now();
+
+    joint_command_publisher.publish(joint_command_msg);
 }
 
 void SingleMotorController::initializeMotor(double _k_p_pos, double _k_i_pos, double _k_p_vel, double _k_i_vel, double _k_p_torque, double _k_i_torque)
@@ -271,8 +287,8 @@ void SingleMotorController::checkForNewMessages()
 
 void SingleMotorController::printAll()
 {
-    ROS_INFO("I: %f\tq: %f\tq_ref: %f\tq_d: %f\tq_d_ref: %f\tq_dd_ref: %f\tT: %f",
-    current_iteration, angle_pos, angle_pos_ref, angle_vel, angle_vel_ref, angle_acc_ref, torque);
+    ROS_INFO("I: %f\tq: %f\tq_ref: %f\tq_d: %f\tq_d_ref: %f\tq_dd_ref: %f\tT: %f\tT_ref: %f",
+    current_iteration, angle_pos, angle_pos_ref, angle_vel, angle_vel_ref, angle_acc_ref, torque, torque_ref);
 }
 
 void SingleMotorController::writeToLog()
@@ -289,7 +305,7 @@ void SingleMotorController::writeToLog()
 
     joint_reference_msg.position.push_back(angle_pos_ref);
     joint_reference_msg.velocity.push_back(angle_vel_ref);
-    joint_reference_msg.effort.push_back(angle_acc_ref);
+    joint_reference_msg.effort.push_back(torque_ref);
 
     joint_reference_msg.header.stamp = ros::Time::now();
 
