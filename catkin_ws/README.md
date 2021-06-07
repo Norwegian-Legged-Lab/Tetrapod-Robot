@@ -14,7 +14,7 @@ To simplify the process of resetting simulations we've created a rosservice whic
 #-------------------------------------------------------
 # Bindings
 #-------------------------------------------------------
-bind -x '"\e[24~":"rosservice call /my_robot/reset_simulation""^M"'
+bind -x '"\e[24~":"rosservice call /my_robot/reset_simulation"'
 ```
 
 If you would like to manually reset the simulation from the terminal, simply call:
