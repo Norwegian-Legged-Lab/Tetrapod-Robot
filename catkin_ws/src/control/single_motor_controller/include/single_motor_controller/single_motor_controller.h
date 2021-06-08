@@ -59,6 +59,8 @@ class SingleMotorController
 
     public: void moveToZero();
 
+    public: void setTorqueDirectly(double _torque);
+
     /*** HELPER FUNCTIONS ***/
 
     public: void initializeMotor
@@ -99,7 +101,9 @@ class SingleMotorController
 
     double angle_acc_ref = 0;
 
-    double torque;
+    double torque = 0;
+
+    double torque_ref = 0;
 
     bool ready_to_proceed = false;
 
@@ -121,7 +125,13 @@ class SingleMotorController
 
     private: double max_travel = 0.0; //M_PI*2.0/3.0;
 
-    private: double inertia = 1.0;
+    private: double inertia = 0.1;
+
+    private: double k_p_controller = 50.0;
+
+    private: double k_i_controller = 10.0;
+
+    private: double k_d_controller = 2.0;
 
     private: double k_p_pos = 30.0;
 
@@ -135,11 +145,11 @@ class SingleMotorController
 
     private: double k_d_vel = 5.0;
 
-    private: double k_p_torque = 30.0;
+    private: double k_p_torque = 100.0;
 
-    private: double k_i_torque = 3.0;
+    private: double k_i_torque = 50.0;
 
-    private: double k_d_torque = 5.0;
+    private: double k_d_torque = 0.0;
 
     /*** ROS VARIABLES ***/
 

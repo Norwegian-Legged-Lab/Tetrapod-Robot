@@ -5,9 +5,9 @@
 
 int main(int argc, char **argv)
 {
-    bool USE_POSITION_CONTROL = true;
+    bool USE_POSITION_CONTROL = false;
 
-    double PUBLISH_FREQUENCY = 100.0;
+    double PUBLISH_FREQUENCY = 200.0;
 
     SingleMotorController controller(PUBLISH_FREQUENCY, USE_POSITION_CONTROL);
 

@@ -142,6 +142,8 @@ public:
     /// of the motor are printed
     void printState();
 
+    void printTorqueCurrents();
+
     int64_t GOD_ANGLE;
 
     double raw_position_reference;
@@ -222,6 +224,9 @@ private:
     /// \brief If the change in encoder value is larger than this
     /// it is safe to assume that the inner motor completed a turn
     uint16_t encoder_turn_threshold;
+
+    int16_t torque_current_reference = 0;
+    int16_t torque_current_measured = 0;
 
     /// \brief This function checks if the inner motor completed a turn.
     /// Depending on the difference between the new and previous encoder value

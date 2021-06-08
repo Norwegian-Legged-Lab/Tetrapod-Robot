@@ -33,7 +33,6 @@
 #include <gazebo/msgs/msgs.hh>
 
 // ROS
-#include <thread>
 #include "ros/ros.h"
 #include "ros/package.h"
 #include "ros/console.h"
@@ -43,6 +42,7 @@
 #include "std_msgs/Float32.h"
 #include "std_msgs/Float64MultiArray.h"
 #include "sensor_msgs/JointState.h"
+#include "std_srvs/Empty.h"
 
 // ROS Package Libraries
 #include<math_utils/angle_utils.h>
@@ -51,6 +51,7 @@
 #include <Eigen/Core>
 
 // Standard library
+#include <thread>
 #include <vector>
 #include <map>
 
@@ -213,8 +214,19 @@ namespace gazebo
         /// initialize the desired joint configuration
         protected: void InitJointConfiguration();
 
+        /// \brief The ResetSimulation function handles an incoming
+        /// reset simulation service request.
+        /// \param[in] _req Service request.
+        /// \param[out] _res Service response.
+        /// \return Returns true if success, and false if not.
+        public: bool ResetSimulation(const std_srvs::Empty::Request &_req,
+                                     std_srvs::Empty::Response &_res);
+
         /// \brief Pointer to the model.
         private: physics::ModelPtr model;
+
+        /// \brief Pointer to the world.
+        private: physics::WorldPtr world;
 
         /// \brief Model name
         private: std::string model_name;
@@ -252,11 +264,13 @@ namespace gazebo
         private: std::vector<double> pos_d_gains;
 
         /// \brief Control mode indicator
-        /// { position = 1, velocity = 2, torque = 3 }
         private: ControlMode controlMode;
 
         /// \brief Node used for ROS transport.
         private: std::unique_ptr<ros::NodeHandle> rosNode;
+
+        /// \brief ROS Reset Simulation Service.
+        private: ros::ServiceServer resetSimService;
 
         /// \brief ROS Generalized Coordinates Publisher.
         private: ros::Publisher genCoordPub;

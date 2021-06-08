@@ -260,6 +260,8 @@ void MotorControl::setTorqueReference(double _torque)
     // Scale the torque (Nm) to torque currents between [-max_torque_current, max_torque_current]
     int16_t current_torque = (int) round(max_torque_current*_torque/max_torque);
 
+    torque_current_reference = current_torque;
+
     // Create a CAN message for current torque control
     make_can_msg::torqueCurrentControl(can_message.buf, current_torque);
 
@@ -289,6 +291,8 @@ void MotorControl::readMotorControlCommandReply(unsigned char* _can_message)
 
     // Get the torque current 
     int16_t torque_current = _can_message[3]*256 + _can_message[2];
+
+    torque_current_measured = torque_current;
 
     // Convert the torque current into torque through a linear scaling
     torque = -max_torque*torque_current/max_torque_current;
@@ -813,4 +817,15 @@ void MotorControl::errorMessage()
     Serial.print("ERROR - Motor "); Serial.print(id); 
     Serial.print(", CAN "); Serial.print(can_port_id); 
     Serial.print("-\t");
+}
+
+void MotorControl::printTorqueCurrents()
+{
+    char torque_current_measured_str[5];
+    char torque_current_reference_str[5];
+    dtostrf(torque_current_measured, 4, 0, torque_current_measured_str);
+    dtostrf(torque_current_reference, 4, 0, torque_current_reference_str);
+    char print_message[65];
+    sprintf(print_message, "Reference Torque Current: %s Measured Torque Current: %s", torque_current_reference_str, torque_current_measured_str);
+    ROS_NODE_HANDLE.logerror(print_message);
 }

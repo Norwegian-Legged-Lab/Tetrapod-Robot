@@ -833,7 +833,7 @@ Eigen::Matrix<double, 3, 18> Kinematics::GetTranslationJacobianInW(const LegType
 
             translationJacobianInB = this->GetTranslationJacobianInB(_leg, 
                                                                      _body,
-                                                                     _q.block<12, 1>(6,0));
+                                                                     _q.bottomRows(12));
 
             break;
         }
@@ -1117,18 +1117,18 @@ Eigen::Matrix<double, 3, 18> Kinematics::GetTranslationJacobianInWDiff(const Leg
         {
             translationJacobianInB = this->GetTranslationJacobianInB(_leg, 
                                                                      _body,
-                                                                     _q.block<12, 1>(6,0));
+                                                                     _q.bottomRows(12));
 
             translationJacobianInBDiff = this->GetTranslationJacobianInBDiff(_leg,
                                                                              _body,
-                                                                             _q.block<12,1>(6,0),
-                                                                             _u.block<12,1>(6,0));
+                                                                             _q.bottomRows(12),
+                                                                             _u.bottomRows(12));
 
             positionBaseToBodyInB = this->GetPositionBaseToBodyInB(_leg, 
                                                                    _body,
                                                                    _q);
 
-            positionBaseToBodyInBDiff = translationJacobianInB * _q.block<12,1>(6,0);
+            positionBaseToBodyInBDiff = translationJacobianInB * _q.bottomRows(12);
 
             rotationWToB = this->GetRotationMatrixWToB(_q(3),
                                                        _q(4),
@@ -1365,9 +1365,9 @@ Eigen::Matrix<double, 3, 18> Kinematics::GetRotationJacobianInW(const LegType &_
     Eigen::Matrix<double, 3, 12> rotationJacobianInB; // 3x12 Rotation Jacobian in Body frame
     Eigen::Matrix<double, 3, 3> rotationWToB;         // Rotation from World to Body frame (transform from Body to World)
 
-    rotationWToB = this->GetRotationMatrixWToB(_q(5),
+    rotationWToB = this->GetRotationMatrixWToB(_q(3),
                                                _q(4),
-                                               _q(3));
+                                               _q(5));
 
     switch (_body)
     {
@@ -1385,7 +1385,7 @@ Eigen::Matrix<double, 3, 18> Kinematics::GetRotationJacobianInW(const LegType &_
         {
             rotationJacobianInB = this->GetRotationJacobianInB(_leg, 
                                                                _body,
-                                                               _q.block<12, 1>(6,0));
+                                                               _q.bottomRows(12));
 
             break;
         }
@@ -1984,6 +1984,10 @@ Eigen::Matrix<double, 18, 18> Kinematics::GetSingleBodyMassMatrix(const LegType 
             break;
         }
     }
+
+    // TODO remove
+    ROS_INFO_STREAM("J_COM: \n" << J_COM);
+    ROS_INFO_STREAM("J_R: \n" << J_R);
 
     return m * J_COM.transpose() * J_COM + J_R.transpose() * I_COM * J_R;
 }
