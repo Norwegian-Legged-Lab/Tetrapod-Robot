@@ -181,16 +181,16 @@ z_0 = 0.0
 
             <inertial>
                 <!-- Position of front_left_hip CoM relative to joint position. Obtained from Solidworks-->
-                <pose>0 0.0 0 0 0 0</pose>
+                <pose>0.103 -0.071 0.0045 0 0 0</pose>
 
-                <mass>1.168</mass>
+                <mass>1.179</mass>
                 <inertia>
-                <ixx>0.00875</ixx>
-                <ixy>-0.01007</ixy>
-                <ixz>0.00045</ixz>
-                <iyy>0.01534</iyy>
-                <iyz>-0.00032</iyz>
-                <izz>0.02228</izz>
+                <ixx>0.002988</ixx>
+                <ixy>-0.001845</ixy>
+                <ixz>-0.000064</ixz>
+                <iyy>0.003332</iyy>
+                <iyz>0.000037</iyz>
+                <izz>0.004664</izz>
                 </inertia>
             </inertial>
 
@@ -253,15 +253,15 @@ z_0 = 0.0
             </visual>
             <inertial>
                 <!-- Position of upper_leg CoM relative to hip pitch joint position. Obtained from Solidworks-->
-                <pose>0 0 0 0 0 0</pose>
-                <mass>1.47930</mass>
+                <pose>0.02570 0 -0.02870 0 0 0</pose>
+                <mass>1.39420</mass>
                 <inertia>
-                    <ixx>0.00306</ixx>
+                    <ixx>0.00174</ixx>
                     <ixy>0</ixy>
-                    <ixz>0</ixz>
-                    <iyy>0.00998</iyy>
+                    <ixz>0.00108</ixz>
+                    <iyy>0.00660</iyy>
                     <iyz>0</iyz>
-                    <izz>0.00855</izz>
+                    <izz>0.00644</izz>
                 </inertia>
             </inertial>
         </link>
@@ -321,15 +321,15 @@ z_0 = 0.0
             </collision>
             <inertial>
                 <!-- Position of lower_leg CoM relative to knee pitch joint position. Obtained from Solidworks-->
-                <pose>0 0 0 0 0 0</pose>
-                <mass>0.30325519</mass>
+                <pose>0.10688699 0.00127229 0.00105520 0 0 0</pose>
+                <mass>0.28302792</mass>
                 <inertia>
-                    <ixx>0.005969</ixx>
-                    <ixy>0</ixy>
-                    <ixz>0.003017</ixz>
-                    <iyy>0.00548869</iyy>
+                    <ixx>0.00006651</ixx>
+                    <ixy>0.00004913</ixy>
+                    <ixz>0.00000614</ixz>
+                    <iyy>0.00317406</iyy>
                     <iyz>0</iyz>
-                    <izz>0.00550161</izz>
+                    <izz>0.00318967</izz>
                 </inertia>
             </inertial>
         </link>
