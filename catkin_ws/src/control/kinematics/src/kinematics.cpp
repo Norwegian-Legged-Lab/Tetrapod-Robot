@@ -62,9 +62,9 @@ Kinematics::Kinematics()
     this->L2 = 0.220;
     this->L3 = 0.279;
 
-    this->LC1 = 0.0;
-    this->LC2 = 0.0;
-    this->LC3 = 0.0;
+    this->LC1 = 0.1030;
+    this->LC2 = 0.0257;
+    this->LC3 = 0.1069;
 
     // Set position vectors
     this->positionBaseToFrontLeftInB << 0.151, 0.151, 0;
