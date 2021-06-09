@@ -552,6 +552,8 @@ class Kinematics
 
     private: Eigen::Matrix<double, 3, 3> GetBodyInertia(BodyType _body);
 
+    private: Eigen::Matrix<double, 3, 3> GetBodyInertia(BodyType _body, LegType _leg);
+
     public: bool GetflOffset() {return flOffset;}
 
     public: bool GetfrOffset() {return frOffset;}
@@ -627,8 +629,11 @@ class Kinematics
     /// \brief Body link inertia matrix
     private: Eigen::Matrix<double, 3, 3> I0;
 
-    /// \brief Hip link inertia matrix
-    private: Eigen::Matrix<double, 3, 3> I1;
+    /// \brief Front Left & Rear Right Hip link inertia matrix
+    private: Eigen::Matrix<double, 3, 3> I1_fl_rr;
+
+    /// \brief Front Right & Rear Left Hip link inertia matrix
+    private: Eigen::Matrix<double, 3, 3> I1_fr_rl;
 
     /// \brief Thigh link inertia matrix
     private: Eigen::Matrix<double, 3, 3> I2;
