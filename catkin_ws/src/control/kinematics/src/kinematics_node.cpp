@@ -419,20 +419,20 @@ void testMassMatrix()
          0, // base_roll
          0, // base_pitch
          0*math_utils::degToRad(90), // base_yaw
-         0*math_utils::degToRad(45), // FL-theta_hy
-         0*math_utils::degToRad(-20), // FL-theta_hp
-         0*math_utils::degToRad(90), // FL-theta_kp
-         0*math_utils::degToRad(-45), // FR-theta_hy
-         0*math_utils::degToRad(20), // FR-theta_hp
-         0*math_utils::degToRad(-90), // FR-theta_kp
-         0*math_utils::degToRad(135), // RL-theta_hy
-         0*math_utils::degToRad(20), // RL-theta_hp
-         0*math_utils::degToRad(-90), // RL-theta_kp
-         0*math_utils::degToRad(-135), // RR-theta_hy
-         0*math_utils::degToRad(-20), // RR-theta_hp
-         0*math_utils::degToRad(90); // RR-theta_kp
+         math_utils::degToRad(45),
+         math_utils::degToRad(40),
+         math_utils::degToRad(35),
+         math_utils::degToRad(-45),
+         math_utils::degToRad(-40),
+         math_utils::degToRad(-35),
+         math_utils::degToRad(135),
+         math_utils::degToRad(-40),
+         math_utils::degToRad(-35),
+         math_utils::degToRad(-135),
+         math_utils::degToRad(40),
+         math_utils::degToRad(35);
 
-    Eigen::Matrix<double, 18, 18> M = K.GetSingleBodyMassMatrix(Kinematics::LegType::rearRight, Kinematics::BodyType::base, q);
+    Eigen::Matrix<double, 18, 18> M = K.GetSingleBodyMassMatrix(Kinematics::LegType::rearRight, Kinematics::BodyType::leg, q);
     //Eigen::Matrix<double, 18, 18> M = K.GetMassMatrix(q);
 
     ROS_INFO_STREAM("Mass matrix, M: \n" << M);
@@ -725,6 +725,57 @@ void testEigenStacking()
 
 }
 
+void testRotationWToC()
+{
+    Kinematics kinematics;
+
+    double yaw = math_utils::THIRD_PI;
+
+    Eigen::Matrix3d rotationWToC = kinematics.GetRotationMatrixWToC(0, 0, yaw);
+
+    Eigen::Vector3d h = rotationWToC * Eigen::Vector3d(1, 0, 0);
+    Eigen::Vector3d l = rotationWToC * Eigen::Vector3d(0, 1, 0);
+    Eigen::Vector3d n = Eigen::Vector3d(0, 0, 1);
+
+    ROS_INFO_STREAM("h: \n" << h << "\n");
+    ROS_INFO_STREAM("l: \n" << l << "\n");
+    ROS_INFO_STREAM("n: \n" << n << "\n");
+}
+
+void testContactForceLimitsMatrix()
+{
+    Eigen::MatrixXd A;
+
+    int n_c = 4;
+
+    int state_dim = 18 + 3*n_c;
+
+    double mu = 1;
+
+    Eigen::Vector3d h(1,0,0);
+    Eigen::Vector3d l(0,1,0);
+    Eigen::Vector3d n(0,0,1);
+
+    A.resize(4*n_c, state_dim);
+
+    for (size_t i = 0; i < n_c; i++)
+    {
+        A.block(4*i, 0, 1, state_dim).setZero();
+        A.block(4*i, 18 + 3*i, 1, 3) = (h.transpose() - n.transpose() * mu);
+
+        A.block(4*i + 1, 0, 1, state_dim).setZero();
+        A.block(4*i + 1, 18 + 3*i, 1, 3) = - (h.transpose() + n.transpose() * mu);
+
+        A.block(4*i + 2, 0, 1, state_dim).setZero();
+        A.block(4*i + 2, 18 + 3*i, 1, 3) = (l.transpose() - n.transpose() * mu);
+
+        A.block(4*i + 3, 0, 1, state_dim).setZero();
+        A.block(4*i + 3, 18 + 3*i, 1, 3) = - (l.transpose() + n.transpose() * mu);
+    }
+
+    ROS_INFO_STREAM("A: \n" << A);
+}
+
 
 int main(int argc, char **argv)
 {
@@ -754,12 +805,12 @@ int main(int argc, char **argv)
     //testJacobian();
     //ROS_INFO_STREAM("--------------- Test Mass Matrix -----------");
     //testMassMatrix();
-    ROS_INFO_STREAM("--------------- Test Gravitational Terms -----------");
-    testGravitationalTerms();
+    //ROS_INFO_STREAM("--------------- Test Gravitational Terms -----------");
+    //testGravitationalTerms();
     //ROS_INFO_STREAM("--------------- Test Rotation Derivative -------");
     //testEulerDiff();
-    ROS_INFO_STREAM("--------------- Test Coriolis And Centrifugal terms --------------");
-    testCoriolisAndCentrifugalTerms();
+    //ROS_INFO_STREAM("--------------- Test Coriolis And Centrifugal terms --------------");
+    //testCoriolisAndCentrifugalTerms();
     //ROS_INFO_STREAM("--------------- Test null-space projector ------------------------");
     //testNullSpaceProjector();
     //testSVDNullSpaceProjector();
@@ -767,6 +818,8 @@ int main(int argc, char **argv)
     //testContactJacobian();
     //ROS_INFO_STREAM("--------------- Test stacking ----------------------------");
     //testEigenStacking();
+    //ROS_INFO_STREAM("--------------- Test rotationWToC ----------------------------");
+    //testRotationWToC();
 
 
 
