@@ -205,7 +205,12 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     // Terms used to enforce posture tracking
     Eigen::Matrix<double, 12, 1> q_nom;                    // 12x1 Nominal posture configuration
 
-    // Torque limits
+    // Terms used to enforce contact force and torque limits
+    double mu;                                            // Friction coefficient
+    Eigen::Vector3d h;                                    // 3x1 Heading direction of the control frame expressed in the inertial frame
+    Eigen::Vector3d l;                                    // 3x1 Lateral direction of the control frame expressed in the inertial frame
+    Eigen::Vector3d n;                                    // 3x1 Normal direction of the control frame expressed in the inertial frame
+    Eigen::Matrix<double, 3, 3> rotationWToC;             // 3x3 Rotation matrix from world to control frame (transform from control to world).
     Eigen::Matrix<double, 12, 1> tau_min;                 // 18x1 Minimum actuator torques
     Eigen::Matrix<double, 12, 1> tau_max;                 // 18x1 Maximum actuator torques
 
@@ -218,10 +223,10 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
 
     // Motion tracking gains
     double k_p_fb = 300;      // Floating base proportional gain
-    double k_p_fl = 100;      // Front left foot proportional gain
-    double k_p_fr = 100;      // Front right foot proportional gain
-    double k_p_rl = 100;      // Rear left foot proportional gain
-    double k_p_rr = 100;      // Rear right foot proportional gain
+    double k_p_fl = 300;      // Front left foot proportional gain
+    double k_p_fr = 300;      // Front right foot proportional gain
+    double k_p_rl = 300;      // Rear left foot proportional gain
+    double k_p_rr = 300;      // Rear right foot proportional gain
 
     // Posture tracking gains
     double k_p_pt = 350;      // Posture tracking proportional gain
@@ -260,8 +265,8 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     t_cmc.A_eq.resize(3*n_c, state_dim);
     t_cmc.b_eq.resize(3*n_c, 1);
 
-    t_cftl.A_ineq.resize(24, state_dim);
-    t_cftl.b_ineq.resize(24,1);
+    t_cftl.A_ineq.resize(4*n_c + 24, state_dim);
+    t_cftl.b_ineq.resize(4*n_c + 24, 1);
 
     t_mt.A_eq.resize(15, state_dim);
     t_mt.b_eq.resize(15, 1);
@@ -278,9 +283,6 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     J_c.resize(3*n_c, 18);
     dot_J_c.resize(3*n_c, 18);
 
-    // Set torque limits
-    tau_max.setConstant(40);
-    tau_min.setConstant(-40);
 
     // Update matrices and terms
     M = kinematics.GetMassMatrix(_q);
@@ -344,18 +346,17 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
              math_utils::degToRad(40),
              math_utils::degToRad(35);
 
-    //q_nom << math_utils::degToRad(45),
-    //         math_utils::degToRad(30),
-    //         math_utils::degToRad(100),
-    //         math_utils::degToRad(-45),
-    //         math_utils::degToRad(-30),
-    //         math_utils::degToRad(-100),
-    //         math_utils::degToRad(135),
-    //         math_utils::degToRad(-30),
-    //         math_utils::degToRad(-100),
-    //         math_utils::degToRad(-135),
-    //         math_utils::degToRad(30),
-    //         math_utils::degToRad(100);
+    // Update terms used by the contact force and torque limits
+    mu = 1;
+
+    rotationWToC = kinematics.GetRotationMatrixWToC(0, 0, _q(5));
+
+    h = rotationWToC * Eigen::Vector3d(1, 0, 0);
+    l = rotationWToC * Eigen::Vector3d(0, 1, 0);
+    n = Eigen::Vector3d(0, 0, 1);
+
+    tau_max.setConstant(40);
+    tau_min.setConstant(-40);
 
     // Update equations of motion task
     t_eom.A_eq.leftCols(18) = M.topRows(6);
@@ -363,14 +364,38 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     t_eom.b_eq = - (b.topRows(6) + g.topRows(6));
 
     // Update contact force and torque limits task
+        // Friction Cone
+    for (size_t i = 0; i < n_c; i++)
+    {
+        t_cftl.A_ineq.block(4*i, 0, 1, state_dim).setZero();
+        t_cftl.A_ineq.block(4*i, 18 + 3*i, 1, 3) = (h.transpose() - n.transpose() * mu);
+
+        t_cftl.A_ineq.block(4*i + 1, 0, 1, state_dim).setZero();
+        t_cftl.A_ineq.block(4*i + 1, 18 + 3*i, 1, 3) = - (h.transpose() + n.transpose() * mu);
+
+        t_cftl.A_ineq.block(4*i + 2, 0, 1, state_dim).setZero();
+        t_cftl.A_ineq.block(4*i + 2, 18 + 3*i, 1, 3) = (l.transpose() - n.transpose() * mu);
+
+        t_cftl.A_ineq.block(4*i + 3, 0, 1, state_dim).setZero();
+        t_cftl.A_ineq.block(4*i + 3, 18 + 3*i, 1, 3) = - (l.transpose() + n.transpose() * mu);
+    }
+
+    t_cftl.b_ineq.topRows(4*n_c).setZero();
         // Max torque limit
-    t_cftl.A_ineq.topRows(12).leftCols(18) = M.bottomRows(12);
-    t_cftl.A_ineq.topRows(12).rightCols(3*n_c) = - J_c.transpose().bottomRows(12);
-    t_cftl.b_ineq.topRows(12) = tau_max - (b.bottomRows(12) + g.bottomRows(12));
-        // Min torque limit
-    t_cftl.A_ineq.bottomRows(12).leftCols(18) = - M.bottomRows(12);
-    t_cftl.A_ineq.bottomRows(12).rightCols(3*n_c) = J_c.transpose().bottomRows(12);
-    t_cftl.b_ineq.bottomRows(12) = - tau_min + (b.bottomRows(12) + g.bottomRows(12));
+    //t_cftl.A_ineq.block(4*n_c, 0, 12, state_dim).leftCols(18) = M.bottomRows(12);
+    //t_cftl.A_ineq.block(4*n_c, 0, 12, state_dim).rightCols(3*n_c) = - J_c.transpose().bottomRows(12);
+    //t_cftl.b_ineq.block(4*n_c, 0, 12, state_dim) = tau_max - (b.bottomRows(12) + g.bottomRows(12));
+    t_cftl.A_ineq.block(4*n_c, 0, 12, 18) = M.bottomRows(12);
+    t_cftl.A_ineq.block(4*n_c, 18, 12, 3*n_c) = - J_c.transpose().bottomRows(12);
+    t_cftl.b_ineq.block(4*n_c, 0, 12, 1) = tau_max - (b.bottomRows(12) + g.bottomRows(12));
+
+    //    // Min torque limit
+    //t_cftl.A_ineq.block(4*n_c + 12, 0, 12, state_dim).leftCols(18) = - M.bottomRows(12);
+    //t_cftl.A_ineq.block(4*n_c + 12, 0, 12, state_dim).rightCols(3*n_c) = J_c.transpose().bottomRows(12);
+    //t_cftl.b_ineq.block(4*n_c + 12, 0, 12, state_dim) = - tau_min + (b.bottomRows(12) + g.bottomRows(12));
+    t_cftl.A_ineq.block(4*n_c + 12, 0, 12, 18) = - M.bottomRows(12);
+    t_cftl.A_ineq.block(4*n_c + 12, 18, 12, 3*n_c) = J_c.transpose().bottomRows(12);
+    t_cftl.b_ineq.block(4*n_c + 12, 0, 12, 1) = - tau_min + (b.bottomRows(12) + g.bottomRows(12));
 
     // Update contact motion constraint task
     t_cmc.A_eq.leftCols(18) = J_c;
@@ -429,7 +454,7 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     //tasks.push_back(t_eom);
     tasks.push_back(t_cftl);
     tasks.push_back(t_cmc);
-    //tasks.push_back(t_mt);
+    tasks.push_back(t_mt);
     tasks.push_back(t_pt);
     tasks.push_back(t_cfm);
 
