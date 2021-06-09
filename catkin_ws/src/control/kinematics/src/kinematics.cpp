@@ -91,13 +91,6 @@ Kinematics::Kinematics()
     this->I1_fr_rl = GetInertiaMatrix(0.002988, 0.003332, 0.004664,  0.001845, -0.000064, -0.000037);
     this->I2 = GetInertiaMatrix(0.00174, 0.00660, 0.00644, 0.0, 0.00108, 0.0);
     this->I3 = GetInertiaMatrix(0.00006651, 0.00317406, 0.00318967, 0.00004913, 0.00000614, 0.0);
-    
-    // TODO: Should be removed when the SDF is updated. This is needed because the foot couldn't be massless
-    double M_foot = 0.0001;
-    Eigen::Matrix<double, 3, 3> I_foot= GetInertiaMatrix(0.01, 0.01, 0.01, 0.0, 0.0, 0.0); 
-    this->I3 += I_foot;
-    this->I3(1, 1) += M_foot*L3*L3;
-    this->I3(2, 2) += M_foot*L3*L3;
 }
 
 // Destructor
