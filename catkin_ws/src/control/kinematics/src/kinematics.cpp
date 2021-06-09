@@ -530,6 +530,41 @@ Eigen::Matrix<double, 3, 3> Kinematics::GetRotationMatrixWToBDiff(const double &
     return rotationWToBDiff.matrix();
 }
 
+// Rotation matrix from world to control (transform from control to world)
+Eigen::Matrix<double, 3, 3> Kinematics::GetRotationMatrixWToC(const double &_roll,
+                                                              const double &_pitch,
+                                                              const double &_yaw)
+{
+    kindr::RotationMatrixD rotationWToC(kindr::EulerAnglesZyxD(_yaw,
+                                                               _pitch,
+                                                               _roll)
+                                        );
+    
+    return rotationWToC.matrix();
+}                                                              
+
+// Time derivative of the rotation matrix from world to control
+Eigen::Matrix<double, 3, 3> Kinematics::GetRotationMatrixWToCDiff(const double &_roll,
+                                                                  const double &_pitch,
+                                                                  const double &_yaw,
+                                                                  const double &_roll_rate,
+                                                                  const double &_pitch_rate,
+                                                                  const double &_yaw_rate)
+{
+    kindr::RotationMatrixD rotationWToC(kindr::EulerAnglesZyxD(_yaw,
+                                                               _pitch,
+                                                               _roll)
+                                        );
+
+    kindr::LocalAngularVelocityD angularVelInC(_roll_rate,
+                                               _pitch_rate,
+                                               _yaw_rate);
+
+    kindr::RotationMatrixDiffD rotationWToCDiff(rotationWToC, angularVelInC);
+
+    return rotationWToCDiff.matrix();
+}
+
 // Position vector from base to body in body(base)-frame
 Eigen::Matrix<double, 3, 1> Kinematics::GetPositionBaseToBodyInB(const LegType &_leg,
                                                                  const BodyType &_body,
@@ -1984,10 +2019,6 @@ Eigen::Matrix<double, 18, 18> Kinematics::GetSingleBodyMassMatrix(const LegType 
             break;
         }
     }
-
-    // TODO remove
-    ROS_INFO_STREAM("J_COM: \n" << J_COM);
-    ROS_INFO_STREAM("J_R: \n" << J_R);
 
     return m * J_COM.transpose() * J_COM + J_R.transpose() * I_COM * J_R;
 }

@@ -181,9 +181,43 @@ class Kinematics
     /// \param[in] _roll Roll angle (x-axis).
     /// \param[in] _pitch Pitch angle (y-axis).
     /// \param[in] _yaw Yaw angle (z-axis).
+    /// \param[in] _roll_rate Roll rate (x-axis).
+    /// \param[in] _pitch_rate Pitch rate (y-axis).
+    /// \param[in] _yaw_rate Yaw rate (z-axis).
     /// \return Returns the time derivative of the rotation matrix 
     /// from World to Body frame, using the Euler Angles ZYX convention.
     public: Eigen::Matrix<double, 3, 3> GetRotationMatrixWToBDiff(const double &_roll,
+                                                                  const double &_pitch,
+                                                                  const double &_yaw,
+                                                                  const double &_roll_rate,
+                                                                  const double &_pitch_rate,
+                                                                  const double &_yaw_rate);
+
+    /// \brief The GetRotationMatrixWToC function returns the 
+    /// Euler Angles ZYX rotation matrix from World to Control frame,
+    /// i.e., the transform from Control to World. For flat-terrain
+    /// the roll and pitch angles should be set to zero.
+    /// \param[in] _roll Roll angle (x-axis).
+    /// \param[in] _pitch Pitch angle (y-axis).
+    /// \param[in] _yaw Yaw angle (z-axis).
+    /// \return Returns the rotation matrix from World to Control frame
+    /// (transform from Body to World), using the Euler Angles ZYX convention.
+    public: Eigen::Matrix<double, 3, 3> GetRotationMatrixWToC(const double &_roll,
+                                                              const double &_pitch,
+                                                              const double &_yaw);
+
+    /// \brief The GetRotationMatrixWToC function returns the 
+    /// time derivative of the Euler Angles ZYX rotation matrix 
+    /// from World to Control frame.
+    /// \param[in] _roll Roll angle (x-axis).
+    /// \param[in] _pitch Pitch angle (y-axis).
+    /// \param[in] _yaw Yaw angle (z-axis).
+    /// \param[in] _roll_rate Roll rate (x-axis).
+    /// \param[in] _pitch_rate Pitch rate (y-axis).
+    /// \param[in] _yaw_rate Yaw rate (z-axis).
+    /// \return Returns the time derivative of the rotation matrix 
+    /// from World to Control frame, using the Euler Angles ZYX convention.
+    public: Eigen::Matrix<double, 3, 3> GetRotationMatrixWToCDiff(const double &_roll,
                                                                   const double &_pitch,
                                                                   const double &_yaw,
                                                                   const double &_roll_rate,
