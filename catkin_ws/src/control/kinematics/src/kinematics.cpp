@@ -80,16 +80,17 @@ Kinematics::Kinematics()
 
     // Set masses
     this->M0 = 10.1;
-    this->M1 = 1.168;
-    this->M2 = 1.479;
-    this->M3 = 0.303;
+    this->M1 = 1.179;
+    this->M2 = 1.394;
+    this->M3 = 0.283;
     
     // Set inertia matrices
+
     this->I0 = GetInertiaMatrix(0.141, 0.143, 0.254, 0.0, 0.0, 0.0);
-    this->I1 = GetInertiaMatrix(0.00875, 0.01534, 0.0223, -0.0101, 0.00045, -0.00032);
-    this->I2 = GetInertiaMatrix(0.00306, 0.00998, 0.0085, 0.0, 0.0, 0.0);
-    this->I3 = GetInertiaMatrix(0.0000597, 0.00548, 0.0055, 0.0, 0.0, 0.0);
-    
+    this->I1_fl_rr = GetInertiaMatrix(0.002988, 0.003332, 0.004664, -0.001845, -0.000064,  0.000037);
+    this->I1_fr_rl = GetInertiaMatrix(0.002988, 0.003332, 0.004664,  0.001845, -0.000064, -0.000037);
+    this->I2 = GetInertiaMatrix(0.00174, 0.00660, 0.00644, 0.0, 0.00108, 0.0);
+    this->I3 = GetInertiaMatrix(0.00006651, 0.00317406, 0.00318967, 0.00004913, 0.00000614, 0.0);
     
     // TODO: Should be removed when the SDF is updated. This is needed because the foot couldn't be massless
     double M_foot = 0.0001;
@@ -1945,45 +1946,8 @@ Eigen::Matrix<double, 18, 18> Kinematics::GetSingleBodyMassMatrix(const LegType 
     J_COM = this->GetTranslationJacobianInW(_leg, _body, _q);
     J_R = this->GetRotationJacobianInW(_leg, _body, _q);
 
-    switch (_body)
-    {
-        case base:
-        {
-            I_COM = this->I0;
-            m = this->M0;
-
-            break;
-        }
-        case hip:
-        {
-            I_COM = this->I1;
-            m = this->M1;
-
-            break;
-        }
-        case thigh:
-        {
-            I_COM = this->I2;
-            m = this->M2;
-
-            break;
-        }
-        case leg:
-        {
-            I_COM = this->I3;
-            m = this->M3;
-
-            break;
-        }
-        default:
-        {
-            ROS_ERROR_STREAM("[Kinematics::GetSingleBodyMassMatrix] Could not determine body type!");
-
-            std::abort();
-
-            break;
-        }
-    }
+    I_COM = this->GetBodyInertia(_body, _leg);
+    m = this->GetBodyMass(_body);
 
     // TODO remove
     ROS_INFO_STREAM("J_COM: \n" << J_COM);
@@ -2075,45 +2039,8 @@ Eigen::Matrix<double, 18, 1> Kinematics::GetSingleBodyCoriolisAndCentrifugalTerm
 
     Omega = J_R * _u;
 
-    switch (_body)
-    {
-        case base:
-        {
-            I_COM = this->I0;
-            m = this->M0;
-
-            break;
-        }
-        case hip:
-        {
-            I_COM = this->I1;
-            m = this->M1;
-
-            break;
-        }
-        case thigh:
-        {
-            I_COM = this->I2;
-            m = this->M2;
-
-            break;
-        }
-        case leg:
-        {
-            I_COM = this->I3;
-            m = this->M3;
-
-            break;
-        }
-        default:
-        {
-            ROS_ERROR_STREAM("[Kinematics::GetSingleBodyCoriolisAndCentrifugalTerms] Could not determine body type!");
-
-            std::abort();
-
-            break;
-        }
-    }
+    I_COM = GetBodyInertia(_body, _leg);
+    m = GetBodyMass(_body);
 
     return m * J_COM.transpose() * dot_J_COM * _u + J_R.transpose() * ( I_COM * dot_J_R * _u + kindr::getSkewMatrixFromVector(Omega) * I_COM * Omega);
 }
@@ -2400,7 +2327,7 @@ Eigen::Matrix<double, 3, 3> Kinematics::GetBodyInertia(BodyType _body)
 
     case hip:
     {
-        I = this->I1;
+        I = this->I1_fl_rr;
 
         break;
     }
@@ -2425,4 +2352,32 @@ Eigen::Matrix<double, 3, 3> Kinematics::GetBodyInertia(BodyType _body)
     }
 
     return I;
+}
+
+Eigen::Matrix<double, 3, 3> Kinematics::GetBodyInertia(BodyType _body, LegType _leg)
+{
+    if(_body == BodyType::hip)
+    {
+        switch (_leg)
+        {
+        case LegType::frontLeft:
+        case LegType::rearRight:
+            return I1_fl_rr;
+            break;
+        case LegType::frontRight:
+        case LegType::rearLeft:
+            return I1_fr_rl;
+            break;
+        default:
+            ROS_ERROR_STREAM("[Kinematics::GetBodyInertia] Could not determine leg type");
+
+            std::abort();
+
+            break;
+        }
+    }
+    else
+    {
+        return GetBodyInertia(_body);
+    }
 }
