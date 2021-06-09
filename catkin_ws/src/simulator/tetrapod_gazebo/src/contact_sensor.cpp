@@ -134,19 +134,19 @@ void ContactSensor::InitGazebo()
 
     this->gazeboNode->Init();
 
-    this->flContactSensorSub = this->gazeboNode->Subscribe("~/my_robot/tetrapod/front_left_foot/front_left_contact_sensor/contacts",
+    this->flContactSensorSub = this->gazeboNode->Subscribe("~/my_robot/tetrapod/front_left_lower_leg/front_left_contact_sensor/contacts",
                                                            &ContactSensor::OnFlContactCallback,
                                                            this);
 
-    this->frContactSensorSub = this->gazeboNode->Subscribe("~/my_robot/tetrapod/front_right_foot/front_right_contact_sensor/contacts",
+    this->frContactSensorSub = this->gazeboNode->Subscribe("~/my_robot/tetrapod/front_right_lower_leg/front_right_contact_sensor/contacts",
                                                            &ContactSensor::OnFrContactCallback,
                                                            this);
 
-    this->rlContactSensorSub = this->gazeboNode->Subscribe("~/my_robot/tetrapod/rear_left_foot/rear_left_contact_sensor/contacts",
+    this->rlContactSensorSub = this->gazeboNode->Subscribe("~/my_robot/tetrapod/rear_left_lower_leg/rear_left_contact_sensor/contacts",
                                                            &ContactSensor::OnRlContactCallback,
                                                            this);
 
-    this->rrContactSensorSub = this->gazeboNode->Subscribe("~/my_robot/tetrapod/rear_right_foot/rear_right_contact_sensor/contacts",
+    this->rrContactSensorSub = this->gazeboNode->Subscribe("~/my_robot/tetrapod/rear_right_lower_leg/rear_right_contact_sensor/contacts",
                                                            &ContactSensor::OnRrContactCallback,
                                                            this);
 }

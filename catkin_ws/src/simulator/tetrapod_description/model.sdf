@@ -215,24 +215,7 @@ z_0 = 0.0
                     </mesh>
                 </geometry>
             </visual>
-            <collision name="front_left_lower_leg_collision">
-                <!-- Add pose for collision-->
-                <pose>0.1405 0 0 0 1.5708 0</pose>
-                <geometry>
-                    <cylinder>
-                        <radius>0.008</radius>
-                        <length>0.281</length>
-                    </cylinder>
-                </geometry>
-            </collision>
-            <collision name="front_left_knee_collision">
-                <geometry>
-                    <cylinder>
-                        <radius>0.035</radius>
-                        <length>0.06</length>
-                    </cylinder>
-                </geometry>
-            </collision>
+
             <inertial>
                 <!-- Position of lower_leg CoM relative to knee pitch joint position. Obtained from Solidworks-->
                 <pose>0.10688699 0.00127229 0.00105520 0 0 0</pose>
@@ -246,48 +229,29 @@ z_0 = 0.0
                     <izz>0.00318967</izz>
                 </inertia>
             </inertial>
-        </link>
 
-        <joint name="front_left_knee_joint" type="revolute">
-            <parent>front_left_upper_leg</parent>
-            <child>front_left_lower_leg</child>
-            <pose>0 0 0 0 0 0</pose>
-            <axis>
-                <xyz>0 0 1</xyz>
-                <limit>
-                    <lower>-2.5</lower>
-                    <upper>2.5</upper>
-                    <effort>40</effort>
-                    <velocity>1000</velocity>
-                </limit>
-            </axis> 
-        </joint>
+            <collision name="front_left_lower_leg_collision">
+                <!-- Add pose for collision-->
+                <pose>0.1405 0 0 0 1.5708 0</pose>
+                <geometry>
+                    <cylinder>
+                        <radius>0.008</radius>
+                        <length>0.281</length>
+                    </cylinder>
+                </geometry>
+            </collision>
 
-        <link name="front_left_foot">
-            <!-- Let the pose of the link coincide with the foot position -->
-            <!--
-                x = x_0 + r1 + r2 + r3
-                y = y_0
-                z = z_0 + d1
-                r = 1.5708
-                p = 0
-                y = 0
-            -->
-            <pose>0.780 0.151 0 1.5708 0 0</pose>
+            <collision name="front_left_knee_collision">
+                <geometry>
+                    <cylinder>
+                        <radius>0.035</radius>
+                        <length>0.06</length>
+                    </cylinder>
+                </geometry>
+            </collision>
 
-            <inertial>
-                <pose>0 0 0 0 0 0</pose>
-                <mass>0.05</mass>
-                <inertia>
-                    <ixx>0.001</ixx>
-                    <ixy>0</ixy>
-                    <ixz>0</ixz>
-                    <iyy>0.001</iyy>
-                    <iyz>0.0</iyz>
-                    <izz>0.001</izz>
-                </inertia>
-            </inertial>
             <collision name="front_left_foot_collision">
+                <pose>0.279 0 0 0 0 0</pose>
                 <geometry>
                     <sphere>
                         <radius>0.0201</radius>
@@ -307,6 +271,7 @@ z_0 = 0.0
                     </contact>
                 </surface>
             </collision>
+
             <sensor name="front_left_contact_sensor" type="contact">
                 <!-- <plugin name="contact_plugin" filename="libcontact_plugin.so" /> -->
                 <contact>
@@ -316,13 +281,20 @@ z_0 = 0.0
             </sensor>
         </link>
 
-        <joint name="front_left_foot_joint" type="fixed">
-            <parent>front_left_lower_leg</parent>
-            <child>front_left_foot</child>
+        <joint name="front_left_knee_joint" type="revolute">
+            <parent>front_left_upper_leg</parent>
+            <child>front_left_lower_leg</child>
             <pose>0 0 0 0 0 0</pose>
+            <axis>
+                <xyz>0 0 1</xyz>
+                <limit>
+                    <lower>-2.5</lower>
+                    <upper>2.5</upper>
+                    <effort>40</effort>
+                    <velocity>1000</velocity>
+                </limit>
+            </axis> 
         </joint>
-
-
 
 <!-- FRONT RIGHT LEG -->
 
@@ -451,6 +423,7 @@ z_0 = 0.0
                 y = 0
             -->
             <pose>0.501 -0.151 0 1.5708 0 0</pose>
+
             <visual name="front_right_lower_leg_visual">
                 <pose>0 0 0 0 0 0</pose>
                 <geometry>
@@ -459,6 +432,21 @@ z_0 = 0.0
                     </mesh>
                 </geometry>
             </visual>
+
+            <inertial>
+                <!-- Position of lower_leg CoM relative to knee pitch joint position. Obtained from Solidworks-->
+                <pose>0.10688699 0.00127229 0.00105520 0 0 0</pose>
+                <mass>0.28302792</mass>
+                <inertia>
+                    <ixx>0.00006651</ixx>
+                    <ixy>0.00004913</ixy>
+                    <ixz>0.00000614</ixz>
+                    <iyy>0.00317406</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.00318967</izz>
+                </inertia>
+            </inertial>
+
             <collision name="front_right_lower_leg_collision">
                 <!-- Add pose for collision-->
                 <pose>0.1405 0 0 0 1.5708 0</pose>
@@ -477,61 +465,9 @@ z_0 = 0.0
                     </cylinder>
                 </geometry>
             </collision>
-            <inertial>
-                <!-- Position of lower_leg CoM relative to knee pitch joint position. Obtained from Solidworks-->
-                <pose>0.10688699 0.00127229 0.00105520 0 0 0</pose>
-                <mass>0.28302792</mass>
-                <inertia>
-                    <ixx>0.00006651</ixx>
-                    <ixy>0.00004913</ixy>
-                    <ixz>0.00000614</ixz>
-                    <iyy>0.00317406</iyy>
-                    <iyz>0</iyz>
-                    <izz>0.00318967</izz>
-                </inertia>
-            </inertial>
-        </link>
 
-        <joint name="front_right_knee_joint" type="revolute">
-            <parent>front_right_upper_leg</parent>
-            <child>front_right_lower_leg</child>
-            <pose>0 0 0 0 0 0</pose>
-            <axis>
-                <xyz>0 0 1</xyz>
-                <limit>
-                    <lower>-2.5</lower>
-                    <upper>2.5</upper>
-                    <effort>40</effort>
-                    <velocity>1000</velocity>
-                </limit>
-            </axis> 
-        </joint>
-
-        <link name="front_right_foot">
-            <!-- Let the pose of the link coincide with the foot position -->
-            <!--
-                x = x_0 + r1 + r2 + r3
-                y = -y_0
-                z = z_0 + d1
-                r = 1.5708
-                p = 0
-                y = 0
-            -->
-            <pose>0.780 -0.151 0 1.5708 0 0</pose>
-
-            <inertial>
-                <pose>0 0 0 0 0 0</pose>
-                <mass>0.05</mass>
-                <inertia>
-                    <ixx>0.001</ixx>
-                    <ixy>0</ixy>
-                    <ixz>0</ixz>
-                    <iyy>0.001</iyy>
-                    <iyz>0.0</iyz>
-                    <izz>0.001</izz>
-                </inertia>
-            </inertial>
             <collision name="front_right_foot_collision">
+                <pose>0.279 0 0 0 0 0</pose>
                 <geometry>
                     <sphere>
                         <radius>0.0201</radius>
@@ -551,6 +487,7 @@ z_0 = 0.0
                     </contact>
                 </surface>
             </collision>
+
             <sensor name="front_right_contact_sensor" type="contact">
                 <!-- <plugin name="contact_plugin" filename="libcontact_plugin.so" /> -->
                 <contact>
@@ -558,15 +495,23 @@ z_0 = 0.0
                 </contact>
                 <update_rate>200</update_rate>
             </sensor>
+
         </link>
 
-        <joint name="front_right_foot_joint" type="fixed">
-            <parent>front_right_lower_leg</parent>
-            <child>front_right_foot</child>
+        <joint name="front_right_knee_joint" type="revolute">
+            <parent>front_right_upper_leg</parent>
+            <child>front_right_lower_leg</child>
             <pose>0 0 0 0 0 0</pose>
+            <axis>
+                <xyz>0 0 1</xyz>
+                <limit>
+                    <lower>-2.5</lower>
+                    <upper>2.5</upper>
+                    <effort>40</effort>
+                    <velocity>1000</velocity>
+                </limit>
+            </axis> 
         </joint>
-
-
 
 <!-- REAR LEFT LEG -->
 
@@ -734,48 +679,9 @@ z_0 = 0.0
                     <izz>0.00318967</izz>
                 </inertia>
             </inertial>
-        </link>
 
-        <joint name="rear_left_knee_joint" type="revolute">
-            <parent>rear_left_upper_leg</parent>
-            <child>rear_left_lower_leg</child>
-            <pose>0 0 0 0 0 0</pose>
-            <axis>
-                <xyz>0 0 1</xyz>
-                <limit>
-                    <lower>-2.5</lower>
-                    <upper>2.5</upper>
-                    <effort>40</effort>
-                    <velocity>1000</velocity>
-                </limit>
-            </axis> 
-        </joint>
-
-        <link name="rear_left_foot">
-            <!-- Let the pose of the link coincide with the foot position -->
-            <!--
-                x = x_0 + r1 + r2 + r3
-                y = y_0
-                z = z_0 + d1
-                r = 1.5708
-                p = 0
-                y = 0
-            -->
-            <pose>0.478 0.151 0 1.5708 0 0</pose>
-
-            <inertial>
-                <pose>0 0 0 0 0 0</pose>
-                <mass>0.05</mass>
-                <inertia>
-                    <ixx>0.001</ixx>
-                    <ixy>0</ixy>
-                    <ixz>0</ixz>
-                    <iyy>0.001</iyy>
-                    <iyz>0.0</iyz>
-                    <izz>0.001</izz>
-                </inertia>
-            </inertial>
             <collision name="rear_left_foot_collision">
+                <pose>0.279 0 0 0 0 0</pose>
                 <geometry>
                     <sphere>
                         <radius>0.0201</radius>
@@ -795,6 +701,7 @@ z_0 = 0.0
                     </contact>
                 </surface>
             </collision>
+
             <sensor name="rear_left_contact_sensor" type="contact">
                 <!-- <plugin name="contact_plugin" filename="libcontact_plugin.so" /> -->
                 <contact>
@@ -802,12 +709,22 @@ z_0 = 0.0
                 </contact>
                 <update_rate>200</update_rate>
             </sensor>
+
         </link>
 
-        <joint name="rear_left_foot_joint" type="fixed">
-            <parent>rear_left_lower_leg</parent>
-            <child>rear_left_foot</child>
+        <joint name="rear_left_knee_joint" type="revolute">
+            <parent>rear_left_upper_leg</parent>
+            <child>rear_left_lower_leg</child>
             <pose>0 0 0 0 0 0</pose>
+            <axis>
+                <xyz>0 0 1</xyz>
+                <limit>
+                    <lower>-2.5</lower>
+                    <upper>2.5</upper>
+                    <effort>40</effort>
+                    <velocity>1000</velocity>
+                </limit>
+            </axis> 
         </joint>
 
 
@@ -938,6 +855,7 @@ z_0 = 0.0
                 y = 0
             -->
             <pose>0.199 -0.151 0 -1.5708 0 0</pose>
+
             <visual name="rear_right_lower_leg_visual">
                 <pose>0 0 0 0 0 0</pose>
                 <geometry>
@@ -946,6 +864,21 @@ z_0 = 0.0
                     </mesh>
                 </geometry>
             </visual>
+
+            <inertial>
+                <!-- Position of lower_leg CoM relative to knee pitch joint position. Obtained from Solidworks-->
+                <pose>0.10688699 0.00127229 0.00105520 0 0 0</pose>
+                <mass>0.28302792</mass>
+                <inertia>
+                    <ixx>0.00006651</ixx>
+                    <ixy>0.00004913</ixy>
+                    <ixz>0.00000614</ixz>
+                    <iyy>0.00317406</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.00318967</izz>
+                </inertia>
+            </inertial>
+
             <collision name="rear_right_lower_leg_collision">
                 <!-- Add pose for collision-->
                 <pose>0.1405 0 0 0 1.5708 0</pose>
@@ -964,61 +897,9 @@ z_0 = 0.0
                     </cylinder>
                 </geometry>
             </collision>
-            <inertial>
-                <!-- Position of lower_leg CoM relative to knee pitch joint position. Obtained from Solidworks-->
-                <pose>0.10688699 0.00127229 0.00105520 0 0 0</pose>
-                <mass>0.28302792</mass>
-                <inertia>
-                    <ixx>0.00006651</ixx>
-                    <ixy>0.00004913</ixy>
-                    <ixz>0.00000614</ixz>
-                    <iyy>0.00317406</iyy>
-                    <iyz>0</iyz>
-                    <izz>0.00318967</izz>
-                </inertia>
-            </inertial>
-        </link>
 
-        <joint name="rear_right_knee_joint" type="revolute">
-            <parent>rear_right_upper_leg</parent>
-            <child>rear_right_lower_leg</child>
-            <pose>0 0 0 0 0 0</pose>
-            <axis>
-                <xyz>0 0 1</xyz>
-                <limit>
-                    <lower>-2.5</lower>
-                    <upper>2.5</upper>
-                    <effort>40</effort>
-                    <velocity>1000</velocity>
-                </limit>
-            </axis> 
-        </joint>
-
-        <link name="rear_right_foot">
-            <!-- Let the pose of the link coincide with the foot position -->
-            <!--
-                x = -x_0 + r1 + r2 + r3
-                y = -y_0
-                z = z_0 + d1
-                r = 1.5708
-                p = 0
-                y = 0
-            -->
-            <pose>0.478 -0.151 0 -1.5708 0 0</pose>
-
-            <inertial>
-                <pose>0 0 0 0 0 0</pose>
-                <mass>0.05</mass>
-                <inertia>
-                    <ixx>0.001</ixx>
-                    <ixy>0</ixy>
-                    <ixz>0</ixz>
-                    <iyy>0.001</iyy>
-                    <iyz>0.0</iyz>
-                    <izz>0.001</izz>
-                </inertia>
-            </inertial>
             <collision name="rear_right_foot_collision">
+                <pose>0.279 0 0 0 0 0</pose>
                 <geometry>
                     <sphere>
                         <radius>0.0201</radius>
@@ -1038,6 +919,7 @@ z_0 = 0.0
                     </contact>
                 </surface>
             </collision>
+
             <sensor name="rear_right_contact_sensor" type="contact">
                 <!-- <plugin name="contact_plugin" filename="libcontact_plugin.so" /> -->
                 <contact>
@@ -1045,12 +927,22 @@ z_0 = 0.0
                 </contact>
                 <update_rate>200</update_rate>
             </sensor>
+
         </link>
 
-        <joint name="rear_right_foot_joint" type="fixed">
-            <parent>rear_right_lower_leg</parent>
-            <child>rear_right_foot</child>
+        <joint name="rear_right_knee_joint" type="revolute">
+            <parent>rear_right_upper_leg</parent>
+            <child>rear_right_lower_leg</child>
             <pose>0 0 0 0 0 0</pose>
+            <axis>
+                <xyz>0 0 1</xyz>
+                <limit>
+                    <lower>-2.5</lower>
+                    <upper>2.5</upper>
+                    <effort>40</effort>
+                    <velocity>1000</velocity>
+                </limit>
+            </axis> 
         </joint>
 
     </model>
