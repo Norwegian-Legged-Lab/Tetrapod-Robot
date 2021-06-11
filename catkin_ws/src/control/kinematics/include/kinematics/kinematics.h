@@ -224,6 +224,37 @@ class Kinematics
                                                                   const double &_pitch_rate,
                                                                   const double &_yaw_rate);
 
+    /// \brief The GetRotationMatrixWToB function returns the 
+    /// Euler Angles ZYX rotation matrix from Control to Body frame,
+    /// i.e., the transform from Body to Control. For flat-terrain
+    /// the yaw angle should be set zero.
+    /// \param[in] _roll Roll angle (x-axis).
+    /// \param[in] _pitch Pitch angle (y-axis).
+    /// \param[in] _yaw Yaw angle (z-axis).
+    /// \return Returns the rotation matrix from Control to Body frame
+    /// (transform from Body to Control), using the Euler Angles ZYX convention.
+    public: Eigen::Matrix<double, 3, 3> GetRotationMatrixCToB(const double &_roll,
+                                                              const double &_pitch,
+                                                              const double &_yaw);
+
+    /// \brief The GetRotationMatrixWToB function returns the 
+    /// time derivative of the Euler Angles ZYX rotation matrix 
+    /// from World to Body frame.
+    /// \param[in] _roll Roll angle (x-axis).
+    /// \param[in] _pitch Pitch angle (y-axis).
+    /// \param[in] _yaw Yaw angle (z-axis).
+    /// \param[in] _roll_rate Roll rate (x-axis).
+    /// \param[in] _pitch_rate Pitch rate (y-axis).
+    /// \param[in] _yaw_rate Yaw rate (z-axis).
+    /// \return Returns the time derivative of the rotation matrix 
+    /// from Control to Body frame, using the Euler Angles ZYX convention.
+    public: Eigen::Matrix<double, 3, 3> GetRotationMatrixCToBDiff(const double &_roll,
+                                                                  const double &_pitch,
+                                                                  const double &_yaw,
+                                                                  const double &_roll_rate,
+                                                                  const double &_pitch_rate,
+                                                                  const double &_yaw_rate);
+
     /// \brief The GetPositionBaseToBodyInB returns the position vector
     /// from base origin to COM position in body-frame for
     /// a given body.
@@ -272,6 +303,18 @@ class Kinematics
     /// \return Returns the translation Jacobian Matrix mapping from generalized velocities to
     /// the operational space (world-frame) twist of the body attached frame.
     public: Eigen::Matrix<double, 3, 18> GetTranslationJacobianInW(const LegType &_leg,
+                                                                   const BodyType &_body,
+                                                                   const Eigen::Matrix<double, 18, 1> &_q);
+
+    /// \brief The GetTranslationJacobianInC function returns the 3x18
+    /// spatial translation Jacobian mapping generalized velocities
+    /// to operational space twist of the control frame.
+    /// \param[in] _leg Leg type.
+    /// \param[in] _body Body type.
+    /// \param[in] _q Generalized coordinates.
+    /// \return Returns the translation Jacobian Matrix mapping from generalized velocities to
+    /// the operational space (world-frame) twist of the control frame.
+    public: Eigen::Matrix<double, 3, 18> GetTranslationJacobianInC(const LegType &_leg,
                                                                    const BodyType &_body,
                                                                    const Eigen::Matrix<double, 18, 1> &_q);
 
