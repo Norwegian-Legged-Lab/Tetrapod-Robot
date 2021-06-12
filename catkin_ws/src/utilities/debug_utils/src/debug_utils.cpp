@@ -162,7 +162,7 @@ void printGeneralizedVelocities(const Eigen::Matrix<double, 18, 1> &_gen_vel)
 // Print Generalized Accelerations
 void printGeneralizedAccelerations(const Eigen::Matrix<double, 18, 1> &_gen_accel)
 {
-    printBaseTwist(_gen_accel.topRows(6));
+    printBaseAccel(_gen_accel.topRows(6));
     printJointAccelerations(_gen_accel.bottomRows(12));
 }
 
