@@ -432,8 +432,8 @@ void testMassMatrix()
          math_utils::degToRad(40),
          math_utils::degToRad(35);
 
-    Eigen::Matrix<double, 18, 18> M = K.GetSingleBodyMassMatrix(Kinematics::LegType::rearRight, Kinematics::BodyType::leg, q);
-    //Eigen::Matrix<double, 18, 18> M = K.GetMassMatrix(q);
+    //Eigen::Matrix<double, 18, 18> M = K.GetSingleBodyMassMatrix(Kinematics::LegType::rearRight, Kinematics::BodyType::leg, q);
+    Eigen::Matrix<double, 18, 18> M = K.GetMassMatrix(q);
 
     ROS_INFO_STREAM("Mass matrix, M: \n" << M);
 }
@@ -776,6 +776,56 @@ void testContactForceLimitsMatrix()
     ROS_INFO_STREAM("A: \n" << A);
 }
 
+void testControlFrame()
+{
+    Kinematics K;
+
+    GeneralizedCoordinates q = GeneralizedCoordinates::Constant(0);
+    GeneralizedCoordinates u = GeneralizedCoordinates::Constant(0);
+
+    q << 0,
+         0,
+         0,
+         math_utils::degToRad(10),
+         math_utils::degToRad(5),
+         math_utils::degToRad(0),
+         0*math_utils::degToRad(45),
+         0*math_utils::degToRad(40),
+         0*math_utils::degToRad(35),
+         0*math_utils::degToRad(-45),
+         0*math_utils::degToRad(-40),
+         0*math_utils::degToRad(-35),
+         0*math_utils::degToRad(135),
+         0*math_utils::degToRad(-40),
+         0*math_utils::degToRad(-35),
+         0*math_utils::degToRad(-135),
+         0*math_utils::degToRad(40),
+         0*math_utils::degToRad(35);
+
+    Eigen::Matrix3d rotWToC = K.GetRotationMatrixWToC(0, 0, q(5));
+
+    Eigen::MatrixXd J_P_inB = K.GetTranslationJacobianInB(Kinematics::LegType::frontLeft,
+                                                          Kinematics::BodyType::foot,
+                                                          q.bottomRows(12));
+
+    Eigen::MatrixXd J_P_inC = K.GetTranslationJacobianInC(Kinematics::LegType::frontLeft,
+                                                          Kinematics::BodyType::foot,
+                                                          q);
+
+    Eigen::MatrixXd J_P_inW = K.GetTranslationJacobianInW(Kinematics::LegType::frontLeft,
+                                                          Kinematics::BodyType::foot,
+                                                          q);
+    Eigen::MatrixXd J_P_inC2 = rotWToC.inverse() * K.GetTranslationJacobianInW(Kinematics::LegType::frontLeft,
+                                                                     Kinematics::BodyType::foot,
+                                                                     q);
+
+    ROS_INFO_STREAM("J_P_inB: \n" << J_P_inB << "\n");
+    ROS_INFO_STREAM("J_P_inC: \n" << J_P_inC << "\n");
+    ROS_INFO_STREAM("J_P_inW: \n" << J_P_inW << "\n");
+    ROS_INFO_STREAM("J_P_inC2: \n" << J_P_inC2 << "\n");
+
+}
+
 
 int main(int argc, char **argv)
 {
@@ -820,6 +870,8 @@ int main(int argc, char **argv)
     //testEigenStacking();
     //ROS_INFO_STREAM("--------------- Test rotationWToC ----------------------------");
     //testRotationWToC();
+    ROS_INFO_STREAM("--------------- Test control frame ----------------------------");
+    testControlFrame();
 
 
 
