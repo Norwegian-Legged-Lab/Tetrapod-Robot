@@ -56,6 +56,19 @@ void printBaseTwist(const Eigen::Matrix<double, 6, 1> &_base_twist)
     ROS_INFO_STREAM(" ------------------------------------------ ");
 }
 
+// Print Base Accel
+void printBaseAccel(const Eigen::Matrix<double, 6, 1> &_base_accel)
+{
+    ROS_INFO_STREAM("\n --------------- Base Accel --------------- ");
+    ROS_INFO_STREAM("x_accel: \t" << _base_accel(0));
+    ROS_INFO_STREAM("y_accel: \t" << _base_accel(1));
+    ROS_INFO_STREAM("z_accel: \t" << _base_accel(2));
+    ROS_INFO_STREAM("roll_accel: \t" << _base_accel(3));
+    ROS_INFO_STREAM("pitch_accel: \t" << _base_accel(4));
+    ROS_INFO_STREAM("yaw_accel: \t" << _base_accel(5));
+    ROS_INFO_STREAM(" ------------------------------------------ ");
+}
+
 // Print Joint State
 void printJointState(const Eigen::Matrix<double, 12, 1> &_joint_state)
 {
@@ -94,6 +107,25 @@ void printJointVelocities(const Eigen::Matrix<double, 12, 1> &_joint_vel)
     ROS_INFO_STREAM(" ------------------------------------------ ");
 }
 
+// Print Joint Accelerations
+void printJointAccelerations(const Eigen::Matrix<double, 12, 1> &_joint_accel)
+{
+    ROS_INFO_STREAM("\n ------ Joint Accelerations [deg/s^2] --------- ");
+    ROS_INFO_STREAM("fl,hy: \t" << _joint_accel(0) * 360 * math_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM("fl,hp: \t" << _joint_accel(1) * 360 * math_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM("fl,kp: \t" << _joint_accel(2) * 360 * math_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM("fr,hy: \t" << _joint_accel(3) * 360 * math_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM("fr,hp: \t" << _joint_accel(4) * 360 * math_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM("fr,kp: \t" << _joint_accel(5) * 360 * math_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM("rl,hy: \t" << _joint_accel(6) * 360 * math_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM("rl,hp: \t" << _joint_accel(7) * 360 * math_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM("rl,kp: \t" << _joint_accel(8) * 360 * math_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM("rr,hy: \t" << _joint_accel(9) * 360 * math_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM("rr,hp: \t" << _joint_accel(10) * 360 * math_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM("rr,kp: \t" << _joint_accel(11) * 360 * math_utils::ONE_DIV_TWO_PI);
+    ROS_INFO_STREAM(" ------------------------------------------ ");
+}
+
 // Print Joint Torques
 void printJointTorques(const Eigen::Matrix<double, 12, 1> &_joint_trq)
 {
@@ -127,6 +159,14 @@ void printGeneralizedVelocities(const Eigen::Matrix<double, 18, 1> &_gen_vel)
     printJointVelocities(_gen_vel.block(6,0,17,0));
 }
 
+// Print Generalized Accelerations
+void printGeneralizedAccelerations(const Eigen::Matrix<double, 18, 1> &_gen_accel)
+{
+    printBaseTwist(_gen_accel.topRows(6));
+    printJointAccelerations(_gen_accel.bottomRows(12));
+}
+
+// Print Footstep Positions
 void printFootstepPositions(const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_f_pos)
 {
     ROS_INFO_STREAM("\n --------- Footstep Positions ------------- ");
@@ -151,6 +191,65 @@ void printFootstepPositions(const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_f_pos)
     ROS_INFO_STREAM("z: " << _f_pos(3)(2));
     ROS_INFO_STREAM("******************");
     ROS_INFO_STREAM(" ------------------------------------------ ");
+}
+
+// Print Footstep Forces
+void printFootstepForces(const int* _contact_state,
+                         const Eigen::VectorXd &_F_c)
+{
+    // Index
+    int i = 0;
+
+    ROS_INFO_STREAM("\n --------- Footstep Forces ------------- ");
+
+    if (_contact_state[0])
+    {
+        ROS_INFO_STREAM("****front left****");
+        ROS_INFO_STREAM("x: " << _F_c(i));
+        ROS_INFO_STREAM("y: " << _F_c(i+1));
+        ROS_INFO_STREAM("z: " << _F_c(i+2));
+        ROS_INFO_STREAM("*******************");
+
+        // Increment
+        i += 3;
+    }
+
+    if (_contact_state[1])
+    {
+        ROS_INFO_STREAM("****front right****");
+        ROS_INFO_STREAM("x: " << _F_c(i));
+        ROS_INFO_STREAM("y: " << _F_c(i+1));
+        ROS_INFO_STREAM("z: " << _F_c(i+2));
+        ROS_INFO_STREAM("*******************");
+
+        // Increment
+        i += 3;
+    }
+
+    if (_contact_state[2])
+    {
+        ROS_INFO_STREAM("****rear left****");
+        ROS_INFO_STREAM("x: " << _F_c(i));
+        ROS_INFO_STREAM("y: " << _F_c(i+1));
+        ROS_INFO_STREAM("z: " << _F_c(i+2));
+        ROS_INFO_STREAM("*******************");
+
+        // Increment
+        i += 3;
+    }
+
+    if (_contact_state[3])
+    {
+        ROS_INFO_STREAM("****rear right****");
+        ROS_INFO_STREAM("x: " << _F_c(i));
+        ROS_INFO_STREAM("y: " << _F_c(i+1));
+        ROS_INFO_STREAM("z: " << _F_c(i+2));
+        ROS_INFO_STREAM("*******************");
+
+        // Increment
+        i += 3;
+    }
+
 }
 
 } // namespace debug_utils

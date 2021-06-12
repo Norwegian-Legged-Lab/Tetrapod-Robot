@@ -50,6 +50,11 @@ namespace debug_utils
     /// \param[in] _base_twist Base Twist (x_vel,y_vel,z_vel,roll_rate,pitch_rate,yaw_rate)
     void printBaseTwist(const Eigen::Matrix<double, 6, 1> &_base_twist);
 
+    /// \brief The printBaseAccel function prints a given base-
+    /// accel to ROS using print level INFO.
+    /// \param[in] _base_accel Base Accel (x_accel,y_accel,z_accel,roll_accel,pitch_accel,yaw_accel)
+    void printBaseAccel(const Eigen::Matrix<double, 6, 1> &_base_accel);
+
     /// \brief The printJointState function prints a given joint-
     /// state to ROS using print level INFO.
     /// \param[in] _joint_state Joint angles
@@ -59,6 +64,11 @@ namespace debug_utils
     /// velocities to ROS using print level INFO.
     /// \param[in] _joint_vel Joint velocities
     void printJointVelocities(const Eigen::Matrix<double, 12, 1> &_joint_vel);
+
+    /// \brief The printJointAccelerations function prints given joint-
+    /// accelerations to ROS using print level INFO.
+    /// \param[in] _joint_accel Joint accelerations
+    void printJointAccelerations(const Eigen::Matrix<double, 12, 1> &_joint_vel);
 
     /// \brief The printJointTorques function prints given joint-
     /// torques to ROS using print level INFO.
@@ -75,10 +85,22 @@ namespace debug_utils
     /// \param[in] _gen_vel  Generalized velocities
     void printGeneralizedVelocities(const Eigen::Matrix<double, 18, 1> &_gen_vel);
 
+    /// \brief The printGeneralizedAccelerations function prints a given set
+    /// of generalized accelerations to ROS using print level INFO.
+    /// \param[in] _gen_accel  Generalized accelerations 
+    void printGeneralizedAccelerations(const Eigen::Matrix<double, 18, 1> &_gen_accel);
+
     /// \brief The printFootstepPositions function prints a given set
     /// of footstep positions to ROS using print level INFO.
     /// \param[in] _gen_coord  Generalized coordinates
     void printFootstepPositions(const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_f_pos);
+
+    /// \brief The printFootstepPositions function prints a given set
+    /// of footstep forces to ROS using print level INFO.
+    /// \param[in] _contact_state Pointer to array of contact state
+    /// \param[in] _F_c Contact forces
+    void printFootstepForces(const int* _contact_state,
+                             const Eigen::VectorXd &_F_c);
 
 
 } // namespace debug_utils
