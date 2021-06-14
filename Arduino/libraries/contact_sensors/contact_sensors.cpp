@@ -12,11 +12,16 @@ ContactSensors::ContactSensors()
 
         contact_sensor_state[sensor_id] = false;
     }
+
+    for(int i = 0; i < NUMBER_OF_PREVIOUS_READINGS; i++)
+    {
+        readings[i] = 0;
+    }
 }
 
 void ContactSensors::updateSensorOffsets()
 {
-    uint16_t sample_sum[NUMBER_OF_SENSORS];
+    int32_t sample_sum[NUMBER_OF_SENSORS];
 
     for(int sensor_id = 0; sensor_id < NUMBER_OF_SENSORS; sensor_id++)
     {
@@ -57,6 +62,8 @@ void ContactSensors::updateReadings()
 
         sensor_reading[sensor_id] = sample_sum/number_of_sensor_reading_samples - sensor_reading_offset[sensor_id];
     }
+
+    updateReadingHistory(readings, sensor_reading[0]);
 }
 
 void ContactSensors::updateStates()
@@ -85,12 +92,12 @@ void ContactSensors::printReadings()
     previous_time = time;
 
     
-    Serial.print("\tReadings:\t"); 
+    Serial.print("\tReadings:"); 
     for(int sensor_id = 0; sensor_id < NUMBER_OF_SENSORS; sensor_id++)
     {
         Serial.print(sensor_reading[sensor_id]);
     }
-    
+    Serial.print("\t");
 }
 
 void ContactSensors::printStates()
@@ -124,6 +131,39 @@ bool ContactSensors::contactDetected(int _sensor_id)
 
 bool ContactSensors::contactLost(int _sensor_id)
 {
+    int NUMBER_OF_STEADY_SAMPLES = 5;
+
+    
+    // Check if the pressure is stable. This should be the case for a foot not in contact
+
+    for(int i = 0; i < NUMBER_OF_STEADY_SAMPLES; i++)
+    {
+        if(abs(readings[i] - readings[i+1]) > 10)
+        {
+            contact_sensor_state[_sensor_id] = true;
+
+            return false;
+        }
+    }
+
+    //int MIN_NUMBER_OF_DROPS
+
+    for(int i = NUMBER_OF_STEADY_SAMPLES; i < NUMBER_OF_PREVIOUS_READINGS - 1; i++)
+    {
+        int change = readings[i + 1] - readings[i];
+        if(change > contact_lost_threshold)
+        {
+            Serial.print("LIFTOFF!: "); Serial.print(change); 
+            Serial.print(" Prev: "); Serial.print(readings[i+1]); 
+            Serial.print(" Curr: "); Serial.print(readings[i]);
+            Serial.print("\t"); 
+            return true;
+        }
+    }
+
+    return false;
+
+    /*
     if(previous_sensor_reading[_sensor_id] - sensor_reading[_sensor_id] > contact_lost_threshold)
     {
         return true;
@@ -131,6 +171,31 @@ bool ContactSensors::contactLost(int _sensor_id)
     else
     {
         return false;
+    }   
+    */
+}
+
+void ContactSensors::updateReadingHistory(int32_t *readings, int32_t new_reading)
+{
+    for(int reading = NUMBER_OF_PREVIOUS_READINGS - 1; reading > 0; reading--)
+    {
+        readings[reading] = readings[reading - 1];
     }
     
+    readings[0] = new_reading;
+}
+
+void ContactSensors::printReadingHistory()
+{
+    Serial.print("History: ");
+
+    for(int i = 0; i < NUMBER_OF_PREVIOUS_READINGS; i++)
+    {
+        Serial.print(readings[i]); Serial.print("\t");
+    }
+}
+
+void ContactSensors::printLastChange()
+{
+    Serial.print("Change: "); Serial.print(readings[0] - readings[1]); Serial.print("\t");
 }

@@ -16,7 +16,11 @@ void loop() {
 
   contact_sensors.updateStates();
 
-  contact_sensors.printReadings();
+  //contact_sensors.printReadings();
+
+  contact_sensors.printLastChange();
+
+  contact_sensors.printReadingHistory();
 
   contact_sensors.printStates();
 
