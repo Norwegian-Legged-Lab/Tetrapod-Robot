@@ -175,15 +175,80 @@ class Kinematics
                                                               const double &_pitch,
                                                               const double &_yaw);
 
-    /// \brief The GetRotationMatrixWToB function returns the 
+    /// \brief The GetRotationMatrixWToBDiff function returns the 
     /// time derivative of the Euler Angles ZYX rotation matrix 
     /// from World to Body frame.
     /// \param[in] _roll Roll angle (x-axis).
     /// \param[in] _pitch Pitch angle (y-axis).
     /// \param[in] _yaw Yaw angle (z-axis).
+    /// \param[in] _roll_rate Roll rate (x-axis).
+    /// \param[in] _pitch_rate Pitch rate (y-axis).
+    /// \param[in] _yaw_rate Yaw rate (z-axis).
     /// \return Returns the time derivative of the rotation matrix 
     /// from World to Body frame, using the Euler Angles ZYX convention.
     public: Eigen::Matrix<double, 3, 3> GetRotationMatrixWToBDiff(const double &_roll,
+                                                                  const double &_pitch,
+                                                                  const double &_yaw,
+                                                                  const double &_roll_rate,
+                                                                  const double &_pitch_rate,
+                                                                  const double &_yaw_rate);
+
+    /// \brief The GetRotationMatrixWToC function returns the 
+    /// Euler Angles ZYX rotation matrix from World to Control frame,
+    /// i.e., the transform from Control to World. For flat-terrain
+    /// the roll and pitch angles should be set to zero.
+    /// \param[in] _roll Roll angle (x-axis).
+    /// \param[in] _pitch Pitch angle (y-axis).
+    /// \param[in] _yaw Yaw angle (z-axis).
+    /// \return Returns the rotation matrix from World to Control frame
+    /// (transform from Body to World), using the Euler Angles ZYX convention.
+    public: Eigen::Matrix<double, 3, 3> GetRotationMatrixWToC(const double &_roll,
+                                                              const double &_pitch,
+                                                              const double &_yaw);
+
+    /// \brief The GetRotationMatrixWToCDiff function returns the 
+    /// time derivative of the Euler Angles ZYX rotation matrix 
+    /// from World to Control frame.
+    /// \param[in] _roll Roll angle (x-axis).
+    /// \param[in] _pitch Pitch angle (y-axis).
+    /// \param[in] _yaw Yaw angle (z-axis).
+    /// \param[in] _roll_rate Roll rate (x-axis).
+    /// \param[in] _pitch_rate Pitch rate (y-axis).
+    /// \param[in] _yaw_rate Yaw rate (z-axis).
+    /// \return Returns the time derivative of the rotation matrix 
+    /// from World to Control frame, using the Euler Angles ZYX convention.
+    public: Eigen::Matrix<double, 3, 3> GetRotationMatrixWToCDiff(const double &_roll,
+                                                                  const double &_pitch,
+                                                                  const double &_yaw,
+                                                                  const double &_roll_rate,
+                                                                  const double &_pitch_rate,
+                                                                  const double &_yaw_rate);
+
+    /// \brief The GetRotationMatrixCToB function returns the 
+    /// Euler Angles ZYX rotation matrix from Control to Body frame,
+    /// i.e., the transform from Body to Control. For flat-terrain
+    /// the yaw angle should be set zero.
+    /// \param[in] _roll Roll angle (x-axis).
+    /// \param[in] _pitch Pitch angle (y-axis).
+    /// \param[in] _yaw Yaw angle (z-axis).
+    /// \return Returns the rotation matrix from Control to Body frame
+    /// (transform from Body to Control), using the Euler Angles ZYX convention.
+    public: Eigen::Matrix<double, 3, 3> GetRotationMatrixCToB(const double &_roll,
+                                                              const double &_pitch,
+                                                              const double &_yaw);
+
+    /// \brief The GetRotationMatrixCToBDiff function returns the 
+    /// time derivative of the Euler Angles ZYX rotation matrix 
+    /// from World to Body frame.
+    /// \param[in] _roll Roll angle (x-axis).
+    /// \param[in] _pitch Pitch angle (y-axis).
+    /// \param[in] _yaw Yaw angle (z-axis).
+    /// \param[in] _roll_rate Roll rate (x-axis).
+    /// \param[in] _pitch_rate Pitch rate (y-axis).
+    /// \param[in] _yaw_rate Yaw rate (z-axis).
+    /// \return Returns the time derivative of the rotation matrix 
+    /// from Control to Body frame, using the Euler Angles ZYX convention.
+    public: Eigen::Matrix<double, 3, 3> GetRotationMatrixCToBDiff(const double &_roll,
                                                                   const double &_pitch,
                                                                   const double &_yaw,
                                                                   const double &_roll_rate,
@@ -241,6 +306,18 @@ class Kinematics
                                                                    const BodyType &_body,
                                                                    const Eigen::Matrix<double, 18, 1> &_q);
 
+    /// \brief The GetTranslationJacobianInC function returns the 3x18
+    /// spatial translation Jacobian mapping generalized velocities
+    /// to operational space twist of the control frame.
+    /// \param[in] _leg Leg type.
+    /// \param[in] _body Body type.
+    /// \param[in] _q Generalized coordinates.
+    /// \return Returns the translation Jacobian Matrix mapping from generalized velocities to
+    /// the operational space (world-frame) twist of the control frame.
+    public: Eigen::Matrix<double, 3, 18> GetTranslationJacobianInC(const LegType &_leg,
+                                                                   const BodyType &_body,
+                                                                   const Eigen::Matrix<double, 18, 1> &_q);
+
     /// \brief The GetTranslationJacobianDerivativeInB function returns the 
     /// time derivative of the 3x3 translation Jacobian matrix.
     /// \param[in] _leg Leg type.
@@ -274,13 +351,29 @@ class Kinematics
                                                                        const Eigen::Matrix<double, 12, 1> &_dot_q_r);
 
     /// \brief The GetTranslationJacobianInWDiff function returns the 
-    /// time derivative of the 3x18 spatial translation Jacobian.
+    /// time derivative of the 3x18 spatial translation Jacobian in the
+    /// world frame.
     /// \param[in] _leg Leg type.
     /// \param[in] _body Body type.
     /// \param[in] _q Generalized coordinates.
     /// \param[in] _u Generalized velocities.
-    /// \return Returns the 3x18 time derivative of the translation Jacobian Matrix.
+    /// \return Returns the 3x18 time derivative of the translation Jacobian Matrix
+    /// in the world frame.
     public: Eigen::Matrix<double, 3, 18> GetTranslationJacobianInWDiff(const LegType &_leg,
+                                                                       const BodyType &_body,
+                                                                       const Eigen::Matrix<double, 18, 1> &_q,
+                                                                       const Eigen::Matrix<double, 18, 1> &_u);
+
+    /// \brief The GetTranslationJacobianInCDiff function returns the 
+    /// time derivative of the 3x18 spatial translation Jacobian in the 
+    /// control frame.
+    /// \param[in] _leg Leg type.
+    /// \param[in] _body Body type.
+    /// \param[in] _q Generalized coordinates.
+    /// \param[in] _u Generalized velocities.
+    /// \return Returns the 3x18 time derivative of the translation Jacobian Matrix 
+    /// in the control frame.
+    public: Eigen::Matrix<double, 3, 18> GetTranslationJacobianInCDiff(const LegType &_leg,
                                                                        const BodyType &_body,
                                                                        const Eigen::Matrix<double, 18, 1> &_q,
                                                                        const Eigen::Matrix<double, 18, 1> &_u);
@@ -326,6 +419,18 @@ class Kinematics
                                                                 const BodyType &_body,
                                                                 const Eigen::Matrix<double, 18, 1> &_q);
 
+    /// \brief The GetRotationJacobianInC function returns the 3x18
+    /// spatial rotation Jacobian mapping generalized velocities
+    /// to control frame twist of the body attached frame.
+    /// \param[in] _leg Leg type.
+    /// \param[in] _body Body type.
+    /// \param[in] _q Generalized coordinates.
+    /// \return Returns the rotation Jacobian Matrix mapping from generalized velocities to
+    /// the control frame twist of the body attached frame.
+    public: Eigen::Matrix<double, 3, 18> GetRotationJacobianInC(const LegType &_leg,
+                                                                const BodyType &_body,
+                                                                const Eigen::Matrix<double, 18, 1> &_q);
+
     /// \brief The GetRotationJacobianInBDiff function returns the 
     /// time derivative of the 3x3 Rotation Jacobian matrix.
     /// \param[in] _leg Leg type.
@@ -364,8 +469,22 @@ class Kinematics
     /// \param[in] _body Body type.
     /// \param[in] _q Generalized coordinates.
     /// \param[in] _u Generalized velocities.
-    /// \return Returns the 3x18 time derivative of the Rotation Jacobian Matrix.
+    /// \return Returns the 3x18 time derivative of the Rotation Jacobian Matrix
+    /// in the world frame.
     public: Eigen::Matrix<double, 3, 18> GetRotationJacobianInWDiff(const LegType &_leg,
+                                                                    const BodyType &_body,
+                                                                    const Eigen::Matrix<double, 18, 1> &_q,
+                                                                    const Eigen::Matrix<double, 18, 1> &_u);
+
+    /// \brief The GetRotationJacobianInCDiff function returns the 
+    /// time derivative of the 3x18 control frame Rotation Jacobian.
+    /// \param[in] _leg Leg type.
+    /// \param[in] _body Body type.
+    /// \param[in] _q Generalized coordinates.
+    /// \param[in] _u Generalized velocities.
+    /// \return Returns the 3x18 time derivative of the Rotation Jacobian Matrix
+    /// in the control frame.
+    public: Eigen::Matrix<double, 3, 18> GetRotationJacobianInCDiff(const LegType &_leg,
                                                                     const BodyType &_body,
                                                                     const Eigen::Matrix<double, 18, 1> &_q,
                                                                     const Eigen::Matrix<double, 18, 1> &_u);

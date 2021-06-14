@@ -13,11 +13,11 @@
     </scene>
 
     <!-- A ground plane -->
-    <!-- <include>
+    <include>
       <uri>model://ground_plane</uri>
-    </include> -->
+    </include> 
 
-    <model name="gplane">
+    <!-- <model name="gplane">
       <pose>0.000000 0.000000 0.000000 0.000000 -0.000000 0.000000</pose>
       <link name="plane">
         <pose>0.000000 0.000000 0.000000 0.000000 -0.000000 0.000000</pose>
@@ -60,7 +60,7 @@
         <kinematic>0</kinematic>
       </link>
       <static>1</static>
-    </model>
+    </model> -->
 
     <model name = "plate_model">
       <pose>3 3 0.1 0 0 0</pose>

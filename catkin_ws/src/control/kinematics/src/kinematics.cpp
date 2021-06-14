@@ -62,9 +62,9 @@ Kinematics::Kinematics()
     this->L2 = 0.220;
     this->L3 = 0.279;
 
-    this->LC1 = 0.0;
-    this->LC2 = 0.0;
-    this->LC3 = 0.0;
+    this->LC1 = 0.1030;
+    this->LC2 = 0.0257;
+    this->LC3 = 0.1069;
 
     // Set position vectors
     this->positionBaseToFrontLeftInB << 0.151, 0.151, 0;
@@ -91,13 +91,6 @@ Kinematics::Kinematics()
     this->I1_fr_rl = GetInertiaMatrix(0.002988, 0.003332, 0.004664,  0.001845, -0.000064, -0.000037);
     this->I2 = GetInertiaMatrix(0.00174, 0.00660, 0.00644, 0.0, 0.00108, 0.0);
     this->I3 = GetInertiaMatrix(0.00006651, 0.00317406, 0.00318967, 0.00004913, 0.00000614, 0.0);
-    
-    // TODO: Should be removed when the SDF is updated. This is needed because the foot couldn't be massless
-    double M_foot = 0.0001;
-    Eigen::Matrix<double, 3, 3> I_foot= GetInertiaMatrix(0.01, 0.01, 0.01, 0.0, 0.0, 0.0); 
-    this->I3 += I_foot;
-    this->I3(1, 1) += M_foot*L3*L3;
-    this->I3(2, 2) += M_foot*L3*L3;
 }
 
 // Destructor
@@ -531,6 +524,76 @@ Eigen::Matrix<double, 3, 3> Kinematics::GetRotationMatrixWToBDiff(const double &
     return rotationWToBDiff.matrix();
 }
 
+// Rotation matrix from world to control (transform from control to world)
+Eigen::Matrix<double, 3, 3> Kinematics::GetRotationMatrixWToC(const double &_roll,
+                                                              const double &_pitch,
+                                                              const double &_yaw)
+{
+    kindr::RotationMatrixD rotationWToC(kindr::EulerAnglesZyxD(_yaw,
+                                                               _pitch,
+                                                               _roll)
+                                        );
+    
+    return rotationWToC.matrix();
+}                                                              
+
+// Time derivative of the rotation matrix from world to control
+Eigen::Matrix<double, 3, 3> Kinematics::GetRotationMatrixWToCDiff(const double &_roll,
+                                                                  const double &_pitch,
+                                                                  const double &_yaw,
+                                                                  const double &_roll_rate,
+                                                                  const double &_pitch_rate,
+                                                                  const double &_yaw_rate)
+{
+    kindr::RotationMatrixD rotationWToC(kindr::EulerAnglesZyxD(_yaw,
+                                                               _pitch,
+                                                               _roll)
+                                        );
+
+    kindr::LocalAngularVelocityD angularVelInC(_roll_rate,
+                                               _pitch_rate,
+                                               _yaw_rate);
+
+    kindr::RotationMatrixDiffD rotationWToCDiff(rotationWToC, angularVelInC);
+
+    return rotationWToCDiff.matrix();
+}
+
+// Rotation matrix from control to body (transform from body to control)
+Eigen::Matrix<double, 3, 3> Kinematics::GetRotationMatrixCToB(const double &_roll,
+                                                              const double &_pitch,
+                                                              const double &_yaw)
+{
+    kindr::RotationMatrixD rotationCToB(kindr::EulerAnglesZyxD(_yaw,
+                                                               _pitch,
+                                                               _roll)
+                                        );
+    
+    return rotationCToB.matrix();
+}                                                              
+
+// Time derivative of the rotation matrix from control to body
+Eigen::Matrix<double, 3, 3> Kinematics::GetRotationMatrixCToBDiff(const double &_roll,
+                                                                  const double &_pitch,
+                                                                  const double &_yaw,
+                                                                  const double &_roll_rate,
+                                                                  const double &_pitch_rate,
+                                                                  const double &_yaw_rate)
+{
+    kindr::RotationMatrixD rotationCToB(kindr::EulerAnglesZyxD(_yaw,
+                                                               _pitch,
+                                                               _roll)
+                                        );
+
+    kindr::LocalAngularVelocityD angularVelInB(_roll_rate,
+                                               _pitch_rate,
+                                               _yaw_rate);
+
+    kindr::RotationMatrixDiffD rotationCToBDiff(rotationCToB, angularVelInB);
+
+    return rotationCToBDiff.matrix();
+}
+
 // Position vector from base to body in body(base)-frame
 Eigen::Matrix<double, 3, 1> Kinematics::GetPositionBaseToBodyInB(const LegType &_leg,
                                                                  const BodyType &_body,
@@ -856,6 +919,64 @@ Eigen::Matrix<double, 3, 18> Kinematics::GetTranslationJacobianInW(const LegType
     return J;
 } 
 
+// 3x18 Translation Jacobian in control frame
+Eigen::Matrix<double, 3, 18> Kinematics::GetTranslationJacobianInC(const LegType &_leg,
+                                                                   const BodyType &_body,
+                                                                   const Eigen::Matrix<double, 18, 1> &_q)
+{
+    
+    Eigen::Matrix<double, 3, 18> J;                      // 3x18 Translation Jacobian in World frame
+    Eigen::Matrix<double, 3, 12> translationJacobianInB; // 3x12 Translation Jacobian in Body frame
+    Eigen::Matrix<double, 3, 1> positionBaseToBodyInB;   // Position vector from base to Body in Body(Base)-frame
+    Eigen::Matrix<double, 3, 3> rotationCToB;            // Rotation from World to Control frame (transform from Body to Control)
+
+    rotationCToB = this->GetRotationMatrixCToB(_q(3),
+                                               _q(4),
+                                               0);
+
+    switch (_body)
+    {
+        case base:
+        {
+            translationJacobianInB.setZero();
+            positionBaseToBodyInB.setZero();
+
+            break;
+        }
+        // Equivalent of case hip || thigh || leg || foot:
+        case hip:
+        case thigh:
+        case leg:
+        case foot:
+        {
+            positionBaseToBodyInB = this->GetPositionBaseToBodyInB(_leg, 
+                                                                   _body,
+                                                                   _q);
+
+            translationJacobianInB = this->GetTranslationJacobianInB(_leg, 
+                                                                     _body,
+                                                                     _q.bottomRows(12));
+
+            break;
+        }
+        default:
+        {
+            ROS_ERROR_STREAM("[Kinematics::GetTranslationJacobianInW] Could not determine body type!");
+
+            std::abort();
+
+            break;
+        }
+    }
+
+
+    J.block<3, 3>(0,0).setIdentity();
+    J.block<3, 3>(0,3) = - rotationCToB * kindr::getSkewMatrixFromVector(positionBaseToBodyInB);
+    J.block<3, 12>(0,6) = rotationCToB * translationJacobianInB; 
+
+    return J;
+} 
+
 // 3x3 Time derivative of the translation Jacobian in body frame
 Eigen::Matrix<double, 3, 3> Kinematics::GetTranslationJacobianInBDiff(const LegType &_leg,
                                                                       const BodyType &_body,
@@ -1166,6 +1287,89 @@ Eigen::Matrix<double, 3, 18> Kinematics::GetTranslationJacobianInWDiff(const Leg
     return dot_J;
 } 
 
+// 3x18 Time derivative of the translation Jacobian in control frame
+Eigen::Matrix<double, 3, 18> Kinematics::GetTranslationJacobianInCDiff(const LegType &_leg,
+                                                                       const BodyType &_body,
+                                                                       const Eigen::Matrix<double, 18, 1> &_q,
+                                                                       const Eigen::Matrix<double, 18, 1> &_u)
+{
+    
+    Eigen::Matrix<double, 3, 18> dot_J;                      // 3x18 Time derivative of the translation Jacobian in Control frame
+    Eigen::Matrix<double, 3, 12> translationJacobianInB;     // 3x12 Translation Jacobian in Body frame
+    Eigen::Matrix<double, 3, 12> translationJacobianInBDiff; // 3x12 Time derivative of the translation Jacobian in Body frame
+    Eigen::Matrix<double, 3, 1> positionBaseToBodyInB;       // Position vector from base to Body in Body(Base)-frame
+    Eigen::Matrix<double, 3, 1> positionBaseToBodyInBDiff;   // Time derivative of the position vector from base to Body in Body(Base)-frame
+    Eigen::Matrix<double, 3, 3> rotationCToB;                // Rotation from Control to Body frame (transform from Body to Control)
+    Eigen::Matrix<double, 3, 3> rotationCToBDiff;            // Time derivative of the rotation from Control to Body frame 
+
+
+    switch (_body)
+    {
+        case base:
+        {
+            translationJacobianInB.setZero();
+            positionBaseToBodyInB.setZero();
+            rotationCToB.setZero();
+            rotationCToBDiff.setZero();
+
+            break;
+        }
+        // Equivalent of case hip || thigh || leg || foot:
+        case hip:
+        case thigh:
+        case leg:
+        case foot:
+        {
+            translationJacobianInB = this->GetTranslationJacobianInB(_leg, 
+                                                                     _body,
+                                                                     _q.bottomRows(12));
+
+            translationJacobianInBDiff = this->GetTranslationJacobianInBDiff(_leg,
+                                                                             _body,
+                                                                             _q.bottomRows(12),
+                                                                             _u.bottomRows(12));
+
+            positionBaseToBodyInB = this->GetPositionBaseToBodyInB(_leg, 
+                                                                   _body,
+                                                                   _q);
+
+            positionBaseToBodyInBDiff = translationJacobianInB * _q.bottomRows(12);
+
+            rotationCToB = this->GetRotationMatrixCToB(_q(3),
+                                                       _q(4),
+                                                       0);
+            
+            rotationCToBDiff = this->GetRotationMatrixCToBDiff(_q(3),
+                                                               _q(4),
+                                                               0,
+                                                               _u(3),
+                                                               _u(4),
+                                                               0);
+
+            break;
+        }
+        default:
+        {
+            ROS_ERROR_STREAM("[Kinematics::GetTranslationJacobianInCDiff] Could not determine body type!");
+
+            std::abort();
+
+            break;
+        }
+    }
+
+
+    dot_J.block<3, 3>(0,0).setZero();
+
+    dot_J.block<3, 3>(0,3) = - rotationCToBDiff * kindr::getSkewMatrixFromVector(positionBaseToBodyInB)
+                             - rotationCToB * kindr::getSkewMatrixFromVector(positionBaseToBodyInBDiff); 
+
+    dot_J.block<3, 12>(0,6) = rotationCToBDiff * translationJacobianInB
+                              + rotationCToB * translationJacobianInBDiff;
+
+    return dot_J;
+} 
+
 // 3x3 Rotational Jacobian in body frame
 Eigen::Matrix<double, 3, 3> Kinematics::GetRotationJacobianInB(const LegType &_leg,
                                                                const BodyType &_body,
@@ -1403,6 +1607,56 @@ Eigen::Matrix<double, 3, 18> Kinematics::GetRotationJacobianInW(const LegType &_
     J.block<3, 3>(0,0).setZero();
     J.block<3, 3>(0,3) = rotationWToB;
     J.block<3, 12>(0,6) = rotationWToB * rotationJacobianInB; 
+
+    return J;
+} 
+
+// 3x18 Rotational Jacobian in control frame
+Eigen::Matrix<double, 3, 18> Kinematics::GetRotationJacobianInC(const LegType &_leg,
+                                                                const BodyType &_body,
+                                                                const Eigen::Matrix<double, 18, 1> &_q)
+{
+    Eigen::Matrix<double, 3, 18> J;                   // 3x18 Rotation Jacobian in World frame
+    Eigen::Matrix<double, 3, 12> rotationJacobianInB; // 3x12 Rotation Jacobian in Body frame
+    Eigen::Matrix<double, 3, 3> rotationCToB;         // Rotation from Control to Body frame (transform from Body to Control)
+
+    rotationCToB = this->GetRotationMatrixWToB(_q(3),
+                                               _q(4),
+                                               0);
+
+    switch (_body)
+    {
+        case base:
+        {
+            rotationJacobianInB.setZero();
+
+            break;
+        }
+        // Equivalent of case hip || thigh || leg || foot:
+        case hip:
+        case thigh:
+        case leg:
+        case foot:
+        {
+            rotationJacobianInB = this->GetRotationJacobianInB(_leg, 
+                                                               _body,
+                                                               _q.bottomRows(12));
+
+            break;
+        }
+        default:
+        {
+            ROS_ERROR_STREAM("[Kinematics::GetRotationJacobianInW] Could not determine body type!");
+
+            std::abort();
+
+            break;
+        }
+    }
+
+    J.block<3, 3>(0,0).setZero();
+    J.block<3, 3>(0,3) = rotationCToB;
+    J.block<3, 12>(0,6) = rotationCToB * rotationJacobianInB; 
 
     return J;
 } 
@@ -1687,6 +1941,80 @@ Eigen::Matrix<double, 3, 18> Kinematics::GetRotationJacobianInWDiff(const LegTyp
     return dot_J;
 } 
 
+// 3x18 Time derivative of the rotational Jacobian in control frame
+Eigen::Matrix<double, 3, 18> Kinematics::GetRotationJacobianInCDiff(const LegType &_leg,
+                                                                    const BodyType &_body,
+                                                                    const Eigen::Matrix<double, 18, 1> &_q,
+                                                                    const Eigen::Matrix<double, 18, 1> &_u)
+{
+    Eigen::Matrix<double, 3, 18> dot_J;                   // 3x18 Time derivative of the rotation Jacobian in Control frame
+    Eigen::Matrix<double, 3, 12> rotationJacobianInB;     // 3x12 Rotation Jacobian in Body frame
+    Eigen::Matrix<double, 3, 12> rotationJacobianInBDiff; // 3x12 Time derivative of the rotation Jacobian in Body frame
+    Eigen::Matrix<double, 3, 3> rotationCToB;             // Rotation from Control to Body frame (transform from Body to Control)
+    Eigen::Matrix<double, 3, 3> rotationCToBDiff;         // Time derivative of the rotation from Control to Body frame
+
+    switch (_body)
+    {
+        case base:
+        {
+            rotationJacobianInB.setZero();
+            rotationJacobianInBDiff.setZero();
+            rotationCToB.setZero();
+
+            rotationCToBDiff = this->GetRotationMatrixWToBDiff(_q(3),
+                                                               _q(4),
+                                                               0,
+                                                               _u(3),
+                                                               _u(4),
+                                                               0);
+
+            break;
+        }
+        // Equivalent of case hip || thigh || leg || foot:
+        case hip:
+        case thigh:
+        case leg:
+        case foot:
+        {
+            rotationJacobianInB = this->GetRotationJacobianInB(_leg, 
+                                                               _body,
+                                                               _q.block<12, 1>(6,0));
+
+            rotationJacobianInBDiff = this->GetRotationJacobianInBDiff(_leg,
+                                                                       _body,
+                                                                       _q.block<12, 1>(6,0),
+                                                                       _u.block<12, 1>(6,0));
+
+            rotationCToB = this->GetRotationMatrixCToB(_q(3),
+                                                       _q(4),
+                                                       0);
+
+            rotationCToBDiff = this->GetRotationMatrixCToBDiff(_q(3),
+                                                               _q(4),
+                                                               0,
+                                                               _u(3),
+                                                               _u(4),
+                                                               0);
+
+            break;
+        }
+        default:
+        {
+            ROS_ERROR_STREAM("[Kinematics::GetRotationJacobianInCDiff] Could not determine body type!");
+
+            std::abort();
+
+            break;
+        }
+    }
+
+    dot_J.block<3, 3>(0,0).setZero();
+    dot_J.block<3, 3>(0,3) = rotationCToBDiff;
+    dot_J.block<3, 12>(0,6) = rotationCToBDiff * rotationJacobianInB + rotationCToB * rotationJacobianInBDiff;
+
+    return dot_J;
+} 
+
 // 6x18 Spatial Jacobian in world frame
 Eigen::Matrix<double, 6, 18> Kinematics::GetJacobianInW(const LegType &_leg,
                                                         const BodyType &_body,
@@ -1949,10 +2277,6 @@ Eigen::Matrix<double, 18, 18> Kinematics::GetSingleBodyMassMatrix(const LegType 
     I_COM = this->GetBodyInertia(_body, _leg);
     m = this->GetBodyMass(_body);
 
-    // TODO remove
-    ROS_INFO_STREAM("J_COM: \n" << J_COM);
-    ROS_INFO_STREAM("J_R: \n" << J_R);
-
     return m * J_COM.transpose() * J_COM + J_R.transpose() * I_COM * J_R;
 }
 
@@ -2200,7 +2524,7 @@ Eigen::Matrix<double, 18, 1> Kinematics::GetGravitationalTerms(const Eigen::Matr
         }
     }
 
-    g(2) = - g(2); // TODO WHAT THE F*** DO I DO THIS FOR
+    //g(2) = - g(2); // TODO WHAT THE F*** DO I DO THIS FOR
 
     return g;
 }
