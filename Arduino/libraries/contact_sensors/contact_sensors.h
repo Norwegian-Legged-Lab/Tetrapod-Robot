@@ -15,6 +15,8 @@ const int NUMBER_OF_STEADY_SAMPLES = 5;
 
 class ContactSensors
 {
+    public: enum ContactState {NoContactDetected = 0, ContactDetected = 1};
+
     private: int32_t contact_detected_threshold = 10;
 
     private: int32_t contact_lost_threshold = 50;
@@ -37,8 +39,6 @@ class ContactSensors
 
     private: bool contactLost(int _sensor_id);
 
-    
-
     public: uint32_t previous_time;
 
     private: int32_t sensor_reading_offset[NUMBER_OF_SENSORS];
@@ -53,7 +53,7 @@ class ContactSensors
 
     private: uint16_t sensor_variance_no_contact[NUMBER_OF_SENSORS];
 
-    private: bool contact_sensor_state[NUMBER_OF_SENSORS];
+    private: ContactState contact_sensor_state[NUMBER_OF_SENSORS];
 
     public: void updateReadingHistory(int32_t *_readings, int32_t _new_reading);
 

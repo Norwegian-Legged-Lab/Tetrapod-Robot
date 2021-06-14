@@ -10,7 +10,7 @@ ContactSensors::ContactSensors()
 
         sensor_pin[sensor_id] = A0 + sensor_id;
 
-        contact_sensor_state[sensor_id] = false;
+        contact_sensor_state[sensor_id] = ContactState::NoContactDetected;
     }
 
     for(int i = 0; i < NUMBER_OF_PREVIOUS_READINGS; i++)
@@ -68,18 +68,42 @@ void ContactSensors::updateReadings()
 
 void ContactSensors::updateStates()
 {
-    int sensor_variance_threshold = 10; 
+    int32_t max_reading_change = 0;
 
-    for(int sensor_id = 0; sensor_id < NUMBER_OF_SENSORS; sensor_id++)
+    for(int i = 0; i < NUMBER_OF_PREVIOUS_READINGS - 1; i++)
     {
-        if(contactDetected(sensor_id))
+        if(abs(readings[i] - readings[i + 1]) > max_reading_change)
         {
-            contact_sensor_state[sensor_id] = true;
+            max_reading_change = abs(readings[i] - readings[i+1]);
         }
-        else if(contactLost(sensor_id))
+    }
+
+    Serial.print("Max change: "); Serial.print(max_reading_change); Serial.print("\t");
+
+    switch (contact_sensor_state[0])
+    {
+        case ContactState::NoContactDetected:
         {
-            contact_sensor_state[sensor_id] = false;
+            // If the foot was not in contact we can allow small variations in the pressure
+            if(max_reading_change >= 5)
+            {
+                contact_sensor_state[0] = ContactState::ContactDetected;
+            }
+            break;
         }
+        case ContactState::ContactDetected:
+        {
+            // If the foot was recently in contact with the ground we need to wait until the pressure 
+            // variations are almost non-existent before we assume a liftoff
+            if(max_reading_change < 2)
+            {
+                contact_sensor_state[0] = ContactState::NoContactDetected;
+            }
+            break;
+            
+        }
+        default:
+            break;
     }
 }
 
@@ -104,7 +128,7 @@ void ContactSensors::printStates()
 {
     for(int sensor_id = 0; sensor_id < NUMBER_OF_SENSORS; sensor_id++)
     {
-        if(contact_sensor_state[sensor_id])
+        if(contact_sensor_state[sensor_id] == ContactState::ContactDetected)
         {
             Serial.print("\tContact");
         }
@@ -116,6 +140,22 @@ void ContactSensors::printStates()
     } 
 }
 
+
+bool ContactSensors::contactDetected(int _sensor_id)
+{
+    for(int i = 0; i < NUMBER_OF_PREVIOUS_READINGS - 1; i++)
+    {
+        if(abs(readings[i] - readings[i+1]) >= 2)
+        {
+            return false;
+        }
+    }
+    
+    return true;
+}
+
+
+/*
 bool ContactSensors::contactDetected(int _sensor_id)
 {
     if(sensor_reading[_sensor_id] - previous_sensor_reading[_sensor_id] > contact_detected_threshold)
@@ -134,7 +174,9 @@ bool ContactSensors::contactDetected(int _sensor_id)
     return false;
     
 }
+*/
 
+/*
 bool ContactSensors::contactLost(int _sensor_id)
 {
     
@@ -189,17 +231,8 @@ bool ContactSensors::contactLost(int _sensor_id)
 
     return true;
 
-    /*
-    if(previous_sensor_reading[_sensor_id] - sensor_reading[_sensor_id] > contact_lost_threshold)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }   
-    */
 }
+*/
 
 void ContactSensors::updateReadingHistory(int32_t *readings, int32_t new_reading)
 {
