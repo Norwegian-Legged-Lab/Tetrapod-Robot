@@ -11,11 +11,13 @@ const uint8_t NUMBER_OF_SENSORS = 1;
 
 const int NUMBER_OF_PREVIOUS_READINGS = 10;
 
+const int NUMBER_OF_STEADY_SAMPLES = 5;
+
 class ContactSensors
 {
     private: int32_t contact_detected_threshold = 10;
 
-    private: int32_t contact_lost_threshold = 100;
+    private: int32_t contact_lost_threshold = 50;
 
     public: ContactSensors();
 

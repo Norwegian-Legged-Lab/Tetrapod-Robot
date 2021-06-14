@@ -122,35 +122,42 @@ bool ContactSensors::contactDetected(int _sensor_id)
     {
         return true;
     }
-    else
+
+    for(int i = 0; i < NUMBER_OF_STEADY_SAMPLES ; i++)
     {
-        return false;
+        if(abs(readings[i] - readings[i+1]) > 10)
+        {
+            return true;
+        }
     }
+
+    return false;
     
 }
 
 bool ContactSensors::contactLost(int _sensor_id)
 {
-    int NUMBER_OF_STEADY_SAMPLES = 5;
-
     
     // Check if the pressure is stable. This should be the case for a foot not in contact
 
+    // If the latest readings are varying we can assume that the foot is in contact with the ground or recently was
     for(int i = 0; i < NUMBER_OF_STEADY_SAMPLES; i++)
     {
-        if(abs(readings[i] - readings[i+1]) > 10)
+        if(abs(readings[i] - readings[i+1]) > 5)
         {
-            contact_sensor_state[_sensor_id] = true;
-
             return false;
         }
     }
 
-    //int MIN_NUMBER_OF_DROPS
+    int MIN_NUMBER_OF_DROPS = 3;
 
+    int number_of_drops = 0;
+
+    // If the most recent readings are stable and the ones before was after a pressure decrease it is likely that we had a liftoff
     for(int i = NUMBER_OF_STEADY_SAMPLES; i < NUMBER_OF_PREVIOUS_READINGS - 1; i++)
     {
         int change = readings[i + 1] - readings[i];
+
         if(change > contact_lost_threshold)
         {
             Serial.print("LIFTOFF!: "); Serial.print(change); 
@@ -159,9 +166,28 @@ bool ContactSensors::contactLost(int _sensor_id)
             Serial.print("\t"); 
             return true;
         }
+
+        if(change > 10)
+        {
+            number_of_drops++;
+            
+            if(number_of_drops >= MIN_NUMBER_OF_DROPS)
+            {
+                return true;
+            }
+        }
     }
 
-    return false;
+    // If all the measurements are very steady we can assume that the foot is lifting
+    for(int i = 0; i < NUMBER_OF_PREVIOUS_READINGS - 1; i++)
+    {
+        if(abs(readings[i] - readings[i + 1]) > 3)
+        {
+            return false;
+        }
+    }
+
+    return true;
 
     /*
     if(previous_sensor_reading[_sensor_id] - sensor_reading[_sensor_id] > contact_lost_threshold)
