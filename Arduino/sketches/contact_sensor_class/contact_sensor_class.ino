@@ -1,7 +1,7 @@
-#include "contact_sensor.h"
+#include "contact_sensors.h"
 
 
-ContactSensor contact_sensors;
+ContactSensors contact_sensors;
 
 void setup() {
   Serial.begin(9600);
@@ -11,16 +11,24 @@ void setup() {
 }
 
 void loop() {
-  //Serial.println("Recording start: ");
-  float timer = micros();
 
   contact_sensors.updateReadings();
 
-  Serial.print("Time[us]:\t"); Serial.print(timer);
+  contact_sensors.updateStates();
 
+  contact_sensors.printReadings();
 
-  Serial.print("Reading: "); Serial.println(contact_sensors.getReading());
+  contact_sensors.printStates();
 
-  while(true);
+  Serial.println("");
+
+  //Serial.println(500); //Serial.print("\t");
+
+ 
+  //delay(10);
+
+  
+
+  //while(true);
   
 }
