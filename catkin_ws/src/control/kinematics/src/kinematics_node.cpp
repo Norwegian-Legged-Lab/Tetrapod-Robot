@@ -708,6 +708,60 @@ void testEigenStacking()
         ROS_INFO_STREAM("A_stacked at iteration " << i << ": \n" << A_stacked << "\n\n");
     }
 
+    Eigen::Matrix<double, 18, 18> N;
+    
+    N.setIdentity();
+
+    N = 10*N;
+
+    ROS_INFO_STREAM("A_stacked*N: \n" << A_stacked*N);
+
+    Eigen::MatrixXd E_ineq;
+
+    int rowsA_ineq = 3;
+    int colsN = N.cols();
+
+    E_ineq.resize(A_stacked.rows() + rowsA_ineq, colsN + rowsA_ineq);
+
+    E_ineq.setZero();
+
+    E_ineq.topLeftCorner(A_stacked.rows(), colsN) = A_stacked * N;
+    E_ineq.topRightCorner(rowsA_ineq, rowsA_ineq) = - Eigen::MatrixXd::Identity(rowsA_ineq, rowsA_ineq);
+
+    E_ineq.bottomRightCorner(rowsA_ineq, rowsA_ineq) = - Eigen::MatrixXd::Identity(rowsA_ineq, rowsA_ineq);
+
+    ROS_INFO_STREAM("E_ineq: \n" << E_ineq);
+
+    Eigen::MatrixXd B;
+
+    B.resize(20, 20);
+    B.setConstant(10);
+
+    ROS_INFO_STREAM("B: \n" << B);
+
+    B = math_utils::SVDNullSpaceProjector(Eigen::Matrix3d::Identity());
+
+    ROS_INFO_STREAM("B: \n" << B);
+    ROS_INFO_STREAM("B is zero?: " << B.isZero());
+
+    Eigen::Matrix<double, 18, 1> vec;
+
+    vec.setConstant(10);
+
+    Eigen::VectorXd somevector;
+
+    somevector.resize(14, 1);
+    somevector.setOnes();
+
+    vec.segment(3, 14) += somevector;
+
+    ROS_INFO_STREAM("vec: \n" << vec);
+
+    Eigen::MatrixXd P(18, 18);
+
+
+
+
 
     //A_stacked.resize(A1.rows() + A2.rows() + A3.rows(), A1.cols());
     //A_stacked << A1,
@@ -826,6 +880,23 @@ void testControlFrame()
 
 }
 
+void testEigenQ()
+{
+    double colsN = 12;
+    double rowsA_ineq = 0;
+
+    Eigen::MatrixXd Q;
+
+    Q.resize(colsN + rowsA_ineq, colsN + rowsA_ineq);
+
+    Q.topLeftCorner(colsN, colsN).setConstant(10);
+    Q.topRightCorner(colsN, rowsA_ineq).setZero();
+    Q.bottomLeftCorner(rowsA_ineq, colsN).setZero();
+    Q.bottomRightCorner(rowsA_ineq, rowsA_ineq).setIdentity();
+
+    ROS_INFO_STREAM("Q: \n " << Q);
+}
+
 
 int main(int argc, char **argv)
 {
@@ -866,12 +937,14 @@ int main(int argc, char **argv)
     //testSVDNullSpaceProjector();
     //ROS_INFO_STREAM("--------------- Test contact Jacobian ----------------------------");
     //testContactJacobian();
-    //ROS_INFO_STREAM("--------------- Test stacking ----------------------------");
-    //testEigenStacking();
+    ROS_INFO_STREAM("--------------- Test stacking ----------------------------");
+    testEigenStacking();
     //ROS_INFO_STREAM("--------------- Test rotationWToC ----------------------------");
     //testRotationWToC();
-    ROS_INFO_STREAM("--------------- Test control frame ----------------------------");
-    testControlFrame();
+    //ROS_INFO_STREAM("--------------- Test control frame ----------------------------");
+    //testControlFrame();
+    //ROS_INFO_STREAM("--------------- Test Eigen Q generation ----------------------------");
+    //testEigenQ();
 
 
 

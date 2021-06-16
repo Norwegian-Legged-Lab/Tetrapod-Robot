@@ -253,3 +253,15 @@ void testQPSolver3(HierarchicalOptimizationControl &_ho_controller)
 
     ROS_INFO_STREAM("x_opt: \n" << sol);
 }
+
+void testDrake()
+{
+    // Create an empty Mathematical Program
+    drake::solvers::MathematicalProgram prog;
+
+    // Create an empty Mathematical Program Result
+    drake::solvers::MathematicalProgramResult result;
+
+    // Add decision variables
+    Eigen::Matrix<drake::solvers::DecisionVariable, Eigen::Dynamic, 1> x = prog.NewContinuousVariables(10, "x");
+}
