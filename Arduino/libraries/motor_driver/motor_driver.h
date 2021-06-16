@@ -114,11 +114,11 @@ public:
 
     /// \brief Return the latest received encoder value from the motor
     /// \return The latest received encoder value from the motor
-    double get_encoder_value(){return previous_encoder_value;}
+    double getEncoderValue(){return previous_encoder_value;}
 
     /// \brief Return the latest received multi turn angle from the motor
     /// \return The latest received received multi turn angle from the motor
-    double get_multi_turn_angle(){return multi_turn_angle;}
+    double getMultiTurnAngle(){return multi_turn_angle;}
 
     /// \brief The input parameters are updated to match the PI parameters of the motor
     /// \param[in] _kp_pos Proportional position gain
