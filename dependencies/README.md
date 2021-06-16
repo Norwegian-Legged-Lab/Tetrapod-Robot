@@ -116,12 +116,3 @@ git submodule update --init --recursive
 ## ROS package system dependencies
 
 Make sure rosdep is initialized by first running ```catkin_make``` and then ```source devel/setup.bash``` from the catkin workspace. Then run ```rosdep install --from-paths src --ignore-src -y``` to fulfill the system dependencies of all ros packages in the workspace.
-
-[//]:## Keyboard Control
-To use the keyboard-ros package you need the SDL_LIBRARY which can be installed with the following two commands:
-```sudo apt-get install libsdl-image1.2-dev```
-```sudo apt-get install libsdl-dev```
-
-## Joystick Drivers
-The Joystick Drivers package depends on several debs and require the following command to be run:
-```sudo apt-get install libusb-dev libx11-dev libspnav-dev libbluetooth-dev libcwiid-dev```
