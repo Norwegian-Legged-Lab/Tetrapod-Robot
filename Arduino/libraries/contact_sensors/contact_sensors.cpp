@@ -8,7 +8,8 @@ ContactSensors::ContactSensors()
 
         sensor_reading[sensor_id] = 0;
 
-        sensor_pin[sensor_id] = A0 + sensor_id;
+        //sensor_pin[sensor_id] = A0 + sensor_id;
+        sensor_pin[sensor_id] = 14 + sensor_id;
 
         contact_sensor_state[sensor_id] = ContactState::NoContactDetected;
     }
@@ -78,7 +79,11 @@ void ContactSensors::updateStates()
         }
     }
 
-    Serial.print("Max change: "); Serial.print(max_reading_change); Serial.print("\t");
+    /*
+    Serial.print("Max change: "); 
+    Serial.print(max_reading_change); 
+    Serial.print("\t");
+    */
 
     switch (contact_sensor_state[0])
     {
