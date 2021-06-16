@@ -284,7 +284,7 @@ namespace gazebo
         /// \brief ROS Joint State Subscriber.
         private: ros::Subscriber jointStateSub;
 
-        /// \brief 
+        /// \brief ROS Joint State Publisher
         private: ros::Publisher jointStatePub;
 
         /// \brief ROS Joint State Subscriber.
