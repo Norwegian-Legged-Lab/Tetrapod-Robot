@@ -61,7 +61,7 @@ source ~/.bashrc
 rosdep enables you to easily install system dependencies for source you want to compile and is required to run some core components in ROS. rosdep can be installed and initialized with the following commands:
 
 ```
-sudo apt install python3-rosdep
+sudo apt install python3-rosdep -y
 sudo rosdep init
 rosdep update
 ```
