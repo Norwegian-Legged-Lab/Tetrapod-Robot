@@ -31,8 +31,18 @@
 // Main
 int main(int argc, char **argv)
 {
-    //LogUtils log_utils;
+    LogUtils log_utils;
 
+    ros::Duration(0.5).sleep();
+
+    ros::Rate log_rate(100);
+
+    while(true)
+    {
+        log_utils.WriteToLog();
+
+        log_rate.sleep();
+    }
 
     ros::spin();
 
