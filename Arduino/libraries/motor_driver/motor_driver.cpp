@@ -51,6 +51,33 @@ MotorControl::MotorControl(uint8_t _id, uint8_t _can_port_id, int _number_of_inn
         #endif
         delay_microseconds(1000000.0);
     } 
+
+    while(!readMultiTurnAngle())
+    {
+        #if ROS_PRINT
+            ROS_NODE_HANDLE.logwarn("Constructor - Trying to read multi turn angle");
+        #endif
+
+        #if SERIAL_PRINT
+            Serial.println("Constructor - Trying read multi turn angle");
+        #endif
+    }
+
+    // Use the sign of the multi turn angle to decide the whether or not to add a target position offset
+    if (multi_turn_angle_32_bit_001lsb >= 0)
+    {
+        target_position_offset = 60.0*M_PI/180.0;
+    }
+    else
+    {
+        target_position_offset = 0.0;
+    }
+    /*
+    Serial.println("");
+    Serial.print("Multiturn angle raw: "); Serial.println(multi_turn_angle_32_bit_001lsb);
+    Serial.print("Target_position_offset: "); Serial.println(target_position_offset);
+    while(true);
+    */
 }
 
 bool MotorControl::readPIDParameters()
@@ -204,7 +231,7 @@ bool MotorControl::writePIDParametersToRAM
 void MotorControl::setPositionReference(double _angle)
 {
     // Convert the desired shaft angle in radians into an inner motor angle in 0.01 degrees 
-    double inner_motor_reference_angle = -(_angle + position_center_offset*0.0 - position_offset*0.0)*180.0/M_PI*GEAR_REDUCTION*100;
+    double inner_motor_reference_angle = -(_angle + position_center_offset - position_offset - target_position_offset)*180.0/M_PI*GEAR_REDUCTION*100;
 
     // Store the postion reference for debugging
     raw_position_reference = inner_motor_reference_angle;
@@ -426,12 +453,20 @@ bool MotorControl::readMultiTurnAngle()
             *((uint8_t *)(& multi_turn_angle_001lsb)+6) = received_can_message.buf[7];
 
             // Convert the multi turn angle from 0.01 deg representation to a 1.0 degree representation
-            multi_turn_angle_64_bit = multi_turn_angle_001lsb;
-
-            int64_t multi_turn_angle_64_bit_dps = multi_turn_angle_64_bit/100;
+            multi_turn_angle_64_bit = multi_turn_angle_001lsb/100;
 
             // Convert the multi turn angle into a 32 bit int for printing
-            multi_turn_angle_32_bit = multi_turn_angle_64_bit;
+            if(multi_turn_angle_001lsb >= 0)
+            {
+               multi_turn_angle_32_bit_001lsb = multi_turn_angle_001lsb;
+            }
+            else
+            {
+                int64_t multi_turn_angle_64_bit_001lsb = - multi_turn_angle_001lsb;
+                multi_turn_angle_32_bit_001lsb = multi_turn_angle_64_bit_001lsb;
+                multi_turn_angle_32_bit_001lsb = - multi_turn_angle_32_bit_001lsb;
+            }
+            multi_turn_angle_32_bit = multi_turn_angle_32_bit_001lsb/100;
 
             return true;
         }

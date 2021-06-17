@@ -180,6 +180,8 @@ private:
     /// \brief This parameter contains the multi turn angle read by the motor in degrees
     int32_t multi_turn_angle_32_bit = 0;
 
+    int32_t multi_turn_angle_32_bit_001lsb = 0;
+
     /// \brief This is the true 64 bit representation of the multiturn angle in degrees
     int64_t multi_turn_angle_64_bit = 0;
 
@@ -188,7 +190,7 @@ private:
     /// \brief If the motor is initialized in certain positions the 
     /// setPosition function will have zero offset of 60 degrees. 
     // This parameters keeps track of whether or not this is the case.
-    uint8_t target_position_offset;
+    double target_position_offset = 0.0;
 
     /// \brief position offset = true position - position
     double position_offset = 0.0;
