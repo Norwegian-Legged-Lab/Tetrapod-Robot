@@ -498,11 +498,11 @@ bool MotorControl::readMotorStatus()
     delay_microseconds(10000.0);
     
 
-    Serial.print("can msg id: "); Serial.print(can_message.id, HEX); Serial.print("\t can_msg type:\t"); Serial.print(can_message.buf[0], HEX); Serial.println("");
+    //Serial.print("can msg id: "); Serial.print(can_message.id, HEX); Serial.print("\t can_msg type:\t"); Serial.print(can_message.buf[0], HEX); Serial.println("");
 
     if(readMessage(received_can_message))
     {
-        Serial.println("Reply received");
+        //Serial.println("Reply received");
         if((received_can_message.id == address) && (received_can_message.buf[0] == MOTOR_COMMAND_READ_MOTOR_STATUS_2))
         {
             readMotorControlCommandReply(received_can_message.buf);
