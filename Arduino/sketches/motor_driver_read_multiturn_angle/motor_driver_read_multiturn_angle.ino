@@ -10,7 +10,7 @@ MotorControl* motor_array = new MotorControl[1];
 double pos = 0.0;
 CAN_message_t can_message;
 int INITIAL_INNER_MOTOR_ROTATIONS = 0;
-double POSITION_OFFSET = 120.0*M_PI/180.0;
+double POSITION_OFFSET = 0.0;
 uint8_t CAN_PORT = 1;
 
 bool use_position_control = false;
@@ -35,6 +35,7 @@ void setup() {
 
 void loop() 
 {
+  /*
   if(Serial.available())
   {
     String pos_string = Serial.readStringUntil('\n');
@@ -50,13 +51,16 @@ void loop()
       use_position_control = false;
     }
   }
+  */
+  
+  
 
   if(use_position_control)
   {
     motor_array[0].setPositionReference(pos);
     
     delay_microseconds(5000);
-
+    
     while(can_port_1.read(can_message))
     {
       if(can_message.id - MOTOR_ADDRESS_OFFSET == motor_array[0].get_id())
