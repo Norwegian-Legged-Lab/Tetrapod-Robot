@@ -120,6 +120,7 @@ public:
     /// \return The latest received received multi turn angle from the motor
     double getMultiTurnAngle(){return multi_turn_angle_32_bit;}
 
+    /// \brief Return the raw int64_t 0.01 degree multi turn angle
     double getMultiTurnAngleRaw(){return multi_turn_angle_001lsb;}
 
     /// \brief The input parameters are updated to match the PI parameters of the motor
@@ -177,14 +178,16 @@ private:
     /// This way you can detect turns. See innerMotorTurnCompleted().
     uint16_t previous_encoder_value;
 
-    /// \brief This parameter contains the multi turn angle read by the motor in degrees
+    /// \brief This variable contains the multi turn angle read by the motor in degrees
     int32_t multi_turn_angle_32_bit = 0;
 
+    /// \brief This variable contains the 32 bit representation of the raw 0.01 degree multi turn angle
     int32_t multi_turn_angle_32_bit_001lsb = 0;
 
-    /// \brief This is the true 64 bit representation of the multiturn angle in degrees
+    /// \brief This is the true 64 bit representation of the multi turn angle in degrees
     int64_t multi_turn_angle_64_bit = 0;
 
+    /// \brief This is the 64 bit representation of the raw int64_t multi turn angle in 0.01 degrees
     int64_t multi_turn_angle_001lsb = 0;
 
     /// \brief If the motor is initialized in certain positions the 
@@ -196,7 +199,7 @@ private:
     double position_offset = 0.0;
 
     /// \brief This is used to center the output shaft zero position
-    double position_center_offset = 0; //M_PI/6.0;
+    double position_center_offset = M_PI/6.0; //M_PI/6.0;
 
     /// \brief Latest measured position of the shaft in radians
     double position;
@@ -209,7 +212,13 @@ private:
 
     /// \brief Latest measured temperature of the motor in degree Celsius
     double temperature;
+
+    /// \brief The torque current reference set for the motor
+    int16_t torque_current_reference = 0;
     
+    /// \brief The measured torque current of the motor
+    int16_t torque_current_measured = 0;
+
     /// \brief CAN message for this motor.
     /// Only buf field is set for every message sent
     CAN_message_t can_message;
@@ -234,9 +243,6 @@ private:
     /// \brief If the change in encoder value is larger than this
     /// it is safe to assume that the inner motor completed a turn
     uint16_t encoder_turn_threshold;
-
-    int16_t torque_current_reference = 0;
-    int16_t torque_current_measured = 0;
 
     /// \brief This function checks if the inner motor completed a turn.
     /// Depending on the difference between the new and previous encoder value

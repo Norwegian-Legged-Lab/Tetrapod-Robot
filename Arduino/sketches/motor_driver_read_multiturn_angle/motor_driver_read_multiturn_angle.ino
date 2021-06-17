@@ -10,7 +10,7 @@ MotorControl* motor_array = new MotorControl[1];
 double pos = 0.0;
 CAN_message_t can_message;
 int INITIAL_INNER_MOTOR_ROTATIONS = 0;
-double POSITION_OFFSET = 0.0;
+double POSITION_OFFSET = 120.0*M_PI/180.0;
 uint8_t CAN_PORT = 1;
 
 bool use_position_control = false;
@@ -106,5 +106,5 @@ void loop()
 
   Serial.println("");
   
-  delay_microseconds(10000.0);
+  //delay_microseconds(10000.0);
 }

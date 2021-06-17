@@ -437,7 +437,7 @@ bool MotorControl::readMultiTurnAngle()
     sendMessage(can_message);
 
     // Wait 0.010 seconds for a reply from the motor
-    delay_microseconds(10000.0);
+    delay_microseconds(5000.0);
 
     if(readMessage(received_can_message))
     {
