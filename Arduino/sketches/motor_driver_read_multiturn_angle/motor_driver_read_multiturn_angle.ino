@@ -13,6 +13,8 @@ int INITIAL_INNER_MOTOR_ROTATIONS = 0;
 double POSITION_OFFSET = 0.0;
 uint8_t CAN_PORT = 1;
 
+bool use_position_control = false;
+
 void setup() {
   Serial.begin(250000);
   delay(1000.0);
@@ -26,20 +28,60 @@ void setup() {
 
   // Initialize the two motors
   motor_array[0] = MotorControl(MOTOR_ID, CAN_PORT, INITIAL_INNER_MOTOR_ROTATIONS, POSITION_OFFSET);
+
+  // Set the PID parameters of the motor
+  motor_array[0].writePIDParametersToRAM(30, 10, 50, 5, 50, 5);
 }
 
 void loop() 
 {
+  if(Serial.available())
+  {
+    String pos_string = Serial.readStringUntil('\n');
+    double pos_test = pos_string.toFloat();
+    if(pos_test != 0.5)
+    {
+      pos = pos_test;
+      use_position_control = true;
+    }
+    else
+    {
+      motor_array[0].turnOffMotor();
+      use_position_control = false;
+    }
+  }
+
+  if(use_position_control)
+  {
+    motor_array[0].setPositionReference(pos);
+    
+    delay_microseconds(5000);
+
+    while(can_port_1.read(can_message))
+    {
+      if(can_message.id - MOTOR_ADDRESS_OFFSET == motor_array[0].get_id())
+      {
+        motor_array[0].readMotorControlCommandReply(can_message.buf);
+      }
+      else
+      {
+        Serial.print("No motor with ID = "); Serial.println(can_message.id);
+      }
+    }
+  }
+  else
+  {
+    // Try to update the motor status
+    if(!motor_array[0].readMotorStatus())
+    {
+      Serial.print("Failed to read motor status\t");
+    }   
+  }
+
   // Try to update the multi-turn angle
   if(!motor_array[0].readMultiTurnAngle())
   {
     Serial.print("Failed to read multiturn angle\t");
-  }
-
-  // Try to update the motor status
-  if(!motor_array[0].readMotorStatus())
-  {
-    Serial.print("Failed to read motor status\t");
   }
 
   int32_t multi_turn_angle_32 = motor_array[0].GOD_ANGLE;
@@ -47,8 +89,8 @@ void loop()
   Serial.print("Multiturn angle raw: "); Serial.print(multi_turn_angle_32); Serial.print("\t");
   Serial.print("Multiturn angle deg: "); Serial.print(multi_turn_angle_32/(100*6)); Serial.print("\t");
   Serial.print("Encoder value: "); Serial.print(motor_array[0].getEncoderValue()); Serial.print("\t");
-  Serial.print("Position [rad]: "); Serial.print(motor_array[0].getPosition()); Serial.print("\t");
-  Serial.print("Position [deg]: "); Serial.print(motor_array[0].getPosition()*M_PI/180.0); Serial.print("\t");
+  Serial.print("Position [rad]: "); Serial.print(motor_array[0].getPosition(), 6); Serial.print("\t");
+  Serial.print("Position [deg]: "); Serial.print(motor_array[0].getPosition()*180.0/M_PI); Serial.print("\t");
 
   Serial.println("");
   
