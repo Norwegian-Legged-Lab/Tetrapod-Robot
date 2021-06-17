@@ -1,29 +1,49 @@
 #ifndef motor_driver_config_h
 #define motor_driver_config_h
 
+#define ROS_PRINT false
+#define SERIAL_PRINT true
 
-// Hip pitch offset 0.371 rad
- 
-#define position_offset_motor1 0.0
-#define position_offset_motor2 0.0 
-#define position_offset_motor3 0.0
+#define FRONT_LEGS false
+#define REAR_LEGS false
 
-#define initial_motor_rotations_motor1 0
-#define initial_motor_rotations_motor2 0
-#define initial_motor_rotations_motor3 0
+// Calculate offsets based on legs
 
-static double POSITION_OFFSET[3] = 
-    {
-        position_offset_motor1, 
-        position_offset_motor2, 
-        position_offset_motor3
-    };
+// An offset of -30 degrees is added to each actuator to compensate for the encoder zero position 
 
-static int INITIAL_NUMBER_OF_MOTOR_ROTATIONS[3] = 
-    {
-        initial_motor_rotations_motor1, 
-        initial_motor_rotations_motor2,
-        initial_motor_rotations_motor3
-    };
+#if (FRONT_LEGS)
+    #define position_offset_motor_1 0.0
+    #define position_offset_motor_2 0.0
+    #define position_offset_motor_3 0.0
+    #define position_offset_motor_4 0.0
+    #define position_offset_motor_5 0.0
+    #define position_offset_motor_6 0.0
+#elif (REAR_LEGS)
+    #define position_offset_motor_1 0.0
+    #define position_offset_motor_2 0.0
+    #define position_offset_motor_3 0.0
+    #define position_offset_motor_4 0.0
+    #define position_offset_motor_5 0.0
+    #define position_offset_motor_6 0.0
+#else
+    #define position_offset_motor_1 0.0
+    #define position_offset_motor_2 0.0
+    #define position_offset_motor_3 0.0
+    #define position_offset_motor_4 0.0
+    #define position_offset_motor_5 0.0
+    #define position_offset_motor_6 0.0
+#endif
+
+static double POSITION_OFFSET[6] = 
+{
+    position_offset_motor_1, 
+    position_offset_motor_2, 
+    position_offset_motor_3,
+    position_offset_motor_4,
+    position_offset_motor_5,
+    position_offset_motor_6 
+};
+
+static int INITIAL_NUMBER_OF_MOTOR_ROTATIONS[6] = {0, 0, 0, 0, 0, 0};
 
 #endif

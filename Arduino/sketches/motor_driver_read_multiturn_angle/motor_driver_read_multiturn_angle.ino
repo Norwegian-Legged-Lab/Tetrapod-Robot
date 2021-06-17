@@ -84,10 +84,22 @@ void loop()
     Serial.print("Failed to read multiturn angle\t");
   }
 
-  int32_t multi_turn_angle_32 = motor_array[0].GOD_ANGLE;
+  //int32_t multi_turn_angle_32_bit = motor_array[0].getMultiTurnAngle();
+  int64_t multi_turn_angle_32_bit = motor_array[0].getMultiTurnAngleRaw();
+  int32_t val;
+  if(multi_turn_angle_32_bit >= 0)
+  {
+    val = multi_turn_angle_32_bit;
+  }
+  else
+  {
+    multi_turn_angle_32_bit = - multi_turn_angle_32_bit;
+    val = multi_turn_angle_32_bit;
+    val = - val;
+  }
 
-  Serial.print("Multiturn angle raw: "); Serial.print(multi_turn_angle_32); Serial.print("\t");
-  Serial.print("Multiturn angle deg: "); Serial.print(multi_turn_angle_32/(100*6)); Serial.print("\t");
+  Serial.print("Multiturn angle raw: "); Serial.print(val); Serial.print("\t");
+  Serial.print("Multiturn angle deg: "); Serial.print(val/(100.0*6.0), 10); Serial.print("\t");
   Serial.print("Encoder value: "); Serial.print(motor_array[0].getEncoderValue()); Serial.print("\t");
   Serial.print("Position [rad]: "); Serial.print(motor_array[0].getPosition(), 6); Serial.print("\t");
   Serial.print("Position [deg]: "); Serial.print(motor_array[0].getPosition()*180.0/M_PI); Serial.print("\t");

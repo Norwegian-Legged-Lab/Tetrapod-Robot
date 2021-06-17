@@ -118,7 +118,9 @@ public:
 
     /// \brief Return the latest received multi turn angle from the motor
     /// \return The latest received received multi turn angle from the motor
-    double getMultiTurnAngle(){return multi_turn_angle;}
+    double getMultiTurnAngle(){return multi_turn_angle_32_bit;}
+
+    double getMultiTurnAngleRaw(){return multi_turn_angle_001lsb;}
 
     /// \brief The input parameters are updated to match the PI parameters of the motor
     /// \param[in] _kp_pos Proportional position gain
@@ -143,8 +145,6 @@ public:
     void printState();
 
     void printTorqueCurrents();
-
-    int64_t GOD_ANGLE;
 
     double raw_position_reference;
 private:
@@ -177,8 +177,13 @@ private:
     /// This way you can detect turns. See innerMotorTurnCompleted().
     uint16_t previous_encoder_value;
 
-    /// \brief This parameter is used to decide the setpoint position offset.
-    double multi_turn_angle;
+    /// \brief This parameter contains the multi turn angle read by the motor in degrees
+    int32_t multi_turn_angle_32_bit = 0;
+
+    /// \brief This is the true 64 bit representation of the multiturn angle in degrees
+    int64_t multi_turn_angle_64_bit = 0;
+
+    int64_t multi_turn_angle_001lsb = 0;
 
     /// \brief If the motor is initialized in certain positions the 
     /// setPosition function will have zero offset of 60 degrees. 
@@ -187,6 +192,9 @@ private:
 
     /// \brief position offset = true position - position
     double position_offset = 0.0;
+
+    /// \brief This is used to center the output shaft zero position
+    double position_center_offset = 0; //M_PI/6.0;
 
     /// \brief Latest measured position of the shaft in radians
     double position;
