@@ -131,7 +131,7 @@ class SingleMotorController
 
     private: double k_i_controller = 10.0;
 
-    private: double k_d_controller = 2.0;
+    private: double k_d_controller = 5.0;
 
     private: double k_p_pos = 30.0;
 
@@ -147,7 +147,7 @@ class SingleMotorController
 
     private: double k_p_torque = 100.0;
 
-    private: double k_i_torque = 50.0;
+    private: double k_i_torque = 100.0;
 
     private: double k_d_torque = 0.0;
 
