@@ -15,11 +15,6 @@
 #include "ros_node_handle.h"
 #include "config_motor_driver.h"
 
-/// TEMP_START
-#include "teensy_blinker.h"
-TEENSY_LED led;
-/// TEMP_END
-
 // Number of motors 
 const int NUMBER_OF_MOTORS = 1;
 int NUMBER_OF_MOTORS_PER_PORT = 1;
@@ -262,7 +257,7 @@ void loop()
   }
 
   //motors[0].printState();
-  motors[0].printTorqueCurrents();
+  //motors[0].printTorqueCurrents();
  
   // Update the joint state reply message
   
