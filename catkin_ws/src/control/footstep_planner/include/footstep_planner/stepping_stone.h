@@ -6,6 +6,8 @@
 
 class SteppingStone
 {
+    public: SteppingStone();
+    
     public: SteppingStone(Eigen::Matrix<double, 2, 1> center, double width, double height, std::string name="");
 
     public: virtual ~SteppingStone();
@@ -30,6 +32,7 @@ class SteppingStone
 
     public: const Eigen::Matrix<double, 4, 1> &getB() const {return b;}
     
+    public: void print();
     /*** Variables ***/
 
     private: Eigen::Matrix<double, 2, 1> center;

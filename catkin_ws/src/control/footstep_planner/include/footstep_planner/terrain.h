@@ -4,6 +4,7 @@
 #include<Eigen/Core>
 #include<string>
 #include "footstep_planner/stepping_stone.h"
+#include<iostream>
 
 class Terrain
 {
@@ -19,6 +20,7 @@ class Terrain
 
     public: const Eigen::Array<SteppingStone, Eigen::Dynamic, 1> &getSteppingStones() const {return stepping_stones;}
     
+    public: void print();
     /*** Variables ***/
 
     private: Eigen::Array<SteppingStone, Eigen::Dynamic, 1> stepping_stones;

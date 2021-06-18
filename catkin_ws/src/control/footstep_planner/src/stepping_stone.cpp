@@ -1,6 +1,6 @@
 #include "footstep_planner/stepping_stone.h"
-
-SteppingStone::SteppingStone(Eigen::Matrix<double, 2, 1> center, double width, double height, std::string name="")
+#include<iostream>
+SteppingStone::SteppingStone(Eigen::Matrix<double, 2, 1> center, double width, double height, std::string name)
 {
     this->center = center;
 
@@ -31,5 +31,18 @@ SteppingStone::SteppingStone(Eigen::Matrix<double, 2, 1> center, double width, d
         -1, 0,
         0, -1;
 
-    b << c2br.replicate(2, 1) + A*center;
+    b << c2tr.replicate(2, 1) + A*center;
+}
+
+SteppingStone::SteppingStone()
+{}
+
+SteppingStone::~SteppingStone()
+{}
+
+void SteppingStone::print()
+{
+    std::cout << "name: " << name << std::endl;
+
+    std::cout << "center: " << std::endl << center << ", width: " << width << "," << std::endl << "height: " << height << std::endl;
 }

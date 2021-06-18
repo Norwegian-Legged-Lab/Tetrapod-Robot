@@ -16,7 +16,7 @@ Terrain::Terrain(Eigen::Array<bool, Eigen::Dynamic, 1> bool_bridge)
     {
         if (bool_bridge(i))
         {
-            centers(i) = center + Eigen::Vector2f(i*2*width_bridge, 0);
+            centers(i) = center + Eigen::Vector2d(i*2*width_bridge, 0);
         }
     }
 
@@ -42,7 +42,10 @@ Terrain::Terrain(Eigen::Array<bool, Eigen::Dynamic, 1> bool_bridge)
     addStone(center, width, height, "lateral");
 }
 
-SteppingStone Terrain::addStone(Eigen::Matrix<double, 2, 1> center, double width, double height, std::string name="")
+Terrain::~Terrain()
+{}
+
+SteppingStone Terrain::addStone(Eigen::Matrix<double, 2, 1> center, double width, double height, std::string name)
 {
     SteppingStone stone(center, width, height, name);
 
@@ -53,7 +56,7 @@ SteppingStone Terrain::addStone(Eigen::Matrix<double, 2, 1> center, double width
     return stone;
 }
 
-Eigen::Array<SteppingStone, Eigen::Dynamic, 1> Terrain::addStones(Eigen::Array<Eigen::Matrix<double, 2, 1>, Eigen::Dynamic, 1> centers, Eigen::Array<double, Eigen::Dynamic, 1> widths, Eigen::Array<double, Eigen::Dynamic, 1> heights, std::string name="")
+Eigen::Array<SteppingStone, Eigen::Dynamic, 1> Terrain::addStones(Eigen::Array<Eigen::Vector2d, Eigen::Dynamic, 1> centers, Eigen::Array<double, Eigen::Dynamic, 1> widths, Eigen::Array<double, Eigen::Dynamic, 1> heights, std::string name)
 {
     int n = centers.rows();
 
@@ -70,7 +73,7 @@ Eigen::Array<SteppingStone, Eigen::Dynamic, 1> Terrain::addStones(Eigen::Array<E
     {
         std::string stone_name = (name.empty()) ? name : name + std::to_string(i);
 
-        stones(stones.rows() - n + i) = SteppingStone(centers(i), widths(i), heights(i), stone_name);
+        stones(stones.rows() - n + i) = addStone(centers(i), widths(i), heights(i), stone_name);
     }
 
     return stones;
@@ -87,4 +90,12 @@ SteppingStone const &Terrain::getStoneByName(std::string name) const
     }
     
     throw "No stone in the terrain has the name " + name + ".";
+}
+
+void Terrain::print()
+{
+    for (int i = 0; i < stepping_stones.rows(); ++i)
+    {
+        stepping_stones(i).print();
+    }
 }
