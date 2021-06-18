@@ -2,6 +2,7 @@
 #define motor_driver_h
 
 #include "motor_constants.h"
+#include "config_motor_driver.h"
 #include "teensy_can_ports.h"
 #include "make_can_msg.h"
 #include "FlexCAN_T4.h"
