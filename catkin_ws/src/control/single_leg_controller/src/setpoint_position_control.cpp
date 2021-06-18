@@ -13,7 +13,8 @@ int main(int argc, char **argv)
     
     controller.initROS();
 
-    //controller.setMotorGains();
+    // Disable this for simulator tests
+    controller.setMotorGains();
 
     ros::Rate check_for_messages_rate(1);
 

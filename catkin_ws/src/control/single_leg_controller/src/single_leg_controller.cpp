@@ -15,14 +15,14 @@ SingleLegController::SingleLegController(double _publish_frequency)
     q_ref[1] = 0.0;
     q_ref[2] = 0.0;
 
-    k_p_pos_hy = 1.0;
-    k_i_pos_hy = 1.0;
+    k_p_pos_hy = 50.0;
+    k_i_pos_hy = 50.0;
 
-    k_p_pos_hp = 1.0;
-    k_i_pos_hp = 1.0;
+    k_p_pos_hp = 50.0;
+    k_i_pos_hp = 50.0;
 
-    k_p_pos_kp = 1.0;
-    k_i_pos_kp = 1.0;
+    k_p_pos_kp = 50.0;
+    k_i_pos_kp = 50.0;
 
     k_p_torque_hy = 100.0;
     k_i_torque_hy = 5.0;
@@ -131,6 +131,14 @@ void SingleLegController::initROS()
         this
     ); 
 
+    motor_confirmation_subscriber = node_handle->subscribe
+    (
+        "/motor/confirmation",
+        10,
+        &SingleLegController::motorConfirmationCallback,
+        this
+    );
+
     // Initialize the joint state publisher
     joint_state_publisher = node_handle->advertise<sensor_msgs::JointState>("/my_robot/joint_state_cmd", 10);
 
@@ -179,6 +187,14 @@ void SingleLegController::jointSetpointCallback(const std_msgs::Float64MultiArra
     for(int i = 0; i < 3; i++)
     {
         q_ref(i) = _msg->data[i];
+    }
+}
+
+void SingleLegController::motorConfirmationCallback(const std_msgs::Bool &_msg)
+{
+    if(_msg.data == true)
+    {
+        gains_set = true;
     }
 }
 

@@ -56,6 +56,8 @@ class SingleLegController
 
     private: void jointSetpointCallback(const std_msgs::Float64MultiArrayConstPtr &_msg);
 
+    private: void motorConfirmationCallback(const std_msgs::Bool &_msg);
+
 
     /*** CONTROL FUNCTIONS ***/
 
@@ -257,6 +259,9 @@ class SingleLegController
 
     /// \brief Subscribes to joint setpoint messages
     private: ros::Subscriber joint_setpoint_subscriber;
+
+    /// \brief Subscribes to confirmation messages from the motor
+    private: ros::Subscriber motor_confirmation_subscriber;
 
     /// \brief Publishes velocity commands to the teensy to control the motors
     private: ros::Publisher joint_state_publisher;
