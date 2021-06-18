@@ -10,13 +10,13 @@ MotorControl* motor_array = new MotorControl[1];
 double pos = 0.0;
 CAN_message_t can_message;
 int INITIAL_INNER_MOTOR_ROTATIONS = 0;
-double POSITION_OFFSET = 0.0;
+double MOTOR_POSITION_OFFSET = 0.0;
 uint8_t CAN_PORT = 1;
 
 bool use_position_control = false;
 
 void setup() {
-  Serial.begin(250000);
+  Serial.begin(57600);
   delay(1000.0);
 
   // Initialize CAN ports. 
@@ -27,15 +27,31 @@ void setup() {
   can_port_2.setBaudRate(MOTOR_BAUD_RATE);
 
   // Initialize the two motors
-  motor_array[0] = MotorControl(MOTOR_ID, CAN_PORT, INITIAL_INNER_MOTOR_ROTATIONS, POSITION_OFFSET);
+  Serial.println("Trying to initialize the motor");
+  motor_array[0] = MotorControl(MOTOR_ID, CAN_PORT, INITIAL_INNER_MOTOR_ROTATIONS, MOTOR_POSITION_OFFSET);
 
   // Set the PID parameters of the motor
-  motor_array[0].writePIDParametersToRAM(30, 10, 50, 5, 50, 5);
+  Serial.println("Trying to set the PID parameters");
+  motor_array[0].writePIDParametersToRAM(10, 1, 1, 1, 5, 1);
+
+  delay_microseconds(1000000);
+
+  motor_array[0].printPIDParameters();
+
+  while(!motor_array[0].readPIDParameters())
+  {
+    Serial.println("Trying to read the PID parameters");
+    delay_microseconds(100000);
+  }
+
+  motor_array[0].printPIDParameters();
+
+  Serial.println("Setup complete");
 }
 
 void loop() 
 {
-  /*
+  
   if(Serial.available())
   {
     String pos_string = Serial.readStringUntil('\n');
@@ -51,7 +67,6 @@ void loop()
       use_position_control = false;
     }
   }
-  */
   
   
 
@@ -109,6 +124,6 @@ void loop()
   Serial.print("Position [deg]: "); Serial.print(motor_array[0].getPosition()*180.0/M_PI); Serial.print("\t");
 
   Serial.println("");
-  
+
   //delay_microseconds(10000.0);
 }
