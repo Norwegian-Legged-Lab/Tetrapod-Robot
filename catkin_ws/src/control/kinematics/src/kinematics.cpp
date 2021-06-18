@@ -60,7 +60,8 @@ Kinematics::Kinematics()
     // Set link lenghts
     this->L1 = 0.130;
     this->L2 = 0.220;
-    this->L3 = 0.279;
+    //this->L3 = 0.279;
+    this->L3 = 0.207; // Temporary while we are using the short lower legs
 
     this->LC1 = 0.1030;
     this->LC2 = 0.0257;

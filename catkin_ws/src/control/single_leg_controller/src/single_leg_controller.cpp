@@ -11,6 +11,10 @@ SingleLegController::SingleLegController(double _publish_frequency)
         q(i) = uninitialized_state;
     }
 
+    q_ref[0] = math_utils::HALF_PI;
+    q_ref[1] = 0.0;
+    q_ref[2] = 0.0;
+
     k_p_pos_hy = 1.0;
     k_i_pos_hy = 1.0;
 
@@ -159,7 +163,6 @@ void SingleLegController::jointSetpointCallback(const std_msgs::Float64MultiArra
         q_ref(i) = _msg->data[i];
     }
 }
-
 
 /*** CONTROL FUNCTIONS ***/
 
@@ -337,6 +340,47 @@ void SingleLegController::sendTorqueCommand()
     joint_state_msg.effort = torque_msg.data;
 
     joint_state_publisher.publish(joint_state_msg);
+}
+
+void SingleLegController::sendPositionCommand()
+{
+    bool cancel_position_command = false;
+
+    // Check if the desired reference setpoints violates the joint angle constraints
+    if((q_ref[0] < math_utils::degToRad(15)) || (q_ref[0] > math_utils::degToRad(165)))
+    {
+        cancel_position_command = true;
+    }
+    else if((q_ref[1] < math_utils::degToRad(-45)) || (q_ref[1] > math_utils::degToRad(45)))
+    {
+        cancel_position_command = true;
+    }
+    else if((q_ref[2] < math_utils::degToRad(-110)) || (q_ref[2] > math_utils::degToRad(110)))
+    {
+        cancel_position_command = true;
+    }
+
+    
+    if (cancel_position_command == true)
+    {
+        // If the constraints were violated, cancel the command and report the error
+        ROS_WARN("Position setpoint violates joint limits. Command canceled.");
+    }
+    else
+    {
+        // Create a joint position command and send it to the motors
+        std_msgs::Float64MultiArray position_msg;
+
+        tf::matrixEigenToMsg(q_ref, position_msg);
+
+        sensor_msgs::JointState joint_state_msg;
+
+        joint_state_msg.header.stamp = ros::Time::now();
+
+        joint_state_msg.position = position_msg.data;
+
+        joint_state_publisher.publish(joint_state_msg);
+    }
 }
 
 void SingleLegController::updateJointSetpoints()

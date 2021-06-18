@@ -89,6 +89,9 @@ class SingleLegController
     /// \brief Updates the joint torque control commands based on the desired foot position
     public: void sendTorqueCommand();
 
+    /// \brief Sends joint position commands to the actuators
+    public: void sendPositionCommand();
+
     public: void updateJointSetpoints();
 
     /// \brief The function tries to move the foot to the position given by the input parameters.
