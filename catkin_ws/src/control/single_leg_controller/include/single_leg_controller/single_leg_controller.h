@@ -48,6 +48,8 @@ class SingleLegController
 
     public: void generalizedVelocitiesCallback(const std_msgs::Float64MultiArrayConstPtr &_msg);
 
+    private: void jointStateCallback(const sensor_msgs::JointStatePtr &_msg);
+
     /// \brief The ready_to_move parameter is changed based on the incomming message
     /// \param[in] _msg A bool message deciding if it is safe to move the leg or not
     public: void readyToProceedCallback(const std_msgs::Bool &_msg);
@@ -247,9 +249,13 @@ class SingleLegController
     /// \brief Subscribes to generalized velocities messages
     private: ros::Subscriber generalized_velocities_subscriber;
 
+    /// \brief Subscribes to joint state messages from the motor
+    private: ros::Subscriber joint_state_subscriber;
+
     /// \brief Subscribes to messages deciding whether or not we should move the leg
     private: ros::Subscriber ready_to_proceed_subscriber;
 
+    /// \brief Subscribes to joint setpoint messages
     private: ros::Subscriber joint_setpoint_subscriber;
 
     /// \brief Publishes velocity commands to the teensy to control the motors

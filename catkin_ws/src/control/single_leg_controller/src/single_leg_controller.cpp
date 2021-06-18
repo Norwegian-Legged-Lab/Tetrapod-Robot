@@ -106,6 +106,14 @@ void SingleLegController::initROS()
         this
     );
 
+    joint_state_subscriber = node_handle->subscribe
+    (
+        "/motor/states",
+        100,
+        &SingleLegController::jointStateCallback,
+        this
+    );
+
     // Initialize the ready to move subscriber
     ready_to_proceed_subscriber = node_handle->subscribe
     (
@@ -148,6 +156,16 @@ void SingleLegController::generalizedVelocitiesCallback(const std_msgs::Float64M
     for(int i = 0; i < 3; i++)
     {
         q_d(i) = _msg->data[i + 6];
+    }
+}
+
+void SingleLegController::jointStateCallback(const sensor_msgs::JointStatePtr &_msg)
+{
+    for(int i = 0; i < 3; i++)
+    {
+        q(i) = _msg->position[i];
+        q_d(i) = _msg->velocity[i];
+        tau(i) = _msg->effort[i];
     }
 }
 
