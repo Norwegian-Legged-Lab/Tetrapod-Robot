@@ -21,6 +21,8 @@ class SingleMotorController
 
     public: SingleMotorController(double _publish_frequency, bool _use_position_control);
 
+    public: SingleMotorController(double _publish_frequency);
+
     public: virtual ~SingleMotorController(){};
 
     /*** ROS FUNCTIONS ***/
@@ -59,7 +61,13 @@ class SingleMotorController
 
     public: void moveToZero();
 
+    public: void setPositionDirectly(double _joint_pos);
+
+    public: void setVelocityDirectly(double _joint_vel);
+
     public: void setTorqueDirectly(double _torque);
+
+    
 
     /*** HELPER FUNCTIONS ***/
 
@@ -87,33 +95,35 @@ class SingleMotorController
 
     public: bool keepLogging(){return keep_logging;}
 
+    public: double getPosition(){return angle_pos;}
+
     /*** STATE VARIABLES ***/
 
-    double angle_offset = 0.0;
+    private: double angle_offset = 0.0;
 
-    double angle_pos = UNINITIALIZED_STATE;
+    private: double angle_pos = UNINITIALIZED_STATE;
 
-    double angle_vel = 0;
+    private: double angle_vel = 0;
 
-    double angle_pos_ref = 0;
+    private: double angle_pos_ref = 0;
 
-    double angle_vel_ref = 0;
+    private: double angle_vel_ref = 0;
 
-    double angle_acc_ref = 0;
+    private: double angle_acc_ref = 0;
 
-    double torque = 0;
+    private: double torque = 0;
 
-    double torque_ref = 0;
+    private: double torque_ref = 0;
 
-    bool ready_to_proceed = false;
+    private: bool ready_to_proceed = false;
 
-    bool motor_initialized = false;
+    private: bool motor_initialized = false;
 
-    double current_iteration = 0.0;
+    private: double current_iteration = 0.0;
 
-    bool keep_logging = true;
+    private: bool keep_logging = true;
 
-    bool gains_set = false;
+    private: bool gains_set = false;
 
     /*** PARAMETERS ***/
 
@@ -133,17 +143,17 @@ class SingleMotorController
 
     private: double k_d_controller = 5.0;
 
-    private: double k_p_pos = 30.0;
+    private: double k_p_pos = 1.0;
 
-    private: double k_i_pos = 3.0;
+    private: double k_i_pos = 1.0;
 
     private: double k_d_pos = 5.0;
 
-    private: double k_p_vel = 30.0;
+    private: double k_p_vel = 50.0;
 
-    private: double k_i_vel = 3.0;
+    private: double k_i_vel = 50.0;
 
-    private: double k_d_vel = 5.0;
+    private: double k_d_vel = 0.0;
 
     private: double k_p_torque = 100.0;
 
