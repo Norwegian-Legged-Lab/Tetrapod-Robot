@@ -41,6 +41,17 @@ timestamp = "2021-06-07-18-24-07"; %12
 
 %timestamp = "2021-06-07-15-50-50";
 
+% timestamp = "2021-06-18-21-12-37";
+% %timestamp = "2021-06-18-21-15-48";
+% %timestamp = "2021-06-18-21-18-16";
+% timestamp = "2021-06-18-21-20-15";
+% %timestamp = "2021-06-18-21-22-39";
+% timestamp = "2021-06-18-21-25-16";
+% timestamp = "2021-06-18-21-26-52";
+% timestamp = "2021-06-18-21-29-38";
+%timestamp = "2021-06-19-12-31-48";
+timestamp = "2021-06-19-12-39-36";
+
 number_of_motors = 1;
 
 %% Extract ROSbag data
@@ -82,43 +93,75 @@ joint_vel_state = joint_vel_state*180.0/pi;
 joint_pos_reference = joint_pos_reference*180.0/pi;
 joint_vel_reference = joint_vel_reference*180.0/pi;
 
+%% Key values
+
+mean_start = floor(frequency*0.3);
+mean_end = ceil(frequency*0.8);
+
+% Position 
+joint_pos_std = std(joint_pos_state(mean_start:end));
+joint_pos_offset = mean(joint_pos_state(mean_start:end)) - joint_pos_reference(end);
+
+fprintf("Peak Pos: %f [deg]\n", max(joint_pos_state));
+fprintf("Standard deviation: %f [deg]\n", joint_pos_std);
+fprintf("Offset deviation: %f [deg]\n\n", joint_pos_offset);
+
+
+% Velocity
+
+joint_vel_std = std(joint_vel_state(mean_start:end));
+joint_vel_offset = mean(joint_vel_state(mean_start:end)) - joint_vel_reference(end);
+
+fprintf("Peak Vel: %f [deg/s]\n", max(joint_vel_state));
+fprintf("Standard deviation: %f [deg/s]\n", joint_vel_std);
+fprintf("Offset deviation: %f [deg/s]\n\n", joint_vel_offset);
+
+% Torque
+
+joint_torque_std = std(joint_torque(mean_start:end));
+joint_torque_offset = mean(joint_torque(mean_start:end)) - joint_torque_reference(end);
+
+fprintf("Peak Torque: %f [Nm]\n", max(joint_torque));
+fprintf("Standard deviation: %f [Nm]\n", joint_torque_std);
+fprintf("Offset deviation: %f [Nm]\n\n", joint_torque_offset);
+
 %% Plot results
 
 % Joint positions
-% figure(1)
-% hold on 
-% grid on
-% plot(reference_time, joint_pos_reference);
-% plot(state_time, joint_pos_state);
-% legend("\theta_{ref}", "\theta");
-% xlabel("time [s]");
-% ylabel("angle [deg]");
-% hold off
+figure(1)
+hold on 
+grid on
+plot(reference_time, joint_pos_reference);
+plot(state_time, joint_pos_state);
+legend("\theta_{ref}", "\theta");
+xlabel("time [s]");
+ylabel("angle [deg]");
+hold off
 
 % Joint velocities
-% figure(2)
-% hold on 
-% grid on
-% plot(reference_time, joint_vel_reference);
-% plot(state_time, joint_vel_state);
-% legend("\omega_{ref}", "\omega");
-% xlabel("time [s]");
-% ylabel("angular rate [deg/s]");
-% hold off
+figure()
+hold on 
+grid on
+plot(reference_time, joint_vel_reference);
+plot(state_time, joint_vel_state);
+legend("\omega_{ref}", "\omega");
+xlabel("time [s]");
+ylabel("angular rate [deg/s]");
+hold off
 
 % Joint Torques
-% figure(3)
-% hold on
-% grid on
-% %plot(reference_time, joint_torque_reference*1200/26.88);
-% %plot(state_time, joint_torque*1200/26.88);
-% plot(reference_time, joint_torque_reference);
-% plot(state_time, joint_torque);
-% legend("\tau_{ref}", "\tau");
-% xlabel("time [s]");
-% %ylabel("torque current");
-% ylabel("torque [Nm]");
-% hold off
+figure()
+hold on
+grid on
+%plot(reference_time, joint_torque_reference*1200/26.88);
+%plot(state_time, joint_torque*1200/26.88);
+plot(reference_time, joint_torque_reference);
+plot(state_time, joint_torque);
+legend("\tau_{ref}", "\tau");
+xlabel("time [s]");
+%ylabel("torque current");
+ylabel("torque [Nm]");
+hold off
 
 % figure(4)
 % hold on 
@@ -129,8 +172,11 @@ joint_vel_reference = joint_vel_reference*180.0/pi;
 % xlabel("time [s]");
 % hold off
 
-step_start = floor(frequency);
-step_end = ceil(frequency*1.05);
+% step_start = floor(frequency);
+% step_end = ceil(frequency*1.05);
+% 
+% step_start = floor(0.2*frequency);
+% step_end = ceil(0.2*frequency + frequency*0.05);
 
 % figure(5)
 % hold on
@@ -143,46 +189,46 @@ step_end = ceil(frequency*1.05);
 % hold off
 
 
-mean_start = floor(frequency*1.1);
-mean_end = ceil(frequency*1.4);
+% mean_start = floor(frequency*1.1);
+% mean_end = ceil(frequency*1.4);
+% 
+% torque_std = std(joint_torque(mean_start:mean_end));
+% torque_offset = mean(joint_torque(mean_start:mean_end)) - joint_torque_reference(end);
+% 
+% fprintf("Peak Torque: %f [Nm]\n", max(joint_torque));
+% fprintf("Standard deviation: %f [Nm]\n", torque_std);
+% fprintf("Offset deviation: %f [Nm]\n", torque_offset);
 
-torque_std = std(joint_torque(mean_start:mean_end));
-torque_offset = mean(joint_torque(mean_start:mean_end)) - joint_torque_reference(end);
+% plot_start = floor(frequency*0.95);
+% 
+% figure(6)
+% subplot(3, 1, 1);
+% hold on 
+% grid on
+% plot(reference_time(plot_start:end), joint_vel_reference(plot_start:end));
+% plot(state_time(plot_start:end), joint_vel_state(plot_start:end));
+% legend("\omega_{ref}", "\omega");
+% xlabel("time [s]");
+% ylabel("angular rate [deg/s]");
+% hold off
+% 
+% subplot(3, 1, 2);
+% hold on
+% grid on
+% plot(reference_time(plot_start:end), joint_torque_reference(plot_start:end));
+% plot(state_time(plot_start:end), joint_torque(plot_start:end));
+% legend("\tau_{ref}", "\tau");
+% xlabel("time [s]");
+% ylabel("torque [Nm]");
+% hold off
 
-fprintf("Peak Torque: %f [Nm]\n", max(joint_torque));
-fprintf("Standard deviation: %f [Nm]\n", torque_std);
-fprintf("Offset deviation: %f [Nm]\n", torque_offset);
-
-plot_start = floor(frequency*0.95);
-
-figure(6)
-subplot(3, 1, 1);
-hold on 
-grid on
-plot(reference_time(plot_start:end), joint_vel_reference(plot_start:end));
-plot(state_time(plot_start:end), joint_vel_state(plot_start:end));
-legend("\omega_{ref}", "\omega");
-xlabel("time [s]");
-ylabel("angular rate [deg/s]");
-hold off
-
-subplot(3, 1, 2);
-hold on
-grid on
-plot(reference_time(plot_start:end), joint_torque_reference(plot_start:end));
-plot(state_time(plot_start:end), joint_torque(plot_start:end));
-legend("\tau_{ref}", "\tau");
-xlabel("time [s]");
-ylabel("torque [Nm]");
-hold off
-
-subplot(3, 1, 3);
-hold on
-grid on
-plot(reference_time(step_start:step_end), joint_torque_reference(step_start:step_end));
-plot(state_time(step_start:step_end), joint_torque(step_start:step_end));
-legend("\tau_{ref}", "\tau");
-xlabel("time [s]");
-ylabel("torque [Nm]");
-hold off
+% subplot(3, 1, 3);
+% hold on
+% grid on
+% plot(reference_time(step_start:step_end), joint_torque_reference(step_start:step_end));
+% plot(state_time(step_start:step_end), joint_torque(step_start:step_end));
+% legend("\tau_{ref}", "\tau");
+% xlabel("time [s]");
+% ylabel("torque [Nm]");
+% hold off
 
