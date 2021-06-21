@@ -1,4 +1,4 @@
-#include "footstep_planner/miqp.h"
+#include "footstep_planner/miqp_biped.h"
 
 #include "ros/console.h"
 #include<iostream>

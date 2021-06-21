@@ -1,7 +1,7 @@
 #ifndef footstep_planner_h
 #define footstep_planner_h
 
-#include "footstep_planner/miqp.h"
+#include "footstep_planner/miqp_biped.h"
 
 #include "sensor_msgs/SetCameraInfo.h"
 
