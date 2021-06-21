@@ -16,8 +16,8 @@
 #include "config_motor_driver.h"
 
 // Number of motors 
-const int NUMBER_OF_MOTORS = 3;
-int NUMBER_OF_MOTORS_PER_PORT = 3;
+const int NUMBER_OF_MOTORS = 1;
+int NUMBER_OF_MOTORS_PER_PORT = 1;
 
 const double IDLE_COMMAND = 1000.0;
 
@@ -236,6 +236,14 @@ void loop()
           break;
       }
     } 
+  }
+  else
+  {
+    for(int i = 0; i < NUMBER_OF_MOTORS; i++)
+    {
+      motors[i].requestMotorStatus();
+      ROS_NODE_HANDLE.loginfo("Status Request");
+    }
   }
   
   delay_microseconds(5000); // Can be 3000
