@@ -11,48 +11,52 @@ SingleLegController::SingleLegController(double _publish_frequency)
         q(i) = uninitialized_state;
     }
 
-    q_ref[0] = math_utils::HALF_PI;
-    q_ref[1] = 0.0;
-    q_ref[2] = 0.0;
+    q_goal[0] = math_utils::HALF_PI;
+    q_goal[1] = 0.0;
+    q_goal[2] = 0.0;
 
-    k_p_pos_hy = 50.0;
-    k_i_pos_hy = 50.0;
+    k_p_pos_hy = 30.0;
+    k_i_pos_hy = 30.0;
 
-    k_p_pos_hp = 50.0;
-    k_i_pos_hp = 50.0;
+    k_p_pos_hp = 30.0;
+    k_i_pos_hp = 30.0;
 
-    k_p_pos_kp = 50.0;
-    k_i_pos_kp = 50.0;
+    k_p_pos_kp = 30.0;
+    k_i_pos_kp = 30.0;
+
+    k_p_vel_hy = 100.0;
+    k_i_vel_hy = 100.0;
+
+    k_p_vel_hp = 100.0;
+    k_i_vel_hp = 100.0;
+
+    k_p_vel_kp = 100.0;
+    k_p_vel_kp = 100.0;
 
     k_p_torque_hy = 100.0;
-    k_i_torque_hy = 5.0;
-    k_d_torque_hy = 20.0;
+    k_i_torque_hy = 100.0;
 
     k_p_torque_hp = 100.0;
-    k_i_torque_hp = 5.0;
-    k_d_torque_hp = 20.0;
+    k_i_torque_hp = 100.0;
 
     k_p_torque_kp = 100.0;
-    k_i_torque_kp = 5.0;
-    k_d_torque_kp = 20.0;
+    k_i_torque_kp = 100.0;
 
-    K_p(0, 0) = k_p_torque_hy;
-    K_p(1, 1) = k_p_torque_hp;
-    K_p(2, 2) = k_p_torque_kp;
+    k_p_hy = 100.0;
+    k_p_hp = 100.0;
+    k_p_kp = 100.0;
 
-    K_d(0, 0) = k_d_torque_hy;
-    K_d(1, 1) = k_d_torque_hp;
-    K_d(2, 2) = k_d_torque_kp;
+    k_d_hy = 20.0;
+    k_d_hp = 20.0;
+    k_d_kp = 20.0;
 
-    /*
-    K_p(0, 0) = 200.0;
-    K_p(1, 1) = 200.0;
-    K_p(2, 2) = 200.0;
+    K_p(0, 0) = k_p_hy;
+    K_p(1, 1) = k_p_hp;
+    K_p(2, 2) = k_p_kp;
 
-    K_d(0, 0) = 40.0;
-    K_d(1, 1) = 40.0;
-    K_d(2, 2) = 40.0;
-    */
+    K_d(0, 0) = k_d_hy;
+    K_d(1, 1) = k_d_hp;
+    K_d(2, 2) = k_d_kp;
 
     swing_start_time = - 2.0*swing_period;  
 
@@ -186,7 +190,7 @@ void SingleLegController::jointSetpointCallback(const std_msgs::Float64MultiArra
 {
     for(int i = 0; i < 3; i++)
     {
-        q_ref(i) = _msg->data[i];
+        q_goal(i) = _msg->data[i];
     }
 }
 
@@ -583,6 +587,39 @@ void SingleLegController::updateFootReference()
     }
 }
 
+void SingleLegController::updateSetpointTrajectory()
+{
+    // This is the desired change in setpoint position
+    double joint_step_distance = math_utils::degToRad(2.0);
+
+    // This the threshold for which we want the controller to converge to the goal
+    double angle_threshold = math_utils::degToRad(5.0);
+
+    // For all the actuators do the following
+    for(int i = 0; i < 3; i++)
+    {
+        // If we are within the angle threshold we tell the actuators to converge to the goal position
+        // The larger the threshold the smaller is the chance of oscillations about the goal
+        // A smaller threshold will provide a smother response
+        if(abs(q_goal(i) - q(i)) < angle_threshold)
+        {
+            q_ref(i) = q_goal(i);
+            ROS_INFO("%d Close to goal", i);
+        }
+        else if(q_goal(i) > q(i))
+        {
+            // Increment the joint reference
+            q_ref(i) = q(i) + joint_step_distance;
+            ROS_INFO("%d Increment", i);
+        }
+        else if(q_goal(i) < q(i))
+        {
+            // Decrement the joint reference
+            q_ref(i) = q(i) - joint_step_distance;
+            ROS_INFO("%d Decrement", i);
+        }
+    }
+}
 
 /*** HELPER FUNCTIONS ***/
 
@@ -657,8 +694,8 @@ void SingleLegController::printAllStates()
     ROS_INFO("I: %.0f\tP: %.3f, %.3f, %.3f\tV: %.3f, %.3f, %.3f\tA: %.3f, %.3f, %.3f\tq_r: %.3f, %.3f, %.3f\tq_d_r: %.3f, %.3f, %.3f\tq_dd_r: %.3f, %.3f, %.3f\tq: %.3f, %.3f, %.3f\tq_d: %.3f, %.3f, %.3f\tT:  %.3f, %.3f, %.3f",
     current_iteration,
     pos(0), pos(1), pos(2), vel(0), vel(1), vel(2), acc(0), acc(1), acc(2),
-    q_ref(0), q_ref(1), q_ref(2), q_d_ref(0), q_d_ref(1), q_d_ref(2), q_dd_ref(0), q_dd_ref(1), q_dd_ref(2),
-    q(0), q(1), q(2), q_d(0), q_d(1), q_d(2),
+    math_utils::radToDeg(q_ref(0)), math_utils::radToDeg(q_ref(1)), math_utils::radToDeg(q_ref(2)), q_d_ref(0), q_d_ref(1), q_d_ref(2), q_dd_ref(0), q_dd_ref(1), q_dd_ref(2),
+    math_utils::radToDeg(q(0)), math_utils::radToDeg(q(1)), math_utils::radToDeg(q(2)), q_d(0), q_d(1), q_d(2),
     tau(0), tau(1), tau(2)
     );
 }
@@ -696,22 +733,22 @@ void SingleLegController::setMotorGains()
 
     motor_gain_msg.data.push_back(k_p_pos_hy);
     motor_gain_msg.data.push_back(k_i_pos_hy);
-    motor_gain_msg.data.push_back(0.0);
-    motor_gain_msg.data.push_back(0.0);
+    motor_gain_msg.data.push_back(k_p_vel_hy);
+    motor_gain_msg.data.push_back(k_i_vel_hy);
     motor_gain_msg.data.push_back(k_p_torque_hy);
     motor_gain_msg.data.push_back(k_i_torque_hy);
 
     motor_gain_msg.data.push_back(k_p_pos_hp);
     motor_gain_msg.data.push_back(k_i_pos_hp);
-    motor_gain_msg.data.push_back(0.0);
-    motor_gain_msg.data.push_back(0.0);
+    motor_gain_msg.data.push_back(k_p_vel_hp);
+    motor_gain_msg.data.push_back(k_i_vel_hp);
     motor_gain_msg.data.push_back(k_p_torque_hp);
     motor_gain_msg.data.push_back(k_i_torque_hp);
 
     motor_gain_msg.data.push_back(k_p_pos_kp);
     motor_gain_msg.data.push_back(k_i_pos_kp);
-    motor_gain_msg.data.push_back(0.0);
-    motor_gain_msg.data.push_back(0.0);
+    motor_gain_msg.data.push_back(k_p_vel_kp);
+    motor_gain_msg.data.push_back(k_p_vel_kp);
     motor_gain_msg.data.push_back(k_p_torque_kp);
     motor_gain_msg.data.push_back(k_i_torque_kp);
 

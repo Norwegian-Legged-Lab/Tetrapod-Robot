@@ -117,6 +117,8 @@ class SingleLegController
 
     public: void setMotorGains();
 
+    public: void updateSetpointTrajectory();
+
     /*** HELPER FUNCTIONS ***/
 
     /// \brief Function used to check if any new ROS messages has been received
@@ -161,6 +163,9 @@ class SingleLegController
     /// \brief The joint angles of the leg
     private: Eigen::Matrix<double, 3, 1> q = Eigen::Matrix<double, 3, 1>::Zero();
 
+    /// \brief When using setpointTrajectory control these are the joint angles we want to reach eventually
+    private: Eigen::Matrix<double, 3, 1> q_goal = Eigen::Matrix<double, 3, 1>::Zero();
+
     /// \brief Desired joint velocity
     private: Eigen::Matrix<double, 3, 1> q_d = Eigen::Matrix<double, 3, 1>::Zero();
 
@@ -185,12 +190,23 @@ class SingleLegController
 
     private: double current_iteration = 0;
 
-    private: double final_iteration = 100.0;
+    private: double final_iteration = 200.0;
 
     private: bool gains_set = false;
 
-
     /*** PARAMETERS ***/
+
+    double k_p_hy;
+    double k_i_hy;
+    double k_d_hy;
+
+    double k_p_hp;
+    double k_i_hp;
+    double k_d_hp;
+
+    double k_p_kp;
+    double k_i_kp;
+    double k_d_kp;
 
     double k_p_pos_hy;
     double k_i_pos_hy;
@@ -199,17 +215,19 @@ class SingleLegController
     double k_p_pos_kp;
     double k_i_pos_kp;
 
+    double k_p_vel_hy;
+    double k_i_vel_hy;
+    double k_p_vel_hp;
+    double k_i_vel_hp;
+    double k_p_vel_kp;
+    double k_i_vel_kp;
+
     double k_p_torque_hy;
     double k_i_torque_hy;
-    double k_d_torque_hy;
-
     double k_p_torque_hp;
     double k_i_torque_hp;
-    double k_d_torque_hp;
-
     double k_p_torque_kp;
     double k_i_torque_kp;
-    double k_d_torque_kp;
 
     private: Eigen::Matrix<double, 3, 3> K_p = Eigen::Matrix<double, 3, 3>::Zero();
 
@@ -217,7 +235,7 @@ class SingleLegController
 
     private: double publish_frequency = 100.0;
 
-    private: double swing_period = 2.0;
+    private: double swing_period = 10.0;
 
     private: double hip_height = 0.3;
 
