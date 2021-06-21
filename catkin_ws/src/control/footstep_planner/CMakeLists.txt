@@ -18,7 +18,7 @@ find_package(drake REQUIRED PATHS /opt/drake)
 catkin_package(
   INCLUDE_DIRS include
     ${EIGEN3_INCLUDE_DIR}
-  LIBRARIES gait_controller
+  LIBRARIES ${PROJECT_NAME}
   CATKIN_DEPENDS
     roscpp
     std_msgs
@@ -45,6 +45,9 @@ add_library(${PROJECT_NAME}
 add_executable(${PROJECT_NAME}_node
   src/footstep_planner_node.cpp
   src/footstep_planner.cpp
+  src/miqp.cpp
+  src/stepping_stone.cpp
+  src/terrain.cpp
 )
 
 target_link_libraries(${PROJECT_NAME}
