@@ -83,7 +83,7 @@ class SingleLegController
     private: Eigen::Matrix<double, 3, 1> calculateSwingLegHeightTrajectory(double _percentage, double _period, double _max_swing_height, double _hip_height);
 
     /// \brief This functions calculates a smooth trajectory along a single linear axis. Please see the report for details.
-    /// \param[in] _percentage The location in gait cycle in the interval [0, 1]
+    /// \param[in] _percentage The location in the gait cycle in the interval [0, 1]
     /// \param[in] _period The gait cycle period
     /// \param[in] _max_travel The maximum distance to move in a direction along the linear axis from its origin
     /// \param[out] _x The desired position along the axis
@@ -108,7 +108,12 @@ class SingleLegController
     /// \brief Update The joint trajectory reference based on the spatial foot trajectory
     public: void updateJointReferences();
 
-    /// \brief Update the joint torqes based on the joint trajectories and joint states
+    /// \brief Update the joint torqes references based on the joint trajectories and joint states
+    /// \param[in] _q_ref The joint angle references
+    /// \param[in] _q_d_ref the joint velocity references
+    /// \param[in] _q_dd_ref The joint acceleration references
+    /// \param[in] _q The estimated joint angles
+    /// \param[in] _q_d The estimated joint velocities
     public: void updateJointTorques
     (
         const Eigen::Matrix<double, 3, 1> &_q_ref,
@@ -118,15 +123,17 @@ class SingleLegController
         const Eigen::Matrix<double, 3, 1> &_q_d        
     );
 
+    /// \brief Overloaded function that uses the current joint references and joint states
     public: void updateJointTorques();
 
     /// \brief Updates the joint torque control commands based on the desired foot position
     public: void sendTorqueCommand();
 
-    /// \brief Sends joint position commands to the actuators
+    /// \brief Sends a joint position commands to the motors
     public: void sendPositionCommand();
 
-    public: void updateJointSetpoints();
+     
+    public: void updateJointSetpoints(); // XXXXXXXXXXXXXXXXXXXX Should be changed or removed
 
     /// \brief The function tries to move the foot to the position given by the input parameters.
     /// This is done by calculating the inverse kinematics and giving the motors position references

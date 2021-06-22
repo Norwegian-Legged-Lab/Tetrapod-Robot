@@ -288,89 +288,137 @@ void SingleLegController::calculateSingleAxisTrajectory
 
 void SingleLegController::updateSwingFootPositionTrajectory()
 {
+    // Calculate the location in the gait cycle
     double progress = current_iteration/final_iteration;
 
+    // Foot position [m] in x direction relative to the nominal foot position
     double foot_dx;
+
+    // Foot position [m] in the y direction relative to the nominal foot position
     double foot_dy;
+
+    // Foot velocity [m/s] in the x direction relative to the hip
     double foot_vel_x;
+
+    // Foot velocity [m/s] in the y direction relative to the hip
     double foot_vel_y;
+
+    // Foot acceleration [m/s^2] in the x direction relative to the hip
     double foot_acc_x;
+
+    // Foot accaleration [m/s^2] in the y direction relative to the hip
     double foot_acc_y;
 
-    calculateSingleAxisTrajectory(progress, swing_period, x_offset, foot_dx, foot_vel_x, foot_acc_x);
-    calculateSingleAxisTrajectory(progress, swing_period, y_offset, foot_dy, foot_vel_y, foot_acc_y);
-    Eigen::Matrix<double, 3, 1> z = calculateSwingLegHeightTrajectory(progress, swing_period, max_swing_height, hip_height);
-    z(0) = -hip_height;
-    z(1) = 0.0;
-    z(2) = 0.0;
+    // Update the foot trajectory in the hip x direction
+    this->calculateSingleAxisTrajectory(progress, swing_period, x_offset, foot_dx, foot_vel_x, foot_acc_x);
 
-    pos(0) = x_center - x_offset + foot_dx;
-    pos(1) = y_center - y_offset + foot_dy;
-    pos(2) = z(0);
+    // Update the foot trajectory in the hip y direction
+    this->calculateSingleAxisTrajectory(progress, swing_period, y_offset, foot_dy, foot_vel_y, foot_acc_y);
 
-    vel(0) = foot_vel_x;
-    vel(1) = foot_vel_y;
-    vel(2) = z(1);
+    // Update the foot trajectory in the hip z direction
+    Eigen::Matrix<double, 3, 1> z = this->calculateSwingLegHeightTrajectory(progress, swing_period, max_swing_height, hip_height);
+    //z(0) = -hip_height;
+    //z(1) = 0.0;
+    //z(2) = 0.0;
 
-    acc(0) = foot_acc_x;
-    acc(1) = foot_acc_y;
-    acc(2) = z(2);
+    // Update the foot positions in the hip frame
+    this->pos(0) = x_center - x_offset + foot_dx;
+    this->pos(1) = y_center - y_offset + foot_dy;
+    this->pos(2) = z(0);
+
+    // Update the foot velocities in the hip frame
+    this->vel(0) = foot_vel_x;
+    this->vel(1) = foot_vel_y;
+    this->vel(2) = z(1);
+
+    // Update the foot accelerations in the hip frame
+    this->acc(0) = foot_acc_x;
+    this->acc(1) = foot_acc_y;
+    this->acc(2) = z(2);
 }
 
 void SingleLegController::updateStanceFootPositionTrajectory()
 {
+    // Calculate the location in the gait cycle
     double progress = current_iteration/final_iteration;
 
+    // Foot position [m] in x direction relative to the nominal foot position
     double foot_dx;
+
+    // Foot position [m] in the y direction relative to the nominal foot position
     double foot_dy;
+
+    // Foot velocity [m/s] in the x direction relative to the hip
     double foot_vel_x;
+
+    // Foot velocity [m/s] in the y direction relative to the hip
     double foot_vel_y;
+
+    // Foot acceleration [m/s^2] in the x direction relative to the hip
     double foot_acc_x;
+
+    // Foot accaleration [m/s^2] in the y direction relative to the hip
     double foot_acc_y;
 
-    calculateSingleAxisTrajectory(progress, swing_period, x_offset, foot_dx, foot_vel_x, foot_acc_x);
-    calculateSingleAxisTrajectory(progress, swing_period, y_offset, foot_dy, foot_vel_y, foot_acc_y);
+    // Update the foot trajectory in the hip x direction
+    this->calculateSingleAxisTrajectory(progress, swing_period, x_offset, foot_dx, foot_vel_x, foot_acc_x);
 
-    pos(0) = x_center - foot_dx;
-    pos(1) = y_center - foot_dy;
-    pos(2) = - hip_height;
+    // Update the foot trajectory in the hip y direction
+    this->calculateSingleAxisTrajectory(progress, swing_period, y_offset, foot_dy, foot_vel_y, foot_acc_y);
 
+    // Update the foot positions in the hip frame
+    // To push the body of the robot forward we have to move the stance foot backwards
+    this->pos(0) = x_center - foot_dx;
+    this->pos(1) = y_center - foot_dy;
+
+    // We assume a constant height of the ground. !!! Here a lot can be done to handle obstacles
+    this->pos(2) = - hip_height;
+
+    // If we have not reached the final iteration, simply assign the foot trajectory velocity and acceleration
     if(current_iteration + 1 < final_iteration)
     {
-        vel(0) = - foot_vel_x;
-        vel(1) = - foot_vel_y;
-        vel(2) = 0.0;
+        this->vel(0) = - foot_vel_x;
+        this->vel(1) = - foot_vel_y;
+        this->vel(2) = 0.0;
 
-        acc(0) = - foot_acc_x;
-        acc(1) = - foot_acc_y;
-        acc(2) = 0.0;
+        this->acc(0) = - foot_acc_x;
+        this->acc(1) = - foot_acc_y;
+        this->acc(2) = 0.0;
     }
+    // If we have reached the final iteration and not changed state, set the velocities to zero to keep the foot still.
     else
     {
-        vel(0) = 0.0;
-        vel(1) = 0.0;
-        vel(2) = 0.0;
+        this->vel(0) = 0.0;
+        this->vel(1) = 0.0;
+        this->vel(2) = 0.0;
 
-        acc(0) = 0.0;
-        acc(1) = 0.0;
-        acc(2) = 0.0;
+        this->acc(0) = 0.0;
+        this->acc(1) = 0.0;
+        this->acc(2) = 0.0;
     }
 }
 
 void SingleLegController::updateJointReferences()
 {
-    Eigen::Matrix<double, 3, 1> zero = Eigen::Matrix<double, 3, 1>::Zero();
-    if(!kinematics.SolveSingleLegInverseKinematics(false, zero, pos, q_ref))
+    // Try to solve the inverse kinematics for the single leg to obtain the joint angle references from the foot position reference
+    if(!this->kinematics.SolveSingleLegInverseKinematics(false, pos, q_ref))
     {
         ROS_WARN("[updateJointReferences] Failed to solve inverse kinematics");
     }
+    else // If we successfully found a solution to the inverse kinematics problem
+    {
+        // Calculate the translation Jacobian for the foot
+        Eigen::Matrix<double, 3, 3> J_s = this->kinematics.GetTranslationJacobianInB(Kinematics::LegType::frontLeft, Kinematics::BodyType::foot, q(0), q(1), q(2));
+        
+        // Calculate the derivative of the translation Jacobian for the foot
+        Eigen::Matrix<double, 3, 3> J_s_d = this->kinematics.GetTranslationJacobianInBDiff(Kinematics::LegType::frontLeft, Kinematics::BodyType::foot, q(0), q(1), q(2), q_d(0), q_d(1), q_d(2));
 
-    Eigen::Matrix<double, 3, 3> J_s = kinematics.GetTranslationJacobianInB(Kinematics::LegType::frontLeft, Kinematics::BodyType::foot, q(0), q(1), q(2));
-    Eigen::Matrix<double, 3, 3> J_s_d = kinematics.GetTranslationJacobianInBDiff(Kinematics::LegType::frontLeft, Kinematics::BodyType::foot, q(0), q(1), q(2), q_d(0), q_d(1), q_d(2));
+        // Update the joint angle velocity references
+        q_d_ref = J_s.inverse()*this->vel;
 
-    q_d_ref = J_s.inverse()*vel;
-
-    q_dd_ref = J_s.inverse()*(acc - J_s_d*vel);
+        // Update the joint angle acceleration references
+        q_dd_ref = J_s.inverse()*(this->acc - J_s_d*this->vel);
+    }
 }
 
 void SingleLegController::updateJointTorques
@@ -382,13 +430,17 @@ void SingleLegController::updateJointTorques
     const Eigen::Matrix<double, 3, 1> &_q_d
 )
 {
+    // Calculate the closed loop joint torque
     Eigen::Matrix<double, 3, 1> normalized_joint_torques = _q_dd_ref - K_p*(_q - _q_ref) - K_d*(_q_d - _q_d_ref);
 
-    Eigen::Matrix<double, 3, 3> M = kinematics.GetSingleLegMassMatrix(_q);
+    // Calculate the mass inertia matrix
+    Eigen::Matrix<double, 3, 3> M = this->kinematics.GetSingleLegMassMatrix(_q);
 
-    Eigen::Matrix<double, 3, 1> b = kinematics.GetSingleLegCoriolisAndCentrifugalTerms(_q, _q_d);
+    // Calculate the Coriolis/Centrifugal vector
+    Eigen::Matrix<double, 3, 1> b = this->kinematics.GetSingleLegCoriolisAndCentrifugalTerms(_q, _q_d);
 
-    Eigen::Matrix<double, 3, 1> g = kinematics.GetSingleLegGravitationalTerms(_q);
+    // Calculate the gravity vector
+    Eigen::Matrix<double, 3, 1> g = this->kinematics.GetSingleLegGravitationalTerms(_q);
 
     /*
     ROS_INFO("y_ref: %f\t y_d_ref: %f\t y_dd_ref: %f\t y: %f\t y_d: %f", _q_ref(1), _q_d_ref(1), _q_dd_ref(1), _q(1), _q_d(1));
@@ -403,66 +455,48 @@ void SingleLegController::updateJointTorques
     ROS_INFO("g1: %f\tg2: %f\tg3: %f", g(0), g(1), g(2));
     */
 
-    tau = b + g + M*normalized_joint_torques;
+    this->tau = b + g + M*normalized_joint_torques;
 }
 
 void SingleLegController::updateJointTorques()
 {
-    updateJointTorques(q_ref, q_d_ref, q_dd_ref, q, q_d);
+    // Updates the joint torque references based on the joint reference trajectories and estimated joint states
+    this->updateJointTorques(this->q_ref, this->q_d_ref, this->q_dd_ref, this->q, this->q_d);
 }
 
 void SingleLegController::sendTorqueCommand()
 {
-    std_msgs::Float64MultiArray torque_commands;
-
-    tf::matrixEigenToMsg(tau, torque_commands);
-
+    // Create a joint state message
     sensor_msgs::JointState joint_state_msg;
 
+    // Set the time of the joint state message
     joint_state_msg.header.stamp = ros::Time::now();
 
+    // Indicate that torque control should be used
+    joint_state_msg.name.push_back("torque");
+
+    // Create a float array for joint torque commands
+    std_msgs::Float64MultiArray torque_commands;
+
+    // Put the joint torque reference vector into the torque command message
+    tf::matrixEigenToMsg(this->tau, torque_commands);
+
+    // Add the torque commands to the joint state message
     joint_state_msg.effort = torque_commands.data;
 
-    if(!SIMULATION == true)
-    {
-        Eigen::Matrix<double, 3, 1> idle_vector(1000.0, 1000.0, 1000.0);
-
-        std_msgs::Float64MultiArray idle_commands;
-
-        tf::matrixEigenToMsg(idle_vector, idle_commands);
-
-        joint_state_msg.position = idle_commands.data;
-        joint_state_msg.velocity = idle_commands.data;
-    }
-
+    // Publish the message
     joint_state_publisher.publish(joint_state_msg);
 }
 
 void SingleLegController::sendPositionCommand()
 {
-    bool cancel_position_command = false;
-
-    // Check if the desired reference setpoints violates the joint angle constraints
-    if((q_ref[0] < math_utils::degToRad(15)) || (q_ref[0] > math_utils::degToRad(165)))
+    // Check if the position commands are within the joint angle limit constraints
+    if (kinematics.ValidateSolution(this->q_ref) == false)
     {
-        cancel_position_command = true;
-    }
-    else if((q_ref[1] < math_utils::degToRad(-45)) || (q_ref[1] > math_utils::degToRad(45)))
-    {
-        cancel_position_command = true;
-    }
-    else if((q_ref[2] < math_utils::degToRad(-110)) || (q_ref[2] > math_utils::degToRad(110)))
-    {
-        cancel_position_command = true;
-    }
-
-    
-    if (cancel_position_command == true)
-    {
-        // If the constraints were violated, cancel the command and report the error
+        // If they are violated report the problem and don't send a command
         ROS_WARN("Position setpoint violates joint limits. Command canceled.");
     }
-    else
+    else // If the joint angles are valid
     {
         // Create a joint state message
         sensor_msgs::JointState joint_state_msg;
@@ -473,13 +507,13 @@ void SingleLegController::sendPositionCommand()
         // Indicate that position control should be used
         joint_state_msg.name.push_back("position");
 
-        // Create a joint a float array for joint angle commands
+        // Create a float array for joint angle commands
         std_msgs::Float64MultiArray position_commands;
 
         // Put the joint angle reference vector into the position command message
-        tf::matrixEigenToMsg(q_ref, position_commands);
+        tf::matrixEigenToMsg(this->q_ref, position_commands);
 
-        // Set the position command in the joint state message
+        // Add the position commands to the joint state message
         joint_state_msg.position = position_commands.data;
 
         // Publish the message
