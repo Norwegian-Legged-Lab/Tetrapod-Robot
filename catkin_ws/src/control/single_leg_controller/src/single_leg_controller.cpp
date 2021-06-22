@@ -1,15 +1,12 @@
 #include "single_leg_controller/single_leg_controller.h"
 
-SingleLegController::SingleLegController(double _publish_frequency, bool _SIMULATION)
+SingleLegController::SingleLegController(double _publish_frequency)
 {
-    SIMULATION = _SIMULATION;
-
-    // Set the publish frequency for the controller
+    // Store the publish frequency for the controller
     this->publish_frequency = _publish_frequency;
 
-    // Calculate the swing_period
-    // This should be changed so that the final iteration is a function of the swing period and publish frequency
-    this->swing_period = final_iteration/publish_frequency; // XXXXXXXXXXXXXXXXXXXXXX
+    // Update the number of iterations per phase based on the publish frequency
+    this->final_iteration = this->phase_period*publish_frequency;
 
     // Set all the states to uninitialized
     for(int i = 0; i < NUMBER_OF_MOTORS; i++)
@@ -67,9 +64,6 @@ SingleLegController::SingleLegController(double _publish_frequency, bool _SIMULA
     this->K_d(0, 0) = k_d_hy;
     this->K_d(1, 1) = k_d_hp;
     this->K_d(2, 2) = k_d_kp;
-
-    // WHY DO THIS? XXXXXXXXXXXXXXXXXXXXXXXXX
-    this->swing_start_time = - 2.0*swing_period;  
 
     // Initializing the size of the logging messages
     for(int i = 0; i < NUMBER_OF_MOTORS; i++)
@@ -310,20 +304,20 @@ void SingleLegController::updateSwingFootPositionTrajectory()
     double foot_acc_y;
 
     // Update the foot trajectory in the hip x direction
-    this->calculateSingleAxisTrajectory(progress, swing_period, x_step_distance, foot_dx, foot_vel_x, foot_acc_x);
+    this->calculateSingleAxisTrajectory(progress, this->phase_period, this->x_step_distance, foot_dx, foot_vel_x, foot_acc_x);
 
     // Update the foot trajectory in the hip y direction
-    this->calculateSingleAxisTrajectory(progress, swing_period, y_step_distance, foot_dy, foot_vel_y, foot_acc_y);
+    this->calculateSingleAxisTrajectory(progress, this->phase_period, this->y_step_distance, foot_dy, foot_vel_y, foot_acc_y);
 
     // Update the foot trajectory in the hip z direction
-    Eigen::Matrix<double, 3, 1> z = this->calculateSwingLegHeightTrajectory(progress, swing_period, max_swing_height, hip_height);
+    Eigen::Matrix<double, 3, 1> z = this->calculateSwingLegHeightTrajectory(progress, this->phase_period, this->max_swing_height, this->hip_height);
     //z(0) = -hip_height;
     //z(1) = 0.0;
     //z(2) = 0.0;
 
     // Update the foot positions in the hip frame
-    this->foot_pos_ref(0) = x_nominal - x_step_distance + foot_dx;
-    this->foot_pos_ref(1) = y_nominal - y_step_distance + foot_dy;
+    this->foot_pos_ref(0) = this->x_nominal - this->x_step_distance + foot_dx;
+    this->foot_pos_ref(1) = this->y_nominal - this->y_step_distance + foot_dy;
     this->foot_pos_ref(2) = z(0);
 
     // Update the foot velocities in the hip frame
@@ -361,10 +355,10 @@ void SingleLegController::updateStanceFootPositionTrajectory()
     double foot_acc_y;
 
     // Update the foot trajectory in the hip x direction
-    this->calculateSingleAxisTrajectory(progress, swing_period, x_step_distance, foot_dx, foot_vel_x, foot_acc_x);
+    this->calculateSingleAxisTrajectory(progress, phase_period, x_step_distance, foot_dx, foot_vel_x, foot_acc_x);
 
     // Update the foot trajectory in the hip y direction
-    this->calculateSingleAxisTrajectory(progress, swing_period, y_step_distance, foot_dy, foot_vel_y, foot_acc_y);
+    this->calculateSingleAxisTrajectory(progress, phase_period, y_step_distance, foot_dy, foot_vel_y, foot_acc_y);
 
     // Update the foot positions in the hip frame
     // To push the body of the robot forward we have to move the stance foot backwards
@@ -569,11 +563,9 @@ bool SingleLegController::moveJointsToSetpoints()
     return true;
 }
 
-bool SingleLegController::moveJointsToCenter()
+bool SingleLegController::moveFootToNominalPosition()
 {
     ros::Rate command_send_rate(publish_frequency);
-
-    swing_percentage = 0.0;
 
     updateStanceFootPositionTrajectory();
 
@@ -603,42 +595,6 @@ bool SingleLegController::moveJointsToCenter()
 
             command_send_rate.sleep();
         }
-    }
-
-    return true;
-}
-
-bool SingleLegController::updateSimpleFootTrajectory()
-{
-    double foot_dx;
-    double foot_vel_x;
-    double foot_acc_x;
-
-    calculateSingleAxisTrajectory(current_iteration/final_iteration, swing_period, x_step_distance, foot_dx, foot_vel_x, foot_acc_x);
-
-    foot_pos_ref(0) = x_nominal - foot_dx;
-    foot_pos_ref(1) = y_nominal;
-    foot_pos_ref(2) = - hip_height;
-
-    if(current_iteration + 1 < final_iteration)
-    {
-        foot_vel_ref(0) = - foot_vel_x;
-        foot_vel_ref(1) = 0.0;
-        foot_vel_ref(2) = 0.0;
-
-        foot_acc_ref(0) = - foot_acc_x;
-        foot_acc_ref(1) = 0.0;
-        foot_acc_ref(2) = 0.0;
-    }
-    else
-    {
-        foot_vel_ref(0) = 0.0;
-        foot_vel_ref(1) = 0.0;
-        foot_vel_ref(2) = 0.0;
-
-        foot_acc_ref(0) = 0.0;
-        foot_acc_ref(1) = 0.0;
-        foot_acc_ref(2) = 0.0;
     }
 
     return true;
@@ -794,11 +750,6 @@ void SingleLegController::printSpatialTrajectories()
 void SingleLegController::printJointTrajectories()
 {
     ROS_INFO("joint_pos_ref: %f, %f, %f\tq_d_ref: %f, %f, %f\tq_dd_ref: %f, %f, %f", this->joint_pos_ref(0), this->joint_pos_ref(1), this->joint_pos_ref(2), this->joint_vel_ref(0), this->joint_vel_ref(1), this->joint_vel_ref(2), this->joint_acc_ref(0), this->joint_acc_ref(1), this->joint_acc_ref(2));
-}
-
-void SingleLegController::printPercentage()
-{
-    ROS_INFO("Progress: %f", swing_percentage);
 }
 
 void SingleLegController::printAllStates()

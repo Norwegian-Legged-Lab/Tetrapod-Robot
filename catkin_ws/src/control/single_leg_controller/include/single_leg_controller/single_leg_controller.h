@@ -32,7 +32,7 @@ class SingleLegController
     /*** Constructor/Destructor ***/
 
     /// \brief Constructor
-    public: SingleLegController(double _publish_frequency, bool _simulation);
+    public: SingleLegController(double _publish_frequency);
 
     /// \brief Destructor
     public: virtual ~SingleLegController(){};
@@ -141,9 +141,7 @@ class SingleLegController
     /// \param[in] _foot_pos_z The target foot z position
     public: bool moveJointsToSetpoints(); // should be changed or removed XXXXXXXXXXXXXXXXXXXX
 
-    public: bool moveJointsToCenter(); // should be changed or removed XXXXXXXXXXXXX
-
-    public: bool updateSimpleFootTrajectory(); // XXXXXXXXXXXXXXXXXXX should be REMOVED
+    public: bool moveFootToNominalPosition(); // should be changed or removed XXXXXXXXXXXXX
 
     /// \brief Increment the gait cycle iterator. It stops iterating when the final iteration is reached
     public: void increaseIterator();
@@ -191,8 +189,6 @@ class SingleLegController
     /// \brief Print the joint trajectory references
     public: void printJointTrajectories();
 
-    public: void printPercentage(); // XXXXXXXXXXXXXXXXXXX Is this still active?
-
     /// \brief Print various information about all joints
     public: void printAllStates();
 
@@ -201,7 +197,7 @@ class SingleLegController
 
     /// \brief Return the leg's phase state
     /// \return The phase state of the single leg
-    public: GaitPhase getState(){return gait_phase;}
+    public: GaitPhase getGaitPhase(){return gait_phase;}
 
 
     /*** STATE VARIABLES ***/
@@ -242,12 +238,6 @@ class SingleLegController
     /// \brief The current gait phase of the leg
     private: GaitPhase gait_phase = GaitPhase::stance;
 
-    private: double swing_current_time = 0.0; // XXXXXXXXXXXXXXXXXXXXXX IS THIS USED?
-
-    private: double swing_start_time = 0.0; // XXXXXXXXXXXXXXXXX IS THIS USED
-
-    private: double swing_percentage = 0.0; // XXXXXXXXXXXXXXXXXXXXXX IS THIS USED
-
     /// \brief A variable used to control the flow of the program. 
     /// It can be set throuh a boolean message received by the ready_to_proceed_subscriber
     private: bool ready_to_proceed = false;
@@ -265,8 +255,6 @@ class SingleLegController
 
 
     /*** PARAMETERS ***/
-
-    bool SIMULATION = true; // XXXXXXXXXXXXXXXXXX REMOVE
 
     /// \brief The number of motors used in single leg control tests
     const int NUMBER_OF_MOTORS = 3;
@@ -290,7 +278,7 @@ class SingleLegController
     private: double publish_frequency = 100.0;
 
     /// \brief The duration of a phase period in seconds
-    private: double swing_period = 10.0;
+    private: double phase_period = 1.0;
 
     /// \brief The standard height of the hips above the ground
     private: double hip_height = 0.3;
@@ -299,7 +287,7 @@ class SingleLegController
     private: double x_nominal = 0.3;
 
     /// \brief The nominal y position of the foot relative to the hip
-    private: double y_nominal = 0.3;
+    private: double y_nominal = 0.35;
 
     /// \brief The step distance in the x direction
     private: double x_step_distance = 0.3;
@@ -308,7 +296,7 @@ class SingleLegController
     private: double y_step_distance = 0.0;
 
     /// \brief The maximum height above the ground to lift the foot
-    private: double max_swing_height = 0.25; 
+    private: double max_swing_height = 0.15; 
 
     /// \brief Hip yaw joint motor position control proportional gain
     double k_p_pos_hy;

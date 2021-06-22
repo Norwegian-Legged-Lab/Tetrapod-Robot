@@ -13,7 +13,7 @@ int main(int argc, char **argv)
     double publish_frequency = 200.0;
 
     // Create a SingleLegController instance which controls and interfaces with the motors
-    SingleLegController controller(publish_frequency, SIMULATION);
+    SingleLegController controller(publish_frequency);
     
     // Set up ROS communication
     controller.initROS();
@@ -64,7 +64,7 @@ int main(int argc, char **argv)
     controller.resetReadyToProceed();
 
     // Move the joint to the start position
-    controller.moveJointsToCenter();
+    controller.moveFootToNominalPosition();
     
     while(true)
     {
