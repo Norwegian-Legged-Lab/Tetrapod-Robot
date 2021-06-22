@@ -2573,6 +2573,26 @@ bool Kinematics::ValidateSolution(const Eigen::Matrix<double, 12, 1> &_q_r)
     return true;
 }
 
+// Validate IK solution for a single leg
+bool Kinematics::ValidateSolution(const Eigen::Matrix<double, 3, 1> &_q_r)
+{
+    if (_q_r.hasNaN())
+    {
+        return false;
+    }
+
+    // Only the first three joint angles related to the front left leg are considered
+    for (size_t i = 0; i < 3; i++)
+    {
+        if (_q_r(i) < this->min_angles(i) || _q_r(i) > this->max_angles(i))
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 // Inertia matrix
 Eigen::Matrix<double, 3, 3> Kinematics::GetInertiaMatrix(const double &_I_XX,
                                                          const double &_I_YY,
