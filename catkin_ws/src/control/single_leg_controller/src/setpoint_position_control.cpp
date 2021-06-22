@@ -9,7 +9,7 @@ int main(int argc, char **argv)
 
     double publish_frequency = 100.0;
 
-    SingleLegController controller(publish_frequency);
+    SingleLegController controller(publish_frequency, false);
     
     controller.initROS();
 
@@ -21,7 +21,7 @@ int main(int argc, char **argv)
     ros::Rate send_control_command_rate(publish_frequency);
 
     // Wait for initial robot state before proceeding
-    while(!controller.initialStateReceived())
+    while(!controller.isInitialStateReceived())
     {
         ROS_WARN("WAITING FOR INITIAL STATE");
 

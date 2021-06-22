@@ -14,13 +14,13 @@ SingleLegController::SingleLegController(double _publish_frequency, bool _SIMULA
     // Set all the states to uninitialized
     for(int i = 0; i < NUMBER_OF_MOTORS; i++)
     {
-        this->q(i) = uninitialized_state; // XXXXXXXXXXXXXXXXX REPLACE BY A BOOLEAN VALUE
+        this->joint_pos(i) = UNINITIALIZED_STATE;
     }
 
     // Set the initial goal position
-    this->q_goal[0] = math_utils::HALF_PI;
-    this->q_goal[1] = 0.0;
-    this->q_goal[2] = 0.0;
+    this->joint_pos_goal[0] = math_utils::HALF_PI;
+    this->joint_pos_goal[1] = 0.0;
+    this->joint_pos_goal[2] = 0.0;
 
     // Set the actuator gains
     this->k_p_pos_hy = 30.0;
@@ -74,13 +74,13 @@ SingleLegController::SingleLegController(double _publish_frequency, bool _SIMULA
     // Initializing the size of the logging messages
     for(int i = 0; i < NUMBER_OF_MOTORS; i++)
     {        
-        this->joint_state_log_msg.position.push_back(CONTROL_IDLE);
-        this->joint_state_log_msg.velocity.push_back(CONTROL_IDLE);
-        this->joint_state_log_msg.effort.push_back(CONTROL_IDLE);
+        this->joint_state_log_msg.position.push_back(UNINITIALIZED_STATE);
+        this->joint_state_log_msg.velocity.push_back(UNINITIALIZED_STATE);
+        this->joint_state_log_msg.effort.push_back(UNINITIALIZED_STATE);
 
-        this->joint_reference_log_msg.position.push_back(CONTROL_IDLE);
-        this->joint_reference_log_msg.velocity.push_back(CONTROL_IDLE);
-        this->joint_reference_log_msg.effort.push_back(CONTROL_IDLE);
+        this->joint_reference_log_msg.position.push_back(UNINITIALIZED_STATE);
+        this->joint_reference_log_msg.velocity.push_back(UNINITIALIZED_STATE);
+        this->joint_reference_log_msg.effort.push_back(UNINITIALIZED_STATE);
     }
 }
 
@@ -180,7 +180,7 @@ void SingleLegController::generalizedCoordinatesCallback(const std_msgs::Float64
     {
         // + 6 is added because the first six states are (x, y, z, roll, pitch, yaw)
         // The remaining three states are theta_hy, theta_hp, theta_kp
-        this->q(i) = _msg->data[i + 6];
+        this->joint_pos(i) = _msg->data[i + 6];
     }
 }
 
@@ -190,7 +190,7 @@ void SingleLegController::generalizedVelocitiesCallback(const std_msgs::Float64M
     {
         // + 6 is added because the first six states are (x_dot, y_dot, z_dot, roll_dot, pitch_dot, yaw_dot)
         // The remaining three states are theta_hy_dot, theta_hp_dot, theta_kp_dot
-        this->q_d(i) = _msg->data[i + 6];
+        this->joint_vel(i) = _msg->data[i + 6];
     }
 }
 
@@ -199,13 +199,13 @@ void SingleLegController::jointStateCallback(const sensor_msgs::JointStatePtr &_
     for(int i = 0; i < NUMBER_OF_MOTORS; i++)
     {
         // Store the jont angles
-        this->q(i) = _msg->position[i];
+        this->joint_pos(i) = _msg->position[i];
 
         // Store the joint velocities
-        this->q_d(i) = _msg->velocity[i];
+        this->joint_vel(i) = _msg->velocity[i];
 
         // Store the joint torques
-        this->tau(i) = _msg->effort[i];
+        this->joint_torque(i) = _msg->effort[i];
     }
 }
 
@@ -220,7 +220,7 @@ void SingleLegController::jointSetpointCallback(const std_msgs::Float64MultiArra
     for(int i = 0; i < 3; i++)
     {
         // Set the desired joint state goal
-        this->q_goal(i) = _msg->data[i];
+        this->joint_pos_goal(i) = _msg->data[i];
     }
 }
 
@@ -265,9 +265,9 @@ void SingleLegController::calculateSingleAxisTrajectory
     const double &_percentage, 
     const double &_period, 
     const double &_max_travel,
-    double &_x, 
-    double &_x_d, 
-    double &_x_dd
+    double &_axis_pos, 
+    double &_axis_vel, 
+    double &_axis_acc
 )
 {
     // Define paramaters for the polynomial. Please see the report for an explanation
@@ -277,13 +277,13 @@ void SingleLegController::calculateSingleAxisTrajectory
     double d = -_max_travel*7.0/16.0;
 
     // Calculate the position from the polynomial
-    _x = 0.2*a*pow((_percentage - 0.5), 5.0) + b*pow((_percentage - 0.5), 3.0)/3.0 + c*_percentage + d;
+    _axis_pos = 0.2*a*pow((_percentage - 0.5), 5.0) + b*pow((_percentage - 0.5), 3.0)/3.0 + c*_percentage + d;
 
     // Calculate the velocity from the derivative of the polynomial
-    _x_d = (a*pow((_percentage - 0.5), 4.0) + b*pow((_percentage - 0.5), 2.0) + c)/_period;
+    _axis_vel = (a*pow((_percentage - 0.5), 4.0) + b*pow((_percentage - 0.5), 2.0) + c)/_period;
 
     // Calculate the acceleration from the two times derivative of the polynomial
-    _x_dd = (4.0*a*pow((_percentage - 0.5), 3.0) + 2.0*b*(_percentage - 0.5))/(_period*_period);
+    _axis_acc = (4.0*a*pow((_percentage - 0.5), 3.0) + 2.0*b*(_percentage - 0.5))/(_period*_period);
 }
 
 void SingleLegController::updateSwingFootPositionTrajectory()
@@ -310,10 +310,10 @@ void SingleLegController::updateSwingFootPositionTrajectory()
     double foot_acc_y;
 
     // Update the foot trajectory in the hip x direction
-    this->calculateSingleAxisTrajectory(progress, swing_period, x_offset, foot_dx, foot_vel_x, foot_acc_x);
+    this->calculateSingleAxisTrajectory(progress, swing_period, x_step_distance, foot_dx, foot_vel_x, foot_acc_x);
 
     // Update the foot trajectory in the hip y direction
-    this->calculateSingleAxisTrajectory(progress, swing_period, y_offset, foot_dy, foot_vel_y, foot_acc_y);
+    this->calculateSingleAxisTrajectory(progress, swing_period, y_step_distance, foot_dy, foot_vel_y, foot_acc_y);
 
     // Update the foot trajectory in the hip z direction
     Eigen::Matrix<double, 3, 1> z = this->calculateSwingLegHeightTrajectory(progress, swing_period, max_swing_height, hip_height);
@@ -322,19 +322,19 @@ void SingleLegController::updateSwingFootPositionTrajectory()
     //z(2) = 0.0;
 
     // Update the foot positions in the hip frame
-    this->pos(0) = x_center - x_offset + foot_dx;
-    this->pos(1) = y_center - y_offset + foot_dy;
-    this->pos(2) = z(0);
+    this->foot_pos_ref(0) = x_nominal - x_step_distance + foot_dx;
+    this->foot_pos_ref(1) = y_nominal - y_step_distance + foot_dy;
+    this->foot_pos_ref(2) = z(0);
 
     // Update the foot velocities in the hip frame
-    this->vel(0) = foot_vel_x;
-    this->vel(1) = foot_vel_y;
-    this->vel(2) = z(1);
+    this->foot_vel_ref(0) = foot_vel_x;
+    this->foot_vel_ref(1) = foot_vel_y;
+    this->foot_vel_ref(2) = z(1);
 
     // Update the foot accelerations in the hip frame
-    this->acc(0) = foot_acc_x;
-    this->acc(1) = foot_acc_y;
-    this->acc(2) = z(2);
+    this->foot_acc_ref(0) = foot_acc_x;
+    this->foot_acc_ref(1) = foot_acc_y;
+    this->foot_acc_ref(2) = z(2);
 }
 
 void SingleLegController::updateStanceFootPositionTrajectory()
@@ -361,89 +361,89 @@ void SingleLegController::updateStanceFootPositionTrajectory()
     double foot_acc_y;
 
     // Update the foot trajectory in the hip x direction
-    this->calculateSingleAxisTrajectory(progress, swing_period, x_offset, foot_dx, foot_vel_x, foot_acc_x);
+    this->calculateSingleAxisTrajectory(progress, swing_period, x_step_distance, foot_dx, foot_vel_x, foot_acc_x);
 
     // Update the foot trajectory in the hip y direction
-    this->calculateSingleAxisTrajectory(progress, swing_period, y_offset, foot_dy, foot_vel_y, foot_acc_y);
+    this->calculateSingleAxisTrajectory(progress, swing_period, y_step_distance, foot_dy, foot_vel_y, foot_acc_y);
 
     // Update the foot positions in the hip frame
     // To push the body of the robot forward we have to move the stance foot backwards
-    this->pos(0) = x_center - foot_dx;
-    this->pos(1) = y_center - foot_dy;
+    this->foot_pos_ref(0) = x_nominal - foot_dx;
+    this->foot_pos_ref(1) = y_nominal - foot_dy;
 
     // We assume a constant height of the ground. !!! Here a lot can be done to handle obstacles
-    this->pos(2) = - hip_height;
+    this->foot_pos_ref(2) = - hip_height;
 
     // If we have not reached the final iteration, simply assign the foot trajectory velocity and acceleration
     if(current_iteration + 1 < final_iteration)
     {
-        this->vel(0) = - foot_vel_x;
-        this->vel(1) = - foot_vel_y;
-        this->vel(2) = 0.0;
+        this->foot_vel_ref(0) = - foot_vel_x;
+        this->foot_vel_ref(1) = - foot_vel_y;
+        this->foot_vel_ref(2) = 0.0;
 
-        this->acc(0) = - foot_acc_x;
-        this->acc(1) = - foot_acc_y;
-        this->acc(2) = 0.0;
+        this->foot_acc_ref(0) = - foot_acc_x;
+        this->foot_acc_ref(1) = - foot_acc_y;
+        this->foot_acc_ref(2) = 0.0;
     }
     // If we have reached the final iteration and not changed state, set the velocities to zero to keep the foot still.
     else
     {
-        this->vel(0) = 0.0;
-        this->vel(1) = 0.0;
-        this->vel(2) = 0.0;
+        this->foot_vel_ref(0) = 0.0;
+        this->foot_vel_ref(1) = 0.0;
+        this->foot_vel_ref(2) = 0.0;
 
-        this->acc(0) = 0.0;
-        this->acc(1) = 0.0;
-        this->acc(2) = 0.0;
+        this->foot_acc_ref(0) = 0.0;
+        this->foot_acc_ref(1) = 0.0;
+        this->foot_acc_ref(2) = 0.0;
     }
 }
 
 void SingleLegController::updateJointReferences()
 {
     // Try to solve the inverse kinematics for the single leg to obtain the joint angle references from the foot position reference
-    if(!this->kinematics.SolveSingleLegInverseKinematics(false, pos, this->q_ref))
+    if(!this->kinematics.SolveSingleLegInverseKinematics(false, foot_pos_ref, this->joint_pos_ref))
     {
         ROS_WARN("[updateJointReferences] Failed to solve inverse kinematics");
     }
     else // If we successfully found a solution to the inverse kinematics problem
     {
         // Calculate the translation Jacobian for the foot
-        Eigen::Matrix<double, 3, 3> J_s = this->kinematics.GetTranslationJacobianInB(Kinematics::LegType::frontLeft, Kinematics::BodyType::foot, q(0), q(1), q(2));
+        Eigen::Matrix<double, 3, 3> J_s = this->kinematics.GetTranslationJacobianInB(Kinematics::LegType::frontLeft, Kinematics::BodyType::foot, joint_pos(0), joint_pos(1), joint_pos(2));
         
         // Calculate the derivative of the translation Jacobian for the foot
-        Eigen::Matrix<double, 3, 3> J_s_d = this->kinematics.GetTranslationJacobianInBDiff(Kinematics::LegType::frontLeft, Kinematics::BodyType::foot, q(0), q(1), q(2), q_d(0), q_d(1), q_d(2));
+        Eigen::Matrix<double, 3, 3> J_s_d = this->kinematics.GetTranslationJacobianInBDiff(Kinematics::LegType::frontLeft, Kinematics::BodyType::foot, joint_pos(0), joint_pos(1), joint_pos(2), joint_vel(0), joint_vel(1), joint_vel(2));
 
         // Update the joint angle velocity references
-        this->q_d_ref = J_s.inverse()*this->vel;
+        this->joint_vel_ref = J_s.inverse()*this->foot_vel_ref;
 
         // Update the joint angle acceleration references
-        this->q_dd_ref = J_s.inverse()*(this->acc - J_s_d*this->vel);
+        this->joint_acc_ref = J_s.inverse()*(this->foot_acc_ref - J_s_d*this->foot_vel_ref);
     }
 }
 
 void SingleLegController::updateJointTorques
 (
-    const Eigen::Matrix<double, 3, 1> &_q_ref,
-    const Eigen::Matrix<double, 3, 1> &_q_d_ref,
-    const Eigen::Matrix<double, 3, 1> &_q_dd_ref,
-    const Eigen::Matrix<double, 3, 1> &_q,
-    const Eigen::Matrix<double, 3, 1> &_q_d
+    const Eigen::Matrix<double, 3, 1> &_joint_pos_ref,
+    const Eigen::Matrix<double, 3, 1> &_joint_vel_ref,
+    const Eigen::Matrix<double, 3, 1> &_joint_acc_ref,
+    const Eigen::Matrix<double, 3, 1> &_joint_pos,
+    const Eigen::Matrix<double, 3, 1> &_joint_vel
 )
 {
     // Calculate the closed loop joint torque
-    Eigen::Matrix<double, 3, 1> normalized_joint_torques = _q_dd_ref - K_p*(_q - _q_ref) - K_d*(_q_d - _q_d_ref);
+    Eigen::Matrix<double, 3, 1> normalized_joint_torques = _joint_acc_ref - K_p*(_joint_pos - _joint_pos_ref) - K_d*(_joint_vel - _joint_vel_ref);
 
     // Calculate the mass inertia matrix
-    Eigen::Matrix<double, 3, 3> M = this->kinematics.GetSingleLegMassMatrix(_q);
+    Eigen::Matrix<double, 3, 3> M = this->kinematics.GetSingleLegMassMatrix(_joint_pos);
 
     // Calculate the Coriolis/Centrifugal vector
-    Eigen::Matrix<double, 3, 1> b = this->kinematics.GetSingleLegCoriolisAndCentrifugalTerms(_q, _q_d);
+    Eigen::Matrix<double, 3, 1> b = this->kinematics.GetSingleLegCoriolisAndCentrifugalTerms(_joint_pos, _joint_vel);
 
     // Calculate the gravity vector
-    Eigen::Matrix<double, 3, 1> g = this->kinematics.GetSingleLegGravitationalTerms(_q);
+    Eigen::Matrix<double, 3, 1> g = this->kinematics.GetSingleLegGravitationalTerms(_joint_pos);
 
     /*
-    ROS_INFO("y_ref: %f\t y_d_ref: %f\t y_dd_ref: %f\t y: %f\t y_d: %f", _q_ref(1), _q_d_ref(1), _q_dd_ref(1), _q(1), _q_d(1));
+    ROS_INFO("y_ref: %f\t y_d_ref: %f\t y_dd_ref: %f\t y: %f\t y_d: %f", _q_ref(1), _joint_vel_ref(1), _joint_acc_ref(1), _q(1), _joint_vel(1));
 
     ROS_INFO(
         "Mass matrix:\n%f\t%f\t%f\t\n%f\t%f\t%f\t\n%f\t%f\t%f\t\n", 
@@ -455,13 +455,13 @@ void SingleLegController::updateJointTorques
     ROS_INFO("g1: %f\tg2: %f\tg3: %f", g(0), g(1), g(2));
     */
 
-    this->tau = b + g + M*normalized_joint_torques;
+    this->joint_torque_ref = b + g + M*normalized_joint_torques;
 }
 
 void SingleLegController::updateJointTorques()
 {
     // Updates the joint torque references based on the joint reference trajectories and estimated joint states
-    this->updateJointTorques(this->q_ref, this->q_d_ref, this->q_dd_ref, this->q, this->q_d);
+    this->updateJointTorques(this->joint_pos_ref, this->joint_vel_ref, this->joint_acc_ref, this->joint_pos, this->joint_vel);
 }
 
 void SingleLegController::sendTorqueCommand()
@@ -479,7 +479,7 @@ void SingleLegController::sendTorqueCommand()
     std_msgs::Float64MultiArray torque_commands;
 
     // Put the joint torque reference vector into the torque command message
-    tf::matrixEigenToMsg(this->tau, torque_commands);
+    tf::matrixEigenToMsg(this->joint_torque_ref, torque_commands);
 
     // Add the torque commands to the joint state message
     joint_state_msg.effort = torque_commands.data;
@@ -491,7 +491,7 @@ void SingleLegController::sendTorqueCommand()
 void SingleLegController::sendPositionCommand()
 {
     // Check if the position commands are within the joint angle limit constraints
-    if (this->kinematics.ValidateSolution(this->q_ref) == false)
+    if (this->kinematics.ValidateSolution(this->joint_pos_ref) == false)
     {
         // If they are violated report the problem and don't send a command to the motors
         ROS_WARN("Position setpoint violates joint limits. Command canceled.");
@@ -511,7 +511,7 @@ void SingleLegController::sendPositionCommand()
         std_msgs::Float64MultiArray position_commands;
 
         // Put the joint angle reference vector into the position command message
-        tf::matrixEigenToMsg(this->q_ref, position_commands);
+        tf::matrixEigenToMsg(this->joint_pos_ref, position_commands);
 
         // Add the position commands to the joint state message
         joint_state_msg.position = position_commands.data;
@@ -524,8 +524,8 @@ void SingleLegController::sendPositionCommand()
 void SingleLegController::updateJointSetpoints()
 {
     updateJointReferences();
-    this->q_d_ref = Eigen::Matrix<double, 3, 1>::Zero();
-    q_dd_ref = Eigen::Matrix<double, 3, 1>::Zero();
+    this->joint_vel_ref = Eigen::Matrix<double, 3, 1>::Zero();
+    joint_acc_ref = Eigen::Matrix<double, 3, 1>::Zero();
 }
 
 
@@ -559,7 +559,7 @@ bool SingleLegController::moveJointsToSetpoints()
 
         updateJointTorques();
 
-        printTorques();
+        printTorqueReferences();
 
         sendTorqueCommand();
 
@@ -579,9 +579,9 @@ bool SingleLegController::moveJointsToCenter()
 
     updateJointReferences();
 
-    this->q_d_ref = Eigen::Matrix<double, 3, 1>::Zero();
+    this->joint_vel_ref = Eigen::Matrix<double, 3, 1>::Zero();
 
-    q_dd_ref = Eigen::Matrix<double, 3, 1>::Zero();
+    joint_acc_ref = Eigen::Matrix<double, 3, 1>::Zero();
 
     bool is_joint_target_reached = false;
 
@@ -614,31 +614,31 @@ bool SingleLegController::updateSimpleFootTrajectory()
     double foot_vel_x;
     double foot_acc_x;
 
-    calculateSingleAxisTrajectory(current_iteration/final_iteration, swing_period, x_offset, foot_dx, foot_vel_x, foot_acc_x);
+    calculateSingleAxisTrajectory(current_iteration/final_iteration, swing_period, x_step_distance, foot_dx, foot_vel_x, foot_acc_x);
 
-    pos(0) = x_center - foot_dx;
-    pos(1) = y_center;
-    pos(2) = - hip_height;
+    foot_pos_ref(0) = x_nominal - foot_dx;
+    foot_pos_ref(1) = y_nominal;
+    foot_pos_ref(2) = - hip_height;
 
     if(current_iteration + 1 < final_iteration)
     {
-        vel(0) = - foot_vel_x;
-        vel(1) = 0.0;
-        vel(2) = 0.0;
+        foot_vel_ref(0) = - foot_vel_x;
+        foot_vel_ref(1) = 0.0;
+        foot_vel_ref(2) = 0.0;
 
-        acc(0) = - foot_acc_x;
-        acc(1) = 0.0;
-        acc(2) = 0.0;
+        foot_acc_ref(0) = - foot_acc_x;
+        foot_acc_ref(1) = 0.0;
+        foot_acc_ref(2) = 0.0;
     }
     else
     {
-        vel(0) = 0.0;
-        vel(1) = 0.0;
-        vel(2) = 0.0;
+        foot_vel_ref(0) = 0.0;
+        foot_vel_ref(1) = 0.0;
+        foot_vel_ref(2) = 0.0;
 
-        acc(0) = 0.0;
-        acc(1) = 0.0;
-        acc(2) = 0.0;
+        foot_acc_ref(0) = 0.0;
+        foot_acc_ref(1) = 0.0;
+        foot_acc_ref(2) = 0.0;
     }
 
     return true;
@@ -656,7 +656,7 @@ void SingleLegController::increaseIterator()
     }
 }
 
-void SingleLegController::updateState()
+void SingleLegController::updateGaitPhase()
 {
     // Increase the iterator
     this->current_iteration++;
@@ -668,21 +668,21 @@ void SingleLegController::updateState()
         this->current_iteration = 0.0;
 
         // If the previous phase was not the stance phase, change to stance phase
-        if(this->state != State::stance)
+        if(this->gait_phase != GaitPhase::stance)
         {
-            this->state = State::stance;
+            this->gait_phase = GaitPhase::stance;
         }
         else // If not change to swing phase
         {
-            this->state = State::swing;
+            this->gait_phase = GaitPhase::swing;
         }
     }
     
 }
 
-void SingleLegController::updateFootReference()
+void SingleLegController::updateFootTrajectoryReference()
 {
-    if(this->state == State::swing)
+    if(this->gait_phase == GaitPhase::swing)
     {
         ROS_INFO("SWING");
 
@@ -712,21 +712,21 @@ void SingleLegController::updateSetpointTrajectory()
         // If we are within the angle threshold we tell the actuators to converge to the goal position
         // The larger the threshold the smaller is the chance of oscillations about the goal
         // A smaller threshold will provide a smother response
-        if(abs(q_goal(i) - q(i)) < angle_threshold)
+        if(abs(joint_pos_goal(i) - joint_pos(i)) < angle_threshold)
         {
-            this->q_ref(i) = q_goal(i);
+            this->joint_pos_ref(i) = joint_pos_goal(i);
             ROS_INFO("%d Close to goal", i);
         }
-        else if(q_goal(i) > q(i))
+        else if(joint_pos_goal(i) > joint_pos(i))
         {
             // Increment the joint reference
-            this->q_ref(i) = q(i) + joint_step_distance;
+            this->joint_pos_ref(i) = joint_pos(i) + joint_step_distance;
             ROS_INFO("%d Increment", i);
         }
-        else if(q_goal(i) < q(i))
+        else if(joint_pos_goal(i) < joint_pos(i))
         {
             // Decrement the joint reference
-            this->q_ref(i) = q(i) - joint_step_distance;
+            this->joint_pos_ref(i) = joint_pos(i) - joint_step_distance;
             ROS_INFO("%d Decrement", i);
         }
     }
@@ -741,10 +741,10 @@ void SingleLegController::checkForNewMessages()
 
 bool SingleLegController::isTargetPositionReached()
 {
-    Eigen::Matrix<double, 3, 1> joint_error = q - this->q_ref;
-    double q_speed = q_d.transpose()*q_d;
+    Eigen::Matrix<double, 3, 1> joint_error = joint_pos - this->joint_pos_ref;
+    double joint_pos_speed = joint_vel.transpose()*joint_vel;
     printAllStates();
-    if((joint_error.transpose()*joint_error < POSITION_CONVERGENCE_CRITERIA) && (q_speed < 0.050))
+    if((joint_error.transpose()*joint_error < POSITION_CONVERGENCE_CRITERIA) && (joint_pos_speed < 0.050))
     {
         ROS_INFO("Target Reached");
         return true;
@@ -757,7 +757,7 @@ bool SingleLegController::isTargetPositionReached()
 
 bool SingleLegController::isJointVelocitySmall()
 {
-    if(q_d.transpose()*q_d < 0.010)
+    if(joint_vel.transpose()*joint_vel < 0.010)
     {
         return true;
     }
@@ -768,10 +768,10 @@ bool SingleLegController::isJointVelocitySmall()
     }
 }
 
-bool SingleLegController::initialStateReceived()
+bool SingleLegController::isInitialStateReceived()
 {
     // Check if the current joint angle is equal to the uninitialized state
-    if(this->q(0) == this->uninitialized_state)
+    if(this->joint_pos(0) == this->UNINITIALIZED_STATE)
     {
         return false;
     }
@@ -781,19 +781,19 @@ bool SingleLegController::initialStateReceived()
     }
 }
 
-void SingleLegController::printTorques()
+void SingleLegController::printTorqueReferences()
 {
-    ROS_INFO("T1: %f\tT2: %f\tT3: %f", this->tau(0), this->tau(1), this->tau(2));
+    ROS_INFO("T1: %f\tT2: %f\tT3: %f", this->joint_torque_ref(0), this->joint_torque_ref(1), this->joint_torque_ref(2));
 }
 
 void SingleLegController::printSpatialTrajectories()
 {
-    ROS_INFO("Pos: %f, %f, %f\tVel: %f, %f, %f\tAcc: %f, %f, %f", this->pos(0), this->pos(1), this->pos(2), this->vel(0), this->vel(1), this->vel(2), this->acc(0), this->acc(1), this->acc(2));
+    ROS_INFO("Pos: %f, %f, %f\tVel: %f, %f, %f\tAcc: %f, %f, %f", this->foot_pos_ref(0), this->foot_pos_ref(1), this->foot_pos_ref(2), this->foot_vel_ref(0), this->foot_vel_ref(1), this->foot_vel_ref(2), this->foot_acc_ref(0), this->foot_acc_ref(1), this->foot_acc_ref(2));
 }
 
 void SingleLegController::printJointTrajectories()
 {
-    ROS_INFO("q_ref: %f, %f, %f\tq_d_ref: %f, %f, %f\tq_dd_ref: %f, %f, %f", this->q_ref(0), this->q_ref(1), this->q_ref(2), this->q_d_ref(0), this->q_d_ref(1), this->q_d_ref(2), this->q_dd_ref(0), this->q_dd_ref(1), this->q_dd_ref(2));
+    ROS_INFO("joint_pos_ref: %f, %f, %f\tq_d_ref: %f, %f, %f\tq_dd_ref: %f, %f, %f", this->joint_pos_ref(0), this->joint_pos_ref(1), this->joint_pos_ref(2), this->joint_vel_ref(0), this->joint_vel_ref(1), this->joint_vel_ref(2), this->joint_acc_ref(0), this->joint_acc_ref(1), this->joint_acc_ref(2));
 }
 
 void SingleLegController::printPercentage()
@@ -805,10 +805,10 @@ void SingleLegController::printAllStates()
 {
     ROS_INFO("I: %.0f\tP: %.3f, %.3f, %.3f\tV: %.3f, %.3f, %.3f\tA: %.3f, %.3f, %.3f\tq_r: %.3f, %.3f, %.3f\tq_d_r: %.3f, %.3f, %.3f\tq_dd_r: %.3f, %.3f, %.3f\tq: %.3f, %.3f, %.3f\tq_d: %.3f, %.3f, %.3f\tT:  %.3f, %.3f, %.3f",
     current_iteration,
-    this->pos(0), this->pos(1), this->pos(2), this->vel(0), this->vel(1), this->vel(2), this->acc(0), this->acc(1), this->acc(2),
-    math_utils::radToDeg(this->q_ref(0)), math_utils::radToDeg(this->q_ref(1)), math_utils::radToDeg(this->q_ref(2)), this->q_d_ref(0), this->q_d_ref(1), this->q_d_ref(2), this->q_dd_ref(0), this->q_dd_ref(1), this->q_dd_ref(2),
-    math_utils::radToDeg(q(0)), math_utils::radToDeg(q(1)), math_utils::radToDeg(q(2)), q_d(0), q_d(1), q_d(2),
-    tau(0), tau(1), tau(2)
+    this->foot_pos_ref(0), this->foot_pos_ref(1), this->foot_pos_ref(2), this->foot_vel_ref(0), this->foot_vel_ref(1), this->foot_vel_ref(2), this->foot_acc_ref(0), this->foot_acc_ref(1), this->foot_acc_ref(2),
+    math_utils::radToDeg(this->joint_pos_ref(0)), math_utils::radToDeg(this->joint_pos_ref(1)), math_utils::radToDeg(this->joint_pos_ref(2)), this->joint_vel_ref(0), this->joint_vel_ref(1), this->joint_vel_ref(2), this->joint_acc_ref(0), this->joint_acc_ref(1), this->joint_acc_ref(2),
+    math_utils::radToDeg(joint_pos(0)), math_utils::radToDeg(joint_pos(1)), math_utils::radToDeg(joint_pos(2)), joint_vel(0), joint_vel(1), joint_vel(2),
+    joint_torque(0), joint_torque(1), joint_torque(2)
     );
 }
 
@@ -817,13 +817,13 @@ void SingleLegController::writeToLog()
     // Fill the log messages with the latest data
     for(int i = 0; i < NUMBER_OF_MOTORS; i++)
     {
-        this->joint_state_log_msg.position[i] = this->q(i);
-        this->joint_state_log_msg.velocity[i] = this->q_d(i);
-        this->joint_state_log_msg.effort[i] = this->tau(i);
+        this->joint_state_log_msg.position[i] = this->joint_pos(i);
+        this->joint_state_log_msg.velocity[i] = this->joint_vel(i);
+        this->joint_state_log_msg.effort[i] = this->joint_torque(i);
 
-        this->joint_reference_log_msg.position[i] = this->q_ref(i);
-        this->joint_reference_log_msg.velocity[i] = this->q_d_ref(i);
-        this->joint_reference_log_msg.effort[i] = this->q_dd_ref(i);
+        this->joint_reference_log_msg.position[i] = this->joint_pos_ref(i);
+        this->joint_reference_log_msg.velocity[i] = this->joint_vel_ref(i);
+        this->joint_reference_log_msg.effort[i] = this->joint_acc_ref(i);
     }
     
     // Update the time stamps

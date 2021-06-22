@@ -7,7 +7,7 @@
 
 int main(int argc, char **argv)
 {
-    SingleLegController controller(1.0);
+    SingleLegController controller(1.0, true);
 
     controller.initROS();
     

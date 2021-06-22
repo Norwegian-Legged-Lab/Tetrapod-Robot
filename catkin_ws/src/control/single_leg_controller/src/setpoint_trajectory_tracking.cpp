@@ -5,11 +5,13 @@
 
 int main(int argc, char **argv)
 {
+    bool SIMULATION = true;
+
     // Set the publish frequency 
     const double PUBLISH_FREQUENCY = 200;
 
     // Create a SingleLegController instance which controls and interfaces with the motors
-    SingleLegController controller(PUBLISH_FREQUENCY);
+    SingleLegController controller(PUBLISH_FREQUENCY, SIMULATION);
     
     // Set up ROS communication
     controller.initROS();
@@ -21,7 +23,7 @@ int main(int argc, char **argv)
     ros::Rate send_control_command_rate(PUBLISH_FREQUENCY);
     
     // Wait for initial states from the actuators
-    while(!controller.initialStateReceived())
+    while(!controller.isInitialStateReceived())
     {
         // Do a ROS spin to check if we have received any new messages
         controller.checkForNewMessages();
@@ -58,7 +60,7 @@ int main(int argc, char **argv)
         controller.checkForNewMessages();
 
         // Update the estimated joint states of the robot based on the latest available information
-        controller.updateState();
+        controller.updateGaitPhase();
 
         // Update the setpoint trajectory
         controller.updateSetpointTrajectory();

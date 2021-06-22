@@ -26,8 +26,8 @@
 
 class SingleLegController
 {
-    // Leg states 
-    public: enum State {stance = 1, swing = 2, uninitialized = 3};
+    /// \brief Gait phases 
+    public: enum GaitPhase {stance = 1, swing = 2, uninitialized = 3};
 
     /*** Constructor/Destructor ***/
 
@@ -58,7 +58,7 @@ class SingleLegController
     private: void jointStateCallback(const sensor_msgs::JointStatePtr &_msg);
 
     /// \brief The ready_to_proceed parameter is changed based on the incomming message
-    /// \param[in] _msg A bool message deciding if it is safe to move the leg or not
+    /// \param[in] _msg A bool message indicating whether or not a script can proceed
     public: void readyToProceedCallback(const std_msgs::Bool &_msg);
 
     /// \brief Listens to joint setpoints messages 
@@ -94,9 +94,9 @@ class SingleLegController
         const double &_percentage, 
         const double &_period, 
         const double &_max_travel,
-        double &_x, 
-        double &_x_d, 
-        double &_x_dd
+        double &_axis_pos, 
+        double &_axis_vel, 
+        double &_axis_acc
     );
 
     /// \brief Update the swing foot trajectory for the leg
@@ -109,18 +109,18 @@ class SingleLegController
     public: void updateJointReferences();
 
     /// \brief Update the joint torqes references based on the joint trajectories and joint states
-    /// \param[in] _q_ref The joint angle references
-    /// \param[in] _q_d_ref the joint velocity references
-    /// \param[in] _q_dd_ref The joint acceleration references
-    /// \param[in] _q The estimated joint angles
-    /// \param[in] _q_d The estimated joint velocities
+    /// \param[in] _joint_pos_ref The joint angle references
+    /// \param[in] _joint_vel_ref the joint velocity references
+    /// \param[in] _joint_acc_ref The joint acceleration references
+    /// \param[in] _joint_pos The estimated joint angles
+    /// \param[in] _joint_vel The estimated joint velocities
     public: void updateJointTorques
     (
-        const Eigen::Matrix<double, 3, 1> &_q_ref,
-        const Eigen::Matrix<double, 3, 1> &_q_d_ref,
-        const Eigen::Matrix<double, 3, 1> &_q_dd_ref,
-        const Eigen::Matrix<double, 3, 1> &_q,
-        const Eigen::Matrix<double, 3, 1> &_q_d        
+        const Eigen::Matrix<double, 3, 1> &_joint_pos_ref,
+        const Eigen::Matrix<double, 3, 1> &_joint_vel_ref,
+        const Eigen::Matrix<double, 3, 1> &_joint_acc_ref,
+        const Eigen::Matrix<double, 3, 1> &_joint_pos,
+        const Eigen::Matrix<double, 3, 1> &_joint_vel        
     );
 
     /// \brief Overloaded function that uses the current joint references and joint states
@@ -149,10 +149,10 @@ class SingleLegController
     public: void increaseIterator();
 
     /// \brief Increments the gait cycle iterator and updates the leg state
-    public: void updateState();
+    public: void updateGaitPhase();
 
     /// \brief Update the foot trajectory based on the leg state 
-    public: void updateFootReference();
+    public: void updateFootTrajectoryReference();
 
     /// \brief Tries to set the control gains in the motors. The function loops until it succeeds.
     public: void setMotorGains();
@@ -180,10 +180,10 @@ class SingleLegController
     public: bool isJointVelocitySmall(); // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
     /// \brief Check if the uninitalized joint state of the robot has been overridden by measurements
-    public: bool initialStateReceived();
+    public: bool isInitialStateReceived();
 
     /// \brief Print the joint torque references
-    public: void printTorques();
+    public: void printTorqueReferences();
 
     /// \brief Print the foot trajectory reference
     public: void printSpatialTrajectories();
@@ -201,43 +201,46 @@ class SingleLegController
 
     /// \brief Return the leg's phase state
     /// \return The phase state of the single leg
-    public: State getState(){return state;}
+    public: GaitPhase getState(){return gait_phase;}
 
 
     /*** STATE VARIABLES ***/
 
     /// \brief The foot position reference relative to the hip
-    private: Eigen::Matrix<double, 3, 1> pos = Eigen::Matrix<double, 3, 1>::Zero();
+    private: Eigen::Matrix<double, 3, 1> foot_pos_ref = Eigen::Matrix<double, 3, 1>::Zero();
 
     /// \brief The foot velocity reference relative to the hip
-    private: Eigen::Matrix<double, 3, 1> vel = Eigen::Matrix<double, 3, 1>::Zero();
+    private: Eigen::Matrix<double, 3, 1> foot_vel_ref = Eigen::Matrix<double, 3, 1>::Zero();
 
     /// \brief The foot acceleration reference relative to the hip
-    private: Eigen::Matrix<double, 3, 1> acc = Eigen::Matrix<double, 3, 1>::Zero();
+    private: Eigen::Matrix<double, 3, 1> foot_acc_ref = Eigen::Matrix<double, 3, 1>::Zero();
 
     /// \brief When using setpointTrajectory control these are the joint angles we want to reach eventually
-    private: Eigen::Matrix<double, 3, 1> q_goal = Eigen::Matrix<double, 3, 1>::Zero(); /// XXXXXXXXXXXXXXXXXXXXXXX 
+    private: Eigen::Matrix<double, 3, 1> joint_pos_goal = Eigen::Matrix<double, 3, 1>::Zero(); /// XXXXXXXXXXXXXXXXXXXXXXX 
 
-    /// \brief The estimated joint angles of the leg
-    private: Eigen::Matrix<double, 3, 1> q = Eigen::Matrix<double, 3, 1>::Zero();
+    /// \brief The estimated joint angles of the motors
+    private: Eigen::Matrix<double, 3, 1> joint_pos = Eigen::Matrix<double, 3, 1>::Zero();
 
-    /// \brief The estimated joint velocities of the leg
-    private: Eigen::Matrix<double, 3, 1> q_d = Eigen::Matrix<double, 3, 1>::Zero();
+    /// \brief The estimated joint velocities of the motors
+    private: Eigen::Matrix<double, 3, 1> joint_vel = Eigen::Matrix<double, 3, 1>::Zero();
 
-    /// \brief The reference joint angles of the leg
-    private: Eigen::Matrix<double, 3, 1> q_ref = Eigen::Matrix<double, 3, 1>::Zero();
+    /// \brief The estimated joint torques of the motors
+    private: Eigen::Matrix<double, 3, 1> joint_torque = Eigen::Matrix<double, 3, 1>::Zero();
 
-    /// \brief The reference joint velocities of the leg
-    private: Eigen::Matrix<double, 3, 1> q_d_ref = Eigen::Matrix<double, 3, 1>::Zero();
+    /// \brief The reference joint angles for the motors
+    private: Eigen::Matrix<double, 3, 1> joint_pos_ref = Eigen::Matrix<double, 3, 1>::Zero();
 
-    /// \brief The reference joint accelerations of the leg
-    private: Eigen::Matrix<double, 3, 1> q_dd_ref = Eigen::Matrix<double, 3, 1>::Zero();
+    /// \brief The reference joint velocities for the motors
+    private: Eigen::Matrix<double, 3, 1> joint_vel_ref = Eigen::Matrix<double, 3, 1>::Zero();
 
-    /// \brief The reference joint torques of the leg
-    private: Eigen::Matrix<double, 3, 1> tau = Eigen::Matrix<double, 3, 1>::Zero();
+    /// \brief The reference joint accelerations for the motors
+    private: Eigen::Matrix<double, 3, 1> joint_acc_ref = Eigen::Matrix<double, 3, 1>::Zero();
+
+    /// \brief The reference joint torques for the motors
+    private: Eigen::Matrix<double, 3, 1> joint_torque_ref = Eigen::Matrix<double, 3, 1>::Zero();
 
     /// \brief The current gait phase of the leg
-    private: State state = State::stance;
+    private: GaitPhase gait_phase = GaitPhase::stance;
 
     private: double swing_current_time = 0.0; // XXXXXXXXXXXXXXXXXXXXXX IS THIS USED?
 
@@ -269,10 +272,7 @@ class SingleLegController
     const int NUMBER_OF_MOTORS = 3;
 
     /// \brief The value of an uninitialized state
-    private: const double uninitialized_state = 100.0;
-
-    /// \brief Variable indicate no control effort
-    const double CONTROL_IDLE  = 1000.0;
+    private: const double UNINITIALIZED_STATE = 100.0;
 
     /// \brief Convergence crieria for position control test
     const double POSITION_CONVERGENCE_CRITERIA = 0.01; // Cirka 1 degree error for all joints
@@ -296,16 +296,16 @@ class SingleLegController
     private: double hip_height = 0.3;
 
     /// \brief The nominal x position of the foot relative to the hip
-    private: double x_center = 0.3;
+    private: double x_nominal = 0.3;
 
     /// \brief The nominal y position of the foot relative to the hip
-    private: double y_center = 0.3;
+    private: double y_nominal = 0.3;
 
     /// \brief The step distance in the x direction
-    private: double x_offset = 0.3;
+    private: double x_step_distance = 0.3;
 
     /// \brief The step distance in the y direction
-    private: double y_offset = 0.0;
+    private: double y_step_distance = 0.0;
 
     /// \brief The maximum height above the ground to lift the foot
     private: double max_swing_height = 0.25; 
@@ -363,7 +363,7 @@ class SingleLegController
 
     /// \brief Knee pitch motor torque control integral gain
     double k_i_torque_kp;
-    
+
 
 
     /*** ROS VARIABLES ***/
