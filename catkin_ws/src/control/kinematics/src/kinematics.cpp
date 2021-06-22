@@ -32,7 +32,7 @@ Kinematics::Kinematics()
 {
     // Set min/max angles
     this->min_angles(0) = math_utils::degToRad(0);      // fl, hy
-    this->min_angles(1) = math_utils::degToRad(-90);    // fl, hp
+    this->min_angles(1) = math_utils::degToRad(-95);    // fl, hp
     this->min_angles(2) = math_utils::degToRad(-115);   // fl, kp
     this->min_angles(3) = math_utils::degToRad(-170);   // fr, hy
     this->min_angles(4) = math_utils::degToRad(-90);    // fr, hp
@@ -45,7 +45,7 @@ Kinematics::Kinematics()
     this->min_angles(11) = math_utils::degToRad(-115);  // rr, kp
 
     this->max_angles(0) = math_utils::degToRad(170);    // fl, hy
-    this->max_angles(1) = math_utils::degToRad(90);     // fl, hp
+    this->max_angles(1) = math_utils::degToRad(95);     // fl, hp
     this->max_angles(2) = math_utils::degToRad(115);    // fl, kp
     this->max_angles(3) = math_utils::degToRad(0);      // fr, hy
     this->max_angles(4) = math_utils::degToRad(90);     // fr, hp
