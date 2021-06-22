@@ -26,15 +26,17 @@
 
 class SingleLegController
 {
+    // Leg states 
     public: enum State {stance = 1, swing = 2, uninitialized = 3};
 
     /*** Constructor/Destructor ***/
 
     /// \brief Constructor
-    public: SingleLegController(double _publish_frequency);
+    public: SingleLegController(double _publish_frequency, bool _simulation);
 
     /// \brief Destructor
     public: virtual ~SingleLegController(){};
+
 
 
     /*** ROS FUNCTIONS ***/
@@ -42,27 +44,51 @@ class SingleLegController
     /// \brief This function initilizes ROS
     public: void initROS();
 
-    /// \brief The joint states for the leg is updated
-    /// \param[in] _msg A float array containing the generalized coordinates 
+    /// \brief Listens to joint angle messages from the simulated leg
+    /// \param[in] _msg A float array containing the simulated single leg joint angles 
     public: void generalizedCoordinatesCallback(const std_msgs::Float64MultiArrayConstPtr &_msg);
 
+    /// \brief Listens to joint velocity messages from the simulated leg
+    /// \param[in] _msg A float array containing the simulated single leg joint velocities
     public: void generalizedVelocitiesCallback(const std_msgs::Float64MultiArrayConstPtr &_msg);
 
+    /// \brief Listens to joint state messages from the motors
+    /// The messages contains joint angles, velocities and torques for all three motors
+    /// \param[in] _msg A float array containing the motor joint states
     private: void jointStateCallback(const sensor_msgs::JointStatePtr &_msg);
 
-    /// \brief The ready_to_move parameter is changed based on the incomming message
+    /// \brief The ready_to_proceed parameter is changed based on the incomming message
     /// \param[in] _msg A bool message deciding if it is safe to move the leg or not
     public: void readyToProceedCallback(const std_msgs::Bool &_msg);
 
+    /// \brief Listens to joint setpoints messages 
+    /// \param[in] _msg A float array containing the desired hy, hp, and kp angles
     private: void jointSetpointCallback(const std_msgs::Float64MultiArrayConstPtr &_msg);
 
+    /// \brief Listens to a confirmation message from the motors 
+    /// which is used to indicate if the motor gains have been set successfully
+    /// \param[in] _msg A bool indicating whether or not the gains have been set successfully
     private: void motorConfirmationCallback(const std_msgs::Bool &_msg);
+
 
 
     /*** CONTROL FUNCTIONS ***/
 
+    /// \brief This function calculates the swing leg height trajectory based on various gait cycle parameters
+    /// \param[in] _percentage Our location in the gait cycle in the interval [0, 1]
+    /// \param[in] _period The gait cycle period [s]
+    /// \param[in] _max_swing_height The maximum foot height above the ground
+    /// \param[in] _hip_height The height of the hip relative to the ground
+    /// \return A vector containing the desired foot height [m], foot vertical velocity [m/s] and foot vertical acceleration [m/s^2] in the hip frame
     private: Eigen::Matrix<double, 3, 1> calculateSwingLegHeightTrajectory(double _percentage, double _period, double _max_swing_height, double _hip_height);
 
+    /// \brief This functions calculates a smooth trajectory along a single linear axis. Please see the report for details.
+    /// \param[in] _percentage The location in gait cycle in the interval [0, 1]
+    /// \param[in] _period The gait cycle period
+    /// \param[in] _max_travel The maximum distance to move in a direction along the linear axis from its origin
+    /// \param[out] _x The desired position along the axis
+    /// \param[out] _x_d The desired velocity along the axis
+    /// \param[out] _x_dd The desired acceleration along the axis
     private: void calculateSingleAxisTrajectory
     (
         const double &_percentage, 
@@ -73,12 +99,16 @@ class SingleLegController
         double &_x_dd
     );
 
-    public: void updateStanceFootPositionTrajectory();
-
+    /// \brief Update the swing foot trajectory for the leg
     public: void updateSwingFootPositionTrajectory();
 
+    /// \brief Update the stance foot tractory for the leg
+    public: void updateStanceFootPositionTrajectory();
+
+    /// \brief Update The joint trajectory reference based on the spatial foot trajectory
     public: void updateJointReferences();
 
+    /// \brief Update the joint torqes based on the joint trajectories and joint states
     public: void updateJointTorques
     (
         const Eigen::Matrix<double, 3, 1> &_q_ref,
@@ -190,23 +220,15 @@ class SingleLegController
 
     private: double current_iteration = 0;
 
-    private: double final_iteration = 200.0;
+    private: double final_iteration = 400.0;
 
     private: bool gains_set = false;
 
     /*** PARAMETERS ***/
 
-    double k_p_hy;
-    double k_i_hy;
-    double k_d_hy;
+    bool SIMULATION = true;
 
-    double k_p_hp;
-    double k_i_hp;
-    double k_d_hp;
-
-    double k_p_kp;
-    double k_i_kp;
-    double k_d_kp;
+    const int NUMBER_OF_MOTORS = 3;
 
     double k_p_pos_hy;
     double k_i_pos_hy;

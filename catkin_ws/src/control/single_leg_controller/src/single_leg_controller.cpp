@@ -1,76 +1,90 @@
 #include "single_leg_controller/single_leg_controller.h"
 
-SingleLegController::SingleLegController(double _publish_frequency)
+SingleLegController::SingleLegController(double _publish_frequency, bool _SIMULATION)
 {
-    publish_frequency = _publish_frequency;
+    SIMULATION = _SIMULATION;
 
-    swing_period = final_iteration/publish_frequency;
+    // Set the publish frequency for the controller
+    this->publish_frequency = _publish_frequency;
 
-    for(int i = 0; i < 3; i++)
+    // Calculate the swing_period
+    // This should be changed so that the final iteration is a function of the swing period and publish frequency
+    this->swing_period = final_iteration/publish_frequency; // XXXXXXXXXXXXXXXXXXXXXX
+
+    // Set all the states to uninitialized
+    for(int i = 0; i < NUMBER_OF_MOTORS; i++)
     {
-        q(i) = uninitialized_state;
+        this->q(i) = uninitialized_state; // XXXXXXXXXXXXXXXXX REPLACE BY A BOOLEAN VALUE
     }
 
-    q_goal[0] = math_utils::HALF_PI;
-    q_goal[1] = 0.0;
-    q_goal[2] = 0.0;
+    // Set the initial goal position
+    this->q_goal[0] = math_utils::HALF_PI;
+    this->q_goal[1] = 0.0;
+    this->q_goal[2] = 0.0;
 
-    k_p_pos_hy = 30.0;
-    k_i_pos_hy = 30.0;
+    // Set the actuator gains
+    this->k_p_pos_hy = 30.0;
+    this->k_i_pos_hy = 30.0;
 
-    k_p_pos_hp = 30.0;
-    k_i_pos_hp = 30.0;
+    this->k_p_pos_hp = 30.0;
+    this->k_i_pos_hp = 30.0;
 
-    k_p_pos_kp = 30.0;
-    k_i_pos_kp = 30.0;
+    this->k_p_pos_kp = 30.0;
+    this->k_i_pos_kp = 30.0;
 
-    k_p_vel_hy = 100.0;
-    k_i_vel_hy = 100.0;
+    this->k_p_vel_hy = 100.0;
+    this->k_i_vel_hy = 100.0;
 
-    k_p_vel_hp = 100.0;
-    k_i_vel_hp = 100.0;
+    this->k_p_vel_hp = 100.0;
+    this->k_i_vel_hp = 100.0;
 
-    k_p_vel_kp = 100.0;
-    k_p_vel_kp = 100.0;
+    this->k_p_vel_kp = 100.0;
+    this->k_p_vel_kp = 100.0;
 
-    k_p_torque_hy = 100.0;
-    k_i_torque_hy = 100.0;
+    this->k_p_torque_hy = 100.0;
+    this->k_i_torque_hy = 100.0;
 
-    k_p_torque_hp = 100.0;
-    k_i_torque_hp = 100.0;
+    this->k_p_torque_hp = 100.0;
+    this->k_i_torque_hp = 100.0;
 
-    k_p_torque_kp = 100.0;
-    k_i_torque_kp = 100.0;
+    this->k_p_torque_kp = 100.0;
+    this->k_i_torque_kp = 100.0;
 
-    k_p_hy = 100.0;
-    k_p_hp = 100.0;
-    k_p_kp = 100.0;
+    // Set the closed loop torque control gains
+    double k_p_hy = 50.0;
+    double k_p_hp = 50.0;
+    double k_p_kp = 50.0;
 
-    k_d_hy = 20.0;
-    k_d_hp = 20.0;
-    k_d_kp = 20.0;
+    double k_d_hy = 10.0;
+    double k_d_hp = 10.0;
+    double k_d_kp = 10.0;
 
-    K_p(0, 0) = k_p_hy;
-    K_p(1, 1) = k_p_hp;
-    K_p(2, 2) = k_p_kp;
+    // Store the values in matricies that will be used by the torque controller
+    this->K_p(0, 0) = k_p_hy;
+    this->K_p(1, 1) = k_p_hp;
+    this->K_p(2, 2) = k_p_kp;
 
-    K_d(0, 0) = k_d_hy;
-    K_d(1, 1) = k_d_hp;
-    K_d(2, 2) = k_d_kp;
+    this->K_d(0, 0) = k_d_hy;
+    this->K_d(1, 1) = k_d_hp;
+    this->K_d(2, 2) = k_d_kp;
 
-    swing_start_time = - 2.0*swing_period;  
+    // WHY DO THIS? XXXXXXXXXXXXXXXXXXXXXXXXX
+    this->swing_start_time = - 2.0*swing_period;  
 
-    for(int i = 0; i < 3; i++)
+    // Initializing the size of the logging messages
+    for(int i = 0; i < NUMBER_OF_MOTORS; i++)
     {        
-        joint_state_log_msg.position.push_back(CONTROL_IDLE);
-        joint_state_log_msg.velocity.push_back(CONTROL_IDLE);
-        joint_state_log_msg.effort.push_back(CONTROL_IDLE);
+        this->joint_state_log_msg.position.push_back(CONTROL_IDLE);
+        this->joint_state_log_msg.velocity.push_back(CONTROL_IDLE);
+        this->joint_state_log_msg.effort.push_back(CONTROL_IDLE);
 
-        joint_reference_log_msg.position.push_back(CONTROL_IDLE);
-        joint_reference_log_msg.velocity.push_back(CONTROL_IDLE);
-        joint_reference_log_msg.effort.push_back(CONTROL_IDLE);
+        this->joint_reference_log_msg.position.push_back(CONTROL_IDLE);
+        this->joint_reference_log_msg.velocity.push_back(CONTROL_IDLE);
+        this->joint_reference_log_msg.effort.push_back(CONTROL_IDLE);
     }
 }
+
+
 
 /*** ROS FUNCTIONS ***/
 
@@ -90,11 +104,11 @@ void SingleLegController::initROS()
         );
     }
 
-    // WHY DO THIS?
-    node_handle.reset(new ros::NodeHandle("single_leg_controller_node"));
+    // Do this to prevent multiple nodes from using the same name
+    this->node_handle.reset(new ros::NodeHandle("single_leg_controller_node"));
 
     // Initialize the generalized coordinates subscriber
-    generalized_coordinates_subscriber = node_handle->subscribe
+    this->generalized_coordinates_subscriber = node_handle->subscribe
     (
         "/my_robot/gen_coord", 
         100, 
@@ -102,7 +116,8 @@ void SingleLegController::initROS()
         this
     );
 
-    generalized_velocities_subscriber = node_handle->subscribe
+    // Initialize the generalized velocities subscriber
+    this->generalized_velocities_subscriber = node_handle->subscribe
     (
         "/my_robot/gen_vel",
         100,
@@ -110,7 +125,8 @@ void SingleLegController::initROS()
         this
     );
 
-    joint_state_subscriber = node_handle->subscribe
+    // Initialize the subscriber listening to real world motor states
+    this->joint_state_subscriber = node_handle->subscribe
     (
         "/motor/states",
         100,
@@ -118,8 +134,8 @@ void SingleLegController::initROS()
         this
     );
 
-    // Initialize the ready to move subscriber
-    ready_to_proceed_subscriber = node_handle->subscribe
+    // Initialize the ready to proceed subscriber
+    this->ready_to_proceed_subscriber = node_handle->subscribe
     (
         "/ready_to_proceed",
         1, 
@@ -127,7 +143,8 @@ void SingleLegController::initROS()
         this
     );
 
-    joint_setpoint_subscriber = node_handle->subscribe
+    // Initialize the joint setpoint subscriber
+    this->joint_setpoint_subscriber = node_handle->subscribe
     (
         "/controller/joint_setpoints",
         1,
@@ -135,7 +152,8 @@ void SingleLegController::initROS()
         this
     ); 
 
-    motor_confirmation_subscriber = node_handle->subscribe
+    // Initialize the motor confirmation subscriber
+    this->motor_confirmation_subscriber = node_handle->subscribe
     (
         "/motor/confirmation",
         10,
@@ -144,82 +162,101 @@ void SingleLegController::initROS()
     );
 
     // Initialize the joint state publisher
-    joint_state_publisher = node_handle->advertise<sensor_msgs::JointState>("/my_robot/joint_state_cmd", 10);
+    this->joint_state_publisher = this->node_handle->advertise<sensor_msgs::JointState>("/my_robot/joint_state_cmd", 10);
 
-    motor_gain_publisher = node_handle->advertise<std_msgs::Float64MultiArray>("/motor/gains", 10);
+    // Initialize the motor set motor gain publisher
+    this->motor_gain_publisher = this->node_handle->advertise<std_msgs::Float64MultiArray>("/motor/gains", 1);
 
     // Initialize the state logging publisher
-    log_joint_states_publisher = node_handle->advertise<sensor_msgs::JointState>("/logging/joint_states", 10);
+    this->log_joint_states_publisher = this->node_handle->advertise<sensor_msgs::JointState>("/logging/joint_states", 10);
 
     // Initialize the reference logging publisher
-    log_joint_references_publisher = node_handle->advertise<sensor_msgs::JointState>("/logging/joint_references", 10);
+    this->log_joint_references_publisher = this->node_handle->advertise<sensor_msgs::JointState>("/logging/joint_references", 10);
 }
 
 void SingleLegController::generalizedCoordinatesCallback(const std_msgs::Float64MultiArrayConstPtr &_msg)
 {
-    for(int i = 0; i < 3; i++)
+    for(int i = 0; i < NUMBER_OF_MOTORS; i++)
     {
-        q(i) = _msg->data[i + 6];
+        // + 6 is added because the first six states are (x, y, z, roll, pitch, yaw)
+        // The remaining three states are theta_hy, theta_hp, theta_kp
+        this->q(i) = _msg->data[i + 6];
     }
 }
 
 void SingleLegController::generalizedVelocitiesCallback(const std_msgs::Float64MultiArrayConstPtr &_msg)
 {
-    for(int i = 0; i < 3; i++)
+    for(int i = 0; i < NUMBER_OF_MOTORS; i++)
     {
-        q_d(i) = _msg->data[i + 6];
+        // + 6 is added because the first six states are (x_dot, y_dot, z_dot, roll_dot, pitch_dot, yaw_dot)
+        // The remaining three states are theta_hy_dot, theta_hp_dot, theta_kp_dot
+        this->q_d(i) = _msg->data[i + 6];
     }
 }
 
 void SingleLegController::jointStateCallback(const sensor_msgs::JointStatePtr &_msg)
 {
-    for(int i = 0; i < 3; i++)
+    for(int i = 0; i < NUMBER_OF_MOTORS; i++)
     {
-        q(i) = _msg->position[i];
-        q_d(i) = _msg->velocity[i];
-        tau(i) = _msg->effort[i];
+        // Store the jont angles
+        this->q(i) = _msg->position[i];
+
+        // Store the joint velocities
+        this->q_d(i) = _msg->velocity[i];
+
+        // Store the joint torques
+        this->tau(i) = _msg->effort[i];
     }
 }
 
 void SingleLegController::readyToProceedCallback(const std_msgs::Bool &_msg)
 {
-    ready_to_proceed = _msg.data;
+    // Store the message
+    this->ready_to_proceed = _msg.data;
 }
 
 void SingleLegController::jointSetpointCallback(const std_msgs::Float64MultiArrayConstPtr &_msg)
 {
     for(int i = 0; i < 3; i++)
     {
-        q_goal(i) = _msg->data[i];
+        // Set the desired joint state goal
+        this->q_goal(i) = _msg->data[i];
     }
 }
 
 void SingleLegController::motorConfirmationCallback(const std_msgs::Bool &_msg)
 {
-    if(_msg.data == true)
-    {
-        gains_set = true;
-    }
+    // Inform that the gains have been set
+    this->gains_set = _msg.data;
 }
+
+
 
 /*** CONTROL FUNCTIONS ***/
 
 Eigen::Matrix<double, 3, 1> SingleLegController::calculateSwingLegHeightTrajectory(double _percentage, double _period, double _max_swing_height, double _hip_height)
 {
+    // Defining parameters for the polynomial. Please see the report for an explanation
     double c = _max_swing_height;
     double a = c/pow(0.5, 4.0);
     double b = -2.0*a*pow(0.5, 2.0);
 
+    // Define a vector to store the foot height trajectory
     Eigen::Matrix<double, 3, 1> trajectory;
 
+    // Shift the gait cycle location to be centered around 0, [-0.5, 0.5]
     double x = _percentage - 0.5;
 
+    // Calculate the swing foot height (See report)
     trajectory(0) = a*pow(x, 4.0) + b*pow(x, 2.0) + c - _hip_height;
 
+    // Calculate the swing foot height velocity (see report)
     trajectory(1) = (4.0*a*pow(x, 3.0) + 2.0*b*x)/_period;
 
+    // Calculate the swing foot height acceleration (see report)
     trajectory(2) = (12.0*a*pow(x, 2.0) + 2.0*b)/pow(_period, 2.0);
 
+    // Return the trajectory
     return trajectory;
 }
 
@@ -233,13 +270,19 @@ void SingleLegController::calculateSingleAxisTrajectory
     double &_x_dd
 )
 {
+    // Define paramaters for the polynomial. Please see the report for an explanation
     double a = 30.0*_max_travel;
     double b = -15.0*_max_travel;
     double c = 1.875*_max_travel;
     double d = -_max_travel*7.0/16.0;
 
+    // Calculate the position from the polynomial
     _x = 0.2*a*pow((_percentage - 0.5), 5.0) + b*pow((_percentage - 0.5), 3.0)/3.0 + c*_percentage + d;
+
+    // Calculate the velocity from the derivative of the polynomial
     _x_d = (a*pow((_percentage - 0.5), 4.0) + b*pow((_percentage - 0.5), 2.0) + c)/_period;
+
+    // Calculate the acceleration from the two times derivative of the polynomial
     _x_dd = (4.0*a*pow((_percentage - 0.5), 3.0) + 2.0*b*(_percentage - 0.5))/(_period*_period);
 }
 
@@ -257,6 +300,9 @@ void SingleLegController::updateSwingFootPositionTrajectory()
     calculateSingleAxisTrajectory(progress, swing_period, x_offset, foot_dx, foot_vel_x, foot_acc_x);
     calculateSingleAxisTrajectory(progress, swing_period, y_offset, foot_dy, foot_vel_y, foot_acc_y);
     Eigen::Matrix<double, 3, 1> z = calculateSwingLegHeightTrajectory(progress, swing_period, max_swing_height, hip_height);
+    z(0) = -hip_height;
+    z(1) = 0.0;
+    z(2) = 0.0;
 
     pos(0) = x_center - x_offset + foot_dx;
     pos(1) = y_center - y_offset + foot_dy;
@@ -367,15 +413,27 @@ void SingleLegController::updateJointTorques()
 
 void SingleLegController::sendTorqueCommand()
 {
-    std_msgs::Float64MultiArray torque_msg;
+    std_msgs::Float64MultiArray torque_commands;
 
-    tf::matrixEigenToMsg(tau, torque_msg);
+    tf::matrixEigenToMsg(tau, torque_commands);
 
     sensor_msgs::JointState joint_state_msg;
 
     joint_state_msg.header.stamp = ros::Time::now();
 
-    joint_state_msg.effort = torque_msg.data;
+    joint_state_msg.effort = torque_commands.data;
+
+    if(!SIMULATION == true)
+    {
+        Eigen::Matrix<double, 3, 1> idle_vector(1000.0, 1000.0, 1000.0);
+
+        std_msgs::Float64MultiArray idle_commands;
+
+        tf::matrixEigenToMsg(idle_vector, idle_commands);
+
+        joint_state_msg.position = idle_commands.data;
+        joint_state_msg.velocity = idle_commands.data;
+    }
 
     joint_state_publisher.publish(joint_state_msg);
 }
@@ -406,17 +464,25 @@ void SingleLegController::sendPositionCommand()
     }
     else
     {
-        // Create a joint position command and send it to the motors
-        std_msgs::Float64MultiArray position_msg;
-
-        tf::matrixEigenToMsg(q_ref, position_msg);
-
+        // Create a joint state message
         sensor_msgs::JointState joint_state_msg;
 
+        // Set the time of the joint state message
         joint_state_msg.header.stamp = ros::Time::now();
 
-        joint_state_msg.position = position_msg.data;
+        // Indicate that position control should be used
+        joint_state_msg.name.push_back("position");
 
+        // Create a joint a float array for joint angle commands
+        std_msgs::Float64MultiArray position_commands;
+
+        // Put the joint angle reference vector into the position command message
+        tf::matrixEigenToMsg(q_ref, position_commands);
+
+        // Set the position command in the joint state message
+        joint_state_msg.position = position_commands.data;
+
+        // Publish the message
         joint_state_publisher.publish(joint_state_msg);
     }
 }
@@ -632,7 +698,7 @@ bool SingleLegController::isTargetPositionReached()
 {
     Eigen::Matrix<double, 3, 1> joint_error = q - q_ref;
     double q_speed = q_d.transpose()*q_d;
-    ROS_INFO("q: %f, %f, %f\t q_ref: %f, %f, %f\t Error q_d: %f", q(0), q(1), q(2), q_ref(0), q_ref(1), q_ref(2), q_speed);
+    printAllStates();
     if((joint_error.transpose()*joint_error < POSITION_CONVERGENCE_CRITERIA) && (q_speed < 0.050))
     {
         ROS_INFO("Target Reached");
