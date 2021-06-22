@@ -20,32 +20,38 @@ SingleLegController::SingleLegController(double _publish_frequency)
     this->foot_pos_goal[2] = - this->hip_height;
 
     // Set the actuator gains
-    this->k_p_pos_hy = 30.0;
-    this->k_i_pos_hy = 30.0;
+    double k_pos = 3.0;
 
-    this->k_p_pos_hp = 30.0;
-    this->k_i_pos_hp = 30.0;
+    this->k_p_pos_hy = k_pos;
+    this->k_i_pos_hy = k_pos;
 
-    this->k_p_pos_kp = 30.0;
-    this->k_i_pos_kp = 30.0;
+    this->k_p_pos_hp = k_pos;
+    this->k_i_pos_hp = k_pos;
 
-    this->k_p_vel_hy = 100.0;
-    this->k_i_vel_hy = 100.0;
+    this->k_p_pos_kp = k_pos;
+    this->k_i_pos_kp = k_pos;
 
-    this->k_p_vel_hp = 100.0;
-    this->k_i_vel_hp = 100.0;
+    double k_vel = 10.0;
 
-    this->k_p_vel_kp = 100.0;
-    this->k_p_vel_kp = 100.0;
+    this->k_p_vel_hy = k_vel;
+    this->k_i_vel_hy = k_vel;
 
-    this->k_p_torque_hy = 100.0;
-    this->k_i_torque_hy = 100.0;
+    this->k_p_vel_hp = k_vel;
+    this->k_i_vel_hp = k_vel;
 
-    this->k_p_torque_hp = 100.0;
-    this->k_i_torque_hp = 100.0;
+    this->k_p_vel_kp = k_vel;
+    this->k_p_vel_kp = k_vel;
 
-    this->k_p_torque_kp = 100.0;
-    this->k_i_torque_kp = 100.0;
+    double k_torque = 20.0;
+
+    this->k_p_torque_hy = k_torque;
+    this->k_i_torque_hy = k_torque;
+
+    this->k_p_torque_hp = k_torque;
+    this->k_i_torque_hp = k_torque;
+
+    this->k_p_torque_kp = k_torque;
+    this->k_i_torque_kp = k_torque;
 
     // Set the closed loop torque control gains
     double k_p_hy = 50.0;
@@ -318,7 +324,8 @@ void SingleLegController::updateSwingFootPositionTrajectory()
     // Update the foot positions in the hip frame
     this->foot_pos_ref(0) = this->x_nominal - this->x_step_distance + foot_dx;
     this->foot_pos_ref(1) = this->y_nominal - this->y_step_distance + foot_dy;
-    this->foot_pos_ref(2) = z(0);
+    //this->foot_pos_ref(2) = z(0);
+    this->foot_pos_ref(2) = -this->hip_height; // For testing
 
     // Update the foot velocities in the hip frame
     this->foot_vel_ref(0) = foot_vel_x;
