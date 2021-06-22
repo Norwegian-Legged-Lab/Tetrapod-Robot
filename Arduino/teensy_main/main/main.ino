@@ -1,3 +1,6 @@
+// C++ Standard Libraries
+#include <string.h>
+
 // Include ROS specific libraries
 #include <ros.h>
 #include <std_msgs/Empty.h>
@@ -15,11 +18,11 @@
 #include "ros_node_handle.h"
 #include "config_motor_driver.h"
 
-// Number of motors 
-const int NUMBER_OF_MOTORS = 1;
-int NUMBER_OF_MOTORS_PER_PORT = 1;
+// Number of motors per Teensy
+const int NUMBER_OF_MOTORS = 3;
 
-const double IDLE_COMMAND = 1000.0;
+// Number of motors per CAN port
+int NUMBER_OF_MOTORS_PER_PORT = 3;
 
 // Arrays needed to publish jointState messages back
 char *joint_names[1] = {"placeHolder"};
@@ -65,19 +68,25 @@ void controlCommandCallback(const sensor_msgs::JointState& joint_state_msg)
   // TODO get size from incoming message
   uint8_t number_of_control_commands = NUMBER_OF_MOTORS;
 
+  String pos = "position";
+  String vel = "velocity";
+  String tor = "torque";
+
   for(int i = 0; i < number_of_control_commands; i++)
   {
-    if(joint_state_msg.position[i] != IDLE_COMMAND)
+    if(pos.equals(joint_state_msg.name[0]))
     {
       motorControlTypes[i] = ControlType::position;
       motorControlValues[i] = joint_state_msg.position[i];
     }
-    else if(joint_state_msg.velocity[i] != IDLE_COMMAND)
+    //else if(joint_state_msg.name[0] == "velocity")
+    else if(vel.equals(joint_state_msg.name[0]))
     {
       motorControlTypes[i] = ControlType::velocity;
       motorControlValues[i] = joint_state_msg.velocity[i];
     }
-    else if(joint_state_msg.effort[i] != IDLE_COMMAND)
+    //else if(joint_state_msg.name[0] == "torque")
+    else if(tor.equals(joint_state_msg.name[0]))
     {
       motorControlTypes[i] = ControlType::torque;
       motorControlValues[i] = joint_state_msg.effort[i];
@@ -189,7 +198,7 @@ void setup()
   {
     ROS_NODE_HANDLE.loginfo("Waiting for set gains message");
 
-    delay_microseconds(500000);
+    delay_microseconds(250000);
     
     ROS_NODE_HANDLE.spinOnce();
   }
@@ -232,7 +241,7 @@ void loop()
         default:
           motors[i].requestMotorStatus();
           loops_without_control_command = 0;
-          ROS_NODE_HANDLE.loginfo("Status Request");
+          ROS_NODE_HANDLE.loginfo("Status Request (Default)");
           break;
       }
     } 
@@ -242,7 +251,7 @@ void loop()
     for(int i = 0; i < NUMBER_OF_MOTORS; i++)
     {
       motors[i].requestMotorStatus();
-      ROS_NODE_HANDLE.loginfo("Status Request");
+      ROS_NODE_HANDLE.loginfo("Status Request (Else)");
     }
   }
   
