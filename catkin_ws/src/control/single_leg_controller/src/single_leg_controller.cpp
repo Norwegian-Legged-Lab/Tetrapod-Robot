@@ -401,7 +401,7 @@ void SingleLegController::updateStanceFootPositionTrajectory()
 void SingleLegController::updateJointReferences()
 {
     // Try to solve the inverse kinematics for the single leg to obtain the joint angle references from the foot position reference
-    if(!this->kinematics.SolveSingleLegInverseKinematics(false, pos, q_ref))
+    if(!this->kinematics.SolveSingleLegInverseKinematics(false, pos, this->q_ref))
     {
         ROS_WARN("[updateJointReferences] Failed to solve inverse kinematics");
     }
@@ -414,10 +414,10 @@ void SingleLegController::updateJointReferences()
         Eigen::Matrix<double, 3, 3> J_s_d = this->kinematics.GetTranslationJacobianInBDiff(Kinematics::LegType::frontLeft, Kinematics::BodyType::foot, q(0), q(1), q(2), q_d(0), q_d(1), q_d(2));
 
         // Update the joint angle velocity references
-        q_d_ref = J_s.inverse()*this->vel;
+        this->q_d_ref = J_s.inverse()*this->vel;
 
         // Update the joint angle acceleration references
-        q_dd_ref = J_s.inverse()*(this->acc - J_s_d*this->vel);
+        this->q_dd_ref = J_s.inverse()*(this->acc - J_s_d*this->vel);
     }
 }
 
@@ -491,9 +491,9 @@ void SingleLegController::sendTorqueCommand()
 void SingleLegController::sendPositionCommand()
 {
     // Check if the position commands are within the joint angle limit constraints
-    if (kinematics.ValidateSolution(this->q_ref) == false)
+    if (this->kinematics.ValidateSolution(this->q_ref) == false)
     {
-        // If they are violated report the problem and don't send a command
+        // If they are violated report the problem and don't send a command to the motors
         ROS_WARN("Position setpoint violates joint limits. Command canceled.");
     }
     else // If the joint angles are valid
@@ -524,7 +524,7 @@ void SingleLegController::sendPositionCommand()
 void SingleLegController::updateJointSetpoints()
 {
     updateJointReferences();
-    q_d_ref = Eigen::Matrix<double, 3, 1>::Zero();
+    this->q_d_ref = Eigen::Matrix<double, 3, 1>::Zero();
     q_dd_ref = Eigen::Matrix<double, 3, 1>::Zero();
 }
 
@@ -579,7 +579,7 @@ bool SingleLegController::moveJointsToCenter()
 
     updateJointReferences();
 
-    q_d_ref = Eigen::Matrix<double, 3, 1>::Zero();
+    this->q_d_ref = Eigen::Matrix<double, 3, 1>::Zero();
 
     q_dd_ref = Eigen::Matrix<double, 3, 1>::Zero();
 
@@ -646,28 +646,35 @@ bool SingleLegController::updateSimpleFootTrajectory()
 
 void SingleLegController::increaseIterator()
 {
-    current_iteration++;
-    if(current_iteration >= final_iteration)
+    // Increment the gait cycle iterator
+    this->current_iteration++;
+
+    // If we reach the final iteration stop incrementing
+    if(this->current_iteration >= this->final_iteration)
     {
-        current_iteration = final_iteration;
+        this->current_iteration = this->final_iteration;
     }
 }
 
 void SingleLegController::updateState()
 {
-    current_iteration++;
+    // Increase the iterator
+    this->current_iteration++;
 
-    if(current_iteration >= final_iteration)
+    // If the the final iteration is reached
+    if(this->current_iteration >= this->final_iteration)
     {
-        current_iteration = 0.0;
+        // Reset the iterator for the new phase
+        this->current_iteration = 0.0;
 
-        if(state != State::stance)
+        // If the previous phase was not the stance phase, change to stance phase
+        if(this->state != State::stance)
         {
-            state = State::stance;
+            this->state = State::stance;
         }
-        else
+        else // If not change to swing phase
         {
-            state = State::swing;
+            this->state = State::swing;
         }
     }
     
@@ -675,15 +682,19 @@ void SingleLegController::updateState()
 
 void SingleLegController::updateFootReference()
 {
-    if(state == State::swing)
+    if(this->state == State::swing)
     {
         ROS_INFO("SWING");
-        updateSwingFootPositionTrajectory();
+
+        // Update the foot trajectory as a swing foot trajectory 
+        this->updateSwingFootPositionTrajectory();
     }
     else
     {
         ROS_INFO("STANCE");
-        updateStanceFootPositionTrajectory();
+
+        // Update the foot tractory as a stance foot trajectory
+        this->updateStanceFootPositionTrajectory();
     }
 }
 
@@ -703,19 +714,19 @@ void SingleLegController::updateSetpointTrajectory()
         // A smaller threshold will provide a smother response
         if(abs(q_goal(i) - q(i)) < angle_threshold)
         {
-            q_ref(i) = q_goal(i);
+            this->q_ref(i) = q_goal(i);
             ROS_INFO("%d Close to goal", i);
         }
         else if(q_goal(i) > q(i))
         {
             // Increment the joint reference
-            q_ref(i) = q(i) + joint_step_distance;
+            this->q_ref(i) = q(i) + joint_step_distance;
             ROS_INFO("%d Increment", i);
         }
         else if(q_goal(i) < q(i))
         {
             // Decrement the joint reference
-            q_ref(i) = q(i) - joint_step_distance;
+            this->q_ref(i) = q(i) - joint_step_distance;
             ROS_INFO("%d Decrement", i);
         }
     }
@@ -730,7 +741,7 @@ void SingleLegController::checkForNewMessages()
 
 bool SingleLegController::isTargetPositionReached()
 {
-    Eigen::Matrix<double, 3, 1> joint_error = q - q_ref;
+    Eigen::Matrix<double, 3, 1> joint_error = q - this->q_ref;
     double q_speed = q_d.transpose()*q_d;
     printAllStates();
     if((joint_error.transpose()*joint_error < POSITION_CONVERGENCE_CRITERIA) && (q_speed < 0.050))
@@ -759,7 +770,8 @@ bool SingleLegController::isJointVelocitySmall()
 
 bool SingleLegController::initialStateReceived()
 {
-    if(q(0) == uninitialized_state)
+    // Check if the current joint angle is equal to the uninitialized state
+    if(this->q(0) == this->uninitialized_state)
     {
         return false;
     }
@@ -771,17 +783,17 @@ bool SingleLegController::initialStateReceived()
 
 void SingleLegController::printTorques()
 {
-    ROS_INFO("T1: %f\tT2: %f\tT3: %f", tau(0), tau(1), tau(2));
+    ROS_INFO("T1: %f\tT2: %f\tT3: %f", this->tau(0), this->tau(1), this->tau(2));
 }
 
 void SingleLegController::printSpatialTrajectories()
 {
-    ROS_INFO("Pos: %f, %f, %f\tVel: %f, %f, %f\tAcc: %f, %f, %f", pos(0), pos(1), pos(2), vel(0), vel(1), vel(2), acc(0), acc(1), acc(2));
+    ROS_INFO("Pos: %f, %f, %f\tVel: %f, %f, %f\tAcc: %f, %f, %f", this->pos(0), this->pos(1), this->pos(2), this->vel(0), this->vel(1), this->vel(2), this->acc(0), this->acc(1), this->acc(2));
 }
 
 void SingleLegController::printJointTrajectories()
 {
-    ROS_INFO("q_ref: %f, %f, %f\tq_d_ref: %f, %f, %f\tq_dd_ref: %f, %f, %f", q_ref(0), q_ref(1), q_ref(2), q_d_ref(0), q_d_ref(1), q_d_ref(2), q_dd_ref(0), q_dd_ref(1), q_dd_ref(2));
+    ROS_INFO("q_ref: %f, %f, %f\tq_d_ref: %f, %f, %f\tq_dd_ref: %f, %f, %f", this->q_ref(0), this->q_ref(1), this->q_ref(2), this->q_d_ref(0), this->q_d_ref(1), this->q_d_ref(2), this->q_dd_ref(0), this->q_dd_ref(1), this->q_dd_ref(2));
 }
 
 void SingleLegController::printPercentage()
@@ -793,8 +805,8 @@ void SingleLegController::printAllStates()
 {
     ROS_INFO("I: %.0f\tP: %.3f, %.3f, %.3f\tV: %.3f, %.3f, %.3f\tA: %.3f, %.3f, %.3f\tq_r: %.3f, %.3f, %.3f\tq_d_r: %.3f, %.3f, %.3f\tq_dd_r: %.3f, %.3f, %.3f\tq: %.3f, %.3f, %.3f\tq_d: %.3f, %.3f, %.3f\tT:  %.3f, %.3f, %.3f",
     current_iteration,
-    pos(0), pos(1), pos(2), vel(0), vel(1), vel(2), acc(0), acc(1), acc(2),
-    math_utils::radToDeg(q_ref(0)), math_utils::radToDeg(q_ref(1)), math_utils::radToDeg(q_ref(2)), q_d_ref(0), q_d_ref(1), q_d_ref(2), q_dd_ref(0), q_dd_ref(1), q_dd_ref(2),
+    this->pos(0), this->pos(1), this->pos(2), this->vel(0), this->vel(1), this->vel(2), this->acc(0), this->acc(1), this->acc(2),
+    math_utils::radToDeg(this->q_ref(0)), math_utils::radToDeg(this->q_ref(1)), math_utils::radToDeg(this->q_ref(2)), this->q_d_ref(0), this->q_d_ref(1), this->q_d_ref(2), this->q_dd_ref(0), this->q_dd_ref(1), this->q_dd_ref(2),
     math_utils::radToDeg(q(0)), math_utils::radToDeg(q(1)), math_utils::radToDeg(q(2)), q_d(0), q_d(1), q_d(2),
     tau(0), tau(1), tau(2)
     );
@@ -803,34 +815,38 @@ void SingleLegController::printAllStates()
 void SingleLegController::writeToLog()
 {
     // Fill the log messages with the latest data
-    
-    for(int i = 0; i < 3; i++)
+    for(int i = 0; i < NUMBER_OF_MOTORS; i++)
     {
-        joint_state_log_msg.position[i] = q(i);
-        joint_state_log_msg.velocity[i] = q_d(i);
-        joint_state_log_msg.effort[i] = tau(i);
+        this->joint_state_log_msg.position[i] = this->q(i);
+        this->joint_state_log_msg.velocity[i] = this->q_d(i);
+        this->joint_state_log_msg.effort[i] = this->tau(i);
 
-        joint_reference_log_msg.position[i] = q_ref(i);
-        joint_reference_log_msg.velocity[i] = q_d_ref(i);
-        joint_reference_log_msg.effort[i] = q_dd_ref(i);
+        this->joint_reference_log_msg.position[i] = this->q_ref(i);
+        this->joint_reference_log_msg.velocity[i] = this->q_d_ref(i);
+        this->joint_reference_log_msg.effort[i] = this->q_dd_ref(i);
     }
     
     // Update the time stamps
-    joint_state_log_msg.header.stamp = ros::Time::now();
-    joint_reference_log_msg.header.stamp = ros::Time::now();
+    this->joint_state_log_msg.header.stamp = ros::Time::now();
+    this->joint_reference_log_msg.header.stamp = ros::Time::now();
 
-    log_joint_states_publisher.publish(joint_state_log_msg);
-    log_joint_references_publisher.publish(joint_reference_log_msg);
+    // Publish the messages
+    this->log_joint_states_publisher.publish(joint_state_log_msg);
+    this->log_joint_references_publisher.publish(joint_reference_log_msg);
 }
 
 void SingleLegController::setMotorGains()
 {
+    // Rate of which we try to set the motor gains
     ros::Rate set_gains_rate(0.4);
 
-    gains_set = false;
+    // Inform that the gains have not been set to their desired value
+    this->gains_set = false;
 
+    // Create a multi array message for the motor gains
     std_msgs::Float64MultiArray motor_gain_msg;
 
+    // Add the motor gains for the hip yaw motor
     motor_gain_msg.data.push_back(k_p_pos_hy);
     motor_gain_msg.data.push_back(k_i_pos_hy);
     motor_gain_msg.data.push_back(k_p_vel_hy);
@@ -838,6 +854,7 @@ void SingleLegController::setMotorGains()
     motor_gain_msg.data.push_back(k_p_torque_hy);
     motor_gain_msg.data.push_back(k_i_torque_hy);
 
+    // Add the motor gains for the hip pitch motor
     motor_gain_msg.data.push_back(k_p_pos_hp);
     motor_gain_msg.data.push_back(k_i_pos_hp);
     motor_gain_msg.data.push_back(k_p_vel_hp);
@@ -845,6 +862,7 @@ void SingleLegController::setMotorGains()
     motor_gain_msg.data.push_back(k_p_torque_hp);
     motor_gain_msg.data.push_back(k_i_torque_hp);
 
+    // Add the motor gains for the knee pitch motor
     motor_gain_msg.data.push_back(k_p_pos_kp);
     motor_gain_msg.data.push_back(k_i_pos_kp);
     motor_gain_msg.data.push_back(k_p_vel_kp);
@@ -852,16 +870,22 @@ void SingleLegController::setMotorGains()
     motor_gain_msg.data.push_back(k_p_torque_kp);
     motor_gain_msg.data.push_back(k_i_torque_kp);
 
-    while(!gains_set)
+    // Keep looping until a a confirmation message from the motors have been received
+    while(!gains_set) 
     {
-        motor_gain_publisher.publish(motor_gain_msg);
+        // Publish the motor gain message to the motors
+        this->motor_gain_publisher.publish(motor_gain_msg);
 
+        // Print to the screen that we are trying to set the motor gains
         ROS_INFO("Waiting for gains set confirmation message");
 
+        // Wait for relies for a short while
         set_gains_rate.sleep();
 
+        // Check for incomming messages to see if the confirmation message has been received
         ros::spinOnce();
     }
 
+    // Report that we set the motor gains successfully
     ROS_INFO("Gains set sucessfully");
 }
