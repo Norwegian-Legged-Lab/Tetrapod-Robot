@@ -132,17 +132,6 @@ class SingleLegController
     /// \brief Sends a joint position commands to the motors
     public: void sendPositionCommand();
 
-    public: void updateJointSetpoints(); // XXXXXXXXXXXXXXXXXXXX Should be changed or removed
-
-    /// \brief The function tries to move the foot to the position given by the input parameters.
-    /// This is done by calculating the inverse kinematics and giving the motors position references
-    /// \param[in] _foot_pos_x The target foot x position
-    /// \param[in] _foot_pos_y The target foot y position
-    /// \param[in] _foot_pos_z The target foot z position
-    public: bool moveJointsToSetpoints(); // should be changed or removed XXXXXXXXXXXXXXXXXXXX
-
-    public: bool moveFootToNominalPosition(); // should be changed or removed XXXXXXXXXXXXX
-
     /// \brief Increment the gait cycle iterator. It stops iterating when the final iteration is reached
     public: void increaseIterator();
 
@@ -155,7 +144,16 @@ class SingleLegController
     /// \brief Tries to set the control gains in the motors. The function loops until it succeeds.
     public: void setMotorGains();
 
-    public: void updateSetpointTrajectory(); /// XXXXXXXXXXXXXXXXXXXXXXXX
+    /// \brief Creates a trajectory from the current foot position to the goal foot position
+    /// and moves the foot to the target position along the trajectory. 
+    /// Function returns when the foot is standing still at the goal position
+    public: bool moveFootToPosition(Eigen::Matrix<double, 3, 1> _foot_goal_pos);
+
+    /// \brief The function tries to move the foot to the foot position given by the input parameters.
+    public: bool moveJointsToSetpoints();
+
+    /// \brief The function tries to move the foot to the nominal trajectory position
+    public: bool moveFootToNominalPosition();
 
 
 
@@ -173,9 +171,10 @@ class SingleLegController
 
     /// \brief Check if the squared error between the current joint angles and target joint angles 
     /// is smaller than some threshold.
-    public: bool isTargetPositionReached(); //XXXXXXXXXXXXXXXXXXXXXXXXXX
+    public: bool isTargetPositionReached();
 
-    public: bool isJointVelocitySmall(); // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    /// \brief Checks if the sum of squared joint velocities are smaller than a certain threshold
+    public: bool isJointVelocitySmall(); 
 
     /// \brief Check if the uninitalized joint state of the robot has been overridden by measurements
     public: bool isInitialStateReceived();
@@ -212,7 +211,7 @@ class SingleLegController
     private: Eigen::Matrix<double, 3, 1> foot_acc_ref = Eigen::Matrix<double, 3, 1>::Zero();
 
     /// \brief When using setpointTrajectory control these are the joint angles we want to reach eventually
-    private: Eigen::Matrix<double, 3, 1> joint_pos_goal = Eigen::Matrix<double, 3, 1>::Zero(); /// XXXXXXXXXXXXXXXXXXXXXXX 
+    private: Eigen::Matrix<double, 3, 1> foot_pos_goal = Eigen::Matrix<double, 3, 1>::Zero(); /// XXXXXXXXXXXXXXXXXXXXXXX 
 
     /// \brief The estimated joint angles of the motors
     private: Eigen::Matrix<double, 3, 1> joint_pos = Eigen::Matrix<double, 3, 1>::Zero();
@@ -274,20 +273,20 @@ class SingleLegController
     private: Eigen::Matrix<double, 3, 3> K_d = Eigen::Matrix<double, 3, 3>::Zero();
 
     /// \brief The expected publish frequency of the robot. 
-    /// This is used to calculate the maximum number of iterations per cycle XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX Is this necessary? You probably only need final_iterations
+    /// This is used to calculate the maximum number of iterations per gait phase
     private: double publish_frequency = 100.0;
 
     /// \brief The duration of a phase period in seconds
-    private: double phase_period = 1.0;
+    private: double phase_period = 2.5;
 
     /// \brief The standard height of the hips above the ground
-    private: double hip_height = 0.3;
+    private: double hip_height = 0.35;
 
     /// \brief The nominal x position of the foot relative to the hip
     private: double x_nominal = 0.3;
 
     /// \brief The nominal y position of the foot relative to the hip
-    private: double y_nominal = 0.35;
+    private: double y_nominal = 0.3;
 
     /// \brief The step distance in the x direction
     private: double x_step_distance = 0.3;

@@ -80,8 +80,6 @@ int main(int argc, char **argv)
         // Send the position controller
         controller.updateJointReferences();
 
-
-
         if(POSITION_CONTROL == true)
         {
             controller.sendPositionCommand();

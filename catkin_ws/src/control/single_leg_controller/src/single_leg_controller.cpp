@@ -15,9 +15,9 @@ SingleLegController::SingleLegController(double _publish_frequency)
     }
 
     // Set the initial goal position
-    this->joint_pos_goal[0] = math_utils::HALF_PI;
-    this->joint_pos_goal[1] = 0.0;
-    this->joint_pos_goal[2] = 0.0;
+    this->foot_pos_goal[0] = this->x_nominal;
+    this->foot_pos_goal[1] = this->y_nominal;
+    this->foot_pos_goal[2] = - this->hip_height;
 
     // Set the actuator gains
     this->k_p_pos_hy = 30.0;
@@ -214,7 +214,7 @@ void SingleLegController::jointSetpointCallback(const std_msgs::Float64MultiArra
     for(int i = 0; i < 3; i++)
     {
         // Set the desired joint state goal
-        this->joint_pos_goal(i) = _msg->data[i];
+        this->foot_pos_goal(i) = _msg->data[i];
     }
 }
 
@@ -515,89 +515,83 @@ void SingleLegController::sendPositionCommand()
     }
 }
 
-void SingleLegController::updateJointSetpoints()
+bool SingleLegController::moveFootToPosition(Eigen::Matrix<double, 3, 1> _foot_goal_pos)
 {
-    updateJointReferences();
-    this->joint_vel_ref = Eigen::Matrix<double, 3, 1>::Zero();
-    joint_acc_ref = Eigen::Matrix<double, 3, 1>::Zero();
-}
+    // Starting angle of the trajectory
+    Eigen::Matrix<double, 3, 1> trajectory_initial_joint_pos = joint_pos;
 
+    // Target angles of the trajectory
+    Eigen::Matrix<double, 3, 1> trajectory_goal_joint_pos;
 
-bool SingleLegController::moveJointsToSetpoints()
-{
-    ros::Rate command_send_rate(120.0);
-
-    bool is_joint_target_reached = false;
-
-    while(!is_joint_target_reached)
+    // Check if the desired goal position has a valid inverse kinematics solution
+    if(this->kinematics.SolveSingleLegInverseKinematics(this->kinematics.GetflOffset(), _foot_goal_pos, trajectory_goal_joint_pos) == false)
     {
-        /*
-        if(isTargetPositionReached()) // 5 degrees for each joint + speed
+        ROS_WARN("In the function SingleLegController::moveFootToPosition the inverse kinematics solver failed to find a valid solution.");
+        return false;
+    }
+
+    // Check if the inverse kinematics solution violates any of theangle constraints
+    if(this->kinematics.ValidateSolution(trajectory_goal_joint_pos) == false)
+    {
+        ROS_WARN("In the function SingleLegController::moveFootToPosition the goal joint angles violated the angle constaints of the leg.");
+        return false;
+    }
+    
+    // Set the control command send rate
+    ros::Rate command_send_rate(publish_frequency);
+
+    // Find the maximum joint angle error
+    double max_joint_error = 0.0;
+
+    for(int i = 0; i < NUMBER_OF_MOTORS; i++)
+    {
+        if(abs(trajectory_goal_joint_pos(i) - trajectory_initial_joint_pos(i)) > max_joint_error)
         {
-            //is_joint_target_reached = true;
-
-            ROS_WARN("GOAL REACHED");
+            max_joint_error = abs(trajectory_goal_joint_pos(i) - trajectory_initial_joint_pos(i));
         }
-        else
-        {
-            ros::spinOnce();
+    }
 
-            updateJointTorques();
+    // Set the fastest joint_velocity
+    double max_joint_velocity = math_utils::degToRad(20);
 
-            sendTorqueCommand();
+    // The joint with largest error decides the trajectory duration
+    double trajectory_duration = max_joint_error/max_joint_velocity;
 
-            command_send_rate.sleep();
-        }
-        */
+    // Calculate the number of iterations to reach the goal
+    double _final_iteration = trajectory_duration*this->publish_frequency;
+
+    // Set initial iteration to zero
+    double _iteration = 0.0;
+
+    while((_iteration <= _final_iteration) || !isTargetPositionReached() || !isJointVelocitySmall() || !ready_to_proceed)
+    {
         ros::spinOnce();
 
-        updateJointTorques();
+        this->joint_pos_ref = trajectory_initial_joint_pos + (trajectory_goal_joint_pos - trajectory_initial_joint_pos)*_iteration/_final_iteration;
 
-        printTorqueReferences();
-
-        sendTorqueCommand();
+        this->sendPositionCommand();
 
         command_send_rate.sleep();
+        
+        if(_iteration <= _final_iteration)
+        {
+            _iteration ++;
+        }
     }
 
     return true;
+}
+
+bool SingleLegController::moveJointsToSetpoints()
+{
+    return this->moveFootToPosition(foot_pos_goal);
 }
 
 bool SingleLegController::moveFootToNominalPosition()
 {
-    ros::Rate command_send_rate(publish_frequency);
+    Eigen::Matrix<double, 3, 1> nominal_foot_position(this->x_nominal, this->y_nominal, -this->hip_height);
 
-    updateStanceFootPositionTrajectory();
-
-    updateJointReferences();
-
-    this->joint_vel_ref = Eigen::Matrix<double, 3, 1>::Zero();
-
-    joint_acc_ref = Eigen::Matrix<double, 3, 1>::Zero();
-
-    bool is_joint_target_reached = false;
-
-    while(!is_joint_target_reached)
-    {
-        if(isTargetPositionReached() && readyToProceed())
-        {
-            is_joint_target_reached = true;
-            ROS_INFO("Print Target Reached");
-            command_send_rate.sleep();
-        }
-        else
-        {
-            ros::spinOnce();
-
-            updateJointTorques();
-
-            sendTorqueCommand();
-
-            command_send_rate.sleep();
-        }
-    }
-
-    return true;
+    return this->moveFootToPosition(nominal_foot_position);
 }
 
 void SingleLegController::increaseIterator()
@@ -654,39 +648,7 @@ void SingleLegController::updateFootTrajectoryReference()
     }
 }
 
-void SingleLegController::updateSetpointTrajectory()
-{
-    // This is the desired change in setpoint position
-    double joint_step_distance = math_utils::degToRad(2.0);
 
-    // This the threshold for which we want the controller to converge to the goal
-    double angle_threshold = math_utils::degToRad(5.0);
-
-    // For all the actuators do the following
-    for(int i = 0; i < 3; i++)
-    {
-        // If we are within the angle threshold we tell the actuators to converge to the goal position
-        // The larger the threshold the smaller is the chance of oscillations about the goal
-        // A smaller threshold will provide a smother response
-        if(abs(joint_pos_goal(i) - joint_pos(i)) < angle_threshold)
-        {
-            this->joint_pos_ref(i) = joint_pos_goal(i);
-            ROS_INFO("%d Close to goal", i);
-        }
-        else if(joint_pos_goal(i) > joint_pos(i))
-        {
-            // Increment the joint reference
-            this->joint_pos_ref(i) = joint_pos(i) + joint_step_distance;
-            ROS_INFO("%d Increment", i);
-        }
-        else if(joint_pos_goal(i) < joint_pos(i))
-        {
-            // Decrement the joint reference
-            this->joint_pos_ref(i) = joint_pos(i) - joint_step_distance;
-            ROS_INFO("%d Decrement", i);
-        }
-    }
-}
 
 /*** HELPER FUNCTIONS ***/
 
@@ -713,7 +675,7 @@ bool SingleLegController::isTargetPositionReached()
 
 bool SingleLegController::isJointVelocitySmall()
 {
-    if(joint_vel.transpose()*joint_vel < 0.010)
+    if(joint_vel.transpose()*joint_vel < 3.0*math_utils::degToRad(3.0)*math_utils::degToRad(3.0))
     {
         return true;
     }
@@ -774,7 +736,7 @@ void SingleLegController::writeToLog()
 
         this->joint_reference_log_msg.position[i] = this->joint_pos_ref(i);
         this->joint_reference_log_msg.velocity[i] = this->joint_vel_ref(i);
-        this->joint_reference_log_msg.effort[i] = this->joint_acc_ref(i);
+        this->joint_reference_log_msg.effort[i] = this->joint_torque_ref(i);
     }
     
     // Update the time stamps
