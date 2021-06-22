@@ -149,28 +149,9 @@ add_library(${PROJECT_NAME}
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-add_executable(single_leg_controller_node
-  src/single_leg_controller_node.cpp
-  src/single_leg_controller.cpp
-)
-
-add_executable(joint_torque_function_test
-  src/joint_torque_function_test.cpp
-  src/single_leg_controller.cpp
-)
-
-add_executable(position_control
-  src/position_control.cpp
-  src/single_leg_controller.cpp
-)
 
 add_executable(trajectory_tracking
   src/trajectory_tracking.cpp
-  src/single_leg_controller.cpp
-)
-
-add_executable(setpoint_position_control_node
-  src/setpoint_position_control.cpp
   src/single_leg_controller.cpp
 )
 
@@ -189,23 +170,7 @@ target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
 )
 
-target_link_libraries(single_leg_controller_node
-  ${catkin_LIBRARIES}
-)
-
-target_link_libraries(joint_torque_function_test
-  ${catkin_LIBRARIES}
-)
-
-target_link_libraries(position_control
-  ${catkin_LIBRARIES}
-)
-
 target_link_libraries(trajectory_tracking
-  ${catkin_LIBRARIES}
-)
-
-target_link_libraries(setpoint_position_control_node
   ${catkin_LIBRARIES}
 )
 
