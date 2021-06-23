@@ -1,3 +1,6 @@
+// C++ Standard Libraries
+#include <string.h>
+
 // Include ROS specific libraries
 #include <ros.h>
 #include <std_msgs/Empty.h>
@@ -15,16 +18,11 @@
 #include "ros_node_handle.h"
 #include "config_motor_driver.h"
 
-/// TEMP_START
-#include "teensy_blinker.h"
-TEENSY_LED led;
-/// TEMP_END
+// Number of motors per Teensy
+const int NUMBER_OF_MOTORS = 3;
 
-// Number of motors 
-const int NUMBER_OF_MOTORS = 1;
-int NUMBER_OF_MOTORS_PER_PORT = 1;
-
-const double IDLE_COMMAND = 1000.0;
+// Number of motors per CAN port
+int NUMBER_OF_MOTORS_PER_PORT = 3;
 
 // Arrays needed to publish jointState messages back
 char *joint_names[1] = {"placeHolder"};
@@ -70,19 +68,25 @@ void controlCommandCallback(const sensor_msgs::JointState& joint_state_msg)
   // TODO get size from incoming message
   uint8_t number_of_control_commands = NUMBER_OF_MOTORS;
 
+  String pos = "position";
+  String vel = "velocity";
+  String tor = "torque";
+
   for(int i = 0; i < number_of_control_commands; i++)
   {
-    if(joint_state_msg.position[i] != IDLE_COMMAND)
+    if(pos.equals(joint_state_msg.name[0]))
     {
       motorControlTypes[i] = ControlType::position;
       motorControlValues[i] = joint_state_msg.position[i];
     }
-    else if(joint_state_msg.velocity[i] != IDLE_COMMAND)
+    //else if(joint_state_msg.name[0] == "velocity")
+    else if(vel.equals(joint_state_msg.name[0]))
     {
       motorControlTypes[i] = ControlType::velocity;
       motorControlValues[i] = joint_state_msg.velocity[i];
     }
-    else if(joint_state_msg.effort[i] != IDLE_COMMAND)
+    //else if(joint_state_msg.name[0] == "torque")
+    else if(tor.equals(joint_state_msg.name[0]))
     {
       motorControlTypes[i] = ControlType::torque;
       motorControlValues[i] = joint_state_msg.effort[i];
@@ -124,7 +128,7 @@ void setMotorGainsCallback(const std_msgs::Float64MultiArray &motor_set_gains_ms
 
     motorControlTypes[i] = ControlType::none;
     
-    delay_microseconds(1000000);
+    delay_microseconds(100000);
   }
 
   if(setting_gains_has_not_failed)
@@ -137,15 +141,15 @@ void setMotorGainsCallback(const std_msgs::Float64MultiArray &motor_set_gains_ms
   }
 }
 
-ros::Subscriber<sensor_msgs::JointState> subscriber_control_commands("/motor/commands", &controlCommandCallback);
+ros::Subscriber<sensor_msgs::JointState> subscriber_control_commands("/my_robot/joint_state_cmd", &controlCommandCallback);
 
 ros::Subscriber<std_msgs::Float64MultiArray> set_motor_gains_subscriber("/motor/gains", &setMotorGainsCallback);
 
 void setup() 
 {
   // Set the baud rate for the serial communication
-  Serial.begin(57600);
-  delay_microseconds(10000.0);
+  Serial.begin(500000);
+  delay_microseconds(100000.0);
 
   // Initialize CAN ports. 
   // DO NOT ATTEMPT TO SEND DATA OVER THE TEENSY CAN PORTS WITHOUT RUNNING CAN_PORT*.BEGIN()
@@ -179,6 +183,8 @@ void setup()
       motors[i] = MotorControl(i + 1, CAN_PORT_2, INITIAL_NUMBER_OF_MOTOR_ROTATIONS[i], POSITION_OFFSET[i]);
     }
   }
+
+  
   
   ROS_NODE_HANDLE.advertise(motor_state_publisher);
 
@@ -192,7 +198,7 @@ void setup()
   {
     ROS_NODE_HANDLE.loginfo("Waiting for set gains message");
 
-    delay_microseconds(500000);
+    delay_microseconds(250000);
     
     ROS_NODE_HANDLE.spinOnce();
   }
@@ -217,29 +223,39 @@ void loop()
     {
       switch(motorControlTypes[i])
       {
-        case ControlType::none:
-          break;
-       
         case ControlType::position:
           motors[i].setPositionReference(motorControlValues[i]);
+          ROS_NODE_HANDLE.loginfo("Position");
           break;
           
         case ControlType::velocity:
           motors[i].setSpeedReference(motorControlValues[i]);
+          ROS_NODE_HANDLE.loginfo("Velocity");
           break;
           
         case ControlType::torque:
           motors[i].setTorqueReference(motorControlValues[i]);
+          ROS_NODE_HANDLE.loginfo("Torque");
           break;
   
         default:
           motors[i].requestMotorStatus();
+          loops_without_control_command = 0;
+          ROS_NODE_HANDLE.loginfo("Status Request (Default)");
           break;
       }
     } 
   }
+  else
+  {
+    for(int i = 0; i < NUMBER_OF_MOTORS; i++)
+    {
+      motors[i].requestMotorStatus();
+      ROS_NODE_HANDLE.loginfo("Status Request (Else)");
+    }
+  }
   
-  delay_microseconds(4000); // Can be 3000
+  delay_microseconds(5000); // Can be 3000
   
   // Go through all the replies and update the motor states
   while(can_port_1.read(can_message) || can_port_2.read(can_message))
@@ -260,9 +276,6 @@ void loop()
       ROS_NODE_HANDLE.loginfo("ERROR: No motor ID corresponds to the incomming message");
     }
   }
-
-  //motors[0].printState();
-  motors[0].printTorqueCurrents();
  
   // Update the joint state reply message
   
@@ -273,7 +286,17 @@ void loop()
     torque_array[i] = motors[i].getTorque();
   }
 
-  //motors[0].readMultiTurnAngle();
+  /*
+  char pos_1_str[5];
+  char pos_2_str[5];
+  char pos_3_str[5];
+  dtostrf(position_array[0], 1, 4, pos_1_str);
+  dtostrf(position_array[1], 1, 4, pos_2_str);
+  dtostrf(position_array[2], 1, 4, pos_3_str);
+  char print_message[30];
+  sprintf(print_message, "Pos: %s %s %s", position_array[0], position_array[1], position_array[2]);
+  ROS_NODE_HANDLE.loginfo(print_message);
+  */
   
   joint_state_reply.name = joint_names;
   joint_state_reply.position = position_array;

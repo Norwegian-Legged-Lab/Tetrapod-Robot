@@ -218,6 +218,10 @@ z_0 = 0.0
                     <effort>40</effort>
                     <velocity>1000</velocity>
                 </limit>
+
+                <dynamics>
+                    <damping>0.02</damping>
+                </dynamics>
             </axis>
         </joint>
 
@@ -279,6 +283,10 @@ z_0 = 0.0
                     <effort>40</effort>
                     <velocity>1000</velocity>
                 </limit>
+
+                <dynamics>
+                    <damping>0.02</damping>
+                </dynamics>
             </axis>
         </joint>
 
@@ -346,6 +354,10 @@ z_0 = 0.0
                     <effort>40</effort>
                     <velocity>1000</velocity>
                 </limit>
+
+                <dynamics>
+                    <damping>0.02</damping>
+                </dynamics>
             </axis> 
         </joint>
 
