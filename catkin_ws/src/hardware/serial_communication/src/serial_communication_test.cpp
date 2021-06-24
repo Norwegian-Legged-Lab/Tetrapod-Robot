@@ -35,7 +35,6 @@ int main(int argc, char **argv)
 
     //int timeout_ms = 10;
     
-
     //std::string recv_buffer = "";
 
     /*
@@ -89,7 +88,8 @@ int main(int argc, char **argv)
     std::cout << recv_buffer << "\n";
     */
 
-    //int data_elements = 3;
+    /*
+    int data_elements = 3;
 
     //int data_size = 8;
 
@@ -97,27 +97,76 @@ int main(int argc, char **argv)
 
     //double data[data_elements] = {2.045, 105.632, 3.103993};
 
-    //for(int i = 0; i < data_elements; i++)
-    //{
-    //    for(int j = 0; j < data_size; j++)
-    //    {
-    //        tx_buffer[i*data_size + j] = ((char *)data)[j];
-    //    }
-    //}
+    for(int i = 0; i < data_elements; i++)
+    {
+        for(int j = 0; j < data_size; j++)
+        {
+            tx_buffer[i*data_size + j] = ((char *)data)[j];
+        }
+    }
+    */
 
-    char send_frame[16];
+    int n_motors = 3;
 
-    double my_new_fucking_data[2] = {100.66, 55.2};
+    int msg_size = 32;
 
-    for (int i = 0; i < 16; i++)
+    char send_frame[msg_size];
+
+    double my_new_fucking_data[n_motors + 1] = {-100.66, 12.338954, -0.3442234, 3.9291};
+
+    for (int i = 0; i < msg_size; i++)
     {
         send_frame[i] = ((char *) my_new_fucking_data)[i];
     }
 
+    double buffer[n_motors];
+
+    for(int i = 0; i < n_motors; i++)
+    {
+        double val;
+
+        val = *((double*)send_frame + i + 1);
+
+        buffer[i] = val;
+    }
+    /*
+    ROS_INFO("%f", buffer[0]);
+    ROS_INFO("%f", buffer[1]);
+    ROS_INFO("%f", buffer[2]);
+    */
     //std::string buffer(1, tx_buffer);
 
     serial_port.Write(send_frame);
+    /*
+    ROS_INFO("Write complete");
 
+    while(!serial_port.IsDataAvailable())
+    {
+        loop_rate.sleep();
+    }
+
+    ROS_INFO("Reply received");
+
+    
+    std::string rx_buffer = "";
+
+    serial_port.Read(rx_buffer, 72, 10000);
+
+    ROS_INFO("Read complete");
+
+    char rx_str[72];
+    
+    std::strcpy(rx_str, rx_buffer.c_str());
+
+    for(int k = 0; k < 3*3; k++)
+    {
+        double val;
+
+        val = *((double*)rx_str + k);
+
+        ROS_INFO("%f\n", val);
+    }
+    */
     serial_port.Close();
 
     return 0;
