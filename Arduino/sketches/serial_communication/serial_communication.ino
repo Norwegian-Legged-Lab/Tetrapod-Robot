@@ -1,7 +1,5 @@
 #include "Arduino.h"
 
-#include "teensy_serial.h"
-
 const int NUMBER_OF_STATES = 8;
 
 const int BYTES_PER_STATE = 8;
@@ -61,8 +59,11 @@ void loop()
     }
     i++;
   }*/
+  int num_motors = 8;
 
-  unsigned char recv_buffer[24];
+  int buffer_size = num_motors*8;
+
+  unsigned char recv_buffer[buffer_size];
   while (Serial.available())
   {
     recv_buffer[i] = Serial.read();
@@ -80,6 +81,15 @@ void loop()
   Serial.println(c);
   */
 
+  for (int i = 0; i < num_motors; i++)
+  {
+    double test;
+
+    test = *((double*)recv_buffer + i);
+
+    Serial.println(test);
+  }
+  /*
   double test;
   double test2;
   double test3;
@@ -89,7 +99,7 @@ void loop()
   
   Serial.println(test);
   Serial.println(test2);
-  Serial.println(test3);
+  Serial.println(test3);*/
 
 
   //Serial.write("World", BUFFER_SIZE);  

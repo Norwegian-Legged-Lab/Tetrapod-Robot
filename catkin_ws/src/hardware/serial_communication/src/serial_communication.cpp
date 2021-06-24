@@ -21,43 +21,27 @@ SerialCommunication::~SerialCommunication()
 
 void SerialCommunication::SendMessage(const Eigen::VectorXd &_state)
 {
-    //if (_state.rows() != this->num_motors)
-    //{
-    //    std::abort();
-    //}
-
-    //double *data = new double[2] {234, 23.3};
-    //const double data[2] = {33.0};
-    //const double *data = _state.data();
-    //const double *data = new double[2] {10.2, 13.4};
-    //double *data = new double[2];
-
-
-
-    //this->EigenToCArray(_state, data);
-
-    //ROS_INFO_STREAM("data: " << *(data+1));
-
-    //char my_buffer[24];
-    std::vector<unsigned char> my_buffer;
-
-    my_buffer.resize(24);
-    
-    double data[3] = {52.3, 3.0, 32};
+    if (_state.rows() != this->num_motors)
+    {
+        std::abort();
+    }
 
     this->PackageBuffer(_state.data());
-    //for (int i = 0; i < this->TX_BUFFER_SIZE; i++)
-    //for (int i = 0; i < 24; i++)
-    //{
-    //    //my_buffer[i] = ((char *) data)[i];
-    //   my_buffer[i] = ((unsigned char *) data)[i];
-    //    //tx_buffer[i] = ((char *)data)[i];
-    //}
-
-    //this->PackageBuffer(data);
 
     this->serial_port.Write(tx_buffer);
-    //this->serial_port.Write(my_buffer);
+}
+
+Eigen::Matrix<Eigen::VectorXd, 3, 1> SerialCommunication::ReceiveMessage()
+{
+    while (!this->IsNewDataAvailable())
+    {
+        sleep(0.001);
+    }
+    ROS_INFO_STREAM("Rx buffer size: " << this->RX_BUFFER_SIZE);
+    this->serial_port.Read(this->rx_buffer, this->RX_BUFFER_SIZE);
+    ROS_INFO_STREAM("got message!!");
+
+    return this->UnpackageBuffer(this->rx_buffer);
 }
 
 void SerialCommunication::InitLibSerial()
@@ -81,16 +65,13 @@ void SerialCommunication::InitLibSerial()
 
 void SerialCommunication::PackageBuffer(const double *data)
 {
-    ROS_INFO_STREAM("data size: " << sizeof(data));
-    ROS_INFO_STREAM("buffer size tx: " << TX_BUFFER_SIZE);
-
     for (int i = 0; i < this->TX_BUFFER_SIZE; i++)
     {
         tx_buffer[i] = ((char *)data)[i];
     }
 }
 
-Eigen::Matrix<Eigen::VectorXd, 3, 1> SerialCommunication::UnpackageBuffer(char *data)
+Eigen::Matrix<Eigen::VectorXd, 3, 1> SerialCommunication::UnpackageBuffer(std::vector<unsigned char> &_data)
 {
     Eigen::Matrix<Eigen::VectorXd, 3, 1> state;
 
@@ -106,7 +87,8 @@ Eigen::Matrix<Eigen::VectorXd, 3, 1> SerialCommunication::UnpackageBuffer(char *
         {
             double double_data;
 
-            double_data = *((double*)data + i*this->num_motors + j);
+            //double_data = *((double*) _data[i*this->num_motors + j]);
+            double_data = _data[i*this->num_motors + j];
 
             state(i)(j) = double_data;
         }
