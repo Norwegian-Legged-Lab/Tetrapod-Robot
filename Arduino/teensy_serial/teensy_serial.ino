@@ -23,3 +23,31 @@
 /* <https://www.gnu.org/licenses/>.                                */
 /*                                                                 */
 /*******************************************************************/
+
+// Inlucde other libraries
+#include "motor_driver.h"
+#include "motor_constants.h"
+#include "teensy_can_ports.h"
+#include "FlexCAN_T4.h"
+#include "utilities.h"
+#include "config_motor_driver.h"
+
+// Number of motors per Teensy
+const int NUMBER_OF_MOTORS = 3;
+
+// Number of motors per CAN port
+int NUMBER_OF_MOTORS_PER_PORT = 3;
+
+
+void setup()
+{
+    // Do some setup
+    while (!Serial) ;
+
+    Serial.print("Finished setup!");
+}
+
+void loop()
+{
+    // Do some looping
+}
