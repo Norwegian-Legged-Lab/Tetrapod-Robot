@@ -2,7 +2,7 @@
 
 #include "teensy_serial.h"
 
-const int NUMBER_OF_MOTORS = 3;
+const int NUMBER_OF_MOTORS = 1;
 
 TeensySerial serial(NUMBER_OF_MOTORS);
 
@@ -19,13 +19,14 @@ double joint_torques[NUMBER_OF_MOTORS];
 void setup() 
 {
   //Serial.begin(9600);
-  //while(!Serial);
+  while(!Serial);
   //Serial.println("Start");
   //delay(1000);
 }
 
 void loop() 
 {
+  /*
   if(serial.areControlCommandsAvailable())
   {
     //Serial.println("New Data");
@@ -40,6 +41,8 @@ void loop()
       joint_torques[i] = control_commands[i]*6.0;
       Serial.print(control_commands[i]); Serial.print("\t");
     }
+
+    
     //Serial.println("");
 
     //serial.sendStates(joint_positions, joint_velocities, joint_torques);
@@ -49,4 +52,17 @@ void loop()
     //Serial.println("No data");
   }
   delay(1000);
+  */
+
+  for(int i = 0; i < NUMBER_OF_MOTORS; i++)
+  {
+    joint_positions[i] = 1.9;
+    joint_velocities[i] = 3.5;
+    joint_torques[i] = 6.71;
+  }
+  serial.sendStates(joint_positions, joint_velocities, joint_torques);
+  Serial.println("CLEAR");
+  serial.printTxBuffer();
+
+  while(true);
 }

@@ -84,18 +84,34 @@ void TeensySerial::sendStates(double *joint_positions, double *joint_velocities,
         this->tx_buffer[i] = ((char *) joint_positions)[i];
     }
 
+    int offset = 8*number_of_motors;
+
     // Put the joint velocities in the transmitt buffer
-    for(int i = this->number_of_motors*8; i < this->number_of_motors*8*2; i++)
+    for(int i = 0; i < this->number_of_motors*8; i++)
     {
-        this->tx_buffer[i] = ((char *) joint_velocities)[i];
+        this->tx_buffer[i + offset] = ((char *) joint_velocities)[i];
     }
 
+    offset = 8*2*number_of_motors;
+
     // Put the joint torques in the transmitt buffer
-    for(int i = this->number_of_motors*8*2; i < this->number_of_motors*8*3; i++)
+    for(int i = 0; i < this->number_of_motors*8; i++)
     {
-        this->tx_buffer[i] = ((char *) joint_torques)[i];
+        this->tx_buffer[i + offset] = ((char *) joint_torques)[i];
     }
 
     // Send the state data
     Serial.write(tx_buffer, tx_buffer_size);
+}
+
+void TeensySerial::printTxBuffer()
+{
+    for(int i = 0; i < this->number_of_motors*3; i++)
+    {
+        double val;
+
+        val = *((double*)this->tx_buffer + i);
+
+        Serial.println(val);
+    }
 }
