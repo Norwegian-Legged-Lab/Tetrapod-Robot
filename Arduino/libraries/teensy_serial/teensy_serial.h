@@ -27,6 +27,8 @@ class TeensySerial
     /// \param[out] _joint_torques An array of measured joint torques from the motor
     public: void sendStates(double *_joint_positions, double *_joint_velocities, double *_joint_torques);
 
+    public: void printTxBuffer();
+
     // The number of motors
     private: int number_of_motors;
 
