@@ -14,6 +14,7 @@ find_package(catkin REQUIRED COMPONENTS
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
+find_package(Eigen3 REQUIRED)
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -103,6 +104,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
   INCLUDE_DIRS include
+    ${EIGEN3_INCLUDE_DIR}
   LIBRARIES serial_communication
   CATKIN_DEPENDS 
     roscpp 
@@ -119,6 +121,7 @@ catkin_package(
 include_directories(
   include
   ${catkin_INCLUDE_DIRS}
+  ${EIGEN3_INCLUDE_DIR}
 )
 
 ## Declare a C++ library
@@ -139,6 +142,11 @@ add_executable(serial_communication_test
   src/serial_communication_test.cpp
 )
 
+add_executable(test_some
+  src/serial_communication.cpp
+  src/test_some.cpp
+)
+
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
@@ -156,9 +164,14 @@ target_link_libraries(${PROJECT_NAME}
 
 target_link_libraries(serial_communication_test
   ${catkin_LIBRARIES}
+  serial
  )
 
-target_link_libraries(serial_communication_test serial)
+target_link_libraries(test_some
+  ${catkin_LIBRARIES}
+  serial
+ )
+
 
 #############
 ## Install ##

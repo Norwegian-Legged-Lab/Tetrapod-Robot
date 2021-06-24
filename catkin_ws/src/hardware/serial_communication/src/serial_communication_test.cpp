@@ -9,11 +9,11 @@
 
 int main(int argc, char **argv)
 {
-    ros::init(argc, argv, "serial_communication_node");
+    //ros::init(argc, argv, "serial_communication_node");
 
-    ros::NodeHandle node_handle;
+    //ros::NodeHandle node_handle;
 
-    ros::Rate loop_rate(1000000);
+    //ros::Rate loop_rate(1000000);
     
     LibSerial::SerialPort serial_port;
 
@@ -27,16 +27,16 @@ int main(int argc, char **argv)
 
     serial_port.SetStopBits(LibSerial::StopBits::STOP_BITS_1);
 
-    const int NUMBER_OF_STATES = 8;
+    //const int NUMBER_OF_STATES = 8;
 
-    const int BYTES_PER_STATE = 8;
+    //const int BYTES_PER_STATE = 8;
 
-    const int BUFFER_SIZE = NUMBER_OF_STATES*BYTES_PER_STATE;
+    //const int BUFFER_SIZE = NUMBER_OF_STATES*BYTES_PER_STATE;
 
-    int timeout_ms = 10;
+    //int timeout_ms = 10;
     
 
-    std::string recv_buffer = "";
+    //std::string recv_buffer = "";
 
     /*
     while(ros::ok())
@@ -89,27 +89,27 @@ int main(int argc, char **argv)
     std::cout << recv_buffer << "\n";
     */
 
-    int data_elements = 3;
+    //int data_elements = 3;
 
-    int data_size = 8;
+    //int data_size = 8;
 
-    char tx_buffer[data_elements*data_size];
+    //char tx_buffer[data_elements*data_size];
 
-    double data[data_elements] = {2.045, 105.632, 3.103993};
+    //double data[data_elements] = {2.045, 105.632, 3.103993};
 
-    for(int i = 0; i < data_elements; i++)
-    {
-        for(int j = 0; j < data_size; j++)
-        {
-            tx_buffer[i*data_size + j] = ((char *)data)[j];
-        }
-    }
+    //for(int i = 0; i < data_elements; i++)
+    //{
+    //    for(int j = 0; j < data_size; j++)
+    //    {
+    //        tx_buffer[i*data_size + j] = ((char *)data)[j];
+    //    }
+    //}
 
-    char send_frame[8];
+    char send_frame[16];
 
-    double my_new_fucking_data[1] = {100.66};
+    double my_new_fucking_data[2] = {100.66, 55.2};
 
-    for (int i = 0; i < 8; i++)
+    for (int i = 0; i < 16; i++)
     {
         send_frame[i] = ((char *) my_new_fucking_data)[i];
     }
