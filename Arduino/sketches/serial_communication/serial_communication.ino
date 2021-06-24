@@ -62,7 +62,7 @@ void loop()
     i++;
   }*/
 
-  unsigned char recv_buffer[16];
+  unsigned char recv_buffer[24];
   while (Serial.available())
   {
     recv_buffer[i] = Serial.read();
@@ -82,11 +82,15 @@ void loop()
 
   double test;
   double test2;
+  double test3;
   test = *((double*)recv_buffer);
   test2 = *((double*)recv_buffer + 1);
+  test3 = *((double*)recv_buffer + 2);
   
   Serial.println(test);
   Serial.println(test2);
+  Serial.println(test3);
+
 
   //Serial.write("World", BUFFER_SIZE);  
 }

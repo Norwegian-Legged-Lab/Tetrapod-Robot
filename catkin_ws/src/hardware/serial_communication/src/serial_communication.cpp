@@ -17,9 +17,6 @@ SerialCommunication::SerialCommunication(const std::string &_port, const int &_n
 SerialCommunication::~SerialCommunication()
 {
     serial_port.Close();
-
-    delete tx_buffer;
-    delete rx_buffer;
 }
 
 void SerialCommunication::SendMessage(const Eigen::VectorXd &_state)
@@ -41,22 +38,26 @@ void SerialCommunication::SendMessage(const Eigen::VectorXd &_state)
 
     //ROS_INFO_STREAM("data: " << *(data+1));
 
-    char my_buffer[16];
-    
-    double data[2] = {12.33, 3.0};
+    //char my_buffer[24];
+    std::vector<unsigned char> my_buffer;
 
-    //this->PackageBuffer(_state.data());
+    my_buffer.resize(24);
+    
+    double data[3] = {52.3, 3.0, 32};
+
+    this->PackageBuffer(_state.data());
     //for (int i = 0; i < this->TX_BUFFER_SIZE; i++)
-    for (int i = 0; i < 16; i++)
-    {
-        my_buffer[i] = ((char *) data)[i];
-        //tx_buffer[i] = ((char *)data)[i];
-    }
+    //for (int i = 0; i < 24; i++)
+    //{
+    //    //my_buffer[i] = ((char *) data)[i];
+    //   my_buffer[i] = ((unsigned char *) data)[i];
+    //    //tx_buffer[i] = ((char *)data)[i];
+    //}
 
     //this->PackageBuffer(data);
 
-    //this->serial_port.Write(tx_buffer);
-    this->serial_port.Write(my_buffer);
+    this->serial_port.Write(tx_buffer);
+    //this->serial_port.Write(my_buffer);
 }
 
 void SerialCommunication::InitLibSerial()
@@ -74,8 +75,8 @@ void SerialCommunication::InitLibSerial()
     this->TX_BUFFER_SIZE  = num_motors * 8;
     this->RX_BUFFER_SIZE  = num_motors * 8 * 3;
 
-    this->tx_buffer = new char[this->TX_BUFFER_SIZE];
-    this->rx_buffer = new char[this->RX_BUFFER_SIZE];
+    this->tx_buffer.resize(TX_BUFFER_SIZE);
+    this->rx_buffer.resize(RX_BUFFER_SIZE);
 }
 
 void SerialCommunication::PackageBuffer(const double *data)
