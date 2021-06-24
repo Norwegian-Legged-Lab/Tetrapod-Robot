@@ -1,5 +1,7 @@
 #include "Arduino.h"
 
+#include "teensy_serial.h"
+
 const int NUMBER_OF_STATES = 8;
 
 const int BYTES_PER_STATE = 8;

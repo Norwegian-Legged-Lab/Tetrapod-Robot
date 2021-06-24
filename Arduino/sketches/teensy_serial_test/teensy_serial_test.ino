@@ -38,7 +38,7 @@ void loop()
       joint_positions[i] = control_commands[i]*2.0;
       joint_velocities[i] = control_commands[i]*4.0;
       joint_torques[i] = control_commands[i]*6.0;
-      //Serial.print(control_commands[i]); Serial.print("\t");
+      Serial.print(control_commands[i]); Serial.print("\t");
     }
     //Serial.println("");
 
