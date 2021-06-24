@@ -937,14 +937,25 @@ int main(int argc, char **argv)
     //testSVDNullSpaceProjector();
     //ROS_INFO_STREAM("--------------- Test contact Jacobian ----------------------------");
     //testContactJacobian();
-    ROS_INFO_STREAM("--------------- Test stacking ----------------------------");
-    testEigenStacking();
+    //ROS_INFO_STREAM("--------------- Test stacking ----------------------------");
+    //testEigenStacking();
     //ROS_INFO_STREAM("--------------- Test rotationWToC ----------------------------");
     //testRotationWToC();
     //ROS_INFO_STREAM("--------------- Test control frame ----------------------------");
     //testControlFrame();
     //ROS_INFO_STREAM("--------------- Test Eigen Q generation ----------------------------");
     //testEigenQ();
+    Eigen::Vector3d a(5, 2, 3);
+    Eigen::Vector3d b(-1, 5, 2);
+
+    Eigen::Vector3d res = math_utils::boxMinus(a, b);
+
+    Eigen::Vector3d expectedRes(std::log(5/(-1)),
+                                std::log(2/5),
+                                std::log(3/2));
+
+    ROS_INFO_STREAM("res: \n" << res);
+    ROS_INFO_STREAM("expectedRes: \n" << expectedRes);
 
 
 

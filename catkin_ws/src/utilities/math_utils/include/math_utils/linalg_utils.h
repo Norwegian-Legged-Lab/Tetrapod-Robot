@@ -171,4 +171,35 @@ namespace math_utils
         return N;
     }                                
 
+    /// \brief The boxMinus function calculates the box-minus
+    /// operation between two vectors of equal size.
+    /// \param[in] _a LHS vector.
+    /// \param[in] _b RHS vector.
+    /// \return Returns the box-minus operation between the two vectors.
+    template<typename Vector_TypeA, typename Vector_TypeB>
+    Eigen::Matrix<typename Vector_TypeA::Scalar, Eigen::Dynamic, 1> boxMinus(const Vector_TypeA &_a, const Vector_TypeB &_b)
+    {
+        // Dimensions
+        constexpr auto rowsA = static_cast<int>(Vector_TypeA::RowsAtCompileTime);
+        constexpr auto colsA = static_cast<int>(Vector_TypeA::ColsAtCompileTime);
+        constexpr auto rowsB = static_cast<int>(Vector_TypeB::RowsAtCompileTime);
+        constexpr auto colsB = static_cast<int>(Vector_TypeB::ColsAtCompileTime);
+ 
+        // Validate vectors
+        static_assert(std::is_same<typename Vector_TypeA::Scalar, typename Vector_TypeB::Scalar>::value,
+                      "[math_utils::boxMinus] Vectors must be of the same Scalar type!");
+        static_assert(rowsA == rowsB && colsA == 1 && colsB == 1, "[math_utils::boxMinus] Inputs has wrong size!");
+
+        // Return vector
+        Eigen::Matrix<typename Vector_TypeA::Scalar, rowsA, 1> res; 
+
+        // Fill result
+        for (size_t i = 0; i < rowsA; i++)
+        {
+            res(i) = std::log( _a(i) / _b(i) );
+        }
+
+        return res;
+    }
+
 } // namespace math_utils
