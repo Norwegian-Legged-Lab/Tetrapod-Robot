@@ -41,12 +41,15 @@ bool TeensySerial::areControlCommandsAvailable()
 
 void TeensySerial::receiveControlCommands(double &_control_command_type, double* _control_commands)
 {
+    int i = 0;
+
     // Read data from the serial line as long as there is data available.
     // Up to 64 bytes can be read at a time
     while(Serial.available())
     {
         // Store the data in the receive buffer
-        this->rx_buffer = Serial.read();
+        this->rx_buffer[i] = Serial.read();
+        i++;
     }
 
     // Create a temporary variable to store the control id of the incomming control message
@@ -57,7 +60,7 @@ void TeensySerial::receiveControlCommands(double &_control_command_type, double*
 
     // Store the control command type 
     _control_command_type = temp_id; 
-
+    
     // Go through the control commands for the different motors
     for(int i = 1; i < this->number_of_motors + 1; i++)
     {
@@ -68,34 +71,29 @@ void TeensySerial::receiveControlCommands(double &_control_command_type, double*
         val = *((double*)this->rx_buffer + i);
 
         // Store the control value for motor i
-        _control_commands[i] = val;
+        _control_commands[i - 1] = val;
     }
+    
 }
 
 void TeensySerial::sendStates(double *joint_positions, double *joint_velocities, double *joint_torques)
 {
     // Put the joint position values in the transmitt buffer
-    for(int i = 0; i < this->number_of_motors; i++)
+    for(int i = 0; i < this->number_of_motors*8; i++)
     {
         this->tx_buffer[i] = ((char *) joint_positions)[i];
     }
 
-    // Set the offset in the transmitt buffer for the velocity data
-    int offset = this->number_of_motors;
-
     // Put the joint velocities in the transmitt buffer
-    for(int i = 0; i < this->number_of_motors; i++)
+    for(int i = this->number_of_motors*8; i < this->number_of_motors*8*2; i++)
     {
-        this->tx_buffer[i + offset] = ((char *) joint_velocities)[i];
+        this->tx_buffer[i] = ((char *) joint_velocities)[i];
     }
 
-    // Set the offset in the transmitt buffer for the torque data
-    offset = 2*number_of_motors;
-
     // Put the joint torques in the transmitt buffer
-    for(int i = 0; i < this->number_of_motors; i++)
+    for(int i = this->number_of_motors*8*2; i < this->number_of_motors*8*3; i++)
     {
-        this->tx_buffer[i + offset] = ((char *) joint_torques)[i];
+        this->tx_buffer[i] = ((char *) joint_torques)[i];
     }
 
     // Send the state data
