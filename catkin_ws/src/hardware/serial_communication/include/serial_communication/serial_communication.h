@@ -34,9 +34,9 @@ class SerialCommunication
 
     private: int RX_BUFFER_SIZE;
 
-    private: char *tx_buffer;
+    private: std::vector<unsigned char> tx_buffer;
 
-    private: char *rx_buffer;
+    private: std::vector<unsigned char> rx_buffer;
 
     private: int rx_timeout_ms = 2;
 

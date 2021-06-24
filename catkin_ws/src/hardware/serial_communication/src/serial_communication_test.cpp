@@ -105,7 +105,7 @@ int main(int argc, char **argv)
         }
     }
     */
-
+    /*
     int n_motors = 3;
 
     int msg_size = 32;
@@ -128,7 +128,7 @@ int main(int argc, char **argv)
         val = *((double*)send_frame + i + 1);
 
         buffer[i] = val;
-    }
+    }*/
     /*
     ROS_INFO("%f", buffer[0]);
     ROS_INFO("%f", buffer[1]);
@@ -136,7 +136,7 @@ int main(int argc, char **argv)
     */
     //std::string buffer(1, tx_buffer);
 
-    serial_port.Write(send_frame);
+    //serial_port.Write(send_frame);
     /*
     ROS_INFO("Write complete");
 
