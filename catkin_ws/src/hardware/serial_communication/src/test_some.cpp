@@ -2,14 +2,14 @@
 
 int main(int argc, char **argv)
 {
-	int num_motors = 3;
+	int num_motors = 6;
 
 	SerialCommunication serial_communication("/dev/ttyACM0", num_motors);
 
 	Eigen::VectorXd v;
 
 
-	v.resize(3, 1);
+	v.resize(6, 1);
 
 
 	v.setRandom();
