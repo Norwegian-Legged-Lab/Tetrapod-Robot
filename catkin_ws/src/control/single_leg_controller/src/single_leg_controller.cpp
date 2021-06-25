@@ -54,13 +54,13 @@ SingleLegController::SingleLegController(double _publish_frequency)
     this->k_i_torque_kp = k_torque;
 
     // Set the closed loop torque control gains
-    double k_p_hy = 50.0;
-    double k_p_hp = 50.0;
-    double k_p_kp = 50.0;
+    double k_p_hy = 200.0;
+    double k_p_hp = 200.0;
+    double k_p_kp = 200.0;
 
-    double k_d_hy = 10.0;
-    double k_d_hp = 10.0;
-    double k_d_kp = 10.0;
+    double k_d_hy = 40.0;
+    double k_d_hp = 40.0;
+    double k_d_kp = 40.0;
 
     // Store the values in matricies that will be used by the torque controller
     this->K_p(0, 0) = k_p_hy;
@@ -72,9 +72,9 @@ SingleLegController::SingleLegController(double _publish_frequency)
     this->K_d(2, 2) = k_d_kp;
 
     // Set the velocity control position error gains
-    double k_pos_error_vel_control_hy = 1.0;
-    double k_pos_error_vel_control_hp = 1.0;
-    double k_pos_error_vel_control_kp = 1.0;
+    double k_pos_error_vel_control_hy = 5.0;
+    double k_pos_error_vel_control_hp = 5.0;
+    double k_pos_error_vel_control_kp = 5.0;
 
     K_pos_error_vel_control(0, 0) = k_pos_error_vel_control_hy;
     K_pos_error_vel_control(1, 1) = k_pos_error_vel_control_hp;
@@ -120,7 +120,7 @@ void SingleLegController::initROS()
     this->generalized_coordinates_subscriber = node_handle->subscribe
     (
         "/my_robot/gen_coord", 
-        100, 
+        1, 
         &SingleLegController::generalizedCoordinatesCallback,
         this
     );
@@ -129,7 +129,7 @@ void SingleLegController::initROS()
     this->generalized_velocities_subscriber = node_handle->subscribe
     (
         "/my_robot/gen_vel",
-        100,
+        1,
         &SingleLegController::generalizedVelocitiesCallback,
         this
     );
@@ -138,7 +138,7 @@ void SingleLegController::initROS()
     this->joint_state_subscriber = node_handle->subscribe
     (
         "/motor/states",
-        100,
+        1,
         &SingleLegController::jointStateCallback,
         this
     );
@@ -165,13 +165,13 @@ void SingleLegController::initROS()
     this->motor_confirmation_subscriber = node_handle->subscribe
     (
         "/motor/confirmation",
-        10,
+        1,
         &SingleLegController::motorConfirmationCallback,
         this
     );
 
     // Initialize the joint state publisher
-    this->joint_state_publisher = this->node_handle->advertise<sensor_msgs::JointState>("/my_robot/joint_state_cmd", 10);
+    this->joint_state_publisher = this->node_handle->advertise<sensor_msgs::JointState>("/my_robot/joint_state_cmd", 1);
 
     // Initialize the motor set motor gain publisher
     this->motor_gain_publisher = this->node_handle->advertise<std_msgs::Float64MultiArray>("/motor/gains", 1);
@@ -238,7 +238,6 @@ void SingleLegController::motorConfirmationCallback(const std_msgs::Bool &_msg)
     // Inform that the gains have been set
     this->gains_set = _msg.data;
 }
-
 
 
 /*** CONTROL FUNCTIONS ***/
@@ -431,7 +430,18 @@ void SingleLegController::updateJointReferences()
     }
 }
 
-void SingleLegController::updateJointTorques
+void SingleLegController::updateJointVelocityCommands()
+{
+    this->joint_vel_commands = joint_vel_ref + K_pos_error_vel_control*(joint_pos_ref - joint_pos);
+}
+
+void SingleLegController::updateJointTorqueCommands()
+{
+    // Updates the joint torque references based on the joint reference trajectories and estimated joint states
+    this->updateJointTorqueCommands(this->joint_pos_ref, this->joint_vel_ref, this->joint_acc_ref, this->joint_pos, this->joint_vel);
+}
+
+void SingleLegController::updateJointTorqueCommands
 (
     const Eigen::Matrix<double, 3, 1> &_joint_pos_ref,
     const Eigen::Matrix<double, 3, 1> &_joint_vel_ref,
@@ -465,33 +475,10 @@ void SingleLegController::updateJointTorques
     ROS_INFO("g1: %f\tg2: %f\tg3: %f", g(0), g(1), g(2));
     */
 
-    this->joint_torque_ref = b + g + M*normalized_joint_torques;
+    this->joint_torque_commands = b + g + M*normalized_joint_torques;
 }
 
-void SingleLegController::updateJointVelocityCommands()
-{
-    this->joint_vel_commands = joint_vel_ref + K_pos_error_vel_control*(joint_pos_ref - joint_pos);
-}
-
-void SingleLegController::updateJointTorques()
-{
-    // Updates the joint torque references based on the joint reference trajectories and estimated joint states
-    this->updateJointTorques(this->joint_pos_ref, this->joint_vel_ref, this->joint_acc_ref, this->joint_pos, this->joint_vel);
-}
-
-void SingleLegController::sendPositionCommand()
-{
-    if(USING_SIMULATOR)
-    {
-        this->sendPositionCommandToSimulator();
-    }
-    else
-    {
-        this->sendPositionCommandToHardware();
-    }
-}
-
-void SingleLegController::sendPositionCommandToSimulator()
+void SingleLegController::sendJointPositionCommands()
 {
     // Check if the position commands are within the joint angle limit constraints
     if (this->kinematics.ValidateSolution(this->joint_pos_ref) == false)
@@ -524,67 +511,31 @@ void SingleLegController::sendPositionCommandToSimulator()
     }
 }
 
-
-void SingleLegController::sendPositionCommandToHardware()
+void SingleLegController::sendJointVelocityCommands()
 {
-    // Create a vector to send to the serial port
-    Eigen::Matrix<double, 4, 1> position_command_msg;
+    // Create a joint state message
+    sensor_msgs::JointState joint_state_msg;
 
-    // Set the identifier of the message
-    position_command_msg(0) = POSITION_COMMAND;
+    // Set the time of the joint state message
+    joint_state_msg.header.stamp = ros::Time::now();
 
-    // Put the joint position reference into the message
-    position_command_msg.block<3, 1>(0, 0) = this->joint_pos_ref;
+    // Indicate that velocity control should be used
+    joint_state_msg.name.push_back("velocity");
 
-    // Send the joint position message to the microcontroller
-    serial_interface.SendMessage(position_command_msg);
+    // Create a float array for joint torque commands
+    std_msgs::Float64MultiArray joint_vel_command_array;
+
+    // Put the joint velocity command array into the joint velocity command message
+    tf::matrixEigenToMsg(this->joint_vel_commands, joint_vel_command_array);
+
+    // Add the joint velocity commands to the joint state message
+    joint_state_msg.effort = joint_vel_command_array.data;
+
+    // Publish the message
+    joint_state_publisher.publish(joint_state_msg);
 }
 
-void SingleLegController::sendVelocityCommand()
-{
-    if(USING_SIMULATOR)
-    {
-        this->sendVelocityCommandToSimulator();
-    }
-    else
-    {
-        this->sendVelocityCommandToHardware();
-    }
-}
-
-void SingleLegController::sendVelocityCommandToSimulator()
-{
-
-}
-
-void SingleLegController::sendVelocityCommandToHardware()
-{
-    // Create a vector to send to the serial port
-    Eigen::Matrix<double, 4, 1> velocity_command_msg;
-
-    // Set the identifier of the message
-    velocity_command_msg(0) = VELOCITY_COMMAND;
-
-    // Set the joint velocity command messages to the message array
-    velocity_command_msg.block<3, 1>(1, 0) = this->joint_vel_commands;
-
-    // Send the joint velocity command to the microcontroller
-    serial_interface.SendMessage(velocity_command_msg);
-}
-
-void SingleLegController::sendTorqueCommand()
-{
-    if(USING_SIMULATOR)
-    {
-        this->sendTorqueCommandToSimulator();
-    }
-    else
-    {
-        this->sendTorqueCommandToHardware();
-    }
-}
-
-void SingleLegController::sendTorqueCommandToSimulator()
+void SingleLegController::sendJointTorqueCommands()
 {
     // Create a joint state message
     sensor_msgs::JointState joint_state_msg;
@@ -596,31 +547,16 @@ void SingleLegController::sendTorqueCommandToSimulator()
     joint_state_msg.name.push_back("torque");
 
     // Create a float array for joint torque commands
-    std_msgs::Float64MultiArray torque_commands;
+    std_msgs::Float64MultiArray joint_torque_command_array;
 
     // Put the joint torque reference vector into the torque command message
-    tf::matrixEigenToMsg(this->joint_torque_ref, torque_commands);
+    tf::matrixEigenToMsg(this->joint_torque_commands, joint_torque_command_array);
 
     // Add the torque commands to the joint state message
-    joint_state_msg.effort = torque_commands.data;
+    joint_state_msg.effort = joint_torque_command_array.data;
 
     // Publish the message
     joint_state_publisher.publish(joint_state_msg);
-}
-
-void SingleLegController::sendTorqueCommandToHardware()
-{
-    // Create a vector to send to the serial port
-    Eigen::Matrix<double, 4, 1> torque_command_msg;
-
-    // Set the identifier of the message
-    torque_command_msg(0) = TORQUE_COMMAND;
-
-    // Put the joint torque command into the message
-    torque_command_msg.block<3, 1>(1, 0) = this->joint_torque_commands;
-
-    // Send the joint torque command to the microcontroller
-    serial_interface.SendMessage(torque_command_msg);
 }
 
 bool SingleLegController::moveFootToPosition(Eigen::Matrix<double, 3, 1> _foot_goal_pos)
@@ -677,7 +613,7 @@ bool SingleLegController::moveFootToPosition(Eigen::Matrix<double, 3, 1> _foot_g
 
         this->joint_pos_ref = trajectory_initial_joint_pos + (trajectory_goal_joint_pos - trajectory_initial_joint_pos)*_iteration/_final_iteration;
 
-        this->sendPositionCommand();
+        this->sendJointPositionCommands();
 
         command_send_rate.sleep();
         
@@ -844,7 +780,7 @@ void SingleLegController::writeToLog()
 
         this->joint_reference_log_msg.position[i] = this->joint_pos_ref(i);
         this->joint_reference_log_msg.velocity[i] = this->joint_vel_ref(i);
-        this->joint_reference_log_msg.effort[i] = this->joint_torque_ref(i);
+        this->joint_reference_log_msg.effort[i] = this->joint_torque_commands(i);
     }
     
     // Update the time stamps

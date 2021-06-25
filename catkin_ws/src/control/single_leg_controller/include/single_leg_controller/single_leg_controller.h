@@ -69,8 +69,6 @@ class SingleLegController
     /// \param[in] _msg A bool indicating whether or not the gains have been set successfully
     private: void motorConfirmationCallback(const std_msgs::Bool &_msg);
 
-
-
     /*** CONTROL FUNCTIONS ***/
 
     /// \brief This function calculates the swing leg height trajectory based on various gait cycle parameters
@@ -113,7 +111,7 @@ class SingleLegController
     /// \param[in] _joint_acc_ref The joint acceleration references
     /// \param[in] _joint_pos The estimated joint angles
     /// \param[in] _joint_vel The estimated joint velocities
-    public: void updateJointTorques
+    public: void updateJointTorqueCommands
     (
         const Eigen::Matrix<double, 3, 1> &_joint_pos_ref,
         const Eigen::Matrix<double, 3, 1> &_joint_vel_ref,
@@ -123,38 +121,20 @@ class SingleLegController
     );
 
     /// \brief Overloaded function that uses the current joint references and joint states
-    public: void updateJointTorques();
+    public: void updateJointTorqueCommands();
 
     /// \brief Updates the joint velocity control commands based on the joint velocity reference 
     /// and the joint position error
     public: void updateJointVelocityCommands(); 
 
     /// \brief Sends a joint position commands to the motors
-    public: void sendPositionCommand();
-
-    /// \brief Sends the joint position command to the simulator
-    public: void sendPositionCommandToSimulator();
-
-    /// \brief Sends the joint position command to the hardware
-    public: void sendPositionCommandToHardware();
+    public: void sendJointPositionCommands();
 
     /// \brief Updates the joint velocity commands and send them to the motors
-    public: void sendVelocityCommand();
-
-    /// \brief Sends the joint velocity commands to the simulator
-    public: void sendVelocityCommandToSimulator();
-
-    /// \brief Sends the joint velocity commands to the hardware
-    public: void sendVelocityCommandToHardware();
+    public: void sendJointVelocityCommands();
 
     /// \brief Updates the joint torque control commands based on the desired foot position
-    public: void sendTorqueCommand();
-
-    /// \brief Sends the joint torque commands to the simulator
-    public: void sendTorqueCommandToSimulator();
-
-    /// \brief Sends the joint torque commands to the hardware
-    public: void sendTorqueCommandToHardware();
+    public: void sendJointTorqueCommands();
 
     /// \brief Increment the gait cycle iterator. It stops iterating when the final iteration is reached
     public: void increaseIterator();
@@ -284,7 +264,6 @@ class SingleLegController
 
 
     /*** PARAMETERS ***/
-    private: bool USING_SIMULATOR = true;
 
     /// \brief The number of motors used in single leg control tests
     private: const int NUMBER_OF_MOTORS = 3;
@@ -318,7 +297,7 @@ class SingleLegController
     private: double publish_frequency = 100.0;
 
     /// \brief The duration of a phase period in seconds
-    private: double phase_period = 2.5;
+    private: double phase_period = 0.6;
 
     /// \brief The standard height of the hips above the ground
     private: double hip_height = 0.35;
@@ -442,10 +421,6 @@ class SingleLegController
 
     /// \brief Kinematics object
     private: Kinematics kinematics;
-
-    /// \brief A serial communication node used to interface with the Teensy microcontroller
-    /// which controls the motors
-    private: SerialCommunication serial_interface;
 };
 
 #endif
