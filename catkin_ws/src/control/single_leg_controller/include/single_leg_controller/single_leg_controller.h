@@ -23,6 +23,7 @@
 
 // Utilities
 #include <filter_utils/filter_utils.h>
+#include <serial_communication/serial_communication.h>
 
 class SingleLegController
 {
@@ -36,8 +37,6 @@ class SingleLegController
 
     /// \brief Destructor
     public: virtual ~SingleLegController(){};
-
-
 
     /*** ROS FUNCTIONS ***/
 
@@ -130,14 +129,32 @@ class SingleLegController
     /// and the joint position error
     public: void updateJointVelocityCommands(); 
 
-    /// \brief Updates the joint torque control commands based on the desired foot position
-    public: void sendTorqueCommand();
+    /// \brief Sends a joint position commands to the motors
+    public: void sendPositionCommand();
+
+    /// \brief Sends the joint position command to the simulator
+    public: void sendPositionCommandToSimulator();
+
+    /// \brief Sends the joint position command to the hardware
+    public: void sendPositionCommandToHardware();
 
     /// \brief Updates the joint velocity commands and send them to the motors
     public: void sendVelocityCommand();
 
-    /// \brief Sends a joint position commands to the motors
-    public: void sendPositionCommand();
+    /// \brief Sends the joint velocity commands to the simulator
+    public: void sendVelocityCommandToSimulator();
+
+    /// \brief Sends the joint velocity commands to the hardware
+    public: void sendVelocityCommandToHardware();
+
+    /// \brief Updates the joint torque control commands based on the desired foot position
+    public: void sendTorqueCommand();
+
+    /// \brief Sends the joint torque commands to the simulator
+    public: void sendTorqueCommandToSimulator();
+
+    /// \brief Sends the joint torque commands to the hardware
+    public: void sendTorqueCommandToHardware();
 
     /// \brief Increment the gait cycle iterator. It stops iterating when the final iteration is reached
     public: void increaseIterator();
@@ -241,6 +258,12 @@ class SingleLegController
     /// \brief The reference joint torques for the motors
     private: Eigen::Matrix<double, 3, 1> joint_torque_ref = Eigen::Matrix<double, 3, 1>::Zero();
 
+    /// \brief The velocity commands sent to the motors
+    private: Eigen::Matrix<double, 3, 1> joint_vel_commands = Eigen::Matrix<double, 3, 1>::Zero();
+
+    /// \brief The joint torque command being sent to the motors
+    private: Eigen::Matrix<double, 3, 1> joint_torque_commands;
+
     /// \brief The current gait phase of the leg
     private: GaitPhase gait_phase = GaitPhase::stance;
 
@@ -261,17 +284,25 @@ class SingleLegController
 
 
     /*** PARAMETERS ***/
+    private: bool USING_SIMULATOR = true;
 
     /// \brief The number of motors used in single leg control tests
-    const int NUMBER_OF_MOTORS = 3;
+    private: const int NUMBER_OF_MOTORS = 3;
 
     /// \brief The value of an uninitialized state
     private: const double UNINITIALIZED_STATE = 100.0;
 
     /// \brief Convergence crieria for position control test
-    const double POSITION_CONVERGENCE_CRITERIA = 0.01; // Cirka 1 degree error for all joints
+    private: const double POSITION_CONVERGENCE_CRITERIA = 0.01; // Cirka 1 degree error for all joints
 
+    /// \brief The identifier to be used for position command messages
+    private: const double POSITION_COMMAND = 1.0;
 
+    /// \brief The identifier to be used for velocity command messages
+    private: const double VELOCITY_COMMAND = 2.0;
+
+    /// \brief The identifier to be used for torque command messages
+    private: const double TORQUE_COMMAND = 3.0;
 
     /// \brief A diagonal matrix of proportional gains for the closed loop torque controller
     private: Eigen::Matrix<double, 3, 3> K_p = Eigen::Matrix<double, 3, 3>::Zero();
@@ -411,6 +442,10 @@ class SingleLegController
 
     /// \brief Kinematics object
     private: Kinematics kinematics;
+
+    /// \brief A serial communication node used to interface with the Teensy microcontroller
+    /// which controls the motors
+    private: SerialCommunication serial_interface;
 };
 
 #endif

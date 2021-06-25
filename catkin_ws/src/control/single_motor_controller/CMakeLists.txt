@@ -57,6 +57,17 @@ add_executable(step_response_test
   src/single_motor_controller.cpp
 )
 
+add_executable(ros_teensy_speed_test
+  src/ros_teensy_speed_test.cpp
+)
+add_executable(tx_node
+  src/tx_node.cpp
+)
+
+add_executable(rx_node
+  src/rx_node.cpp
+)
+
 target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
 )
@@ -78,6 +89,18 @@ target_link_libraries(velocity_step_response_test
 )
 
 target_link_libraries(step_response_test
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(ros_teensy_speed_test
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(tx_node
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(rx_node
   ${catkin_LIBRARIES}
 )
 
