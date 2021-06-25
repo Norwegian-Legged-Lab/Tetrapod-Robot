@@ -90,7 +90,6 @@ void MotorInterface::PublishJointStateMsg()
     // Publish
     this->jointStatePub.publish(joint_state_msg);
 }
-}
 
 // Callback for ROS Contact State messages
 void MotorInterface::OnJointStateCmdMsg(const sensor_msgs::JointStateConstPtr &_msg);
@@ -114,7 +113,7 @@ void MotorInterface::OnJointStateCmdMsg(const sensor_msgs::JointStateConstPtr &_
 }
 
 // Setup thread to process messages
-void MotorInterface::ProcessQueueThread()
+void MotorInterface::RosProcessQueueThread()
 {
     static const double timeout = 0.01;
     while (this->rosNode->ok())
@@ -124,7 +123,7 @@ void MotorInterface::ProcessQueueThread()
 }
 
 // Setup thread to publish messages
-void MotorInterface::PublishQueueThread()
+void MotorInterface::RosPublishQueueThread()
 {
     static const double timeout = 0.01;
     while (this->rosNode->ok())
@@ -154,28 +153,11 @@ void MotorInterface::InitRos()
         ros::SubscribeOptions::create<std_msgs::Float64MultiArray>(
             "/my_robot/gen_coord",
             1,
-            boost::bind(&MotorInterface::OnGenCoordMsg, this, _1),
+            boost::bind(&MotorInterface::OnJointStateCmdMsg, this, _1),
             ros::VoidPtr(),
             &this->rosProcessQueue
             );
 
-    ros::SubscribeOptions gen_vel_so = 
-        ros::SubscribeOptions::create<std_msgs::Float64MultiArray>(
-            "/my_robot/gen_vel",
-            1,
-            boost::bind(&MotorInterface::OnGenVelMsg, this, _1),
-            ros::VoidPtr(),
-            &this->rosProcessQueue
-            );
-
-    ros::SubscribeOptions contact_state_so = 
-        ros::SubscribeOptions::create<std_msgs::Int8MultiArray>(
-            "/my_robot/contact_state",
-            1,
-            boost::bind(&MotorInterface::OnContactStateMsg, this, _1),
-            ros::VoidPtr(),
-            &this->rosProcessQueue
-            );
 
     ros::AdvertiseOptions joint_state_ao =
         ros::AdvertiseOptions::create<sensor_msgs::JointState>(
@@ -187,12 +169,6 @@ void MotorInterface::InitRos()
             &this->rosPublishQueue
         );
 
-    this->genCoordSub = this->rosNode->subscribe(gen_coord_so);
-
-    this->genVelSub = this->rosNode->subscribe(gen_vel_so);
-
-    this->contactStateSub = this->rosNode->subscribe(contact_state_so);
-
     this->jointStatePub = this->rosNode->advertise(joint_state_ao);
 }
 
@@ -200,10 +176,10 @@ void MotorInterface::InitRos()
 void MotorInterface::InitRosQueueThreads()
 {
     this->rosPublishQueueThread = std::thread(
-        std::bind(&MotorInterface::PublishQueueThread, this)
+        std::bind(&MotorInterface::RosPublishQueueThread, this)
     );
 
     this->rosProcessQueueThread = std::thread(
-        std::bind(&MotorInterface::ProcessQueueThread, this)
+        std::bind(&MotorInterface::RosProcessQueueThread, this)
     );
 }

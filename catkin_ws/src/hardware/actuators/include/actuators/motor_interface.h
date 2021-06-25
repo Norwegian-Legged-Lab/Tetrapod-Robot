@@ -36,7 +36,7 @@
 #include "eigen_conversions/eigen_msg.h"
 
 // ROS Package Libraries
-#include <serial_communication/serial_communication.h>
+//#include <serial_communication/serial_communication.h>
 
 // Standard library
 #include <thread>

@@ -12,7 +12,6 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   std_msgs
   eigen_conversions
-  serial_communication
 )
 
 ## System dependencies are found with CMake's conventions
@@ -114,7 +113,6 @@ catkin_package(
     std_msgs
     sensor_msgs 
     eigen_conversions
-    serial_communication
 #  DEPENDS system_lib
 )
 
