@@ -18,13 +18,19 @@ class SerialCommunication
 
     public: ~SerialCommunication();
 
+    public: void test();
+
     public: void SendMessage(const Eigen::VectorXd &_state);
+
+    public: Eigen::Matrix<Eigen::VectorXd, 3, 1> ReceiveMessage();
 
     private: void InitLibSerial();
 
     private: void PackageBuffer(const double *data);
 
-    private: Eigen::Matrix<Eigen::VectorXd, 3, 1> UnpackageBuffer(char *data);
+    private: Eigen::Matrix<Eigen::VectorXd, 3, 1> UnpackageBuffer(unsigned char *_data);
+
+    private: bool IsNewDataAvailable();
 
     private: void EigenToCArray(const Eigen::VectorXd &_state, double *_data);
 
@@ -39,10 +45,6 @@ class SerialCommunication
     private: std::vector<unsigned char> rx_buffer;
 
     private: int rx_timeout_ms = 2;
-
-    public: bool receiveMessage();
-
-    public: bool IsNewDataAvailable();
 
     private: const std::string port;
 
