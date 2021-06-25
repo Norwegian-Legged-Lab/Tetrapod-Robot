@@ -10,6 +10,8 @@ class Terrain
 {
     public: Terrain(Eigen::Array<bool, Eigen::Dynamic, 1> bool_bridge);
 
+    public: Terrain();
+
     public: virtual ~Terrain();
 
     public: SteppingStone addStone(Eigen::Matrix<double, 2, 1> center, double width, double height, std::string name=nullptr);

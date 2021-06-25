@@ -45,4 +45,6 @@ void SteppingStone::print()
     std::cout << "name: " << name << std::endl;
 
     std::cout << "center: " << std::endl << center << ", width: " << width << "," << std::endl << "height: " << height << std::endl;
+
+    std::cout << "A: " << std::endl << A << ", b:" << std::endl << b << std::endl;
 }

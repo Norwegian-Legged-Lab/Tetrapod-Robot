@@ -9,9 +9,8 @@ terrain_A = Terrain([1, 1, 1, 1])
 terrain_B = Terrain([1, 1, 1, 0])
 #terrain_B.plot('Terrain B')
 #plt.show()
+terrain_C = Terrain()
 
 step_span = 1
 
-n_steps = 8
-
-import_and_animate_footstep_plan(terrain_B, n_steps, step_span, title=None, base_name="/home/melyso/Documents/csv_files/footstep_planner")
+import_and_animate_footstep_plan(terrain_C, step_span, title=None, base_name="/home/melyso/Documents/csv_files/footstep_planner")

@@ -1,5 +1,5 @@
-#ifndef miqp_h
-#define miqp_h
+#ifndef miqp_biped_h
+#define miqp_biped_h
 
 #include<Eigen/Core>
 
@@ -14,6 +14,9 @@
 #include "drake/solvers/branch_and_bound.h"
 
 #include "drake/common/symbolic.h"
+
+namespace miqp{
+namespace biped{
 
 using drake::solvers::MatrixXDecisionVariable;
 
@@ -65,3 +68,6 @@ void minimize_step_length(drake::solvers::MathematicalProgram &prog, int n_steps
 void writeMatToFile(Eigen::MatrixXd &mat, std::string filename);
 
 void writeDecVarsToFile(DecVars_res &decision_variables, std::string base_name="footstep_planner");
+
+}
+}

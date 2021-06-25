@@ -5,6 +5,9 @@
 #include<cassert>
 #include<fstream>
 
+namespace miqp{
+namespace biped{
+
 using drake::solvers::MatrixXDecisionVariable;
 
 DecVars add_decision_variables(drake::solvers::MathematicalProgram &prog, Terrain &terrain, int n_steps)
@@ -251,4 +254,7 @@ void writeDecVarsToFile(DecVars_res &decision_variables, std::string base_name)
     writeMatToFile(decision_variables.stone_left, base_name + "_stone_left" + fend);
     
     writeMatToFile(decision_variables.stone_right, base_name + "_stone_right" + fend);
+}
+
+}
 }

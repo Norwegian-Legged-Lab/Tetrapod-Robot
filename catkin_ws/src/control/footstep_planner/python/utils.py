@@ -76,43 +76,52 @@ class Terrain(object):
     # parametric construction of the stepping stones
     # the following code adapts the position of each stepping
     # stone depending on the size and the sparsity of bool_bridge
-    def __init__(self, bool_bridge):
-        
-        # ensure that bool_bridge has only boolean entries
-        if any(i != bool(i) for i in bool_bridge):
-            raise ValueError('Entry bool_bridge must be a list of boolean value.')
-            
-        # initialize internal list of stepping stones
+    def __init__(self, bool_bridge=None):
+
         self.stepping_stones = []
-        
-        # add initial stepping stone to the terrain
-        initial = self.add_stone([0, 0], 1, 1, 'initial')
-        
-        # add bridge stepping stones to the terrain
-        # gap between bridge stones equals bridge stone width
-        width_bridge = .2
-        center = initial.bottom_right + np.array([width_bridge * 1.5, initial.height / 4])
-        centers = [center + np.array([i * 2 * width_bridge, 0]) for i in np.where(bool_bridge)[0]]
-        self.add_stones(
-            centers,
-            [width_bridge] * sum(bool_bridge),
-            [initial.height / 2] * sum(bool_bridge),
-            'bridge'
-        )
+        if bool_bridge is None:
+            initial = self.add_stone([0, 0], 1, 1, 'initial')
+            
+            goal = self.add_stone([4, 0], 1, 1, 'goal')
+
+            for i in range(2):
+                self.add_stone([1 + 2*i, 0], 1, 3, 'vertical')
+                self.add_stone([2, -1 + 2*i], 3, 1, 'lateral')
+        else:
+            # ensure that bool_bridge has only boolean entries
+            if any(i != bool(i) for i in bool_bridge):
+                raise ValueError('Entry bool_bridge must be a list of boolean value.')
                 
-        # add goal stepping stone to the terrain
-        # same dimensions of the initial one
-        center = initial.center + np.array([initial.width + (len(bool_bridge) * 2 + 1) * width_bridge, 0])
-        goal = self.add_stone(center, initial.width, initial.height, 'goal')
-        
-        # add lateral stepping stone to the terrain
-        height = .4
-        clearance = .1
-        c2g = goal.center - initial.center
-        width = initial.width + c2g[0]
-        center = initial.center + c2g / 2 + np.array([0, (initial.height + height) / 2 + clearance])
-        self.add_stone(center, width, height, 'lateral')
-        
+            # initialize internal list of stepping stones
+            
+            # add initial stepping stone to the terrain
+            initial = self.add_stone([0, 0], 1, 1, 'initial')
+            
+            # add bridge stepping stones to the terrain
+            # gap between bridge stones equals bridge stone width
+            width_bridge = .24
+            center = initial.bottom_right + np.array([width_bridge * 1.5, initial.height / 2])
+            centers = [center + np.array([i * 2 * width_bridge, 0]) for i in np.where(bool_bridge)[0]]
+            self.add_stones(
+                centers,
+                [width_bridge] * sum(bool_bridge),
+                [initial.height] * sum(bool_bridge),
+                'bridge'
+            )
+                    
+            # add goal stepping stone to the terrain
+            # same dimensions of the initial one
+            center = initial.center + np.array([initial.width + (len(bool_bridge) * 2 + 1) * width_bridge, 0])
+            goal = self.add_stone(center, initial.width, initial.height, 'goal')
+            
+            # add lateral stepping stone to the terrain
+            height = .4
+            clearance = .1
+            c2g = goal.center - initial.center
+            width = initial.width + c2g[0]
+            center = initial.center + c2g / 2 + np.array([0, (initial.height + height) / 2 + clearance])
+            self.add_stone(center, width, height, 'lateral')
+            
     # adds a stone to the internal list stepping_stones
     def add_stone(self, center, width, height, name=None):
         stone = SteppingStone(center, width, height, name=name)
@@ -163,7 +172,7 @@ class Terrain(object):
         # set title
         plt.title(title)
 
-def animate_footstep_plan(terrain, n_steps, step_span, position_left, position_right, title=None, outname="footstep_planner", save_anim=False):
+def animate_footstep_plan(terrain, n_steps, step_span, positions, title=None, outname="footstep_planner", save_anim=False):
 
     # initialize figure for animation
     fig, ax = plt.subplots()
@@ -172,26 +181,39 @@ def animate_footstep_plan(terrain, n_steps, step_span, position_left, position_r
     terrain.plot(title=title, ax=ax)
 
     # initial position of the feet
-    left_foot = ax.scatter(0, 0, color='r', zorder=3, label='Left foot')
-    right_foot = ax.scatter(0, 0, color='b', zorder=3, label='Right foot')
+    colors = ['r', 'b', 'g', 'y']
+
+    feet = [ax.scatter(0, 0, color=c, zorder=3, label='foot ' + str(i)) for (i, c) in enumerate(colors)]
+
+    limits = [plot_rectangle(
+        [0, 0],
+        step_span,
+        step_span,
+        ax=ax,
+        edgecolor=c,
+        label='foot ' + str(i) + ' limits'
+    ) for (i, c) in enumerate(colors)]
+
+    # left_foot = ax.scatter(0, 0, color='r', zorder=3, label='Left foot')
+    # right_foot = ax.scatter(0, 0, color='b', zorder=3, label='Right foot')
 
     # initial step limits
-    left_limits = plot_rectangle(
-        [0 ,0],    # center
-        step_span, # width
-        step_span, # eight
-        ax=ax,
-        edgecolor='b',
-        label='Left-foot limits'
-    )
-    right_limits = plot_rectangle(
-        [0 ,0],    # center
-        step_span, # width
-        step_span, # eight
-        ax=ax,
-        edgecolor='r',
-        label='Right-foot limits'
-    )
+    # left_limits = plot_rectangle(
+    #     [0 ,0],    # center
+    #     step_span, # width
+    #     step_span, # eight
+    #     ax=ax,
+    #     edgecolor='b',
+    #     label='Left-foot limits'
+    # )
+    # right_limits = plot_rectangle(
+    #     [0 ,0],    # center
+    #     step_span, # width
+    #     step_span, # eight
+    #     ax=ax,
+    #     edgecolor='r',
+    #     label='Right-foot limits'
+    # )
 
     # misc settings
     #plt.close()
@@ -200,23 +222,27 @@ def animate_footstep_plan(terrain, n_steps, step_span, position_left, position_r
     def animate(n_steps):
 
         # scatter feet
-        left_foot.set_offsets(position_left[n_steps])
-        right_foot.set_offsets(position_right[n_steps])
-
+        #left_foot.set_offsets(position_left[n_steps])
+        #right_foot.set_offsets(position_right[n_steps])
+        for i in range(len(feet)):
+            feet[i].set_offsets(positions[i][n_steps])
+        
         # limits of reachable set for each foot
         c2c = np.ones(2) * step_span / 2
-        right_limits.set_xy(position_left[n_steps] - c2c)
-        left_limits.set_xy(position_right[n_steps] - c2c)
+        for i in range(len(limits)):
+            limits[i].set_xy(positions[i][n_steps] - c2c)
+        #right_limits.set_xy(position_left[n_steps] - c2c)
+        #left_limits.set_xy(position_right[n_steps] - c2c)
 
     # create ad display animation
-    ani = FuncAnimation(fig, animate, frames=n_steps+1, interval=1e3)
+    ani = FuncAnimation(fig, animate, frames=n_steps, interval=1e3)
 
     if save_anim:
         ani.save(outname + ".mp4", fps=30, extra_args=['-vcodec', 'libx264'])
     
     plt.show()
 
-def import_decision_variables(base_name="footstep_planner"):
+def import_decision_variables_biped(base_name="footstep_planner"):
     fend = ".csv"
 
     position_left = np.genfromtxt(base_name + "_position_left" + fend)
@@ -229,10 +255,23 @@ def import_decision_variables(base_name="footstep_planner"):
 
     return (position_left, position_right, stone_left, stone_right, True)
 
-def import_and_animate_footstep_plan(terrain, n_steps, step_span, title=None, base_name="footstep_planner"):
+def import_decision_variables_quadruped(base_name="footstep_planner"):
+    fend = ".csv"
+
+    position_front_left = np.genfromtxt(base_name + "_position_front_left" + fend)
+    
+    position_front_right = np.genfromtxt(base_name + "_position_front_right" + fend)
+    
+    position_rear_left = np.genfromtxt(base_name + "_position_rear_left" + fend)
+    
+    position_rear_right = np.genfromtxt(base_name + "_position_rear_right" + fend)
+    
+    return (position_front_left, position_front_right, position_rear_left, position_rear_right, True)
+
+def import_and_animate_footstep_plan(terrain, step_span, title=None, base_name="footstep_planner"):
     
     # import footstep_planner results
-    decision_variables = import_decision_variables(base_name)
-    
+    footsteps = import_decision_variables_quadruped(base_name)
+    n_steps = footsteps[0].shape[0]
     # animate result
-    animate_footstep_plan(terrain, n_steps, step_span, *decision_variables[:2], title, base_name)
+    animate_footstep_plan(terrain, n_steps, step_span, footsteps[:4], title, base_name)
