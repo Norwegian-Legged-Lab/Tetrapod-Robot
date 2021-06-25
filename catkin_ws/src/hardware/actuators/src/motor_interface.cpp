@@ -92,7 +92,7 @@ void MotorInterface::PublishJointStateMsg()
 }
 
 // Callback for ROS Contact State messages
-void MotorInterface::OnJointStateCmdMsg(const sensor_msgs::JointStateConstPtr &_msg);
+void MotorInterface::OnJointStateCmdMsg(const sensor_msgs::JointStateConstPtr &_msg)
 {
     if ((!_msg->position.empty()) && (_msg->position.size() == this->NUM_MOTORS))
     {
