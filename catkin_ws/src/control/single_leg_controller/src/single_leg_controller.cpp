@@ -20,7 +20,7 @@ SingleLegController::SingleLegController(double _publish_frequency)
     this->foot_pos_goal[2] = - this->hip_height;
 
     // Set the actuator gains
-    double k_pos = 3.0;
+    double k_pos = 5.0;
 
     this->k_p_pos_hy = k_pos;
     this->k_i_pos_hy = k_pos;
@@ -42,7 +42,7 @@ SingleLegController::SingleLegController(double _publish_frequency)
     this->k_p_vel_kp = k_vel;
     this->k_p_vel_kp = k_vel;
 
-    double k_torque = 20.0;
+    double k_torque = 50.0;
 
     this->k_p_torque_hy = k_torque;
     this->k_i_torque_hy = k_torque;
@@ -70,6 +70,15 @@ SingleLegController::SingleLegController(double _publish_frequency)
     this->K_d(0, 0) = k_d_hy;
     this->K_d(1, 1) = k_d_hp;
     this->K_d(2, 2) = k_d_kp;
+
+    // Set the velocity control position error gains
+    double k_pos_error_vel_control_hy = 1.0;
+    double k_pos_error_vel_control_hp = 1.0;
+    double k_pos_error_vel_control_kp = 1.0;
+
+    K_pos_error_vel_control(0, 0) = k_pos_error_vel_control_hy;
+    K_pos_error_vel_control(1, 1) = k_pos_error_vel_control_hp;
+    K_pos_error_vel_control(2, 2) = k_pos_error_vel_control_kp;
 
     // Initializing the size of the logging messages
     for(int i = 0; i < NUMBER_OF_MOTORS; i++)
@@ -324,8 +333,8 @@ void SingleLegController::updateSwingFootPositionTrajectory()
     // Update the foot positions in the hip frame
     this->foot_pos_ref(0) = this->x_nominal - this->x_step_distance + foot_dx;
     this->foot_pos_ref(1) = this->y_nominal - this->y_step_distance + foot_dy;
-    //this->foot_pos_ref(2) = z(0);
-    this->foot_pos_ref(2) = -this->hip_height; // For testing
+    this->foot_pos_ref(2) = z(0);
+    //this->foot_pos_ref(2) = -this->hip_height; // For testing
 
     // Update the foot velocities in the hip frame
     this->foot_vel_ref(0) = foot_vel_x;
@@ -459,34 +468,15 @@ void SingleLegController::updateJointTorques
     this->joint_torque_ref = b + g + M*normalized_joint_torques;
 }
 
+void SingleLegController::updateJointVelocityCommands()
+{
+    Eigen::Matrix<double, 3, 1> joint_velocity_command = joint_vel_ref + K_pos_error_vel_control*(joint_pos_ref - joint_pos);
+}
+
 void SingleLegController::updateJointTorques()
 {
     // Updates the joint torque references based on the joint reference trajectories and estimated joint states
     this->updateJointTorques(this->joint_pos_ref, this->joint_vel_ref, this->joint_acc_ref, this->joint_pos, this->joint_vel);
-}
-
-void SingleLegController::sendTorqueCommand()
-{
-    // Create a joint state message
-    sensor_msgs::JointState joint_state_msg;
-
-    // Set the time of the joint state message
-    joint_state_msg.header.stamp = ros::Time::now();
-
-    // Indicate that torque control should be used
-    joint_state_msg.name.push_back("torque");
-
-    // Create a float array for joint torque commands
-    std_msgs::Float64MultiArray torque_commands;
-
-    // Put the joint torque reference vector into the torque command message
-    tf::matrixEigenToMsg(this->joint_torque_ref, torque_commands);
-
-    // Add the torque commands to the joint state message
-    joint_state_msg.effort = torque_commands.data;
-
-    // Publish the message
-    joint_state_publisher.publish(joint_state_msg);
 }
 
 void SingleLegController::sendPositionCommand()
@@ -520,6 +510,30 @@ void SingleLegController::sendPositionCommand()
         // Publish the message
         joint_state_publisher.publish(joint_state_msg);
     }
+}
+
+void SingleLegController::sendTorqueCommand()
+{
+    // Create a joint state message
+    sensor_msgs::JointState joint_state_msg;
+
+    // Set the time of the joint state message
+    joint_state_msg.header.stamp = ros::Time::now();
+
+    // Indicate that torque control should be used
+    joint_state_msg.name.push_back("torque");
+
+    // Create a float array for joint torque commands
+    std_msgs::Float64MultiArray torque_commands;
+
+    // Put the joint torque reference vector into the torque command message
+    tf::matrixEigenToMsg(this->joint_torque_ref, torque_commands);
+
+    // Add the torque commands to the joint state message
+    joint_state_msg.effort = torque_commands.data;
+
+    // Publish the message
+    joint_state_publisher.publish(joint_state_msg);
 }
 
 bool SingleLegController::moveFootToPosition(Eigen::Matrix<double, 3, 1> _foot_goal_pos)
