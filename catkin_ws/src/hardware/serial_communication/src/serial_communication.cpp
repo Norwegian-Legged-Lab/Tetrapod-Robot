@@ -19,6 +19,38 @@ SerialCommunication::~SerialCommunication()
     serial_port.Close();
 }
 
+void SerialCommunication::test()
+{
+	Eigen::VectorXd v;
+
+    v.resize(3, 1);
+
+	v.setRandom();
+
+	ROS_INFO_STREAM("v: \n" << v);
+
+	this->PackageBuffer(v.data());
+
+    unsigned char buffer[24];
+
+    double *data = v.data();
+
+    for (int i = 0; i < 24; i++)
+    {
+        buffer[i] = ((char *)data)[i];
+    }
+
+    //ROS_INFO_STREAM("tx_buffer data: " << *((double*)tx_buffer.data() + 1));
+
+	//Eigen::Matrix<Eigen::VectorXd, 3, 1> join_state = this->UnpackageBuffer(this->tx_buffer.data());
+	Eigen::Matrix<Eigen::VectorXd, 3, 1> join_state = this->UnpackageBuffer(buffer);
+
+	for (int i = 0; i < 3; i++)
+	{
+		ROS_INFO_STREAM("Joint state at index " << i << " is \n" << join_state(i));
+	}
+}
+
 void SerialCommunication::SendMessage(const Eigen::VectorXd &_state)
 {
     if (_state.rows() != this->num_motors)
@@ -38,10 +70,10 @@ Eigen::Matrix<Eigen::VectorXd, 3, 1> SerialCommunication::ReceiveMessage()
         sleep(0.001);
     }
     ROS_INFO_STREAM("Rx buffer size: " << this->RX_BUFFER_SIZE);
-    this->serial_port.Read(this->rx_buffer, this->RX_BUFFER_SIZE);
+    this->serial_port.Read(this->rx_buffer, this->RX_BUFFER_SIZE, 10000);
     ROS_INFO_STREAM("got message!!");
 
-    return this->UnpackageBuffer(this->rx_buffer);
+    return this->UnpackageBuffer(this->rx_buffer.data());
 }
 
 void SerialCommunication::InitLibSerial()
@@ -71,7 +103,7 @@ void SerialCommunication::PackageBuffer(const double *data)
     }
 }
 
-Eigen::Matrix<Eigen::VectorXd, 3, 1> SerialCommunication::UnpackageBuffer(std::vector<unsigned char> &_data)
+Eigen::Matrix<Eigen::VectorXd, 3, 1> SerialCommunication::UnpackageBuffer(unsigned char *_data)
 {
     Eigen::Matrix<Eigen::VectorXd, 3, 1> state;
 
@@ -88,7 +120,8 @@ Eigen::Matrix<Eigen::VectorXd, 3, 1> SerialCommunication::UnpackageBuffer(std::v
             double double_data;
 
             //double_data = *((double*) _data[i*this->num_motors + j]);
-            double_data = _data[i*this->num_motors + j];
+            //double_data = std::stod(_data[i*this->num_motors + j]);
+            double_data = *((double*)_data + i*this->num_motors + j);
 
             state(i)(j) = double_data;
         }

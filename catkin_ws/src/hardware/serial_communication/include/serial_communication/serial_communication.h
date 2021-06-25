@@ -18,6 +18,8 @@ class SerialCommunication
 
     public: ~SerialCommunication();
 
+    public: void test();
+
     public: void SendMessage(const Eigen::VectorXd &_state);
 
     public: Eigen::Matrix<Eigen::VectorXd, 3, 1> ReceiveMessage();
@@ -26,7 +28,7 @@ class SerialCommunication
 
     private: void PackageBuffer(const double *data);
 
-    private: Eigen::Matrix<Eigen::VectorXd, 3, 1> UnpackageBuffer(std::vector<unsigned char> &_data);
+    private: Eigen::Matrix<Eigen::VectorXd, 3, 1> UnpackageBuffer(unsigned char *_data);
 
     private: bool IsNewDataAvailable();
 

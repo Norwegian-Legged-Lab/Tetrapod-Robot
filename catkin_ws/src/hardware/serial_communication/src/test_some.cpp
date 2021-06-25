@@ -6,23 +6,25 @@ int main(int argc, char **argv)
 
 	SerialCommunication serial_communication("/dev/ttyACM0", num_motors);
 
-	Eigen::VectorXd v;
+	//Eigen::VectorXd v;
 
 
-	v.resize(num_motors, 1);
+	//v.resize(num_motors, 1);
 
-	v.setRandom();
+	//v.setRandom();
 
-	ROS_INFO_STREAM("v: \n" << v);
+	//ROS_INFO_STREAM("v: \n" << v);
 
 	//serial_communication.SendMessage(v);
-
+	
 	Eigen::Matrix<Eigen::VectorXd, 3, 1> join_state = serial_communication.ReceiveMessage();
 
 	for (int i = 0; i < 3; i++)
 	{
 		ROS_INFO_STREAM("Joint state at index " << i << " is \n" << join_state(i));
 	}
+
+	//serial_communication.test();
 
 
 	return 0;

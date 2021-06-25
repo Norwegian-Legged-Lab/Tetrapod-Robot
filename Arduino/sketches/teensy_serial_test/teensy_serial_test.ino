@@ -19,10 +19,11 @@ double joint_torques[NUMBER_OF_MOTORS];
 void setup() 
 {
   //Serial.begin(9600);
-  while(!Serial);
+  //while(!Serial);
   //Serial.println("Start");
   //delay(1000);
 }
+
 
 void loop()
 {
@@ -37,7 +38,7 @@ void loop()
 
   unsigned char buff[24];
 
-  double data[3] = { 1.0, 3.0, 2.0 };
+  double data[3] = { 1.44, 3.22, 10.34 };
 
   for (int i = 0; i < 24; i++)
   {
@@ -78,7 +79,7 @@ void loop()
   }
   delay(1000);
   */
-
+  /*
   for(int i = 0; i < NUMBER_OF_MOTORS; i++)
   {
     joint_positions[i] = 1.9;
@@ -86,8 +87,8 @@ void loop()
     joint_torques[i] = 6.71;
   }
   serial.sendStates(joint_positions, joint_velocities, joint_torques);
-  Serial.println("CLEAR");
-  serial.printTxBuffer();
+  //Serial.println("CLEAR");
+  //serial.printTxBuffer();
 
-  while(true);
-}
+  //while(true);
+}*/
