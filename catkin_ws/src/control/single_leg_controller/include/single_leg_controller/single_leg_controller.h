@@ -126,8 +126,15 @@ class SingleLegController
     /// \brief Overloaded function that uses the current joint references and joint states
     public: void updateJointTorques();
 
+    /// \brief Updates the joint velocity control commands based on the joint velocity reference 
+    /// and the joint position error
+    public: void updateJointVelocityCommands(); 
+
     /// \brief Updates the joint torque control commands based on the desired foot position
     public: void sendTorqueCommand();
+
+    /// \brief Updates the joint velocity commands and send them to the motors
+    public: void sendVelocityCommand();
 
     /// \brief Sends a joint position commands to the motors
     public: void sendPositionCommand();
@@ -211,7 +218,7 @@ class SingleLegController
     private: Eigen::Matrix<double, 3, 1> foot_acc_ref = Eigen::Matrix<double, 3, 1>::Zero();
 
     /// \brief When using setpointTrajectory control these are the joint angles we want to reach eventually
-    private: Eigen::Matrix<double, 3, 1> foot_pos_goal = Eigen::Matrix<double, 3, 1>::Zero(); /// XXXXXXXXXXXXXXXXXXXXXXX 
+    private: Eigen::Matrix<double, 3, 1> foot_pos_goal = Eigen::Matrix<double, 3, 1>::Zero();
 
     /// \brief The estimated joint angles of the motors
     private: Eigen::Matrix<double, 3, 1> joint_pos = Eigen::Matrix<double, 3, 1>::Zero();
@@ -272,6 +279,9 @@ class SingleLegController
     /// \brief A diagonal matrix of derivative gains for the closed loop torque controller
     private: Eigen::Matrix<double, 3, 3> K_d = Eigen::Matrix<double, 3, 3>::Zero();
 
+    /// \brief A digonal matrix for of gains used for the position error in the closed loop velocity controller
+    private: Eigen::Matrix<double, 3, 3> K_pos_error_vel_control = Eigen::Matrix<double, 3, 3>::Zero();
+
     /// \brief The expected publish frequency of the robot. 
     /// This is used to calculate the maximum number of iterations per gait phase
     private: double publish_frequency = 100.0;
@@ -289,13 +299,13 @@ class SingleLegController
     private: double y_nominal = 0.3;
 
     /// \brief The step distance in the x direction
-    private: double x_step_distance = 0.3;
+    private: double x_step_distance = 0.6;
 
     /// \brief The step distance in the y direction
     private: double y_step_distance = 0.0;
 
     /// \brief The maximum height above the ground to lift the foot
-    private: double max_swing_height = 0.15; 
+    private: double max_swing_height = 0.12; 
 
     /// \brief Hip yaw joint motor position control proportional gain
     double k_p_pos_hy;
