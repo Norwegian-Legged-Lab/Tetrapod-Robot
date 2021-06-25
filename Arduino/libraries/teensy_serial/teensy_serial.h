@@ -29,16 +29,19 @@ class TeensySerial
 
     public: void printTxBuffer();
 
-    // The number of motors
+    /// \brief Number of motors
     private: int number_of_motors;
 
-    // The size of the transmitt buffer
+    /// \brief Transmit buffer size
     private: int tx_buffer_size;
 
-    // A receive buffer
-    private: char* rx_buffer;
+    /// \brief Receive buffer size
+    private: int rx_buffer_size;
 
-    // A transmitt buffer
+    /// \brief Receive buffer
+    private: unsigned char* rx_buffer;
+
+    /// \brief Transmit buffer
     private: unsigned char* tx_buffer;
 };
 

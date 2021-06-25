@@ -6,10 +6,16 @@ TeensySerial::TeensySerial(int _number_of_motors)
 
     // Initialize the size of the transmitt buffer
     // 3 values per motor (joint position, joint velocity, joint torque)
-    this->tx_buffer_size = number_of_motors*3;
+    // 8 bytes per value (per double)
+    this->tx_buffer_size = number_of_motors * 8 * 3;
+
+    // Initialize the size of the receive buffer
+    // 1 command + 1 value per motor
+    // 8 bytes per value (double)
+    this->rx_buffer_size = (1 + number_of_motors) * 8;
 
     // Allocate memory for the receive buffer
-    this->rx_buffer = new char[_number_of_motors + 1];
+    this->rx_buffer = new unsigned char[rx_buffer_size];
 
     // Allocate memory for the transmitt buffer
     this->tx_buffer = new unsigned char[tx_buffer_size];

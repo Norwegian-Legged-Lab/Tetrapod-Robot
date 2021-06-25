@@ -127,7 +127,7 @@ void HierarchicalOptimizationControl::StaticTorqueTest()
         //desired_f_pos = f_pos;
         desired_f_pos = this->fPos;
 
-        //desired_base_pos = this->genCoord.topRows(3);
+        desired_base_pos = this->genCoord.topRows(3);
 
         desired_base_pos(2) = 0.20;
 
