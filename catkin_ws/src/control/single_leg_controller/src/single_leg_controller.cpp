@@ -470,7 +470,7 @@ void SingleLegController::updateJointTorques
 
 void SingleLegController::updateJointVelocityCommands()
 {
-    Eigen::Matrix<double, 3, 1> joint_velocity_command = joint_vel_ref + K_pos_error_vel_control*(joint_pos_ref - joint_pos);
+    this->joint_vel_commands = joint_vel_ref + K_pos_error_vel_control*(joint_pos_ref - joint_pos);
 }
 
 void SingleLegController::updateJointTorques()
@@ -480,6 +480,18 @@ void SingleLegController::updateJointTorques()
 }
 
 void SingleLegController::sendPositionCommand()
+{
+    if(USING_SIMULATOR)
+    {
+        this->sendPositionCommandToSimulator();
+    }
+    else
+    {
+        this->sendPositionCommandToHardware();
+    }
+}
+
+void SingleLegController::sendPositionCommandToSimulator()
 {
     // Check if the position commands are within the joint angle limit constraints
     if (this->kinematics.ValidateSolution(this->joint_pos_ref) == false)
@@ -512,7 +524,67 @@ void SingleLegController::sendPositionCommand()
     }
 }
 
+
+void SingleLegController::sendPositionCommandToHardware()
+{
+    // Create a vector to send to the serial port
+    Eigen::Matrix<double, 4, 1> position_command_msg;
+
+    // Set the identifier of the message
+    position_command_msg(0) = POSITION_COMMAND;
+
+    // Put the joint position reference into the message
+    position_command_msg.block<3, 1>(0, 0) = this->joint_pos_ref;
+
+    // Send the joint position message to the microcontroller
+    serial_interface.SendMessage(position_command_msg);
+}
+
+void SingleLegController::sendVelocityCommand()
+{
+    if(USING_SIMULATOR)
+    {
+        this->sendVelocityCommandToSimulator();
+    }
+    else
+    {
+        this->sendVelocityCommandToHardware();
+    }
+}
+
+void SingleLegController::sendVelocityCommandToSimulator()
+{
+
+}
+
+void SingleLegController::sendVelocityCommandToHardware()
+{
+    // Create a vector to send to the serial port
+    Eigen::Matrix<double, 4, 1> velocity_command_msg;
+
+    // Set the identifier of the message
+    velocity_command_msg(0) = VELOCITY_COMMAND;
+
+    // Set the joint velocity command messages to the message array
+    velocity_command_msg.block<3, 1>(1, 0) = this->joint_vel_commands;
+
+    // Send the joint velocity command to the microcontroller
+    serial_interface.SendMessage(velocity_command_msg);
+}
+
 void SingleLegController::sendTorqueCommand()
+{
+    if(USING_SIMULATOR)
+    {
+        this->sendTorqueCommandToSimulator();
+    }
+    else
+    {
+        this->sendTorqueCommandToHardware();
+    }
+}
+
+void SingleLegController::sendTorqueCommandToSimulator()
 {
     // Create a joint state message
     sensor_msgs::JointState joint_state_msg;
@@ -534,6 +606,21 @@ void SingleLegController::sendTorqueCommand()
 
     // Publish the message
     joint_state_publisher.publish(joint_state_msg);
+}
+
+void SingleLegController::sendTorqueCommandToHardware()
+{
+    // Create a vector to send to the serial port
+    Eigen::Matrix<double, 4, 1> torque_command_msg;
+
+    // Set the identifier of the message
+    torque_command_msg(0) = TORQUE_COMMAND;
+
+    // Put the joint torque command into the message
+    torque_command_msg.block<3, 1>(1, 0) = this->joint_torque_commands;
+
+    // Send the joint torque command to the microcontroller
+    serial_interface.SendMessage(torque_command_msg);
 }
 
 bool SingleLegController::moveFootToPosition(Eigen::Matrix<double, 3, 1> _foot_goal_pos)
