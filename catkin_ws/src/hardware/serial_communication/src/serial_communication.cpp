@@ -19,6 +19,7 @@ SerialCommunication::~SerialCommunication()
     serial_port.Close();
 }
 
+/*
 void SerialCommunication::test()
 {
 	Eigen::VectorXd v;
@@ -49,16 +50,16 @@ void SerialCommunication::test()
 	{
 		ROS_INFO_STREAM("Joint state at index " << i << " is \n" << join_state(i));
 	}
-}
+}*/
 
-void SerialCommunication::SendMessage(const Eigen::VectorXd &_state)
+void SerialCommunication::SendMessage(const ControlMode &_control_mode, const Eigen::VectorXd &_state)
 {
     if (_state.rows() != this->num_motors)
     {
         std::abort();
     }
 
-    this->PackageBuffer(_state.data());
+    this->PackageBuffer(_control_mode, _state.data());
 
     this->serial_port.Write(tx_buffer);
 }
@@ -67,7 +68,7 @@ Eigen::Matrix<Eigen::VectorXd, 3, 1> SerialCommunication::ReceiveMessage()
 {
     while (!this->IsNewDataAvailable())
     {
-        sleep(0.001);
+        sleep(0.00001);
     }
     ROS_INFO_STREAM("Rx buffer size: " << this->RX_BUFFER_SIZE);
     this->serial_port.Read(this->rx_buffer, this->RX_BUFFER_SIZE, 10000);
@@ -88,18 +89,35 @@ void SerialCommunication::InitLibSerial()
 
     this->serial_port.SetStopBits(LibSerial::StopBits::STOP_BITS_1);
 
-    this->TX_BUFFER_SIZE  = num_motors * 8;
+    this->TX_BUFFER_SIZE  = (1 + num_motors) * 8;
     this->RX_BUFFER_SIZE  = num_motors * 8 * 3;
 
     this->tx_buffer.resize(TX_BUFFER_SIZE);
     this->rx_buffer.resize(RX_BUFFER_SIZE);
 }
 
-void SerialCommunication::PackageBuffer(const double *data)
+void SerialCommunication::PackageBuffer(const ControlMode &_control_mode, const double *_data)
 {
-    for (int i = 0; i < this->TX_BUFFER_SIZE; i++)
+    double control_mode_data[1] = { ((double)_control_mode) };
+
+    this->PackageBufferControlMode(control_mode_data);
+
+    this->PackageBufferControlCommand(_data);
+}
+
+void SerialCommunication::PackageBufferControlMode(const double *_data)
+{
+    for (int i = 0; i < 8; i++)
     {
-        tx_buffer[i] = ((char *)data)[i];
+        tx_buffer[i] = ((char *)_data)[i];
+    }
+}
+
+void SerialCommunication::PackageBufferControlCommand(const double *_data)
+{
+    for (int i = 8; i < this->TX_BUFFER_SIZE; i++)
+    {
+        tx_buffer[i] = ((char *)_data)[i - 8];
     }
 }
 
