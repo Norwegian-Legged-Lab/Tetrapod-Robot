@@ -1,8 +1,8 @@
 /*******************************************************************/
 /*    AUTHOR: Paal Arthur S. Thorseth                              */
 /*    ORGN:   Dept of Eng Cybernetics, NTNU Trondheim              */
-/*    FILE:   motor_interface.cpp                                  */
-/*    DATE:   Apr 23, 2021                                         */
+/*    FILE:   ros_serial.cpp                                       */
+/*    DATE:   Jun 25, 2021                                         */
 /*                                                                 */
 /* Copyright (C) 2021 Paal Arthur S. Thorseth,                     */
 /*                    Adrian B. Ghansah                            */
@@ -24,27 +24,17 @@
 /*                                                                 */
 /*******************************************************************/
 
-#include <actuators/motor_interface.h>
+#include <serial_communication/ros_serial.h>
 
-// Constructor
-MotorInterface::MotorInterface() :
-    NUM_MOTORS { 12 }
+RosSerial::RosSerial()
 {
-    this->InitRos();
-    this->InitRosQueueThreads();
+	this->InitRos();
+	this->InitRosQueueThreads();
 }
 
-MotorInterface::MotorInterface(const int &_num_motors) :
-    NUM_MOTORS { _num_motors }
+RosSerial::~RosSerial()
 {
-    this->InitRos();
-    this->InitRosQueueThreads();
-}
-
-// Destructor 
-MotorInterface::~MotorInterface() 
-{
-    this->rosNode->shutdown();
+	this->rosNode->shutdown();
 
     this->rosProcessQueue.clear();
     this->rosProcessQueue.disable();
@@ -56,7 +46,7 @@ MotorInterface::~MotorInterface()
 }
 
 // Publish function for ROS Joint State Torque messages
-void MotorInterface::PublishJointStateMsg()
+void RosSerial::PublishJointStateMsg()
 {
     // Declare msg
     sensor_msgs::JointState joint_state_msg;    
@@ -93,7 +83,7 @@ void MotorInterface::PublishJointStateMsg()
 }
 
 // Callback for ROS Contact State messages
-void MotorInterface::OnJointStateCmdMsg(const sensor_msgs::JointStateConstPtr &_msg);
+void RosSerial::OnJointStateCmdMsg(const sensor_msgs::JointStateConstPtr &_msg);
 {
     if ((!_msg->position.empty()) && (_msg->position.size() == this->NUM_MOTORS))
     {
@@ -110,11 +100,11 @@ void MotorInterface::OnJointStateCmdMsg(const sensor_msgs::JointStateConstPtr &_
         this->SetJointForces(_msg->effort);
     }
 
-	ROS_ERROR("[MotorInterface::OnJointStateCmdMsg] Message failed to match specifications!");
+	ROS_ERROR("[RosSerial::OnJointStateCmdMsg] Message failed to match specifications!");
 }
 
 // Setup thread to process messages
-void MotorInterface::ProcessQueueThread()
+void RosSerial::ProcessQueueThread()
 {
     static const double timeout = 0.01;
     while (this->rosNode->ok())
@@ -124,7 +114,7 @@ void MotorInterface::ProcessQueueThread()
 }
 
 // Setup thread to publish messages
-void MotorInterface::PublishQueueThread()
+void RosSerial::PublishQueueThread()
 {
     static const double timeout = 0.01;
     while (this->rosNode->ok())
@@ -134,7 +124,7 @@ void MotorInterface::PublishQueueThread()
 }
 
 // Initialize ROS
-void MotorInterface::InitRos()
+void RosSerial::InitRos()
 {
     if (!ros::isInitialized())
     {
@@ -154,7 +144,7 @@ void MotorInterface::InitRos()
         ros::SubscribeOptions::create<std_msgs::Float64MultiArray>(
             "/my_robot/gen_coord",
             1,
-            boost::bind(&MotorInterface::OnGenCoordMsg, this, _1),
+            boost::bind(&RosSerial::OnGenCoordMsg, this, _1),
             ros::VoidPtr(),
             &this->rosProcessQueue
             );
@@ -163,7 +153,7 @@ void MotorInterface::InitRos()
         ros::SubscribeOptions::create<std_msgs::Float64MultiArray>(
             "/my_robot/gen_vel",
             1,
-            boost::bind(&MotorInterface::OnGenVelMsg, this, _1),
+            boost::bind(&RosSerial::OnGenVelMsg, this, _1),
             ros::VoidPtr(),
             &this->rosProcessQueue
             );
@@ -172,7 +162,7 @@ void MotorInterface::InitRos()
         ros::SubscribeOptions::create<std_msgs::Int8MultiArray>(
             "/my_robot/contact_state",
             1,
-            boost::bind(&MotorInterface::OnContactStateMsg, this, _1),
+            boost::bind(&RosSerial::OnContactStateMsg, this, _1),
             ros::VoidPtr(),
             &this->rosProcessQueue
             );
@@ -197,13 +187,13 @@ void MotorInterface::InitRos()
 }
 
 // Initialize ROS Publish and Process Queue Threads
-void MotorInterface::InitRosQueueThreads()
+void RosSerial::InitRosQueueThreads()
 {
     this->rosPublishQueueThread = std::thread(
-        std::bind(&MotorInterface::PublishQueueThread, this)
+        std::bind(&RosSerial::PublishQueueThread, this)
     );
 
     this->rosProcessQueueThread = std::thread(
-        std::bind(&MotorInterface::ProcessQueueThread, this)
+        std::bind(&RosSerial::ProcessQueueThread, this)
     );
 }

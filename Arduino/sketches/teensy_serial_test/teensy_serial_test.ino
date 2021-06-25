@@ -2,7 +2,7 @@
 
 #include "teensy_serial.h"
 
-const int NUMBER_OF_MOTORS = 3;
+const int NUMBER_OF_MOTORS = 6;
 
 TeensySerial serial(NUMBER_OF_MOTORS);
 

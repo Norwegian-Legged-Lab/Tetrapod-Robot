@@ -1,9 +1,8 @@
-
 /*******************************************************************/
 /*    AUTHOR: Paal Arthur S. Thorseth                              */
 /*    ORGN:   Dept of Eng Cybernetics, NTNU Trondheim              */
-/*    FILE:   motor_interface.h                                    */
-/*    DATE:   Apr 23, 2021                                         */
+/*    FILE:   ros_serial.h                                         */
+/*    DATE:   Jun 25, 2021                                         */
 /*                                                                 */
 /* Copyright (C) 2021 Paal Arthur S. Thorseth,                     */
 /*                    Adrian B. Ghansah                            */
@@ -27,36 +26,54 @@
 
 #pragma once
 
+// C++ Standard Library
+#include <cmath>
+#include <thread>
+
 // ROS
-#include "ros/ros.h"
+#include "ros/ros.h" 
 #include "ros/callback_queue.h"
-#include "sensor_msgs/JointState.h"
-#include "std_msgs/Float64.h"
+
+// ROS messages
+#include "std_msgs/Int8MultiArray.h"
 #include "std_msgs/Float64MultiArray.h"
-#include "eigen_conversions/eigen_msg.h"
+#include "sensor_msgs/JointState.h"
 
 // ROS Package Libraries
-#include <serial_communication/serial_communication.h>
-
-// Standard library
-#include <thread>
+#include <kinematics/kinematics.h>
+#include <debug_utils/debug_utils.h>
+#include <math_utils/Core>
 
 // Eigen
 #include <Eigen/Core>
 
+// Kindr
+#include <kindr/Core>
 
-/// \brief A class to control and distribute motor position, velocity and torque information.
-class MotorInterface
+// Drake C++ Toolbox
+#include <drake/common/symbolic.h>
+#include <drake/solvers/mathematical_program.h>
+#include <drake/solvers/solve.h>
+#include <drake/solvers/osqp_solver.h>
+#include <drake/solvers/equality_constrained_qp_solver.h>
+#include <drake/solvers/clp_solver.h>
+#include <drake/solvers/scs_solver.h>
+#include <drake/solvers/snopt_solver.h>
+
+/// \brief A class for hierarchical optimization control
+class RosSerial
 {
-    /// \brief Default Constructor
-    public: MotorInterface();
-
-    /// \brief Custom Constructor
-    /// \param[in] _num_motors Number of motors in use.
-    public: MotorInterface(const int &_num_motors);
+    /// \brief Constructor
+    public: RosSerial();
 
     /// \brief Destructor
-    public: virtual ~MotorInterface();
+    public: virtual ~RosSerial();
+
+	// TODO update
+    /// \brief The PublishTorqueMsg function publishes
+    /// a desired torque message to the ROS topic set by 
+    /// the joint state publisher.
+    public: void PublishJointStateMsg();
 
     /// \brief Set the velocity of the joints.
     /// \param[in] _vel New target velocity
@@ -65,11 +82,6 @@ class MotorInterface
     /// \brief Set the position of the joints.
     /// \param[in] _pos New target position vector in radians
     public: void SetJointPositions(const std::vector<double> &_pos);
-
-    /// \brief The PublishTorqueMsg function publishes
-    /// a desired torque message to the ROS topic set by 
-    /// the joint state publisher.
-    public: void PublishJointStateMsg();
 
     /// \brief The OnGenCoordMsg function handles an incoming 
     /// generalized coordinates message from ROS.
