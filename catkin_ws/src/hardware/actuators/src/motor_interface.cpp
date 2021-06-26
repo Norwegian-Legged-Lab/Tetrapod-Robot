@@ -36,6 +36,14 @@ MotorInterface::MotorInterface() :
     this->num_motors_port_1 = MAX_NUM_MOTORS_PER_PORT;
 
     this->num_motors_port_2 = MAX_NUM_MOTORS_PER_PORT;
+
+    this->serialInterface1.SetPort("/dev/ttyACM0");
+
+    this->serialInterface2.SetPort("/dev/ttyACM1");
+
+    this->serialInterface1.InitLibSerial();
+
+    this->serialInterface2.InitLibSerial();
 }
 
 MotorInterface::MotorInterface(const int &_num_motors) :
@@ -53,6 +61,8 @@ MotorInterface::MotorInterface(const int &_num_motors) :
         this->serialInterface1.SetPort("/dev/ttyACM0");
 
         this->serialInterface1.SetNumberOfMotors(_num_motors);
+
+        this->serialInterface1.InitLibSerial();
     }
     else
     {
@@ -67,7 +77,13 @@ MotorInterface::MotorInterface(const int &_num_motors) :
         this->serialInterface2.SetPort("/dev/ttyACM1");
 
         this->serialInterface2.SetNumberOfMotors(num_motors_port_2);
+
+        this->serialInterface1.InitLibSerial();
+
+        this->serialInterface2.InitLibSerial();
     }
+
+
 }
 
 // Destructor 
@@ -262,7 +278,7 @@ void MotorInterface::InitRos()
 
     ros::AdvertiseOptions joint_state_ao =
         ros::AdvertiseOptions::create<sensor_msgs::JointState>(
-            "/my_robot/joint_state",
+            "/motor/states",
             1,
             ros::SubscriberStatusCallback(),
             ros::SubscriberStatusCallback(),
