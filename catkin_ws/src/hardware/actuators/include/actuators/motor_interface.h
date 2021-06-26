@@ -1,4 +1,3 @@
-
 /*******************************************************************/
 /*    AUTHOR: Paal Arthur S. Thorseth                              */
 /*    ORGN:   Dept of Eng Cybernetics, NTNU Trondheim              */
@@ -44,7 +43,6 @@
 // Eigen
 #include <Eigen/Core>
 
-
 /// \brief A class to control and distribute motor position, velocity and torque information.
 class MotorInterface
 {
@@ -81,11 +79,17 @@ class MotorInterface
     /// coordinates.
     public: void OnJointStateCmdMsg(const sensor_msgs::JointStateConstPtr &_msg);
 
-    /// \brief The ProcessQueueThread function is a ROS helper function
+    // TODO Describe
+    public: void SerialProcessQueueThread();
+
+    // TODO Describe
+    public: void SerialPublishQueueThread();
+
+    /// \brief The RosProcessQueueThread function is a ROS helper function
     /// that processes messages.
     public: void RosProcessQueueThread();
 
-    /// \brief The PublishQueueThread function is a ROS helper function
+    /// \brief The RosPublishQueueThread function is a ROS helper function
     /// that publish state messages.
     public: void RosPublishQueueThread();
 
@@ -104,9 +108,9 @@ class MotorInterface
 
     private: int num_motors_port_2;
 
-    private: SerialCommunication serial_interface_1;
+    private: SerialCommunication serialInterface1;
 
-    private: SerialCommunication serial_interface_2;
+    private: SerialCommunication serialInterface2;
 
     /// \brief Node used for ROS transport.
     private: std::unique_ptr<ros::NodeHandle> rosNode;
@@ -122,6 +126,12 @@ class MotorInterface
 
     /// \brief ROS callbackque that helps publish messages.
     private: ros::CallbackQueue rosPublishQueue;
+
+    /// \brief Thread running the serialProcessQueue.
+    private: std::thread serialProcessQueueThread;
+
+    /// \brief Thread running the serialPublishQueue.
+    private: std::thread serialPublishQueueThread;
 
     /// \brief Thread running the rosProcessQueue.
     private: std::thread rosProcessQueueThread;
