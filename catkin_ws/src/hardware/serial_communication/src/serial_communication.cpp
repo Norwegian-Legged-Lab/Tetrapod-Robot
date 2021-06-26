@@ -4,14 +4,14 @@ SerialCommunication::SerialCommunication() :
     port { "/dev/ttyACM0" },
     num_motors { 6 }
 {
-    this->InitLibSerial();
+    //this->InitLibSerial();
 }
 
 SerialCommunication::SerialCommunication(const std::string &_port, const int &_num_motors) :
     port { _port },
     num_motors { _num_motors }
 {
-    this->InitLibSerial();
+    //this->InitLibSerial();
 }
 
 SerialCommunication::~SerialCommunication()
@@ -32,7 +32,7 @@ void SerialCommunication::SetNumberOfMotors(const int &_number_of_motors)
 void SerialCommunication::SendMessage(const ControlMode &_control_mode, const std::vector<double> &_state)
 {
     // TODO: USE A CLEANER & NEATER SOLUTION
-    
+
     // Convert the standard vector to an eigen vector
     std::vector<double> v = _state;
     double* ptr = &v[0];
