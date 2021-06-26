@@ -8,7 +8,6 @@
 #include "FlexCAN_T4.h"
 #include <math.h>
 #include "utilities.h"
-#include "ros_node_handle.h"
 #include "Arduino.h"
  
 class MotorControl

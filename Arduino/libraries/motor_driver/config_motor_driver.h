@@ -3,8 +3,7 @@
 
 #include "Arduino.h"
 
-#define ROS_PRINT false
-#define SERIAL_PRINT true
+#define SERIAL_PRINT false
 
 #define FRONT_LEGS true
 #define REAR_LEGS false

@@ -1,22 +1,12 @@
-// C++ Standard Libraries
-#include <string.h>
-
-// Include ROS specific libraries
-#include <ros.h>
-#include <std_msgs/Empty.h>
-#include <sensor_msgs/JointState.h>
-#include <std_msgs/String.h>
-#include <std_msgs/Bool.h>
-#include <std_msgs/Float64MultiArray.h>
-
-// Inlucde other libraries
 #include "motor_driver.h"
 #include "motor_constants.h"
 #include "teensy_can_ports.h"
 #include "FlexCAN_T4.h"
 #include "utilities.h"
-#include "ros_node_handle.h"
 #include "config_motor_driver.h"
+
+// Serial communication
+#include "teensy_serial.h"
 
 // Number of motors per Teensy
 const int NUMBER_OF_MOTORS = 3;
@@ -24,84 +14,29 @@ const int NUMBER_OF_MOTORS = 3;
 // Number of motors per CAN port
 int NUMBER_OF_MOTORS_PER_PORT = 3;
 
-// Arrays needed to publish jointState messages back
-char *joint_names[1] = {"placeHolder"};
-float position_array[NUMBER_OF_MOTORS]; 
-float velocity_array[NUMBER_OF_MOTORS];
-float torque_array[NUMBER_OF_MOTORS];
+// Object to communicate with the host PC over serial
+TeensySerial serial_interface(NUMBER_OF_MOTORS);
+
+// Variable deciding what kind of control to use
+double control_command_type = 0.0;
+
+// Array containing control inputs
+double control_commands[NUMBER_OF_MOTORS];
+
+// Arrays for motor states
+double joint_positions[NUMBER_OF_MOTORS]; 
+double joint_velocities[NUMBER_OF_MOTORS];
+double joint_torques[NUMBER_OF_MOTORS];
 
 // Create a vector of MotorControl elements, one for each motor
 MotorControl* motors = new MotorControl[NUMBER_OF_MOTORS];
 
-// Set the name of the Teensy board
-char teensy_frame[] = "/teensy_front_legs";
-
+// A CAN message used to receive motor replies
 CAN_message_t can_message;
-
-// Create a jointState message for sending motor states back to the mother computer
-sensor_msgs::JointState joint_state_reply;
-
-// Create a bool message for confirming that the motor gains have been set
-std_msgs::Bool motor_set_gains_confirmation_msg;
-
-// Must be declared before callbacks where it is being used
-ros::Publisher motor_state_publisher("/motor/states", &joint_state_reply);
-
-// Publisher used to send confirmation messages that the motor
-ros::Publisher motor_gains_set_confirmation_publisher("/motor/confirmation", &motor_set_gains_confirmation_msg);
 
 // Variable to decide whether or not the motor gains have been set
 bool motor_gains_set = false;
-
-enum ControlType {none = 0, position = 1, velocity = 2, torque = 3};
-
-double motorControlValues[NUMBER_OF_MOTORS];
-
-ControlType motorControlTypes[NUMBER_OF_MOTORS];
-
-int loops_without_control_command = 0;
-
-int max_loops_without_control_command = 20.0;
-
-void controlCommandCallback(const sensor_msgs::JointState& joint_state_msg)
-{
-  // TODO get size from incoming message
-  uint8_t number_of_control_commands = NUMBER_OF_MOTORS;
-
-  String pos = "position";
-  String vel = "velocity";
-  String tor = "torque";
-
-  for(int i = 0; i < number_of_control_commands; i++)
-  {
-    if(pos.equals(joint_state_msg.name[0]))
-    {
-      motorControlTypes[i] = ControlType::position;
-      motorControlValues[i] = joint_state_msg.position[i];
-    }
-    //else if(joint_state_msg.name[0] == "velocity")
-    else if(vel.equals(joint_state_msg.name[0]))
-    {
-      motorControlTypes[i] = ControlType::velocity;
-      motorControlValues[i] = joint_state_msg.velocity[i];
-    }
-    //else if(joint_state_msg.name[0] == "torque")
-    else if(tor.equals(joint_state_msg.name[0]))
-    {
-      motorControlTypes[i] = ControlType::torque;
-      motorControlValues[i] = joint_state_msg.effort[i];
-    }
-    else
-    {
-      motorControlTypes[i] = ControlType::none;
-      motorControlValues[i] = 0.0;
-      ROS_NODE_HANDLE.loginfo("ERROR: Invalid joint state message. Index: ");
-    }
-  } 
-
-  loops_without_control_command = 0;
-}
-
+/*
 void setMotorGainsCallback(const std_msgs::Float64MultiArray &motor_set_gains_msg)
 {
   bool setting_gains_has_not_failed = true;
@@ -140,34 +75,19 @@ void setMotorGainsCallback(const std_msgs::Float64MultiArray &motor_set_gains_ms
     motor_gains_set = true;    
   }
 }
-
-ros::Subscriber<sensor_msgs::JointState> subscriber_control_commands("/my_robot/joint_state_cmd", &controlCommandCallback);
-
-ros::Subscriber<std_msgs::Float64MultiArray> set_motor_gains_subscriber("/motor/gains", &setMotorGainsCallback);
-
+*/
 void setup() 
 {
   // Set the baud rate for the serial communication
-  Serial.begin(500000);
-  delay_microseconds(100000.0);
+  //Serial.begin(500000);
+  //while(!Serial);
 
   // Initialize CAN ports. 
-  // DO NOT ATTEMPT TO SEND DATA OVER THE TEENSY CAN PORTS WITHOUT RUNNING CAN_PORT*.BEGIN()
-  
+  // DO NOT ATTEMPT TO SEND DATA OVER THE TEENSY CAN PORTS WITHOUT RUNNING CAN_PORT*.BEGIN()  
   can_port_1.begin();
   can_port_1.setBaudRate(MOTOR_BAUD_RATE);
   can_port_2.begin();
   can_port_2.setBaudRate(MOTOR_BAUD_RATE);
-
-  joint_state_reply.name_length = 1;
-  joint_state_reply.position_length = NUMBER_OF_MOTORS;
-  joint_state_reply.velocity_length = NUMBER_OF_MOTORS;
-  joint_state_reply.effort_length = NUMBER_OF_MOTORS;
-  
-  // Initialize the ROS node
-  ROS_NODE_HANDLE.initNode();
-
-  // Setup subcriber for initializing the motors and wait for initial number of rotations
   
   // Initialize the motor controllers
   for (int i = 0; i < NUMBER_OF_MOTORS; i++)
@@ -184,65 +104,43 @@ void setup()
     }
   }
 
-  
-  
-  ROS_NODE_HANDLE.advertise(motor_state_publisher);
-
-  ROS_NODE_HANDLE.advertise(motor_gains_set_confirmation_publisher);
-
-  ROS_NODE_HANDLE.subscribe(subscriber_control_commands);
-
-  ROS_NODE_HANDLE.subscribe(set_motor_gains_subscriber);
-
+  // Wait for the motor gains to be set
   while(motor_gains_set != true)
   {
-    ROS_NODE_HANDLE.loginfo("Waiting for set gains message");
-
     delay_microseconds(250000);
-    
-    ROS_NODE_HANDLE.spinOnce();
   }
-
-  ROS_NODE_HANDLE.loginfo("Setup Complete");
 }
 
 void loop() 
-{ 
+{   
   // Empty the CAN buffers
   while(can_port_1.read(can_message));
   while(can_port_2.read(can_message));
 
-  ROS_NODE_HANDLE.spinOnce();
-
-  loops_without_control_command++;
-
-  if(loops_without_control_command < max_loops_without_control_command)
+  // Check if any new control commands have been received
+  if(serial_interface.areControlCommandsAvailable())
   {
+    // Update the control signals
+    serial_interface.receiveControlCommands(control_command_type, control_commands);
+    
     // Send control commands to all of the motors
     for(int i = 0; i < NUMBER_OF_MOTORS; i++)
     {
-      switch(motorControlTypes[i])
+      if(control_command_type == 1.0)
       {
-        case ControlType::position:
-          motors[i].setPositionReference(motorControlValues[i]);
-          ROS_NODE_HANDLE.loginfo("Position");
-          break;
-          
-        case ControlType::velocity:
-          motors[i].setSpeedReference(motorControlValues[i]);
-          ROS_NODE_HANDLE.loginfo("Velocity");
-          break;
-          
-        case ControlType::torque:
-          motors[i].setTorqueReference(motorControlValues[i]);
-          ROS_NODE_HANDLE.loginfo("Torque");
-          break;
-  
-        default:
-          motors[i].requestMotorStatus();
-          loops_without_control_command = 0;
-          ROS_NODE_HANDLE.loginfo("Status Request (Default)");
-          break;
+        motors[i].setPositionReference(control_commands[i]);
+      }
+      else if(control_command_type == 2.0)
+      {
+        motors[i].setSpeedReference(control_commands[i]);
+      }
+      else if(control_command_type == 3.0)
+      {
+        motors[i].setTorqueReference(control_commands[i]);
+      }
+      else
+      {
+        motors[i].requestMotorStatus();
       }
     } 
   }
@@ -251,11 +149,11 @@ void loop()
     for(int i = 0; i < NUMBER_OF_MOTORS; i++)
     {
       motors[i].requestMotorStatus();
-      ROS_NODE_HANDLE.loginfo("Status Request (Else)");
     }
   }
-  
-  delay_microseconds(5000); // Can be 3000
+
+  // Wait for replies from the CAN ports
+  delay_microseconds(3000); // Can be 3000
   
   // Go through all the replies and update the motor states
   while(can_port_1.read(can_message) || can_port_2.read(can_message))
@@ -271,43 +169,18 @@ void loop()
     }
     else
     {
-      // Report error. No motor with the corresponding ID
       //Serial.println("ERROR: No motor ID corresponds to the incomming message");
-      ROS_NODE_HANDLE.loginfo("ERROR: No motor ID corresponds to the incomming message");
     }
   }
  
-  // Update the joint state reply message
-  
+  // Update the motor states using the replies
   for(int i = 0; i < NUMBER_OF_MOTORS; i++)
   {
-    position_array[i] = motors[i].getPosition();
-    velocity_array[i] = motors[i].getVelocity();
-    torque_array[i] = motors[i].getTorque();
+    joint_positions[i] = motors[i].getPosition();
+    joint_velocities[i] = motors[i].getVelocity();
+    joint_torques[i] = motors[i].getTorque();
   }
-
-  /*
-  char pos_1_str[5];
-  char pos_2_str[5];
-  char pos_3_str[5];
-  dtostrf(position_array[0], 1, 4, pos_1_str);
-  dtostrf(position_array[1], 1, 4, pos_2_str);
-  dtostrf(position_array[2], 1, 4, pos_3_str);
-  char print_message[30];
-  sprintf(print_message, "Pos: %s %s %s", position_array[0], position_array[1], position_array[2]);
-  ROS_NODE_HANDLE.loginfo(print_message);
-  */
   
-  joint_state_reply.name = joint_names;
-  joint_state_reply.position = position_array;
-  joint_state_reply.velocity = velocity_array;
-  joint_state_reply.effort = torque_array;
-
-  // Add message header
-  joint_state_reply.header.frame_id = teensy_frame;
-  
-  // Add time stamp to the message
-  joint_state_reply.header.stamp = ROS_NODE_HANDLE.now();
-  
-  motor_state_publisher.publish(&joint_state_reply);
+  // Send joint states back to the host PC
+  serial_interface.sendStates(joint_positions, joint_velocities, joint_torques);
 }
