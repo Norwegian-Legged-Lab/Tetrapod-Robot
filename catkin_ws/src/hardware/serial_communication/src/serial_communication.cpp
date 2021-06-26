@@ -29,14 +29,21 @@ void SerialCommunication::SetNumberOfMotors(const int &_number_of_motors)
     this->num_motors = _number_of_motors;
 }
 
-void SerialCommunication::SendMessage(const ControlMode &_control_mode, const Eigen::VectorXd &_state)
+void SerialCommunication::SendMessage(const ControlMode &_control_mode, const std::vector<double> &_state)
 {
-    if (_state.rows() != this->num_motors)
+    // TODO: USE A CLEANER & NEATER SOLUTION
+    
+    // Convert the standard vector to an eigen vector
+    std::vector<double> v = _state;
+    double* ptr = &v[0];
+    Eigen::Map<Eigen::VectorXd> state(ptr, v.size());
+
+    if (state.rows() != this->num_motors)
     {
         std::abort();
     }
 
-    this->PackageBuffer(_control_mode, _state.data());
+    this->PackageBuffer(_control_mode, state.data());
 
     this->serial_port.Write(tx_buffer);
 }

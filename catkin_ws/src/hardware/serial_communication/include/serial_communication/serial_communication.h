@@ -61,7 +61,7 @@ class SerialCommunication
     /// \param[in] _number_of_motors Number of motors to use
     public: void SetNumberOfMotors(const int &_number_of_motors);
 
-    public: void SendMessage(const ControlMode &_control_mode, const Eigen::VectorXd &_state);
+    public: void SendMessage(const ControlMode &_control_mode, const std::vector<double> &_state);
 
     public: Eigen::Matrix<Eigen::VectorXd, 3, 1> ReceiveMessage();
 
