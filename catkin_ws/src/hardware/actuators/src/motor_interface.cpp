@@ -55,6 +55,19 @@ MotorInterface::~MotorInterface()
     this->rosPublishQueueThread.join();
 }
 
+void MotorInterface::SetJointForces(const std::vector<double> &_forces)
+{
+    if (this->NUM_MOTORS <= 6)
+    {
+        this->teensy_A.SendMessage(3, _forces);
+    }
+    else
+    {
+        this->teensy_A.SendMessage(3, _forces);
+        this->teensy_B.SendMessage(3, _forces);
+    }
+}
+
 // Publish function for ROS Joint State Torque messages
 void MotorInterface::PublishJointStateMsg()
 {
@@ -113,6 +126,30 @@ void MotorInterface::OnJointStateCmdMsg(const sensor_msgs::JointStateConstPtr &_
 }
 
 // Setup thread to process messages
+void MotorInterface::SerialProcessQueueThread()
+{
+    ros::Rate loop_rate(1000);
+
+    while (this->rosNode->ok())
+    {
+
+        loop_rate.sleep();
+    }
+}
+
+// Setup thread to publish messages
+void MotorInterface::SerialPublishQueueThread()
+{
+    ros::Rate loop_rate(1000);
+
+    while (this->rosNode->ok())
+    {
+
+        loop_rate.sleep();
+    }
+}
+
+// Setup thread to process messages
 void MotorInterface::RosProcessQueueThread()
 {
     static const double timeout = 0.01;
@@ -142,16 +179,16 @@ void MotorInterface::InitRos()
         ros::init(
             argc,
             argv,
-            "hierarchical_optimization_control_node",
+            "motor_interface_node",
             ros::init_options::NoSigintHandler
         );
     }
 
-    this->rosNode.reset(new ros::NodeHandle("hierarchical_optimization_control_node"));
+    this->rosNode.reset(new ros::NodeHandle("motor_interface_node"));
 
-    ros::SubscribeOptions gen_coord_so = 
-        ros::SubscribeOptions::create<std_msgs::Float64MultiArray>(
-            "/my_robot/gen_coord",
+    ros::SubscribeOptions joint_state_cmd_so = 
+        ros::SubscribeOptions::create<sensor_msgs::JointState>(
+            "/my_robot/joint_state_cmd",
             1,
             boost::bind(&MotorInterface::OnJointStateCmdMsg, this, _1),
             ros::VoidPtr(),
@@ -161,7 +198,7 @@ void MotorInterface::InitRos()
 
     ros::AdvertiseOptions joint_state_ao =
         ros::AdvertiseOptions::create<sensor_msgs::JointState>(
-            "/my_robot/joint_state_cmd",
+            "/my_robot/joint_state",
             1,
             ros::SubscriberStatusCallback(),
             ros::SubscriberStatusCallback(),
@@ -169,12 +206,22 @@ void MotorInterface::InitRos()
             &this->rosPublishQueue
         );
 
+    this->jointStateCmdSub = this->rosNode->subscribe(joint_state_cmd_so);
+
     this->jointStatePub = this->rosNode->advertise(joint_state_ao);
 }
 
 // Initialize ROS Publish and Process Queue Threads
 void MotorInterface::InitRosQueueThreads()
 {
+    this->serialPublishQueueThread = std::thread(
+        std::bind(&MotorInterface::SerialPublishQueueThread, this)
+    );
+
+    this->serialProcessQueueThread = std::thread(
+        std::bind(&MotorInterface::SerialProcessQueueThread, this)
+    );
+
     this->rosPublishQueueThread = std::thread(
         std::bind(&MotorInterface::RosPublishQueueThread, this)
     );

@@ -1,4 +1,3 @@
-
 /*******************************************************************/
 /*    AUTHOR: Paal Arthur S. Thorseth                              */
 /*    ORGN:   Dept of Eng Cybernetics, NTNU Trondheim              */
@@ -36,14 +35,13 @@
 #include "eigen_conversions/eigen_msg.h"
 
 // ROS Package Libraries
-//#include <serial_communication/serial_communication.h>
+#include <serial_communication/serial_communication.h>
 
 // Standard library
 #include <thread>
 
 // Eigen
 #include <Eigen/Core>
-
 
 /// \brief A class to control and distribute motor position, velocity and torque information.
 class MotorInterface
@@ -57,6 +55,10 @@ class MotorInterface
 
     /// \brief Destructor
     public: virtual ~MotorInterface();
+
+    /// \brief Set the forces (torques) of the joints
+    /// \param[in] _forces Forces to apply
+    public: void SetJointForces(const std::vector<double> &_forces);
 
     /// \brief Set the velocity of the joints.
     /// \param[in] _vel New target velocity
@@ -77,11 +79,17 @@ class MotorInterface
     /// coordinates.
     public: void OnJointStateCmdMsg(const sensor_msgs::JointStateConstPtr &_msg);
 
-    /// \brief The ProcessQueueThread function is a ROS helper function
+    // TODO Describe
+    public: void SerialProcessQueueThread();
+
+    // TODO Describe
+    public: void SerialPublishQueueThread();
+
+    /// \brief The RosProcessQueueThread function is a ROS helper function
     /// that processes messages.
     public: void RosProcessQueueThread();
 
-    /// \brief The PublishQueueThread function is a ROS helper function
+    /// \brief The RosPublishQueueThread function is a ROS helper function
     /// that publish state messages.
     public: void RosPublishQueueThread();
 
@@ -93,6 +101,10 @@ class MotorInterface
     protected: void InitRosQueueThreads();
 
 	private: const int NUM_MOTORS;
+
+    private: SerialCommunication teensy_A;
+
+    private: SerialCommunication teensy_B;
 
     /// \brief Node used for ROS transport.
     private: std::unique_ptr<ros::NodeHandle> rosNode;
@@ -108,6 +120,12 @@ class MotorInterface
 
     /// \brief ROS callbackque that helps publish messages.
     private: ros::CallbackQueue rosPublishQueue;
+
+    /// \brief Thread running the serialProcessQueue.
+    private: std::thread serialProcessQueueThread;
+
+    /// \brief Thread running the serialPublishQueue.
+    private: std::thread serialPublishQueueThread;
 
     /// \brief Thread running the rosProcessQueue.
     private: std::thread rosProcessQueueThread;
