@@ -2,6 +2,7 @@
 
 int main(int argc, char **argv)
 {
+	/*
 	int num_motors = 6;
 
 	SerialCommunication serial_communication("/dev/ttyACM0", num_motors);
@@ -42,6 +43,6 @@ int main(int argc, char **argv)
 
 	//serial_communication.test();
 
-
+	*/
 	return 0;
 }
