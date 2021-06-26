@@ -32,6 +32,10 @@ MotorInterface::MotorInterface() :
 {
     this->InitRos();
     this->InitRosQueueThreads();
+
+    this->num_motors_port_1 = MAX_NUM_MOTORS_PER_PORT;
+
+    this->num_motors_port_2 = MAX_NUM_MOTORS_PER_PORT;
 }
 
 MotorInterface::MotorInterface(const int &_num_motors) :
@@ -39,6 +43,31 @@ MotorInterface::MotorInterface(const int &_num_motors) :
 {
     this->InitRos();
     this->InitRosQueueThreads();
+
+
+    // Check whether we should use one or two parts
+    if(_num_motors <= this->MAX_NUM_MOTORS_PER_PORT)
+    {
+        this->num_motors_port_1 = _num_motors;
+
+        this->serial_interface_1.SetPort("/dev/ttyACM0");
+
+        this->serial_interface_1.SetNumberOfMotors(_num_motors);
+    }
+    else
+    {
+        num_motors_port_1 = MAX_NUM_MOTORS_PER_PORT;
+        
+        num_motors_port_2 = _num_motors - num_motors_port_1;
+
+        this->serial_interface_1.SetPort("/dev/ttyACM0");
+
+        this->serial_interface_1.SetNumberOfMotors(num_motors_port_1);
+
+        this->serial_interface_2.SetPort("/dev/ttyACM1");
+
+        this->serial_interface_2.SetNumberOfMotors(num_motors_port_2);
+    }
 }
 
 // Destructor 
@@ -54,6 +83,31 @@ MotorInterface::~MotorInterface()
     this->rosPublishQueue.disable();
     this->rosPublishQueueThread.join();
 }
+
+void MotorInterface::SetJointPositions(const std::vector<double> &_pos)
+{
+    /*
+    Eigen::Matrix<double, NUM_MOTORS, 1> control_commands = _pos.data;
+
+    serial_interface_1.SendMessage(ControlMode::position, control_commands.block<num_motors_port_1, 1>(0, 0));
+
+    if(this->NUM_MOTORS >= MAX_NUM_MOTORS_PER_PORT)
+    {
+        serial_interface_2.SendMessage(ControlMode::position, control_commands.block<num_motors_port_2, 1>(0, 0));
+    }
+    */
+}
+
+void MotorInterface::SetJointVelocities(const std::vector<double> &_vel)
+{
+
+}
+
+void MotorInterface::SetJointTorques(const std::vector<double> &_torque)
+{
+
+}
+
 
 // Publish function for ROS Joint State Torque messages
 void MotorInterface::PublishJointStateMsg()
@@ -106,7 +160,7 @@ void MotorInterface::OnJointStateCmdMsg(const sensor_msgs::JointStateConstPtr &_
 
     if ((!_msg->effort.empty()) && (_msg->effort.size() == this->NUM_MOTORS))
     {
-        this->SetJointForces(_msg->effort);
+        this->SetJointTorques(_msg->effort);
     }
 
 	ROS_ERROR("[MotorInterface::OnJointStateCmdMsg] Message failed to match specifications!");
@@ -142,15 +196,15 @@ void MotorInterface::InitRos()
         ros::init(
             argc,
             argv,
-            "hierarchical_optimization_control_node",
+            "motor_interface_node",
             ros::init_options::NoSigintHandler
         );
     }
 
-    this->rosNode.reset(new ros::NodeHandle("hierarchical_optimization_control_node"));
+    this->rosNode.reset(new ros::NodeHandle("motor_interface_node"));
 
     ros::SubscribeOptions gen_coord_so = 
-        ros::SubscribeOptions::create<std_msgs::Float64MultiArray>(
+        ros::SubscribeOptions::create<sensor_msgs::JointState>(
             "/my_robot/gen_coord",
             1,
             boost::bind(&MotorInterface::OnJointStateCmdMsg, this, _1),

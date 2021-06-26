@@ -36,7 +36,7 @@
 #include "eigen_conversions/eigen_msg.h"
 
 // ROS Package Libraries
-//#include <serial_communication/serial_communication.h>
+#include <serial_communication/serial_communication.h>
 
 // Standard library
 #include <thread>
@@ -58,13 +58,17 @@ class MotorInterface
     /// \brief Destructor
     public: virtual ~MotorInterface();
 
+    /// \brief Set the position of the joints.
+    /// \param[in] _pos New target position vector in radians
+    public: void SetJointPositions(const std::vector<double> &_pos);
+
     /// \brief Set the velocity of the joints.
     /// \param[in] _vel New target velocity
     public: void SetJointVelocities(const std::vector<double> &_vel);
 
-    /// \brief Set the position of the joints.
-    /// \param[in] _pos New target position vector in radians
-    public: void SetJointPositions(const std::vector<double> &_pos);
+    /// \brief Set the torque of the joints.
+    /// \param[in] _torque New target torque
+    public: void SetJointTorques(const std::vector<double> &_torque);
 
     /// \brief The PublishTorqueMsg function publishes
     /// a desired torque message to the ROS topic set by 
@@ -93,6 +97,16 @@ class MotorInterface
     protected: void InitRosQueueThreads();
 
 	private: const int NUM_MOTORS;
+
+    private: const int MAX_NUM_MOTORS_PER_PORT = 6;
+
+    private: int num_motors_port_1;
+
+    private: int num_motors_port_2;
+
+    private: SerialCommunication serial_interface_1;
+
+    private: SerialCommunication serial_interface_2;
 
     /// \brief Node used for ROS transport.
     private: std::unique_ptr<ros::NodeHandle> rosNode;
