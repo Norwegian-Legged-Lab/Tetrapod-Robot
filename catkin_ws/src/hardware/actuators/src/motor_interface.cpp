@@ -87,15 +87,17 @@ MotorInterface::~MotorInterface()
 void MotorInterface::SetJointPositions(const std::vector<double> &_pos)
 {
     /*
-    Eigen::Matrix<double, NUM_MOTORS, 1> control_commands = _pos.data;
+    std::vector<double> commands_port_1(_pos.begin(), _pos.begin() + this->num_motors_port_1);
 
-    serial_interface_1.SendMessage(ControlMode::position, control_commands.block<num_motors_port_1, 1>(0, 0));
+    serial_interface_1.SendMessage(SerialCommunication::ControlMode::position, commands_port_1.data);
 
     if(this->NUM_MOTORS >= MAX_NUM_MOTORS_PER_PORT)
     {
-        serial_interface_2.SendMessage(ControlMode::position, control_commands.block<num_motors_port_2, 1>(0, 0));
+        std::vector<double> commands_port_2(_pos.begin() + this->num_motors_port_1, _pos.end());
+        serial_interface_2.SendMessage(SerialCommunication::ControlMode::position, commands_port_2.data);
     }
     */
+    
 }
 
 void MotorInterface::SetJointVelocities(const std::vector<double> &_vel)
