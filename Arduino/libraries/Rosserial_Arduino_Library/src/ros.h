@@ -45,8 +45,10 @@
 
 namespace ros
 {
+  typedef NodeHandle_<ArduinoHardware, 10, 10, 4096, 4096> NodeHandle;
+/*
 #if defined(__AVR_ATmega8__) or defined(__AVR_ATmega168__)
-  /* downsize our buffers */
+  // downsize our buffers
   typedef NodeHandle_<ArduinoHardware, 6, 6, 150, 150> NodeHandle;
 
 #elif defined(__AVR_ATmega328P__)
@@ -59,9 +61,11 @@ namespace ros
 
 #else
 
-  typedef NodeHandle_<ArduinoHardware> NodeHandle; // default 25, 25, 512, 512
+  //typedef NodeHandle_<ArduinoHardware> NodeHandle; // default 25, 25, 512, 512
+  typedef NodeHandle_<ArduinoHardware, 10, 10, 2048, 2048> NodeHandle;
 
 #endif
+*/
 }
 
 #endif
