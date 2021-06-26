@@ -19,6 +19,16 @@ SerialCommunication::~SerialCommunication()
     serial_port.Close();
 }
 
+void SerialCommunication::SetPort(const std::string &_port)
+{
+    this->port = _port;
+}
+
+void SerialCommunication::SetNumberOfMotors(const int &_number_of_motors)
+{
+    this->num_motors = _number_of_motors;
+}
+
 void SerialCommunication::SendMessage(const ControlMode &_control_mode, const Eigen::VectorXd &_state)
 {
     if (_state.rows() != this->num_motors)

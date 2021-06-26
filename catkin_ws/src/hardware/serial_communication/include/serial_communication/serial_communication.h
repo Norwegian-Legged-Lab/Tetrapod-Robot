@@ -53,6 +53,14 @@ class SerialCommunication
     /// \brief Destructor
     public: virtual ~SerialCommunication();
 
+    /// \brief Set the port for the Teensy communication after creating the constructor
+    /// \param[in] _port Serial port name for the Teensy communication
+    public: void SetPort(const std::string &_port);
+
+    /// \brief Set the number of motors for the port after creating the constructor
+    /// \param[in] _number_of_motors Number of motors to use
+    public: void SetNumberOfMotors(const int &_number_of_motors);
+
     public: void SendMessage(const ControlMode &_control_mode, const Eigen::VectorXd &_state);
 
     public: Eigen::Matrix<Eigen::VectorXd, 3, 1> ReceiveMessage();
@@ -83,7 +91,7 @@ class SerialCommunication
 
     private: int rx_timeout_ms = 2;
 
-    private: const std::string port;
+    private: std::string port;
 
-    private: const int num_motors;
+    private: int num_motors;
 };
