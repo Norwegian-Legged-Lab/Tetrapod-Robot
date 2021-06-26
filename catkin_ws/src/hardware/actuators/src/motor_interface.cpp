@@ -50,9 +50,9 @@ MotorInterface::MotorInterface(const int &_num_motors) :
     {
         this->num_motors_port_1 = _num_motors;
 
-        this->serial_interface_1.SetPort("/dev/ttyACM0");
+        this->serialInterface1.SetPort("/dev/ttyACM0");
 
-        this->serial_interface_1.SetNumberOfMotors(_num_motors);
+        this->serialInterface1.SetNumberOfMotors(_num_motors);
     }
     else
     {
@@ -60,13 +60,13 @@ MotorInterface::MotorInterface(const int &_num_motors) :
         
         num_motors_port_2 = _num_motors - num_motors_port_1;
 
-        this->serial_interface_1.SetPort("/dev/ttyACM0");
+        this->serialInterface1.SetPort("/dev/ttyACM0");
 
-        this->serial_interface_1.SetNumberOfMotors(num_motors_port_1);
+        this->serialInterface1.SetNumberOfMotors(num_motors_port_1);
 
-        this->serial_interface_2.SetPort("/dev/ttyACM1");
+        this->serialInterface2.SetPort("/dev/ttyACM1");
 
-        this->serial_interface_2.SetNumberOfMotors(num_motors_port_2);
+        this->serialInterface2.SetNumberOfMotors(num_motors_port_2);
     }
 }
 
@@ -86,27 +86,17 @@ MotorInterface::~MotorInterface()
 
 void MotorInterface::SetJointPositions(const std::vector<double> &_pos)
 {
-    /*
-    std::vector<double> commands_port_1(_pos.begin(), _pos.begin() + this->num_motors_port_1);
-
-    serial_interface_1.SendMessage(SerialCommunication::ControlMode::position, commands_port_1.data);
-
-    if(this->NUM_MOTORS >= MAX_NUM_MOTORS_PER_PORT)
-    {
-        std::vector<double> commands_port_2(_pos.begin() + this->num_motors_port_1, _pos.end());
-        serial_interface_2.SendMessage(SerialCommunication::ControlMode::position, commands_port_2.data);
-    }
-    */
-    
     if (this->NUM_MOTORS <= 6)
     {
-        this->serialInterface1.SendMessage(1, _pos);
+        this->serialInterface1.SendMessage(SerialCommunication::ControlMode::position, _pos);
     }
     else
     {
-        // TODO fix vector slicing
-        //this->serialInterface1.SendMessage(3, _forces);
-        //this->serialInterface2.SendMessage(3, _forces);
+        std::vector<double> commands_port_1(_pos.begin(), _pos.begin() + this->num_motors_port_1);
+        std::vector<double> commands_port_2(_pos.begin() + this->num_motors_port_1, _pos.end());
+
+        serialInterface1.SendMessage(SerialCommunication::ControlMode::position, commands_port_1);
+        serialInterface2.SendMessage(SerialCommunication::ControlMode::position, commands_port_2);
     }
 }
 
@@ -114,13 +104,15 @@ void MotorInterface::SetJointVelocities(const std::vector<double> &_vel)
 {
     if (this->NUM_MOTORS <= 6)
     {
-        this->serialInterface1.SendMessage(2, _vel);
+        this->serialInterface1.SendMessage(SerialCommunication::ControlMode::velocity, _vel);
     }
     else
     {
-        // TODO fix vector slicing
-        //this->serialInterface1.SendMessage(3, _forces);
-        //this->serialInterface2.SendMessage(3, _forces);
+        std::vector<double> commands_port_1(_vel.begin(), _vel.begin() + this->num_motors_port_1);
+        std::vector<double> commands_port_2(_vel.begin() + this->num_motors_port_1, _vel.end());
+
+        serialInterface1.SendMessage(SerialCommunication::ControlMode::velocity, commands_port_1);
+        serialInterface2.SendMessage(SerialCommunication::ControlMode::velocity, commands_port_2);
     }
 }
 
@@ -128,13 +120,15 @@ void MotorInterface::SetJointTorques(const std::vector<double> &_torque)
 {
     if (this->NUM_MOTORS <= 6)
     {
-        this->serialInterface1.SendMessage(3, _torque);
+        this->serialInterface1.SendMessage(SerialCommunication::ControlMode::torque, _torque);
     }
     else
     {
-        // TODO fix vector slicing
-        //this->serialInterface1.SendMessage(3, _forces);
-        //this->serialInterface2.SendMessage(3, _forces);
+        std::vector<double> commands_port_1(_torque.begin(), _torque.begin() + this->num_motors_port_1);
+        std::vector<double> commands_port_2(_torque.begin() + this->num_motors_port_1, _torque.end());
+
+        serialInterface1.SendMessage(SerialCommunication::ControlMode::torque, commands_port_1);
+        serialInterface2.SendMessage(SerialCommunication::ControlMode::torque, commands_port_2);
     }
 }
 
