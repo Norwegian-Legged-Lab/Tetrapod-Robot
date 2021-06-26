@@ -53,6 +53,13 @@ void TeensySerial::receiveControlCommands(double &_control_command_type, double*
     // Up to 64 bytes can be read at a time
     while(Serial.available())
     {
+        // If several messages are waiting on the line, we only care about the latest.
+        // We therefore overwrite the previously received data
+        if(i >= rx_buffer_size)
+        {
+            i = 0;
+        }
+
         // Store the data in the receive buffer
         this->rx_buffer[i] = Serial.read();
         i++;
