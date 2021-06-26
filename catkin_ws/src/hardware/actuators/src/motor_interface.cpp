@@ -86,7 +86,7 @@ MotorInterface::~MotorInterface()
 
 void MotorInterface::SetJointPositions(const std::vector<double> &_pos)
 {
-    if (this->NUM_MOTORS <= 6)
+    if (this->NUM_MOTORS <= MAX_NUM_MOTORS_PER_PORT)
     {
         this->serialInterface1.SendMessage(SerialCommunication::ControlMode::position, _pos);
     }
@@ -102,7 +102,7 @@ void MotorInterface::SetJointPositions(const std::vector<double> &_pos)
 
 void MotorInterface::SetJointVelocities(const std::vector<double> &_vel)
 {
-    if (this->NUM_MOTORS <= 6)
+    if (this->NUM_MOTORS <= MAX_NUM_MOTORS_PER_PORT)
     {
         this->serialInterface1.SendMessage(SerialCommunication::ControlMode::velocity, _vel);
     }
@@ -118,7 +118,7 @@ void MotorInterface::SetJointVelocities(const std::vector<double> &_vel)
 
 void MotorInterface::SetJointTorques(const std::vector<double> &_torque)
 {
-    if (this->NUM_MOTORS <= 6)
+    if (this->NUM_MOTORS <= MAX_NUM_MOTORS_PER_PORT)
     {
         this->serialInterface1.SendMessage(SerialCommunication::ControlMode::torque, _torque);
     }

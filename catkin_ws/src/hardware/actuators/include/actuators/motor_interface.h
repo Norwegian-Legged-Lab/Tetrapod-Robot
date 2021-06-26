@@ -100,16 +100,22 @@ class MotorInterface
     /// the ROS Publish and Process Queue Threads
     protected: void InitRosQueueThreads();
 
+    /// \brief The number of motors to interface with
 	private: const int NUM_MOTORS;
 
+    /// \brief The maximum numbers of motors to be interfaced with by one Teensy
     private: const int MAX_NUM_MOTORS_PER_PORT = 6;
 
+    /// \brief The number of motors interfaced by the first Teensy
     private: int num_motors_port_1;
 
+    /// \brief The number of motors interfaced by the second Teensy
     private: int num_motors_port_2;
 
+    /// \brief The serial interface used to communicate with the first Teensy
     private: SerialCommunication serialInterface1;
 
+    /// \brief The serial interface used to communicate with the second Teensy
     private: SerialCommunication serialInterface2;
 
     /// \brief Node used for ROS transport.
