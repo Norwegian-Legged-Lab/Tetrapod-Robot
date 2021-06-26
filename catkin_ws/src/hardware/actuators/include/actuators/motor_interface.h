@@ -56,17 +56,17 @@ class MotorInterface
     /// \brief Destructor
     public: virtual ~MotorInterface();
 
-    /// \brief Set the forces (torques) of the joints
-    /// \param[in] _forces Forces to apply
-    public: void SetJointForces(const std::vector<double> &_forces);
+    /// \brief Set the position of the joints.
+    /// \param[in] _pos New target position vector in radians
+    public: void SetJointPositions(const std::vector<double> &_pos);
 
     /// \brief Set the velocity of the joints.
     /// \param[in] _vel New target velocity
     public: void SetJointVelocities(const std::vector<double> &_vel);
 
-    /// \brief Set the position of the joints.
-    /// \param[in] _pos New target position vector in radians
-    public: void SetJointPositions(const std::vector<double> &_pos);
+    /// \brief Set the torque of the joints.
+    /// \param[in] _torque New target torque
+    public: void SetJointTorques(const std::vector<double> &_torque);
 
     /// \brief The PublishTorqueMsg function publishes
     /// a desired torque message to the ROS topic set by 
@@ -102,9 +102,15 @@ class MotorInterface
 
 	private: const int NUM_MOTORS;
 
-    private: SerialCommunication teensy_A;
+    private: const int MAX_NUM_MOTORS_PER_PORT = 6;
 
-    private: SerialCommunication teensy_B;
+    private: int num_motors_port_1;
+
+    private: int num_motors_port_2;
+
+    private: SerialCommunication serialInterface1;
+
+    private: SerialCommunication serialInterface2;
 
     /// \brief Node used for ROS transport.
     private: std::unique_ptr<ros::NodeHandle> rosNode;

@@ -23,7 +23,6 @@
 
 // Utilities
 #include <filter_utils/filter_utils.h>
-#include <serial_communication/serial_communication.h>
 
 class SingleLegController
 {

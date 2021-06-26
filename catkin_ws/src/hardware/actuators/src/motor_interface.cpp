@@ -32,6 +32,10 @@ MotorInterface::MotorInterface() :
 {
     this->InitRos();
     this->InitRosQueueThreads();
+
+    this->num_motors_port_1 = MAX_NUM_MOTORS_PER_PORT;
+
+    this->num_motors_port_2 = MAX_NUM_MOTORS_PER_PORT;
 }
 
 MotorInterface::MotorInterface(const int &_num_motors) :
@@ -39,6 +43,31 @@ MotorInterface::MotorInterface(const int &_num_motors) :
 {
     this->InitRos();
     this->InitRosQueueThreads();
+
+
+    // Check whether we should use one or two parts
+    if(_num_motors <= this->MAX_NUM_MOTORS_PER_PORT)
+    {
+        this->num_motors_port_1 = _num_motors;
+
+        this->serial_interface_1.SetPort("/dev/ttyACM0");
+
+        this->serial_interface_1.SetNumberOfMotors(_num_motors);
+    }
+    else
+    {
+        num_motors_port_1 = MAX_NUM_MOTORS_PER_PORT;
+        
+        num_motors_port_2 = _num_motors - num_motors_port_1;
+
+        this->serial_interface_1.SetPort("/dev/ttyACM0");
+
+        this->serial_interface_1.SetNumberOfMotors(num_motors_port_1);
+
+        this->serial_interface_2.SetPort("/dev/ttyACM1");
+
+        this->serial_interface_2.SetNumberOfMotors(num_motors_port_2);
+    }
 }
 
 // Destructor 
@@ -55,16 +84,45 @@ MotorInterface::~MotorInterface()
     this->rosPublishQueueThread.join();
 }
 
-void MotorInterface::SetJointForces(const std::vector<double> &_forces)
+void MotorInterface::SetJointPositions(const std::vector<double> &_pos)
 {
     if (this->NUM_MOTORS <= 6)
     {
-        this->teensy_A.SendMessage(3, _forces);
+        this->serialInterface1.SendMessage(1, _pos);
     }
     else
     {
-        this->teensy_A.SendMessage(3, _forces);
-        this->teensy_B.SendMessage(3, _forces);
+        // TODO fix vector slicing
+        //this->serialInterface1.SendMessage(3, _forces);
+        //this->serialInterface2.SendMessage(3, _forces);
+    }
+}
+
+void MotorInterface::SetJointVelocities(const std::vector<double> &_vel)
+{
+    if (this->NUM_MOTORS <= 6)
+    {
+        this->serialInterface1.SendMessage(2, _vel);
+    }
+    else
+    {
+        // TODO fix vector slicing
+        //this->serialInterface1.SendMessage(3, _forces);
+        //this->serialInterface2.SendMessage(3, _forces);
+    }
+}
+
+void MotorInterface::SetJointTorques(const std::vector<double> &_torque)
+{
+    if (this->NUM_MOTORS <= 6)
+    {
+        this->serialInterface1.SendMessage(3, _torque);
+    }
+    else
+    {
+        // TODO fix vector slicing
+        //this->serialInterface1.SendMessage(3, _forces);
+        //this->serialInterface2.SendMessage(3, _forces);
     }
 }
 
@@ -119,7 +177,7 @@ void MotorInterface::OnJointStateCmdMsg(const sensor_msgs::JointStateConstPtr &_
 
     if ((!_msg->effort.empty()) && (_msg->effort.size() == this->NUM_MOTORS))
     {
-        this->SetJointForces(_msg->effort);
+        this->SetJointTorques(_msg->effort);
     }
 
 	ROS_ERROR("[MotorInterface::OnJointStateCmdMsg] Message failed to match specifications!");
