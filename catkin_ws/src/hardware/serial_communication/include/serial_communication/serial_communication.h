@@ -65,7 +65,7 @@ class SerialCommunication
 
     public: Eigen::Matrix<Eigen::VectorXd, 3, 1> ReceiveMessage();
 
-    private: void InitLibSerial();
+    public: void InitLibSerial();
 
     private: void PackageBuffer(const ControlMode &_control_mode, const double *_data);
 
