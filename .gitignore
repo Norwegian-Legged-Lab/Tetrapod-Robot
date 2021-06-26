@@ -33,7 +33,11 @@
 
 # vscode
 .vscode/*
+*/.vscode/*
 *.code-workspace
 
 # Local History for Visual Studio Code
 .history/
+
+# macOS
+.DS_STORE
