@@ -85,4 +85,6 @@ void loop()
     
   serial_interface.sendStates(joint_positions, joint_velocities, joint_torques);
 
+  delay(1000);
+
 }
