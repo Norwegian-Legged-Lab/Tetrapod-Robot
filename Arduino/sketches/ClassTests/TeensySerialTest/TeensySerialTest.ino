@@ -22,14 +22,15 @@ void setup()
   {
     control_commands[i] = 0.0;
     
-    joint_positions[i] = 0.0;
-    joint_velocities[i] = 0.0;
-    joint_torques[i] = 0.0;
+    joint_positions[i] = i;
+    joint_velocities[i] = 2*i;
+    joint_torques[i] = 3*i;
   }
 }
 
 void loop() 
 {
+  
   if(serial_interface.areControlCommandsAvailable())
   {
     serial_interface.receiveControlCommands(control_command_type, control_commands);
@@ -39,52 +40,54 @@ void loop()
       for(int i = 0; i < NUMBER_OF_MOTORS; i++)
       {
         joint_positions[i] = control_commands[i];
-        joint_velocities[i] = -control_commands[i];
-        joint_torques[i] = -control_commands[i];
+        joint_velocities[i] = 1; //-control_commands[i];
+        joint_torques[i] = 1; //-control_commands[i];
       } 
     }
     else if(control_command_type == VELOCITY)
     {
       for(int i = 0; i < NUMBER_OF_MOTORS; i++)
       {
-        joint_positions[i] = -control_commands[i];
-        joint_velocities[i] = control_commands[i];
-        joint_torques[i] = -control_commands[i];
+        joint_positions[i] = 2; //-control_commands[i];
+        joint_velocities[i] = 2; //control_commands[i];
+        joint_torques[i] = 2; //-control_commands[i];
       } 
     }
     else if(control_command_type == TORQUE)
     {
       for(int i = 0; i < NUMBER_OF_MOTORS; i++)
       {
-        joint_positions[i] = -control_commands[i];
-        joint_velocities[i] = -control_commands[i];
-        joint_torques[i] = control_commands[i];
+        joint_positions[i] = 3; //-control_commands[i];
+        joint_velocities[i] = 3; //-control_commands[i];
+        joint_torques[i] = 3; //control_commands[i];
       }  
     }
     else
     {
       for(int i = 0; i < NUMBER_OF_MOTORS; i++)
       {
-        joint_positions[i] = -control_commands[i];
-        joint_velocities[i] = -control_commands[i];
-        joint_torques[i] = -control_commands[i];
+        joint_positions[i] = 0; //-control_commands[i];
+        joint_velocities[i] = 0; //-control_commands[i];
+        joint_torques[i] = 0; //-control_commands[i];
       }        
     }
+
+    serial_interface.sendStates(joint_positions, joint_velocities, joint_torques);
   }
   else
   {
     /*
     for(int i = 0; i < NUMBER_OF_MOTORS; i++)
     {
-      joint_positions[i] = control_commands[i];
-      joint_velocities[i] = control_commands[i];
-      joint_torques[i] = control_commands[i];
+      joint_positions[i] = -1; //control_commands[i];
+      joint_velocities[i] = -1; //control_commands[i];
+      joint_torques[i] = -1; //control_commands[i];
     }
-    */   
+    */
   }
-    
-  serial_interface.sendStates(joint_positions, joint_velocities, joint_torques);
+  
+  //serial_interface.sendStates(joint_positions, joint_velocities, joint_torques);
 
-  delay(1000);
+  delay(0.01);
 
 }
