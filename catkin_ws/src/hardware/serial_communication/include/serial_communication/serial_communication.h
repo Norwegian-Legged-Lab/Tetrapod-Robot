@@ -67,6 +67,8 @@ class SerialCommunication
 
     public: void InitLibSerial();
 
+    public: bool IsNewDataAvailable();
+
     private: void PackageBuffer(const ControlMode &_control_mode, const double *_data);
 
     private: void PackageBufferControlMode(const double *_data);
@@ -74,8 +76,6 @@ class SerialCommunication
     private: void PackageBufferControlCommand(const double *_data);
 
     private: Eigen::Matrix<Eigen::VectorXd, 3, 1> UnpackageBuffer(unsigned char *_data);
-
-    private: bool IsNewDataAvailable();
 
     private: void EigenToCArray(const Eigen::VectorXd &_state, double *_data);
 
