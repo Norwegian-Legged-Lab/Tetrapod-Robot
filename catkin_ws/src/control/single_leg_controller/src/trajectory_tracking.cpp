@@ -5,9 +5,10 @@
 
 int main(int argc, char **argv)
 {
-    bool SIMULATION = true;
+    enum CONTROL_MODE {POSITION, VELOCITY, TORQUE};
 
-    bool POSITION_CONTROL = true;
+    // Choose what kind of controller to use
+    const CONTROL_MODE control_mode = POSITION;
 
     // Set the publish frequency 
     double publish_frequency = 200.0;
@@ -17,13 +18,6 @@ int main(int argc, char **argv)
     
     // Set up ROS communication
     controller.initROS();
-
-    if(SIMULATION == false)
-    {
-        // Set the controller gains in the motor
-        controller.setMotorGains();
-    }
-
 
     // Set the rate for which we check for new incomming messages
     ros::Rate check_for_messages_rate(1);
@@ -80,17 +74,25 @@ int main(int argc, char **argv)
         // Send the position controller
         controller.updateJointReferences();
 
-        if(POSITION_CONTROL == true)
+        if(control_mode == CONTROL_MODE::POSITION)
         {
-            controller.sendPositionCommand();
+            controller.sendJointPositionCommands();
         }
-        else
+        else if(control_mode == CONTROL_MODE::VELOCITY)
+        {
+            // Update the joint velocity commands
+            controller.updateJointVelocityCommands();
+
+            // Send the the joint velocity commands to the motors
+            controller.sendJointVelocityCommands();
+        }
+        else if(control_mode == CONTROL_MODE::TORQUE)
         {
             // Update the joint torques
-            controller.updateJointTorques();
+            controller.updateJointTorqueCommands();
 
             // Send a command to the motors
-            controller.sendTorqueCommand();
+            controller.sendJointTorqueCommands();
         }
 
         // Print all the states to the screen
