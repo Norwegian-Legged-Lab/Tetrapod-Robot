@@ -6,13 +6,13 @@ class SubAndPub
     public:
         SubAndPub()
         {
-            pub = nh.advertise<sensor_msgs::JointState>("/master/send", 1);
+            pub = nh.advertise<sensor_msgs::JointState>("/motor/commands", 1);
 
-            sub = nh.subscribe("/master/recv", 1, &SubAndPub::callback, this);
+            sub = nh.subscribe("/motor/states", 1, &SubAndPub::callback, this);
 
             tx_msg.header.seq = 0;
 
-            for(int i = 0; i < 6; i++)
+            for(int i = 0; i < NUMBER_OF_MOTORS; i++)
             {
                 tx_msg.position.push_back(0.0);
                 tx_msg.velocity.push_back(1.000);
@@ -45,6 +45,7 @@ class SubAndPub
 
         sensor_msgs::JointState tx_msg;
         double send_time = 0.0;
+        int NUMBER_OF_MOTORS = 3;
 };
 
 int main(int argc, char **argv)
@@ -53,7 +54,7 @@ int main(int argc, char **argv)
 
     SubAndPub master;
 
-    ros::Rate loop_rate(10000);
+    ros::Rate loop_rate(1000);
 
     while(ros::ok())
     {

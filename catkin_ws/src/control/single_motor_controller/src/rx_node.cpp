@@ -6,9 +6,9 @@ class SubAndPub
     public:
         SubAndPub()
         {
-            pub = nh.advertise<sensor_msgs::JointState>("/master/recv", 1);
+            pub = nh.advertise<sensor_msgs::JointState>("/motor/states", 1);
 
-            sub = nh.subscribe("/master/send", 1, &SubAndPub::callback, this);
+            sub = nh.subscribe("/motor/commands", 1, &SubAndPub::callback, this);
         }
 
         void callback(const sensor_msgs::JointState &_msg)
