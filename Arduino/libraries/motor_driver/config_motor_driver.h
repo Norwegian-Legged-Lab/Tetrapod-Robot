@@ -8,6 +8,22 @@
 #define FRONT_LEGS true
 #define REAR_LEGS false
 
+const double k_p_pos = 10.0;
+const double k_i_pos = 10.0;
+const double k_p_vel = 30.0;
+const double k_i_vel = 30.0;
+const double k_p_tor = 50.0;
+const double k_i_tor = 50.0;
+
+// Set the PID gains for the motors
+static double K_P_POS[6] = {k_p_pos, k_p_pos, k_p_pos, k_p_pos, k_p_pos, k_p_pos};
+static int K_I_POS[6] = {k_i_pos, k_i_pos, k_i_pos, k_i_pos, k_i_pos, k_i_pos};
+static int K_P_VEL[6] = {k_p_vel, k_p_vel, k_p_vel, k_p_vel, k_p_vel, k_p_vel};
+static int K_I_VEL[6] = {k_i_vel, k_i_vel, k_i_vel, k_i_vel, k_i_vel, k_i_vel};
+static int K_P_TOR[6] = {k_p_tor, k_p_tor, k_p_tor, k_p_tor, k_p_tor, k_p_tor};
+static int K_I_TOR[6] = {k_i_tor, k_i_tor, k_i_tor, k_i_tor, k_i_tor, k_i_tor};
+
+
 // Calculate offsets based on legs
 
 // An offset of -30 degrees is added to each actuator to compensate for the encoder zero position 

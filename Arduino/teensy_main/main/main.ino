@@ -36,46 +36,7 @@ CAN_message_t can_message;
 
 // Variable to decide whether or not the motor gains have been set
 bool motor_gains_set = false;
-/*
-void setMotorGainsCallback(const std_msgs::Float64MultiArray &motor_set_gains_msg)
-{
-  bool setting_gains_has_not_failed = true;
-  
-  uint8_t number_of_gains = 6;
 
-  for(int i = 0; i < NUMBER_OF_MOTORS; i++)
-  {
-    double k_p_pos = motor_set_gains_msg.data[i*number_of_gains];
-    double k_i_pos = motor_set_gains_msg.data[i*number_of_gains + 1];
-    double k_p_vel = motor_set_gains_msg.data[i*number_of_gains + 2];
-    double k_i_vel = motor_set_gains_msg.data[i*number_of_gains + 3];
-    double k_p_torque = motor_set_gains_msg.data[i*number_of_gains + 4];
-    double k_i_torque = motor_set_gains_msg.data[i*number_of_gains + 5];
-
-    if(!motors[i].writePIDParametersToRAM(k_p_pos, k_i_pos, k_p_vel, k_i_vel, k_p_torque, k_i_torque))
-    {
-      ROS_NODE_HANDLE.loginfo("Failed to read from pid gains. Waiting for reply...");
-      
-      setting_gains_has_not_failed = false;
-    }
-
-    motorControlValues[i] = 0.0;
-
-    motorControlTypes[i] = ControlType::none;
-    
-    delay_microseconds(100000);
-  }
-
-  if(setting_gains_has_not_failed)
-  {
-    motor_set_gains_confirmation_msg.data = true;
-    
-    motor_gains_set_confirmation_publisher.publish(&motor_set_gains_confirmation_msg);
-    
-    motor_gains_set = true;    
-  }
-}
-*/
 void setup() 
 {
   // Set the baud rate for the serial communication
@@ -105,9 +66,37 @@ void setup()
   }
 
   // Wait for the motor gains to be set
-  while(motor_gains_set != true)
+  uint8_t number_of_gains_per_motor = 6;
+
+  // Try to set the PID gains of the motor
+  while(motor_gains_set == false)
   {
-    delay_microseconds(250000);
+    bool setting_gains_has_not_failed = true;
+
+    for(int i = 0; i < NUMBER_OF_MOTORS; i++)
+    {
+      double k_p_pos = K_P_POS[i];
+      double k_i_pos = K_I_POS[i];
+      double k_p_vel = K_P_VEL[i];
+      double k_i_vel = K_I_VEL[i];
+      double k_p_torque = K_P_TOR[i];
+      double k_i_torque = K_I_TOR[i];   
+      
+      if(!motors[i].writePIDParametersToRAM(k_p_pos, k_i_pos, k_p_vel, k_i_vel, k_p_torque, k_i_torque))
+      {
+        setting_gains_has_not_failed = false;
+      }
+    }
+
+    motor_gains_set = setting_gains_has_not_failed;
+    
+    delay_microseconds(500000);
+  }
+
+  // Empty the serial ports
+  while(Serial.available())
+  {
+    Serial.read();
   }
 }
 
