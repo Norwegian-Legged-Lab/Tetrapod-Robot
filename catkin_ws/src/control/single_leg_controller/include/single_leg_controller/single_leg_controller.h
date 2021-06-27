@@ -293,10 +293,10 @@ class SingleLegController
 
     /// \brief The expected publish frequency of the robot. 
     /// This is used to calculate the maximum number of iterations per gait phase
-    private: double publish_frequency = 100.0;
+    private: double publish_frequency = 200.0;
 
     /// \brief The duration of a phase period in seconds
-    private: double phase_period = 0.6;
+    private: double phase_period = 3.0;
 
     /// \brief The standard height of the hips above the ground
     private: double hip_height = 0.35;
