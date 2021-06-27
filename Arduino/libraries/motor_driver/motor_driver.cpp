@@ -489,10 +489,10 @@ bool MotorControl::readCompleteEncoderPosition()
             double encoder_raw = received_can_message.buf[5]*256 + received_can_message.buf[4];
             double encoder_offset = received_can_message.buf[7]*256 + received_can_message.buf[6];
 
-            Serial.print("ENC W/O:\t"); Serial.print(encoder_with_offset); Serial.print("\t");
-            Serial.print("ENC RAW:\t"); Serial.print(encoder_raw); Serial.print("\t");
-            Serial.print("ENC OFF:\t"); Serial.print(encoder_offset); Serial.print("\t");
-            Serial.println("");
+            //Serial.print("ENC W/O:\t"); Serial.print(encoder_with_offset); Serial.print("\t");
+            //Serial.print("ENC RAW:\t"); Serial.print(encoder_raw); Serial.print("\t");
+            //Serial.print("ENC OFF:\t"); Serial.print(encoder_offset); Serial.print("\t");
+            //Serial.println("");
         }
         else
         {
@@ -640,7 +640,7 @@ int MotorControl::readMessage(CAN_message_t &_can_message)
 
 void MotorControl::errorMessage()
 {
-    Serial.print("ERROR - Motor "); Serial.print(id); 
-    Serial.print(", CAN "); Serial.print(can_port_id); 
-    Serial.print("-\t");
+    //Serial.print("ERROR - Motor "); Serial.print(id); 
+    //Serial.print(", CAN "); Serial.print(can_port_id); 
+    //Serial.print("-\t");
 }
