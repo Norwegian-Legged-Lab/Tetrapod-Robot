@@ -325,7 +325,7 @@ void MotorInterface::InitRos()
 
     this->jointCommandSubscriber = this->rosNode->subscribe
     (
-        "/motor/commands",
+        "/my_robot/joint_state_cmd",
         1,
         &MotorInterface::OnJointStateCmdMsg,
         this
