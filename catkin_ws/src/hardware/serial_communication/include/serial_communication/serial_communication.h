@@ -40,7 +40,7 @@
 class SerialCommunication
 {
     /// \brief Control mode enumerator
-    public: enum ControlMode { position = 1, velocity = 2, torque = 3 };
+    public: enum ControlMode { position = 1, velocity = 2, torque = 3};
 
     /// \brief Default Constructor
     public: SerialCommunication();
@@ -63,6 +63,8 @@ class SerialCommunication
 
     public: void SendMessage(const ControlMode &_control_mode, const std::vector<double> &_state);
 
+    //public: void SendGainMessage(const ControlMode &_control_mode, const std::vector<uint8_t> &_data);
+
     public: Eigen::Matrix<Eigen::VectorXd, 3, 1> ReceiveMessage();
 
     public: void InitLibSerial();
@@ -74,6 +76,8 @@ class SerialCommunication
     private: void PackageBufferControlMode(const double *_data);
 
     private: void PackageBufferControlCommand(const double *_data);
+
+    //private: void PackageBufferGains(const uint8_t *_data);
 
     private: Eigen::Matrix<Eigen::VectorXd, 3, 1> UnpackageBuffer(unsigned char *_data);
 
