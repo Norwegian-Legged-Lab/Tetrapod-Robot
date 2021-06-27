@@ -47,7 +47,22 @@ void SerialCommunication::SendMessage(const ControlMode &_control_mode, const st
 
     this->serial_port.Write(tx_buffer);
 }
+/*
+void SerialCommunication::SendGainMessage(const ControlMode &_control_mode, const std::vector<unsigned char> &_data)
+{
+    std::vector<uint8_t> v = _data;
+    uint8_t* ptr = &v[0];
+    Eigen::Map<Eigen::VectorXd> data(ptr, v.size());
 
+    // Check if the message is too large to be sent in one
+    if(state.rows() != this->num_motors * 8)
+    {
+        std::abort();
+    }
+
+    this
+}
+*/
 Eigen::Matrix<Eigen::VectorXd, 3, 1> SerialCommunication::ReceiveMessage()
 {
     while (!this->IsNewDataAvailable())
@@ -103,7 +118,21 @@ void SerialCommunication::PackageBufferControlCommand(const double *_data)
         tx_buffer[i] = ((char *)_data)[i - 8];
     }
 }
+/*
+void SerialCommunication::PackageBufferGains(const uint8_t *_data)
+{
+    double control_mode = ControlMode::gains;
 
+    this->PackageBufferControlMode(control_mode);
+
+    int number_of_gains = this-> num_motors * 6;
+
+    for (int i = 8; i < 8 + number_of_gains; i++)
+    {
+        tx_buffer[i] = ((char *)_data)[i - 8];
+    }
+}
+*/
 Eigen::Matrix<Eigen::VectorXd, 3, 1> SerialCommunication::UnpackageBuffer(unsigned char *_data)
 {
     Eigen::Matrix<Eigen::VectorXd, 3, 1> state;
