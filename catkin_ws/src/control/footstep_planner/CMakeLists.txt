@@ -13,7 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
 )
 
 find_package(Eigen3 REQUIRED)
-find_package(drake REQUIRED PATHS /opt/drake)
+find_package(drake REQUIRED PATHS /home/melyso/drake)
 
 catkin_package(
   INCLUDE_DIRS include
@@ -45,9 +45,13 @@ add_library(${PROJECT_NAME}
 add_executable(${PROJECT_NAME}_node
   src/footstep_planner_node.cpp
   src/footstep_planner.cpp
-  src/miqp.cpp
+  src/waypoint_planner.cpp
+  src/miqp_biped.cpp
+  src/miqp_quadruped.cpp
+  src/miqp_waypoint.cpp
   src/stepping_stone.cpp
   src/terrain.cpp
+  src/utils.cpp
 )
 
 target_link_libraries(${PROJECT_NAME}
