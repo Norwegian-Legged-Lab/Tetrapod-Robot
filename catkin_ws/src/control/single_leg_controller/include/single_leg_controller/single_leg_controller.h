@@ -144,6 +144,12 @@ class SingleLegController
     /// \brief Update the foot trajectory based on the leg state 
     public: void updateFootTrajectoryReference();
 
+    /// \brief Update the pose control trajectory reference for the single leg
+    public: bool updatePoseControlJointTrajectoryReference();
+
+    /// \brief Set the final and initial states for pose control trajectories
+    public: void setPoseGoal(Eigen::Matrix<double, 3, 1> _foot_pos);
+
     /// \brief Tries to set the control gains in the motors. The function loops until it succeeds.
     public: void setMotorGains();
 
@@ -216,6 +222,12 @@ class SingleLegController
     /// \brief When using setpointTrajectory control these are the joint angles we want to reach eventually
     private: Eigen::Matrix<double, 3, 1> foot_pos_goal = Eigen::Matrix<double, 3, 1>::Zero();
 
+    /// \brief The joint angles we want to eventually reach when using pose trajectory control
+    private: Eigen::Matrix<double, 3, 1> joint_pos_goal = Eigen::Matrix<double, 3, 1>::Zero();
+
+    /// \brief The joint angles at the beginning of a trajectory
+    private: Eigen::Matrix<double, 3, 1> joint_pos_initial = Eigen::Matrix<double, 3, 1>::Zero();
+
     /// \brief The estimated joint angles of the motors
     private: Eigen::Matrix<double, 3, 1> joint_pos = Eigen::Matrix<double, 3, 1>::Zero();
 
@@ -256,6 +268,12 @@ class SingleLegController
 
     /// \brief The final iteration of a gait phase. 
     private: double final_iteration = 400.0;
+
+    /// \brief The current iteration used for pose control
+    private: double current_pose_iteration = 0;
+
+    /// \brief The final iteration used for pose control
+    private: double final_pose_iteration = 100;
 
     /// \brief Keeps track of whether or not the motor gains have been set
     private: bool gains_set = false;
@@ -315,6 +333,12 @@ class SingleLegController
 
     /// \brief The maximum height above the ground to lift the foot
     private: double max_swing_height = 0.12; 
+
+    /// \brief The time used to change from one pose to the next
+    private: double pose_period;
+
+    /// \brief Max pose control joint angle velocity [rad/s]
+    private: double max_pose_vel = math_utils::degToRad(50);
 
     /// \brief Hip yaw joint motor position control proportional gain
     double k_p_pos_hy;

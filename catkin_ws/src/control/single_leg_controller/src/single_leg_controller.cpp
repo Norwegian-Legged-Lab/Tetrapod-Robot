@@ -407,6 +407,103 @@ void SingleLegController::updateStanceFootPositionTrajectory()
     }
 }
 
+void SingleLegController::setPoseGoal(Eigen::Matrix<double, 3, 1> _foot_pos)
+{
+    // Set the trajectory goal joint positions given by the foot pos
+    if(!this->kinematics.SolveSingleLegInverseKinematics(false, _foot_pos, this->joint_pos_goal))
+    {
+        ROS_WARN("[setFootPose] Failed to solve inverse kinematics");
+        
+        return;
+    }
+    
+    // Set the trajectory initial joint position 
+    this->joint_pos_initial = this->joint_pos;
+
+    double max_joint_error = 0.0;
+
+    for(int i = 0; i < this->NUMBER_OF_MOTORS; i++)
+    {
+        if(abs(joint_pos_goal(i) - joint_pos_initial(i)) > max_joint_error)
+        {
+            max_joint_error = abs(joint_pos_goal(i) - joint_pos_initial(i));
+        }
+    }
+
+    // Calculate the desired period based on the maximum allowable velocity
+    double a = 30.0 * max_joint_error;
+    double b = -15.0 * max_joint_error;
+    double c = 1.875 * max_joint_error;
+    double d = - max_joint_error * 7.0/16.0;
+    double _percentage = 0.5;
+
+    this->pose_period = (a*pow((_percentage - 0.5), 4.0) + b*pow((_percentage - 0.5), 2.0) + c)/this->max_pose_vel;
+
+    // Update the number of iterations
+    this->current_pose_iteration = 0;
+
+    this->final_pose_iteration = this->pose_period * this->publish_frequency;
+}
+
+bool SingleLegController::updatePoseControlJointTrajectoryReference()
+{
+    double progress = this->current_pose_iteration/this->final_pose_iteration;
+
+    double hy_pos;
+    double hy_vel;
+    double hy_acc;
+
+    double hp_pos;
+    double hp_vel;
+    double hp_acc;
+
+    double kp_pos;
+    double kp_vel;
+    double kp_acc;
+
+    hy_pos = (joint_pos_goal(0) - joint_pos_initial(0))*progress;
+    hp_pos = (joint_pos_goal(1) - joint_pos_initial(1))*progress;
+    kp_pos = (joint_pos_goal(2) - joint_pos_initial(2))*progress;
+    
+
+    //this->calculateSingleAxisTrajectory(progress, this->pose_period, joint_pos_goal(0) - joint_pos_initial(0), hy_pos, hy_vel, hy_acc);
+
+    //this->calculateSingleAxisTrajectory(progress, this->pose_period, joint_pos_goal(1) - joint_pos_initial(1), hp_pos, hp_vel, hp_acc);
+
+    //this->calculateSingleAxisTrajectory(progress, this->pose_period, joint_pos_goal(2) - joint_pos_initial(2), kp_pos, kp_vel, kp_acc);
+
+    this->joint_pos_ref(0) = this->joint_pos_initial(0) + hy_pos;
+    this->joint_vel_ref(0) = hy_vel;
+    this->joint_acc_ref(0) = hy_acc;
+
+    this->joint_pos_ref(1) = this->joint_pos_initial(1) + hp_pos;
+    this->joint_vel_ref(1) = hp_vel;
+    this->joint_acc_ref(1) = hp_acc;
+
+    this->joint_pos_ref(2) = this->joint_pos_initial(2) + kp_pos;
+    this->joint_vel_ref(2) = kp_vel;
+    this->joint_acc_ref(2) = kp_acc;
+
+    ROS_INFO("P: %f\thy_pos: %f\thp_pos: %f\tkp_pos: %f", progress, hy_pos, hp_pos, kp_pos);
+
+    if(this->current_pose_iteration < this->final_pose_iteration)
+    {
+        this->current_pose_iteration++;
+
+        // If the goal position is not reached we return false
+        return false;
+    }
+    else
+    {
+        this->current_pose_iteration = this->final_pose_iteration;
+
+        // When the goal position is reached we return true
+        return true;
+    }
+
+    
+}
+
 void SingleLegController::updateJointReferences()
 {
     // Try to solve the inverse kinematics for the single leg to obtain the joint angle references from the foot position reference
@@ -621,6 +718,8 @@ bool SingleLegController::moveFootToPosition(Eigen::Matrix<double, 3, 1> _foot_g
         {
             _iteration ++;
         }
+
+        ROS_INFO("Trying to get to final position. I: %f\tI_f: %f", _iteration, _final_iteration);
     }
 
     return true;
@@ -713,6 +812,7 @@ bool SingleLegController::isTargetPositionReached()
     }
     else
     {
+        ROS_INFO("Error too large");
         return false;
     }
 }
@@ -721,6 +821,7 @@ bool SingleLegController::isJointVelocitySmall()
 {
     if(joint_vel.transpose()*joint_vel < 3.0*math_utils::degToRad(3.0)*math_utils::degToRad(3.0))
     {
+        ROS_INFO("Velocity is small");
         return true;
     }
     else
