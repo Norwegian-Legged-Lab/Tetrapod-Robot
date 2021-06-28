@@ -116,7 +116,7 @@ void set_initial_and_goal_position(drake::solvers::MathematicalProgram &prog, in
         + sequence_offset(2)*goal_positions[step_sequence[(n_steps + i + 2) % n_legs]]
         + sequence_offset(3)*goal_positions[(n_steps + i + 3) % n_legs];
 
-        //auto constr_goal = prog.AddLinearConstraint(position.row(n_steps - n_legs + i).transpose() == goal_pos_i);
+        auto constr_goal = prog.AddLinearConstraint(position.row(n_steps - n_legs + i).transpose() == goal_pos_i);
         //std::cout << constr_goal << std::endl;
     }
 

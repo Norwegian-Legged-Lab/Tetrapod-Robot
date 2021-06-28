@@ -5,7 +5,7 @@
 #include "drake/solvers/osqp_solver.h"
 #include "drake/solvers/gurobi_solver.h"
 #include <iostream>
-DecVars_res footstep_planner(Terrain &terrain, int n_steps, int n_legs, double length_legs, Leg step_sequence[], double bbox_len, double step_span)
+DecVars_res footstep_planner(Terrain &terrain, int n_steps, int n_legs, double length_legs, Leg step_sequence[], double bbox_len, double step_span, bool use_gurobi)
 {
     drake::solvers::MathematicalProgram prog;
     std::cout << "is gurobi solver available?: " << drake::solvers::GurobiSolver::is_available() << "is it enabled?: " << drake::solvers::GurobiSolver::is_enabled() << "is the license valid? " << drake::solvers::GurobiSolver::AcquireLicense() << std::endl;
@@ -33,43 +33,81 @@ DecVars_res footstep_planner(Terrain &terrain, int n_steps, int n_legs, double l
     ROS_INFO("minimize step length");
     minimize_step_length(prog, n_steps, n_legs, decision_variables);
     ROS_INFO("minimize remaining length");
-    minimize_remaining_length(prog, terrain, n_steps, n_legs, decision_variables);
+    //minimize_remaining_length(prog, terrain, n_steps, n_legs, decision_variables);
     ROS_INFO("bb");
-    drake::solvers::MixedIntegerBranchAndBound bb(prog, drake::solvers::OsqpSolver::id());
-    drake::solvers::GurobiSolver gs;
-    /*auto constr = prog.GetAllLinearConstraints();
-
-    for (auto el: constr) {
-        std::cout << el << std::endl;
-    }
-    std::cout << constr.size() << std::endl;*/
-    ROS_INFO("solve");
-    drake::solvers::SolutionResult result = bb.Solve();
-    ROS_INFO("done solving");
-    if (result != drake::solvers::kSolutionFound)
-    {
-        ROS_ERROR("Infeasible optimization problem.");
-    }
 
     DecVars_res_raw decision_variables_opt;
 
-    decision_variables_opt.position = bb.GetSolution(decision_variables.position);
+    if (use_gurobi)
+    {
+        ROS_INFO("Using Gurobi solver");
+        drake::solvers::GurobiSolver solver;
+        
+        drake::solvers::MathematicalProgramResult result = solver.Solve(prog);
 
-    decision_variables_opt.theta = bb.GetSolution(decision_variables.theta);
+        decision_variables_opt.position = result.GetSolution(decision_variables.position);
 
-    decision_variables_opt.sequence_offset = Eigen::Vector4d(1, 0, 0, 0);//bb.GetSolution(decision_variables.sequence_offset);
+        decision_variables_opt.theta = result.GetSolution(decision_variables.theta);
 
-    decision_variables_opt.bin_sin = bb.GetSolution(decision_variables.bin_sin);
+        decision_variables_opt.sequence_offset = Eigen::Vector4d(1, 0, 0, 0);//result.GetSolution(decision_variables.sequence_offset);
 
-    decision_variables_opt.bin_cos = bb.GetSolution(decision_variables.bin_cos);
+        decision_variables_opt.bin_sin = result.GetSolution(decision_variables.bin_sin);
 
-    decision_variables_opt.lin_sin = bb.GetSolution(decision_variables.lin_sin);
+        decision_variables_opt.bin_cos = result.GetSolution(decision_variables.bin_cos);
 
-    decision_variables_opt.lin_cos = bb.GetSolution(decision_variables.lin_cos);
+        decision_variables_opt.lin_sin = result.GetSolution(decision_variables.lin_sin);
 
-    decision_variables_opt.stone = bb.GetSolution(decision_variables.stone);
+        decision_variables_opt.lin_cos = result.GetSolution(decision_variables.lin_cos);
 
-    decision_variables_opt.cost = bb.GetOptimalCost();
+        decision_variables_opt.stone = result.GetSolution(decision_variables.stone);
+
+        decision_variables_opt.cost = result.get_optimal_cost();
+
+        if (!result.is_success())
+        {
+            ROS_ERROR("Infeasible optimization problem.");
+        }
+    }
+    else{
+        ROS_INFO("Using naive branch-and-bound solver");
+        drake::solvers::MixedIntegerBranchAndBound solver(prog, drake::solvers::OsqpSolver::id());
+
+        
+        /*auto constr = prog.GetAllLinearConstraints();
+
+        for (auto el: constr) {
+            std::cout << el << std::endl;
+        }
+        std::cout << constr.size() << std::endl;*/
+        ROS_INFO("solve");
+        drake::solvers::SolutionResult result = solver.Solve();
+        ROS_INFO("done solving");
+
+        decision_variables_opt.position = solver.GetSolution(decision_variables.position);
+
+        decision_variables_opt.theta = solver.GetSolution(decision_variables.theta);
+
+        decision_variables_opt.sequence_offset = Eigen::Vector4d(1, 0, 0, 0);//solver.GetSolution(decision_variables.sequence_offset);
+
+        decision_variables_opt.bin_sin = solver.GetSolution(decision_variables.bin_sin);
+
+        decision_variables_opt.bin_cos = solver.GetSolution(decision_variables.bin_cos);
+
+        decision_variables_opt.lin_sin = solver.GetSolution(decision_variables.lin_sin);
+
+        decision_variables_opt.lin_cos = solver.GetSolution(decision_variables.lin_cos);
+
+        decision_variables_opt.stone = solver.GetSolution(decision_variables.stone);
+
+        decision_variables_opt.cost = solver.GetOptimalCost();
+
+        if (result != drake::solvers::kSolutionFound)
+        {
+            ROS_ERROR("Infeasible optimization problem.");
+        }
+    }
+
+    
 
     return get_decvars_res(decision_variables_opt, n_steps, n_legs, step_sequence);
 }
