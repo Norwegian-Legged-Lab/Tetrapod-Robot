@@ -53,6 +53,9 @@ void SingleLegPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
     // Store model pointer
     this->model = _model;
 
+    // Store world pointer
+    this->world = _model->GetWorld();
+
     // Store model name
     this->model_name = _model->GetName();
     // ROS_INFO_STREAM("Model name: " << model_name); TODO REMOVE
@@ -378,6 +381,14 @@ void SingleLegPlugin::InitRos()
 
     this->rosNode.reset(new ros::NodeHandle("gazebo_client"));
 
+    ros::AdvertiseServiceOptions reset_simulation_aso =
+        ros::AdvertiseServiceOptions::create<std_srvs::Empty>(
+            "/" + this->model->GetName() + "/reset_simulation",
+            boost::bind(&SingleLegPlugin::ResetSimulation, this, _1, _2),
+            ros::VoidPtr(),
+            &this->rosProcessQueue
+        );
+
     ros::AdvertiseOptions gen_coord_ao =
         ros::AdvertiseOptions::create<std_msgs::Float64MultiArray>(
             "/" + this->model->GetName() + "/gen_coord",
@@ -433,6 +444,8 @@ void SingleLegPlugin::InitRos()
             ros::VoidPtr(),
             &this->rosProcessQueue
             );
+
+    this->resetSimService = this->rosNode->advertiseService(reset_simulation_aso);
 
     this->genCoordPub = this->rosNode->advertise(gen_coord_ao);
 
@@ -562,6 +575,39 @@ void SingleLegPlugin::InitJointConfiguration()
         );
     }
 
+}
+
+bool SingleLegPlugin::ResetSimulation(const std_srvs::Empty::Request &_req,
+                                     std_srvs::Empty::Response &_res)
+{
+    this->world->Reset();
+
+    this->model->GetJointController()->Reset();
+
+    this->controlMode = ControlMode::position;
+
+    for (size_t i = 0; i < this->joint_names.size(); i++)
+    {
+        // Reset Torques
+        this->model->GetJointController()->SetForce(
+            this->model_name + "::" + this->joint_names[i],
+            0
+        );
+
+        // Set default position 
+        this->model->GetJointController()->SetJointPosition(
+            this->model_name + "::" + this->joint_names[i],
+            math_utils::wrapAngleToPi(math_utils::degToRad(this->joint_config[i]))
+        );
+
+        // Set controller position reference
+        this->model->GetJointController()->SetPositionTarget(
+            this->model_name + "::" + this->joint_names[i],
+            math_utils::wrapAngleToPi(math_utils::degToRad(this->joint_config[i]))
+        );
+    }
+
+    return true;
 }
 
 } // namespace gazebo
