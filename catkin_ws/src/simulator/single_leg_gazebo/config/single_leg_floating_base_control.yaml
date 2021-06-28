@@ -1,0 +1,32 @@
+gazebo_client:
+  joint_names:
+    - single_leg::front_left_hip_yaw
+    - single_leg::front_left_hip_pitch
+    - single_leg::front_left_knee_joint     
+
+  joint_config: [
+    90, 30.0, 60.0
+  ]
+
+  joint_velocity_controller:
+    p_gains: [
+      #500, 500, 500
+      50000, 50000, 50000
+    ]
+    i_gains: [
+      0, 0, 0
+    ]
+    d_gains: [
+      #100, 100, 100
+      10000, 10000, 10000
+    ]
+  joint_position_controller:
+    p_gains: [
+      150, 150, 150
+    ]
+    i_gains: [
+      0, 0, 0
+    ]
+    d_gains: [
+      10, 10, 10
+    ]
