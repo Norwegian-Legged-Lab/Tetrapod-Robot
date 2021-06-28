@@ -155,6 +155,11 @@ add_executable(trajectory_tracking
   src/single_leg_controller.cpp
 )
 
+add_executable(height_control
+  src/height_control.cpp
+  src/single_leg_controller.cpp
+)
+
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
@@ -171,6 +176,10 @@ target_link_libraries(${PROJECT_NAME}
 )
 
 target_link_libraries(trajectory_tracking
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(height_control
   ${catkin_LIBRARIES}
 )
 
