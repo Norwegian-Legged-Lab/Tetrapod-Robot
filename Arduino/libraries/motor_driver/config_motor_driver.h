@@ -8,8 +8,8 @@
 #define FRONT_LEGS true
 #define REAR_LEGS false
 
-const double k_p_pos = 10.0;
-const double k_i_pos = 10.0;
+const double k_p_pos = 20.0;
+const double k_i_pos = 20.0;
 const double k_p_vel = 30.0;
 const double k_i_vel = 30.0;
 const double k_p_tor = 50.0;
