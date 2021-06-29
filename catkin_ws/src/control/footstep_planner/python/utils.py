@@ -1,3 +1,4 @@
+import collections
 import numpy as np
 
 import matplotlib.pyplot as plt
@@ -10,6 +11,10 @@ from matplotlib.patches import Rectangle
 
 from matplotlib import RcParams, rcParams
 rcParams['figure.figsize'] = (10, 5)
+
+from colour import Color
+
+import xml.etree.ElementTree as ET
 
 class SteppingStone(object):
 
@@ -37,7 +42,61 @@ class SteppingStone(object):
         
     def plot(self, **kwargs):
         return plot_rectangle(self.center, self.width, self.height, **kwargs)
-    
+    def add_to_sdf(self, super):
+        size_string = str(self.width) + ' ' + str(self.height) + ' 0.001 0 0 0'
+        model = ET.SubElement(super, 'model')
+
+        model.set('name', self.name)
+
+        static = ET.SubElement(model, 'static')
+        static.text = 'true'
+
+        pose = ET.SubElement(model, 'pose')
+        pose.text = str(self.center[0]) + ' ' + str(self.center[1]) + ' 0 0 0 0'
+
+        link = ET.SubElement(model, 'link')
+        link.set('name', 'plate_link')
+        
+        link_pose = ET.SubElement(link, 'pose')
+        link_pose.text = '0 0 0 0 0 0'
+
+        visual = ET.SubElement(link, 'visual')
+        visual.set('name', 'plate_visual')
+
+        visual_geometry = ET.SubElement(visual, 'geometry')
+        visual_box = ET.SubElement(visual_geometry, 'box')
+
+        visual_size = ET.SubElement(visual_box, 'size')
+        visual_size.text = size_string
+
+        material = ET.SubElement(visual, 'material')
+        #material.set('name', 'red')
+
+        ambient = ET.SubElement(material, 'ambient')
+        ambient.text = '0.8 0 0 1'
+
+        diffuse = ET.SubElement(material, 'diffuse')
+        diffuse.text = '0.8 0 0 1'
+
+        specular = ET.SubElement(material, 'specular')
+        specular.text = '0.1 0.1 0.1 1'
+
+        emissive = ET.SubElement(material, 'emissive')
+        emissive.text = '0.8 0 0 1'
+
+        #collision = ET.SubElement(link, 'collision')
+        #collision.set('name', 'plate_collision')
+
+        #collision_geometry = ET.SubElement(collision, 'geometry')
+        #collision_box = ET.SubElement(collision_geometry, 'box')
+
+        #collision_size = ET.SubElement(collision_box, 'size')
+        #collision_size.text = size_string
+        
+
+
+
+
 # helper function that plots a rectangle with given center, width, and height
 def plot_rectangle(center, width, height, ax=None, frame=.1, **kwargs):
         
@@ -99,7 +158,7 @@ class Terrain(object):
             
             # add bridge stepping stones to the terrain
             # gap between bridge stones equals bridge stone width
-            width_bridge = .24
+            width_bridge = .2
             center = initial.bottom_right + np.array([width_bridge * 1.5, initial.height / 2])
             centers = [center + np.array([i * 2 * width_bridge, 0]) for i in np.where(bool_bridge)[0]]
             self.add_stones(
@@ -171,6 +230,20 @@ class Terrain(object):
             
         # set title
         plt.title(title)
+    
+    def write_to_sdf(self, fname='terrain_xml'):
+        fend = '.sdf'
+        sdf = ET.Element('sdf')
+        sdf.set('version', '1.7')
+        model = ET.SubElement(sdf, 'model')
+        model.set('name', 'terrain')
+        for s in self.stepping_stones:
+            s.add_to_sdf(model)
+        mydata = ET.tostring(sdf, encoding='unicode', xml_declaration=True)
+        f = open(fname + fend, 'w')
+        f.write(mydata)
+        f.close()
+    
 
 def animate_footstep_plan(terrain, n_steps, step_span, positions, title=None, outname="footstep_planner", save_anim=False):
 
@@ -275,3 +348,85 @@ def import_and_animate_footstep_plan(terrain, step_span, title=None, base_name="
     n_steps = footsteps[0].shape[0]
     # animate result
     animate_footstep_plan(terrain, n_steps, step_span, footsteps[:4], title, base_name)
+
+def write_footsteps_to_sdf(steps, name='footsteps_xml'):
+    fend = '.sdf'
+    sdf = ET.Element('sdf')
+    sdf.set('version', '1.7')
+
+    model = ET.SubElement(sdf, 'model')
+    model.set('name', 'footsteps')
+
+    static = ET.SubElement(model, 'static')
+    static.text = '1'
+
+    pose = ET.SubElement(model, 'pose')
+    pose.text = '0 0 0 0 0 0'
+
+    yellow = Color('yellow')
+    colors = list(yellow.range_to(Color('green'), len(steps)))
+
+    for i, (color, step) in enumerate(zip(colors, steps)):
+        footstep_model = ET.SubElement(model, 'model')
+        footstep_model.set('name', 'footstep ' + str(i))
+
+        static = ET.SubElement(footstep_model, 'static')
+        static.text = '1'
+
+        rgb = color.get_rgb()
+        color_string = str(rgb[0]) + ' ' + str(rgb[1]) + ' ' + str(rgb[2]) + ' 1'
+        
+        link = ET.SubElement(footstep_model, 'link')
+        link.set('name', 'footstep_link')
+        
+        link_pose = ET.SubElement(link, 'pose')
+        link_pose.text = str(step[0]) + ' ' + str(step[1]) + ' 0 0 0 0'
+
+        visual = ET.SubElement(link, 'visual')
+        visual.set('name', 'footstep_visual')
+
+        visual_geometry = ET.SubElement(visual, 'geometry')
+
+        visual_cylinder = ET.SubElement(visual_geometry, 'cylinder')
+        radius = ET.SubElement(visual_cylinder, 'radius')
+        radius.text = '0.02'
+        
+        length = ET.SubElement(visual_cylinder, 'length')
+        length.text = '0.01'
+
+        #visual_cylinder.set('radius', '0.05')
+        #visual_cylinder.set('length', '0.01')
+
+        material = ET.SubElement(visual, 'material')
+        #material.set('name', 'red')
+
+        ambient = ET.SubElement(material, 'ambient')
+        ambient.text = color_string
+
+        diffuse = ET.SubElement(material, 'diffuse')
+        diffuse.text = color_string
+
+        specular = ET.SubElement(material, 'specular')
+        specular.text = '0.1 0.1 0.1 1'
+
+        emissive = ET.SubElement(material, 'emissive')
+        emissive.text = color_string
+
+        #collision = ET.SubElement(link, 'collision')
+        #collision.set('name', 'plate_collision')
+
+        #collision_geometry = ET.SubElement(collision, 'geometry')
+        #collision_box = ET.SubElement(collision_geometry, 'box')
+
+        #collision_size = ET.SubElement(collision_box, 'size')
+        #collision_size.text = "0 0 0 0 0 0"
+        data = ET.tostring(sdf, encoding='unicode', xml_declaration=True)
+        f = open(name + fend, 'w')
+        f.write(data)
+        f.close()
+        
+
+def transcribe_footsteps_to_sdf(infname = 'footstep_planner', outfname = 'footsteps_xml'):
+    infend = '.csv'
+    footsteps = np.genfromtxt(infname + '_position_ts' + infend)
+    write_footsteps_to_sdf(footsteps, outfname)

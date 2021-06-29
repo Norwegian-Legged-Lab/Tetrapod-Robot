@@ -4,7 +4,7 @@ Terrain::Terrain(Eigen::Array<bool, Eigen::Dynamic, 1> bool_bridge)
 {
     SteppingStone initial = addStone(Eigen::Matrix<double, 2, 1>::Zero(), 1, 1, "initial");
 
-    double width_bridge = 0.24;
+    double width_bridge = 0.2;
 
     Eigen::Matrix<double, 2, 1> center = initial.getBottomRight() + Eigen::Vector2d(width_bridge*1.5, initial.getHeight()/2);
 
@@ -20,10 +20,10 @@ Terrain::Terrain(Eigen::Array<bool, Eigen::Dynamic, 1> bool_bridge)
         }
     }
 
-    /*addStones(centers,
+    addStones(centers,
         Eigen::Array<double, Eigen::Dynamic, 1>::Constant(num_stones, 1, width_bridge),
         Eigen::Array<double, Eigen::Dynamic, 1>::Constant(num_stones, 1, initial.getHeight()),
-        "bridge");*/
+        "bridge");
     
     center = initial.getCenter() + Eigen::Vector2d(initial.getWidth() + (bool_bridge.rows()*2 + 1)*width_bridge, 0);
 
@@ -44,7 +44,7 @@ Terrain::Terrain(Eigen::Array<bool, Eigen::Dynamic, 1> bool_bridge)
 
 Terrain::Terrain()
 {
-    SteppingStone initial = addStone(Eigen::Vector2d(1, 0.2), 1, 1, "initial");
+    SteppingStone initial = addStone(Eigen::Vector2d(0, 0), 1, 1, "initial");
 
     for (int i = 0; i < 2; ++i)
     {

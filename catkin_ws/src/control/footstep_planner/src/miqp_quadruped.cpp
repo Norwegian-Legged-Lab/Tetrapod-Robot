@@ -397,6 +397,8 @@ DecVars_res get_decvars_res(DecVars_res_raw &decision_variables_raw, int n_steps
 
     res.cost = decision_variables_raw.cost;
 
+    res.position_ts = decision_variables_raw.position;
+
     return res;
 }
 
@@ -440,6 +442,8 @@ void writeDecVarsToFile(DecVars_res &decision_variables, std::string base_name)
     writeMatToFile(decision_variables.stone_rear_left, base_name + "_stone_rear_left" + fend);
 
     writeMatToFile(decision_variables.stone_rear_right, base_name + "_stone_rear_right" + fend);
+
+    writeMatToFile(decision_variables.position_ts, base_name + "_position_ts" + fend);
 }
 
 }

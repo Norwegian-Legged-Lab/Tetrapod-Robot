@@ -72,6 +72,12 @@
               <size>2.0 2.0 0.1 0 0 0</size>
             </box>
           </geometry>
+          <material>
+              <ambient>1 0 0 1</ambient>
+              <diffuse>1 0 0 1</diffuse>
+              <specular>0.1 0.1 0.1 1</specular>
+              <emissive>0 0 0 0</emissive>
+          </material>
         </visual>
         <collision name="plate_collision">
           <geometry>
@@ -94,5 +100,16 @@
 
     </model>
 
+    <model name="terrain">
+      <include>
+        <uri>model://terrain_description</uri>
+      </include>
+    </model>
+
+    <model name="footsteps">
+      <include>
+        <uri>model://footstep_description</uri>
+      </include>
+    </model>
   </world>
 </sdf>

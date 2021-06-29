@@ -20,8 +20,8 @@ int main(int argc, char **argv)
 
     bool_bridge << true, true, true, true;
 
-    //Terrain terrain(bool_bridge);
-    Terrain terrain;
+    Terrain terrain(bool_bridge);
+    //Terrain terrain;
     terrain.print();
 
     int n_steps = 4*16;

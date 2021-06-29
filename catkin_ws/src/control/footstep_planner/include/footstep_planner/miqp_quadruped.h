@@ -85,6 +85,8 @@ struct DecVars_res
     
     Eigen::MatrixXd stone_rear_right;
 
+    Eigen::MatrixXd position_ts;
+
     bool first_left;
 
     bool first_front;
