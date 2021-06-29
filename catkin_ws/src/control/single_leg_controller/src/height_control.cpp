@@ -8,7 +8,7 @@ int main(int argc, char **argv)
     enum CONTROL_MODE {POSITION, VELOCITY, TORQUE};
 
     // Choose what kind of controller to use
-    const CONTROL_MODE control_mode = POSITION;
+    const CONTROL_MODE control_mode = TORQUE;
 
     // Set the publish frequency 
     double publish_frequency = 200.0;
@@ -77,26 +77,26 @@ int main(int argc, char **argv)
         {
             if((setpoint == 0) && (setpoint_loop_counter > 1 * publish_frequency))
             {
-                foot_goal_position(2) = -0.30;
+                foot_goal_position(2) = -0.25;
                 setpoint = 1;
                 controller.setPoseGoal(foot_goal_position);
                 ROS_WARN("S1");
             }
             else if((setpoint == 1) && (setpoint_loop_counter > 3 * publish_frequency))
             {
-                foot_goal_position(2) = -0.25;
+                foot_goal_position(2) = -0.35;
                 setpoint = 2;
                 controller.setPoseGoal(foot_goal_position);
                 ROS_WARN("S2");
             }
-            else if((setpoint == 2) && (setpoint_loop_counter > 6 * publish_frequency))
+            else if((setpoint == 2) && (setpoint_loop_counter > 5 * publish_frequency))
             {
-                foot_goal_position(2) = -0.35;
+                foot_goal_position(2) = -0.20;
                 setpoint = 3;
                 controller.setPoseGoal(foot_goal_position);
                 ROS_WARN("S3");
             }
-            else if(setpoint_loop_counter > 9 * publish_frequency)
+            else if(setpoint_loop_counter > 7 * publish_frequency)
             {
                 return 0;
             }
@@ -117,7 +117,8 @@ int main(int argc, char **argv)
         else if(control_mode == CONTROL_MODE::TORQUE)
         {
             // Update the joint torques
-            controller.updateJointTorqueCommands();
+            //controller.updateJointTorqueCommands();
+            controller.updateClosedLoopTorqueCommands();
 
             // Send a command to the motors
             controller.sendJointTorqueCommands();
