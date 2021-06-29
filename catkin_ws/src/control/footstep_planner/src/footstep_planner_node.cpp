@@ -20,24 +20,24 @@ int main(int argc, char **argv)
 
     bool_bridge << true, true, true, true;
 
-    Terrain terrain(bool_bridge);
-    //Terrain terrain;
+    //Terrain terrain(bool_bridge);
+    Terrain terrain;
     terrain.print();
 
-    int n_steps = 4*16;
+    int n_steps = 4*24;
 
     int n_legs = 4;
 
     Leg step_sequence[] = {front_left, rear_right, front_right, rear_left};
 
-    double step_span = 0.6;
+    double step_span = 0.4;
 
     double length_legs = 0.4;
 
-    double bbox_len = 0.4;
+    double bbox_len = 0.3;
 
     ROS_INFO("About to begin planning");
-
+    
     DecVars_res res = footstep_planner(terrain, n_steps, n_legs, length_legs, step_sequence, bbox_len, step_span);
     double wp_dist = 2;
     int n_points = 4;

@@ -96,7 +96,7 @@ struct DecVars_res
 
 DecVars add_decision_variables(drake::solvers::MathematicalProgram &prog, Terrain &terrain, int n_steps, int n_legs);
 
-void set_initial_and_goal_position(drake::solvers::MathematicalProgram &prog, int n_steps, double length_legs, Leg step_sequence[], Terrain &terrain, DecVars &decision_variables);
+void set_initial_and_goal_position(drake::solvers::MathematicalProgram &prog, int n_steps, double length_legs, Leg step_sequence[], Terrain &terrain, DecVars &decision_variables, bool enforce_goal_hard=true);
 
 void geometry_limits(drake::solvers::MathematicalProgram &prog, int n_steps, int n_legs, double length_legs, Leg step_sequence[], Terrain &terrain, double bbox_len, DecVars &decision_variables);
 

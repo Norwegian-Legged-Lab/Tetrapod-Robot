@@ -44,7 +44,7 @@ DecVars add_decision_variables(drake::solvers::MathematicalProgram &prog, Terrai
     return decision_variables;
 }
 
-void set_initial_and_goal_position(drake::solvers::MathematicalProgram &prog, int n_steps, double length_legs, Leg step_sequence[], Terrain &terrain, DecVars &decision_variables)
+void set_initial_and_goal_position(drake::solvers::MathematicalProgram &prog, int n_steps, double length_legs, Leg step_sequence[], Terrain &terrain, DecVars &decision_variables, bool enforce_goal_hard)
 {
     MatrixXDecisionVariable &position = decision_variables.position;
 
@@ -111,13 +111,15 @@ void set_initial_and_goal_position(drake::solvers::MathematicalProgram &prog, in
 
         auto constr_init = prog.AddLinearConstraint(position.row(i).transpose() == init_pos_i);
 
-        goal_pos_i = sequence_offset(0)*goal_positions[step_sequence[(n_steps + i) % n_legs]]
-        + sequence_offset(1)*goal_positions[step_sequence[(n_steps + i + 1) % n_legs]]
-        + sequence_offset(2)*goal_positions[step_sequence[(n_steps + i + 2) % n_legs]]
-        + sequence_offset(3)*goal_positions[(n_steps + i + 3) % n_legs];
+        if (enforce_goal_hard)
+        {
+            goal_pos_i = sequence_offset(0)*goal_positions[step_sequence[(n_steps + i) % n_legs]]
+            + sequence_offset(1)*goal_positions[step_sequence[(n_steps + i + 1) % n_legs]]
+            + sequence_offset(2)*goal_positions[step_sequence[(n_steps + i + 2) % n_legs]]
+            + sequence_offset(3)*goal_positions[(n_steps + i + 3) % n_legs];
 
-        auto constr_goal = prog.AddLinearConstraint(position.row(n_steps - n_legs + i).transpose() == goal_pos_i);
-        //std::cout << constr_goal << std::endl;
+            auto constr_goal = prog.AddLinearConstraint(position.row(n_steps - n_legs + i).transpose() == goal_pos_i);
+        }
     }
 
     //Enforce initial and goal orientations

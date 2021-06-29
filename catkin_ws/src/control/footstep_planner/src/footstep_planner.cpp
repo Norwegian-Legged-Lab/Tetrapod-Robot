@@ -11,9 +11,9 @@ DecVars_res footstep_planner(Terrain &terrain, int n_steps, int n_legs, double l
     std::cout << "is gurobi solver available?: " << drake::solvers::GurobiSolver::is_available() << "is it enabled?: " << drake::solvers::GurobiSolver::is_enabled() << "is the license valid? " << drake::solvers::GurobiSolver::AcquireLicense() << std::endl;
     ROS_INFO("adding decision variables");
     DecVars decision_variables = add_decision_variables(prog, terrain, n_steps, n_legs);
-
+    bool enforce_goal_hard = true;
     ROS_INFO("setting initial and goal position");
-    set_initial_and_goal_position(prog, n_steps, length_legs, step_sequence, terrain, decision_variables);
+    set_initial_and_goal_position(prog, n_steps, length_legs, step_sequence, terrain, decision_variables, enforce_goal_hard);
 
     ROS_INFO("setting theta limits");
     theta_limits(prog, n_steps, n_legs, decision_variables);
@@ -33,7 +33,11 @@ DecVars_res footstep_planner(Terrain &terrain, int n_steps, int n_legs, double l
     ROS_INFO("minimize step length");
     minimize_step_length(prog, n_steps, n_legs, decision_variables);
     ROS_INFO("minimize remaining length");
-    //minimize_remaining_length(prog, terrain, n_steps, n_legs, decision_variables);
+
+    if (!enforce_goal_hard)
+    {
+        minimize_remaining_length(prog, terrain, n_steps, n_legs, decision_variables);
+    }
     ROS_INFO("bb");
 
     DecVars_res_raw decision_variables_opt;
