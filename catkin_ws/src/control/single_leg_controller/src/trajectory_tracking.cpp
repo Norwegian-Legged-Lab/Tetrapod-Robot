@@ -10,6 +10,8 @@ int main(int argc, char **argv)
     // Choose what kind of controller to use
     const CONTROL_MODE control_mode = POSITION;
 
+    const int NUMBER_OF_GAIT_CYCLES = 2;
+
     // Set the publish frequency 
     double publish_frequency = 200.0;
 
@@ -60,13 +62,23 @@ int main(int argc, char **argv)
     // Move the joint to the start position
     controller.moveFootToNominalPosition();
     
+    int number_of_phase_cycles = 0;
+
     while(true)
     {
         // Do a ROS spin to check if we have received any new messages
         controller.checkForNewMessages();
 
         // Update the estimated joint states of the robot based on the latest available information
-        controller.updateGaitPhase();
+        if(controller.updateGaitPhase())
+        {
+            number_of_phase_cycles++;
+
+            if(number_of_phase_cycles >= NUMBER_OF_GAIT_CYCLES * 2)
+            {
+                return 0;
+            }
+        }
 
         // Update the setpoint trajectory
         controller.updateFootTrajectoryReference();
