@@ -50,6 +50,10 @@ class SingleLegController
     /// \param[in] _msg A float array containing the simulated single leg joint velocities
     public: void generalizedVelocitiesCallback(const std_msgs::Float64MultiArrayConstPtr &_msg);
 
+    /// \brief Listens to joint force messages from the simulated leg
+    /// \param[in] _msg A float array containing the simulated single leg joint forces
+    public: void generalizedForcesCallback(const std_msgs::Float64MultiArrayConstPtr &_msg);
+
     /// \brief Listens to joint state messages from the motors
     /// The messages contains joint angles, velocities and torques for all three motors
     /// \param[in] _msg A float array containing the motor joint states
@@ -122,6 +126,9 @@ class SingleLegController
     /// \brief Overloaded function that uses the current joint references and joint states
     public: void updateJointTorqueCommands();
 
+    /// \brief A non model based torque controller
+    public: void updateClosedLoopTorqueCommands();
+
     /// \brief Updates the joint velocity control commands based on the joint velocity reference 
     /// and the joint position error
     public: void updateJointVelocityCommands(); 
@@ -139,7 +146,7 @@ class SingleLegController
     public: void increaseIterator();
 
     /// \brief Increments the gait cycle iterator and updates the leg state
-    public: void updateGaitPhase();
+    public: bool updateGaitPhase();
 
     /// \brief Update the foot trajectory based on the leg state 
     public: void updateFootTrajectoryReference();
@@ -253,7 +260,7 @@ class SingleLegController
     private: Eigen::Matrix<double, 3, 1> joint_vel_commands = Eigen::Matrix<double, 3, 1>::Zero();
 
     /// \brief The joint torque command being sent to the motors
-    private: Eigen::Matrix<double, 3, 1> joint_torque_commands;
+    private: Eigen::Matrix<double, 3, 1> joint_torque_commands = Eigen::Matrix<double, 3, 1>::Zero();
 
     /// \brief The current gait phase of the leg
     private: GaitPhase gait_phase = GaitPhase::stance;
@@ -314,19 +321,19 @@ class SingleLegController
     private: double publish_frequency = 200.0;
 
     /// \brief The duration of a phase period in seconds
-    private: double phase_period = 3.0;
+    private: double phase_period = 0.5;
 
     /// \brief The standard height of the hips above the ground
     private: double hip_height = 0.35;
 
     /// \brief The nominal x position of the foot relative to the hip
-    private: double x_nominal = 0.3;
+    private: double x_nominal = 0.1;
 
     /// \brief The nominal y position of the foot relative to the hip
     private: double y_nominal = 0.3;
 
     /// \brief The step distance in the x direction
-    private: double x_step_distance = 0.6;
+    private: double x_step_distance = 0.2;
 
     /// \brief The step distance in the y direction
     private: double y_step_distance = 0.0;
@@ -406,6 +413,9 @@ class SingleLegController
 
     /// \brief Subscribes to generalized velocities messages
     private: ros::Subscriber generalized_velocities_subscriber;
+
+    /// \brief Subscribes to generalized forces messages
+    private: ros::Subscriber generalized_forces_subscriber;
 
     /// \brief Subscribes to joint state messages from the motors
     private: ros::Subscriber joint_state_subscriber;

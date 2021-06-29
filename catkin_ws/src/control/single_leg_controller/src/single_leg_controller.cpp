@@ -54,13 +54,13 @@ SingleLegController::SingleLegController(double _publish_frequency)
     this->k_i_torque_kp = k_torque;
 
     // Set the closed loop torque control gains
-    double k_p_hy = 200.0;
-    double k_p_hp = 200.0;
-    double k_p_kp = 200.0;
+    double k_p_hy = 100.0;
+    double k_p_hp = 100.0;
+    double k_p_kp = 100.0;
 
-    double k_d_hy = 40.0;
-    double k_d_hp = 40.0;
-    double k_d_kp = 40.0;
+    double k_d_hy = 5.0;
+    double k_d_hp = 5.0;
+    double k_d_kp = 5.0;
 
     // Store the values in matricies that will be used by the torque controller
     this->K_p(0, 0) = k_p_hy;
@@ -72,9 +72,9 @@ SingleLegController::SingleLegController(double _publish_frequency)
     this->K_d(2, 2) = k_d_kp;
 
     // Set the velocity control position error gains
-    double k_pos_error_vel_control_hy = 5.0;
-    double k_pos_error_vel_control_hp = 5.0;
-    double k_pos_error_vel_control_kp = 5.0;
+    double k_pos_error_vel_control_hy = 25.0;
+    double k_pos_error_vel_control_hp = 25.0;
+    double k_pos_error_vel_control_kp = 25.0;
 
     K_pos_error_vel_control(0, 0) = k_pos_error_vel_control_hy;
     K_pos_error_vel_control(1, 1) = k_pos_error_vel_control_hp;
@@ -131,6 +131,14 @@ void SingleLegController::initROS()
         "/my_robot/gen_vel",
         1,
         &SingleLegController::generalizedVelocitiesCallback,
+        this
+    );
+
+    this->generalized_forces_subscriber = node_handle->subscribe
+    (
+        "/my_robot/joint_forces",
+        1,
+        &SingleLegController::generalizedForcesCallback,
         this
     );
 
@@ -200,6 +208,16 @@ void SingleLegController::generalizedVelocitiesCallback(const std_msgs::Float64M
         // + 6 is added because the first six states are (x_dot, y_dot, z_dot, roll_dot, pitch_dot, yaw_dot)
         // The remaining three states are theta_hy_dot, theta_hp_dot, theta_kp_dot
         this->joint_vel(i) = _msg->data[i + 6];
+    }
+}
+
+void SingleLegController::generalizedForcesCallback(const std_msgs::Float64MultiArrayConstPtr &_msg)
+{
+    for(int i = 0; i < NUMBER_OF_MOTORS; i++)
+    {
+        // + 6 is added because the first six states are (x_dot, y_dot, z_dot, roll_dot, pitch_dot, yaw_dot)
+        // The remaining three states are theta_hy_dot, theta_hp_dot, theta_kp_dot
+        this->joint_torque(i) = _msg->data[i];
     }
 }
 
@@ -461,16 +479,16 @@ bool SingleLegController::updatePoseControlJointTrajectoryReference()
     double kp_vel;
     double kp_acc;
 
-    hy_pos = (joint_pos_goal(0) - joint_pos_initial(0))*progress;
-    hp_pos = (joint_pos_goal(1) - joint_pos_initial(1))*progress;
-    kp_pos = (joint_pos_goal(2) - joint_pos_initial(2))*progress;
+    //hy_pos = (joint_pos_goal(0) - joint_pos_initial(0))*progress;
+    //hp_pos = (joint_pos_goal(1) - joint_pos_initial(1))*progress;
+    //kp_pos = (joint_pos_goal(2) - joint_pos_initial(2))*progress;
     
 
-    //this->calculateSingleAxisTrajectory(progress, this->pose_period, joint_pos_goal(0) - joint_pos_initial(0), hy_pos, hy_vel, hy_acc);
+    this->calculateSingleAxisTrajectory(progress, this->pose_period, joint_pos_goal(0) - joint_pos_initial(0), hy_pos, hy_vel, hy_acc);
 
-    //this->calculateSingleAxisTrajectory(progress, this->pose_period, joint_pos_goal(1) - joint_pos_initial(1), hp_pos, hp_vel, hp_acc);
+    this->calculateSingleAxisTrajectory(progress, this->pose_period, joint_pos_goal(1) - joint_pos_initial(1), hp_pos, hp_vel, hp_acc);
 
-    //this->calculateSingleAxisTrajectory(progress, this->pose_period, joint_pos_goal(2) - joint_pos_initial(2), kp_pos, kp_vel, kp_acc);
+    this->calculateSingleAxisTrajectory(progress, this->pose_period, joint_pos_goal(2) - joint_pos_initial(2), kp_pos, kp_vel, kp_acc);
 
     this->joint_pos_ref(0) = this->joint_pos_initial(0) + hy_pos;
     this->joint_vel_ref(0) = hy_vel;
@@ -514,10 +532,10 @@ void SingleLegController::updateJointReferences()
     else // If we successfully found a solution to the inverse kinematics problem
     {
         // Calculate the translation Jacobian for the foot
-        Eigen::Matrix<double, 3, 3> J_s = this->kinematics.GetTranslationJacobianInB(Kinematics::LegType::frontLeft, Kinematics::BodyType::foot, joint_pos(0), joint_pos(1), joint_pos(2));
+        Eigen::Matrix<double, 3, 3> J_s = this->kinematics.GetTranslationJacobianInB(Kinematics::LegType::frontLeft, Kinematics::BodyType::foot, joint_pos_ref(0), joint_pos_ref(1), joint_pos_ref(2));
         
         // Calculate the derivative of the translation Jacobian for the foot
-        Eigen::Matrix<double, 3, 3> J_s_d = this->kinematics.GetTranslationJacobianInBDiff(Kinematics::LegType::frontLeft, Kinematics::BodyType::foot, joint_pos(0), joint_pos(1), joint_pos(2), joint_vel(0), joint_vel(1), joint_vel(2));
+        Eigen::Matrix<double, 3, 3> J_s_d = this->kinematics.GetTranslationJacobianInBDiff(Kinematics::LegType::frontLeft, Kinematics::BodyType::foot, joint_pos_ref(0), joint_pos_ref(1), joint_pos_ref(2), joint_vel_ref(0), joint_vel_ref(1), joint_vel_ref(2));
 
         // Update the joint angle velocity references
         this->joint_vel_ref = J_s.inverse()*this->foot_vel_ref;
@@ -573,6 +591,11 @@ void SingleLegController::updateJointTorqueCommands
     */
 
     this->joint_torque_commands = b + g + M*normalized_joint_torques;
+}
+
+void SingleLegController::updateClosedLoopTorqueCommands()
+{
+    this->joint_torque_commands = 0.0*this->joint_acc_ref - this->K_p*(this->joint_pos - this->joint_pos_ref) - this->K_d*(this->joint_vel - this->joint_vel_ref);
 }
 
 void SingleLegController::sendJointPositionCommands()
@@ -749,7 +772,7 @@ void SingleLegController::increaseIterator()
     }
 }
 
-void SingleLegController::updateGaitPhase()
+bool SingleLegController::updateGaitPhase()
 {
     // Increase the iterator
     this->current_iteration++;
@@ -769,8 +792,13 @@ void SingleLegController::updateGaitPhase()
         {
             this->gait_phase = GaitPhase::swing;
         }
+
+        // We have reached the end of gait phase
+        return true;
     }
     
+    // We have not reached the end of gait phase
+    return false;
 }
 
 void SingleLegController::updateFootTrajectoryReference()
