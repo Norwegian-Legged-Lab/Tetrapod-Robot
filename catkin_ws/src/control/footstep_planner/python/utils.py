@@ -42,8 +42,14 @@ class SteppingStone(object):
         
     def plot(self, **kwargs):
         return plot_rectangle(self.center, self.width, self.height, **kwargs)
-    def add_to_sdf(self, super):
-        size_string = str(self.width) + ' ' + str(self.height) + ' 0.001 0 0 0'
+    def add_to_sdf(self, super, indicator=True):
+        if indicator:
+            size_string = str(self.width) + ' ' + str(self.height) + ' 0.001 0 0 0'
+            pose_string = str(self.center[0]) + ' ' + str(self.center[1]) + ' 0 0 0 0'
+        else:
+            size_string = str(self.width) + ' ' + str(self.height) + ' 0.5 0 0 0'
+            pose_string = str(self.center[0]) + ' ' + str(self.center[1]) + ' -0.25 0 0 0'
+
         model = ET.SubElement(super, 'model')
 
         model.set('name', self.name)
@@ -52,7 +58,7 @@ class SteppingStone(object):
         static.text = 'true'
 
         pose = ET.SubElement(model, 'pose')
-        pose.text = str(self.center[0]) + ' ' + str(self.center[1]) + ' 0 0 0 0'
+        pose.text = pose_string
 
         link = ET.SubElement(model, 'link')
         link.set('name', 'plate_link')
@@ -68,21 +74,20 @@ class SteppingStone(object):
 
         visual_size = ET.SubElement(visual_box, 'size')
         visual_size.text = size_string
+        if indicator:
+            material = ET.SubElement(visual, 'material')
 
-        material = ET.SubElement(visual, 'material')
-        #material.set('name', 'red')
+            ambient = ET.SubElement(material, 'ambient')
+            ambient.text = '0.8 0 0 1'
 
-        ambient = ET.SubElement(material, 'ambient')
-        ambient.text = '0.8 0 0 1'
+            diffuse = ET.SubElement(material, 'diffuse')
+            diffuse.text = '0.8 0 0 1'
 
-        diffuse = ET.SubElement(material, 'diffuse')
-        diffuse.text = '0.8 0 0 1'
+            specular = ET.SubElement(material, 'specular')
+            specular.text = '0.1 0.1 0.1 1'
 
-        specular = ET.SubElement(material, 'specular')
-        specular.text = '0.1 0.1 0.1 1'
-
-        emissive = ET.SubElement(material, 'emissive')
-        emissive.text = '0.8 0 0 1'
+            emissive = ET.SubElement(material, 'emissive')
+            emissive.text = '0.8 0 0 1'
 
         #collision = ET.SubElement(link, 'collision')
         #collision.set('name', 'plate_collision')
@@ -144,8 +149,8 @@ class Terrain(object):
             goal = self.add_stone([4, 0], 1, 1, 'goal')
 
             for i in range(2):
-                self.add_stone([1 + 2*i, 0], 1, 3, 'vertical')
-                self.add_stone([2, -1 + 2*i], 3, 1, 'lateral')
+                self.add_stone([1 + 2*i, 0], 1, 3, 'vertical' + str(i))
+                self.add_stone([2, -1 + 2*i], 3, 1, 'lateral' + str(i))
         else:
             # ensure that bool_bridge has only boolean entries
             if any(i != bool(i) for i in bool_bridge):
@@ -231,14 +236,36 @@ class Terrain(object):
         # set title
         plt.title(title)
     
-    def write_to_sdf(self, fname='terrain_xml'):
+    def write_to_sdf(self, fname='terrain_xml', with_height=True):
         fend = '.sdf'
         sdf = ET.Element('sdf')
         sdf.set('version', '1.7')
         model = ET.SubElement(sdf, 'model')
         model.set('name', 'terrain')
+        
+        pose = ET.SubElement(model, 'pose')
+        pose.text = '0 0 0 0 0 0'
+
         for s in self.stepping_stones:
             s.add_to_sdf(model)
+        
+        if with_height:
+            model_indicator = ET.SubElement(model, 'model')
+            model_indicator.set('name', 'terrain_indicator')
+
+            pose_indicator = ET.SubElement(model, 'pose')
+            pose_indicator.text = '0 0 0 0 0 0'
+
+            model_height = ET.SubElement(model, 'model')
+            model_height.set('name', 'terrain_height')
+
+            pose_height = ET.SubElement(model, 'pose')
+            pose_height.text = '0 0 0 0 0 0'
+
+            for s in self.stepping_stones:
+                s.add_to_sdf(model_indicator, indicator=True)
+                s.add_to_sdf(model_height, indicator=False)
+
         mydata = ET.tostring(sdf, encoding='unicode', xml_declaration=True)
         f = open(fname + fend, 'w')
         f.write(mydata)
