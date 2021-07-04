@@ -8,7 +8,7 @@ clc
 %timestamp = "2021-06-07-14-24-22"; %10 Nm (kp=50, ki=20)
 %timestamp = "2021-06-07-14-28-57";  %15 Nm (kp=50, ki=20)
 
-%timestamp = "2021-06-07-15-11-44"; %1
+timestamp = "2021-06-07-15-11-44"; %1
 %timestamp = "2021-06-07-15-19-17"; %2
 %timestamp = "2021-06-07-15-29-49"; %3
 %timestamp = "2021-06-07-15-37-11"; %4
@@ -24,20 +24,19 @@ clc
 %timestamp = "2021-06-07-18-21-04"; %11
 %timestamp = "2021-06-07-18-24-07"; %12
 %timestamp = "2021-06-07-18-27-55"; %13
-%timestamp = "2021-06-07-18-27-55"; %14
-%timestamp = "2021-06-07-18-32-06"; %15
-%timestamp = "2021-06-07-18-38-59"; %16
+%timestamp = "2021-06-07-18-32-06"; %14
+%timestamp = "2021-06-07-18-38-59"; %15
 
-%timestamp = "2021-06-07-18-43-01"; %17
+%timestamp = "2021-06-07-18-43-01"; %??
 
-%timestamp = "2021-06-07-18-49-39"; % 18 200/200
-%timestamp = "2021-06-07-18-47-21"; % 18 200/200
+%timestamp = "2021-06-07-18-49-39"; % ?? 200/200
+%timestamp = "2021-06-07-18-47-21"; % 16 200/200
 
-%timestamp = "2021-06-07-18-56-23"; % 19
+%timestamp = "2021-06-07-18-56-23"; % 17
 
-%timestamp = "2021-06-07-18-59-18"; % 20
-%timestamp = "2021-06-07-19-01-57"; % 21
-timestamp = "2021-06-07-19-04-52"; % 22
+%timestamp = "2021-06-07-18-59-18"; % 18
+%timestamp = "2021-06-07-19-01-57"; % 19
+%timestamp = "2021-06-07-19-04-52"; % 20
 
 %timestamp = "2021-06-07-15-50-50";
 
@@ -155,8 +154,8 @@ fprintf("Offset deviation: %f [Nm]\n", torque_offset);
 
 plot_start = floor(frequency*0.95);
 
-figure(6)
-subplot(3, 1, 1);
+figure()
+subplot(2, 1, 1);
 hold on 
 grid on
 plot(reference_time(plot_start:end), joint_vel_reference(plot_start:end));
@@ -166,22 +165,22 @@ xlabel("time [s]");
 ylabel("angular rate [deg/s]");
 hold off
 
-subplot(3, 1, 2);
+subplot(2, 1, 2);
 hold on
 grid on
 plot(reference_time(plot_start:end), joint_torque_reference(plot_start:end));
 plot(state_time(plot_start:end), joint_torque(plot_start:end));
-legend("\tau_{ref}", "\tau");
+%legend("\tau_{ref}", "\tau");
 xlabel("time [s]");
 ylabel("torque [Nm]");
 hold off
 
-subplot(3, 1, 3);
-hold on
-grid on
-plot(reference_time(step_start:step_end), joint_torque_reference(step_start:step_end));
-plot(state_time(step_start:step_end), joint_torque(step_start:step_end));
-legend("\tau_{ref}", "\tau");
-xlabel("time [s]");
-ylabel("torque [Nm]");
-hold off
+% subplot(3, 1, 3);
+% hold on
+% grid on
+% plot(reference_time(step_start:step_end), joint_torque_reference(step_start:step_end));
+% plot(state_time(step_start:step_end), joint_torque(step_start:step_end));
+% legend("\tau_{ref}", "\tau");
+% xlabel("time [s]");
+% ylabel("torque [Nm]");
+% hold off
