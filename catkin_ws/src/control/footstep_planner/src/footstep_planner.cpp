@@ -70,6 +70,11 @@ DecVars_res footstep_planner(Terrain &terrain, int n_steps, int n_legs, double l
         if (!result.is_success())
         {
             ROS_ERROR("Infeasible optimization problem.");
+            decision_variables_opt.success = false;
+        }
+        else
+        {
+            decision_variables_opt.success = true;
         }
     }
     else{
@@ -108,6 +113,11 @@ DecVars_res footstep_planner(Terrain &terrain, int n_steps, int n_legs, double l
         if (result != drake::solvers::kSolutionFound)
         {
             ROS_ERROR("Infeasible optimization problem.");
+            decision_variables_opt.success = false;
+        }
+        else
+        {
+            decision_variables_opt.success = true;
         }
     }
 

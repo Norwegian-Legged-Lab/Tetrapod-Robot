@@ -65,6 +65,8 @@ struct DecVars_res_raw
     Eigen::MatrixXd lin_cos;
 
     double cost;
+
+    bool success;
 };
 
 struct DecVars_res
@@ -92,6 +94,8 @@ struct DecVars_res
     bool first_front;
 
     double cost;
+    
+    bool success;
 };
 
 DecVars add_decision_variables(drake::solvers::MathematicalProgram &prog, Terrain &terrain, int n_steps, int n_legs);

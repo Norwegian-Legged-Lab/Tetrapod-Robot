@@ -2,7 +2,7 @@
 #define footstep_planner_h
 
 #include "footstep_planner/miqp_quadruped.h"
-
+#include "footstep_planner/utils.h"
 #include "sensor_msgs/SetCameraInfo.h"
 
 #include "ros/console.h"
