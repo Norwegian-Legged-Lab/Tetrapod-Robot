@@ -16,7 +16,7 @@ const double k_p_tor = 50.0;
 const double k_i_tor = 50.0;
 
 // Set the PID gains for the motors
-static double K_P_POS[6] = {k_p_pos, k_p_pos, k_p_pos, k_p_pos, k_p_pos, k_p_pos};
+static int K_P_POS[6] = {k_p_pos, k_p_pos, k_p_pos, k_p_pos, k_p_pos, k_p_pos};
 static int K_I_POS[6] = {k_i_pos, k_i_pos, k_i_pos, k_i_pos, k_i_pos, k_i_pos};
 static int K_P_VEL[6] = {k_p_vel, k_p_vel, k_p_vel, k_p_vel, k_p_vel, k_p_vel};
 static int K_I_VEL[6] = {k_i_vel, k_i_vel, k_i_vel, k_i_vel, k_i_vel, k_i_vel};
