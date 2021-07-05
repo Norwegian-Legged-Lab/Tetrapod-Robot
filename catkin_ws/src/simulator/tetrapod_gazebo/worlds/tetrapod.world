@@ -5,10 +5,11 @@
     <include>
       <uri>model://sun</uri>
     </include>
-
     <!-- Remove shadows -->
     <scene>
-      <ambient>0.0 0.0 0.0 0.1</ambient>
+      <grid>false</grid>
+      <origin_visual>false</origin_visual>
+      <ambient>0 0 0 0.1</ambient>
       <shadows>0</shadows>
     </scene>
 
@@ -62,7 +63,7 @@
       <static>1</static>
     </model>
 
-    <model name = "plate_model">
+<!--    <model name = "plate_model">
       <pose>3 3 0.1 0 0 0</pose>
       <link name="plate_link">
         <pose>0 0 0 0 0 0</pose>
@@ -88,6 +89,7 @@
         </collision>
       </link>
     </model>
+-->
 
     <!-- A testing model that includes the Velodyne sensor model -->
     <model name="my_robot">
@@ -105,11 +107,15 @@
         <uri>model://terrain_description</uri>
       </include>
     </model>
-
+<!--
     <model name="footsteps">
       <include>
         <uri>model://footstep_description</uri>
       </include>
     </model>
+-->
+    <!-- Attach the plugin to this world -->
+    <plugin name="terrain_handler" filename="libterrain_plugin.so"/>
+    <plugin name="footstep_plan_handler" filename="libfootstep_planner_plugin.so"/>
   </world>
 </sdf>
