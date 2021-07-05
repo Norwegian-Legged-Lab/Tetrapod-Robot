@@ -62,7 +62,7 @@ void set_initial_and_goal_position(drake::solvers::MathematicalProgram &prog, in
     double theta_0 = 0;
 
     Eigen::Vector2d center(terrain.getStoneByName("initial").getCenter());
-    std::cout << center << std::endl;
+    
     double angle_front_left = theta_0 + phis[front_left];
 
     double angle_front_right = theta_0 + phis[front_right];
@@ -81,6 +81,7 @@ void set_initial_and_goal_position(drake::solvers::MathematicalProgram &prog, in
 
     center = terrain.getStoneByName("goal").getCenter();
 
+    //Enforce initial positions and goal positions
     Eigen::Vector2d goal_position_front_left = center + length_legs*Eigen::Vector2d(std::cos(angle_front_left), std::sin(angle_front_left));
 
     Eigen::Vector2d goal_position_rear_left = center + length_legs*Eigen::Vector2d(std::cos(angle_rear_left), std::sin(angle_rear_left));
@@ -92,16 +93,11 @@ void set_initial_and_goal_position(drake::solvers::MathematicalProgram &prog, in
     Eigen::Vector2d initial_positions[] = {initial_position_front_left, initial_position_front_right, initial_position_rear_left, initial_position_rear_right};
 
     Eigen::Vector2d goal_positions[] = {goal_position_front_left, goal_position_front_right, goal_position_rear_left, goal_position_rear_right};
-    for (int i = 0; i < n_legs; ++i)
-    {
-        std::cout << goal_positions[i] << std::endl;
-    }
-    //Enforce initial positions and goal positions
 
     Eigen::Matrix<drake::symbolic::Expression, 2, 1> init_pos_i;
 
     Eigen::Matrix<drake::symbolic::Expression, 2, 1> goal_pos_i;
-    std::cout << step_sequence[0] << step_sequence[1] << step_sequence[2] << step_sequence[3] << std::endl;
+
     for (int i = 0; i < n_legs; ++i)
     {
         init_pos_i = sequence_offset(0)*initial_positions[step_sequence[i]]
@@ -188,8 +184,6 @@ void theta_limits(drake::solvers::MathematicalProgram &prog, int n_steps, int n_
         auto cos_upper = prog.AddLinearConstraint(lin_cos(i)*Eigen::VectorXd::Ones(5) - (cos_coeffs.col(0) + cos_coeffs.col(1)*theta(i)) <= (Eigen::VectorXd::Ones(5) - bin_cos.row(i).transpose())*big_M);        
 
         auto cos_lower = prog.AddLinearConstraint(lin_cos(i)*Eigen::VectorXd::Ones(5) - (cos_coeffs.col(0) + cos_coeffs.col(1)*theta(i)) >= -(Eigen::VectorXd::Ones(5) - bin_cos.row(i).transpose())*big_M);        
-
-        std::cout << sin_upper << std::endl << sin_lower << std::endl << cos_upper << std::endl << cos_lower << std::endl;
     }
 }
 
@@ -254,7 +248,6 @@ void one_stone_per_foot(drake::solvers::MathematicalProgram &prog, int n_steps, 
     MatrixXDecisionVariable &stone = decision_variables.stone;
 
     auto stone_const = prog.AddLinearConstraint(stone*Eigen::VectorXd::Ones(stone.cols()) == Eigen::VectorXd::Ones(stone.rows()));
-    std::cout << stone_const << std::endl;
 }
 
 Eigen::Vector4d get_big_M(Terrain terrain)
@@ -294,7 +287,6 @@ void foot_in_stepping_stone(drake::solvers::MathematicalProgram &prog, Terrain &
             b = terrain.getSteppingStones()(l).getB();
 
             auto constr = prog.AddLinearConstraint(A*position.row(i).transpose() <= b + (1 - stone(i, l))*M);
-            std::cout << constr << std::endl;
         }
     }
 }
@@ -400,6 +392,8 @@ DecVars_res get_decvars_res(DecVars_res_raw &decision_variables_raw, int n_steps
     res.cost = decision_variables_raw.cost;
 
     res.position_ts = decision_variables_raw.position;
+
+    res.success = decision_variables_raw.success;
 
     return res;
 }
