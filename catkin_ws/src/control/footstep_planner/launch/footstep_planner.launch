@@ -1,0 +1,5 @@
+<launch>
+
+      <node pkg="footstep_planner" type="footstep_planner_node" name="footstep_planner_node" output="screen"/>
+
+</launch>
