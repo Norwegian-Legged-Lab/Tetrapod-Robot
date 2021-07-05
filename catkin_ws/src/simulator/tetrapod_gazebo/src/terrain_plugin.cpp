@@ -77,17 +77,11 @@ void TerrainPlugin::InitRos()
 bool TerrainPlugin::ResetSimulation(const std_srvs::Empty::Request &_req,
                                      std_srvs::Empty::Response &_res)
 {
-    std::cout << "entering ResetSimulation" << std::endl;
-    physics::ModelPtr old_terrain = this->world->ModelByName("terrain");
-    
+    //physics::ModelPtr terrain = this->world->ModelByName("terrain");
+
     physics::Model_V models = this->world->Models();
 
-    for (auto ptr : models)
-    {
-        std::string name = ptr->GetName();
-        std::cout << name << std::endl;
-    }
-    this->world->RemoveModel(old_terrain);
+    //sdf::SDF terrain_sdf;
 
     /*std::string sdf_string =    "<sdf version='1.7'>\
                                     <model name='terrain'>\
@@ -97,13 +91,29 @@ bool TerrainPlugin::ResetSimulation(const std_srvs::Empty::Request &_req,
                                         </include>\
                                     </model>\
                                 </sdf>";
-    
-    this->world->InsertModelString(sdf_string);*/
 
+    terrain_sdf.SetFromString(sdf_string);*/
+
+    for (auto ptr : models)
+    {
+        std::string name = ptr->GetName();
+        std::cout << name << std::endl;
+    }
+    //this->world->RemoveModel(old_terrain);
+    models = this->world->Models();
+
+    for (auto ptr: models)
+    {
+        std::string name = ptr->GetName();
+        std::cout << name << std::endl;
+    }
+    //ros::Duration(0.001).sleep();
+    this->world->RemoveModel("terrain");
     this->world->InsertModelFile("model://terrain_description");
+    this->world->DisableAllModels();
+    this->world->EnableAllModels();
+    this->world->Reset();
 
-    //this->world->Reset();
-    
     std_srvs::Empty srv_call;
 
     this->tetrapodResetService.call(srv_call);
