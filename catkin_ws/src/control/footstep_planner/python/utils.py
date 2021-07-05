@@ -88,15 +88,15 @@ class SteppingStone(object):
 
             emissive = ET.SubElement(material, 'emissive')
             emissive.text = '0.8 0 0 1'
+        else:
+            collision = ET.SubElement(link, 'collision')
+            collision.set('name', 'plate_collision')
 
-        #collision = ET.SubElement(link, 'collision')
-        #collision.set('name', 'plate_collision')
+            collision_geometry = ET.SubElement(collision, 'geometry')
+            collision_box = ET.SubElement(collision_geometry, 'box')
 
-        #collision_geometry = ET.SubElement(collision, 'geometry')
-        #collision_box = ET.SubElement(collision_geometry, 'box')
-
-        #collision_size = ET.SubElement(collision_box, 'size')
-        #collision_size.text = size_string
+            collision_size = ET.SubElement(collision_box, 'size')
+            collision_size.text = size_string
         
 
 
@@ -144,13 +144,13 @@ class Terrain(object):
 
         self.stepping_stones = []
         if bool_bridge is None:
-            initial = self.add_stone([0, 0], 1, 1, 'initial')
+            initial = self.add_stone([0, 0], 1.2, 1.2, 'initial')
             
-            goal = self.add_stone([4, 0], 1, 1, 'goal')
+            goal = self.add_stone([4, 0], 1.2, 1.2, 'goal')
 
             for i in range(2):
-                self.add_stone([1 + 2*i, 0], 1, 3, 'vertical' + str(i))
-                self.add_stone([2, -1 + 2*i], 3, 1, 'lateral' + str(i))
+                self.add_stone([1 + 2*i, 0], 1.2, 4.2, 'vertical' + str(i))
+                self.add_stone([2, -1.5 + 3*i], 3.2, 1.2, 'lateral' + str(i))
         else:
             # ensure that bool_bridge has only boolean entries
             if any(i != bool(i) for i in bool_bridge):
@@ -159,11 +159,11 @@ class Terrain(object):
             # initialize internal list of stepping stones
             
             # add initial stepping stone to the terrain
-            initial = self.add_stone([0, 0], 1, 1, 'initial')
+            initial = self.add_stone([0, 0], 1.2, 1.2, 'initial')
             
             # add bridge stepping stones to the terrain
             # gap between bridge stones equals bridge stone width
-            width_bridge = .2
+            width_bridge = .24
             center = initial.bottom_right + np.array([width_bridge * 1.5, initial.height / 2])
             centers = [center + np.array([i * 2 * width_bridge, 0]) for i in np.where(bool_bridge)[0]]
             self.add_stones(
@@ -179,7 +179,7 @@ class Terrain(object):
             goal = self.add_stone(center, initial.width, initial.height, 'goal')
             
             # add lateral stepping stone to the terrain
-            height = .4
+            height = .8
             clearance = .1
             c2g = goal.center - initial.center
             width = initial.width + c2g[0]
@@ -246,8 +246,6 @@ class Terrain(object):
         pose = ET.SubElement(model, 'pose')
         pose.text = '0 0 0 0 0 0'
 
-        for s in self.stepping_stones:
-            s.add_to_sdf(model)
         
         if with_height:
             model_indicator = ET.SubElement(model, 'model')
@@ -265,7 +263,10 @@ class Terrain(object):
             for s in self.stepping_stones:
                 s.add_to_sdf(model_indicator, indicator=True)
                 s.add_to_sdf(model_height, indicator=False)
-
+        else:
+            for s in self.stepping_stones:
+                s.add_to_sdf(model)
+        
         mydata = ET.tostring(sdf, encoding='unicode', xml_declaration=True)
         f = open(fname + fend, 'w')
         f.write(mydata)
