@@ -7,18 +7,20 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   geometry_msgs
   math_utils
+  visualization_utils
   debug_utils
   kinematics
   eigen_conversions
 )
 
 find_package(Eigen3 REQUIRED)
-find_package(drake REQUIRED PATHS /home/melyso/drake)
+find_package(drake REQUIRED PATHS /opt/drake)
 
 catkin_package(
   INCLUDE_DIRS include
     ${EIGEN3_INCLUDE_DIR}
   LIBRARIES ${PROJECT_NAME}
+    visualization_utils
   CATKIN_DEPENDS
     roscpp
     std_msgs
@@ -57,11 +59,13 @@ add_executable(${PROJECT_NAME}_node
 target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
   drake::drake
+  visualization_utils
 )
 
 target_link_libraries(${PROJECT_NAME}_node
   ${catkin_LIBRARIES}
   drake::drake
+  visualization_utils
 )
 
 install(TARGETS ${PROJECT_NAME}

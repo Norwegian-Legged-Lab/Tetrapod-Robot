@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(tetrapod_gazebo)
+project(visualization_utils)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -8,18 +8,15 @@ project(tetrapod_gazebo)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+  kindr
   roscpp
-  std_msgs
-  sensor_msgs
-  gazebo_ros
-  math_utils
-  visualization_utils
+  geometry_msgs
 )
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
-find_package(gazebo REQUIRED)
 find_package(Eigen3 REQUIRED)
+
 
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
@@ -108,14 +105,11 @@ find_package(Eigen3 REQUIRED)
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
   INCLUDE_DIRS include
-  #LIBRARIES tetrapod_gazebo
+    ${EIGEN3_INCLUDE_DIR}
   CATKIN_DEPENDS 
-    roscpp 
-    std_msgs 
-    sensor_msgs
-    gazebo_ros 
-    math_utils
-    visualization_utils
+    kindr
+    roscpp
+    geometry_msgs
 #  DEPENDS system_lib
 )
 
@@ -123,40 +117,26 @@ catkin_package(
 ## Build ##
 ###########
 
-## Gazebo flags
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GAZEBO_CXX_FLAGS}")
-
-## Gazebo link dir
-link_directories(${GAZEBO_LIBRARY_DIRS})
-
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
   include
   ${catkin_INCLUDE_DIRS}
-  ${GAZEBO_INCLUDE_DIRS}
+  ${EIGEN3_INCLUDE_DIR}
 )
 
 ## Declare a C++ library
-# add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/tetrapod_gazebo.cpp
-# )
-add_library(tetrapod_plugin
-  src/tetrapod_plugin.cpp
+add_library(${PROJECT_NAME}
+  src/color_interp.cpp
+  src/hsvrgb.cpp
+  src/xml_utils.cpp
+  src/eigen_geometry_msgs.cpp
 )
 
-add_library(terrain_plugin
-  src/terrain_plugin.cpp
-)
-
-add_library(footstep_planner_plugin
-  src/footstep_planner_plugin.cpp
-)
-
-add_library(contact_plugin
-  src/contact_plugin.cpp
-)
-
+include(FindXercesC)
+find_package(XercesC REQUIRED)
+include_directories( ${XercesC_INCLUDE_DIR} )
+find_package(libpugixml1)
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
@@ -165,10 +145,7 @@ add_library(contact_plugin
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/tetrapod_gazebo_node.cpp)
-add_executable(contact_sensor
-  src/contact_sensor.cpp
-)
+# add_executable(${PROJECT_NAME}_node src/angle_utils_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -179,40 +156,13 @@ add_executable(contact_sensor
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-#add_dependencies(contact_sensor 
-#  ${catkin_EXPORTED_TARGETS}
-#)
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(tetrapod_plugin
+target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
-  ${GAZEBO_LIBRARIES}
+  ${XercesC_LIBRARY}
+  pugixml
 )
-
-target_link_libraries(terrain_plugin
-  ${catkin_LIBRARIES}
-  ${GAZEBO_LIBRARIES}
-)
-
-target_link_libraries(footstep_planner_plugin
-  ${catkin_LIBRARIES}
-  ${GAZEBO_LIBRARIES}
-  visualization_utils
-)
-
-target_link_libraries(contact_plugin
-  ${catkin_LIBRARIES}
-  ${GAZEBO_LIBRARIES}
-)
-
-target_link_libraries(contact_sensor
-  ${catkin_LIBRARIES}
-  ${GAZEBO_LIBRARIES}
-)
-
-
-## Add environment hooks
-#catkin_add_env_hooks(tetrapod_gazebo SHELLS sh DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/env-hooks)
 
 #############
 ## Install ##
@@ -236,11 +186,11 @@ target_link_libraries(contact_sensor
 
 ## Mark libraries for installation
 ## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_libraries.html
-# install(TARGETS ${PROJECT_NAME}
-#   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-#   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-#   RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
-# )
+install(TARGETS ${PROJECT_NAME}
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
+)
 
 ## Mark cpp header files for installation
 install(DIRECTORY include/${PROJECT_NAME}/
@@ -255,22 +205,21 @@ install(DIRECTORY include/${PROJECT_NAME}/
 #   # myfile2
 #   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 # )
-install(DIRECTORY launch
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-)
-
-# install(DIRECTORY worlds
-#   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 
 #############
 ## Testing ##
 #############
 
-## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_tetrapod_gazebo.cpp)
-# if(TARGET ${PROJECT_NAME}-test)
-#   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
+# ## Add gtest based cpp test target and link libraries
+# catkin_add_gtest(angle_utils-test test/test_angle_utils.cpp)
+# if(TARGET angle_utils-test)
+#   target_link_libraries(angle_utils-test ${PROJECT_NAME})
 # endif()
 
-## Add folders to be run by python nosetests
-# catkin_add_nosetests(test)
+# catkin_add_gtest(linalg_utils-test test/test_linalg_utils.cpp)
+# if(TARGET linalg_utils-test)
+#   target_link_libraries(linalg_utils-test ${PROJECT_NAME})
+# endif()
+
+# ## Add folders to be run by python nosetests
+# # catkin_add_nosetests(test)
