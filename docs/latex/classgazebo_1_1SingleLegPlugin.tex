@@ -1,0 +1,432 @@
+\hypertarget{classgazebo_1_1SingleLegPlugin}{}\doxysection{gazebo\+::Single\+Leg\+Plugin Class Reference}
+\label{classgazebo_1_1SingleLegPlugin}\index{gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}}
+
+
+A plugin to control the single\+\_\+leg robot.  
+
+
+
+
+{\ttfamily \#include $<$single\+\_\+leg\+\_\+plugin.\+h$>$}
+
+
+
+Inheritance diagram for gazebo\+::Single\+Leg\+Plugin\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=215pt]{classgazebo_1_1SingleLegPlugin__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for gazebo\+::Single\+Leg\+Plugin\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=215pt]{classgazebo_1_1SingleLegPlugin__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classgazebo_1_1SingleLegPlugin_a433cef402ef6be0ad79455ffc684039d}\label{classgazebo_1_1SingleLegPlugin_a433cef402ef6be0ad79455ffc684039d}} 
+\mbox{\hyperlink{classgazebo_1_1SingleLegPlugin_a433cef402ef6be0ad79455ffc684039d}{Single\+Leg\+Plugin}} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1SingleLegPlugin_a0fdaac17ebc347dfe31a9d5f87a2a98a}\label{classgazebo_1_1SingleLegPlugin_a0fdaac17ebc347dfe31a9d5f87a2a98a}} 
+virtual \mbox{\hyperlink{classgazebo_1_1SingleLegPlugin_a0fdaac17ebc347dfe31a9d5f87a2a98a}{$\sim$\+Single\+Leg\+Plugin}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classgazebo_1_1SingleLegPlugin_a0990951d058cf469cd65e608eca123db}{Load}} (physics\+::\+Model\+Ptr \+\_\+model, sdf\+::\+Element\+Ptr \+\_\+sdf)
+\begin{DoxyCompactList}\small\item\em The Load function is called by Gazebo when the plugin is inserted into simulation. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix$<$ double, 6, 1 $>$ \mbox{\hyperlink{classgazebo_1_1SingleLegPlugin_a1f7c4289dec8383aab589c237909aed6}{Get\+Base\+Pose}} ()
+\begin{DoxyCompactList}\small\item\em Get current base pose for the robot. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix$<$ double, 6, 1 $>$ \mbox{\hyperlink{classgazebo_1_1SingleLegPlugin_a18e197b407ebe848a10d172e7e37285f}{Get\+Base\+Twist}} ()
+\begin{DoxyCompactList}\small\item\em Get current base twist for the robot. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classgazebo_1_1SingleLegPlugin_aad848cfbf6ef44c4b6bea0eb8465840b}{Get\+Joint\+Force}} (const std\+::string \&\+\_\+joint\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Get currently applied force at a specific joint. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classgazebo_1_1SingleLegPlugin_a9df7ac5323a6b482583ced888e98a43a}{Get\+Joint\+Forces}} ()
+\begin{DoxyCompactList}\small\item\em Get current joint forces for the robot. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classgazebo_1_1SingleLegPlugin_a2a03a3dddba6ebfe872817eeef76987b}{Get\+Joint\+Velocity}} (const std\+::string \&\+\_\+joint\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Get current velocity at a specific joint. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classgazebo_1_1SingleLegPlugin_a7f6ba725af7e12bdde7970febca94775}{Get\+Joint\+Velocities}} ()
+\begin{DoxyCompactList}\small\item\em Get current joint velocities for the robot. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classgazebo_1_1SingleLegPlugin_a1241d85d15512e30814dcf4f170f96f6}{Get\+Joint\+Position}} (const std\+::string \&\+\_\+joint\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Get current position at a specific joint. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classgazebo_1_1SingleLegPlugin_a39168368aaed6ef2246ca477c93a497b}{Get\+Joint\+Positions}} ()
+\begin{DoxyCompactList}\small\item\em Get current joint positions for the robot. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgazebo_1_1SingleLegPlugin_a2fff2ee528ee902374142664aaeb77c6}{Set\+Joint\+Force}} (const std\+::string \&\+\_\+joint\+\_\+name, const double \&\+\_\+force)
+\begin{DoxyCompactList}\small\item\em Apply force at a specific joint. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgazebo_1_1SingleLegPlugin_a8b0210d1e6782c6e677f5face6c276bf}{Set\+Joint\+Forces}} (const std\+::vector$<$ double $>$ \&\+\_\+forces)
+\begin{DoxyCompactList}\small\item\em Apply joint forces. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgazebo_1_1SingleLegPlugin_ae31e7c41adfbab2be85b581830bf54b4}{Set\+Joint\+Velocity}} (const std\+::string \&\+\_\+joint\+\_\+name, const double \&\+\_\+vel)
+\begin{DoxyCompactList}\small\item\em Set the velocity of the joint. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgazebo_1_1SingleLegPlugin_af489d66d7c18809197191af78b6e60aa}{Set\+Joint\+Velocities}} (const std\+::vector$<$ double $>$ \&\+\_\+vel)
+\begin{DoxyCompactList}\small\item\em Set the velocity of the joints. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgazebo_1_1SingleLegPlugin_a08a485243d4d50fd6660ca0579787973}{Set\+Joint\+Positions}} (const std\+::vector$<$ double $>$ \&\+\_\+pos)
+\begin{DoxyCompactList}\small\item\em Set the position of the joints. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgazebo_1_1SingleLegPlugin_a31a76d63668ace36ea862edca1f3cd22}{On\+Joint\+State\+Msg}} (const sensor\+\_\+msgs\+::\+Joint\+State\+Const\+Ptr \&\+\_\+msg)
+\begin{DoxyCompactList}\small\item\em The On\+Joint\+State\+Msg function handles an incoming joint state message from R\+OS. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgazebo_1_1SingleLegPlugin_a021874066534b0dbeb153a38c543aed4}{On\+Force\+Msg}} (const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&\+\_\+msg)
+\begin{DoxyCompactList}\small\item\em The On\+Ros\+Msg function handles an incoming force message from R\+OS. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgazebo_1_1SingleLegPlugin_afa7a7333b605efb9b3b3428d8cd06ed0}{On\+Vel\+Msg}} (const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&\+\_\+msg)
+\begin{DoxyCompactList}\small\item\em The On\+Ros\+Msg function handles an incoming velocity message from R\+OS. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgazebo_1_1SingleLegPlugin_a91ec5ec137f91dfea7106b27d4a0a49d}{On\+Pos\+Msg}} (const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&\+\_\+msg)
+\begin{DoxyCompactList}\small\item\em The On\+Ros\+Msg function handles an incoming velocity message from R\+OS. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1SingleLegPlugin_a02b09cf140262965a8bf156f45167419}\label{classgazebo_1_1SingleLegPlugin_a02b09cf140262965a8bf156f45167419}} 
+void \mbox{\hyperlink{classgazebo_1_1SingleLegPlugin_a02b09cf140262965a8bf156f45167419}{Process\+Queue\+Thread}} ()
+\begin{DoxyCompactList}\small\item\em The Process\+Queue\+Thread function is a R\+OS helper function that processes messages. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1SingleLegPlugin_a7c4e9248906cd8b0196caa9446418214}\label{classgazebo_1_1SingleLegPlugin_a7c4e9248906cd8b0196caa9446418214}} 
+void \mbox{\hyperlink{classgazebo_1_1SingleLegPlugin_a7c4e9248906cd8b0196caa9446418214}{Publish\+Queue\+Thread}} ()
+\begin{DoxyCompactList}\small\item\em The Publish\+Queue\+Thread function is a R\+OS helper function that publish state messages. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1SingleLegPlugin_ae88405790fd2c7318bf60299af942dd5}\label{classgazebo_1_1SingleLegPlugin_ae88405790fd2c7318bf60299af942dd5}} 
+void {\bfseries print\+Map} (const std\+::map$<$ std\+::string, physics\+::\+Joint\+Ptr $>$ \&\+\_\+map)
+\item 
+bool \mbox{\hyperlink{classgazebo_1_1SingleLegPlugin_a8b6e03c7000b13ae16400eb380ab76d5}{Reset\+Simulation}} (const std\+\_\+srvs\+::\+Empty\+::\+Request \&\+\_\+req, std\+\_\+srvs\+::\+Empty\+::\+Response \&\+\_\+res)
+\begin{DoxyCompactList}\small\item\em The Reset\+Simulation function handles an incoming reset simulation service request. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classgazebo_1_1SingleLegPlugin_a50b98940bb57761267bc4596499eeb63}\label{classgazebo_1_1SingleLegPlugin_a50b98940bb57761267bc4596499eeb63}} 
+void \mbox{\hyperlink{classgazebo_1_1SingleLegPlugin_a50b98940bb57761267bc4596499eeb63}{Init\+Ros}} ()
+\begin{DoxyCompactList}\small\item\em The init\+Ros function is called to initialize R\+OS. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1SingleLegPlugin_a93b5ee3f3c18ddb13c99ea81eae0aa11}\label{classgazebo_1_1SingleLegPlugin_a93b5ee3f3c18ddb13c99ea81eae0aa11}} 
+void \mbox{\hyperlink{classgazebo_1_1SingleLegPlugin_a93b5ee3f3c18ddb13c99ea81eae0aa11}{Init\+Ros\+Queue\+Threads}} ()
+\begin{DoxyCompactList}\small\item\em The Init\+Ros\+Queue\+Threads function is called to initialize the R\+OS Publish and Process Queue Threads. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classgazebo_1_1SingleLegPlugin_a260b57c93bf3cf070b4d7a2d03af3a8d}{Load\+Parameters\+Ros}} ()
+\begin{DoxyCompactList}\small\item\em The Load\+Parameters\+Ros function is called to load conffloatiguration from the parameter server. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1SingleLegPlugin_ab67bf582219c30b638a6187bb64680d6}\label{classgazebo_1_1SingleLegPlugin_ab67bf582219c30b638a6187bb64680d6}} 
+void \mbox{\hyperlink{classgazebo_1_1SingleLegPlugin_ab67bf582219c30b638a6187bb64680d6}{Init\+Joint\+Controllers}} ()
+\begin{DoxyCompactList}\small\item\em The Init\+Joint\+Controllers function is called to setup joint P\+ID controllers. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1SingleLegPlugin_a897a49b0ed6f5e370ac501894f6e1f02}\label{classgazebo_1_1SingleLegPlugin_a897a49b0ed6f5e370ac501894f6e1f02}} 
+void \mbox{\hyperlink{classgazebo_1_1SingleLegPlugin_a897a49b0ed6f5e370ac501894f6e1f02}{Init\+Joint\+Configuration}} ()
+\begin{DoxyCompactList}\small\item\em The Init\+Joint\+Configuration function is called to initialize the desired joint configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A plugin to control the single\+\_\+leg robot. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classgazebo_1_1SingleLegPlugin_a1f7c4289dec8383aab589c237909aed6}\label{classgazebo_1_1SingleLegPlugin_a1f7c4289dec8383aab589c237909aed6}} 
+\index{gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}!GetBasePose@{GetBasePose}}
+\index{GetBasePose@{GetBasePose}!gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}}
+\doxysubsubsection{\texorpdfstring{GetBasePose()}{GetBasePose()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 6, 1 $>$ gazebo\+::\+Single\+Leg\+Plugin\+::\+Get\+Base\+Pose (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get current base pose for the robot. 
+
+\begin{DoxyReturn}{Returns}
+Returns base pose\+: q\+\_\+b = (x, y, z, roll, pitch, yaw) in the world frame. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classgazebo_1_1SingleLegPlugin_a18e197b407ebe848a10d172e7e37285f}\label{classgazebo_1_1SingleLegPlugin_a18e197b407ebe848a10d172e7e37285f}} 
+\index{gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}!GetBaseTwist@{GetBaseTwist}}
+\index{GetBaseTwist@{GetBaseTwist}!gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}}
+\doxysubsubsection{\texorpdfstring{GetBaseTwist()}{GetBaseTwist()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 6, 1 $>$ gazebo\+::\+Single\+Leg\+Plugin\+::\+Get\+Base\+Twist (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get current base twist for the robot. 
+
+\begin{DoxyReturn}{Returns}
+Returns base twist\+: u\+\_\+b = (x\+\_\+vel, y\+\_\+vel, z\+\_\+vel, roll\+\_\+rate, pitch\+\_\+rate, yaw\+\_\+rate) in the world frame. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classgazebo_1_1SingleLegPlugin_aad848cfbf6ef44c4b6bea0eb8465840b}\label{classgazebo_1_1SingleLegPlugin_aad848cfbf6ef44c4b6bea0eb8465840b}} 
+\index{gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}!GetJointForce@{GetJointForce}}
+\index{GetJointForce@{GetJointForce}!gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}}
+\doxysubsubsection{\texorpdfstring{GetJointForce()}{GetJointForce()}}
+{\footnotesize\ttfamily double gazebo\+::\+Single\+Leg\+Plugin\+::\+Get\+Joint\+Force (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+joint\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Get currently applied force at a specific joint. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+joint\+\_\+name} & Desired joint \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Current joint force 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classgazebo_1_1SingleLegPlugin_a9df7ac5323a6b482583ced888e98a43a}\label{classgazebo_1_1SingleLegPlugin_a9df7ac5323a6b482583ced888e98a43a}} 
+\index{gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}!GetJointForces@{GetJointForces}}
+\index{GetJointForces@{GetJointForces}!gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}}
+\doxysubsubsection{\texorpdfstring{GetJointForces()}{GetJointForces()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 1 $>$ gazebo\+::\+Single\+Leg\+Plugin\+::\+Get\+Joint\+Forces (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get current joint forces for the robot. 
+
+\begin{DoxyReturn}{Returns}
+Returns joint velocities \+: tau\+\_\+r //\+T\+O\+DO maybe the use of tau\+\_\+r needs change ~\newline
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classgazebo_1_1SingleLegPlugin_a1241d85d15512e30814dcf4f170f96f6}\label{classgazebo_1_1SingleLegPlugin_a1241d85d15512e30814dcf4f170f96f6}} 
+\index{gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}!GetJointPosition@{GetJointPosition}}
+\index{GetJointPosition@{GetJointPosition}!gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}}
+\doxysubsubsection{\texorpdfstring{GetJointPosition()}{GetJointPosition()}}
+{\footnotesize\ttfamily double gazebo\+::\+Single\+Leg\+Plugin\+::\+Get\+Joint\+Position (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+joint\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Get current position at a specific joint. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+joint\+\_\+name} & Desired joint \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Current joint position 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classgazebo_1_1SingleLegPlugin_a39168368aaed6ef2246ca477c93a497b}\label{classgazebo_1_1SingleLegPlugin_a39168368aaed6ef2246ca477c93a497b}} 
+\index{gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}!GetJointPositions@{GetJointPositions}}
+\index{GetJointPositions@{GetJointPositions}!gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}}
+\doxysubsubsection{\texorpdfstring{GetJointPositions()}{GetJointPositions()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 1 $>$ gazebo\+::\+Single\+Leg\+Plugin\+::\+Get\+Joint\+Positions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get current joint positions for the robot. 
+
+\begin{DoxyReturn}{Returns}
+Returns joint configuration \+: q\+\_\+r ~\newline
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classgazebo_1_1SingleLegPlugin_a7f6ba725af7e12bdde7970febca94775}\label{classgazebo_1_1SingleLegPlugin_a7f6ba725af7e12bdde7970febca94775}} 
+\index{gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}!GetJointVelocities@{GetJointVelocities}}
+\index{GetJointVelocities@{GetJointVelocities}!gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}}
+\doxysubsubsection{\texorpdfstring{GetJointVelocities()}{GetJointVelocities()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 1 $>$ gazebo\+::\+Single\+Leg\+Plugin\+::\+Get\+Joint\+Velocities (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get current joint velocities for the robot. 
+
+\begin{DoxyReturn}{Returns}
+Returns joint velocities \+: dot\+\_\+q\+\_\+r ~\newline
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classgazebo_1_1SingleLegPlugin_a2a03a3dddba6ebfe872817eeef76987b}\label{classgazebo_1_1SingleLegPlugin_a2a03a3dddba6ebfe872817eeef76987b}} 
+\index{gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}!GetJointVelocity@{GetJointVelocity}}
+\index{GetJointVelocity@{GetJointVelocity}!gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}}
+\doxysubsubsection{\texorpdfstring{GetJointVelocity()}{GetJointVelocity()}}
+{\footnotesize\ttfamily double gazebo\+::\+Single\+Leg\+Plugin\+::\+Get\+Joint\+Velocity (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+joint\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Get current velocity at a specific joint. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+joint\+\_\+name} & Desired joint \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Current joint velocity 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classgazebo_1_1SingleLegPlugin_a0990951d058cf469cd65e608eca123db}\label{classgazebo_1_1SingleLegPlugin_a0990951d058cf469cd65e608eca123db}} 
+\index{gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}!Load@{Load}}
+\index{Load@{Load}!gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}}
+\doxysubsubsection{\texorpdfstring{Load()}{Load()}}
+{\footnotesize\ttfamily void gazebo\+::\+Single\+Leg\+Plugin\+::\+Load (\begin{DoxyParamCaption}\item[{physics\+::\+Model\+Ptr}]{\+\_\+model,  }\item[{sdf\+::\+Element\+Ptr}]{\+\_\+sdf }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+The Load function is called by Gazebo when the plugin is inserted into simulation. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+model} & A pointer to the model that the plugin is attached to. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+sdf} & A pointer to the plugin\textquotesingle{}s S\+DF element. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classgazebo_1_1SingleLegPlugin_a260b57c93bf3cf070b4d7a2d03af3a8d}\label{classgazebo_1_1SingleLegPlugin_a260b57c93bf3cf070b4d7a2d03af3a8d}} 
+\index{gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}!LoadParametersRos@{LoadParametersRos}}
+\index{LoadParametersRos@{LoadParametersRos}!gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}}
+\doxysubsubsection{\texorpdfstring{LoadParametersRos()}{LoadParametersRos()}}
+{\footnotesize\ttfamily bool gazebo\+::\+Single\+Leg\+Plugin\+::\+Load\+Parameters\+Ros (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The Load\+Parameters\+Ros function is called to load conffloatiguration from the parameter server. 
+
+\begin{DoxyReturn}{Returns}
+True if parameters loaded successfully. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classgazebo_1_1SingleLegPlugin_a021874066534b0dbeb153a38c543aed4}\label{classgazebo_1_1SingleLegPlugin_a021874066534b0dbeb153a38c543aed4}} 
+\index{gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}!OnForceMsg@{OnForceMsg}}
+\index{OnForceMsg@{OnForceMsg}!gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}}
+\doxysubsubsection{\texorpdfstring{OnForceMsg()}{OnForceMsg()}}
+{\footnotesize\ttfamily void gazebo\+::\+Single\+Leg\+Plugin\+::\+On\+Force\+Msg (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&}]{\+\_\+msg }\end{DoxyParamCaption})}
+
+
+
+The On\+Ros\+Msg function handles an incoming force message from R\+OS. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+msg} & A float array used to set the force of the joints. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classgazebo_1_1SingleLegPlugin_a31a76d63668ace36ea862edca1f3cd22}\label{classgazebo_1_1SingleLegPlugin_a31a76d63668ace36ea862edca1f3cd22}} 
+\index{gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}!OnJointStateMsg@{OnJointStateMsg}}
+\index{OnJointStateMsg@{OnJointStateMsg}!gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}}
+\doxysubsubsection{\texorpdfstring{OnJointStateMsg()}{OnJointStateMsg()}}
+{\footnotesize\ttfamily void gazebo\+::\+Single\+Leg\+Plugin\+::\+On\+Joint\+State\+Msg (\begin{DoxyParamCaption}\item[{const sensor\+\_\+msgs\+::\+Joint\+State\+Const\+Ptr \&}]{\+\_\+msg }\end{DoxyParamCaption})}
+
+
+
+The On\+Joint\+State\+Msg function handles an incoming joint state message from R\+OS. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+msg} & A message holding data to describe the state of a set of controlled joints. The state is defined by
+\begin{DoxyItemize}
+\item the position of the joint,
+\item the velocity of the joint and
+\item the effort (torque) that is applied in the joint. 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classgazebo_1_1SingleLegPlugin_a91ec5ec137f91dfea7106b27d4a0a49d}\label{classgazebo_1_1SingleLegPlugin_a91ec5ec137f91dfea7106b27d4a0a49d}} 
+\index{gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}!OnPosMsg@{OnPosMsg}}
+\index{OnPosMsg@{OnPosMsg}!gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}}
+\doxysubsubsection{\texorpdfstring{OnPosMsg()}{OnPosMsg()}}
+{\footnotesize\ttfamily void gazebo\+::\+Single\+Leg\+Plugin\+::\+On\+Pos\+Msg (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&}]{\+\_\+msg }\end{DoxyParamCaption})}
+
+
+
+The On\+Ros\+Msg function handles an incoming velocity message from R\+OS. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+msg} & A float array used to set the position of the joints. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classgazebo_1_1SingleLegPlugin_afa7a7333b605efb9b3b3428d8cd06ed0}\label{classgazebo_1_1SingleLegPlugin_afa7a7333b605efb9b3b3428d8cd06ed0}} 
+\index{gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}!OnVelMsg@{OnVelMsg}}
+\index{OnVelMsg@{OnVelMsg}!gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}}
+\doxysubsubsection{\texorpdfstring{OnVelMsg()}{OnVelMsg()}}
+{\footnotesize\ttfamily void gazebo\+::\+Single\+Leg\+Plugin\+::\+On\+Vel\+Msg (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&}]{\+\_\+msg }\end{DoxyParamCaption})}
+
+
+
+The On\+Ros\+Msg function handles an incoming velocity message from R\+OS. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+msg} & A float array used to set the velocity of the joints. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classgazebo_1_1SingleLegPlugin_a8b6e03c7000b13ae16400eb380ab76d5}\label{classgazebo_1_1SingleLegPlugin_a8b6e03c7000b13ae16400eb380ab76d5}} 
+\index{gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}!ResetSimulation@{ResetSimulation}}
+\index{ResetSimulation@{ResetSimulation}!gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}}
+\doxysubsubsection{\texorpdfstring{ResetSimulation()}{ResetSimulation()}}
+{\footnotesize\ttfamily bool gazebo\+::\+Single\+Leg\+Plugin\+::\+Reset\+Simulation (\begin{DoxyParamCaption}\item[{const std\+\_\+srvs\+::\+Empty\+::\+Request \&}]{\+\_\+req,  }\item[{std\+\_\+srvs\+::\+Empty\+::\+Response \&}]{\+\_\+res }\end{DoxyParamCaption})}
+
+
+
+The Reset\+Simulation function handles an incoming reset simulation service request. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+req} & Service request. \\
+\hline
+\mbox{\texttt{ out}}  & {\em \+\_\+res} & Service response. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if success, and false if not. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classgazebo_1_1SingleLegPlugin_a2fff2ee528ee902374142664aaeb77c6}\label{classgazebo_1_1SingleLegPlugin_a2fff2ee528ee902374142664aaeb77c6}} 
+\index{gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}!SetJointForce@{SetJointForce}}
+\index{SetJointForce@{SetJointForce}!gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}}
+\doxysubsubsection{\texorpdfstring{SetJointForce()}{SetJointForce()}}
+{\footnotesize\ttfamily void gazebo\+::\+Single\+Leg\+Plugin\+::\+Set\+Joint\+Force (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+joint\+\_\+name,  }\item[{const double \&}]{\+\_\+force }\end{DoxyParamCaption})}
+
+
+
+Apply force at a specific joint. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+joint\+\_\+name} & Desired joint \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+force} & Force to apply \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classgazebo_1_1SingleLegPlugin_a8b0210d1e6782c6e677f5face6c276bf}\label{classgazebo_1_1SingleLegPlugin_a8b0210d1e6782c6e677f5face6c276bf}} 
+\index{gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}!SetJointForces@{SetJointForces}}
+\index{SetJointForces@{SetJointForces}!gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}}
+\doxysubsubsection{\texorpdfstring{SetJointForces()}{SetJointForces()}}
+{\footnotesize\ttfamily void gazebo\+::\+Single\+Leg\+Plugin\+::\+Set\+Joint\+Forces (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{\+\_\+forces }\end{DoxyParamCaption})}
+
+
+
+Apply joint forces. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+forces} & Forces to apply \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classgazebo_1_1SingleLegPlugin_a08a485243d4d50fd6660ca0579787973}\label{classgazebo_1_1SingleLegPlugin_a08a485243d4d50fd6660ca0579787973}} 
+\index{gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}!SetJointPositions@{SetJointPositions}}
+\index{SetJointPositions@{SetJointPositions}!gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}}
+\doxysubsubsection{\texorpdfstring{SetJointPositions()}{SetJointPositions()}}
+{\footnotesize\ttfamily void gazebo\+::\+Single\+Leg\+Plugin\+::\+Set\+Joint\+Positions (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{\+\_\+pos }\end{DoxyParamCaption})}
+
+
+
+Set the position of the joints. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+pos} & New target position vector in radians \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classgazebo_1_1SingleLegPlugin_af489d66d7c18809197191af78b6e60aa}\label{classgazebo_1_1SingleLegPlugin_af489d66d7c18809197191af78b6e60aa}} 
+\index{gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}!SetJointVelocities@{SetJointVelocities}}
+\index{SetJointVelocities@{SetJointVelocities}!gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}}
+\doxysubsubsection{\texorpdfstring{SetJointVelocities()}{SetJointVelocities()}}
+{\footnotesize\ttfamily void gazebo\+::\+Single\+Leg\+Plugin\+::\+Set\+Joint\+Velocities (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{\+\_\+vel }\end{DoxyParamCaption})}
+
+
+
+Set the velocity of the joints. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+vel} & New target velocity \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classgazebo_1_1SingleLegPlugin_ae31e7c41adfbab2be85b581830bf54b4}\label{classgazebo_1_1SingleLegPlugin_ae31e7c41adfbab2be85b581830bf54b4}} 
+\index{gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}!SetJointVelocity@{SetJointVelocity}}
+\index{SetJointVelocity@{SetJointVelocity}!gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}}
+\doxysubsubsection{\texorpdfstring{SetJointVelocity()}{SetJointVelocity()}}
+{\footnotesize\ttfamily void gazebo\+::\+Single\+Leg\+Plugin\+::\+Set\+Joint\+Velocity (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+joint\+\_\+name,  }\item[{const double \&}]{\+\_\+vel }\end{DoxyParamCaption})}
+
+
+
+Set the velocity of the joint. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+joint\+\_\+name} & Desired joint \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+vel} & New target velocity \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+catkin\+\_\+ws/src/simulator/single\+\_\+leg\+\_\+gazebo/include/single\+\_\+leg\+\_\+gazebo/single\+\_\+leg\+\_\+plugin.\+h\item 
+catkin\+\_\+ws/src/simulator/single\+\_\+leg\+\_\+gazebo/src/single\+\_\+leg\+\_\+plugin.\+cpp\end{DoxyCompactItemize}

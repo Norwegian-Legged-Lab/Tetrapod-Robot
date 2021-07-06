@@ -1,0 +1,74 @@
+\hypertarget{classSingleMotorController}{}\doxysection{Single\+Motor\+Controller Class Reference}
+\label{classSingleMotorController}\index{SingleMotorController@{SingleMotorController}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classSingleMotorController_ac950a79ed54e50b54b56aafa011a5ac0}\label{classSingleMotorController_ac950a79ed54e50b54b56aafa011a5ac0}} 
+{\bfseries Single\+Motor\+Controller} (double \+\_\+publish\+\_\+frequency, bool \+\_\+use\+\_\+position\+\_\+control)
+\item 
+\mbox{\Hypertarget{classSingleMotorController_a8c2e423743a3db2b4fd72840c111b985}\label{classSingleMotorController_a8c2e423743a3db2b4fd72840c111b985}} 
+{\bfseries Single\+Motor\+Controller} (double \+\_\+publish\+\_\+frequency)
+\item 
+\mbox{\Hypertarget{classSingleMotorController_ae99f67747d465ebaeb77afaea16d57b8}\label{classSingleMotorController_ae99f67747d465ebaeb77afaea16d57b8}} 
+void {\bfseries init\+R\+OS} ()
+\item 
+\mbox{\Hypertarget{classSingleMotorController_a50b33c7efcd7bdb1561d5567661618db}\label{classSingleMotorController_a50b33c7efcd7bdb1561d5567661618db}} 
+void {\bfseries calculate\+Single\+Axis\+Trajectory} (const double \&\+\_\+percentage, const double \&\+\_\+period, const double \&\+\_\+max\+\_\+travel, double \&\+\_\+x, double \&\+\_\+x\+\_\+d, double \&\+\_\+x\+\_\+dd)
+\item 
+\mbox{\Hypertarget{classSingleMotorController_ab065e4d61a45f13fbc9a8ca74647e414}\label{classSingleMotorController_ab065e4d61a45f13fbc9a8ca74647e414}} 
+void {\bfseries update\+Trajectory} ()
+\item 
+\mbox{\Hypertarget{classSingleMotorController_a637c2f37c284398f725cd4dc8a10c68f}\label{classSingleMotorController_a637c2f37c284398f725cd4dc8a10c68f}} 
+void {\bfseries send\+Joint\+Position\+Command} ()
+\item 
+\mbox{\Hypertarget{classSingleMotorController_a529d40be7d33f5a8e4c4727e8174e569}\label{classSingleMotorController_a529d40be7d33f5a8e4c4727e8174e569}} 
+void {\bfseries send\+Joint\+Torque\+Command} ()
+\item 
+\mbox{\Hypertarget{classSingleMotorController_a3c0a2afbebb2f47836142ed4e7312246}\label{classSingleMotorController_a3c0a2afbebb2f47836142ed4e7312246}} 
+void {\bfseries increase\+Iterator} ()
+\item 
+\mbox{\Hypertarget{classSingleMotorController_a03d4e1ca80779bc65f2fe5b3ca28e83a}\label{classSingleMotorController_a03d4e1ca80779bc65f2fe5b3ca28e83a}} 
+void {\bfseries move\+To\+Zero} ()
+\item 
+\mbox{\Hypertarget{classSingleMotorController_a7d2cc0229dc10ddf9808ff484e21df2e}\label{classSingleMotorController_a7d2cc0229dc10ddf9808ff484e21df2e}} 
+void {\bfseries set\+Position\+Directly} (double \+\_\+joint\+\_\+pos)
+\item 
+\mbox{\Hypertarget{classSingleMotorController_aac4ab3c037c9eb20af5975316a42bec8}\label{classSingleMotorController_aac4ab3c037c9eb20af5975316a42bec8}} 
+void {\bfseries set\+Velocity\+Directly} (double \+\_\+joint\+\_\+vel)
+\item 
+\mbox{\Hypertarget{classSingleMotorController_a8da274bef4390989cd0d5fdb5000d7b9}\label{classSingleMotorController_a8da274bef4390989cd0d5fdb5000d7b9}} 
+void {\bfseries set\+Torque\+Directly} (double \+\_\+torque)
+\item 
+\mbox{\Hypertarget{classSingleMotorController_adaf327818f63dbfc517ea385f2224d7e}\label{classSingleMotorController_adaf327818f63dbfc517ea385f2224d7e}} 
+void {\bfseries initialize\+Motor} (double \+\_\+k\+\_\+p\+\_\+pos, double \+\_\+k\+\_\+d\+\_\+pos, double \+\_\+k\+\_\+p\+\_\+vel, double \+\_\+k\+\_\+i\+\_\+vel, double \+\_\+k\+\_\+p\+\_\+torque, double \+\_\+k\+\_\+i\+\_\+torque)
+\item 
+\mbox{\Hypertarget{classSingleMotorController_ad9de47f3694b31b045f1c2e2521a4243}\label{classSingleMotorController_ad9de47f3694b31b045f1c2e2521a4243}} 
+void {\bfseries initialize\+Motor} ()
+\item 
+\mbox{\Hypertarget{classSingleMotorController_a743edb251fc7cfbc42da116107b74049}\label{classSingleMotorController_a743edb251fc7cfbc42da116107b74049}} 
+bool {\bfseries ready\+To\+Proceed} ()
+\item 
+\mbox{\Hypertarget{classSingleMotorController_a2d80cd70409d125038cbf0b7223fb055}\label{classSingleMotorController_a2d80cd70409d125038cbf0b7223fb055}} 
+bool {\bfseries initial\+State\+Received} ()
+\item 
+\mbox{\Hypertarget{classSingleMotorController_a153e1946a1c277571ede65be75bc3386}\label{classSingleMotorController_a153e1946a1c277571ede65be75bc3386}} 
+void {\bfseries check\+For\+New\+Messages} ()
+\item 
+\mbox{\Hypertarget{classSingleMotorController_a47ee13e6aa30c74398b20f1f44896950}\label{classSingleMotorController_a47ee13e6aa30c74398b20f1f44896950}} 
+void {\bfseries print\+All} ()
+\item 
+\mbox{\Hypertarget{classSingleMotorController_a4520212fbbb596f4e4da7ee628ffd163}\label{classSingleMotorController_a4520212fbbb596f4e4da7ee628ffd163}} 
+void {\bfseries write\+To\+Log} ()
+\item 
+\mbox{\Hypertarget{classSingleMotorController_a2c4e76b5cfc9a1c0904d81b6fe35c080}\label{classSingleMotorController_a2c4e76b5cfc9a1c0904d81b6fe35c080}} 
+bool {\bfseries keep\+Logging} ()
+\item 
+\mbox{\Hypertarget{classSingleMotorController_a8298e6b6ba13db9de06f736e9e83e9ae}\label{classSingleMotorController_a8298e6b6ba13db9de06f736e9e83e9ae}} 
+double {\bfseries get\+Position} ()
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+catkin\+\_\+ws/src/control/single\+\_\+motor\+\_\+controller/include/single\+\_\+motor\+\_\+controller/single\+\_\+motor\+\_\+controller.\+h\item 
+catkin\+\_\+ws/src/control/single\+\_\+motor\+\_\+controller/src/single\+\_\+motor\+\_\+controller.\+cpp\end{DoxyCompactItemize}
