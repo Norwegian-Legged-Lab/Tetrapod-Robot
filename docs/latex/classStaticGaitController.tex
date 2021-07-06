@@ -1,0 +1,56 @@
+\hypertarget{classStaticGaitController}{}\doxysection{Static\+Gait\+Controller Class Reference}
+\label{classStaticGaitController}\index{StaticGaitController@{StaticGaitController}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classStaticGaitController_a46bd6d8a017df67826be4b065ab98ded}\label{classStaticGaitController_a46bd6d8a017df67826be4b065ab98ded}} 
+\mbox{\hyperlink{classStaticGaitController_a46bd6d8a017df67826be4b065ab98ded}{Static\+Gait\+Controller}} (double \+\_\+step\+\_\+length, double \+\_\+step\+\_\+width, double \+\_\+iterations\+\_\+per\+\_\+gait\+\_\+period, double \+\_\+shoulder\+\_\+height)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStaticGaitController_a197d488068e6ca14b77e20a477191a52}\label{classStaticGaitController_a197d488068e6ca14b77e20a477191a52}} 
+virtual \mbox{\hyperlink{classStaticGaitController_a197d488068e6ca14b77e20a477191a52}{$\sim$\+Static\+Gait\+Controller}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStaticGaitController_aea9c098de90c789cf538879d0468d53f}\label{classStaticGaitController_aea9c098de90c789cf538879d0468d53f}} 
+void \mbox{\hyperlink{classStaticGaitController_aea9c098de90c789cf538879d0468d53f}{update\+Feet\+Reference\+Positions\+In\+Body}} ()
+\begin{DoxyCompactList}\small\item\em Calculates the desired footstep positions in the body frame. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStaticGaitController_a5d7b18fb3a68cbce68949fbf46eed0fc}\label{classStaticGaitController_a5d7b18fb3a68cbce68949fbf46eed0fc}} 
+bool \mbox{\hyperlink{classStaticGaitController_a5d7b18fb3a68cbce68949fbf46eed0fc}{update\+Reference\+Joint\+Angles}} ()
+\begin{DoxyCompactList}\small\item\em The reference joint angles are calculated through inverse kinematics based on reference feet positions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStaticGaitController_a3f97a173d8893ccba7b4b5d3215fb061}\label{classStaticGaitController_a3f97a173d8893ccba7b4b5d3215fb061}} 
+bool \mbox{\hyperlink{classStaticGaitController_a3f97a173d8893ccba7b4b5d3215fb061}{update\+Joint\+Commands}} ()
+\begin{DoxyCompactList}\small\item\em This functions updates the joint commands based on the previous state and latest command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStaticGaitController_a05cb779cf7a87e6d21102da3a0bf972f}\label{classStaticGaitController_a05cb779cf7a87e6d21102da3a0bf972f}} 
+void {\bfseries send\+Joint\+Position\+Command} ()
+\item 
+\mbox{\Hypertarget{classStaticGaitController_a24fc7804ce469544f43cde614bd9678c}\label{classStaticGaitController_a24fc7804ce469544f43cde614bd9678c}} 
+void {\bfseries check\+For\+New\+Messages} ()
+\item 
+\mbox{\Hypertarget{classStaticGaitController_a77efd364fd7276a5b3ae90fa56a83069}\label{classStaticGaitController_a77efd364fd7276a5b3ae90fa56a83069}} 
+void \mbox{\hyperlink{classStaticGaitController_a77efd364fd7276a5b3ae90fa56a83069}{init\+R\+OS}} ()
+\begin{DoxyCompactList}\small\item\em This function initilizes R\+OS. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStaticGaitController_a3abd6b59b657fa97079c1b464027a2b7}\label{classStaticGaitController_a3abd6b59b657fa97079c1b464027a2b7}} 
+bool \mbox{\hyperlink{classStaticGaitController_a3abd6b59b657fa97079c1b464027a2b7}{set\+Initial\+Configuration}} ()
+\begin{DoxyCompactList}\small\item\em This functions moves each of the robot\textquotesingle{}s legs so that it is ready to perform locomotion. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStaticGaitController_ac6d60c2e1a74f82d4827790cd55cd1ec}\label{classStaticGaitController_ac6d60c2e1a74f82d4827790cd55cd1ec}} 
+bool {\bfseries ready\+To\+Proceed} ()
+\item 
+\mbox{\Hypertarget{classStaticGaitController_a7621354b4d5e5997113c440520a823ee}\label{classStaticGaitController_a7621354b4d5e5997113c440520a823ee}} 
+void {\bfseries set\+Ready\+To\+Proceed\+To\+False} ()
+\item 
+\mbox{\Hypertarget{classStaticGaitController_ae3bcf855525445f5d3dfe7faf6678f84}\label{classStaticGaitController_ae3bcf855525445f5d3dfe7faf6678f84}} 
+void {\bfseries wait\+For\+Ready\+To\+Proceed\+Message} ()
+\item 
+\mbox{\Hypertarget{classStaticGaitController_ac1436fb72dcf6573da9a6d83b1d62138}\label{classStaticGaitController_ac1436fb72dcf6573da9a6d83b1d62138}} 
+void {\bfseries wait\+For\+Position\+Joint\+States} ()
+\item 
+\mbox{\Hypertarget{classStaticGaitController_a588c2967a5c833130bf7d6c0ed457313}\label{classStaticGaitController_a588c2967a5c833130bf7d6c0ed457313}} 
+void {\bfseries update\+Foot\+Positions\+Turning} ()
+\item 
+\mbox{\Hypertarget{classStaticGaitController_ac1b7907232f4048633774956c0b37248}\label{classStaticGaitController_ac1b7907232f4048633774956c0b37248}} 
+bool {\bfseries prepare\+For\+Turning} ()
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+catkin\+\_\+ws/src/control/static\+\_\+gait\+\_\+controller/include/static\+\_\+gait\+\_\+controller/static\+\_\+gait\+\_\+controller.\+h\item 
+catkin\+\_\+ws/src/control/static\+\_\+gait\+\_\+controller/src/static\+\_\+gait\+\_\+controller.\+cpp\end{DoxyCompactItemize}

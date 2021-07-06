@@ -1,0 +1,5 @@
+<map id="kindr::GlobalAngularVelocity&lt; PrimType_ &gt;" name="kindr::GlobalAngularVelocity&lt; PrimType_ &gt;">
+<area shape="rect" id="node1" title=" " alt="" coords="19,5,227,47"/>
+<area shape="rect" id="node2" href="$classkindr_1_1Twist.html" title=" " alt="" coords="5,95,240,151"/>
+<area shape="rect" id="node3" href="$classkindr_1_1TwistLinearVelocityGlobalAngularVelocity.html" title="Spatial twist, i.e. twist where the angular velocity is expressed in the global parent frame." alt="" coords="28,199,217,255"/>
+</map>

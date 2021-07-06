@@ -1,0 +1,109 @@
+\hypertarget{classSerialCommunication}{}\doxysection{Serial\+Communication Class Reference}
+\label{classSerialCommunication}\index{SerialCommunication@{SerialCommunication}}
+
+
+A class for serial communication.  
+
+
+
+
+{\ttfamily \#include $<$serial\+\_\+communication.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classSerialCommunication_a56b84cebdbb578aa2475f7302183ceb3}\label{classSerialCommunication_a56b84cebdbb578aa2475f7302183ceb3}} 
+enum \mbox{\hyperlink{classSerialCommunication_a56b84cebdbb578aa2475f7302183ceb3}{Control\+Mode}} \{ {\bfseries position} = 1, 
+{\bfseries velocity} = 2, 
+{\bfseries torque} = 3
+ \}
+\begin{DoxyCompactList}\small\item\em Control mode enumerator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classSerialCommunication_a3537e3a31982286532e82883da4fc280}\label{classSerialCommunication_a3537e3a31982286532e82883da4fc280}} 
+\mbox{\hyperlink{classSerialCommunication_a3537e3a31982286532e82883da4fc280}{Serial\+Communication}} ()
+\begin{DoxyCompactList}\small\item\em Default Constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classSerialCommunication_ad81f295ec38355ad4092722605ca28b9}{Serial\+Communication}} (const std\+::string \&\+\_\+port, const int \&\+\_\+num\+\_\+motors)
+\begin{DoxyCompactList}\small\item\em Custom Constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSerialCommunication_a60717eff5f66d85af40812811ca6321d}\label{classSerialCommunication_a60717eff5f66d85af40812811ca6321d}} 
+virtual \mbox{\hyperlink{classSerialCommunication_a60717eff5f66d85af40812811ca6321d}{$\sim$\+Serial\+Communication}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSerialCommunication_af2971a59f6d4cd3218d390b24f1998d8}{Set\+Port}} (const std\+::string \&\+\_\+port)
+\begin{DoxyCompactList}\small\item\em Set the port for the Teensy communication after creating the constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSerialCommunication_a039f761bdeb6af087180029f97eb7bba}{Set\+Number\+Of\+Motors}} (const int \&\+\_\+number\+\_\+of\+\_\+motors)
+\begin{DoxyCompactList}\small\item\em Set the number of motors for the port after creating the constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSerialCommunication_a9c053361febd63c80c168857ff04f4d3}\label{classSerialCommunication_a9c053361febd63c80c168857ff04f4d3}} 
+void {\bfseries Send\+Message} (const \mbox{\hyperlink{classSerialCommunication_a56b84cebdbb578aa2475f7302183ceb3}{Control\+Mode}} \&\+\_\+control\+\_\+mode, const std\+::vector$<$ double $>$ \&\+\_\+state)
+\item 
+\mbox{\Hypertarget{classSerialCommunication_afec8804f5bd1f81508125973cf0c3891}\label{classSerialCommunication_afec8804f5bd1f81508125973cf0c3891}} 
+Eigen\+::\+Matrix$<$ Eigen\+::\+Vector\+Xd, 3, 1 $>$ {\bfseries Receive\+Message} ()
+\item 
+\mbox{\Hypertarget{classSerialCommunication_a434aa96e2295038ee0a514a878693f58}\label{classSerialCommunication_a434aa96e2295038ee0a514a878693f58}} 
+void {\bfseries Init\+Lib\+Serial} ()
+\item 
+\mbox{\Hypertarget{classSerialCommunication_aa5d08b015626c6011c4fb6cc8a24d02d}\label{classSerialCommunication_aa5d08b015626c6011c4fb6cc8a24d02d}} 
+bool {\bfseries Is\+New\+Data\+Available} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class for serial communication. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classSerialCommunication_ad81f295ec38355ad4092722605ca28b9}\label{classSerialCommunication_ad81f295ec38355ad4092722605ca28b9}} 
+\index{SerialCommunication@{SerialCommunication}!SerialCommunication@{SerialCommunication}}
+\index{SerialCommunication@{SerialCommunication}!SerialCommunication@{SerialCommunication}}
+\doxysubsubsection{\texorpdfstring{SerialCommunication()}{SerialCommunication()}}
+{\footnotesize\ttfamily Serial\+Communication\+::\+Serial\+Communication (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+port,  }\item[{const int \&}]{\+\_\+num\+\_\+motors }\end{DoxyParamCaption})}
+
+
+
+Custom Constructor. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+port} & Serial port name for teensy communication. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+num\+\_\+motors} & Number of motors in use. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSerialCommunication_a039f761bdeb6af087180029f97eb7bba}\label{classSerialCommunication_a039f761bdeb6af087180029f97eb7bba}} 
+\index{SerialCommunication@{SerialCommunication}!SetNumberOfMotors@{SetNumberOfMotors}}
+\index{SetNumberOfMotors@{SetNumberOfMotors}!SerialCommunication@{SerialCommunication}}
+\doxysubsubsection{\texorpdfstring{SetNumberOfMotors()}{SetNumberOfMotors()}}
+{\footnotesize\ttfamily void Serial\+Communication\+::\+Set\+Number\+Of\+Motors (\begin{DoxyParamCaption}\item[{const int \&}]{\+\_\+number\+\_\+of\+\_\+motors }\end{DoxyParamCaption})}
+
+
+
+Set the number of motors for the port after creating the constructor. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+number\+\_\+of\+\_\+motors} & Number of motors to use \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSerialCommunication_af2971a59f6d4cd3218d390b24f1998d8}\label{classSerialCommunication_af2971a59f6d4cd3218d390b24f1998d8}} 
+\index{SerialCommunication@{SerialCommunication}!SetPort@{SetPort}}
+\index{SetPort@{SetPort}!SerialCommunication@{SerialCommunication}}
+\doxysubsubsection{\texorpdfstring{SetPort()}{SetPort()}}
+{\footnotesize\ttfamily void Serial\+Communication\+::\+Set\+Port (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+port }\end{DoxyParamCaption})}
+
+
+
+Set the port for the Teensy communication after creating the constructor. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+port} & Serial port name for the Teensy communication \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+catkin\+\_\+ws/src/hardware/serial\+\_\+communication/include/serial\+\_\+communication/serial\+\_\+communication.\+h\item 
+catkin\+\_\+ws/src/hardware/serial\+\_\+communication/src/serial\+\_\+communication.\+cpp\end{DoxyCompactItemize}

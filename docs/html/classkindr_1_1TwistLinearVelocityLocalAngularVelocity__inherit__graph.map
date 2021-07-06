@@ -1,0 +1,9 @@
+<map id="kindr::TwistLinearVelocityLocalAngularVelocity&lt; PrimType_ &gt;" name="kindr::TwistLinearVelocityLocalAngularVelocity&lt; PrimType_ &gt;">
+<area shape="rect" id="node1" title="Body twist, i.e. twist where the angular velocity is expressed in the local body frame." alt="" coords="773,115,1029,157"/>
+<area shape="rect" id="node2" href="$classkindr_1_1Twist.html" title=" " alt="" coords="520,101,725,171"/>
+<area shape="rect" id="node3" href="$classkindr_1_1PoseDiffBase.html" title=" " alt="" coords="275,5,469,91"/>
+<area shape="rect" id="node4" href="$classkindr_1_1Vector.html" title="Vector in n&#45;dimensional&#45;space." alt="" coords="297,115,447,157"/>
+<area shape="rect" id="node5" href="$classkindr_1_1VectorBase.html" title=" " alt="" coords="5,72,224,128"/>
+<area shape="rect" id="node6" title=" " alt="" coords="23,153,206,194"/>
+<area shape="rect" id="node7" href="$classkindr_1_1LocalAngularVelocity.html" title=" " alt="" coords="272,181,472,222"/>
+</map>

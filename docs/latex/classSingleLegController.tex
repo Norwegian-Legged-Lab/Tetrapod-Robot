@@ -1,0 +1,446 @@
+\hypertarget{classSingleLegController}{}\doxysection{Single\+Leg\+Controller Class Reference}
+\label{classSingleLegController}\index{SingleLegController@{SingleLegController}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classSingleLegController_a7334d4583d94d34addc8f7dc898fe5c7}\label{classSingleLegController_a7334d4583d94d34addc8f7dc898fe5c7}} 
+enum \mbox{\hyperlink{classSingleLegController_a7334d4583d94d34addc8f7dc898fe5c7}{Gait\+Phase}} \{ {\bfseries stance} = 1, 
+{\bfseries swing} = 2, 
+{\bfseries uninitialized} = 3
+ \}
+\begin{DoxyCompactList}\small\item\em Gait phases. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classSingleLegController_a8308336b28fb929f9b9b935aa8c0e710}\label{classSingleLegController_a8308336b28fb929f9b9b935aa8c0e710}} 
+\mbox{\hyperlink{classSingleLegController_a8308336b28fb929f9b9b935aa8c0e710}{Single\+Leg\+Controller}} (double \+\_\+publish\+\_\+frequency)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_a173d75b4ce31036a360ffe231e950314}\label{classSingleLegController_a173d75b4ce31036a360ffe231e950314}} 
+virtual \mbox{\hyperlink{classSingleLegController_a173d75b4ce31036a360ffe231e950314}{$\sim$\+Single\+Leg\+Controller}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSingleLegController_a82cbc4d3ae647d0929994edf00bba8dc}{init\+R\+OS}} ()
+\begin{DoxyCompactList}\small\item\em This function initilizes R\+OS. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSingleLegController_adfd046b154a005e93e5463c13f1ed5d6}{generalized\+Coordinates\+Callback}} (const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&\+\_\+msg)
+\begin{DoxyCompactList}\small\item\em Listens to joint angle messages from the simulated leg. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSingleLegController_abce5e2d8277d3de86baeedddcad95a83}{generalized\+Velocities\+Callback}} (const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&\+\_\+msg)
+\begin{DoxyCompactList}\small\item\em Listens to joint velocity messages from the simulated leg. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSingleLegController_a66929d863702713ac5ebaefb0eed40e8}{generalized\+Forces\+Callback}} (const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&\+\_\+msg)
+\begin{DoxyCompactList}\small\item\em Listens to joint force messages from the simulated leg. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSingleLegController_ace838f549ab9d124d02ce4daa07bddf9}{ready\+To\+Proceed\+Callback}} (const std\+\_\+msgs\+::\+Bool \&\+\_\+msg)
+\begin{DoxyCompactList}\small\item\em The ready\+\_\+to\+\_\+proceed parameter is changed based on the incomming message. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_aab175156b57045ba31d2048dde75ea9d}\label{classSingleLegController_aab175156b57045ba31d2048dde75ea9d}} 
+void \mbox{\hyperlink{classSingleLegController_aab175156b57045ba31d2048dde75ea9d}{update\+Swing\+Foot\+Position\+Trajectory}} ()
+\begin{DoxyCompactList}\small\item\em Update the swing foot trajectory for the leg. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_a4546fd0c6d563f693c8a7217ee400626}\label{classSingleLegController_a4546fd0c6d563f693c8a7217ee400626}} 
+void \mbox{\hyperlink{classSingleLegController_a4546fd0c6d563f693c8a7217ee400626}{update\+Stance\+Foot\+Position\+Trajectory}} ()
+\begin{DoxyCompactList}\small\item\em Update the stance foot tractory for the leg. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_ab981f262fd6959dea6432a238136e5ec}\label{classSingleLegController_ab981f262fd6959dea6432a238136e5ec}} 
+void \mbox{\hyperlink{classSingleLegController_ab981f262fd6959dea6432a238136e5ec}{update\+Joint\+References}} ()
+\begin{DoxyCompactList}\small\item\em Update The joint trajectory reference based on the spatial foot trajectory. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSingleLegController_aaab478fc232623423c50ea3f462266da}{update\+Joint\+Torque\+Commands}} (const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+joint\+\_\+pos\+\_\+ref, const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+joint\+\_\+vel\+\_\+ref, const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+joint\+\_\+acc\+\_\+ref, const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+joint\+\_\+pos, const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+joint\+\_\+vel)
+\begin{DoxyCompactList}\small\item\em Update the joint torqes references based on the joint trajectories and joint states. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_ad5b6382db1463b29715b6a0f11dc7253}\label{classSingleLegController_ad5b6382db1463b29715b6a0f11dc7253}} 
+void \mbox{\hyperlink{classSingleLegController_ad5b6382db1463b29715b6a0f11dc7253}{update\+Joint\+Torque\+Commands}} ()
+\begin{DoxyCompactList}\small\item\em Overloaded function that uses the current joint references and joint states. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_a3453715cb0120cdc1fb5f6494051f2bd}\label{classSingleLegController_a3453715cb0120cdc1fb5f6494051f2bd}} 
+void \mbox{\hyperlink{classSingleLegController_a3453715cb0120cdc1fb5f6494051f2bd}{update\+Closed\+Loop\+Torque\+Commands}} ()
+\begin{DoxyCompactList}\small\item\em A non model based torque controller. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_a16531ceeb159200803bf59ac37134f71}\label{classSingleLegController_a16531ceeb159200803bf59ac37134f71}} 
+void \mbox{\hyperlink{classSingleLegController_a16531ceeb159200803bf59ac37134f71}{update\+Joint\+Velocity\+Commands}} ()
+\begin{DoxyCompactList}\small\item\em Updates the joint velocity control commands based on the joint velocity reference and the joint position error. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_a8cf90255f28a7ac48ae04f0d69e012ba}\label{classSingleLegController_a8cf90255f28a7ac48ae04f0d69e012ba}} 
+void \mbox{\hyperlink{classSingleLegController_a8cf90255f28a7ac48ae04f0d69e012ba}{send\+Joint\+Position\+Commands}} ()
+\begin{DoxyCompactList}\small\item\em Sends a joint position commands to the motors. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_a8ac17a2799b0e20089e03d5bc1297ad7}\label{classSingleLegController_a8ac17a2799b0e20089e03d5bc1297ad7}} 
+void \mbox{\hyperlink{classSingleLegController_a8ac17a2799b0e20089e03d5bc1297ad7}{send\+Joint\+Velocity\+Commands}} ()
+\begin{DoxyCompactList}\small\item\em Updates the joint velocity commands and send them to the motors. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_acee61da82c06e1b45d9f9d3b14847747}\label{classSingleLegController_acee61da82c06e1b45d9f9d3b14847747}} 
+void \mbox{\hyperlink{classSingleLegController_acee61da82c06e1b45d9f9d3b14847747}{send\+Joint\+Torque\+Commands}} ()
+\begin{DoxyCompactList}\small\item\em Updates the joint torque control commands based on the desired foot position. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_acbab400d2767ed683ceaf3162d52c6e8}\label{classSingleLegController_acbab400d2767ed683ceaf3162d52c6e8}} 
+void \mbox{\hyperlink{classSingleLegController_acbab400d2767ed683ceaf3162d52c6e8}{increase\+Iterator}} ()
+\begin{DoxyCompactList}\small\item\em Increment the gait cycle iterator. It stops iterating when the final iteration is reached. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_ac8866042e708855270f78a0ebbc90721}\label{classSingleLegController_ac8866042e708855270f78a0ebbc90721}} 
+bool \mbox{\hyperlink{classSingleLegController_ac8866042e708855270f78a0ebbc90721}{update\+Gait\+Phase}} ()
+\begin{DoxyCompactList}\small\item\em Increments the gait cycle iterator and updates the leg state. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_a2751303302b0a0d937c3bcb768d92ad5}\label{classSingleLegController_a2751303302b0a0d937c3bcb768d92ad5}} 
+void \mbox{\hyperlink{classSingleLegController_a2751303302b0a0d937c3bcb768d92ad5}{update\+Foot\+Trajectory\+Reference}} ()
+\begin{DoxyCompactList}\small\item\em Update the foot trajectory based on the leg state. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_a9082ad9153ed6666c5922caeb31613f4}\label{classSingleLegController_a9082ad9153ed6666c5922caeb31613f4}} 
+bool \mbox{\hyperlink{classSingleLegController_a9082ad9153ed6666c5922caeb31613f4}{update\+Pose\+Control\+Joint\+Trajectory\+Reference}} ()
+\begin{DoxyCompactList}\small\item\em Update the pose control trajectory reference for the single leg. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_aad9b3bce8878864bc100adea73b083ee}\label{classSingleLegController_aad9b3bce8878864bc100adea73b083ee}} 
+void \mbox{\hyperlink{classSingleLegController_aad9b3bce8878864bc100adea73b083ee}{set\+Pose\+Goal}} (Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \+\_\+foot\+\_\+pos)
+\begin{DoxyCompactList}\small\item\em Set the final and initial states for pose control trajectories. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_a1ccb9a1cc0f8118faaef28229de335f1}\label{classSingleLegController_a1ccb9a1cc0f8118faaef28229de335f1}} 
+void \mbox{\hyperlink{classSingleLegController_a1ccb9a1cc0f8118faaef28229de335f1}{set\+Motor\+Gains}} ()
+\begin{DoxyCompactList}\small\item\em Tries to set the control gains in the motors. The function loops until it succeeds. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_ac94137fdfe9b78dd3c47480341b9af47}\label{classSingleLegController_ac94137fdfe9b78dd3c47480341b9af47}} 
+bool \mbox{\hyperlink{classSingleLegController_ac94137fdfe9b78dd3c47480341b9af47}{move\+Foot\+To\+Position}} (Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \+\_\+foot\+\_\+goal\+\_\+pos)
+\begin{DoxyCompactList}\small\item\em Creates a trajectory from the current foot position to the goal foot position and moves the foot to the target position along the trajectory. Function returns when the foot is standing still at the goal position. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_ac4e4f7ee4fa05991e424b242d149afa3}\label{classSingleLegController_ac4e4f7ee4fa05991e424b242d149afa3}} 
+bool \mbox{\hyperlink{classSingleLegController_ac4e4f7ee4fa05991e424b242d149afa3}{move\+Joints\+To\+Setpoints}} ()
+\begin{DoxyCompactList}\small\item\em The function tries to move the foot to the foot position given by the input parameters. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_a3e2bc91ee5c0b1cde6ad9f8da033c83f}\label{classSingleLegController_a3e2bc91ee5c0b1cde6ad9f8da033c83f}} 
+bool \mbox{\hyperlink{classSingleLegController_a3e2bc91ee5c0b1cde6ad9f8da033c83f}{move\+Foot\+To\+Nominal\+Position}} ()
+\begin{DoxyCompactList}\small\item\em The function tries to move the foot to the nominal trajectory position. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_ad1dcb26e9bec916df129a00c2347b35b}\label{classSingleLegController_ad1dcb26e9bec916df129a00c2347b35b}} 
+void \mbox{\hyperlink{classSingleLegController_ad1dcb26e9bec916df129a00c2347b35b}{check\+For\+New\+Messages}} ()
+\begin{DoxyCompactList}\small\item\em Function used to check if any new R\+OS messages has been received. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classSingleLegController_af65cd13c9740c47df2e430a744361f85}{ready\+To\+Proceed}} ()
+\begin{DoxyCompactList}\small\item\em Check whether or not a ready to proceed message has been received. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_a7bf974dae57964d754a2e4e1900903f1}\label{classSingleLegController_a7bf974dae57964d754a2e4e1900903f1}} 
+void \mbox{\hyperlink{classSingleLegController_a7bf974dae57964d754a2e4e1900903f1}{reset\+Ready\+To\+Proceed}} ()
+\begin{DoxyCompactList}\small\item\em Set the ready\+\_\+to\+\_\+proceed flag to false. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_ae2d6915c29fbcb40f6ec20dc91229f69}\label{classSingleLegController_ae2d6915c29fbcb40f6ec20dc91229f69}} 
+bool \mbox{\hyperlink{classSingleLegController_ae2d6915c29fbcb40f6ec20dc91229f69}{is\+Target\+Position\+Reached}} ()
+\begin{DoxyCompactList}\small\item\em Check if the squared error between the current joint angles and target joint angles is smaller than some threshold. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_aa7cfe14f25926f4870ea6628c3aee9f7}\label{classSingleLegController_aa7cfe14f25926f4870ea6628c3aee9f7}} 
+bool \mbox{\hyperlink{classSingleLegController_aa7cfe14f25926f4870ea6628c3aee9f7}{is\+Joint\+Velocity\+Small}} ()
+\begin{DoxyCompactList}\small\item\em Checks if the sum of squared joint velocities are smaller than a certain threshold. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_a945a86bd3320c349b6fa027d27a79ff1}\label{classSingleLegController_a945a86bd3320c349b6fa027d27a79ff1}} 
+bool \mbox{\hyperlink{classSingleLegController_a945a86bd3320c349b6fa027d27a79ff1}{is\+Initial\+State\+Received}} ()
+\begin{DoxyCompactList}\small\item\em Check if the uninitalized joint state of the robot has been overridden by measurements. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_a5f61e78b03357ff8fa62eb636108279a}\label{classSingleLegController_a5f61e78b03357ff8fa62eb636108279a}} 
+void \mbox{\hyperlink{classSingleLegController_a5f61e78b03357ff8fa62eb636108279a}{print\+Torque\+References}} ()
+\begin{DoxyCompactList}\small\item\em Print the joint torque references. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_a370642148f6c440f43f0c830c385e4bc}\label{classSingleLegController_a370642148f6c440f43f0c830c385e4bc}} 
+void \mbox{\hyperlink{classSingleLegController_a370642148f6c440f43f0c830c385e4bc}{print\+Spatial\+Trajectories}} ()
+\begin{DoxyCompactList}\small\item\em Print the foot trajectory reference. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_a1d5b3a6fcece39f3e78957fd0b8fc894}\label{classSingleLegController_a1d5b3a6fcece39f3e78957fd0b8fc894}} 
+void \mbox{\hyperlink{classSingleLegController_a1d5b3a6fcece39f3e78957fd0b8fc894}{print\+Joint\+Trajectories}} ()
+\begin{DoxyCompactList}\small\item\em Print the joint trajectory references. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_a26e0d5ba16c20c675d5316b0018b05b3}\label{classSingleLegController_a26e0d5ba16c20c675d5316b0018b05b3}} 
+void \mbox{\hyperlink{classSingleLegController_a26e0d5ba16c20c675d5316b0018b05b3}{print\+All\+States}} ()
+\begin{DoxyCompactList}\small\item\em Print various information about all joints. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_a05e369f7eaf16b2d0cab0a1e79984fd2}\label{classSingleLegController_a05e369f7eaf16b2d0cab0a1e79984fd2}} 
+void \mbox{\hyperlink{classSingleLegController_a05e369f7eaf16b2d0cab0a1e79984fd2}{write\+To\+Log}} ()
+\begin{DoxyCompactList}\small\item\em Write the joint references and estimated states to the log. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classSingleLegController_a7334d4583d94d34addc8f7dc898fe5c7}{Gait\+Phase}} \mbox{\hyperlink{classSingleLegController_a139948fa97ac0f095f14ba49ddff018e}{get\+Gait\+Phase}} ()
+\begin{DoxyCompactList}\small\item\em Return the leg\textquotesingle{}s phase state. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_a59cd7883d1dd470059bfb1c198ab69df}\label{classSingleLegController_a59cd7883d1dd470059bfb1c198ab69df}} 
+\mbox{\hyperlink{classSingleLegController_a59cd7883d1dd470059bfb1c198ab69df}{Single\+Leg\+Controller}} (double \+\_\+dt)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_a173d75b4ce31036a360ffe231e950314}\label{classSingleLegController_a173d75b4ce31036a360ffe231e950314}} 
+virtual \mbox{\hyperlink{classSingleLegController_a173d75b4ce31036a360ffe231e950314}{$\sim$\+Single\+Leg\+Controller}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSingleLegController_ab41ff2679fdffa16cbe6e4b3367d586c}{generalized\+Coordinates\+Callback}} (const sensor\+\_\+msgs\+::\+Joint\+State\+Const\+Ptr \&\+\_\+msg)
+\begin{DoxyCompactList}\small\item\em The joint states for the leg is updated. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSingleLegController_acf37c157a2380e81433e3534c3db9d5b}{ready\+To\+Move\+Callback}} (const std\+\_\+msgs\+::\+Bool \&\+\_\+msg)
+\begin{DoxyCompactList}\small\item\em The ready\+\_\+to\+\_\+move parameter is changed based on the incomming message. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_a0fd3c44c7c51b81724d463745cf2dfd3}\label{classSingleLegController_a0fd3c44c7c51b81724d463745cf2dfd3}} 
+void \mbox{\hyperlink{classSingleLegController_a0fd3c44c7c51b81724d463745cf2dfd3}{send\+Joint\+Position\+Command}} ()
+\begin{DoxyCompactList}\small\item\em Updates the joint position control commands based on the desired foot position. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_adb30ca3f16089f59e1745cd56ab0fc9b}\label{classSingleLegController_adb30ca3f16089f59e1745cd56ab0fc9b}} 
+void \mbox{\hyperlink{classSingleLegController_adb30ca3f16089f59e1745cd56ab0fc9b}{update\+Speed\+Control\+Commands}} ()
+\begin{DoxyCompactList}\small\item\em Updates the joint speed control commands based on foot vel references and jacobian. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_a2595cf8d383410d9948b0bbcf915d887}\label{classSingleLegController_a2595cf8d383410d9948b0bbcf915d887}} 
+void \mbox{\hyperlink{classSingleLegController_a2595cf8d383410d9948b0bbcf915d887}{send\+Speed\+Joint\+Command}} ()
+\begin{DoxyCompactList}\small\item\em Populates the joint command message with joint velocity commands and sends it to the Teensy. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSingleLegController_a27c3f76b238e42de5289bc32e9e11639}{set\+Reference\+Parameters}} (double \+\_\+omega\+\_\+x, double \+\_\+omega\+\_\+y, double \+\_\+omega\+\_\+z, double \+\_\+damping\+\_\+x, double \+\_\+damping\+\_\+y, double \+\_\+damping\+\_\+z)
+\begin{DoxyCompactList}\small\item\em Set the frequency and damping parameters for the three references. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSingleLegController_a6c8e8a9e024381e4fb81a87871f5236e}{set\+Current\+Reference\+Position}} (double \+\_\+pos\+\_\+x, double \+\_\+pos\+\_\+y, double \+\_\+pos\+\_\+z)
+\begin{DoxyCompactList}\small\item\em Set the current value of the references. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSingleLegController_a13abc30cbc9f9c886320e2fdd199fdd3}{set\+Foot\+Goal\+Pos}} (double \+\_\+desired\+\_\+foot\+\_\+pos\+\_\+x, double \+\_\+desired\+\_\+foot\+\_\+pos\+\_\+y, double \+\_\+desired\+\_\+foot\+\_\+pos\+\_\+z)
+\begin{DoxyCompactList}\small\item\em Set the foot target velocity. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classSingleLegController_ae26e0828c2e33d739f5c34223bd38e77}{move\+Foot\+To\+Position}} (double \+\_\+foot\+\_\+pos\+\_\+x, double \+\_\+foot\+\_\+pos\+\_\+y, double \+\_\+foot\+\_\+pos\+\_\+z)
+\begin{DoxyCompactList}\small\item\em The function tries to move the foot to the position given by the input parameters. This is done by calculating the inverse kinematics and giving the motors position references. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_ad1dcb26e9bec916df129a00c2347b35b}\label{classSingleLegController_ad1dcb26e9bec916df129a00c2347b35b}} 
+void \mbox{\hyperlink{classSingleLegController_ad1dcb26e9bec916df129a00c2347b35b}{check\+For\+New\+Messages}} ()
+\begin{DoxyCompactList}\small\item\em Function used to check if any new R\+OS messages has been received. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSingleLegController_a82cbc4d3ae647d0929994edf00bba8dc}{init\+R\+OS}} ()
+\begin{DoxyCompactList}\small\item\em This is a R\+OS helper function that process messages. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classSingleLegController_a552b1f91454a68856b6cfaef5176d912}{check\+If\+Ready\+To\+Move}} ()
+\begin{DoxyCompactList}\small\item\em This function initializes the R\+OS publish and process queue threads. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_a16b8b8ad3330fe103fd8dd28edddef5f}\label{classSingleLegController_a16b8b8ad3330fe103fd8dd28edddef5f}} 
+void \mbox{\hyperlink{classSingleLegController_a16b8b8ad3330fe103fd8dd28edddef5f}{set\+Not\+Ready\+To\+Move}} ()
+\begin{DoxyCompactList}\small\item\em Set the ready\+\_\+to\+\_\+move flag to false. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_a2859d90e66dcece04e98dd1abb9cf119}\label{classSingleLegController_a2859d90e66dcece04e98dd1abb9cf119}} 
+bool \mbox{\hyperlink{classSingleLegController_a2859d90e66dcece04e98dd1abb9cf119}{check\+If\+Target\+Is\+Reached}} ()
+\begin{DoxyCompactList}\small\item\em Check if the target position has been reached. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_ae2d6915c29fbcb40f6ec20dc91229f69}\label{classSingleLegController_ae2d6915c29fbcb40f6ec20dc91229f69}} 
+bool \mbox{\hyperlink{classSingleLegController_ae2d6915c29fbcb40f6ec20dc91229f69}{is\+Target\+Position\+Reached}} ()
+\begin{DoxyCompactList}\small\item\em Check if the squared error between the current joint angles and target joint angles is smaller than some threshold. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_a5570b16ff0f49115a90a9040aab08ebb}\label{classSingleLegController_a5570b16ff0f49115a90a9040aab08ebb}} 
+void \mbox{\hyperlink{classSingleLegController_a5570b16ff0f49115a90a9040aab08ebb}{set\+Target\+Position\+To\+Not\+Reached}} ()
+\begin{DoxyCompactList}\small\item\em Set the target\+\_\+position\+\_\+reached flag to false. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_a743ab70ef506f974a640554cdbcb465c}\label{classSingleLegController_a743ab70ef506f974a640554cdbcb465c}} 
+void \mbox{\hyperlink{classSingleLegController_a743ab70ef506f974a640554cdbcb465c}{set\+Joint\+Velocity\+To\+Zero}} ()
+\begin{DoxyCompactList}\small\item\em Sends a command to the motors telling them to stand still. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_a4c2a164a3a53b500ba2b79b103ae3d2d}\label{classSingleLegController_a4c2a164a3a53b500ba2b79b103ae3d2d}} 
+void \mbox{\hyperlink{classSingleLegController_a4c2a164a3a53b500ba2b79b103ae3d2d}{log\+States\+And\+Commands}} ()
+\begin{DoxyCompactList}\small\item\em Function that publishes joint states and commands. The messages are stored in seperate ros bags. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSingleLegController_a3c5b7731737f0f670f24b27910cee88a}\label{classSingleLegController_a3c5b7731737f0f670f24b27910cee88a}} 
+void {\bfseries set\+Joint\+Positions} (double \+\_\+theta\+\_\+hy, double \+\_\+theta\+\_\+hp, double \+\_\+theta\+\_\+kp)
+\item 
+\mbox{\Hypertarget{classSingleLegController_a1bc47827e92a5709ed8cd0dc92a9a2a5}\label{classSingleLegController_a1bc47827e92a5709ed8cd0dc92a9a2a5}} 
+void {\bfseries simulator\+Send\+Joint\+Velocity\+Command} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSingleLegController_a552b1f91454a68856b6cfaef5176d912}\label{classSingleLegController_a552b1f91454a68856b6cfaef5176d912}} 
+\index{SingleLegController@{SingleLegController}!checkIfReadyToMove@{checkIfReadyToMove}}
+\index{checkIfReadyToMove@{checkIfReadyToMove}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{checkIfReadyToMove()}{checkIfReadyToMove()}}
+{\footnotesize\ttfamily bool Single\+Leg\+Controller\+::check\+If\+Ready\+To\+Move (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+This function initializes the R\+OS publish and process queue threads. 
+
+Check whether or not the ready to move message has been received \mbox{\Hypertarget{classSingleLegController_ab41ff2679fdffa16cbe6e4b3367d586c}\label{classSingleLegController_ab41ff2679fdffa16cbe6e4b3367d586c}} 
+\index{SingleLegController@{SingleLegController}!generalizedCoordinatesCallback@{generalizedCoordinatesCallback}}
+\index{generalizedCoordinatesCallback@{generalizedCoordinatesCallback}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{generalizedCoordinatesCallback()}{generalizedCoordinatesCallback()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Single\+Leg\+Controller\+::generalized\+Coordinates\+Callback (\begin{DoxyParamCaption}\item[{const sensor\+\_\+msgs\+::\+Joint\+State\+Const\+Ptr \&}]{\+\_\+msg }\end{DoxyParamCaption})}
+
+
+
+The joint states for the leg is updated. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+msg} & A float array containing the generalized coordinates ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSingleLegController_adfd046b154a005e93e5463c13f1ed5d6}\label{classSingleLegController_adfd046b154a005e93e5463c13f1ed5d6}} 
+\index{SingleLegController@{SingleLegController}!generalizedCoordinatesCallback@{generalizedCoordinatesCallback}}
+\index{generalizedCoordinatesCallback@{generalizedCoordinatesCallback}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{generalizedCoordinatesCallback()}{generalizedCoordinatesCallback()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Single\+Leg\+Controller\+::generalized\+Coordinates\+Callback (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&}]{\+\_\+msg }\end{DoxyParamCaption})}
+
+
+
+Listens to joint angle messages from the simulated leg. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+msg} & A float array containing the simulated single leg joint angles ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSingleLegController_a66929d863702713ac5ebaefb0eed40e8}\label{classSingleLegController_a66929d863702713ac5ebaefb0eed40e8}} 
+\index{SingleLegController@{SingleLegController}!generalizedForcesCallback@{generalizedForcesCallback}}
+\index{generalizedForcesCallback@{generalizedForcesCallback}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{generalizedForcesCallback()}{generalizedForcesCallback()}}
+{\footnotesize\ttfamily void Single\+Leg\+Controller\+::generalized\+Forces\+Callback (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&}]{\+\_\+msg }\end{DoxyParamCaption})}
+
+
+
+Listens to joint force messages from the simulated leg. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+msg} & A float array containing the simulated single leg joint forces \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSingleLegController_abce5e2d8277d3de86baeedddcad95a83}\label{classSingleLegController_abce5e2d8277d3de86baeedddcad95a83}} 
+\index{SingleLegController@{SingleLegController}!generalizedVelocitiesCallback@{generalizedVelocitiesCallback}}
+\index{generalizedVelocitiesCallback@{generalizedVelocitiesCallback}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{generalizedVelocitiesCallback()}{generalizedVelocitiesCallback()}}
+{\footnotesize\ttfamily void Single\+Leg\+Controller\+::generalized\+Velocities\+Callback (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&}]{\+\_\+msg }\end{DoxyParamCaption})}
+
+
+
+Listens to joint velocity messages from the simulated leg. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+msg} & A float array containing the simulated single leg joint velocities \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSingleLegController_a139948fa97ac0f095f14ba49ddff018e}\label{classSingleLegController_a139948fa97ac0f095f14ba49ddff018e}} 
+\index{SingleLegController@{SingleLegController}!getGaitPhase@{getGaitPhase}}
+\index{getGaitPhase@{getGaitPhase}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{getGaitPhase()}{getGaitPhase()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSingleLegController_a7334d4583d94d34addc8f7dc898fe5c7}{Gait\+Phase}} Single\+Leg\+Controller\+::get\+Gait\+Phase (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the leg\textquotesingle{}s phase state. 
+
+\begin{DoxyReturn}{Returns}
+The phase state of the single leg 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSingleLegController_a82cbc4d3ae647d0929994edf00bba8dc}\label{classSingleLegController_a82cbc4d3ae647d0929994edf00bba8dc}} 
+\index{SingleLegController@{SingleLegController}!initROS@{initROS}}
+\index{initROS@{initROS}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{initROS()}{initROS()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Single\+Leg\+Controller\+::init\+R\+OS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This function initilizes R\+OS. 
+
+For logging
+
+For logging\mbox{\Hypertarget{classSingleLegController_a82cbc4d3ae647d0929994edf00bba8dc}\label{classSingleLegController_a82cbc4d3ae647d0929994edf00bba8dc}} 
+\index{SingleLegController@{SingleLegController}!initROS@{initROS}}
+\index{initROS@{initROS}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{initROS()}{initROS()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Single\+Leg\+Controller\+::init\+R\+OS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This is a R\+OS helper function that process messages. 
+
+This is a R\+OS helper function that publish messages.
+
+This function initilizes R\+OS \mbox{\Hypertarget{classSingleLegController_ae26e0828c2e33d739f5c34223bd38e77}\label{classSingleLegController_ae26e0828c2e33d739f5c34223bd38e77}} 
+\index{SingleLegController@{SingleLegController}!moveFootToPosition@{moveFootToPosition}}
+\index{moveFootToPosition@{moveFootToPosition}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{moveFootToPosition()}{moveFootToPosition()}}
+{\footnotesize\ttfamily bool Single\+Leg\+Controller\+::move\+Foot\+To\+Position (\begin{DoxyParamCaption}\item[{double}]{\+\_\+foot\+\_\+pos\+\_\+x,  }\item[{double}]{\+\_\+foot\+\_\+pos\+\_\+y,  }\item[{double}]{\+\_\+foot\+\_\+pos\+\_\+z }\end{DoxyParamCaption})}
+
+
+
+The function tries to move the foot to the position given by the input parameters. This is done by calculating the inverse kinematics and giving the motors position references. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+foot\+\_\+pos\+\_\+x} & The target foot x position \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+foot\+\_\+pos\+\_\+y} & The target foot y position \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+foot\+\_\+pos\+\_\+z} & The target foot z position \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSingleLegController_acf37c157a2380e81433e3534c3db9d5b}\label{classSingleLegController_acf37c157a2380e81433e3534c3db9d5b}} 
+\index{SingleLegController@{SingleLegController}!readyToMoveCallback@{readyToMoveCallback}}
+\index{readyToMoveCallback@{readyToMoveCallback}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{readyToMoveCallback()}{readyToMoveCallback()}}
+{\footnotesize\ttfamily void Single\+Leg\+Controller\+::ready\+To\+Move\+Callback (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Bool \&}]{\+\_\+msg }\end{DoxyParamCaption})}
+
+
+
+The ready\+\_\+to\+\_\+move parameter is changed based on the incomming message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+msg} & A bool message deciding if it is safe to move the leg or not \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSingleLegController_af65cd13c9740c47df2e430a744361f85}\label{classSingleLegController_af65cd13c9740c47df2e430a744361f85}} 
+\index{SingleLegController@{SingleLegController}!readyToProceed@{readyToProceed}}
+\index{readyToProceed@{readyToProceed}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{readyToProceed()}{readyToProceed()}}
+{\footnotesize\ttfamily bool Single\+Leg\+Controller\+::ready\+To\+Proceed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Check whether or not a ready to proceed message has been received. 
+
+\begin{DoxyReturn}{Returns}
+The status of the ready\+\_\+to\+\_\+proceed boolean value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSingleLegController_ace838f549ab9d124d02ce4daa07bddf9}\label{classSingleLegController_ace838f549ab9d124d02ce4daa07bddf9}} 
+\index{SingleLegController@{SingleLegController}!readyToProceedCallback@{readyToProceedCallback}}
+\index{readyToProceedCallback@{readyToProceedCallback}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{readyToProceedCallback()}{readyToProceedCallback()}}
+{\footnotesize\ttfamily void Single\+Leg\+Controller\+::ready\+To\+Proceed\+Callback (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Bool \&}]{\+\_\+msg }\end{DoxyParamCaption})}
+
+
+
+The ready\+\_\+to\+\_\+proceed parameter is changed based on the incomming message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+msg} & A bool message indicating whether or not a script can proceed \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSingleLegController_a6c8e8a9e024381e4fb81a87871f5236e}\label{classSingleLegController_a6c8e8a9e024381e4fb81a87871f5236e}} 
+\index{SingleLegController@{SingleLegController}!setCurrentReferencePosition@{setCurrentReferencePosition}}
+\index{setCurrentReferencePosition@{setCurrentReferencePosition}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{setCurrentReferencePosition()}{setCurrentReferencePosition()}}
+{\footnotesize\ttfamily void Single\+Leg\+Controller\+::set\+Current\+Reference\+Position (\begin{DoxyParamCaption}\item[{double}]{\+\_\+pos\+\_\+x,  }\item[{double}]{\+\_\+pos\+\_\+y,  }\item[{double}]{\+\_\+pos\+\_\+z }\end{DoxyParamCaption})}
+
+
+
+Set the current value of the references. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+pos\+\_\+x} & Set the current x position \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+pos\+\_\+y} & Set the current y position \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+pos\+\_\+z} & Set the current z position \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSingleLegController_a13abc30cbc9f9c886320e2fdd199fdd3}\label{classSingleLegController_a13abc30cbc9f9c886320e2fdd199fdd3}} 
+\index{SingleLegController@{SingleLegController}!setFootGoalPos@{setFootGoalPos}}
+\index{setFootGoalPos@{setFootGoalPos}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{setFootGoalPos()}{setFootGoalPos()}}
+{\footnotesize\ttfamily void Single\+Leg\+Controller\+::set\+Foot\+Goal\+Pos (\begin{DoxyParamCaption}\item[{double}]{\+\_\+desired\+\_\+foot\+\_\+pos\+\_\+x,  }\item[{double}]{\+\_\+desired\+\_\+foot\+\_\+pos\+\_\+y,  }\item[{double}]{\+\_\+desired\+\_\+foot\+\_\+pos\+\_\+z }\end{DoxyParamCaption})}
+
+
+
+Set the foot target velocity. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+desired\+\_\+foot\+\_\+vel\+\_\+x} & The desired foot speed in the x direction \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+desired\+\_\+foot\+\_\+vel\+\_\+y} & The desired foot speed in the y direction \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+desired\+\_\+foot\+\_\+vel\+\_\+z} & The desired foot speed in the z direction \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSingleLegController_a27c3f76b238e42de5289bc32e9e11639}\label{classSingleLegController_a27c3f76b238e42de5289bc32e9e11639}} 
+\index{SingleLegController@{SingleLegController}!setReferenceParameters@{setReferenceParameters}}
+\index{setReferenceParameters@{setReferenceParameters}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{setReferenceParameters()}{setReferenceParameters()}}
+{\footnotesize\ttfamily void Single\+Leg\+Controller\+::set\+Reference\+Parameters (\begin{DoxyParamCaption}\item[{double}]{\+\_\+omega\+\_\+x,  }\item[{double}]{\+\_\+omega\+\_\+y,  }\item[{double}]{\+\_\+omega\+\_\+z,  }\item[{double}]{\+\_\+damping\+\_\+x,  }\item[{double}]{\+\_\+damping\+\_\+y,  }\item[{double}]{\+\_\+damping\+\_\+z }\end{DoxyParamCaption})}
+
+
+
+Set the frequency and damping parameters for the three references. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+omega\+\_\+x} & Frequency of x reference \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+omega\+\_\+y} & Frequency of y reference \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+omega\+\_\+z} & Frequency of z reference \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+damping\+\_\+x} & Damping of x reference \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+damping\+\_\+y} & Damping of y reference \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+damping\+\_\+z} & Damping of z reference \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSingleLegController_aaab478fc232623423c50ea3f462266da}\label{classSingleLegController_aaab478fc232623423c50ea3f462266da}} 
+\index{SingleLegController@{SingleLegController}!updateJointTorqueCommands@{updateJointTorqueCommands}}
+\index{updateJointTorqueCommands@{updateJointTorqueCommands}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{updateJointTorqueCommands()}{updateJointTorqueCommands()}}
+{\footnotesize\ttfamily void Single\+Leg\+Controller\+::update\+Joint\+Torque\+Commands (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&}]{\+\_\+joint\+\_\+pos\+\_\+ref,  }\item[{const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&}]{\+\_\+joint\+\_\+vel\+\_\+ref,  }\item[{const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&}]{\+\_\+joint\+\_\+acc\+\_\+ref,  }\item[{const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&}]{\+\_\+joint\+\_\+pos,  }\item[{const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&}]{\+\_\+joint\+\_\+vel }\end{DoxyParamCaption})}
+
+
+
+Update the joint torqes references based on the joint trajectories and joint states. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+joint\+\_\+pos\+\_\+ref} & The joint angle references \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+joint\+\_\+vel\+\_\+ref} & the joint velocity references \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+joint\+\_\+acc\+\_\+ref} & The joint acceleration references \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+joint\+\_\+pos} & The estimated joint angles \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+joint\+\_\+vel} & The estimated joint velocities \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+catkin\+\_\+ws/src/control/single\+\_\+leg\+\_\+controller/include/single\+\_\+leg\+\_\+controller/single\+\_\+leg\+\_\+controller.\+h\item 
+catkin\+\_\+ws/src/control/single\+\_\+leg\+\_\+controller\+\_\+test/include/single\+\_\+leg\+\_\+controller\+\_\+test/single\+\_\+leg\+\_\+controller\+\_\+test.\+h\item 
+catkin\+\_\+ws/src/control/single\+\_\+leg\+\_\+controller/src/single\+\_\+leg\+\_\+controller.\+cpp\item 
+catkin\+\_\+ws/src/control/single\+\_\+leg\+\_\+controller\+\_\+test/src/single\+\_\+leg\+\_\+controller\+\_\+test.\+cpp\end{DoxyCompactItemize}
