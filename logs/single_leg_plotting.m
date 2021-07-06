@@ -63,20 +63,27 @@ timestamp = "2021-06-29-11-46-57"; % Phase period 0.5
 %% Report Physical Single Leg Fixed Base
 %timestamp = "2021-06-29-16-44-14"; % Gains (Kpp: 5, Kip: 5, Kpv: 30, Kiv: 30, Kpt: 50, Kit: 50)
 %timestamp = "2021-06-29-16-35-30"; % Gains (Kpp: 10, Kip: 10, Kpv: 30, Kiv: 30, Kpt: 50, Kit: 50)
-timestamp = "2021-06-29-17-25-29"; % Gains (Kpp: 20, Kip: 20, Kpv: 30, Kiv: 30, Kpt: 50, Kit: 50)
+%timestamp = "2021-06-29-17-25-29"; % Gains (Kpp: 20, Kip: 20, Kpv: 30, Kiv: 30, Kpt: 50, Kit: 50)
 
-timestamp = "2021-06-29-17-30-44"; % Gains (Kpp: 20, Kip: 20, Kpv: 50, Kiv: 50, Kpt: 100, Kit: 100) Similar response, but more oscillations
+%timestamp = "2021-06-29-17-30-44"; % Gains (Kpp: 20, Kip: 20, Kpv: 50, Kiv: 50, Kpt: 100, Kit: 100) Similar response, but more oscillations
 timestamp = "2021-06-29-17-33-57"; % Gains (Kpp: 30, Kip: 30, Kpv: 50, Kiv: 50, Kpt: 100, Kit: 100) Slightly better, even more oscillations
 %timestamp = "2021-06-29-17-40-19"; % Gains (Kpp: 30, Kip: 30, Kpv: 50, Kiv: 50, Kpt: 100, Kit: 100) More oscillations, slightly better
 
-timestamp = "2021-06-29-17-45-20"; % Gains (Kpp: 40, Kip: 40, Kpv: 100, Kiv: 100, Kpt: 150, Kit: 150) Large oscillations
+%timestamp = "2021-06-29-17-45-20"; % Gains (Kpp: 40, Kip: 40, Kpv: 100, Kiv: 100, Kpt: 150, Kit: 150) Large oscillations
 
-%% Physical Single Leg Stance Test (Did not work)
-timestamp = "2021-06-30-15-18-15"; % Gains (Kpp: 40, Kip: 40, Kpv: 100, Kiv: 100, Kpt: 150, Kit: 150) Large oscillations
+%timestamp = "2021-07-05-19-57-42"; % (Kpp: 50, Kip: 50, Kpv: 100, Kiv: 100, Kpt: 100, Kit: 100) Much torque oscillations
+
+%timestamp = "2021-07-05-20-14-55"; % (Kpp: 7, Kip: 7, Kpv: 35, Kiv: 35, Kpt: 100, Kit: 100)
+
+%timestamp = "2021-07-05-20-21-29"; % (Kpp: 25, Kip: 12, Kpv: 50, Kiv: 25, Kpt: 100, Kit: 50)
+
+%timestamp = "2021-07-05-20-27-08"; % (Kpp: 50, Kip: 10, Kpv: 100, Kiv: 25, Kpt: 150, Kit: 50)
+
+%timestamp = "2021-07-05-20-31-49"; % (Kpp: 30, Kip: 15, Kpv: 50, Kiv: 25, Kpt: 100, Kit: 50)
 
 %% Script start
 
-plot_ref = true;
+plot_ref = false;
 
 number_of_motors = 3;
 
