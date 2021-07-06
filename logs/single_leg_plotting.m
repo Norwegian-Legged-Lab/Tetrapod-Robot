@@ -83,7 +83,7 @@ timestamp = "2021-06-29-17-33-57"; % Gains (Kpp: 30, Kip: 30, Kpv: 50, Kiv: 50, 
 
 %% Script start
 
-plot_ref = false;
+plot_ref = true;
 
 number_of_motors = 3;
 
@@ -154,7 +154,7 @@ if(plot_ref)
     plot(reference_time, joint_pos_reference(:, 1));
 end
 plot(state_time, joint_pos_state(:, 1));
-legend("\theta_{hy, ref}", "\theta_{hy}");
+legend("$\theta_{hy, ref}$", "$\theta_{hy}$");
 %xlabel("time [s]");
 %ylabel("angle [deg]");
 hold off
@@ -166,7 +166,7 @@ if(plot_ref)
     plot(reference_time, joint_pos_reference(:, 2));
 end
 plot(state_time, joint_pos_state(:, 2));
-legend("\theta_{hp, ref}", "\theta_{hp}");
+legend("$\theta_{hp, ref}$", "$\theta_{hp}$");
 %xlabel("time [s]");
 ylabel("angle [deg]");
 hold off
@@ -178,7 +178,7 @@ if(plot_ref)
     plot(reference_time, joint_pos_reference(:, 3));
 end
 plot(state_time, joint_pos_state(:, 3));
-legend("\theta_{kp, ref}", "\theta_{kp}");
+legend("$\theta_{kp, ref}$", "$\theta_{kp}$");
 xlabel("time [s]");
 %ylabel("angle [deg]");
 hold off
@@ -193,7 +193,7 @@ if(plot_ref)
     plot(reference_time, joint_vel_reference(:, 1));
 end
 plot(state_time, joint_vel_state(:, 1));
-legend("\omega_{hy, ref}", "\omega_{hy}");
+legend("$\omega_{hy, ref}$", "$\omega_{hy}$");
 hold off
 
 subplot(3, 1, 2)
@@ -203,7 +203,7 @@ if(plot_ref)
     plot(reference_time, joint_vel_reference(:, 2));
 end
 plot(state_time, joint_vel_state(:, 2)');
-legend("\omega_{hp, ref}", "\omega_{hp}");
+legend("$\omega_{hp, ref}$", "$\omega_{hp}$");
 ylabel("angular rate [deg/s]");
 hold off
 
@@ -214,7 +214,7 @@ if(plot_ref)
     plot(reference_time, joint_vel_reference(:, 3));
 end
 plot(state_time, joint_vel_state(:, 3)');
-legend("\omega_{kp, ref}", "\omega_{kp}");
+legend("$\omega_{kp, ref}$", "$\omega_{kp}$");
 xlabel("time [s]");
 hold off
 % 
@@ -228,7 +228,7 @@ if(plot_ref)
     plot(reference_time, joint_torque_reference(:, 1));
 end
 plot(state_time, joint_torques(:, 1));
-legend("\tau_{hy, ref}", "\tau_{hy}");
+legend("$\tau_{hy, ref}$", "$\tau_{hy}$");
 hold off
 
 subplot(3, 1, 2)
@@ -238,7 +238,7 @@ if(plot_ref)
     plot(reference_time, joint_torque_reference(:, 2));
 end
 plot(state_time, joint_torques(:, 2)');
-legend("\tau_{hp, ref}", "\tau_{hp}");
+legend("$\tau_{hp, ref}$", "$\tau_{hp}$");
 ylabel("torque [Nm]");
 hold off
 
@@ -249,7 +249,7 @@ if(plot_ref)
     plot(reference_time, joint_torque_reference(:, 3));
 end
 plot(state_time, joint_torques(:, 3)');
-legend("\tau_{kp, ref}", "\tau_{kp}");
+legend("$\tau_{kp, ref}$", "$\tau_{kp}$");
 xlabel("time [s]");
 hold off
 
@@ -261,7 +261,7 @@ hold off
 % grid on
 % plot(reference_time, foot_pos_ref(:, 1));
 % plot(state_time, foot_pos_state(:, 1));
-% legend("x_{ref}", "x");
+% legend("x_{ref}$", "x");
 % hold off
 % 
 % subplot(3, 1, 2)
@@ -269,7 +269,7 @@ hold off
 % grid on
 % plot(reference_time, foot_pos_ref(:, 2));
 % plot(state_time, foot_pos_state(:, 2));
-% legend("y_{ref}", "y");
+% legend("y_{ref}$", "y");
 % ylabel("Pos [m]");
 % hold off
 % 
@@ -278,7 +278,7 @@ hold off
 % grid on
 % plot(reference_time, foot_pos_ref(:, 3));
 % plot(state_time, foot_pos_state(:, 3));
-% legend("z_{ref}", "z");
+% legend("z_{ref}$", "z");
 % xlabel("time [s]");
 % hold off
 
@@ -290,7 +290,7 @@ hold off
 % grid on
 % plot(reference_time, foot_vel_ref(:, 1));
 % plot(state_time, foot_vel_state(:, 1));
-% legend("x_{d, ref}", "x_d");
+% legend("x_{d, ref}$", "x_d");
 % hold off
 % 
 % subplot(3, 1, 2)
@@ -298,7 +298,7 @@ hold off
 % grid on
 % plot(reference_time, foot_vel_ref(:, 2));
 % plot(state_time, foot_vel_state(:, 2));
-% legend("y_{d, ref}", "y_d");
+% legend("y_{d, ref}$", "y_d");
 % ylabel("Vel [m/s]");
 % hold off
 % 
@@ -307,7 +307,7 @@ hold off
 % grid on
 % plot(reference_time, foot_vel_ref(:, 3));
 % plot(state_time, foot_vel_state(:, 3));
-% legend("z_{d, ref}", "z_d");
+% legend("z_{d, ref}$", "z_d");
 % xlabel("time [s]");
 % hold off
 
@@ -319,7 +319,7 @@ hold off
 % grid on
 % plot3(foot_pos_state(:, 1), foot_pos_state(:, 2), foot_pos_state(:, 3));
 % axis([-0.5 .5 -0.5 0.5 -0.5 0.5]);
-% legend("p(t)_{ref}", "p(t)");
+% legend("p(t)_{ref}$", "p(t)");
 % xlabel("x [m]");
 % ylabel("y [m]");
 % zlabel("z [m]");

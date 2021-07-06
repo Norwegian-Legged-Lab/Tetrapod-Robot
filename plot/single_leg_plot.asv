@@ -23,7 +23,7 @@ testcase4 = "2021-06-29-17-30-44"; % Gains (Kpp: 20, Kip: 20, Kpv: 50, Kiv: 50, 
 testcase5 = "2021-06-29-17-33-57"; % Gains (Kpp: 30, Kip: 30, Kpv: 50, Kiv: 50, Kpt: 100, Kit: 100) Slightly better, even more oscillations
 testcase6 = "2021-06-29-17-40-19"; % Gains (Kpp: 30, Kip: 30, Kpv: 50, Kiv: 50, Kpt: 100, Kit: 100) More oscillations, slightly better
 
-testcase7 = "2021-06-29-17-45-20"; % Gains (Kpp: 40, Kip: 40, Kpv: 100, Kiv: 100, Kpt: 150, Kit: 150) Large oscillations
+%timestamp = "2021-06-29-17-45-20"; % Gains (Kpp: 40, Kip: 40, Kpv: 100, Kiv: 100, Kpt: 150, Kit: 150) Large oscillations
 
 %timestamp = "2021-07-05-19-57-42"; % (Kpp: 50, Kip: 50, Kpv: 100, Kiv: 100, Kpt: 100, Kit: 100) Much torque oscillations
 
@@ -43,7 +43,7 @@ state_bag3 = rosbag(bag_path + "states_" + testcase3 + ".bag");
 state_bag4 = rosbag(bag_path + "states_" + testcase4 + ".bag");
 state_bag5 = rosbag(bag_path + "states_" + testcase5 + ".bag");
 state_bag6 = rosbag(bag_path + "states_" + testcase6 + ".bag");
-state_bag7 = rosbag(bag_path + "states_" + testcase7 + ".bag");
+% state_bag7 = rosbag(bag_path + "states_" + testcase7 + ".bag");
 % state_bag8 = rosbag(bag_path + "states_" + testcase8 + ".bag");
 % state_bag9 = rosbag(bag_path + "states_" + testcase9 + ".bag");
 reference_bag = rosbag(bag_path + "references_" + testcase1 + ".bag");
@@ -62,7 +62,7 @@ joint_position3 = get_joint_position_states(state_bag3, number_of_motors);
 joint_position4 = get_joint_position_states(state_bag4, number_of_motors);
 joint_position5 = get_joint_position_states(state_bag5, number_of_motors);
 joint_position6 = get_joint_position_states(state_bag6, number_of_motors);
-joint_position7 = get_joint_position_states(state_bag7, number_of_motors);
+% joint_position7 = get_joint_position_states(state_bag7, number_of_motors);
 % joint_position8 = get_joint_position_states(state_bag8, number_of_motors);
 % joint_position9 = get_joint_position_states(state_bag9, number_of_motors);
 
@@ -74,7 +74,7 @@ joint_velocity3 = get_joint_velocity_states(state_bag3, number_of_motors);
 joint_velocity4 = get_joint_velocity_states(state_bag4, number_of_motors);
 joint_velocity5 = get_joint_velocity_states(state_bag5, number_of_motors);
 joint_velocity6 = get_joint_velocity_states(state_bag6, number_of_motors);
-joint_velocity7 = get_joint_velocity_states(state_bag7, number_of_motors);
+% joint_velocity7 = get_joint_velocity_states(state_bag7, number_of_motors);
 % joint_velocity8 = get_joint_velocity_states(state_bag8, number_of_motors);
 % joint_velocity9 = get_joint_velocity_states(state_bag9, number_of_motors);
 
@@ -86,7 +86,7 @@ joint_torque3 = get_joint_effort_states(state_bag3, number_of_motors);
 joint_torque4 = get_joint_effort_states(state_bag4, number_of_motors);
 joint_torque5 = get_joint_effort_states(state_bag5, number_of_motors);
 joint_torque6 = get_joint_effort_states(state_bag6, number_of_motors);
-joint_torque7 = get_joint_effort_states(state_bag7, number_of_motors);
+% joint_torque7 = get_joint_effort_states(state_bag7, number_of_motors);
 % joint_torque8 = get_joint_effort_states(state_bag8, number_of_motors);
 % joint_torque9 = get_joint_effort_states(state_bag9, number_of_motors);
 
@@ -113,7 +113,7 @@ joint_position3 = joint_position3*180.0/pi;
 joint_position4 = joint_position4*180.0/pi;
 joint_position5 = joint_position5*180.0/pi;
 joint_position6 = joint_position6*180.0/pi;
-joint_position7 = joint_position7*180.0/pi;
+% joint_position7 = joint_position7*180.0/pi;
 % joint_position8 = joint_position8*180.0/pi;
 % joint_position9 = joint_position9*180.0/pi;
 joint_position_reference = joint_position_reference*180.0/pi;
@@ -124,7 +124,7 @@ joint_velocity3 = joint_velocity3*180.0/pi;
 joint_velocity4 = joint_velocity4*180.0/pi;
 joint_velocity5 = joint_velocity5*180.0/pi;
 joint_velocity6 = joint_velocity6*180.0/pi;
-joint_velocity7 = joint_velocity7*180.0/pi;
+% joint_velocity7 = joint_velocity7*180.0/pi;
 % joint_velocity8 = joint_velocity8*180.0/pi;
 % joint_velocity9 = joint_velocity9*180.0/pi;
 joint_velocity_reference = joint_velocity_reference*180.0/pi;
@@ -162,31 +162,19 @@ for i = 1:number_of_motors
         "LineWidth", 2, ...
         "DisplayName", pos_legends(i) + ",1}$");
     
-%     plot(state_time, joint_position2(:,i), ...
-%         "LineWidth", 2, ...
-%         "DisplayName", pos_legends(i) + ",2}$");
-    
-    plot(state_time, joint_position3(:,i), ...
+    plot(state_time, joint_position1(:,i), ...
         "LineWidth", 2, ...
-        "DisplayName", pos_legends(i) + ",3}$");
+        "DisplayName", pos_legends(i) + ",1}$");
     
-    plot(state_time, joint_position4(:,i), ...
+    plot(state_time, joint_position1(:,i), ...
         "LineWidth", 2, ...
-        "DisplayName", pos_legends(i) + ",4}$");
-    
-    plot(state_time, joint_position5(:,i), ...
-        "LineWidth", 2, ...
-        "DisplayName", pos_legends(i) + ",5}$");
-    
-    plot(state_time, joint_position6(:,i), ...
-        "LineWidth", 2, ...
-        "DisplayName", pos_legends(i) + ",6}$");
-    
-    plot(state_time, joint_position7(:,i), ...
-        "LineWidth", 2, ...
-        "DisplayName", pos_legends(i) + ",7}$");
+        "DisplayName", pos_legends(i) + ",1}$");
     
     
+    
+    
+
+     
     a = plot(reference_time, joint_position_reference(:,i), ...
         ...
          "LineWidth", 2, ...
@@ -214,33 +202,9 @@ for i = 1:number_of_motors
     hold on
     grid on
 
-    plot(state_time, joint_velocity1(:,i), ...
-        "LineWidth", 2, ...
-        "DisplayName", vel_legends(i) + ",1}$");
-    
-%     plot(state_time, joint_velocity2(:,i), ...
-%         "LineWidth", 2, ...
-%         "DisplayName", vel_legends(i) + ",2}$");
-    
-    plot(state_time, joint_velocity3(:,i), ...
-        "LineWidth", 2, ...
-        "DisplayName", vel_legends(i) + ",3}$");
-    
-    plot(state_time, joint_velocity4(:,i), ...
-        "LineWidth", 2, ...
-        "DisplayName", vel_legends(i) + ",4}$");
-    
-    plot(state_time, joint_velocity5(:,i), ...
-        "LineWidth", 2, ...
-        "DisplayName", vel_legends(i) + ",5}$");
-    
-    plot(state_time, joint_velocity6(:,i), ...
-        "LineWidth", 2, ...
-        "DisplayName", vel_legends(i) + ",6}$");
-    
-    plot(state_time, joint_velocity7(:,i), ...
-        "LineWidth", 2, ...
-        "DisplayName", vel_legends(i) + ",7}$");
+    a = plot(state_time, joint_velocity1(:,i), ...
+         "LineWidth", 2, ...
+         "DisplayName", vel_legends(i) + ",1}$");
 
     k = plot(reference_time, joint_velocity_reference(:,i), ...
          "LineWidth", 2, ...
@@ -250,7 +214,7 @@ for i = 1:number_of_motors
      
 
     uistack(k, "top");
-    title(vel_titles(i));
+    title("Velocity response");
     legend('FontSize', 20);
 %     xlim(xlimits);
     xlabel("Time [s]", 'FontSize', 20);
@@ -268,34 +232,9 @@ for i = 1:number_of_motors
     hold on
     grid on
 
-    plot(state_time, joint_torque1(:,i), ...
-        "LineWidth", 2, ...
-        "DisplayName", tor_legends(i) + ",1}$");
-    
-%     plot(state_time, joint_torque2(:,i), ...
-%         "LineWidth", 2, ...
-%         "DisplayName", tor_legends(i) + ",2}$");
-    
-    plot(state_time, joint_torque3(:,i), ...
-        "LineWidth", 2, ...
-        "DisplayName", tor_legends(i) + ",3}$");
-    
-    plot(state_time, joint_torque4(:,i), ...
-        "LineWidth", 2, ...
-        "DisplayName", tor_legends(i) + ",4}$");
-    
-    plot(state_time, joint_torque5(:,i), ...
-        "LineWidth", 2, ...
-        "DisplayName", tor_legends(i) + ",5}$");
-    
-    plot(state_time, joint_torque6(:,i), ...
-        "LineWidth", 2, ...
-        "DisplayName", tor_legends(i) + ",6}$");
-    
-    plot(state_time, joint_torque7(:,i), ...
-        "LineWidth", 2, ...
-        "DisplayName", tor_legends(i) + ",7}$");
-
+    a = plot(state_time, joint_torque1(:,i), ...
+         "LineWidth", 2, ...
+         "DisplayName", tor_legends(i) + ",1}$");
 
 %     k = plot(reference_time, joint_torque_reference(:,i), ...
 %          "LineWidth", 2, ...
@@ -305,7 +244,7 @@ for i = 1:number_of_motors
      
 
     %uistack(k, "top");
-    title(tor_titles(i));
+    title("Torque response");
     legend('FontSize', 20);
 %     xlim(xlimits);
     xlabel("Time [s]", 'FontSize', 20);
