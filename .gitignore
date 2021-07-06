@@ -37,3 +37,5 @@
 
 # Local History for Visual Studio Code
 .history/
+catkin_ws/src/simulator/footstep_description/model.sdf
+catkin_ws/src/simulator/terrain_description/model.sdf
