@@ -6,6 +6,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   sensor_msgs
   kinematics
+  math_utils
 )
 
 find_package(Eigen3 REQUIRED)
@@ -18,6 +19,7 @@ catkin_package(
     roscpp
     std_msgs
     kinematics
+    math_utils
 )
 
 include_directories(
@@ -40,9 +42,30 @@ add_executable(automatic_setpoint_publisher
   src/single_motor_controller.cpp
 )
 
+add_executable(torque_step_response_test
+  src/torque_step_response_test.cpp
+  src/single_motor_controller.cpp
+)
+
+add_executable(velocity_step_response_test
+  src/velocity_step_response_test.cpp
+  src/single_motor_controller.cpp
+)
+
 add_executable(step_response_test
   src/step_response_test.cpp
   src/single_motor_controller.cpp
+)
+
+add_executable(ros_teensy_speed_test
+  src/ros_teensy_speed_test.cpp
+)
+add_executable(tx_node
+  src/tx_node.cpp
+)
+
+add_executable(rx_node
+  src/rx_node.cpp
 )
 
 target_link_libraries(${PROJECT_NAME}
@@ -57,7 +80,27 @@ target_link_libraries(automatic_setpoint_publisher
   ${catkin_LIBRARIES}
 )
 
+target_link_libraries(torque_step_response_test
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(velocity_step_response_test
+  ${catkin_LIBRARIES}
+)
+
 target_link_libraries(step_response_test
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(ros_teensy_speed_test
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(tx_node
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(rx_node
   ${catkin_LIBRARIES}
 )
 

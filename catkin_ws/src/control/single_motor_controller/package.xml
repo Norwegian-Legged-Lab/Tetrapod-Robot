@@ -25,5 +25,6 @@
 
   <depend>kinematics</depend>
   <depend>eigen</depend>
+  <depend>math_utils</depend>
 
 </package>

@@ -53,6 +53,9 @@ class LogUtils
     /// \brief Destructor
     public: virtual ~LogUtils();
 
+    // TODO Describe
+    public: void WriteToLog();
+
     /// \brief The OnGenCoordMsg function handles an incoming 
     /// generalized coordinates message from ROS.
     /// \param[in] _msg A float array containing the generalized
@@ -64,6 +67,28 @@ class LogUtils
     /// \param[in] _msg A float array containing the generalized
     /// velocities.
     public: void OnGenVelMsg(const std_msgs::Float64MultiArrayConstPtr &_msg);
+
+    /// \brief The OnJointStateMsg function handles an incoming joint state
+    /// message from ROS.
+    /// \param[in] _msg A message holding data to describe the state
+    /// of a set of controlled joints. The state is defined by 
+    /// * the position of the joint,
+    /// * the velocity of the joint and
+    /// * the effort (torque) that is applied in the joint.
+    public: void OnJointStateMsg(const sensor_msgs::JointStateConstPtr &_msg);
+
+    /// \brief The OnJointStateCmdMsg function handles an incoming joint state
+    /// command message from ROS.
+    /// \param[in] _msg A message holding data to describe the state
+    /// of a set of controlled joints. The state is defined by 
+    /// * the position of the joint,
+    /// * the velocity of the joint and
+    /// * the effort (torque) that is applied in the joint.
+    public: void OnJointStateCmdMsg(const sensor_msgs::JointStateConstPtr &_msg);
+
+    /// \brief The PublishQueueThread function is a ROS helper function
+    /// that publish state messages.
+    public: void PublishQueueThread();
 
     /// \brief The ProcessQueueThread function is a ROS helper function
     /// that processes messages.
@@ -85,6 +110,12 @@ class LogUtils
     /// \brief Generalized Velocities
     private: Eigen::Matrix<double, 18, 1> genVel;
 
+    /// \brief Joint State
+    private: sensor_msgs::JointState jointState;
+
+    /// \brief Joint State Command
+    private: sensor_msgs::JointState jointStateCmd;
+
     /// \brief Footstep positions
     private: Eigen::Matrix<Eigen::Vector3d, 4, 1> fPos;
 
@@ -100,17 +131,35 @@ class LogUtils
     /// \brief ROS Generalized Coordinates Subscriber.
     private: ros::Subscriber genVelSub;
 
+    /// \brief ROS Joint State Subscriber.
+    private: ros::Subscriber jointStateSub;
+
+    /// \brief ROS Joint State Command Subscriber.
+    private: ros::Subscriber jointStateCmdSub;
+
     /// \brief ROS Contact State Subscriber.
     private: ros::Subscriber contactStateSub;
 
-    /// \brief ROS Joint State Publisher
+    /// \brief ROS Generalized Coordinates Log Publisher
+    private: ros::Publisher genCoordLogPub;
+
+    /// \brief ROS Generalized Velocities Log Publisher
+    private: ros::Publisher genVelLogPub;
+
+    /// \brief ROS Joint State Log Publisher.
     private: ros::Publisher jointStatePub;
+
+    /// \brief ROS Joint State Command Log Publisher.
+    private: ros::Publisher jointStateCmdPub;
+
+    /// \brief ROS callbackque that helps publish messages.
+    private: ros::CallbackQueue rosPublishQueue;
 
     /// \brief ROS callbackque that helps process messages.
     private: ros::CallbackQueue rosProcessQueue;
 
-    /// \brief ROS callbackque that helps publish messages.
-    private: ros::CallbackQueue rosPublishQueue;
+    /// \brief Thread running the rosPublishQueue.
+    private: std::thread rosPublishQueueThread;
 
     /// \brief Thread running the rosProcessQueue.
     private: std::thread rosProcessQueueThread;

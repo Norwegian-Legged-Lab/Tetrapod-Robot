@@ -7,6 +7,13 @@ SingleMotorController::SingleMotorController(double _publish_frequency, bool _us
     max_iterations = period*publish_frequency;
 }
 
+SingleMotorController::SingleMotorController(double _publish_frequency)
+{
+    publish_frequency = _publish_frequency;  
+
+    max_iterations = period*publish_frequency;
+}
+
 void SingleMotorController::initROS()
 {
     if(!ros::isInitialized())
@@ -64,7 +71,7 @@ void SingleMotorController::initROS()
         this
     );
 
-    joint_command_publisher = node_handle->advertise<sensor_msgs::JointState>("/motor/commands", 10);
+    joint_command_publisher = node_handle->advertise<sensor_msgs::JointState>("/my_robot/joint_state_cmd", 10);
 
     motor_gain_publisher = node_handle->advertise<std_msgs::Float64MultiArray>("/motor/gains", 1);
 
@@ -203,6 +210,36 @@ void SingleMotorController::moveToZero()
 
         publish_position_command_rate.sleep();
     }
+}
+
+void SingleMotorController::setPositionDirectly(double _joint_pos)
+{
+    sensor_msgs::JointState joint_command_msg;
+
+    angle_pos_ref = _joint_pos;
+
+    joint_command_msg.position.push_back(_joint_pos);
+    joint_command_msg.velocity.push_back(IDLE_COMMAND);
+    joint_command_msg.effort.push_back(IDLE_COMMAND);
+
+    joint_command_msg.header.stamp = ros::Time::now();
+
+    joint_command_publisher.publish(joint_command_msg);
+}
+
+void SingleMotorController::setVelocityDirectly(double _joint_vel)
+{
+    sensor_msgs::JointState joint_command_msg;
+
+    angle_vel_ref = _joint_vel;
+
+    joint_command_msg.position.push_back(IDLE_COMMAND);
+    joint_command_msg.velocity.push_back(_joint_vel);
+    joint_command_msg.effort.push_back(IDLE_COMMAND);
+
+    joint_command_msg.header.stamp = ros::Time::now();
+
+    joint_command_publisher.publish(joint_command_msg);
 }
 
 void SingleMotorController::setTorqueDirectly(double _torque)

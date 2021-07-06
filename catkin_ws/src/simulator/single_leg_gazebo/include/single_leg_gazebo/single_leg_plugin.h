@@ -43,6 +43,7 @@
 #include "std_msgs/Float32.h"
 #include "std_msgs/Float64MultiArray.h"
 #include "sensor_msgs/JointState.h"
+#include "std_srvs/Empty.h"
 
 // ROS Package Libraries
 #include<math_utils/angle_utils.h>
@@ -198,8 +199,19 @@ namespace gazebo
         /// initialize the desired joint configuration
         protected: void InitJointConfiguration();
 
+        /// \brief The ResetSimulation function handles an incoming
+        /// reset simulation service request.
+        /// \param[in] _req Service request.
+        /// \param[out] _res Service response.
+        /// \return Returns true if success, and false if not.
+        public: bool ResetSimulation(const std_srvs::Empty::Request &_req,
+                                     std_srvs::Empty::Response &_res);
+
         /// \brief Pointer to the model.
         private: physics::ModelPtr model;
+
+        /// \brief Pointer to the world.
+        private: physics::WorldPtr world;
 
         /// \brief Model name
         private: std::string model_name;
@@ -243,11 +255,17 @@ namespace gazebo
         /// \brief Node used for ROS transport.
         private: std::unique_ptr<ros::NodeHandle> rosNode;
 
+        /// \brief ROS Reset Simulation Service.
+        private: ros::ServiceServer resetSimService;
+
         /// \brief ROS Generalized Coordinates Publisher.
         private: ros::Publisher genCoordPub;
 
         /// \brief ROS Generalized Velocities Publisher.
         private: ros::Publisher genVelPub;
+
+        /// \brief ROS Joint Forces (Torques) Publisher.
+        private: ros::Publisher jointForcesPub;
 
         /// \brief ROS Joint State Subscriber.
         private: ros::Subscriber jointStateSub;

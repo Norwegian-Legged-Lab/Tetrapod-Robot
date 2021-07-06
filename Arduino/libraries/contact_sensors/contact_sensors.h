@@ -9,7 +9,7 @@
 
 const uint8_t NUMBER_OF_SENSORS = 1;
 
-const int NUMBER_OF_PREVIOUS_READINGS = 10;
+const int NUMBER_OF_PREVIOUS_READINGS = 20;
 
 const int NUMBER_OF_STEADY_SAMPLES = 5;
 
@@ -60,6 +60,8 @@ class ContactSensors
     public: void printReadingHistory();
 
     private: int32_t readings[NUMBER_OF_PREVIOUS_READINGS];
+
+    public: int32_t getReading(){return sensor_reading[0];}
 
 };
 

@@ -53,6 +53,9 @@ void SingleLegPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
     // Store model pointer
     this->model = _model;
 
+    // Store world pointer
+    this->world = _model->GetWorld();
+
     // Store model name
     this->model_name = _model->GetName();
     // ROS_INFO_STREAM("Model name: " << model_name); TODO REMOVE
@@ -130,8 +133,9 @@ Eigen::Matrix<double, 6, 1> SingleLegPlugin::GetBaseTwist()
 double SingleLegPlugin::GetJointForce(const std::string &_joint_name)
 {
     //this->joints[joint_name]->
+    double force = this->joints[this->model_name + "::" + _joint_name]->GetForce(0);
 
-    return 0;
+    return force;
 }
 
 // Get joint forces
@@ -336,11 +340,12 @@ void SingleLegPlugin::ProcessQueueThread()
 // Setup thread to process messages
 void SingleLegPlugin::PublishQueueThread()
 {
-    ros::Rate loop_rate(100);
+    ros::Rate loop_rate(300);
     while (this->rosNode->ok())
     {
         Eigen::Matrix<double, 9, 1> q; // generalized coordinates
         Eigen::Matrix<double, 9, 1> u; // generalized velocities
+        Eigen::Matrix<double, 3, 1> tau; // joint forces (torques)
 
         q.block(0,0,5,0) << this->GetBasePose();
         q.block(6,0,8,0) << this->GetJointPositions();
@@ -348,14 +353,19 @@ void SingleLegPlugin::PublishQueueThread()
         u.block(0,0,5,0) << this->GetBaseTwist();
         u.block(6,0,8,0) << this->GetJointVelocities();
 
+        tau = this->GetJointForces();
+
         std_msgs::Float64MultiArray gen_coord_msg;
         std_msgs::Float64MultiArray gen_vel_msg;
+        std_msgs::Float64MultiArray joint_forces_msg;
 
         tf::matrixEigenToMsg(q, gen_coord_msg);
         tf::matrixEigenToMsg(u, gen_vel_msg);
+        tf::matrixEigenToMsg(tau, joint_forces_msg);
 
         this->genCoordPub.publish(gen_coord_msg);
         this->genVelPub.publish(gen_vel_msg);
+        this->jointForcesPub.publish(joint_forces_msg);
 
         loop_rate.sleep();
     }
@@ -378,6 +388,14 @@ void SingleLegPlugin::InitRos()
 
     this->rosNode.reset(new ros::NodeHandle("gazebo_client"));
 
+    ros::AdvertiseServiceOptions reset_simulation_aso =
+        ros::AdvertiseServiceOptions::create<std_srvs::Empty>(
+            "/" + this->model->GetName() + "/reset_simulation",
+            boost::bind(&SingleLegPlugin::ResetSimulation, this, _1, _2),
+            ros::VoidPtr(),
+            &this->rosProcessQueue
+        );
+
     ros::AdvertiseOptions gen_coord_ao =
         ros::AdvertiseOptions::create<std_msgs::Float64MultiArray>(
             "/" + this->model->GetName() + "/gen_coord",
@@ -391,6 +409,16 @@ void SingleLegPlugin::InitRos()
     ros::AdvertiseOptions gen_vel_ao =
         ros::AdvertiseOptions::create<std_msgs::Float64MultiArray>(
             "/" + this->model->GetName() + "/gen_vel",
+            1,
+            ros::SubscriberStatusCallback(),
+            ros::SubscriberStatusCallback(),
+            ros::VoidPtr(),
+            &this->rosPublishQueue
+        );
+
+    ros::AdvertiseOptions joint_forces_ao =
+        ros::AdvertiseOptions::create<std_msgs::Float64MultiArray>(
+            "/" + this->model->GetName() + "/joint_forces",
             1,
             ros::SubscriberStatusCallback(),
             ros::SubscriberStatusCallback(),
@@ -434,9 +462,13 @@ void SingleLegPlugin::InitRos()
             &this->rosProcessQueue
             );
 
+    this->resetSimService = this->rosNode->advertiseService(reset_simulation_aso);
+
     this->genCoordPub = this->rosNode->advertise(gen_coord_ao);
 
     this->genVelPub = this->rosNode->advertise(gen_vel_ao);
+
+    this->jointForcesPub = this->rosNode->advertise(joint_forces_ao);
 
     this->jointStateSub = this->rosNode->subscribe(joint_state_so);
 
@@ -562,6 +594,39 @@ void SingleLegPlugin::InitJointConfiguration()
         );
     }
 
+}
+
+bool SingleLegPlugin::ResetSimulation(const std_srvs::Empty::Request &_req,
+                                     std_srvs::Empty::Response &_res)
+{
+    this->world->Reset();
+
+    this->model->GetJointController()->Reset();
+
+    this->controlMode = ControlMode::position;
+
+    for (size_t i = 0; i < this->joint_names.size(); i++)
+    {
+        // Reset Torques
+        this->model->GetJointController()->SetForce(
+            this->model_name + "::" + this->joint_names[i],
+            0
+        );
+
+        // Set default position 
+        this->model->GetJointController()->SetJointPosition(
+            this->model_name + "::" + this->joint_names[i],
+            math_utils::wrapAngleToPi(math_utils::degToRad(this->joint_config[i]))
+        );
+
+        // Set controller position reference
+        this->model->GetJointController()->SetPositionTarget(
+            this->model_name + "::" + this->joint_names[i],
+            math_utils::wrapAngleToPi(math_utils::degToRad(this->joint_config[i]))
+        );
+    }
+
+    return true;
 }
 
 } // namespace gazebo

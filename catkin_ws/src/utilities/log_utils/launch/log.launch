@@ -1,0 +1,27 @@
+<launch>
+    <node 
+        pkg="log_utils" type="log_utils_node" name="log_utils_node" 
+        output="screen" />
+
+    <!-- ******************************************** -->
+    <!--                  Arguments                   -->
+    <!-- ******************************************** -->
+    <arg name="record_sys" default="true" />
+    <arg name="record_directory" default="/home/paal/Tetrapod-Robot/catkin_ws/src/utilities/log_utils/bagfiles" />
+
+    <!-- ******************************************** -->
+    <!--                  Logging                     -->
+    <!-- ******************************************** -->
+
+    <!-- Record data automatically in separate rosbags:
+            - system information (robot state)
+            - diagnostics (node output, diagnostics)     -->
+
+    <node pkg="rosbag" type="record" name="rosbag_joint_states"
+        args="record -o $(arg record_directory)/joint_state /log/joint_state"
+        if="$(arg record_sys)" />
+
+    <node pkg="rosbag" type="record" name="rosbag_joint_references"
+        args="record -o $(arg record_directory)/joint_state_cmd /log/joint_state_cmd"
+        if="$(arg record_sys)" />
+</launch>

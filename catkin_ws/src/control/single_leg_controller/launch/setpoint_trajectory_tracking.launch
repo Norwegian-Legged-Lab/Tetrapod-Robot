@@ -1,0 +1,27 @@
+<launch>
+    <node 
+        pkg="single_leg_controller" type="setpoint_trajectory_tracking" name="setpoint_trajectory_tracking" 
+        output="screen" />
+
+    <!-- ******************************************** -->
+    <!--                  Arguments                   -->
+    <!-- ******************************************** -->
+    <arg name="record_sys" default="true" />
+    <arg name="record_directory" default="/home/omicron/Tetrapod-Robot/logs" />
+
+    <!-- ******************************************** -->
+    <!--                  Logging                     -->
+    <!-- ******************************************** -->
+
+    <!-- Record data automatically in separate rosbags:
+            - system information (robot state)
+            - diagnostics (node output, diagnostics)     -->
+
+    <node pkg="rosbag" type="record" name="rosbag_joint_states"
+        args="record -o $(arg record_directory)/states /logging/joint_states"
+        if="$(arg record_sys)" />
+
+    <node pkg="rosbag" type="record" name="rosbag_joint_references"
+        args="record -o $(arg record_directory)/references /logging/joint_references"
+        if="$(arg record_sys)" />
+</launch>

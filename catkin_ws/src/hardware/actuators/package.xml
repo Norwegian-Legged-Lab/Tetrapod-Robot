@@ -60,6 +60,7 @@
   <exec_depend>std_msgs</exec_depend>
   
   <depend>eigen_conversions</depend>
+  <depend>serial_communication</depend>
 
 
   <!-- The export tag contains other, unspecified, tags -->

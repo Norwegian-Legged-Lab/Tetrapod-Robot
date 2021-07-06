@@ -5,7 +5,7 @@ gazebo_client:
     - single_leg::front_left_knee_joint     
 
   joint_config: [
-    45, -20, 90
+    80, 90, 0.0
   ]
 
   joint_velocity_controller:
@@ -22,11 +22,11 @@ gazebo_client:
     ]
   joint_position_controller:
     p_gains: [
-      50, 50, 50
+      100, 100, 100
     ]
     i_gains: [
       0, 0, 0
     ]
     d_gains: [
-      10,10,10
+      2, 2, 2
     ]

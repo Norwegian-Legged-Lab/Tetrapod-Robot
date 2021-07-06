@@ -12,6 +12,7 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   std_msgs
   eigen_conversions
+  serial_communication
 )
 
 ## System dependencies are found with CMake's conventions
@@ -113,6 +114,7 @@ catkin_package(
     std_msgs
     sensor_msgs 
     eigen_conversions
+    serial_communication
 #  DEPENDS system_lib
 )
 
@@ -141,7 +143,10 @@ add_library(${PROJECT_NAME}
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/actuators_node.cpp)
+add_executable(motor_interface_node
+  src/motor_interface_node.cpp
+  src/motor_interface.cpp
+)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -156,6 +161,12 @@ add_library(${PROJECT_NAME}
 ## Specify libraries to link a library or executable target against
 target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
+  serial
+)
+
+target_link_libraries(motor_interface_node
+  ${catkin_LIBRARIES}
+  serial
 )
 
 #############

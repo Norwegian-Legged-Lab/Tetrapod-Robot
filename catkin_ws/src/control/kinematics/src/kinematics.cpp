@@ -32,7 +32,7 @@ Kinematics::Kinematics()
 {
     // Set min/max angles
     this->min_angles(0) = math_utils::degToRad(0);      // fl, hy
-    this->min_angles(1) = math_utils::degToRad(-90);    // fl, hp
+    this->min_angles(1) = math_utils::degToRad(-95);    // fl, hp
     this->min_angles(2) = math_utils::degToRad(-115);   // fl, kp
     this->min_angles(3) = math_utils::degToRad(-170);   // fr, hy
     this->min_angles(4) = math_utils::degToRad(-90);    // fr, hp
@@ -45,7 +45,7 @@ Kinematics::Kinematics()
     this->min_angles(11) = math_utils::degToRad(-115);  // rr, kp
 
     this->max_angles(0) = math_utils::degToRad(170);    // fl, hy
-    this->max_angles(1) = math_utils::degToRad(90);     // fl, hp
+    this->max_angles(1) = math_utils::degToRad(95);     // fl, hp
     this->max_angles(2) = math_utils::degToRad(115);    // fl, kp
     this->max_angles(3) = math_utils::degToRad(0);      // fr, hy
     this->max_angles(4) = math_utils::degToRad(90);     // fr, hp
@@ -61,6 +61,7 @@ Kinematics::Kinematics()
     this->L1 = 0.130;
     this->L2 = 0.220;
     this->L3 = 0.279;
+    //this->L3 = 0.207; // Temporary while we are using the short lower legs
 
     this->LC1 = 0.1030;
     this->LC2 = 0.0257;
@@ -2562,6 +2563,26 @@ bool Kinematics::ValidateSolution(const Eigen::Matrix<double, 12, 1> &_q_r)
     }
 
     for (size_t i = 0; i < _q_r.size(); i++)
+    {
+        if (_q_r(i) < this->min_angles(i) || _q_r(i) > this->max_angles(i))
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+// Validate IK solution for a single leg
+bool Kinematics::ValidateSolution(const Eigen::Matrix<double, 3, 1> &_q_r)
+{
+    if (_q_r.hasNaN())
+    {
+        return false;
+    }
+
+    // Only the first three joint angles related to the front left leg are considered
+    for (size_t i = 0; i < 3; i++)
     {
         if (_q_r(i) < this->min_angles(i) || _q_r(i) > this->max_angles(i))
         {
