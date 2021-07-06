@@ -12,4 +12,4 @@ terrain_B = Terrain([1, 1, 1, 0])
 terrain_C = Terrain()
 
 step_span = 1
-import_and_animate_footstep_plan(terrain_A, step_span, title=None, base_name="/home/melyso/Documents/csv_files/footstep_planner")
+import_and_animate_footstep_plan(terrain_C, step_span, title=None, base_name="/home/melyso/Documents/csv_files/footstep_planner")

@@ -25,7 +25,7 @@ DecVars add_decision_variables(drake::solvers::MathematicalProgram &prog, Terrai
 
     int n_stones = terrain.getSteppingStones().rows();
 
-    decision_variables.position = prog.NewContinuousVariables(n_steps, 2, "position");
+    decision_variables.position = prog.NewContinuousVariables(n_steps, 3, "position");
 
     decision_variables.theta = prog.NewContinuousVariables(n_steps/n_legs + 1, 1, "theta");
 
@@ -61,7 +61,7 @@ void set_initial_and_goal_position(drake::solvers::MathematicalProgram &prog, in
 
     double theta_0 = 0;
 
-    Eigen::Vector2d center(terrain.getStoneByName("initial").getCenter());
+    Eigen::Vector3d center(terrain.getStoneByName("initial").getCenter());
     
     double angle_front_left = theta_0 + phis[front_left];
 
@@ -71,32 +71,32 @@ void set_initial_and_goal_position(drake::solvers::MathematicalProgram &prog, in
 
     double angle_rear_right = theta_0 + phis[rear_right];
 
-    Eigen::Vector2d initial_position_front_left = center + length_legs*Eigen::Vector2d(std::cos(angle_front_left), std::sin(angle_front_left));
+    Eigen::Vector3d initial_position_front_left = center + length_legs*Eigen::Vector3d(std::cos(angle_front_left), std::sin(angle_front_left), 0);
 
-    Eigen::Vector2d initial_position_rear_left = center + length_legs*Eigen::Vector2d(std::cos(angle_rear_left), std::sin(angle_rear_left));
+    Eigen::Vector3d initial_position_rear_left = center + length_legs*Eigen::Vector3d(std::cos(angle_rear_left), std::sin(angle_rear_left), 0);
 
-    Eigen::Vector2d initial_position_front_right = center + length_legs*Eigen::Vector2d(std::cos(angle_front_right), std::sin(angle_front_right));
+    Eigen::Vector3d initial_position_front_right = center + length_legs*Eigen::Vector3d(std::cos(angle_front_right), std::sin(angle_front_right), 0);
 
-    Eigen::Vector2d initial_position_rear_right = center + length_legs*Eigen::Vector2d(std::cos(angle_rear_right), std::sin(angle_rear_right));
+    Eigen::Vector3d initial_position_rear_right = center + length_legs*Eigen::Vector3d(std::cos(angle_rear_right), std::sin(angle_rear_right), 0);
 
     center = terrain.getStoneByName("goal").getCenter();
 
     //Enforce initial positions and goal positions
-    Eigen::Vector2d goal_position_front_left = center + length_legs*Eigen::Vector2d(std::cos(angle_front_left), std::sin(angle_front_left));
+    Eigen::Vector3d goal_position_front_left = center + length_legs*Eigen::Vector3d(std::cos(angle_front_left), std::sin(angle_front_left), 0);
 
-    Eigen::Vector2d goal_position_rear_left = center + length_legs*Eigen::Vector2d(std::cos(angle_rear_left), std::sin(angle_rear_left));
+    Eigen::Vector3d goal_position_rear_left = center + length_legs*Eigen::Vector3d(std::cos(angle_rear_left), std::sin(angle_rear_left), 0);
 
-    Eigen::Vector2d goal_position_front_right = center + length_legs*Eigen::Vector2d(std::cos(angle_front_right), std::sin(angle_front_right));
+    Eigen::Vector3d goal_position_front_right = center + length_legs*Eigen::Vector3d(std::cos(angle_front_right), std::sin(angle_front_right), 0);
 
-    Eigen::Vector2d goal_position_rear_right = center + length_legs*Eigen::Vector2d(std::cos(angle_rear_right), std::sin(angle_rear_right));
+    Eigen::Vector3d goal_position_rear_right = center + length_legs*Eigen::Vector3d(std::cos(angle_rear_right), std::sin(angle_rear_right), 0);
     
-    Eigen::Vector2d initial_positions[] = {initial_position_front_left, initial_position_front_right, initial_position_rear_left, initial_position_rear_right};
+    Eigen::Vector3d initial_positions[] = {initial_position_front_left, initial_position_front_right, initial_position_rear_left, initial_position_rear_right};
 
-    Eigen::Vector2d goal_positions[] = {goal_position_front_left, goal_position_front_right, goal_position_rear_left, goal_position_rear_right};
+    Eigen::Vector3d goal_positions[] = {goal_position_front_left, goal_position_front_right, goal_position_rear_left, goal_position_rear_right};
 
-    Eigen::Matrix<drake::symbolic::Expression, 2, 1> init_pos_i;
+    Eigen::Matrix<drake::symbolic::Expression, 3, 1> init_pos_i;
 
-    Eigen::Matrix<drake::symbolic::Expression, 2, 1> goal_pos_i;
+    Eigen::Matrix<drake::symbolic::Expression, 3, 1> goal_pos_i;
 
     for (int i = 0; i < n_legs; ++i)
     {
@@ -221,13 +221,13 @@ void geometry_limits(drake::solvers::MathematicalProgram &prog, int n_steps, int
 
         length_legs*(lin_sin(i/n_legs)*cos(phis_ordered[i % n_legs]) + lin_cos(i/n_legs)*sin(phis_ordered[i % n_legs]));
 
-        prog.AddLinearConstraint(position.row(i).transpose() - (p_i + leg_offset) <= Eigen::Vector2d::Constant(bbox_len/2));
+        prog.AddLinearConstraint(position.block(i, 0, 1, 2).transpose() - (p_i + leg_offset) <= Eigen::Vector2d::Constant(bbox_len/2));
 
-        prog.AddLinearConstraint(position.row(i).transpose() - (p_i + leg_offset) >= Eigen::Vector2d::Constant(-bbox_len/2));
+        prog.AddLinearConstraint(position.block(i, 0, 1, 2).transpose() - (p_i + leg_offset) >= Eigen::Vector2d::Constant(-bbox_len/2));
     }
 }
 
-void relative_position_limits(drake::solvers::MathematicalProgram &prog, int n_steps, int n_legs, double step_span, DecVars &decision_variables)
+void relative_position_limits(drake::solvers::MathematicalProgram &prog, int n_steps, int n_legs, double step_span, double step_height, DecVars &decision_variables)
 {
     MatrixXDecisionVariable &position = decision_variables.position;
 
@@ -240,6 +240,10 @@ void relative_position_limits(drake::solvers::MathematicalProgram &prog, int n_s
         prog.AddLinearConstraint(position(i, 1) - position(i - n_legs, 1) <= step_span/2);
 
         prog.AddLinearConstraint(position(i, 1) - position(i - n_legs, 1) >= -step_span/2);
+
+        prog.AddLinearConstraint(position(i, 2) - position(i - n_legs, 2) <= step_height);
+
+        prog.AddLinearConstraint(position(i, 2) - position(i - n_legs, 2) >= -step_height);
     }
 }
 
@@ -275,18 +279,28 @@ void foot_in_stepping_stone(drake::solvers::MathematicalProgram &prog, Terrain &
 
     Eigen::Vector4d M = get_big_M(terrain);
 
+    Eigen::Matrix<double, 1, 1> M_height = Eigen::Matrix<double, 1, 1>::Constant(10);
+
     int n_stones = terrain.getSteppingStones().rows();
 
-    Eigen::MatrixXd A, b;
+    Eigen::MatrixXd A_ineq, b_ineq, A_eq, b_eq;
     for (int i = 0; i < n_steps; ++i)
     {
         for (int l = 0; l < n_stones ; ++l)
         {
-            A = terrain.getSteppingStones()(l).getA();
+            A_ineq = terrain.getSteppingStones()(l).getAIneq();
 
-            b = terrain.getSteppingStones()(l).getB();
+            b_ineq = terrain.getSteppingStones()(l).getBIneq();
 
-            auto constr = prog.AddLinearConstraint(A*position.row(i).transpose() <= b + (1 - stone(i, l))*M);
+            A_eq = terrain.getSteppingStones()(l).getAEq();
+
+            b_eq = terrain.getSteppingStones()(l).getBEq();
+
+            prog.AddLinearConstraint(A_ineq*position.row(i).transpose() <= b_ineq + (1 - stone(i, l))*M);
+
+            prog.AddLinearConstraint(A_eq*position.row(i).transpose() <= b_eq + (1 - stone(i, l))*M_height);
+
+            prog.AddLinearConstraint(A_eq*position.row(i).transpose() >= b_eq - (1 - stone(i, l))*M_height);
         }
     }
 }
@@ -309,11 +323,11 @@ void minimize_remaining_length(drake::solvers::MathematicalProgram &prog, Terrai
 {
     MatrixXDecisionVariable &position = decision_variables.position;
 
-    Eigen::Matrix<drake::symbolic::Expression, 2, 1> center;
+    Eigen::Matrix<drake::symbolic::Expression, 3, 1> center;
 
-    Eigen::Matrix<drake::symbolic::Expression, 2, 1> dist;
+    Eigen::Matrix<drake::symbolic::Expression, 3, 1> dist;
 
-    center = position.block(n_steps - n_legs, 0, n_legs, 2).transpose()*Eigen::Vector4d::Ones()/n_legs;
+    center = position.block(n_steps - n_legs, 0, n_legs, 3).transpose()*Eigen::Vector4d::Ones()/n_legs;
 
     dist = terrain.getStoneByName("goal").getCenter() - center;
 

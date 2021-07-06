@@ -2,21 +2,21 @@
 
 Terrain::Terrain(Eigen::Array<bool, Eigen::Dynamic, 1> bool_bridge)
 {
-    SteppingStone initial = addStone(Eigen::Matrix<double, 2, 1>::Zero(), 1.2, 1.2, "initial");
+    SteppingStone initial = addStone(Eigen::Vector3d::Zero(), 1.2, 1.2, "initial");
 
     double width_bridge = 0.24;
 
-    Eigen::Matrix<double, 2, 1> center = initial.getBottomRight() + Eigen::Vector2d(width_bridge*1.5, initial.getHeight()/2);
+    Eigen::Vector3d center = initial.getBottomRight() + Eigen::Vector3d(width_bridge*1.5, initial.getHeight()/2, 0);
 
     int num_stones = bool_bridge.colwise().count()(0);
 
-    Eigen::Array<Eigen::Matrix<double, 2, 1>, Eigen::Dynamic, 1> centers(num_stones);
+    Eigen::Array<Eigen::Vector3d, Eigen::Dynamic, 1> centers(num_stones);
 
     for (int i = 0; i < bool_bridge.rows(); ++i)
     {
         if (bool_bridge(i))
         {
-            centers(i) = center + Eigen::Vector2d(i*2*width_bridge, 0);
+            centers(i) = center + Eigen::Vector3d(i*2*width_bridge, 0, 0);
         }
     }
 
@@ -25,7 +25,7 @@ Terrain::Terrain(Eigen::Array<bool, Eigen::Dynamic, 1> bool_bridge)
         Eigen::Array<double, Eigen::Dynamic, 1>::Constant(num_stones, 1, initial.getHeight()),
         "bridge");
     
-    center = initial.getCenter() + Eigen::Vector2d(initial.getWidth() + (bool_bridge.rows()*2 + 1)*width_bridge, 0);
+    center = initial.getCenter() + Eigen::Vector3d(initial.getWidth() + (bool_bridge.rows()*2 + 1)*width_bridge, 0, 0);
 
     SteppingStone goal = addStone(center, initial.getWidth(), initial.getHeight(), "goal");
 
@@ -33,32 +33,32 @@ Terrain::Terrain(Eigen::Array<bool, Eigen::Dynamic, 1> bool_bridge)
 
     double clearance = 0.1;
 
-    Eigen::Matrix<double, 2, 1> c2g = goal.getCenter() - initial.getCenter();
+    Eigen::Vector3d c2g = goal.getCenter() - initial.getCenter();
 
     double width = initial.getWidth() + c2g(0);
 
-    center = initial.getCenter() + Eigen::Vector2d(0, (initial.getHeight() + height)/2 + clearance);
+    center = initial.getCenter() + Eigen::Vector3d(0, (initial.getHeight() + height)/2 + clearance, 0);
 
     addStone(center, width, height, "lateral");
 }
 
 Terrain::Terrain()
 {
-    SteppingStone initial = addStone(Eigen::Vector2d(0, 0), 1.2, 1.2, "initial");
+    SteppingStone initial = addStone(Eigen::Vector3d(0, 0, 0), 1.2, 1.2, "initial");
 
     for (int i = 0; i < 2; ++i)
     {
-        addStone(Eigen::Vector2d(1 + 2*i, 0), 1.2, 4.2, "vertical");
-        addStone(Eigen::Vector2d(2, -1.5 + 3*i), 3.2, 1.2, "lateral");
+        addStone(Eigen::Vector3d(1 + 2*i, 0, 0), 1.2, 4.2, "vertical");
+        addStone(Eigen::Vector3d(2, -1.5 + 3*i, 0), 3.2, 1.2, "lateral");
     }
 
-    SteppingStone goal = addStone(Eigen::Vector2d(4, 0), 1.2, 1.2, "goal");
+    SteppingStone goal = addStone(Eigen::Vector3d(4, 0, 0.1), 1.2, 1.2, "goal");
 }
 
 Terrain::~Terrain()
 {}
 
-SteppingStone Terrain::addStone(Eigen::Matrix<double, 2, 1> center, double width, double height, std::string name)
+SteppingStone Terrain::addStone(Eigen::Vector3d center, double width, double height, std::string name)
 {
     SteppingStone stone(center, width, height, name);
 
@@ -69,7 +69,7 @@ SteppingStone Terrain::addStone(Eigen::Matrix<double, 2, 1> center, double width
     return stone;
 }
 
-Eigen::Array<SteppingStone, Eigen::Dynamic, 1> Terrain::addStones(Eigen::Array<Eigen::Vector2d, Eigen::Dynamic, 1> centers, Eigen::Array<double, Eigen::Dynamic, 1> widths, Eigen::Array<double, Eigen::Dynamic, 1> heights, std::string name)
+Eigen::Array<SteppingStone, Eigen::Dynamic, 1> Terrain::addStones(Eigen::Array<Eigen::Vector3d, Eigen::Dynamic, 1> centers, Eigen::Array<double, Eigen::Dynamic, 1> widths, Eigen::Array<double, Eigen::Dynamic, 1> heights, std::string name)
 {
     int n = centers.rows();
 
@@ -103,12 +103,4 @@ SteppingStone const &Terrain::getStoneByName(std::string name) const
     }
     
     throw "No stone in the terrain has the name " + name + ".";
-}
-
-void Terrain::print()
-{
-    for (int i = 0; i < stepping_stones.rows(); ++i)
-    {
-        stepping_stones(i).print();
-    }
 }

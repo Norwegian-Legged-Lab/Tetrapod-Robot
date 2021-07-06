@@ -5,7 +5,7 @@
 #include "drake/solvers/osqp_solver.h"
 #include "drake/solvers/gurobi_solver.h"
 #include <iostream>
-DecVars_res footstep_planner(Terrain &terrain, int n_steps, int n_legs, double length_legs, Leg step_sequence[], double bbox_len, double step_span, bool use_gurobi)
+DecVars_res footstep_planner(Terrain &terrain, int n_steps, int n_legs, double length_legs, Leg step_sequence[], double bbox_len, double step_span, double step_height, bool use_gurobi)
 {
     drake::solvers::MathematicalProgram prog;
     std::cout << "is gurobi solver available?: " << drake::solvers::GurobiSolver::is_available() << "is it enabled?: " << drake::solvers::GurobiSolver::is_enabled() << "is the license valid? " << drake::solvers::GurobiSolver::AcquireLicense() << std::endl;
@@ -22,7 +22,7 @@ DecVars_res footstep_planner(Terrain &terrain, int n_steps, int n_legs, double l
     geometry_limits(prog, n_steps, n_legs, length_legs, step_sequence, terrain, bbox_len, decision_variables);
 
     ROS_INFO("setting relative position limits");
-    relative_position_limits(prog, n_steps, n_legs, step_span, decision_variables);
+    relative_position_limits(prog, n_steps, n_legs, step_span, step_height, decision_variables);
 
     ROS_INFO("one stone per foot");
     one_stone_per_foot(prog, n_steps, decision_variables);

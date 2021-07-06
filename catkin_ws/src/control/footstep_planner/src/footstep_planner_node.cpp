@@ -23,9 +23,8 @@ int main(int argc, char **argv)
 
     bool_bridge << true, true, true, true;
 
-    Terrain terrain(bool_bridge);
-    //Terrain terrain;
-    terrain.print();
+    //Terrain terrain(bool_bridge);
+    Terrain terrain;
 
     int n_steps = 4*20;
 
@@ -35,13 +34,15 @@ int main(int argc, char **argv)
 
     double step_span = 0.5;
 
+    double step_height = 0.2;
+
     double length_legs = 0.6;
 
-    double bbox_len = 0.5;
+    double bbox_len = 0.3;
 
     ROS_INFO("About to begin planning");
     
-    DecVars_res res = footstep_planner(terrain, n_steps, n_legs, length_legs, step_sequence, bbox_len, step_span);
+    DecVars_res res = footstep_planner(terrain, n_steps, n_legs, length_legs, step_sequence, bbox_len, step_span, step_height);
     double wp_dist = 2;
     int n_points = 4;
     //DecVars_res res = waypoint_planner(terrain, n_points, length_legs, bbox_len, wp_dist);

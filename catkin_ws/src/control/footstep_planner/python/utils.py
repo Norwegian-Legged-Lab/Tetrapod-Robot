@@ -359,13 +359,13 @@ def import_decision_variables_biped(base_name="footstep_planner"):
 def import_decision_variables_quadruped(base_name="footstep_planner"):
     fend = ".csv"
 
-    position_front_left = np.genfromtxt(base_name + "_position_front_left" + fend)
+    position_front_left = np.genfromtxt(base_name + "_position_front_left" + fend)[:, 0:2]
     
-    position_front_right = np.genfromtxt(base_name + "_position_front_right" + fend)
+    position_front_right = np.genfromtxt(base_name + "_position_front_right" + fend)[:, 0:2]
     
-    position_rear_left = np.genfromtxt(base_name + "_position_rear_left" + fend)
+    position_rear_left = np.genfromtxt(base_name + "_position_rear_left" + fend)[:, 0:2]
     
-    position_rear_right = np.genfromtxt(base_name + "_position_rear_right" + fend)
+    position_rear_right = np.genfromtxt(base_name + "_position_rear_right" + fend)[:, 0:2]
     
     return (position_front_left, position_front_right, position_rear_left, position_rear_right, True)
 

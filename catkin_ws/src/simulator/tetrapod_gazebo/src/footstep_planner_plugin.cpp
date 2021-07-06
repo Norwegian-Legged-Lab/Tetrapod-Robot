@@ -179,7 +179,7 @@ void FootstepPlannerPlugin::UpdateFootstepPlan(const geometry_msgs::PoseArray::C
     ROS_INFO("Footstep_planner_plugin: Received updated footstep plan");
     Eigen::MatrixX3d poses = eigen_matr_from_pose_array(*msg);
 
-    DeleteVisuals();
+    //DeleteVisuals();
 
     SetVisuals(poses);
 

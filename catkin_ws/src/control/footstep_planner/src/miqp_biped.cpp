@@ -16,9 +16,9 @@ DecVars add_decision_variables(drake::solvers::MathematicalProgram &prog, Terrai
 
     int n_stones = terrain.getSteppingStones().rows();
 
-    decision_variables.position_left = prog.NewContinuousVariables(n_steps + 1, 2);
+    decision_variables.position_left = prog.NewContinuousVariables(n_steps + 1, 3);
     
-    decision_variables.position_right = prog.NewContinuousVariables(n_steps + 1, 2);
+    decision_variables.position_right = prog.NewContinuousVariables(n_steps + 1, 3);
 
     decision_variables.stone_left = prog.NewBinaryVariables(n_steps + 1, n_stones, "b");
     
@@ -37,19 +37,19 @@ void set_initial_and_goal_position(drake::solvers::MathematicalProgram &prog, Te
     
     MatrixXDecisionVariable &position_right = decision_variables.position_right;
 
-    Eigen::Vector2d foot_offset(0, 0.2);
+    Eigen::Vector3d foot_offset(0, 0.2, 0);
 
-    Eigen::Vector2d center(terrain.getStoneByName("initial").getCenter());
+    Eigen::Vector3d center(terrain.getStoneByName("initial").getCenter());
 
-    Eigen::Vector2d initial_position_left = center;
+    Eigen::Vector3d initial_position_left = center;
 
-    Eigen::Vector2d initial_position_right = center - foot_offset;
+    Eigen::Vector3d initial_position_right = center - foot_offset;
 
     center = terrain.getStoneByName("goal").getCenter();
 
-    Eigen::Vector2d goal_position_left = center;
+    Eigen::Vector3d goal_position_left = center;
 
-    Eigen::Vector2d goal_position_right = center - foot_offset;
+    Eigen::Vector3d goal_position_right = center - foot_offset;
 
     //Enforce Initial positions of the feet
     assert(position_left.cols() == initial_position_left.rows() && initial_position_left.cols() == 1);
@@ -70,7 +70,7 @@ void set_initial_and_goal_position(drake::solvers::MathematicalProgram &prog, Te
     prog.AddLinearConstraint(position_right.row(position_right.rows() - 1).transpose() == goal_position_right);   
 }
 
-void relative_position_limits(drake::solvers::MathematicalProgram &prog, int n_steps, double step_span, DecVars &decision_variables)
+void relative_position_limits(drake::solvers::MathematicalProgram &prog, int n_steps, double step_span, double step_height, DecVars &decision_variables)
 {
     MatrixXDecisionVariable &position_left = decision_variables.position_left;
     
@@ -80,9 +80,13 @@ void relative_position_limits(drake::solvers::MathematicalProgram &prog, int n_s
     //Constraints for step[i] against step[i]
     for (int t = 0; t < n_steps; ++t)
     {
-        prog.AddLinearConstraint(position_left.row(t + 1).transpose() - position_right.row(t).transpose() <= Eigen::Vector2d::Constant(step_span/2));
+        prog.AddLinearConstraint(position_left.block(t + 1, 0, 1, 2).transpose() - position_right.block(t, 0, 1, 2).transpose() <= Eigen::Vector2d::Constant(step_span/2));
 
-        prog.AddLinearConstraint(position_right.row(t + 1).transpose() - position_left.row(t).transpose() <= Eigen::Vector2d::Constant(step_span/2));
+        prog.AddLinearConstraint(position_right.block(t + 1, 0, 1, 2).transpose() - position_left.block(t, 0, 1, 2).transpose() <= Eigen::Vector2d::Constant(step_span/2));
+
+        prog.AddLinearConstraint(position_left(t + 1, 2) - position_right(t, 2) <= step_height);
+
+        prog.AddLinearConstraint(position_right(t + 1, 2) - position_left(t, 2) <= step_height);
     }
 }
 
@@ -98,9 +102,9 @@ void step_sequence(drake::solvers::MathematicalProgram &prog, int n_steps, doubl
 
     Eigen::Vector2d step_limit = Eigen::Vector2d::Constant(step_span);
     
-    Eigen::Matrix<drake::symbolic::Expression, 2, 1> step_left, step_right;
+    Eigen::Matrix<drake::symbolic::Expression, 3, 1> step_left, step_right;
 
-    Eigen::Matrix<drake::symbolic::Expression, 2, 1> limit_left, limit_right;
+    Eigen::Matrix<drake::symbolic::Expression, 3, 1> limit_left, limit_right;
 
     for (int t = 0; t < n_steps; ++t)
     {
@@ -174,7 +178,7 @@ void foot_in_stepping_stone(drake::solvers::MathematicalProgram &prog, Terrain &
 
     int n_stones = terrain.getSteppingStones().rows();
 
-    Eigen::MatrixXd A, b;
+    Eigen::MatrixXd A_ineq, b_ineq, A_eq, b_eq;
 
     drake::solvers::DecisionVariable d_l, d_r;
 
@@ -182,17 +186,30 @@ void foot_in_stepping_stone(drake::solvers::MathematicalProgram &prog, Terrain &
     {
         for (int i = 0; i < n_stones; ++i)
         {
-            A = terrain.getSteppingStones()(i).getA();
+            A_ineq = terrain.getSteppingStones()(i).getAIneq();
 
-            b = terrain.getSteppingStones()(i).getB();
+            b_ineq = terrain.getSteppingStones()(i).getBIneq();
+
+            A_eq = terrain.getSteppingStones()(i).getAEq();
+
+            b_eq = terrain.getSteppingStones()(i).getBEq();
 
             d_l = stone_left(t,i);
 
             d_r = stone_right(t,i);
 
-            prog.AddLinearConstraint(A*position_left.row(t).transpose() <= b + (1 - d_l)*M);
+            prog.AddLinearConstraint(A_ineq*position_left.row(t).transpose() <= b_ineq + (1 - d_l)*M);
 
-            prog.AddLinearConstraint(A*position_right.row(t).transpose() <= b + (1 - d_r)*M);
+            prog.AddLinearConstraint(A_ineq*position_right.row(t).transpose() <= b_ineq + (1 - d_r)*M);
+
+            prog.AddLinearConstraint(A_eq*position_left.row(t).transpose() <= b_eq + (1 - d_l)*M);
+
+            prog.AddLinearConstraint(A_eq*position_left.row(t).transpose() >= b_eq - (1 - d_l)*M);
+            
+            prog.AddLinearConstraint(A_eq*position_right.row(t).transpose() <= b_eq + (1 - d_r)*M);
+
+            prog.AddLinearConstraint(A_eq*position_right.row(t).transpose() >= b_eq - (1 - d_r)*M);
+
         }
     }
 
@@ -204,9 +221,9 @@ void minimize_step_length(drake::solvers::MathematicalProgram &prog, int n_steps
 
     MatrixXDecisionVariable &position_right = decision_variables.position_right;
 
-    Eigen::Matrix<drake::symbolic::Expression, 2, 1> dist_l;
+    Eigen::Matrix<drake::symbolic::Expression, 3, 1> dist_l;
 
-    Eigen::Matrix<drake::symbolic::Expression, 2, 1> dist_r;
+    Eigen::Matrix<drake::symbolic::Expression, 3, 1> dist_r;
     
     drake::symbolic::Expression res;
 

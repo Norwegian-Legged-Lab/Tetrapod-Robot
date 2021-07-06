@@ -9,9 +9,9 @@ DecVars_res waypoint_planner(Terrain &terrain, int n_points, double length_legs,
 {
     drake::solvers::MathematicalProgram prog;
     
-    Eigen::Vector2d initial_center = terrain.getStoneByName("initial").getCenter();
+    Eigen::Vector3d initial_center = terrain.getStoneByName("initial").getCenter();
     
-    Eigen::Vector2d goal_center = terrain.getStoneByName("goal").getCenter();
+    Eigen::Vector3d goal_center = terrain.getStoneByName("goal").getCenter();
     
     ROS_INFO("adding decision variables");
     DecVars decision_variables = add_decision_variables(prog, terrain, n_points);

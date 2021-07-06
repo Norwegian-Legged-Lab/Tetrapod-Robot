@@ -1,6 +1,6 @@
 #include "footstep_planner/stepping_stone.h"
 #include<iostream>
-SteppingStone::SteppingStone(Eigen::Matrix<double, 2, 1> center, double width, double height, std::string name)
+SteppingStone::SteppingStone(Eigen::Vector3d center, double width, double height, std::string name)
 {
     this->center = center;
 
@@ -10,13 +10,13 @@ SteppingStone::SteppingStone(Eigen::Matrix<double, 2, 1> center, double width, d
 
     this->name = name;
 
-    Eigen::Matrix<double, 2, 1> c2tr;
+    Eigen::Vector3d c2tr;
 
-    c2tr << width/2, height/2;
+    c2tr << width/2, height/2, 0;
 
-    Eigen::Matrix<double, 2, 1> c2br;
+    Eigen::Vector3d c2br;
 
-    c2br << width/2, -height/2;
+    c2br << width/2, -height/2, 0;
 
     top_right << center + c2tr;
 
@@ -26,12 +26,16 @@ SteppingStone::SteppingStone(Eigen::Matrix<double, 2, 1> center, double width, d
 
     bottom_left << center - c2tr;
 
-    A << 1, 0,
-        0, 1,
-        -1, 0,
-        0, -1;
+    A_ineq << 1, 0, 0,
+        0, 1, 0,
+        -1, 0, 0,
+        0, -1, 0;
 
-    b << c2tr.replicate(2, 1) + A*center;
+    b_ineq << c2tr.segment(0, 2).replicate(2, 1) + A_ineq*center;
+
+    A_eq << 0, 0, 1;
+
+    b_eq << center(2);
 }
 
 SteppingStone::SteppingStone()
@@ -39,12 +43,3 @@ SteppingStone::SteppingStone()
 
 SteppingStone::~SteppingStone()
 {}
-
-void SteppingStone::print()
-{
-    std::cout << "name: " << name << std::endl;
-
-    std::cout << "center: " << std::endl << center << ", width: " << width << "," << std::endl << "height: " << height << std::endl;
-
-    std::cout << "A: " << std::endl << A << ", b:" << std::endl << b << std::endl;
-}
