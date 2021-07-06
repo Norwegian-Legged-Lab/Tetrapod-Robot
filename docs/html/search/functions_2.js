@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['boxminus_985',['boxMinus',['../classkindr_1_1RotationBase.html#a96158c21692da59bce4ae0eb7025802f',1,'kindr::RotationBase']]],
-  ['boxplus_986',['boxPlus',['../classkindr_1_1RotationBase.html#a65c48f330b3f92db8ecf2f2c539265ea',1,'kindr::RotationBase']]]
+  ['hierarchicalleastsquareoptimization_265',['HierarchicalLeastSquareOptimization',['../classHierarchicalOptimizationControl.html#aa5be7152ab8fe0eb6dcb595aa5d961b5',1,'HierarchicalOptimizationControl']]],
+  ['hierarchicaloptimizationcontrol_266',['HierarchicalOptimizationControl',['../classHierarchicalOptimizationControl.html#a2dcfaa71130d1c120477ab120589c662',1,'HierarchicalOptimizationControl']]],
+  ['hierarchicalqpoptimization_267',['HierarchicalQPOptimization',['../classHierarchicalOptimizationControl.html#a39c7c02bbbf36deb7ba3f4af270e4288',1,'HierarchicalOptimizationControl']]]
 ];

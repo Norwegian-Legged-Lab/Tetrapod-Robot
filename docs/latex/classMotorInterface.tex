@@ -14,52 +14,122 @@ A class to control and distribute motor position, velocity and torque informatio
 \item 
 \mbox{\Hypertarget{classMotorInterface_aab48de285663a5b0cfe70ae764d5e491}\label{classMotorInterface_aab48de285663a5b0cfe70ae764d5e491}} 
 \mbox{\hyperlink{classMotorInterface_aab48de285663a5b0cfe70ae764d5e491}{Motor\+Interface}} ()
-\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Default Constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classMotorInterface_a1e1b05c12dcf4d012a84a6d4ffe68fec}{Motor\+Interface}} (const int \&\+\_\+num\+\_\+motors)
+\begin{DoxyCompactList}\small\item\em Custom Constructor. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classMotorInterface_a6348030321aebf0c8824749895b961b7}\label{classMotorInterface_a6348030321aebf0c8824749895b961b7}} 
 virtual \mbox{\hyperlink{classMotorInterface_a6348030321aebf0c8824749895b961b7}{$\sim$\+Motor\+Interface}} ()
 \begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classMotorInterface_a727241b5d23190c8dd46307cb0ab2b93}{On\+Motor\+State\+Msg}} (const sensor\+\_\+msgs\+::\+Joint\+State\+Const\+Ptr \&\+\_\+msg)
-\begin{DoxyCompactList}\small\item\em The On\+Motor\+State\+C\+Msg function handles an incoming generalized coordinates message from R\+OS. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classMotorInterface_a7a93f5ed3d384cca9631bbb8e3c664b6}\label{classMotorInterface_a7a93f5ed3d384cca9631bbb8e3c664b6}} 
-void \mbox{\hyperlink{classMotorInterface_a7a93f5ed3d384cca9631bbb8e3c664b6}{Process\+Queue\+Thread}} ()
-\begin{DoxyCompactList}\small\item\em The Process\+Queue\+Thread function is a R\+OS helper function that processes messages. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classMotorInterface_acfbd17e4b752c35e83cccd7b6898488c}\label{classMotorInterface_acfbd17e4b752c35e83cccd7b6898488c}} 
-void \mbox{\hyperlink{classMotorInterface_acfbd17e4b752c35e83cccd7b6898488c}{Publish\+Queue\+Thread}} ()
-\begin{DoxyCompactList}\small\item\em The Publish\+Queue\+Thread function is a R\+OS helper function that publish messages. \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \mbox{\hyperlink{classMotorInterface_a52f74f553b08b8f5c71864e48d6deb0a}{Set\+Joint\+Positions}} (const std\+::vector$<$ double $>$ \&\+\_\+pos)
+\begin{DoxyCompactList}\small\item\em Set the position of the joints. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotorInterface_af502ecc49f8d8f709ae7b0f9baac7b5e}{Set\+Joint\+Velocities}} (const std\+::vector$<$ double $>$ \&\+\_\+vel)
+\begin{DoxyCompactList}\small\item\em Set the velocity of the joints. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotorInterface_a6495aa1f3d70580c1d724944bc0181ca}{Set\+Joint\+Torques}} (const std\+::vector$<$ double $>$ \&\+\_\+torque)
+\begin{DoxyCompactList}\small\item\em Set the torque of the joints. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMotorInterface_a3093e44e803f256481e2120c3b5b6539}\label{classMotorInterface_a3093e44e803f256481e2120c3b5b6539}} 
+void \mbox{\hyperlink{classMotorInterface_a3093e44e803f256481e2120c3b5b6539}{Process\+Serial\+Messages}} ()
+\begin{DoxyCompactList}\small\item\em Checks if there are any incomming messages from the serial ports. If there are new replies these are read and published. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotorInterface_a5cc0e2f8578dba23550426e28d13b4a2}{On\+Joint\+State\+Cmd\+Msg}} (const sensor\+\_\+msgs\+::\+Joint\+State\+Const\+Ptr \&\+\_\+msg)
+\begin{DoxyCompactList}\small\item\em The Publish\+Torque\+Msg function publishes a desired torque message to the R\+OS topic set by the joint state publisher. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classMotorInterface_a90641f6adea38a1d523c2a5d81d6dda3}\label{classMotorInterface_a90641f6adea38a1d523c2a5d81d6dda3}} 
 void \mbox{\hyperlink{classMotorInterface_a90641f6adea38a1d523c2a5d81d6dda3}{Init\+Ros}} ()
-\begin{DoxyCompactList}\small\item\em The Init\+Ros function is called to initialize R\+OS. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classMotorInterface_a159c6794e8b6bb16ad696bd5c8734804}\label{classMotorInterface_a159c6794e8b6bb16ad696bd5c8734804}} 
-void \mbox{\hyperlink{classMotorInterface_a159c6794e8b6bb16ad696bd5c8734804}{Init\+Ros\+Queue\+Threads}} ()
-\begin{DoxyCompactList}\small\item\em The Init\+Ros\+Queue\+Threads function is called to initialize the R\+OS Publish and Process Queue Threads. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Protected Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{classMotorInterface_a9de8a6fc08a9914bb7471fcee768fdf4}\label{classMotorInterface_a9de8a6fc08a9914bb7471fcee768fdf4}} 
-sensor\+\_\+msgs\+::\+Joint\+State \mbox{\hyperlink{classMotorInterface_a9de8a6fc08a9914bb7471fcee768fdf4}{joint\+State}}
-\begin{DoxyCompactList}\small\item\em Joint State. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The Ros\+Process\+Queue\+Thread function is a R\+OS helper function that processes messages. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 A class to control and distribute motor position, velocity and torque information. 
 
-\doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classMotorInterface_a727241b5d23190c8dd46307cb0ab2b93}\label{classMotorInterface_a727241b5d23190c8dd46307cb0ab2b93}} 
-\index{MotorInterface@{MotorInterface}!OnMotorStateMsg@{OnMotorStateMsg}}
-\index{OnMotorStateMsg@{OnMotorStateMsg}!MotorInterface@{MotorInterface}}
-\doxysubsubsection{\texorpdfstring{OnMotorStateMsg()}{OnMotorStateMsg()}}
-{\footnotesize\ttfamily void Motor\+Interface\+::\+On\+Motor\+State\+Msg (\begin{DoxyParamCaption}\item[{const sensor\+\_\+msgs\+::\+Joint\+State\+Const\+Ptr \&}]{\+\_\+msg }\end{DoxyParamCaption})}
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classMotorInterface_a1e1b05c12dcf4d012a84a6d4ffe68fec}\label{classMotorInterface_a1e1b05c12dcf4d012a84a6d4ffe68fec}} 
+\index{MotorInterface@{MotorInterface}!MotorInterface@{MotorInterface}}
+\index{MotorInterface@{MotorInterface}!MotorInterface@{MotorInterface}}
+\doxysubsubsection{\texorpdfstring{MotorInterface()}{MotorInterface()}}
+{\footnotesize\ttfamily Motor\+Interface\+::\+Motor\+Interface (\begin{DoxyParamCaption}\item[{const int \&}]{\+\_\+num\+\_\+motors }\end{DoxyParamCaption})}
 
 
 
-The On\+Motor\+State\+C\+Msg function handles an incoming generalized coordinates message from R\+OS. 
+Custom Constructor. 
 
 
 \begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+num\+\_\+motors} & Number of motors in use. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classMotorInterface_a90641f6adea38a1d523c2a5d81d6dda3}\label{classMotorInterface_a90641f6adea38a1d523c2a5d81d6dda3}} 
+\index{MotorInterface@{MotorInterface}!InitRos@{InitRos}}
+\index{InitRos@{InitRos}!MotorInterface@{MotorInterface}}
+\doxysubsubsection{\texorpdfstring{InitRos()}{InitRos()}}
+{\footnotesize\ttfamily void Motor\+Interface\+::\+Init\+Ros (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The Ros\+Process\+Queue\+Thread function is a R\+OS helper function that processes messages. 
+
+The Ros\+Publish\+Queue\+Thread function is a R\+OS helper function that publish state messages.
+
+The Init\+Ros function is called to initialize R\+OS \mbox{\Hypertarget{classMotorInterface_a5cc0e2f8578dba23550426e28d13b4a2}\label{classMotorInterface_a5cc0e2f8578dba23550426e28d13b4a2}} 
+\index{MotorInterface@{MotorInterface}!OnJointStateCmdMsg@{OnJointStateCmdMsg}}
+\index{OnJointStateCmdMsg@{OnJointStateCmdMsg}!MotorInterface@{MotorInterface}}
+\doxysubsubsection{\texorpdfstring{OnJointStateCmdMsg()}{OnJointStateCmdMsg()}}
+{\footnotesize\ttfamily void Motor\+Interface\+::\+On\+Joint\+State\+Cmd\+Msg (\begin{DoxyParamCaption}\item[{const sensor\+\_\+msgs\+::\+Joint\+State\+Const\+Ptr \&}]{\+\_\+msg }\end{DoxyParamCaption})}
+
+
+
+The Publish\+Torque\+Msg function publishes a desired torque message to the R\+OS topic set by the joint state publisher. 
+
+The On\+Gen\+Coord\+Msg function handles an incoming generalized coordinates message from R\+OS. 
+\begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ in}}  & {\em \+\_\+msg} & A float array containing the generalized coordinates. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMotorInterface_a52f74f553b08b8f5c71864e48d6deb0a}\label{classMotorInterface_a52f74f553b08b8f5c71864e48d6deb0a}} 
+\index{MotorInterface@{MotorInterface}!SetJointPositions@{SetJointPositions}}
+\index{SetJointPositions@{SetJointPositions}!MotorInterface@{MotorInterface}}
+\doxysubsubsection{\texorpdfstring{SetJointPositions()}{SetJointPositions()}}
+{\footnotesize\ttfamily void Motor\+Interface\+::\+Set\+Joint\+Positions (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{\+\_\+pos }\end{DoxyParamCaption})}
+
+
+
+Set the position of the joints. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+pos} & New target position vector in radians \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMotorInterface_a6495aa1f3d70580c1d724944bc0181ca}\label{classMotorInterface_a6495aa1f3d70580c1d724944bc0181ca}} 
+\index{MotorInterface@{MotorInterface}!SetJointTorques@{SetJointTorques}}
+\index{SetJointTorques@{SetJointTorques}!MotorInterface@{MotorInterface}}
+\doxysubsubsection{\texorpdfstring{SetJointTorques()}{SetJointTorques()}}
+{\footnotesize\ttfamily void Motor\+Interface\+::\+Set\+Joint\+Torques (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{\+\_\+torque }\end{DoxyParamCaption})}
+
+
+
+Set the torque of the joints. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+torque} & New target torque \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMotorInterface_af502ecc49f8d8f709ae7b0f9baac7b5e}\label{classMotorInterface_af502ecc49f8d8f709ae7b0f9baac7b5e}} 
+\index{MotorInterface@{MotorInterface}!SetJointVelocities@{SetJointVelocities}}
+\index{SetJointVelocities@{SetJointVelocities}!MotorInterface@{MotorInterface}}
+\doxysubsubsection{\texorpdfstring{SetJointVelocities()}{SetJointVelocities()}}
+{\footnotesize\ttfamily void Motor\+Interface\+::\+Set\+Joint\+Velocities (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{\+\_\+vel }\end{DoxyParamCaption})}
+
+
+
+Set the velocity of the joints. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+vel} & New target velocity \\
 \hline
 \end{DoxyParams}
 

@@ -53,9 +53,9 @@ bool \mbox{\hyperlink{classKinematics_acfec333c272f446eebbc289b9216cb91}{Solve\+
 \begin{DoxyCompactList}\small\item\em The Solve\+Singe\+Leg\+Inverse\+Kinematics function calculates the inverse kinematics for a single leg. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classKinematics_ae9be537672b681659fb05808786c90a6}{Solve\+Single\+Leg\+Inverse\+Kinematics}} (const bool \&\+\_\+offset, const Vector3d \&\+\_\+f\+\_\+pos, Vector3d \&\+\_\+joint\+\_\+angles)
 \begin{DoxyCompactList}\small\item\em The Solve\+Singe\+Leg\+Inverse\+Kinematics function calculates the inverse kinematics of foot in the hip frame. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classkindr_1_1HomogeneousTransformation}{Trans\+Matrix}} \mbox{\hyperlink{classKinematics_a44e7cc1fa6e9a3e70f5b8b794997f25d}{Get\+Dh\+Transform}} (const double \&\+\_\+a, const double \&\+\_\+alpha, const double \&\+\_\+d, const double \&\+\_\+theta)
+Trans\+Matrix \mbox{\hyperlink{classKinematics_a44e7cc1fa6e9a3e70f5b8b794997f25d}{Get\+Dh\+Transform}} (const double \&\+\_\+a, const double \&\+\_\+alpha, const double \&\+\_\+d, const double \&\+\_\+theta)
 \begin{DoxyCompactList}\small\item\em The Get\+Dh\+Transform function returns the Denavit-\/\+Hartenberg transformation from frame A to frame B. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classkindr_1_1HomogeneousTransformation}{Trans\+Matrix}} \mbox{\hyperlink{classKinematics_a4c67f7cda22d8684c9a9f35956635557}{Get\+Hip\+To\+Body\+Transform}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg, const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&\+\_\+body, const double \&\+\_\+theta\+\_\+hy, const double \&\+\_\+theta\+\_\+hp, const double \&\+\_\+theta\+\_\+kp)
+Trans\+Matrix \mbox{\hyperlink{classKinematics_a4c67f7cda22d8684c9a9f35956635557}{Get\+Hip\+To\+Body\+Transform}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg, const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&\+\_\+body, const double \&\+\_\+theta\+\_\+hy, const double \&\+\_\+theta\+\_\+hp, const double \&\+\_\+theta\+\_\+kp)
 \begin{DoxyCompactList}\small\item\em The Get\+Hip\+To\+Body\+Transform function returns the homogeneous transformation from the hip frame to the specified body frame. \end{DoxyCompactList}\item 
 Eigen\+::\+Matrix$<$ double, 3, 3 $>$ \mbox{\hyperlink{classKinematics_a1a245720c27eca48806fb5e421549c9c}{Get\+Rotation\+Matrix\+W\+ToB}} (const double \&\+\_\+roll, const double \&\+\_\+pitch, const double \&\+\_\+yaw)
 \begin{DoxyCompactList}\small\item\em The Get\+Rotation\+Matrix\+W\+ToB function returns the Euler Angles Z\+YX rotation matrix from World to Body frame, i.\+e., the transform from Body to World. \end{DoxyCompactList}\item 
@@ -136,6 +136,10 @@ Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \mbox{\hyperlink{classKinematics_aa769e4e
 \mbox{\Hypertarget{classKinematics_afbe24573503e150193bff85bc6996401}\label{classKinematics_afbe24573503e150193bff85bc6996401}} 
 Eigen\+::\+Matrix$<$ double, 3, 1 $>$ {\bfseries Get\+Single\+Leg\+Gravitational\+Terms} (const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+q)
 \item 
+bool \mbox{\hyperlink{classKinematics_a1c6697fbd201589746f21c1be27dab35}{Validate\+Solution}} (const Joint\+Space\+Vector \&\+\_\+q\+\_\+r)
+\begin{DoxyCompactList}\small\item\em The Validate\+Solution function evaluates whether a set of joint angles is within joint limits. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classKinematics_ae4c5058b67e61502324b965925cc5651}{Validate\+Solution}} (const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+q\+\_\+r)
+\begin{DoxyCompactList}\small\item\em Overloaded version of the Validate\+Solution function, which evaluates whether a set of joint angles for a single leg is within the joint limits. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classKinematics_ace9c8e09c5b58e7f826c73336131a35c}\label{classKinematics_ace9c8e09c5b58e7f826c73336131a35c}} 
 bool {\bfseries Getfl\+Offset} ()
 \item 
@@ -221,7 +225,7 @@ Returns coriolis and centrifugal terms for the floating base system. ~\newline
 \index{Kinematics@{Kinematics}!GetDhTransform@{GetDhTransform}}
 \index{GetDhTransform@{GetDhTransform}!Kinematics@{Kinematics}}
 \doxysubsubsection{\texorpdfstring{GetDhTransform()}{GetDhTransform()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classkindr_1_1HomogeneousTransformation}{Trans\+Matrix}} Kinematics\+::\+Get\+Dh\+Transform (\begin{DoxyParamCaption}\item[{const double \&}]{\+\_\+a,  }\item[{const double \&}]{\+\_\+alpha,  }\item[{const double \&}]{\+\_\+d,  }\item[{const double \&}]{\+\_\+theta }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Trans\+Matrix Kinematics\+::\+Get\+Dh\+Transform (\begin{DoxyParamCaption}\item[{const double \&}]{\+\_\+a,  }\item[{const double \&}]{\+\_\+alpha,  }\item[{const double \&}]{\+\_\+d,  }\item[{const double \&}]{\+\_\+theta }\end{DoxyParamCaption})}
 
 
 
@@ -264,7 +268,7 @@ Returns gravitational terms for the floating base system. ~\newline
 \index{Kinematics@{Kinematics}!GetHipToBodyTransform@{GetHipToBodyTransform}}
 \index{GetHipToBodyTransform@{GetHipToBodyTransform}!Kinematics@{Kinematics}}
 \doxysubsubsection{\texorpdfstring{GetHipToBodyTransform()}{GetHipToBodyTransform()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classkindr_1_1HomogeneousTransformation}{Trans\+Matrix}} Kinematics\+::\+Get\+Hip\+To\+Body\+Transform (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&}]{\+\_\+leg,  }\item[{const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&}]{\+\_\+body,  }\item[{const double \&}]{\+\_\+theta\+\_\+hy,  }\item[{const double \&}]{\+\_\+theta\+\_\+hp,  }\item[{const double \&}]{\+\_\+theta\+\_\+kp }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Trans\+Matrix Kinematics\+::\+Get\+Hip\+To\+Body\+Transform (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&}]{\+\_\+leg,  }\item[{const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&}]{\+\_\+body,  }\item[{const double \&}]{\+\_\+theta\+\_\+hy,  }\item[{const double \&}]{\+\_\+theta\+\_\+hp,  }\item[{const double \&}]{\+\_\+theta\+\_\+kp }\end{DoxyParamCaption})}
 
 
 
@@ -1150,6 +1154,42 @@ The Solve\+Singe\+Leg\+Inverse\+Kinematics function calculates the inverse kinem
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Evaluates true if an Inverse \mbox{\hyperlink{classKinematics}{Kinematics}} solution is found, and false if not. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classKinematics_ae4c5058b67e61502324b965925cc5651}\label{classKinematics_ae4c5058b67e61502324b965925cc5651}} 
+\index{Kinematics@{Kinematics}!ValidateSolution@{ValidateSolution}}
+\index{ValidateSolution@{ValidateSolution}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{ValidateSolution()}{ValidateSolution()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool Kinematics\+::\+Validate\+Solution (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&}]{\+\_\+q\+\_\+r }\end{DoxyParamCaption})}
+
+
+
+Overloaded version of the Validate\+Solution function, which evaluates whether a set of joint angles for a single leg is within the joint limits. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+q\+\_\+r} & Joint angles for a single leg generated by the IK solver. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Evaluates true if the IK solution is valid, and false if not. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classKinematics_a1c6697fbd201589746f21c1be27dab35}\label{classKinematics_a1c6697fbd201589746f21c1be27dab35}} 
+\index{Kinematics@{Kinematics}!ValidateSolution@{ValidateSolution}}
+\index{ValidateSolution@{ValidateSolution}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{ValidateSolution()}{ValidateSolution()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool Kinematics\+::\+Validate\+Solution (\begin{DoxyParamCaption}\item[{const Joint\+Space\+Vector \&}]{\+\_\+q\+\_\+r }\end{DoxyParamCaption})}
+
+
+
+The Validate\+Solution function evaluates whether a set of joint angles is within joint limits. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+q\+\_\+r} & Joint angles generated by the IK solver. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Evaluates true if IK solution is valid, and false if not. 
 \end{DoxyReturn}
 
 

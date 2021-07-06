@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['_5fwiicallbackstack_666',['_WiiCallbackStack',['../classwiimote_1_1WIIMote_1_1__WiiCallbackStack.html',1,'wiimote::WIIMote']]]
+  ['contactplugin_193',['ContactPlugin',['../classgazebo_1_1ContactPlugin.html',1,'gazebo']]],
+  ['contactsensor_194',['ContactSensor',['../classContactSensor.html',1,'']]]
 ];

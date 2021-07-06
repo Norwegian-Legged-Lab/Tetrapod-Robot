@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['solvertype_1331',['SolverType',['../classHierarchicalOptimizationControl.html#ae49f08ceaee8df6933d8708fb68c3b99',1,'HierarchicalOptimizationControl']]]
+  ['legtype_394',['LegType',['../classHierarchicalOptimizationControl.html#a595a20872c103fe6c0332012648d9b9e',1,'HierarchicalOptimizationControl::LegType()'],['../classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a',1,'Kinematics::LegType()']]]
 ];

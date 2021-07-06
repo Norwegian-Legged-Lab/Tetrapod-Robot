@@ -18,10 +18,20 @@ A class for logging utilities.
 \mbox{\Hypertarget{classLogUtils_a3777bc5a1059a04b1b8bf94375744139}\label{classLogUtils_a3777bc5a1059a04b1b8bf94375744139}} 
 virtual \mbox{\hyperlink{classLogUtils_a3777bc5a1059a04b1b8bf94375744139}{$\sim$\+Log\+Utils}} ()
 \begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classLogUtils_ac1d32b600a73d5757dda6efe184b75e0}\label{classLogUtils_ac1d32b600a73d5757dda6efe184b75e0}} 
+void {\bfseries Write\+To\+Log} ()
+\item 
 void \mbox{\hyperlink{classLogUtils_a2c42c49b0dc74a5eb05923a033ca34c9}{On\+Gen\+Coord\+Msg}} (const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&\+\_\+msg)
 \begin{DoxyCompactList}\small\item\em The On\+Gen\+Coord\+Msg function handles an incoming generalized coordinates message from R\+OS. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classLogUtils_a538d484ca1dc7ac3b0127d89ca2e6745}{On\+Gen\+Vel\+Msg}} (const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&\+\_\+msg)
 \begin{DoxyCompactList}\small\item\em The On\+Gen\+Vel\+Msg function handles an incoming generalized velocities message from R\+OS. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classLogUtils_ab1901bdc3adc37c49eeb1672b135cc92}{On\+Joint\+State\+Msg}} (const sensor\+\_\+msgs\+::\+Joint\+State\+Const\+Ptr \&\+\_\+msg)
+\begin{DoxyCompactList}\small\item\em The On\+Joint\+State\+Msg function handles an incoming joint state message from R\+OS. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classLogUtils_acfb95557fa81d007205880849a304a32}{On\+Joint\+State\+Cmd\+Msg}} (const sensor\+\_\+msgs\+::\+Joint\+State\+Const\+Ptr \&\+\_\+msg)
+\begin{DoxyCompactList}\small\item\em The On\+Joint\+State\+Cmd\+Msg function handles an incoming joint state command message from R\+OS. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classLogUtils_ae4c8cfc8d403bbcd1318bd86003613ea}\label{classLogUtils_ae4c8cfc8d403bbcd1318bd86003613ea}} 
+void \mbox{\hyperlink{classLogUtils_ae4c8cfc8d403bbcd1318bd86003613ea}{Publish\+Queue\+Thread}} ()
+\begin{DoxyCompactList}\small\item\em The Publish\+Queue\+Thread function is a R\+OS helper function that publish state messages. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classLogUtils_a1c65adf0101ef76e300aac4a613562bf}\label{classLogUtils_a1c65adf0101ef76e300aac4a613562bf}} 
 void \mbox{\hyperlink{classLogUtils_a1c65adf0101ef76e300aac4a613562bf}{Process\+Queue\+Thread}} ()
 \begin{DoxyCompactList}\small\item\em The Process\+Queue\+Thread function is a R\+OS helper function that processes messages. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -68,6 +78,46 @@ The On\+Gen\+Vel\+Msg function handles an incoming generalized velocities messag
 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ in}}  & {\em \+\_\+msg} & A float array containing the generalized velocities. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classLogUtils_acfb95557fa81d007205880849a304a32}\label{classLogUtils_acfb95557fa81d007205880849a304a32}} 
+\index{LogUtils@{LogUtils}!OnJointStateCmdMsg@{OnJointStateCmdMsg}}
+\index{OnJointStateCmdMsg@{OnJointStateCmdMsg}!LogUtils@{LogUtils}}
+\doxysubsubsection{\texorpdfstring{OnJointStateCmdMsg()}{OnJointStateCmdMsg()}}
+{\footnotesize\ttfamily void Log\+Utils\+::\+On\+Joint\+State\+Cmd\+Msg (\begin{DoxyParamCaption}\item[{const sensor\+\_\+msgs\+::\+Joint\+State\+Const\+Ptr \&}]{\+\_\+msg }\end{DoxyParamCaption})}
+
+
+
+The On\+Joint\+State\+Cmd\+Msg function handles an incoming joint state command message from R\+OS. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+msg} & A message holding data to describe the state of a set of controlled joints. The state is defined by
+\begin{DoxyItemize}
+\item the position of the joint,
+\item the velocity of the joint and
+\item the effort (torque) that is applied in the joint. 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classLogUtils_ab1901bdc3adc37c49eeb1672b135cc92}\label{classLogUtils_ab1901bdc3adc37c49eeb1672b135cc92}} 
+\index{LogUtils@{LogUtils}!OnJointStateMsg@{OnJointStateMsg}}
+\index{OnJointStateMsg@{OnJointStateMsg}!LogUtils@{LogUtils}}
+\doxysubsubsection{\texorpdfstring{OnJointStateMsg()}{OnJointStateMsg()}}
+{\footnotesize\ttfamily void Log\+Utils\+::\+On\+Joint\+State\+Msg (\begin{DoxyParamCaption}\item[{const sensor\+\_\+msgs\+::\+Joint\+State\+Const\+Ptr \&}]{\+\_\+msg }\end{DoxyParamCaption})}
+
+
+
+The On\+Joint\+State\+Msg function handles an incoming joint state message from R\+OS. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+msg} & A message holding data to describe the state of a set of controlled joints. The state is defined by
+\begin{DoxyItemize}
+\item the position of the joint,
+\item the velocity of the joint and
+\item the effort (torque) that is applied in the joint. 
+\end{DoxyItemize}\\
 \hline
 \end{DoxyParams}
 

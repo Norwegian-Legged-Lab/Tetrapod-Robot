@@ -1,9 +1,16 @@
 var searchData=
 [
-  ['norm_1123',['norm',['../classkindr_1_1RotationQuaternion.html#aefc9b78470cdfc8a3ee59e5980a8fe4b',1,'kindr::RotationQuaternion::norm()'],['../classkindr_1_1Vector.html#a33ef3236886c5f1f8b996599eb003a45',1,'kindr::Vector::norm()'],['../classkindr_1_1VectorBase.html#a3f6cf325b0d3e442d74705e270e17714',1,'kindr::VectorBase::norm()']]],
-  ['normalize_1124',['normalize',['../classkindr_1_1Vector.html#ad8f6531f79e6c246a52bd03db6c4c998',1,'kindr::Vector::normalize()'],['../classkindr_1_1VectorBase.html#a9c83ab432d9ad5eaa876bdbef08610e8',1,'kindr::VectorBase::normalize()']]],
-  ['normalized_1125',['normalized',['../classkindr_1_1Vector.html#a221fb6c2105e0c7ddb87bec5e73395fd',1,'kindr::Vector::normalized()'],['../classkindr_1_1VectorBase.html#a58f5a573138f38c82b5c8fb7c5b86ec1',1,'kindr::VectorBase::normalized()']]],
-  ['numericalikpositioncontrol_1126',['NumericalIKPositionControl',['../classGaitControl.html#a9757a09fc47bc2c64c434b5a0900ba67',1,'GaitControl']]],
-  ['numericalinversekinematicscontrol_1127',['NumericalInverseKinematicsControl',['../classGaitControl.html#af62d139c03dac4728919c7496e502ba7',1,'GaitControl']]],
-  ['nunchukpresent_1128',['nunchukPresent',['../classwiimote_1_1WIIMote_1_1WIIMote.html#a9631cc43748957723116190c14b5ed3d',1,'wiimote::WIIMote::WIIMote']]]
+  ['updateclosedlooptorquecommands_355',['updateClosedLoopTorqueCommands',['../classSingleLegController.html#a3453715cb0120cdc1fb5f6494051f2bd',1,'SingleLegController']]],
+  ['updatefeetreferencepositionsinbody_356',['updateFeetReferencePositionsInBody',['../classStaticGaitController.html#aea9c098de90c789cf538879d0468d53f',1,'StaticGaitController']]],
+  ['updatefoottrajectoryreference_357',['updateFootTrajectoryReference',['../classSingleLegController.html#a2751303302b0a0d937c3bcb768d92ad5',1,'SingleLegController']]],
+  ['updategaitphase_358',['updateGaitPhase',['../classSingleLegController.html#ac8866042e708855270f78a0ebbc90721',1,'SingleLegController']]],
+  ['updatejointcommands_359',['updateJointCommands',['../classStaticGaitController.html#a3f97a173d8893ccba7b4b5d3215fb061',1,'StaticGaitController']]],
+  ['updatejointreferences_360',['updateJointReferences',['../classSingleLegController.html#ab981f262fd6959dea6432a238136e5ec',1,'SingleLegController']]],
+  ['updatejointtorquecommands_361',['updateJointTorqueCommands',['../classSingleLegController.html#aaab478fc232623423c50ea3f462266da',1,'SingleLegController::updateJointTorqueCommands(const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;_joint_pos_ref, const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;_joint_vel_ref, const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;_joint_acc_ref, const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;_joint_pos, const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;_joint_vel)'],['../classSingleLegController.html#ad5b6382db1463b29715b6a0f11dc7253',1,'SingleLegController::updateJointTorqueCommands()']]],
+  ['updatejointvelocitycommands_362',['updateJointVelocityCommands',['../classSingleLegController.html#a16531ceeb159200803bf59ac37134f71',1,'SingleLegController']]],
+  ['updateposecontroljointtrajectoryreference_363',['updatePoseControlJointTrajectoryReference',['../classSingleLegController.html#a9082ad9153ed6666c5922caeb31613f4',1,'SingleLegController']]],
+  ['updatereferencejointangles_364',['updateReferenceJointAngles',['../classStaticGaitController.html#a5d7b18fb3a68cbce68949fbf46eed0fc',1,'StaticGaitController']]],
+  ['updatespeedcontrolcommands_365',['updateSpeedControlCommands',['../classSingleLegController.html#adb30ca3f16089f59e1745cd56ab0fc9b',1,'SingleLegController']]],
+  ['updatestancefootpositiontrajectory_366',['updateStanceFootPositionTrajectory',['../classSingleLegController.html#a4546fd0c6d563f693c8a7217ee400626',1,'SingleLegController']]],
+  ['updateswingfootpositiontrajectory_367',['updateSwingFootPositionTrajectory',['../classSingleLegController.html#aab175156b57045ba31d2048dde75ea9d',1,'SingleLegController']]]
 ];

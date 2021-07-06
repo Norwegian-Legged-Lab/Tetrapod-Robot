@@ -73,11 +73,12 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:abeda11bc1ed999b16ef3b82198b51963"><td class="memItemLeft" align="right" valign="top"><a id="abeda11bc1ed999b16ef3b82198b51963"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>State</b> { <b>stance</b> = 1, 
+<tr class="memitem:a7334d4583d94d34addc8f7dc898fe5c7"><td class="memItemLeft" align="right" valign="top"><a id="a7334d4583d94d34addc8f7dc898fe5c7"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a7334d4583d94d34addc8f7dc898fe5c7">GaitPhase</a> { <b>stance</b> = 1, 
 <b>swing</b> = 2, 
 <b>uninitialized</b> = 3
  }</td></tr>
-<tr class="separator:abeda11bc1ed999b16ef3b82198b51963"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:a7334d4583d94d34addc8f7dc898fe5c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gait phases. <br /></td></tr>
+<tr class="separator:a7334d4583d94d34addc8f7dc898fe5c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -93,100 +94,138 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memdesc:a82cbc4d3ae647d0929994edf00bba8dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function initilizes ROS.  <a href="classSingleLegController.html#a82cbc4d3ae647d0929994edf00bba8dc">More...</a><br /></td></tr>
 <tr class="separator:a82cbc4d3ae647d0929994edf00bba8dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adfd046b154a005e93e5463c13f1ed5d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#adfd046b154a005e93e5463c13f1ed5d6">generalizedCoordinatesCallback</a> (const std_msgs::Float64MultiArrayConstPtr &amp;_msg)</td></tr>
-<tr class="memdesc:adfd046b154a005e93e5463c13f1ed5d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">The joint states for the leg is updated.  <a href="classSingleLegController.html#adfd046b154a005e93e5463c13f1ed5d6">More...</a><br /></td></tr>
+<tr class="memdesc:adfd046b154a005e93e5463c13f1ed5d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Listens to joint angle messages from the simulated leg.  <a href="classSingleLegController.html#adfd046b154a005e93e5463c13f1ed5d6">More...</a><br /></td></tr>
 <tr class="separator:adfd046b154a005e93e5463c13f1ed5d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abce5e2d8277d3de86baeedddcad95a83"><td class="memItemLeft" align="right" valign="top"><a id="abce5e2d8277d3de86baeedddcad95a83"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>generalizedVelocitiesCallback</b> (const std_msgs::Float64MultiArrayConstPtr &amp;_msg)</td></tr>
+<tr class="memitem:abce5e2d8277d3de86baeedddcad95a83"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#abce5e2d8277d3de86baeedddcad95a83">generalizedVelocitiesCallback</a> (const std_msgs::Float64MultiArrayConstPtr &amp;_msg)</td></tr>
+<tr class="memdesc:abce5e2d8277d3de86baeedddcad95a83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Listens to joint velocity messages from the simulated leg.  <a href="classSingleLegController.html#abce5e2d8277d3de86baeedddcad95a83">More...</a><br /></td></tr>
 <tr class="separator:abce5e2d8277d3de86baeedddcad95a83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66929d863702713ac5ebaefb0eed40e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a66929d863702713ac5ebaefb0eed40e8">generalizedForcesCallback</a> (const std_msgs::Float64MultiArrayConstPtr &amp;_msg)</td></tr>
+<tr class="memdesc:a66929d863702713ac5ebaefb0eed40e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Listens to joint force messages from the simulated leg.  <a href="classSingleLegController.html#a66929d863702713ac5ebaefb0eed40e8">More...</a><br /></td></tr>
+<tr class="separator:a66929d863702713ac5ebaefb0eed40e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace838f549ab9d124d02ce4daa07bddf9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#ace838f549ab9d124d02ce4daa07bddf9">readyToProceedCallback</a> (const std_msgs::Bool &amp;_msg)</td></tr>
-<tr class="memdesc:ace838f549ab9d124d02ce4daa07bddf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The ready_to_move parameter is changed based on the incomming message.  <a href="classSingleLegController.html#ace838f549ab9d124d02ce4daa07bddf9">More...</a><br /></td></tr>
+<tr class="memdesc:ace838f549ab9d124d02ce4daa07bddf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The ready_to_proceed parameter is changed based on the incomming message.  <a href="classSingleLegController.html#ace838f549ab9d124d02ce4daa07bddf9">More...</a><br /></td></tr>
 <tr class="separator:ace838f549ab9d124d02ce4daa07bddf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4546fd0c6d563f693c8a7217ee400626"><td class="memItemLeft" align="right" valign="top"><a id="a4546fd0c6d563f693c8a7217ee400626"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>updateStanceFootPositionTrajectory</b> ()</td></tr>
-<tr class="separator:a4546fd0c6d563f693c8a7217ee400626"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab175156b57045ba31d2048dde75ea9d"><td class="memItemLeft" align="right" valign="top"><a id="aab175156b57045ba31d2048dde75ea9d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>updateSwingFootPositionTrajectory</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#aab175156b57045ba31d2048dde75ea9d">updateSwingFootPositionTrajectory</a> ()</td></tr>
+<tr class="memdesc:aab175156b57045ba31d2048dde75ea9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the swing foot trajectory for the leg. <br /></td></tr>
 <tr class="separator:aab175156b57045ba31d2048dde75ea9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4546fd0c6d563f693c8a7217ee400626"><td class="memItemLeft" align="right" valign="top"><a id="a4546fd0c6d563f693c8a7217ee400626"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a4546fd0c6d563f693c8a7217ee400626">updateStanceFootPositionTrajectory</a> ()</td></tr>
+<tr class="memdesc:a4546fd0c6d563f693c8a7217ee400626"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the stance foot tractory for the leg. <br /></td></tr>
+<tr class="separator:a4546fd0c6d563f693c8a7217ee400626"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab981f262fd6959dea6432a238136e5ec"><td class="memItemLeft" align="right" valign="top"><a id="ab981f262fd6959dea6432a238136e5ec"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>updateJointReferences</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#ab981f262fd6959dea6432a238136e5ec">updateJointReferences</a> ()</td></tr>
+<tr class="memdesc:ab981f262fd6959dea6432a238136e5ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update The joint trajectory reference based on the spatial foot trajectory. <br /></td></tr>
 <tr class="separator:ab981f262fd6959dea6432a238136e5ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade8542e7455db2f329e38a6d6f0a8fca"><td class="memItemLeft" align="right" valign="top"><a id="ade8542e7455db2f329e38a6d6f0a8fca"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>updateJointTorques</b> (const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;_q_ref, const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;_q_d_ref, const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;_q_dd_ref, const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;_q, const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;_q_d)</td></tr>
-<tr class="separator:ade8542e7455db2f329e38a6d6f0a8fca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a042ba4e0f5e54507e400829e9ca4165e"><td class="memItemLeft" align="right" valign="top"><a id="a042ba4e0f5e54507e400829e9ca4165e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>updateJointTorques</b> ()</td></tr>
-<tr class="separator:a042ba4e0f5e54507e400829e9ca4165e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c44eeb8fe2e7fe574b89cb8bde3fa6c"><td class="memItemLeft" align="right" valign="top"><a id="a1c44eeb8fe2e7fe574b89cb8bde3fa6c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a1c44eeb8fe2e7fe574b89cb8bde3fa6c">sendTorqueCommand</a> ()</td></tr>
-<tr class="memdesc:a1c44eeb8fe2e7fe574b89cb8bde3fa6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the joint torque control commands based on the desired foot position. <br /></td></tr>
-<tr class="separator:a1c44eeb8fe2e7fe574b89cb8bde3fa6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd05533f4b78e71f4fed509bc5017158"><td class="memItemLeft" align="right" valign="top"><a id="acd05533f4b78e71f4fed509bc5017158"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>updateJointSetpoints</b> ()</td></tr>
-<tr class="separator:acd05533f4b78e71f4fed509bc5017158"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac4e4f7ee4fa05991e424b242d149afa3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#ac4e4f7ee4fa05991e424b242d149afa3">moveJointsToSetpoints</a> ()</td></tr>
-<tr class="memdesc:ac4e4f7ee4fa05991e424b242d149afa3"><td class="mdescLeft">&#160;</td><td class="mdescRight">The function tries to move the foot to the position given by the input parameters. This is done by calculating the inverse kinematics and giving the motors position references.  <a href="classSingleLegController.html#ac4e4f7ee4fa05991e424b242d149afa3">More...</a><br /></td></tr>
-<tr class="separator:ac4e4f7ee4fa05991e424b242d149afa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f4429024fcabfd7d70ff2450aca12ea"><td class="memItemLeft" align="right" valign="top"><a id="a4f4429024fcabfd7d70ff2450aca12ea"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>moveJointsToCenter</b> ()</td></tr>
-<tr class="separator:a4f4429024fcabfd7d70ff2450aca12ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3da576fcbd14f13c3128085ebb3abc75"><td class="memItemLeft" align="right" valign="top"><a id="a3da576fcbd14f13c3128085ebb3abc75"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>updateSimpleFootTrajectory</b> ()</td></tr>
-<tr class="separator:a3da576fcbd14f13c3128085ebb3abc75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaab478fc232623423c50ea3f462266da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#aaab478fc232623423c50ea3f462266da">updateJointTorqueCommands</a> (const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;_joint_pos_ref, const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;_joint_vel_ref, const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;_joint_acc_ref, const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;_joint_pos, const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;_joint_vel)</td></tr>
+<tr class="memdesc:aaab478fc232623423c50ea3f462266da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the joint torqes references based on the joint trajectories and joint states.  <a href="classSingleLegController.html#aaab478fc232623423c50ea3f462266da">More...</a><br /></td></tr>
+<tr class="separator:aaab478fc232623423c50ea3f462266da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5b6382db1463b29715b6a0f11dc7253"><td class="memItemLeft" align="right" valign="top"><a id="ad5b6382db1463b29715b6a0f11dc7253"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#ad5b6382db1463b29715b6a0f11dc7253">updateJointTorqueCommands</a> ()</td></tr>
+<tr class="memdesc:ad5b6382db1463b29715b6a0f11dc7253"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overloaded function that uses the current joint references and joint states. <br /></td></tr>
+<tr class="separator:ad5b6382db1463b29715b6a0f11dc7253"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3453715cb0120cdc1fb5f6494051f2bd"><td class="memItemLeft" align="right" valign="top"><a id="a3453715cb0120cdc1fb5f6494051f2bd"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a3453715cb0120cdc1fb5f6494051f2bd">updateClosedLoopTorqueCommands</a> ()</td></tr>
+<tr class="memdesc:a3453715cb0120cdc1fb5f6494051f2bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">A non model based torque controller. <br /></td></tr>
+<tr class="separator:a3453715cb0120cdc1fb5f6494051f2bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16531ceeb159200803bf59ac37134f71"><td class="memItemLeft" align="right" valign="top"><a id="a16531ceeb159200803bf59ac37134f71"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a16531ceeb159200803bf59ac37134f71">updateJointVelocityCommands</a> ()</td></tr>
+<tr class="memdesc:a16531ceeb159200803bf59ac37134f71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the joint velocity control commands based on the joint velocity reference and the joint position error. <br /></td></tr>
+<tr class="separator:a16531ceeb159200803bf59ac37134f71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cf90255f28a7ac48ae04f0d69e012ba"><td class="memItemLeft" align="right" valign="top"><a id="a8cf90255f28a7ac48ae04f0d69e012ba"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a8cf90255f28a7ac48ae04f0d69e012ba">sendJointPositionCommands</a> ()</td></tr>
+<tr class="memdesc:a8cf90255f28a7ac48ae04f0d69e012ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a joint position commands to the motors. <br /></td></tr>
+<tr class="separator:a8cf90255f28a7ac48ae04f0d69e012ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ac17a2799b0e20089e03d5bc1297ad7"><td class="memItemLeft" align="right" valign="top"><a id="a8ac17a2799b0e20089e03d5bc1297ad7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a8ac17a2799b0e20089e03d5bc1297ad7">sendJointVelocityCommands</a> ()</td></tr>
+<tr class="memdesc:a8ac17a2799b0e20089e03d5bc1297ad7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the joint velocity commands and send them to the motors. <br /></td></tr>
+<tr class="separator:a8ac17a2799b0e20089e03d5bc1297ad7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acee61da82c06e1b45d9f9d3b14847747"><td class="memItemLeft" align="right" valign="top"><a id="acee61da82c06e1b45d9f9d3b14847747"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#acee61da82c06e1b45d9f9d3b14847747">sendJointTorqueCommands</a> ()</td></tr>
+<tr class="memdesc:acee61da82c06e1b45d9f9d3b14847747"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the joint torque control commands based on the desired foot position. <br /></td></tr>
+<tr class="separator:acee61da82c06e1b45d9f9d3b14847747"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acbab400d2767ed683ceaf3162d52c6e8"><td class="memItemLeft" align="right" valign="top"><a id="acbab400d2767ed683ceaf3162d52c6e8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>increaseIterator</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#acbab400d2767ed683ceaf3162d52c6e8">increaseIterator</a> ()</td></tr>
+<tr class="memdesc:acbab400d2767ed683ceaf3162d52c6e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increment the gait cycle iterator. It stops iterating when the final iteration is reached. <br /></td></tr>
 <tr class="separator:acbab400d2767ed683ceaf3162d52c6e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a7c68e62020224f7c8d9b62a905d0dd"><td class="memItemLeft" align="right" valign="top"><a id="a6a7c68e62020224f7c8d9b62a905d0dd"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>updateState</b> ()</td></tr>
-<tr class="separator:a6a7c68e62020224f7c8d9b62a905d0dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac08f817648b181ec306b48f1a06d1666"><td class="memItemLeft" align="right" valign="top"><a id="ac08f817648b181ec306b48f1a06d1666"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>updateFootReference</b> ()</td></tr>
-<tr class="separator:ac08f817648b181ec306b48f1a06d1666"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8866042e708855270f78a0ebbc90721"><td class="memItemLeft" align="right" valign="top"><a id="ac8866042e708855270f78a0ebbc90721"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#ac8866042e708855270f78a0ebbc90721">updateGaitPhase</a> ()</td></tr>
+<tr class="memdesc:ac8866042e708855270f78a0ebbc90721"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increments the gait cycle iterator and updates the leg state. <br /></td></tr>
+<tr class="separator:ac8866042e708855270f78a0ebbc90721"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2751303302b0a0d937c3bcb768d92ad5"><td class="memItemLeft" align="right" valign="top"><a id="a2751303302b0a0d937c3bcb768d92ad5"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a2751303302b0a0d937c3bcb768d92ad5">updateFootTrajectoryReference</a> ()</td></tr>
+<tr class="memdesc:a2751303302b0a0d937c3bcb768d92ad5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the foot trajectory based on the leg state. <br /></td></tr>
+<tr class="separator:a2751303302b0a0d937c3bcb768d92ad5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9082ad9153ed6666c5922caeb31613f4"><td class="memItemLeft" align="right" valign="top"><a id="a9082ad9153ed6666c5922caeb31613f4"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a9082ad9153ed6666c5922caeb31613f4">updatePoseControlJointTrajectoryReference</a> ()</td></tr>
+<tr class="memdesc:a9082ad9153ed6666c5922caeb31613f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the pose control trajectory reference for the single leg. <br /></td></tr>
+<tr class="separator:a9082ad9153ed6666c5922caeb31613f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad9b3bce8878864bc100adea73b083ee"><td class="memItemLeft" align="right" valign="top"><a id="aad9b3bce8878864bc100adea73b083ee"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#aad9b3bce8878864bc100adea73b083ee">setPoseGoal</a> (Eigen::Matrix&lt; double, 3, 1 &gt; _foot_pos)</td></tr>
+<tr class="memdesc:aad9b3bce8878864bc100adea73b083ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the final and initial states for pose control trajectories. <br /></td></tr>
+<tr class="separator:aad9b3bce8878864bc100adea73b083ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ccb9a1cc0f8118faaef28229de335f1"><td class="memItemLeft" align="right" valign="top"><a id="a1ccb9a1cc0f8118faaef28229de335f1"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setMotorGains</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a1ccb9a1cc0f8118faaef28229de335f1">setMotorGains</a> ()</td></tr>
+<tr class="memdesc:a1ccb9a1cc0f8118faaef28229de335f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to set the control gains in the motors. The function loops until it succeeds. <br /></td></tr>
 <tr class="separator:a1ccb9a1cc0f8118faaef28229de335f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac94137fdfe9b78dd3c47480341b9af47"><td class="memItemLeft" align="right" valign="top"><a id="ac94137fdfe9b78dd3c47480341b9af47"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#ac94137fdfe9b78dd3c47480341b9af47">moveFootToPosition</a> (Eigen::Matrix&lt; double, 3, 1 &gt; _foot_goal_pos)</td></tr>
+<tr class="memdesc:ac94137fdfe9b78dd3c47480341b9af47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a trajectory from the current foot position to the goal foot position and moves the foot to the target position along the trajectory. Function returns when the foot is standing still at the goal position. <br /></td></tr>
+<tr class="separator:ac94137fdfe9b78dd3c47480341b9af47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4e4f7ee4fa05991e424b242d149afa3"><td class="memItemLeft" align="right" valign="top"><a id="ac4e4f7ee4fa05991e424b242d149afa3"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#ac4e4f7ee4fa05991e424b242d149afa3">moveJointsToSetpoints</a> ()</td></tr>
+<tr class="memdesc:ac4e4f7ee4fa05991e424b242d149afa3"><td class="mdescLeft">&#160;</td><td class="mdescRight">The function tries to move the foot to the foot position given by the input parameters. <br /></td></tr>
+<tr class="separator:ac4e4f7ee4fa05991e424b242d149afa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e2bc91ee5c0b1cde6ad9f8da033c83f"><td class="memItemLeft" align="right" valign="top"><a id="a3e2bc91ee5c0b1cde6ad9f8da033c83f"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a3e2bc91ee5c0b1cde6ad9f8da033c83f">moveFootToNominalPosition</a> ()</td></tr>
+<tr class="memdesc:a3e2bc91ee5c0b1cde6ad9f8da033c83f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The function tries to move the foot to the nominal trajectory position. <br /></td></tr>
+<tr class="separator:a3e2bc91ee5c0b1cde6ad9f8da033c83f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad1dcb26e9bec916df129a00c2347b35b"><td class="memItemLeft" align="right" valign="top"><a id="ad1dcb26e9bec916df129a00c2347b35b"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#ad1dcb26e9bec916df129a00c2347b35b">checkForNewMessages</a> ()</td></tr>
 <tr class="memdesc:ad1dcb26e9bec916df129a00c2347b35b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function used to check if any new ROS messages has been received. <br /></td></tr>
 <tr class="separator:ad1dcb26e9bec916df129a00c2347b35b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af65cd13c9740c47df2e430a744361f85"><td class="memItemLeft" align="right" valign="top"><a id="af65cd13c9740c47df2e430a744361f85"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#af65cd13c9740c47df2e430a744361f85">readyToProceed</a> ()</td></tr>
-<tr class="memdesc:af65cd13c9740c47df2e430a744361f85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether or not the ready to move message has been received. <br /></td></tr>
+<tr class="memitem:af65cd13c9740c47df2e430a744361f85"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#af65cd13c9740c47df2e430a744361f85">readyToProceed</a> ()</td></tr>
+<tr class="memdesc:af65cd13c9740c47df2e430a744361f85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether or not a ready to proceed message has been received.  <a href="classSingleLegController.html#af65cd13c9740c47df2e430a744361f85">More...</a><br /></td></tr>
 <tr class="separator:af65cd13c9740c47df2e430a744361f85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7bf974dae57964d754a2e4e1900903f1"><td class="memItemLeft" align="right" valign="top"><a id="a7bf974dae57964d754a2e4e1900903f1"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a7bf974dae57964d754a2e4e1900903f1">resetReadyToProceed</a> ()</td></tr>
-<tr class="memdesc:a7bf974dae57964d754a2e4e1900903f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the ready_to_move flag to false. <br /></td></tr>
+<tr class="memdesc:a7bf974dae57964d754a2e4e1900903f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the ready_to_proceed flag to false. <br /></td></tr>
 <tr class="separator:a7bf974dae57964d754a2e4e1900903f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2d6915c29fbcb40f6ec20dc91229f69"><td class="memItemLeft" align="right" valign="top"><a id="ae2d6915c29fbcb40f6ec20dc91229f69"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#ae2d6915c29fbcb40f6ec20dc91229f69">isTargetPositionReached</a> ()</td></tr>
 <tr class="memdesc:ae2d6915c29fbcb40f6ec20dc91229f69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the squared error between the current joint angles and target joint angles is smaller than some threshold. <br /></td></tr>
 <tr class="separator:ae2d6915c29fbcb40f6ec20dc91229f69"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa7cfe14f25926f4870ea6628c3aee9f7"><td class="memItemLeft" align="right" valign="top"><a id="aa7cfe14f25926f4870ea6628c3aee9f7"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isJointVelocitySmall</b> ()</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#aa7cfe14f25926f4870ea6628c3aee9f7">isJointVelocitySmall</a> ()</td></tr>
+<tr class="memdesc:aa7cfe14f25926f4870ea6628c3aee9f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the sum of squared joint velocities are smaller than a certain threshold. <br /></td></tr>
 <tr class="separator:aa7cfe14f25926f4870ea6628c3aee9f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a43aa22c8b27872812df94867ac23d0fe"><td class="memItemLeft" align="right" valign="top"><a id="a43aa22c8b27872812df94867ac23d0fe"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>initialStateReceived</b> ()</td></tr>
-<tr class="separator:a43aa22c8b27872812df94867ac23d0fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad77237a3754a03f8a3d1ffb1ee0d9806"><td class="memItemLeft" align="right" valign="top"><a id="ad77237a3754a03f8a3d1ffb1ee0d9806"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>printTorques</b> ()</td></tr>
-<tr class="separator:ad77237a3754a03f8a3d1ffb1ee0d9806"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a945a86bd3320c349b6fa027d27a79ff1"><td class="memItemLeft" align="right" valign="top"><a id="a945a86bd3320c349b6fa027d27a79ff1"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a945a86bd3320c349b6fa027d27a79ff1">isInitialStateReceived</a> ()</td></tr>
+<tr class="memdesc:a945a86bd3320c349b6fa027d27a79ff1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the uninitalized joint state of the robot has been overridden by measurements. <br /></td></tr>
+<tr class="separator:a945a86bd3320c349b6fa027d27a79ff1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f61e78b03357ff8fa62eb636108279a"><td class="memItemLeft" align="right" valign="top"><a id="a5f61e78b03357ff8fa62eb636108279a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a5f61e78b03357ff8fa62eb636108279a">printTorqueReferences</a> ()</td></tr>
+<tr class="memdesc:a5f61e78b03357ff8fa62eb636108279a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print the joint torque references. <br /></td></tr>
+<tr class="separator:a5f61e78b03357ff8fa62eb636108279a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a370642148f6c440f43f0c830c385e4bc"><td class="memItemLeft" align="right" valign="top"><a id="a370642148f6c440f43f0c830c385e4bc"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>printSpatialTrajectories</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a370642148f6c440f43f0c830c385e4bc">printSpatialTrajectories</a> ()</td></tr>
+<tr class="memdesc:a370642148f6c440f43f0c830c385e4bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print the foot trajectory reference. <br /></td></tr>
 <tr class="separator:a370642148f6c440f43f0c830c385e4bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d5b3a6fcece39f3e78957fd0b8fc894"><td class="memItemLeft" align="right" valign="top"><a id="a1d5b3a6fcece39f3e78957fd0b8fc894"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>printJointTrajectories</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a1d5b3a6fcece39f3e78957fd0b8fc894">printJointTrajectories</a> ()</td></tr>
+<tr class="memdesc:a1d5b3a6fcece39f3e78957fd0b8fc894"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print the joint trajectory references. <br /></td></tr>
 <tr class="separator:a1d5b3a6fcece39f3e78957fd0b8fc894"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13ac929ae167f7e2310d8cbc5a5dcfd3"><td class="memItemLeft" align="right" valign="top"><a id="a13ac929ae167f7e2310d8cbc5a5dcfd3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>printPercentage</b> ()</td></tr>
-<tr class="separator:a13ac929ae167f7e2310d8cbc5a5dcfd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a26e0d5ba16c20c675d5316b0018b05b3"><td class="memItemLeft" align="right" valign="top"><a id="a26e0d5ba16c20c675d5316b0018b05b3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>printAllStates</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a26e0d5ba16c20c675d5316b0018b05b3">printAllStates</a> ()</td></tr>
+<tr class="memdesc:a26e0d5ba16c20c675d5316b0018b05b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print various information about all joints. <br /></td></tr>
 <tr class="separator:a26e0d5ba16c20c675d5316b0018b05b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a05e369f7eaf16b2d0cab0a1e79984fd2"><td class="memItemLeft" align="right" valign="top"><a id="a05e369f7eaf16b2d0cab0a1e79984fd2"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>writeToLog</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a05e369f7eaf16b2d0cab0a1e79984fd2">writeToLog</a> ()</td></tr>
+<tr class="memdesc:a05e369f7eaf16b2d0cab0a1e79984fd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write the joint references and estimated states to the log. <br /></td></tr>
 <tr class="separator:a05e369f7eaf16b2d0cab0a1e79984fd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefbc17dfe9d125f2cd809fc8f5819614"><td class="memItemLeft" align="right" valign="top"><a id="aefbc17dfe9d125f2cd809fc8f5819614"></a>
-State&#160;</td><td class="memItemRight" valign="bottom"><b>getState</b> ()</td></tr>
-<tr class="separator:aefbc17dfe9d125f2cd809fc8f5819614"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a139948fa97ac0f095f14ba49ddff018e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classSingleLegController.html#a7334d4583d94d34addc8f7dc898fe5c7">GaitPhase</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a139948fa97ac0f095f14ba49ddff018e">getGaitPhase</a> ()</td></tr>
+<tr class="memdesc:a139948fa97ac0f095f14ba49ddff018e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the leg's phase state.  <a href="classSingleLegController.html#a139948fa97ac0f095f14ba49ddff018e">More...</a><br /></td></tr>
+<tr class="separator:a139948fa97ac0f095f14ba49ddff018e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a59cd7883d1dd470059bfb1c198ab69df"><td class="memItemLeft" align="right" valign="top"><a id="a59cd7883d1dd470059bfb1c198ab69df"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a59cd7883d1dd470059bfb1c198ab69df">SingleLegController</a> (double _dt)</td></tr>
 <tr class="memdesc:a59cd7883d1dd470059bfb1c198ab69df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor. <br /></td></tr>
@@ -338,14 +377,94 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>simulatorSendJointVel
       </table>
 </div><div class="memdoc">
 
-<p>The joint states for the leg is updated. </p>
+<p>Listens to joint angle messages from the simulated leg. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_msg</td><td>A float array containing the generalized coordinates <br  />
+    <tr><td class="paramdir">[in]</td><td class="paramname">_msg</td><td>A float array containing the simulated single leg joint angles <br  />
  </td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a66929d863702713ac5ebaefb0eed40e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66929d863702713ac5ebaefb0eed40e8">&#9670;&nbsp;</a></span>generalizedForcesCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SingleLegController::generalizedForcesCallback </td>
+          <td>(</td>
+          <td class="paramtype">const std_msgs::Float64MultiArrayConstPtr &amp;&#160;</td>
+          <td class="paramname"><em>_msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Listens to joint force messages from the simulated leg. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_msg</td><td>A float array containing the simulated single leg joint forces </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abce5e2d8277d3de86baeedddcad95a83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abce5e2d8277d3de86baeedddcad95a83">&#9670;&nbsp;</a></span>generalizedVelocitiesCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SingleLegController::generalizedVelocitiesCallback </td>
+          <td>(</td>
+          <td class="paramtype">const std_msgs::Float64MultiArrayConstPtr &amp;&#160;</td>
+          <td class="paramname"><em>_msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Listens to joint velocity messages from the simulated leg. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_msg</td><td>A float array containing the simulated single leg joint velocities </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a139948fa97ac0f095f14ba49ddff018e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a139948fa97ac0f095f14ba49ddff018e">&#9670;&nbsp;</a></span>getGaitPhase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classSingleLegController.html#a7334d4583d94d34addc8f7dc898fe5c7">GaitPhase</a> SingleLegController::getGaitPhase </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the leg's phase state. </p>
+<dl class="section return"><dt>Returns</dt><dd>The phase state of the single leg </dd></dl>
 
 </div>
 </div>
@@ -435,33 +554,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>simulatorSendJointVel
 
 </div>
 </div>
-<a id="ac4e4f7ee4fa05991e424b242d149afa3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac4e4f7ee4fa05991e424b242d149afa3">&#9670;&nbsp;</a></span>moveJointsToSetpoints()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool SingleLegController::moveJointsToSetpoints </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The function tries to move the foot to the position given by the input parameters. This is done by calculating the inverse kinematics and giving the motors position references. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_foot_pos_x</td><td>The target foot x position </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_foot_pos_y</td><td>The target foot y position </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_foot_pos_z</td><td>The target foot z position </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="acf37c157a2380e81433e3534c3db9d5b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acf37c157a2380e81433e3534c3db9d5b">&#9670;&nbsp;</a></span>readyToMoveCallback()</h2>
 
@@ -488,6 +580,34 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>simulatorSendJointVel
 
 </div>
 </div>
+<a id="af65cd13c9740c47df2e430a744361f85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af65cd13c9740c47df2e430a744361f85">&#9670;&nbsp;</a></span>readyToProceed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SingleLegController::readyToProceed </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check whether or not a ready to proceed message has been received. </p>
+<dl class="section return"><dt>Returns</dt><dd>The status of the ready_to_proceed boolean value </dd></dl>
+
+</div>
+</div>
 <a id="ace838f549ab9d124d02ce4daa07bddf9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ace838f549ab9d124d02ce4daa07bddf9">&#9670;&nbsp;</a></span>readyToProceedCallback()</h2>
 
@@ -504,10 +624,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>simulatorSendJointVel
       </table>
 </div><div class="memdoc">
 
-<p>The ready_to_move parameter is changed based on the incomming message. </p>
+<p>The ready_to_proceed parameter is changed based on the incomming message. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_msg</td><td>A bool message deciding if it is safe to move the leg or not </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_msg</td><td>A bool message indicating whether or not a script can proceed </td></tr>
   </table>
   </dd>
 </dl>
@@ -661,6 +781,64 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>simulatorSendJointVel
     <tr><td class="paramdir">[in]</td><td class="paramname">_damping_x</td><td>Damping of x reference </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">_damping_y</td><td>Damping of y reference </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">_damping_z</td><td>Damping of z reference </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aaab478fc232623423c50ea3f462266da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaab478fc232623423c50ea3f462266da">&#9670;&nbsp;</a></span>updateJointTorqueCommands()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SingleLegController::updateJointTorqueCommands </td>
+          <td>(</td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_joint_pos_ref</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_joint_vel_ref</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_joint_acc_ref</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_joint_pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_joint_vel</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Update the joint torqes references based on the joint trajectories and joint states. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_joint_pos_ref</td><td>The joint angle references </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_joint_vel_ref</td><td>the joint velocity references </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_joint_acc_ref</td><td>The joint acceleration references </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_joint_pos</td><td>The estimated joint angles </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_joint_vel</td><td>The estimated joint velocities </td></tr>
   </table>
   </dd>
 </dl>

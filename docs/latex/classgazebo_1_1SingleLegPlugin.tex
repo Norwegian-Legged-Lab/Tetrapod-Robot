@@ -11,7 +11,8 @@ A plugin to control the single\+\_\+leg robot.
 
 
 
-Inheritance diagram for gazebo\+::Single\+Leg\+Plugin\+:\nopagebreak
+Inheritance diagram for gazebo\+::Single\+Leg\+Plugin\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -20,7 +21,8 @@ Inheritance diagram for gazebo\+::Single\+Leg\+Plugin\+:\nopagebreak
 \end{figure}
 
 
-Collaboration diagram for gazebo\+::Single\+Leg\+Plugin\+:\nopagebreak
+Collaboration diagram for gazebo\+::Single\+Leg\+Plugin\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -80,7 +82,9 @@ void \mbox{\hyperlink{classgazebo_1_1SingleLegPlugin_a7c4e9248906cd8b0196caa9446
 \begin{DoxyCompactList}\small\item\em The Publish\+Queue\+Thread function is a R\+OS helper function that publish state messages. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classgazebo_1_1SingleLegPlugin_ae88405790fd2c7318bf60299af942dd5}\label{classgazebo_1_1SingleLegPlugin_ae88405790fd2c7318bf60299af942dd5}} 
 void {\bfseries print\+Map} (const std\+::map$<$ std\+::string, physics\+::\+Joint\+Ptr $>$ \&\+\_\+map)
-\end{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classgazebo_1_1SingleLegPlugin_a8b6e03c7000b13ae16400eb380ab76d5}{Reset\+Simulation}} (const std\+\_\+srvs\+::\+Empty\+::\+Request \&\+\_\+req, std\+\_\+srvs\+::\+Empty\+::\+Response \&\+\_\+res)
+\begin{DoxyCompactList}\small\item\em The Reset\+Simulation function handles an incoming reset simulation service request. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -321,6 +325,26 @@ The On\+Ros\+Msg function handles an incoming velocity message from R\+OS.
 \mbox{\texttt{ in}}  & {\em \+\_\+msg} & A float array used to set the velocity of the joints. \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classgazebo_1_1SingleLegPlugin_a8b6e03c7000b13ae16400eb380ab76d5}\label{classgazebo_1_1SingleLegPlugin_a8b6e03c7000b13ae16400eb380ab76d5}} 
+\index{gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}!ResetSimulation@{ResetSimulation}}
+\index{ResetSimulation@{ResetSimulation}!gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}}
+\doxysubsubsection{\texorpdfstring{ResetSimulation()}{ResetSimulation()}}
+{\footnotesize\ttfamily bool gazebo\+::\+Single\+Leg\+Plugin\+::\+Reset\+Simulation (\begin{DoxyParamCaption}\item[{const std\+\_\+srvs\+::\+Empty\+::\+Request \&}]{\+\_\+req,  }\item[{std\+\_\+srvs\+::\+Empty\+::\+Response \&}]{\+\_\+res }\end{DoxyParamCaption})}
+
+
+
+The Reset\+Simulation function handles an incoming reset simulation service request. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+req} & Service request. \\
+\hline
+\mbox{\texttt{ out}}  & {\em \+\_\+res} & Service response. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if success, and false if not. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classgazebo_1_1SingleLegPlugin_a2fff2ee528ee902374142664aaeb77c6}\label{classgazebo_1_1SingleLegPlugin_a2fff2ee528ee902374142664aaeb77c6}} 
 \index{gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}!SetJointForce@{SetJointForce}}
 \index{SetJointForce@{SetJointForce}!gazebo::SingleLegPlugin@{gazebo::SingleLegPlugin}}

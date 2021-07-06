@@ -829,7 +829,7 @@ WARN_LOGFILE           =
 # spaces. See also FILE_PATTERNS and EXTENSION_MAPPING
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  = catkin_ws/src docs/markdown/mainpage.md
+INPUT                  = catkin_ws/src/control catkin_ws/src/hardware catkin_ws/src/simulator catkin_ws/src/utilities/debug_utils catkin_ws/src/utilities/filter_utils catkin_ws/src/utilities/math_utils catkin_ws/src/utilities/log_utils docs/markdown
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses

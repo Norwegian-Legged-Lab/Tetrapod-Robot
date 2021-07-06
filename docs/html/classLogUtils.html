@@ -86,12 +86,25 @@ Public Member Functions</h2></td></tr>
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogUtils.html#a3777bc5a1059a04b1b8bf94375744139">~LogUtils</a> ()</td></tr>
 <tr class="memdesc:a3777bc5a1059a04b1b8bf94375744139"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. <br /></td></tr>
 <tr class="separator:a3777bc5a1059a04b1b8bf94375744139"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1d32b600a73d5757dda6efe184b75e0"><td class="memItemLeft" align="right" valign="top"><a id="ac1d32b600a73d5757dda6efe184b75e0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>WriteToLog</b> ()</td></tr>
+<tr class="separator:ac1d32b600a73d5757dda6efe184b75e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c42c49b0dc74a5eb05923a033ca34c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogUtils.html#a2c42c49b0dc74a5eb05923a033ca34c9">OnGenCoordMsg</a> (const std_msgs::Float64MultiArrayConstPtr &amp;_msg)</td></tr>
 <tr class="memdesc:a2c42c49b0dc74a5eb05923a033ca34c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The OnGenCoordMsg function handles an incoming generalized coordinates message from ROS.  <a href="classLogUtils.html#a2c42c49b0dc74a5eb05923a033ca34c9">More...</a><br /></td></tr>
 <tr class="separator:a2c42c49b0dc74a5eb05923a033ca34c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a538d484ca1dc7ac3b0127d89ca2e6745"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogUtils.html#a538d484ca1dc7ac3b0127d89ca2e6745">OnGenVelMsg</a> (const std_msgs::Float64MultiArrayConstPtr &amp;_msg)</td></tr>
 <tr class="memdesc:a538d484ca1dc7ac3b0127d89ca2e6745"><td class="mdescLeft">&#160;</td><td class="mdescRight">The OnGenVelMsg function handles an incoming generalized velocities message from ROS.  <a href="classLogUtils.html#a538d484ca1dc7ac3b0127d89ca2e6745">More...</a><br /></td></tr>
 <tr class="separator:a538d484ca1dc7ac3b0127d89ca2e6745"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1901bdc3adc37c49eeb1672b135cc92"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogUtils.html#ab1901bdc3adc37c49eeb1672b135cc92">OnJointStateMsg</a> (const sensor_msgs::JointStateConstPtr &amp;_msg)</td></tr>
+<tr class="memdesc:ab1901bdc3adc37c49eeb1672b135cc92"><td class="mdescLeft">&#160;</td><td class="mdescRight">The OnJointStateMsg function handles an incoming joint state message from ROS.  <a href="classLogUtils.html#ab1901bdc3adc37c49eeb1672b135cc92">More...</a><br /></td></tr>
+<tr class="separator:ab1901bdc3adc37c49eeb1672b135cc92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfb95557fa81d007205880849a304a32"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogUtils.html#acfb95557fa81d007205880849a304a32">OnJointStateCmdMsg</a> (const sensor_msgs::JointStateConstPtr &amp;_msg)</td></tr>
+<tr class="memdesc:acfb95557fa81d007205880849a304a32"><td class="mdescLeft">&#160;</td><td class="mdescRight">The OnJointStateCmdMsg function handles an incoming joint state command message from ROS.  <a href="classLogUtils.html#acfb95557fa81d007205880849a304a32">More...</a><br /></td></tr>
+<tr class="separator:acfb95557fa81d007205880849a304a32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4c8cfc8d403bbcd1318bd86003613ea"><td class="memItemLeft" align="right" valign="top"><a id="ae4c8cfc8d403bbcd1318bd86003613ea"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogUtils.html#ae4c8cfc8d403bbcd1318bd86003613ea">PublishQueueThread</a> ()</td></tr>
+<tr class="memdesc:ae4c8cfc8d403bbcd1318bd86003613ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">The PublishQueueThread function is a ROS helper function that publish state messages. <br /></td></tr>
+<tr class="separator:ae4c8cfc8d403bbcd1318bd86003613ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c65adf0101ef76e300aac4a613562bf"><td class="memItemLeft" align="right" valign="top"><a id="a1c65adf0101ef76e300aac4a613562bf"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogUtils.html#a1c65adf0101ef76e300aac4a613562bf">ProcessQueueThread</a> ()</td></tr>
 <tr class="memdesc:a1c65adf0101ef76e300aac4a613562bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">The ProcessQueueThread function is a ROS helper function that processes messages. <br /></td></tr>
@@ -157,6 +170,68 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">_msg</td><td>A float array containing the generalized velocities. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acfb95557fa81d007205880849a304a32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfb95557fa81d007205880849a304a32">&#9670;&nbsp;</a></span>OnJointStateCmdMsg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LogUtils::OnJointStateCmdMsg </td>
+          <td>(</td>
+          <td class="paramtype">const sensor_msgs::JointStateConstPtr &amp;&#160;</td>
+          <td class="paramname"><em>_msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The OnJointStateCmdMsg function handles an incoming joint state command message from ROS. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_msg</td><td>A message holding data to describe the state of a set of controlled joints. The state is defined by<ul>
+<li>the position of the joint,</li>
+<li>the velocity of the joint and</li>
+<li>the effort (torque) that is applied in the joint. </li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab1901bdc3adc37c49eeb1672b135cc92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1901bdc3adc37c49eeb1672b135cc92">&#9670;&nbsp;</a></span>OnJointStateMsg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LogUtils::OnJointStateMsg </td>
+          <td>(</td>
+          <td class="paramtype">const sensor_msgs::JointStateConstPtr &amp;&#160;</td>
+          <td class="paramname"><em>_msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The OnJointStateMsg function handles an incoming joint state message from ROS. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_msg</td><td>A message holding data to describe the state of a set of controlled joints. The state is defined by<ul>
+<li>the position of the joint,</li>
+<li>the velocity of the joint and</li>
+<li>the effort (torque) that is applied in the joint. </li>
+</ul>
+</td></tr>
   </table>
   </dd>
 </dl>

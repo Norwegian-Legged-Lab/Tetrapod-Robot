@@ -129,10 +129,10 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:ae9be537672b681659fb05808786c90a6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematics.html#ae9be537672b681659fb05808786c90a6">SolveSingleLegInverseKinematics</a> (const bool &amp;_offset, const Vector3d &amp;_f_pos, Vector3d &amp;_joint_angles)</td></tr>
 <tr class="memdesc:ae9be537672b681659fb05808786c90a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">The SolveSingeLegInverseKinematics function calculates the inverse kinematics of foot in the hip frame.  <a href="classKinematics.html#ae9be537672b681659fb05808786c90a6">More...</a><br /></td></tr>
 <tr class="separator:ae9be537672b681659fb05808786c90a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44e7cc1fa6e9a3e70f5b8b794997f25d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkindr_1_1HomogeneousTransformation.html">TransMatrix</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematics.html#a44e7cc1fa6e9a3e70f5b8b794997f25d">GetDhTransform</a> (const double &amp;_a, const double &amp;_alpha, const double &amp;_d, const double &amp;_theta)</td></tr>
+<tr class="memitem:a44e7cc1fa6e9a3e70f5b8b794997f25d"><td class="memItemLeft" align="right" valign="top">TransMatrix&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematics.html#a44e7cc1fa6e9a3e70f5b8b794997f25d">GetDhTransform</a> (const double &amp;_a, const double &amp;_alpha, const double &amp;_d, const double &amp;_theta)</td></tr>
 <tr class="memdesc:a44e7cc1fa6e9a3e70f5b8b794997f25d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The GetDhTransform function returns the Denavit-Hartenberg transformation from frame A to frame B.  <a href="classKinematics.html#a44e7cc1fa6e9a3e70f5b8b794997f25d">More...</a><br /></td></tr>
 <tr class="separator:a44e7cc1fa6e9a3e70f5b8b794997f25d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c67f7cda22d8684c9a9f35956635557"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkindr_1_1HomogeneousTransformation.html">TransMatrix</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematics.html#a4c67f7cda22d8684c9a9f35956635557">GetHipToBodyTransform</a> (const <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &amp;_leg, const <a class="el" href="classKinematics.html#a390b699225b57bc303653caeb6039df3">BodyType</a> &amp;_body, const double &amp;_theta_hy, const double &amp;_theta_hp, const double &amp;_theta_kp)</td></tr>
+<tr class="memitem:a4c67f7cda22d8684c9a9f35956635557"><td class="memItemLeft" align="right" valign="top">TransMatrix&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematics.html#a4c67f7cda22d8684c9a9f35956635557">GetHipToBodyTransform</a> (const <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &amp;_leg, const <a class="el" href="classKinematics.html#a390b699225b57bc303653caeb6039df3">BodyType</a> &amp;_body, const double &amp;_theta_hy, const double &amp;_theta_hp, const double &amp;_theta_kp)</td></tr>
 <tr class="memdesc:a4c67f7cda22d8684c9a9f35956635557"><td class="mdescLeft">&#160;</td><td class="mdescRight">The GetHipToBodyTransform function returns the homogeneous transformation from the hip frame to the specified body frame.  <a href="classKinematics.html#a4c67f7cda22d8684c9a9f35956635557">More...</a><br /></td></tr>
 <tr class="separator:a4c67f7cda22d8684c9a9f35956635557"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a245720c27eca48806fb5e421549c9c"><td class="memItemLeft" align="right" valign="top">Eigen::Matrix&lt; double, 3, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematics.html#a1a245720c27eca48806fb5e421549c9c">GetRotationMatrixWToB</a> (const double &amp;_roll, const double &amp;_pitch, const double &amp;_yaw)</td></tr>
@@ -249,6 +249,12 @@ Eigen::Matrix&lt; double, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="b
 <tr class="memitem:afbe24573503e150193bff85bc6996401"><td class="memItemLeft" align="right" valign="top"><a id="afbe24573503e150193bff85bc6996401"></a>
 Eigen::Matrix&lt; double, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetSingleLegGravitationalTerms</b> (const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;_q)</td></tr>
 <tr class="separator:afbe24573503e150193bff85bc6996401"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c6697fbd201589746f21c1be27dab35"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematics.html#a1c6697fbd201589746f21c1be27dab35">ValidateSolution</a> (const JointSpaceVector &amp;_q_r)</td></tr>
+<tr class="memdesc:a1c6697fbd201589746f21c1be27dab35"><td class="mdescLeft">&#160;</td><td class="mdescRight">The ValidateSolution function evaluates whether a set of joint angles is within joint limits.  <a href="classKinematics.html#a1c6697fbd201589746f21c1be27dab35">More...</a><br /></td></tr>
+<tr class="separator:a1c6697fbd201589746f21c1be27dab35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4c5058b67e61502324b965925cc5651"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematics.html#ae4c5058b67e61502324b965925cc5651">ValidateSolution</a> (const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;_q_r)</td></tr>
+<tr class="memdesc:ae4c5058b67e61502324b965925cc5651"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overloaded version of the ValidateSolution function, which evaluates whether a set of joint angles for a single leg is within the joint limits.  <a href="classKinematics.html#ae4c5058b67e61502324b965925cc5651">More...</a><br /></td></tr>
+<tr class="separator:ae4c5058b67e61502324b965925cc5651"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace9c8e09c5b58e7f826c73336131a35c"><td class="memItemLeft" align="right" valign="top"><a id="ace9c8e09c5b58e7f826c73336131a35c"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetflOffset</b> ()</td></tr>
 <tr class="separator:ace9c8e09c5b58e7f826c73336131a35c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -394,7 +400,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetrrOffset</b> ()</t
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classkindr_1_1HomogeneousTransformation.html">TransMatrix</a> Kinematics::GetDhTransform </td>
+          <td class="memname">TransMatrix Kinematics::GetDhTransform </td>
           <td>(</td>
           <td class="paramtype">const double &amp;&#160;</td>
           <td class="paramname"><em>_a</em>, </td>
@@ -474,7 +480,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetrrOffset</b> ()</t
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classkindr_1_1HomogeneousTransformation.html">TransMatrix</a> Kinematics::GetHipToBodyTransform </td>
+          <td class="memname">TransMatrix Kinematics::GetHipToBodyTransform </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &amp;&#160;</td>
           <td class="paramname"><em>_leg</em>, </td>
@@ -2368,6 +2374,60 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetrrOffset</b> ()</t
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Evaluates true if an Inverse <a class="el" href="classKinematics.html" title="A class for analytical Kinematics Solving.">Kinematics</a> solution is found, and false if not. </dd></dl>
+
+</div>
+</div>
+<a id="ae4c5058b67e61502324b965925cc5651"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4c5058b67e61502324b965925cc5651">&#9670;&nbsp;</a></span>ValidateSolution() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Kinematics::ValidateSolution </td>
+          <td>(</td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_q_r</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Overloaded version of the ValidateSolution function, which evaluates whether a set of joint angles for a single leg is within the joint limits. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_q_r</td><td>Joint angles for a single leg generated by the IK solver. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Evaluates true if the IK solution is valid, and false if not. </dd></dl>
+
+</div>
+</div>
+<a id="a1c6697fbd201589746f21c1be27dab35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c6697fbd201589746f21c1be27dab35">&#9670;&nbsp;</a></span>ValidateSolution() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Kinematics::ValidateSolution </td>
+          <td>(</td>
+          <td class="paramtype">const JointSpaceVector &amp;&#160;</td>
+          <td class="paramname"><em>_q_r</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The ValidateSolution function evaluates whether a set of joint angles is within joint limits. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_q_r</td><td>Joint angles generated by the IK solver. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Evaluates true if IK solution is valid, and false if not. </dd></dl>
 
 </div>
 </div>

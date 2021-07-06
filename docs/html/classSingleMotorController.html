@@ -64,7 +64,6 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="classSingleMotorController-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">SingleMotorController Class Reference</div>  </div>
@@ -76,6 +75,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac950a79ed54e50b54b56aafa011a5ac0"><td class="memItemLeft" align="right" valign="top"><a id="ac950a79ed54e50b54b56aafa011a5ac0"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>SingleMotorController</b> (double _publish_frequency, bool _use_position_control)</td></tr>
 <tr class="separator:ac950a79ed54e50b54b56aafa011a5ac0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c2e423743a3db2b4fd72840c111b985"><td class="memItemLeft" align="right" valign="top"><a id="a8c2e423743a3db2b4fd72840c111b985"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>SingleMotorController</b> (double _publish_frequency)</td></tr>
+<tr class="separator:a8c2e423743a3db2b4fd72840c111b985"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae99f67747d465ebaeb77afaea16d57b8"><td class="memItemLeft" align="right" valign="top"><a id="ae99f67747d465ebaeb77afaea16d57b8"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>initROS</b> ()</td></tr>
 <tr class="separator:ae99f67747d465ebaeb77afaea16d57b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -97,6 +99,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>increaseIterator</b> 
 <tr class="memitem:a03d4e1ca80779bc65f2fe5b3ca28e83a"><td class="memItemLeft" align="right" valign="top"><a id="a03d4e1ca80779bc65f2fe5b3ca28e83a"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>moveToZero</b> ()</td></tr>
 <tr class="separator:a03d4e1ca80779bc65f2fe5b3ca28e83a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d2cc0229dc10ddf9808ff484e21df2e"><td class="memItemLeft" align="right" valign="top"><a id="a7d2cc0229dc10ddf9808ff484e21df2e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setPositionDirectly</b> (double _joint_pos)</td></tr>
+<tr class="separator:a7d2cc0229dc10ddf9808ff484e21df2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac4ab3c037c9eb20af5975316a42bec8"><td class="memItemLeft" align="right" valign="top"><a id="aac4ab3c037c9eb20af5975316a42bec8"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setVelocityDirectly</b> (double _joint_vel)</td></tr>
+<tr class="separator:aac4ab3c037c9eb20af5975316a42bec8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8da274bef4390989cd0d5fdb5000d7b9"><td class="memItemLeft" align="right" valign="top"><a id="a8da274bef4390989cd0d5fdb5000d7b9"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setTorqueDirectly</b> (double _torque)</td></tr>
 <tr class="separator:a8da274bef4390989cd0d5fdb5000d7b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -124,48 +132,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>writeToLog</b> ()</td
 <tr class="memitem:a2c4e76b5cfc9a1c0904d81b6fe35c080"><td class="memItemLeft" align="right" valign="top"><a id="a2c4e76b5cfc9a1c0904d81b6fe35c080"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>keepLogging</b> ()</td></tr>
 <tr class="separator:a2c4e76b5cfc9a1c0904d81b6fe35c080"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:ab2d359b583a160eaa218de5a455a4039"><td class="memItemLeft" align="right" valign="top"><a id="ab2d359b583a160eaa218de5a455a4039"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>angle_offset</b> = 0.0</td></tr>
-<tr class="separator:ab2d359b583a160eaa218de5a455a4039"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25b0694bddb447c20863ca4df011f4a9"><td class="memItemLeft" align="right" valign="top"><a id="a25b0694bddb447c20863ca4df011f4a9"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>angle_pos</b> = UNINITIALIZED_STATE</td></tr>
-<tr class="separator:a25b0694bddb447c20863ca4df011f4a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad31cf018547457e5b59be1dde575e697"><td class="memItemLeft" align="right" valign="top"><a id="ad31cf018547457e5b59be1dde575e697"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>angle_vel</b> = 0</td></tr>
-<tr class="separator:ad31cf018547457e5b59be1dde575e697"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7240c72fa6e8e78573bd12f30141dc1e"><td class="memItemLeft" align="right" valign="top"><a id="a7240c72fa6e8e78573bd12f30141dc1e"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>angle_pos_ref</b> = 0</td></tr>
-<tr class="separator:a7240c72fa6e8e78573bd12f30141dc1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9fa692ef1fddf7ee2438000483e41b3a"><td class="memItemLeft" align="right" valign="top"><a id="a9fa692ef1fddf7ee2438000483e41b3a"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>angle_vel_ref</b> = 0</td></tr>
-<tr class="separator:a9fa692ef1fddf7ee2438000483e41b3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e536f87304c3477344dbb5d2da60fe5"><td class="memItemLeft" align="right" valign="top"><a id="a0e536f87304c3477344dbb5d2da60fe5"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>angle_acc_ref</b> = 0</td></tr>
-<tr class="separator:a0e536f87304c3477344dbb5d2da60fe5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b0f4a42e0bc53aef3bd1b09a8cdd857"><td class="memItemLeft" align="right" valign="top"><a id="a3b0f4a42e0bc53aef3bd1b09a8cdd857"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>torque</b> = 0</td></tr>
-<tr class="separator:a3b0f4a42e0bc53aef3bd1b09a8cdd857"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49071923fa52124732e2d14e918ed0d3"><td class="memItemLeft" align="right" valign="top"><a id="a49071923fa52124732e2d14e918ed0d3"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>torque_ref</b> = 0</td></tr>
-<tr class="separator:a49071923fa52124732e2d14e918ed0d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a03a08a0adf627b014b82e704247d21c9"><td class="memItemLeft" align="right" valign="top"><a id="a03a08a0adf627b014b82e704247d21c9"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>ready_to_proceed</b> = false</td></tr>
-<tr class="separator:a03a08a0adf627b014b82e704247d21c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a797c0ded776522f007938760b2835107"><td class="memItemLeft" align="right" valign="top"><a id="a797c0ded776522f007938760b2835107"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>motor_initialized</b> = false</td></tr>
-<tr class="separator:a797c0ded776522f007938760b2835107"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1efa501050708820de695948622e6a7"><td class="memItemLeft" align="right" valign="top"><a id="ab1efa501050708820de695948622e6a7"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>current_iteration</b> = 0.0</td></tr>
-<tr class="separator:ab1efa501050708820de695948622e6a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac8ca5f6eef3f2b1647d7ff156115f886"><td class="memItemLeft" align="right" valign="top"><a id="ac8ca5f6eef3f2b1647d7ff156115f886"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>keep_logging</b> = true</td></tr>
-<tr class="separator:ac8ca5f6eef3f2b1647d7ff156115f886"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ffdc2c128c73e0c3febde169920a14b"><td class="memItemLeft" align="right" valign="top"><a id="a8ffdc2c128c73e0c3febde169920a14b"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>gains_set</b> = false</td></tr>
-<tr class="separator:a8ffdc2c128c73e0c3febde169920a14b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8298e6b6ba13db9de06f736e9e83e9ae"><td class="memItemLeft" align="right" valign="top"><a id="a8298e6b6ba13db9de06f736e9e83e9ae"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>getPosition</b> ()</td></tr>
+<tr class="separator:a8298e6b6ba13db9de06f736e9e83e9ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>catkin_ws/src/control/single_motor_controller/include/single_motor_controller/<a class="el" href="single__motor__controller_8h_source.html">single_motor_controller.h</a></li>

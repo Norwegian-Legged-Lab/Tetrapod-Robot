@@ -6,6 +6,9 @@
 \mbox{\Hypertarget{classSingleMotorController_ac950a79ed54e50b54b56aafa011a5ac0}\label{classSingleMotorController_ac950a79ed54e50b54b56aafa011a5ac0}} 
 {\bfseries Single\+Motor\+Controller} (double \+\_\+publish\+\_\+frequency, bool \+\_\+use\+\_\+position\+\_\+control)
 \item 
+\mbox{\Hypertarget{classSingleMotorController_a8c2e423743a3db2b4fd72840c111b985}\label{classSingleMotorController_a8c2e423743a3db2b4fd72840c111b985}} 
+{\bfseries Single\+Motor\+Controller} (double \+\_\+publish\+\_\+frequency)
+\item 
 \mbox{\Hypertarget{classSingleMotorController_ae99f67747d465ebaeb77afaea16d57b8}\label{classSingleMotorController_ae99f67747d465ebaeb77afaea16d57b8}} 
 void {\bfseries init\+R\+OS} ()
 \item 
@@ -26,6 +29,12 @@ void {\bfseries increase\+Iterator} ()
 \item 
 \mbox{\Hypertarget{classSingleMotorController_a03d4e1ca80779bc65f2fe5b3ca28e83a}\label{classSingleMotorController_a03d4e1ca80779bc65f2fe5b3ca28e83a}} 
 void {\bfseries move\+To\+Zero} ()
+\item 
+\mbox{\Hypertarget{classSingleMotorController_a7d2cc0229dc10ddf9808ff484e21df2e}\label{classSingleMotorController_a7d2cc0229dc10ddf9808ff484e21df2e}} 
+void {\bfseries set\+Position\+Directly} (double \+\_\+joint\+\_\+pos)
+\item 
+\mbox{\Hypertarget{classSingleMotorController_aac4ab3c037c9eb20af5975316a42bec8}\label{classSingleMotorController_aac4ab3c037c9eb20af5975316a42bec8}} 
+void {\bfseries set\+Velocity\+Directly} (double \+\_\+joint\+\_\+vel)
 \item 
 \mbox{\Hypertarget{classSingleMotorController_a8da274bef4390989cd0d5fdb5000d7b9}\label{classSingleMotorController_a8da274bef4390989cd0d5fdb5000d7b9}} 
 void {\bfseries set\+Torque\+Directly} (double \+\_\+torque)
@@ -53,48 +62,9 @@ void {\bfseries write\+To\+Log} ()
 \item 
 \mbox{\Hypertarget{classSingleMotorController_a2c4e76b5cfc9a1c0904d81b6fe35c080}\label{classSingleMotorController_a2c4e76b5cfc9a1c0904d81b6fe35c080}} 
 bool {\bfseries keep\+Logging} ()
-\end{DoxyCompactItemize}
-\doxysubsection*{Public Attributes}
-\begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classSingleMotorController_ab2d359b583a160eaa218de5a455a4039}\label{classSingleMotorController_ab2d359b583a160eaa218de5a455a4039}} 
-double {\bfseries angle\+\_\+offset} = 0.\+0
-\item 
-\mbox{\Hypertarget{classSingleMotorController_a25b0694bddb447c20863ca4df011f4a9}\label{classSingleMotorController_a25b0694bddb447c20863ca4df011f4a9}} 
-double {\bfseries angle\+\_\+pos} = U\+N\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+E\+D\+\_\+\+S\+T\+A\+TE
-\item 
-\mbox{\Hypertarget{classSingleMotorController_ad31cf018547457e5b59be1dde575e697}\label{classSingleMotorController_ad31cf018547457e5b59be1dde575e697}} 
-double {\bfseries angle\+\_\+vel} = 0
-\item 
-\mbox{\Hypertarget{classSingleMotorController_a7240c72fa6e8e78573bd12f30141dc1e}\label{classSingleMotorController_a7240c72fa6e8e78573bd12f30141dc1e}} 
-double {\bfseries angle\+\_\+pos\+\_\+ref} = 0
-\item 
-\mbox{\Hypertarget{classSingleMotorController_a9fa692ef1fddf7ee2438000483e41b3a}\label{classSingleMotorController_a9fa692ef1fddf7ee2438000483e41b3a}} 
-double {\bfseries angle\+\_\+vel\+\_\+ref} = 0
-\item 
-\mbox{\Hypertarget{classSingleMotorController_a0e536f87304c3477344dbb5d2da60fe5}\label{classSingleMotorController_a0e536f87304c3477344dbb5d2da60fe5}} 
-double {\bfseries angle\+\_\+acc\+\_\+ref} = 0
-\item 
-\mbox{\Hypertarget{classSingleMotorController_a3b0f4a42e0bc53aef3bd1b09a8cdd857}\label{classSingleMotorController_a3b0f4a42e0bc53aef3bd1b09a8cdd857}} 
-double {\bfseries torque} = 0
-\item 
-\mbox{\Hypertarget{classSingleMotorController_a49071923fa52124732e2d14e918ed0d3}\label{classSingleMotorController_a49071923fa52124732e2d14e918ed0d3}} 
-double {\bfseries torque\+\_\+ref} = 0
-\item 
-\mbox{\Hypertarget{classSingleMotorController_a03a08a0adf627b014b82e704247d21c9}\label{classSingleMotorController_a03a08a0adf627b014b82e704247d21c9}} 
-bool {\bfseries ready\+\_\+to\+\_\+proceed} = false
-\item 
-\mbox{\Hypertarget{classSingleMotorController_a797c0ded776522f007938760b2835107}\label{classSingleMotorController_a797c0ded776522f007938760b2835107}} 
-bool {\bfseries motor\+\_\+initialized} = false
-\item 
-\mbox{\Hypertarget{classSingleMotorController_ab1efa501050708820de695948622e6a7}\label{classSingleMotorController_ab1efa501050708820de695948622e6a7}} 
-double {\bfseries current\+\_\+iteration} = 0.\+0
-\item 
-\mbox{\Hypertarget{classSingleMotorController_ac8ca5f6eef3f2b1647d7ff156115f886}\label{classSingleMotorController_ac8ca5f6eef3f2b1647d7ff156115f886}} 
-bool {\bfseries keep\+\_\+logging} = true
-\item 
-\mbox{\Hypertarget{classSingleMotorController_a8ffdc2c128c73e0c3febde169920a14b}\label{classSingleMotorController_a8ffdc2c128c73e0c3febde169920a14b}} 
-bool {\bfseries gains\+\_\+set} = false
+\mbox{\Hypertarget{classSingleMotorController_a8298e6b6ba13db9de06f736e9e83e9ae}\label{classSingleMotorController_a8298e6b6ba13db9de06f736e9e83e9ae}} 
+double {\bfseries get\+Position} ()
 \end{DoxyCompactItemize}
 
 
