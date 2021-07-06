@@ -1,0 +1,81 @@
+\hypertarget{md_catkin_ws_src_utilities_kindr_doc_notes_kindr_1_80_80_autotoc_md64}{}\doxysection{Changes from Kindr 0.\+0.\+1}\label{md_catkin_ws_src_utilities_kindr_doc_notes_kindr_1_80_80_autotoc_md64}
+
+\begin{DoxyItemize}
+\item C\+\_\+\+B\+I.\+box\+Plus(dt $\ast$ B\+\_\+w\+\_\+\+I\+B) ==$>$ C\+\_\+\+B\+I.\+box\+Plus(dt $\ast$ C\+\_\+\+I\+B $\ast$ B\+\_\+w\+\_\+\+I\+B)
+\item C\+\_\+\+B\+I.\+box\+Minus(dt $\ast$  B\+\_\+w\+\_\+\+I\+B) ==$>$ -\/\+C\+\_\+\+B\+I.\+box\+Minus(dt $\ast$ B\+\_\+w\+\_\+\+IB)
+\item set\+From\+Vectors(v1, v2) ==$>$ set\+From\+Vectors(v2, v1) = set\+From\+Vectors(v1, v2).invert()
+\item Euler\+Angles\+Zyx(z, y, x) ==$>$ Euler\+Angles\+Zyx(-\/z, -\/y,-\/x)
+\item Euler\+Angles\+Xyz(x, y, z) ==$>$ Euler\+Angles\+Xyz(-\/x, -\/y,-\/z)
+\end{DoxyItemize}\hypertarget{md_catkin_ws_src_utilities_kindr_doc_notes_kindr_1_80_80_autotoc_md65}{}\doxysection{Kindr 1.\+0.\+0}\label{md_catkin_ws_src_utilities_kindr_doc_notes_kindr_1_80_80_autotoc_md65}
+
+\begin{DoxyItemize}
+\item Convention\+: Hamilton, passive
+\end{DoxyItemize}\hypertarget{md_catkin_ws_src_utilities_kindr_doc_notes_kindr_1_80_80_autotoc_md66}{}\doxysection{Gazebo}\label{md_catkin_ws_src_utilities_kindr_doc_notes_kindr_1_80_80_autotoc_md66}
+
+\begin{DoxyItemize}
+\item Convention\+: Hamilton, passive
+\item Convention tests can be found in the unit tests of package kindr\+\_\+gazebo in repo any\+\_\+gazebo.
+\item Gazebos\textquotesingle{}s gazebo\+::math\+::\+Quaternion has the same convention as kindr.
+\item Gazebo\textquotesingle{}s output\+:
+\begin{DoxyItemize}
+\item (I\+\_\+r, C\+\_\+\+IB) = link-\/$>$Get\+World\+Pose(); (position expressed in inertial frame, rotation from base to interial frame)
+\item B\+\_\+v = link-\/$>$Get\+Relative\+Linear\+Vel(); (linear velocity in base frame
+\item B\+\_\+w\+\_\+\+IB = link-\/$>$Get\+Relative\+Angular\+Vel(); (local angular velocity)
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md_catkin_ws_src_utilities_kindr_doc_notes_kindr_1_80_80_autotoc_md67}{}\doxysection{R\+O\+S T\+F, Rviz}\label{md_catkin_ws_src_utilities_kindr_doc_notes_kindr_1_80_80_autotoc_md67}
+
+\begin{DoxyItemize}
+\item Convention\+: Hamilton, passive, R\+Viz wants TF message with rotation C\+\_\+\+IB
+\item Convention tests can be found in the unit tests of package kindr\+\_\+ros in repo kindr\+\_\+ros.
+\item tf\+::\+Quaternion has the same convention as kindr.
+\item tf\+::\+Matrix3x3 (rotation matrix) has the same convention as kindr
+\item tf\+::\+Transform behaves the same as kindr\+::\+Homogeneous\+Transformation\+Position3\+Rotation\+QuaternionD
+\end{DoxyItemize}\hypertarget{md_catkin_ws_src_utilities_kindr_doc_notes_kindr_1_80_80_autotoc_md68}{}\doxysection{R\+B\+DL}\label{md_catkin_ws_src_utilities_kindr_doc_notes_kindr_1_80_80_autotoc_md68}
+
+\begin{DoxyItemize}
+\item Convention\+: not consistent (mostly Hamiltonian)
+\item Conversion tests can be found in the unit tests of package rbdl in the monorepo.
+\item R\+B\+DL\textquotesingle{}s Rigid\+Body\+Dynamics\+::\+Math\+::\+Quaternion has the same convention as kindr, but the resulting rotation matrix from to\+Matrix() is inverted!
+\item R\+B\+DL\textquotesingle{}s rotation of Rigid\+Body\+Dynamics\+::\+Math\+::\+Spatial\+Transform has the same convention as kindr
+\item Attention\+: R\+B\+DL inverts the quaternion in the generalized coordinates!
+\end{DoxyItemize}\hypertarget{md_catkin_ws_src_utilities_kindr_doc_notes_kindr_1_80_80_autotoc_md69}{}\doxysubsection{Calculations in R\+B\+DL}\label{md_catkin_ws_src_utilities_kindr_doc_notes_kindr_1_80_80_autotoc_md69}
+\hypertarget{md_catkin_ws_src_utilities_kindr_doc_notes_kindr_1_80_80_autotoc_md70}{}\doxysubsubsection{Transformation X\+\_\+base}\label{md_catkin_ws_src_utilities_kindr_doc_notes_kindr_1_80_80_autotoc_md70}
+std\+::vector$<$\+Math\+::\+Spatial\+Transform$>$ X\+\_\+base Comments in code\+: \char`\"{}\+Transformation from the base to bodies reference frame.\char`\"{}
+
+According to {\itshape Calc\+Body\+To\+Base\+Coordinates} (see below), the following position and orientation is stored\+:
+
+X\+\_\+base.\+r = W\+\_\+r\+\_\+\+WB X\+\_\+base.\+E = C\+\_\+\+BW\hypertarget{md_catkin_ws_src_utilities_kindr_doc_notes_kindr_1_80_80_autotoc_md71}{}\doxysubsubsection{Calc\+Body\+To\+Base\+Coordinates}\label{md_catkin_ws_src_utilities_kindr_doc_notes_kindr_1_80_80_autotoc_md71}
+Base Coordinates = World Coordinates Comments in code\+:
+\begin{DoxyItemize}
+\item \char`\"{}\+Returns the base coordinates of a point given in body coordinates.
+$\ast$ \char`\"{}3-\/D vector with coordinates of the point in base coordinates"
+\end{DoxyItemize}
+
+The calc should be\+: W\+\_\+r\+\_\+\+WP = W\+\_\+r\+\_\+\+WB + C\+\_\+\+W\+B$\ast$\+B\+\_\+r\+\_\+\+BP
+
+The code says\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Matrix3d body\_rotation = model.X\_base[body\_id].E.transpose();}
+\DoxyCodeLine{Vector3d body\_position = model.X\_base[body\_id].r; }
+\DoxyCodeLine{return body\_position + body\_rotation * point\_body\_coordinates;}
+\end{DoxyCode}
+
+
+X\+\_\+base.\+E should correspond to C\+\_\+\+BW\hypertarget{md_catkin_ws_src_utilities_kindr_doc_notes_kindr_1_80_80_autotoc_md72}{}\doxysubsubsection{Calc\+Base\+To\+Body\+Coordinates}\label{md_catkin_ws_src_utilities_kindr_doc_notes_kindr_1_80_80_autotoc_md72}
+
+\begin{DoxyItemize}
+\item \char`\"{}\+Returns the body coordinates of a point given in base coordinates.\char`\"{}
+\item \char`\"{}\+Returns a 3-\/\+D vector with coordinates of the point in body coordinates\char`\"{}
+\end{DoxyItemize}
+
+B\+\_\+r\+\_\+\+BP = C\+\_\+\+BW $\ast$ (W\+\_\+r\+\_\+\+WP -\/ W\+\_\+r\+\_\+\+WB)
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Matrix3d body\_rotation = model.X\_base[body\_id].E;}
+\DoxyCodeLine{Vector3d body\_position = model.X\_base[body\_id].r;}
+\DoxyCodeLine{return body\_rotation * (point\_base\_coordinates -\/ body\_position);}
+\end{DoxyCode}
+ 

@@ -1,0 +1,442 @@
+\hypertarget{classkindr_1_1EulerAnglesZyxDiff}{}\doxysection{kindr\+::Euler\+Angles\+Zyx\+Diff$<$ Prim\+Type\+\_\+ $>$ Class Template Reference}
+\label{classkindr_1_1EulerAnglesZyxDiff}\index{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}}
+
+
+Implementation of time derivatives of Euler angles (Z,Y\textquotesingle{},X\textquotesingle{}\textquotesingle{} / yaw,pitch,roll) based on Eigen\+::\+Matrix$<$\+Scalar, 3, 1$>$  
+
+
+
+
+{\ttfamily \#include $<$Euler\+Angles\+Zyx\+Diff.\+hpp$>$}
+
+
+
+Inheritance diagram for kindr\+::Euler\+Angles\+Zyx\+Diff$<$ Prim\+Type\+\_\+ $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{classkindr_1_1EulerAnglesZyxDiff__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for kindr\+::Euler\+Angles\+Zyx\+Diff$<$ Prim\+Type\+\_\+ $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{classkindr_1_1EulerAnglesZyxDiff__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classkindr_1_1EulerAnglesZyxDiff_a2150be379656f80a6b805421758f3b2a}\label{classkindr_1_1EulerAnglesZyxDiff_a2150be379656f80a6b805421758f3b2a}} 
+typedef Base \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a2150be379656f80a6b805421758f3b2a}{Implementation}}
+\begin{DoxyCompactList}\small\item\em The implementation type. The implementation type is always an Eigen object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classkindr_1_1EulerAnglesZyxDiff_a4c0ad6231fea2f6b0b75dece88945b86}\label{classkindr_1_1EulerAnglesZyxDiff_a4c0ad6231fea2f6b0b75dece88945b86}} 
+typedef Prim\+Type\+\_\+ \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a4c0ad6231fea2f6b0b75dece88945b86}{Scalar}}
+\begin{DoxyCompactList}\small\item\em The primitive type. Float/\+Double. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classkindr_1_1EulerAnglesZyxDiff_a8e9c3eb843c8679228f399e5c43e34a9}\label{classkindr_1_1EulerAnglesZyxDiff_a8e9c3eb843c8679228f399e5c43e34a9}} 
+\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a8e9c3eb843c8679228f399e5c43e34a9}{Euler\+Angles\+Zyx\+Diff}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a04d9006ebc9e8adcf552f4d937450ed6}{Euler\+Angles\+Zyx\+Diff}} (\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a4c0ad6231fea2f6b0b75dece88945b86}{Scalar}} \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_ae55742175012cfb78ec875e7eb6011b7}{yaw}}, \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a4c0ad6231fea2f6b0b75dece88945b86}{Scalar}} \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_ae09cf49691a3130e2b8bb18a8b09e43c}{pitch}}, \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a4c0ad6231fea2f6b0b75dece88945b86}{Scalar}} \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a41d840f7dba08a44bc2f5944e46536f1}{roll}})
+\begin{DoxyCompactList}\small\item\em Constructor using three scalars. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Rotation\+Derived\+\_\+ , typename Other\+Derived\+\_\+ $>$ }\\\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_aa18cf7c6d7f5ce34a840700476f23f14}{Euler\+Angles\+Zyx\+Diff}} (const \mbox{\hyperlink{classkindr_1_1RotationBase}{Rotation\+Base}}$<$ Rotation\+Derived\+\_\+ $>$ \&rotation, const \mbox{\hyperlink{classkindr_1_1RotationDiffBase}{Rotation\+Diff\+Base}}$<$ Other\+Derived\+\_\+ $>$ \&other)
+\begin{DoxyCompactList}\small\item\em Constructor using a time derivative with a different parameterization. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Other\+Derived\+\_\+ , typename Rotation\+Derived\+\_\+ $>$ }\\Other\+Derived\+\_\+ \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a66fbf961d83eac12c055e03ffd6e921c}{cast}} (const \mbox{\hyperlink{classkindr_1_1RotationBase}{Rotation\+Base}}$<$ Rotation\+Derived\+\_\+ $>$ \&rotation) const
+\begin{DoxyCompactList}\small\item\em Cast to another representation of the time derivative of a rotation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_aa918f123a6ed4e50a43d34b270216a16}{Euler\+Angles\+Zyx\+Diff}} (const Base \&other)
+\begin{DoxyCompactList}\small\item\em Constructor using Eigen\+::\+Matrix. \end{DoxyCompactList}\item 
+Base \& \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a65a7afb6e20de283237d236eccccc7fa}{to\+Implementation}} ()
+\begin{DoxyCompactList}\small\item\em Cast to the implementation type. \end{DoxyCompactList}\item 
+const Base \& \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a6de0b17910118eab8f4ae76ed021cd37}{to\+Implementation}} () const
+\begin{DoxyCompactList}\small\item\em Cast to the implementation type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classkindr_1_1EulerAnglesZyxDiff_a654106a597d6c6fbd5ae4df3a6e2683e}\label{classkindr_1_1EulerAnglesZyxDiff_a654106a597d6c6fbd5ae4df3a6e2683e}} 
+Base \& {\bfseries vector} ()
+\item 
+\mbox{\Hypertarget{classkindr_1_1EulerAnglesZyxDiff_a548944501b3a2b4a8281b76bbabbc8bc}\label{classkindr_1_1EulerAnglesZyxDiff_a548944501b3a2b4a8281b76bbabbc8bc}} 
+const Base \& {\bfseries vector} () const
+\item 
+\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a4c0ad6231fea2f6b0b75dece88945b86}{Scalar}} \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_ae55742175012cfb78ec875e7eb6011b7}{yaw}} () const
+\begin{DoxyCompactList}\small\item\em Reading access to time derivative of yaw (Z) angle. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a4c0ad6231fea2f6b0b75dece88945b86}{Scalar}} \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_ae09cf49691a3130e2b8bb18a8b09e43c}{pitch}} () const
+\begin{DoxyCompactList}\small\item\em Reading access to time derivative of pitch (Y\textquotesingle{}) angle. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a4c0ad6231fea2f6b0b75dece88945b86}{Scalar}} \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a41d840f7dba08a44bc2f5944e46536f1}{roll}} () const
+\begin{DoxyCompactList}\small\item\em Reading access to time derivative of roll (X\textquotesingle{}\textquotesingle{}) angle. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a4c0ad6231fea2f6b0b75dece88945b86}{Scalar}} \& \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_ad6e2d42c6da88cf91c4cb31c07f698ba}{yaw}} ()
+\begin{DoxyCompactList}\small\item\em Writing access to time derivative of yaw (Z) angle. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a4c0ad6231fea2f6b0b75dece88945b86}{Scalar}} \& \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a905b816f27e236d5705030604c5aa1f2}{pitch}} ()
+\begin{DoxyCompactList}\small\item\em Writing access to time derivative of pitch (Y\textquotesingle{}) angle. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a4c0ad6231fea2f6b0b75dece88945b86}{Scalar}} \& \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_ab67757abf8e761f9256b3a0fd58133e2}{roll}} ()
+\begin{DoxyCompactList}\small\item\em Writing access to time derivative of roll (X\textquotesingle{}\textquotesingle{}) angle. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a4c0ad6231fea2f6b0b75dece88945b86}{Scalar}} \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_ac5b14af33b8792dad0cf95561a696946}{z}} () const
+\begin{DoxyCompactList}\small\item\em Reading access to time derivative of yaw (Z) angle. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a4c0ad6231fea2f6b0b75dece88945b86}{Scalar}} \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a3772f535225e373c3d3c55814c5cd81f}{y}} () const
+\begin{DoxyCompactList}\small\item\em Reading access to time derivative of pitch (Y\textquotesingle{}) angle. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a4c0ad6231fea2f6b0b75dece88945b86}{Scalar}} \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_ad60b8ec317db44af64411c42da5a5017}{x}} () const
+\begin{DoxyCompactList}\small\item\em Reading access to time derivative of roll (X\textquotesingle{}\textquotesingle{}) angle. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a4c0ad6231fea2f6b0b75dece88945b86}{Scalar}} \& \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a4d5fe3d149f87b38a1a3dbb80b097b17}{z}} ()
+\begin{DoxyCompactList}\small\item\em Writing access to time derivative of yaw (Z) angle. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a4c0ad6231fea2f6b0b75dece88945b86}{Scalar}} \& \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_ad99268ccdea80f5b5184c44873d0a784}{y}} ()
+\begin{DoxyCompactList}\small\item\em Writing access to time derivative of pitch (Y\textquotesingle{}) angle. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a4c0ad6231fea2f6b0b75dece88945b86}{Scalar}} \& \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_af04d23a5660d6e68dcad715326abf8d4}{x}} ()
+\begin{DoxyCompactList}\small\item\em Writing access to time derivative of roll (X\textquotesingle{}\textquotesingle{}) angle. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff}{Euler\+Angles\+Zyx\+Diff}} \& \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a977a305ed95ebd621cf4a4746d1b3735}{set\+Zero}} ()
+\begin{DoxyCompactList}\small\item\em Sets all time derivatives to zero. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff}{Euler\+Angles\+Zyx\+Diff}} \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a7a4aee0ffe4edd8dca1fb731b493d7e0}{Zero}} ()
+\begin{DoxyCompactList}\small\item\em Get zero element. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a9a8221a5eb56d664a9cc65a328180cf9}{operator$<$$<$}} (std\+::ostream \&out, const \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff}{Euler\+Angles\+Zyx\+Diff}} \&diff)
+\begin{DoxyCompactList}\small\item\em Used for printing the object with std\+::cout. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Prim\+Type\+\_\+$>$\newline
+class kindr\+::\+Euler\+Angles\+Zyx\+Diff$<$ Prim\+Type\+\_\+ $>$}
+
+Implementation of time derivatives of Euler angles (Z,Y\textquotesingle{},X\textquotesingle{}\textquotesingle{} / yaw,pitch,roll) based on Eigen\+::\+Matrix$<$\+Scalar, 3, 1$>$ 
+
+The following two typedefs are provided for convenience\+:
+\begin{DoxyItemize}
+\item Euler\+Angles\+Zyx\+Diff\+AD for primitive type double
+\item Euler\+Angles\+Zyx\+Doff\+AF for primitive type float 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Prim\+Type\+\_\+} & the primitive type of the data (double or float) \\
+\hline
+\end{DoxyTemplParams}
+
+\end{DoxyItemize}
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classkindr_1_1EulerAnglesZyxDiff_a04d9006ebc9e8adcf552f4d937450ed6}\label{classkindr_1_1EulerAnglesZyxDiff_a04d9006ebc9e8adcf552f4d937450ed6}} 
+\index{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}!EulerAnglesZyxDiff@{EulerAnglesZyxDiff}}
+\index{EulerAnglesZyxDiff@{EulerAnglesZyxDiff}!kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}}
+\doxysubsubsection{\texorpdfstring{EulerAnglesZyxDiff()}{EulerAnglesZyxDiff()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename Prim\+Type\+\_\+ $>$ \\
+\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff}{kindr\+::\+Euler\+Angles\+Zyx\+Diff}}$<$ Prim\+Type\+\_\+ $>$\+::\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff}{Euler\+Angles\+Zyx\+Diff}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a4c0ad6231fea2f6b0b75dece88945b86}{Scalar}}}]{yaw,  }\item[{\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a4c0ad6231fea2f6b0b75dece88945b86}{Scalar}}}]{pitch,  }\item[{\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a4c0ad6231fea2f6b0b75dece88945b86}{Scalar}}}]{roll }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor using three scalars. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em yaw} & time derivative of first rotation angle around Z axis \\
+\hline
+{\em pitch} & time derivative of second rotation angle around Y\textquotesingle{} axis \\
+\hline
+{\em roll} & time derivative of third rotation angle around X\textquotesingle{}\textquotesingle{} axis \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classkindr_1_1EulerAnglesZyxDiff_aa18cf7c6d7f5ce34a840700476f23f14}\label{classkindr_1_1EulerAnglesZyxDiff_aa18cf7c6d7f5ce34a840700476f23f14}} 
+\index{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}!EulerAnglesZyxDiff@{EulerAnglesZyxDiff}}
+\index{EulerAnglesZyxDiff@{EulerAnglesZyxDiff}!kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}}
+\doxysubsubsection{\texorpdfstring{EulerAnglesZyxDiff()}{EulerAnglesZyxDiff()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename Prim\+Type\+\_\+ $>$ \\
+template$<$typename Rotation\+Derived\+\_\+ , typename Other\+Derived\+\_\+ $>$ \\
+\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff}{kindr\+::\+Euler\+Angles\+Zyx\+Diff}}$<$ Prim\+Type\+\_\+ $>$\+::\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff}{Euler\+Angles\+Zyx\+Diff}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classkindr_1_1RotationBase}{Rotation\+Base}}$<$ Rotation\+Derived\+\_\+ $>$ \&}]{rotation,  }\item[{const \mbox{\hyperlink{classkindr_1_1RotationDiffBase}{Rotation\+Diff\+Base}}$<$ Other\+Derived\+\_\+ $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Constructor using a time derivative with a different parameterization. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rotation} & rotation \\
+\hline
+{\em other} & other time derivative \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classkindr_1_1EulerAnglesZyxDiff_aa918f123a6ed4e50a43d34b270216a16}\label{classkindr_1_1EulerAnglesZyxDiff_aa918f123a6ed4e50a43d34b270216a16}} 
+\index{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}!EulerAnglesZyxDiff@{EulerAnglesZyxDiff}}
+\index{EulerAnglesZyxDiff@{EulerAnglesZyxDiff}!kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}}
+\doxysubsubsection{\texorpdfstring{EulerAnglesZyxDiff()}{EulerAnglesZyxDiff()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename Prim\+Type\+\_\+ $>$ \\
+\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff}{kindr\+::\+Euler\+Angles\+Zyx\+Diff}}$<$ Prim\+Type\+\_\+ $>$\+::\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff}{Euler\+Angles\+Zyx\+Diff}} (\begin{DoxyParamCaption}\item[{const Base \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Constructor using Eigen\+::\+Matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Eigen\+::\+Matrix$<$\+Scalar, 3, 1$>$ \mbox{[}yaw; pitch; roll\mbox{]} \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classkindr_1_1EulerAnglesZyxDiff_a66fbf961d83eac12c055e03ffd6e921c}\label{classkindr_1_1EulerAnglesZyxDiff_a66fbf961d83eac12c055e03ffd6e921c}} 
+\index{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}!cast@{cast}}
+\index{cast@{cast}!kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}}
+\doxysubsubsection{\texorpdfstring{cast()}{cast()}}
+{\footnotesize\ttfamily template$<$typename Prim\+Type\+\_\+ $>$ \\
+template$<$typename Other\+Derived\+\_\+ , typename Rotation\+Derived\+\_\+ $>$ \\
+Other\+Derived\+\_\+ \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff}{kindr\+::\+Euler\+Angles\+Zyx\+Diff}}$<$ Prim\+Type\+\_\+ $>$\+::cast (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classkindr_1_1RotationBase}{Rotation\+Base}}$<$ Rotation\+Derived\+\_\+ $>$ \&}]{rotation }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Cast to another representation of the time derivative of a rotation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & other rotation \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+reference 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1EulerAnglesZyxDiff_a905b816f27e236d5705030604c5aa1f2}\label{classkindr_1_1EulerAnglesZyxDiff_a905b816f27e236d5705030604c5aa1f2}} 
+\index{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}!pitch@{pitch}}
+\index{pitch@{pitch}!kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}}
+\doxysubsubsection{\texorpdfstring{pitch()}{pitch()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Prim\+Type\+\_\+ $>$ \\
+\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a4c0ad6231fea2f6b0b75dece88945b86}{Scalar}}\& \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff}{kindr\+::\+Euler\+Angles\+Zyx\+Diff}}$<$ Prim\+Type\+\_\+ $>$\+::pitch (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Writing access to time derivative of pitch (Y\textquotesingle{}) angle. 
+
+\begin{DoxyReturn}{Returns}
+time derivative of pitch angle (scalar) with writing access 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1EulerAnglesZyxDiff_ae09cf49691a3130e2b8bb18a8b09e43c}\label{classkindr_1_1EulerAnglesZyxDiff_ae09cf49691a3130e2b8bb18a8b09e43c}} 
+\index{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}!pitch@{pitch}}
+\index{pitch@{pitch}!kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}}
+\doxysubsubsection{\texorpdfstring{pitch()}{pitch()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Prim\+Type\+\_\+ $>$ \\
+\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a4c0ad6231fea2f6b0b75dece88945b86}{Scalar}} \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff}{kindr\+::\+Euler\+Angles\+Zyx\+Diff}}$<$ Prim\+Type\+\_\+ $>$\+::pitch (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reading access to time derivative of pitch (Y\textquotesingle{}) angle. 
+
+\begin{DoxyReturn}{Returns}
+time derivative of pitch angle (scalar) with reading access 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1EulerAnglesZyxDiff_ab67757abf8e761f9256b3a0fd58133e2}\label{classkindr_1_1EulerAnglesZyxDiff_ab67757abf8e761f9256b3a0fd58133e2}} 
+\index{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}!roll@{roll}}
+\index{roll@{roll}!kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}}
+\doxysubsubsection{\texorpdfstring{roll()}{roll()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Prim\+Type\+\_\+ $>$ \\
+\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a4c0ad6231fea2f6b0b75dece88945b86}{Scalar}}\& \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff}{kindr\+::\+Euler\+Angles\+Zyx\+Diff}}$<$ Prim\+Type\+\_\+ $>$\+::roll (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Writing access to time derivative of roll (X\textquotesingle{}\textquotesingle{}) angle. 
+
+\begin{DoxyReturn}{Returns}
+time derivative of roll angle (scalar) with writing access 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1EulerAnglesZyxDiff_a41d840f7dba08a44bc2f5944e46536f1}\label{classkindr_1_1EulerAnglesZyxDiff_a41d840f7dba08a44bc2f5944e46536f1}} 
+\index{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}!roll@{roll}}
+\index{roll@{roll}!kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}}
+\doxysubsubsection{\texorpdfstring{roll()}{roll()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Prim\+Type\+\_\+ $>$ \\
+\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a4c0ad6231fea2f6b0b75dece88945b86}{Scalar}} \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff}{kindr\+::\+Euler\+Angles\+Zyx\+Diff}}$<$ Prim\+Type\+\_\+ $>$\+::roll (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reading access to time derivative of roll (X\textquotesingle{}\textquotesingle{}) angle. 
+
+\begin{DoxyReturn}{Returns}
+time derivative of roll angle (scalar) with reading access 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1EulerAnglesZyxDiff_a977a305ed95ebd621cf4a4746d1b3735}\label{classkindr_1_1EulerAnglesZyxDiff_a977a305ed95ebd621cf4a4746d1b3735}} 
+\index{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}!setZero@{setZero}}
+\index{setZero@{setZero}!kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}}
+\doxysubsubsection{\texorpdfstring{setZero()}{setZero()}}
+{\footnotesize\ttfamily template$<$typename Prim\+Type\+\_\+ $>$ \\
+\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff}{Euler\+Angles\+Zyx\+Diff}}\& \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff}{kindr\+::\+Euler\+Angles\+Zyx\+Diff}}$<$ Prim\+Type\+\_\+ $>$\+::set\+Zero (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets all time derivatives to zero. 
+
+\begin{DoxyReturn}{Returns}
+reference 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1EulerAnglesZyxDiff_a65a7afb6e20de283237d236eccccc7fa}\label{classkindr_1_1EulerAnglesZyxDiff_a65a7afb6e20de283237d236eccccc7fa}} 
+\index{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}!toImplementation@{toImplementation}}
+\index{toImplementation@{toImplementation}!kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}}
+\doxysubsubsection{\texorpdfstring{toImplementation()}{toImplementation()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Prim\+Type\+\_\+ $>$ \\
+Base\& \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff}{kindr\+::\+Euler\+Angles\+Zyx\+Diff}}$<$ Prim\+Type\+\_\+ $>$\+::to\+Implementation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Cast to the implementation type. 
+
+\begin{DoxyReturn}{Returns}
+the implementation for direct manipulation (recommended only for advanced users) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1EulerAnglesZyxDiff_a6de0b17910118eab8f4ae76ed021cd37}\label{classkindr_1_1EulerAnglesZyxDiff_a6de0b17910118eab8f4ae76ed021cd37}} 
+\index{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}!toImplementation@{toImplementation}}
+\index{toImplementation@{toImplementation}!kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}}
+\doxysubsubsection{\texorpdfstring{toImplementation()}{toImplementation()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Prim\+Type\+\_\+ $>$ \\
+const Base\& \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff}{kindr\+::\+Euler\+Angles\+Zyx\+Diff}}$<$ Prim\+Type\+\_\+ $>$\+::to\+Implementation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Cast to the implementation type. 
+
+\begin{DoxyReturn}{Returns}
+the implementation for direct manipulation (recommended only for advanced users) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1EulerAnglesZyxDiff_af04d23a5660d6e68dcad715326abf8d4}\label{classkindr_1_1EulerAnglesZyxDiff_af04d23a5660d6e68dcad715326abf8d4}} 
+\index{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}!x@{x}}
+\index{x@{x}!kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}}
+\doxysubsubsection{\texorpdfstring{x()}{x()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Prim\+Type\+\_\+ $>$ \\
+\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a4c0ad6231fea2f6b0b75dece88945b86}{Scalar}}\& \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff}{kindr\+::\+Euler\+Angles\+Zyx\+Diff}}$<$ Prim\+Type\+\_\+ $>$\+::x (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Writing access to time derivative of roll (X\textquotesingle{}\textquotesingle{}) angle. 
+
+\begin{DoxyReturn}{Returns}
+time derivative of roll angle (scalar) with writing access 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1EulerAnglesZyxDiff_ad60b8ec317db44af64411c42da5a5017}\label{classkindr_1_1EulerAnglesZyxDiff_ad60b8ec317db44af64411c42da5a5017}} 
+\index{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}!x@{x}}
+\index{x@{x}!kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}}
+\doxysubsubsection{\texorpdfstring{x()}{x()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Prim\+Type\+\_\+ $>$ \\
+\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a4c0ad6231fea2f6b0b75dece88945b86}{Scalar}} \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff}{kindr\+::\+Euler\+Angles\+Zyx\+Diff}}$<$ Prim\+Type\+\_\+ $>$\+::x (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reading access to time derivative of roll (X\textquotesingle{}\textquotesingle{}) angle. 
+
+\begin{DoxyReturn}{Returns}
+time derivative of roll angle (scalar) with reading access 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1EulerAnglesZyxDiff_ad99268ccdea80f5b5184c44873d0a784}\label{classkindr_1_1EulerAnglesZyxDiff_ad99268ccdea80f5b5184c44873d0a784}} 
+\index{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}!y@{y}}
+\index{y@{y}!kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}}
+\doxysubsubsection{\texorpdfstring{y()}{y()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Prim\+Type\+\_\+ $>$ \\
+\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a4c0ad6231fea2f6b0b75dece88945b86}{Scalar}}\& \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff}{kindr\+::\+Euler\+Angles\+Zyx\+Diff}}$<$ Prim\+Type\+\_\+ $>$\+::y (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Writing access to time derivative of pitch (Y\textquotesingle{}) angle. 
+
+\begin{DoxyReturn}{Returns}
+time derivative of pitch angle (scalar) with writing access 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1EulerAnglesZyxDiff_a3772f535225e373c3d3c55814c5cd81f}\label{classkindr_1_1EulerAnglesZyxDiff_a3772f535225e373c3d3c55814c5cd81f}} 
+\index{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}!y@{y}}
+\index{y@{y}!kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}}
+\doxysubsubsection{\texorpdfstring{y()}{y()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Prim\+Type\+\_\+ $>$ \\
+\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a4c0ad6231fea2f6b0b75dece88945b86}{Scalar}} \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff}{kindr\+::\+Euler\+Angles\+Zyx\+Diff}}$<$ Prim\+Type\+\_\+ $>$\+::y (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reading access to time derivative of pitch (Y\textquotesingle{}) angle. 
+
+\begin{DoxyReturn}{Returns}
+time derivative of pitch angle (scalar) with reading access 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1EulerAnglesZyxDiff_ad6e2d42c6da88cf91c4cb31c07f698ba}\label{classkindr_1_1EulerAnglesZyxDiff_ad6e2d42c6da88cf91c4cb31c07f698ba}} 
+\index{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}!yaw@{yaw}}
+\index{yaw@{yaw}!kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}}
+\doxysubsubsection{\texorpdfstring{yaw()}{yaw()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Prim\+Type\+\_\+ $>$ \\
+\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a4c0ad6231fea2f6b0b75dece88945b86}{Scalar}}\& \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff}{kindr\+::\+Euler\+Angles\+Zyx\+Diff}}$<$ Prim\+Type\+\_\+ $>$\+::yaw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Writing access to time derivative of yaw (Z) angle. 
+
+\begin{DoxyReturn}{Returns}
+time derivative of yaw angle (scalar) with writing access 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1EulerAnglesZyxDiff_ae55742175012cfb78ec875e7eb6011b7}\label{classkindr_1_1EulerAnglesZyxDiff_ae55742175012cfb78ec875e7eb6011b7}} 
+\index{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}!yaw@{yaw}}
+\index{yaw@{yaw}!kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}}
+\doxysubsubsection{\texorpdfstring{yaw()}{yaw()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Prim\+Type\+\_\+ $>$ \\
+\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a4c0ad6231fea2f6b0b75dece88945b86}{Scalar}} \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff}{kindr\+::\+Euler\+Angles\+Zyx\+Diff}}$<$ Prim\+Type\+\_\+ $>$\+::yaw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reading access to time derivative of yaw (Z) angle. 
+
+\begin{DoxyReturn}{Returns}
+time derivative of yaw angle (scalar) with reading access 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1EulerAnglesZyxDiff_a4d5fe3d149f87b38a1a3dbb80b097b17}\label{classkindr_1_1EulerAnglesZyxDiff_a4d5fe3d149f87b38a1a3dbb80b097b17}} 
+\index{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}!z@{z}}
+\index{z@{z}!kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}}
+\doxysubsubsection{\texorpdfstring{z()}{z()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Prim\+Type\+\_\+ $>$ \\
+\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a4c0ad6231fea2f6b0b75dece88945b86}{Scalar}}\& \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff}{kindr\+::\+Euler\+Angles\+Zyx\+Diff}}$<$ Prim\+Type\+\_\+ $>$\+::z (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Writing access to time derivative of yaw (Z) angle. 
+
+\begin{DoxyReturn}{Returns}
+time derivative of yaw angle (scalar) with writing access 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1EulerAnglesZyxDiff_ac5b14af33b8792dad0cf95561a696946}\label{classkindr_1_1EulerAnglesZyxDiff_ac5b14af33b8792dad0cf95561a696946}} 
+\index{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}!z@{z}}
+\index{z@{z}!kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}}
+\doxysubsubsection{\texorpdfstring{z()}{z()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Prim\+Type\+\_\+ $>$ \\
+\mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff_a4c0ad6231fea2f6b0b75dece88945b86}{Scalar}} \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff}{kindr\+::\+Euler\+Angles\+Zyx\+Diff}}$<$ Prim\+Type\+\_\+ $>$\+::z (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reading access to time derivative of yaw (Z) angle. 
+
+\begin{DoxyReturn}{Returns}
+time derivative of yaw angle (scalar) with reading access 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1EulerAnglesZyxDiff_a7a4aee0ffe4edd8dca1fb731b493d7e0}\label{classkindr_1_1EulerAnglesZyxDiff_a7a4aee0ffe4edd8dca1fb731b493d7e0}} 
+\index{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}!Zero@{Zero}}
+\index{Zero@{Zero}!kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}}
+\doxysubsubsection{\texorpdfstring{Zero()}{Zero()}}
+{\footnotesize\ttfamily template$<$typename Prim\+Type\+\_\+ $>$ \\
+static \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff}{Euler\+Angles\+Zyx\+Diff}} \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff}{kindr\+::\+Euler\+Angles\+Zyx\+Diff}}$<$ Prim\+Type\+\_\+ $>$\+::Zero (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Get zero element. 
+
+\begin{DoxyReturn}{Returns}
+zero element 
+\end{DoxyReturn}
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classkindr_1_1EulerAnglesZyxDiff_a9a8221a5eb56d664a9cc65a328180cf9}\label{classkindr_1_1EulerAnglesZyxDiff_a9a8221a5eb56d664a9cc65a328180cf9}} 
+\index{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$@{kindr::EulerAnglesZyxDiff$<$ PrimType\_ $>$}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily template$<$typename Prim\+Type\+\_\+ $>$ \\
+std\+::ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{out,  }\item[{const \mbox{\hyperlink{classkindr_1_1EulerAnglesZyxDiff}{Euler\+Angles\+Zyx\+Diff}}$<$ Prim\+Type\+\_\+ $>$ \&}]{diff }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Used for printing the object with std\+::cout. 
+
+Prints\+: yaw pitch roll \begin{DoxyReturn}{Returns}
+std\+::stream object 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+catkin\+\_\+ws/src/utilities/kindr/include/kindr/rotations/Euler\+Angles\+Zyx\+Diff.\+hpp\end{DoxyCompactItemize}

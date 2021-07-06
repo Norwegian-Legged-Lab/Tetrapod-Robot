@@ -1,0 +1,591 @@
+\hypertarget{classkindr_1_1RotationQuaternion}{}\doxysection{kindr\+::Rotation\+Quaternion Class Reference}
+\label{classkindr_1_1RotationQuaternion}\index{kindr::RotationQuaternion@{kindr::RotationQuaternion}}
+
+
+Implementation of quaternion rotation based on Eigen\+::\+Quaternion.  
+
+
+
+
+{\ttfamily \#include $<$Rotation\+Quaternion.\+hpp$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_a4267d5e0b16e25da5f8246636c6ccc1e}\label{classkindr_1_1RotationQuaternion_a4267d5e0b16e25da5f8246636c6ccc1e}} 
+typedef \mbox{\hyperlink{classkindr_1_1UnitQuaternion_af49e8960dc5de37e2404ad7a4e53477d}{Base\+::\+Implementation}} \mbox{\hyperlink{classkindr_1_1RotationQuaternion_a4267d5e0b16e25da5f8246636c6ccc1e}{Implementation}}
+\begin{DoxyCompactList}\small\item\em The implementation type. The implementation type is always an Eigen object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_a09b20eec86c9cfc05f81a5a416615067}\label{classkindr_1_1RotationQuaternion_a09b20eec86c9cfc05f81a5a416615067}} 
+typedef Prim\+Type\+\_\+ \mbox{\hyperlink{classkindr_1_1RotationQuaternion_a09b20eec86c9cfc05f81a5a416615067}{Scalar}}
+\begin{DoxyCompactList}\small\item\em The primitive type. Float/\+Double. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_aec9e9ac3c4027e60f180748dc99dd9fb}\label{classkindr_1_1RotationQuaternion_aec9e9ac3c4027e60f180748dc99dd9fb}} 
+typedef Eigen\+::\+Matrix$<$ Prim\+Type\+\_\+, 3, 1 $>$ \mbox{\hyperlink{classkindr_1_1RotationQuaternion_aec9e9ac3c4027e60f180748dc99dd9fb}{Imaginary}}
+\begin{DoxyCompactList}\small\item\em the imaginary type, i.\+e., Eigen\+::\+Quaternion$<$$>$ \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_a51f99ed4d774d23c42f57ede9fd130db}\label{classkindr_1_1RotationQuaternion_a51f99ed4d774d23c42f57ede9fd130db}} 
+typedef Eigen\+::\+Matrix$<$ Prim\+Type\+\_\+, 4, 1 $>$ \mbox{\hyperlink{classkindr_1_1RotationQuaternion_a51f99ed4d774d23c42f57ede9fd130db}{Vector4}}
+\begin{DoxyCompactList}\small\item\em quaternion as 4x1 matrix\+: \mbox{[}w; x; y; z\mbox{]} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_a450215f63d75416265c9f65f4276b1fc}\label{classkindr_1_1RotationQuaternion_a450215f63d75416265c9f65f4276b1fc}} 
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion_a450215f63d75416265c9f65f4276b1fc}{Rotation\+Quaternion}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor using identity rotation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion_a4f7f96b6f07013441eeb11bb9605830f}{Rotation\+Quaternion}} (\mbox{\hyperlink{classkindr_1_1RotationQuaternion_a09b20eec86c9cfc05f81a5a416615067}{Scalar}} w, \mbox{\hyperlink{classkindr_1_1RotationQuaternion_a09b20eec86c9cfc05f81a5a416615067}{Scalar}} x, \mbox{\hyperlink{classkindr_1_1RotationQuaternion_a09b20eec86c9cfc05f81a5a416615067}{Scalar}} y, \mbox{\hyperlink{classkindr_1_1RotationQuaternion_a09b20eec86c9cfc05f81a5a416615067}{Scalar}} z)
+\begin{DoxyCompactList}\small\item\em Constructor using four scalars. In debug mode, an assertion is thrown if the quaternion has not unit length. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion_a1a697547a9d88765cdc0f726ceed4c8b}{Rotation\+Quaternion}} (\mbox{\hyperlink{classkindr_1_1RotationQuaternion_a09b20eec86c9cfc05f81a5a416615067}{Scalar}} real, const \mbox{\hyperlink{classkindr_1_1RotationQuaternion_aec9e9ac3c4027e60f180748dc99dd9fb}{Imaginary}} \&imag)
+\begin{DoxyCompactList}\small\item\em Constructor using real and imaginary part. In debug mode, an assertion is thrown if the quaternion has not unit length. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion_aac97ac5e71dbd2f19eca428cf4c10e19}{Rotation\+Quaternion}} (const \mbox{\hyperlink{classkindr_1_1RotationQuaternion_a51f99ed4d774d23c42f57ede9fd130db}{Vector4}} \&vec)
+\begin{DoxyCompactList}\small\item\em Constructor using Eigen\+::\+Matrix$<$\+Prim\+Type\+\_\+,4,1$>$. In debug mode, an assertion is thrown if the quaternion has not unit length. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion_a619197fa2c0b08cdc428378170c4bdd9}{Rotation\+Quaternion}} (const \mbox{\hyperlink{classkindr_1_1RotationQuaternion_a4267d5e0b16e25da5f8246636c6ccc1e}{Implementation}} \&other)
+\begin{DoxyCompactList}\small\item\em Constructor using Eigen\+::\+Quaternion$<$\+Prim\+Type\+\_\+$>$. In debug mode, an assertion is thrown if the quaternion has not unit length. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion_acaa00d9afd4dd9707bad6e5cb1a75b26}{Rotation\+Quaternion}} (const \mbox{\hyperlink{classkindr_1_1UnitQuaternion}{Base}} \&other)
+\begin{DoxyCompactList}\small\item\em Constructor using \mbox{\hyperlink{classkindr_1_1UnitQuaternion}{Unit\+Quaternion}}. In debug mode, an assertion is thrown if the quaternion has not unit length. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Other\+Derived\+\_\+ $>$ }\\\mbox{\hyperlink{classkindr_1_1RotationQuaternion_af59b7d4fdf4cd32e1c852378f1c8968a}{Rotation\+Quaternion}} (const \mbox{\hyperlink{classkindr_1_1RotationBase}{Rotation\+Base}}$<$ Other\+Derived\+\_\+ $>$ \&other)
+\begin{DoxyCompactList}\small\item\em Constructor using another rotation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_a817182d8af138f35919e690e0f96d1dc}\label{classkindr_1_1RotationQuaternion_a817182d8af138f35919e690e0f96d1dc}} 
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion_a09b20eec86c9cfc05f81a5a416615067}{Scalar}} {\bfseries w} () const
+\item 
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_a604841562d06aa5621252050977c95d2}\label{classkindr_1_1RotationQuaternion_a604841562d06aa5621252050977c95d2}} 
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion_a09b20eec86c9cfc05f81a5a416615067}{Scalar}} {\bfseries x} () const
+\item 
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_a249d87b1e8647cc780fdfbc5caac2f35}\label{classkindr_1_1RotationQuaternion_a249d87b1e8647cc780fdfbc5caac2f35}} 
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion_a09b20eec86c9cfc05f81a5a416615067}{Scalar}} {\bfseries y} () const
+\item 
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_acca273a5de2692a1d1912a3d484a403a}\label{classkindr_1_1RotationQuaternion_acca273a5de2692a1d1912a3d484a403a}} 
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion_a09b20eec86c9cfc05f81a5a416615067}{Scalar}} {\bfseries z} () const
+\item 
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_a6afa02f60d076ecd57190187afb9711b}\label{classkindr_1_1RotationQuaternion_a6afa02f60d076ecd57190187afb9711b}} 
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion_a09b20eec86c9cfc05f81a5a416615067}{Scalar}} \& {\bfseries w} ()
+\item 
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_a3f62d2fcd3838423b31c7dbc59181dcf}\label{classkindr_1_1RotationQuaternion_a3f62d2fcd3838423b31c7dbc59181dcf}} 
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion_a09b20eec86c9cfc05f81a5a416615067}{Scalar}} \& {\bfseries x} ()
+\item 
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_a6fd1be1ae8b82c3692616bb90e958b49}\label{classkindr_1_1RotationQuaternion_a6fd1be1ae8b82c3692616bb90e958b49}} 
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion_a09b20eec86c9cfc05f81a5a416615067}{Scalar}} \& {\bfseries y} ()
+\item 
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_a6a08eed9dcb75b4b83fbbd580bccc8ca}\label{classkindr_1_1RotationQuaternion_a6a08eed9dcb75b4b83fbbd580bccc8ca}} 
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion_a09b20eec86c9cfc05f81a5a416615067}{Scalar}} \& {\bfseries z} ()
+\item 
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_acaa70cf3624482d189658bc94693da4c}\label{classkindr_1_1RotationQuaternion_acaa70cf3624482d189658bc94693da4c}} 
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion_a09b20eec86c9cfc05f81a5a416615067}{Scalar}} {\bfseries real} () const
+\item 
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_aaf3eee9cab8f27c699afe7c9230bed1d}\label{classkindr_1_1RotationQuaternion_aaf3eee9cab8f27c699afe7c9230bed1d}} 
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion_aec9e9ac3c4027e60f180748dc99dd9fb}{Imaginary}} {\bfseries imaginary} () const
+\item 
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_a259d16c10b0f02fb41f09408d81dc31c}\label{classkindr_1_1RotationQuaternion_a259d16c10b0f02fb41f09408d81dc31c}} 
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion_a51f99ed4d774d23c42f57ede9fd130db}{Vector4}} {\bfseries vector} () const
+\item 
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_abb7321880b6c37ba37cc9b9b54e7f8f3}\label{classkindr_1_1RotationQuaternion_abb7321880b6c37ba37cc9b9b54e7f8f3}} 
+void {\bfseries set\+Values} (\mbox{\hyperlink{classkindr_1_1RotationQuaternion_a09b20eec86c9cfc05f81a5a416615067}{Scalar}} w, \mbox{\hyperlink{classkindr_1_1RotationQuaternion_a09b20eec86c9cfc05f81a5a416615067}{Scalar}} x, \mbox{\hyperlink{classkindr_1_1RotationQuaternion_a09b20eec86c9cfc05f81a5a416615067}{Scalar}} y, \mbox{\hyperlink{classkindr_1_1RotationQuaternion_a09b20eec86c9cfc05f81a5a416615067}{Scalar}} z)
+\item 
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_aa8e0756e904031cd3f6314dfdf274fb3}\label{classkindr_1_1RotationQuaternion_aa8e0756e904031cd3f6314dfdf274fb3}} 
+void {\bfseries set\+Parts} (\mbox{\hyperlink{classkindr_1_1RotationQuaternion_a09b20eec86c9cfc05f81a5a416615067}{Scalar}} real, const \mbox{\hyperlink{classkindr_1_1RotationQuaternion_aec9e9ac3c4027e60f180748dc99dd9fb}{Imaginary}} \&imag)
+\item 
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion_a4267d5e0b16e25da5f8246636c6ccc1e}{Implementation}} \& \mbox{\hyperlink{classkindr_1_1RotationQuaternion_aa15d7f9a9f93dd2388f79da1cafb0b92}{to\+Implementation}} ()
+\begin{DoxyCompactList}\small\item\em Cast to the implementation type. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classkindr_1_1RotationQuaternion_a4267d5e0b16e25da5f8246636c6ccc1e}{Implementation}} \& \mbox{\hyperlink{classkindr_1_1RotationQuaternion_aa1a12b7dbc8a5c8a3a1528a6b33faf67}{to\+Implementation}} () const
+\begin{DoxyCompactList}\small\item\em Cast to the implementation type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_a00ef32ee30acd33e6c4f5e6621a1eea1}\label{classkindr_1_1RotationQuaternion_a00ef32ee30acd33e6c4f5e6621a1eea1}} 
+\mbox{\hyperlink{classkindr_1_1UnitQuaternion}{Base}} \& {\bfseries to\+Unit\+Quaternion} ()
+\item 
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_a74be167a66d1f8b0636603689b7875d8}\label{classkindr_1_1RotationQuaternion_a74be167a66d1f8b0636603689b7875d8}} 
+const \mbox{\hyperlink{classkindr_1_1UnitQuaternion}{Base}} \& {\bfseries to\+Unit\+Quaternion} () const
+\item 
+{\footnotesize template$<$typename Prim\+Type\+In\+\_\+ $>$ }\\\mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}} \& \mbox{\hyperlink{classkindr_1_1RotationQuaternion_a0bef6004aa0183bd34282e1fbf43f134}{operator=}} (const \mbox{\hyperlink{classkindr_1_1UnitQuaternion}{Unit\+Quaternion}}$<$ Prim\+Type\+In\+\_\+ $>$ \&quat)
+\begin{DoxyCompactList}\small\item\em Assignment operator using a \mbox{\hyperlink{classkindr_1_1UnitQuaternion}{Unit\+Quaternion}}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Other\+Derived\+\_\+ $>$ }\\\mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}} \& \mbox{\hyperlink{classkindr_1_1RotationQuaternion_af731d77db38f668f7dc3564ab190dacb}{operator=}} (const \mbox{\hyperlink{classkindr_1_1RotationBase}{Rotation\+Base}}$<$ Other\+Derived\+\_\+ $>$ \&other)
+\begin{DoxyCompactList}\small\item\em Assignment operator using another rotation. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Prim\+Type\+In\+\_\+ $>$ }\\\mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}} \& \mbox{\hyperlink{classkindr_1_1RotationQuaternion_a41f4fb50b1c2537eb227e91ba9a244ad}{operator=}} (const \mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}}$<$ Prim\+Type\+In\+\_\+ $>$ \&other)
+\begin{DoxyCompactList}\small\item\em Assignment operator using another rotation. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Prim\+Type\+In\+\_\+ $>$ }\\\mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}} \& \mbox{\hyperlink{classkindr_1_1RotationQuaternion_a4b7d2edbcb95a5f638a8ffd267957d75}{operator()}} (const \mbox{\hyperlink{classkindr_1_1UnitQuaternion}{Unit\+Quaternion}}$<$ Prim\+Type\+In\+\_\+ $>$ \&quat)
+\begin{DoxyCompactList}\small\item\em Bracket operator which assigns a \mbox{\hyperlink{classkindr_1_1UnitQuaternion}{Unit\+Quaternion}} to the \mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Prim\+Type\+In\+\_\+ $>$ }\\\mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}} \& \mbox{\hyperlink{classkindr_1_1RotationQuaternion_af2d0b0e133ca202c47e9de3c0b785908}{operator()}} (const \mbox{\hyperlink{classkindr_1_1Quaternion}{Quaternion}}$<$ Prim\+Type\+In\+\_\+ $>$ \&quat)
+\begin{DoxyCompactList}\small\item\em Bracket operator which assigns a \mbox{\hyperlink{classkindr_1_1Quaternion}{Quaternion}} to the \mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}}. In debug mode, an assertion is thrown if the quaternion has not unit length. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Other\+Derived\+\_\+ $>$ }\\\mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}} \& \mbox{\hyperlink{classkindr_1_1RotationQuaternion_ae5b6fd9aa60db44f216b7b5055bdce7b}{operator()}} (const \mbox{\hyperlink{classkindr_1_1RotationBase}{Rotation\+Base}}$<$ Other\+Derived\+\_\+ $>$ \&other)
+\begin{DoxyCompactList}\small\item\em Parenthesis operator to convert from another rotation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}} \mbox{\hyperlink{classkindr_1_1RotationQuaternion_a2d038bb41208d9f253c45f7b8b708a99}{inverted}} () const
+\begin{DoxyCompactList}\small\item\em Returns the inverse of the rotation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}} \& \mbox{\hyperlink{classkindr_1_1RotationQuaternion_a9168fa60f568bf8d914cf2048a019d33}{invert}} ()
+\begin{DoxyCompactList}\small\item\em Inverts the rotation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}} \mbox{\hyperlink{classkindr_1_1RotationQuaternion_ae376556663cc596049188800c198421c}{conjugated}} () const
+\begin{DoxyCompactList}\small\item\em Returns the conjugated of the quaternion. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}} \& \mbox{\hyperlink{classkindr_1_1RotationQuaternion_a86f4b4b50ed815e92b0080803e177fcd}{conjugate}} ()
+\begin{DoxyCompactList}\small\item\em Conjugates of the quaternion. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}} \& \mbox{\hyperlink{classkindr_1_1RotationQuaternion_a71bb35a3ccb801e88bea711d908d56f9}{set\+Identity}} ()
+\begin{DoxyCompactList}\small\item\em Sets the rotation to identity. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}} \mbox{\hyperlink{classkindr_1_1RotationQuaternion_afb800bf8a14f5c3917bc12b8cbe59bf6}{get\+Unique}} () const
+\begin{DoxyCompactList}\small\item\em Returns a unique quaternion rotation with w $>$ 0. This function is used to compare different rotations. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix$<$ Prim\+Type\+\_\+, 4, 4 $>$ \mbox{\hyperlink{classkindr_1_1RotationQuaternion_a57de699ff0969ed1786a24760a99a3e8}{get\+Quaternion\+Matrix}} () const
+\begin{DoxyCompactList}\small\item\em Returns the quaternion matrix Qleft\+: q$\ast$p = Qleft(q)$\ast$p This function can be used to get the derivative of the concatenation with respect to the right quaternion. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix$<$ Prim\+Type\+\_\+, 4, 4 $>$ \mbox{\hyperlink{classkindr_1_1RotationQuaternion_a83aeaad4b6dcdae32e11b4c8a1f2a598}{get\+Conjugate\+Quaternion\+Matrix}} () const
+\begin{DoxyCompactList}\small\item\em Returns the quaternion matrix Qright\+: q$\ast$p = Qright(p)$\ast$q This function can be used to get the derivative of the concatenation with respect to the left quaternion. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix$<$ Prim\+Type\+\_\+, 3, 4 $>$ \mbox{\hyperlink{classkindr_1_1RotationQuaternion_a128af2875df67d51892b854bbe1ee1f9}{get\+Global\+Quaternion\+Diff\+Matrix}} () const
+\begin{DoxyCompactList}\small\item\em Returns the global quaternion diff matrix H\+: \mbox{\hyperlink{classkindr_1_1GlobalAngularVelocity}{Global\+Angular\+Velocity}} = 2$\ast$\+H$\ast$qdiff, qdiff = 0.\+5$\ast$\+H$^\wedge$\+T$\ast$\+Global\+Angular\+Velocity. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix$<$ Prim\+Type\+\_\+, 3, 4 $>$ \mbox{\hyperlink{classkindr_1_1RotationQuaternion_a2f00d91d4c81f36b55807c1f94901ee5}{get\+Local\+Quaternion\+Diff\+Matrix}} () const
+\begin{DoxyCompactList}\small\item\em Returns the local quaternion diff matrix H\+Bar\+: \mbox{\hyperlink{classkindr_1_1LocalAngularVelocity}{Local\+Angular\+Velocity}} = 2$\ast$\+H\+Bar$\ast$qdiff, qdiff = 0.\+5$\ast$\+H\+Bar$^\wedge$\+T$\ast$\+Local\+Angular\+Velocity. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}} \& \mbox{\hyperlink{classkindr_1_1RotationQuaternion_a30c5af800f45f9e63c4d2dad032f4a6e}{set\+Unique}} ()
+\begin{DoxyCompactList}\small\item\em Modifies the quaternion rotation such that w $>$= 0. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion_a09b20eec86c9cfc05f81a5a416615067}{Scalar}} \mbox{\hyperlink{classkindr_1_1RotationQuaternion_aefc9b78470cdfc8a3ee59e5980a8fe4b}{norm}} () const
+\begin{DoxyCompactList}\small\item\em Returns the norm of the quaternion. The \mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}} should always have unit length. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}} \mbox{\hyperlink{classkindr_1_1RotationQuaternion_acf518a8f0664f3a997217ff5a21841c0}{Identity}} ()
+\begin{DoxyCompactList}\small\item\em Get identity rotation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \mbox{\hyperlink{classkindr_1_1RotationQuaternion_a8f068f5779a057bfb31159588a7e34de}{operator$<$$<$}} (std\+::ostream \&out, const \mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}} \&rquat)
+\begin{DoxyCompactList}\small\item\em Used for printing the object with std\+::cout. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of quaternion rotation based on Eigen\+::\+Quaternion. 
+
+The following four typedefs are provided for convenience\+:
+\begin{DoxyItemize}
+\item Rotation\+QuaternionD for primitive type double
+\item Rotation\+QuaternionF for primitive type float
+\end{DoxyItemize}
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Prim\+Type\+\_\+} & the primitive type of the data (double or float) \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_a4f7f96b6f07013441eeb11bb9605830f}\label{classkindr_1_1RotationQuaternion_a4f7f96b6f07013441eeb11bb9605830f}} 
+\index{kindr::RotationQuaternion@{kindr::RotationQuaternion}!RotationQuaternion@{RotationQuaternion}}
+\index{RotationQuaternion@{RotationQuaternion}!kindr::RotationQuaternion@{kindr::RotationQuaternion}}
+\doxysubsubsection{\texorpdfstring{RotationQuaternion()}{RotationQuaternion()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily kindr\+::\+Rotation\+Quaternion\+::\+Rotation\+Quaternion (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classkindr_1_1RotationQuaternion_a09b20eec86c9cfc05f81a5a416615067}{Scalar}}}]{w,  }\item[{\mbox{\hyperlink{classkindr_1_1RotationQuaternion_a09b20eec86c9cfc05f81a5a416615067}{Scalar}}}]{x,  }\item[{\mbox{\hyperlink{classkindr_1_1RotationQuaternion_a09b20eec86c9cfc05f81a5a416615067}{Scalar}}}]{y,  }\item[{\mbox{\hyperlink{classkindr_1_1RotationQuaternion_a09b20eec86c9cfc05f81a5a416615067}{Scalar}}}]{z }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor using four scalars. In debug mode, an assertion is thrown if the quaternion has not unit length. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em w} & first entry of the quaternion = cos(phi/2) \\
+\hline
+{\em x} & second entry of the quaternion = n1$\ast$sin(phi/2) \\
+\hline
+{\em y} & third entry of the quaternion = n2$\ast$sin(phi/2) \\
+\hline
+{\em z} & fourth entry of the quaternion = n3$\ast$sin(phi/2) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_a1a697547a9d88765cdc0f726ceed4c8b}\label{classkindr_1_1RotationQuaternion_a1a697547a9d88765cdc0f726ceed4c8b}} 
+\index{kindr::RotationQuaternion@{kindr::RotationQuaternion}!RotationQuaternion@{RotationQuaternion}}
+\index{RotationQuaternion@{RotationQuaternion}!kindr::RotationQuaternion@{kindr::RotationQuaternion}}
+\doxysubsubsection{\texorpdfstring{RotationQuaternion()}{RotationQuaternion()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily kindr\+::\+Rotation\+Quaternion\+::\+Rotation\+Quaternion (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classkindr_1_1RotationQuaternion_a09b20eec86c9cfc05f81a5a416615067}{Scalar}}}]{real,  }\item[{const \mbox{\hyperlink{classkindr_1_1RotationQuaternion_aec9e9ac3c4027e60f180748dc99dd9fb}{Imaginary}} \&}]{imag }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor using real and imaginary part. In debug mode, an assertion is thrown if the quaternion has not unit length. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em real} & real part (Prim\+Type\+\_\+) \\
+\hline
+{\em imag} & imaginary part (Eigen\+::\+Matrix$<$\+Prim\+Type\+\_\+,3,1$>$) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_aac97ac5e71dbd2f19eca428cf4c10e19}\label{classkindr_1_1RotationQuaternion_aac97ac5e71dbd2f19eca428cf4c10e19}} 
+\index{kindr::RotationQuaternion@{kindr::RotationQuaternion}!RotationQuaternion@{RotationQuaternion}}
+\index{RotationQuaternion@{RotationQuaternion}!kindr::RotationQuaternion@{kindr::RotationQuaternion}}
+\doxysubsubsection{\texorpdfstring{RotationQuaternion()}{RotationQuaternion()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily kindr\+::\+Rotation\+Quaternion\+::\+Rotation\+Quaternion (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classkindr_1_1RotationQuaternion_a51f99ed4d774d23c42f57ede9fd130db}{Vector4}} \&}]{vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor using Eigen\+::\+Matrix$<$\+Prim\+Type\+\_\+,4,1$>$. In debug mode, an assertion is thrown if the quaternion has not unit length. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Eigen\+::\+Matrix$<$\+Prim\+Type\+\_\+,4,1$>$ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_a619197fa2c0b08cdc428378170c4bdd9}\label{classkindr_1_1RotationQuaternion_a619197fa2c0b08cdc428378170c4bdd9}} 
+\index{kindr::RotationQuaternion@{kindr::RotationQuaternion}!RotationQuaternion@{RotationQuaternion}}
+\index{RotationQuaternion@{RotationQuaternion}!kindr::RotationQuaternion@{kindr::RotationQuaternion}}
+\doxysubsubsection{\texorpdfstring{RotationQuaternion()}{RotationQuaternion()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily kindr\+::\+Rotation\+Quaternion\+::\+Rotation\+Quaternion (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classkindr_1_1RotationQuaternion_a4267d5e0b16e25da5f8246636c6ccc1e}{Implementation}} \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Constructor using Eigen\+::\+Quaternion$<$\+Prim\+Type\+\_\+$>$. In debug mode, an assertion is thrown if the quaternion has not unit length. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Eigen\+::\+Quaternion$<$\+Prim\+Type\+\_\+$>$ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_acaa00d9afd4dd9707bad6e5cb1a75b26}\label{classkindr_1_1RotationQuaternion_acaa00d9afd4dd9707bad6e5cb1a75b26}} 
+\index{kindr::RotationQuaternion@{kindr::RotationQuaternion}!RotationQuaternion@{RotationQuaternion}}
+\index{RotationQuaternion@{RotationQuaternion}!kindr::RotationQuaternion@{kindr::RotationQuaternion}}
+\doxysubsubsection{\texorpdfstring{RotationQuaternion()}{RotationQuaternion()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily kindr\+::\+Rotation\+Quaternion\+::\+Rotation\+Quaternion (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classkindr_1_1UnitQuaternion}{Base}} \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Constructor using \mbox{\hyperlink{classkindr_1_1UnitQuaternion}{Unit\+Quaternion}}. In debug mode, an assertion is thrown if the quaternion has not unit length. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & \mbox{\hyperlink{classkindr_1_1UnitQuaternion}{Unit\+Quaternion}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_af59b7d4fdf4cd32e1c852378f1c8968a}\label{classkindr_1_1RotationQuaternion_af59b7d4fdf4cd32e1c852378f1c8968a}} 
+\index{kindr::RotationQuaternion@{kindr::RotationQuaternion}!RotationQuaternion@{RotationQuaternion}}
+\index{RotationQuaternion@{RotationQuaternion}!kindr::RotationQuaternion@{kindr::RotationQuaternion}}
+\doxysubsubsection{\texorpdfstring{RotationQuaternion()}{RotationQuaternion()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily template$<$typename Other\+Derived\+\_\+ $>$ \\
+kindr\+::\+Rotation\+Quaternion\+::\+Rotation\+Quaternion (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classkindr_1_1RotationBase}{Rotation\+Base}}$<$ Other\+Derived\+\_\+ $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Constructor using another rotation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & other rotation \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_a86f4b4b50ed815e92b0080803e177fcd}\label{classkindr_1_1RotationQuaternion_a86f4b4b50ed815e92b0080803e177fcd}} 
+\index{kindr::RotationQuaternion@{kindr::RotationQuaternion}!conjugate@{conjugate}}
+\index{conjugate@{conjugate}!kindr::RotationQuaternion@{kindr::RotationQuaternion}}
+\doxysubsubsection{\texorpdfstring{conjugate()}{conjugate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}}\& kindr\+::\+Rotation\+Quaternion\+::conjugate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Conjugates of the quaternion. 
+
+\begin{DoxyReturn}{Returns}
+reference 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_ae376556663cc596049188800c198421c}\label{classkindr_1_1RotationQuaternion_ae376556663cc596049188800c198421c}} 
+\index{kindr::RotationQuaternion@{kindr::RotationQuaternion}!conjugated@{conjugated}}
+\index{conjugated@{conjugated}!kindr::RotationQuaternion@{kindr::RotationQuaternion}}
+\doxysubsubsection{\texorpdfstring{conjugated()}{conjugated()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}} kindr\+::\+Rotation\+Quaternion\+::conjugated (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the conjugated of the quaternion. 
+
+\begin{DoxyReturn}{Returns}
+conjugated of the quaternion 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_a83aeaad4b6dcdae32e11b4c8a1f2a598}\label{classkindr_1_1RotationQuaternion_a83aeaad4b6dcdae32e11b4c8a1f2a598}} 
+\index{kindr::RotationQuaternion@{kindr::RotationQuaternion}!getConjugateQuaternionMatrix@{getConjugateQuaternionMatrix}}
+\index{getConjugateQuaternionMatrix@{getConjugateQuaternionMatrix}!kindr::RotationQuaternion@{kindr::RotationQuaternion}}
+\doxysubsubsection{\texorpdfstring{getConjugateQuaternionMatrix()}{getConjugateQuaternionMatrix()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$Prim\+Type\+\_\+,4,4$>$ kindr\+::\+Rotation\+Quaternion\+::get\+Conjugate\+Quaternion\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the quaternion matrix Qright\+: q$\ast$p = Qright(p)$\ast$q This function can be used to get the derivative of the concatenation with respect to the left quaternion. 
+
+\begin{DoxyReturn}{Returns}
+the quaternion matrix Qright 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_a128af2875df67d51892b854bbe1ee1f9}\label{classkindr_1_1RotationQuaternion_a128af2875df67d51892b854bbe1ee1f9}} 
+\index{kindr::RotationQuaternion@{kindr::RotationQuaternion}!getGlobalQuaternionDiffMatrix@{getGlobalQuaternionDiffMatrix}}
+\index{getGlobalQuaternionDiffMatrix@{getGlobalQuaternionDiffMatrix}!kindr::RotationQuaternion@{kindr::RotationQuaternion}}
+\doxysubsubsection{\texorpdfstring{getGlobalQuaternionDiffMatrix()}{getGlobalQuaternionDiffMatrix()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$Prim\+Type\+\_\+,3,4$>$ kindr\+::\+Rotation\+Quaternion\+::get\+Global\+Quaternion\+Diff\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the global quaternion diff matrix H\+: \mbox{\hyperlink{classkindr_1_1GlobalAngularVelocity}{Global\+Angular\+Velocity}} = 2$\ast$\+H$\ast$qdiff, qdiff = 0.\+5$\ast$\+H$^\wedge$\+T$\ast$\+Global\+Angular\+Velocity. 
+
+\begin{DoxyReturn}{Returns}
+the global quaternion diff matrix H 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_a2f00d91d4c81f36b55807c1f94901ee5}\label{classkindr_1_1RotationQuaternion_a2f00d91d4c81f36b55807c1f94901ee5}} 
+\index{kindr::RotationQuaternion@{kindr::RotationQuaternion}!getLocalQuaternionDiffMatrix@{getLocalQuaternionDiffMatrix}}
+\index{getLocalQuaternionDiffMatrix@{getLocalQuaternionDiffMatrix}!kindr::RotationQuaternion@{kindr::RotationQuaternion}}
+\doxysubsubsection{\texorpdfstring{getLocalQuaternionDiffMatrix()}{getLocalQuaternionDiffMatrix()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$Prim\+Type\+\_\+,3,4$>$ kindr\+::\+Rotation\+Quaternion\+::get\+Local\+Quaternion\+Diff\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the local quaternion diff matrix H\+Bar\+: \mbox{\hyperlink{classkindr_1_1LocalAngularVelocity}{Local\+Angular\+Velocity}} = 2$\ast$\+H\+Bar$\ast$qdiff, qdiff = 0.\+5$\ast$\+H\+Bar$^\wedge$\+T$\ast$\+Local\+Angular\+Velocity. 
+
+\begin{DoxyReturn}{Returns}
+the local quaternion diff matrix H\+Bar 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_a57de699ff0969ed1786a24760a99a3e8}\label{classkindr_1_1RotationQuaternion_a57de699ff0969ed1786a24760a99a3e8}} 
+\index{kindr::RotationQuaternion@{kindr::RotationQuaternion}!getQuaternionMatrix@{getQuaternionMatrix}}
+\index{getQuaternionMatrix@{getQuaternionMatrix}!kindr::RotationQuaternion@{kindr::RotationQuaternion}}
+\doxysubsubsection{\texorpdfstring{getQuaternionMatrix()}{getQuaternionMatrix()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$Prim\+Type\+\_\+,4,4$>$ kindr\+::\+Rotation\+Quaternion\+::get\+Quaternion\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the quaternion matrix Qleft\+: q$\ast$p = Qleft(q)$\ast$p This function can be used to get the derivative of the concatenation with respect to the right quaternion. 
+
+\begin{DoxyReturn}{Returns}
+the quaternion matrix Qleft 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_afb800bf8a14f5c3917bc12b8cbe59bf6}\label{classkindr_1_1RotationQuaternion_afb800bf8a14f5c3917bc12b8cbe59bf6}} 
+\index{kindr::RotationQuaternion@{kindr::RotationQuaternion}!getUnique@{getUnique}}
+\index{getUnique@{getUnique}!kindr::RotationQuaternion@{kindr::RotationQuaternion}}
+\doxysubsubsection{\texorpdfstring{getUnique()}{getUnique()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}} kindr\+::\+Rotation\+Quaternion\+::get\+Unique (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns a unique quaternion rotation with w $>$ 0. This function is used to compare different rotations. 
+
+\begin{DoxyReturn}{Returns}
+copy of the quaternion rotation which is unique 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_acf518a8f0664f3a997217ff5a21841c0}\label{classkindr_1_1RotationQuaternion_acf518a8f0664f3a997217ff5a21841c0}} 
+\index{kindr::RotationQuaternion@{kindr::RotationQuaternion}!Identity@{Identity}}
+\index{Identity@{Identity}!kindr::RotationQuaternion@{kindr::RotationQuaternion}}
+\doxysubsubsection{\texorpdfstring{Identity()}{Identity()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}} kindr\+::\+Rotation\+Quaternion\+::\+Identity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Get identity rotation. 
+
+\begin{DoxyReturn}{Returns}
+identity rotation 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_a9168fa60f568bf8d914cf2048a019d33}\label{classkindr_1_1RotationQuaternion_a9168fa60f568bf8d914cf2048a019d33}} 
+\index{kindr::RotationQuaternion@{kindr::RotationQuaternion}!invert@{invert}}
+\index{invert@{invert}!kindr::RotationQuaternion@{kindr::RotationQuaternion}}
+\doxysubsubsection{\texorpdfstring{invert()}{invert()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}}\& kindr\+::\+Rotation\+Quaternion\+::invert (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Inverts the rotation. 
+
+\begin{DoxyReturn}{Returns}
+reference 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_a2d038bb41208d9f253c45f7b8b708a99}\label{classkindr_1_1RotationQuaternion_a2d038bb41208d9f253c45f7b8b708a99}} 
+\index{kindr::RotationQuaternion@{kindr::RotationQuaternion}!inverted@{inverted}}
+\index{inverted@{inverted}!kindr::RotationQuaternion@{kindr::RotationQuaternion}}
+\doxysubsubsection{\texorpdfstring{inverted()}{inverted()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}} kindr\+::\+Rotation\+Quaternion\+::inverted (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the inverse of the rotation. 
+
+\begin{DoxyReturn}{Returns}
+the inverse of the rotation 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_aefc9b78470cdfc8a3ee59e5980a8fe4b}\label{classkindr_1_1RotationQuaternion_aefc9b78470cdfc8a3ee59e5980a8fe4b}} 
+\index{kindr::RotationQuaternion@{kindr::RotationQuaternion}!norm@{norm}}
+\index{norm@{norm}!kindr::RotationQuaternion@{kindr::RotationQuaternion}}
+\doxysubsubsection{\texorpdfstring{norm()}{norm()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classkindr_1_1RotationQuaternion_a09b20eec86c9cfc05f81a5a416615067}{Scalar}} kindr\+::\+Rotation\+Quaternion\+::norm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the norm of the quaternion. The \mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}} should always have unit length. 
+
+\begin{DoxyReturn}{Returns}
+norm of the quaternion 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_af2d0b0e133ca202c47e9de3c0b785908}\label{classkindr_1_1RotationQuaternion_af2d0b0e133ca202c47e9de3c0b785908}} 
+\index{kindr::RotationQuaternion@{kindr::RotationQuaternion}!operator()@{operator()}}
+\index{operator()@{operator()}!kindr::RotationQuaternion@{kindr::RotationQuaternion}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename Prim\+Type\+In\+\_\+ $>$ \\
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}}\& kindr\+::\+Rotation\+Quaternion\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classkindr_1_1Quaternion}{Quaternion}}$<$ Prim\+Type\+In\+\_\+ $>$ \&}]{quat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Bracket operator which assigns a \mbox{\hyperlink{classkindr_1_1Quaternion}{Quaternion}} to the \mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}}. In debug mode, an assertion is thrown if the quaternion has not unit length. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em quat} & \mbox{\hyperlink{classkindr_1_1Quaternion}{Quaternion}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+reference 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_ae5b6fd9aa60db44f216b7b5055bdce7b}\label{classkindr_1_1RotationQuaternion_ae5b6fd9aa60db44f216b7b5055bdce7b}} 
+\index{kindr::RotationQuaternion@{kindr::RotationQuaternion}!operator()@{operator()}}
+\index{operator()@{operator()}!kindr::RotationQuaternion@{kindr::RotationQuaternion}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename Other\+Derived\+\_\+ $>$ \\
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}}\& kindr\+::\+Rotation\+Quaternion\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classkindr_1_1RotationBase}{Rotation\+Base}}$<$ Other\+Derived\+\_\+ $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Parenthesis operator to convert from another rotation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & other rotation \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+reference 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_a4b7d2edbcb95a5f638a8ffd267957d75}\label{classkindr_1_1RotationQuaternion_a4b7d2edbcb95a5f638a8ffd267957d75}} 
+\index{kindr::RotationQuaternion@{kindr::RotationQuaternion}!operator()@{operator()}}
+\index{operator()@{operator()}!kindr::RotationQuaternion@{kindr::RotationQuaternion}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename Prim\+Type\+In\+\_\+ $>$ \\
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}}\& kindr\+::\+Rotation\+Quaternion\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classkindr_1_1UnitQuaternion}{Unit\+Quaternion}}$<$ Prim\+Type\+In\+\_\+ $>$ \&}]{quat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Bracket operator which assigns a \mbox{\hyperlink{classkindr_1_1UnitQuaternion}{Unit\+Quaternion}} to the \mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em quat} & \mbox{\hyperlink{classkindr_1_1UnitQuaternion}{Unit\+Quaternion}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+reference 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_af731d77db38f668f7dc3564ab190dacb}\label{classkindr_1_1RotationQuaternion_af731d77db38f668f7dc3564ab190dacb}} 
+\index{kindr::RotationQuaternion@{kindr::RotationQuaternion}!operator=@{operator=}}
+\index{operator=@{operator=}!kindr::RotationQuaternion@{kindr::RotationQuaternion}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename Other\+Derived\+\_\+ $>$ \\
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}}\& kindr\+::\+Rotation\+Quaternion\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classkindr_1_1RotationBase}{Rotation\+Base}}$<$ Other\+Derived\+\_\+ $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Assignment operator using another rotation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & other rotation \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+reference 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_a41f4fb50b1c2537eb227e91ba9a244ad}\label{classkindr_1_1RotationQuaternion_a41f4fb50b1c2537eb227e91ba9a244ad}} 
+\index{kindr::RotationQuaternion@{kindr::RotationQuaternion}!operator=@{operator=}}
+\index{operator=@{operator=}!kindr::RotationQuaternion@{kindr::RotationQuaternion}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename Prim\+Type\+In\+\_\+ $>$ \\
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}}\& kindr\+::\+Rotation\+Quaternion\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}}$<$ Prim\+Type\+In\+\_\+ $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Assignment operator using another rotation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & other rotation \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+reference 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_a0bef6004aa0183bd34282e1fbf43f134}\label{classkindr_1_1RotationQuaternion_a0bef6004aa0183bd34282e1fbf43f134}} 
+\index{kindr::RotationQuaternion@{kindr::RotationQuaternion}!operator=@{operator=}}
+\index{operator=@{operator=}!kindr::RotationQuaternion@{kindr::RotationQuaternion}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename Prim\+Type\+In\+\_\+ $>$ \\
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}}\& kindr\+::\+Rotation\+Quaternion\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classkindr_1_1UnitQuaternion}{Unit\+Quaternion}}$<$ Prim\+Type\+In\+\_\+ $>$ \&}]{quat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Assignment operator using a \mbox{\hyperlink{classkindr_1_1UnitQuaternion}{Unit\+Quaternion}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em quat} & \mbox{\hyperlink{classkindr_1_1UnitQuaternion}{Unit\+Quaternion}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+reference 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_a71bb35a3ccb801e88bea711d908d56f9}\label{classkindr_1_1RotationQuaternion_a71bb35a3ccb801e88bea711d908d56f9}} 
+\index{kindr::RotationQuaternion@{kindr::RotationQuaternion}!setIdentity@{setIdentity}}
+\index{setIdentity@{setIdentity}!kindr::RotationQuaternion@{kindr::RotationQuaternion}}
+\doxysubsubsection{\texorpdfstring{setIdentity()}{setIdentity()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}}\& kindr\+::\+Rotation\+Quaternion\+::set\+Identity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the rotation to identity. 
+
+\begin{DoxyReturn}{Returns}
+reference 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_a30c5af800f45f9e63c4d2dad032f4a6e}\label{classkindr_1_1RotationQuaternion_a30c5af800f45f9e63c4d2dad032f4a6e}} 
+\index{kindr::RotationQuaternion@{kindr::RotationQuaternion}!setUnique@{setUnique}}
+\index{setUnique@{setUnique}!kindr::RotationQuaternion@{kindr::RotationQuaternion}}
+\doxysubsubsection{\texorpdfstring{setUnique()}{setUnique()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}}\& kindr\+::\+Rotation\+Quaternion\+::set\+Unique (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Modifies the quaternion rotation such that w $>$= 0. 
+
+\begin{DoxyReturn}{Returns}
+reference 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_aa15d7f9a9f93dd2388f79da1cafb0b92}\label{classkindr_1_1RotationQuaternion_aa15d7f9a9f93dd2388f79da1cafb0b92}} 
+\index{kindr::RotationQuaternion@{kindr::RotationQuaternion}!toImplementation@{toImplementation}}
+\index{toImplementation@{toImplementation}!kindr::RotationQuaternion@{kindr::RotationQuaternion}}
+\doxysubsubsection{\texorpdfstring{toImplementation()}{toImplementation()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classkindr_1_1RotationQuaternion_a4267d5e0b16e25da5f8246636c6ccc1e}{Implementation}}\& kindr\+::\+Rotation\+Quaternion\+::to\+Implementation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Cast to the implementation type. 
+
+\begin{DoxyReturn}{Returns}
+the implementation for direct manipulation (recommended only for advanced users) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_aa1a12b7dbc8a5c8a3a1528a6b33faf67}\label{classkindr_1_1RotationQuaternion_aa1a12b7dbc8a5c8a3a1528a6b33faf67}} 
+\index{kindr::RotationQuaternion@{kindr::RotationQuaternion}!toImplementation@{toImplementation}}
+\index{toImplementation@{toImplementation}!kindr::RotationQuaternion@{kindr::RotationQuaternion}}
+\doxysubsubsection{\texorpdfstring{toImplementation()}{toImplementation()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classkindr_1_1RotationQuaternion_a4267d5e0b16e25da5f8246636c6ccc1e}{Implementation}}\& kindr\+::\+Rotation\+Quaternion\+::to\+Implementation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Cast to the implementation type. 
+
+\begin{DoxyReturn}{Returns}
+the implementation for direct manipulation (recommended only for advanced users) 
+\end{DoxyReturn}
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classkindr_1_1RotationQuaternion_a8f068f5779a057bfb31159588a7e34de}\label{classkindr_1_1RotationQuaternion_a8f068f5779a057bfb31159588a7e34de}} 
+\index{kindr::RotationQuaternion@{kindr::RotationQuaternion}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!kindr::RotationQuaternion@{kindr::RotationQuaternion}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily std\+::ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{out,  }\item[{const \mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation\+Quaternion}} \&}]{rquat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Used for printing the object with std\+::cout. 
+
+\begin{DoxyReturn}{Returns}
+std\+::stream object 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+catkin\+\_\+ws/src/utilities/kindr/include/kindr/rotations/Rotation.\+hpp\item 
+catkin\+\_\+ws/src/utilities/kindr/include/kindr/rotations/Rotation\+Quaternion.\+hpp\end{DoxyCompactItemize}

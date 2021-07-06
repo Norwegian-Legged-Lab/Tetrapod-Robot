@@ -1,0 +1,34 @@
+\hypertarget{classkindr_1_1internal_1_1ComparisonTraits_3_01PoseBase_3_01Left___01_4_00_01PoseBase_3_01Right___01_4_01_4}{}\doxysection{kindr\+::internal\+::Comparison\+Traits$<$ Pose\+Base$<$ Left\+\_\+ $>$, Pose\+Base$<$ Right\+\_\+ $>$ $>$ Class Template Reference}
+\label{classkindr_1_1internal_1_1ComparisonTraits_3_01PoseBase_3_01Left___01_4_00_01PoseBase_3_01Right___01_4_01_4}\index{kindr::internal::ComparisonTraits$<$ PoseBase$<$ Left\_ $>$, PoseBase$<$ Right\_ $>$ $>$@{kindr::internal::ComparisonTraits$<$ PoseBase$<$ Left\_ $>$, PoseBase$<$ Right\_ $>$ $>$}}
+
+
+Multiplication of two rotations with the same parameterization / template$<$typename Prim\+Type\+\_\+, typename Position\+\_\+, typename Rotation\+\_\+$>$ class \mbox{\hyperlink{classkindr_1_1internal_1_1MultiplicationTraits}{Multiplication\+Traits}}$<$Homogeneous\+Transformation$<$\+Prim\+Type\+\_\+, Position\+\_\+, Rotation\+\_\+$>$, Homogeneous\+Transformation$<$\+Prim\+Type\+\_\+, Position\+\_\+, Rotation\+\_\+$>$ $>$ \{ public\+: //! Default multiplication of rotations converts the representations of the rotations to rotation quaternions and multiplies them inline static Homogeneous\+Transformation$<$\+Prim\+Type\+\_\+, Position\+\_\+, Rotation\+\_\+$>$ mult(const Homogeneous\+Transformation$<$\+Prim\+Type\+\_\+, Position\+\_\+, Rotation\+\_\+$>$\& lhs, const Homogeneous\+Transformation$<$\+Prim\+Type\+\_\+, Position\+\_\+, Rotation\+\_\+$>$\& rhs) \{ const typename Homogeneous\+Transformation$<$\+Prim\+Type\+\_\+, Position\+\_\+, Rotation\+\_\+$>$\+::\+Position position = lhs.\+get\+Position()+lhs.\+get\+Rotation().rotate(rhs.\+get\+Position()); const typename Homogeneous\+Transformation$<$\+Prim\+Type\+\_\+, Position\+\_\+, Rotation\+\_\+$>$\+::\+Rotation rotation = lhs.\+get\+Rotation()$\ast$rhs.get\+Rotation(); return Homogeneous\+Transformation$<$\+Prim\+Type\+\_\+, Position\+\_\+, Rotation\+\_\+$>$(position, rotation); \} \};.  
+
+
+
+
+{\ttfamily \#include $<$Pose.\+hpp$>$}
+
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classkindr_1_1internal_1_1ComparisonTraits_3_01PoseBase_3_01Left___01_4_00_01PoseBase_3_01Right___01_4_01_4_aa676f0b36c8f0bf43d786849d4f9d29d}\label{classkindr_1_1internal_1_1ComparisonTraits_3_01PoseBase_3_01Left___01_4_00_01PoseBase_3_01Right___01_4_01_4_aa676f0b36c8f0bf43d786849d4f9d29d}} 
+static bool {\bfseries is\+Equal} (const \mbox{\hyperlink{classkindr_1_1PoseBase}{Pose\+Base}}$<$ Left\+\_\+ $>$ \&lhs, const \mbox{\hyperlink{classkindr_1_1PoseBase}{Pose\+Base}}$<$ Right\+\_\+ $>$ \&rhs)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Left\+\_\+, typename Right\+\_\+$>$\newline
+class kindr\+::internal\+::\+Comparison\+Traits$<$ Pose\+Base$<$ Left\+\_\+ $>$, Pose\+Base$<$ Right\+\_\+ $>$ $>$}
+
+Multiplication of two rotations with the same parameterization / template$<$typename Prim\+Type\+\_\+, typename Position\+\_\+, typename Rotation\+\_\+$>$ class \mbox{\hyperlink{classkindr_1_1internal_1_1MultiplicationTraits}{Multiplication\+Traits}}$<$Homogeneous\+Transformation$<$\+Prim\+Type\+\_\+, Position\+\_\+, Rotation\+\_\+$>$, Homogeneous\+Transformation$<$\+Prim\+Type\+\_\+, Position\+\_\+, Rotation\+\_\+$>$ $>$ \{ public\+: //! Default multiplication of rotations converts the representations of the rotations to rotation quaternions and multiplies them inline static Homogeneous\+Transformation$<$\+Prim\+Type\+\_\+, Position\+\_\+, Rotation\+\_\+$>$ mult(const Homogeneous\+Transformation$<$\+Prim\+Type\+\_\+, Position\+\_\+, Rotation\+\_\+$>$\& lhs, const Homogeneous\+Transformation$<$\+Prim\+Type\+\_\+, Position\+\_\+, Rotation\+\_\+$>$\& rhs) \{ const typename Homogeneous\+Transformation$<$\+Prim\+Type\+\_\+, Position\+\_\+, Rotation\+\_\+$>$\+::\+Position position = lhs.\+get\+Position()+lhs.\+get\+Rotation().rotate(rhs.\+get\+Position()); const typename Homogeneous\+Transformation$<$\+Prim\+Type\+\_\+, Position\+\_\+, Rotation\+\_\+$>$\+::\+Rotation rotation = lhs.\+get\+Rotation()$\ast$rhs.get\+Rotation(); return Homogeneous\+Transformation$<$\+Prim\+Type\+\_\+, Position\+\_\+, Rotation\+\_\+$>$(position, rotation); \} \};. 
+
+/$\ast$! Multiplication of two rotations with the same parameterization / template$<$typename Left\+And\+Right\+\_\+$>$ class \mbox{\hyperlink{classkindr_1_1internal_1_1MultiplicationTraits}{Multiplication\+Traits}}$<$Rotation\+Base$<$\+Left\+And\+Right\+\_\+$>$, Rotation\+Base$<$\+Left\+And\+Right\+\_\+$>$ $>$ \{ public\+: //! Default multiplication of rotations converts the representations of the rotations to rotation quaternions and multiplies them inline static Left\+And\+Right\+\_\+ mult(const Rotation\+Base$<$\+Left\+And\+Right\+\_\+$>$\& lhs, const Rotation\+Base$<$\+Left\+And\+Right\+\_\+$>$\& rhs) \{ return Left\+And\+Right\+\_\+(Rotation\+Quaternion$<$typename Left\+And\+Right\+\_\+\+::\+Scalar$>$( (Rotation\+Quaternion$<$typename Left\+And\+Right\+\_\+\+::\+Scalar$>$(lhs.\+derived())).to\+Implementation() $\ast$ (Rotation\+Quaternion$<$typename Left\+And\+Right\+\_\+\+::\+Scalar$>$(rhs.\+derived())).to\+Implementation() ));
+
+\} \};
+
+/$\ast$! Compare two poses. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+catkin\+\_\+ws/src/utilities/kindr/include/kindr/poses/Pose.\+hpp\end{DoxyCompactItemize}

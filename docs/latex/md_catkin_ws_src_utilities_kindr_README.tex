@@ -1,0 +1,149 @@
+$\ast$$\ast$\+Authors\+: Christian Gehring, C. Dario Bellicoso, Michael Bloesch, Remo Diethelm, Peter Fankhauser, Paul Furgale, Michael Neunert, Hannes Sommer~\newline
+ Maintainer\+: Remo Diethelm, \href{mailto:rdiethelm@anybotics.com}{\texttt{ rdiethelm@anybotics.\+com}}~\newline
+ Affiliation\+: \href{https://www.anybotics.com/}{\texttt{ A\+N\+Ybotics}}$\ast$$\ast$
+
+This projected was initially developed at E\+TH Zurich (Autonomous Systems Lab \& Robotic Systems Lab).
+
+This work is conducted as part of \href{https://www.anymal-research.org/}{\texttt{ A\+N\+Ymal Research}}, a community to advance legged robotics.
+
+The source code is released under a \mbox{[}B\+SD 3-\/Clause license\mbox{]}(L\+I\+C\+E\+N\+SE).\hypertarget{md_catkin_ws_src_utilities_kindr_README_autotoc_md73}{}\doxysection{Documentation}\label{md_catkin_ws_src_utilities_kindr_README_autotoc_md73}
+\href{https://opensource.docs.anymal.com/doxygen/kindr/master/index.html}{\texttt{ Online}}
+
+Impatient individuals can directly download the \href{https://opensource.docs.anymal.com/doxygen/kindr/master/cheatsheet_latest.pdf}{\texttt{ cheat sheet}}.
+
+See also section \textquotesingle{}Building the documentation\textquotesingle{} below.\hypertarget{md_catkin_ws_src_utilities_kindr_README_autotoc_md74}{}\doxysection{Changelog}\label{md_catkin_ws_src_utilities_kindr_README_autotoc_md74}
+\hypertarget{md_catkin_ws_src_utilities_kindr_README_autotoc_md75}{}\doxysubsection{Kindr 1.\+0.\+0}\label{md_catkin_ws_src_utilities_kindr_README_autotoc_md75}
+
+\begin{DoxyItemize}
+\item Simplified header include {\ttfamily \#include $<$kindr/\+Core$>$} is provided.
+\item Kindr is now strongly dependent on Eigen.
+\item All sub namespaces have been removed. (e.\+g. {\ttfamily kindr\+::rotations\+::eigen\+\_\+impl} -\/$>$ {\ttfamily kindr\+:\+:})
+\item The implementations of rotations and time derivatives have been simplified (Passive, Hamiltonian).
+\begin{DoxyItemize}
+\item Active typedefs (e.\+g. Rotation\+Quaternion\+AD) have been removed and simpler ones (e.\+g. Rotation\+QuaternionD) have been introduced.
+\item Note that the functionality of some operators changed! Please check the \href{https://opensource.docs.anymal.com/doxygen/kindr/master/cheatsheet_latest.pdf}{\texttt{ cheat sheet}} to understand what is implemented.
+\item Some hints on what needs to be changed from kindr 0.\+0.\+1\+:
+\begin{DoxyItemize}
+\item {\ttfamily rotation.\+set\+From\+Vectors(v1, v2)} -\/$>$ {\ttfamily rotation.\+set\+From\+Vectors(v2, v1)}
+\item {\ttfamily C\+\_\+\+B\+I.\+box\+Plus(dt $\ast$ B\+\_\+w\+\_\+\+I\+B)} -\/$>$ {\ttfamily C\+\_\+\+B\+I.\+box\+Plus(dt $\ast$ C\+\_\+\+I\+B $\ast$ B\+\_\+w\+\_\+\+I\+B)}
+\item {\ttfamily C\+\_\+\+B\+I.\+box\+Minus(dt $\ast$  B\+\_\+w\+\_\+\+I\+B)} -\/$>$ {\ttfamily -\/\+C\+\_\+\+B\+I.\+box\+Minus(dt $\ast$ B\+\_\+w\+\_\+\+IB)}
+\item Euler angles probably have to be negated.
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Conversion methods between R\+OS and kindr have been moved to the package \href{https://github.com/anybotics/kindr_ros}{\texttt{ kindr\+\_\+ros}}.
+\item Concatenation of Homogeneous Transformation is now implemented.
+\item Short typedefs are provided for Homogeneous Transformation\+: {\ttfamily Hom\+Transform\+QuatD}, {\ttfamily Hom\+Transform\+MatrixD}.
+\item Jacobian of exponential map is implemented.
+\item Unit tests based on gtest are provided to test the convention of other software packages.
+\begin{DoxyItemize}
+\item Gazebo (gazebo\+::math\+::\+Quaternion) uses the same convention as kindr.
+\item R\+OS TF (tf\+::\+Quaternion and tf\+::\+Matrix3x3) uses the same convention as kindr.
+\item R\+B\+DL\textquotesingle{}s Rigid\+Body\+Dynamics\+::\+Math\+::\+Spatial\+Transform uses the same convention as kindr, whereas R\+B\+DL\textquotesingle{}s Rigid\+Body\+Dynamics\+::\+Math\+::\+Quaternion concatenates differently and its conversion to a rotation matrix is inverted.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md_catkin_ws_src_utilities_kindr_README_autotoc_md76}{}\doxysection{Requirements}\label{md_catkin_ws_src_utilities_kindr_README_autotoc_md76}
+
+\begin{DoxyItemize}
+\item \href{http://eigen.tuxfamily.org}{\texttt{ Eigen 3.\+2.\+0}} (Older versions might also work)
+\item G\+CC 4.\+7 is required at the minimum.
+\item C\+Make 2.\+8.\+3 is required at the minimum.
+\end{DoxyItemize}\hypertarget{md_catkin_ws_src_utilities_kindr_README_autotoc_md77}{}\doxysection{Building}\label{md_catkin_ws_src_utilities_kindr_README_autotoc_md77}
+\hypertarget{md_catkin_ws_src_utilities_kindr_README_autotoc_md78}{}\doxysubsection{Building with cmake}\label{md_catkin_ws_src_utilities_kindr_README_autotoc_md78}
+Install the library with \href{www.cmake.org}{\texttt{ C\+Make}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{mkdir build}
+\DoxyCodeLine{cd build}
+\DoxyCodeLine{cmake .. -\/DUSE\_CMAKE=true}
+\DoxyCodeLine{sudo make install}
+\end{DoxyCode}
+
+
+Note that {\ttfamily U\+S\+E\+\_\+\+C\+M\+A\+KE} defaults to {\ttfamily true} if catkin is not installed.
+
+Uninstall the library with\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cd build}
+\DoxyCodeLine{sudo make uninstall}
+\end{DoxyCode}
+
+
+Kindr can be included in your cmake project. Add the following to your {\itshape Cmake\+Lists.\+txt}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{find\_package(kindr)}
+\DoxyCodeLine{include\_directories(\$\{kindr\_INCLUDE\_DIRS\})}
+\end{DoxyCode}
+\hypertarget{md_catkin_ws_src_utilities_kindr_README_autotoc_md79}{}\doxysubsection{Building with catkin}\label{md_catkin_ws_src_utilities_kindr_README_autotoc_md79}
+Build kindr with \href{wiki.ros.org/catkin}{\texttt{ catkin}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cd \string~/catkin\_ws/src}
+\DoxyCodeLine{git clone git@github.com:anybotics/kindr.git}
+\DoxyCodeLine{catkin\_make\_isolated -\/C \string~/catkin\_ws}
+\end{DoxyCode}
+
+
+or with \href{http://catkin-tools.readthedocs.org}{\texttt{ catkin command line tools}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cd \string~/catkin\_ws/src}
+\DoxyCodeLine{git clone git@github.com:anybotics/kindr.git}
+\DoxyCodeLine{catkin build -\/w \string~/catkin\_ws kindr}
+\end{DoxyCode}
+
+
+Kindr can be included in your catkin project with\+: Add the following to your {\itshape C\+Make\+Lists.\+txt}\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{find\_package(catkin COMPONENTS kindr)}
+\DoxyCodeLine{include\_directories(\$\{catkin\_INCLUDE\_DIRS\})}
+\end{DoxyCode}
+
+
+And to your {\itshape package.\+xml}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<\textcolor{keywordtype}{package}>}
+\DoxyCodeLine{  <\textcolor{keywordtype}{build\_depend}>\textcolor{keyword}{kindr}</\textcolor{keywordtype}{build\_depend}>}
+\DoxyCodeLine{</\textcolor{keywordtype}{package}>}
+\end{DoxyCode}
+\hypertarget{md_catkin_ws_src_utilities_kindr_README_autotoc_md80}{}\doxysubsection{Building the documentation}\label{md_catkin_ws_src_utilities_kindr_README_autotoc_md80}
+Build the documentation with \href{www.doxygen.org}{\texttt{ Doxygen}}\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{mkdir build}
+\DoxyCodeLine{cd build}
+\DoxyCodeLine{cmake ..}
+\DoxyCodeLine{make kindr\_doc}
+\end{DoxyCode}
+
+
+The doxygen documentation can be found here\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{build/doc/html/index.html}
+\end{DoxyCode}
+\hypertarget{md_catkin_ws_src_utilities_kindr_README_autotoc_md81}{}\doxysubsection{Building unit tests with gtest}\label{md_catkin_ws_src_utilities_kindr_README_autotoc_md81}
+\href{https://code.google.com/p/googletest/}{\texttt{ G\+Tests}} are only built if the folder {\itshape gtest} exists in the root folder.
+
+Download and use G\+Test\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{wget https://github.com/google/googletest/archive/release-\/1.7.0.zip}
+\DoxyCodeLine{unzip release-\/1.7.0.zip}
+\DoxyCodeLine{ln -\/s googletest-\/release-\/1.7.0 gtest}
+\DoxyCodeLine{mkdir build}
+\DoxyCodeLine{cd build}
+\DoxyCodeLine{cmake .. -\/DUSE\_CMAKE=true -\/DBUILD\_TEST=true}
+\DoxyCodeLine{make}
+\end{DoxyCode}
+
+
+Note that {\ttfamily U\+S\+E\+\_\+\+C\+M\+A\+KE} defaults to {\ttfamily true} if catkin is not installed. 

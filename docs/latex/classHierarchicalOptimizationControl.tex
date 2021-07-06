@@ -1,0 +1,334 @@
+\hypertarget{classHierarchicalOptimizationControl}{}\doxysection{Hierarchical\+Optimization\+Control Class Reference}
+\label{classHierarchicalOptimizationControl}\index{HierarchicalOptimizationControl@{HierarchicalOptimizationControl}}
+
+
+A class for hierarchical optimization control.  
+
+
+
+
+{\ttfamily \#include $<$hierarchical\+\_\+optimization\+\_\+controller.\+h$>$}
+
+
+
+Collaboration diagram for Hierarchical\+Optimization\+Control\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=218pt]{classHierarchicalOptimizationControl__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structHierarchicalOptimizationControl_1_1Task}{Task}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{structHierarchicalOptimizationControl_1_1Task}{Task}} struct. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classHierarchicalOptimizationControl_ae49f08ceaee8df6933d8708fb68c3b99}\label{classHierarchicalOptimizationControl_ae49f08ceaee8df6933d8708fb68c3b99}} 
+enum \mbox{\hyperlink{classHierarchicalOptimizationControl_ae49f08ceaee8df6933d8708fb68c3b99}{Solver\+Type}} \{ \newline
+{\bfseries O\+S\+QP} = 1, 
+{\bfseries E\+C\+QP} = 2, 
+{\bfseries C\+LP} = 3, 
+{\bfseries S\+CS} = 4, 
+\newline
+{\bfseries S\+N\+O\+PT} = 5, 
+{\bfseries U\+N\+S\+P\+E\+C\+I\+F\+I\+ED}
+ \}
+\begin{DoxyCompactList}\small\item\em Drake Solver type enumerator. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classHierarchicalOptimizationControl_a595a20872c103fe6c0332012648d9b9e}\label{classHierarchicalOptimizationControl_a595a20872c103fe6c0332012648d9b9e}} 
+enum \mbox{\hyperlink{classHierarchicalOptimizationControl_a595a20872c103fe6c0332012648d9b9e}{Leg\+Type}} \{ \newline
+{\bfseries front\+Left} = 1, 
+{\bfseries front\+Right} = 2, 
+{\bfseries rear\+Left} = 3, 
+{\bfseries rear\+Right} = 4, 
+\newline
+{\bfseries N\+O\+NE}
+ \}
+\begin{DoxyCompactList}\small\item\em Leg type enumerator. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classHierarchicalOptimizationControl_a6def6e783d9ce5400d931e7d6da2ad36}\label{classHierarchicalOptimizationControl_a6def6e783d9ce5400d931e7d6da2ad36}} 
+enum \mbox{\hyperlink{classHierarchicalOptimizationControl_a6def6e783d9ce5400d931e7d6da2ad36}{Body\+Type}} \{ \newline
+{\bfseries base} = 1, 
+{\bfseries hip} = 2, 
+{\bfseries thigh} = 3, 
+{\bfseries leg} = 4, 
+\newline
+{\bfseries foot} = 5
+ \}
+\begin{DoxyCompactList}\small\item\em Body type enumerator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classHierarchicalOptimizationControl_a2dcfaa71130d1c120477ab120589c662}\label{classHierarchicalOptimizationControl_a2dcfaa71130d1c120477ab120589c662}} 
+\mbox{\hyperlink{classHierarchicalOptimizationControl_a2dcfaa71130d1c120477ab120589c662}{Hierarchical\+Optimization\+Control}} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classHierarchicalOptimizationControl_ad296c50c35b6eaabf210c82c3c756201}\label{classHierarchicalOptimizationControl_ad296c50c35b6eaabf210c82c3c756201}} 
+virtual \mbox{\hyperlink{classHierarchicalOptimizationControl_ad296c50c35b6eaabf210c82c3c756201}{$\sim$\+Hierarchical\+Optimization\+Control}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classHierarchicalOptimizationControl_ae2515ead8270fb9a8015cec81f1d1678}\label{classHierarchicalOptimizationControl_ae2515ead8270fb9a8015cec81f1d1678}} 
+void {\bfseries Static\+Torque\+Test} ()
+\item 
+\mbox{\Hypertarget{classHierarchicalOptimizationControl_a4a868b6a6ff4792e02a0702b4f09aaf0}\label{classHierarchicalOptimizationControl_a4a868b6a6ff4792e02a0702b4f09aaf0}} 
+Eigen\+::\+Matrix$<$ double, 12, 1 $>$ {\bfseries Hierarchical\+Optimization} (const Eigen\+::\+Vector3d \&\+\_\+desired\+\_\+base\+\_\+pos, const Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ \&\+\_\+desired\+\_\+f\+\_\+pos, const Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ \&\+\_\+f\+\_\+pos, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+q, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+u, const int \&\+\_\+v=0)
+\item 
+Eigen\+::\+Matrix$<$ double, Eigen\+::\+Dynamic, 1 $>$ \mbox{\hyperlink{classHierarchicalOptimizationControl_a39c7c02bbbf36deb7ba3f4af270e4288}{Hierarchical\+Q\+P\+Optimization}} (const int \&\+\_\+state\+\_\+dim, const std\+::vector$<$ \mbox{\hyperlink{structHierarchicalOptimizationControl_1_1Task}{Task}} $>$ \&\+\_\+tasks, const \mbox{\hyperlink{classHierarchicalOptimizationControl_ae49f08ceaee8df6933d8708fb68c3b99}{Solver\+Type}} \&\+\_\+solver=Solver\+Type\+::\+U\+N\+S\+P\+E\+C\+I\+F\+I\+ED, const int \&\+\_\+v=0)
+\begin{DoxyCompactList}\small\item\em The Hierarchical\+Q\+P\+Optimization function finds the optimal solution for a set of tasks in a strictly prioritized order. The method iterates through the set of tasks and searches for a new solution in the null-\/space of all higher priority equality constraints. At each iteration a QP problem is solved to find a vector lying in the row-\/space of the null-\/space of all equality constraints, which improve on the current solution. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix$<$ double, Eigen\+::\+Dynamic, 1 $>$ \mbox{\hyperlink{classHierarchicalOptimizationControl_aa5be7152ab8fe0eb6dcb595aa5d961b5}{Hierarchical\+Least\+Square\+Optimization}} (const Eigen\+::\+Matrix$<$ Eigen\+::\+Matrix\+Xd, Eigen\+::\+Dynamic, 1 $>$ \&\+\_\+A, const Eigen\+::\+Matrix$<$ Eigen\+::\+Matrix$<$ double, Eigen\+::\+Dynamic, 1 $>$, Eigen\+::\+Dynamic, 1 $>$ \&\+\_\+b, const int \&\+\_\+v=0)
+\begin{DoxyCompactList}\small\item\em The Hierarchical\+Least\+Square\+Optimization function finds the optimal solution for a set of linear equality constraints in a strictly prioritized order. The method iterates through the set of equality constraints and searches for a new solution in the null-\/space of all higher priority equality constraints. At each iteration the Moore-\/\+Penrose pseudoinverse is utilized to find a vector lying in the row-\/space of the null-\/space of all equality constraints, which improve on the current solution. The usage of the Moore-\/\+Penrose pseudoinverse yield a least square solution of the problem at hand. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classHierarchicalOptimizationControl_a433baff8381df342f76d459a0cbc8e22}{Solve\+QP}} (const Eigen\+::\+Matrix\+Xd \&\+\_\+Q, const Eigen\+::\+Vector\+Xd \&\+\_\+c, const Eigen\+::\+Matrix\+Xd \&\+\_\+\+E\+\_\+ineq, const Eigen\+::\+Vector\+Xd \&\+\_\+f\+\_\+ineq, Eigen\+::\+Vector\+Xd \&\+\_\+sol, const \mbox{\hyperlink{classHierarchicalOptimizationControl_ae49f08ceaee8df6933d8708fb68c3b99}{Solver\+Type}} \&\+\_\+solver=Solver\+Type\+::\+U\+N\+S\+P\+E\+C\+I\+F\+I\+ED, const int \&\+\_\+v=0)
+\begin{DoxyCompactList}\small\item\em The Solve\+QP function solves a (convex) quadratic. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classHierarchicalOptimizationControl_a7c9f5c00bddda83d936b7e8fd9a866c1}{Solve\+QP}} (const Eigen\+::\+Matrix\+Xd \&\+\_\+Q, const Eigen\+::\+Vector\+Xd \&\+\_\+c, const Eigen\+::\+Matrix\+Xd \&\+\_\+A, const Eigen\+::\+Vector\+Xd \&\+\_\+lb, const Eigen\+::\+Vector\+Xd \&\+\_\+ub, Eigen\+::\+Vector\+Xd \&\+\_\+sol, const \mbox{\hyperlink{classHierarchicalOptimizationControl_ae49f08ceaee8df6933d8708fb68c3b99}{Solver\+Type}} \&\+\_\+solver=Solver\+Type\+::\+U\+N\+S\+P\+E\+C\+I\+F\+I\+ED, const int \&\+\_\+v=0)
+\begin{DoxyCompactList}\small\item\em The Solve\+QP function solves a (convex) quadratic. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classHierarchicalOptimizationControl_a11873bac4d3825be997c4f2401c62b7c}{Solve\+QP}} (const Eigen\+::\+Matrix\+Xd \&\+\_\+Q, const Eigen\+::\+Vector\+Xd \&\+\_\+c, const Eigen\+::\+Matrix\+Xd \&\+\_\+\+E\+\_\+eq, const Eigen\+::\+Vector\+Xd \&\+\_\+f\+\_\+eq, const Eigen\+::\+Matrix\+Xd \&\+\_\+\+E\+\_\+ineq, const Eigen\+::\+Vector\+Xd \&\+\_\+f\+\_\+ineq, Eigen\+::\+Vector\+Xd \&\+\_\+sol, const \mbox{\hyperlink{classHierarchicalOptimizationControl_ae49f08ceaee8df6933d8708fb68c3b99}{Solver\+Type}} \&\+\_\+solver=Solver\+Type\+::\+U\+N\+S\+P\+E\+C\+I\+F\+I\+ED, const int \&\+\_\+v=0)
+\begin{DoxyCompactList}\small\item\em The Solve\+QP function solves a (convex) quadratic. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classHierarchicalOptimizationControl_a4b10d0ecf2dd9c9fbed0864913e5f1f7}{Publish\+Torque\+Msg}} (const Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \&\+\_\+desired\+\_\+tau)
+\begin{DoxyCompactList}\small\item\em The Publish\+Torque\+Msg function publishes a desired torque message to the R\+OS topic set by the joint state publisher. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classHierarchicalOptimizationControl_a74787630f85dd651a6bd25463c77011d}{On\+Gen\+Coord\+Msg}} (const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&\+\_\+msg)
+\begin{DoxyCompactList}\small\item\em The On\+Gen\+Coord\+Msg function handles an incoming generalized coordinates message from R\+OS. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classHierarchicalOptimizationControl_ac93711c61e175c11b2a87d72b62ce335}{On\+Gen\+Vel\+Msg}} (const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&\+\_\+msg)
+\begin{DoxyCompactList}\small\item\em The On\+Gen\+Vel\+Msg function handles an incoming generalized velocities message from R\+OS. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classHierarchicalOptimizationControl_a9b447e6598894c0201069eed1824d6e0}{On\+Contact\+State\+Msg}} (const std\+\_\+msgs\+::\+Int8\+Multi\+Array\+Const\+Ptr \&\+\_\+msg)
+\begin{DoxyCompactList}\small\item\em The On\+Contact\+State\+Msg function handles an incoming contact state message from R\+OS. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classHierarchicalOptimizationControl_a6e4d34cb22c8051aec0783d46cc4ac3e}\label{classHierarchicalOptimizationControl_a6e4d34cb22c8051aec0783d46cc4ac3e}} 
+void \mbox{\hyperlink{classHierarchicalOptimizationControl_a6e4d34cb22c8051aec0783d46cc4ac3e}{Process\+Queue\+Thread}} ()
+\begin{DoxyCompactList}\small\item\em The Process\+Queue\+Thread function is a R\+OS helper function that processes messages. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classHierarchicalOptimizationControl_a9d93520a2d70e8e8be5e5a43c1ce1029}\label{classHierarchicalOptimizationControl_a9d93520a2d70e8e8be5e5a43c1ce1029}} 
+void \mbox{\hyperlink{classHierarchicalOptimizationControl_a9d93520a2d70e8e8be5e5a43c1ce1029}{Publish\+Queue\+Thread}} ()
+\begin{DoxyCompactList}\small\item\em The Publish\+Queue\+Thread function is a R\+OS helper function that publish state messages. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classHierarchicalOptimizationControl_a3ebddce797dad8acbc82ea07153a152a}\label{classHierarchicalOptimizationControl_a3ebddce797dad8acbc82ea07153a152a}} 
+\mbox{\hyperlink{classKinematics}{Kinematics}} \mbox{\hyperlink{classHierarchicalOptimizationControl_a3ebddce797dad8acbc82ea07153a152a}{kinematics}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classKinematics}{Kinematics}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classHierarchicalOptimizationControl_aba710ef1d1286a31e3425ff59b32531f}\label{classHierarchicalOptimizationControl_aba710ef1d1286a31e3425ff59b32531f}} 
+void \mbox{\hyperlink{classHierarchicalOptimizationControl_aba710ef1d1286a31e3425ff59b32531f}{Init\+Ros}} ()
+\begin{DoxyCompactList}\small\item\em The Init\+Ros function is called to initialize R\+OS. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classHierarchicalOptimizationControl_a8d211069a2986afc30972841b720636f}\label{classHierarchicalOptimizationControl_a8d211069a2986afc30972841b720636f}} 
+void \mbox{\hyperlink{classHierarchicalOptimizationControl_a8d211069a2986afc30972841b720636f}{Init\+Ros\+Queue\+Threads}} ()
+\begin{DoxyCompactList}\small\item\em The Init\+Ros\+Queue\+Threads function is called to initialize the R\+OS Publish and Process Queue Threads. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class for hierarchical optimization control. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classHierarchicalOptimizationControl_aa5be7152ab8fe0eb6dcb595aa5d961b5}\label{classHierarchicalOptimizationControl_aa5be7152ab8fe0eb6dcb595aa5d961b5}} 
+\index{HierarchicalOptimizationControl@{HierarchicalOptimizationControl}!HierarchicalLeastSquareOptimization@{HierarchicalLeastSquareOptimization}}
+\index{HierarchicalLeastSquareOptimization@{HierarchicalLeastSquareOptimization}!HierarchicalOptimizationControl@{HierarchicalOptimizationControl}}
+\doxysubsubsection{\texorpdfstring{HierarchicalLeastSquareOptimization()}{HierarchicalLeastSquareOptimization()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, Eigen\+::\+Dynamic, 1 $>$ Hierarchical\+Optimization\+Control\+::\+Hierarchical\+Least\+Square\+Optimization (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix$<$ Eigen\+::\+Matrix\+Xd, Eigen\+::\+Dynamic, 1 $>$ \&}]{\+\_\+A,  }\item[{const Eigen\+::\+Matrix$<$ Eigen\+::\+Matrix$<$ double, Eigen\+::\+Dynamic, 1 $>$, Eigen\+::\+Dynamic, 1 $>$ \&}]{\+\_\+b,  }\item[{const int \&}]{\+\_\+v = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+The Hierarchical\+Least\+Square\+Optimization function finds the optimal solution for a set of linear equality constraints in a strictly prioritized order. The method iterates through the set of equality constraints and searches for a new solution in the null-\/space of all higher priority equality constraints. At each iteration the Moore-\/\+Penrose pseudoinverse is utilized to find a vector lying in the row-\/space of the null-\/space of all equality constraints, which improve on the current solution. The usage of the Moore-\/\+Penrose pseudoinverse yield a least square solution of the problem at hand. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+A} & A set of equality constraint matrices A. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+b} & A set of equality constraint vectors b. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+v} & Verbosity level \mbox{[}0,1\mbox{]}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the optimal solution in a strict prioritized manner given a set of equality constraints. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHierarchicalOptimizationControl_a39c7c02bbbf36deb7ba3f4af270e4288}\label{classHierarchicalOptimizationControl_a39c7c02bbbf36deb7ba3f4af270e4288}} 
+\index{HierarchicalOptimizationControl@{HierarchicalOptimizationControl}!HierarchicalQPOptimization@{HierarchicalQPOptimization}}
+\index{HierarchicalQPOptimization@{HierarchicalQPOptimization}!HierarchicalOptimizationControl@{HierarchicalOptimizationControl}}
+\doxysubsubsection{\texorpdfstring{HierarchicalQPOptimization()}{HierarchicalQPOptimization()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, Eigen\+::\+Dynamic, 1 $>$ Hierarchical\+Optimization\+Control\+::\+Hierarchical\+Q\+P\+Optimization (\begin{DoxyParamCaption}\item[{const int \&}]{\+\_\+state\+\_\+dim,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{structHierarchicalOptimizationControl_1_1Task}{Task}} $>$ \&}]{\+\_\+tasks,  }\item[{const \mbox{\hyperlink{classHierarchicalOptimizationControl_ae49f08ceaee8df6933d8708fb68c3b99}{Solver\+Type}} \&}]{\+\_\+solver = {\ttfamily SolverType\+:\+:UNSPECIFIED},  }\item[{const int \&}]{\+\_\+v = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+The Hierarchical\+Q\+P\+Optimization function finds the optimal solution for a set of tasks in a strictly prioritized order. The method iterates through the set of tasks and searches for a new solution in the null-\/space of all higher priority equality constraints. At each iteration a QP problem is solved to find a vector lying in the row-\/space of the null-\/space of all equality constraints, which improve on the current solution. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+state\+\_\+dim} & State dimension for the solution vector. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+tasks} & A set of tasks to be solved. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+solver} & Solver type. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+v} & Verbosity level \mbox{[}0,1,2,3\mbox{]}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the optimal solution in a strict prioritized manner given a set of tasks. ~\newline
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHierarchicalOptimizationControl_a9b447e6598894c0201069eed1824d6e0}\label{classHierarchicalOptimizationControl_a9b447e6598894c0201069eed1824d6e0}} 
+\index{HierarchicalOptimizationControl@{HierarchicalOptimizationControl}!OnContactStateMsg@{OnContactStateMsg}}
+\index{OnContactStateMsg@{OnContactStateMsg}!HierarchicalOptimizationControl@{HierarchicalOptimizationControl}}
+\doxysubsubsection{\texorpdfstring{OnContactStateMsg()}{OnContactStateMsg()}}
+{\footnotesize\ttfamily void Hierarchical\+Optimization\+Control\+::\+On\+Contact\+State\+Msg (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Int8\+Multi\+Array\+Const\+Ptr \&}]{\+\_\+msg }\end{DoxyParamCaption})}
+
+
+
+The On\+Contact\+State\+Msg function handles an incoming contact state message from R\+OS. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+msg} & A float array containing the contact state. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classHierarchicalOptimizationControl_a74787630f85dd651a6bd25463c77011d}\label{classHierarchicalOptimizationControl_a74787630f85dd651a6bd25463c77011d}} 
+\index{HierarchicalOptimizationControl@{HierarchicalOptimizationControl}!OnGenCoordMsg@{OnGenCoordMsg}}
+\index{OnGenCoordMsg@{OnGenCoordMsg}!HierarchicalOptimizationControl@{HierarchicalOptimizationControl}}
+\doxysubsubsection{\texorpdfstring{OnGenCoordMsg()}{OnGenCoordMsg()}}
+{\footnotesize\ttfamily void Hierarchical\+Optimization\+Control\+::\+On\+Gen\+Coord\+Msg (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&}]{\+\_\+msg }\end{DoxyParamCaption})}
+
+
+
+The On\+Gen\+Coord\+Msg function handles an incoming generalized coordinates message from R\+OS. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+msg} & A float array containing the generalized coordinates. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classHierarchicalOptimizationControl_ac93711c61e175c11b2a87d72b62ce335}\label{classHierarchicalOptimizationControl_ac93711c61e175c11b2a87d72b62ce335}} 
+\index{HierarchicalOptimizationControl@{HierarchicalOptimizationControl}!OnGenVelMsg@{OnGenVelMsg}}
+\index{OnGenVelMsg@{OnGenVelMsg}!HierarchicalOptimizationControl@{HierarchicalOptimizationControl}}
+\doxysubsubsection{\texorpdfstring{OnGenVelMsg()}{OnGenVelMsg()}}
+{\footnotesize\ttfamily void Hierarchical\+Optimization\+Control\+::\+On\+Gen\+Vel\+Msg (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&}]{\+\_\+msg }\end{DoxyParamCaption})}
+
+
+
+The On\+Gen\+Vel\+Msg function handles an incoming generalized velocities message from R\+OS. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+msg} & A float array containing the generalized velocities. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classHierarchicalOptimizationControl_a4b10d0ecf2dd9c9fbed0864913e5f1f7}\label{classHierarchicalOptimizationControl_a4b10d0ecf2dd9c9fbed0864913e5f1f7}} 
+\index{HierarchicalOptimizationControl@{HierarchicalOptimizationControl}!PublishTorqueMsg@{PublishTorqueMsg}}
+\index{PublishTorqueMsg@{PublishTorqueMsg}!HierarchicalOptimizationControl@{HierarchicalOptimizationControl}}
+\doxysubsubsection{\texorpdfstring{PublishTorqueMsg()}{PublishTorqueMsg()}}
+{\footnotesize\ttfamily void Hierarchical\+Optimization\+Control\+::\+Publish\+Torque\+Msg (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \&}]{\+\_\+desired\+\_\+tau }\end{DoxyParamCaption})}
+
+
+
+The Publish\+Torque\+Msg function publishes a desired torque message to the R\+OS topic set by the joint state publisher. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+desired\+\_\+tau} & Desired torque to be published. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classHierarchicalOptimizationControl_a7c9f5c00bddda83d936b7e8fd9a866c1}\label{classHierarchicalOptimizationControl_a7c9f5c00bddda83d936b7e8fd9a866c1}} 
+\index{HierarchicalOptimizationControl@{HierarchicalOptimizationControl}!SolveQP@{SolveQP}}
+\index{SolveQP@{SolveQP}!HierarchicalOptimizationControl@{HierarchicalOptimizationControl}}
+\doxysubsubsection{\texorpdfstring{SolveQP()}{SolveQP()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily bool Hierarchical\+Optimization\+Control\+::\+Solve\+QP (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix\+Xd \&}]{\+\_\+Q,  }\item[{const Eigen\+::\+Vector\+Xd \&}]{\+\_\+c,  }\item[{const Eigen\+::\+Matrix\+Xd \&}]{\+\_\+A,  }\item[{const Eigen\+::\+Vector\+Xd \&}]{\+\_\+lb,  }\item[{const Eigen\+::\+Vector\+Xd \&}]{\+\_\+ub,  }\item[{Eigen\+::\+Vector\+Xd \&}]{\+\_\+sol,  }\item[{const \mbox{\hyperlink{classHierarchicalOptimizationControl_ae49f08ceaee8df6933d8708fb68c3b99}{Solver\+Type}} \&}]{\+\_\+solver = {\ttfamily SolverType\+:\+:UNSPECIFIED},  }\item[{const int \&}]{\+\_\+v = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+The Solve\+QP function solves a (convex) quadratic. 
+
+\hypertarget{classHierarchicalOptimizationControl_autotoc_md2}{}\doxysubsubsection{program (\+Q\+P) on the form\+:}\label{classHierarchicalOptimizationControl_autotoc_md2}
+min\+\_\+x 0.\+5 x$^\wedge$T Q x + c$^\wedge$T x \hypertarget{classHierarchicalOptimizationControl_autotoc_md3}{}\doxysubsubsection{s.\+t.        lb $<$= A x $<$= ub}\label{classHierarchicalOptimizationControl_autotoc_md3}
+The toolbox uses the Drake toolbox for solving the problem. Currently Drake identifies the problem and chooses an appropriate commercial solver, but the solver can be specified (among the supported) by the user if one desires. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+Q} & Cost matrix Q (must be positive semidefinite). \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+c} & Cost vector c. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+A} & Linear inequality constraint matrix A; \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+lb} & Linear inequality constraint lower bound vector; \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+ub} & Linear inequality constraint upper bound vector; \\
+\hline
+\mbox{\texttt{ out}}  & {\em \+\_\+sol} & Solution of the QP (if it exists). \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+solver} & Solver type, default is unspecified (Drake will choose accordingly). \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+v} & Verbosity level. // T\+O\+DO Update after verbosity is set \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if a solution is found, false if not. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHierarchicalOptimizationControl_a11873bac4d3825be997c4f2401c62b7c}\label{classHierarchicalOptimizationControl_a11873bac4d3825be997c4f2401c62b7c}} 
+\index{HierarchicalOptimizationControl@{HierarchicalOptimizationControl}!SolveQP@{SolveQP}}
+\index{SolveQP@{SolveQP}!HierarchicalOptimizationControl@{HierarchicalOptimizationControl}}
+\doxysubsubsection{\texorpdfstring{SolveQP()}{SolveQP()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily bool Hierarchical\+Optimization\+Control\+::\+Solve\+QP (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix\+Xd \&}]{\+\_\+Q,  }\item[{const Eigen\+::\+Vector\+Xd \&}]{\+\_\+c,  }\item[{const Eigen\+::\+Matrix\+Xd \&}]{\+\_\+\+E\+\_\+eq,  }\item[{const Eigen\+::\+Vector\+Xd \&}]{\+\_\+f\+\_\+eq,  }\item[{const Eigen\+::\+Matrix\+Xd \&}]{\+\_\+\+E\+\_\+ineq,  }\item[{const Eigen\+::\+Vector\+Xd \&}]{\+\_\+f\+\_\+ineq,  }\item[{Eigen\+::\+Vector\+Xd \&}]{\+\_\+sol,  }\item[{const \mbox{\hyperlink{classHierarchicalOptimizationControl_ae49f08ceaee8df6933d8708fb68c3b99}{Solver\+Type}} \&}]{\+\_\+solver = {\ttfamily SolverType\+:\+:UNSPECIFIED},  }\item[{const int \&}]{\+\_\+v = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+The Solve\+QP function solves a (convex) quadratic. 
+
+\hypertarget{classHierarchicalOptimizationControl_autotoc_md4}{}\doxysubsubsection{program (\+Q\+P) on the form\+:}\label{classHierarchicalOptimizationControl_autotoc_md4}
+min\+\_\+x 0.\+5 x$^\wedge$T Q x + c$^\wedge$T x s.\+t. E\+\_\+eq x = f\+\_\+eq \hypertarget{classHierarchicalOptimizationControl_autotoc_md5}{}\doxysubsubsection{E\+\_\+ineq x $<$= f\+\_\+ineq}\label{classHierarchicalOptimizationControl_autotoc_md5}
+The toolbox uses the Drake toolbox for solving the problem. Currently Drake identifies the problem and chooses an appropriate commercial solver, but the solver can be specified (among the supported) by the user if one desires. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+Q} & Cost matrix Q (must be positive semidefinite). \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+c} & Cost vector c. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+\+E\+\_\+eq} & Linear equality constraint matrix E\+\_\+eq; \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+f\+\_\+eq} & Linear equality constraint vector f\+\_\+eq; \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+\+E\+\_\+ineq} & Linear inequality constraint matrix E\+\_\+ineq; \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+f\+\_\+ineq} & Linear inequality constraint vector f\+\_\+ineq; \\
+\hline
+\mbox{\texttt{ out}}  & {\em \+\_\+sol} & Solution of the QP (if it exists). \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+solver} & Solver type, default is unspecified (Drake will choose accordingly). \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+v} & Verbosity level. // T\+O\+DO Update after verbosity is set \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if a solution is found, false if not. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHierarchicalOptimizationControl_a433baff8381df342f76d459a0cbc8e22}\label{classHierarchicalOptimizationControl_a433baff8381df342f76d459a0cbc8e22}} 
+\index{HierarchicalOptimizationControl@{HierarchicalOptimizationControl}!SolveQP@{SolveQP}}
+\index{SolveQP@{SolveQP}!HierarchicalOptimizationControl@{HierarchicalOptimizationControl}}
+\doxysubsubsection{\texorpdfstring{SolveQP()}{SolveQP()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily bool Hierarchical\+Optimization\+Control\+::\+Solve\+QP (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix\+Xd \&}]{\+\_\+Q,  }\item[{const Eigen\+::\+Vector\+Xd \&}]{\+\_\+c,  }\item[{const Eigen\+::\+Matrix\+Xd \&}]{\+\_\+\+E\+\_\+ineq,  }\item[{const Eigen\+::\+Vector\+Xd \&}]{\+\_\+f\+\_\+ineq,  }\item[{Eigen\+::\+Vector\+Xd \&}]{\+\_\+sol,  }\item[{const \mbox{\hyperlink{classHierarchicalOptimizationControl_ae49f08ceaee8df6933d8708fb68c3b99}{Solver\+Type}} \&}]{\+\_\+solver = {\ttfamily SolverType\+:\+:UNSPECIFIED},  }\item[{const int \&}]{\+\_\+v = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+The Solve\+QP function solves a (convex) quadratic. 
+
+\hypertarget{classHierarchicalOptimizationControl_autotoc_md0}{}\doxysubsubsection{program (\+Q\+P) on the form\+:}\label{classHierarchicalOptimizationControl_autotoc_md0}
+min\+\_\+x 0.\+5 x$^\wedge$T Q x + c$^\wedge$T x \hypertarget{classHierarchicalOptimizationControl_autotoc_md1}{}\doxysubsubsection{s.\+t.        E\+\_\+ineq x $<$= f\+\_\+ineq}\label{classHierarchicalOptimizationControl_autotoc_md1}
+The toolbox uses the Drake toolbox for solving the problem. Currently Drake identifies the problem and chooses an appropriate commercial solver, but the solver can be specified (among the supported) by the user if one desires. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+Q} & Cost matrix Q (must be positive semidefinite). \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+c} & Cost vector c. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+\+E\+\_\+ineq} & Linear inequality constraint matrix E\+\_\+ineq; \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+f\+\_\+ineq} & Linear inequality constraint vector f\+\_\+ineq; \\
+\hline
+\mbox{\texttt{ out}}  & {\em \+\_\+sol} & Solution of the QP (if it exists). \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+solver} & Solver type, default is unspecified (Drake will choose accordingly). \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+v} & Verbosity level. // T\+O\+DO Update after verbosity is set \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if a solution is found, false if not. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+catkin\+\_\+ws/src/control/hierarchical\+\_\+optimization\+\_\+controller/include/hierarchical\+\_\+optimization\+\_\+controller/hierarchical\+\_\+optimization\+\_\+controller.\+h\item 
+catkin\+\_\+ws/src/control/hierarchical\+\_\+optimization\+\_\+controller/src/hierarchical\+\_\+optimization\+\_\+controller.\+cpp\end{DoxyCompactItemize}

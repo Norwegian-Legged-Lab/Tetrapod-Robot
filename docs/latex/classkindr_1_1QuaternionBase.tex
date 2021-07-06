@@ -1,0 +1,263 @@
+\hypertarget{classkindr_1_1QuaternionBase}{}\doxysection{kindr\+::Quaternion\+Base$<$ Derived\+\_\+ $>$ Class Template Reference}
+\label{classkindr_1_1QuaternionBase}\index{kindr::QuaternionBase$<$ Derived\_ $>$@{kindr::QuaternionBase$<$ Derived\_ $>$}}
+
+
+Base class that defines the interface of a quaternion This class defines a generic interface for a quaternion.  
+
+
+
+
+{\ttfamily \#include $<$Quaternion\+Base.\+hpp$>$}
+
+
+
+Inheritance diagram for kindr\+::Quaternion\+Base$<$ Derived\+\_\+ $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{classkindr_1_1QuaternionBase__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Derived\+\_\+ \& \mbox{\hyperlink{classkindr_1_1QuaternionBase_a5703255b0fe88a97b267c1e287eb6070}{invert}} ()
+\begin{DoxyCompactList}\small\item\em inverts the quaternion \end{DoxyCompactList}\item 
+Derived\+\_\+ \mbox{\hyperlink{classkindr_1_1QuaternionBase_a4fe69d688f07f7cff7db660b60af8b35}{inverted}} () const
+\begin{DoxyCompactList}\small\item\em gets the inverse of the quaternion \end{DoxyCompactList}\item 
+Derived\+\_\+ \& \mbox{\hyperlink{classkindr_1_1QuaternionBase_aa22b1d523f8951a0e0debc4a265d2b87}{conjugate}} ()
+\begin{DoxyCompactList}\small\item\em conjugates the quaternion \end{DoxyCompactList}\item 
+Derived\+\_\+ \mbox{\hyperlink{classkindr_1_1QuaternionBase_a2f9d46c0cd1b1230df722dbb445c5d4d}{conjugated}} () const
+\begin{DoxyCompactList}\small\item\em gets the conjugate of the quaternion \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkindr_1_1QuaternionBase_a006d36b0db31a844939c0cfa6021fbd3}{operator Derived\+\_\+ \&}} ()
+\begin{DoxyCompactList}\small\item\em gets the derived quaternion (only for advanced users) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkindr_1_1QuaternionBase_a2be4d7edd1299e7277ae2e2d8f722dcf}{operator const Derived\+\_\+ \&}} () const
+\begin{DoxyCompactList}\small\item\em gets the derived quaternion (only for advanced users) \end{DoxyCompactList}\item 
+Derived\+\_\+ \& \mbox{\hyperlink{classkindr_1_1QuaternionBase_aa01348d7b39310651533d9e0ce5c86fd}{derived}} ()
+\begin{DoxyCompactList}\small\item\em gets the derived quaternion (only for advanced users) \end{DoxyCompactList}\item 
+const Derived\+\_\+ \& \mbox{\hyperlink{classkindr_1_1QuaternionBase_ac12e4c48a4c98d588817b464e879296b}{derived}} () const
+\begin{DoxyCompactList}\small\item\em gets the derived quaternion (only for advanced users) \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Other\+Derived\+\_\+ $>$ }\\Derived\+\_\+ \mbox{\hyperlink{classkindr_1_1QuaternionBase_a45bd9cac0b6a15b765c02fb506c1ffc3}{operator$\ast$}} (const \mbox{\hyperlink{classkindr_1_1QuaternionBase}{Quaternion\+Base}}$<$ Other\+Derived\+\_\+ $>$ \&other) const
+\begin{DoxyCompactList}\small\item\em multiplies the quaternion with another quaternion \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Other\+Derived\+\_\+ $>$ }\\bool \mbox{\hyperlink{classkindr_1_1QuaternionBase_a307e00f8e0c58c6f127fede27c1232e0}{operator==}} (const \mbox{\hyperlink{classkindr_1_1QuaternionBase}{Quaternion\+Base}}$<$ Other\+Derived\+\_\+ $>$ \&other) const
+\begin{DoxyCompactList}\small\item\em compares the quaternion with another quaternion for equality \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Other\+Derived\+\_\+ $>$ }\\bool \mbox{\hyperlink{classkindr_1_1QuaternionBase_a893e2b3a57d0ea4209a79fc331e4f7b5}{operator!=}} (const \mbox{\hyperlink{classkindr_1_1QuaternionBase}{Quaternion\+Base}}$<$ Other\+Derived\+\_\+ $>$ \&other) const
+\begin{DoxyCompactList}\small\item\em compares the quaternion with another quaternion for inequality \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \mbox{\hyperlink{classkindr_1_1QuaternionBase_a937d5ebe19fb42a5b664b5ed4232815b}{operator$<$$<$}} (std\+::ostream \&out, const \mbox{\hyperlink{classkindr_1_1QuaternionBase}{Quaternion\+Base}}$<$ Derived\+\_\+ $>$ \&quat)
+\begin{DoxyCompactList}\small\item\em prints the coefficients of the quaternion \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Derived\+\_\+$>$\newline
+class kindr\+::\+Quaternion\+Base$<$ Derived\+\_\+ $>$}
+
+Base class that defines the interface of a quaternion This class defines a generic interface for a quaternion. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Derived\+\_\+} & the derived class that should implement the quaternion \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxySeeAlso}{See also}
+rm\+::rotations\+::\+Rotation\+Quaternion\+Base for \mbox{\hyperlink{group__quaternions}{Quaternions}} that represent a rotation 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classkindr_1_1QuaternionBase_aa22b1d523f8951a0e0debc4a265d2b87}\label{classkindr_1_1QuaternionBase_aa22b1d523f8951a0e0debc4a265d2b87}} 
+\index{kindr::QuaternionBase$<$ Derived\_ $>$@{kindr::QuaternionBase$<$ Derived\_ $>$}!conjugate@{conjugate}}
+\index{conjugate@{conjugate}!kindr::QuaternionBase$<$ Derived\_ $>$@{kindr::QuaternionBase$<$ Derived\_ $>$}}
+\doxysubsubsection{\texorpdfstring{conjugate()}{conjugate()}}
+{\footnotesize\ttfamily template$<$typename Derived\+\_\+ $>$ \\
+Derived\+\_\+\& \mbox{\hyperlink{classkindr_1_1QuaternionBase}{kindr\+::\+Quaternion\+Base}}$<$ Derived\+\_\+ $>$\+::conjugate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+conjugates the quaternion 
+
+\begin{DoxyReturn}{Returns}
+the conjugate of the quaternion 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1QuaternionBase_a2f9d46c0cd1b1230df722dbb445c5d4d}\label{classkindr_1_1QuaternionBase_a2f9d46c0cd1b1230df722dbb445c5d4d}} 
+\index{kindr::QuaternionBase$<$ Derived\_ $>$@{kindr::QuaternionBase$<$ Derived\_ $>$}!conjugated@{conjugated}}
+\index{conjugated@{conjugated}!kindr::QuaternionBase$<$ Derived\_ $>$@{kindr::QuaternionBase$<$ Derived\_ $>$}}
+\doxysubsubsection{\texorpdfstring{conjugated()}{conjugated()}}
+{\footnotesize\ttfamily template$<$typename Derived\+\_\+ $>$ \\
+Derived\+\_\+ \mbox{\hyperlink{classkindr_1_1QuaternionBase}{kindr\+::\+Quaternion\+Base}}$<$ Derived\+\_\+ $>$\+::conjugated (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the conjugate of the quaternion 
+
+\begin{DoxyReturn}{Returns}
+the conjugate of the quaternion 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1QuaternionBase_aa01348d7b39310651533d9e0ce5c86fd}\label{classkindr_1_1QuaternionBase_aa01348d7b39310651533d9e0ce5c86fd}} 
+\index{kindr::QuaternionBase$<$ Derived\_ $>$@{kindr::QuaternionBase$<$ Derived\_ $>$}!derived@{derived}}
+\index{derived@{derived}!kindr::QuaternionBase$<$ Derived\_ $>$@{kindr::QuaternionBase$<$ Derived\_ $>$}}
+\doxysubsubsection{\texorpdfstring{derived()}{derived()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Derived\+\_\+ $>$ \\
+Derived\+\_\+\& \mbox{\hyperlink{classkindr_1_1QuaternionBase}{kindr\+::\+Quaternion\+Base}}$<$ Derived\+\_\+ $>$\+::derived (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+gets the derived quaternion (only for advanced users) 
+
+\begin{DoxyReturn}{Returns}
+the derived quaternion 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1QuaternionBase_ac12e4c48a4c98d588817b464e879296b}\label{classkindr_1_1QuaternionBase_ac12e4c48a4c98d588817b464e879296b}} 
+\index{kindr::QuaternionBase$<$ Derived\_ $>$@{kindr::QuaternionBase$<$ Derived\_ $>$}!derived@{derived}}
+\index{derived@{derived}!kindr::QuaternionBase$<$ Derived\_ $>$@{kindr::QuaternionBase$<$ Derived\_ $>$}}
+\doxysubsubsection{\texorpdfstring{derived()}{derived()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Derived\+\_\+ $>$ \\
+const Derived\+\_\+\& \mbox{\hyperlink{classkindr_1_1QuaternionBase}{kindr\+::\+Quaternion\+Base}}$<$ Derived\+\_\+ $>$\+::derived (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+gets the derived quaternion (only for advanced users) 
+
+\begin{DoxyReturn}{Returns}
+the derived quaternion 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1QuaternionBase_a5703255b0fe88a97b267c1e287eb6070}\label{classkindr_1_1QuaternionBase_a5703255b0fe88a97b267c1e287eb6070}} 
+\index{kindr::QuaternionBase$<$ Derived\_ $>$@{kindr::QuaternionBase$<$ Derived\_ $>$}!invert@{invert}}
+\index{invert@{invert}!kindr::QuaternionBase$<$ Derived\_ $>$@{kindr::QuaternionBase$<$ Derived\_ $>$}}
+\doxysubsubsection{\texorpdfstring{invert()}{invert()}}
+{\footnotesize\ttfamily template$<$typename Derived\+\_\+ $>$ \\
+Derived\+\_\+\& \mbox{\hyperlink{classkindr_1_1QuaternionBase}{kindr\+::\+Quaternion\+Base}}$<$ Derived\+\_\+ $>$\+::invert (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+inverts the quaternion 
+
+\begin{DoxyReturn}{Returns}
+the inverted quaternion 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1QuaternionBase_a4fe69d688f07f7cff7db660b60af8b35}\label{classkindr_1_1QuaternionBase_a4fe69d688f07f7cff7db660b60af8b35}} 
+\index{kindr::QuaternionBase$<$ Derived\_ $>$@{kindr::QuaternionBase$<$ Derived\_ $>$}!inverted@{inverted}}
+\index{inverted@{inverted}!kindr::QuaternionBase$<$ Derived\_ $>$@{kindr::QuaternionBase$<$ Derived\_ $>$}}
+\doxysubsubsection{\texorpdfstring{inverted()}{inverted()}}
+{\footnotesize\ttfamily template$<$typename Derived\+\_\+ $>$ \\
+Derived\+\_\+ \mbox{\hyperlink{classkindr_1_1QuaternionBase}{kindr\+::\+Quaternion\+Base}}$<$ Derived\+\_\+ $>$\+::inverted (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the inverse of the quaternion 
+
+\begin{DoxyReturn}{Returns}
+the inverse of the quaternion 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1QuaternionBase_a2be4d7edd1299e7277ae2e2d8f722dcf}\label{classkindr_1_1QuaternionBase_a2be4d7edd1299e7277ae2e2d8f722dcf}} 
+\index{kindr::QuaternionBase$<$ Derived\_ $>$@{kindr::QuaternionBase$<$ Derived\_ $>$}!operator const Derived\_ \&@{operator const Derived\_ \&}}
+\index{operator const Derived\_ \&@{operator const Derived\_ \&}!kindr::QuaternionBase$<$ Derived\_ $>$@{kindr::QuaternionBase$<$ Derived\_ $>$}}
+\doxysubsubsection{\texorpdfstring{operator const Derived\_ \&()}{operator const Derived\_ \&()}}
+{\footnotesize\ttfamily template$<$typename Derived\+\_\+ $>$ \\
+\mbox{\hyperlink{classkindr_1_1QuaternionBase}{kindr\+::\+Quaternion\+Base}}$<$ Derived\+\_\+ $>$\+::operator const Derived\+\_\+ \& (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+gets the derived quaternion (only for advanced users) 
+
+\begin{DoxyReturn}{Returns}
+the derived quaternion 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1QuaternionBase_a006d36b0db31a844939c0cfa6021fbd3}\label{classkindr_1_1QuaternionBase_a006d36b0db31a844939c0cfa6021fbd3}} 
+\index{kindr::QuaternionBase$<$ Derived\_ $>$@{kindr::QuaternionBase$<$ Derived\_ $>$}!operator Derived\_ \&@{operator Derived\_ \&}}
+\index{operator Derived\_ \&@{operator Derived\_ \&}!kindr::QuaternionBase$<$ Derived\_ $>$@{kindr::QuaternionBase$<$ Derived\_ $>$}}
+\doxysubsubsection{\texorpdfstring{operator Derived\_ \&()}{operator Derived\_ \&()}}
+{\footnotesize\ttfamily template$<$typename Derived\+\_\+ $>$ \\
+\mbox{\hyperlink{classkindr_1_1QuaternionBase}{kindr\+::\+Quaternion\+Base}}$<$ Derived\+\_\+ $>$\+::operator Derived\+\_\+ \& (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+gets the derived quaternion (only for advanced users) 
+
+\begin{DoxyReturn}{Returns}
+the derived quaternion 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1QuaternionBase_a893e2b3a57d0ea4209a79fc331e4f7b5}\label{classkindr_1_1QuaternionBase_a893e2b3a57d0ea4209a79fc331e4f7b5}} 
+\index{kindr::QuaternionBase$<$ Derived\_ $>$@{kindr::QuaternionBase$<$ Derived\_ $>$}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!kindr::QuaternionBase$<$ Derived\_ $>$@{kindr::QuaternionBase$<$ Derived\_ $>$}}
+\doxysubsubsection{\texorpdfstring{operator"!=()}{operator!=()}}
+{\footnotesize\ttfamily template$<$typename Derived\+\_\+ $>$ \\
+template$<$typename Other\+Derived\+\_\+ $>$ \\
+bool \mbox{\hyperlink{classkindr_1_1QuaternionBase}{kindr\+::\+Quaternion\+Base}}$<$ Derived\+\_\+ $>$\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classkindr_1_1QuaternionBase}{Quaternion\+Base}}$<$ Other\+Derived\+\_\+ $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+compares the quaternion with another quaternion for inequality 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & other quaternion \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the quaternions are not equal 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1QuaternionBase_a45bd9cac0b6a15b765c02fb506c1ffc3}\label{classkindr_1_1QuaternionBase_a45bd9cac0b6a15b765c02fb506c1ffc3}} 
+\index{kindr::QuaternionBase$<$ Derived\_ $>$@{kindr::QuaternionBase$<$ Derived\_ $>$}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!kindr::QuaternionBase$<$ Derived\_ $>$@{kindr::QuaternionBase$<$ Derived\_ $>$}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}}
+{\footnotesize\ttfamily template$<$typename Derived\+\_\+ $>$ \\
+template$<$typename Other\+Derived\+\_\+ $>$ \\
+Derived\+\_\+ \mbox{\hyperlink{classkindr_1_1QuaternionBase}{kindr\+::\+Quaternion\+Base}}$<$ Derived\+\_\+ $>$\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classkindr_1_1QuaternionBase}{Quaternion\+Base}}$<$ Other\+Derived\+\_\+ $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+multiplies the quaternion with another quaternion 
+
+\begin{DoxyReturn}{Returns}
+the product of two quaternions 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em other} & other other quaternion \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classkindr_1_1QuaternionBase_a307e00f8e0c58c6f127fede27c1232e0}\label{classkindr_1_1QuaternionBase_a307e00f8e0c58c6f127fede27c1232e0}} 
+\index{kindr::QuaternionBase$<$ Derived\_ $>$@{kindr::QuaternionBase$<$ Derived\_ $>$}!operator==@{operator==}}
+\index{operator==@{operator==}!kindr::QuaternionBase$<$ Derived\_ $>$@{kindr::QuaternionBase$<$ Derived\_ $>$}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily template$<$typename Derived\+\_\+ $>$ \\
+template$<$typename Other\+Derived\+\_\+ $>$ \\
+bool \mbox{\hyperlink{classkindr_1_1QuaternionBase}{kindr\+::\+Quaternion\+Base}}$<$ Derived\+\_\+ $>$\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classkindr_1_1QuaternionBase}{Quaternion\+Base}}$<$ Other\+Derived\+\_\+ $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+compares the quaternion with another quaternion for equality 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & other quaternion \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the quaternions are equal 
+\end{DoxyReturn}
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classkindr_1_1QuaternionBase_a937d5ebe19fb42a5b664b5ed4232815b}\label{classkindr_1_1QuaternionBase_a937d5ebe19fb42a5b664b5ed4232815b}} 
+\index{kindr::QuaternionBase$<$ Derived\_ $>$@{kindr::QuaternionBase$<$ Derived\_ $>$}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!kindr::QuaternionBase$<$ Derived\_ $>$@{kindr::QuaternionBase$<$ Derived\_ $>$}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily template$<$typename Derived\+\_\+ $>$ \\
+std\+::ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{out,  }\item[{const \mbox{\hyperlink{classkindr_1_1QuaternionBase}{Quaternion\+Base}}$<$ Derived\+\_\+ $>$ \&}]{quat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+prints the coefficients of the quaternion 
+
+\begin{DoxyReturn}{Returns}
+w x y z 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+catkin\+\_\+ws/src/utilities/kindr/include/kindr/quaternions/Quaternion\+Base.\+hpp\end{DoxyCompactItemize}

@@ -1,0 +1,44 @@
+\hypertarget{classkindr_1_1RotationConversion}{}\doxysection{kindr\+::Rotation\+Conversion$<$ Other\+Rotation\+\_\+, Other\+Velocity\+\_\+, Prim\+Type\+\_\+ $>$ Class Template Reference}
+\label{classkindr_1_1RotationConversion}\index{kindr::RotationConversion$<$ OtherRotation\_, OtherVelocity\_, PrimType\_ $>$@{kindr::RotationConversion$<$ OtherRotation\_, OtherVelocity\_, PrimType\_ $>$}}
+
+
+{\ttfamily \#include $<$Rotation\+Conversion.\+hpp$>$}
+
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classkindr_1_1RotationConversion_a3b3aca4b974cc1e9c0c977dda9292b5e}\label{classkindr_1_1RotationConversion_a3b3aca4b974cc1e9c0c977dda9292b5e}} 
+static void {\bfseries convert\+To\+Other\+Rotation} (Other\+Rotation\+\_\+ \&other\+Rotation, const \mbox{\hyperlink{classkindr_1_1RotationQuaternion}{kindr\+::\+Rotation\+Quaternion}}$<$ Prim\+Type\+\_\+ $>$ \&quaternion\+In)
+\item 
+\mbox{\Hypertarget{classkindr_1_1RotationConversion_a2a6fe33da7853485982cee5d11cce514}\label{classkindr_1_1RotationConversion_a2a6fe33da7853485982cee5d11cce514}} 
+static void {\bfseries convert\+To\+Kindr} (\mbox{\hyperlink{classkindr_1_1RotationQuaternion}{kindr\+::\+Rotation\+Quaternion}}$<$ Prim\+Type\+\_\+ $>$ \&quaternion, const Other\+Rotation\+\_\+ \&other\+Rotation)
+\item 
+\mbox{\Hypertarget{classkindr_1_1RotationConversion_a2abf08fdc7daf79a44d74f703519d23a}\label{classkindr_1_1RotationConversion_a2abf08fdc7daf79a44d74f703519d23a}} 
+static void {\bfseries convert\+To\+Other\+Velocity\+Vector} (Other\+Velocity\+\_\+ \&other\+Velocity, const Other\+Rotation\+\_\+ \&rotation, const Eigen\+::\+Matrix$<$ Prim\+Type\+\_\+, 3, 1 $>$ \&velocity\+In)
+\item 
+\mbox{\Hypertarget{classkindr_1_1RotationConversion_a78a55f26f1e07df9f08c08b7dcd11f16}\label{classkindr_1_1RotationConversion_a78a55f26f1e07df9f08c08b7dcd11f16}} 
+static void {\bfseries get\+Rotation\+Matrix\+From\+Rotation} (Eigen\+::\+Matrix$<$ Prim\+Type\+\_\+, 3, 3 $>$ \&rotation\+Matrix, const Other\+Rotation\+\_\+ \&rotation)
+\item 
+\mbox{\Hypertarget{classkindr_1_1RotationConversion_a9169ae52d735b17f4c4fa2a132fb58e2}\label{classkindr_1_1RotationConversion_a9169ae52d735b17f4c4fa2a132fb58e2}} 
+static void {\bfseries concatenate} (Other\+Rotation\+\_\+ \&result, const Other\+Rotation\+\_\+ \&rot1, Other\+Rotation\+\_\+ \&rot2)
+\item 
+\mbox{\Hypertarget{classkindr_1_1RotationConversion_af7d62e14db5cef0d716d65c0ac080d51}\label{classkindr_1_1RotationConversion_af7d62e14db5cef0d716d65c0ac080d51}} 
+static void {\bfseries rotate\+Vector} (Eigen\+::\+Matrix$<$ Prim\+Type\+\_\+, 3, 1 $>$ \&A\+\_\+r, const Other\+Rotation\+\_\+ \&rotation\+B\+ToA, const Eigen\+::\+Matrix$<$ Prim\+Type\+\_\+, 3, 1 $>$ \&B\+\_\+r)
+\item 
+\mbox{\Hypertarget{classkindr_1_1RotationConversion_aa550071b9743c1f5468c746627e952c5}\label{classkindr_1_1RotationConversion_aa550071b9743c1f5468c746627e952c5}} 
+static void {\bfseries box\+Plus} (Other\+Rotation\+\_\+ \&result, const Other\+Rotation\+\_\+ \&rotation, const Other\+Velocity\+\_\+ \&velocity)
+\item 
+\mbox{\Hypertarget{classkindr_1_1RotationConversion_a8960fac77fe74bab488097047659399a}\label{classkindr_1_1RotationConversion_a8960fac77fe74bab488097047659399a}} 
+static bool {\bfseries test\+Rotation} (const Other\+Rotation\+\_\+ \&expected, const Other\+Rotation\+\_\+ \&actual)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Other\+Rotation\+\_\+, typename Other\+Velocity\+\_\+, typename Prim\+Type\+\_\+$>$\newline
+class kindr\+::\+Rotation\+Conversion$<$ Other\+Rotation\+\_\+, Other\+Velocity\+\_\+, Prim\+Type\+\_\+ $>$}
+
+Implement the conversions from the kindr convention to the other convention. Specialize the conversion traits 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+catkin\+\_\+ws/src/utilities/kindr/include/kindr/rotations/Rotation\+Conversion.\+hpp\end{DoxyCompactItemize}

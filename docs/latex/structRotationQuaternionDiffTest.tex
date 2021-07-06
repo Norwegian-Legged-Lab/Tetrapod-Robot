@@ -1,0 +1,106 @@
+\hypertarget{structRotationQuaternionDiffTest}{}\doxysection{Rotation\+Quaternion\+Diff\+Test$<$ Implementation $>$ Struct Template Reference}
+\label{structRotationQuaternionDiffTest}\index{RotationQuaternionDiffTest$<$ Implementation $>$@{RotationQuaternionDiffTest$<$ Implementation $>$}}
+
+
+Inheritance diagram for Rotation\+Quaternion\+Diff\+Test$<$ Implementation $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{structRotationQuaternionDiffTest__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Rotation\+Quaternion\+Diff\+Test$<$ Implementation $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structRotationQuaternionDiffTest__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structRotationQuaternionDiffTest_ab38ef05eb8cdcb3a70c1ec6dcca4eb87}\label{structRotationQuaternionDiffTest_ab38ef05eb8cdcb3a70c1ec6dcca4eb87}} 
+typedef Implementation {\bfseries Rotation\+Diff}
+\item 
+\mbox{\Hypertarget{structRotationQuaternionDiffTest_afafa0f0de5d395345f09ce27d8163bf3}\label{structRotationQuaternionDiffTest_afafa0f0de5d395345f09ce27d8163bf3}} 
+typedef Implementation\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{structRotationQuaternionDiffTest_ad83baa9878aab5a8ec4cac5a09d99c0a}\label{structRotationQuaternionDiffTest_ad83baa9878aab5a8ec4cac5a09d99c0a}} 
+typedef \mbox{\hyperlink{classkindr_1_1RotationQuaternion}{rot\+::\+Rotation\+Quaternion}}$<$ Scalar $>$ {\bfseries Rotation}
+\item 
+\mbox{\Hypertarget{structRotationQuaternionDiffTest_af4004d08a58a1a5641f82f9528f82846}\label{structRotationQuaternionDiffTest_af4004d08a58a1a5641f82f9528f82846}} 
+typedef \mbox{\hyperlink{classkindr_1_1LocalAngularVelocity}{rot\+::\+Local\+Angular\+Velocity}}$<$ Scalar $>$ {\bfseries Local\+Angular\+Velocity}
+\item 
+\mbox{\Hypertarget{structRotationQuaternionDiffTest_adea6d12d5b37dfd92f9eb3d48b3a8009}\label{structRotationQuaternionDiffTest_adea6d12d5b37dfd92f9eb3d48b3a8009}} 
+typedef Eigen\+::\+Matrix$<$ Scalar, 3, 1 $>$ {\bfseries Vector3}
+\item 
+\mbox{\Hypertarget{structRotationQuaternionDiffTest_ad63ccfca79eb0fc5697ce82e3aec7c2c}\label{structRotationQuaternionDiffTest_ad63ccfca79eb0fc5697ce82e3aec7c2c}} 
+typedef Eigen\+::\+Matrix$<$ Scalar, 4, 1 $>$ {\bfseries Vector4}
+\item 
+\mbox{\Hypertarget{structRotationQuaternionDiffTest_a11d9f01c0bc3ba7f3644290c87f277af}\label{structRotationQuaternionDiffTest_a11d9f01c0bc3ba7f3644290c87f277af}} 
+typedef \mbox{\hyperlink{classkindr_1_1Quaternion}{quat\+::\+Quaternion}}$<$ Scalar $>$ {\bfseries Quaternion}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structRotationQuaternionDiffTest_a81dffa08e34e3216f335f3e798d2bff8}\label{structRotationQuaternionDiffTest_a81dffa08e34e3216f335f3e798d2bff8}} 
+Vector4 {\bfseries eigen\+Vector4v\+Zero} = Vector4\+::\+Zero()
+\item 
+\mbox{\Hypertarget{structRotationQuaternionDiffTest_a59509c606012a5c3582271fe0eac45ce}\label{structRotationQuaternionDiffTest_a59509c606012a5c3582271fe0eac45ce}} 
+Vector4 {\bfseries eigen\+Vector4v1}
+\item 
+\mbox{\Hypertarget{structRotationQuaternionDiffTest_af54aaf9734db62480a2be9538cfa98d5}\label{structRotationQuaternionDiffTest_af54aaf9734db62480a2be9538cfa98d5}} 
+\mbox{\hyperlink{classkindr_1_1LocalAngularVelocity}{Local\+Angular\+Velocity}} {\bfseries angular\+Velocity1} = \mbox{\hyperlink{classkindr_1_1LocalAngularVelocity}{Local\+Angular\+Velocity}}(0.\+0, 0.\+0, 0.\+0)
+\item 
+\mbox{\Hypertarget{structRotationQuaternionDiffTest_af5060bc9a28918627a4aba0b5a29ec76}\label{structRotationQuaternionDiffTest_af5060bc9a28918627a4aba0b5a29ec76}} 
+\mbox{\hyperlink{classkindr_1_1LocalAngularVelocity}{Local\+Angular\+Velocity}} {\bfseries angular\+Velocity2} = \mbox{\hyperlink{classkindr_1_1LocalAngularVelocity}{Local\+Angular\+Velocity}}(0.\+4, 0.\+3, 0.\+8)
+\item 
+\mbox{\Hypertarget{structRotationQuaternionDiffTest_ae324e919604f967b957e08d11545eafd}\label{structRotationQuaternionDiffTest_ae324e919604f967b957e08d11545eafd}} 
+\mbox{\hyperlink{classkindr_1_1LocalAngularVelocity}{Local\+Angular\+Velocity}} {\bfseries angular\+Velocity3} = \mbox{\hyperlink{classkindr_1_1LocalAngularVelocity}{Local\+Angular\+Velocity}}(40, 52, 99)$\ast$0.\+001
+\item 
+\mbox{\Hypertarget{structRotationQuaternionDiffTest_a0dfea82f639c7fda1ec9de7022dc5890}\label{structRotationQuaternionDiffTest_a0dfea82f639c7fda1ec9de7022dc5890}} 
+\mbox{\hyperlink{classkindr_1_1LocalAngularVelocity}{Local\+Angular\+Velocity}} {\bfseries angular\+Velocity4} = \mbox{\hyperlink{classkindr_1_1LocalAngularVelocity}{Local\+Angular\+Velocity}}(\mbox{\hyperlink{classkindr_1_1internal_1_1NumTraits}{kindr\+::internal\+::\+Num\+Traits}}$<$Scalar$>$\+::dummy\+\_\+precision()/10.\+0, 0.\+0, 0.\+0)
+\item 
+\mbox{\Hypertarget{structRotationQuaternionDiffTest_a47236287375ccf31ad7e5b27ff9a8715}\label{structRotationQuaternionDiffTest_a47236287375ccf31ad7e5b27ff9a8715}} 
+\mbox{\hyperlink{classkindr_1_1LocalAngularVelocity}{Local\+Angular\+Velocity}} {\bfseries angular\+Velocity5} = \mbox{\hyperlink{classkindr_1_1LocalAngularVelocity}{Local\+Angular\+Velocity}}(0.\+0, \mbox{\hyperlink{classkindr_1_1internal_1_1NumTraits}{kindr\+::internal\+::\+Num\+Traits}}$<$Scalar$>$\+::dummy\+\_\+precision()/10.\+0, 0.\+0)
+\item 
+\mbox{\Hypertarget{structRotationQuaternionDiffTest_a879ba231f258e36c48d8c69bf021eebd}\label{structRotationQuaternionDiffTest_a879ba231f258e36c48d8c69bf021eebd}} 
+\mbox{\hyperlink{classkindr_1_1LocalAngularVelocity}{Local\+Angular\+Velocity}} {\bfseries angular\+Velocity6} = \mbox{\hyperlink{classkindr_1_1LocalAngularVelocity}{Local\+Angular\+Velocity}}(0.\+0, 0.\+0, \mbox{\hyperlink{classkindr_1_1internal_1_1NumTraits}{kindr\+::internal\+::\+Num\+Traits}}$<$Scalar$>$\+::dummy\+\_\+precision()/10.\+0)
+\item 
+\mbox{\Hypertarget{structRotationQuaternionDiffTest_a926e5419b9a826250d160f274668ac2f}\label{structRotationQuaternionDiffTest_a926e5419b9a826250d160f274668ac2f}} 
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation}} {\bfseries rotation1} = \mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation}}(\mbox{\hyperlink{classkindr_1_1Quaternion}{Quaternion}}(0.\+0, 1.\+0, 0.\+0, 0.\+0).to\+Unit\+Quaternion())
+\item 
+\mbox{\Hypertarget{structRotationQuaternionDiffTest_a19dbf8afc3998c41f052b96d6d95711e}\label{structRotationQuaternionDiffTest_a19dbf8afc3998c41f052b96d6d95711e}} 
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation}} {\bfseries rotation2} = \mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation}}(\mbox{\hyperlink{classkindr_1_1Quaternion}{Quaternion}}(0.\+5, 1.\+0, 0.\+0, 0.\+0).to\+Unit\+Quaternion())
+\item 
+\mbox{\Hypertarget{structRotationQuaternionDiffTest_aafbe8b90923d6054b53e4c7cae4cd744}\label{structRotationQuaternionDiffTest_aafbe8b90923d6054b53e4c7cae4cd744}} 
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation}} {\bfseries rotation3} = \mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation}}(\mbox{\hyperlink{classkindr_1_1Quaternion}{Quaternion}}(0.\+5, 0.\+0, 1.\+0, 0.\+0).to\+Unit\+Quaternion())
+\item 
+\mbox{\Hypertarget{structRotationQuaternionDiffTest_aa1ffc9852aba73ea18738676b6b4326f}\label{structRotationQuaternionDiffTest_aa1ffc9852aba73ea18738676b6b4326f}} 
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation}} {\bfseries rotation4} = \mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation}}(\mbox{\hyperlink{classkindr_1_1Quaternion}{Quaternion}}(0.\+5, 0.\+0, 0.\+0, 1.\+0).to\+Unit\+Quaternion())
+\item 
+\mbox{\Hypertarget{structRotationQuaternionDiffTest_a22e369adc4ddc4b3b64011c2816a9e39}\label{structRotationQuaternionDiffTest_a22e369adc4ddc4b3b64011c2816a9e39}} 
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation}} {\bfseries rotation5} = \mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation}}(\mbox{\hyperlink{classkindr_1_1Quaternion}{Quaternion}}(\mbox{\hyperlink{classkindr_1_1internal_1_1NumTraits}{kindr\+::internal\+::\+Num\+Traits}}$<$Scalar$>$\+::dummy\+\_\+precision()/10.\+0, 1.\+0, 0.\+0, 0.\+0).to\+Unit\+Quaternion())
+\item 
+\mbox{\Hypertarget{structRotationQuaternionDiffTest_aa545c3287773c8d79387d29e25d66655}\label{structRotationQuaternionDiffTest_aa545c3287773c8d79387d29e25d66655}} 
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation}} {\bfseries rotation6} = \mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation}}(\mbox{\hyperlink{classkindr_1_1Quaternion}{Quaternion}}(\mbox{\hyperlink{classkindr_1_1internal_1_1NumTraits}{kindr\+::internal\+::\+Num\+Traits}}$<$Scalar$>$\+::dummy\+\_\+precision()/10.\+0, 0.\+0, 1.\+0, 0.\+0).to\+Unit\+Quaternion())
+\item 
+\mbox{\Hypertarget{structRotationQuaternionDiffTest_aa3c738d00a43eb0c0e871a3317257e83}\label{structRotationQuaternionDiffTest_aa3c738d00a43eb0c0e871a3317257e83}} 
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation}} {\bfseries rotation7} = \mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation}}(\mbox{\hyperlink{classkindr_1_1Quaternion}{Quaternion}}(\mbox{\hyperlink{classkindr_1_1internal_1_1NumTraits}{kindr\+::internal\+::\+Num\+Traits}}$<$Scalar$>$\+::dummy\+\_\+precision()/10.\+0, 0.\+0, 0.\+0, 1.\+0).to\+Unit\+Quaternion())
+\item 
+\mbox{\Hypertarget{structRotationQuaternionDiffTest_aa393df42e1837f28a2c2b49845fc72ed}\label{structRotationQuaternionDiffTest_aa393df42e1837f28a2c2b49845fc72ed}} 
+\mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation}} {\bfseries rotation8} = \mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation}}(\mbox{\hyperlink{classkindr_1_1Quaternion}{Quaternion}}(0.\+8, 1.\+0/sqrt(1+4+9), 2.\+0/sqrt(1+4+9), 3.\+0/sqrt(1+4+9)).to\+Unit\+Quaternion())
+\item 
+\mbox{\Hypertarget{structRotationQuaternionDiffTest_af2ec5b8b971305858794a94bdb1a641b}\label{structRotationQuaternionDiffTest_af2ec5b8b971305858794a94bdb1a641b}} 
+std\+::vector$<$ \mbox{\hyperlink{classkindr_1_1RotationQuaternion}{Rotation}} $>$ {\bfseries rotations}
+\item 
+\mbox{\Hypertarget{structRotationQuaternionDiffTest_ab11e055e3017405d0deda79ee157f745}\label{structRotationQuaternionDiffTest_ab11e055e3017405d0deda79ee157f745}} 
+std\+::vector$<$ \mbox{\hyperlink{classkindr_1_1LocalAngularVelocity}{Local\+Angular\+Velocity}} $>$ {\bfseries angular\+Velocities}
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+catkin\+\_\+ws/src/utilities/kindr/test/rotations/Rotation\+Quaternion\+Diff\+Test.\+cpp\end{DoxyCompactItemize}

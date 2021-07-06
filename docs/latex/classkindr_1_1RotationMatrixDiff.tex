@@ -1,0 +1,255 @@
+\hypertarget{classkindr_1_1RotationMatrixDiff}{}\doxysection{kindr\+::Rotation\+Matrix\+Diff Class Reference}
+\label{classkindr_1_1RotationMatrixDiff}\index{kindr::RotationMatrixDiff@{kindr::RotationMatrixDiff}}
+
+
+Time derivative of a rotation matrix.  
+
+
+
+
+{\ttfamily \#include $<$Rotation\+Matrix\+Diff.\+hpp$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classkindr_1_1RotationMatrixDiff_a7c67bb52a6ca7f598e61ca74f8329e75}\label{classkindr_1_1RotationMatrixDiff_a7c67bb52a6ca7f598e61ca74f8329e75}} 
+typedef Base \mbox{\hyperlink{classkindr_1_1RotationMatrixDiff_a7c67bb52a6ca7f598e61ca74f8329e75}{Implementation}}
+\begin{DoxyCompactList}\small\item\em The implementation type. The implementation type is always an Eigen object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classkindr_1_1RotationMatrixDiff_aceed76822dd3f58052bf9abe468818ba}\label{classkindr_1_1RotationMatrixDiff_aceed76822dd3f58052bf9abe468818ba}} 
+typedef Base {\bfseries Matrix3x3}
+\item 
+\mbox{\Hypertarget{classkindr_1_1RotationMatrixDiff_aef226e2705fdf4458d9c64f2b79b5a78}\label{classkindr_1_1RotationMatrixDiff_aef226e2705fdf4458d9c64f2b79b5a78}} 
+typedef Prim\+Type\+\_\+ \mbox{\hyperlink{classkindr_1_1RotationMatrixDiff_aef226e2705fdf4458d9c64f2b79b5a78}{Scalar}}
+\begin{DoxyCompactList}\small\item\em The primitive type. Float/\+Double. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classkindr_1_1RotationMatrixDiff_a9cac14a624ec5d6ae0a1c5a02cb6bb76}{Rotation\+Matrix\+Diff}} (const Base \&other)
+\begin{DoxyCompactList}\small\item\em Constructor using Eigen\+::\+Matrix$<$\+Scalar, 3, 3$>$. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkindr_1_1RotationMatrixDiff_a05bcf530c9390f9b5a3bd9e09ee0e9bd}{Rotation\+Matrix\+Diff}} (\mbox{\hyperlink{classkindr_1_1RotationMatrixDiff_aef226e2705fdf4458d9c64f2b79b5a78}{Scalar}} r11, \mbox{\hyperlink{classkindr_1_1RotationMatrixDiff_aef226e2705fdf4458d9c64f2b79b5a78}{Scalar}} r12, \mbox{\hyperlink{classkindr_1_1RotationMatrixDiff_aef226e2705fdf4458d9c64f2b79b5a78}{Scalar}} r13, \mbox{\hyperlink{classkindr_1_1RotationMatrixDiff_aef226e2705fdf4458d9c64f2b79b5a78}{Scalar}} r21, \mbox{\hyperlink{classkindr_1_1RotationMatrixDiff_aef226e2705fdf4458d9c64f2b79b5a78}{Scalar}} r22, \mbox{\hyperlink{classkindr_1_1RotationMatrixDiff_aef226e2705fdf4458d9c64f2b79b5a78}{Scalar}} r23, \mbox{\hyperlink{classkindr_1_1RotationMatrixDiff_aef226e2705fdf4458d9c64f2b79b5a78}{Scalar}} r31, \mbox{\hyperlink{classkindr_1_1RotationMatrixDiff_aef226e2705fdf4458d9c64f2b79b5a78}{Scalar}} r32, \mbox{\hyperlink{classkindr_1_1RotationMatrixDiff_aef226e2705fdf4458d9c64f2b79b5a78}{Scalar}} r33)
+\begin{DoxyCompactList}\small\item\em Constructor using nine scalars. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Rotation\+Derived\+\_\+ , typename Other\+Derived\+\_\+ $>$ }\\\mbox{\hyperlink{classkindr_1_1RotationMatrixDiff_a42f4ea579a0f432735c148428604db83}{Rotation\+Matrix\+Diff}} (const \mbox{\hyperlink{classkindr_1_1RotationBase}{Rotation\+Base}}$<$ Rotation\+Derived\+\_\+ $>$ \&rotation, const \mbox{\hyperlink{classkindr_1_1RotationDiffBase}{Rotation\+Diff\+Base}}$<$ Other\+Derived\+\_\+ $>$ \&other)
+\begin{DoxyCompactList}\small\item\em Constructor using a time derivative with a different parameterization. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Other\+Derived\+\_\+ , typename Rotation\+Derived\+\_\+ $>$ }\\Other\+Derived\+\_\+ \mbox{\hyperlink{classkindr_1_1RotationMatrixDiff_a31d3bca695050e25032b98960ea67f45}{cast}} (const \mbox{\hyperlink{classkindr_1_1RotationBase}{Rotation\+Base}}$<$ Rotation\+Derived\+\_\+ $>$ \&rotation) const
+\begin{DoxyCompactList}\small\item\em Cast to another representation of the time derivative of a rotation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkindr_1_1RotationMatrixDiff_a7c67bb52a6ca7f598e61ca74f8329e75}{Implementation}} \& \mbox{\hyperlink{classkindr_1_1RotationMatrixDiff_aac0b7ebc1c5e2393d3359cfffd265d8c}{to\+Implementation}} ()
+\begin{DoxyCompactList}\small\item\em Cast to the implementation type. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classkindr_1_1RotationMatrixDiff_a7c67bb52a6ca7f598e61ca74f8329e75}{Implementation}} \& \mbox{\hyperlink{classkindr_1_1RotationMatrixDiff_a7cd83d0a358849695515dceda7fed538}{to\+Implementation}} () const
+\begin{DoxyCompactList}\small\item\em Cast to the implementation type. \end{DoxyCompactList}\item 
+const Matrix3x3 \& \mbox{\hyperlink{classkindr_1_1RotationMatrixDiff_a71db486a2fc7038499c97cdadaa058cc}{matrix}} () const
+\begin{DoxyCompactList}\small\item\em Reading access to the time derivative of the rotation matrix. \end{DoxyCompactList}\item 
+Matrix3x3 \& \mbox{\hyperlink{classkindr_1_1RotationMatrixDiff_a2a3608c33fe4e94d7f68eb49c5c35ca5}{matrix}} ()
+\begin{DoxyCompactList}\small\item\em Writing access to the time derivative of the rotation matrix. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkindr_1_1RotationMatrixDiff}{Rotation\+Matrix\+Diff}} \& \mbox{\hyperlink{classkindr_1_1RotationMatrixDiff_af897ef2d65bd69b89e330176874efa70}{set\+Zero}} ()
+\begin{DoxyCompactList}\small\item\em Sets all time derivatives to zero. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classkindr_1_1RotationMatrixDiff}{Rotation\+Matrix\+Diff}} \mbox{\hyperlink{classkindr_1_1RotationMatrixDiff_aa18082936514640d43202efe2ed3bf3f}{Zero}} ()
+\begin{DoxyCompactList}\small\item\em Get zero element. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \mbox{\hyperlink{classkindr_1_1RotationMatrixDiff_abc3c910cf7930b504f0492b69083c1a5}{operator$<$$<$}} (std\+::ostream \&out, const \mbox{\hyperlink{classkindr_1_1RotationMatrixDiff}{Rotation\+Matrix\+Diff}} \&diff)
+\begin{DoxyCompactList}\small\item\em Used for printing the object with std\+::cout. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Time derivative of a rotation matrix. 
+
+This class implements the time derivative of a rotation matrix using a Eigen\+::\+Matrix$<$\+Scalar, 3, 3$>$ as data storage.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Prim\+Type\+\_\+} & Primitive data type of the coordinates. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classkindr_1_1RotationMatrixDiff_a9cac14a624ec5d6ae0a1c5a02cb6bb76}\label{classkindr_1_1RotationMatrixDiff_a9cac14a624ec5d6ae0a1c5a02cb6bb76}} 
+\index{kindr::RotationMatrixDiff@{kindr::RotationMatrixDiff}!RotationMatrixDiff@{RotationMatrixDiff}}
+\index{RotationMatrixDiff@{RotationMatrixDiff}!kindr::RotationMatrixDiff@{kindr::RotationMatrixDiff}}
+\doxysubsubsection{\texorpdfstring{RotationMatrixDiff()}{RotationMatrixDiff()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily kindr\+::\+Rotation\+Matrix\+Diff\+::\+Rotation\+Matrix\+Diff (\begin{DoxyParamCaption}\item[{const Base \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Constructor using Eigen\+::\+Matrix$<$\+Scalar, 3, 3$>$. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Eigen\+::\+Matrix$<$\+Scalar, 3, 3$>$ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classkindr_1_1RotationMatrixDiff_a05bcf530c9390f9b5a3bd9e09ee0e9bd}\label{classkindr_1_1RotationMatrixDiff_a05bcf530c9390f9b5a3bd9e09ee0e9bd}} 
+\index{kindr::RotationMatrixDiff@{kindr::RotationMatrixDiff}!RotationMatrixDiff@{RotationMatrixDiff}}
+\index{RotationMatrixDiff@{RotationMatrixDiff}!kindr::RotationMatrixDiff@{kindr::RotationMatrixDiff}}
+\doxysubsubsection{\texorpdfstring{RotationMatrixDiff()}{RotationMatrixDiff()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily kindr\+::\+Rotation\+Matrix\+Diff\+::\+Rotation\+Matrix\+Diff (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classkindr_1_1RotationMatrixDiff_aef226e2705fdf4458d9c64f2b79b5a78}{Scalar}}}]{r11,  }\item[{\mbox{\hyperlink{classkindr_1_1RotationMatrixDiff_aef226e2705fdf4458d9c64f2b79b5a78}{Scalar}}}]{r12,  }\item[{\mbox{\hyperlink{classkindr_1_1RotationMatrixDiff_aef226e2705fdf4458d9c64f2b79b5a78}{Scalar}}}]{r13,  }\item[{\mbox{\hyperlink{classkindr_1_1RotationMatrixDiff_aef226e2705fdf4458d9c64f2b79b5a78}{Scalar}}}]{r21,  }\item[{\mbox{\hyperlink{classkindr_1_1RotationMatrixDiff_aef226e2705fdf4458d9c64f2b79b5a78}{Scalar}}}]{r22,  }\item[{\mbox{\hyperlink{classkindr_1_1RotationMatrixDiff_aef226e2705fdf4458d9c64f2b79b5a78}{Scalar}}}]{r23,  }\item[{\mbox{\hyperlink{classkindr_1_1RotationMatrixDiff_aef226e2705fdf4458d9c64f2b79b5a78}{Scalar}}}]{r31,  }\item[{\mbox{\hyperlink{classkindr_1_1RotationMatrixDiff_aef226e2705fdf4458d9c64f2b79b5a78}{Scalar}}}]{r32,  }\item[{\mbox{\hyperlink{classkindr_1_1RotationMatrixDiff_aef226e2705fdf4458d9c64f2b79b5a78}{Scalar}}}]{r33 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor using nine scalars. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r11} & entry in row 1, col 1 \\
+\hline
+{\em r12} & entry in row 1, col 2 \\
+\hline
+{\em r13} & entry in row 1, col 3 \\
+\hline
+{\em r21} & entry in row 2, col 1 \\
+\hline
+{\em r22} & entry in row 2, col 2 \\
+\hline
+{\em r23} & entry in row 2, col 3 \\
+\hline
+{\em r31} & entry in row 3, col 1 \\
+\hline
+{\em r32} & entry in row 3, col 2 \\
+\hline
+{\em r33} & entry in row 3, col 3 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classkindr_1_1RotationMatrixDiff_a42f4ea579a0f432735c148428604db83}\label{classkindr_1_1RotationMatrixDiff_a42f4ea579a0f432735c148428604db83}} 
+\index{kindr::RotationMatrixDiff@{kindr::RotationMatrixDiff}!RotationMatrixDiff@{RotationMatrixDiff}}
+\index{RotationMatrixDiff@{RotationMatrixDiff}!kindr::RotationMatrixDiff@{kindr::RotationMatrixDiff}}
+\doxysubsubsection{\texorpdfstring{RotationMatrixDiff()}{RotationMatrixDiff()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename Rotation\+Derived\+\_\+ , typename Other\+Derived\+\_\+ $>$ \\
+kindr\+::\+Rotation\+Matrix\+Diff\+::\+Rotation\+Matrix\+Diff (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classkindr_1_1RotationBase}{Rotation\+Base}}$<$ Rotation\+Derived\+\_\+ $>$ \&}]{rotation,  }\item[{const \mbox{\hyperlink{classkindr_1_1RotationDiffBase}{Rotation\+Diff\+Base}}$<$ Other\+Derived\+\_\+ $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Constructor using a time derivative with a different parameterization. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rotation} & rotation \\
+\hline
+{\em other} & other time derivative \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classkindr_1_1RotationMatrixDiff_a31d3bca695050e25032b98960ea67f45}\label{classkindr_1_1RotationMatrixDiff_a31d3bca695050e25032b98960ea67f45}} 
+\index{kindr::RotationMatrixDiff@{kindr::RotationMatrixDiff}!cast@{cast}}
+\index{cast@{cast}!kindr::RotationMatrixDiff@{kindr::RotationMatrixDiff}}
+\doxysubsubsection{\texorpdfstring{cast()}{cast()}}
+{\footnotesize\ttfamily template$<$typename Other\+Derived\+\_\+ , typename Rotation\+Derived\+\_\+ $>$ \\
+Other\+Derived\+\_\+ kindr\+::\+Rotation\+Matrix\+Diff\+::cast (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classkindr_1_1RotationBase}{Rotation\+Base}}$<$ Rotation\+Derived\+\_\+ $>$ \&}]{rotation }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Cast to another representation of the time derivative of a rotation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & other rotation \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+reference 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1RotationMatrixDiff_a2a3608c33fe4e94d7f68eb49c5c35ca5}\label{classkindr_1_1RotationMatrixDiff_a2a3608c33fe4e94d7f68eb49c5c35ca5}} 
+\index{kindr::RotationMatrixDiff@{kindr::RotationMatrixDiff}!matrix@{matrix}}
+\index{matrix@{matrix}!kindr::RotationMatrixDiff@{kindr::RotationMatrixDiff}}
+\doxysubsubsection{\texorpdfstring{matrix()}{matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Matrix3x3\& kindr\+::\+Rotation\+Matrix\+Diff\+::matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Writing access to the time derivative of the rotation matrix. 
+
+\begin{DoxyReturn}{Returns}
+rotation matrix (matrix) with writing access 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1RotationMatrixDiff_a71db486a2fc7038499c97cdadaa058cc}\label{classkindr_1_1RotationMatrixDiff_a71db486a2fc7038499c97cdadaa058cc}} 
+\index{kindr::RotationMatrixDiff@{kindr::RotationMatrixDiff}!matrix@{matrix}}
+\index{matrix@{matrix}!kindr::RotationMatrixDiff@{kindr::RotationMatrixDiff}}
+\doxysubsubsection{\texorpdfstring{matrix()}{matrix()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const Matrix3x3\& kindr\+::\+Rotation\+Matrix\+Diff\+::matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reading access to the time derivative of the rotation matrix. 
+
+\begin{DoxyReturn}{Returns}
+rotation matrix (matrix) with reading access 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1RotationMatrixDiff_af897ef2d65bd69b89e330176874efa70}\label{classkindr_1_1RotationMatrixDiff_af897ef2d65bd69b89e330176874efa70}} 
+\index{kindr::RotationMatrixDiff@{kindr::RotationMatrixDiff}!setZero@{setZero}}
+\index{setZero@{setZero}!kindr::RotationMatrixDiff@{kindr::RotationMatrixDiff}}
+\doxysubsubsection{\texorpdfstring{setZero()}{setZero()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classkindr_1_1RotationMatrixDiff}{Rotation\+Matrix\+Diff}}\& kindr\+::\+Rotation\+Matrix\+Diff\+::set\+Zero (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets all time derivatives to zero. 
+
+\begin{DoxyReturn}{Returns}
+reference 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1RotationMatrixDiff_aac0b7ebc1c5e2393d3359cfffd265d8c}\label{classkindr_1_1RotationMatrixDiff_aac0b7ebc1c5e2393d3359cfffd265d8c}} 
+\index{kindr::RotationMatrixDiff@{kindr::RotationMatrixDiff}!toImplementation@{toImplementation}}
+\index{toImplementation@{toImplementation}!kindr::RotationMatrixDiff@{kindr::RotationMatrixDiff}}
+\doxysubsubsection{\texorpdfstring{toImplementation()}{toImplementation()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classkindr_1_1RotationMatrixDiff_a7c67bb52a6ca7f598e61ca74f8329e75}{Implementation}}\& kindr\+::\+Rotation\+Matrix\+Diff\+::to\+Implementation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Cast to the implementation type. 
+
+\begin{DoxyReturn}{Returns}
+the implementation (recommended only for advanced users) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1RotationMatrixDiff_a7cd83d0a358849695515dceda7fed538}\label{classkindr_1_1RotationMatrixDiff_a7cd83d0a358849695515dceda7fed538}} 
+\index{kindr::RotationMatrixDiff@{kindr::RotationMatrixDiff}!toImplementation@{toImplementation}}
+\index{toImplementation@{toImplementation}!kindr::RotationMatrixDiff@{kindr::RotationMatrixDiff}}
+\doxysubsubsection{\texorpdfstring{toImplementation()}{toImplementation()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classkindr_1_1RotationMatrixDiff_a7c67bb52a6ca7f598e61ca74f8329e75}{Implementation}}\& kindr\+::\+Rotation\+Matrix\+Diff\+::to\+Implementation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Cast to the implementation type. 
+
+\begin{DoxyReturn}{Returns}
+the implementation (recommended only for advanced users) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1RotationMatrixDiff_aa18082936514640d43202efe2ed3bf3f}\label{classkindr_1_1RotationMatrixDiff_aa18082936514640d43202efe2ed3bf3f}} 
+\index{kindr::RotationMatrixDiff@{kindr::RotationMatrixDiff}!Zero@{Zero}}
+\index{Zero@{Zero}!kindr::RotationMatrixDiff@{kindr::RotationMatrixDiff}}
+\doxysubsubsection{\texorpdfstring{Zero()}{Zero()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classkindr_1_1RotationMatrixDiff}{Rotation\+Matrix\+Diff}} kindr\+::\+Rotation\+Matrix\+Diff\+::\+Zero (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Get zero element. 
+
+\begin{DoxyReturn}{Returns}
+zero element 
+\end{DoxyReturn}
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classkindr_1_1RotationMatrixDiff_abc3c910cf7930b504f0492b69083c1a5}\label{classkindr_1_1RotationMatrixDiff_abc3c910cf7930b504f0492b69083c1a5}} 
+\index{kindr::RotationMatrixDiff@{kindr::RotationMatrixDiff}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!kindr::RotationMatrixDiff@{kindr::RotationMatrixDiff}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily std\+::ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{out,  }\item[{const \mbox{\hyperlink{classkindr_1_1RotationMatrixDiff}{Rotation\+Matrix\+Diff}} \&}]{diff }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Used for printing the object with std\+::cout. 
+
+\begin{DoxyReturn}{Returns}
+std\+::stream object 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+catkin\+\_\+ws/src/utilities/kindr/include/kindr/rotations/Rotation\+Diff.\+hpp\item 
+catkin\+\_\+ws/src/utilities/kindr/include/kindr/rotations/Rotation\+Matrix\+Diff.\+hpp\end{DoxyCompactItemize}

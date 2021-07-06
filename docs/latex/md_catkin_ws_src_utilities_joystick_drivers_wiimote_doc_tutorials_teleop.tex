@@ -1,0 +1,64 @@
+This sample R\+OS Node subscribes to the wiimote topics \begin{DoxyVerb}/wiimote/nunchuk
+/wiimote/state
+\end{DoxyVerb}
+
+
+And publishes command velocity used for motion \begin{DoxyVerb}/cmd_vel
+\end{DoxyVerb}
+
+
+Either the four way D-\/pad of the Wiimote or the \mbox{\hyperlink{classJoystick}{Joystick}} of the Nunchuk can be used for controlling the values published for {\ttfamily /cmd\+\_\+vel}. {\bfseries{Note\+:}} The \mbox{\hyperlink{classJoystick}{Joystick}} and D-\/pad are mutually exclusive; if one is in use the other is ignored.\hypertarget{md_catkin_ws_src_utilities_joystick_drivers_wiimote_doc_tutorials_teleop_autotoc_md55}{}\doxysection{R\+O\+S parameters}\label{md_catkin_ws_src_utilities_joystick_drivers_wiimote_doc_tutorials_teleop_autotoc_md55}
+base (string) Base name space string to prepend to velocity R\+OS parameters. \begin{DoxyVerb}linear/x/max_velocity (double)
+\end{DoxyVerb}
+ Maximum linear velocity (in m/s) \begin{DoxyVerb}linear/x/min_velocity (double)
+\end{DoxyVerb}
+ Minimum linear velocity (in m/s). Setting this to 0.\+0 will disable backwards motion. When unspecified, -\/max\+\_\+velocity is used. \begin{DoxyVerb}angular/z/max_velocity (double)
+\end{DoxyVerb}
+ Maximum angular velocity (in rad/s) \begin{DoxyVerb}angular/z/min_velocity (double)
+\end{DoxyVerb}
+ Minimum angular velocity (in rad/s). Setting this to 0.\+0 will disable counter-\/clockwise rotation. When unspecified, -\/max\+\_\+velocity is used. \begin{DoxyVerb}linear/x/throttle_percent (double)
+\end{DoxyVerb}
+ Default linear throttle percentage (0.\+0 to 1.\+0). Adjustable via the \textquotesingle{}1\textquotesingle{} and \textquotesingle{}+/-\/\textquotesingle{} buttons on the Wiimote. Defaults to 0.\+75. Private parameter which does not use the \textquotesingle{}base\textquotesingle{}. \begin{DoxyVerb}angular/z/throttle_percent (double)
+\end{DoxyVerb}
+ Default angular throttle percentage (0.\+0 to 1.\+0). Adjustable via the \textquotesingle{}2\textquotesingle{} and \textquotesingle{}+/-\/\textquotesingle{} buttons on the Wiimote. Defaults to 0.\+75. Private parameter which does not use the \textquotesingle{}base\textquotesingle{}.\hypertarget{md_catkin_ws_src_utilities_joystick_drivers_wiimote_doc_tutorials_teleop_autotoc_md56}{}\doxysection{Button Definitions}\label{md_catkin_ws_src_utilities_joystick_drivers_wiimote_doc_tutorials_teleop_autotoc_md56}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Button }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Function  }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Button }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Function  }\\\cline{1-2}
+\endhead
+\PBS\centering D-\/\+Pad Up &Move Forward  \\\cline{1-2}
+\PBS\centering D-\/\+Pad Down &Move Reverse  \\\cline{1-2}
+\PBS\centering D-\/\+Pad Left &Turn/\+Spin Left  \\\cline{1-2}
+\PBS\centering D-\/\+Pad Right &Turn/\+Spin Right  \\\cline{1-2}
+\PBS\centering B (Trigger) &2x Speed (up to Max)  \\\cline{1-2}
+\PBS\centering A &1/4 Speed  \\\cline{1-2}
+\PBS\centering &\\\cline{1-2}
+\PBS\centering Home &Display Wiimote battery level  \\\cline{1-2}
+\PBS\centering &\\\cline{1-2}
+\PBS\centering 1$\ast$ &Linear Throttle (defaults to 75\%)  \\\cline{1-2}
+\PBS\centering 2$\ast$ &Angular Throttle (defaults to 75\%)  \\\cline{1-2}
+\PBS\centering + &Increase Throttle (rumbles at max)  \\\cline{1-2}
+\PBS\centering -\/ &Decrease Throttle (rumbles at min)  \\\cline{1-2}
+\PBS\centering &\\\cline{1-2}
+\PBS\centering \mbox{\hyperlink{classJoystick}{Joystick}} Up &Move Forward  \\\cline{1-2}
+\PBS\centering \mbox{\hyperlink{classJoystick}{Joystick}} Down &Move Reverse  \\\cline{1-2}
+\PBS\centering \mbox{\hyperlink{classJoystick}{Joystick}} Left &Turn/\+Spin Left  \\\cline{1-2}
+\PBS\centering \mbox{\hyperlink{classJoystick}{Joystick}} Right &Turn/\+Spin Right  \\\cline{1-2}
+\PBS\centering Z (Trigger) &2x Speed (up to Max)  \\\cline{1-2}
+\PBS\centering C (Trigger) &1/4 Speed  \\\cline{1-2}
+\PBS\centering &\\\cline{1-2}
+\end{longtabu}
+
+
+
+\begin{DoxyItemize}
+\item Throttle level displayed on Wiimote L\+E\+Ds
+\end{DoxyItemize}\hypertarget{md_catkin_ws_src_utilities_joystick_drivers_wiimote_doc_tutorials_teleop_autotoc_md57}{}\doxysubsection{Launch File Examples}\label{md_catkin_ws_src_utilities_joystick_drivers_wiimote_doc_tutorials_teleop_autotoc_md57}
+Launch files are provided with usage examples using the turtlebot simulator for both Python (turtlesim\+\_\+py.\+launch) and C++ (turtlesim\+\_\+cpp.\+launch).
+
+Requires the installation of ros-\/$<$release$>$-\/turtlesim R\+OS package. 

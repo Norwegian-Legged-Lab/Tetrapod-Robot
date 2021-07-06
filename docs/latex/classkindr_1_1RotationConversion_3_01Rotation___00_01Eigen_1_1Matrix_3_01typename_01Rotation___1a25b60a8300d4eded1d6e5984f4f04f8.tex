@@ -1,0 +1,34 @@
+\hypertarget{classkindr_1_1RotationConversion_3_01Rotation___00_01Eigen_1_1Matrix_3_01typename_01Rotation___1a25b60a8300d4eded1d6e5984f4f04f8}{}\doxysection{kindr\+::Rotation\+Conversion$<$ Rotation\+\_\+, Eigen\+::Matrix$<$ typename Rotation\+\_\+\+::Scalar, 3, 1 $>$, typename Rotation\+\_\+\+::Scalar $>$ Class Template Reference}
+\label{classkindr_1_1RotationConversion_3_01Rotation___00_01Eigen_1_1Matrix_3_01typename_01Rotation___1a25b60a8300d4eded1d6e5984f4f04f8}\index{kindr::RotationConversion$<$ Rotation\_, Eigen::Matrix$<$ typename Rotation\_::Scalar, 3, 1 $>$, typename Rotation\_::Scalar $>$@{kindr::RotationConversion$<$ Rotation\_, Eigen::Matrix$<$ typename Rotation\_::Scalar, 3, 1 $>$, typename Rotation\_::Scalar $>$}}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classkindr_1_1RotationConversion_3_01Rotation___00_01Eigen_1_1Matrix_3_01typename_01Rotation___1a25b60a8300d4eded1d6e5984f4f04f8_ab1ace6a34f5eed0d55c881d9a3092cab}\label{classkindr_1_1RotationConversion_3_01Rotation___00_01Eigen_1_1Matrix_3_01typename_01Rotation___1a25b60a8300d4eded1d6e5984f4f04f8_ab1ace6a34f5eed0d55c881d9a3092cab}} 
+static void {\bfseries convert\+To\+Other\+Rotation} (Rotation \&other\+Rotation, const \mbox{\hyperlink{classkindr_1_1RotationQuaternion}{kindr\+::\+Rotation\+Quaternion}}$<$ Scalar $>$ \&quaternion\+In)
+\item 
+\mbox{\Hypertarget{classkindr_1_1RotationConversion_3_01Rotation___00_01Eigen_1_1Matrix_3_01typename_01Rotation___1a25b60a8300d4eded1d6e5984f4f04f8_aaeb6b380a996c1a8afcd6bb7e4a401fa}\label{classkindr_1_1RotationConversion_3_01Rotation___00_01Eigen_1_1Matrix_3_01typename_01Rotation___1a25b60a8300d4eded1d6e5984f4f04f8_aaeb6b380a996c1a8afcd6bb7e4a401fa}} 
+static void {\bfseries convert\+To\+Kindr} (\mbox{\hyperlink{classkindr_1_1RotationQuaternion}{kindr\+::\+Rotation\+Quaternion}}$<$ Scalar $>$ \&quaternion, const Rotation \&other\+Rotation)
+\item 
+\mbox{\Hypertarget{classkindr_1_1RotationConversion_3_01Rotation___00_01Eigen_1_1Matrix_3_01typename_01Rotation___1a25b60a8300d4eded1d6e5984f4f04f8_aa95ff8688d7064b49d22c59d986dea6e}\label{classkindr_1_1RotationConversion_3_01Rotation___00_01Eigen_1_1Matrix_3_01typename_01Rotation___1a25b60a8300d4eded1d6e5984f4f04f8_aa95ff8688d7064b49d22c59d986dea6e}} 
+static void {\bfseries convert\+To\+Other\+Velocity\+Vector} (Vector \&velocity\+Out, const Rotation \&rot, const Eigen\+::\+Matrix$<$ Scalar, 3, 1 $>$ \&velocity\+In)
+\item 
+\mbox{\Hypertarget{classkindr_1_1RotationConversion_3_01Rotation___00_01Eigen_1_1Matrix_3_01typename_01Rotation___1a25b60a8300d4eded1d6e5984f4f04f8_a03462ccf1ad11bedd9e760a7d67aa104}\label{classkindr_1_1RotationConversion_3_01Rotation___00_01Eigen_1_1Matrix_3_01typename_01Rotation___1a25b60a8300d4eded1d6e5984f4f04f8_a03462ccf1ad11bedd9e760a7d67aa104}} 
+static void {\bfseries get\+Rotation\+Matrix\+From\+Rotation} (Eigen\+::\+Matrix$<$ Scalar, 3, 3 $>$ \&rotation\+Matrix, const Rotation \&rotation)
+\item 
+\mbox{\Hypertarget{classkindr_1_1RotationConversion_3_01Rotation___00_01Eigen_1_1Matrix_3_01typename_01Rotation___1a25b60a8300d4eded1d6e5984f4f04f8_a862345353af9b9bb4c93e63942b89797}\label{classkindr_1_1RotationConversion_3_01Rotation___00_01Eigen_1_1Matrix_3_01typename_01Rotation___1a25b60a8300d4eded1d6e5984f4f04f8_a862345353af9b9bb4c93e63942b89797}} 
+static void {\bfseries concatenate} (Rotation \&res, const Rotation \&rot1, const Rotation \&rot2)
+\item 
+\mbox{\Hypertarget{classkindr_1_1RotationConversion_3_01Rotation___00_01Eigen_1_1Matrix_3_01typename_01Rotation___1a25b60a8300d4eded1d6e5984f4f04f8_a204dd3bc75946620106e2e2699d9c844}\label{classkindr_1_1RotationConversion_3_01Rotation___00_01Eigen_1_1Matrix_3_01typename_01Rotation___1a25b60a8300d4eded1d6e5984f4f04f8_a204dd3bc75946620106e2e2699d9c844}} 
+static void {\bfseries rotate\+Vector} (Eigen\+::\+Matrix$<$ Scalar, 3, 1 $>$ \&A\+\_\+r, const Rotation \&rotation, const Eigen\+::\+Matrix$<$ Scalar, 3, 1 $>$ \&B\+\_\+r)
+\item 
+\mbox{\Hypertarget{classkindr_1_1RotationConversion_3_01Rotation___00_01Eigen_1_1Matrix_3_01typename_01Rotation___1a25b60a8300d4eded1d6e5984f4f04f8_ac4cc9b331a4ee215ddaf0c8286550afb}\label{classkindr_1_1RotationConversion_3_01Rotation___00_01Eigen_1_1Matrix_3_01typename_01Rotation___1a25b60a8300d4eded1d6e5984f4f04f8_ac4cc9b331a4ee215ddaf0c8286550afb}} 
+static void {\bfseries box\+Plus} (Rotation \&res, const Rotation \&rotation, const Vector \&velocity)
+\item 
+\mbox{\Hypertarget{classkindr_1_1RotationConversion_3_01Rotation___00_01Eigen_1_1Matrix_3_01typename_01Rotation___1a25b60a8300d4eded1d6e5984f4f04f8_aa5d42368b4fd270cc031d4d477b4faf3}\label{classkindr_1_1RotationConversion_3_01Rotation___00_01Eigen_1_1Matrix_3_01typename_01Rotation___1a25b60a8300d4eded1d6e5984f4f04f8_aa5d42368b4fd270cc031d4d477b4faf3}} 
+static bool {\bfseries test\+Rotation} (const Rotation \&expected, const Rotation \&actual)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+catkin\+\_\+ws/src/utilities/kindr/test/rotations/Convention\+Test.\+cpp\end{DoxyCompactItemize}

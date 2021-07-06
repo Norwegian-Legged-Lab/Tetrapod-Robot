@@ -1,0 +1,109 @@
+Different branches of this repository support different combinations of R\+OS 1, R\+OS 2 and Ignition. Refer to the R\+E\+A\+D\+ME to see what combinations are supported.
+
+We use 2 separate approaches for releasing R\+O\+S-\/enabled binaries\+:
+
+
+\begin{DoxyItemize}
+\item Release upstream into \href{https://packages.ros.org,}{\texttt{ https\+://packages.\+ros.\+org,}} so it\textquotesingle{}s easily available to all R\+OS users.
+\item Release into \href{https://packages.osrfoundation.org,}{\texttt{ https\+://packages.\+osrfoundation.\+org,}} which requires extra setup for R\+OS users.
+\end{DoxyItemize}
+
+Releasing into R\+OS packages is ideal, but that\textquotesingle{}s only possible if the necessary Ignition libraries are available either through official Ubuntu packages, or directly from \href{https://packages.ros.org}{\texttt{ https\+://packages.\+ros.\+org}}. This situation varies according to the Ignition version\+:
+
+
+\begin{DoxyItemize}
+\item Blueprint and Dome are only available from \href{https://packages.osrfoundation.org}{\texttt{ https\+://packages.\+osrfoundation.\+org}}
+\item Citadel is available from\+:
+\begin{DoxyItemize}
+\item \href{https://packages.osrfoundation.org:}{\texttt{ https\+://packages.\+osrfoundation.\+org\+:}} all Ubuntu versions
+\item \href{https://packages.ros.org:}{\texttt{ https\+://packages.\+ros.\+org\+:}} only Ubuntu Focal
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+Another factor to take into consideration is which Ignition version is officially supported for each R\+OS distro according to the following R\+E\+PS\+:
+
+
+\begin{DoxyItemize}
+\item R\+OS 1\+: \href{https://ros.org/reps/rep-0003.html}{\texttt{ R\+E\+P-\/0003}}
+\item R\+OS 2\+: \href{https://www.ros.org/reps/rep-2000.html}{\texttt{ R\+E\+P-\/2000}}
+\end{DoxyItemize}
+
+These factors determine which R\+OS + Ignition combinations are released into each repository.\hypertarget{md_catkin_ws_src_utilities_ros_ign_RELEASING_autotoc_md97}{}\doxysection{Versioning}\label{md_catkin_ws_src_utilities_ros_ign_RELEASING_autotoc_md97}
+All {\ttfamily ros\+\_\+ign} packages are under fast development and haven\textquotesingle{}t reached version 1.\+0 yet. The team will make an effort to keep changes backwards compatible within a R\+OS distribution, but A\+PI / A\+BI / behaviour may be broken if necessary.
+
+The versioning scheme uses the minor version to identify R\+OS and Ignition versions\+:
+
+
+\begin{DoxyItemize}
+\item 1st digit\+:
+\begin{DoxyItemize}
+\item R\+OS 1\+: 1
+\item R\+OS 2\+: 2
+\end{DoxyItemize}
+\item 2nd digit\+:
+\begin{DoxyItemize}
+\item Melodic\+: 0
+\item Noetic\+: 1
+\item Dashing\+: 0
+\item Eloquent\+: 1
+\item Foxy\+: 2
+\end{DoxyItemize}
+\item 3rd digit\+:
+\begin{DoxyItemize}
+\item Blueprint\+: 0
+\item Citadel\+: 1
+\item Dome\+: 2
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ R\+OS }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Ignition }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Version  }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ R\+OS }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Ignition }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Version  }\\\cline{1-3}
+\endhead
+Melodic &Blueprint &0.\+100.\+X  \\\cline{1-3}
+Melodic &Citadel &0.\+101.\+X  \\\cline{1-3}
+Noetic &Blueprint &\+:x\+:  \\\cline{1-3}
+Noetic &Citadel &0.\+111.\+X  \\\cline{1-3}
+Noetic &Dome &0.\+112.\+X  \\\cline{1-3}
+Dashing &Blueprint &0.\+200.\+X  \\\cline{1-3}
+Dashing &Citadel &0.\+201.\+X  \\\cline{1-3}
+Eloquent &Blueprint &0.\+210.\+X  \\\cline{1-3}
+Eloquent &Citadel &0.\+211.\+X  \\\cline{1-3}
+Foxy &Blueprint &\+:x\+:  \\\cline{1-3}
+Foxy &Citadel &0.\+221.\+X  \\\cline{1-3}
+Foxy &Dome &0.\+222.\+X  \\\cline{1-3}
+\end{longtabu}
+\hypertarget{md_catkin_ws_src_utilities_ros_ign_RELEASING_autotoc_md98}{}\doxysection{Releasing into https\+://packages.\+ros.\+org}\label{md_catkin_ws_src_utilities_ros_ign_RELEASING_autotoc_md98}
+
+\begin{DoxyEnumerate}
+\item Follow the \href{http://wiki.ros.org/bloom/Tutorials/ReleaseCatkinPackage}{\texttt{ standard R\+OS release process}}.
+\end{DoxyEnumerate}\hypertarget{md_catkin_ws_src_utilities_ros_ign_RELEASING_autotoc_md99}{}\doxysection{Releasing into https\+://packages.\+osrfoundation.\+org}\label{md_catkin_ws_src_utilities_ros_ign_RELEASING_autotoc_md99}
+
+\begin{DoxyEnumerate}
+\item From the \href{http://wiki.ros.org/bloom/Tutorials/ReleaseCatkinPackage}{\texttt{ standard R\+OS release process}}, follow just these steps\+:
+\begin{DoxyItemize}
+\item {\ttfamily catkin\+\_\+generate\+\_\+changelog}
+\item {\ttfamily catkin\+\_\+prepare\+\_\+release}
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Install {\ttfamily rosdep} for Ignition packages and run rosdep update \`{}\`{}` sudo bash -\/c \textquotesingle{}echo \char`\"{}yaml https\+://github.\+com/osrf/osrf-\/rosdep/raw/master/ignition/ignition.\+yaml\char`\"{} $>$$>$ /etc/ros/rosdep/sources.list.\+d/00-\/ignition.list' rosdep update \`{}\`{}\`{}
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Bloom it into a custom repository \`{}\`{}\`{} B\+L\+O\+O\+M\+\_\+\+R\+E\+L\+E\+A\+S\+E\+\_\+\+R\+E\+P\+O\+\_\+\+B\+A\+SE=\href{https://github.com/osrf/}{\texttt{ https\+://github.\+com/osrf/}} bloom-\/release --no-\/pull-\/request --rosdistro noetic --track noetic ros\+\_\+ign \`{}\`{}\`{}
+
+Will fail fedora\+: ignore and continue\+: \`{}\`{}\`{} 
+\end{DoxyEnumerate}\hypertarget{md_catkin_ws_src_utilities_ros_ign_RELEASING_autotoc_md100}{}\doxysection{Would you like to try again? \mbox{[}\+Y/n\mbox{]}? n}\label{md_catkin_ws_src_utilities_ros_ign_RELEASING_autotoc_md100}
+\hypertarget{md_catkin_ws_src_utilities_ros_ign_RELEASING_autotoc_md101}{}\doxysection{Skip generator action and continue with release \mbox{[}y/\+N\mbox{]}? y}\label{md_catkin_ws_src_utilities_ros_ign_RELEASING_autotoc_md101}
+\`{}\`{}\`{}
+
+
+\begin{DoxyEnumerate}
+\item Use \href{https://bitbucket.org/osrf/release-tools}{\texttt{ release-\/tools}}\textquotesingle{}s script to launch jenkins jobs\+: \`{}\`{}\`{} cd release-\/tools/bloom ./ros\+\_\+ign\+\_\+bridge-\/release.py.\+bash 0.\+8.\+0 \href{https://github.com/osrf/ros_ign-release}{\texttt{ https\+://github.\+com/osrf/ros\+\_\+ign-\/release}} $<$ros\+\_\+distro$>$ $<$token$>$ --ignition-\/version $<$version\+\_\+name$>$ \`{}\`{}\`{} 
+\end{DoxyEnumerate}

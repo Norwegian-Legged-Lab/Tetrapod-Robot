@@ -1,0 +1,42 @@
+\hypertarget{classkindr_1_1ConventionTest}{}\doxysection{kindr\+::Convention\+Test$<$ Other\+Rotation\+\_\+, Other\+Velocity\+\_\+, Prim\+Type\+\_\+ $>$ Class Template Reference}
+\label{classkindr_1_1ConventionTest}\index{kindr::ConventionTest$<$ OtherRotation\_, OtherVelocity\_, PrimType\_ $>$@{kindr::ConventionTest$<$ OtherRotation\_, OtherVelocity\_, PrimType\_ $>$}}
+
+
+Convention tests that need to be fulfilled.  
+
+
+
+
+{\ttfamily \#include $<$gtest\+\_\+rotations.\+hpp$>$}
+
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classkindr_1_1ConventionTest_a3bd1264751d938a968184a7aab396a63}\label{classkindr_1_1ConventionTest_a3bd1264751d938a968184a7aab396a63}} 
+static void {\bfseries test\+Concatenation} ()
+\item 
+\mbox{\Hypertarget{classkindr_1_1ConventionTest_a536b9762c64e823b74d349d62ad2b35a}\label{classkindr_1_1ConventionTest_a536b9762c64e823b74d349d62ad2b35a}} 
+static void {\bfseries test\+Rotation\+Matrix} ()
+\item 
+\mbox{\Hypertarget{classkindr_1_1ConventionTest_a8748d4f49e545eeba245788cc2b0b7b4}\label{classkindr_1_1ConventionTest_a8748d4f49e545eeba245788cc2b0b7b4}} 
+static void {\bfseries test\+Geometrical\+Interpretation} ()
+\item 
+\mbox{\Hypertarget{classkindr_1_1ConventionTest_add9a51c26529c1a168dfa6aaeb115a87}\label{classkindr_1_1ConventionTest_add9a51c26529c1a168dfa6aaeb115a87}} 
+static void {\bfseries check\+Geometrical\+Interpretation} (\mbox{\hyperlink{classkindr_1_1RotationQuaternion}{kindr\+::\+Rotation\+Quaternion}}$<$ Prim\+Type\+\_\+ $>$ rotation\+B\+ToA, Eigen\+::\+Matrix$<$ Prim\+Type\+\_\+, 3, 1 $>$ expected\+\_\+\+A\+\_\+r\+\_\+\+Bx, Eigen\+::\+Matrix$<$ Prim\+Type\+\_\+, 3, 1 $>$ expected\+\_\+\+A\+\_\+r\+\_\+\+By, Eigen\+::\+Matrix$<$ Prim\+Type\+\_\+, 3, 1 $>$ expected\+\_\+\+A\+\_\+r\+\_\+\+Bz)
+\item 
+\mbox{\Hypertarget{classkindr_1_1ConventionTest_a78d2aa79d1685f3d7ff1c6b41de3789b}\label{classkindr_1_1ConventionTest_a78d2aa79d1685f3d7ff1c6b41de3789b}} 
+static void {\bfseries test\+Box\+Plus} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Other\+Rotation\+\_\+, typename Other\+Velocity\+\_\+, typename Prim\+Type\+\_\+$>$\newline
+class kindr\+::\+Convention\+Test$<$ Other\+Rotation\+\_\+, Other\+Velocity\+\_\+, Prim\+Type\+\_\+ $>$}
+
+Convention tests that need to be fulfilled. 
+
+Implement the Conversion\+Traits and the following unit tests (R\+B\+DL example)\+: T\+E\+S\+T(\+Convention\+Test, Concatenation) \{ Convention\+Test$<$\+Rigid\+Body\+Dynamics\+::\+Math\+::\+Quaternion, Eigen\+::\+Vector3d, double$>$\+::test\+Concatenation(); \} T\+E\+S\+T(\+Convention\+Test, Rotation) \{ Convention\+Test$<$\+Rigid\+Body\+Dynamics\+::\+Math\+::\+Quaternion, Eigen\+::\+Vector3d, double$>$\+::test\+Rotation\+Matrix(); \} T\+E\+S\+T(\+Convention\+Test, Box\+Plus) \{ Convention\+Test$<$\+Rigid\+Body\+Dynamics\+::\+Math\+::\+Quaternion, Eigen\+::\+Vector3d, double$>$\+::test\+Box\+Plus(); \} 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+catkin\+\_\+ws/src/utilities/kindr/include/kindr/rotations/gtest\+\_\+rotations.\+hpp\end{DoxyCompactItemize}

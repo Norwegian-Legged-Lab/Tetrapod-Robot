@@ -1,0 +1,288 @@
+\hypertarget{classkindr_1_1UnitQuaternion}{}\doxysection{kindr\+::Unit\+Quaternion$<$ Prim\+Type\+\_\+ $>$ Class Template Reference}
+\label{classkindr_1_1UnitQuaternion}\index{kindr::UnitQuaternion$<$ PrimType\_ $>$@{kindr::UnitQuaternion$<$ PrimType\_ $>$}}
+
+
+Implementation of a unit quaternion based on Eigen\+::\+Quaternion.  
+
+
+
+
+{\ttfamily \#include $<$Quaternion.\+hpp$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternion_af49e8960dc5de37e2404ad7a4e53477d}\label{classkindr_1_1UnitQuaternion_af49e8960dc5de37e2404ad7a4e53477d}} 
+typedef \mbox{\hyperlink{classkindr_1_1Quaternion}{Quaternion}}$<$ Prim\+Type\+\_\+ $>$\+::\mbox{\hyperlink{classkindr_1_1UnitQuaternion_af49e8960dc5de37e2404ad7a4e53477d}{Implementation}} \mbox{\hyperlink{classkindr_1_1UnitQuaternion_af49e8960dc5de37e2404ad7a4e53477d}{Implementation}}
+\begin{DoxyCompactList}\small\item\em the implementation type, i.\+e., Eigen\+::\+Quaternion$<$$>$ \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternion_aa14a7235386fa0766ad0f8599f193848}\label{classkindr_1_1UnitQuaternion_aa14a7235386fa0766ad0f8599f193848}} 
+typedef Prim\+Type\+\_\+ \mbox{\hyperlink{classkindr_1_1UnitQuaternion_aa14a7235386fa0766ad0f8599f193848}{Scalar}}
+\begin{DoxyCompactList}\small\item\em the scalar type, i.\+e., the type of the coefficients \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternion_a7d66f6fbe180bf35f99b4ddfb0665bb7}\label{classkindr_1_1UnitQuaternion_a7d66f6fbe180bf35f99b4ddfb0665bb7}} 
+typedef Eigen\+::\+Matrix$<$ Prim\+Type\+\_\+, 3, 1 $>$ \mbox{\hyperlink{classkindr_1_1UnitQuaternion_a7d66f6fbe180bf35f99b4ddfb0665bb7}{Imaginary}}
+\begin{DoxyCompactList}\small\item\em the imaginary type, i.\+e., Eigen\+::\+Quaternion$<$$>$ \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternion_abff135496e54ce7b44f2933e3c0c7495}\label{classkindr_1_1UnitQuaternion_abff135496e54ce7b44f2933e3c0c7495}} 
+typedef Eigen\+::\+Matrix$<$ Prim\+Type\+\_\+, 4, 1 $>$ \mbox{\hyperlink{classkindr_1_1UnitQuaternion_abff135496e54ce7b44f2933e3c0c7495}{Vector4}}
+\begin{DoxyCompactList}\small\item\em quaternion as 4x1 matrix\+: \mbox{[}w; x; y; z\mbox{]} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternion_a8a012c8650d9af35463c8f7789ae35ce}\label{classkindr_1_1UnitQuaternion_a8a012c8650d9af35463c8f7789ae35ce}} 
+\mbox{\hyperlink{classkindr_1_1UnitQuaternion_a8a012c8650d9af35463c8f7789ae35ce}{Unit\+Quaternion}} ()
+\begin{DoxyCompactList}\small\item\em Default Constructor initializes the unit quaternion to identity. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkindr_1_1UnitQuaternion_a8d0d7fb8ea2e07fbd0c28a907d77f1fc}{Unit\+Quaternion}} (\mbox{\hyperlink{classkindr_1_1UnitQuaternion_aa14a7235386fa0766ad0f8599f193848}{Scalar}} w, \mbox{\hyperlink{classkindr_1_1UnitQuaternion_aa14a7235386fa0766ad0f8599f193848}{Scalar}} x, \mbox{\hyperlink{classkindr_1_1UnitQuaternion_aa14a7235386fa0766ad0f8599f193848}{Scalar}} y, \mbox{\hyperlink{classkindr_1_1UnitQuaternion_aa14a7235386fa0766ad0f8599f193848}{Scalar}} z)
+\begin{DoxyCompactList}\small\item\em Constructor to create unit quaternion from coefficients. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkindr_1_1UnitQuaternion_aaf524634a6159ceba0299028e17c4d2c}{Unit\+Quaternion}} (\mbox{\hyperlink{classkindr_1_1UnitQuaternion_aa14a7235386fa0766ad0f8599f193848}{Scalar}} real, const \mbox{\hyperlink{classkindr_1_1UnitQuaternion_a7d66f6fbe180bf35f99b4ddfb0665bb7}{Imaginary}} \&imag)
+\begin{DoxyCompactList}\small\item\em Constructor using real and imaginary part. In debug mode, an assertion is thrown if the quaternion has not unit length. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkindr_1_1UnitQuaternion_a3048a42e8cfa07d544544ce02c0d4f61}{Unit\+Quaternion}} (const \mbox{\hyperlink{classkindr_1_1UnitQuaternion_abff135496e54ce7b44f2933e3c0c7495}{Vector4}} \&vector4)
+\begin{DoxyCompactList}\small\item\em Constructor using Eigen\+::\+Matrix$<$\+Prim\+Type\+\_\+,4,1$>$. In debug mode, an assertion is thrown if the quaternion has not unit length. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternion_a79a40eafb6ae83d3bc7de14f0e1f76d0}\label{classkindr_1_1UnitQuaternion_a79a40eafb6ae83d3bc7de14f0e1f76d0}} 
+\mbox{\hyperlink{classkindr_1_1UnitQuaternion_a79a40eafb6ae83d3bc7de14f0e1f76d0}{Unit\+Quaternion}} (const \mbox{\hyperlink{classkindr_1_1Quaternion}{Quaternion}}$<$ Prim\+Type\+\_\+ $>$ \&other)
+\begin{DoxyCompactList}\small\item\em Constructor to create unit quaternion from \mbox{\hyperlink{classkindr_1_1Quaternion}{Quaternion}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classkindr_1_1UnitQuaternion_a0ed0b7b99149160d8d7568de8c202890}{Unit\+Quaternion}} (const \mbox{\hyperlink{classkindr_1_1UnitQuaternion_af49e8960dc5de37e2404ad7a4e53477d}{Implementation}} \&other)
+\begin{DoxyCompactList}\small\item\em Constructor to create unit quaternion from Eigen\+::\+Quaternion. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternion_a0358166d37a7f8209c74f0b159d31644}\label{classkindr_1_1UnitQuaternion_a0358166d37a7f8209c74f0b159d31644}} 
+\mbox{\hyperlink{classkindr_1_1UnitQuaternion}{Unit\+Quaternion}} \& {\bfseries operator=} (const \mbox{\hyperlink{classkindr_1_1UnitQuaternion}{Unit\+Quaternion}}$<$ Prim\+Type\+\_\+ $>$ \&other)=default
+\item 
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternion_a33b3018c3af1ca1cbec4ddd798547923}\label{classkindr_1_1UnitQuaternion_a33b3018c3af1ca1cbec4ddd798547923}} 
+{\footnotesize template$<$typename Prim\+Type\+In\+\_\+ $>$ }\\\mbox{\hyperlink{classkindr_1_1UnitQuaternion}{Unit\+Quaternion}} \& {\bfseries operator()} (const \mbox{\hyperlink{classkindr_1_1UnitQuaternion}{Unit\+Quaternion}}$<$ Prim\+Type\+In\+\_\+ $>$ \&other)
+\item 
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternion_aab45be7acf846a747d848bc33aaa7a53}\label{classkindr_1_1UnitQuaternion_aab45be7acf846a747d848bc33aaa7a53}} 
+{\footnotesize template$<$typename Prim\+Type\+In\+\_\+ $>$ }\\\mbox{\hyperlink{classkindr_1_1UnitQuaternion}{Unit\+Quaternion}} \& {\bfseries operator()} (const \mbox{\hyperlink{classkindr_1_1Quaternion}{Quaternion}}$<$ Prim\+Type\+In\+\_\+ $>$ \&other)
+\item 
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternion_a914abe7ec20424e655a7ec16b07d719b}\label{classkindr_1_1UnitQuaternion_a914abe7ec20424e655a7ec16b07d719b}} 
+\mbox{\hyperlink{classkindr_1_1UnitQuaternion_aa14a7235386fa0766ad0f8599f193848}{Scalar}} {\bfseries w} () const
+\item 
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternion_a2c7eeaaeb35415face73d80115b7c349}\label{classkindr_1_1UnitQuaternion_a2c7eeaaeb35415face73d80115b7c349}} 
+\mbox{\hyperlink{classkindr_1_1UnitQuaternion_aa14a7235386fa0766ad0f8599f193848}{Scalar}} {\bfseries x} () const
+\item 
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternion_a2e060038859a285f1d5d76b568d7c1d9}\label{classkindr_1_1UnitQuaternion_a2e060038859a285f1d5d76b568d7c1d9}} 
+\mbox{\hyperlink{classkindr_1_1UnitQuaternion_aa14a7235386fa0766ad0f8599f193848}{Scalar}} {\bfseries y} () const
+\item 
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternion_ac0601874f01067cd1c62237d1dbeca6f}\label{classkindr_1_1UnitQuaternion_ac0601874f01067cd1c62237d1dbeca6f}} 
+\mbox{\hyperlink{classkindr_1_1UnitQuaternion_aa14a7235386fa0766ad0f8599f193848}{Scalar}} {\bfseries z} () const
+\item 
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternion_ad91fe60504603019c7c0486400636966}\label{classkindr_1_1UnitQuaternion_ad91fe60504603019c7c0486400636966}} 
+\mbox{\hyperlink{classkindr_1_1UnitQuaternion_aa14a7235386fa0766ad0f8599f193848}{Scalar}} \& {\bfseries w} ()
+\item 
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternion_a6c897475ad7dc77aa79143f01b3553a0}\label{classkindr_1_1UnitQuaternion_a6c897475ad7dc77aa79143f01b3553a0}} 
+\mbox{\hyperlink{classkindr_1_1UnitQuaternion_aa14a7235386fa0766ad0f8599f193848}{Scalar}} \& {\bfseries x} ()
+\item 
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternion_a4eea2282c78bad25daac6cc41e13e697}\label{classkindr_1_1UnitQuaternion_a4eea2282c78bad25daac6cc41e13e697}} 
+\mbox{\hyperlink{classkindr_1_1UnitQuaternion_aa14a7235386fa0766ad0f8599f193848}{Scalar}} \& {\bfseries y} ()
+\item 
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternion_a896e1ed5fb3cacbb66256076b8767157}\label{classkindr_1_1UnitQuaternion_a896e1ed5fb3cacbb66256076b8767157}} 
+\mbox{\hyperlink{classkindr_1_1UnitQuaternion_aa14a7235386fa0766ad0f8599f193848}{Scalar}} \& {\bfseries z} ()
+\item 
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternion_aebdaff25b65cc8c011ba543914d5aca7}\label{classkindr_1_1UnitQuaternion_aebdaff25b65cc8c011ba543914d5aca7}} 
+\mbox{\hyperlink{classkindr_1_1UnitQuaternion_aa14a7235386fa0766ad0f8599f193848}{Scalar}} {\bfseries real} () const
+\item 
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternion_aafa01c63d23568678700bcbfd8bd1083}\label{classkindr_1_1UnitQuaternion_aafa01c63d23568678700bcbfd8bd1083}} 
+\mbox{\hyperlink{classkindr_1_1UnitQuaternion_a7d66f6fbe180bf35f99b4ddfb0665bb7}{Imaginary}} {\bfseries imaginary} () const
+\item 
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternion_ac6cddbe2d3df3dc9f386faad21e3095c}\label{classkindr_1_1UnitQuaternion_ac6cddbe2d3df3dc9f386faad21e3095c}} 
+\mbox{\hyperlink{classkindr_1_1UnitQuaternion_abff135496e54ce7b44f2933e3c0c7495}{Vector4}} {\bfseries vector} () const
+\item 
+\mbox{\hyperlink{classkindr_1_1UnitQuaternion}{Unit\+Quaternion}} \mbox{\hyperlink{classkindr_1_1UnitQuaternion_ac580c8d47b5aa328637134b554f9e323}{conjugated}} () const
+\item 
+\mbox{\hyperlink{classkindr_1_1UnitQuaternion}{Unit\+Quaternion}} \& \mbox{\hyperlink{classkindr_1_1UnitQuaternion_ad73a0012f6f543af75cdbc9c1b35b048}{conjugate}} ()
+\item 
+\mbox{\hyperlink{classkindr_1_1UnitQuaternion}{Unit\+Quaternion}} \& \mbox{\hyperlink{classkindr_1_1UnitQuaternion_ac6c3a64bfe4849474d4c3c33ca6d777a}{set\+Identity}} ()
+\begin{DoxyCompactList}\small\item\em Sets unit quaternion to identity. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternion_af55601d967b745bf1a9cc1239ada8030}\label{classkindr_1_1UnitQuaternion_af55601d967b745bf1a9cc1239ada8030}} 
+const \mbox{\hyperlink{classkindr_1_1UnitQuaternion_af49e8960dc5de37e2404ad7a4e53477d}{Implementation}} \& {\bfseries to\+Implementation} () const
+\item 
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternion_a1559d4a1c42cb3cad010470d6bbe26d9}\label{classkindr_1_1UnitQuaternion_a1559d4a1c42cb3cad010470d6bbe26d9}} 
+\mbox{\hyperlink{classkindr_1_1UnitQuaternion_af49e8960dc5de37e2404ad7a4e53477d}{Implementation}} \& {\bfseries to\+Implementation} ()
+\item 
+Eigen\+::\+Matrix$<$ Prim\+Type\+\_\+, 4, 4 $>$ \mbox{\hyperlink{classkindr_1_1UnitQuaternion_a1d5a7e9ea0d22397322ed6ffa30e5827}{get\+Quaternion\+Matrix}} ()
+\begin{DoxyCompactList}\small\item\em Returns the quaternion matrix Qleft\+: q$\ast$p = Qleft(q)$\ast$p This function can be used to get the derivative of the concatenation with respect to the right quaternion. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix$<$ Prim\+Type\+\_\+, 4, 4 $>$ \mbox{\hyperlink{classkindr_1_1UnitQuaternion_aaf5ea53b21d1e9dc3b79ace3e0897443}{get\+Conjugate\+Quaternion\+Matrix}} ()
+\begin{DoxyCompactList}\small\item\em Returns the quaternion matrix Qright\+: q$\ast$p = Qright(p)$\ast$q This function can be used to get the derivative of the concatenation with respect to the left quaternion. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classkindr_1_1UnitQuaternion}{Unit\+Quaternion}} \mbox{\hyperlink{classkindr_1_1UnitQuaternion_a0ba387ce9fed0c34059188c08edab719}{Identity}} ()
+\begin{DoxyCompactList}\small\item\em Get identity unit quaternion. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Prim\+Type\+\_\+$>$\newline
+class kindr\+::\+Unit\+Quaternion$<$ Prim\+Type\+\_\+ $>$}
+
+Implementation of a unit quaternion based on Eigen\+::\+Quaternion. 
+
+The Hamiltonian convention is used, where Q = w + x$\ast$i + y$\ast$j + z$\ast$k and i$\ast$i=j$\ast$j=k$\ast$k=ijk=-\/1.
+
+The following two typedefs are provided for convenience\+:
+\begin{DoxyItemize}
+\item Unit\+QuaternionF for float
+\item Unit\+QuaternionD for double
+\end{DoxyItemize}
+
+\begin{DoxySeeAlso}{See also}
+rm\+::\+Quaternion for an implementation of a generic quaternion 
+
+rm\+::rotations\+::\+Rotation\+Quaternion for \mbox{\hyperlink{group__quaternions}{Quaternions}} that represent a rotation 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternion_a8d0d7fb8ea2e07fbd0c28a907d77f1fc}\label{classkindr_1_1UnitQuaternion_a8d0d7fb8ea2e07fbd0c28a907d77f1fc}} 
+\index{kindr::UnitQuaternion$<$ PrimType\_ $>$@{kindr::UnitQuaternion$<$ PrimType\_ $>$}!UnitQuaternion@{UnitQuaternion}}
+\index{UnitQuaternion@{UnitQuaternion}!kindr::UnitQuaternion$<$ PrimType\_ $>$@{kindr::UnitQuaternion$<$ PrimType\_ $>$}}
+\doxysubsubsection{\texorpdfstring{UnitQuaternion()}{UnitQuaternion()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$typename Prim\+Type\+\_\+ $>$ \\
+\mbox{\hyperlink{classkindr_1_1UnitQuaternion}{kindr\+::\+Unit\+Quaternion}}$<$ Prim\+Type\+\_\+ $>$\+::\mbox{\hyperlink{classkindr_1_1UnitQuaternion}{Unit\+Quaternion}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classkindr_1_1UnitQuaternion_aa14a7235386fa0766ad0f8599f193848}{Scalar}}}]{w,  }\item[{\mbox{\hyperlink{classkindr_1_1UnitQuaternion_aa14a7235386fa0766ad0f8599f193848}{Scalar}}}]{x,  }\item[{\mbox{\hyperlink{classkindr_1_1UnitQuaternion_aa14a7235386fa0766ad0f8599f193848}{Scalar}}}]{y,  }\item[{\mbox{\hyperlink{classkindr_1_1UnitQuaternion_aa14a7235386fa0766ad0f8599f193848}{Scalar}}}]{z }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor to create unit quaternion from coefficients. 
+
+Q = w + x$\ast$i + y$\ast$j + z$\ast$k 
+\begin{DoxyParams}{Parameters}
+{\em w} & scalar \\
+\hline
+{\em x} & vector index 1 \\
+\hline
+{\em y} & vector index 2 \\
+\hline
+{\em z} & vector index 3 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternion_aaf524634a6159ceba0299028e17c4d2c}\label{classkindr_1_1UnitQuaternion_aaf524634a6159ceba0299028e17c4d2c}} 
+\index{kindr::UnitQuaternion$<$ PrimType\_ $>$@{kindr::UnitQuaternion$<$ PrimType\_ $>$}!UnitQuaternion@{UnitQuaternion}}
+\index{UnitQuaternion@{UnitQuaternion}!kindr::UnitQuaternion$<$ PrimType\_ $>$@{kindr::UnitQuaternion$<$ PrimType\_ $>$}}
+\doxysubsubsection{\texorpdfstring{UnitQuaternion()}{UnitQuaternion()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$typename Prim\+Type\+\_\+ $>$ \\
+\mbox{\hyperlink{classkindr_1_1UnitQuaternion}{kindr\+::\+Unit\+Quaternion}}$<$ Prim\+Type\+\_\+ $>$\+::\mbox{\hyperlink{classkindr_1_1UnitQuaternion}{Unit\+Quaternion}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classkindr_1_1UnitQuaternion_aa14a7235386fa0766ad0f8599f193848}{Scalar}}}]{real,  }\item[{const \mbox{\hyperlink{classkindr_1_1UnitQuaternion_a7d66f6fbe180bf35f99b4ddfb0665bb7}{Imaginary}} \&}]{imag }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor using real and imaginary part. In debug mode, an assertion is thrown if the quaternion has not unit length. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em real} & real part (Prim\+Type\+\_\+) \\
+\hline
+{\em imag} & imaginary part (Eigen\+::\+Matrix$<$\+Prim\+Type\+\_\+,3,1$>$) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternion_a3048a42e8cfa07d544544ce02c0d4f61}\label{classkindr_1_1UnitQuaternion_a3048a42e8cfa07d544544ce02c0d4f61}} 
+\index{kindr::UnitQuaternion$<$ PrimType\_ $>$@{kindr::UnitQuaternion$<$ PrimType\_ $>$}!UnitQuaternion@{UnitQuaternion}}
+\index{UnitQuaternion@{UnitQuaternion}!kindr::UnitQuaternion$<$ PrimType\_ $>$@{kindr::UnitQuaternion$<$ PrimType\_ $>$}}
+\doxysubsubsection{\texorpdfstring{UnitQuaternion()}{UnitQuaternion()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$typename Prim\+Type\+\_\+ $>$ \\
+\mbox{\hyperlink{classkindr_1_1UnitQuaternion}{kindr\+::\+Unit\+Quaternion}}$<$ Prim\+Type\+\_\+ $>$\+::\mbox{\hyperlink{classkindr_1_1UnitQuaternion}{Unit\+Quaternion}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classkindr_1_1UnitQuaternion_abff135496e54ce7b44f2933e3c0c7495}{Vector4}} \&}]{vector4 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor using Eigen\+::\+Matrix$<$\+Prim\+Type\+\_\+,4,1$>$. In debug mode, an assertion is thrown if the quaternion has not unit length. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Eigen\+::\+Matrix$<$\+Prim\+Type\+\_\+,4,1$>$ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternion_a0ed0b7b99149160d8d7568de8c202890}\label{classkindr_1_1UnitQuaternion_a0ed0b7b99149160d8d7568de8c202890}} 
+\index{kindr::UnitQuaternion$<$ PrimType\_ $>$@{kindr::UnitQuaternion$<$ PrimType\_ $>$}!UnitQuaternion@{UnitQuaternion}}
+\index{UnitQuaternion@{UnitQuaternion}!kindr::UnitQuaternion$<$ PrimType\_ $>$@{kindr::UnitQuaternion$<$ PrimType\_ $>$}}
+\doxysubsubsection{\texorpdfstring{UnitQuaternion()}{UnitQuaternion()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$typename Prim\+Type\+\_\+ $>$ \\
+\mbox{\hyperlink{classkindr_1_1UnitQuaternion}{kindr\+::\+Unit\+Quaternion}}$<$ Prim\+Type\+\_\+ $>$\+::\mbox{\hyperlink{classkindr_1_1UnitQuaternion}{Unit\+Quaternion}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classkindr_1_1UnitQuaternion_af49e8960dc5de37e2404ad7a4e53477d}{Implementation}} \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Constructor to create unit quaternion from Eigen\+::\+Quaternion. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & Eigen\+::\+Quaternion \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternion_ad73a0012f6f543af75cdbc9c1b35b048}\label{classkindr_1_1UnitQuaternion_ad73a0012f6f543af75cdbc9c1b35b048}} 
+\index{kindr::UnitQuaternion$<$ PrimType\_ $>$@{kindr::UnitQuaternion$<$ PrimType\_ $>$}!conjugate@{conjugate}}
+\index{conjugate@{conjugate}!kindr::UnitQuaternion$<$ PrimType\_ $>$@{kindr::UnitQuaternion$<$ PrimType\_ $>$}}
+\doxysubsubsection{\texorpdfstring{conjugate()}{conjugate()}}
+{\footnotesize\ttfamily template$<$typename Prim\+Type\+\_\+ $>$ \\
+\mbox{\hyperlink{classkindr_1_1UnitQuaternion}{Unit\+Quaternion}}\& \mbox{\hyperlink{classkindr_1_1UnitQuaternion}{kindr\+::\+Unit\+Quaternion}}$<$ Prim\+Type\+\_\+ $>$\+::conjugate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\textbackslash{}conjugates the quaternion \mbox{\Hypertarget{classkindr_1_1UnitQuaternion_ac580c8d47b5aa328637134b554f9e323}\label{classkindr_1_1UnitQuaternion_ac580c8d47b5aa328637134b554f9e323}} 
+\index{kindr::UnitQuaternion$<$ PrimType\_ $>$@{kindr::UnitQuaternion$<$ PrimType\_ $>$}!conjugated@{conjugated}}
+\index{conjugated@{conjugated}!kindr::UnitQuaternion$<$ PrimType\_ $>$@{kindr::UnitQuaternion$<$ PrimType\_ $>$}}
+\doxysubsubsection{\texorpdfstring{conjugated()}{conjugated()}}
+{\footnotesize\ttfamily template$<$typename Prim\+Type\+\_\+ $>$ \\
+\mbox{\hyperlink{classkindr_1_1UnitQuaternion}{Unit\+Quaternion}} \mbox{\hyperlink{classkindr_1_1UnitQuaternion}{kindr\+::\+Unit\+Quaternion}}$<$ Prim\+Type\+\_\+ $>$\+::conjugated (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the conjugate of the quaternion 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternion_aaf5ea53b21d1e9dc3b79ace3e0897443}\label{classkindr_1_1UnitQuaternion_aaf5ea53b21d1e9dc3b79ace3e0897443}} 
+\index{kindr::UnitQuaternion$<$ PrimType\_ $>$@{kindr::UnitQuaternion$<$ PrimType\_ $>$}!getConjugateQuaternionMatrix@{getConjugateQuaternionMatrix}}
+\index{getConjugateQuaternionMatrix@{getConjugateQuaternionMatrix}!kindr::UnitQuaternion$<$ PrimType\_ $>$@{kindr::UnitQuaternion$<$ PrimType\_ $>$}}
+\doxysubsubsection{\texorpdfstring{getConjugateQuaternionMatrix()}{getConjugateQuaternionMatrix()}}
+{\footnotesize\ttfamily template$<$typename Prim\+Type\+\_\+ $>$ \\
+Eigen\+::\+Matrix$<$Prim\+Type\+\_\+,4,4$>$ \mbox{\hyperlink{classkindr_1_1UnitQuaternion}{kindr\+::\+Unit\+Quaternion}}$<$ Prim\+Type\+\_\+ $>$\+::get\+Conjugate\+Quaternion\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the quaternion matrix Qright\+: q$\ast$p = Qright(p)$\ast$q This function can be used to get the derivative of the concatenation with respect to the left quaternion. 
+
+\begin{DoxyReturn}{Returns}
+the quaternion matrix Qright 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternion_a1d5a7e9ea0d22397322ed6ffa30e5827}\label{classkindr_1_1UnitQuaternion_a1d5a7e9ea0d22397322ed6ffa30e5827}} 
+\index{kindr::UnitQuaternion$<$ PrimType\_ $>$@{kindr::UnitQuaternion$<$ PrimType\_ $>$}!getQuaternionMatrix@{getQuaternionMatrix}}
+\index{getQuaternionMatrix@{getQuaternionMatrix}!kindr::UnitQuaternion$<$ PrimType\_ $>$@{kindr::UnitQuaternion$<$ PrimType\_ $>$}}
+\doxysubsubsection{\texorpdfstring{getQuaternionMatrix()}{getQuaternionMatrix()}}
+{\footnotesize\ttfamily template$<$typename Prim\+Type\+\_\+ $>$ \\
+Eigen\+::\+Matrix$<$Prim\+Type\+\_\+,4,4$>$ \mbox{\hyperlink{classkindr_1_1UnitQuaternion}{kindr\+::\+Unit\+Quaternion}}$<$ Prim\+Type\+\_\+ $>$\+::get\+Quaternion\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the quaternion matrix Qleft\+: q$\ast$p = Qleft(q)$\ast$p This function can be used to get the derivative of the concatenation with respect to the right quaternion. 
+
+\begin{DoxyReturn}{Returns}
+the quaternion matrix Qleft 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternion_a0ba387ce9fed0c34059188c08edab719}\label{classkindr_1_1UnitQuaternion_a0ba387ce9fed0c34059188c08edab719}} 
+\index{kindr::UnitQuaternion$<$ PrimType\_ $>$@{kindr::UnitQuaternion$<$ PrimType\_ $>$}!Identity@{Identity}}
+\index{Identity@{Identity}!kindr::UnitQuaternion$<$ PrimType\_ $>$@{kindr::UnitQuaternion$<$ PrimType\_ $>$}}
+\doxysubsubsection{\texorpdfstring{Identity()}{Identity()}}
+{\footnotesize\ttfamily template$<$typename Prim\+Type\+\_\+ $>$ \\
+static \mbox{\hyperlink{classkindr_1_1UnitQuaternion}{Unit\+Quaternion}} \mbox{\hyperlink{classkindr_1_1UnitQuaternion}{kindr\+::\+Unit\+Quaternion}}$<$ Prim\+Type\+\_\+ $>$\+::Identity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Get identity unit quaternion. 
+
+\begin{DoxyReturn}{Returns}
+identity unit quaternion 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternion_ac6c3a64bfe4849474d4c3c33ca6d777a}\label{classkindr_1_1UnitQuaternion_ac6c3a64bfe4849474d4c3c33ca6d777a}} 
+\index{kindr::UnitQuaternion$<$ PrimType\_ $>$@{kindr::UnitQuaternion$<$ PrimType\_ $>$}!setIdentity@{setIdentity}}
+\index{setIdentity@{setIdentity}!kindr::UnitQuaternion$<$ PrimType\_ $>$@{kindr::UnitQuaternion$<$ PrimType\_ $>$}}
+\doxysubsubsection{\texorpdfstring{setIdentity()}{setIdentity()}}
+{\footnotesize\ttfamily template$<$typename Prim\+Type\+\_\+ $>$ \\
+\mbox{\hyperlink{classkindr_1_1UnitQuaternion}{Unit\+Quaternion}}\& \mbox{\hyperlink{classkindr_1_1UnitQuaternion}{kindr\+::\+Unit\+Quaternion}}$<$ Prim\+Type\+\_\+ $>$\+::set\+Identity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets unit quaternion to identity. 
+
+\begin{DoxyReturn}{Returns}
+the inverse of the quaternion which is the conjugate for unit quaternions / \mbox{\hyperlink{classkindr_1_1UnitQuaternion}{Unit\+Quaternion}} inverse() const \{ return Unit\+Quaternion(\+Base\+::conjugate()); \}
+\end{DoxyReturn}
+Scalar norm() const \{ return unit\+Quternion\+\_\+.\+norm(); \}
+
+/$\ast$! \begin{DoxyReturn}{Returns}
+reference 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+catkin\+\_\+ws/src/utilities/kindr/include/kindr/quaternions/Quaternion.\+hpp\end{DoxyCompactItemize}

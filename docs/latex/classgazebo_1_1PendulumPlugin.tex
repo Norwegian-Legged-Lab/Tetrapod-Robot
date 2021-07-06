@@ -1,0 +1,187 @@
+\hypertarget{classgazebo_1_1PendulumPlugin}{}\doxysection{gazebo\+::Pendulum\+Plugin Class Reference}
+\label{classgazebo_1_1PendulumPlugin}\index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
+
+
+A plugin to control the pendulum robot.  
+
+
+
+
+{\ttfamily \#include $<$pendulum\+\_\+plugin.\+h$>$}
+
+
+
+Inheritance diagram for gazebo\+::Pendulum\+Plugin\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=217pt]{classgazebo_1_1PendulumPlugin__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for gazebo\+::Pendulum\+Plugin\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=217pt]{classgazebo_1_1PendulumPlugin__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a24ce9de399c62510f2e86dba916dafbd}\label{classgazebo_1_1PendulumPlugin_a24ce9de399c62510f2e86dba916dafbd}} 
+enum \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_a24ce9de399c62510f2e86dba916dafbd}{Control\+Mode}} \{ {\bfseries position} = 1, 
+{\bfseries velocity} = 2, 
+{\bfseries torque} = 3
+ \}
+\begin{DoxyCompactList}\small\item\em Control mode enumerator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a4898d6527855f6b0426d6bf6e59f1aec}\label{classgazebo_1_1PendulumPlugin_a4898d6527855f6b0426d6bf6e59f1aec}} 
+\mbox{\hyperlink{classgazebo_1_1PendulumPlugin_a4898d6527855f6b0426d6bf6e59f1aec}{Pendulum\+Plugin}} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_af7c7785a63d5a5febb9bad3c3638227b}\label{classgazebo_1_1PendulumPlugin_af7c7785a63d5a5febb9bad3c3638227b}} 
+virtual \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_af7c7785a63d5a5febb9bad3c3638227b}{$\sim$\+Pendulum\+Plugin}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_a0508f3a8ed035a42312cd2aecd601e31}{Load}} (physics\+::\+Model\+Ptr \+\_\+model, sdf\+::\+Element\+Ptr \+\_\+sdf)
+\begin{DoxyCompactList}\small\item\em The Load function is called by Gazebo when the plugin is inserted into simulation. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_aa0b4f8d519f47257898f94fe7cda8e08}{Get\+Joint\+Force}} ()
+\begin{DoxyCompactList}\small\item\em Get currently applied force at the joint. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_a7a67ddbd0c27a985ae261e691cb5dd56}{Set\+Joint\+Force}} (const double \&\+\_\+force)
+\begin{DoxyCompactList}\small\item\em Apply force at a specific joint. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_a3ecb91c38fcd2083266e1c12ae753f51}{Set\+Joint\+Velocity}} (const double \&\+\_\+vel)
+\begin{DoxyCompactList}\small\item\em Set the velocity of the joint. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_a08f93ed3eada2e0b464ecd9478d1b57d}{Set\+Joint\+Position}} (const double \&\+\_\+pos)
+\begin{DoxyCompactList}\small\item\em Set the position of the joint. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_a0eb1ab9152728ea062a5cb6b5214eadb}{On\+Joint\+State\+Msg}} (const sensor\+\_\+msgs\+::\+Joint\+State\+Const\+Ptr \&\+\_\+msg)
+\begin{DoxyCompactList}\small\item\em The On\+Joint\+State\+Msg function handles an incoming joint state message from R\+OS. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_acfdabd2adcf0aa71e8da75336bf892f3}\label{classgazebo_1_1PendulumPlugin_acfdabd2adcf0aa71e8da75336bf892f3}} 
+void \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_acfdabd2adcf0aa71e8da75336bf892f3}{Process\+Queue\+Thread}} ()
+\begin{DoxyCompactList}\small\item\em The Process\+Queue\+Thread function is a R\+OS helper function that processes messages. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_aefd4eb7477a26fe7dd5d56e272d9098d}\label{classgazebo_1_1PendulumPlugin_aefd4eb7477a26fe7dd5d56e272d9098d}} 
+void \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_aefd4eb7477a26fe7dd5d56e272d9098d}{Publish\+Queue\+Thread}} ()
+\begin{DoxyCompactList}\small\item\em The Publish\+Queue\+Thread function is a R\+OS helper function that publish state messages. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_aaf27012b818e0b07e4827307061e5300}\label{classgazebo_1_1PendulumPlugin_aaf27012b818e0b07e4827307061e5300}} 
+void \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_aaf27012b818e0b07e4827307061e5300}{Init\+Ros}} ()
+\begin{DoxyCompactList}\small\item\em The init\+Ros function is called to initialize R\+OS. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_acd00f2083bc68aa3cac12e53f36c84ed}\label{classgazebo_1_1PendulumPlugin_acd00f2083bc68aa3cac12e53f36c84ed}} 
+void \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_acd00f2083bc68aa3cac12e53f36c84ed}{Init\+Ros\+Queue\+Threads}} ()
+\begin{DoxyCompactList}\small\item\em The Init\+Ros\+Queue\+Threads function is called to initialize the R\+OS Publish and Process Queue Threads. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a6d49a19000bbfd3c51dcb9571ed10aa2}\label{classgazebo_1_1PendulumPlugin_a6d49a19000bbfd3c51dcb9571ed10aa2}} 
+void \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_a6d49a19000bbfd3c51dcb9571ed10aa2}{Init\+Joint\+Controller}} ()
+\begin{DoxyCompactList}\small\item\em The Init\+Joint\+Controllers function is called to setup joint P\+ID controllers. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_ad55eb1411d9cee39434364b69977782f}\label{classgazebo_1_1PendulumPlugin_ad55eb1411d9cee39434364b69977782f}} 
+void \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_ad55eb1411d9cee39434364b69977782f}{Init\+Joint\+Configuration}} ()
+\begin{DoxyCompactList}\small\item\em The Init\+Joint\+Configuration function is called to initialize the desired joint configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A plugin to control the pendulum robot. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_aa0b4f8d519f47257898f94fe7cda8e08}\label{classgazebo_1_1PendulumPlugin_aa0b4f8d519f47257898f94fe7cda8e08}} 
+\index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!GetJointForce@{GetJointForce}}
+\index{GetJointForce@{GetJointForce}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
+\doxysubsubsection{\texorpdfstring{GetJointForce()}{GetJointForce()}}
+{\footnotesize\ttfamily double gazebo\+::\+Pendulum\+Plugin\+::\+Get\+Joint\+Force (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get currently applied force at the joint. 
+
+\begin{DoxyReturn}{Returns}
+Current joint force 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a0508f3a8ed035a42312cd2aecd601e31}\label{classgazebo_1_1PendulumPlugin_a0508f3a8ed035a42312cd2aecd601e31}} 
+\index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!Load@{Load}}
+\index{Load@{Load}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
+\doxysubsubsection{\texorpdfstring{Load()}{Load()}}
+{\footnotesize\ttfamily void gazebo\+::\+Pendulum\+Plugin\+::\+Load (\begin{DoxyParamCaption}\item[{physics\+::\+Model\+Ptr}]{\+\_\+model,  }\item[{sdf\+::\+Element\+Ptr}]{\+\_\+sdf }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+The Load function is called by Gazebo when the plugin is inserted into simulation. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+model} & A pointer to the model that the plugin is attached to. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+sdf} & A pointer to the plugin\textquotesingle{}s S\+DF element. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a0eb1ab9152728ea062a5cb6b5214eadb}\label{classgazebo_1_1PendulumPlugin_a0eb1ab9152728ea062a5cb6b5214eadb}} 
+\index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!OnJointStateMsg@{OnJointStateMsg}}
+\index{OnJointStateMsg@{OnJointStateMsg}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
+\doxysubsubsection{\texorpdfstring{OnJointStateMsg()}{OnJointStateMsg()}}
+{\footnotesize\ttfamily void gazebo\+::\+Pendulum\+Plugin\+::\+On\+Joint\+State\+Msg (\begin{DoxyParamCaption}\item[{const sensor\+\_\+msgs\+::\+Joint\+State\+Const\+Ptr \&}]{\+\_\+msg }\end{DoxyParamCaption})}
+
+
+
+The On\+Joint\+State\+Msg function handles an incoming joint state message from R\+OS. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+msg} & A message holding data to describe the state of a set of controlled joints. The state is defined by
+\begin{DoxyItemize}
+\item the position of the joint,
+\item the velocity of the joint and
+\item the effort (torque) that is applied in the joint. 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a7a67ddbd0c27a985ae261e691cb5dd56}\label{classgazebo_1_1PendulumPlugin_a7a67ddbd0c27a985ae261e691cb5dd56}} 
+\index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!SetJointForce@{SetJointForce}}
+\index{SetJointForce@{SetJointForce}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
+\doxysubsubsection{\texorpdfstring{SetJointForce()}{SetJointForce()}}
+{\footnotesize\ttfamily void gazebo\+::\+Pendulum\+Plugin\+::\+Set\+Joint\+Force (\begin{DoxyParamCaption}\item[{const double \&}]{\+\_\+force }\end{DoxyParamCaption})}
+
+
+
+Apply force at a specific joint. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+force} & Force to apply \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a08f93ed3eada2e0b464ecd9478d1b57d}\label{classgazebo_1_1PendulumPlugin_a08f93ed3eada2e0b464ecd9478d1b57d}} 
+\index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!SetJointPosition@{SetJointPosition}}
+\index{SetJointPosition@{SetJointPosition}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
+\doxysubsubsection{\texorpdfstring{SetJointPosition()}{SetJointPosition()}}
+{\footnotesize\ttfamily void gazebo\+::\+Pendulum\+Plugin\+::\+Set\+Joint\+Position (\begin{DoxyParamCaption}\item[{const double \&}]{\+\_\+pos }\end{DoxyParamCaption})}
+
+
+
+Set the position of the joint. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+pos} & New target position in radians \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a3ecb91c38fcd2083266e1c12ae753f51}\label{classgazebo_1_1PendulumPlugin_a3ecb91c38fcd2083266e1c12ae753f51}} 
+\index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!SetJointVelocity@{SetJointVelocity}}
+\index{SetJointVelocity@{SetJointVelocity}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
+\doxysubsubsection{\texorpdfstring{SetJointVelocity()}{SetJointVelocity()}}
+{\footnotesize\ttfamily void gazebo\+::\+Pendulum\+Plugin\+::\+Set\+Joint\+Velocity (\begin{DoxyParamCaption}\item[{const double \&}]{\+\_\+vel }\end{DoxyParamCaption})}
+
+
+
+Set the velocity of the joint. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+vel} & New target velocity \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+catkin\+\_\+ws/src/simulator/pendulum\+\_\+gazebo/include/pendulum\+\_\+gazebo/pendulum\+\_\+plugin.\+h\item 
+catkin\+\_\+ws/src/simulator/pendulum\+\_\+gazebo/src/pendulum\+\_\+plugin.\+cpp\end{DoxyCompactItemize}

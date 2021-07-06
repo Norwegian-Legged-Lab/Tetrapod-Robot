@@ -1,0 +1,177 @@
+This package provides a network bridge which enables the exchange of messages between R\+OS and Ignition Transport.
+
+The bridge is currently implemented in C++. At this point there\textquotesingle{}s no support for service calls. Its support is limited to only the following message types\+:
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ R\+OS type }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Ignition Transport type  }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ R\+OS type }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Ignition Transport type  }\\\cline{1-2}
+\endhead
+std\+\_\+msgs/\+Bool &\PBS\centering ignition\+::msgs\+::\+Boolean  \\\cline{1-2}
+std\+\_\+msgs/\+Empty &\PBS\centering ignition\+::msgs\+::\+Empty  \\\cline{1-2}
+std\+\_\+msgs/\+Float32 &\PBS\centering ignition\+::msgs\+::\+Float  \\\cline{1-2}
+std\+\_\+msgs/\+Float64 &\PBS\centering ignition\+::msgs\+::\+Double  \\\cline{1-2}
+std\+\_\+msgs/\+Header &\PBS\centering ignition\+::msgs\+::\+Header  \\\cline{1-2}
+std\+\_\+msgs/\+String &\PBS\centering ignition\+::msgs\+::\+String\+Msg  \\\cline{1-2}
+geometry\+\_\+msgs/\+Quaternion &\PBS\centering ignition\+::msgs\+::\+Quaternion  \\\cline{1-2}
+geometry\+\_\+msgs/\+Vector3 &\PBS\centering ignition\+::msgs\+::\+Vector3d  \\\cline{1-2}
+geometry\+\_\+msgs/\+Point &\PBS\centering ignition\+::msgs\+::\+Vector3d  \\\cline{1-2}
+geometry\+\_\+msgs/\+Pose &\PBS\centering ignition\+::msgs\+::\+Pose  \\\cline{1-2}
+geometry\+\_\+msgs/\+Pose\+Stamped &\PBS\centering ignition\+::msgs\+::\+Pose  \\\cline{1-2}
+geometry\+\_\+msgs/\+Transform &\PBS\centering ignition\+::msgs\+::\+Pose  \\\cline{1-2}
+geometry\+\_\+msgs/\+Transform\+Stamped &\PBS\centering ignition\+::msgs\+::\+Pose  \\\cline{1-2}
+geometry\+\_\+msgs/\+Twist &\PBS\centering ignition\+::msgs\+::\+Twist  \\\cline{1-2}
+mav\+\_\+msgs/\+Actuators (\href{https://github.com/ethz-asl/mav_comm/issues/86}{\texttt{ not on Noetic}}) &\PBS\centering ignition\+::msgs\+::\+Actuators  \\\cline{1-2}
+nav\+\_\+msgs/\+Odometry &\PBS\centering ignition\+::msgs\+::\+Odometry  \\\cline{1-2}
+rosgraph\+\_\+msgs/\+Clock &\PBS\centering ignition\+::msgs\+::\+Clock  \\\cline{1-2}
+sensor\+\_\+msgs/\+Battery\+State &\PBS\centering ignition\+::msgs\+::\+Battery\+State  \\\cline{1-2}
+sensor\+\_\+msgs/\+Camera\+Info &\PBS\centering ignition\+::msgs\+::\+Camera\+Info  \\\cline{1-2}
+sensor\+\_\+msgs/\+Fluid\+Pressure &\PBS\centering ignition\+::msgs\+::\+Fluid\+Pressure  \\\cline{1-2}
+sensor\+\_\+msgs/\+Imu &\PBS\centering ignition\+::msgs\+::\+I\+MU  \\\cline{1-2}
+sensor\+\_\+msgs/\+Image &\PBS\centering ignition\+::msgs\+::\+Image  \\\cline{1-2}
+sensor\+\_\+msgs/\+Joint\+State &\PBS\centering ignition\+::msgs\+::\+Model  \\\cline{1-2}
+sensor\+\_\+msgs/\+Laser\+Scan &\PBS\centering ignition\+::msgs\+::\+Laser\+Scan  \\\cline{1-2}
+sensor\+\_\+msgs/\+Magnetic\+Field &\PBS\centering ignition\+::msgs\+::\+Magnetometer  \\\cline{1-2}
+sensor\+\_\+msgs/\+Point\+Cloud2 &\PBS\centering ignition\+::msgs\+::\+Point\+Cloud\+Packed  \\\cline{1-2}
+tf\+\_\+msgs/\+T\+F\+Message &\PBS\centering ignition\+::msgs\+::\+Pose\+\_\+V  \\\cline{1-2}
+\end{longtabu}
+
+
+Run {\ttfamily rosmaster \& rosrun ros\+\_\+ign\+\_\+bridge parameter\+\_\+bridge -\/h} for instructions.\hypertarget{md_catkin_ws_src_utilities_ros_ign_ros_ign_bridge_README_autotoc_md104}{}\doxysection{Example 1a\+: Ignition Transport talker and R\+O\+S listener}\label{md_catkin_ws_src_utilities_ros_ign_ros_ign_bridge_README_autotoc_md104}
+First we start a R\+OS {\ttfamily roscore}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\# Shell A:}
+\DoxyCodeLine{. /opt/ros/noetic/setup.bash}
+\DoxyCodeLine{roscore}
+\end{DoxyCode}
+
+
+Then we start the parameter bridge which will watch the specified topics.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\# Shell B:}
+\DoxyCodeLine{. \string~/bridge\_ws/install/setup.bash}
+\DoxyCodeLine{rosrun ros\_ign\_bridge parameter\_bridge /chatter@std\_msgs/String@ignition.msgs.StringMsg}
+\end{DoxyCode}
+
+
+Now we start the R\+OS listener.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\# Shell C:}
+\DoxyCodeLine{. /opt/ros/noetic/setup.bash}
+\DoxyCodeLine{rostopic echo /chatter}
+\end{DoxyCode}
+
+
+Now we start the Ignition Transport talker.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\# Shell D:}
+\DoxyCodeLine{ign topic pub -\/t /chatter -\/m ignition.msgs.StringMsg -\/p 'data:"Hello"'}
+\end{DoxyCode}
+\hypertarget{md_catkin_ws_src_utilities_ros_ign_ros_ign_bridge_README_autotoc_md105}{}\doxysection{Example 1b\+: R\+O\+S talker and Ignition Transport listener}\label{md_catkin_ws_src_utilities_ros_ign_ros_ign_bridge_README_autotoc_md105}
+First we start a R\+OS {\ttfamily roscore}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\# Shell A:}
+\DoxyCodeLine{. /opt/ros/noetic/setup.bash}
+\DoxyCodeLine{roscore}
+\end{DoxyCode}
+
+
+Then we start the parameter bridge which will watch the specified topics.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\# Shell B:}
+\DoxyCodeLine{. \string~/bridge\_ws/install/setup.bash}
+\DoxyCodeLine{rosrun ros\_ign\_bridge parameter\_bridge /chatter@std\_msgs/String@ignition.msgs.StringMsg}
+\end{DoxyCode}
+
+
+Now we start the Ignition Transport listener.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\# Shell C:}
+\DoxyCodeLine{ign topic -\/e -\/t /chatter}
+\end{DoxyCode}
+
+
+Now we start the R\+OS talker.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\# Shell D:}
+\DoxyCodeLine{. /opt/ros/noetic/setup.bash}
+\DoxyCodeLine{rostopic pub /chatter std\_msgs/String "data: 'Hi'" -\/-\/once}
+\end{DoxyCode}
+\hypertarget{md_catkin_ws_src_utilities_ros_ign_ros_ign_bridge_README_autotoc_md106}{}\doxysection{Example 2\+: Run the bridge and exchange images}\label{md_catkin_ws_src_utilities_ros_ign_ros_ign_bridge_README_autotoc_md106}
+In this example, we\textquotesingle{}re going to generate Ignition Transport images using Gazebo, that will be converted into R\+OS images, and visualized with {\ttfamily rqt\+\_\+viewer}.
+
+First we start a R\+OS {\ttfamily roscore}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\# Shell A:}
+\DoxyCodeLine{. /opt/ros/noetic/setup.bash}
+\DoxyCodeLine{roscore}
+\end{DoxyCode}
+
+
+Then we start Gazebo.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\# Shell B:}
+\DoxyCodeLine{gazebo}
+\end{DoxyCode}
+
+
+Once Gazebo is running, click on the {\ttfamily Insert} tab, and then, insert a {\ttfamily Camera} object into the scene. Now, let\textquotesingle{}s see the topic where the camera images are published.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\# Shell C:}
+\DoxyCodeLine{ign topic -\/l | grep image}
+\DoxyCodeLine{/default/camera/link/camera/image}
+\end{DoxyCode}
+
+
+Then we start the parameter bridge with the previous topic.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\# Shell D:}
+\DoxyCodeLine{. \string~/bridge\_ws/install/setup.bash}
+\DoxyCodeLine{rosrun ros\_ign\_bridge parameter\_bridge /default/camera/link/camera/image@sensor\_msgs/Image@ignition.msgs.Image}
+\end{DoxyCode}
+
+
+Now we start the R\+OS G\+UI\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\# Shell E:}
+\DoxyCodeLine{. /opt/ros/noetic/setup.bash}
+\DoxyCodeLine{rqt\_image\_view /default/camera/link/camera/image}
+\end{DoxyCode}
+
+
+You should see the current images in {\ttfamily rqt\+\_\+image\+\_\+view} which are coming from Gazebo (published as Ignition Msgs over Ignition Transport).
+
+The screenshot shows all the shell windows and their expected content (it was taken using R\+OS Kinetic)\+:
+
+ 

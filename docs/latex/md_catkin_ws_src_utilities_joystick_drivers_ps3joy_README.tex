@@ -1,0 +1,98 @@
+This package provides a driver for the P\+S3 (S\+I\+X\+A\+X\+IS or D\+U\+A\+L\+S\+H\+O\+C\+K3) bluetooth joystick.
+
+This driver provides a more reliable connection, and provides access to the joystick\textquotesingle{}s accelerometers and gyroscope. Linux\textquotesingle{}s native support for the P\+S3 joystick does lacks this functionality.
+
+Additional documentation\+:
+
+
+\begin{DoxyItemize}
+\item Troubleshooting
+\item Testing Instructions
+\item Bluetooth Device Compatibility
+\end{DoxyItemize}\hypertarget{md_catkin_ws_src_utilities_joystick_drivers_ps3joy_README_autotoc_md29}{}\doxysection{Dependencies}\label{md_catkin_ws_src_utilities_joystick_drivers_ps3joy_README_autotoc_md29}
+
+\begin{DoxyItemize}
+\item joystick
+\item libusb-\/dev
+\item bluez-\/5.\+37
+\end{DoxyItemize}\hypertarget{md_catkin_ws_src_utilities_joystick_drivers_ps3joy_README_autotoc_md30}{}\doxysection{Pairing instructions}\label{md_catkin_ws_src_utilities_joystick_drivers_ps3joy_README_autotoc_md30}
+
+\begin{DoxyEnumerate}
+\item If you can connect the joystick and the bluetooth dongle into the same computer connect the joystick to the computer using a U\+SB cable.
+\item Load the bluetooth dongle\textquotesingle{}s M\+AC address into the ps3 joystick using\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{sudo bash}
+\DoxyCodeLine{rosrun ps3joy sixpair}
+\end{DoxyCode}
+
+
+If you cannot connect the joystick to the same computer as the dongle, find out the bluetooth dongle\textquotesingle{}s M\+AC address by running (on the computer that has the bluetooth dongle)\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{hciconfig}
+\end{DoxyCode}
+
+
+If this does not work, you may need to do 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{sudo hciconfig hci0 up}
+\end{DoxyCode}
+
+
+and retry 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{hciconfig}
+\end{DoxyCode}
+
+\item Plug the P\+S3 joystick into some other computer using a U\+SB cable.
+\item Replace the joystick\textquotesingle{}s mac address in the following command\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{sudo rosrun ps3joy sixpair 01:23:45:67:89:ab}
+\end{DoxyCode}
+
+\end{DoxyEnumerate}\hypertarget{md_catkin_ws_src_utilities_joystick_drivers_ps3joy_README_autotoc_md31}{}\doxysection{Starting the P\+S3 joystick}\label{md_catkin_ws_src_utilities_joystick_drivers_ps3joy_README_autotoc_md31}
+
+\begin{DoxyEnumerate}
+\item Run the following command 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{rosrun ps3joy ps3joy.py}
+\end{DoxyCode}
+
+\item Open a new terminal and reboot bluez and run joy with\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{sudo systemctl restart bluetooth }
+\DoxyCodeLine{rosrun joy joy\_node  }
+\end{DoxyCode}
+
+\item Open a new terminal and echo the joy topic 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{rostopic echo joy}
+\end{DoxyCode}
+
+\item This should make a joystick appear at /dev/input/js?
+\item You can check that it is working with jstest /dev/input/js? (replace ? with the name of your joystick)
+\end{DoxyEnumerate}\hypertarget{md_catkin_ws_src_utilities_joystick_drivers_ps3joy_README_autotoc_md32}{}\doxysection{Command-\/line Options}\label{md_catkin_ws_src_utilities_joystick_drivers_ps3joy_README_autotoc_md32}
+\hypertarget{md_catkin_ws_src_utilities_joystick_drivers_ps3joy_README_autotoc_md33}{}\doxysubsection{ps3joy.\+py}\label{md_catkin_ws_src_utilities_joystick_drivers_ps3joy_README_autotoc_md33}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{usage: ps3joy.py [-\/-\/inactivity-\/timeout=<n>] [-\/-\/no-\/disable-\/bluetoothd] [-\/-\/redirect-\/output] [-\/-\/continuous-\/output]=<f>}
+\DoxyCodeLine{<n>: inactivity timeout in seconds (saves battery life).}
+\DoxyCodeLine{<f>: file name to redirect output to.}
+\end{DoxyCode}
+
+
+{\ttfamily -\/-\/inactivity-\/timeout} This may be useful for saving battery life and reducing contention on the 2.\+4 G\+Hz network.\+Your P\+S3 controller will shutdown after a given amount of time of inactivity. ~\newline
+
+
+{\ttfamily -\/-\/no-\/disable-\/bluetoothd} ps3joy.\+py will not take down bluetoothd. Bluetoothd must be configured to not handle input device, otherwise you will receive an error saying \char`\"{}\+Error binding to socket\char`\"{}.
+
+{\ttfamily -\/-\/redirect-\/output} This can be helpful when ps3joy.\+py is running in the backgound. This will allow the standard output and error messages to redirected into a file. ~\newline
+
+
+{\ttfamily -\/-\/continuous-\/output} This will output continuous motion streams and as a result this will no longer leave extended periods of no messages on the /joy topic. ( This only works for ps3joy.\+py. Entering this parameter in ps3joy\+\_\+node.\+py will result in the parameter being ignored.)\hypertarget{md_catkin_ws_src_utilities_joystick_drivers_ps3joy_README_autotoc_md34}{}\doxysection{Limitations}\label{md_catkin_ws_src_utilities_joystick_drivers_ps3joy_README_autotoc_md34}
+This driver will not coexist with any other bluetooth device. In future releases, we plan to allow first non-\/\+H\+ID and later any bluetooth device to coexist with this driver. The following devices do coexist\+:
+
+
+\begin{DoxyItemize}
+\item Non-\/\+H\+ID devices using a userland driver, such as one written using pybluez.
+\item Keyboards or mice running in H\+ID proxy mode, which appear to the kernel as U\+SB devices. 
+\end{DoxyItemize}

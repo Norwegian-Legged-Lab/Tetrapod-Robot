@@ -1,0 +1,114 @@
+This package contains demos showing how to use Ignition Gazebo with R\+OS.\hypertarget{md_catkin_ws_src_utilities_ros_ign_ros_ign_gazebo_demos_README_autotoc_md112}{}\doxysection{Air pressure}\label{md_catkin_ws_src_utilities_ros_ign_ros_ign_gazebo_demos_README_autotoc_md112}
+Publishes fluid pressure readings. \begin{DoxyVerb}roslaunch ros_ign_gazebo_demos air_pressure.launch
+\end{DoxyVerb}
+
+
+\hypertarget{md_catkin_ws_src_utilities_ros_ign_ros_ign_gazebo_demos_README_autotoc_md113}{}\doxysection{Camera}\label{md_catkin_ws_src_utilities_ros_ign_ros_ign_gazebo_demos_README_autotoc_md113}
+Publishes R\+GB camera image and info.
+
+Images can be exposed to R\+OS through {\ttfamily ros\+\_\+ign\+\_\+bridge} or {\ttfamily ros\+\_\+ign\+\_\+image}.
+
+Using the image bridge (unidirectional, uses \href{http://wiki.ros.org/image_transport}{\texttt{ image\+\_\+transport}})\+: \begin{DoxyVerb}roslaunch ros_ign_gazebo_demos image_bridge.launch
+\end{DoxyVerb}
+
+
+Using the regular bridge\+: \begin{DoxyVerb}roslaunch ros_ign_gazebo_demos camera.launch
+\end{DoxyVerb}
+
+
+\hypertarget{md_catkin_ws_src_utilities_ros_ign_ros_ign_gazebo_demos_README_autotoc_md114}{}\doxysection{Diff drive}\label{md_catkin_ws_src_utilities_ros_ign_ros_ign_gazebo_demos_README_autotoc_md114}
+Send commands to a differential drive vehicle and listen to its odometry. \begin{DoxyVerb}roslaunch ros_ign_gazebo_demos diff_drive.launch
+\end{DoxyVerb}
+
+
+Then send a command \begin{DoxyVerb}rostopic pub /model/vehicle_blue/cmd_vel geometry_msgs/Twist "{linear: {x: 5.0}, angular: {z: 0.5}}"
+\end{DoxyVerb}
+
+
+\hypertarget{md_catkin_ws_src_utilities_ros_ign_ros_ign_gazebo_demos_README_autotoc_md115}{}\doxysection{Depth camera}\label{md_catkin_ws_src_utilities_ros_ign_ros_ign_gazebo_demos_README_autotoc_md115}
+Depth camera data can be obtained as\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily sensor\+\_\+msgs/\+Image}, through {\ttfamily ros\+\_\+ign\+\_\+bridge} or {\ttfamily ros\+\_\+ign\+\_\+image}
+\item {\ttfamily sensor\+\_\+msgs/\+Point\+Cloud2}, through {\ttfamily ros\+\_\+ign\+\_\+point\+\_\+cloud} (See issue \#40)
+\end{DoxyItemize}
+
+Using the image bridge (unidirectional, uses \href{http://wiki.ros.org/image_transport}{\texttt{ image\+\_\+transport}})\+: \begin{DoxyVerb}roslaunch ros_ign_gazebo_demos image_bridge.launch
+\end{DoxyVerb}
+
+
+Using Ignition Gazebo plugin\+: \begin{DoxyVerb}roslaunch ros_ign_gazebo_demos depth_camera.launch
+\end{DoxyVerb}
+
+
+\hypertarget{md_catkin_ws_src_utilities_ros_ign_ros_ign_gazebo_demos_README_autotoc_md116}{}\doxysection{G\+P\+U lidar}\label{md_catkin_ws_src_utilities_ros_ign_ros_ign_gazebo_demos_README_autotoc_md116}
+G\+PU lidar data can be obtained as\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily sensor\+\_\+msgs/\+Laser\+Scan}, through the {\ttfamily ros\+\_\+ign\+\_\+bridge}
+\item {\ttfamily sensor\+\_\+msgs/\+Point\+Cloud2}, through the {\ttfamily ros\+\_\+ign\+\_\+bridge} or {\ttfamily ros\+\_\+ign\+\_\+point\+\_\+cloud} (See issue \#40)
+\end{DoxyItemize}
+
+Using the bridge\+: \begin{DoxyVerb}roslaunch ros_ign_gazebo_demos gpu_lidar_bridge.launch
+\end{DoxyVerb}
+
+
+Using Ignition Gazebo plugin\+: \begin{DoxyVerb}roslaunch ros_ign_gazebo_demos gpu_lidar.launch
+\end{DoxyVerb}
+
+
+\hypertarget{md_catkin_ws_src_utilities_ros_ign_ros_ign_gazebo_demos_README_autotoc_md117}{}\doxysection{I\+MU}\label{md_catkin_ws_src_utilities_ros_ign_ros_ign_gazebo_demos_README_autotoc_md117}
+Publishes I\+MU readings. \begin{DoxyVerb}roslaunch ros_ign_gazebo_demos imu.launch
+\end{DoxyVerb}
+
+
+\hypertarget{md_catkin_ws_src_utilities_ros_ign_ros_ign_gazebo_demos_README_autotoc_md118}{}\doxysection{Magnetometer}\label{md_catkin_ws_src_utilities_ros_ign_ros_ign_gazebo_demos_README_autotoc_md118}
+Publishes magnetic field readings. \begin{DoxyVerb}roslaunch ros_ign_gazebo_demos magnetometer.launch
+\end{DoxyVerb}
+
+
+\hypertarget{md_catkin_ws_src_utilities_ros_ign_ros_ign_gazebo_demos_README_autotoc_md119}{}\doxysection{R\+G\+B\+D camera}\label{md_catkin_ws_src_utilities_ros_ign_ros_ign_gazebo_demos_README_autotoc_md119}
+R\+G\+BD camera data can be obtained as\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily sensor\+\_\+msgs/\+Image}, through {\ttfamily ros\+\_\+ign\+\_\+bridge} or {\ttfamily ros\+\_\+ign\+\_\+image}
+\item {\ttfamily sensor\+\_\+msgs/\+Point\+Cloud2}, through {\ttfamily ros\+\_\+ign\+\_\+bridge} or {\ttfamily ros\+\_\+ign\+\_\+point\+\_\+cloud} (See issue \#40)
+\end{DoxyItemize}
+
+Using the image bridge (unidirectional, uses \href{http://wiki.ros.org/image_transport}{\texttt{ image\+\_\+transport}})\+: \begin{DoxyVerb}roslaunch ros_ign_gazebo_demos image_bridge.launch
+\end{DoxyVerb}
+
+
+Using the regular bridge\+: \begin{DoxyVerb}roslaunch ros_ign_gazebo_demos rgbd_camera_bridge.launch
+\end{DoxyVerb}
+
+
+Using Ignition Gazebo plugin\+: \begin{DoxyVerb}roslaunch ros_ign_gazebo_demos rgbd_camera.launch
+\end{DoxyVerb}
+
+
+\hypertarget{md_catkin_ws_src_utilities_ros_ign_ros_ign_gazebo_demos_README_autotoc_md120}{}\doxysection{Battery}\label{md_catkin_ws_src_utilities_ros_ign_ros_ign_gazebo_demos_README_autotoc_md120}
+Get the current state of a battery. \begin{DoxyVerb}roslaunch ros_ign_gazebo_demos battery.launch
+\end{DoxyVerb}
+
+
+Then send a command so the vehicle moves and drains the battery \begin{DoxyVerb}rostopic pub /model/vehicle_blue/cmd_vel geometry_msgs/Twist "{linear: {x: 5.0}, angular: {z: 0.5}}"
+\end{DoxyVerb}
+
+
+\hypertarget{md_catkin_ws_src_utilities_ros_ign_ros_ign_gazebo_demos_README_autotoc_md121}{}\doxysection{Create entity}\label{md_catkin_ws_src_utilities_ros_ign_ros_ign_gazebo_demos_README_autotoc_md121}
+Launch simulation and spawn entities\+:
+
+
+\begin{DoxyItemize}
+\item Sphere from U\+R\+DF loaded into R\+OS param
+\item Box from S\+DF file on Ignition Fuel
+\item Cylinder from S\+DF file
+\end{DoxyItemize}
+
+{\ttfamily roslaunch ros\+\_\+ign\+\_\+gazebo\+\_\+demos create.\+launch}
+
+ 

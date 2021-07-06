@@ -1,0 +1,165 @@
+\hypertarget{classkindr_1_1UnitQuaternionBase}{}\doxysection{kindr\+::Unit\+Quaternion\+Base$<$ Derived\+\_\+ $>$ Class Template Reference}
+\label{classkindr_1_1UnitQuaternionBase}\index{kindr::UnitQuaternionBase$<$ Derived\_ $>$@{kindr::UnitQuaternionBase$<$ Derived\_ $>$}}
+
+
+Base class that defines the interface of a unit quaternion This class defines a generic interface for a unit quaternion.  
+
+
+
+
+{\ttfamily \#include $<$Quaternion\+Base.\+hpp$>$}
+
+
+
+Inheritance diagram for kindr\+::Unit\+Quaternion\+Base$<$ Derived\+\_\+ $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{classkindr_1_1UnitQuaternionBase__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for kindr\+::Unit\+Quaternion\+Base$<$ Derived\+\_\+ $>$\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{classkindr_1_1UnitQuaternionBase__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternionBase_a88c889df305e348c87d190bd6aca6640}\label{classkindr_1_1UnitQuaternionBase_a88c889df305e348c87d190bd6aca6640}} 
+typedef \mbox{\hyperlink{classkindr_1_1QuaternionBase}{Quaternion\+Base}}$<$ Derived\+\_\+ $>$ {\bfseries Base}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Derived\+\_\+ \mbox{\hyperlink{classkindr_1_1UnitQuaternionBase_a45b126a02baf74d6dff9db75955fb722}{inverted}} () const
+\begin{DoxyCompactList}\small\item\em gets the inverse of the unit quaternion using the conjugate \end{DoxyCompactList}\item 
+Derived\+\_\+ \& \mbox{\hyperlink{classkindr_1_1UnitQuaternionBase_ad8e7c6a56d7615c2c45858942e851e7f}{invert}} ()
+\begin{DoxyCompactList}\small\item\em inverts the unit quaternion using the conjugate \end{DoxyCompactList}\item 
+Derived\+\_\+ \mbox{\hyperlink{classkindr_1_1UnitQuaternionBase_a7570b288d8ddef2cbcb4eb745ec3210a}{conjugated}} () const
+\begin{DoxyCompactList}\small\item\em gets the conjugate of the quaternion \end{DoxyCompactList}\item 
+Derived\+\_\+ \& \mbox{\hyperlink{classkindr_1_1UnitQuaternionBase_a631202eb3f45f9197d225ed3342a088d}{conjugate}} ()
+\begin{DoxyCompactList}\small\item\em conjugates the unit quaternion \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Other\+Derived\+\_\+ $>$ }\\Derived\+\_\+ \mbox{\hyperlink{classkindr_1_1UnitQuaternionBase_a8e71b7103c7b90fbfe979e4d4b40464d}{operator$\ast$}} (const \mbox{\hyperlink{classkindr_1_1UnitQuaternionBase}{Unit\+Quaternion\+Base}}$<$ Other\+Derived\+\_\+ $>$ \&other) const
+\begin{DoxyCompactList}\small\item\em multiplies the unit quaternion with another unit quaternion \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Other\+Derived\+\_\+ $>$ }\\Other\+Derived\+\_\+ \mbox{\hyperlink{classkindr_1_1UnitQuaternionBase_ab262da59678fe1a5db90eef72a69f2c8}{operator$\ast$}} (const \mbox{\hyperlink{classkindr_1_1QuaternionBase}{Quaternion\+Base}}$<$ Other\+Derived\+\_\+ $>$ \&other) const
+\begin{DoxyCompactList}\small\item\em multiplies the unit quaternion with a quaternion \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Derived\+\_\+$>$\newline
+class kindr\+::\+Unit\+Quaternion\+Base$<$ Derived\+\_\+ $>$}
+
+Base class that defines the interface of a unit quaternion This class defines a generic interface for a unit quaternion. 
+
+\begin{DoxySeeAlso}{See also}
+rm\+::rotations\+::\+Rotation\+Quaternion\+Base for \mbox{\hyperlink{group__quaternions}{Quaternions}} that represent a rotation 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternionBase_a631202eb3f45f9197d225ed3342a088d}\label{classkindr_1_1UnitQuaternionBase_a631202eb3f45f9197d225ed3342a088d}} 
+\index{kindr::UnitQuaternionBase$<$ Derived\_ $>$@{kindr::UnitQuaternionBase$<$ Derived\_ $>$}!conjugate@{conjugate}}
+\index{conjugate@{conjugate}!kindr::UnitQuaternionBase$<$ Derived\_ $>$@{kindr::UnitQuaternionBase$<$ Derived\_ $>$}}
+\doxysubsubsection{\texorpdfstring{conjugate()}{conjugate()}}
+{\footnotesize\ttfamily template$<$typename Derived\+\_\+ $>$ \\
+Derived\+\_\+\& \mbox{\hyperlink{classkindr_1_1UnitQuaternionBase}{kindr\+::\+Unit\+Quaternion\+Base}}$<$ Derived\+\_\+ $>$\+::conjugate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+conjugates the unit quaternion 
+
+\begin{DoxyReturn}{Returns}
+the conjugate of the unit quaternion 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternionBase_a7570b288d8ddef2cbcb4eb745ec3210a}\label{classkindr_1_1UnitQuaternionBase_a7570b288d8ddef2cbcb4eb745ec3210a}} 
+\index{kindr::UnitQuaternionBase$<$ Derived\_ $>$@{kindr::UnitQuaternionBase$<$ Derived\_ $>$}!conjugated@{conjugated}}
+\index{conjugated@{conjugated}!kindr::UnitQuaternionBase$<$ Derived\_ $>$@{kindr::UnitQuaternionBase$<$ Derived\_ $>$}}
+\doxysubsubsection{\texorpdfstring{conjugated()}{conjugated()}}
+{\footnotesize\ttfamily template$<$typename Derived\+\_\+ $>$ \\
+Derived\+\_\+ \mbox{\hyperlink{classkindr_1_1UnitQuaternionBase}{kindr\+::\+Unit\+Quaternion\+Base}}$<$ Derived\+\_\+ $>$\+::conjugated (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+gets the conjugate of the quaternion 
+
+\begin{DoxyReturn}{Returns}
+the conjugate of the quaternion 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternionBase_ad8e7c6a56d7615c2c45858942e851e7f}\label{classkindr_1_1UnitQuaternionBase_ad8e7c6a56d7615c2c45858942e851e7f}} 
+\index{kindr::UnitQuaternionBase$<$ Derived\_ $>$@{kindr::UnitQuaternionBase$<$ Derived\_ $>$}!invert@{invert}}
+\index{invert@{invert}!kindr::UnitQuaternionBase$<$ Derived\_ $>$@{kindr::UnitQuaternionBase$<$ Derived\_ $>$}}
+\doxysubsubsection{\texorpdfstring{invert()}{invert()}}
+{\footnotesize\ttfamily template$<$typename Derived\+\_\+ $>$ \\
+Derived\+\_\+\& \mbox{\hyperlink{classkindr_1_1UnitQuaternionBase}{kindr\+::\+Unit\+Quaternion\+Base}}$<$ Derived\+\_\+ $>$\+::invert (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+inverts the unit quaternion using the conjugate 
+
+\begin{DoxyReturn}{Returns}
+the inverted unit quaternion 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternionBase_a45b126a02baf74d6dff9db75955fb722}\label{classkindr_1_1UnitQuaternionBase_a45b126a02baf74d6dff9db75955fb722}} 
+\index{kindr::UnitQuaternionBase$<$ Derived\_ $>$@{kindr::UnitQuaternionBase$<$ Derived\_ $>$}!inverted@{inverted}}
+\index{inverted@{inverted}!kindr::UnitQuaternionBase$<$ Derived\_ $>$@{kindr::UnitQuaternionBase$<$ Derived\_ $>$}}
+\doxysubsubsection{\texorpdfstring{inverted()}{inverted()}}
+{\footnotesize\ttfamily template$<$typename Derived\+\_\+ $>$ \\
+Derived\+\_\+ \mbox{\hyperlink{classkindr_1_1UnitQuaternionBase}{kindr\+::\+Unit\+Quaternion\+Base}}$<$ Derived\+\_\+ $>$\+::inverted (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+gets the inverse of the unit quaternion using the conjugate 
+
+\begin{DoxyReturn}{Returns}
+the inverse of the unit quaternion 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternionBase_ab262da59678fe1a5db90eef72a69f2c8}\label{classkindr_1_1UnitQuaternionBase_ab262da59678fe1a5db90eef72a69f2c8}} 
+\index{kindr::UnitQuaternionBase$<$ Derived\_ $>$@{kindr::UnitQuaternionBase$<$ Derived\_ $>$}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!kindr::UnitQuaternionBase$<$ Derived\_ $>$@{kindr::UnitQuaternionBase$<$ Derived\_ $>$}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Derived\+\_\+ $>$ \\
+template$<$typename Other\+Derived\+\_\+ $>$ \\
+Other\+Derived\+\_\+ \mbox{\hyperlink{classkindr_1_1UnitQuaternionBase}{kindr\+::\+Unit\+Quaternion\+Base}}$<$ Derived\+\_\+ $>$\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classkindr_1_1QuaternionBase}{Quaternion\+Base}}$<$ Other\+Derived\+\_\+ $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+multiplies the unit quaternion with a quaternion 
+
+\begin{DoxyReturn}{Returns}
+the product of two quaternions 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em other} & other quaternion \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classkindr_1_1UnitQuaternionBase_a8e71b7103c7b90fbfe979e4d4b40464d}\label{classkindr_1_1UnitQuaternionBase_a8e71b7103c7b90fbfe979e4d4b40464d}} 
+\index{kindr::UnitQuaternionBase$<$ Derived\_ $>$@{kindr::UnitQuaternionBase$<$ Derived\_ $>$}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!kindr::UnitQuaternionBase$<$ Derived\_ $>$@{kindr::UnitQuaternionBase$<$ Derived\_ $>$}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Derived\+\_\+ $>$ \\
+template$<$typename Other\+Derived\+\_\+ $>$ \\
+Derived\+\_\+ \mbox{\hyperlink{classkindr_1_1UnitQuaternionBase}{kindr\+::\+Unit\+Quaternion\+Base}}$<$ Derived\+\_\+ $>$\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classkindr_1_1UnitQuaternionBase}{Unit\+Quaternion\+Base}}$<$ Other\+Derived\+\_\+ $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+multiplies the unit quaternion with another unit quaternion 
+
+\begin{DoxyReturn}{Returns}
+the product of two unit quaternions 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em other} & other unit quaternion \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+catkin\+\_\+ws/src/utilities/kindr/include/kindr/quaternions/Quaternion\+Base.\+hpp\end{DoxyCompactItemize}

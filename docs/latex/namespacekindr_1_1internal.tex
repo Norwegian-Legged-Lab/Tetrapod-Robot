@@ -1,0 +1,258 @@
+\hypertarget{namespacekindr_1_1internal}{}\doxysection{kindr\+::internal Namespace Reference}
+\label{namespacekindr_1_1internal}\index{kindr::internal@{kindr::internal}}
+
+
+Generic pose interface.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1BoxOperationTraits}{Box\+Operation\+Traits}}
+\begin{DoxyCompactList}\small\item\em Traits for box operations. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1BoxOperationTraits_3_01RotationBase_3_01Left___01_4_00_01RotationBase_3_01Right___01_4_01_4}{Box\+Operation\+Traits$<$ Rotation\+Base$<$ Left\+\_\+ $>$, Rotation\+Base$<$ Right\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ComparisonTraits}{Comparison\+Traits}}
+\begin{DoxyCompactList}\small\item\em Comparison traits. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ComparisonTraits_3_01PoseBase_3_01Left___01_4_00_01PoseBase_3_01Right___01_4_01_4}{Comparison\+Traits$<$ Pose\+Base$<$ Left\+\_\+ $>$, Pose\+Base$<$ Right\+\_\+ $>$ $>$}}
+\begin{DoxyCompactList}\small\item\em Multiplication of two rotations with the same parameterization / template$<$typename Prim\+Type\+\_\+, typename Position\+\_\+, typename Rotation\+\_\+$>$ class \mbox{\hyperlink{classkindr_1_1internal_1_1MultiplicationTraits}{Multiplication\+Traits}}$<$Homogeneous\+Transformation$<$\+Prim\+Type\+\_\+, Position\+\_\+, Rotation\+\_\+$>$, Homogeneous\+Transformation$<$\+Prim\+Type\+\_\+, Position\+\_\+, Rotation\+\_\+$>$ $>$ \{ public\+: //! Default multiplication of rotations converts the representations of the rotations to rotation quaternions and multiplies them inline static Homogeneous\+Transformation$<$\+Prim\+Type\+\_\+, Position\+\_\+, Rotation\+\_\+$>$ mult(const Homogeneous\+Transformation$<$\+Prim\+Type\+\_\+, Position\+\_\+, Rotation\+\_\+$>$\& lhs, const Homogeneous\+Transformation$<$\+Prim\+Type\+\_\+, Position\+\_\+, Rotation\+\_\+$>$\& rhs) \{ const typename Homogeneous\+Transformation$<$\+Prim\+Type\+\_\+, Position\+\_\+, Rotation\+\_\+$>$\+::\+Position position = lhs.\+get\+Position()+lhs.\+get\+Rotation().rotate(rhs.\+get\+Position()); const typename Homogeneous\+Transformation$<$\+Prim\+Type\+\_\+, Position\+\_\+, Rotation\+\_\+$>$\+::\+Rotation rotation = lhs.\+get\+Rotation()$\ast$rhs.get\+Rotation(); return Homogeneous\+Transformation$<$\+Prim\+Type\+\_\+, Position\+\_\+, Rotation\+\_\+$>$(position, rotation); \} \};. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ComparisonTraits_3_01RotationBase_3_01AngleAxis_3_01PrimType___01_4_014aded0c44cf03d641711efaa17ea784f}{Comparison\+Traits$<$ Rotation\+Base$<$ Angle\+Axis$<$ Prim\+Type\+\_\+ $>$ $>$, Rotation\+Base$<$ Angle\+Axis$<$ Prim\+Type\+\_\+ $>$ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ComparisonTraits_3_01RotationBase_3_01Left___01_4_00_01RotationBase_3_01Right___01_4_01_4}{Comparison\+Traits$<$ Rotation\+Base$<$ Left\+\_\+ $>$, Rotation\+Base$<$ Right\+\_\+ $>$ $>$}}
+\begin{DoxyCompactList}\small\item\em Compares two rotations. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ComparisonTraits_3_01RotationBase_3_01RotationQuaternion_3_01PrimType_370822e39218893a1fff6b756ee6556b}{Comparison\+Traits$<$ Rotation\+Base$<$ Rotation\+Quaternion$<$ Prim\+Type\+\_\+ $>$ $>$, Rotation\+Base$<$ Rotation\+Quaternion$<$ Prim\+Type\+\_\+ $>$ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ConversionTraits}{Conversion\+Traits}}
+\begin{DoxyCompactList}\small\item\em Conversion traits for converting rotations into each other. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ConversionTraits_3_01AngleAxis_3_01DestPrimType___01_4_00_01AngleAxis_3_01SourcePrimType___01_4_01_4}{Conversion\+Traits$<$ Angle\+Axis$<$ Dest\+Prim\+Type\+\_\+ $>$, Angle\+Axis$<$ Source\+Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ConversionTraits_3_01AngleAxis_3_01DestPrimType___01_4_00_01EulerAngle327c0e76ce1de08af89c759cce8f6f73}{Conversion\+Traits$<$ Angle\+Axis$<$ Dest\+Prim\+Type\+\_\+ $>$, Euler\+Angles\+Xyz$<$ Source\+Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ConversionTraits_3_01AngleAxis_3_01DestPrimType___01_4_00_01EulerAngle55000daa1f08d6dc91b6555dd1073b3b}{Conversion\+Traits$<$ Angle\+Axis$<$ Dest\+Prim\+Type\+\_\+ $>$, Euler\+Angles\+Zyx$<$ Source\+Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ConversionTraits_3_01AngleAxis_3_01DestPrimType___01_4_00_01RotationMac5cfb65fb87703273d4e5577b6f211d4}{Conversion\+Traits$<$ Angle\+Axis$<$ Dest\+Prim\+Type\+\_\+ $>$, Rotation\+Matrix$<$ Source\+Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ConversionTraits_3_01AngleAxis_3_01DestPrimType___01_4_00_01RotationQu3900b39b0db8b4bd0d3cf1314b94e3ec}{Conversion\+Traits$<$ Angle\+Axis$<$ Dest\+Prim\+Type\+\_\+ $>$, Rotation\+Quaternion$<$ Source\+Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ConversionTraits_3_01AngleAxis_3_01DestPrimType___01_4_00_01RotationVe38f1e345db0302390d5851cbc086176b}{Conversion\+Traits$<$ Angle\+Axis$<$ Dest\+Prim\+Type\+\_\+ $>$, Rotation\+Vector$<$ Source\+Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ConversionTraits_3_01EulerAnglesXyz_3_01DestPrimType___01_4_00_01Angleb1156815f1be7a3e731ec5125b283c43}{Conversion\+Traits$<$ Euler\+Angles\+Xyz$<$ Dest\+Prim\+Type\+\_\+ $>$, Angle\+Axis$<$ Source\+Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ConversionTraits_3_01EulerAnglesXyz_3_01DestPrimType___01_4_00_01Euler09dc50c951598a7acb52032d39a15181}{Conversion\+Traits$<$ Euler\+Angles\+Xyz$<$ Dest\+Prim\+Type\+\_\+ $>$, Euler\+Angles\+Xyz$<$ Source\+Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ConversionTraits_3_01EulerAnglesXyz_3_01DestPrimType___01_4_00_01Eulera2d706502ed482c918fbd84e642f46b3}{Conversion\+Traits$<$ Euler\+Angles\+Xyz$<$ Dest\+Prim\+Type\+\_\+ $>$, Euler\+Angles\+Zyx$<$ Source\+Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ConversionTraits_3_01EulerAnglesXyz_3_01DestPrimType___01_4_00_01Rotatcb4d4f7579f184ae81f1484606aaf1b0}{Conversion\+Traits$<$ Euler\+Angles\+Xyz$<$ Dest\+Prim\+Type\+\_\+ $>$, Rotation\+Matrix$<$ Source\+Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ConversionTraits_3_01EulerAnglesXyz_3_01DestPrimType___01_4_00_01Rotat5e6364ce45e26d41fa155bd37cae92c5}{Conversion\+Traits$<$ Euler\+Angles\+Xyz$<$ Dest\+Prim\+Type\+\_\+ $>$, Rotation\+Quaternion$<$ Source\+Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ConversionTraits_3_01EulerAnglesXyz_3_01DestPrimType___01_4_00_01Rotatd35bba17460a80ff99f893122fb4ecde}{Conversion\+Traits$<$ Euler\+Angles\+Xyz$<$ Dest\+Prim\+Type\+\_\+ $>$, Rotation\+Vector$<$ Source\+Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ConversionTraits_3_01EulerAnglesZyx_3_01DestPrimType___01_4_00_01Anglec897c22237a30b354a407c53a1426c04}{Conversion\+Traits$<$ Euler\+Angles\+Zyx$<$ Dest\+Prim\+Type\+\_\+ $>$, Angle\+Axis$<$ Source\+Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ConversionTraits_3_01EulerAnglesZyx_3_01DestPrimType___01_4_00_01Eulera5b79c2af7b9213ef95b93538c7373ca}{Conversion\+Traits$<$ Euler\+Angles\+Zyx$<$ Dest\+Prim\+Type\+\_\+ $>$, Euler\+Angles\+Xyz$<$ Source\+Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ConversionTraits_3_01EulerAnglesZyx_3_01DestPrimType___01_4_00_01Eulerd8a51742dc36da1f38021c4168cc4caa}{Conversion\+Traits$<$ Euler\+Angles\+Zyx$<$ Dest\+Prim\+Type\+\_\+ $>$, Euler\+Angles\+Zyx$<$ Source\+Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ConversionTraits_3_01EulerAnglesZyx_3_01DestPrimType___01_4_00_01Rotatb0efd2ad8a19e49e7e87fee96d12fcd2}{Conversion\+Traits$<$ Euler\+Angles\+Zyx$<$ Dest\+Prim\+Type\+\_\+ $>$, Rotation\+Matrix$<$ Source\+Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ConversionTraits_3_01EulerAnglesZyx_3_01DestPrimType___01_4_00_01Rotate3ce7cb4d491abc982c037059049c1dd}{Conversion\+Traits$<$ Euler\+Angles\+Zyx$<$ Dest\+Prim\+Type\+\_\+ $>$, Rotation\+Quaternion$<$ Source\+Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ConversionTraits_3_01EulerAnglesZyx_3_01DestPrimType___01_4_00_01Rotata3826f573d47020d98b8d44e3a7ab4bd}{Conversion\+Traits$<$ Euler\+Angles\+Zyx$<$ Dest\+Prim\+Type\+\_\+ $>$, Rotation\+Vector$<$ Source\+Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ConversionTraits_3_01RotationMatrix_3_01DestPrimType___01_4_00_01Angle59d13501b28f1cf0c3769c4cf8355ab8}{Conversion\+Traits$<$ Rotation\+Matrix$<$ Dest\+Prim\+Type\+\_\+ $>$, Angle\+Axis$<$ Source\+Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ConversionTraits_3_01RotationMatrix_3_01DestPrimType___01_4_00_01Euler4ba023d72c76b65d923b6bcaa28237ec}{Conversion\+Traits$<$ Rotation\+Matrix$<$ Dest\+Prim\+Type\+\_\+ $>$, Euler\+Angles\+Xyz$<$ Source\+Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ConversionTraits_3_01RotationMatrix_3_01DestPrimType___01_4_00_01Euler61b443c3654409de0e2e3d9f4f10ea12}{Conversion\+Traits$<$ Rotation\+Matrix$<$ Dest\+Prim\+Type\+\_\+ $>$, Euler\+Angles\+Zyx$<$ Source\+Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ConversionTraits_3_01RotationMatrix_3_01DestPrimType___01_4_00_01Rotat67189d1268e4cdc60774c97c346c4f77}{Conversion\+Traits$<$ Rotation\+Matrix$<$ Dest\+Prim\+Type\+\_\+ $>$, Rotation\+Matrix$<$ Source\+Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ConversionTraits_3_01RotationMatrix_3_01DestPrimType___01_4_00_01Rotat6bf21142aa9d2944d3b10adb8500f495}{Conversion\+Traits$<$ Rotation\+Matrix$<$ Dest\+Prim\+Type\+\_\+ $>$, Rotation\+Quaternion$<$ Source\+Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ConversionTraits_3_01RotationMatrix_3_01DestPrimType___01_4_00_01Rotatf189ea6b81a885eace3b75f280d5648d}{Conversion\+Traits$<$ Rotation\+Matrix$<$ Dest\+Prim\+Type\+\_\+ $>$, Rotation\+Vector$<$ Source\+Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ConversionTraits_3_01RotationQuaternion_3_01DestPrimType___01_4_00_01A968c79146c32fa984a6b6ab62c18d5ea}{Conversion\+Traits$<$ Rotation\+Quaternion$<$ Dest\+Prim\+Type\+\_\+ $>$, Angle\+Axis$<$ Source\+Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ConversionTraits_3_01RotationQuaternion_3_01DestPrimType___01_4_00_01Ec9f008d24bbacb1313b0ffde9e80d382}{Conversion\+Traits$<$ Rotation\+Quaternion$<$ Dest\+Prim\+Type\+\_\+ $>$, Euler\+Angles\+Xyz$<$ Source\+Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ConversionTraits_3_01RotationQuaternion_3_01DestPrimType___01_4_00_01E8646ec3bb12bcdf7962a1086a64fce94}{Conversion\+Traits$<$ Rotation\+Quaternion$<$ Dest\+Prim\+Type\+\_\+ $>$, Euler\+Angles\+Zyx$<$ Source\+Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ConversionTraits_3_01RotationQuaternion_3_01DestPrimType___01_4_00_01R39194b0aa1750db2365ea3a63bdad32e}{Conversion\+Traits$<$ Rotation\+Quaternion$<$ Dest\+Prim\+Type\+\_\+ $>$, Rotation\+Matrix$<$ Source\+Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ConversionTraits_3_01RotationQuaternion_3_01DestPrimType___01_4_00_01R15f013af3d4ae7ee25ec05b86f518166}{Conversion\+Traits$<$ Rotation\+Quaternion$<$ Dest\+Prim\+Type\+\_\+ $>$, Rotation\+Quaternion$<$ Source\+Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ConversionTraits_3_01RotationQuaternion_3_01DestPrimType___01_4_00_01Rd0cf5fb9f353946dad3127d3b64ece67}{Conversion\+Traits$<$ Rotation\+Quaternion$<$ Dest\+Prim\+Type\+\_\+ $>$, Rotation\+Vector$<$ Source\+Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ConversionTraits_3_01RotationVector_3_01DestPrimType___01_4_00_01Angle9754fac6d77adb1f945b7273886cf961}{Conversion\+Traits$<$ Rotation\+Vector$<$ Dest\+Prim\+Type\+\_\+ $>$, Angle\+Axis$<$ Source\+Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ConversionTraits_3_01RotationVector_3_01DestPrimType___01_4_00_01Rotat3a820c66e2db31dff1fa43bd49683ace}{Conversion\+Traits$<$ Rotation\+Vector$<$ Dest\+Prim\+Type\+\_\+ $>$, Rotation\+Matrix$<$ Source\+Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ConversionTraits_3_01RotationVector_3_01DestPrimType___01_4_00_01Rotateb8acc280e7286b22ad0783d5602b52e}{Conversion\+Traits$<$ Rotation\+Vector$<$ Dest\+Prim\+Type\+\_\+ $>$, Rotation\+Quaternion$<$ Source\+Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ConversionTraits_3_01RotationVector_3_01DestPrimType___01_4_00_01Rotatd6112b3a48cd528e3d02db22e193f794}{Conversion\+Traits$<$ Rotation\+Vector$<$ Dest\+Prim\+Type\+\_\+ $>$, Rotation\+Vector$<$ Source\+Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1ConversionTraits_3_01RotationVector_3_01DestPrimType___01_4_00_01SourceImplementation___01_4}{Conversion\+Traits$<$ Rotation\+Vector$<$ Dest\+Prim\+Type\+\_\+ $>$, Source\+Implementation\+\_\+ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1DisparityAngleTraits}{Disparity\+Angle\+Traits}}
+\begin{DoxyCompactList}\small\item\em Disparity angle traits for computing the disparity angle between two rotations. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1DisparityAngleTraits_3_01RotationBase_3_01Left___01_4_00_01RotationBase_3_01Right___01_4_01_4}{Disparity\+Angle\+Traits$<$ Rotation\+Base$<$ Left\+\_\+ $>$, Rotation\+Base$<$ Right\+\_\+ $>$ $>$}}
+\begin{DoxyCompactList}\small\item\em Compute the disparity angle between two rotations. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1DivisionDimensionTraits}{Division\+Dimension\+Traits}}
+\begin{DoxyCompactList}\small\item\em Trait to derive the dimension of a division. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1DivisionDimensionTraits_3_01Dimension___00_011_01_4}{Division\+Dimension\+Traits$<$ Dimension\+\_\+, 1 $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1DivisionPhysicalTypeTraits}{Division\+Physical\+Type\+Traits}}
+\begin{DoxyCompactList}\small\item\em Trait to derive the physical return type of a division. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1DivisionReturnTypeTraits}{Division\+Return\+Type\+Traits}}
+\begin{DoxyCompactList}\small\item\em Trait to derive the return type of a division. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1DivisionReturnTypeTraits_3_01Vector_3_01PhysicalType1___00_01PrimType_ec0ea5f1a5a4ce4fd23591db39a9fe24}{Division\+Return\+Type\+Traits$<$ Vector$<$ Physical\+Type1\+\_\+, Prim\+Type\+\_\+, Dimension1\+\_\+ $>$, Vector$<$ Physical\+Type2\+\_\+, Prim\+Type\+\_\+, Dimension2\+\_\+ $>$ $>$}}
+\begin{DoxyCompactList}\small\item\em Trait to derive the return type of a division. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1FixingTraits}{Fixing\+Traits}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1FixingTraits_3_01AngleAxis_3_01PrimType___01_4_01_4}{Fixing\+Traits$<$ Angle\+Axis$<$ Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1FixingTraits_3_01RotationMatrix_3_01PrimType___01_4_01_4}{Fixing\+Traits$<$ Rotation\+Matrix$<$ Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1FixingTraits_3_01RotationQuaternion_3_01PrimType___01_4_01_4}{Fixing\+Traits$<$ Rotation\+Quaternion$<$ Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1GenericNumTraits}{Generic\+Num\+Traits}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1get__dimension}{get\+\_\+dimension}}
+\begin{DoxyCompactList}\small\item\em Gets the dimension of the vector. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1get__dimension_3_01Vector_3_01PhysicalType___00_01PrimType___00_01Dimension___01_4_01_4}{get\+\_\+dimension$<$ Vector$<$ Physical\+Type\+\_\+, Prim\+Type\+\_\+, Dimension\+\_\+ $>$ $>$}}
+\begin{DoxyCompactList}\small\item\em Gets the dimension of the vector. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1get__matrix3X}{get\+\_\+matrix3X}}
+\begin{DoxyCompactList}\small\item\em This class determines the correct matrix type for each rotation which is used for matrix rotations. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1get__matrix3X_3_01AngleAxis_3_01PrimType___01_4_01_4}{get\+\_\+matrix3\+X$<$ Angle\+Axis$<$ Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1get__matrix3X_3_01EulerAnglesXyz_3_01PrimType___01_4_01_4}{get\+\_\+matrix3\+X$<$ Euler\+Angles\+Xyz$<$ Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1get__matrix3X_3_01EulerAnglesZyx_3_01PrimType___01_4_01_4}{get\+\_\+matrix3\+X$<$ Euler\+Angles\+Zyx$<$ Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1get__matrix3X_3_01RotationMatrix_3_01PrimType___01_4_01_4}{get\+\_\+matrix3\+X$<$ Rotation\+Matrix$<$ Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1get__matrix3X_3_01RotationQuaternion_3_01PrimType___01_4_01_4}{get\+\_\+matrix3\+X$<$ Rotation\+Quaternion$<$ Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1get__matrix3X_3_01RotationVector_3_01PrimType___01_4_01_4}{get\+\_\+matrix3\+X$<$ Rotation\+Vector$<$ Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1get__position}{get\+\_\+position}}
+\begin{DoxyCompactList}\small\item\em This class provides the type of the position. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1get__position_3_01HomogeneousTransformation_3_01PrimType___00_01Position___00_01Rotation___01_4_01_4}{get\+\_\+position$<$ Homogeneous\+Transformation$<$ Prim\+Type\+\_\+, Position\+\_\+, Rotation\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1get__scalar}{get\+\_\+scalar}}
+\begin{DoxyCompactList}\small\item\em Gets the primitive of the vector. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1get__scalar_3_01AngleAxis_3_01PrimType___01_4_01_4}{get\+\_\+scalar$<$ Angle\+Axis$<$ Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1get__scalar_3_01Eigen_1_1Matrix_3_01PrimType___00_013_00_011_01_4_01_4}{get\+\_\+scalar$<$ Eigen\+::\+Matrix$<$ Prim\+Type\+\_\+, 3, 1 $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1get__scalar_3_01EulerAnglesXyz_3_01PrimType___01_4_01_4}{get\+\_\+scalar$<$ Euler\+Angles\+Xyz$<$ Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1get__scalar_3_01EulerAnglesZyx_3_01PrimType___01_4_01_4}{get\+\_\+scalar$<$ Euler\+Angles\+Zyx$<$ Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1get__scalar_3_01RotationMatrix_3_01PrimType___01_4_01_4}{get\+\_\+scalar$<$ Rotation\+Matrix$<$ Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1get__scalar_3_01RotationQuaternion_3_01PrimType___01_4_01_4}{get\+\_\+scalar$<$ Rotation\+Quaternion$<$ Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1get__scalar_3_01RotationVector_3_01PrimType___01_4_01_4}{get\+\_\+scalar$<$ Rotation\+Vector$<$ Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1get__scalar_3_01Vector_3_01PhysicalType___00_01PrimType___00_01Dimension___01_4_01_4}{get\+\_\+scalar$<$ Vector$<$ Physical\+Type\+\_\+, Prim\+Type\+\_\+, Dimension\+\_\+ $>$ $>$}}
+\begin{DoxyCompactList}\small\item\em Gets the primitive type of the vector. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1MapTraits}{Map\+Traits}}
+\begin{DoxyCompactList}\small\item\em Traits for map operations. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1MapTraits_3_01RotationBase_3_01Rotation___01_4_01_4}{Map\+Traits$<$ Rotation\+Base$<$ Rotation\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1MultiplicationDimensionTraits}{Multiplication\+Dimension\+Traits}}
+\begin{DoxyCompactList}\small\item\em Trait to derive the dimension of a multiplication. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1MultiplicationDimensionTraits_3_011_00_01Dimension___00_01typename_01sd848b51ef16438bf6f48f51cc97898f8}{Multiplication\+Dimension\+Traits$<$ 1, Dimension\+\_\+, typename std\+::enable\+\_\+if$<$ Dimension\+\_\+ !=1 $>$\+::type $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1MultiplicationDimensionTraits_3_01Dimension___00_011_01_4}{Multiplication\+Dimension\+Traits$<$ Dimension\+\_\+, 1 $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1MultiplicationPhysicalTypeTraits}{Multiplication\+Physical\+Type\+Traits}}
+\begin{DoxyCompactList}\small\item\em Trait to derive the physical return type of a multiplication. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1MultiplicationReturnTypeTraits}{Multiplication\+Return\+Type\+Traits}}
+\begin{DoxyCompactList}\small\item\em Trait to derive the return type of a multiplication. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1MultiplicationReturnTypeTraits_3_01Vector_3_01PhysicalType1___00_01Prid42cc842feb6ed74c3208b421518159d}{Multiplication\+Return\+Type\+Traits$<$ Vector$<$ Physical\+Type1\+\_\+, Prim\+Type1\+\_\+, Dimension1\+\_\+ $>$, Vector$<$ Physical\+Type2\+\_\+, Prim\+Type2\+\_\+, Dimension2\+\_\+ $>$ $>$}}
+\begin{DoxyCompactList}\small\item\em Trait to derive the return type of a multiplication. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1MultiplicationTraits}{Multiplication\+Traits}}
+\begin{DoxyCompactList}\small\item\em Multiplication traits. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1MultiplicationTraits_3_01PoseBase_3_01HomogeneousTransformation_3_01Prfb6eb7db9b11936b8062d6d37c1826c7}{Multiplication\+Traits$<$ Pose\+Base$<$ Homogeneous\+Transformation$<$ Prim\+Type\+\_\+, Position\+\_\+, Rotation\+\_\+ $>$ $>$, Pose\+Base$<$ Homogeneous\+Transformation$<$ Prim\+Type\+\_\+, Position\+\_\+, Rotation\+\_\+ $>$ $>$ $>$}}
+\begin{DoxyCompactList}\small\item\em Multiplication of two rotations with the same parameterization. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1MultiplicationTraits_3_01PoseBase_3_01Left___01_4_00_01PoseBase_3_01Right___01_4_01_4}{Multiplication\+Traits$<$ Pose\+Base$<$ Left\+\_\+ $>$, Pose\+Base$<$ Right\+\_\+ $>$ $>$}}
+\begin{DoxyCompactList}\small\item\em Multiplication of two rotations with the same parameterization. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1MultiplicationTraits_3_01RotationBase_3_01Left___01_4_00_01RotationBase_3_01Right___01_4_01_4}{Multiplication\+Traits$<$ Rotation\+Base$<$ Left\+\_\+ $>$, Rotation\+Base$<$ Right\+\_\+ $>$ $>$}}
+\begin{DoxyCompactList}\small\item\em Multiplication of two rotations with different parameterizations. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1MultiplicationTraits_3_01RotationBase_3_01LeftAndRight___01_4_00_01Rot9daf63279e10038f513b4381ced1696a}{Multiplication\+Traits$<$ Rotation\+Base$<$ Left\+And\+Right\+\_\+ $>$, Rotation\+Base$<$ Left\+And\+Right\+\_\+ $>$ $>$}}
+\begin{DoxyCompactList}\small\item\em Multiplication of two rotations with the same parameterization. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1MultiplicationTraits_3_01RotationBase_3_01RotationMatrix_3_01PrimType_d16b345d033847cc741c7abf734e37c0}{Multiplication\+Traits$<$ Rotation\+Base$<$ Rotation\+Matrix$<$ Prim\+Type\+\_\+ $>$ $>$, Rotation\+Base$<$ Rotation\+Matrix$<$ Prim\+Type\+\_\+ $>$ $>$ $>$}}
+\begin{DoxyCompactList}\small\item\em Multiplication of two rotation matrices. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1MultiplicationTraits_3_01Vector_3_01PhysicalType1___00_01PrimType1___0abf78ccaad607e542af8a82f1b0e8a18}{Multiplication\+Traits$<$ Vector$<$ Physical\+Type1\+\_\+, Prim\+Type1\+\_\+, 1 $>$, Vector$<$ Physical\+Type2\+\_\+, Prim\+Type2\+\_\+, Dimension2\+\_\+ $>$, typename std\+::enable\+\_\+if$<$ Dimension2\+\_\+ !=1 $>$\+::type $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1MultiplicationTraits_3_01Vector_3_01PhysicalType1___00_01PrimType1___0e7e567f6a0d5b8b664c149d8f947a820}{Multiplication\+Traits$<$ Vector$<$ Physical\+Type1\+\_\+, Prim\+Type1\+\_\+, Dimension1\+\_\+ $>$, Vector$<$ Physical\+Type2\+\_\+, Prim\+Type2\+\_\+, 1 $>$ $>$}}
+\begin{DoxyCompactList}\small\item\em Trait to multiply two vectors, at least one of them having dimension 1. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1NumTraits}{Num\+Traits}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1NumTraits_3_01double_01_4}{Num\+Traits$<$ double $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1NumTraits_3_01float_01_4}{Num\+Traits$<$ float $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1NumTraits_3_01long_01double_01_4}{Num\+Traits$<$ long double $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1RandomTraits}{Random\+Traits}}
+\begin{DoxyCompactList}\small\item\em Sets the rotation to a random one. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1RandomTraits_3_01RotationBase_3_01Rotation___01_4_01_4}{Random\+Traits$<$ Rotation\+Base$<$ Rotation\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1RotationDiffAdditionTraits}{Rotation\+Diff\+Addition\+Traits}}
+\begin{DoxyCompactList}\small\item\em Addition traits for angular velocities. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1RotationDiffAdditionTraits_3_01RotationDiffBase_3_01Left___01_4_00_01Rccd07e49a080be5354a724d7fbc095ca}{Rotation\+Diff\+Addition\+Traits$<$ Rotation\+Diff\+Base$<$ Left\+\_\+ $>$, Rotation\+Diff\+Base$<$ Right\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1RotationDiffAdditionTraits_3_01RotationDiffBase_3_01LeftAndRight___01_09a21f79244fb2e96c13bbfa1e759b18}{Rotation\+Diff\+Addition\+Traits$<$ Rotation\+Diff\+Base$<$ Left\+And\+Right\+\_\+ $>$, Rotation\+Diff\+Base$<$ Left\+And\+Right\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1RotationDiffConversionTraits}{Rotation\+Diff\+Conversion\+Traits}}
+\begin{DoxyCompactList}\small\item\em Conversion traits for converting derivatives of rotations into each other. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1RotationDiffConversionTraits_3_01EulerAnglesXyzDiff_3_01PrimType___01_7ee49c6d4f55fe8b7c59736c7a4dabf5}{Rotation\+Diff\+Conversion\+Traits$<$ Euler\+Angles\+Xyz\+Diff$<$ Prim\+Type\+\_\+ $>$, Local\+Angular\+Velocity$<$ Prim\+Type\+\_\+ $>$, Euler\+Angles\+Xyz$<$ Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1RotationDiffConversionTraits_3_01EulerAnglesZyxDiff_3_01PrimType___01_eb13c8d1ae405745622b34e915fb5ceb}{Rotation\+Diff\+Conversion\+Traits$<$ Euler\+Angles\+Zyx\+Diff$<$ Prim\+Type\+\_\+ $>$, Local\+Angular\+Velocity$<$ Prim\+Type\+\_\+ $>$, Euler\+Angles\+Zyx$<$ Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1RotationDiffConversionTraits_3_01RotationMatrixDiff_3_01PrimType___01_6b5e7244b6c33a604732b5001661d36a}{Rotation\+Diff\+Conversion\+Traits$<$ Rotation\+Matrix\+Diff$<$ Prim\+Type\+\_\+ $>$, Global\+Angular\+Velocity$<$ Prim\+Type\+\_\+ $>$, Rotation\+Matrix$<$ Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1RotationDiffConversionTraits_3_01RotationMatrixDiff_3_01PrimType___01_9081f5a3030978961373a3670a76ce61}{Rotation\+Diff\+Conversion\+Traits$<$ Rotation\+Matrix\+Diff$<$ Prim\+Type\+\_\+ $>$, Local\+Angular\+Velocity$<$ Prim\+Type\+\_\+ $>$, Rotation\+Matrix$<$ Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1RotationDiffConversionTraits_3_01RotationQuaternionDiff_3_01PrimType__73fe76f32106081a65a6c178dd3afb0b}{Rotation\+Diff\+Conversion\+Traits$<$ Rotation\+Quaternion\+Diff$<$ Prim\+Type\+\_\+ $>$, Global\+Angular\+Velocity$<$ Prim\+Type\+\_\+ $>$, Rotation\+Quaternion$<$ Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1RotationDiffConversionTraits_3_01RotationQuaternionDiff_3_01PrimType__ca1acb3c44b52e05616d39add7942c0a}{Rotation\+Diff\+Conversion\+Traits$<$ Rotation\+Quaternion\+Diff$<$ Prim\+Type\+\_\+ $>$, Local\+Angular\+Velocity$<$ Prim\+Type\+\_\+ $>$, Rotation\+Quaternion$<$ Prim\+Type\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1RotationTraits}{Rotation\+Traits}}
+\begin{DoxyCompactList}\small\item\em Rotation traits for rotating vectors and matrices. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1RotationTraits_3_01RotationBase_3_01Rotation___01_4_01_4}{Rotation\+Traits$<$ Rotation\+Base$<$ Rotation\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1SetFromVectorsTraits}{Set\+From\+Vectors\+Traits}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1SetFromVectorsTraits_3_01RotationBase_3_01Rotation___01_4_01_4}{Set\+From\+Vectors\+Traits$<$ Rotation\+Base$<$ Rotation\+\_\+ $>$ $>$}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1source__file__pos}{source\+\_\+file\+\_\+pos}}
+\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1TransformationTraits}{Transformation\+Traits}}
+\begin{DoxyCompactList}\small\item\em Transformation trait to implement transformations of positions. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classkindr_1_1internal_1_1TransformationTraits_3_01HomogeneousTransformation_3_01PrimType___00_04be631721225baaab2b66165ff4a81ff}{Transformation\+Traits$<$ Homogeneous\+Transformation$<$ Prim\+Type\+\_\+, Position\+\_\+, Rotation\+\_\+ $>$ $>$}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{namespacekindr_1_1internal_a1b2acdaa75b69de15014c3a1c41a39eb}\label{namespacekindr_1_1internal_a1b2acdaa75b69de15014c3a1c41a39eb}} 
+{\footnotesize template$<$typename K\+I\+N\+D\+R\+\_\+\+E\+X\+C\+E\+P\+T\+I\+O\+N\+\_\+T $>$ }\\void {\bfseries kindr\+\_\+throw\+\_\+exception} (std\+::string const \&exception\+Type, \mbox{\hyperlink{classkindr_1_1internal_1_1source__file__pos}{kindr\+::internal\+::source\+\_\+file\+\_\+pos}} sfp, std\+::string const \&message)
+\item 
+\mbox{\Hypertarget{namespacekindr_1_1internal_a3976559fa0115b4f7f8f92f35351bb31}\label{namespacekindr_1_1internal_a3976559fa0115b4f7f8f92f35351bb31}} 
+{\footnotesize template$<$typename K\+I\+N\+D\+R\+\_\+\+E\+X\+C\+E\+P\+T\+I\+O\+N\+\_\+T $>$ }\\void {\bfseries kindr\+\_\+throw\+\_\+exception} (std\+::string const \&exception\+Type, std\+::string const \&function, std\+::string const \&file, int line, std\+::string const \&message)
+\item 
+\mbox{\Hypertarget{namespacekindr_1_1internal_aa84e2e88128a29a36631cdefb4618582}\label{namespacekindr_1_1internal_aa84e2e88128a29a36631cdefb4618582}} 
+{\footnotesize template$<$typename Scalar\+\_\+  = double$>$ }\\bool {\bfseries is\+Less\+Then\+Epsilons4th\+Root} (Scalar\+\_\+ x)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Generic pose interface. 
+
+Generic rotation interface.
+
+Internal stuff (only for developers) 

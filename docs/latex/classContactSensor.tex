@@ -1,0 +1,115 @@
+\hypertarget{classContactSensor}{}\doxysection{Contact\+Sensor Class Reference}
+\label{classContactSensor}\index{ContactSensor@{ContactSensor}}
+
+
+A plugin for the contact sensors.  
+
+
+
+
+{\ttfamily \#include $<$contact\+\_\+sensor.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classContactSensor_adf00bb183bcb37206adb5c036e1ad3c6}\label{classContactSensor_adf00bb183bcb37206adb5c036e1ad3c6}} 
+\mbox{\hyperlink{classContactSensor_adf00bb183bcb37206adb5c036e1ad3c6}{Contact\+Sensor}} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classContactSensor_a01a1842782c99e4b3fca9e5db40721eb}\label{classContactSensor_a01a1842782c99e4b3fca9e5db40721eb}} 
+virtual \mbox{\hyperlink{classContactSensor_a01a1842782c99e4b3fca9e5db40721eb}{$\sim$\+Contact\+Sensor}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classContactSensor_a9ee28ab097d04c32a5d19919718fde93}{On\+Fl\+Contact\+Callback}} (const Const\+Contacts\+Ptr \&\+\_\+msg)
+\begin{DoxyCompactList}\small\item\em The On\+Fl\+Contact\+Callback function handles an incoming contact message from the front left contact sensor in Gazebo. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classContactSensor_a435013ac2b71c2c0d9f704ab0313b482}{On\+Fr\+Contact\+Callback}} (const Const\+Contacts\+Ptr \&\+\_\+msg)
+\begin{DoxyCompactList}\small\item\em The On\+Fr\+Contact\+Callback function handles an incoming contact message from the front right contact sensor in Gazebo. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classContactSensor_a18b7189648c8ca096b5fd4ce0f39f204}{On\+Rl\+Contact\+Callback}} (const Const\+Contacts\+Ptr \&\+\_\+msg)
+\begin{DoxyCompactList}\small\item\em The On\+Rl\+Contact\+Callback function handles an incoming contact message from the rear left contact sensor in Gazebo. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classContactSensor_a8c9dd6baa25e67ca5eadf8960410f199}{On\+Rr\+Contact\+Callback}} (const Const\+Contacts\+Ptr \&\+\_\+msg)
+\begin{DoxyCompactList}\small\item\em The On\+Rr\+Contact\+Callback function handles an incoming contact message from the rear rear contact sensor in Gazebo. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classContactSensor_a8bd693e23eacefa76401c863a99895a6}\label{classContactSensor_a8bd693e23eacefa76401c863a99895a6}} 
+void \mbox{\hyperlink{classContactSensor_a8bd693e23eacefa76401c863a99895a6}{Publish\+Queue\+Thread}} ()
+\begin{DoxyCompactList}\small\item\em The Publish\+Queue\+Thread function is a R\+OS helper function that publish state messages. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classContactSensor_af6f63df279b291ef642b9f985e30ede6}\label{classContactSensor_af6f63df279b291ef642b9f985e30ede6}} 
+void \mbox{\hyperlink{classContactSensor_af6f63df279b291ef642b9f985e30ede6}{Init\+Gazebo}} ()
+\begin{DoxyCompactList}\small\item\em The Init\+Ros function is called to initialize Gazebo. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classContactSensor_a2b40b612333b9ff27af8448a083882c5}\label{classContactSensor_a2b40b612333b9ff27af8448a083882c5}} 
+void \mbox{\hyperlink{classContactSensor_a2b40b612333b9ff27af8448a083882c5}{Init\+Ros}} ()
+\begin{DoxyCompactList}\small\item\em The Init\+Ros function is called to initialize R\+OS. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classContactSensor_a2f4ba9090431845a23504f016869c417}\label{classContactSensor_a2f4ba9090431845a23504f016869c417}} 
+void \mbox{\hyperlink{classContactSensor_a2f4ba9090431845a23504f016869c417}{Init\+Ros\+Queue\+Threads}} ()
+\begin{DoxyCompactList}\small\item\em The Init\+Ros\+Queue\+Threads function is called to initialize the R\+OS Publish and Process Queue Threads. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A plugin for the contact sensors. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classContactSensor_a9ee28ab097d04c32a5d19919718fde93}\label{classContactSensor_a9ee28ab097d04c32a5d19919718fde93}} 
+\index{ContactSensor@{ContactSensor}!OnFlContactCallback@{OnFlContactCallback}}
+\index{OnFlContactCallback@{OnFlContactCallback}!ContactSensor@{ContactSensor}}
+\doxysubsubsection{\texorpdfstring{OnFlContactCallback()}{OnFlContactCallback()}}
+{\footnotesize\ttfamily void Contact\+Sensor\+::\+On\+Fl\+Contact\+Callback (\begin{DoxyParamCaption}\item[{const Const\+Contacts\+Ptr \&}]{\+\_\+msg }\end{DoxyParamCaption})}
+
+
+
+The On\+Fl\+Contact\+Callback function handles an incoming contact message from the front left contact sensor in Gazebo. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+msg} & A contact message. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classContactSensor_a435013ac2b71c2c0d9f704ab0313b482}\label{classContactSensor_a435013ac2b71c2c0d9f704ab0313b482}} 
+\index{ContactSensor@{ContactSensor}!OnFrContactCallback@{OnFrContactCallback}}
+\index{OnFrContactCallback@{OnFrContactCallback}!ContactSensor@{ContactSensor}}
+\doxysubsubsection{\texorpdfstring{OnFrContactCallback()}{OnFrContactCallback()}}
+{\footnotesize\ttfamily void Contact\+Sensor\+::\+On\+Fr\+Contact\+Callback (\begin{DoxyParamCaption}\item[{const Const\+Contacts\+Ptr \&}]{\+\_\+msg }\end{DoxyParamCaption})}
+
+
+
+The On\+Fr\+Contact\+Callback function handles an incoming contact message from the front right contact sensor in Gazebo. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+msg} & A contact message. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classContactSensor_a18b7189648c8ca096b5fd4ce0f39f204}\label{classContactSensor_a18b7189648c8ca096b5fd4ce0f39f204}} 
+\index{ContactSensor@{ContactSensor}!OnRlContactCallback@{OnRlContactCallback}}
+\index{OnRlContactCallback@{OnRlContactCallback}!ContactSensor@{ContactSensor}}
+\doxysubsubsection{\texorpdfstring{OnRlContactCallback()}{OnRlContactCallback()}}
+{\footnotesize\ttfamily void Contact\+Sensor\+::\+On\+Rl\+Contact\+Callback (\begin{DoxyParamCaption}\item[{const Const\+Contacts\+Ptr \&}]{\+\_\+msg }\end{DoxyParamCaption})}
+
+
+
+The On\+Rl\+Contact\+Callback function handles an incoming contact message from the rear left contact sensor in Gazebo. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+msg} & A contact message. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classContactSensor_a8c9dd6baa25e67ca5eadf8960410f199}\label{classContactSensor_a8c9dd6baa25e67ca5eadf8960410f199}} 
+\index{ContactSensor@{ContactSensor}!OnRrContactCallback@{OnRrContactCallback}}
+\index{OnRrContactCallback@{OnRrContactCallback}!ContactSensor@{ContactSensor}}
+\doxysubsubsection{\texorpdfstring{OnRrContactCallback()}{OnRrContactCallback()}}
+{\footnotesize\ttfamily void Contact\+Sensor\+::\+On\+Rr\+Contact\+Callback (\begin{DoxyParamCaption}\item[{const Const\+Contacts\+Ptr \&}]{\+\_\+msg }\end{DoxyParamCaption})}
+
+
+
+The On\+Rr\+Contact\+Callback function handles an incoming contact message from the rear rear contact sensor in Gazebo. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+msg} & A contact message. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+catkin\+\_\+ws/src/simulator/tetrapod\+\_\+gazebo/include/tetrapod\+\_\+gazebo/contact\+\_\+sensor.\+h\item 
+catkin\+\_\+ws/src/simulator/tetrapod\+\_\+gazebo/src/contact\+\_\+sensor.\+cpp\end{DoxyCompactItemize}

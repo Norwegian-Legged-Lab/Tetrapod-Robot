@@ -1,0 +1,43 @@
+This package contains things that make it convenient to integrate R\+OS with Ignition, such as\+:
+
+
+\begin{DoxyItemize}
+\item Launch files
+\item R\+O\+S-\/enabled executables
+\end{DoxyItemize}\hypertarget{md_catkin_ws_src_utilities_ros_ign_ros_ign_gazebo_README_autotoc_md108}{}\doxysection{Usage}\label{md_catkin_ws_src_utilities_ros_ign_ros_ign_gazebo_README_autotoc_md108}
+\begin{quote}
+More usage examples can be seen on the \end{quote}
+\href{https://github.com/osrf/ros_ign/tree/melodic/ros_ign_gazebo_demos}{\texttt{ ros\+\_\+ign\+\_\+gazebo\+\_\+demos}} package.\hypertarget{md_catkin_ws_src_utilities_ros_ign_ros_ign_gazebo_README_autotoc_md109}{}\doxysubsection{Run Ignition Gazebo}\label{md_catkin_ws_src_utilities_ros_ign_ros_ign_gazebo_README_autotoc_md109}
+There\textquotesingle{}s a convenient launch file, try for example\+: \begin{DoxyVerb}roslaunch ros_ign_gazebo ign_gazebo.launch ign_args:="shapes.sdf"
+\end{DoxyVerb}
+
+
+And you can directly call the executable, for example\+: \begin{DoxyVerb}roscore
+rosrun ros_ign_gazebo ign_gazebo shapes.sdf
+\end{DoxyVerb}
+
+
+\hypertarget{md_catkin_ws_src_utilities_ros_ign_ros_ign_gazebo_README_autotoc_md110}{}\doxysubsection{Spawn entities}\label{md_catkin_ws_src_utilities_ros_ign_ros_ign_gazebo_README_autotoc_md110}
+The {\ttfamily create} executable can be used to spawn S\+DF or U\+R\+DF entities from\+:
+
+
+\begin{DoxyItemize}
+\item A file on disk or from Ignition Fuel
+\item A R\+OS parameter
+\end{DoxyItemize}
+
+For example, start Ignition Gazebo\+:
+
+{\ttfamily ign gazebo}
+
+And a R\+OS core\+:
+
+{\ttfamily roscore}
+
+Then spawn a model\+:
+
+`rosrun ros\+\_\+ign\+\_\+gazebo create -\/world default -\/file \textquotesingle{}\href{https://fuel.ignitionrobotics.org/1.0/openrobotics/models/Gazebo&rsquo;}{\texttt{ https\+://fuel.\+ignitionrobotics.\+org/1.\+0/openrobotics/models/\+Gazebo'}}\`{}
+
+See more options with\+:
+
+{\ttfamily rosrun ros\+\_\+ign\+\_\+gazebo create -\/-\/helpshort} 

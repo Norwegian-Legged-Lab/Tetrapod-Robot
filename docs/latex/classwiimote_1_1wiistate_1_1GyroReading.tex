@@ -1,0 +1,98 @@
+\hypertarget{classwiimote_1_1wiistate_1_1GyroReading}{}\doxysection{wiimote.\+wiistate.\+Gyro\+Reading Class Reference}
+\label{classwiimote_1_1wiistate_1_1GyroReading}\index{wiimote.wiistate.GyroReading@{wiimote.wiistate.GyroReading}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classwiimote_1_1wiistate_1_1GyroReading_a13f6b21909e2dce9851e022663367e92}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, phi\+Theta\+Psi, the\+Time=None)
+\item 
+\mbox{\Hypertarget{classwiimote_1_1wiistate_1_1GyroReading_a9d939d83d076ad5ad8320f4c1cbd43d6}\label{classwiimote_1_1wiistate_1_1GyroReading_a9d939d83d076ad5ad8320f4c1cbd43d6}} 
+def {\bfseries \+\_\+\+\_\+getitem\+\_\+\+\_\+} (self, key)
+\item 
+\mbox{\Hypertarget{classwiimote_1_1wiistate_1_1GyroReading_a1e7b4309e6d2ab121ef01dd044eddd66}\label{classwiimote_1_1wiistate_1_1GyroReading_a1e7b4309e6d2ab121ef01dd044eddd66}} 
+def {\bfseries \+\_\+\+\_\+str\+\_\+\+\_\+} (self)
+\item 
+\mbox{\Hypertarget{classwiimote_1_1wiistate_1_1GyroReading_a31801a79369b443cf3450e8c4d8eaacf}\label{classwiimote_1_1wiistate_1_1GyroReading_a31801a79369b443cf3450e8c4d8eaacf}} 
+def {\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\item 
+\mbox{\Hypertarget{classwiimote_1_1wiistate_1_1GyroReading_a298641eecca6ff36b5da8996bdef2120}\label{classwiimote_1_1wiistate_1_1GyroReading_a298641eecca6ff36b5da8996bdef2120}} 
+def {\bfseries tuple} (self)
+\item 
+def \mbox{\hyperlink{classwiimote_1_1wiistate_1_1GyroReading_a06246ff94080759dba0ee6b8f8e9d872}{\+\_\+\+\_\+add\+\_\+\+\_\+}} (self, other)
+\item 
+def \mbox{\hyperlink{classwiimote_1_1wiistate_1_1GyroReading_afb49d2bd4b6a686bf7eff3540040a35d}{\+\_\+\+\_\+sub\+\_\+\+\_\+}} (self, other)
+\item 
+def \mbox{\hyperlink{classwiimote_1_1wiistate_1_1GyroReading_a86fa6930153995d5ce1a845730e05cd3}{\+\_\+\+\_\+div\+\_\+\+\_\+}} (self, other)
+\item 
+def \mbox{\hyperlink{classwiimote_1_1wiistate_1_1GyroReading_a03b48701ff2369f5e3b8570e4671f731}{scale}} (self, scale\+Factor)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classwiimote_1_1wiistate_1_1GyroReading_acd65645ea4c9f633ce96c67407eb5c92}\label{classwiimote_1_1wiistate_1_1GyroReading_acd65645ea4c9f633ce96c67407eb5c92}} 
+{\bfseries time}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Instances hold one gyroscope reading.
+
+    Methods:
+      [PHI], [THETA], [PSI] to obtain respective axis paramters.
+      tuple() to obtain phi/theta/psi as a NumPy array.
+      +,-,/ to add or subtract readings from each other
+      as one vector operation (pairwise for each dimension).
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classwiimote_1_1wiistate_1_1GyroReading_a13f6b21909e2dce9851e022663367e92}\label{classwiimote_1_1wiistate_1_1GyroReading_a13f6b21909e2dce9851e022663367e92}} 
+\index{wiimote.wiistate.GyroReading@{wiimote.wiistate.GyroReading}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!wiimote.wiistate.GyroReading@{wiimote.wiistate.GyroReading}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def wiimote.\+wiistate.\+Gyro\+Reading.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{phi\+Theta\+Psi,  }\item[{}]{the\+Time = {\ttfamily None} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Create a (possibly) time stamped WII Reading.
+
+Parameter phiThetaPsi is an array of phi,theta,psi coordinates of the
+gyro reading. GyroReading instances can be added, subtracted, and
+divided into each other. The operations are pairwise over
+phi, theta, and psi. A numpy array of phi,theta,psi is available by
+calling tuple(). The time stamp is available via time().
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classwiimote_1_1wiistate_1_1GyroReading_a06246ff94080759dba0ee6b8f8e9d872}\label{classwiimote_1_1wiistate_1_1GyroReading_a06246ff94080759dba0ee6b8f8e9d872}} 
+\index{wiimote.wiistate.GyroReading@{wiimote.wiistate.GyroReading}!\_\_add\_\_@{\_\_add\_\_}}
+\index{\_\_add\_\_@{\_\_add\_\_}!wiimote.wiistate.GyroReading@{wiimote.wiistate.GyroReading}}
+\doxysubsubsection{\texorpdfstring{\_\_add\_\_()}{\_\_add\_\_()}}
+{\footnotesize\ttfamily def wiimote.\+wiistate.\+Gyro\+Reading.\+\_\+\+\_\+add\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{other }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Adding two gyro readings returns a new reading with components added pairwise.\end{DoxyVerb}
+ \mbox{\Hypertarget{classwiimote_1_1wiistate_1_1GyroReading_a86fa6930153995d5ce1a845730e05cd3}\label{classwiimote_1_1wiistate_1_1GyroReading_a86fa6930153995d5ce1a845730e05cd3}} 
+\index{wiimote.wiistate.GyroReading@{wiimote.wiistate.GyroReading}!\_\_div\_\_@{\_\_div\_\_}}
+\index{\_\_div\_\_@{\_\_div\_\_}!wiimote.wiistate.GyroReading@{wiimote.wiistate.GyroReading}}
+\doxysubsubsection{\texorpdfstring{\_\_div\_\_()}{\_\_div\_\_()}}
+{\footnotesize\ttfamily def wiimote.\+wiistate.\+Gyro\+Reading.\+\_\+\+\_\+div\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{other }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Dividing two readings returns a numpy tuple with components divided pairwise.\end{DoxyVerb}
+ \mbox{\Hypertarget{classwiimote_1_1wiistate_1_1GyroReading_afb49d2bd4b6a686bf7eff3540040a35d}\label{classwiimote_1_1wiistate_1_1GyroReading_afb49d2bd4b6a686bf7eff3540040a35d}} 
+\index{wiimote.wiistate.GyroReading@{wiimote.wiistate.GyroReading}!\_\_sub\_\_@{\_\_sub\_\_}}
+\index{\_\_sub\_\_@{\_\_sub\_\_}!wiimote.wiistate.GyroReading@{wiimote.wiistate.GyroReading}}
+\doxysubsubsection{\texorpdfstring{\_\_sub\_\_()}{\_\_sub\_\_()}}
+{\footnotesize\ttfamily def wiimote.\+wiistate.\+Gyro\+Reading.\+\_\+\+\_\+sub\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{other }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Subtracting two gyro readings returns a new reading
+with components subtracted pairwise.\end{DoxyVerb}
+ \mbox{\Hypertarget{classwiimote_1_1wiistate_1_1GyroReading_a03b48701ff2369f5e3b8570e4671f731}\label{classwiimote_1_1wiistate_1_1GyroReading_a03b48701ff2369f5e3b8570e4671f731}} 
+\index{wiimote.wiistate.GyroReading@{wiimote.wiistate.GyroReading}!scale@{scale}}
+\index{scale@{scale}!wiimote.wiistate.GyroReading@{wiimote.wiistate.GyroReading}}
+\doxysubsubsection{\texorpdfstring{scale()}{scale()}}
+{\footnotesize\ttfamily def wiimote.\+wiistate.\+Gyro\+Reading.\+scale (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{scale\+Factor }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return a numpy tuple that with X, Y, Z scaled by the given factor.\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+catkin\+\_\+ws/src/utilities/joystick\+\_\+drivers/wiimote/src/wiimote/wiistate.\+py\end{DoxyCompactItemize}

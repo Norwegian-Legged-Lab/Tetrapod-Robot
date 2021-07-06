@@ -1,0 +1,84 @@
+\hypertarget{classwiimote__node_1_1WiiSender}{}\doxysection{wiimote\+\_\+node.\+Wii\+Sender Class Reference}
+\label{classwiimote__node_1_1WiiSender}\index{wiimote\_node.WiiSender@{wiimote\_node.WiiSender}}
+
+
+Inheritance diagram for wiimote\+\_\+node.\+Wii\+Sender\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=233pt]{classwiimote__node_1_1WiiSender__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for wiimote\+\_\+node.\+Wii\+Sender\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=233pt]{classwiimote__node_1_1WiiSender__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classwiimote__node_1_1WiiSender_a6e09dafa6c03300ffd722fe8f57e3b19}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, wii\+Mote, freq=100)
+\item 
+def \mbox{\hyperlink{classwiimote__node_1_1WiiSender_aee190b86c9c30174300f14f4d408275a}{run}} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classwiimote__node_1_1WiiSender_a2b3559be89d8773622b645d9f8329eca}\label{classwiimote__node_1_1WiiSender_a2b3559be89d8773622b645d9f8329eca}} 
+{\bfseries pub}
+\item 
+\mbox{\Hypertarget{classwiimote__node_1_1WiiSender_adfdd4cfe24da3fcf5d07ae442b41faf8}\label{classwiimote__node_1_1WiiSender_adfdd4cfe24da3fcf5d07ae442b41faf8}} 
+{\bfseries thread\+Name}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Broadcasting complete Wiimote messages to Topic wiimote\end{DoxyVerb}
+ 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classwiimote__node_1_1WiiSender_a6e09dafa6c03300ffd722fe8f57e3b19}\label{classwiimote__node_1_1WiiSender_a6e09dafa6c03300ffd722fe8f57e3b19}} 
+\index{wiimote\_node.WiiSender@{wiimote\_node.WiiSender}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!wiimote\_node.WiiSender@{wiimote\_node.WiiSender}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def wiimote\+\_\+node.\+Wii\+Sender.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{wii\+Mote,  }\item[{}]{freq = {\ttfamily 100} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initializes the full-Wiimote publisher.
+
+Parameters:
+    wiiMote: a bluetooth-connected, calibrated WIIMote instance
+    freq:    the message sending frequency in messages/sec. Max is 100, because
+     the Wiimote only samples the sensors at 100Hz.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \mbox{\hyperlink{classwiimote__node_1_1WiimoteDataSender}{wiimote\+\_\+node.\+Wiimote\+Data\+Sender}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classwiimote__node_1_1WiiSender_aee190b86c9c30174300f14f4d408275a}\label{classwiimote__node_1_1WiiSender_aee190b86c9c30174300f14f4d408275a}} 
+\index{wiimote\_node.WiiSender@{wiimote\_node.WiiSender}!run@{run}}
+\index{run@{run}!wiimote\_node.WiiSender@{wiimote\_node.WiiSender}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily def wiimote\+\_\+node.\+Wii\+Sender.\+run (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Loop that obtains the latest wiimote state, publishes the data, and sleeps.
+
+The wiimote message, if fully filled in, contains information in common with Imu.msg:
+acceleration (in m/s^2), and angular rate (in radians/sec). For each of
+these quantities, the IMU message format also wants the corresponding
+covariance matrix.
+
+The covariance matrices are the 3x3 matrix with the axes' variance in the
+diagonal. We obtain the variance from the Wiimote instance.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+catkin\+\_\+ws/src/utilities/joystick\+\_\+drivers/wiimote/nodes/wiimote\+\_\+node.\+py\end{DoxyCompactItemize}

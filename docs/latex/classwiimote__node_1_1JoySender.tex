@@ -1,0 +1,78 @@
+\hypertarget{classwiimote__node_1_1JoySender}{}\doxysection{wiimote\+\_\+node.\+Joy\+Sender Class Reference}
+\label{classwiimote__node_1_1JoySender}\index{wiimote\_node.JoySender@{wiimote\_node.JoySender}}
+
+
+Inheritance diagram for wiimote\+\_\+node.\+Joy\+Sender\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=233pt]{classwiimote__node_1_1JoySender__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for wiimote\+\_\+node.\+Joy\+Sender\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=233pt]{classwiimote__node_1_1JoySender__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classwiimote__node_1_1JoySender_ad53baa562bca27f29b3ee85a57daa3c7}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, wii\+Mote, freq=100)
+\item 
+def \mbox{\hyperlink{classwiimote__node_1_1JoySender_a0da0112ea276c3ade91888131374068c}{run}} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classwiimote__node_1_1JoySender_a2d24422dccb691cb4be06f4102506422}\label{classwiimote__node_1_1JoySender_a2d24422dccb691cb4be06f4102506422}} 
+{\bfseries pub}
+\item 
+\mbox{\Hypertarget{classwiimote__node_1_1JoySender_a13900741dc7dc70adaaf6e8c2af70eb6}\label{classwiimote__node_1_1JoySender_a13900741dc7dc70adaaf6e8c2af70eb6}} 
+{\bfseries thread\+Name}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Broadcasting Wiimote accelerator and gyro readings as Joy(stick) messages to Topic joy\end{DoxyVerb}
+ 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classwiimote__node_1_1JoySender_ad53baa562bca27f29b3ee85a57daa3c7}\label{classwiimote__node_1_1JoySender_ad53baa562bca27f29b3ee85a57daa3c7}} 
+\index{wiimote\_node.JoySender@{wiimote\_node.JoySender}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!wiimote\_node.JoySender@{wiimote\_node.JoySender}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def wiimote\+\_\+node.\+Joy\+Sender.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{wii\+Mote,  }\item[{}]{freq = {\ttfamily 100} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initializes the Wiimote Joy(stick) publisher.
+
+Parameters:
+    wiiMote: a bluetooth-connected, calibrated WIIMote instance
+    freq:    the message sending frequency in messages/sec. Max is 100, because
+     the Wiimote only samples the sensors at 100Hz.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \mbox{\hyperlink{classwiimote__node_1_1WiimoteDataSender}{wiimote\+\_\+node.\+Wiimote\+Data\+Sender}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classwiimote__node_1_1JoySender_a0da0112ea276c3ade91888131374068c}\label{classwiimote__node_1_1JoySender_a0da0112ea276c3ade91888131374068c}} 
+\index{wiimote\_node.JoySender@{wiimote\_node.JoySender}!run@{run}}
+\index{run@{run}!wiimote\_node.JoySender@{wiimote\_node.JoySender}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily def wiimote\+\_\+node.\+Joy\+Sender.\+run (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Loop that obtains the latest wiimote state, publishes the joystick data, and sleeps.
+
+The Joy.msg message types calls for just two fields: float32[] axes, and int32[] buttons.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+catkin\+\_\+ws/src/utilities/joystick\+\_\+drivers/wiimote/nodes/wiimote\+\_\+node.\+py\end{DoxyCompactItemize}

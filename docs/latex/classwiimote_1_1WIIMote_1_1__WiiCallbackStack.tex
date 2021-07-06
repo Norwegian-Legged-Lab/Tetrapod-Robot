@@ -1,0 +1,109 @@
+\hypertarget{classwiimote_1_1WIIMote_1_1__WiiCallbackStack}{}\doxysection{wiimote.\+W\+I\+I\+Mote.\+\_\+\+Wii\+Callback\+Stack Class Reference}
+\label{classwiimote_1_1WIIMote_1_1__WiiCallbackStack}\index{wiimote.WIIMote.\_WiiCallbackStack@{wiimote.WIIMote.\_WiiCallbackStack}}
+
+
+Inheritance diagram for wiimote.\+W\+I\+I\+Mote.\+\_\+\+Wii\+Callback\+Stack\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=246pt]{classwiimote_1_1WIIMote_1_1__WiiCallbackStack__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for wiimote.\+W\+I\+I\+Mote.\+\_\+\+Wii\+Callback\+Stack\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=246pt]{classwiimote_1_1WIIMote_1_1__WiiCallbackStack__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classwiimote_1_1WIIMote_1_1__WiiCallbackStack_ae3ed2409c5fff0691117d203bedca41b}\label{classwiimote_1_1WIIMote_1_1__WiiCallbackStack_ae3ed2409c5fff0691117d203bedca41b}} 
+def {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, wii\+Driver, sloppy=True)
+\item 
+def \mbox{\hyperlink{classwiimote_1_1WIIMote_1_1__WiiCallbackStack_a8c9e44557a1dad8eb03bc05fb224fd01}{push}} (self, func)
+\item 
+def \mbox{\hyperlink{classwiimote_1_1WIIMote_1_1__WiiCallbackStack_abd94ff986063b8c3c0b53ae022632f76}{pop}} (self)
+\item 
+def \mbox{\hyperlink{classwiimote_1_1WIIMote_1_1__WiiCallbackStack_afd504a88f2871c2ee6290465d9c50549}{pause}} (self)
+\item 
+def \mbox{\hyperlink{classwiimote_1_1WIIMote_1_1__WiiCallbackStack_abb067f572b718bef146ec4b1d7eced5e}{resume}} (self, sloppy=True)
+\item 
+def \mbox{\hyperlink{classwiimote_1_1WIIMote_1_1__WiiCallbackStack_a58d33f40aa1a5978df98865a5b5d7e7b}{setcallback}} (self, f)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Class organizes installation and removal/restoration
+of callback functions for the Wii driver to use.
+Only one instance of this class is allowed. Additional
+instantiations generate a CallbackStackMultInstError.
+
+A stack discipline is imposed. Operations:
+
+   - push(<callBackFunc>)        # New function becomes the active
+                                 # callback immediately
+   - pop() -> <oldCallBackFunc>  # If another function is still on
+                                     # the stack, it immediately becomes
+                                     # the active callback. If callback
+                                   # is paused, resume() is forced.
+   - pause()                  # Callbacks are temporarily turned off
+   - paused() -> True/False
+   - resume(sloppy=True)      # If sloppy=False, resuming when
+                                   # callbacks are not paused throws an
+                                   # exception.  If sloppy=True, the call is
+                                   # a no-op\end{DoxyVerb}
+ 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classwiimote_1_1WIIMote_1_1__WiiCallbackStack_afd504a88f2871c2ee6290465d9c50549}\label{classwiimote_1_1WIIMote_1_1__WiiCallbackStack_afd504a88f2871c2ee6290465d9c50549}} 
+\index{wiimote.WIIMote.\_WiiCallbackStack@{wiimote.WIIMote.\_WiiCallbackStack}!pause@{pause}}
+\index{pause@{pause}!wiimote.WIIMote.\_WiiCallbackStack@{wiimote.WIIMote.\_WiiCallbackStack}}
+\doxysubsubsection{\texorpdfstring{pause()}{pause()}}
+{\footnotesize\ttfamily def wiimote.\+W\+I\+I\+Mote.\+\_\+\+Wii\+Callback\+Stack.\+pause (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}WIIMote callbacks are temporarily stopped.\end{DoxyVerb}
+ \mbox{\Hypertarget{classwiimote_1_1WIIMote_1_1__WiiCallbackStack_abd94ff986063b8c3c0b53ae022632f76}\label{classwiimote_1_1WIIMote_1_1__WiiCallbackStack_abd94ff986063b8c3c0b53ae022632f76}} 
+\index{wiimote.WIIMote.\_WiiCallbackStack@{wiimote.WIIMote.\_WiiCallbackStack}!pop@{pop}}
+\index{pop@{pop}!wiimote.WIIMote.\_WiiCallbackStack@{wiimote.WIIMote.\_WiiCallbackStack}}
+\doxysubsubsection{\texorpdfstring{pop()}{pop()}}
+{\footnotesize\ttfamily def wiimote.\+W\+I\+I\+Mote.\+\_\+\+Wii\+Callback\+Stack.\+pop (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Wiimote callback function is popped off the stack. New top of stack
+becomes the new callback function. Old function is returned.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classwiimote_1_1WIIMote_1_1__WiiCallbackStack_a8c9e44557a1dad8eb03bc05fb224fd01}\label{classwiimote_1_1WIIMote_1_1__WiiCallbackStack_a8c9e44557a1dad8eb03bc05fb224fd01}} 
+\index{wiimote.WIIMote.\_WiiCallbackStack@{wiimote.WIIMote.\_WiiCallbackStack}!push@{push}}
+\index{push@{push}!wiimote.WIIMote.\_WiiCallbackStack@{wiimote.WIIMote.\_WiiCallbackStack}}
+\doxysubsubsection{\texorpdfstring{push()}{push()}}
+{\footnotesize\ttfamily def wiimote.\+W\+I\+I\+Mote.\+\_\+\+Wii\+Callback\+Stack.\+push (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{func }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Given function becomes the new WIImote callback function, shadowing
+the function that is currently on the stack
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classwiimote_1_1WIIMote_1_1__WiiCallbackStack_abb067f572b718bef146ec4b1d7eced5e}\label{classwiimote_1_1WIIMote_1_1__WiiCallbackStack_abb067f572b718bef146ec4b1d7eced5e}} 
+\index{wiimote.WIIMote.\_WiiCallbackStack@{wiimote.WIIMote.\_WiiCallbackStack}!resume@{resume}}
+\index{resume@{resume}!wiimote.WIIMote.\_WiiCallbackStack@{wiimote.WIIMote.\_WiiCallbackStack}}
+\doxysubsubsection{\texorpdfstring{resume()}{resume()}}
+{\footnotesize\ttfamily def wiimote.\+W\+I\+I\+Mote.\+\_\+\+Wii\+Callback\+Stack.\+resume (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{sloppy = {\ttfamily True} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Resume the (presumably) previously paused WIIMote callback functions.
+If sloppy is True, this method won't complain if pause was not
+called earlier. If sloppy is False, an exception is raised in
+that case.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classwiimote_1_1WIIMote_1_1__WiiCallbackStack_a58d33f40aa1a5978df98865a5b5d7e7b}\label{classwiimote_1_1WIIMote_1_1__WiiCallbackStack_a58d33f40aa1a5978df98865a5b5d7e7b}} 
+\index{wiimote.WIIMote.\_WiiCallbackStack@{wiimote.WIIMote.\_WiiCallbackStack}!setcallback@{setcallback}}
+\index{setcallback@{setcallback}!wiimote.WIIMote.\_WiiCallbackStack@{wiimote.WIIMote.\_WiiCallbackStack}}
+\doxysubsubsection{\texorpdfstring{setcallback()}{setcallback()}}
+{\footnotesize\ttfamily def wiimote.\+W\+I\+I\+Mote.\+\_\+\+Wii\+Callback\+Stack.\+setcallback (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{f }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Tell WIIMote which function to call when reporting status.\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+catkin\+\_\+ws/src/utilities/joystick\+\_\+drivers/wiimote/src/wiimote/W\+I\+I\+Mote.\+py\end{DoxyCompactItemize}

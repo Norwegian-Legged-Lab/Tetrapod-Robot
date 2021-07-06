@@ -1,0 +1,51 @@
+The joy package contains joy\+\_\+node, a node that interfaces a generic Linux joystick to R\+OS. This node publishes a \char`\"{}\+Joy\char`\"{} message, which contains the current state of each one of the joystick\textquotesingle{}s buttons and axes.\hypertarget{md_catkin_ws_src_utilities_joystick_drivers_joy_README_autotoc_md12}{}\doxysection{Supported Hardware}\label{md_catkin_ws_src_utilities_joystick_drivers_joy_README_autotoc_md12}
+This node should work with any joystick that is supported by Linux.\hypertarget{md_catkin_ws_src_utilities_joystick_drivers_joy_README_autotoc_md13}{}\doxysection{Published Topics}\label{md_catkin_ws_src_utilities_joystick_drivers_joy_README_autotoc_md13}
+
+\begin{DoxyItemize}
+\item joy (\href{http://docs.ros.org/api/sensor_msgs/html/msg/Joy.html}{\texttt{ sensor\+\_\+msgs/\+Joy}})\+: outputs the joystick state.
+\end{DoxyItemize}\hypertarget{md_catkin_ws_src_utilities_joystick_drivers_joy_README_autotoc_md14}{}\doxysection{Device Selection}\label{md_catkin_ws_src_utilities_joystick_drivers_joy_README_autotoc_md14}
+There are two parameters controlling which device should be used\+:
+
+
+\begin{DoxyItemize}
+\item $\sim$dev (string, default\+: \char`\"{}/dev/input/js0\char`\"{})
+\item $\sim$dev\+\_\+name (string, default\+: \char`\"{}\char`\"{} (empty = disabled))
+\end{DoxyItemize}
+
+If $\sim$dev\+\_\+name is empty, $\sim$dev defines the Linux joystick device from which to read joystick events.
+
+If $\sim$dev\+\_\+name is defined, the node enumerates all available joysticks, i.\+e. /dev/input/js$\ast$. The first joystick matching $\sim$dev\+\_\+name is opened. If no joystick matches the desired device name, the device specified by $\sim$dev is used as a fallback.
+
+To get a list of the names of all connected joysticks, an invalid $\sim$dev\+\_\+name can be specified. For example\+:
+
+{\ttfamily rosrun joy joy\+\_\+node \+\_\+dev\+\_\+name\+:=\char`\"{}$\ast$\char`\"{}}
+
+The output might look like this\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[ INFO]: Found joystick: ST LIS3LV02DL Accelerometer (/dev/input/js1).}
+\DoxyCodeLine{[ INFO]: Found joystick: Microsoft X-\/Box 360 pad (/dev/input/js0).}
+\DoxyCodeLine{[ERROR]: Couldn't find a joystick with name *. Falling back to default device.}
+\end{DoxyCode}
+
+
+Then the node can be started with the device name given in the list. For example\+:
+
+{\ttfamily rosrun joy joy\+\_\+node \+\_\+dev\+\_\+name\+:=\char`\"{}\+Microsoft X-\/\+Box 360 pad\char`\"{}}\hypertarget{md_catkin_ws_src_utilities_joystick_drivers_joy_README_autotoc_md15}{}\doxysection{Advanced Parameters}\label{md_catkin_ws_src_utilities_joystick_drivers_joy_README_autotoc_md15}
+
+\begin{DoxyItemize}
+\item $\sim$deadzone (double, default\+: 0.\+05)
+\begin{DoxyItemize}
+\item Amount by which the joystick has to move before it is considered to be off-\/center. This parameter is specified relative to an axis normalized between -\/1 and 1. Thus, 0.\+1 means that the joystick has to move 10\% of the way to the edge of an axis\textquotesingle{}s range before that axis will output a non-\/zero value. Linux does its own deadzone processing, so in many cases this value can be set to zero.
+\end{DoxyItemize}
+\item $\sim$autorepeat\+\_\+rate (double, default\+: 0.\+0 (disabled))
+\begin{DoxyItemize}
+\item Rate in Hz at which a joystick that has a non-\/changing state will resend the previously sent message.
+\end{DoxyItemize}
+\item $\sim$coalesce\+\_\+interval (double, default\+: 0.\+001)
+\begin{DoxyItemize}
+\item Axis events that are received within coalesce\+\_\+interval (seconds) of each other are sent out in a single R\+OS message. Since the kernel sends each axis motion as a separate event, coalescing greatly reduces the rate at which messages are sent. This option can also be used to limit the rate of outgoing messages. Button events are always sent out immediately to avoid missing button presses.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md_catkin_ws_src_utilities_joystick_drivers_joy_README_autotoc_md16}{}\doxysection{Further Information}\label{md_catkin_ws_src_utilities_joystick_drivers_joy_README_autotoc_md16}
+For further information have a look at the \href{http://wiki.ros.org/joy}{\texttt{ Wiki page}}. 
