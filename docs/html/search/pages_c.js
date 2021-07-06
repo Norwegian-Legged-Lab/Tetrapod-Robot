@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vectors_1369',['Vectors',['../page_vector.html',1,'page_users']]]
+  ['users_1370',['Users',['../page_users.html',1,'']]]
 ];
