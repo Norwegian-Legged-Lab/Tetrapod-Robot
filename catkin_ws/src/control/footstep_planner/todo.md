@@ -22,10 +22,16 @@
 # tomorrow
 
 ## Interfacing with Gazebo for visualization
-- figure out how to ideally send footstep model directly to gazebo, or if not possible then
-- figure out how to update footstep marker positions on-the-fly from rosnode (gazebo plugin)
+- [x] figure out how to ideally send footstep model directly to gazebo, or if not possible then
+- [x] figure out how to update footstep marker positions on-the-fly from rosnode (gazebo plugin)
 
 ## Expand planner
-- add possibility for stepping stones of different height
-- possible to generalize stepping stone class slightly?
-- add reward for using fewer steps
+- [x] add possibility for stepping stones of different height
+- [ ] possible to generalize stepping stone class slightly?
+- [ ] add reward for using fewer steps
+- [ ] get footstep positions from Gazebo
+
+
+## Controller?
+- [ ] write static controller related to footstep planning
+- [ ] write gait based controller with better gait
