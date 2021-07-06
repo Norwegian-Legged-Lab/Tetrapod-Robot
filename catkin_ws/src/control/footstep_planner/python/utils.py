@@ -168,7 +168,7 @@ class Terrain(object):
             centers = [center + np.array([i * 2 * width_bridge, 0]) for i in np.where(bool_bridge)[0]]
             self.add_stones(
                 centers,
-                [width_bridge] * sum(bool_bridge),
+                [width_bridge*1.5] * sum(bool_bridge),
                 [initial.height] * sum(bool_bridge),
                 'bridge'
             )

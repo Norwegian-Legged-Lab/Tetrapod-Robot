@@ -21,7 +21,7 @@ Terrain::Terrain(Eigen::Array<bool, Eigen::Dynamic, 1> bool_bridge)
     }
 
     addStones(centers,
-        Eigen::Array<double, Eigen::Dynamic, 1>::Constant(num_stones, 1, width_bridge),
+        Eigen::Array<double, Eigen::Dynamic, 1>::Constant(num_stones, 1, width_bridge*1.5),
         Eigen::Array<double, Eigen::Dynamic, 1>::Constant(num_stones, 1, initial.getHeight()),
         "bridge");
     
