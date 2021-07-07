@@ -82,18 +82,18 @@ timestamp = "2021-06-29-17-33-57"; % Gains (Kpp: 30, Kip: 30, Kpv: 50, Kiv: 50, 
 %timestamp = "2021-07-05-20-31-49"; % (Kpp: 30, Kip: 15, Kpv: 50, Kiv: 25, Kpt: 100, Kit: 50)
 
 %% Simulation 
-timestamp = "2021-07-07-16-31-22"; % (P: 100, I: 0, D: 2) Very good tracking, several torque spikes
-timestamp = "2021-07-07-16-37-48"; % (P: 100, I: 0, D: 1) Very good tracking, less oscillations
-timestamp = "2021-07-07-16-39-43"; % (P: 50, I: 0, D: 1) Somewhat worse tracking in yaw, less oscillations
-timestamp = "2021-07-07-16-47-52"; % (P: 50, I: 0, D: 0.5) No spikes, worse tracking (KEEP)
-%timestamp = "2021-07-07-16-53-04"; % (P: 100, I: 0, D: 0.5) Some spikes, better tracking
-%timestamp = "2021-07-07-16-57-25"; % (P: 30, I: 30, D: 0.5) Still spikes
-%timestamp = "2021-07-07-17-00-23"; % (P: 30, I: 30, D: 0.3) More spikes
-%timestamp = "2021-07-07-17-02-53"; % (P: 30, I: 30, D: 3)
-timestamp = "2021-07-07-17-09-24"; % (P: 50, I: 50, D: 0.5) Hip is double
-timestamp = "2021-07-07-17-52-30"; % (P: 100, I: 0, D: 0.5)
-timestamp = "2021-07-07-17-58-31"; % (P: 100, I: 0, D: 0.5)
-timestamp = "2021-07-07-18-00-37"; % (P: 100, I: 0, D: 0.5)
+% timestamp = "2021-07-07-16-31-22"; % (P: 100, I: 0, D: 2) Very good tracking, several torque spikes
+% timestamp = "2021-07-07-16-37-48"; % (P: 100, I: 0, D: 1) Very good tracking, less oscillations
+% timestamp = "2021-07-07-16-39-43"; % (P: 50, I: 0, D: 1) Somewhat worse tracking in yaw, less oscillations
+% timestamp = "2021-07-07-16-47-52"; % (P: 50, I: 0, D: 0.5) No spikes, worse tracking (KEEP)
+% %timestamp = "2021-07-07-16-53-04"; % (P: 100, I: 0, D: 0.5) Some spikes, better tracking
+% %timestamp = "2021-07-07-16-57-25"; % (P: 30, I: 30, D: 0.5) Still spikes
+% %timestamp = "2021-07-07-17-00-23"; % (P: 30, I: 30, D: 0.3) More spikes
+% %timestamp = "2021-07-07-17-02-53"; % (P: 30, I: 30, D: 3)
+% timestamp = "2021-07-07-17-09-24"; % (P: 50, I: 50, D: 0.5) Hip is double
+% timestamp = "2021-07-07-17-52-30"; % (P: 100, I: 0, D: 0.5)
+% timestamp = "2021-07-07-17-58-31"; % (P: 100, I: 0, D: 0.5)
+% timestamp = "2021-07-07-18-00-37"; % (P: 100, I: 0, D: 0.5)
 
 %% Script start
 
