@@ -21,7 +21,7 @@
 
 #define UNINITIALIZED_JOINT_STATE 10.0
 #define ROBOT_NAME "my_robot"
-
+#define LEG_OFFSET_LENGTH 0.3
 
 class Controller{
     protected: using JointState = Eigen::Matrix<double, 12, 1>;
@@ -65,13 +65,13 @@ class Controller{
 
     protected: ros::Subscriber ready_to_proceed_subscriber;
 
-    protected: Eigen::Vector3d fl_offset = Eigen::Vector3d(0.22, 0.22, 0);
+    protected: Eigen::Vector3d fl_offset = Eigen::Vector3d(LEG_OFFSET_LENGTH, LEG_OFFSET_LENGTH, 0);
 
-    protected: Eigen::Vector3d fr_offset = Eigen::Vector3d(0.22, -0.22, 0);
+    protected: Eigen::Vector3d fr_offset = Eigen::Vector3d(LEG_OFFSET_LENGTH, -LEG_OFFSET_LENGTH, 0);
 
-    protected: Eigen::Vector3d rl_offset = Eigen::Vector3d(-0.22, 0.22, 0);
+    protected: Eigen::Vector3d rl_offset = Eigen::Vector3d(-LEG_OFFSET_LENGTH, LEG_OFFSET_LENGTH, 0);
 
-    protected: Eigen::Vector3d rr_offset = Eigen::Vector3d(-0.22, -0.22, 0);
+    protected: Eigen::Vector3d rr_offset = Eigen::Vector3d(-LEG_OFFSET_LENGTH, -LEG_OFFSET_LENGTH, 0);
 
     protected: Eigen::Vector3d fl_position_body;
 
