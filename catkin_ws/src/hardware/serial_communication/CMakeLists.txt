@@ -142,10 +142,6 @@ add_executable(serial_communication_test
   src/serial_communication_test.cpp
 )
 
-#add_executable(test_some
-#  src/serial_communication.cpp
-#  src/test_some.cpp
-#)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -166,11 +162,6 @@ target_link_libraries(serial_communication_test
   ${catkin_LIBRARIES}
   serial
  )
-
-#target_link_libraries(test_some
-#  ${catkin_LIBRARIES}
-#  serial
-# )
 
 
 #############
