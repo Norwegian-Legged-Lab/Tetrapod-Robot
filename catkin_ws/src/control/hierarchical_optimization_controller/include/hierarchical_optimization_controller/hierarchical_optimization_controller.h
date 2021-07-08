@@ -91,9 +91,35 @@ class HierarchicalOptimizationControl
     // TODO Remove
     public: void StaticTorqueTest();
 
-    public: Eigen::Matrix<double, 12, 1> HierarchicalOptimization(const Eigen::Vector3d &_desired_base_pos,
+
+    /// \brief The HierarchicalOptimization function finds
+    /// the optimal joint torques for a desired motion plan.
+    /// It finds joint torques by finding optimal joint 
+    /// accelerations and contact forces for a set of 
+    /// whole-body control QP tasks, and leveraging inverse
+    /// dynamics. 
+    /// \param[in] _desired_base_pos Desired base position.
+    /// \param[in] _desired_base_vel Desired base velocity.
+    /// \param[in] _desired_base_acc Desired base acceleration.
+    /// \param[in] _desired_base_ori Desired base orientation.
+    /// \param[in] _desired_f_pos Desired foot-point positions.
+    /// \param[in] _desired_f_vel Desired foot-point velocities.
+    /// \param[in] _desired_f_acc Desired foot-point accelerations.
+    /// \param[in] _f_pos Foot-point positions.
+    /// \param[in] _f_vel Foot-point velocities.
+    /// \param[in] _v Verbosity level [0,1,2,3].
+    /// \return Returns the optimal set of joint torques for
+    /// the whole-body control problem leveraging hierarchical 
+    /// optimization. 
+    public: Eigen::Matrix<double, 12, 1> HierarchicalOptimization(const Eigen::Matrix<double, 3, 1> &_desired_base_pos,
+                                                                  const Eigen::Matrix<double, 3, 1> &_desired_base_vel,
+                                                                  const Eigen::Matrix<double, 3, 1> &_desired_base_acc,
+                                                                  const Eigen::Matrix<double, 3, 1> &_desired_base_ori,
                                                                   const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_pos,
+                                                                  const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_vel,
+                                                                  const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_acc,
                                                                   const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_f_pos,
+                                                                  const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_f_vel,
                                                                   const Eigen::Matrix<double, 18, 1> &_q,
                                                                   const Eigen::Matrix<double, 18, 1> &_u,
                                                                   const int &_v = 0); 
@@ -115,7 +141,7 @@ class HierarchicalOptimizationControl
     /// manner given a set of tasks. 
     public: Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalQPOptimization(const int &_state_dim,
                                                                                 const std::vector<Task> &_tasks,
-                                                                                const SolverType &_solver = SolverType::UNSPECIFIED,
+                                                                                const SolverType &_solver = SolverType::OSQP,
                                                                                 const int &_v = 0);
 
     /// \brief The HierarchicalLeastSquareOptimization function finds the
