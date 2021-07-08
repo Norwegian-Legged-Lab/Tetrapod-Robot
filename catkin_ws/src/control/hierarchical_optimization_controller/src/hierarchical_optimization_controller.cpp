@@ -124,6 +124,8 @@ void HierarchicalOptimizationControl::StaticTorqueTest()
 
     while(this->rosNode->ok())
     {
+        debug_utils::printFootstepPositions(this->fPos);
+        debug_utils::printFootstepPositions(this->fVel);
         //desired_f_pos = f_pos;
         desired_f_pos = this->fPos;
 
@@ -153,7 +155,7 @@ void HierarchicalOptimizationControl::StaticTorqueTest()
         //debug_utils::printJointTorques(desired_tau);
 
         //this->PublishTorqueMsg(desired_tau.bottomRows(12));
-        this->PublishTorqueMsg(desired_tau);
+        //this->PublishTorqueMsg(desired_tau);
 
         //break;
 
@@ -1160,6 +1162,12 @@ void HierarchicalOptimizationControl::OnGenVelMsg(const std_msgs::Float64MultiAr
     std::vector<double> data = _msg->data;
 
     this->genVel = Eigen::Map<Eigen::MatrixXd>(data.data(), 18, 1); 
+
+    for (int i = 0; i < 4; i++)
+    {
+        this->fVel(i) = kinematics.GetTranslationJacobianInW(Kinematics::LegType(i + 1), Kinematics::BodyType::foot, this->genCoord)
+                        * this->genVel;
+    }
 
 }
 

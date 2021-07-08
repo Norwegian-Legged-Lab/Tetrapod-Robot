@@ -302,8 +302,11 @@ class HierarchicalOptimizationControl
     /// \brief Generalized Velocities
     private: Eigen::Matrix<double, 18, 1> genVel;
 
-    /// \brief Footstep positions
+    /// \brief Foot-point positions
     private: Eigen::Matrix<Eigen::Vector3d, 4, 1> fPos;
+
+    /// \brief Foot-point velocities
+    private: Eigen::Matrix<Eigen::Vector3d, 4, 1> fVel;
 
     /// \brief Contact State
     private: int contactState[4];
