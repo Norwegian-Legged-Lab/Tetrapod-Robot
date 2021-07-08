@@ -87,7 +87,7 @@ bool Controller::sendJointPositionCommands()
 
 void Controller::setInitialConfiguration()
 {
-    Eigen::Vector3d height_offset(0, 0, -0.36);
+    Eigen::Vector3d height_offset(0, 0, -0.25);
 
     fl_position_body = fl_offset + height_offset;
     

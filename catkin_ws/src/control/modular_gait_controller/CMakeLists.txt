@@ -41,11 +41,13 @@ include_directories(
 ## Declare a C++ library
 add_library(${PROJECT_NAME}
   src/gait_controller.cpp
+  src/gaits.cpp
 )
 
 add_executable(modular_gait_controller_node
   src/gait_controller_node.cpp
   src/gait_controller.cpp
+  src/gaits.cpp
 )
 
 target_link_libraries(${PROJECT_NAME}
