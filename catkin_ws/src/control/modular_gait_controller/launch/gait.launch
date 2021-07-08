@@ -1,0 +1,5 @@
+<launch>
+
+      <node pkg="modular_gait_controller" type="modular_gait_controller_node" name="gait_controller_node" output="screen"/>
+
+</launch>
