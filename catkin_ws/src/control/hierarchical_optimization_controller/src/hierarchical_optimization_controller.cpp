@@ -208,18 +208,18 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     double mu = 0.6;
 
     // Motion tracking gains
-    Eigen::Matrix3d k_p_fb_pos = Eigen::Matrix3d::Zero(); // Floating base position proportional gain
-    Eigen::Matrix3d k_d_fb_pos = Eigen::Matrix3d::Zero(); // Floating base position derivative gain
-    Eigen::Matrix3d k_p_fb_rot = Eigen::Matrix3d::Zero(); // Floating base rotation proportional gain
-    Eigen::Matrix3d k_d_fb_rot = Eigen::Matrix3d::Zero(); // Floating base rotation proportional gain
-    Eigen::Matrix3d k_p_fl = Eigen::Matrix3d::Zero();     // Front left foot proportional gain
-    Eigen::Matrix3d k_d_fl = Eigen::Matrix3d::Zero();     // Front left foot derivative gain
-    Eigen::Matrix3d k_p_fr = Eigen::Matrix3d::Zero();     // Front right foot proportional gain
-    Eigen::Matrix3d k_d_fr = Eigen::Matrix3d::Zero();     // Front right foot derivative gain
-    Eigen::Matrix3d k_p_rl = Eigen::Matrix3d::Zero();     // Rear left foot proportional gain
-    Eigen::Matrix3d k_d_rl = Eigen::Matrix3d::Zero();     // Rear left foot derivative gain
-    Eigen::Matrix3d k_p_rr = Eigen::Matrix3d::Zero();     // Rear right foot proportional gain
-    Eigen::Matrix3d k_d_rr = Eigen::Matrix3d::Zero();     // Rear right foot derivative gain
+    Eigen::Matrix3d k_p_fb_pos = Eigen::Matrix3d::Identity(); // Floating base position proportional gain
+    Eigen::Matrix3d k_d_fb_pos = Eigen::Matrix3d::Identity(); // Floating base position derivative gain
+    Eigen::Matrix3d k_p_fb_rot = Eigen::Matrix3d::Identity(); // Floating base rotation proportional gain
+    Eigen::Matrix3d k_d_fb_rot = Eigen::Matrix3d::Identity(); // Floating base rotation proportional gain
+    Eigen::Matrix3d k_p_fl = Eigen::Matrix3d::Identity();     // Front left foot proportional gain
+    Eigen::Matrix3d k_d_fl = Eigen::Matrix3d::Identity();     // Front left foot derivative gain
+    Eigen::Matrix3d k_p_fr = Eigen::Matrix3d::Identity();     // Front right foot proportional gain
+    Eigen::Matrix3d k_d_fr = Eigen::Matrix3d::Identity();     // Front right foot derivative gain
+    Eigen::Matrix3d k_p_rl = Eigen::Matrix3d::Identity();     // Rear left foot proportional gain
+    Eigen::Matrix3d k_d_rl = Eigen::Matrix3d::Identity();     // Rear left foot derivative gain
+    Eigen::Matrix3d k_p_rr = Eigen::Matrix3d::Identity();     // Rear right foot proportional gain
+    Eigen::Matrix3d k_d_rr = Eigen::Matrix3d::Identity();     // Rear right foot derivative gain
 
     // Posture tracking gains
     double k_p_pt = 1;      // Posture tracking proportional gain
@@ -419,38 +419,41 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
         // Floating base position
     t_mt.A_eq.block(0, 0, 3, state_dim).leftCols(18) = J_P_fb;
     t_mt.A_eq.block(0, 0, 3, state_dim).rightCols(3*n_c).setZero();
-    t_mt.b_eq.block(0, 0, 3, 1) = 0*_desired_base_acc + k_p_fb_pos * (_desired_base_pos - _q.topRows(3))
-                                  + k_d_fb_pos * (_desired_base_vel - _u.topRows(3)) - 0*dot_J_P_fb * _u;
+    t_mt.b_eq.block(0, 0, 3, 1) = _desired_base_acc + k_p_fb_pos * (_desired_base_pos - _q.topRows(3))
+                                  + k_d_fb_pos * (_desired_base_vel - _u.topRows(3)) - dot_J_P_fb * _u;
 
         // Floating base orientation
     t_mt.A_eq.block(3, 0, 3, state_dim).leftCols(18) = J_R_fb;
     t_mt.A_eq.block(3, 0, 3, state_dim).rightCols(3*n_c).setZero();
-    t_mt.b_eq.block(3, 0, 3, 1) = 0*k_p_fb_rot * math_utils::boxMinus(_desired_base_ori, base_ori)
-                                  + 0*k_d_fb_rot * (- _u.segment(3,3)) - 0*dot_J_R_fb * _u;
+    //t_mt.b_eq.block(3, 0, 3, 1) = k_p_fb_rot * (_desired_base_ori - _q.segment(3,3)) 
+    //                              + k_d_fb_rot * (- _u.segment(3,3)) - dot_J_R_fb * _u;
+
+    t_mt.b_eq.block(3, 0, 3, 1) = k_p_fb_rot * (_desired_base_ori - _q.segment(3,3))
+                                  + k_d_fb_rot * (- _u.segment(3,3)) - dot_J_R_fb * _u;
 
         // Front-left foot
     t_mt.A_eq.block(6, 0, 3, state_dim).leftCols(18) = J_P_fl;
     t_mt.A_eq.block(6, 0, 3, state_dim).rightCols(3*n_c).setZero();
-    t_mt.b_eq.block(6, 0, 3, 1) = 0*_desired_f_acc(0) + k_p_fl * (_desired_f_pos(0) - _f_pos(0))
-                                  + k_d_fl * (_desired_f_vel(0) - _f_vel(0)) - 0*dot_J_P_fl * _u;
+    t_mt.b_eq.block(6, 0, 3, 1) = _desired_f_acc(0) + k_p_fl * (_desired_f_pos(0) - _f_pos(0))
+                                  + k_d_fl * (_desired_f_vel(0) - _f_vel(0)) - dot_J_P_fl * _u;
 
         // Front-right foot
     t_mt.A_eq.block(9, 0, 3, state_dim).leftCols(18) = J_P_fr;
     t_mt.A_eq.block(9, 0, 3, state_dim).rightCols(3*n_c).setZero();
-    t_mt.b_eq.block(9, 0, 3, 1) = 0*_desired_f_acc(1) + k_p_fr * (_desired_f_pos(1) - _f_pos(1))
-                                  + k_d_fr * (_desired_f_vel(1) - _f_vel(1)) - 0*dot_J_P_fr * _u;
+    t_mt.b_eq.block(9, 0, 3, 1) = _desired_f_acc(1) + k_p_fr * (_desired_f_pos(1) - _f_pos(1))
+                                  + k_d_fr * (_desired_f_vel(1) - _f_vel(1)) - dot_J_P_fr * _u;
 
         // Rear-left foot
     t_mt.A_eq.block(12, 0, 3, state_dim).leftCols(18) = J_P_rl;
     t_mt.A_eq.block(12, 0, 3, state_dim).rightCols(3*n_c).setZero();
-    t_mt.b_eq.block(12, 0, 3, 1) = 0*_desired_f_acc(2) + k_p_rl * (_desired_f_pos(2) - _f_pos(2))
-                                  + k_d_rl * (_desired_f_vel(2) - _f_vel(2)) - 0*dot_J_P_rl * _u;
+    t_mt.b_eq.block(12, 0, 3, 1) = _desired_f_acc(2) + k_p_rl * (_desired_f_pos(2) - _f_pos(2))
+                                  + k_d_rl * (_desired_f_vel(2) - _f_vel(2)) - dot_J_P_rl * _u;
 
         // Rear-right foot
     t_mt.A_eq.block(15, 0, 3, state_dim).leftCols(18) = J_P_rr;
     t_mt.A_eq.block(15, 0, 3, state_dim).rightCols(3*n_c).setZero();
-    t_mt.b_eq.block(15, 0, 3, 1) = 0*_desired_f_acc(3) + k_p_rr * (_desired_f_pos(3) - _f_pos(3))
-                                  + k_d_rr * (_desired_f_vel(3) - _f_vel(3)) - 0*dot_J_P_rr * _u;
+    t_mt.b_eq.block(15, 0, 3, 1) = _desired_f_acc(3) + k_p_rr * (_desired_f_pos(3) - _f_pos(3))
+                                  + k_d_rr * (_desired_f_vel(3) - _f_vel(3)) - dot_J_P_rr * _u;
 
     // Update posture tracking task
     t_pt.A_eq.leftCols(6).setZero();
