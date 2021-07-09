@@ -222,7 +222,8 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     Eigen::Matrix3d k_d_rr = Eigen::Matrix3d::Identity();     // Rear right foot derivative gain
 
     // Posture tracking gains
-    double k_p_pt = 1;      // Posture tracking proportional gain
+    Eigen::Matrix<double, 12, 12> k_p_pt = 15*Eigen::Matrix<double, 12, 12>::Identity();      // Posture tracking proportional gain
+    Eigen::Matrix<double, 12, 12> k_d_pt = 4*Eigen::Matrix<double, 12, 12>::Identity();      // Posture tracking derivative gain
 
     //*************************************************************************************
     // Updates
@@ -283,8 +284,6 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     kindr::EulerAnglesXyz<double> desired_base_ori_kindr(_desired_base_ori);
     
     Eigen::Vector3d orientation_error = desired_base_ori_kindr.boxMinus(base_ori);
-
-    //Eigen::Vector3d base_ori = _q.segment(3,3); // TODO This is only needed for the boxminus operator which should be updated to handle dynamic vectors...
 
     // Update matrices and terms
     M = kinematics.GetMassMatrix(_q);
@@ -423,20 +422,27 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
 
     // Update motion tracking task
         // Floating base position
+    t_mt.A_eq.setZero();
+    t_mt.b_eq.setZero();
+    
     t_mt.A_eq.block(0, 0, 3, state_dim).leftCols(18) = J_P_fb;
     t_mt.A_eq.block(0, 0, 3, state_dim).rightCols(3*n_c).setZero();
     t_mt.b_eq.block(0, 0, 3, 1) = _desired_base_acc + k_p_fb_pos * (_desired_base_pos - _q.topRows(3))
                                   + k_d_fb_pos * (_desired_base_vel - _u.topRows(3)) - dot_J_P_fb * _u;
-
+    t_mt.A_eq.block(0, 0, 3, state_dim).setZero();
+    t_mt.b_eq.block(0, 0, 3, 1).setZero();
         // Floating base orientation
     t_mt.A_eq.block(3, 0, 3, state_dim).leftCols(18) = J_R_fb;
     t_mt.A_eq.block(3, 0, 3, state_dim).rightCols(3*n_c).setZero();
+
     //t_mt.b_eq.block(3, 0, 3, 1) = k_p_fb_rot * (_desired_base_ori - _q.segment(3,3)) 
     //                              + k_d_fb_rot * (- _u.segment(3,3)) - dot_J_R_fb * _u;
 
     t_mt.b_eq.block(3, 0, 3, 1) = k_p_fb_rot * (orientation_error)
                                   + k_d_fb_rot * (- _u.segment(3,3)) - dot_J_R_fb * _u;
-
+    //t_mt.A_eq.block(3, 0, 3, state_dim).setZero();
+    //t_mt.b_eq.block(3, 0, 3, 1).setZero();
+/*
         // Front-left foot
     t_mt.A_eq.block(6, 0, 3, state_dim).leftCols(18) = J_P_fl;
     t_mt.A_eq.block(6, 0, 3, state_dim).rightCols(3*n_c).setZero();
@@ -460,12 +466,12 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     t_mt.A_eq.block(15, 0, 3, state_dim).rightCols(3*n_c).setZero();
     t_mt.b_eq.block(15, 0, 3, 1) = _desired_f_acc(3) + k_p_rr * (_desired_f_pos(3) - _f_pos(3))
                                   + k_d_rr * (_desired_f_vel(3) - _f_vel(3)) - dot_J_P_rr * _u;
-
+*/
     // Update posture tracking task
     t_pt.A_eq.leftCols(6).setZero();
     t_pt.A_eq.block(0, 6, 12, 12).setIdentity();
     t_pt.A_eq.rightCols(3*n_c).setZero();
-    t_pt.b_eq = k_p_pt * (q_r_nom - _q.bottomRows(12));
+    t_pt.b_eq = k_p_pt * (q_r_nom - _q.bottomRows(12)) + k_d_pt * (-_u.bottomRows(12));
 
     // Update contact force minimization task
     t_cfm.A_eq.leftCols(18).setZero();
@@ -489,7 +495,7 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     tasks.push_back(t_cftl);
     tasks.push_back(t_cmc);
     tasks.push_back(t_mt);
-    //tasks.push_back(t_pt);
+    tasks.push_back(t_pt);
     tasks.push_back(t_cfm);
 
     Eigen::Matrix<Eigen::MatrixXd, 5, 1> A_ls;
@@ -1153,11 +1159,10 @@ void HierarchicalOptimizationControl::OnContactStateMsg(const std_msgs::Int8Mult
     }
     else
     {
-        // TODO Remove
-        //this->contactState[0] = _msg->data[0];
-        //this->contactState[1] = _msg->data[1];
-        //this->contactState[2] = _msg->data[2];
-        //this->contactState[3] = _msg->data[3];
+        this->contactState[0] = _msg->data[0];
+        this->contactState[1] = _msg->data[1];
+        this->contactState[2] = _msg->data[2];
+        this->contactState[3] = _msg->data[3];
     }
 }
 
