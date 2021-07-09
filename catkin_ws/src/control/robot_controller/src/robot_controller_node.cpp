@@ -6,7 +6,7 @@
 
 int main(int argc, char **argv)
 {
-    int controller_frequency = 200;
+    int controller_frequency = 300;
 
     double gait_period = 0.2;
 
@@ -33,6 +33,7 @@ int main(int argc, char **argv)
         controller.UpdateFeetReferences();
         controller.UpdateJointCommands();
         controller.PrintFootPositions();
+        controller.PrintVelCommands();
         controller.sendJointPositionCommands();
         control_rate.sleep();
     }
