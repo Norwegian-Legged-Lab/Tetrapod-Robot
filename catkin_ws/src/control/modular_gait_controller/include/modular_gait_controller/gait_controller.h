@@ -1,3 +1,5 @@
+#pragma once
+
 #include "controller/controller.h"
 
 class GaitController : public Controller {

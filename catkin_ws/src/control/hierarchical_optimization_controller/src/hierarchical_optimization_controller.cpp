@@ -59,86 +59,53 @@ HierarchicalOptimizationControl::~HierarchicalOptimizationControl()
 // TODO remove this
 void HierarchicalOptimizationControl::StaticTorqueTest()
 {
-    // Declare states
-    Eigen::Matrix<double, 18, 1> q;
-    Eigen::Matrix<double, 18, 1> u;
-    Eigen::Matrix<Eigen::Vector3d, 4, 1> f_pos;
-
-    q << 0,
-         0,
-         0.21,
-         0,
-         0,
-         0,
-         math_utils::degToRad(45),
-         math_utils::degToRad(40),
-         math_utils::degToRad(35),
-         math_utils::degToRad(-45),
-         math_utils::degToRad(-40),
-         math_utils::degToRad(-35),
-         math_utils::degToRad(135),
-         math_utils::degToRad(-40),
-         math_utils::degToRad(-35),
-         math_utils::degToRad(-135),
-         math_utils::degToRad(40),
-         math_utils::degToRad(35);
-
-    u << 0,
-         0,
-         0,
-         0,
-         0,
-         0,
-         0,
-         0,
-         0,
-         0,
-         0,
-         0,
-         0,
-         0,
-         0,
-         0,
-         0,
-         0;
-
-    kinematics.SolveForwardKinematics(q, f_pos);
-
     // Declare desired states
     Eigen::Vector3d desired_base_pos;
+    Eigen::Vector3d desired_base_vel;
+    Eigen::Vector3d desired_base_acc;
+    Eigen::Vector3d desired_base_ori;
     Eigen::Matrix<Eigen::Vector3d, 4, 1> desired_f_pos;
+    Eigen::Matrix<Eigen::Vector3d, 4, 1> desired_f_vel;
+    Eigen::Matrix<Eigen::Vector3d, 4, 1> desired_f_acc;
 
-    desired_base_pos << 0,
-                        0,
-                        0.25; 
-    
-    //desired_f_pos = f_pos;
-    desired_f_pos = this->fPos;
-
-    // Solve
-    //Eigen::Matrix<double, 18, 1> desired_tau;
+    // Declare torque solution
     Eigen::Matrix<double, 12, 1> desired_tau;
-
-
+        
+    // Loop rate
     ros::Rate loop_rate(100);
 
+    // Loop
     while(this->rosNode->ok())
     {
-        //desired_f_pos = f_pos;
+        // Set desired values
+        desired_base_pos << 0,
+                            0,
+                            0.25; 
+        desired_base_vel.setZero();
+        desired_base_acc.setZero();
+        desired_base_ori.setZero();
+
         desired_f_pos = this->fPos;
 
-        desired_base_pos = this->genCoord.topRows(3);
-
-        desired_base_pos(2) = 0.20;
+        for (int i = 0; i < 4; i++)
+        {                
+            desired_f_vel(i).setZero();
+            desired_f_acc(i).setZero();
+        }
 
         auto start = std::chrono::steady_clock::now();
 
         desired_tau = this->HierarchicalOptimization(desired_base_pos,
+                                                     desired_base_vel,
+                                                     desired_base_acc,
+                                                     desired_base_ori,
                                                      desired_f_pos,
+                                                     desired_f_vel,
+                                                     desired_f_acc,
                                                      this->fPos,
+                                                     this->fVel,
                                                      this->genCoord,
-                                                     //this->genVel,
-                                                     u,
+                                                     this->genVel,
                                                      0);
 
         auto end = std::chrono::steady_clock::now();
@@ -162,12 +129,18 @@ void HierarchicalOptimizationControl::StaticTorqueTest()
 }
 
 // Hierarchical Optimization
-Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimization(const Eigen::Vector3d &_desired_base_pos,
+Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimization(const Eigen::Matrix<double, 3, 1> &_desired_base_pos,
+                                                                                       const Eigen::Matrix<double, 3, 1> &_desired_base_vel,
+                                                                                       const Eigen::Matrix<double, 3, 1> &_desired_base_acc,
+                                                                                       const Eigen::Matrix<double, 3, 1> &_desired_base_ori,
                                                                                        const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_pos,
+                                                                                       const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_vel,
+                                                                                       const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_acc,
                                                                                        const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_f_pos,
+                                                                                       const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_f_vel,
                                                                                        const Eigen::Matrix<double, 18, 1> &_q,
                                                                                        const Eigen::Matrix<double, 18, 1> &_u,
-                                                                                       const int &_v)
+                                                                                       const int &_v) 
 {
     //*************************************************************************************
     // Declarations
@@ -207,13 +180,14 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     Eigen::Matrix<double, 3, 18> J_P_rr;                   // 3x18 Rear right foot Translation Jacobian
 
     Eigen::Matrix<double, 3, 18> dot_J_P_fb;               // 3x18 Time derivative of the Floating base Translation Jacobian
+    Eigen::Matrix<double, 3, 18> dot_J_R_fb;               // 3x18 Time derivative of the Floating base Rotation Jacobian
     Eigen::Matrix<double, 3, 18> dot_J_P_fl;               // 3x18 Time derivative of the Front left foot Translation Jacobian
     Eigen::Matrix<double, 3, 18> dot_J_P_fr;               // 3x18 Time derivative of the Front right foot Translation Jacobian
     Eigen::Matrix<double, 3, 18> dot_J_P_rl;               // 3x18 Time derivative of the Rear left foot Translation Jacobian
     Eigen::Matrix<double, 3, 18> dot_J_P_rr;               // 3x18 Time derivative of the Rear right foot Translation Jacobian
 
     // Terms used to enforce posture tracking
-    Eigen::Matrix<double, 12, 1> q_r_nom;                    // 12x1 Nominal posture configuration
+    Eigen::Matrix<double, 12, 1> q_r_nom;                  // 12x1 Nominal posture configuration
 
     // Terms used to enforce contact force and torque limits
     Eigen::Vector3d h;                                    // 3x1 Heading direction of the control frame expressed in the inertial frame
@@ -234,12 +208,18 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     double mu = 0.6;
 
     // Motion tracking gains
-    double k_p_fb_pos = 1;  // Floating base position proportional gain
-    double k_p_fb_rot = 1;  // Floating base rotation proportional gain
-    double k_p_fl = 1;      // Front left foot proportional gain
-    double k_p_fr = 1;      // Front right foot proportional gain
-    double k_p_rl = 1;      // Rear left foot proportional gain
-    double k_p_rr = 1;      // Rear right foot proportional gain
+    Eigen::Matrix3d k_p_fb_pos = Eigen::Matrix3d::Zero(); // Floating base position proportional gain
+    Eigen::Matrix3d k_d_fb_pos = Eigen::Matrix3d::Zero(); // Floating base position derivative gain
+    Eigen::Matrix3d k_p_fb_rot = Eigen::Matrix3d::Zero(); // Floating base rotation proportional gain
+    Eigen::Matrix3d k_d_fb_rot = Eigen::Matrix3d::Zero(); // Floating base rotation proportional gain
+    Eigen::Matrix3d k_p_fl = Eigen::Matrix3d::Zero();     // Front left foot proportional gain
+    Eigen::Matrix3d k_d_fl = Eigen::Matrix3d::Zero();     // Front left foot derivative gain
+    Eigen::Matrix3d k_p_fr = Eigen::Matrix3d::Zero();     // Front right foot proportional gain
+    Eigen::Matrix3d k_d_fr = Eigen::Matrix3d::Zero();     // Front right foot derivative gain
+    Eigen::Matrix3d k_p_rl = Eigen::Matrix3d::Zero();     // Rear left foot proportional gain
+    Eigen::Matrix3d k_d_rl = Eigen::Matrix3d::Zero();     // Rear left foot derivative gain
+    Eigen::Matrix3d k_p_rr = Eigen::Matrix3d::Zero();     // Rear right foot proportional gain
+    Eigen::Matrix3d k_d_rr = Eigen::Matrix3d::Zero();     // Rear right foot derivative gain
 
     // Posture tracking gains
     double k_p_pt = 1;      // Posture tracking proportional gain
@@ -297,6 +277,9 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     dot_J_c.resize(3*n_c, 18);
 
 
+    // Get base orientation
+    Eigen::Vector3d base_ori = _q.segment(3,3); // TODO This is only needed for the boxminus operator which should be updated to handle dynamic vectors...
+
     // Update matrices and terms
     M = kinematics.GetMassMatrix(_q);
 
@@ -332,6 +315,10 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
                                                           Kinematics::BodyType::base,
                                                           _q,
                                                           _u);
+    dot_J_R_fb = kinematics.GetRotationJacobianInCDiff(Kinematics::LegType::NONE,
+                                                       Kinematics::BodyType::base,
+                                                       _q,
+                                                       _u);
     dot_J_P_fl = kinematics.GetTranslationJacobianInCDiff(Kinematics::LegType::frontLeft,
                                                           Kinematics::BodyType::foot,
                                                           _q,
@@ -432,32 +419,38 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
         // Floating base position
     t_mt.A_eq.block(0, 0, 3, state_dim).leftCols(18) = J_P_fb;
     t_mt.A_eq.block(0, 0, 3, state_dim).rightCols(3*n_c).setZero();
-    t_mt.b_eq.block(0, 0, 3, 1) = - dot_J_P_fb * _u + k_p_fb_pos * (_desired_base_pos - _q.topRows(3));
+    t_mt.b_eq.block(0, 0, 3, 1) = 0*_desired_base_acc + k_p_fb_pos * (_desired_base_pos - _q.topRows(3))
+                                  + k_d_fb_pos * (_desired_base_vel - _u.topRows(3)) - 0*dot_J_P_fb * _u;
 
         // Floating base orientation
     t_mt.A_eq.block(3, 0, 3, state_dim).leftCols(18) = J_R_fb;
     t_mt.A_eq.block(3, 0, 3, state_dim).rightCols(3*n_c).setZero();
-    t_mt.b_eq.block(3, 0, 3, 1) = k_p_fb_rot * (Eigen::Vector3d::Zero() - _q.segment(3,3));
+    t_mt.b_eq.block(3, 0, 3, 1) = 0*k_p_fb_rot * math_utils::boxMinus(_desired_base_ori, base_ori)
+                                  + 0*k_d_fb_rot * (- _u.segment(3,3)) - 0*dot_J_R_fb * _u;
 
         // Front-left foot
     t_mt.A_eq.block(6, 0, 3, state_dim).leftCols(18) = J_P_fl;
     t_mt.A_eq.block(6, 0, 3, state_dim).rightCols(3*n_c).setZero();
-    t_mt.b_eq.block(6, 0, 3, 1) = - dot_J_P_fl * _u + k_p_fl * (_desired_f_pos(0) - _f_pos(0));
+    t_mt.b_eq.block(6, 0, 3, 1) = 0*_desired_f_acc(0) + k_p_fl * (_desired_f_pos(0) - _f_pos(0))
+                                  + k_d_fl * (_desired_f_vel(0) - _f_vel(0)) - 0*dot_J_P_fl * _u;
 
         // Front-right foot
     t_mt.A_eq.block(9, 0, 3, state_dim).leftCols(18) = J_P_fr;
     t_mt.A_eq.block(9, 0, 3, state_dim).rightCols(3*n_c).setZero();
-    t_mt.b_eq.block(9, 0, 3, 1) = - dot_J_P_fr * _u + k_p_fr * (_desired_f_pos(1) - _f_pos(1));
+    t_mt.b_eq.block(9, 0, 3, 1) = 0*_desired_f_acc(1) + k_p_fr * (_desired_f_pos(1) - _f_pos(1))
+                                  + k_d_fr * (_desired_f_vel(1) - _f_vel(1)) - 0*dot_J_P_fr * _u;
 
         // Rear-left foot
     t_mt.A_eq.block(12, 0, 3, state_dim).leftCols(18) = J_P_rl;
     t_mt.A_eq.block(12, 0, 3, state_dim).rightCols(3*n_c).setZero();
-    t_mt.b_eq.block(12, 0, 3, 1) = - dot_J_P_rl * _u + k_p_rl * (_desired_f_pos(2) - _f_pos(2));
+    t_mt.b_eq.block(12, 0, 3, 1) = 0*_desired_f_acc(2) + k_p_rl * (_desired_f_pos(2) - _f_pos(2))
+                                  + k_d_rl * (_desired_f_vel(2) - _f_vel(2)) - 0*dot_J_P_rl * _u;
 
         // Rear-right foot
     t_mt.A_eq.block(15, 0, 3, state_dim).leftCols(18) = J_P_rr;
     t_mt.A_eq.block(15, 0, 3, state_dim).rightCols(3*n_c).setZero();
-    t_mt.b_eq.block(15, 0, 3, 1) = - dot_J_P_rr * _u + k_p_rr * (_desired_f_pos(3) - _f_pos(3));
+    t_mt.b_eq.block(15, 0, 3, 1) = 0*_desired_f_acc(3) + k_p_rr * (_desired_f_pos(3) - _f_pos(3))
+                                  + k_d_rr * (_desired_f_vel(3) - _f_vel(3)) - 0*dot_J_P_rr * _u;
 
     // Update posture tracking task
     t_pt.A_eq.leftCols(6).setZero();
@@ -487,7 +480,7 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     tasks.push_back(t_cftl);
     tasks.push_back(t_cmc);
     tasks.push_back(t_mt);
-    tasks.push_back(t_pt);
+    //tasks.push_back(t_pt);
     tasks.push_back(t_cfm);
 
     Eigen::Matrix<Eigen::MatrixXd, 5, 1> A_ls;
@@ -1133,6 +1126,12 @@ void HierarchicalOptimizationControl::OnGenVelMsg(const std_msgs::Float64MultiAr
     std::vector<double> data = _msg->data;
 
     this->genVel = Eigen::Map<Eigen::MatrixXd>(data.data(), 18, 1); 
+
+    for (int i = 0; i < 4; i++)
+    {
+        this->fVel(i) = kinematics.GetTranslationJacobianInW(Kinematics::LegType(i + 1), Kinematics::BodyType::foot, this->genCoord)
+                        * this->genVel;
+    }
 
 }
 
