@@ -54,7 +54,7 @@ target_link_libraries(${PROJECT_NAME}
 )
 
 target_link_libraries(modular_gait_controller_node
-  ${catkin_LBRARIES}
+  ${catkin_LIBRARIES}
   controller
 )
 
