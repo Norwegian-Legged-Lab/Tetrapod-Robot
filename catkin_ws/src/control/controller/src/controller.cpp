@@ -139,6 +139,14 @@ void Controller::initROS()
         this
     );
 
+    this->twist_command_subscriber = nodeHandle->subscribe
+    (
+        "/twist_command",
+        1,
+        &Controller::TwistCommandCallback,
+        this
+    );
+
     // Initialize the joint command publisher
     joint_command_publisher = nodeHandle->advertise<sensor_msgs::JointState>("/" + robot_name + "/joint_state_cmd", 10);
 }
@@ -158,4 +166,11 @@ void Controller::jointStateCallback(const sensor_msgs::JointStatePtr &msg)
         // Store the joint velocities
         this->joint_velocities(i) = msg->velocity[i];
     }
+}
+
+void Controller::TwistCommandCallback(const geometry_msgs::TwistConstPtr &_msg)
+{
+    this->lin_vel_x = _msg->linear.x;
+    this->lin_vel_y = _msg->linear.y;
+    this->ang_vel_z = _msg->angular.z; 
 }
