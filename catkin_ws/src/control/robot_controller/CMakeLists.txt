@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(modular_gait_controller)
+project(robot_controller)
 
 find_package(catkin REQUIRED COMPONENTS
   roscpp
@@ -40,14 +40,12 @@ include_directories(
 
 ## Declare a C++ library
 add_library(${PROJECT_NAME}
-  src/gait_controller.cpp
-  src/gaits.cpp
+  src/robot_controller.cpp
 )
 
-add_executable(modular_gait_controller_node
-  src/gait_controller_node.cpp
-  src/gait_controller.cpp
-  src/gaits.cpp
+add_executable(robot_controller_node
+  src/robot_controller_node.cpp
+  src/robot_controller.cpp
 )
 
 target_link_libraries(${PROJECT_NAME}
@@ -55,7 +53,7 @@ target_link_libraries(${PROJECT_NAME}
   controller
 )
 
-target_link_libraries(modular_gait_controller_node
+target_link_libraries(robot_controller_node
   ${catkin_LIBRARIES}
   controller
 )

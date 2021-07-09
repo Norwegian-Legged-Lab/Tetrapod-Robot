@@ -46,6 +46,10 @@ class Controller{
     void jointStateCallback(const sensor_msgs::JointStatePtr &msg);
 
     void readyToProceedCallback(const std_msgs::Bool &msg);
+
+    /// \brief Converts twist command messages into desired linear and angular body velocities
+    void TwistCommandCallback(const geometry_msgs::TwistConstPtr &_msg);
+
     /*** Variables ***/
     private: bool ready_to_proceed = false;
 
@@ -65,6 +69,9 @@ class Controller{
 
     protected: ros::Subscriber ready_to_proceed_subscriber;
 
+    /// \brief Subscribes to twist command messages from external controller
+    protected: ros::Subscriber twist_command_subscriber;
+
     protected: Eigen::Vector3d fl_offset = Eigen::Vector3d(LEG_OFFSET_LENGTH, LEG_OFFSET_LENGTH, 0);
 
     protected: Eigen::Vector3d fr_offset = Eigen::Vector3d(LEG_OFFSET_LENGTH, -LEG_OFFSET_LENGTH, 0);
@@ -83,7 +90,20 @@ class Controller{
 
     protected: JointState joint_angle_commands = JointState::Zero();
 
+    protected: JointState joint_velocity_commands = JointState::Zero();
+
+    protected: JointState joint_acceleration_commands = JointState::Zero();
+
     protected: JointState joint_angles = JointState::Constant(UNINITIALIZED_JOINT_STATE);
 
     protected: JointState joint_velocities = JointState::Zero();
+
+    /// \brief The desired linear robot velocity in the body frame's x direction
+    protected: double lin_vel_x = 0.0;
+
+    /// \brief The desired linear robot velocity in the body frame's y direction
+    protected: double lin_vel_y = 0.0;
+
+    /// \brief The desired angular robot velocity around the robot's z axis
+    protected: double ang_vel_z = 0.0;
 };
