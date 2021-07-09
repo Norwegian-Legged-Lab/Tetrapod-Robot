@@ -83,6 +83,10 @@ class Controller{
 
     protected: JointState joint_angle_commands = JointState::Zero();
 
+    protected: JointState joint_velocity_commands = JointState::Zero();
+
+    protected: JointState joint_acceleration_commands = JointState::Zero();
+
     protected: JointState joint_angles = JointState::Constant(UNINITIALIZED_JOINT_STATE);
 
     protected: JointState joint_velocities = JointState::Zero();
