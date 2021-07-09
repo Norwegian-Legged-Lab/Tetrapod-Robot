@@ -1,10 +1,12 @@
 #include "robot_controller/robot_controller.h"
 
-RobotController::RobotController(int controller_freq, double gait_period) : RobotController::Controller(controller_freq)
+RobotController::RobotController(int _controller_freq, double _gait_period) : RobotController::Controller(_controller_freq)
 {
-    stance_iterations = gait_period*controller_freq*stance_phase_duration_percentage;
+    this->gait_duration = _gait_period;
 
-    swing_iterations = gait_period*controller_freq*(1.0 - 2.0*stance_phase_duration_percentage);
+    stance_iterations = _gait_period*controller_freq*stance_phase_duration_percentage;
+
+    swing_iterations = _gait_period*controller_freq*(1.0 - 2.0*stance_phase_duration_percentage);
 }
 
 /*
@@ -21,10 +23,30 @@ void RobotController::UpdateFeetReferences()
 }
 */
 
+void RobotController::UpdateStepDistances()
+{
+    this->step_distance_x_linear = gait_duration*lin_vel_x;
+
+    this->step_distance_y_linear = gait_duration*lin_vel_y;
+
+    Eigen::Matrix<double, 3, 1> base_to_hip_distance; // = kinematics.GetDistanceFromBaseToFrontLeftHipInB();
+
+    double rotation_radius =  sqrt(2*LEG_OFFSET_LENGTH*LEG_OFFSET_LENGTH)
+                            + sqrt(base_to_hip_distance(0)*base_to_hip_distance(0) + base_to_hip_distance(1)*base_to_hip_distance(1));
+
+    double step_distance_rotation = ang_vel_z*rotation_radius*gait_duration;
+
+    this->step_distance_x_rotational = step_distance_rotation/sqrt(2.0);
+
+    this->step_distance_y_rotational = step_distance_rotation/sqrt(2.0);
+}
+
 void RobotController::UpdateGaitState()
 {
     if(this->iteration == this->final_iteration)
     {
+        this->UpdateStepDistances();
+
         iteration = 0;
 
         switch (this->motion_state)
@@ -216,10 +238,16 @@ void RobotController::PrintParameters()
     ROS_INFO("SwI: %d\tStI: %d", swing_iterations, stance_iterations);
 }
 
+void RobotController::PrintVelCommands()
+{
+    ROS_INFO("LinX: %f\tLinY: %f\tAngZ: %f", lin_vel_x, lin_vel_y, ang_vel_z);
+}
+
 void RobotController::PrintFootPositions()
 {
-    ROS_INFO("State: %d\tIteration: %d\tFeet: %f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t", 
+    ROS_INFO("State: %d\tIteration: %d\tVlx: %f\tVly: %f\tVax: %f\tVay: %f\tFeet: %f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t", 
     motion_state, iteration,
+    step_distance_x_linear, step_distance_y_linear, step_distance_x_rotational, step_distance_y_rotational,
     fl_position_body(0), fl_position_body(1), fl_position_body(2),
     fr_position_body(0), fr_position_body(1), fr_position_body(2),
     rl_position_body(0), rl_position_body(1), rl_position_body(2),

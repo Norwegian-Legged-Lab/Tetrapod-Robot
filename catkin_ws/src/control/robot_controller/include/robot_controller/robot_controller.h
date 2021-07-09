@@ -10,6 +10,8 @@ class RobotController : public Controller
 
     public: RobotController(int controller_freq, double gait_period);
 
+    public: void UpdateStepDistances();
+
     public: void UpdateGaitState();
 
     /// \brief A function updating the foot positions of the robot in the hip frames
@@ -50,7 +52,7 @@ class RobotController : public Controller
 
     private: double hip_height = 0.35;
 
-    private: double step_distance_x_linear = 0.1;
+    private: double step_distance_x_linear = 0.0;
 
     private: double step_distance_y_linear = 0.0;
 
@@ -58,7 +60,7 @@ class RobotController : public Controller
 
     private: double step_distance_y_rotational = 0.0;
 
-    private: double gait_duration = 1.0;
+    private: double gait_duration = 0.0;
 
     private: double vel_x = 0.0;
 
@@ -106,5 +108,7 @@ class RobotController : public Controller
    public: void PrintParameters();
 
    public: void PrintFootPositions();
+
+   public: void PrintVelCommands();
 
 };

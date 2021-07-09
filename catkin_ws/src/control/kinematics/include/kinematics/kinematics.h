@@ -653,6 +653,14 @@ class Kinematics
 
     public: bool GetrrOffset() {return rrOffset;}
 
+    public: Eigen::Matrix<double, 3, 1> GetDistanceFromBaseToFrontLeftHipInB() {return positionBaseToFrontLeftInB;}
+
+    public: Eigen::Matrix<double, 3, 1> GetDistanceFromBaseToFrontRightHipInB() {return positionBaseToFrontRightInB;}
+
+    public: Eigen::Matrix<double, 3, 1> GetDistanceFromBaseToRearLeftHipInB() {return positionBaseToRearLeftInB;}
+    
+    public: Eigen::Matrix<double, 3, 1> GetDistanceFromBaseToRearRightHipInB() {return positionBaseToRearRightInB;}
+
     /// \brief Minimum joint limits.
     private: JointSpaceVector min_angles;
 
