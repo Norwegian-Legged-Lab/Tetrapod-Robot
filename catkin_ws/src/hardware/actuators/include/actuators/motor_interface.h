@@ -68,17 +68,9 @@ class MotorInterface
     /// \param[in] _torque New target torque
     public: void SetJointTorques(const std::vector<double> &_torque);
 
-    /// \brief 
-    //public: void SendJointStates();
-
     /// \brief Checks if there are any incomming messages from the serial ports.
     /// If there are new replies these are read and published
     public: void ProcessSerialMessages();
-
-    /// \brief The PublishTorqueMsg function publishes
-    /// a desired torque message to the ROS topic set by 
-    /// the joint state publisher.
-    //public: void PublishJointStateMsg();
 
     /// \brief The OnGenCoordMsg function handles an incoming 
     /// generalized coordinates message from ROS.
@@ -86,26 +78,24 @@ class MotorInterface
     /// coordinates.
     public: void OnJointStateCmdMsg(const sensor_msgs::JointStateConstPtr &_msg);
 
-    // TODO Describe
-    //public: void SerialProcessQueueThread();
-
-    // TODO Describe
-    //public: void SerialPublishQueueThread();
+    /// \brief The SerialProcessQueueThread function is a helper function
+    /// that processes serial messages.
+    public: void SerialProcessQueueThread();
 
     /// \brief The RosProcessQueueThread function is a ROS helper function
     /// that processes messages.
-    //public: void RosProcessQueueThread();
+    public: void RosProcessQueueThread();
 
     /// \brief The RosPublishQueueThread function is a ROS helper function
     /// that publish state messages.
-    //public: void RosPublishQueueThread();
+    public: void RosPublishQueueThread();
 
     /// \brief The InitRos function is called to initialize ROS 
     protected: void InitRos();
 
     /// \brief The InitRosQueueThreads function is called to initialize
     /// the ROS Publish and Process Queue Threads
-    //protected: void InitRosQueueThreads();
+    protected: void InitRosQueueThreads();
 
     /// \brief The number of motors to interface with
 	private: const int NUM_MOTORS;
@@ -128,33 +118,27 @@ class MotorInterface
     /// \brief Node used for ROS transport.
     private: std::unique_ptr<ros::NodeHandle> rosNode;
 
+    /// \brief Joint State Message
+    private: sensor_msgs::JointState jointStateMsg;
+
     /// \brief ROS Joint State Command Subscriber.
-    //private: ros::Subscriber jointStateCmdSub;
+    private: ros::Subscriber jointStateCmdSub;
 
     /// \brief ROS Joint State Publisher
-    //private: ros::Publisher jointStatePub;
+    private: ros::Publisher jointStatePub;
 
     /// \brief ROS callbackque that helps process messages.
-    //private: ros::CallbackQueue rosProcessQueue;
+    private: ros::CallbackQueue rosProcessQueue;
 
     /// \brief ROS callbackque that helps publish messages.
-    //private: ros::CallbackQueue rosPublishQueue;
+    private: ros::CallbackQueue rosPublishQueue;
 
     /// \brief Thread running the serialProcessQueue.
-    //private: std::thread serialProcessQueueThread;
-
-    /// \brief Thread running the serialPublishQueue.
-    //private: std::thread serialPublishQueueThread;
+    private: std::thread serialProcessQueueThread;
 
     /// \brief Thread running the rosProcessQueue.
-    //private: std::thread rosProcessQueueThread;
+    private: std::thread rosProcessQueueThread;
 
     /// \brief Thread running the rosPublishQueue.
-    //private: std::thread rosPublishQueueThread;
-
-
-    // TODO Remove 
-    private: ros::Publisher jointStatePublisher;
-
-    private: ros::Subscriber jointCommandSubscriber;
+    private: std::thread rosPublishQueueThread;
 };
