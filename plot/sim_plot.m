@@ -3,7 +3,7 @@
 run("setup.m");
 
 path = "~/Tetrapod-Robot/catkin_ws/src/utilities/log_utils/bagfiles/";
-timestamp = "2021-06-14-12-07-08";
+timestamp = "2021-07-11-16-32-59";
 
 number_of_motors = 12;
 
