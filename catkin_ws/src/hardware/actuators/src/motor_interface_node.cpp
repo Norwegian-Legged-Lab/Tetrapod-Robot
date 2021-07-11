@@ -1,30 +1,36 @@
-#include "ros/ros.h"
+/*******************************************************************/
+/*    AUTHOR: Paal Arthur S. Thorseth                              */
+/*    ORGN:   Dept of Eng Cybernetics, NTNU Trondheim              */
+/*    FILE:   motor_interface_node.h                               */
+/*    DATE:   Apr 23, 2021                                         */
+/*                                                                 */
+/* Copyright (C) 2021 Paal Arthur S. Thorseth,                     */
+/*                    Adrian B. Ghansah                            */
+/*                                                                 */
+/* This program is free software: you can redistribute it          */
+/* and/or modify it under the terms of the GNU General             */
+/* Public License as published by the Free Software Foundation,    */
+/* either version 3 of the License, or (at your option) any        */
+/* later version.                                                  */
+/*                                                                 */
+/* This program is distributed in the hope that it will be useful, */
+/* but WITHOUT ANY WARRANTY; without even the implied warranty     */
+/* of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.         */
+/* See the GNU General Public License for more details.            */
+/*                                                                 */
+/* You should have received a copy of the GNU General Public       */
+/* License along with this program. If not, see                    */
+/* <https://www.gnu.org/licenses/>.                                */
+/*                                                                 */
+/*******************************************************************/
 
 #include "actuators/motor_interface.h"
 
 int main(int argc, char **argv)
 {
-    MotorInterface motor_interface(3);
+    MotorInterface motor_interface(12);
 
-    //ros::spin();
-
-    // Temporary solution
-    // START
-    ros::Rate loop_rate(10000);
-
-    while(ros::ok())
-    {
-        // Check for Serial replies
-        motor_interface.ProcessSerialMessages();
-
-        // Check for incomming command messages
-        ros::spinOnce();
-
-        // Sleep for a short duration
-        loop_rate.sleep();
-    }
-    // END
-    
+    ros::spin();
 
     return 0;
 }

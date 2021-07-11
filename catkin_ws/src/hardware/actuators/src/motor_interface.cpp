@@ -28,31 +28,22 @@
 
 // Constructor
 MotorInterface::MotorInterface() :
-    NUM_MOTORS { 12 }
+    NUM_MOTORS { 12 },
+    serialInterface1("/dev/ttyACM0"),
+    serialInterface2("/dev/ttyACM1")
 {
-    this->InitRos();
-    //this->InitRosQueueThreads();
 
     this->num_motors_port_1 = MAX_NUM_MOTORS_PER_PORT;
 
     this->num_motors_port_2 = MAX_NUM_MOTORS_PER_PORT;
 
-    this->serialInterface1.SetPort("/dev/ttyACM0");
-
-    this->serialInterface2.SetPort("/dev/ttyACM1");
-
-    this->serialInterface1.InitLibSerial();
-
-    this->serialInterface2.InitLibSerial();
+    this->InitRos();
+    this->InitRosQueueThreads();
 }
 
 MotorInterface::MotorInterface(const int &_num_motors) :
     NUM_MOTORS { _num_motors }
 {
-    this->InitRos();
-    //this->InitRosQueueThreads();
-
-
     // Check whether we should use one or two parts
     if(_num_motors <= this->MAX_NUM_MOTORS_PER_PORT)
     {
@@ -83,6 +74,8 @@ MotorInterface::MotorInterface(const int &_num_motors) :
         this->serialInterface2.InitLibSerial();
     }
 
+    this->InitRos();
+    this->InitRosQueueThreads();
 
 }
 
@@ -90,7 +83,7 @@ MotorInterface::MotorInterface(const int &_num_motors) :
 MotorInterface::~MotorInterface() 
 {
     this->rosNode->shutdown();
-    /*
+    
     this->rosProcessQueue.clear();
     this->rosProcessQueue.disable();
     this->rosProcessQueueThread.join();
@@ -98,7 +91,7 @@ MotorInterface::~MotorInterface()
     this->rosPublishQueue.clear();
     this->rosPublishQueue.disable();
     this->rosPublishQueueThread.join();
-    */
+    
 }
 
 void MotorInterface::SetJointPositions(const std::vector<double> &_pos)
@@ -151,68 +144,51 @@ void MotorInterface::SetJointTorques(const std::vector<double> &_torque)
 
 void MotorInterface::ProcessSerialMessages()
 {
-    if(serialInterface1.IsNewDataAvailable())
+    if (this->NUM_MOTORS <= MAX_NUM_MOTORS_PER_PORT)
     {
-        Eigen::Matrix<Eigen::VectorXd, 3, 1> joint_states = serialInterface1.ReceiveMessage();
+        if(serialInterface1.IsNewDataAvailable())
+        {
+            Eigen::Matrix<Eigen::VectorXd, 3, 1> joint_states = serialInterface1.ReceiveMessage();
 
-        
+            for (int i = 0; i < num_motors_port_1; i++)
+            {
+                jointStateMsg.position[i] = joint_states(0)(i);
+                jointStateMsg.velocity[i] = joint_states(1)(i);
+                jointStateMsg.effort[i] = joint_states(2)(i);
+            } 
 
-        std_msgs::Float64MultiArray joint_state_positions;
-        std_msgs::Float64MultiArray joint_state_velocities;
-        std_msgs::Float64MultiArray joint_state_torques;
-
-        tf::matrixEigenToMsg(joint_states(0), joint_state_positions);
-        tf::matrixEigenToMsg(joint_states(1), joint_state_velocities);
-        tf::matrixEigenToMsg(joint_states(2), joint_state_torques);
-        
-        sensor_msgs::JointState joint_state_msg;
-
-        joint_state_msg.position = joint_state_positions.data;
-        joint_state_msg.velocity = joint_state_velocities.data;
-        joint_state_msg.effort = joint_state_torques.data;
-
-        joint_state_msg.header.stamp = ros::Time::now();
-
-        jointStatePublisher.publish(joint_state_msg);
+        }
     }
+    else
+    {
+        if(serialInterface1.IsNewDataAvailable())
+        {
+            Eigen::Matrix<Eigen::VectorXd, 3, 1> joint_states = serialInterface1.ReceiveMessage();
+
+            for (int i = 0; i < num_motors_port_1; i++)
+            {
+                jointStateMsg.position[i] = joint_states(0)(i);
+                jointStateMsg.velocity[i] = joint_states(1)(i);
+                jointStateMsg.effort[i] = joint_states(2)(i);
+            } 
+
+        }
+
+        if(serialInterface2.IsNewDataAvailable())
+        {
+            Eigen::Matrix<Eigen::VectorXd, 3, 1> joint_states = serialInterface2.ReceiveMessage();
+
+            for(int i = 0; i < num_motors_port_2; i++)
+            {
+                jointStateMsg.position[num_motors_port_1 + i] = joint_states(0)(i);
+                jointStateMsg.velocity[num_motors_port_1 + i] = joint_states(1)(i);
+                jointStateMsg.effort[num_motors_port_1 + i] = joint_states(2)(i);
+            }
+        }
+    }
+
 }
-/*
-// Publish function for ROS Joint State Torque messages
-void MotorInterface::PublishJointStateMsg()
-{
-    // Declare msg
-    sensor_msgs::JointState joint_state_msg;    
 
-    // Set dimension
-    joint_state_msg.effort.resize(12);
-
-    // Front-left 
-    //joint_state_msg.effort[0] = _desired_tau(0);
-    //joint_state_msg.effort[1] = _desired_tau(1);
-    //joint_state_msg.effort[2] = _desired_tau(2);
-
-    //// Front right
-    //joint_state_msg.effort[3] = _desired_tau(3);
-    //joint_state_msg.effort[4] = _desired_tau(4);
-    //joint_state_msg.effort[5] = _desired_tau(5);
-
-    //// Rear left
-    //joint_state_msg.effort[6] = _desired_tau(6);
-    //joint_state_msg.effort[7] = _desired_tau(7);
-    //joint_state_msg.effort[8] = _desired_tau(8);
-
-    //// Rear right
-    //joint_state_msg.effort[9] = _desired_tau(9);
-    //joint_state_msg.effort[10] = _desired_tau(10);
-    //joint_state_msg.effort[11] = _desired_tau(11);
-
-    // Set timestamp
-    joint_state_msg.header.stamp = ros::Time::now();
-
-    // Publish
-    this->jointStatePub.publish(joint_state_msg);
-}
-*/
 // Callback for ROS Contact State messages
 void MotorInterface::OnJointStateCmdMsg(const sensor_msgs::JointStateConstPtr &_msg)
 {
@@ -235,51 +211,44 @@ void MotorInterface::OnJointStateCmdMsg(const sensor_msgs::JointStateConstPtr &_
         ROS_ERROR("[MotorInterface::OnJointStateCmdMsg] Message failed to match specifications!");
     }
 }
-/*
+
 // Setup thread to process messages
 void MotorInterface::SerialProcessQueueThread()
 {
-    ros::Rate loop_rate(1000);
+    ros::Rate loop_rate(10000);
 
     while (this->rosNode->ok())
     {
+        this->ProcessSerialMessages();
 
         loop_rate.sleep();
     }
 }
-*//*
-// Setup thread to publish messages
-void MotorInterface::SerialPublishQueueThread()
-{
-    ros::Rate loop_rate(1000);
 
-    while (this->rosNode->ok())
-    {
-
-        loop_rate.sleep();
-    }
-}
-*//*
 // Setup thread to process messages
 void MotorInterface::RosProcessQueueThread()
 {
-    static const double timeout = 0.01;
+    static const double timeout = 0.0001;
     while (this->rosNode->ok())
     {
         this->rosProcessQueue.callAvailable(ros::WallDuration(timeout));
     }
 }
-*//*
+
 // Setup thread to publish messages
 void MotorInterface::RosPublishQueueThread()
 {
-    static const double timeout = 0.01;
+    static const double timeout = 0.0001;
     while (this->rosNode->ok())
     {
+        this->jointStateMsg.header.stamp = ros::Time::now();
+
+        this->jointStatePub.publish(this->jointStateMsg);
+
         this->rosPublishQueue.callAvailable(ros::WallDuration(timeout));
     }
 }
-*/
+
 // Initialize ROS
 void MotorInterface::InitRos()
 {
@@ -296,10 +265,10 @@ void MotorInterface::InitRos()
     }
 
     this->rosNode.reset(new ros::NodeHandle("motor_interface_node"));
-    /*
+    
     ros::SubscribeOptions joint_state_cmd_so = 
         ros::SubscribeOptions::create<sensor_msgs::JointState>(
-            "/my_robot/data",
+            "/my_robot/joint_state_cmd",
             1,
             boost::bind(&MotorInterface::OnJointStateCmdMsg, this, _1),
             ros::VoidPtr(),
@@ -309,7 +278,7 @@ void MotorInterface::InitRos()
 
     ros::AdvertiseOptions joint_state_ao =
         ros::AdvertiseOptions::create<sensor_msgs::JointState>(
-            "/motor/data",
+            "/motor/states",
             1,
             ros::SubscriberStatusCallback(),
             ros::SubscriberStatusCallback(),
@@ -320,25 +289,15 @@ void MotorInterface::InitRos()
     this->jointStateCmdSub = this->rosNode->subscribe(joint_state_cmd_so);
 
     this->jointStatePub = this->rosNode->advertise(joint_state_ao);
-    */
-    this->jointStatePublisher = this->rosNode->advertise<sensor_msgs::JointState>("/motor/states", 1);
 
-    this->jointCommandSubscriber = this->rosNode->subscribe
-    (
-        "/my_robot/joint_state_cmd",
-        1,
-        &MotorInterface::OnJointStateCmdMsg,
-        this
-    );
+    this->jointStateMsg.position.resize(this->NUM_MOTORS);
+    this->jointStateMsg.velocity.resize(this->NUM_MOTORS);
+    this->jointStateMsg.effort.resize(this->NUM_MOTORS);
 }
-/*
+
 // Initialize ROS Publish and Process Queue Threads
 void MotorInterface::InitRosQueueThreads()
 {
-    this->serialPublishQueueThread = std::thread(
-        std::bind(&MotorInterface::SerialPublishQueueThread, this)
-    );
-
     this->serialProcessQueueThread = std::thread(
         std::bind(&MotorInterface::SerialProcessQueueThread, this)
     );
@@ -351,4 +310,3 @@ void MotorInterface::InitRosQueueThreads()
         std::bind(&MotorInterface::RosProcessQueueThread, this)
     );
 }
-*/

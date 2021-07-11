@@ -1,0 +1,13 @@
+material Face{
+    technique
+    {
+        pass
+        {
+            texture_unit
+            {
+                texture face_it.png
+                scale 1 1
+            }
+        }   
+    }
+}
