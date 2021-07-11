@@ -46,6 +46,9 @@
 /// \brief A class to control and distribute motor position, velocity and torque information.
 class MotorInterface
 {
+    /// \brief The maximum numbers of motors to be interfaced with by one Teensy
+    private: static constexpr int MAX_NUM_MOTORS_PER_PORT = 6;
+
     /// \brief Default Constructor
     public: MotorInterface();
 
@@ -99,9 +102,6 @@ class MotorInterface
 
     /// \brief The number of motors to interface with
 	private: const int NUM_MOTORS;
-
-    /// \brief The maximum numbers of motors to be interfaced with by one Teensy
-    private: const int MAX_NUM_MOTORS_PER_PORT = 6;
 
     /// \brief The number of motors interfaced by the first Teensy
     private: int num_motors_port_1;
