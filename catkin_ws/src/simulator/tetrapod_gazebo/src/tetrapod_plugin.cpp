@@ -542,15 +542,6 @@ void TetrapodPlugin::InitRos()
             &this->rosProcessQueue
             );
 
-    ros::SubscribeOptions fl_joint_state_so = 
-        ros::SubscribeOptions::create<sensor_msgs::JointState>(
-            "/" + this->model->GetName() + "/fl_joint_state_cmd",
-            1,
-            boost::bind(&TetrapodPlugin::OnFlJointStateMsg, this, _1),
-            ros::VoidPtr(),
-            &this->rosProcessQueue
-            );
-
     ros::SubscribeOptions force_so = 
         ros::SubscribeOptions::create<std_msgs::Float64MultiArray>(
             "/" + this->model->GetName() + "/force_cmd",
@@ -589,8 +580,6 @@ void TetrapodPlugin::InitRos()
     this->jointStatePub = this->rosNode->advertise(joint_state_ao);
 
     this->jointStateSub = this->rosNode->subscribe(joint_state_so);
-
-    this->flJointStateSub = this->rosNode->subscribe(fl_joint_state_so);
 
     this->forceSub = this->rosNode->subscribe(force_so);
 
