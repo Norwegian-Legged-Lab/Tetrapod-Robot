@@ -6,13 +6,13 @@
 
 int main(int argc, char **argv)
 {
-    int controller_frequency = 300;
+    int controller_frequency = 200;
 
     double gait_period = 0.2;
 
     RobotController controller(controller_frequency, gait_period);
 
-    ros::Rate control_rate(200);
+    ros::Rate control_rate(controller_frequency);
 
     ROS_INFO("Initialization complete");
 
@@ -26,16 +26,20 @@ int main(int argc, char **argv)
 
     controller.waitForReadyToProceed();
 
+    int i = 0;
+
     while(ros::ok())
-    {
+    {   
         ros::spinOnce();
         controller.UpdateGaitState();
-        controller.UpdateFeetReferences();
+        //controller.UpdateFeetReferences();
+        controller.UpdateFeetTrajectories();
         controller.UpdateJointCommands();
         controller.PrintFootPositions();
         controller.PrintVelCommands();
         controller.sendJointPositionCommands();
         control_rate.sleep();
+        i++;
     }
 
     return 0;

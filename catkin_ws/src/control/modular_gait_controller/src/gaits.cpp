@@ -193,72 +193,102 @@ bool CalculatePolynomialTrajectory(double t, double T_end, double distance, doub
 }
 */
 
-void CalculatePolynomialTrajectory(double t, double swing_period, double rise_percentage ,double distance, double vel_cmd, double &_pos, double &_vel, double &_acc, double &_jerk)
+void CalculatePolynomialTrajectory(double t, double swing_period, double rise_percentage, double distance, double vel_cmd, double &_pos, double &_vel, double &_acc, double &_jerk)
 {
-    double rise_period = swing_period * rise_percentage;
-
-    double high_period = swing_period - 2.0 * rise_period;
-
-    double beta = 1.0/(1.0/rise_percentage - 2.0);
-
-    double rise_distance = (- vel_cmd * rise_period + 8.0 / 7.0 * beta * distance) / (15.0 / 7.0 + beta * 16.0 / 7.0);
-
-    double c = beta * (distance - 2.0 * rise_distance) / rise_distance;
-
-    double a = 15.0 / 7.0 * (c - 1.0);
-
-    double d = 1.0 - c;
-
-    double b = - 2.0 * a;
-
-    Eigen::Matrix<double, 6, 1> pos_coefficients;
-
-    Eigen::Matrix<double, 5, 1> vel_coefficients;
-
-    Eigen::Matrix<double, 4, 1> acc_coefficients;
-
-    Eigen::Matrix<double, 3, 1> jerk_coefficients;
-
-    pos_coefficients << d, c, 0, b/3.0, 0, a/5.0;
-
-    vel_coefficients << c, 0, b, 0, a;
-
-    acc_coefficients << 0, 2.0*b, 0, 4.0*a;
-
-    jerk_coefficients << 2.0*b, 0, 12.0*a;
-
-    if(t <= rise_period)
+    if(distance == 0.0)
     {
-        double x = t / rise_period;
-
-        
-        _pos = rise_distance * (a / 5.0 * pow(x - 1.0, 5) + b / 3.0 * pow(x - 1.0, 3) + c * x + d);
-        /*
-        _vel = rise_distance / rise_period * (a * pow(x - 1, 4) + b * pow(x - 1, 2) + c);
-        _acc = rise_distance / pow(rise_period, 2) * (4.0 * a * pow(x - 1.0, 3) + 2.0 * b * (x - 1.0));
-        _jerk = rise_distance / pow(rise_period, 3) * (12.0 * a * pow(x - 1.0, 2) + 2.0 * b);
-        */
-
-        //_pos = rise_distance * Eigen::poly_eval(pos_coefficients, x - 1.0);
-        _vel = rise_distance / rise_period * Eigen::poly_eval(vel_coefficients, x - 1.0);
-        _acc = rise_distance / pow(rise_period, 2) * Eigen::poly_eval(acc_coefficients, x - 1.0);
-        _jerk = rise_distance / pow(rise_period, 3) * Eigen::poly_eval(jerk_coefficients, x - 1.0);
-    
-    }
-    else if (t <= rise_period + high_period)
-    {
-        _pos = rise_distance * (a / 5.0 * pow(0.0, 5) + b / 3.0 * pow(0.0, 3) + c * 1.0 + d)  + rise_distance / rise_period * Eigen::poly_eval(vel_coefficients, 0.0) * (t - rise_period);
-        _vel = rise_distance / rise_period * Eigen::poly_eval(vel_coefficients, 0.0);
-        _acc = rise_distance / pow(rise_period, 2.0) * Eigen::poly_eval(acc_coefficients, 0.0); // Should be zero
-        _jerk = rise_distance / pow(rise_period, 3.0) * Eigen::poly_eval(jerk_coefficients, 0.0); 
+        // Can do something more fancy here, like moving towards the nominal position
+        _pos = 0.0;
+        _vel = 0.0;
+        _acc = 0.0;
+        _jerk = 0.0;
     }
     else
-    {
-        double x = (t - high_period) / rise_period;
+    {    
+        double rise_period = swing_period * rise_percentage;
 
-        _pos = _pos = rise_distance * (a / 5.0 * pow(x - 1.0, 5) + b / 3.0 * pow(x - 1.0, 3) + c * x + d) + rise_distance / rise_period * Eigen::poly_eval(vel_coefficients, 0.0) * high_period;
-        _vel = rise_distance / rise_period * Eigen::poly_eval(vel_coefficients, x - 1.0);
-        _acc = rise_distance / pow(rise_period, 2) * Eigen::poly_eval(acc_coefficients, x - 1.0);
-        _jerk = rise_distance / pow(rise_period, 3) * Eigen::poly_eval(jerk_coefficients, x - 1.0);
+        double high_period = swing_period - 2.0 * rise_period;
+
+        double beta = 1.0/(1.0/rise_percentage - 2.0);
+
+        double rise_distance = (- vel_cmd * rise_period + 8.0 / 7.0 * beta * distance) / (15.0 / 7.0 + beta * 16.0 / 7.0);
+
+        double c = beta * (distance - 2.0 * rise_distance) / rise_distance;
+
+        double a = 15.0 / 7.0 * (c - 1.0);
+
+        double d = 1.0 - c;
+
+        double b = - 2.0 * a;
+
+        Eigen::Matrix<double, 6, 1> pos_coefficients;
+
+        Eigen::Matrix<double, 5, 1> vel_coefficients;
+
+        Eigen::Matrix<double, 4, 1> acc_coefficients;
+
+        Eigen::Matrix<double, 3, 1> jerk_coefficients;
+
+        pos_coefficients << d, c, 0, b/3.0, 0, a/5.0;
+
+        vel_coefficients << c, 0, b, 0, a;
+
+        acc_coefficients << 0, 2.0*b, 0, 4.0*a;
+
+        jerk_coefficients << 2.0*b, 0, 12.0*a;
+
+        if(t <= rise_period)
+        {
+            double x = t / rise_period;
+
+            
+            _pos = rise_distance * (a / 5.0 * pow(x - 1.0, 5) + b / 3.0 * pow(x - 1.0, 3) + c * x + d);
+            /*
+            _vel = rise_distance / rise_period * (a * pow(x - 1, 4) + b * pow(x - 1, 2) + c);
+            _acc = rise_distance / pow(rise_period, 2) * (4.0 * a * pow(x - 1.0, 3) + 2.0 * b * (x - 1.0));
+            _jerk = rise_distance / pow(rise_period, 3) * (12.0 * a * pow(x - 1.0, 2) + 2.0 * b);
+            */
+
+            //_pos = rise_distance * Eigen::poly_eval(pos_coefficients, x - 1.0);
+            _vel = rise_distance / rise_period * Eigen::poly_eval(vel_coefficients, x - 1.0);
+            _acc = rise_distance / pow(rise_period, 2) * Eigen::poly_eval(acc_coefficients, x - 1.0);
+            _jerk = rise_distance / pow(rise_period, 3) * Eigen::poly_eval(jerk_coefficients, x - 1.0);
+        
+        }
+        else if (t <= rise_period + high_period)
+        {
+            _pos = rise_distance * (a / 5.0 * pow(0.0, 5) + b / 3.0 * pow(0.0, 3) + c * 1.0 + d)  + rise_distance / rise_period * Eigen::poly_eval(vel_coefficients, 0.0) * (t - rise_period);
+            _vel = rise_distance / rise_period * Eigen::poly_eval(vel_coefficients, 0.0);
+            _acc = rise_distance / pow(rise_period, 2.0) * Eigen::poly_eval(acc_coefficients, 0.0); // Should be zero
+            _jerk = rise_distance / pow(rise_period, 3.0) * Eigen::poly_eval(jerk_coefficients, 0.0); 
+        }
+        else
+        {
+            double x = (t - high_period) / rise_period;
+
+            _pos = _pos = rise_distance * (a / 5.0 * pow(x - 1.0, 5) + b / 3.0 * pow(x - 1.0, 3) + c * x + d) + rise_distance / rise_period * Eigen::poly_eval(vel_coefficients, 0.0) * high_period;
+            _vel = rise_distance / rise_period * Eigen::poly_eval(vel_coefficients, x - 1.0);
+            _acc = rise_distance / pow(rise_period, 2) * Eigen::poly_eval(acc_coefficients, x - 1.0);
+            _jerk = rise_distance / pow(rise_period, 3) * Eigen::poly_eval(jerk_coefficients, x - 1.0);
+        }
     }
+}
+
+void CalculateFourthOrderPolynomialTrajectory(double t, double swing_period, double distance, double &_pos, double &_vel, double _acc)
+{
+    double a = 1.0;
+    double b = - 2.0;
+    double c = 1.0;
+
+    double rise_period = swing_period / 2.0;
+
+    double x = t/rise_period - 1.0;
+
+    _pos = distance * (a * pow(x, 4) + b * pow(x, 2) + c);
+
+    _vel = distance / rise_period * (4.0 * a * pow(x, 3) + 2.0 * b * x);
+
+    _acc = distance / pow(rise_period, 2) * (12.0 * pow(x, 2) + 2 * b); 
+    
+    ROS_INFO("Height - pos: %f, vel: %f, acc: %f, x: %f, dis: %f", _pos, _vel, _acc, x, distance);
 }
