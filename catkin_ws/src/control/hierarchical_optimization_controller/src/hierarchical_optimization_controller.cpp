@@ -78,16 +78,16 @@ void HierarchicalOptimizationControl::StaticTorqueTest()
     while(this->rosNode->ok())
     {
         // Set desired values
-        //desired_base_pos << 0,
-        //                    0,
-        //                    0.3; 
-        desired_base_pos = this->genCoord.topRows(3);
+        desired_base_pos << 0,
+                            0,
+                            0.3; 
+        //desired_base_pos = this->genCoord.topRows(3);
         desired_base_vel.setZero();
         desired_base_acc.setZero();
         desired_base_ori.setZero();
 
         desired_f_pos = this->fPos;
-        desired_f_pos(0)(2) = 0.15;
+        //desired_f_pos(0)(2) = 0.15;
 
         for (int i = 0; i < 4; i++)
         {                
@@ -496,7 +496,7 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     // Add tasks in prioritized order
     tasks.push_back(t_eom);
     tasks.push_back(t_cftl);
-    //tasks.push_back(t_cmc);
+    tasks.push_back(t_cmc);
     tasks.push_back(t_mt);
     //tasks.push_back(t_pt);
     tasks.push_back(t_cfm);
