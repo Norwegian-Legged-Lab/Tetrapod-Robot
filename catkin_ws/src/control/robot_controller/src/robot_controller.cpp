@@ -302,11 +302,6 @@ void RobotController::UpdateSwingFootTrajectory(Kinematics::LegType _leg_type, d
     Eigen::Matrix<double, 3, 1> foot_acc;
     Eigen::Matrix<double, 3, 1> foot_jerk;    
 
-    double foot_pos_x, foot_pos_y, foot_pos_z;
-    double foot_vel_x, foot_vel_y, foot_vel_z;
-    double foot_acc_x, foot_acc_y, foot_acc_z;
-    double foot_jerk_x, foot_jerk_y, foot_jerk_z;
-
     //ROS_INFO("Swing Time: %f, Swing Period: %f, Stance Period: %f, Progress: %f", swing_time, swing_period, stance_period, progress);
 
     switch (_leg_type)
@@ -320,23 +315,17 @@ void RobotController::UpdateSwingFootTrajectory(Kinematics::LegType _leg_type, d
         double foot_velocity_x = foot_step_distance_x/(swing_period + 2.0 * stance_period);
         double foot_velocity_y = foot_step_distance_y/(swing_period + 2.0 * stance_period);
 
-        CalculatePolynomialTrajectory(swing_time, swing_period, swing_rise_percentage, foot_step_distance_x, foot_velocity_x, foot_pos_x, foot_vel_x, foot_acc_x, foot_jerk_x);
-        CalculatePolynomialTrajectory(swing_time, swing_period, swing_rise_percentage, foot_step_distance_y, foot_velocity_y, foot_pos_y, foot_vel_y, foot_acc_y, foot_jerk_y);
-        foot_pos_z = -0.28; // Temp
-        foot_vel_z = 0.0;
-        foot_acc_z = 0.0;
+        CalculatePolynomialTrajectory(swing_time, swing_period, swing_rise_percentage, foot_step_distance_x, foot_velocity_x, foot_pos(0), foot_vel(0), foot_acc(0), foot_jerk(0));
+        CalculatePolynomialTrajectory(swing_time, swing_period, swing_rise_percentage, foot_step_distance_y, foot_velocity_y, foot_pos(1), foot_vel(1), foot_acc(1), foot_jerk(1));
+        CalculateFourthOrderPolynomialTrajectory(swing_time, swing_period, max_step_height, foot_pos(2), foot_vel(2), foot_acc(2));
 
-        fl_position_body(0) = fl_offset(0) + center_percentage * foot_pos_x;
-        fl_position_body(1) = fl_offset(1) + center_percentage * foot_pos_y;
-        fl_position_body(2) = foot_pos_z;
+        fl_position_body(0) = fl_offset(0) + center_percentage * foot_pos(0);
+        fl_position_body(1) = fl_offset(1) + center_percentage * foot_pos(1);
+        fl_position_body(2) = - hip_height + foot_pos(2);
 
-        fl_velocity_body(0) = foot_vel_x;
-        fl_velocity_body(1) = foot_vel_y;
-        fl_velocity_body(2) = foot_vel_z;
+        fl_velocity_body = foot_vel;
 
-        fl_acceleration_body(0) = foot_acc_x;
-        fl_acceleration_body(1) = foot_acc_y;
-        fl_acceleration_body(2) = foot_acc_z;
+        fl_acceleration_body = foot_acc;
 
         //ROS_INFO("FSDX: %f, FVX: %f", foot_step_distance_x, foot_velocity_x);
         //ROS_INFO("FL_OFFSET_X: %f, CP: %f, FPX: %f", fl_offset(0), center_percentage, foot_pos_x);
@@ -355,13 +344,11 @@ void RobotController::UpdateSwingFootTrajectory(Kinematics::LegType _leg_type, d
 
         CalculatePolynomialTrajectory(swing_time, swing_period, swing_rise_percentage, foot_step_distance_x, foot_velocity_x, foot_pos(0), foot_vel(0), foot_acc(0), foot_jerk(0));
         CalculatePolynomialTrajectory(swing_time, swing_period, swing_rise_percentage, foot_step_distance_y, foot_velocity_y, foot_pos(1), foot_vel(1), foot_acc(1), foot_jerk(1));
-        foot_pos(2) = -0.28; // Temp
-        foot_vel(2) = 0.0;
-        foot_acc(2) = 0.0;
+        CalculateFourthOrderPolynomialTrajectory(swing_time, swing_period, max_step_height, foot_pos(2), foot_vel(2), foot_acc(2));
 
         fr_position_body(0) = fr_offset(0) + center_percentage * foot_pos(0);
         fr_position_body(1) = fr_offset(1) + center_percentage * foot_pos(1);
-        fr_position_body(2) = foot_pos(2);
+        fr_position_body(2) = - hip_height + foot_pos(2);
 
         fr_velocity_body = foot_vel;
         fr_acceleration_body = foot_acc;
@@ -379,13 +366,11 @@ void RobotController::UpdateSwingFootTrajectory(Kinematics::LegType _leg_type, d
 
         CalculatePolynomialTrajectory(swing_time, swing_period, swing_rise_percentage, foot_step_distance_x, foot_velocity_x, foot_pos(0), foot_vel(0), foot_acc(0), foot_jerk(0));
         CalculatePolynomialTrajectory(swing_time, swing_period, swing_rise_percentage, foot_step_distance_y, foot_velocity_y, foot_pos(1), foot_vel(1), foot_acc(1), foot_jerk(1));
-        foot_pos(2) = -0.28; // Temp
-        foot_vel(2) = 0.0;
-        foot_acc(2) = 0.0;
+        CalculateFourthOrderPolynomialTrajectory(swing_time, swing_period, max_step_height, foot_pos(2), foot_vel(2), foot_acc(2));
 
         rl_position_body(0) = rl_offset(0) + center_percentage * foot_pos(0);
         rl_position_body(1) = rl_offset(1) + center_percentage * foot_pos(1);
-        rl_position_body(2) = foot_pos(2);
+        rl_position_body(2) = - hip_height + foot_pos(2);
 
         rl_velocity_body = foot_vel;
         rl_acceleration_body = foot_acc;
@@ -403,13 +388,11 @@ void RobotController::UpdateSwingFootTrajectory(Kinematics::LegType _leg_type, d
 
         CalculatePolynomialTrajectory(swing_time, swing_period, swing_rise_percentage, foot_step_distance_x, foot_velocity_x, foot_pos(0), foot_vel(0), foot_acc(0), foot_jerk(0));
         CalculatePolynomialTrajectory(swing_time, swing_period, swing_rise_percentage, foot_step_distance_y, foot_velocity_y, foot_pos(1), foot_vel(1), foot_acc(1), foot_jerk(1));
-        foot_pos(2) = -0.28; // Temp
-        foot_vel(2) = 0.0;
-        foot_acc(2) = 0.0;
+        CalculateFourthOrderPolynomialTrajectory(swing_time, swing_period, max_step_height, foot_pos(2), foot_vel(2), foot_acc(2));
 
         rr_position_body(0) = rr_offset(0) + center_percentage * foot_pos(0);
         rr_position_body(1) = rr_offset(1) + center_percentage * foot_pos(1);
-        rr_position_body(2) = foot_pos(2);
+        rr_position_body(2) = - hip_height + foot_pos(2);
 
         rr_velocity_body = foot_vel;
         rr_acceleration_body = foot_acc;

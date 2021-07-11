@@ -193,7 +193,7 @@ bool CalculatePolynomialTrajectory(double t, double T_end, double distance, doub
 }
 */
 
-void CalculatePolynomialTrajectory(double t, double swing_period, double rise_percentage ,double distance, double vel_cmd, double &_pos, double &_vel, double &_acc, double &_jerk)
+void CalculatePolynomialTrajectory(double t, double swing_period, double rise_percentage, double distance, double vel_cmd, double &_pos, double &_vel, double &_acc, double &_jerk)
 {
     if(distance == 0.0)
     {
@@ -272,4 +272,23 @@ void CalculatePolynomialTrajectory(double t, double swing_period, double rise_pe
             _jerk = rise_distance / pow(rise_period, 3) * Eigen::poly_eval(jerk_coefficients, x - 1.0);
         }
     }
+}
+
+void CalculateFourthOrderPolynomialTrajectory(double t, double swing_period, double distance, double &_pos, double &_vel, double _acc)
+{
+    double a = 1.0;
+    double b = - 2.0;
+    double c = 1.0;
+
+    double rise_period = swing_period / 2.0;
+
+    double x = t/rise_period - 1.0;
+
+    _pos = distance * (a * pow(x, 4) + b * pow(x, 2) + c);
+
+    _vel = distance / rise_period * (4.0 * a * pow(x, 3) + 2.0 * b * x);
+
+    _acc = distance / pow(rise_period, 2) * (12.0 * pow(x, 2) + 2 * b); 
+    
+    ROS_INFO("Height - pos: %f, vel: %f, acc: %f, x: %f, dis: %f", _pos, _vel, _acc, x, distance);
 }
