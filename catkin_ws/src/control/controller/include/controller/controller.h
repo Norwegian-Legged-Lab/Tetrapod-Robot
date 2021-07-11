@@ -21,7 +21,7 @@
 
 #define UNINITIALIZED_JOINT_STATE 10.0
 #define ROBOT_NAME "my_robot"
-#define LEG_OFFSET_LENGTH 0.3
+#define LEG_OFFSET_LENGTH 0.25
 
 class Controller{
     protected: using JointState = Eigen::Matrix<double, 12, 1>;
@@ -69,7 +69,7 @@ class Controller{
 
     protected: ros::Subscriber ready_to_proceed_subscriber;
 
-    /// \brief Subscribes to twist command messages from external controller
+    /// \brief Subscribes to twist command messages from an external controller
     protected: ros::Subscriber twist_command_subscriber;
 
     protected: Eigen::Vector3d fl_offset = Eigen::Vector3d(LEG_OFFSET_LENGTH, LEG_OFFSET_LENGTH, 0);
@@ -87,6 +87,22 @@ class Controller{
     protected: Eigen::Vector3d rl_position_body;
 
     protected: Eigen::Vector3d rr_position_body;
+
+    protected: Eigen::Vector3d fl_velocity_body;
+
+    protected: Eigen::Vector3d fr_velocity_body;
+
+    protected: Eigen::Vector3d rl_velocity_body;
+
+    protected: Eigen::Vector3d rr_velocity_body;
+
+    protected: Eigen::Vector3d fl_acceleration_body;
+
+    protected: Eigen::Vector3d fr_acceleration_body;
+
+    protected: Eigen::Vector3d rl_acceleration_body;
+
+    protected: Eigen::Vector3d rr_acceleration_body;
 
     protected: JointState joint_angle_commands = JointState::Zero();
 

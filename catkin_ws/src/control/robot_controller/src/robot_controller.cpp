@@ -6,7 +6,13 @@ RobotController::RobotController(int _controller_freq, double _gait_period) : Ro
 
     stance_iterations = _gait_period*controller_freq*stance_phase_duration_percentage;
 
+    stance_period = _gait_period * stance_phase_duration_percentage;
+
+    swing_period = _gait_period * (1.0 - 2.0 * stance_phase_duration_percentage);
+
     swing_iterations = _gait_period*controller_freq*(1.0 - 2.0*stance_phase_duration_percentage);
+
+    this->final_iteration = this->stance_iterations;
 }
 
 /*
@@ -133,44 +139,95 @@ void RobotController::UpdateFeetReferences()
     }
 }
 
+void RobotController::UpdateFeetTrajectories()
+{
+    double current_swing_iteration = double(iteration)/double(swing_iterations);
+
+    switch (this->motion_state)
+    {
+    case MotionState::kStancePreSwingFlRr:
+    {
+        this->fl_position_body = this->UpdateStanceFootPosition(Kinematics::LegType::frontLeft, double(iteration + stance_iterations + swing_iterations)/double(swing_iterations + 2*stance_iterations));
+        this->rr_position_body = this->UpdateStanceFootPosition(Kinematics::LegType::rearRight, double(iteration + stance_iterations + swing_iterations)/double(swing_iterations + 2*stance_iterations));
+
+        this->fr_position_body = this->UpdateStanceFootPosition(Kinematics::LegType::frontRight, double(iteration)/double(swing_iterations + 2*stance_iterations));
+        this->rl_position_body = this->UpdateStanceFootPosition(Kinematics::LegType::rearLeft, double(iteration)/double(swing_iterations + 2*stance_iterations));
+
+        break;
+    }
+    case MotionState::kSwingFlRr:
+    {
+        this->fr_position_body = this->UpdateStanceFootPosition(Kinematics::LegType::frontRight, double(iteration + stance_iterations)/double(2*stance_iterations + swing_iterations));
+        this->rl_position_body = this->UpdateStanceFootPosition(Kinematics::LegType::rearLeft, double(iteration + stance_iterations)/double(2*stance_iterations + swing_iterations));
+
+        this->UpdateSwingFootTrajectory(Kinematics::LegType::frontLeft, current_swing_iteration);
+        this->UpdateSwingFootTrajectory(Kinematics::LegType::rearRight, current_swing_iteration);
+
+        break;
+    }
+    case MotionState::kStancePreSwingFrRl:
+    {
+        this->fl_position_body = this->UpdateStanceFootPosition(Kinematics::LegType::frontLeft, double(iteration)/double(swing_iterations + 2*stance_iterations));
+        this->rr_position_body = this->UpdateStanceFootPosition(Kinematics::LegType::rearRight, double(iteration)/double(swing_iterations + 2*stance_iterations));
+
+        this->fr_position_body = this->UpdateStanceFootPosition(Kinematics::LegType::frontRight, double(iteration + stance_iterations + swing_iterations)/double(swing_iterations + 2*stance_iterations));
+        this->rl_position_body = this->UpdateStanceFootPosition(Kinematics::LegType::rearLeft, double(iteration + stance_iterations + swing_iterations)/double(swing_iterations + 2*stance_iterations));
+        break;
+    }
+    case MotionState::kSwingFrRl:
+    {
+        this->fl_position_body = this->UpdateStanceFootPosition(Kinematics::LegType::frontLeft, double(iteration + stance_iterations)/double(2*stance_iterations + swing_iterations));
+        this->rr_position_body = this->UpdateStanceFootPosition(Kinematics::LegType::rearRight, double(iteration + stance_iterations)/double(2*stance_iterations + swing_iterations));
+
+        this->UpdateSwingFootTrajectory(Kinematics::LegType::frontRight, current_swing_iteration);
+        this->UpdateSwingFootTrajectory(Kinematics::LegType::rearLeft, current_swing_iteration);
+
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+
 Eigen::Matrix<double, 3, 1> RobotController::UpdateStanceFootPosition(Kinematics::LegType _leg_type, double _progress)
 {
     Eigen::Matrix<double, 3, 1> foot_pos;
 
-    foot_pos(0) = _progress*(- step_distance_x_linear);
-    foot_pos(1) = _progress*(- step_distance_y_linear);
+    foot_pos(0) = (_progress - 0.5)*(- step_distance_x_linear);
+    foot_pos(1) = (_progress - 0.5)*(- step_distance_y_linear);
     foot_pos(2) = - hip_height;
 
     switch (_leg_type)
     {
     case Kinematics::LegType::frontLeft:
     { 
-        foot_pos(0) += _progress*step_distance_x_rotational;
-        foot_pos(1) -= _progress*step_distance_y_rotational;
+        foot_pos(0) += (_progress - 0.5)*step_distance_x_rotational;
+        foot_pos(1) -= (_progress - 0.5)*step_distance_y_rotational;
 
         foot_pos += fl_offset;
         break;
     }
     case Kinematics::LegType::frontRight:
     {
-        foot_pos(0) -= _progress*step_distance_x_rotational;
-        foot_pos(1) -= _progress*step_distance_y_rotational;
+        foot_pos(0) -= (_progress - 0.5)*step_distance_x_rotational;
+        foot_pos(1) -= (_progress - 0.5)*step_distance_y_rotational;
 
         foot_pos += fr_offset;
         break;
     }
     case Kinematics::LegType::rearLeft:
     {
-        foot_pos(0) += _progress*step_distance_x_rotational;
-        foot_pos(1) += _progress*step_distance_y_rotational;
+        foot_pos(0) += (_progress - 0.5)*step_distance_x_rotational;
+        foot_pos(1) += (_progress - 0.5)*step_distance_y_rotational;
 
         foot_pos += rl_offset;
         break;
     }
     case Kinematics::LegType::rearRight:
     {
-        foot_pos(0) -= _progress*step_distance_x_rotational;
-        foot_pos(1) += _progress*step_distance_y_rotational;
+        foot_pos(0) -= (_progress - 0.5)*step_distance_x_rotational;
+        foot_pos(1) += (_progress - 0.5)*step_distance_y_rotational;
 
         foot_pos += rr_offset;
         break;
@@ -187,40 +244,40 @@ Eigen::Matrix<double, 3, 1> RobotController::UpdateSwingFootPosition(Kinematics:
 {
     Eigen::Matrix<double, 3, 1> foot_pos;
 
-    foot_pos(0) = (_progress - 1.0)*step_distance_x_linear;
-    foot_pos(1) = (_progress - 1.0)*step_distance_y_linear;
+    foot_pos(0) = (_progress - 0.5)*step_distance_x_linear;
+    foot_pos(1) = (_progress - 0.5)*step_distance_y_linear;
     foot_pos(2) = -0.28; // Temp
 
     switch (_leg_type)
     {
     case Kinematics::LegType::frontLeft:
     {
-        foot_pos(0) -= (_progress - 1.0)*step_distance_x_rotational;
-        foot_pos(1) += (_progress - 1.0)*step_distance_y_rotational;
+        foot_pos(0) -= (_progress - 0.5)*step_distance_x_rotational;
+        foot_pos(1) += (_progress - 0.5)*step_distance_y_rotational;
 
         foot_pos += fl_offset;
         break;
     }
     case Kinematics::LegType::frontRight:
     {
-        foot_pos(0) += (_progress - 1.0)*step_distance_x_rotational;
-        foot_pos(1) += (_progress - 1.0)*step_distance_y_rotational;
+        foot_pos(0) += (_progress - 0.5)*step_distance_x_rotational;
+        foot_pos(1) += (_progress - 0.5)*step_distance_y_rotational;
 
         foot_pos += fr_offset;
         break;
     }
     case Kinematics::LegType::rearLeft:
     {
-        foot_pos(0) -= (_progress - 1.0)*step_distance_x_rotational;
-        foot_pos(1) -= (_progress - 1.0)*step_distance_y_rotational;
+        foot_pos(0) -= (_progress - 0.5)*step_distance_x_rotational;
+        foot_pos(1) -= (_progress - 0.5)*step_distance_y_rotational;
 
         foot_pos += rl_offset;
         break;
     }
     case Kinematics::LegType::rearRight:
     {
-        foot_pos(0) += (_progress - 1.0)*step_distance_x_rotational;
-        foot_pos(1) -= (_progress - 1.0)*step_distance_y_rotational;
+        foot_pos(0) += (_progress - 0.5)*step_distance_x_rotational;
+        foot_pos(1) -= (_progress - 0.5)*step_distance_y_rotational;
 
         foot_pos += rr_offset;
         break;
@@ -231,6 +288,141 @@ Eigen::Matrix<double, 3, 1> RobotController::UpdateSwingFootPosition(Kinematics:
     }
 
     return foot_pos;
+}
+
+void RobotController::UpdateSwingFootTrajectory(Kinematics::LegType _leg_type, double progress)
+{
+    double swing_time = progress * swing_period;
+
+    double center_percentage = progress - 0.5;
+
+    Eigen::Matrix<double, 3, 1> foot_default;
+    Eigen::Matrix<double, 3, 1> foot_pos;
+    Eigen::Matrix<double, 3, 1> foot_vel;
+    Eigen::Matrix<double, 3, 1> foot_acc;
+    Eigen::Matrix<double, 3, 1> foot_jerk;    
+
+    double foot_pos_x, foot_pos_y, foot_pos_z;
+    double foot_vel_x, foot_vel_y, foot_vel_z;
+    double foot_acc_x, foot_acc_y, foot_acc_z;
+    double foot_jerk_x, foot_jerk_y, foot_jerk_z;
+
+    //ROS_INFO("Swing Time: %f, Swing Period: %f, Stance Period: %f, Progress: %f", swing_time, swing_period, stance_period, progress);
+
+    switch (_leg_type)
+    {
+    case Kinematics::LegType::frontLeft:
+    {
+        ROS_INFO("SW-FL");
+        double foot_step_distance_x = step_distance_x_linear - step_distance_x_rotational;
+        double foot_step_distance_y = step_distance_y_linear + step_distance_y_rotational;
+
+        double foot_velocity_x = foot_step_distance_x/(swing_period + 2.0 * stance_period);
+        double foot_velocity_y = foot_step_distance_y/(swing_period + 2.0 * stance_period);
+
+        CalculatePolynomialTrajectory(swing_time, swing_period, swing_rise_percentage, foot_step_distance_x, foot_velocity_x, foot_pos_x, foot_vel_x, foot_acc_x, foot_jerk_x);
+        CalculatePolynomialTrajectory(swing_time, swing_period, swing_rise_percentage, foot_step_distance_y, foot_velocity_y, foot_pos_y, foot_vel_y, foot_acc_y, foot_jerk_y);
+        foot_pos_z = -0.28; // Temp
+        foot_vel_z = 0.0;
+        foot_acc_z = 0.0;
+
+        fl_position_body(0) = fl_offset(0) + center_percentage * foot_pos_x;
+        fl_position_body(1) = fl_offset(1) + center_percentage * foot_pos_y;
+        fl_position_body(2) = foot_pos_z;
+
+        fl_velocity_body(0) = foot_vel_x;
+        fl_velocity_body(1) = foot_vel_y;
+        fl_velocity_body(2) = foot_vel_z;
+
+        fl_acceleration_body(0) = foot_acc_x;
+        fl_acceleration_body(1) = foot_acc_y;
+        fl_acceleration_body(2) = foot_acc_z;
+
+        //ROS_INFO("FSDX: %f, FVX: %f", foot_step_distance_x, foot_velocity_x);
+        //ROS_INFO("FL_OFFSET_X: %f, CP: %f, FPX: %f", fl_offset(0), center_percentage, foot_pos_x);
+        //ROS_INFO("FLPX: %f, FLPY: %f, FLPZ: %f", fl_position_body(0), fl_position_body(1), fl_position_body(2));
+
+        break;
+    }
+    case Kinematics::LegType::frontRight:
+    {
+        ROS_INFO("SW-FR");
+        double foot_step_distance_x = step_distance_x_linear + step_distance_x_rotational;
+        double foot_step_distance_y = step_distance_y_linear + step_distance_y_rotational;
+
+        double foot_velocity_x = foot_step_distance_x/(swing_period + 2.0 * stance_period);
+        double foot_velocity_y = foot_step_distance_y/(swing_period + 2.0 * stance_period);
+
+        CalculatePolynomialTrajectory(swing_time, swing_period, swing_rise_percentage, foot_step_distance_x, foot_velocity_x, foot_pos(0), foot_vel(0), foot_acc(0), foot_jerk(0));
+        CalculatePolynomialTrajectory(swing_time, swing_period, swing_rise_percentage, foot_step_distance_y, foot_velocity_y, foot_pos(1), foot_vel(1), foot_acc(1), foot_jerk(1));
+        foot_pos(2) = -0.28; // Temp
+        foot_vel(2) = 0.0;
+        foot_acc(2) = 0.0;
+
+        fr_position_body(0) = fr_offset(0) + center_percentage * foot_pos(0);
+        fr_position_body(1) = fr_offset(1) + center_percentage * foot_pos(1);
+        fr_position_body(2) = foot_pos(2);
+
+        fr_velocity_body = foot_vel;
+        fr_acceleration_body = foot_acc;
+
+        break;
+    }
+    case Kinematics::LegType::rearLeft:
+    {
+        ROS_INFO("SW-RL");
+        double foot_step_distance_x = step_distance_x_linear - step_distance_x_rotational;
+        double foot_step_distance_y = step_distance_y_linear - step_distance_y_rotational;
+
+        double foot_velocity_x = foot_step_distance_x/(swing_period + 2.0 * stance_period);
+        double foot_velocity_y = foot_step_distance_y/(swing_period + 2.0 * stance_period);
+
+        CalculatePolynomialTrajectory(swing_time, swing_period, swing_rise_percentage, foot_step_distance_x, foot_velocity_x, foot_pos(0), foot_vel(0), foot_acc(0), foot_jerk(0));
+        CalculatePolynomialTrajectory(swing_time, swing_period, swing_rise_percentage, foot_step_distance_y, foot_velocity_y, foot_pos(1), foot_vel(1), foot_acc(1), foot_jerk(1));
+        foot_pos(2) = -0.28; // Temp
+        foot_vel(2) = 0.0;
+        foot_acc(2) = 0.0;
+
+        rl_position_body(0) = rl_offset(0) + center_percentage * foot_pos(0);
+        rl_position_body(1) = rl_offset(1) + center_percentage * foot_pos(1);
+        rl_position_body(2) = foot_pos(2);
+
+        rl_velocity_body = foot_vel;
+        rl_acceleration_body = foot_acc;
+
+        break;
+    }
+    case Kinematics::LegType::rearRight:
+    {
+        ROS_INFO("SW-RR");
+        double foot_step_distance_x = step_distance_x_linear + step_distance_x_rotational;
+        double foot_step_distance_y = step_distance_y_linear - step_distance_y_rotational;
+
+        double foot_velocity_x = foot_step_distance_x/(swing_period + 2.0 * stance_period);
+        double foot_velocity_y = foot_step_distance_y/(swing_period + 2.0 * stance_period);
+
+        CalculatePolynomialTrajectory(swing_time, swing_period, swing_rise_percentage, foot_step_distance_x, foot_velocity_x, foot_pos(0), foot_vel(0), foot_acc(0), foot_jerk(0));
+        CalculatePolynomialTrajectory(swing_time, swing_period, swing_rise_percentage, foot_step_distance_y, foot_velocity_y, foot_pos(1), foot_vel(1), foot_acc(1), foot_jerk(1));
+        foot_pos(2) = -0.28; // Temp
+        foot_vel(2) = 0.0;
+        foot_acc(2) = 0.0;
+
+        rr_position_body(0) = rr_offset(0) + center_percentage * foot_pos(0);
+        rr_position_body(1) = rr_offset(1) + center_percentage * foot_pos(1);
+        rr_position_body(2) = foot_pos(2);
+
+        rr_velocity_body = foot_vel;
+        rr_acceleration_body = foot_acc;
+
+        break;
+    }
+    default:
+        ROS_WARN("RobotController::UpdateSwingFootTrajectory - Invalid leg type selected");
+        break;
+    }
+
+    ROS_INFO("Pos: %f, %f, %f\tVel: %f, %f, %f\tAcc: %f, %f, %f", foot_pos(0), foot_pos(1), foot_pos(2), foot_vel(0), foot_vel(1), foot_vel(2), foot_acc(0), foot_acc(1), foot_acc(2));
+
 }
 
 void RobotController::PrintParameters()

@@ -33,7 +33,6 @@ int main(int argc, char **argv)
         controller.updateJointCommands();
         controller.publishJointCommands();
         control_rate.sleep();
-
     }
 
     return 0;

@@ -10,13 +10,13 @@ int main(int argc, char **argv)
 
     double a_max = 50.0;
 
-    double rise_percentage = 0.25;
+    double rise_percentage = 0.4;
 
     double swing_period = 0.2;
 
-    double step_distance = 0.2;
+    double step_distance = 0.0;
 
-    double vel_cmd = 1.0;
+    double vel_cmd = 0.0;
 
     ros::init(argc, argv, "polynomial_publisher");
 

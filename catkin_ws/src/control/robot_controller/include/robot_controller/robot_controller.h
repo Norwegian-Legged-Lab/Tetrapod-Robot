@@ -1,4 +1,8 @@
+#ifndef robot_controller_h
+#define robot_controller_h
+
 #include "controller/controller.h"
+#include "modular_gait_controller/gaits.h"
 
 class RobotController : public Controller
 {
@@ -17,6 +21,8 @@ class RobotController : public Controller
     /// \brief A function updating the foot positions of the robot in the hip frames
     public: void UpdateFeetReferences();
 
+    public: void UpdateFeetTrajectories();
+
     /// \brief A pose controller updating robot's foot positions to control its pose
     public: void UpdateFeetReferencesPoseControl();
 
@@ -29,6 +35,8 @@ class RobotController : public Controller
     public: Eigen::Matrix<double, 3, 1> UpdateStanceFootPosition(Kinematics::LegType _leg_type, double _progress);
 
     public: Eigen::Matrix<double, 3, 1> UpdateSwingFootPosition(Kinematics::LegType _leg_type, double _progress);
+
+    public: void UpdateSwingFootTrajectory(Kinematics::LegType _leg_type, double progress);
 
     /// \brief The main state of the robot deciding whether the robot is walking or not
     private: SuperState super_state = SuperState::kIdle;
@@ -72,6 +80,12 @@ class RobotController : public Controller
 
     private: double stance_phase_duration_percentage = 0.2;
 
+    private: double swing_rise_percentage = 0.4;
+
+    private: double swing_period; // SET SOMEWHERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    private: double stance_period;
+
     private: int swing_iterations;
 
     private: int stance_iterations; 
@@ -112,3 +126,5 @@ class RobotController : public Controller
    public: void PrintVelCommands();
 
 };
+
+#endif
