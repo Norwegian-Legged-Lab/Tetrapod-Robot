@@ -1,0 +1,31 @@
+<launch>
+    <!-- ******************************************** -->
+    <!--                  Controller                  -->
+    <!-- ******************************************** -->
+    <node 
+        pkg="hierarchical_optimization_controller" type="hierarchical_optimization_controller_node" name="hierarchical_optimization_controller_node" 
+        output="screen" />
+
+    <!-- ******************************************** -->
+    <!--                  Arguments                   -->
+    <!-- ******************************************** -->
+    <arg name="record_sys" default="true" />
+    <arg name="record_directory" default="/home/paal/Tetrapod-Robot/catkin_ws/src/utilities/log_utils/bagfiles" />
+
+    <!-- ******************************************** -->
+    <!--                  Logging                     -->
+    <!-- ******************************************** -->
+
+    <!-- Record data automatically in separate rosbags:
+            - system information (robot state)
+            - diagnostics (node output, diagnostics)     -->
+
+    <node pkg="rosbag" type="record" name="rosbag_joint_states"
+        args="record -o $(arg record_directory)/joint_state /my_robot/joint_state"
+        if="$(arg record_sys)" />
+
+    <node pkg="rosbag" type="record" name="rosbag_joint_references"
+        args="record -o $(arg record_directory)/joint_state_cmd /my_robot/joint_state_cmd"
+        if="$(arg record_sys)" />
+
+</launch>
