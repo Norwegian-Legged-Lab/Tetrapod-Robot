@@ -9,7 +9,7 @@
 #include "teensy_serial.h"
 
 // Number of motors per Teensy
-const int NUMBER_OF_MOTORS = 3;
+const int NUMBER_OF_MOTORS = 6;
 
 // Number of motors per CAN port
 int NUMBER_OF_MOTORS_PER_PORT = 3;
@@ -49,10 +49,11 @@ void setup()
   can_port_1.setBaudRate(MOTOR_BAUD_RATE);
   can_port_2.begin();
   can_port_2.setBaudRate(MOTOR_BAUD_RATE);
-  
+  //Serial.println("CAN PORTS SET");
   // Initialize the motor controllers
   for (int i = 0; i < NUMBER_OF_MOTORS; i++)
   {
+    //Serial.println(i);
     // CAN port 1 should be used
     if(i < NUMBER_OF_MOTORS_PER_PORT)
     {
@@ -63,11 +64,12 @@ void setup()
     {
       motors[i] = MotorControl(i + 1, CAN_PORT_2, INITIAL_NUMBER_OF_MOTOR_ROTATIONS[i], POSITION_OFFSET[i]);
     }
+    //Serial.println(i);
   }
 
   // Wait for the motor gains to be set
   uint8_t number_of_gains_per_motor = 6;
-
+  //Serial.println("Motors initialized");
   // Try to set the PID gains of the motor
   while(motor_gains_set == false)
   {
@@ -92,7 +94,7 @@ void setup()
     
     delay_microseconds(500000);
   }
-
+  //Serial.println("Gains Set");
   // Empty the serial ports
   while(Serial.available())
   {
@@ -169,7 +171,8 @@ void loop()
     joint_velocities[i] = motors[i].getVelocity();
     joint_torques[i] = motors[i].getTorque();
   }
-  
+  //for(int i = 0; i < NUMBER_OF_MOTORS; i++){Serial.print(motors[i].getPosition()); Serial.print("\t");}
+  //Serial.println("");
   // Send joint states back to the host PC
   serial_interface.sendStates(joint_positions, joint_velocities, joint_torques);
 }
