@@ -65,6 +65,8 @@ $(function() {
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="classMotorInterface-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">MotorInterface Class Reference</div>  </div>
@@ -75,6 +77,15 @@ $(function() {
  <a href="classMotorInterface.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="motor__interface_8h_source.html">motor_interface.h</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for MotorInterface:</div>
+<div class="dyncontent">
+<div class="center"><img src="classMotorInterface__coll__graph.png" border="0" usemap="#MotorInterface_coll__map" alt="Collaboration graph"/></div>
+<map name="MotorInterface_coll__map" id="MotorInterface_coll__map">
+<area shape="rect" title="A class to control and distribute motor position, velocity and torque information." alt="" coords="27,109,146,136"/>
+<area shape="rect" href="classSerialCommunication.html" title="A class for serial communication." alt="" coords="5,5,168,32"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -103,14 +114,97 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:a3093e44e803f256481e2120c3b5b6539"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if there are any incomming messages from the serial ports. If there are new replies these are read and published. <br /></td></tr>
 <tr class="separator:a3093e44e803f256481e2120c3b5b6539"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5cc0e2f8578dba23550426e28d13b4a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorInterface.html#a5cc0e2f8578dba23550426e28d13b4a2">OnJointStateCmdMsg</a> (const sensor_msgs::JointStateConstPtr &amp;_msg)</td></tr>
-<tr class="memdesc:a5cc0e2f8578dba23550426e28d13b4a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The PublishTorqueMsg function publishes a desired torque message to the ROS topic set by the joint state publisher.  <a href="classMotorInterface.html#a5cc0e2f8578dba23550426e28d13b4a2">More...</a><br /></td></tr>
+<tr class="memdesc:a5cc0e2f8578dba23550426e28d13b4a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The OnGenCoordMsg function handles an incoming generalized coordinates message from ROS.  <a href="classMotorInterface.html#a5cc0e2f8578dba23550426e28d13b4a2">More...</a><br /></td></tr>
 <tr class="separator:a5cc0e2f8578dba23550426e28d13b4a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48a28659081250121f9b055d66a82dcd"><td class="memItemLeft" align="right" valign="top"><a id="a48a28659081250121f9b055d66a82dcd"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorInterface.html#a48a28659081250121f9b055d66a82dcd">SerialProcessQueueThread</a> ()</td></tr>
+<tr class="memdesc:a48a28659081250121f9b055d66a82dcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">The SerialProcessQueueThread function is a helper function that processes serial messages. <br /></td></tr>
+<tr class="separator:a48a28659081250121f9b055d66a82dcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34745056579d721f6c0aa9132c8e8a84"><td class="memItemLeft" align="right" valign="top"><a id="a34745056579d721f6c0aa9132c8e8a84"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorInterface.html#a34745056579d721f6c0aa9132c8e8a84">RosProcessQueueThread</a> ()</td></tr>
+<tr class="memdesc:a34745056579d721f6c0aa9132c8e8a84"><td class="mdescLeft">&#160;</td><td class="mdescRight">The RosProcessQueueThread function is a ROS helper function that processes messages. <br /></td></tr>
+<tr class="separator:a34745056579d721f6c0aa9132c8e8a84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e24395d423fac2276b586aa269675b8"><td class="memItemLeft" align="right" valign="top"><a id="a4e24395d423fac2276b586aa269675b8"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorInterface.html#a4e24395d423fac2276b586aa269675b8">RosPublishQueueThread</a> ()</td></tr>
+<tr class="memdesc:a4e24395d423fac2276b586aa269675b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">The RosPublishQueueThread function is a ROS helper function that publish state messages. <br /></td></tr>
+<tr class="separator:a4e24395d423fac2276b586aa269675b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a90641f6adea38a1d523c2a5d81d6dda3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorInterface.html#a90641f6adea38a1d523c2a5d81d6dda3">InitRos</a> ()</td></tr>
-<tr class="memdesc:a90641f6adea38a1d523c2a5d81d6dda3"><td class="mdescLeft">&#160;</td><td class="mdescRight">The RosProcessQueueThread function is a ROS helper function that processes messages.  <a href="classMotorInterface.html#a90641f6adea38a1d523c2a5d81d6dda3">More...</a><br /></td></tr>
+<tr class="memitem:a90641f6adea38a1d523c2a5d81d6dda3"><td class="memItemLeft" align="right" valign="top"><a id="a90641f6adea38a1d523c2a5d81d6dda3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorInterface.html#a90641f6adea38a1d523c2a5d81d6dda3">InitRos</a> ()</td></tr>
+<tr class="memdesc:a90641f6adea38a1d523c2a5d81d6dda3"><td class="mdescLeft">&#160;</td><td class="mdescRight">The InitRos function is called to initialize ROS. <br /></td></tr>
 <tr class="separator:a90641f6adea38a1d523c2a5d81d6dda3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a159c6794e8b6bb16ad696bd5c8734804"><td class="memItemLeft" align="right" valign="top"><a id="a159c6794e8b6bb16ad696bd5c8734804"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorInterface.html#a159c6794e8b6bb16ad696bd5c8734804">InitRosQueueThreads</a> ()</td></tr>
+<tr class="memdesc:a159c6794e8b6bb16ad696bd5c8734804"><td class="mdescLeft">&#160;</td><td class="mdescRight">The InitRosQueueThreads function is called to initialize the ROS Publish and Process Queue Threads. <br /></td></tr>
+<tr class="separator:a159c6794e8b6bb16ad696bd5c8734804"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a51bfed632dff4cdd1f20fec880391a09"><td class="memItemLeft" align="right" valign="top"><a id="a51bfed632dff4cdd1f20fec880391a09"></a>
+const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorInterface.html#a51bfed632dff4cdd1f20fec880391a09">NUM_MOTORS</a></td></tr>
+<tr class="memdesc:a51bfed632dff4cdd1f20fec880391a09"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of motors to interface with. <br /></td></tr>
+<tr class="separator:a51bfed632dff4cdd1f20fec880391a09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4b84f7ebd0b565da0a1bfa2aca19790"><td class="memItemLeft" align="right" valign="top"><a id="ad4b84f7ebd0b565da0a1bfa2aca19790"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorInterface.html#ad4b84f7ebd0b565da0a1bfa2aca19790">num_motors_port_1</a></td></tr>
+<tr class="memdesc:ad4b84f7ebd0b565da0a1bfa2aca19790"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of motors interfaced by the first Teensy. <br /></td></tr>
+<tr class="separator:ad4b84f7ebd0b565da0a1bfa2aca19790"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0721041582a21b07cd5002d829bd4123"><td class="memItemLeft" align="right" valign="top"><a id="a0721041582a21b07cd5002d829bd4123"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorInterface.html#a0721041582a21b07cd5002d829bd4123">num_motors_port_2</a></td></tr>
+<tr class="memdesc:a0721041582a21b07cd5002d829bd4123"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of motors interfaced by the second Teensy. <br /></td></tr>
+<tr class="separator:a0721041582a21b07cd5002d829bd4123"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6779402a5511b963602a80418bc5c19"><td class="memItemLeft" align="right" valign="top"><a id="ab6779402a5511b963602a80418bc5c19"></a>
+<a class="el" href="classSerialCommunication.html">SerialCommunication</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorInterface.html#ab6779402a5511b963602a80418bc5c19">serialInterface1</a></td></tr>
+<tr class="memdesc:ab6779402a5511b963602a80418bc5c19"><td class="mdescLeft">&#160;</td><td class="mdescRight">The serial interface used to communicate with the first Teensy. <br /></td></tr>
+<tr class="separator:ab6779402a5511b963602a80418bc5c19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a348eb45a64dec3a31957c2daf6d81c55"><td class="memItemLeft" align="right" valign="top"><a id="a348eb45a64dec3a31957c2daf6d81c55"></a>
+<a class="el" href="classSerialCommunication.html">SerialCommunication</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorInterface.html#a348eb45a64dec3a31957c2daf6d81c55">serialInterface2</a></td></tr>
+<tr class="memdesc:a348eb45a64dec3a31957c2daf6d81c55"><td class="mdescLeft">&#160;</td><td class="mdescRight">The serial interface used to communicate with the second Teensy. <br /></td></tr>
+<tr class="separator:a348eb45a64dec3a31957c2daf6d81c55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad37dacffac485895d4d69dc6ac34cf71"><td class="memItemLeft" align="right" valign="top"><a id="ad37dacffac485895d4d69dc6ac34cf71"></a>
+std::unique_ptr&lt; ros::NodeHandle &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorInterface.html#ad37dacffac485895d4d69dc6ac34cf71">rosNode</a></td></tr>
+<tr class="memdesc:ad37dacffac485895d4d69dc6ac34cf71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Node used for ROS transport. <br /></td></tr>
+<tr class="separator:ad37dacffac485895d4d69dc6ac34cf71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92dc1d8ea5cbcb48acb70f75f1d165de"><td class="memItemLeft" align="right" valign="top"><a id="a92dc1d8ea5cbcb48acb70f75f1d165de"></a>
+sensor_msgs::JointState&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorInterface.html#a92dc1d8ea5cbcb48acb70f75f1d165de">jointStateMsg</a></td></tr>
+<tr class="memdesc:a92dc1d8ea5cbcb48acb70f75f1d165de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Joint State Message. <br /></td></tr>
+<tr class="separator:a92dc1d8ea5cbcb48acb70f75f1d165de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa07b7b6b987594c573ca9b093a1e3b69"><td class="memItemLeft" align="right" valign="top"><a id="aa07b7b6b987594c573ca9b093a1e3b69"></a>
+ros::Subscriber&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorInterface.html#aa07b7b6b987594c573ca9b093a1e3b69">jointStateCmdSub</a></td></tr>
+<tr class="memdesc:aa07b7b6b987594c573ca9b093a1e3b69"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS Joint State Command Subscriber. <br /></td></tr>
+<tr class="separator:aa07b7b6b987594c573ca9b093a1e3b69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8881cd754c5891b9af6b0cb9368d54cf"><td class="memItemLeft" align="right" valign="top"><a id="a8881cd754c5891b9af6b0cb9368d54cf"></a>
+ros::Publisher&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorInterface.html#a8881cd754c5891b9af6b0cb9368d54cf">jointStatePub</a></td></tr>
+<tr class="memdesc:a8881cd754c5891b9af6b0cb9368d54cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS Joint State Publisher. <br /></td></tr>
+<tr class="separator:a8881cd754c5891b9af6b0cb9368d54cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdb1f716b197c4cf8b76ded42a1cfee6"><td class="memItemLeft" align="right" valign="top"><a id="acdb1f716b197c4cf8b76ded42a1cfee6"></a>
+ros::CallbackQueue&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorInterface.html#acdb1f716b197c4cf8b76ded42a1cfee6">rosProcessQueue</a></td></tr>
+<tr class="memdesc:acdb1f716b197c4cf8b76ded42a1cfee6"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS callbackque that helps process messages. <br /></td></tr>
+<tr class="separator:acdb1f716b197c4cf8b76ded42a1cfee6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76c9e4dec71215f63dcc944b6d8bb88e"><td class="memItemLeft" align="right" valign="top"><a id="a76c9e4dec71215f63dcc944b6d8bb88e"></a>
+ros::CallbackQueue&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorInterface.html#a76c9e4dec71215f63dcc944b6d8bb88e">rosPublishQueue</a></td></tr>
+<tr class="memdesc:a76c9e4dec71215f63dcc944b6d8bb88e"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS callbackque that helps publish messages. <br /></td></tr>
+<tr class="separator:a76c9e4dec71215f63dcc944b6d8bb88e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93046b35c6caedeb7de250b0abbcad9f"><td class="memItemLeft" align="right" valign="top"><a id="a93046b35c6caedeb7de250b0abbcad9f"></a>
+std::thread&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorInterface.html#a93046b35c6caedeb7de250b0abbcad9f">serialProcessQueueThread</a></td></tr>
+<tr class="memdesc:a93046b35c6caedeb7de250b0abbcad9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread running the serialProcessQueue. <br /></td></tr>
+<tr class="separator:a93046b35c6caedeb7de250b0abbcad9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23a5a30545e9040d45f0d35760990866"><td class="memItemLeft" align="right" valign="top"><a id="a23a5a30545e9040d45f0d35760990866"></a>
+std::thread&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorInterface.html#a23a5a30545e9040d45f0d35760990866">rosProcessQueueThread</a></td></tr>
+<tr class="memdesc:a23a5a30545e9040d45f0d35760990866"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread running the rosProcessQueue. <br /></td></tr>
+<tr class="separator:a23a5a30545e9040d45f0d35760990866"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ebe1b16574f4ace15a0946f2b737386"><td class="memItemLeft" align="right" valign="top"><a id="a1ebe1b16574f4ace15a0946f2b737386"></a>
+std::thread&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorInterface.html#a1ebe1b16574f4ace15a0946f2b737386">rosPublishQueueThread</a></td></tr>
+<tr class="memdesc:a1ebe1b16574f4ace15a0946f2b737386"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread running the rosPublishQueue. <br /></td></tr>
+<tr class="separator:a1ebe1b16574f4ace15a0946f2b737386"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:a64b1219cfca4200a7fd5cad8c397dd0d"><td class="memItemLeft" align="right" valign="top"><a id="a64b1219cfca4200a7fd5cad8c397dd0d"></a>
+static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorInterface.html#a64b1219cfca4200a7fd5cad8c397dd0d">MAX_NUM_MOTORS_PER_PORT</a> = 6</td></tr>
+<tr class="memdesc:a64b1219cfca4200a7fd5cad8c397dd0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum numbers of motors to be interfaced with by one Teensy. <br /></td></tr>
+<tr class="separator:a64b1219cfca4200a7fd5cad8c397dd0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A class to control and distribute motor position, velocity and torque information. </p>
@@ -142,61 +236,6 @@ Protected Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a90641f6adea38a1d523c2a5d81d6dda3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a90641f6adea38a1d523c2a5d81d6dda3">&#9670;&nbsp;</a></span>InitRos()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void MotorInterface::InitRos </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The RosProcessQueueThread function is a ROS helper function that processes messages. </p>
-<p>The RosPublishQueueThread function is a ROS helper function that publish state messages.</p>
-<p>The InitRos function is called to initialize ROS </p>
-
-</div>
-</div>
-<a id="a5cc0e2f8578dba23550426e28d13b4a2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5cc0e2f8578dba23550426e28d13b4a2">&#9670;&nbsp;</a></span>OnJointStateCmdMsg()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void MotorInterface::OnJointStateCmdMsg </td>
-          <td>(</td>
-          <td class="paramtype">const sensor_msgs::JointStateConstPtr &amp;&#160;</td>
-          <td class="paramname"><em>_msg</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The PublishTorqueMsg function publishes a desired torque message to the ROS topic set by the joint state publisher. </p>
-<p>The OnGenCoordMsg function handles an incoming generalized coordinates message from ROS. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_msg</td><td>A float array containing the generalized coordinates. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="a52f74f553b08b8f5c71864e48d6deb0a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a52f74f553b08b8f5c71864e48d6deb0a">&#9670;&nbsp;</a></span>SetJointPositions()</h2>
 
@@ -217,6 +256,32 @@ Protected Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">_pos</td><td>New target position vector in radians </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af502ecc49f8d8f709ae7b0f9baac7b5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af502ecc49f8d8f709ae7b0f9baac7b5e">&#9670;&nbsp;</a></span>SetJointVelocities()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MotorInterface::SetJointVelocities </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_vel</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the velocity of the joints. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_vel</td><td>New target velocity </td></tr>
   </table>
   </dd>
 </dl>
@@ -249,26 +314,26 @@ Protected Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="af502ecc49f8d8f709ae7b0f9baac7b5e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af502ecc49f8d8f709ae7b0f9baac7b5e">&#9670;&nbsp;</a></span>SetJointVelocities()</h2>
+<a id="a5cc0e2f8578dba23550426e28d13b4a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5cc0e2f8578dba23550426e28d13b4a2">&#9670;&nbsp;</a></span>OnJointStateCmdMsg()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void MotorInterface::SetJointVelocities </td>
+          <td class="memname">void MotorInterface::OnJointStateCmdMsg </td>
           <td>(</td>
-          <td class="paramtype">const std::vector&lt; double &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_vel</em></td><td>)</td>
+          <td class="paramtype">const sensor_msgs::JointStateConstPtr &amp;&#160;</td>
+          <td class="paramname"><em>_msg</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Set the velocity of the joints. </p>
+<p>The OnGenCoordMsg function handles an incoming generalized coordinates message from ROS. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_vel</td><td>New target velocity </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_msg</td><td>A float array containing the generalized coordinates. </td></tr>
   </table>
   </dd>
 </dl>

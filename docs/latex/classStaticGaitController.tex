@@ -1,5 +1,15 @@
 \hypertarget{classStaticGaitController}{}\doxysection{Static\+Gait\+Controller Class Reference}
 \label{classStaticGaitController}\index{StaticGaitController@{StaticGaitController}}
+
+
+Collaboration diagram for Static\+Gait\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=195pt]{classStaticGaitController__coll__graph}
+\end{center}
+\end{figure}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -48,6 +58,218 @@ void {\bfseries update\+Foot\+Positions\+Turning} ()
 \mbox{\Hypertarget{classStaticGaitController_ac1b7907232f4048633774956c0b37248}\label{classStaticGaitController_ac1b7907232f4048633774956c0b37248}} 
 bool {\bfseries prepare\+For\+Turning} ()
 \end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classStaticGaitController_ab789996a68552c78f1517ac6e44fa1dc}{generalized\+Position\+Callback}} (const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&\+\_\+msg)
+\begin{DoxyCompactList}\small\item\em The joint states for the leg is updated. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStaticGaitController_a1a726e66602132e32905c51d6cabe4d0}\label{classStaticGaitController_a1a726e66602132e32905c51d6cabe4d0}} 
+void {\bfseries generalized\+Velocity\+Callback} (const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&\+\_\+msg)
+\item 
+\mbox{\Hypertarget{classStaticGaitController_a5b2d9f433c1c7cba8b33a2eac5646913}\label{classStaticGaitController_a5b2d9f433c1c7cba8b33a2eac5646913}} 
+void {\bfseries ready\+To\+Proceed\+Callback} (const std\+\_\+msgs\+::\+Bool \&\+\_\+msg)
+\item 
+\mbox{\Hypertarget{classStaticGaitController_a3d4085fc9bff41990d7ff98ad464eed8}\label{classStaticGaitController_a3d4085fc9bff41990d7ff98ad464eed8}} 
+bool {\bfseries move\+Foot\+To\+Body\+Position} (Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \+\_\+foot\+\_\+pos, bool \+\_\+offset, int \+\_\+leg\+\_\+index)
+\item 
+Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classStaticGaitController_a6422fbef0b26c169aa9c34000eaa526f}{calculate\+Swing\+Leg\+Foot\+Position\+In\+Body}} (double \+\_\+step\+\_\+width, double \+\_\+x\+\_\+offset)
+\begin{DoxyCompactList}\small\item\em Calculate the desired swing leg position for the input leg. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStaticGaitController_a3cad840e6db045f667ac7cb34560ac47}\label{classStaticGaitController_a3cad840e6db045f667ac7cb34560ac47}} 
+Eigen\+::\+Matrix$<$ double, 3, 1 $>$ {\bfseries calculate\+Stance\+Leg\+Foot\+Position\+In\+Body} (double \+\_\+step\+\_\+width, double \+\_\+phase\+\_\+offset, double \+\_\+x\+\_\+offset)
+\item 
+\mbox{\Hypertarget{classStaticGaitController_ac4bafb484ffae01309c26b4c63fefb02}\label{classStaticGaitController_ac4bafb484ffae01309c26b4c63fefb02}} 
+void {\bfseries update\+Turning\+Phase} ()
+\item 
+\mbox{\Hypertarget{classStaticGaitController_a1f7ceeeb956d6216823f569fd9a159dd}\label{classStaticGaitController_a1f7ceeeb956d6216823f569fd9a159dd}} 
+Eigen\+::\+Matrix$<$ double, 3, 1 $>$ {\bfseries calculate\+Turning\+Swing\+Foot\+Position} (Leg\+ID \+\_\+foot)
+\item 
+\mbox{\Hypertarget{classStaticGaitController_a2185c7b8fe04cbad446e8f90be6bc0b2}\label{classStaticGaitController_a2185c7b8fe04cbad446e8f90be6bc0b2}} 
+Eigen\+::\+Matrix$<$ double, 3, 1 $>$ {\bfseries calculate\+Turning\+Stance\+Foot\+Position} (Leg\+ID \+\_\+foot)
+\item 
+\mbox{\Hypertarget{classStaticGaitController_a1ae74dae1552f233d8fecf42605633d5}\label{classStaticGaitController_a1ae74dae1552f233d8fecf42605633d5}} 
+Eigen\+::\+Matrix$<$ double, 3, 1 $>$ {\bfseries calculate\+Turning\+Quad\+Stance\+Foot\+Position} (Leg\+ID \+\_\+foot)
+\item 
+\mbox{\Hypertarget{classStaticGaitController_a78b2c9f4dffe9f3cb8ddaf6e9abeef46}\label{classStaticGaitController_a78b2c9f4dffe9f3cb8ddaf6e9abeef46}} 
+Eigen\+::\+Matrix$<$ double, 3, 1 $>$ {\bfseries reverse\+XY} (Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \+\_\+v\+\_\+in)
+\item 
+\mbox{\Hypertarget{classStaticGaitController_a9e4b81f3cf71428a145ed08281887f94}\label{classStaticGaitController_a9e4b81f3cf71428a145ed08281887f94}} 
+double {\bfseries calculate\+Swing\+Foot\+Height\+In\+Hip} (double \+\_\+current\+\_\+iteration, double \+\_\+max\+\_\+iteration)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classStaticGaitController_ad18ff9182cd61877b5a18bdb90d486eb}\label{classStaticGaitController_ad18ff9182cd61877b5a18bdb90d486eb}} 
+int \mbox{\hyperlink{classStaticGaitController_ad18ff9182cd61877b5a18bdb90d486eb}{gait\+\_\+phase}}
+\begin{DoxyCompactList}\small\item\em This variable keeps track of which leg to move. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStaticGaitController_a9e66f95e0894eb66e2797b29c97ebe79}\label{classStaticGaitController_a9e66f95e0894eb66e2797b29c97ebe79}} 
+double \mbox{\hyperlink{classStaticGaitController_a9e66f95e0894eb66e2797b29c97ebe79}{step\+\_\+width}} = 0.\+25
+\begin{DoxyCompactList}\small\item\em Distance from CoM to foot in y direction in the body frame. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStaticGaitController_a9ee0aa7e874e5b55e13a6f9110ecb9db}\label{classStaticGaitController_a9ee0aa7e874e5b55e13a6f9110ecb9db}} 
+double {\bfseries max\+\_\+step\+\_\+width} = 0.\+4
+\item 
+\mbox{\Hypertarget{classStaticGaitController_a697a24931012cdc301287d77f67591c4}\label{classStaticGaitController_a697a24931012cdc301287d77f67591c4}} 
+double \mbox{\hyperlink{classStaticGaitController_a697a24931012cdc301287d77f67591c4}{step\+\_\+length}} = 0.\+3
+\begin{DoxyCompactList}\small\item\em Length of each step in the body x direction. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStaticGaitController_a8071624e5f47d1a0d4cd38600aecc39f}\label{classStaticGaitController_a8071624e5f47d1a0d4cd38600aecc39f}} 
+double {\bfseries step\+\_\+max\+\_\+height} = 0.\+15
+\item 
+\mbox{\Hypertarget{classStaticGaitController_af2cefac4ecb34d0dd18b8b9a44e7de85}\label{classStaticGaitController_af2cefac4ecb34d0dd18b8b9a44e7de85}} 
+double \mbox{\hyperlink{classStaticGaitController_af2cefac4ecb34d0dd18b8b9a44e7de85}{max\+\_\+hip\+\_\+turning\+\_\+angle}} = M\+\_\+\+PI/3.\+0
+\begin{DoxyCompactList}\small\item\em For swing leg controller. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStaticGaitController_a4d33b7c7097a82fe946c29c389fef587}\label{classStaticGaitController_a4d33b7c7097a82fe946c29c389fef587}} 
+double {\bfseries x\+\_\+distance\+\_\+from\+\_\+\+Co\+M\+\_\+to\+\_\+hip} = 0.\+151
+\item 
+\mbox{\Hypertarget{classStaticGaitController_a1cc7f3e8801d72d5bdc1704d83f0fdc2}\label{classStaticGaitController_a1cc7f3e8801d72d5bdc1704d83f0fdc2}} 
+double {\bfseries y\+\_\+distance\+\_\+from\+\_\+\+Co\+M\+\_\+to\+\_\+hip} = 0.\+151
+\item 
+\mbox{\Hypertarget{classStaticGaitController_a5601c5256219ef174d9e171936956b7b}\label{classStaticGaitController_a5601c5256219ef174d9e171936956b7b}} 
+double \mbox{\hyperlink{classStaticGaitController_a5601c5256219ef174d9e171936956b7b}{x\+\_\+offset\+\_\+min}} = 0.\+1
+\begin{DoxyCompactList}\small\item\em Minimum distance between the body and foot in the x direction. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStaticGaitController_a332e62091f6cc08003856c6a80757885}\label{classStaticGaitController_a332e62091f6cc08003856c6a80757885}} 
+double \mbox{\hyperlink{classStaticGaitController_a332e62091f6cc08003856c6a80757885}{x\+\_\+offset\+\_\+max}}
+\begin{DoxyCompactList}\small\item\em Maximum distance between the body and foot in the x direction. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStaticGaitController_acfefade490d5d0cf98c7b32b4debda1d}\label{classStaticGaitController_acfefade490d5d0cf98c7b32b4debda1d}} 
+double {\bfseries shoulder\+\_\+height\+\_\+over\+\_\+ground}
+\item 
+\mbox{\Hypertarget{classStaticGaitController_ab83d80bd068532db4ce65f1436c890de}\label{classStaticGaitController_ab83d80bd068532db4ce65f1436c890de}} 
+bool {\bfseries fl\+\_\+offset} = false
+\item 
+\mbox{\Hypertarget{classStaticGaitController_a919b3f759daee05af2de3e084b90f149}\label{classStaticGaitController_a919b3f759daee05af2de3e084b90f149}} 
+bool {\bfseries rr\+\_\+offset} = false
+\item 
+\mbox{\Hypertarget{classStaticGaitController_ae421ba87e3eb2a4b5cba7e5c30704f55}\label{classStaticGaitController_ae421ba87e3eb2a4b5cba7e5c30704f55}} 
+bool {\bfseries fr\+\_\+offset} = true
+\item 
+\mbox{\Hypertarget{classStaticGaitController_a7c89cc7783f7f4cacc04ff6fb60870f4}\label{classStaticGaitController_a7c89cc7783f7f4cacc04ff6fb60870f4}} 
+bool {\bfseries rl\+\_\+offset} = true
+\item 
+\mbox{\Hypertarget{classStaticGaitController_af8324c8598fa62323dc84635e8a6be08}\label{classStaticGaitController_af8324c8598fa62323dc84635e8a6be08}} 
+Eigen\+::\+Matrix$<$ double, 4, 1 $>$ \mbox{\hyperlink{classStaticGaitController_af8324c8598fa62323dc84635e8a6be08}{feet\+\_\+positions\+\_\+in\+\_\+body}}
+\begin{DoxyCompactList}\small\item\em Desired feet positions in the body frame. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStaticGaitController_a2c5eb94422491dc425eba2ad43d413c5}\label{classStaticGaitController_a2c5eb94422491dc425eba2ad43d413c5}} 
+Eigen\+::\+Matrix$<$ double, 3, 1 $>$ {\bfseries fl\+\_\+foot\+\_\+position\+\_\+in\+\_\+body}
+\item 
+\mbox{\Hypertarget{classStaticGaitController_a4b3158f36e941027adfe15290fdad15a}\label{classStaticGaitController_a4b3158f36e941027adfe15290fdad15a}} 
+Eigen\+::\+Matrix$<$ double, 3, 1 $>$ {\bfseries fr\+\_\+foot\+\_\+position\+\_\+in\+\_\+body}
+\item 
+\mbox{\Hypertarget{classStaticGaitController_aab0613789dea30ebfbff2e262a95e5c9}\label{classStaticGaitController_aab0613789dea30ebfbff2e262a95e5c9}} 
+Eigen\+::\+Matrix$<$ double, 3, 1 $>$ {\bfseries rl\+\_\+foot\+\_\+position\+\_\+in\+\_\+body}
+\item 
+\mbox{\Hypertarget{classStaticGaitController_aaee6fb308324fdca699cf4936f252b95}\label{classStaticGaitController_aaee6fb308324fdca699cf4936f252b95}} 
+Eigen\+::\+Matrix$<$ double, 3, 1 $>$ {\bfseries rr\+\_\+foot\+\_\+position\+\_\+in\+\_\+body}
+\item 
+\mbox{\Hypertarget{classStaticGaitController_a012eeecfaf3268defa1e9e58b6450d5d}\label{classStaticGaitController_a012eeecfaf3268defa1e9e58b6450d5d}} 
+Gait\+Phase {\bfseries current\+\_\+gait\+\_\+phase} = Gait\+Phase\+::no\+\_\+gait\+\_\+phase
+\item 
+\mbox{\Hypertarget{classStaticGaitController_a92e2b92793f7ed0b5b08abe800697ead}\label{classStaticGaitController_a92e2b92793f7ed0b5b08abe800697ead}} 
+double {\bfseries iteration} = 0
+\item 
+\mbox{\Hypertarget{classStaticGaitController_a7b455faaf928b5cfd6f33580628631dd}\label{classStaticGaitController_a7b455faaf928b5cfd6f33580628631dd}} 
+double {\bfseries iteration\+\_\+max} = 24
+\item 
+\mbox{\Hypertarget{classStaticGaitController_acdf531742a69001253fe81d017afd950}\label{classStaticGaitController_acdf531742a69001253fe81d017afd950}} 
+Eigen\+::\+Matrix$<$ double, 12, 1 $>$ {\bfseries joint\+\_\+angle\+\_\+commands} = Eigen\+::\+Matrix$<$double, 12, 1$>$\+::Zero()
+\item 
+\mbox{\Hypertarget{classStaticGaitController_a8d30ed157816d5795914716491e78b25}\label{classStaticGaitController_a8d30ed157816d5795914716491e78b25}} 
+Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \mbox{\hyperlink{classStaticGaitController_a8d30ed157816d5795914716491e78b25}{joint\+\_\+angles}} = Eigen\+::\+Matrix$<$double, 12, 1$>$\+::Zero()
+\begin{DoxyCompactList}\small\item\em The joint angles of the leg. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStaticGaitController_a93f8cf59345ae37b49550d53e0385b0f}\label{classStaticGaitController_a93f8cf59345ae37b49550d53e0385b0f}} 
+Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \mbox{\hyperlink{classStaticGaitController_a93f8cf59345ae37b49550d53e0385b0f}{joint\+\_\+velocities}} = Eigen\+::\+Matrix$<$double, 12, 1$>$\+::Zero()
+\begin{DoxyCompactList}\small\item\em Desired joint velocity. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStaticGaitController_a6421c00b648165c9a6717b1a72e3ad90}\label{classStaticGaitController_a6421c00b648165c9a6717b1a72e3ad90}} 
+std\+::unique\+\_\+ptr$<$ ros\+::\+Node\+Handle $>$ \mbox{\hyperlink{classStaticGaitController_a6421c00b648165c9a6717b1a72e3ad90}{node\+Handle}}
+\begin{DoxyCompactList}\small\item\em R\+OS node handle. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStaticGaitController_a224d598e73c1468a22cc12aafd351933}\label{classStaticGaitController_a224d598e73c1468a22cc12aafd351933}} 
+ros\+::\+Subscriber {\bfseries ready\+\_\+to\+\_\+proceed\+\_\+subscriber}
+\item 
+\mbox{\Hypertarget{classStaticGaitController_ade188982e8be0d88d69b8936e0665c7b}\label{classStaticGaitController_ade188982e8be0d88d69b8936e0665c7b}} 
+ros\+::\+Subscriber \mbox{\hyperlink{classStaticGaitController_ade188982e8be0d88d69b8936e0665c7b}{generalized\+\_\+position\+\_\+subscriber}}
+\begin{DoxyCompactList}\small\item\em Subscribes to generalized coordinates messages. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStaticGaitController_a0f81f35ae1643c2859550f93d03105dd}\label{classStaticGaitController_a0f81f35ae1643c2859550f93d03105dd}} 
+ros\+::\+Subscriber {\bfseries generalized\+\_\+velocity\+\_\+subscriber}
+\item 
+\mbox{\Hypertarget{classStaticGaitController_a29d007020412555a216a52444996719d}\label{classStaticGaitController_a29d007020412555a216a52444996719d}} 
+ros\+::\+Publisher {\bfseries joint\+\_\+command\+\_\+publisher}
+\item 
+\mbox{\Hypertarget{classStaticGaitController_ac92c410c0c3c5979e27447b6c24d8b0f}\label{classStaticGaitController_ac92c410c0c3c5979e27447b6c24d8b0f}} 
+\mbox{\hyperlink{classKinematics}{Kinematics}} {\bfseries kinematics}
+\item 
+\mbox{\Hypertarget{classStaticGaitController_aa50b25ebbbb05604d8e9104707439134}\label{classStaticGaitController_aa50b25ebbbb05604d8e9104707439134}} 
+bool {\bfseries ready\+\_\+to\+\_\+proceed} = false
+\item 
+\mbox{\Hypertarget{classStaticGaitController_a311ce9ce2c0dfb72c314ab6609711efb}\label{classStaticGaitController_a311ce9ce2c0dfb72c314ab6609711efb}} 
+sensor\+\_\+msgs\+::\+Joint\+State {\bfseries joint\+\_\+command\+\_\+msg}
+\item 
+\mbox{\Hypertarget{classStaticGaitController_a3a060b43e30bdeaedd8a57a08477aa66}\label{classStaticGaitController_a3a060b43e30bdeaedd8a57a08477aa66}} 
+Turning\+Phase {\bfseries current\+\_\+turning\+\_\+phase} = no\+\_\+turning\+\_\+phase
+\item 
+\mbox{\Hypertarget{classStaticGaitController_a3a22a6ec0989ea2fb0082f19e75a0fbe}\label{classStaticGaitController_a3a22a6ec0989ea2fb0082f19e75a0fbe}} 
+double {\bfseries current\+\_\+iteration\+\_\+turning\+\_\+double\+\_\+stance} = 0.\+0
+\item 
+\mbox{\Hypertarget{classStaticGaitController_a3392399bc2e42c088f0dce94303ae8d9}\label{classStaticGaitController_a3392399bc2e42c088f0dce94303ae8d9}} 
+double {\bfseries current\+\_\+iteration\+\_\+turning\+\_\+quad\+\_\+stance} = 0.\+0
+\item 
+\mbox{\Hypertarget{classStaticGaitController_a9ac0d8262c0e37dc1e10c9cb7d7708ef}\label{classStaticGaitController_a9ac0d8262c0e37dc1e10c9cb7d7708ef}} 
+double {\bfseries max\+\_\+iteration\+\_\+turning\+\_\+double\+\_\+stance} = 10.\+0
+\item 
+\mbox{\Hypertarget{classStaticGaitController_a59ccf6cd6028bf614b41787230b9307c}\label{classStaticGaitController_a59ccf6cd6028bf614b41787230b9307c}} 
+double {\bfseries max\+\_\+iteration\+\_\+turning\+\_\+quad\+\_\+stance} = 5.\+0
+\item 
+\mbox{\Hypertarget{classStaticGaitController_aca616fe022704460d200f34b1abe503e}\label{classStaticGaitController_aca616fe022704460d200f34b1abe503e}} 
+double {\bfseries max\+\_\+angle\+\_\+deflection} = M\+\_\+\+PI/12
+\item 
+\mbox{\Hypertarget{classStaticGaitController_aacb2467cc3d54dc5a3da92f9b86c6deb}\label{classStaticGaitController_aacb2467cc3d54dc5a3da92f9b86c6deb}} 
+double {\bfseries angle\+\_\+offset} = (M\+\_\+\+PI/2.\+0 -\/ max\+\_\+angle\+\_\+deflection)/2.\+0
+\item 
+\mbox{\Hypertarget{classStaticGaitController_a0eeb40925382b053a60daf1c3c12305a}\label{classStaticGaitController_a0eeb40925382b053a60daf1c3c12305a}} 
+double \mbox{\hyperlink{classStaticGaitController_a0eeb40925382b053a60daf1c3c12305a}{quad\+\_\+stance\+\_\+phase\+\_\+period}} = 0.\+1
+\begin{DoxyCompactList}\small\item\em 2$\ast$quad\+\_\+stance\+\_\+phase\+\_\+period + double\+\_\+stance\+\_\+phase\+\_\+period = 1.\+0 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classStaticGaitController_acc8625d0c040f185160233eefc7965f2}\label{classStaticGaitController_acc8625d0c040f185160233eefc7965f2}} 
+double {\bfseries double\+\_\+stance\+\_\+phase\+\_\+period} = 1.\+0 -\/ 2.\+0$\ast$\mbox{\hyperlink{classStaticGaitController_a0eeb40925382b053a60daf1c3c12305a}{quad\+\_\+stance\+\_\+phase\+\_\+period}}
+\item 
+\mbox{\Hypertarget{classStaticGaitController_afee45919350d5a5abb79ebbdf2ffc4b4}\label{classStaticGaitController_afee45919350d5a5abb79ebbdf2ffc4b4}} 
+double {\bfseries distance\+\_\+body\+\_\+to\+\_\+hip} = 0.\+15
+\item 
+\mbox{\Hypertarget{classStaticGaitController_ae22e3d4943ccccf8fedb0aa095b2f2f3}\label{classStaticGaitController_ae22e3d4943ccccf8fedb0aa095b2f2f3}} 
+double {\bfseries turning\+\_\+radius} = 0.\+5
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classStaticGaitController_ab789996a68552c78f1517ac6e44fa1dc}\label{classStaticGaitController_ab789996a68552c78f1517ac6e44fa1dc}} 
+\index{StaticGaitController@{StaticGaitController}!generalizedPositionCallback@{generalizedPositionCallback}}
+\index{generalizedPositionCallback@{generalizedPositionCallback}!StaticGaitController@{StaticGaitController}}
+\doxysubsubsection{\texorpdfstring{generalizedPositionCallback()}{generalizedPositionCallback()}}
+{\footnotesize\ttfamily void Static\+Gait\+Controller\+::generalized\+Position\+Callback (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&}]{\+\_\+msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The joint states for the leg is updated. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+msg} & A float array containing the generalized coordinates ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classStaticGaitController_a6422fbef0b26c169aa9c34000eaa526f}\label{classStaticGaitController_a6422fbef0b26c169aa9c34000eaa526f}} 
+\index{StaticGaitController@{StaticGaitController}!calculateSwingLegFootPositionInBody@{calculateSwingLegFootPositionInBody}}
+\index{calculateSwingLegFootPositionInBody@{calculateSwingLegFootPositionInBody}!StaticGaitController@{StaticGaitController}}
+\doxysubsubsection{\texorpdfstring{calculateSwingLegFootPositionInBody()}{calculateSwingLegFootPositionInBody()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 1 $>$ Static\+Gait\+Controller\+::calculate\+Swing\+Leg\+Foot\+Position\+In\+Body (\begin{DoxyParamCaption}\item[{double}]{\+\_\+step\+\_\+width,  }\item[{double}]{\+\_\+x\+\_\+offset }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Calculate the desired swing leg position for the input leg. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+step\+\_\+width} & The distance from the hip to the foot position i the body y direction \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector containing the desired swing leg position in the hip frame 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

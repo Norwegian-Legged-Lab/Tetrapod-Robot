@@ -18,6 +18,145 @@ bool {\bfseries is\+Controller\+Paused} ()
 \mbox{\Hypertarget{classJoystickController_a8dd41d71e787832b9cb8d60e868c1145}\label{classJoystickController_a8dd41d71e787832b9cb8d60e868c1145}} 
 void {\bfseries publish\+Twist\+Command} ()
 \end{DoxyCompactItemize}
+\doxysubsection*{Private Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classJoystickController_a32f9801cf734880bfb4075a7270c1907}\label{classJoystickController_a32f9801cf734880bfb4075a7270c1907}} 
+enum {\bfseries Button\+Status} \{ {\bfseries P\+R\+E\+S\+S\+ED} = 0, 
+{\bfseries R\+E\+L\+E\+A\+S\+ED} = 1
+ \}
+\item 
+\mbox{\Hypertarget{classJoystickController_a3d760612140aeff26ed988cedd627cff}\label{classJoystickController_a3d760612140aeff26ed988cedd627cff}} 
+enum {\bfseries Keyboard\+Mapping} \{ \newline
+{\bfseries K\+E\+Y\+\_\+\+UP} = 273, 
+{\bfseries K\+E\+Y\+\_\+\+D\+O\+WN} = 274, 
+{\bfseries K\+E\+Y\+\_\+\+L\+E\+FT} = 276, 
+{\bfseries K\+E\+Y\+\_\+\+R\+I\+G\+HT} = 275, 
+\newline
+{\bfseries K\+E\+Y\+\_\+\+C\+O\+U\+N\+T\+E\+R\+\_\+\+C\+L\+O\+C\+K\+W\+I\+S\+E\+\_\+\+R\+O\+T\+A\+T\+I\+ON} = 97, 
+{\bfseries K\+E\+Y\+\_\+\+C\+L\+O\+C\+K\+W\+I\+S\+E\+\_\+\+R\+O\+T\+A\+T\+I\+ON} = 100, 
+{\bfseries K\+E\+Y\+\_\+\+L\+I\+N\+E\+A\+R\+\_\+\+S\+P\+E\+E\+D\+\_\+\+I\+N\+C\+R\+E\+A\+SE} = 109, 
+{\bfseries K\+E\+Y\+\_\+\+L\+I\+N\+E\+A\+R\+\_\+\+S\+P\+E\+E\+D\+\_\+\+D\+E\+C\+R\+E\+A\+SE} = 110, 
+\newline
+{\bfseries K\+E\+Y\+\_\+\+A\+N\+G\+U\+L\+A\+R\+\_\+\+R\+A\+T\+E\+\_\+\+I\+N\+C\+R\+E\+A\+SE} = 120, 
+{\bfseries K\+E\+Y\+\_\+\+A\+N\+G\+U\+L\+A\+R\+\_\+\+R\+A\+T\+E\+\_\+\+D\+E\+C\+R\+E\+A\+SE} = 122, 
+{\bfseries K\+E\+Y\+\_\+\+P\+A\+U\+SE} = 32
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classJoystickController_a5e7f19b777e94278b6d2586753b5df37}\label{classJoystickController_a5e7f19b777e94278b6d2586753b5df37}} 
+void {\bfseries joystick\+Callback} (const sensor\+\_\+msgs\+::\+Joy\+Const\+Ptr \&\+\_\+msg)
+\item 
+\mbox{\Hypertarget{classJoystickController_a277bce2135df1070c74e7cba9b7105ef}\label{classJoystickController_a277bce2135df1070c74e7cba9b7105ef}} 
+void {\bfseries keyboard\+Button\+Released\+Callback} (const keyboard\+::\+Key\+Const\+Ptr \&\+\_\+msg)
+\item 
+\mbox{\Hypertarget{classJoystickController_a514c5d9c6c9701a098e27ea829407b18}\label{classJoystickController_a514c5d9c6c9701a098e27ea829407b18}} 
+void {\bfseries keyboard\+Button\+Pressed\+Callback} (const keyboard\+::\+Key\+Const\+Ptr \&\+\_\+msg)
+\item 
+\mbox{\Hypertarget{classJoystickController_aad83db4b266d7d45bcb25358dc0aa124}\label{classJoystickController_aad83db4b266d7d45bcb25358dc0aa124}} 
+void {\bfseries change\+Linear\+Multiplier} (bool \+\_\+increase)
+\item 
+\mbox{\Hypertarget{classJoystickController_a31ed6d8fab843449db56aaa2f1f27fb2}\label{classJoystickController_a31ed6d8fab843449db56aaa2f1f27fb2}} 
+void {\bfseries change\+Rotational\+Multiplier} (bool \+\_\+increase)
+\item 
+\mbox{\Hypertarget{classJoystickController_a7e7772003e9f1bc611b8e1be5277f051}\label{classJoystickController_a7e7772003e9f1bc611b8e1be5277f051}} 
+bool {\bfseries ready\+To\+Change\+Linear\+Multiplier} ()
+\item 
+\mbox{\Hypertarget{classJoystickController_a5b4846eb52ffe7b5a48973c47402f3b1}\label{classJoystickController_a5b4846eb52ffe7b5a48973c47402f3b1}} 
+bool {\bfseries ready\+To\+Change\+Rotational\+Multiplier} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classJoystickController_ac29ffb239202278abf8f41b7e10a5a4a}\label{classJoystickController_ac29ffb239202278abf8f41b7e10a5a4a}} 
+ros\+::\+Subscriber {\bfseries keyboard\+\_\+button\+\_\+pressed\+\_\+subscriber}
+\item 
+\mbox{\Hypertarget{classJoystickController_afe013667e133fa640ccb0d23eaab9b6f}\label{classJoystickController_afe013667e133fa640ccb0d23eaab9b6f}} 
+ros\+::\+Subscriber {\bfseries keyboard\+\_\+button\+\_\+released\+\_\+subscriber}
+\item 
+\mbox{\Hypertarget{classJoystickController_ae54d7b2740fe1c8116b1fc4c510eb16d}\label{classJoystickController_ae54d7b2740fe1c8116b1fc4c510eb16d}} 
+Button\+Status {\bfseries F\+O\+R\+W\+A\+RD} = R\+E\+L\+E\+A\+S\+ED
+\item 
+\mbox{\Hypertarget{classJoystickController_aa079243dfc53e5f8fb2e98911284188f}\label{classJoystickController_aa079243dfc53e5f8fb2e98911284188f}} 
+Button\+Status {\bfseries B\+A\+C\+K\+W\+A\+RD} = R\+E\+L\+E\+A\+S\+ED
+\item 
+\mbox{\Hypertarget{classJoystickController_a01937412e06601d4a5b70891af8af874}\label{classJoystickController_a01937412e06601d4a5b70891af8af874}} 
+Button\+Status {\bfseries L\+E\+FT} = R\+E\+L\+E\+A\+S\+ED
+\item 
+\mbox{\Hypertarget{classJoystickController_a4ee2521b7661e1dc003de048328be91c}\label{classJoystickController_a4ee2521b7661e1dc003de048328be91c}} 
+Button\+Status {\bfseries R\+I\+G\+HT} = R\+E\+L\+E\+A\+S\+ED
+\item 
+\mbox{\Hypertarget{classJoystickController_a3e1d13be0314ec464896327ede779d9e}\label{classJoystickController_a3e1d13be0314ec464896327ede779d9e}} 
+Button\+Status {\bfseries C\+L\+O\+C\+K\+W\+I\+S\+E\+\_\+\+R\+O\+T\+A\+T\+I\+ON} = R\+E\+L\+E\+A\+S\+ED
+\item 
+\mbox{\Hypertarget{classJoystickController_a0b1521df74a547676a6ce6d8d2981b53}\label{classJoystickController_a0b1521df74a547676a6ce6d8d2981b53}} 
+Button\+Status {\bfseries C\+O\+U\+N\+T\+E\+R\+\_\+\+C\+L\+O\+C\+K\+W\+I\+S\+E\+\_\+\+R\+O\+T\+A\+T\+I\+ON} = R\+E\+L\+E\+A\+S\+ED
+\item 
+\mbox{\Hypertarget{classJoystickController_a2d4f61be3fef0de9687f2ae948b8bed6}\label{classJoystickController_a2d4f61be3fef0de9687f2ae948b8bed6}} 
+Button\+Status {\bfseries L\+I\+N\+E\+A\+R\+\_\+\+S\+P\+E\+E\+D\+\_\+\+I\+N\+C\+R\+E\+A\+SE} = R\+E\+L\+E\+A\+S\+ED
+\item 
+\mbox{\Hypertarget{classJoystickController_adb25d537eb3e769a233cbae58d9d9e7d}\label{classJoystickController_adb25d537eb3e769a233cbae58d9d9e7d}} 
+Button\+Status {\bfseries L\+I\+N\+E\+A\+R\+\_\+\+S\+P\+E\+E\+D\+\_\+\+D\+E\+C\+R\+E\+A\+SE} = R\+E\+L\+E\+A\+S\+ED
+\item 
+\mbox{\Hypertarget{classJoystickController_a4376910d0c782a94a3d9e050f59775c6}\label{classJoystickController_a4376910d0c782a94a3d9e050f59775c6}} 
+Button\+Status {\bfseries A\+N\+G\+U\+L\+A\+R\+\_\+\+R\+A\+T\+E\+\_\+\+I\+N\+C\+R\+E\+A\+SE} = R\+E\+L\+E\+A\+S\+ED
+\item 
+\mbox{\Hypertarget{classJoystickController_a65804a108a5556affd69b90d080806dd}\label{classJoystickController_a65804a108a5556affd69b90d080806dd}} 
+Button\+Status {\bfseries A\+N\+G\+U\+L\+A\+R\+\_\+\+R\+A\+T\+E\+\_\+\+D\+E\+C\+R\+E\+A\+SE} = R\+E\+L\+E\+A\+S\+ED
+\item 
+\mbox{\Hypertarget{classJoystickController_a9741d2b3da773f7547a80833f32c5889}\label{classJoystickController_a9741d2b3da773f7547a80833f32c5889}} 
+Button\+Status {\bfseries P\+A\+U\+SE} = R\+E\+L\+E\+A\+S\+ED
+\item 
+\mbox{\Hypertarget{classJoystickController_a30de995a2341461668f22c8591cfd4df}\label{classJoystickController_a30de995a2341461668f22c8591cfd4df}} 
+std\+::unique\+\_\+ptr$<$ ros\+::\+Node\+Handle $>$ {\bfseries node\+Handle}
+\item 
+\mbox{\Hypertarget{classJoystickController_a4e4f04f631052cda21bda17dadf80a21}\label{classJoystickController_a4e4f04f631052cda21bda17dadf80a21}} 
+ros\+::\+Subscriber {\bfseries joystick\+\_\+subscriber}
+\item 
+\mbox{\Hypertarget{classJoystickController_a5c7f6084f13b4bedc941874420d59141}\label{classJoystickController_a5c7f6084f13b4bedc941874420d59141}} 
+ros\+::\+Publisher {\bfseries twist\+\_\+command\+\_\+publisher}
+\item 
+\mbox{\Hypertarget{classJoystickController_afe14f438fee19f447e7c5b1c1069ea7c}\label{classJoystickController_afe14f438fee19f447e7c5b1c1069ea7c}} 
+double {\bfseries linear\+\_\+rate\+\_\+multiplier} = 0.\+2
+\item 
+\mbox{\Hypertarget{classJoystickController_a6695af2faad548f51ca59d2892a79f00}\label{classJoystickController_a6695af2faad548f51ca59d2892a79f00}} 
+double {\bfseries linear\+\_\+rate\+\_\+multiplier\+\_\+step} = 0.\+1
+\item 
+\mbox{\Hypertarget{classJoystickController_a5400cb7cc262b0fa39c6ff2538fd1287}\label{classJoystickController_a5400cb7cc262b0fa39c6ff2538fd1287}} 
+double {\bfseries linear\+\_\+rate\+\_\+multiplier\+\_\+min} = 0.\+2
+\item 
+\mbox{\Hypertarget{classJoystickController_adf7e26c9edca3221ea0bf11300c05b40}\label{classJoystickController_adf7e26c9edca3221ea0bf11300c05b40}} 
+double {\bfseries linear\+\_\+rate\+\_\+multiplier\+\_\+max} = 1.\+0
+\item 
+\mbox{\Hypertarget{classJoystickController_a731477ebc602acc87b7a151a58579f40}\label{classJoystickController_a731477ebc602acc87b7a151a58579f40}} 
+double {\bfseries rotational\+\_\+rate\+\_\+multiplier} = 0.\+2
+\item 
+\mbox{\Hypertarget{classJoystickController_ab46aabfe68f66432f8a5d666355b6f88}\label{classJoystickController_ab46aabfe68f66432f8a5d666355b6f88}} 
+double {\bfseries rotational\+\_\+rate\+\_\+multiplier\+\_\+step} = 0.\+1
+\item 
+\mbox{\Hypertarget{classJoystickController_a27e902008e6c3a68413ae3eec5ef3233}\label{classJoystickController_a27e902008e6c3a68413ae3eec5ef3233}} 
+double {\bfseries rotational\+\_\+rate\+\_\+multiplier\+\_\+max} = 1.\+0
+\item 
+\mbox{\Hypertarget{classJoystickController_a72351b62cd4fc72c3d8fcc3808d349c0}\label{classJoystickController_a72351b62cd4fc72c3d8fcc3808d349c0}} 
+double {\bfseries rotational\+\_\+rate\+\_\+multiplier\+\_\+min} = 0.\+2
+\item 
+\mbox{\Hypertarget{classJoystickController_a322eeb69a76ae37a073326466d31f89f}\label{classJoystickController_a322eeb69a76ae37a073326466d31f89f}} 
+geometry\+\_\+msgs\+::\+Twist {\bfseries twist\+\_\+command\+\_\+message}
+\item 
+\mbox{\Hypertarget{classJoystickController_ab5cc5e7dc7ff4860a105491f8243444a}\label{classJoystickController_ab5cc5e7dc7ff4860a105491f8243444a}} 
+double {\bfseries pause} = false
+\item 
+\mbox{\Hypertarget{classJoystickController_a6fb8fab0759580b5e3bbeff35cfc549b}\label{classJoystickController_a6fb8fab0759580b5e3bbeff35cfc549b}} 
+double {\bfseries minimum\+\_\+seconds\+\_\+between\+\_\+limit\+\_\+change} = 0.\+1
+\item 
+\mbox{\Hypertarget{classJoystickController_ae603d8640b4fd9549e22b2a956f3c380}\label{classJoystickController_ae603d8640b4fd9549e22b2a956f3c380}} 
+double {\bfseries time\+\_\+of\+\_\+last\+\_\+linear\+\_\+limit\+\_\+change} = 0.\+0
+\item 
+\mbox{\Hypertarget{classJoystickController_ab9b8767c4cade6f60c4003f07e0cd0d4}\label{classJoystickController_ab9b8767c4cade6f60c4003f07e0cd0d4}} 
+double {\bfseries time\+\_\+of\+\_\+last\+\_\+rotational\+\_\+limit\+\_\+change} = 0.\+0
+\end{DoxyCompactItemize}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

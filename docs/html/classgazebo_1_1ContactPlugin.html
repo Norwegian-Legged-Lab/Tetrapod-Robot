@@ -68,6 +68,8 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classgazebo_1_1ContactPlugin-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">gazebo::ContactPlugin Class Reference</div>  </div>
@@ -110,6 +112,24 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:a10d1536023ae58aed4f293c62c5d2c9a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgazebo_1_1ContactPlugin.html#a10d1536023ae58aed4f293c62c5d2c9a">Load</a> (sensors::SensorPtr _sensor, sdf::ElementPtr _sdf)</td></tr>
 <tr class="memdesc:a10d1536023ae58aed4f293c62c5d2c9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load the sensor plugin.  <a href="classgazebo_1_1ContactPlugin.html#a10d1536023ae58aed4f293c62c5d2c9a">More...</a><br /></td></tr>
 <tr class="separator:a10d1536023ae58aed4f293c62c5d2c9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:adc07abc8ef9d8d6a2444940aeaf025b3"><td class="memItemLeft" align="right" valign="top"><a id="adc07abc8ef9d8d6a2444940aeaf025b3"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgazebo_1_1ContactPlugin.html#adc07abc8ef9d8d6a2444940aeaf025b3">OnUpdate</a> ()</td></tr>
+<tr class="memdesc:adc07abc8ef9d8d6a2444940aeaf025b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback that receives the contact sensor's update signal. <br /></td></tr>
+<tr class="separator:adc07abc8ef9d8d6a2444940aeaf025b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a13163d2b00a9c37132e7d21947b51764"><td class="memItemLeft" align="right" valign="top"><a id="a13163d2b00a9c37132e7d21947b51764"></a>
+sensors::ContactSensorPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgazebo_1_1ContactPlugin.html#a13163d2b00a9c37132e7d21947b51764">parentSensor</a></td></tr>
+<tr class="memdesc:a13163d2b00a9c37132e7d21947b51764"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the contact sensor. <br /></td></tr>
+<tr class="separator:a13163d2b00a9c37132e7d21947b51764"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a195df29795fc44cd676effe9e396479f"><td class="memItemLeft" align="right" valign="top"><a id="a195df29795fc44cd676effe9e396479f"></a>
+event::ConnectionPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgazebo_1_1ContactPlugin.html#a195df29795fc44cd676effe9e396479f">updateConnection</a></td></tr>
+<tr class="memdesc:a195df29795fc44cd676effe9e396479f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Connection that maintains a link between the contact sensor's updated signal and the OnUpdate callback. <br /></td></tr>
+<tr class="separator:a195df29795fc44cd676effe9e396479f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A plugin for the contact sensors. </p>

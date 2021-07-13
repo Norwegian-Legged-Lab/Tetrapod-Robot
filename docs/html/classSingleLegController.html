@@ -65,11 +65,23 @@ $(function() {
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classSingleLegController-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">SingleLegController Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="dynheader">
+Collaboration diagram for SingleLegController:</div>
+<div class="dyncontent">
+<div class="center"><img src="classSingleLegController__coll__graph.png" border="0" usemap="#SingleLegController_coll__map" alt="Collaboration graph"/></div>
+<map name="SingleLegController_coll__map" id="SingleLegController_coll__map">
+<area shape="rect" title=" " alt="" coords="45,168,194,195"/>
+<area shape="rect" href="classKinematics.html" title="A class for analytical Kinematics Solving." alt="" coords="5,5,100,32"/>
+<area shape="rect" href="classThirdOrderFilter.html" title=" " alt="" coords="125,5,247,32"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -304,65 +316,428 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setJointPositions</b>
 <tr class="memitem:a1bc47827e92a5709ed8cd0dc92a9a2a5"><td class="memItemLeft" align="right" valign="top"><a id="a1bc47827e92a5709ed8cd0dc92a9a2a5"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>simulatorSendJointVelocityCommand</b> ()</td></tr>
 <tr class="separator:a1bc47827e92a5709ed8cd0dc92a9a2a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a7b4ea1c8e62e720596019700f364fa4c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a7b4ea1c8e62e720596019700f364fa4c">jointStateCallback</a> (const sensor_msgs::JointStatePtr &amp;_msg)</td></tr>
+<tr class="memdesc:a7b4ea1c8e62e720596019700f364fa4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Listens to joint state messages from the motors The messages contains joint angles, velocities and torques for all three motors.  <a href="classSingleLegController.html#a7b4ea1c8e62e720596019700f364fa4c">More...</a><br /></td></tr>
+<tr class="separator:a7b4ea1c8e62e720596019700f364fa4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1416bcc7d48bd32ac977ecbc182dfade"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a1416bcc7d48bd32ac977ecbc182dfade">jointSetpointCallback</a> (const std_msgs::Float64MultiArrayConstPtr &amp;_msg)</td></tr>
+<tr class="memdesc:a1416bcc7d48bd32ac977ecbc182dfade"><td class="mdescLeft">&#160;</td><td class="mdescRight">Listens to joint setpoints messages.  <a href="classSingleLegController.html#a1416bcc7d48bd32ac977ecbc182dfade">More...</a><br /></td></tr>
+<tr class="separator:a1416bcc7d48bd32ac977ecbc182dfade"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa24664d461ae96ac654bf22af9151692"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#aa24664d461ae96ac654bf22af9151692">motorConfirmationCallback</a> (const std_msgs::Bool &amp;_msg)</td></tr>
+<tr class="memdesc:aa24664d461ae96ac654bf22af9151692"><td class="mdescLeft">&#160;</td><td class="mdescRight">Listens to a confirmation message from the motors which is used to indicate if the motor gains have been set successfully.  <a href="classSingleLegController.html#aa24664d461ae96ac654bf22af9151692">More...</a><br /></td></tr>
+<tr class="separator:aa24664d461ae96ac654bf22af9151692"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c76cba3a3c445291560d9774f9c24a7"><td class="memItemLeft" align="right" valign="top">Eigen::Matrix&lt; double, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a9c76cba3a3c445291560d9774f9c24a7">calculateSwingLegHeightTrajectory</a> (double _percentage, double _period, double _max_swing_height, double _hip_height)</td></tr>
+<tr class="memdesc:a9c76cba3a3c445291560d9774f9c24a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function calculates the swing leg height trajectory based on various gait cycle parameters.  <a href="classSingleLegController.html#a9c76cba3a3c445291560d9774f9c24a7">More...</a><br /></td></tr>
+<tr class="separator:a9c76cba3a3c445291560d9774f9c24a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af614ac5b64336539c3384d7f75318272"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#af614ac5b64336539c3384d7f75318272">calculateSingleAxisTrajectory</a> (const double &amp;_percentage, const double &amp;_period, const double &amp;_max_travel, double &amp;_axis_pos, double &amp;_axis_vel, double &amp;_axis_acc)</td></tr>
+<tr class="memdesc:af614ac5b64336539c3384d7f75318272"><td class="mdescLeft">&#160;</td><td class="mdescRight">This functions calculates a smooth trajectory along a single linear axis. Please see the report for details.  <a href="classSingleLegController.html#af614ac5b64336539c3384d7f75318272">More...</a><br /></td></tr>
+<tr class="separator:af614ac5b64336539c3384d7f75318272"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2db72e74eb5083659877d8086594390d"><td class="memItemLeft" align="right" valign="top"><a id="a2db72e74eb5083659877d8086594390d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>simulatorGeneralizedCoordinateCallback</b> (const std_msgs::Float64MultiArrayConstPtr &amp;_msg)</td></tr>
+<tr class="separator:a2db72e74eb5083659877d8086594390d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d376af6ac6744431f17217e8e25cc01"><td class="memItemLeft" align="right" valign="top"><a id="a2d376af6ac6744431f17217e8e25cc01"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>simulatorGeneralizedVelocityCallback</b> (const std_msgs::Float64MultiArrayConstPtr &amp;_msg)</td></tr>
+<tr class="separator:a2d376af6ac6744431f17217e8e25cc01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cadeb068f031ac687c83a374c0bb532"><td class="memItemLeft" align="right" valign="top"><a id="a3cadeb068f031ac687c83a374c0bb532"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>simulatorSendJointPositionCommand</b> ()</td></tr>
+<tr class="separator:a3cadeb068f031ac687c83a374c0bb532"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a7f3cbefbc3a36616969da3acbaf5ca54"><td class="memItemLeft" align="right" valign="top"><a id="a7f3cbefbc3a36616969da3acbaf5ca54"></a>
+Eigen::Matrix&lt; double, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a7f3cbefbc3a36616969da3acbaf5ca54">foot_pos_ref</a> = Eigen::Matrix&lt;double, 3, 1&gt;::Zero()</td></tr>
+<tr class="memdesc:a7f3cbefbc3a36616969da3acbaf5ca54"><td class="mdescLeft">&#160;</td><td class="mdescRight">The foot position reference relative to the hip. <br /></td></tr>
+<tr class="separator:a7f3cbefbc3a36616969da3acbaf5ca54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8b750a16a42bf0f9e7d4fcbff77f762"><td class="memItemLeft" align="right" valign="top"><a id="ab8b750a16a42bf0f9e7d4fcbff77f762"></a>
+Eigen::Matrix&lt; double, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#ab8b750a16a42bf0f9e7d4fcbff77f762">foot_vel_ref</a> = Eigen::Matrix&lt;double, 3, 1&gt;::Zero()</td></tr>
+<tr class="memdesc:ab8b750a16a42bf0f9e7d4fcbff77f762"><td class="mdescLeft">&#160;</td><td class="mdescRight">The foot velocity reference relative to the hip. <br /></td></tr>
+<tr class="separator:ab8b750a16a42bf0f9e7d4fcbff77f762"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cffd5d89c5fa67f45da085dd5154e8d"><td class="memItemLeft" align="right" valign="top"><a id="a2cffd5d89c5fa67f45da085dd5154e8d"></a>
+Eigen::Matrix&lt; double, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a2cffd5d89c5fa67f45da085dd5154e8d">foot_acc_ref</a> = Eigen::Matrix&lt;double, 3, 1&gt;::Zero()</td></tr>
+<tr class="memdesc:a2cffd5d89c5fa67f45da085dd5154e8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The foot acceleration reference relative to the hip. <br /></td></tr>
+<tr class="separator:a2cffd5d89c5fa67f45da085dd5154e8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03f2a6f26d19340da3a4a7071c798999"><td class="memItemLeft" align="right" valign="top"><a id="a03f2a6f26d19340da3a4a7071c798999"></a>
+Eigen::Matrix&lt; double, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a03f2a6f26d19340da3a4a7071c798999">foot_pos_goal</a> = Eigen::Matrix&lt;double, 3, 1&gt;::Zero()</td></tr>
+<tr class="memdesc:a03f2a6f26d19340da3a4a7071c798999"><td class="mdescLeft">&#160;</td><td class="mdescRight">When using setpointTrajectory control these are the joint angles we want to reach eventually. <br /></td></tr>
+<tr class="separator:a03f2a6f26d19340da3a4a7071c798999"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a386b8d073a06ddb3fc240e2fed525a5e"><td class="memItemLeft" align="right" valign="top"><a id="a386b8d073a06ddb3fc240e2fed525a5e"></a>
+Eigen::Matrix&lt; double, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a386b8d073a06ddb3fc240e2fed525a5e">joint_pos_goal</a> = Eigen::Matrix&lt;double, 3, 1&gt;::Zero()</td></tr>
+<tr class="memdesc:a386b8d073a06ddb3fc240e2fed525a5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The joint angles we want to eventually reach when using pose trajectory control. <br /></td></tr>
+<tr class="separator:a386b8d073a06ddb3fc240e2fed525a5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5919dbede31dc9178918196b364b8e0"><td class="memItemLeft" align="right" valign="top"><a id="ac5919dbede31dc9178918196b364b8e0"></a>
+Eigen::Matrix&lt; double, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#ac5919dbede31dc9178918196b364b8e0">joint_pos_initial</a> = Eigen::Matrix&lt;double, 3, 1&gt;::Zero()</td></tr>
+<tr class="memdesc:ac5919dbede31dc9178918196b364b8e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The joint angles at the beginning of a trajectory. <br /></td></tr>
+<tr class="separator:ac5919dbede31dc9178918196b364b8e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e52b8652d2660e57b4fe523048960af"><td class="memItemLeft" align="right" valign="top"><a id="a3e52b8652d2660e57b4fe523048960af"></a>
+Eigen::Matrix&lt; double, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a3e52b8652d2660e57b4fe523048960af">joint_pos</a> = Eigen::Matrix&lt;double, 3, 1&gt;::Zero()</td></tr>
+<tr class="memdesc:a3e52b8652d2660e57b4fe523048960af"><td class="mdescLeft">&#160;</td><td class="mdescRight">The estimated joint angles of the motors. <br /></td></tr>
+<tr class="separator:a3e52b8652d2660e57b4fe523048960af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ac471ce6bf8e598d74cf23502301108"><td class="memItemLeft" align="right" valign="top"><a id="a7ac471ce6bf8e598d74cf23502301108"></a>
+Eigen::Matrix&lt; double, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a7ac471ce6bf8e598d74cf23502301108">joint_vel</a> = Eigen::Matrix&lt;double, 3, 1&gt;::Zero()</td></tr>
+<tr class="memdesc:a7ac471ce6bf8e598d74cf23502301108"><td class="mdescLeft">&#160;</td><td class="mdescRight">The estimated joint velocities of the motors. <br /></td></tr>
+<tr class="separator:a7ac471ce6bf8e598d74cf23502301108"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a379fc2391ca36f1e580e405e520dc1e3"><td class="memItemLeft" align="right" valign="top"><a id="a379fc2391ca36f1e580e405e520dc1e3"></a>
+Eigen::Matrix&lt; double, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a379fc2391ca36f1e580e405e520dc1e3">joint_torque</a> = Eigen::Matrix&lt;double, 3, 1&gt;::Zero()</td></tr>
+<tr class="memdesc:a379fc2391ca36f1e580e405e520dc1e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">The estimated joint torques of the motors. <br /></td></tr>
+<tr class="separator:a379fc2391ca36f1e580e405e520dc1e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47b7a0975f0255c614b8f2ddf4728393"><td class="memItemLeft" align="right" valign="top"><a id="a47b7a0975f0255c614b8f2ddf4728393"></a>
+Eigen::Matrix&lt; double, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a47b7a0975f0255c614b8f2ddf4728393">joint_pos_ref</a> = Eigen::Matrix&lt;double, 3, 1&gt;::Zero()</td></tr>
+<tr class="memdesc:a47b7a0975f0255c614b8f2ddf4728393"><td class="mdescLeft">&#160;</td><td class="mdescRight">The reference joint angles for the motors. <br /></td></tr>
+<tr class="separator:a47b7a0975f0255c614b8f2ddf4728393"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c00bef302e56d1fd13e8062759dd2b3"><td class="memItemLeft" align="right" valign="top"><a id="a1c00bef302e56d1fd13e8062759dd2b3"></a>
+Eigen::Matrix&lt; double, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a1c00bef302e56d1fd13e8062759dd2b3">joint_vel_ref</a> = Eigen::Matrix&lt;double, 3, 1&gt;::Zero()</td></tr>
+<tr class="memdesc:a1c00bef302e56d1fd13e8062759dd2b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">The reference joint velocities for the motors. <br /></td></tr>
+<tr class="separator:a1c00bef302e56d1fd13e8062759dd2b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ef1befaf2e65f02d10ab4387598e619"><td class="memItemLeft" align="right" valign="top"><a id="a3ef1befaf2e65f02d10ab4387598e619"></a>
+Eigen::Matrix&lt; double, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a3ef1befaf2e65f02d10ab4387598e619">joint_acc_ref</a> = Eigen::Matrix&lt;double, 3, 1&gt;::Zero()</td></tr>
+<tr class="memdesc:a3ef1befaf2e65f02d10ab4387598e619"><td class="mdescLeft">&#160;</td><td class="mdescRight">The reference joint accelerations for the motors. <br /></td></tr>
+<tr class="separator:a3ef1befaf2e65f02d10ab4387598e619"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1592d781e7ed32db229ff163f94388e7"><td class="memItemLeft" align="right" valign="top"><a id="a1592d781e7ed32db229ff163f94388e7"></a>
+Eigen::Matrix&lt; double, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a1592d781e7ed32db229ff163f94388e7">joint_torque_ref</a> = Eigen::Matrix&lt;double, 3, 1&gt;::Zero()</td></tr>
+<tr class="memdesc:a1592d781e7ed32db229ff163f94388e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The reference joint torques for the motors. <br /></td></tr>
+<tr class="separator:a1592d781e7ed32db229ff163f94388e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb528f36ae245332672e1cb793bdf21d"><td class="memItemLeft" align="right" valign="top"><a id="aeb528f36ae245332672e1cb793bdf21d"></a>
+Eigen::Matrix&lt; double, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#aeb528f36ae245332672e1cb793bdf21d">joint_vel_commands</a> = Eigen::Matrix&lt;double, 3, 1&gt;::Zero()</td></tr>
+<tr class="memdesc:aeb528f36ae245332672e1cb793bdf21d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The velocity commands sent to the motors. <br /></td></tr>
+<tr class="separator:aeb528f36ae245332672e1cb793bdf21d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39020eeb57a9dbb6db5f7cfa1ede91e5"><td class="memItemLeft" align="right" valign="top"><a id="a39020eeb57a9dbb6db5f7cfa1ede91e5"></a>
+Eigen::Matrix&lt; double, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a39020eeb57a9dbb6db5f7cfa1ede91e5">joint_torque_commands</a> = Eigen::Matrix&lt;double, 3, 1&gt;::Zero()</td></tr>
+<tr class="memdesc:a39020eeb57a9dbb6db5f7cfa1ede91e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">The joint torque command being sent to the motors. <br /></td></tr>
+<tr class="separator:a39020eeb57a9dbb6db5f7cfa1ede91e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af16632c82859f299cd1ae5545043c5f6"><td class="memItemLeft" align="right" valign="top"><a id="af16632c82859f299cd1ae5545043c5f6"></a>
+<a class="el" href="classSingleLegController.html#a7334d4583d94d34addc8f7dc898fe5c7">GaitPhase</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#af16632c82859f299cd1ae5545043c5f6">gait_phase</a> = GaitPhase::stance</td></tr>
+<tr class="memdesc:af16632c82859f299cd1ae5545043c5f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current gait phase of the leg. <br /></td></tr>
+<tr class="separator:af16632c82859f299cd1ae5545043c5f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac607f0ae44ff2992ad5a469c725e83c1"><td class="memItemLeft" align="right" valign="top"><a id="ac607f0ae44ff2992ad5a469c725e83c1"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#ac607f0ae44ff2992ad5a469c725e83c1">ready_to_proceed</a> = false</td></tr>
+<tr class="memdesc:ac607f0ae44ff2992ad5a469c725e83c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">A variable used to control the flow of the program. It can be set throuh a boolean message received by the ready_to_proceed_subscriber. <br /></td></tr>
+<tr class="separator:ac607f0ae44ff2992ad5a469c725e83c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc288c445f45646cf114b7d383589fbb"><td class="memItemLeft" align="right" valign="top"><a id="abc288c445f45646cf114b7d383589fbb"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#abc288c445f45646cf114b7d383589fbb">current_iteration</a> = 0</td></tr>
+<tr class="memdesc:abc288c445f45646cf114b7d383589fbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current iteration in a gait phase. This should be incremented for every control loop. <br /></td></tr>
+<tr class="separator:abc288c445f45646cf114b7d383589fbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa578d487193bc0bc1c4821749e995c34"><td class="memItemLeft" align="right" valign="top"><a id="aa578d487193bc0bc1c4821749e995c34"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#aa578d487193bc0bc1c4821749e995c34">final_iteration</a> = 400.0</td></tr>
+<tr class="memdesc:aa578d487193bc0bc1c4821749e995c34"><td class="mdescLeft">&#160;</td><td class="mdescRight">The final iteration of a gait phase. <br /></td></tr>
+<tr class="separator:aa578d487193bc0bc1c4821749e995c34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a957a131e443d08ec0a352ee5fcd1cc2c"><td class="memItemLeft" align="right" valign="top"><a id="a957a131e443d08ec0a352ee5fcd1cc2c"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a957a131e443d08ec0a352ee5fcd1cc2c">current_pose_iteration</a> = 0</td></tr>
+<tr class="memdesc:a957a131e443d08ec0a352ee5fcd1cc2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current iteration used for pose control. <br /></td></tr>
+<tr class="separator:a957a131e443d08ec0a352ee5fcd1cc2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c637cd144c5799024607d8c1ad1eef2"><td class="memItemLeft" align="right" valign="top"><a id="a3c637cd144c5799024607d8c1ad1eef2"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a3c637cd144c5799024607d8c1ad1eef2">final_pose_iteration</a> = 100</td></tr>
+<tr class="memdesc:a3c637cd144c5799024607d8c1ad1eef2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The final iteration used for pose control. <br /></td></tr>
+<tr class="separator:a3c637cd144c5799024607d8c1ad1eef2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a2c3158c7d9014b8e6192bf3f569540"><td class="memItemLeft" align="right" valign="top"><a id="a6a2c3158c7d9014b8e6192bf3f569540"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a6a2c3158c7d9014b8e6192bf3f569540">gains_set</a> = false</td></tr>
+<tr class="memdesc:a6a2c3158c7d9014b8e6192bf3f569540"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keeps track of whether or not the motor gains have been set. <br /></td></tr>
+<tr class="separator:a6a2c3158c7d9014b8e6192bf3f569540"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00829f4edd3d805747a09c7c1c1de4f2"><td class="memItemLeft" align="right" valign="top"><a id="a00829f4edd3d805747a09c7c1c1de4f2"></a>
+const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a00829f4edd3d805747a09c7c1c1de4f2">NUMBER_OF_MOTORS</a> = 3</td></tr>
+<tr class="memdesc:a00829f4edd3d805747a09c7c1c1de4f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of motors used in single leg control tests. <br /></td></tr>
+<tr class="separator:a00829f4edd3d805747a09c7c1c1de4f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae881be0ce2a2ec472da2a99edc6b609b"><td class="memItemLeft" align="right" valign="top"><a id="ae881be0ce2a2ec472da2a99edc6b609b"></a>
+const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#ae881be0ce2a2ec472da2a99edc6b609b">UNINITIALIZED_STATE</a> = 100.0</td></tr>
+<tr class="memdesc:ae881be0ce2a2ec472da2a99edc6b609b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The value of an uninitialized state. <br /></td></tr>
+<tr class="separator:ae881be0ce2a2ec472da2a99edc6b609b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b09d870e9dd7f9591cbd4e193232d73"><td class="memItemLeft" align="right" valign="top"><a id="a2b09d870e9dd7f9591cbd4e193232d73"></a>
+const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a2b09d870e9dd7f9591cbd4e193232d73">POSITION_CONVERGENCE_CRITERIA</a> = 0.01</td></tr>
+<tr class="memdesc:a2b09d870e9dd7f9591cbd4e193232d73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convergence crieria for position control test. <br /></td></tr>
+<tr class="separator:a2b09d870e9dd7f9591cbd4e193232d73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b26621a2a9f3c0edf295c208d88c22f"><td class="memItemLeft" align="right" valign="top"><a id="a4b26621a2a9f3c0edf295c208d88c22f"></a>
+const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a4b26621a2a9f3c0edf295c208d88c22f">POSITION_COMMAND</a> = 1.0</td></tr>
+<tr class="memdesc:a4b26621a2a9f3c0edf295c208d88c22f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The identifier to be used for position command messages. <br /></td></tr>
+<tr class="separator:a4b26621a2a9f3c0edf295c208d88c22f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5a6be5095664c0dd3c37a73159227d2"><td class="memItemLeft" align="right" valign="top"><a id="ac5a6be5095664c0dd3c37a73159227d2"></a>
+const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#ac5a6be5095664c0dd3c37a73159227d2">VELOCITY_COMMAND</a> = 2.0</td></tr>
+<tr class="memdesc:ac5a6be5095664c0dd3c37a73159227d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The identifier to be used for velocity command messages. <br /></td></tr>
+<tr class="separator:ac5a6be5095664c0dd3c37a73159227d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1d28cd0bbf37759552004777c0ed4f4"><td class="memItemLeft" align="right" valign="top"><a id="aa1d28cd0bbf37759552004777c0ed4f4"></a>
+const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#aa1d28cd0bbf37759552004777c0ed4f4">TORQUE_COMMAND</a> = 3.0</td></tr>
+<tr class="memdesc:aa1d28cd0bbf37759552004777c0ed4f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The identifier to be used for torque command messages. <br /></td></tr>
+<tr class="separator:aa1d28cd0bbf37759552004777c0ed4f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf6927a1eefee5f43622f9068b792106"><td class="memItemLeft" align="right" valign="top"><a id="abf6927a1eefee5f43622f9068b792106"></a>
+Eigen::Matrix&lt; double, 3, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#abf6927a1eefee5f43622f9068b792106">K_p</a> = Eigen::Matrix&lt;double, 3, 3&gt;::Zero()</td></tr>
+<tr class="memdesc:abf6927a1eefee5f43622f9068b792106"><td class="mdescLeft">&#160;</td><td class="mdescRight">A diagonal matrix of proportional gains for the closed loop torque controller. <br /></td></tr>
+<tr class="separator:abf6927a1eefee5f43622f9068b792106"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a794008b874d186a8f0186206fccbc161"><td class="memItemLeft" align="right" valign="top"><a id="a794008b874d186a8f0186206fccbc161"></a>
+Eigen::Matrix&lt; double, 3, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a794008b874d186a8f0186206fccbc161">K_d</a> = Eigen::Matrix&lt;double, 3, 3&gt;::Zero()</td></tr>
+<tr class="memdesc:a794008b874d186a8f0186206fccbc161"><td class="mdescLeft">&#160;</td><td class="mdescRight">A diagonal matrix of derivative gains for the closed loop torque controller. <br /></td></tr>
+<tr class="separator:a794008b874d186a8f0186206fccbc161"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebf153f67a1f8b3fd234ebdad310dfea"><td class="memItemLeft" align="right" valign="top"><a id="aebf153f67a1f8b3fd234ebdad310dfea"></a>
+Eigen::Matrix&lt; double, 3, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#aebf153f67a1f8b3fd234ebdad310dfea">K_pos_error_vel_control</a> = Eigen::Matrix&lt;double, 3, 3&gt;::Zero()</td></tr>
+<tr class="memdesc:aebf153f67a1f8b3fd234ebdad310dfea"><td class="mdescLeft">&#160;</td><td class="mdescRight">A digonal matrix for of gains used for the position error in the closed loop velocity controller. <br /></td></tr>
+<tr class="separator:aebf153f67a1f8b3fd234ebdad310dfea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a274c428f5d4bf405cd7ef2ff1b74065b"><td class="memItemLeft" align="right" valign="top"><a id="a274c428f5d4bf405cd7ef2ff1b74065b"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a274c428f5d4bf405cd7ef2ff1b74065b">publish_frequency</a> = 200.0</td></tr>
+<tr class="memdesc:a274c428f5d4bf405cd7ef2ff1b74065b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The expected publish frequency of the robot. This is used to calculate the maximum number of iterations per gait phase. <br /></td></tr>
+<tr class="separator:a274c428f5d4bf405cd7ef2ff1b74065b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6914cf6a8c0b7fec112cf8144cd8b0e5"><td class="memItemLeft" align="right" valign="top"><a id="a6914cf6a8c0b7fec112cf8144cd8b0e5"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a6914cf6a8c0b7fec112cf8144cd8b0e5">phase_period</a> = 0.5</td></tr>
+<tr class="memdesc:a6914cf6a8c0b7fec112cf8144cd8b0e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">The duration of a phase period in seconds. <br /></td></tr>
+<tr class="separator:a6914cf6a8c0b7fec112cf8144cd8b0e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9af55628c4322ff2afe9a7d03f78d8f1"><td class="memItemLeft" align="right" valign="top"><a id="a9af55628c4322ff2afe9a7d03f78d8f1"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a9af55628c4322ff2afe9a7d03f78d8f1">hip_height</a> = 0.35</td></tr>
+<tr class="memdesc:a9af55628c4322ff2afe9a7d03f78d8f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The standard height of the hips above the ground. <br /></td></tr>
+<tr class="separator:a9af55628c4322ff2afe9a7d03f78d8f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdba1143d0827abef078b2102e2171b4"><td class="memItemLeft" align="right" valign="top"><a id="afdba1143d0827abef078b2102e2171b4"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#afdba1143d0827abef078b2102e2171b4">x_nominal</a> = 0.1</td></tr>
+<tr class="memdesc:afdba1143d0827abef078b2102e2171b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The nominal x position of the foot relative to the hip. <br /></td></tr>
+<tr class="separator:afdba1143d0827abef078b2102e2171b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada2d16bff1aec9fd371e4ba09efd017f"><td class="memItemLeft" align="right" valign="top"><a id="ada2d16bff1aec9fd371e4ba09efd017f"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#ada2d16bff1aec9fd371e4ba09efd017f">y_nominal</a> = 0.3</td></tr>
+<tr class="memdesc:ada2d16bff1aec9fd371e4ba09efd017f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The nominal y position of the foot relative to the hip. <br /></td></tr>
+<tr class="separator:ada2d16bff1aec9fd371e4ba09efd017f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e0450f49760446ecc4c01a2d4e13d6b"><td class="memItemLeft" align="right" valign="top"><a id="a8e0450f49760446ecc4c01a2d4e13d6b"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a8e0450f49760446ecc4c01a2d4e13d6b">x_step_distance</a> = 0.2</td></tr>
+<tr class="memdesc:a8e0450f49760446ecc4c01a2d4e13d6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The step distance in the x direction. <br /></td></tr>
+<tr class="separator:a8e0450f49760446ecc4c01a2d4e13d6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab30c1262c5cc5c72f6937194f14c7bd7"><td class="memItemLeft" align="right" valign="top"><a id="ab30c1262c5cc5c72f6937194f14c7bd7"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#ab30c1262c5cc5c72f6937194f14c7bd7">y_step_distance</a> = 0.0</td></tr>
+<tr class="memdesc:ab30c1262c5cc5c72f6937194f14c7bd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The step distance in the y direction. <br /></td></tr>
+<tr class="separator:ab30c1262c5cc5c72f6937194f14c7bd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0590ff89947ace8ca0a33da844f73d83"><td class="memItemLeft" align="right" valign="top"><a id="a0590ff89947ace8ca0a33da844f73d83"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a0590ff89947ace8ca0a33da844f73d83">max_swing_height</a> = 0.12</td></tr>
+<tr class="memdesc:a0590ff89947ace8ca0a33da844f73d83"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum height above the ground to lift the foot. <br /></td></tr>
+<tr class="separator:a0590ff89947ace8ca0a33da844f73d83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae02b2a12924a88f5f2573d5d580f5c53"><td class="memItemLeft" align="right" valign="top"><a id="ae02b2a12924a88f5f2573d5d580f5c53"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#ae02b2a12924a88f5f2573d5d580f5c53">pose_period</a></td></tr>
+<tr class="memdesc:ae02b2a12924a88f5f2573d5d580f5c53"><td class="mdescLeft">&#160;</td><td class="mdescRight">The time used to change from one pose to the next. <br /></td></tr>
+<tr class="separator:ae02b2a12924a88f5f2573d5d580f5c53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15491ad415316576b883c5e9f9c3c130"><td class="memItemLeft" align="right" valign="top"><a id="a15491ad415316576b883c5e9f9c3c130"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a15491ad415316576b883c5e9f9c3c130">max_pose_vel</a> = math_utils::degToRad(50)</td></tr>
+<tr class="memdesc:a15491ad415316576b883c5e9f9c3c130"><td class="mdescLeft">&#160;</td><td class="mdescRight">Max pose control joint angle velocity [rad/s]. <br /></td></tr>
+<tr class="separator:a15491ad415316576b883c5e9f9c3c130"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc44e6ff0221abd5b1595b71c36cdf20"><td class="memItemLeft" align="right" valign="top"><a id="acc44e6ff0221abd5b1595b71c36cdf20"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#acc44e6ff0221abd5b1595b71c36cdf20">k_p_pos_hy</a></td></tr>
+<tr class="memdesc:acc44e6ff0221abd5b1595b71c36cdf20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hip yaw joint motor position control proportional gain. <br /></td></tr>
+<tr class="separator:acc44e6ff0221abd5b1595b71c36cdf20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab72a23f967203ff0ac05c66153bc3fb5"><td class="memItemLeft" align="right" valign="top"><a id="ab72a23f967203ff0ac05c66153bc3fb5"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#ab72a23f967203ff0ac05c66153bc3fb5">k_i_pos_hy</a></td></tr>
+<tr class="memdesc:ab72a23f967203ff0ac05c66153bc3fb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hip yaw joint motor position control integral gain. <br /></td></tr>
+<tr class="separator:ab72a23f967203ff0ac05c66153bc3fb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a960dbaefa2daced2473af80d1cd705e1"><td class="memItemLeft" align="right" valign="top"><a id="a960dbaefa2daced2473af80d1cd705e1"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a960dbaefa2daced2473af80d1cd705e1">k_p_pos_hp</a></td></tr>
+<tr class="memdesc:a960dbaefa2daced2473af80d1cd705e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hip pitch joint motor position control proportional gain. <br /></td></tr>
+<tr class="separator:a960dbaefa2daced2473af80d1cd705e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee973906548bb210bcdc6b4b95d5cdab"><td class="memItemLeft" align="right" valign="top"><a id="aee973906548bb210bcdc6b4b95d5cdab"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#aee973906548bb210bcdc6b4b95d5cdab">k_i_pos_hp</a></td></tr>
+<tr class="memdesc:aee973906548bb210bcdc6b4b95d5cdab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hip pitch joint motor position control integral gain. <br /></td></tr>
+<tr class="separator:aee973906548bb210bcdc6b4b95d5cdab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61a3f4d50c50cff00e05b2ff0248e182"><td class="memItemLeft" align="right" valign="top"><a id="a61a3f4d50c50cff00e05b2ff0248e182"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a61a3f4d50c50cff00e05b2ff0248e182">k_p_pos_kp</a></td></tr>
+<tr class="memdesc:a61a3f4d50c50cff00e05b2ff0248e182"><td class="mdescLeft">&#160;</td><td class="mdescRight">Knee pitch joint motor position control proportional gain. <br /></td></tr>
+<tr class="separator:a61a3f4d50c50cff00e05b2ff0248e182"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae30ee9a0e4e085bcf04833f494f24a19"><td class="memItemLeft" align="right" valign="top"><a id="ae30ee9a0e4e085bcf04833f494f24a19"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#ae30ee9a0e4e085bcf04833f494f24a19">k_i_pos_kp</a></td></tr>
+<tr class="memdesc:ae30ee9a0e4e085bcf04833f494f24a19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Knee pitch joint motor position control integral gain. <br /></td></tr>
+<tr class="separator:ae30ee9a0e4e085bcf04833f494f24a19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30dff80a8cba95654afd7ebf79e4dc86"><td class="memItemLeft" align="right" valign="top"><a id="a30dff80a8cba95654afd7ebf79e4dc86"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a30dff80a8cba95654afd7ebf79e4dc86">k_p_vel_hy</a></td></tr>
+<tr class="memdesc:a30dff80a8cba95654afd7ebf79e4dc86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hip yaw joint motor velocity control proportional gain. <br /></td></tr>
+<tr class="separator:a30dff80a8cba95654afd7ebf79e4dc86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3980dc3548490e897fdbb2cdb9dd8699"><td class="memItemLeft" align="right" valign="top"><a id="a3980dc3548490e897fdbb2cdb9dd8699"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a3980dc3548490e897fdbb2cdb9dd8699">k_i_vel_hy</a></td></tr>
+<tr class="memdesc:a3980dc3548490e897fdbb2cdb9dd8699"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hip yaw joint motor velocity control integral gain. <br /></td></tr>
+<tr class="separator:a3980dc3548490e897fdbb2cdb9dd8699"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d6444d7f4c7a26f560cdea085c0c068"><td class="memItemLeft" align="right" valign="top"><a id="a4d6444d7f4c7a26f560cdea085c0c068"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a4d6444d7f4c7a26f560cdea085c0c068">k_p_vel_hp</a></td></tr>
+<tr class="memdesc:a4d6444d7f4c7a26f560cdea085c0c068"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hip pitch joint motor velocity control proportional gain. <br /></td></tr>
+<tr class="separator:a4d6444d7f4c7a26f560cdea085c0c068"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a392470da81eb7116d88b5109ff63f837"><td class="memItemLeft" align="right" valign="top"><a id="a392470da81eb7116d88b5109ff63f837"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a392470da81eb7116d88b5109ff63f837">k_i_vel_hp</a></td></tr>
+<tr class="memdesc:a392470da81eb7116d88b5109ff63f837"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hip pitch joint motor velocity control integral gain. <br /></td></tr>
+<tr class="separator:a392470da81eb7116d88b5109ff63f837"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ee0802dc3eb74fc58c38009455dcc2f"><td class="memItemLeft" align="right" valign="top"><a id="a6ee0802dc3eb74fc58c38009455dcc2f"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a6ee0802dc3eb74fc58c38009455dcc2f">k_p_vel_kp</a></td></tr>
+<tr class="memdesc:a6ee0802dc3eb74fc58c38009455dcc2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Knee pitch joint motor velocity control proportional gain. <br /></td></tr>
+<tr class="separator:a6ee0802dc3eb74fc58c38009455dcc2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe10da8eb153ab95e54f46ffb07c6f00"><td class="memItemLeft" align="right" valign="top"><a id="afe10da8eb153ab95e54f46ffb07c6f00"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#afe10da8eb153ab95e54f46ffb07c6f00">k_i_vel_kp</a></td></tr>
+<tr class="memdesc:afe10da8eb153ab95e54f46ffb07c6f00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Knee pitch joint motor velocity control integral gain. <br /></td></tr>
+<tr class="separator:afe10da8eb153ab95e54f46ffb07c6f00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22aa1970a3d9a7d05a38e4e686b50e50"><td class="memItemLeft" align="right" valign="top"><a id="a22aa1970a3d9a7d05a38e4e686b50e50"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a22aa1970a3d9a7d05a38e4e686b50e50">k_p_torque_hy</a></td></tr>
+<tr class="memdesc:a22aa1970a3d9a7d05a38e4e686b50e50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hip yaw motor torque control proportional gain. <br /></td></tr>
+<tr class="separator:a22aa1970a3d9a7d05a38e4e686b50e50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab858deb6bd3b6de90a75f1732e3dbfc8"><td class="memItemLeft" align="right" valign="top"><a id="ab858deb6bd3b6de90a75f1732e3dbfc8"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#ab858deb6bd3b6de90a75f1732e3dbfc8">k_i_torque_hy</a></td></tr>
+<tr class="memdesc:ab858deb6bd3b6de90a75f1732e3dbfc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hip yaw motor torque control integral gain. <br /></td></tr>
+<tr class="separator:ab858deb6bd3b6de90a75f1732e3dbfc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d17c6c67b0695bb88591819b2d5b196"><td class="memItemLeft" align="right" valign="top"><a id="a1d17c6c67b0695bb88591819b2d5b196"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a1d17c6c67b0695bb88591819b2d5b196">k_p_torque_hp</a></td></tr>
+<tr class="memdesc:a1d17c6c67b0695bb88591819b2d5b196"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hip pitch motor torque control proportional gain. <br /></td></tr>
+<tr class="separator:a1d17c6c67b0695bb88591819b2d5b196"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10ebb4019d198c4090f8b82681a26075"><td class="memItemLeft" align="right" valign="top"><a id="a10ebb4019d198c4090f8b82681a26075"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a10ebb4019d198c4090f8b82681a26075">k_i_torque_hp</a></td></tr>
+<tr class="memdesc:a10ebb4019d198c4090f8b82681a26075"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hip pitch motor torque control integral gain. <br /></td></tr>
+<tr class="separator:a10ebb4019d198c4090f8b82681a26075"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0423a7bdef2fcff2ba2f6560c81f5ad6"><td class="memItemLeft" align="right" valign="top"><a id="a0423a7bdef2fcff2ba2f6560c81f5ad6"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a0423a7bdef2fcff2ba2f6560c81f5ad6">k_p_torque_kp</a></td></tr>
+<tr class="memdesc:a0423a7bdef2fcff2ba2f6560c81f5ad6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Knee pitch motor torque control proportional gain. <br /></td></tr>
+<tr class="separator:a0423a7bdef2fcff2ba2f6560c81f5ad6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bfd5bbc49d7c0ab117c8bd4049b48bd"><td class="memItemLeft" align="right" valign="top"><a id="a3bfd5bbc49d7c0ab117c8bd4049b48bd"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a3bfd5bbc49d7c0ab117c8bd4049b48bd">k_i_torque_kp</a></td></tr>
+<tr class="memdesc:a3bfd5bbc49d7c0ab117c8bd4049b48bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Knee pitch motor torque control integral gain. <br /></td></tr>
+<tr class="separator:a3bfd5bbc49d7c0ab117c8bd4049b48bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b907e0542a167b63f1878ec4550ac9f"><td class="memItemLeft" align="right" valign="top"><a id="a0b907e0542a167b63f1878ec4550ac9f"></a>
+std::unique_ptr&lt; ros::NodeHandle &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a0b907e0542a167b63f1878ec4550ac9f">node_handle</a></td></tr>
+<tr class="memdesc:a0b907e0542a167b63f1878ec4550ac9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS node handle. <br /></td></tr>
+<tr class="separator:a0b907e0542a167b63f1878ec4550ac9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f764e7ce87ac6d8d8dcecdfb30f9c7c"><td class="memItemLeft" align="right" valign="top"><a id="a5f764e7ce87ac6d8d8dcecdfb30f9c7c"></a>
+ros::Subscriber&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a5f764e7ce87ac6d8d8dcecdfb30f9c7c">generalized_coordinates_subscriber</a></td></tr>
+<tr class="memdesc:a5f764e7ce87ac6d8d8dcecdfb30f9c7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subscribes to generalized coordinates messages. <br /></td></tr>
+<tr class="separator:a5f764e7ce87ac6d8d8dcecdfb30f9c7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a525563e99e73cab543a0899388f9b525"><td class="memItemLeft" align="right" valign="top"><a id="a525563e99e73cab543a0899388f9b525"></a>
+ros::Subscriber&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a525563e99e73cab543a0899388f9b525">generalized_velocities_subscriber</a></td></tr>
+<tr class="memdesc:a525563e99e73cab543a0899388f9b525"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subscribes to generalized velocities messages. <br /></td></tr>
+<tr class="separator:a525563e99e73cab543a0899388f9b525"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ac51dd91cece854c5554e9b279af7c7"><td class="memItemLeft" align="right" valign="top"><a id="a0ac51dd91cece854c5554e9b279af7c7"></a>
+ros::Subscriber&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a0ac51dd91cece854c5554e9b279af7c7">generalized_forces_subscriber</a></td></tr>
+<tr class="memdesc:a0ac51dd91cece854c5554e9b279af7c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subscribes to generalized forces messages. <br /></td></tr>
+<tr class="separator:a0ac51dd91cece854c5554e9b279af7c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb3cd5f4302dd625410e1834d260a0de"><td class="memItemLeft" align="right" valign="top"><a id="abb3cd5f4302dd625410e1834d260a0de"></a>
+ros::Subscriber&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#abb3cd5f4302dd625410e1834d260a0de">joint_state_subscriber</a></td></tr>
+<tr class="memdesc:abb3cd5f4302dd625410e1834d260a0de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subscribes to joint state messages from the motors. <br /></td></tr>
+<tr class="separator:abb3cd5f4302dd625410e1834d260a0de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42a84c23c09832361880e97a01807439"><td class="memItemLeft" align="right" valign="top"><a id="a42a84c23c09832361880e97a01807439"></a>
+ros::Subscriber&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a42a84c23c09832361880e97a01807439">ready_to_proceed_subscriber</a></td></tr>
+<tr class="memdesc:a42a84c23c09832361880e97a01807439"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subscribes to messages deciding whether or not we should proceed in the script. <br /></td></tr>
+<tr class="separator:a42a84c23c09832361880e97a01807439"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71acfb659750dafb0f20953ed42446ab"><td class="memItemLeft" align="right" valign="top"><a id="a71acfb659750dafb0f20953ed42446ab"></a>
+ros::Subscriber&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a71acfb659750dafb0f20953ed42446ab">joint_setpoint_subscriber</a></td></tr>
+<tr class="memdesc:a71acfb659750dafb0f20953ed42446ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subscribes to joint setpoint messages. <br /></td></tr>
+<tr class="separator:a71acfb659750dafb0f20953ed42446ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0525553c4d0a90ff67be01590829b2ff"><td class="memItemLeft" align="right" valign="top"><a id="a0525553c4d0a90ff67be01590829b2ff"></a>
+ros::Subscriber&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a0525553c4d0a90ff67be01590829b2ff">motor_confirmation_subscriber</a></td></tr>
+<tr class="memdesc:a0525553c4d0a90ff67be01590829b2ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subscribes to confirmation messages from the motor. <br /></td></tr>
+<tr class="separator:a0525553c4d0a90ff67be01590829b2ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5875a17d12aeab4ce0c5728d3481b838"><td class="memItemLeft" align="right" valign="top"><a id="a5875a17d12aeab4ce0c5728d3481b838"></a>
+ros::Publisher&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a5875a17d12aeab4ce0c5728d3481b838">joint_state_publisher</a></td></tr>
+<tr class="memdesc:a5875a17d12aeab4ce0c5728d3481b838"><td class="mdescLeft">&#160;</td><td class="mdescRight">Publishes velocity commands to the teensy to control the motors. <br /></td></tr>
+<tr class="separator:a5875a17d12aeab4ce0c5728d3481b838"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1cccef3695042a38de31d21d6ca2bf8"><td class="memItemLeft" align="right" valign="top"><a id="ac1cccef3695042a38de31d21d6ca2bf8"></a>
+ros::Publisher&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#ac1cccef3695042a38de31d21d6ca2bf8">motor_gain_publisher</a></td></tr>
+<tr class="memdesc:ac1cccef3695042a38de31d21d6ca2bf8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Publishes desired motor gains to the motors. <br /></td></tr>
+<tr class="separator:ac1cccef3695042a38de31d21d6ca2bf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23ef6a1389a4803159704c89d1bb104a"><td class="memItemLeft" align="right" valign="top"><a id="a23ef6a1389a4803159704c89d1bb104a"></a>
+sensor_msgs::JointState&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a23ef6a1389a4803159704c89d1bb104a">motor_command_msg</a></td></tr>
+<tr class="memdesc:a23ef6a1389a4803159704c89d1bb104a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The joint state message that is sent to the Teensy. <br /></td></tr>
+<tr class="separator:a23ef6a1389a4803159704c89d1bb104a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46f0de7a43c6910349226245d4dc8128"><td class="memItemLeft" align="right" valign="top"><a id="a46f0de7a43c6910349226245d4dc8128"></a>
+ros::Publisher&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a46f0de7a43c6910349226245d4dc8128">log_joint_states_publisher</a></td></tr>
+<tr class="memdesc:a46f0de7a43c6910349226245d4dc8128"><td class="mdescLeft">&#160;</td><td class="mdescRight">Publishes joint positions for logging. <br /></td></tr>
+<tr class="separator:a46f0de7a43c6910349226245d4dc8128"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab33009754d047652cbfbdbd117408233"><td class="memItemLeft" align="right" valign="top"><a id="ab33009754d047652cbfbdbd117408233"></a>
+sensor_msgs::JointState&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#ab33009754d047652cbfbdbd117408233">joint_state_log_msg</a></td></tr>
+<tr class="memdesc:ab33009754d047652cbfbdbd117408233"><td class="mdescLeft">&#160;</td><td class="mdescRight">The joint state message that is used to log states. <br /></td></tr>
+<tr class="separator:ab33009754d047652cbfbdbd117408233"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22c5d4e611cfcb4adcbaef1d94d19d4d"><td class="memItemLeft" align="right" valign="top"><a id="a22c5d4e611cfcb4adcbaef1d94d19d4d"></a>
+ros::Publisher&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a22c5d4e611cfcb4adcbaef1d94d19d4d">log_joint_references_publisher</a></td></tr>
+<tr class="memdesc:a22c5d4e611cfcb4adcbaef1d94d19d4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Publishes joint position references for logging. <br /></td></tr>
+<tr class="separator:a22c5d4e611cfcb4adcbaef1d94d19d4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac710ba47a2b3578d5ac7b8c1b87fa4c9"><td class="memItemLeft" align="right" valign="top"><a id="ac710ba47a2b3578d5ac7b8c1b87fa4c9"></a>
+sensor_msgs::JointState&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#ac710ba47a2b3578d5ac7b8c1b87fa4c9">joint_reference_log_msg</a></td></tr>
+<tr class="memdesc:ac710ba47a2b3578d5ac7b8c1b87fa4c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The joint state message that is used to log references. <br /></td></tr>
+<tr class="separator:ac710ba47a2b3578d5ac7b8c1b87fa4c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bd286879d534f71b1938468472669f3"><td class="memItemLeft" align="right" valign="top"><a id="a5bd286879d534f71b1938468472669f3"></a>
+<a class="el" href="classKinematics.html">Kinematics</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a5bd286879d534f71b1938468472669f3">kinematics</a></td></tr>
+<tr class="memdesc:a5bd286879d534f71b1938468472669f3"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classKinematics.html" title="A class for analytical Kinematics Solving.">Kinematics</a> object. <br /></td></tr>
+<tr class="separator:a5bd286879d534f71b1938468472669f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86517b6527b38c1db8850a3cfaea1d82"><td class="memItemLeft" align="right" valign="top"><a id="a86517b6527b38c1db8850a3cfaea1d82"></a>
+Eigen::Matrix&lt; double, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a86517b6527b38c1db8850a3cfaea1d82">joint_angles</a> = Eigen::Matrix&lt;double, 3, 1&gt;::Zero()</td></tr>
+<tr class="memdesc:a86517b6527b38c1db8850a3cfaea1d82"><td class="mdescLeft">&#160;</td><td class="mdescRight">The joint angles of the leg. <br /></td></tr>
+<tr class="separator:a86517b6527b38c1db8850a3cfaea1d82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8370db1c43021118f77ac3cb29dcdaf"><td class="memItemLeft" align="right" valign="top"><a id="ae8370db1c43021118f77ac3cb29dcdaf"></a>
+Eigen::Matrix&lt; double, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#ae8370db1c43021118f77ac3cb29dcdaf">joint_velocity</a> = Eigen::Matrix&lt;double, 3, 1&gt;::Zero()</td></tr>
+<tr class="memdesc:ae8370db1c43021118f77ac3cb29dcdaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Desired joint velocity. <br /></td></tr>
+<tr class="separator:ae8370db1c43021118f77ac3cb29dcdaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a989009aee898f6cc999055179688a27c"><td class="memItemLeft" align="right" valign="top"><a id="a989009aee898f6cc999055179688a27c"></a>
+std::unique_ptr&lt; ros::NodeHandle &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a989009aee898f6cc999055179688a27c">nodeHandle</a></td></tr>
+<tr class="memdesc:a989009aee898f6cc999055179688a27c"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS node handle. <br /></td></tr>
+<tr class="separator:a989009aee898f6cc999055179688a27c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0449d4917d567de11ed7da90d8c0b035"><td class="memItemLeft" align="right" valign="top"><a id="a0449d4917d567de11ed7da90d8c0b035"></a>
+ros::Subscriber&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a0449d4917d567de11ed7da90d8c0b035">generalizedCoordinatesSubscriber</a></td></tr>
+<tr class="memdesc:a0449d4917d567de11ed7da90d8c0b035"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subscribes to generalized coordinates messages. <br /></td></tr>
+<tr class="separator:a0449d4917d567de11ed7da90d8c0b035"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd50bd82544d627ff28a138f7e6178bb"><td class="memItemLeft" align="right" valign="top"><a id="abd50bd82544d627ff28a138f7e6178bb"></a>
+ros::Subscriber&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#abd50bd82544d627ff28a138f7e6178bb">readyToMoveSubscriber</a></td></tr>
+<tr class="memdesc:abd50bd82544d627ff28a138f7e6178bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subscribes to messages deciding whether or not we should move the leg. <br /></td></tr>
+<tr class="separator:abd50bd82544d627ff28a138f7e6178bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8262f98800d41b42d9b5dd5cffbc97b1"><td class="memItemLeft" align="right" valign="top"><a id="a8262f98800d41b42d9b5dd5cffbc97b1"></a>
+ros::Publisher&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a8262f98800d41b42d9b5dd5cffbc97b1">jointCommandPublisher</a></td></tr>
+<tr class="memdesc:a8262f98800d41b42d9b5dd5cffbc97b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Publishes velocity commands to the teensy to control the motors. <br /></td></tr>
+<tr class="separator:a8262f98800d41b42d9b5dd5cffbc97b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91c48e39261fecc7915038954735a778"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classThirdOrderFilter.html">ThirdOrderFilter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a91c48e39261fecc7915038954735a778">filter_ref_foot_speed_x</a></td></tr>
+<tr class="memdesc:a91c48e39261fecc7915038954735a778"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS callback queue that helps processing messages.  <a href="classSingleLegController.html#a91c48e39261fecc7915038954735a778">More...</a><br /></td></tr>
+<tr class="separator:a91c48e39261fecc7915038954735a778"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a658da48d3eb2339575a743ea91b1fd18"><td class="memItemLeft" align="right" valign="top"><a id="a658da48d3eb2339575a743ea91b1fd18"></a>
+<a class="el" href="classThirdOrderFilter.html">ThirdOrderFilter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a658da48d3eb2339575a743ea91b1fd18">filter_ref_foot_speed_y</a></td></tr>
+<tr class="memdesc:a658da48d3eb2339575a743ea91b1fd18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference generator for foot speed in y direction. <br /></td></tr>
+<tr class="separator:a658da48d3eb2339575a743ea91b1fd18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a611cad561ab210f1de69c2ce8f7857da"><td class="memItemLeft" align="right" valign="top"><a id="a611cad561ab210f1de69c2ce8f7857da"></a>
+<a class="el" href="classThirdOrderFilter.html">ThirdOrderFilter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a611cad561ab210f1de69c2ce8f7857da">filter_ref_foot_speed_z</a></td></tr>
+<tr class="memdesc:a611cad561ab210f1de69c2ce8f7857da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference generator for foot speed in z direction. <br /></td></tr>
+<tr class="separator:a611cad561ab210f1de69c2ce8f7857da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac511cc86bbc3c9d8e9514948166afdfb"><td class="memItemLeft" align="right" valign="top"><a id="ac511cc86bbc3c9d8e9514948166afdfb"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#ac511cc86bbc3c9d8e9514948166afdfb">ready_to_move</a> = false</td></tr>
+<tr class="memdesc:ac511cc86bbc3c9d8e9514948166afdfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variable deciding whether or not we want to move the leg. <br /></td></tr>
+<tr class="separator:ac511cc86bbc3c9d8e9514948166afdfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58fb5f9124cfc7177e298dc7006fcae4"><td class="memItemLeft" align="right" valign="top"><a id="a58fb5f9124cfc7177e298dc7006fcae4"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a58fb5f9124cfc7177e298dc7006fcae4">is_target_position_reached</a> = false</td></tr>
+<tr class="memdesc:a58fb5f9124cfc7177e298dc7006fcae4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variable indicating wheher or not we have reached the goal. <br /></td></tr>
+<tr class="separator:a58fb5f9124cfc7177e298dc7006fcae4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf4689534f8f05affe42409d65ab77c5"><td class="memItemLeft" align="right" valign="top"><a id="acf4689534f8f05affe42409d65ab77c5"></a>
+Eigen::Matrix&lt; double, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#acf4689534f8f05affe42409d65ab77c5">position_controller_joint_target</a> = Eigen::Matrix&lt;double, 3, 1&gt;::Zero()</td></tr>
+<tr class="memdesc:acf4689534f8f05affe42409d65ab77c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Angles used for the joint position setpoint controller. <br /></td></tr>
+<tr class="separator:acf4689534f8f05affe42409d65ab77c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18270c6c7d1aad8b9a99c705f8845f8f"><td class="memItemLeft" align="right" valign="top"><a id="a18270c6c7d1aad8b9a99c705f8845f8f"></a>
+Eigen::Matrix&lt; double, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#a18270c6c7d1aad8b9a99c705f8845f8f">velocity_controller_joint_target</a> = Eigen::Matrix&lt;double, 3, 1&gt;::Zero()</td></tr>
+<tr class="memdesc:a18270c6c7d1aad8b9a99c705f8845f8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setpoint joint velocity for velocity control. <br /></td></tr>
+<tr class="separator:a18270c6c7d1aad8b9a99c705f8845f8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac90465901f88986329fc302c5847febb"><td class="memItemLeft" align="right" valign="top"><a id="ac90465901f88986329fc302c5847febb"></a>
+ros::Subscriber&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSingleLegController.html#ac90465901f88986329fc302c5847febb">simulator_generalized_coordinates_subscriber</a></td></tr>
+<tr class="memdesc:ac90465901f88986329fc302c5847febb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simulator joint angles. <br /></td></tr>
+<tr class="separator:ac90465901f88986329fc302c5847febb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55cf58e312007e70d7d0bbbfd5ac086e"><td class="memItemLeft" align="right" valign="top"><a id="a55cf58e312007e70d7d0bbbfd5ac086e"></a>
+ros::Subscriber&#160;</td><td class="memItemRight" valign="bottom"><b>simulator_generalized_velocity_subscriber</b></td></tr>
+<tr class="separator:a55cf58e312007e70d7d0bbbfd5ac086e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fc835a4564432777067ed0fb503f7ee"><td class="memItemLeft" align="right" valign="top"><a id="a7fc835a4564432777067ed0fb503f7ee"></a>
+ros::Publisher&#160;</td><td class="memItemRight" valign="bottom"><b>simulator_joint_state_publisher</b></td></tr>
+<tr class="separator:a7fc835a4564432777067ed0fb503f7ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c4b8f853dc234ad4cb5edaff3851f24"><td class="memItemLeft" align="right" valign="top"><a id="a2c4b8f853dc234ad4cb5edaff3851f24"></a>
+ros::Publisher&#160;</td><td class="memItemRight" valign="bottom"><b>log_state_publisher</b></td></tr>
+<tr class="separator:a2c4b8f853dc234ad4cb5edaff3851f24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f817356c2978de8d4f5a99902ab006a"><td class="memItemLeft" align="right" valign="top"><a id="a6f817356c2978de8d4f5a99902ab006a"></a>
+ros::Publisher&#160;</td><td class="memItemRight" valign="bottom"><b>log_command_publisher</b></td></tr>
+<tr class="separator:a6f817356c2978de8d4f5a99902ab006a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a552b1f91454a68856b6cfaef5176d912"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a552b1f91454a68856b6cfaef5176d912">&#9670;&nbsp;</a></span>checkIfReadyToMove()</h2>
+<a id="a82cbc4d3ae647d0929994edf00bba8dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82cbc4d3ae647d0929994edf00bba8dc">&#9670;&nbsp;</a></span>initROS() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool SingleLegController::checkIfReadyToMove </td>
+          <td class="memname">void SingleLegController::initROS </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>This function initializes the ROS publish and process queue threads. </p>
-<p>Check whether or not the ready to move message has been received </p>
-
-</div>
-</div>
-<a id="ab41ff2679fdffa16cbe6e4b3367d586c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab41ff2679fdffa16cbe6e4b3367d586c">&#9670;&nbsp;</a></span>generalizedCoordinatesCallback() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SingleLegController::generalizedCoordinatesCallback </td>
-          <td>(</td>
-          <td class="paramtype">const sensor_msgs::JointStateConstPtr &amp;&#160;</td>
-          <td class="paramname"><em>_msg</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The joint states for the leg is updated. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_msg</td><td>A float array containing the generalized coordinates <br  />
- </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>This function initilizes ROS. </p>
+<p>For logging</p>
+<p>For logging</p>
 
 </div>
 </div>
 <a id="adfd046b154a005e93e5463c13f1ed5d6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adfd046b154a005e93e5463c13f1ed5d6">&#9670;&nbsp;</a></span>generalizedCoordinatesCallback() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#adfd046b154a005e93e5463c13f1ed5d6">&#9670;&nbsp;</a></span>generalizedCoordinatesCallback() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -382,32 +757,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>simulatorSendJointVel
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">_msg</td><td>A float array containing the simulated single leg joint angles <br  />
  </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a66929d863702713ac5ebaefb0eed40e8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a66929d863702713ac5ebaefb0eed40e8">&#9670;&nbsp;</a></span>generalizedForcesCallback()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SingleLegController::generalizedForcesCallback </td>
-          <td>(</td>
-          <td class="paramtype">const std_msgs::Float64MultiArrayConstPtr &amp;&#160;</td>
-          <td class="paramname"><em>_msg</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Listens to joint force messages from the simulated leg. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_msg</td><td>A float array containing the simulated single leg joint forces </td></tr>
   </table>
   </dd>
 </dl>
@@ -440,8 +789,34 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>simulatorSendJointVel
 
 </div>
 </div>
-<a id="a139948fa97ac0f095f14ba49ddff018e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a139948fa97ac0f095f14ba49ddff018e">&#9670;&nbsp;</a></span>getGaitPhase()</h2>
+<a id="a66929d863702713ac5ebaefb0eed40e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66929d863702713ac5ebaefb0eed40e8">&#9670;&nbsp;</a></span>generalizedForcesCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SingleLegController::generalizedForcesCallback </td>
+          <td>(</td>
+          <td class="paramtype">const std_msgs::Float64MultiArrayConstPtr &amp;&#160;</td>
+          <td class="paramname"><em>_msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Listens to joint force messages from the simulated leg. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_msg</td><td>A float array containing the simulated single leg joint forces </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7b4ea1c8e62e720596019700f364fa4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b4ea1c8e62e720596019700f364fa4c">&#9670;&nbsp;</a></span>jointStateCallback()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -450,89 +825,292 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>simulatorSendJointVel
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classSingleLegController.html#a7334d4583d94d34addc8f7dc898fe5c7">GaitPhase</a> SingleLegController::getGaitPhase </td>
+          <td class="memname">void SingleLegController::jointStateCallback </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">const sensor_msgs::JointStatePtr &amp;&#160;</td>
+          <td class="paramname"><em>_msg</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Return the leg's phase state. </p>
-<dl class="section return"><dt>Returns</dt><dd>The phase state of the single leg </dd></dl>
+<p>Listens to joint state messages from the motors The messages contains joint angles, velocities and torques for all three motors. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_msg</td><td>A float array containing the motor joint states </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
-<a id="a82cbc4d3ae647d0929994edf00bba8dc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a82cbc4d3ae647d0929994edf00bba8dc">&#9670;&nbsp;</a></span>initROS() <span class="overload">[1/2]</span></h2>
+<a id="ace838f549ab9d124d02ce4daa07bddf9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace838f549ab9d124d02ce4daa07bddf9">&#9670;&nbsp;</a></span>readyToProceedCallback()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SingleLegController::initROS </td>
+          <td class="memname">void SingleLegController::readyToProceedCallback </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">const std_msgs::Bool &amp;&#160;</td>
+          <td class="paramname"><em>_msg</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>This function initilizes ROS. </p>
-<p>For logging</p>
-<p>For logging</p>
+<p>The ready_to_proceed parameter is changed based on the incomming message. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_msg</td><td>A bool message indicating whether or not a script can proceed </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
-<a id="a82cbc4d3ae647d0929994edf00bba8dc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a82cbc4d3ae647d0929994edf00bba8dc">&#9670;&nbsp;</a></span>initROS() <span class="overload">[2/2]</span></h2>
+<a id="a1416bcc7d48bd32ac977ecbc182dfade"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1416bcc7d48bd32ac977ecbc182dfade">&#9670;&nbsp;</a></span>jointSetpointCallback()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void SingleLegController::initROS </td>
+          <td class="memname">void SingleLegController::jointSetpointCallback </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">const std_msgs::Float64MultiArrayConstPtr &amp;&#160;</td>
+          <td class="paramname"><em>_msg</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>This is a ROS helper function that process messages. </p>
-<p>This is a ROS helper function that publish messages.</p>
-<p>This function initilizes ROS </p>
+<p>Listens to joint setpoints messages. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_msg</td><td>A float array containing the desired hy, hp, and kp angles </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
-<a id="ae26e0828c2e33d739f5c34223bd38e77"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae26e0828c2e33d739f5c34223bd38e77">&#9670;&nbsp;</a></span>moveFootToPosition()</h2>
+<a id="aa24664d461ae96ac654bf22af9151692"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa24664d461ae96ac654bf22af9151692">&#9670;&nbsp;</a></span>motorConfirmationCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SingleLegController::motorConfirmationCallback </td>
+          <td>(</td>
+          <td class="paramtype">const std_msgs::Bool &amp;&#160;</td>
+          <td class="paramname"><em>_msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Listens to a confirmation message from the motors which is used to indicate if the motor gains have been set successfully. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_msg</td><td>A bool indicating whether or not the gains have been set successfully </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9c76cba3a3c445291560d9774f9c24a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c76cba3a3c445291560d9774f9c24a7">&#9670;&nbsp;</a></span>calculateSwingLegHeightTrajectory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::Matrix&lt; double, 3, 1 &gt; SingleLegController::calculateSwingLegHeightTrajectory </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>_percentage</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>_period</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>_max_swing_height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>_hip_height</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function calculates the swing leg height trajectory based on various gait cycle parameters. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_percentage</td><td>Our location in the gait cycle in the interval [0, 1] </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_period</td><td>The gait cycle period [s] </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_max_swing_height</td><td>The maximum foot height above the ground </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_hip_height</td><td>The height of the hip relative to the ground </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A vector containing the desired foot height [m], foot vertical velocity [m/s] and foot vertical acceleration [m/s^2] in the hip frame </dd></dl>
+
+</div>
+</div>
+<a id="af614ac5b64336539c3384d7f75318272"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af614ac5b64336539c3384d7f75318272">&#9670;&nbsp;</a></span>calculateSingleAxisTrajectory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SingleLegController::calculateSingleAxisTrajectory </td>
+          <td>(</td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>_percentage</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>_period</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>_max_travel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double &amp;&#160;</td>
+          <td class="paramname"><em>_axis_pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double &amp;&#160;</td>
+          <td class="paramname"><em>_axis_vel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double &amp;&#160;</td>
+          <td class="paramname"><em>_axis_acc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This functions calculates a smooth trajectory along a single linear axis. Please see the report for details. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_percentage</td><td>The location in the gait cycle in the interval [0, 1] </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_period</td><td>The gait cycle period </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_max_travel</td><td>The maximum distance to move in a direction along the linear axis from its origin </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">_x</td><td>The desired position along the axis </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">_x_d</td><td>The desired velocity along the axis </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">_x_dd</td><td>The desired acceleration along the axis </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aaab478fc232623423c50ea3f462266da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaab478fc232623423c50ea3f462266da">&#9670;&nbsp;</a></span>updateJointTorqueCommands()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool SingleLegController::moveFootToPosition </td>
+          <td class="memname">void SingleLegController::updateJointTorqueCommands </td>
           <td>(</td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>_foot_pos_x</em>, </td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_joint_pos_ref</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>_foot_pos_y</em>, </td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_joint_vel_ref</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>_foot_pos_z</em>&#160;</td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_joint_acc_ref</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_joint_pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_joint_vel</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -542,38 +1120,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>simulatorSendJointVel
       </table>
 </div><div class="memdoc">
 
-<p>The function tries to move the foot to the position given by the input parameters. This is done by calculating the inverse kinematics and giving the motors position references. </p>
+<p>Update the joint torqes references based on the joint trajectories and joint states. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_foot_pos_x</td><td>The target foot x position </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_foot_pos_y</td><td>The target foot y position </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_foot_pos_z</td><td>The target foot z position </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="acf37c157a2380e81433e3534c3db9d5b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acf37c157a2380e81433e3534c3db9d5b">&#9670;&nbsp;</a></span>readyToMoveCallback()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SingleLegController::readyToMoveCallback </td>
-          <td>(</td>
-          <td class="paramtype">const std_msgs::Bool &amp;&#160;</td>
-          <td class="paramname"><em>_msg</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The ready_to_move parameter is changed based on the incomming message. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_msg</td><td>A bool message deciding if it is safe to move the leg or not </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_joint_pos_ref</td><td>The joint angle references </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_joint_vel_ref</td><td>the joint velocity references </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_joint_acc_ref</td><td>The joint acceleration references </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_joint_pos</td><td>The estimated joint angles </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_joint_vel</td><td>The estimated joint velocities </td></tr>
   </table>
   </dd>
 </dl>
@@ -608,14 +1162,69 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>simulatorSendJointVel
 
 </div>
 </div>
-<a id="ace838f549ab9d124d02ce4daa07bddf9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ace838f549ab9d124d02ce4daa07bddf9">&#9670;&nbsp;</a></span>readyToProceedCallback()</h2>
+<a id="a139948fa97ac0f095f14ba49ddff018e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a139948fa97ac0f095f14ba49ddff018e">&#9670;&nbsp;</a></span>getGaitPhase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classSingleLegController.html#a7334d4583d94d34addc8f7dc898fe5c7">GaitPhase</a> SingleLegController::getGaitPhase </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the leg's phase state. </p>
+<dl class="section return"><dt>Returns</dt><dd>The phase state of the single leg </dd></dl>
+
+</div>
+</div>
+<a id="ab41ff2679fdffa16cbe6e4b3367d586c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab41ff2679fdffa16cbe6e4b3367d586c">&#9670;&nbsp;</a></span>generalizedCoordinatesCallback() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SingleLegController::readyToProceedCallback </td>
+          <td class="memname">void SingleLegController::generalizedCoordinatesCallback </td>
+          <td>(</td>
+          <td class="paramtype">const sensor_msgs::JointStateConstPtr &amp;&#160;</td>
+          <td class="paramname"><em>_msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The joint states for the leg is updated. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_msg</td><td>A float array containing the generalized coordinates <br  />
+ </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acf37c157a2380e81433e3534c3db9d5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf37c157a2380e81433e3534c3db9d5b">&#9670;&nbsp;</a></span>readyToMoveCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SingleLegController::readyToMoveCallback </td>
           <td>(</td>
           <td class="paramtype">const std_msgs::Bool &amp;&#160;</td>
           <td class="paramname"><em>_msg</em></td><td>)</td>
@@ -624,10 +1233,75 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>simulatorSendJointVel
       </table>
 </div><div class="memdoc">
 
-<p>The ready_to_proceed parameter is changed based on the incomming message. </p>
+<p>The ready_to_move parameter is changed based on the incomming message. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_msg</td><td>A bool message indicating whether or not a script can proceed </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_msg</td><td>A bool message deciding if it is safe to move the leg or not </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a27c3f76b238e42de5289bc32e9e11639"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27c3f76b238e42de5289bc32e9e11639">&#9670;&nbsp;</a></span>setReferenceParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SingleLegController::setReferenceParameters </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>_omega_x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>_omega_y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>_omega_z</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>_damping_x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>_damping_y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>_damping_z</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the frequency and damping parameters for the three references. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_omega_x</td><td>Frequency of x reference </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_omega_y</td><td>Frequency of y reference </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_omega_z</td><td>Frequency of z reference </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_damping_x</td><td>Damping of x reference </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_damping_y</td><td>Damping of y reference </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_damping_z</td><td>Damping of z reference </td></tr>
   </table>
   </dd>
 </dl>
@@ -722,47 +1396,29 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>simulatorSendJointVel
 
 </div>
 </div>
-<a id="a27c3f76b238e42de5289bc32e9e11639"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a27c3f76b238e42de5289bc32e9e11639">&#9670;&nbsp;</a></span>setReferenceParameters()</h2>
+<a id="ae26e0828c2e33d739f5c34223bd38e77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae26e0828c2e33d739f5c34223bd38e77">&#9670;&nbsp;</a></span>moveFootToPosition()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SingleLegController::setReferenceParameters </td>
+          <td class="memname">bool SingleLegController::moveFootToPosition </td>
           <td>(</td>
           <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>_omega_x</em>, </td>
+          <td class="paramname"><em>_foot_pos_x</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>_omega_y</em>, </td>
+          <td class="paramname"><em>_foot_pos_y</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>_omega_z</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>_damping_x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>_damping_y</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>_damping_z</em>&#160;</td>
+          <td class="paramname"><em>_foot_pos_z</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -772,76 +1428,93 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>simulatorSendJointVel
       </table>
 </div><div class="memdoc">
 
-<p>Set the frequency and damping parameters for the three references. </p>
+<p>The function tries to move the foot to the position given by the input parameters. This is done by calculating the inverse kinematics and giving the motors position references. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_omega_x</td><td>Frequency of x reference </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_omega_y</td><td>Frequency of y reference </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_omega_z</td><td>Frequency of z reference </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_damping_x</td><td>Damping of x reference </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_damping_y</td><td>Damping of y reference </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_damping_z</td><td>Damping of z reference </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_foot_pos_x</td><td>The target foot x position </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_foot_pos_y</td><td>The target foot y position </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_foot_pos_z</td><td>The target foot z position </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="aaab478fc232623423c50ea3f462266da"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaab478fc232623423c50ea3f462266da">&#9670;&nbsp;</a></span>updateJointTorqueCommands()</h2>
+<a id="a82cbc4d3ae647d0929994edf00bba8dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82cbc4d3ae647d0929994edf00bba8dc">&#9670;&nbsp;</a></span>initROS() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SingleLegController::updateJointTorqueCommands </td>
+          <td class="memname">void SingleLegController::initROS </td>
           <td>(</td>
-          <td class="paramtype">const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_joint_pos_ref</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
-          <td class="paramtype">const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_joint_vel_ref</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_joint_acc_ref</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_joint_pos</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_joint_vel</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Update the joint torqes references based on the joint trajectories and joint states. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_joint_pos_ref</td><td>The joint angle references </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_joint_vel_ref</td><td>the joint velocity references </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_joint_acc_ref</td><td>The joint acceleration references </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_joint_pos</td><td>The estimated joint angles </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_joint_vel</td><td>The estimated joint velocities </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>This is a ROS helper function that process messages. </p>
+<p>This is a ROS helper function that publish messages.</p>
+<p>This function initilizes ROS </p>
+
+</div>
+</div>
+<a id="a552b1f91454a68856b6cfaef5176d912"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a552b1f91454a68856b6cfaef5176d912">&#9670;&nbsp;</a></span>checkIfReadyToMove()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SingleLegController::checkIfReadyToMove </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function initializes the ROS publish and process queue threads. </p>
+<p>Check whether or not the ready to move message has been received </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a91c48e39261fecc7915038954735a778"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91c48e39261fecc7915038954735a778">&#9670;&nbsp;</a></span>filter_ref_foot_speed_x</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classThirdOrderFilter.html">ThirdOrderFilter</a> SingleLegController::filter_ref_foot_speed_x</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ROS callback queue that helps processing messages. </p>
+<p>ROS callback queue that helps publishing messages</p>
+<p>Thread running the ROS process queue</p>
+<p>Thread running the ROS publish queue</p>
+<p>Reference generator for foot speed in x direction </p>
 
 </div>
 </div>

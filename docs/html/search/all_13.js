@@ -1,17 +1,13 @@
 var searchData=
 [
-  ['_7econtactplugin_179',['~ContactPlugin',['../classgazebo_1_1ContactPlugin.html#a915a0b9156a54f3946f11a1347971afe',1,'gazebo::ContactPlugin']]],
-  ['_7econtactsensor_180',['~ContactSensor',['../classContactSensor.html#a01a1842782c99e4b3fca9e5db40721eb',1,'ContactSensor']]],
-  ['_7egaitcontrol_181',['~GaitControl',['../classGaitControl.html#ac1bd81f7da1a6e98800fc267769540ed',1,'GaitControl']]],
-  ['_7ehierarchicaloptimizationcontrol_182',['~HierarchicalOptimizationControl',['../classHierarchicalOptimizationControl.html#ad296c50c35b6eaabf210c82c3c756201',1,'HierarchicalOptimizationControl']]],
-  ['_7ekinematics_183',['~Kinematics',['../classKinematics.html#a5d2fb2f14148cc371b80e572c33ecb4d',1,'Kinematics']]],
-  ['_7elogutils_184',['~LogUtils',['../classLogUtils.html#a3777bc5a1059a04b1b8bf94375744139',1,'LogUtils']]],
-  ['_7emotorinterface_185',['~MotorInterface',['../classMotorInterface.html#a6348030321aebf0c8824749895b961b7',1,'MotorInterface']]],
-  ['_7ependulumplugin_186',['~PendulumPlugin',['../classgazebo_1_1PendulumPlugin.html#af7c7785a63d5a5febb9bad3c3638227b',1,'gazebo::PendulumPlugin']]],
-  ['_7eposecontrol_187',['~PoseControl',['../classPoseControl.html#a3a30efb413a121e089b979b60552b307',1,'PoseControl']]],
-  ['_7eserialcommunication_188',['~SerialCommunication',['../classSerialCommunication.html#a60717eff5f66d85af40812811ca6321d',1,'SerialCommunication']]],
-  ['_7esinglelegcontroller_189',['~SingleLegController',['../classSingleLegController.html#a173d75b4ce31036a360ffe231e950314',1,'SingleLegController::~SingleLegController()'],['../classSingleLegController.html#a173d75b4ce31036a360ffe231e950314',1,'SingleLegController::~SingleLegController()']]],
-  ['_7esinglelegplugin_190',['~SingleLegPlugin',['../classgazebo_1_1SingleLegPlugin.html#a0fdaac17ebc347dfe31a9d5f87a2a98a',1,'gazebo::SingleLegPlugin']]],
-  ['_7estaticgaitcontroller_191',['~StaticGaitController',['../classStaticGaitController.html#a197d488068e6ca14b77e20a477191a52',1,'StaticGaitController']]],
-  ['_7etetrapodplugin_192',['~TetrapodPlugin',['../classgazebo_1_1TetrapodPlugin.html#ab95cc50543ae4843b35be224a4bf001b',1,'gazebo::TetrapodPlugin']]]
+  ['validatesolution_383',['ValidateSolution',['../classKinematics.html#a1c6697fbd201589746f21c1be27dab35',1,'Kinematics::ValidateSolution(const JointSpaceVector &amp;_q_r)'],['../classKinematics.html#ae4c5058b67e61502324b965925cc5651',1,'Kinematics::ValidateSolution(const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;_q_r)']]],
+  ['vel_5fd_5fgain_384',['vel_d_gain',['../classgazebo_1_1PendulumPlugin.html#a5bc17631437418437b91fb808b003dcf',1,'gazebo::PendulumPlugin']]],
+  ['vel_5fd_5fgains_385',['vel_d_gains',['../classgazebo_1_1SingleLegPlugin.html#acb184e43edbac43eb5e845bc966db425',1,'gazebo::SingleLegPlugin::vel_d_gains()'],['../classgazebo_1_1TetrapodPlugin.html#ac80108f47eea394d1a6d0853f7318a99',1,'gazebo::TetrapodPlugin::vel_d_gains()']]],
+  ['vel_5fi_5fgain_386',['vel_i_gain',['../classgazebo_1_1PendulumPlugin.html#a572a4268b6f15eb1349d74d6c757cd47',1,'gazebo::PendulumPlugin']]],
+  ['vel_5fi_5fgains_387',['vel_i_gains',['../classgazebo_1_1SingleLegPlugin.html#a29d9bca0a199606eef9aef8fbe1949ab',1,'gazebo::SingleLegPlugin::vel_i_gains()'],['../classgazebo_1_1TetrapodPlugin.html#a97a1b92e4b3e7a28ff428479c9147804',1,'gazebo::TetrapodPlugin::vel_i_gains()']]],
+  ['vel_5fp_5fgain_388',['vel_p_gain',['../classgazebo_1_1PendulumPlugin.html#ae377ca7d46942d849c1d1a7fd921b458',1,'gazebo::PendulumPlugin']]],
+  ['vel_5fp_5fgains_389',['vel_p_gains',['../classgazebo_1_1SingleLegPlugin.html#a7043bf33062c9c745f7df35b722e1253',1,'gazebo::SingleLegPlugin::vel_p_gains()'],['../classgazebo_1_1TetrapodPlugin.html#a1960f0cb557960a5b1543a1e9e259fed',1,'gazebo::TetrapodPlugin::vel_p_gains()']]],
+  ['velocity_5fcommand_390',['VELOCITY_COMMAND',['../classSingleLegController.html#ac5a6be5095664c0dd3c37a73159227d2',1,'SingleLegController']]],
+  ['velocity_5fcontroller_5fjoint_5ftarget_391',['velocity_controller_joint_target',['../classSingleLegController.html#a18270c6c7d1aad8b9a99c705f8845f8f',1,'SingleLegController']]],
+  ['velsub_392',['velSub',['../classgazebo_1_1SingleLegPlugin.html#ae02a966592d7e694dcc32e4f2f72104b',1,'gazebo::SingleLegPlugin::velSub()'],['../classgazebo_1_1TetrapodPlugin.html#a3911adb0099091fc8b138895d310186f',1,'gazebo::TetrapodPlugin::velSub()']]]
 ];

@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['motorinterface_283',['MotorInterface',['../classMotorInterface.html#aab48de285663a5b0cfe70ae764d5e491',1,'MotorInterface::MotorInterface()'],['../classMotorInterface.html#a1e1b05c12dcf4d012a84a6d4ffe68fec',1,'MotorInterface::MotorInterface(const int &amp;_num_motors)']]],
-  ['movefoottonominalposition_284',['moveFootToNominalPosition',['../classSingleLegController.html#a3e2bc91ee5c0b1cde6ad9f8da033c83f',1,'SingleLegController']]],
-  ['movefoottoposition_285',['moveFootToPosition',['../classSingleLegController.html#ac94137fdfe9b78dd3c47480341b9af47',1,'SingleLegController::moveFootToPosition(Eigen::Matrix&lt; double, 3, 1 &gt; _foot_goal_pos)'],['../classSingleLegController.html#ae26e0828c2e33d739f5c34223bd38e77',1,'SingleLegController::moveFootToPosition(double _foot_pos_x, double _foot_pos_y, double _foot_pos_z)']]],
-  ['movejointstosetpoints_286',['moveJointsToSetpoints',['../classSingleLegController.html#ac4e4f7ee4fa05991e424b242d149afa3',1,'SingleLegController']]]
+  ['load_506',['Load',['../classgazebo_1_1PendulumPlugin.html#a0508f3a8ed035a42312cd2aecd601e31',1,'gazebo::PendulumPlugin::Load()'],['../classgazebo_1_1SingleLegPlugin.html#a0990951d058cf469cd65e608eca123db',1,'gazebo::SingleLegPlugin::Load()'],['../classgazebo_1_1ContactPlugin.html#a10d1536023ae58aed4f293c62c5d2c9a',1,'gazebo::ContactPlugin::Load()'],['../classgazebo_1_1TetrapodPlugin.html#a528c3a37c4f725dbfcd868203a501840',1,'gazebo::TetrapodPlugin::Load()']]],
+  ['loadparametersros_507',['LoadParametersRos',['../classgazebo_1_1SingleLegPlugin.html#a260b57c93bf3cf070b4d7a2d03af3a8d',1,'gazebo::SingleLegPlugin::LoadParametersRos()'],['../classgazebo_1_1TetrapodPlugin.html#a8a0608278f019ef875b8ba653a2d6363',1,'gazebo::TetrapodPlugin::LoadParametersRos()']]],
+  ['logstatesandcommands_508',['logStatesAndCommands',['../classSingleLegController.html#a4c2a164a3a53b500ba2b79b103ae3d2d',1,'SingleLegController']]],
+  ['logutils_509',['LogUtils',['../classLogUtils.html#a06e557ba093143fd81ace47f299fba07',1,'LogUtils']]]
 ];

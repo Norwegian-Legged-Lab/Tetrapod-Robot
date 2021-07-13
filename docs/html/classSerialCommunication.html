@@ -65,6 +65,9 @@ $(function() {
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="classSerialCommunication-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">SerialCommunication Class Reference</div>  </div>
@@ -91,6 +94,9 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSerialCommunication.html#a3537e3a31982286532e82883da4fc280">SerialCommunication</a> ()</td></tr>
 <tr class="memdesc:a3537e3a31982286532e82883da4fc280"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default Constructor. <br /></td></tr>
 <tr class="separator:a3537e3a31982286532e82883da4fc280"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8182dab517152361a2369c06442c9705"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSerialCommunication.html#a8182dab517152361a2369c06442c9705">SerialCommunication</a> (const std::string &amp;_port)</td></tr>
+<tr class="memdesc:a8182dab517152361a2369c06442c9705"><td class="mdescLeft">&#160;</td><td class="mdescRight">Custom Constructor, defaults number of motors to 6.  <a href="classSerialCommunication.html#a8182dab517152361a2369c06442c9705">More...</a><br /></td></tr>
+<tr class="separator:a8182dab517152361a2369c06442c9705"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad81f295ec38355ad4092722605ca28b9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSerialCommunication.html#ad81f295ec38355ad4092722605ca28b9">SerialCommunication</a> (const std::string &amp;_port, const int &amp;_num_motors)</td></tr>
 <tr class="memdesc:ad81f295ec38355ad4092722605ca28b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Custom Constructor.  <a href="classSerialCommunication.html#ad81f295ec38355ad4092722605ca28b9">More...</a><br /></td></tr>
 <tr class="separator:ad81f295ec38355ad4092722605ca28b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -98,30 +104,109 @@ Public Member Functions</h2></td></tr>
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSerialCommunication.html#a60717eff5f66d85af40812811ca6321d">~SerialCommunication</a> ()</td></tr>
 <tr class="memdesc:a60717eff5f66d85af40812811ca6321d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. <br /></td></tr>
 <tr class="separator:a60717eff5f66d85af40812811ca6321d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afec8804f5bd1f81508125973cf0c3891"><td class="memItemLeft" align="right" valign="top">Eigen::Matrix&lt; Eigen::VectorXd, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSerialCommunication.html#afec8804f5bd1f81508125973cf0c3891">ReceiveMessage</a> ()</td></tr>
+<tr class="memdesc:afec8804f5bd1f81508125973cf0c3891"><td class="mdescLeft">&#160;</td><td class="mdescRight">The ReceiveMessage function listens for serial messages of incoming joint state data from the motors and assign corresponding values to a joint state vector of vectors.  <a href="classSerialCommunication.html#afec8804f5bd1f81508125973cf0c3891">More...</a><br /></td></tr>
+<tr class="separator:afec8804f5bd1f81508125973cf0c3891"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c053361febd63c80c168857ff04f4d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSerialCommunication.html#a9c053361febd63c80c168857ff04f4d3">SendMessage</a> (const <a class="el" href="classSerialCommunication.html#a56b84cebdbb578aa2475f7302183ceb3">ControlMode</a> &amp;_control_mode, const std::vector&lt; double &gt; &amp;_state)</td></tr>
+<tr class="memdesc:a9c053361febd63c80c168857ff04f4d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">The SendMessage function handles the sending of joint state command messages to the motors.  <a href="classSerialCommunication.html#a9c053361febd63c80c168857ff04f4d3">More...</a><br /></td></tr>
+<tr class="separator:a9c053361febd63c80c168857ff04f4d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5d08b015626c6011c4fb6cc8a24d02d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSerialCommunication.html#aa5d08b015626c6011c4fb6cc8a24d02d">IsNewDataAvailable</a> ()</td></tr>
+<tr class="memdesc:aa5d08b015626c6011c4fb6cc8a24d02d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The IsNewDataAvailable function checks if there is available data on the serial port.  <a href="classSerialCommunication.html#aa5d08b015626c6011c4fb6cc8a24d02d">More...</a><br /></td></tr>
+<tr class="separator:aa5d08b015626c6011c4fb6cc8a24d02d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2971a59f6d4cd3218d390b24f1998d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSerialCommunication.html#af2971a59f6d4cd3218d390b24f1998d8">SetPort</a> (const std::string &amp;_port)</td></tr>
 <tr class="memdesc:af2971a59f6d4cd3218d390b24f1998d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the port for the Teensy communication after creating the constructor.  <a href="classSerialCommunication.html#af2971a59f6d4cd3218d390b24f1998d8">More...</a><br /></td></tr>
 <tr class="separator:af2971a59f6d4cd3218d390b24f1998d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a039f761bdeb6af087180029f97eb7bba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSerialCommunication.html#a039f761bdeb6af087180029f97eb7bba">SetNumberOfMotors</a> (const int &amp;_number_of_motors)</td></tr>
 <tr class="memdesc:a039f761bdeb6af087180029f97eb7bba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the number of motors for the port after creating the constructor.  <a href="classSerialCommunication.html#a039f761bdeb6af087180029f97eb7bba">More...</a><br /></td></tr>
 <tr class="separator:a039f761bdeb6af087180029f97eb7bba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c053361febd63c80c168857ff04f4d3"><td class="memItemLeft" align="right" valign="top"><a id="a9c053361febd63c80c168857ff04f4d3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SendMessage</b> (const <a class="el" href="classSerialCommunication.html#a56b84cebdbb578aa2475f7302183ceb3">ControlMode</a> &amp;_control_mode, const std::vector&lt; double &gt; &amp;_state)</td></tr>
-<tr class="separator:a9c053361febd63c80c168857ff04f4d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afec8804f5bd1f81508125973cf0c3891"><td class="memItemLeft" align="right" valign="top"><a id="afec8804f5bd1f81508125973cf0c3891"></a>
-Eigen::Matrix&lt; Eigen::VectorXd, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ReceiveMessage</b> ()</td></tr>
-<tr class="separator:afec8804f5bd1f81508125973cf0c3891"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a434aa96e2295038ee0a514a878693f58"><td class="memItemLeft" align="right" valign="top"><a id="a434aa96e2295038ee0a514a878693f58"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>InitLibSerial</b> ()</td></tr>
 <tr class="separator:a434aa96e2295038ee0a514a878693f58"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa5d08b015626c6011c4fb6cc8a24d02d"><td class="memItemLeft" align="right" valign="top"><a id="aa5d08b015626c6011c4fb6cc8a24d02d"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsNewDataAvailable</b> ()</td></tr>
-<tr class="separator:aa5d08b015626c6011c4fb6cc8a24d02d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:af62714c9ae5aedc7430cc7f2d189a6df"><td class="memItemLeft" align="right" valign="top">Eigen::Matrix&lt; Eigen::VectorXd, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSerialCommunication.html#af62714c9ae5aedc7430cc7f2d189a6df">UnpackageBuffer</a> (unsigned char *_data)</td></tr>
+<tr class="memdesc:af62714c9ae5aedc7430cc7f2d189a6df"><td class="mdescLeft">&#160;</td><td class="mdescRight">The UnpackageBuffer function unpacks the read buffer data into joint state data vectors.  <a href="classSerialCommunication.html#af62714c9ae5aedc7430cc7f2d189a6df">More...</a><br /></td></tr>
+<tr class="separator:af62714c9ae5aedc7430cc7f2d189a6df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2fb05dc147555b81067d0112d43b281"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSerialCommunication.html#ad2fb05dc147555b81067d0112d43b281">PackageBuffer</a> (const <a class="el" href="classSerialCommunication.html#a56b84cebdbb578aa2475f7302183ceb3">ControlMode</a> &amp;_control_mode, const double *_data)</td></tr>
+<tr class="memdesc:ad2fb05dc147555b81067d0112d43b281"><td class="mdescLeft">&#160;</td><td class="mdescRight">The PackageBuffer function fills the transmit buffer with control mode and control command data to be transmitted on the serial port.  <a href="classSerialCommunication.html#ad2fb05dc147555b81067d0112d43b281">More...</a><br /></td></tr>
+<tr class="separator:ad2fb05dc147555b81067d0112d43b281"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a267d25805b1fed1b530f2d4337b8ad9e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSerialCommunication.html#a267d25805b1fed1b530f2d4337b8ad9e">PackageBufferControlMode</a> (const double *_data)</td></tr>
+<tr class="memdesc:a267d25805b1fed1b530f2d4337b8ad9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The PackageBufferControlMode function fills the transmit buffer with control mode data.  <a href="classSerialCommunication.html#a267d25805b1fed1b530f2d4337b8ad9e">More...</a><br /></td></tr>
+<tr class="separator:a267d25805b1fed1b530f2d4337b8ad9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ad3ea03bbb959f4a50afbd217445a61"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSerialCommunication.html#a2ad3ea03bbb959f4a50afbd217445a61">PackageBufferControlCommand</a> (const double *_data)</td></tr>
+<tr class="memdesc:a2ad3ea03bbb959f4a50afbd217445a61"><td class="mdescLeft">&#160;</td><td class="mdescRight">The PackageBufferControlCommand function fills the transmit buffer with control command data.  <a href="classSerialCommunication.html#a2ad3ea03bbb959f4a50afbd217445a61">More...</a><br /></td></tr>
+<tr class="separator:a2ad3ea03bbb959f4a50afbd217445a61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:abbd72edea278bf93c96dc11e738290a1"><td class="memItemLeft" align="right" valign="top"><a id="abbd72edea278bf93c96dc11e738290a1"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSerialCommunication.html#abbd72edea278bf93c96dc11e738290a1">num_motors</a></td></tr>
+<tr class="memdesc:abbd72edea278bf93c96dc11e738290a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of motors. <br /></td></tr>
+<tr class="separator:abbd72edea278bf93c96dc11e738290a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaadefe360b83aa67abb14940a7fd5d6c"><td class="memItemLeft" align="right" valign="top"><a id="aaadefe360b83aa67abb14940a7fd5d6c"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSerialCommunication.html#aaadefe360b83aa67abb14940a7fd5d6c">port</a></td></tr>
+<tr class="memdesc:aaadefe360b83aa67abb14940a7fd5d6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serial Port. <br /></td></tr>
+<tr class="separator:aaadefe360b83aa67abb14940a7fd5d6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5200e01361e330cd5ea8776f71428d5"><td class="memItemLeft" align="right" valign="top"><a id="ab5200e01361e330cd5ea8776f71428d5"></a>
+LibSerial::SerialPort&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSerialCommunication.html#ab5200e01361e330cd5ea8776f71428d5">serial_port</a></td></tr>
+<tr class="memdesc:ab5200e01361e330cd5ea8776f71428d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">LibSerial object instance. <br /></td></tr>
+<tr class="separator:ab5200e01361e330cd5ea8776f71428d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adabaa5eb4066bfe28798d9e1fe21683b"><td class="memItemLeft" align="right" valign="top"><a id="adabaa5eb4066bfe28798d9e1fe21683b"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSerialCommunication.html#adabaa5eb4066bfe28798d9e1fe21683b">TX_BUFFER_SIZE</a></td></tr>
+<tr class="memdesc:adabaa5eb4066bfe28798d9e1fe21683b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serial transmit buffer size. <br /></td></tr>
+<tr class="separator:adabaa5eb4066bfe28798d9e1fe21683b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c283b93b60c304d522fda6b933e99fc"><td class="memItemLeft" align="right" valign="top"><a id="a1c283b93b60c304d522fda6b933e99fc"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSerialCommunication.html#a1c283b93b60c304d522fda6b933e99fc">RX_BUFFER_SIZE</a></td></tr>
+<tr class="memdesc:a1c283b93b60c304d522fda6b933e99fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serial read buffer size. <br /></td></tr>
+<tr class="separator:a1c283b93b60c304d522fda6b933e99fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a684c7a1393e47ab1d28a99d81b4cb562"><td class="memItemLeft" align="right" valign="top"><a id="a684c7a1393e47ab1d28a99d81b4cb562"></a>
+std::vector&lt; unsigned char &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSerialCommunication.html#a684c7a1393e47ab1d28a99d81b4cb562">tx_buffer</a></td></tr>
+<tr class="memdesc:a684c7a1393e47ab1d28a99d81b4cb562"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serial transmit buffer. <br /></td></tr>
+<tr class="separator:a684c7a1393e47ab1d28a99d81b4cb562"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a106312f387aad10048be58f8c8b34ec3"><td class="memItemLeft" align="right" valign="top"><a id="a106312f387aad10048be58f8c8b34ec3"></a>
+std::vector&lt; unsigned char &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSerialCommunication.html#a106312f387aad10048be58f8c8b34ec3">rx_buffer</a></td></tr>
+<tr class="memdesc:a106312f387aad10048be58f8c8b34ec3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serial read buffer. <br /></td></tr>
+<tr class="separator:a106312f387aad10048be58f8c8b34ec3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:af88d1a67e4fc25dd5adef7af245cfaa1"><td class="memItemLeft" align="right" valign="top"><a id="af88d1a67e4fc25dd5adef7af245cfaa1"></a>
+static constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSerialCommunication.html#af88d1a67e4fc25dd5adef7af245cfaa1">rx_timeout</a> = 0.00001</td></tr>
+<tr class="memdesc:af88d1a67e4fc25dd5adef7af245cfaa1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read buffer timeout. <br /></td></tr>
+<tr class="separator:af88d1a67e4fc25dd5adef7af245cfaa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A class for serial communication. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a8182dab517152361a2369c06442c9705"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8182dab517152361a2369c06442c9705">&#9670;&nbsp;</a></span>SerialCommunication() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SerialCommunication::SerialCommunication </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>_port</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Custom Constructor, defaults number of motors to 6. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_port</td><td>Serial port name for teensy communication. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ad81f295ec38355ad4092722605ca28b9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad81f295ec38355ad4092722605ca28b9">&#9670;&nbsp;</a></span>SerialCommunication()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ad81f295ec38355ad4092722605ca28b9">&#9670;&nbsp;</a></span>SerialCommunication() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -158,29 +243,230 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsNewDataAvailable</b
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a039f761bdeb6af087180029f97eb7bba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a039f761bdeb6af087180029f97eb7bba">&#9670;&nbsp;</a></span>SetNumberOfMotors()</h2>
+<a id="afec8804f5bd1f81508125973cf0c3891"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afec8804f5bd1f81508125973cf0c3891">&#9670;&nbsp;</a></span>ReceiveMessage()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SerialCommunication::SetNumberOfMotors </td>
+          <td class="memname">Eigen::Matrix&lt; Eigen::VectorXd, 3, 1 &gt; SerialCommunication::ReceiveMessage </td>
           <td>(</td>
-          <td class="paramtype">const int &amp;&#160;</td>
-          <td class="paramname"><em>_number_of_motors</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Set the number of motors for the port after creating the constructor. </p>
+<p>The ReceiveMessage function listens for serial messages of incoming joint state data from the motors and assign corresponding values to a joint state vector of vectors. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns joint positions, velocities, and torques in the form of a vector containing the 3 respective vectors. </dd></dl>
+
+</div>
+</div>
+<a id="a9c053361febd63c80c168857ff04f4d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c053361febd63c80c168857ff04f4d3">&#9670;&nbsp;</a></span>SendMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SerialCommunication::SendMessage </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classSerialCommunication.html#a56b84cebdbb578aa2475f7302183ceb3">ControlMode</a> &amp;&#160;</td>
+          <td class="paramname"><em>_control_mode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_state</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The SendMessage function handles the sending of joint state command messages to the motors. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_number_of_motors</td><td>Number of motors to use </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_control_mode</td><td>Desired motor control mode. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_state</td><td>Desired motor commands. <br  />
+ </td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="af62714c9ae5aedc7430cc7f2d189a6df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af62714c9ae5aedc7430cc7f2d189a6df">&#9670;&nbsp;</a></span>UnpackageBuffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::Matrix&lt; Eigen::VectorXd, 3, 1 &gt; SerialCommunication::UnpackageBuffer </td>
+          <td>(</td>
+          <td class="paramtype">unsigned char *&#160;</td>
+          <td class="paramname"><em>_data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The UnpackageBuffer function unpacks the read buffer data into joint state data vectors. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_data</td><td>Read buffer data. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns joint positions, velocities, and torques in the form of a vector containing the 3 respective vectors. </dd></dl>
+
+</div>
+</div>
+<a id="ad2fb05dc147555b81067d0112d43b281"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2fb05dc147555b81067d0112d43b281">&#9670;&nbsp;</a></span>PackageBuffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SerialCommunication::PackageBuffer </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classSerialCommunication.html#a56b84cebdbb578aa2475f7302183ceb3">ControlMode</a> &amp;&#160;</td>
+          <td class="paramname"><em>_control_mode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double *&#160;</td>
+          <td class="paramname"><em>_data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The PackageBuffer function fills the transmit buffer with control mode and control command data to be transmitted on the serial port. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_control_mode</td><td>Motor control mode. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_data</td><td>Motor command data. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a267d25805b1fed1b530f2d4337b8ad9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a267d25805b1fed1b530f2d4337b8ad9e">&#9670;&nbsp;</a></span>PackageBufferControlMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SerialCommunication::PackageBufferControlMode </td>
+          <td>(</td>
+          <td class="paramtype">const double *&#160;</td>
+          <td class="paramname"><em>_data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The PackageBufferControlMode function fills the transmit buffer with control mode data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_data</td><td>Control mode data. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2ad3ea03bbb959f4a50afbd217445a61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ad3ea03bbb959f4a50afbd217445a61">&#9670;&nbsp;</a></span>PackageBufferControlCommand()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SerialCommunication::PackageBufferControlCommand </td>
+          <td>(</td>
+          <td class="paramtype">const double *&#160;</td>
+          <td class="paramname"><em>_data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The PackageBufferControlCommand function fills the transmit buffer with control command data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_data</td><td>Control command data. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa5d08b015626c6011c4fb6cc8a24d02d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5d08b015626c6011c4fb6cc8a24d02d">&#9670;&nbsp;</a></span>IsNewDataAvailable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SerialCommunication::IsNewDataAvailable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The IsNewDataAvailable function checks if there is available data on the serial port. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns true if data is available, false if not. <br  />
+ </dd></dl>
 
 </div>
 </div>
@@ -204,6 +490,32 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsNewDataAvailable</b
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">_port</td><td>Serial port name for the Teensy communication </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a039f761bdeb6af087180029f97eb7bba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a039f761bdeb6af087180029f97eb7bba">&#9670;&nbsp;</a></span>SetNumberOfMotors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SerialCommunication::SetNumberOfMotors </td>
+          <td>(</td>
+          <td class="paramtype">const int &amp;&#160;</td>
+          <td class="paramname"><em>_number_of_motors</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the number of motors for the port after creating the constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_number_of_motors</td><td>Number of motors to use </td></tr>
   </table>
   </dd>
 </dl>

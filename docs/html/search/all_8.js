@@ -1,8 +1,25 @@
 var searchData=
 [
-  ['legtype_78',['LegType',['../classHierarchicalOptimizationControl.html#a595a20872c103fe6c0332012648d9b9e',1,'HierarchicalOptimizationControl::LegType()'],['../classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a',1,'Kinematics::LegType()']]],
-  ['load_79',['Load',['../classgazebo_1_1PendulumPlugin.html#a0508f3a8ed035a42312cd2aecd601e31',1,'gazebo::PendulumPlugin::Load()'],['../classgazebo_1_1SingleLegPlugin.html#a0990951d058cf469cd65e608eca123db',1,'gazebo::SingleLegPlugin::Load()'],['../classgazebo_1_1ContactPlugin.html#a10d1536023ae58aed4f293c62c5d2c9a',1,'gazebo::ContactPlugin::Load()'],['../classgazebo_1_1TetrapodPlugin.html#a528c3a37c4f725dbfcd868203a501840',1,'gazebo::TetrapodPlugin::Load()']]],
-  ['loadparametersros_80',['LoadParametersRos',['../classgazebo_1_1SingleLegPlugin.html#a260b57c93bf3cf070b4d7a2d03af3a8d',1,'gazebo::SingleLegPlugin::LoadParametersRos()'],['../classgazebo_1_1TetrapodPlugin.html#a8a0608278f019ef875b8ba653a2d6363',1,'gazebo::TetrapodPlugin::LoadParametersRos()']]],
-  ['logstatesandcommands_81',['logStatesAndCommands',['../classSingleLegController.html#a4c2a164a3a53b500ba2b79b103ae3d2d',1,'SingleLegController']]],
-  ['logutils_82',['LogUtils',['../classLogUtils.html',1,'LogUtils'],['../classLogUtils.html#a06e557ba093143fd81ace47f299fba07',1,'LogUtils::LogUtils()']]]
+  ['k_5fd_170',['K_d',['../classSingleLegController.html#a794008b874d186a8f0186206fccbc161',1,'SingleLegController']]],
+  ['k_5fi_5fpos_5fhp_171',['k_i_pos_hp',['../classSingleLegController.html#aee973906548bb210bcdc6b4b95d5cdab',1,'SingleLegController']]],
+  ['k_5fi_5fpos_5fhy_172',['k_i_pos_hy',['../classSingleLegController.html#ab72a23f967203ff0ac05c66153bc3fb5',1,'SingleLegController']]],
+  ['k_5fi_5fpos_5fkp_173',['k_i_pos_kp',['../classSingleLegController.html#ae30ee9a0e4e085bcf04833f494f24a19',1,'SingleLegController']]],
+  ['k_5fi_5ftorque_5fhp_174',['k_i_torque_hp',['../classSingleLegController.html#a10ebb4019d198c4090f8b82681a26075',1,'SingleLegController']]],
+  ['k_5fi_5ftorque_5fhy_175',['k_i_torque_hy',['../classSingleLegController.html#ab858deb6bd3b6de90a75f1732e3dbfc8',1,'SingleLegController']]],
+  ['k_5fi_5ftorque_5fkp_176',['k_i_torque_kp',['../classSingleLegController.html#a3bfd5bbc49d7c0ab117c8bd4049b48bd',1,'SingleLegController']]],
+  ['k_5fi_5fvel_5fhp_177',['k_i_vel_hp',['../classSingleLegController.html#a392470da81eb7116d88b5109ff63f837',1,'SingleLegController']]],
+  ['k_5fi_5fvel_5fhy_178',['k_i_vel_hy',['../classSingleLegController.html#a3980dc3548490e897fdbb2cdb9dd8699',1,'SingleLegController']]],
+  ['k_5fi_5fvel_5fkp_179',['k_i_vel_kp',['../classSingleLegController.html#afe10da8eb153ab95e54f46ffb07c6f00',1,'SingleLegController']]],
+  ['k_5fp_180',['K_p',['../classSingleLegController.html#abf6927a1eefee5f43622f9068b792106',1,'SingleLegController']]],
+  ['k_5fp_5fpos_5fhp_181',['k_p_pos_hp',['../classSingleLegController.html#a960dbaefa2daced2473af80d1cd705e1',1,'SingleLegController']]],
+  ['k_5fp_5fpos_5fhy_182',['k_p_pos_hy',['../classSingleLegController.html#acc44e6ff0221abd5b1595b71c36cdf20',1,'SingleLegController']]],
+  ['k_5fp_5fpos_5fkp_183',['k_p_pos_kp',['../classSingleLegController.html#a61a3f4d50c50cff00e05b2ff0248e182',1,'SingleLegController']]],
+  ['k_5fp_5ftorque_5fhp_184',['k_p_torque_hp',['../classSingleLegController.html#a1d17c6c67b0695bb88591819b2d5b196',1,'SingleLegController']]],
+  ['k_5fp_5ftorque_5fhy_185',['k_p_torque_hy',['../classSingleLegController.html#a22aa1970a3d9a7d05a38e4e686b50e50',1,'SingleLegController']]],
+  ['k_5fp_5ftorque_5fkp_186',['k_p_torque_kp',['../classSingleLegController.html#a0423a7bdef2fcff2ba2f6560c81f5ad6',1,'SingleLegController']]],
+  ['k_5fp_5fvel_5fhp_187',['k_p_vel_hp',['../classSingleLegController.html#a4d6444d7f4c7a26f560cdea085c0c068',1,'SingleLegController']]],
+  ['k_5fp_5fvel_5fhy_188',['k_p_vel_hy',['../classSingleLegController.html#a30dff80a8cba95654afd7ebf79e4dc86',1,'SingleLegController']]],
+  ['k_5fp_5fvel_5fkp_189',['k_p_vel_kp',['../classSingleLegController.html#a6ee0802dc3eb74fc58c38009455dcc2f',1,'SingleLegController']]],
+  ['k_5fpos_5ferror_5fvel_5fcontrol_190',['K_pos_error_vel_control',['../classSingleLegController.html#aebf153f67a1f8b3fd234ebdad310dfea',1,'SingleLegController']]],
+  ['kinematics_191',['Kinematics',['../classKinematics.html',1,'Kinematics'],['../classHierarchicalOptimizationControl.html#a3ebddce797dad8acbc82ea07153a152a',1,'HierarchicalOptimizationControl::kinematics()'],['../classSingleLegController.html#a5bd286879d534f71b1938468472669f3',1,'SingleLegController::kinematics()'],['../classLogUtils.html#a76769b35c2132276f6f1769b7a39a2d3',1,'LogUtils::kinematics()'],['../classKinematics.html#af4e587252019eaa863b4246026296d4a',1,'Kinematics::Kinematics()']]]
 ];

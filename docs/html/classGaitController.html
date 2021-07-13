@@ -64,11 +64,22 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classGaitController-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">GaitController Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="dynheader">
+Collaboration diagram for GaitController:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGaitController__coll__graph.png" border="0" usemap="#GaitController_coll__map" alt="Collaboration graph"/></div>
+<map name="GaitController_coll__map" id="GaitController_coll__map">
+<area shape="rect" title=" " alt="" coords="5,95,119,121"/>
+<area shape="rect" href="classKinematics.html" title="A class for analytical Kinematics Solving." alt="" coords="15,5,109,32"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -111,9 +122,231 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>initializePronking</b
 <tr class="memitem:a214c8c03080f3d6dc265f96d03ed7b7e"><td class="memItemLeft" align="right" valign="top"><a id="a214c8c03080f3d6dc265f96d03ed7b7e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>updatePronkController</b> ()</td></tr>
 <tr class="separator:a214c8c03080f3d6dc265f96d03ed7b7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd9ce348e434cedcbc29eae436607837"><td class="memItemLeft" align="right" valign="top"><a id="afd9ce348e434cedcbc29eae436607837"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>GaitController</b> (int controller_freq, double gait_period, std::function&lt; Eigen::Vector3d(double)&gt; fl_traj, std::function&lt; Eigen::Vector3d(double)&gt; fr_traj, std::function&lt; Eigen::Vector3d(double)&gt; rl_traj, std::function&lt; Eigen::Vector3d(double)&gt; rr_traj)</td></tr>
+<tr class="separator:afd9ce348e434cedcbc29eae436607837"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcec037ef050d3c4b949ac884a9b839b"><td class="memItemLeft" align="right" valign="top"><a id="abcec037ef050d3c4b949ac884a9b839b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>increment</b> ()</td></tr>
+<tr class="separator:abcec037ef050d3c4b949ac884a9b839b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a422ac06dd3bda1cb63d16cd3e93ec13f"><td class="memItemLeft" align="right" valign="top"><a id="a422ac06dd3bda1cb63d16cd3e93ec13f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateFeetReferences</b> ()</td></tr>
+<tr class="separator:a422ac06dd3bda1cb63d16cd3e93ec13f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a01083db6616fbb3f76547ea8bc8d7fda"><td class="memItemLeft" align="right" valign="top"><a id="a01083db6616fbb3f76547ea8bc8d7fda"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>generalizedPositionCallback</b> (const std_msgs::Float64MultiArrayConstPtr &amp;_msg)</td></tr>
+<tr class="separator:a01083db6616fbb3f76547ea8bc8d7fda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a705f2535cf48829b68c0dca0448d2784"><td class="memItemLeft" align="right" valign="top"><a id="a705f2535cf48829b68c0dca0448d2784"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>generalizedVelocityCallback</b> (const std_msgs::Float64MultiArrayConstPtr &amp;_msg)</td></tr>
+<tr class="separator:a705f2535cf48829b68c0dca0448d2784"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93d25b2aae0e737266c6c2fcbe5c6912"><td class="memItemLeft" align="right" valign="top"><a id="a93d25b2aae0e737266c6c2fcbe5c6912"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>readyToProceedCallback</b> (const std_msgs::Bool &amp;_msg)</td></tr>
+<tr class="separator:a93d25b2aae0e737266c6c2fcbe5c6912"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a2b72baaa78af4d76c0474c9133ea50"><td class="memItemLeft" align="right" valign="top"><a id="a4a2b72baaa78af4d76c0474c9133ea50"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>twistCommandCallback</b> (const geometry_msgs::TwistConstPtr &amp;_msg)</td></tr>
+<tr class="separator:a4a2b72baaa78af4d76c0474c9133ea50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0933a327349ddf3e6d844a2909e71b0a"><td class="memItemLeft" align="right" valign="top"><a id="a0933a327349ddf3e6d844a2909e71b0a"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>moveFootToPosition</b> (Eigen::Matrix&lt; double, 3, 1 &gt; _foot_pos, bool _offset, int _leg_index)</td></tr>
+<tr class="separator:a0933a327349ddf3e6d844a2909e71b0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a048aabbc26525f441b1c22e7c73f12e8"><td class="memItemLeft" align="right" valign="top"><a id="a048aabbc26525f441b1c22e7c73f12e8"></a>
+Eigen::Matrix&lt; double, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>reverseXY</b> (Eigen::Matrix&lt; double, 3, 1 &gt; _v_in)</td></tr>
+<tr class="separator:a048aabbc26525f441b1c22e7c73f12e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a241e0e41a343580a1f05d6401a74fa3a"><td class="memItemLeft" align="right" valign="top"><a id="a241e0e41a343580a1f05d6401a74fa3a"></a>
+Eigen::Matrix&lt; double, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>calculateFullStanceFootPosition</b> (LegID _leg)</td></tr>
+<tr class="separator:a241e0e41a343580a1f05d6401a74fa3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a896620d6693a605b7e2f9c831233135a"><td class="memItemLeft" align="right" valign="top"><a id="a896620d6693a605b7e2f9c831233135a"></a>
+Eigen::Matrix&lt; double, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>calculateStanceFootPosition</b> (LegID _leg)</td></tr>
+<tr class="separator:a896620d6693a605b7e2f9c831233135a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d0f02803f2fd9ddb5d2cdca5491dfa6"><td class="memItemLeft" align="right" valign="top"><a id="a3d0f02803f2fd9ddb5d2cdca5491dfa6"></a>
+Eigen::Matrix&lt; double, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>calculateSwingFootPosition</b> (LegID _leg)</td></tr>
+<tr class="separator:a3d0f02803f2fd9ddb5d2cdca5491dfa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a547f3bb8653e3cf28992ef77cd1fc9a4"><td class="memItemLeft" align="right" valign="top"><a id="a547f3bb8653e3cf28992ef77cd1fc9a4"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>calculateSwingFootHeight</b> (double _current_iteration, double _max_iteration)</td></tr>
+<tr class="separator:a547f3bb8653e3cf28992ef77cd1fc9a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0bee030ab51afd7244fa9ef415b1714"><td class="memItemLeft" align="right" valign="top"><a id="ac0bee030ab51afd7244fa9ef415b1714"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>calculateSwingFootHeight</b> (double _hip_height, double _max_swing_foot_height, double _current_iteration, double _max_iteration)</td></tr>
+<tr class="separator:ac0bee030ab51afd7244fa9ef415b1714"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa629070812444360013f6271e21477e4"><td class="memItemLeft" align="right" valign="top"><a id="aa629070812444360013f6271e21477e4"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>moveJointsToSetpoints</b> ()</td></tr>
+<tr class="separator:aa629070812444360013f6271e21477e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8cb511e82661ad6be84e7da57c3a62b"><td class="memItemLeft" align="right" valign="top"><a id="ab8cb511e82661ad6be84e7da57c3a62b"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>jointSetpointsReached</b> ()</td></tr>
+<tr class="separator:ab8cb511e82661ad6be84e7da57c3a62b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74a6765cdff6e7738e1ccc319a1dd444"><td class="memItemLeft" align="right" valign="top"><a id="a74a6765cdff6e7738e1ccc319a1dd444"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>printJointStates</b> ()</td></tr>
+<tr class="separator:a74a6765cdff6e7738e1ccc319a1dd444"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7527cd6b9f87f3b021921b6841ef01c"><td class="memItemLeft" align="right" valign="top"><a id="aa7527cd6b9f87f3b021921b6841ef01c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>printJointCommandStates</b> ()</td></tr>
+<tr class="separator:aa7527cd6b9f87f3b021921b6841ef01c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79318bfb11609d98f096613ce9864c5f"><td class="memItemLeft" align="right" valign="top"><a id="a79318bfb11609d98f096613ce9864c5f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>printFeetPositions</b> ()</td></tr>
+<tr class="separator:a79318bfb11609d98f096613ce9864c5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf1b7e62e0c370a959a48b8c36483625"><td class="memItemLeft" align="right" valign="top"><a id="aaf1b7e62e0c370a959a48b8c36483625"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>updateFeetPositions</b> ()</td></tr>
+<tr class="separator:aaf1b7e62e0c370a959a48b8c36483625"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36543d9c9ce69fddb58acb67c18285c3"><td class="memItemLeft" align="right" valign="top"><a id="a36543d9c9ce69fddb58acb67c18285c3"></a>
+Eigen::Matrix&lt; double, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>calculatePronkStanceFootPosition</b> (LegID _leg)</td></tr>
+<tr class="separator:a36543d9c9ce69fddb58acb67c18285c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cc4dcc9c719066c751764c3b13e38da"><td class="memItemLeft" align="right" valign="top"><a id="a2cc4dcc9c719066c751764c3b13e38da"></a>
+Eigen::Matrix&lt; double, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>calculatePronkSwingFootPosition</b> (LegID _leg)</td></tr>
+<tr class="separator:a2cc4dcc9c719066c751764c3b13e38da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a69bc1ff6e7acbbd213c58200b6faed25"><td class="memItemLeft" align="right" valign="top"><a id="a69bc1ff6e7acbbd213c58200b6faed25"></a>
+std::unique_ptr&lt; ros::NodeHandle &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>nodeHandle</b></td></tr>
+<tr class="separator:a69bc1ff6e7acbbd213c58200b6faed25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7677b69392dfa581536c7b3a3dc20ec4"><td class="memItemLeft" align="right" valign="top"><a id="a7677b69392dfa581536c7b3a3dc20ec4"></a>
+ros::Subscriber&#160;</td><td class="memItemRight" valign="bottom"><b>ready_to_proceed_subscriber</b></td></tr>
+<tr class="separator:a7677b69392dfa581536c7b3a3dc20ec4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9e7ecc8e317b652b0dd446015f960a8"><td class="memItemLeft" align="right" valign="top"><a id="af9e7ecc8e317b652b0dd446015f960a8"></a>
+ros::Subscriber&#160;</td><td class="memItemRight" valign="bottom"><b>generalized_position_subscriber</b></td></tr>
+<tr class="separator:af9e7ecc8e317b652b0dd446015f960a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2822cb7ac72a42f031e04089d8e91df2"><td class="memItemLeft" align="right" valign="top"><a id="a2822cb7ac72a42f031e04089d8e91df2"></a>
+ros::Subscriber&#160;</td><td class="memItemRight" valign="bottom"><b>generalized_velocity_subscriber</b></td></tr>
+<tr class="separator:a2822cb7ac72a42f031e04089d8e91df2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c00c8cd74e53a65e4ac0bf8612c92ac"><td class="memItemLeft" align="right" valign="top"><a id="a4c00c8cd74e53a65e4ac0bf8612c92ac"></a>
+ros::Subscriber&#160;</td><td class="memItemRight" valign="bottom"><b>twist_command_subscriber</b></td></tr>
+<tr class="separator:a4c00c8cd74e53a65e4ac0bf8612c92ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03f101dac8dcef234f98629e576292dd"><td class="memItemLeft" align="right" valign="top"><a id="a03f101dac8dcef234f98629e576292dd"></a>
+ros::Publisher&#160;</td><td class="memItemRight" valign="bottom"><b>joint_command_publisher</b></td></tr>
+<tr class="separator:a03f101dac8dcef234f98629e576292dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fc809bec2cc7d1e890e4d9bb81228cb"><td class="memItemLeft" align="right" valign="top"><a id="a6fc809bec2cc7d1e890e4d9bb81228cb"></a>
+<a class="el" href="classKinematics.html">Kinematics</a>&#160;</td><td class="memItemRight" valign="bottom"><b>kinematics</b></td></tr>
+<tr class="separator:a6fc809bec2cc7d1e890e4d9bb81228cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9d301545abd839f8c6bdeeb8b002fdd"><td class="memItemLeft" align="right" valign="top"><a id="aa9d301545abd839f8c6bdeeb8b002fdd"></a>
+Eigen::Matrix&lt; double, 12, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>joint_angle_commands</b> = Eigen::Matrix&lt;double, 12, 1&gt;::Zero()</td></tr>
+<tr class="separator:aa9d301545abd839f8c6bdeeb8b002fdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a081c293555479ca0b7d1118715aece"><td class="memItemLeft" align="right" valign="top"><a id="a2a081c293555479ca0b7d1118715aece"></a>
+Eigen::Matrix&lt; double, 12, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>joint_angles</b> = Eigen::Matrix&lt;double, 12, 1&gt;::Zero()</td></tr>
+<tr class="separator:a2a081c293555479ca0b7d1118715aece"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a615e7fb65664b9fb12aaf4d3456743dc"><td class="memItemLeft" align="right" valign="top"><a id="a615e7fb65664b9fb12aaf4d3456743dc"></a>
+Eigen::Matrix&lt; double, 12, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>joint_velocities</b> = Eigen::Matrix&lt;double, 12, 1&gt;::Zero()</td></tr>
+<tr class="separator:a615e7fb65664b9fb12aaf4d3456743dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45ef9243fd1df85a83934caeea32ad32"><td class="memItemLeft" align="right" valign="top"><a id="a45ef9243fd1df85a83934caeea32ad32"></a>
+Eigen::Matrix&lt; double, 12, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>feet_positions</b> = Eigen::Matrix&lt;double, 12, 1&gt;::Zero()</td></tr>
+<tr class="separator:a45ef9243fd1df85a83934caeea32ad32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f123ee98587d68f595cb7d790a55917"><td class="memItemLeft" align="right" valign="top"><a id="a9f123ee98587d68f595cb7d790a55917"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>hip_height</b> = 0.36</td></tr>
+<tr class="separator:a9f123ee98587d68f595cb7d790a55917"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc818cbf6bf71464b7442aa7cde4f84c"><td class="memItemLeft" align="right" valign="top"><a id="afc818cbf6bf71464b7442aa7cde4f84c"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>max_step_height</b> = 0.2</td></tr>
+<tr class="separator:afc818cbf6bf71464b7442aa7cde4f84c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52f9d684e30c16689025df89b88fa294"><td class="memItemLeft" align="right" valign="top"><a id="a52f9d684e30c16689025df89b88fa294"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>current_iteration_full_stance</b> = 0.0</td></tr>
+<tr class="separator:a52f9d684e30c16689025df89b88fa294"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2dddc03141c9312917d47748526a7bd8"><td class="memItemLeft" align="right" valign="top"><a id="a2dddc03141c9312917d47748526a7bd8"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>max_iteration_full_stance</b> = 10.0</td></tr>
+<tr class="separator:a2dddc03141c9312917d47748526a7bd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca3ef02aece128e570557b16e8311707"><td class="memItemLeft" align="right" valign="top"><a id="aca3ef02aece128e570557b16e8311707"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>current_iteration_swing</b> = 0.0</td></tr>
+<tr class="separator:aca3ef02aece128e570557b16e8311707"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf51dae8462f925b5f021e06a06a8b13"><td class="memItemLeft" align="right" valign="top"><a id="acf51dae8462f925b5f021e06a06a8b13"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>max_iteration_swing</b> = 40.0</td></tr>
+<tr class="separator:acf51dae8462f925b5f021e06a06a8b13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb38efa5e387b955d4ff0dffe91ef6e2"><td class="memItemLeft" align="right" valign="top"><a id="aeb38efa5e387b955d4ff0dffe91ef6e2"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>lin_vel_x</b> = 0.0</td></tr>
+<tr class="separator:aeb38efa5e387b955d4ff0dffe91ef6e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a520f06d7f399870ecae2182c25b7d11a"><td class="memItemLeft" align="right" valign="top"><a id="a520f06d7f399870ecae2182c25b7d11a"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>lin_vel_y</b> = 0.0</td></tr>
+<tr class="separator:a520f06d7f399870ecae2182c25b7d11a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03d26ca2a796cc6c05afdc0640528d56"><td class="memItemLeft" align="right" valign="top"><a id="a03d26ca2a796cc6c05afdc0640528d56"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>ang_vel_z</b> = 0.0</td></tr>
+<tr class="separator:a03d26ca2a796cc6c05afdc0640528d56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa282d4799c95f6464488d5fc9d673bd9"><td class="memItemLeft" align="right" valign="top"><a id="aa282d4799c95f6464488d5fc9d673bd9"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>fl_offset</b> = false</td></tr>
+<tr class="separator:aa282d4799c95f6464488d5fc9d673bd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a507dbc6809eeac36073252bcd870ef60"><td class="memItemLeft" align="right" valign="top"><a id="a507dbc6809eeac36073252bcd870ef60"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>rr_offset</b> = false</td></tr>
+<tr class="separator:a507dbc6809eeac36073252bcd870ef60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d554d61a0f4252709f312d3054bf39d"><td class="memItemLeft" align="right" valign="top"><a id="a2d554d61a0f4252709f312d3054bf39d"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>fr_offset</b> = true</td></tr>
+<tr class="separator:a2d554d61a0f4252709f312d3054bf39d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee4cf456d61832dd1c8aa6c3982fc547"><td class="memItemLeft" align="right" valign="top"><a id="aee4cf456d61832dd1c8aa6c3982fc547"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>rl_offset</b> = true</td></tr>
+<tr class="separator:aee4cf456d61832dd1c8aa6c3982fc547"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada93a33f0593cc959020354d739123bd"><td class="memItemLeft" align="right" valign="top"><a id="ada93a33f0593cc959020354d739123bd"></a>
+GaitPhase&#160;</td><td class="memItemRight" valign="bottom"><b>current_gait_phase</b> = gait_phase_not_set</td></tr>
+<tr class="separator:ada93a33f0593cc959020354d739123bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5ecaf92f7660ffbac9bd37dd7ad416c"><td class="memItemLeft" align="right" valign="top"><a id="ac5ecaf92f7660ffbac9bd37dd7ad416c"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>ready_to_proceed</b> = false</td></tr>
+<tr class="separator:ac5ecaf92f7660ffbac9bd37dd7ad416c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a889f527420bb4b51361f6c5f314aad0a"><td class="memItemLeft" align="right" valign="top"><a id="a889f527420bb4b51361f6c5f314aad0a"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>x_0</b> = 0.22</td></tr>
+<tr class="separator:a889f527420bb4b51361f6c5f314aad0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab38cada189747e25da7aa5920b5b9d49"><td class="memItemLeft" align="right" valign="top"><a id="ab38cada189747e25da7aa5920b5b9d49"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>y_0</b> = 0.22</td></tr>
+<tr class="separator:ab38cada189747e25da7aa5920b5b9d49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a033eac0e6635af97acfec41be2d71425"><td class="memItemLeft" align="right" valign="top"><a id="a033eac0e6635af97acfec41be2d71425"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>dx_max</b> = 0.0</td></tr>
+<tr class="separator:a033eac0e6635af97acfec41be2d71425"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd14448f1970bf83794fa3cf462379d2"><td class="memItemLeft" align="right" valign="top"><a id="abd14448f1970bf83794fa3cf462379d2"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>dy_max</b> = 0.0</td></tr>
+<tr class="separator:abd14448f1970bf83794fa3cf462379d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcf42c75c680998e48c28ba8c464b64e"><td class="memItemLeft" align="right" valign="top"><a id="abcf42c75c680998e48c28ba8c464b64e"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>dr_max</b> = 0.0</td></tr>
+<tr class="separator:abcf42c75c680998e48c28ba8c464b64e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6230bdc12e1def3dfecc718ebef245b"><td class="memItemLeft" align="right" valign="top"><a id="ad6230bdc12e1def3dfecc718ebef245b"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>t_full</b> = 0.1</td></tr>
+<tr class="separator:ad6230bdc12e1def3dfecc718ebef245b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5a0223d1727a0b6231711f93ec6a4d8"><td class="memItemLeft" align="right" valign="top"><a id="ab5a0223d1727a0b6231711f93ec6a4d8"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>t_double</b> = 1.0 - 2.0*t_full</td></tr>
+<tr class="separator:ab5a0223d1727a0b6231711f93ec6a4d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82552f7f39a23eb6f9ff3658e8681fba"><td class="memItemLeft" align="right" valign="top"><a id="a82552f7f39a23eb6f9ff3658e8681fba"></a>
+Eigen::Matrix&lt; double, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>fl_foot_position_in_body</b></td></tr>
+<tr class="separator:a82552f7f39a23eb6f9ff3658e8681fba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a768d9ca6d317faa5dfa3cd25c315a6c1"><td class="memItemLeft" align="right" valign="top"><a id="a768d9ca6d317faa5dfa3cd25c315a6c1"></a>
+Eigen::Matrix&lt; double, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>fr_foot_position_in_body</b></td></tr>
+<tr class="separator:a768d9ca6d317faa5dfa3cd25c315a6c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc1ed908724d3a112c7e5180cd7c6d10"><td class="memItemLeft" align="right" valign="top"><a id="acc1ed908724d3a112c7e5180cd7c6d10"></a>
+Eigen::Matrix&lt; double, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>rl_foot_position_in_body</b></td></tr>
+<tr class="separator:acc1ed908724d3a112c7e5180cd7c6d10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae36649f7ac0511b38a60924b5feaf042"><td class="memItemLeft" align="right" valign="top"><a id="ae36649f7ac0511b38a60924b5feaf042"></a>
+Eigen::Matrix&lt; double, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>rr_foot_position_in_body</b></td></tr>
+<tr class="separator:ae36649f7ac0511b38a60924b5feaf042"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af858396ea3ed703583c0cc328d1916a9"><td class="memItemLeft" align="right" valign="top"><a id="af858396ea3ed703583c0cc328d1916a9"></a>
+sensor_msgs::JointState&#160;</td><td class="memItemRight" valign="bottom"><b>joint_command_msg</b></td></tr>
+<tr class="separator:af858396ea3ed703583c0cc328d1916a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d8a7ef22a84dd24ba5c1e18d256e8ea"><td class="memItemLeft" align="right" valign="top"><a id="a7d8a7ef22a84dd24ba5c1e18d256e8ea"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>joint_states_received</b> = false</td></tr>
+<tr class="separator:a7d8a7ef22a84dd24ba5c1e18d256e8ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada249d0cf57910c21bd9e0844db0b6bd"><td class="memItemLeft" align="right" valign="top"><a id="ada249d0cf57910c21bd9e0844db0b6bd"></a>
+PronkPhase&#160;</td><td class="memItemRight" valign="bottom"><b>pronk_phase</b></td></tr>
+<tr class="separator:ada249d0cf57910c21bd9e0844db0b6bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26a9df9232fd4f8ab12f7ad1ec0ede02"><td class="memItemLeft" align="right" valign="top"><a id="a26a9df9232fd4f8ab12f7ad1ec0ede02"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>pronk_height</b> = 0.3</td></tr>
+<tr class="separator:a26a9df9232fd4f8ab12f7ad1ec0ede02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01c6522fede44addc95294e684dee952"><td class="memItemLeft" align="right" valign="top"><a id="a01c6522fede44addc95294e684dee952"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>max_pronk_travel_distance</b> = 0.2</td></tr>
+<tr class="separator:a01c6522fede44addc95294e684dee952"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a395a7a24ec749ede591dd39a1895f5"><td class="memItemLeft" align="right" valign="top"><a id="a2a395a7a24ec749ede591dd39a1895f5"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>current_pronk_iteration</b> = 0.0</td></tr>
+<tr class="separator:a2a395a7a24ec749ede591dd39a1895f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27576ec1047cba9832bd86e1c1c15705"><td class="memItemLeft" align="right" valign="top"><a id="a27576ec1047cba9832bd86e1c1c15705"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>max_pronk_iteration</b> = 30</td></tr>
+<tr class="separator:a27576ec1047cba9832bd86e1c1c15705"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25984d3bf31c6c2c249131acbce4f44c"><td class="memItemLeft" align="right" valign="top"><a id="a25984d3bf31c6c2c249131acbce4f44c"></a>
+std::function&lt; Eigen::Vector3d(double)&gt;&#160;</td><td class="memItemRight" valign="bottom"><b>fl_traj</b></td></tr>
+<tr class="separator:a25984d3bf31c6c2c249131acbce4f44c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf8c26dc16de026deb32834bb4914782"><td class="memItemLeft" align="right" valign="top"><a id="abf8c26dc16de026deb32834bb4914782"></a>
+std::function&lt; Eigen::Vector3d(double)&gt;&#160;</td><td class="memItemRight" valign="bottom"><b>fr_traj</b></td></tr>
+<tr class="separator:abf8c26dc16de026deb32834bb4914782"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d64ff25c91bd19d73b19864da1277db"><td class="memItemLeft" align="right" valign="top"><a id="a5d64ff25c91bd19d73b19864da1277db"></a>
+std::function&lt; Eigen::Vector3d(double)&gt;&#160;</td><td class="memItemRight" valign="bottom"><b>rl_traj</b></td></tr>
+<tr class="separator:a5d64ff25c91bd19d73b19864da1277db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a068377926053732f8f82253c72d5d54e"><td class="memItemLeft" align="right" valign="top"><a id="a068377926053732f8f82253c72d5d54e"></a>
+std::function&lt; Eigen::Vector3d(double)&gt;&#160;</td><td class="memItemRight" valign="bottom"><b>rr_traj</b></td></tr>
+<tr class="separator:a068377926053732f8f82253c72d5d54e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5daf1598221c86daf95d241b348d565c"><td class="memItemLeft" align="right" valign="top"><a id="a5daf1598221c86daf95d241b348d565c"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>gait_period</b></td></tr>
+<tr class="separator:a5daf1598221c86daf95d241b348d565c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0ea94e09d5a050d4dca9552bb83c4e0"><td class="memItemLeft" align="right" valign="top"><a id="ad0ea94e09d5a050d4dca9552bb83c4e0"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>iteration</b> = 0</td></tr>
+<tr class="separator:ad0ea94e09d5a050d4dca9552bb83c4e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>catkin_ws/src/control/gait_controller/include/gait_controller/<a class="el" href="gait__controller_8h_source.html">gait_controller.h</a></li>
+<li>catkin_ws/src/control/gait_controller/include/gait_controller/<a class="el" href="gait__controller_2include_2gait__controller_2gait__controller_8h_source.html">gait_controller.h</a></li>
 <li>catkin_ws/src/control/gait_controller/src/gait_controller.cpp</li>
 </ul>
 </div><!-- contents -->

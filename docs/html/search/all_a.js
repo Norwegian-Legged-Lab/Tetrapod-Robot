@@ -1,5 +1,25 @@
 var searchData=
 [
-  ['numericalikpositioncontrol_88',['NumericalIKPositionControl',['../classGaitControl.html#a9757a09fc47bc2c64c434b5a0900ba67',1,'GaitControl']]],
-  ['numericalinversekinematicscontrol_89',['NumericalInverseKinematicsControl',['../classGaitControl.html#af62d139c03dac4728919c7496e502ba7',1,'GaitControl']]]
+  ['mainpage_207',['Mainpage',['../index.html',1,'']]],
+  ['m0_208',['M0',['../classKinematics.html#ab06a3f11ac00f9ac30966280ab708132',1,'Kinematics']]],
+  ['m1_209',['M1',['../classKinematics.html#aa96fc0ed77f742883bf33c938d6fcaee',1,'Kinematics']]],
+  ['m2_210',['M2',['../classKinematics.html#aababf894af6917254556a45f3d950440',1,'Kinematics']]],
+  ['m3_211',['M3',['../classKinematics.html#aa89a99505f895dfce2e7106706edecc8',1,'Kinematics']]],
+  ['max_5fangles_212',['max_angles',['../classKinematics.html#a6fc7673ce2605db3fd4ece5e14a323b2',1,'Kinematics']]],
+  ['max_5fhip_5fturning_5fangle_213',['max_hip_turning_angle',['../classStaticGaitController.html#af2cefac4ecb34d0dd18b8b9a44e7de85',1,'StaticGaitController']]],
+  ['max_5fnum_5fmotors_5fper_5fport_214',['MAX_NUM_MOTORS_PER_PORT',['../classMotorInterface.html#a64b1219cfca4200a7fd5cad8c397dd0d',1,'MotorInterface']]],
+  ['max_5fpose_5fvel_215',['max_pose_vel',['../classSingleLegController.html#a15491ad415316576b883c5e9f9c3c130',1,'SingleLegController']]],
+  ['max_5fswing_5fheight_216',['max_swing_height',['../classSingleLegController.html#a0590ff89947ace8ca0a33da844f73d83',1,'SingleLegController']]],
+  ['min_5fangles_217',['min_angles',['../classKinematics.html#ac75f5642395505981f66eff994f1b309',1,'Kinematics']]],
+  ['model_218',['model',['../classgazebo_1_1PendulumPlugin.html#a757010edccbb2a0e2edd8ca6337c01da',1,'gazebo::PendulumPlugin::model()'],['../classgazebo_1_1SingleLegPlugin.html#ae7ba9fe5177da77f918d9b6663d022f9',1,'gazebo::SingleLegPlugin::model()'],['../classgazebo_1_1TetrapodPlugin.html#a7889dd509beca43169bcb86c44f5396d',1,'gazebo::TetrapodPlugin::model()']]],
+  ['model_5fname_219',['model_name',['../classgazebo_1_1PendulumPlugin.html#a10602e9acf3c463089104ab38fd399c9',1,'gazebo::PendulumPlugin::model_name()'],['../classgazebo_1_1SingleLegPlugin.html#a3dcfa792c1c57960391e191195c2d683',1,'gazebo::SingleLegPlugin::model_name()'],['../classgazebo_1_1TetrapodPlugin.html#a847b85a1a5485af4ce1f0942b3b102c1',1,'gazebo::TetrapodPlugin::model_name()']]],
+  ['motion_5fstate_220',['motion_state',['../classRobotController.html#a32ce63004e5d5eb8168fd3b755b1642f',1,'RobotController']]],
+  ['motor_5fcommand_5fmsg_221',['motor_command_msg',['../classSingleLegController.html#a23ef6a1389a4803159704c89d1bb104a',1,'SingleLegController']]],
+  ['motor_5fconfirmation_5fsubscriber_222',['motor_confirmation_subscriber',['../classSingleLegController.html#a0525553c4d0a90ff67be01590829b2ff',1,'SingleLegController']]],
+  ['motor_5fgain_5fpublisher_223',['motor_gain_publisher',['../classSingleLegController.html#ac1cccef3695042a38de31d21d6ca2bf8',1,'SingleLegController']]],
+  ['motorconfirmationcallback_224',['motorConfirmationCallback',['../classSingleLegController.html#aa24664d461ae96ac654bf22af9151692',1,'SingleLegController']]],
+  ['motorinterface_225',['MotorInterface',['../classMotorInterface.html',1,'MotorInterface'],['../classMotorInterface.html#aab48de285663a5b0cfe70ae764d5e491',1,'MotorInterface::MotorInterface()'],['../classMotorInterface.html#a1e1b05c12dcf4d012a84a6d4ffe68fec',1,'MotorInterface::MotorInterface(const int &amp;_num_motors)']]],
+  ['movefoottonominalposition_226',['moveFootToNominalPosition',['../classSingleLegController.html#a3e2bc91ee5c0b1cde6ad9f8da033c83f',1,'SingleLegController']]],
+  ['movefoottoposition_227',['moveFootToPosition',['../classSingleLegController.html#ac94137fdfe9b78dd3c47480341b9af47',1,'SingleLegController::moveFootToPosition(Eigen::Matrix&lt; double, 3, 1 &gt; _foot_goal_pos)'],['../classSingleLegController.html#ae26e0828c2e33d739f5c34223bd38e77',1,'SingleLegController::moveFootToPosition(double _foot_pos_x, double _foot_pos_y, double _foot_pos_z)']]],
+  ['movejointstosetpoints_228',['moveJointsToSetpoints',['../classSingleLegController.html#ac4e4f7ee4fa05991e424b242d149afa3',1,'SingleLegController']]]
 ];

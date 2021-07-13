@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['force_5f_1303',['force_',['../classkindr_1_1Wrench.html#a0a6a33adbe5a49d55656c3516ffc4572',1,'kindr::Wrench']]],
-  ['frame_5fid_5f_1304',['frame_id_',['../classros__ign__point__cloud_1_1PointCloudPrivate.html#aa3f36dda51ebb4075a41e8fcc570d477',1,'ros_ign_point_cloud::PointCloudPrivate']]]
+  ['has_5feq_5fconstraint_667',['has_eq_constraint',['../structHierarchicalOptimizationControl_1_1Task.html#a11dc6f5fd4494a4b42d559c380ac81fd',1,'HierarchicalOptimizationControl::Task']]],
+  ['has_5fineq_5fconstraint_668',['has_ineq_constraint',['../structHierarchicalOptimizationControl_1_1Task.html#a84b6c5269a6ba5237988b680bff3504c',1,'HierarchicalOptimizationControl::Task']]],
+  ['hip_5fheight_669',['hip_height',['../classSingleLegController.html#a9af55628c4322ff2afe9a7d03f78d8f1',1,'SingleLegController']]]
 ];
