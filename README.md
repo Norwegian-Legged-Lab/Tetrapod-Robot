@@ -1,5 +1,12 @@
 # Tetrapod-Robot
 
+**Authors: Adrian B. Ghansah, Mads Erlend B. Lysø, Paal Arthur S. Thorseth**
+
+This project documents the development of software for the torque controllable tetrapod robot, ASTRo.
+
+## Documentation
+This software is documented using [Doxygen](https://www.doxygen.nl/index.html) and is readily available [here](https://pathorse.github.io/Tetrapod-Robot/).
+
 ## License
 
 This software is released under a [BSD 3-Clause license](LICENSE).
