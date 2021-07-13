@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   controller
   kinematics
   eigen_conversions
+  modular_gait_controller
 )
 
 find_package(Eigen3 REQUIRED)
@@ -29,6 +30,7 @@ catkin_package(
     controller
     kinematics
     eigen_conversions
+    modular_gait_controller
 #  DEPENDS system_lib
 )
 
