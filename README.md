@@ -1,5 +1,9 @@
 # Tetrapod-Robot
 
+## License
+
+This software is released under a [BSD 3-Clause license](LICENSE).
+
 ## Style Guide
 The project follows two style guides for writing C++ code, namely:
 
