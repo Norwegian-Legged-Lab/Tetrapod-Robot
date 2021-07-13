@@ -165,10 +165,10 @@ class HierarchicalOptimizationControl
 
     /// \brief The SolveQP function solves a (convex) quadratic
     /// program (QP) on the form:
-    /// -------------------------------------------------------
+    ///
     ///     min_x        0.5 x^T Q x + c^T x
     ///      s.t.        E_ineq x <= f_ineq
-    /// -------------------------------------------------------
+    ///
     /// The toolbox uses the Drake toolbox for solving the 
     /// problem. Currently Drake identifies the problem
     /// and chooses an appropriate commercial solver, but
@@ -193,10 +193,10 @@ class HierarchicalOptimizationControl
 
     /// \brief The SolveQP function solves a (convex) quadratic
     /// program (QP) on the form:
-    /// -------------------------------------------------------
+    /// 
     ///     min_x        0.5 x^T Q x + c^T x
     ///      s.t.        lb <= A x <= ub        
-    /// -------------------------------------------------------
+    /// 
     /// The toolbox uses the Drake toolbox for solving the 
     /// problem. Currently Drake identifies the problem
     /// and chooses an appropriate commercial solver, but
@@ -223,11 +223,11 @@ class HierarchicalOptimizationControl
 
     /// \brief The SolveQP function solves a (convex) quadratic
     /// program (QP) on the form:
-    /// -------------------------------------------------------
+    /// 
     ///     min_x        0.5 x^T Q x + c^T x
     ///      s.t.          E_eq x  = f_eq
     ///                  E_ineq x <= f_ineq
-    /// -------------------------------------------------------
+    /// 
     /// The toolbox uses the Drake toolbox for solving the 
     /// problem. Currently Drake identifies the problem
     /// and chooses an appropriate commercial solver, but
