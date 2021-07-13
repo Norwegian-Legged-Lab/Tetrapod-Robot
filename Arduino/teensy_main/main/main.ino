@@ -14,6 +14,9 @@ const int NUMBER_OF_MOTORS = 6;
 // Number of motors per CAN port
 int NUMBER_OF_MOTORS_PER_PORT = 3;
 
+// Loop rate
+const int TIMEOUT = 0.00001;
+
 // Object to communicate with the host PC over serial
 TeensySerial serial_interface(NUMBER_OF_MOTORS);
 
@@ -175,4 +178,7 @@ void loop()
   //Serial.println("");
   // Send joint states back to the host PC
   serial_interface.sendStates(joint_positions, joint_velocities, joint_torques);
+
+  // Sleep
+  delay(TIMEOUT);
 }
