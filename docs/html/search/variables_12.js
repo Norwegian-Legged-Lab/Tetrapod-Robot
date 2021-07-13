@@ -1,12 +1,5 @@
 var searchData=
 [
-  ['vel_5fd_5fgain_816',['vel_d_gain',['../classgazebo_1_1PendulumPlugin.html#a5bc17631437418437b91fb808b003dcf',1,'gazebo::PendulumPlugin']]],
-  ['vel_5fd_5fgains_817',['vel_d_gains',['../classgazebo_1_1SingleLegPlugin.html#acb184e43edbac43eb5e845bc966db425',1,'gazebo::SingleLegPlugin::vel_d_gains()'],['../classgazebo_1_1TetrapodPlugin.html#ac80108f47eea394d1a6d0853f7318a99',1,'gazebo::TetrapodPlugin::vel_d_gains()']]],
-  ['vel_5fi_5fgain_818',['vel_i_gain',['../classgazebo_1_1PendulumPlugin.html#a572a4268b6f15eb1349d74d6c757cd47',1,'gazebo::PendulumPlugin']]],
-  ['vel_5fi_5fgains_819',['vel_i_gains',['../classgazebo_1_1SingleLegPlugin.html#a29d9bca0a199606eef9aef8fbe1949ab',1,'gazebo::SingleLegPlugin::vel_i_gains()'],['../classgazebo_1_1TetrapodPlugin.html#a97a1b92e4b3e7a28ff428479c9147804',1,'gazebo::TetrapodPlugin::vel_i_gains()']]],
-  ['vel_5fp_5fgain_820',['vel_p_gain',['../classgazebo_1_1PendulumPlugin.html#ae377ca7d46942d849c1d1a7fd921b458',1,'gazebo::PendulumPlugin']]],
-  ['vel_5fp_5fgains_821',['vel_p_gains',['../classgazebo_1_1SingleLegPlugin.html#a7043bf33062c9c745f7df35b722e1253',1,'gazebo::SingleLegPlugin::vel_p_gains()'],['../classgazebo_1_1TetrapodPlugin.html#a1960f0cb557960a5b1543a1e9e259fed',1,'gazebo::TetrapodPlugin::vel_p_gains()']]],
-  ['velocity_5fcommand_822',['VELOCITY_COMMAND',['../classSingleLegController.html#ac5a6be5095664c0dd3c37a73159227d2',1,'SingleLegController']]],
-  ['velocity_5fcontroller_5fjoint_5ftarget_823',['velocity_controller_joint_target',['../classSingleLegController.html#a18270c6c7d1aad8b9a99c705f8845f8f',1,'SingleLegController']]],
-  ['velsub_824',['velSub',['../classgazebo_1_1SingleLegPlugin.html#ae02a966592d7e694dcc32e4f2f72104b',1,'gazebo::SingleLegPlugin::velSub()'],['../classgazebo_1_1TetrapodPlugin.html#a3911adb0099091fc8b138895d310186f',1,'gazebo::TetrapodPlugin::velSub()']]]
+  ['uninitialized_5fstate_972',['UNINITIALIZED_STATE',['../classSingleLegController.html#ae881be0ce2a2ec472da2a99edc6b609b',1,'SingleLegController']]],
+  ['updateconnection_973',['updateConnection',['../classgazebo_1_1ContactPlugin.html#a195df29795fc44cd676effe9e396479f',1,'gazebo::ContactPlugin']]]
 ];

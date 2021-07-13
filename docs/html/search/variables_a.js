@@ -1,19 +1,13 @@
 var searchData=
 [
-  ['m0_741',['M0',['../classKinematics.html#ab06a3f11ac00f9ac30966280ab708132',1,'Kinematics']]],
-  ['m1_742',['M1',['../classKinematics.html#aa96fc0ed77f742883bf33c938d6fcaee',1,'Kinematics']]],
-  ['m2_743',['M2',['../classKinematics.html#aababf894af6917254556a45f3d950440',1,'Kinematics']]],
-  ['m3_744',['M3',['../classKinematics.html#aa89a99505f895dfce2e7106706edecc8',1,'Kinematics']]],
-  ['max_5fangles_745',['max_angles',['../classKinematics.html#a6fc7673ce2605db3fd4ece5e14a323b2',1,'Kinematics']]],
-  ['max_5fhip_5fturning_5fangle_746',['max_hip_turning_angle',['../classStaticGaitController.html#af2cefac4ecb34d0dd18b8b9a44e7de85',1,'StaticGaitController']]],
-  ['max_5fnum_5fmotors_5fper_5fport_747',['MAX_NUM_MOTORS_PER_PORT',['../classMotorInterface.html#a64b1219cfca4200a7fd5cad8c397dd0d',1,'MotorInterface']]],
-  ['max_5fpose_5fvel_748',['max_pose_vel',['../classSingleLegController.html#a15491ad415316576b883c5e9f9c3c130',1,'SingleLegController']]],
-  ['max_5fswing_5fheight_749',['max_swing_height',['../classSingleLegController.html#a0590ff89947ace8ca0a33da844f73d83',1,'SingleLegController']]],
-  ['min_5fangles_750',['min_angles',['../classKinematics.html#ac75f5642395505981f66eff994f1b309',1,'Kinematics']]],
-  ['model_751',['model',['../classgazebo_1_1PendulumPlugin.html#a757010edccbb2a0e2edd8ca6337c01da',1,'gazebo::PendulumPlugin::model()'],['../classgazebo_1_1SingleLegPlugin.html#ae7ba9fe5177da77f918d9b6663d022f9',1,'gazebo::SingleLegPlugin::model()'],['../classgazebo_1_1TetrapodPlugin.html#a7889dd509beca43169bcb86c44f5396d',1,'gazebo::TetrapodPlugin::model()']]],
-  ['model_5fname_752',['model_name',['../classgazebo_1_1PendulumPlugin.html#a10602e9acf3c463089104ab38fd399c9',1,'gazebo::PendulumPlugin::model_name()'],['../classgazebo_1_1SingleLegPlugin.html#a3dcfa792c1c57960391e191195c2d683',1,'gazebo::SingleLegPlugin::model_name()'],['../classgazebo_1_1TetrapodPlugin.html#a847b85a1a5485af4ce1f0942b3b102c1',1,'gazebo::TetrapodPlugin::model_name()']]],
-  ['motion_5fstate_753',['motion_state',['../classRobotController.html#a32ce63004e5d5eb8168fd3b755b1642f',1,'RobotController']]],
-  ['motor_5fcommand_5fmsg_754',['motor_command_msg',['../classSingleLegController.html#a23ef6a1389a4803159704c89d1bb104a',1,'SingleLegController']]],
-  ['motor_5fconfirmation_5fsubscriber_755',['motor_confirmation_subscriber',['../classSingleLegController.html#a0525553c4d0a90ff67be01590829b2ff',1,'SingleLegController']]],
-  ['motor_5fgain_5fpublisher_756',['motor_gain_publisher',['../classSingleLegController.html#ac1cccef3695042a38de31d21d6ca2bf8',1,'SingleLegController']]]
+  ['l1_870',['L1',['../classKinematics.html#af731f4e21bd1af1d83a0b22b773e703a',1,'Kinematics']]],
+  ['l2_871',['L2',['../classKinematics.html#aaa42ff7b758f092fe11ed072576f7f36',1,'Kinematics']]],
+  ['l3_872',['L3',['../classKinematics.html#a0dd16fdaeb686f1a1224bc325f83a851',1,'Kinematics']]],
+  ['lc1_873',['LC1',['../classKinematics.html#afcc593ba5a0b574b938fe88f9478d304',1,'Kinematics']]],
+  ['lc2_874',['LC2',['../classKinematics.html#a548a6e948ecd3c73568b59ed34b5914e',1,'Kinematics']]],
+  ['lc3_875',['LC3',['../classKinematics.html#a818474c380afb54ec01c0d05c4789b22',1,'Kinematics']]],
+  ['lin_5fvel_5fx_876',['lin_vel_x',['../classController.html#abc876492f4e70d3c9be7b37681f2d926',1,'Controller']]],
+  ['lin_5fvel_5fy_877',['lin_vel_y',['../classController.html#a2734d863bd86af8642cc8f7b6eb115d2',1,'Controller']]],
+  ['log_5fjoint_5freferences_5fpublisher_878',['log_joint_references_publisher',['../classSingleLegController.html#a22c5d4e611cfcb4adcbaef1d94d19d4d',1,'SingleLegController']]],
+  ['log_5fjoint_5fstates_5fpublisher_879',['log_joint_states_publisher',['../classSingleLegController.html#a46f0de7a43c6910349226245d4dc8128',1,'SingleLegController']]]
 ];

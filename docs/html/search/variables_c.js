@@ -1,22 +1,10 @@
 var searchData=
 [
-  ['parentsensor_763',['parentSensor',['../classgazebo_1_1ContactPlugin.html#a13163d2b00a9c37132e7d21947b51764',1,'gazebo::ContactPlugin']]],
-  ['phase_5fperiod_764',['phase_period',['../classSingleLegController.html#a6914cf6a8c0b7fec112cf8144cd8b0e5',1,'SingleLegController']]],
-  ['port_765',['port',['../classSerialCommunication.html#aaadefe360b83aa67abb14940a7fd5d6c',1,'SerialCommunication']]],
-  ['pos_5fd_5fgain_766',['pos_d_gain',['../classgazebo_1_1PendulumPlugin.html#a36f32798d87ae7c255db98feb0a91c0a',1,'gazebo::PendulumPlugin']]],
-  ['pos_5fd_5fgains_767',['pos_d_gains',['../classgazebo_1_1SingleLegPlugin.html#ae759be668af5778b521754770d633a24',1,'gazebo::SingleLegPlugin::pos_d_gains()'],['../classgazebo_1_1TetrapodPlugin.html#a38d64fd84cab5369862b61685838bf0c',1,'gazebo::TetrapodPlugin::pos_d_gains()']]],
-  ['pos_5fi_5fgain_768',['pos_i_gain',['../classgazebo_1_1PendulumPlugin.html#a6323ee830df36a0c7558a45e4db60d86',1,'gazebo::PendulumPlugin']]],
-  ['pos_5fi_5fgains_769',['pos_i_gains',['../classgazebo_1_1SingleLegPlugin.html#a7eadef4b7cebd95c76b27a115c7047bf',1,'gazebo::SingleLegPlugin::pos_i_gains()'],['../classgazebo_1_1TetrapodPlugin.html#a196d4a852622a7d875e43bb641800705',1,'gazebo::TetrapodPlugin::pos_i_gains()']]],
-  ['pos_5fp_5fgain_770',['pos_p_gain',['../classgazebo_1_1PendulumPlugin.html#a951bd0acb7a1e784ac6f5b9194d0c55f',1,'gazebo::PendulumPlugin']]],
-  ['pos_5fp_5fgains_771',['pos_p_gains',['../classgazebo_1_1SingleLegPlugin.html#aed25040312b0bedb2f6454d4635ee1f9',1,'gazebo::SingleLegPlugin::pos_p_gains()'],['../classgazebo_1_1TetrapodPlugin.html#acfaf8b62caa764ce97b568d429336b76',1,'gazebo::TetrapodPlugin::pos_p_gains()']]],
-  ['pose_5fperiod_772',['pose_period',['../classSingleLegController.html#ae02b2a12924a88f5f2573d5d580f5c53',1,'SingleLegController']]],
-  ['position_5fcommand_773',['POSITION_COMMAND',['../classSingleLegController.html#a4b26621a2a9f3c0edf295c208d88c22f',1,'SingleLegController']]],
-  ['position_5fcontroller_5fjoint_5ftarget_774',['position_controller_joint_target',['../classSingleLegController.html#acf4689534f8f05affe42409d65ab77c5',1,'SingleLegController']]],
-  ['position_5fconvergence_5fcriteria_775',['POSITION_CONVERGENCE_CRITERIA',['../classSingleLegController.html#a2b09d870e9dd7f9591cbd4e193232d73',1,'SingleLegController']]],
-  ['positionbasetofrontleftinb_776',['positionBaseToFrontLeftInB',['../classKinematics.html#a3bafab67e908cd74efedad01e1773bdc',1,'Kinematics']]],
-  ['positionbasetofrontrightinb_777',['positionBaseToFrontRightInB',['../classKinematics.html#ac50d9f9296fb4846f2a9b87c50eac7c3',1,'Kinematics']]],
-  ['positionbasetorearleftinb_778',['positionBaseToRearLeftInB',['../classKinematics.html#a51507eacda7192c7673ab565de414315',1,'Kinematics']]],
-  ['positionbasetorearrightinb_779',['positionBaseToRearRightInB',['../classKinematics.html#a8fac97d4fab206a6f114dc4372f7879a',1,'Kinematics']]],
-  ['possub_780',['posSub',['../classgazebo_1_1SingleLegPlugin.html#a058403aedda61f900273ee7805cc3d1b',1,'gazebo::SingleLegPlugin::posSub()'],['../classgazebo_1_1TetrapodPlugin.html#abdac63a040d47148ccb33225dfb142c7',1,'gazebo::TetrapodPlugin::posSub()']]],
-  ['publish_5ffrequency_781',['publish_frequency',['../classSingleLegController.html#a274c428f5d4bf405cd7ef2ff1b74065b',1,'SingleLegController']]]
+  ['node_5fhandle_903',['node_handle',['../classSingleLegController.html#a0b907e0542a167b63f1878ec4550ac9f',1,'SingleLegController']]],
+  ['nodehandle_904',['nodeHandle',['../classSingleLegController.html#a989009aee898f6cc999055179688a27c',1,'SingleLegController::nodeHandle()'],['../classStaticGaitController.html#a6421c00b648165c9a6717b1a72e3ad90',1,'StaticGaitController::nodeHandle()']]],
+  ['num_5fmotors_905',['num_motors',['../classSerialCommunication.html#abbd72edea278bf93c96dc11e738290a1',1,'SerialCommunication::num_motors()'],['../classMotorInterface.html#a51bfed632dff4cdd1f20fec880391a09',1,'MotorInterface::NUM_MOTORS()']]],
+  ['num_5fmotors_5fport_5f1_906',['num_motors_port_1',['../classMotorInterface.html#ad4b84f7ebd0b565da0a1bfa2aca19790',1,'MotorInterface']]],
+  ['num_5fmotors_5fport_5f2_907',['num_motors_port_2',['../classMotorInterface.html#a0721041582a21b07cd5002d829bd4123',1,'MotorInterface']]],
+  ['number_5fof_5finner_5fmotor_5frotations_908',['number_of_inner_motor_rotations',['../classMotorControl.html#a41853f47391578f88397c82f476c201b',1,'MotorControl']]],
+  ['number_5fof_5fmotors_909',['number_of_motors',['../classTeensySerial.html#aa9a5cd2b5714f223ef9458b03e2d855d',1,'TeensySerial::number_of_motors()'],['../classSingleLegController.html#a00829f4edd3d805747a09c7c1c1de4f2',1,'SingleLegController::NUMBER_OF_MOTORS()']]]
 ];

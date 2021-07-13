@@ -1,17 +1,10 @@
 var searchData=
 [
-  ['oncontactstatemsg_235',['OnContactStateMsg',['../classHierarchicalOptimizationControl.html#a9b447e6598894c0201069eed1824d6e0',1,'HierarchicalOptimizationControl']]],
-  ['onflcontactcallback_236',['OnFlContactCallback',['../classContactSensor.html#a9ee28ab097d04c32a5d19919718fde93',1,'ContactSensor']]],
-  ['onfljointstatemsg_237',['OnFlJointStateMsg',['../classgazebo_1_1TetrapodPlugin.html#a503a40bd2357086fca77b1575af18c4c',1,'gazebo::TetrapodPlugin']]],
-  ['onforcemsg_238',['OnForceMsg',['../classgazebo_1_1SingleLegPlugin.html#a021874066534b0dbeb153a38c543aed4',1,'gazebo::SingleLegPlugin::OnForceMsg()'],['../classgazebo_1_1TetrapodPlugin.html#a1c26c2f991b9ca36e655b5f3b3e1c980',1,'gazebo::TetrapodPlugin::OnForceMsg()']]],
-  ['onfrcontactcallback_239',['OnFrContactCallback',['../classContactSensor.html#a435013ac2b71c2c0d9f704ab0313b482',1,'ContactSensor']]],
-  ['ongencoordmsg_240',['OnGenCoordMsg',['../classHierarchicalOptimizationControl.html#a74787630f85dd651a6bd25463c77011d',1,'HierarchicalOptimizationControl::OnGenCoordMsg()'],['../classLogUtils.html#a2c42c49b0dc74a5eb05923a033ca34c9',1,'LogUtils::OnGenCoordMsg()']]],
-  ['ongenvelmsg_241',['OnGenVelMsg',['../classHierarchicalOptimizationControl.html#ac93711c61e175c11b2a87d72b62ce335',1,'HierarchicalOptimizationControl::OnGenVelMsg()'],['../classLogUtils.html#a538d484ca1dc7ac3b0127d89ca2e6745',1,'LogUtils::OnGenVelMsg()']]],
-  ['onjointstatecmdmsg_242',['OnJointStateCmdMsg',['../classMotorInterface.html#a5cc0e2f8578dba23550426e28d13b4a2',1,'MotorInterface::OnJointStateCmdMsg()'],['../classLogUtils.html#acfb95557fa81d007205880849a304a32',1,'LogUtils::OnJointStateCmdMsg()']]],
-  ['onjointstatemsg_243',['OnJointStateMsg',['../classgazebo_1_1PendulumPlugin.html#a0eb1ab9152728ea062a5cb6b5214eadb',1,'gazebo::PendulumPlugin::OnJointStateMsg()'],['../classgazebo_1_1SingleLegPlugin.html#a31a76d63668ace36ea862edca1f3cd22',1,'gazebo::SingleLegPlugin::OnJointStateMsg()'],['../classgazebo_1_1TetrapodPlugin.html#a8caf7aaca40c73c65603175778e2f9a8',1,'gazebo::TetrapodPlugin::OnJointStateMsg()'],['../classLogUtils.html#ab1901bdc3adc37c49eeb1672b135cc92',1,'LogUtils::OnJointStateMsg()']]],
-  ['onposmsg_244',['OnPosMsg',['../classgazebo_1_1SingleLegPlugin.html#a91ec5ec137f91dfea7106b27d4a0a49d',1,'gazebo::SingleLegPlugin::OnPosMsg()'],['../classgazebo_1_1TetrapodPlugin.html#ade970b966a0d0f3db2d2b762f09a5973',1,'gazebo::TetrapodPlugin::OnPosMsg()']]],
-  ['onrlcontactcallback_245',['OnRlContactCallback',['../classContactSensor.html#a18b7189648c8ca096b5fd4ce0f39f204',1,'ContactSensor']]],
-  ['onrrcontactcallback_246',['OnRrContactCallback',['../classContactSensor.html#a8c9dd6baa25e67ca5eadf8960410f199',1,'ContactSensor']]],
-  ['onupdate_247',['OnUpdate',['../classgazebo_1_1ContactPlugin.html#adc07abc8ef9d8d6a2444940aeaf025b3',1,'gazebo::ContactPlugin']]],
-  ['onvelmsg_248',['OnVelMsg',['../classgazebo_1_1SingleLegPlugin.html#afa7a7333b605efb9b3b3428d8cd06ed0',1,'gazebo::SingleLegPlugin::OnVelMsg()'],['../classgazebo_1_1TetrapodPlugin.html#a8dc7655369ea3821ab3dfd06d298c876',1,'gazebo::TetrapodPlugin::OnVelMsg()']]]
+  ['node_5fhandle_261',['node_handle',['../classSingleLegController.html#a0b907e0542a167b63f1878ec4550ac9f',1,'SingleLegController']]],
+  ['nodehandle_262',['nodeHandle',['../classSingleLegController.html#a989009aee898f6cc999055179688a27c',1,'SingleLegController::nodeHandle()'],['../classStaticGaitController.html#a6421c00b648165c9a6717b1a72e3ad90',1,'StaticGaitController::nodeHandle()']]],
+  ['num_5fmotors_263',['num_motors',['../classSerialCommunication.html#abbd72edea278bf93c96dc11e738290a1',1,'SerialCommunication::num_motors()'],['../classMotorInterface.html#a51bfed632dff4cdd1f20fec880391a09',1,'MotorInterface::NUM_MOTORS()']]],
+  ['num_5fmotors_5fport_5f1_264',['num_motors_port_1',['../classMotorInterface.html#ad4b84f7ebd0b565da0a1bfa2aca19790',1,'MotorInterface']]],
+  ['num_5fmotors_5fport_5f2_265',['num_motors_port_2',['../classMotorInterface.html#a0721041582a21b07cd5002d829bd4123',1,'MotorInterface']]],
+  ['number_5fof_5finner_5fmotor_5frotations_266',['number_of_inner_motor_rotations',['../classMotorControl.html#a41853f47391578f88397c82f476c201b',1,'MotorControl']]],
+  ['number_5fof_5fmotors_267',['number_of_motors',['../classTeensySerial.html#aa9a5cd2b5714f223ef9458b03e2d855d',1,'TeensySerial::number_of_motors()'],['../classSingleLegController.html#a00829f4edd3d805747a09c7c1c1de4f2',1,'SingleLegController::NUMBER_OF_MOTORS()']]]
 ];
