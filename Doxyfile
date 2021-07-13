@@ -839,6 +839,7 @@ INPUT                  = catkin_ws/src/control \
                          Arduino/libraries/motor_driver \
                          Arduino/libraries/teensy_serial \
                          Arduino/libraries/utilities \
+                         Arduino/teensy_main/main \
                          docs/markdown
 
 # This tag can be used to specify the character encoding of the source files
