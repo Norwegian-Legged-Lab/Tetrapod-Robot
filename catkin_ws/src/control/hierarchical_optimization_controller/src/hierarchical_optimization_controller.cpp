@@ -244,9 +244,9 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     double mu = 0.6;
 
     // Motion tracking gains
-    Eigen::Matrix3d k_p_fb_pos = 20*Eigen::Matrix3d::Identity(); // Floating base position proportional gain
+    Eigen::Matrix3d k_p_fb_pos = 15*Eigen::Matrix3d::Identity(); // Floating base position proportional gain
     Eigen::Matrix3d k_d_fb_pos = 2*Eigen::Matrix3d::Identity(); // Floating base position derivative gain
-    Eigen::Matrix3d k_p_fb_rot = 20*Eigen::Matrix3d::Identity(); // Floating base rotation proportional gain
+    Eigen::Matrix3d k_p_fb_rot = 15*Eigen::Matrix3d::Identity(); // Floating base rotation proportional gain
     Eigen::Matrix3d k_d_fb_rot = 2*Eigen::Matrix3d::Identity(); // Floating base rotation proportional gain
     Eigen::Matrix3d k_p_fl = 2*Eigen::Matrix3d::Identity();     // Front left foot proportional gain
     Eigen::Matrix3d k_d_fl = 2*Eigen::Matrix3d::Identity();     // Front left foot derivative gain
