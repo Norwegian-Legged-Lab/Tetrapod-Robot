@@ -6,7 +6,7 @@ path = "~/Tetrapod-Robot/bagfiles/ho_tests/";
 %timestamp = "2021-07-15-09-54-39"; % Height test
 %timestamp = "2021-07-15-10-51-57"; % Height & Orientation test
 %timestamp = "2021-07-15-10-54-57"; % Height & Orientation test
-timestamp = "2021-07-16-14-16-28"; % Height test
+timestamp = "2021-07-16-14-36-24"; % Height test
 
 
 %% Extract ROSbag data
@@ -182,8 +182,8 @@ filename1 = 'ho_height_pos.pdf';
 filename2 = 'ho_height_ori.pdf';
 filename3 = 'ho_height_vel.pdf';
 
-% 
-% exportgraphics(fig1, filename1)
-% exportgraphics(fig2, filename2)
-% exportgraphics(fig3, filename3)
+
+exportgraphics(fig1, filename1)
+exportgraphics(fig2, filename2)
+exportgraphics(fig3, filename3)
 
