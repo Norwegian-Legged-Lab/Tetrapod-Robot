@@ -326,6 +326,14 @@ class HierarchicalOptimizationControl
     /// \brief ROS Joint State Publisher
     private: ros::Publisher jointStatePub;
 
+    // TODO remove as it is only needed to log to plots
+    /// \brief ROS Base Position Command Publisher
+    private: ros::Publisher basePoseCmdPub;
+
+    // TODO remove as it is only needed to log to plots
+    /// \brief ROS Base Position Command Publisher
+    private: ros::Publisher baseTwistCmdPub;
+
     /// \brief ROS callbackque that helps process messages.
     private: ros::CallbackQueue rosProcessQueue;
 
