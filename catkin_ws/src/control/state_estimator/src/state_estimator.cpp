@@ -47,6 +47,8 @@ void StateEstimator::InitializeROS()
         &StateEstimator::GeneralizedVelocityCallback,
         this
     );
+
+    this->_body_twist_state_publisher = this->_node_handle->advertise<geometry_msgs::Twist>("/twist_state", 1);
 }
 
 void StateEstimator::GeneralizedPositionCallback(const std_msgs::Float64MultiArrayConstPtr &msg)
@@ -100,7 +102,22 @@ void StateEstimator::UpdateStates()
     }
 }
 
-void StateEstimator::PublishStates()
+void StateEstimator::PrintStates()
 {
     ROS_INFO("VelX: %f\tVelY: %f\tVelZ: %f", _avg_lin_gait_vel_x, _avg_lin_gait_vel_y, _avg_ang_gait_vel_z);
+}
+
+void StateEstimator::PublishBodyTwistState()
+{
+    geometry_msgs::Twist msg;
+
+    msg.linear.x = _avg_lin_gait_vel_x;
+    msg.linear.y = _avg_lin_gait_vel_y;
+    msg.linear.z = 0.0;
+
+    msg.angular.x = 0.0;
+    msg.angular.y = 0.0;
+    msg.angular.z = _avg_ang_gait_vel_z;
+
+    _body_twist_state_publisher.publish(msg);
 }

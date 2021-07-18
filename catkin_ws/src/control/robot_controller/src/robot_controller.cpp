@@ -4,8 +4,6 @@ RobotController::RobotController(int _controller_freq, double _gait_period) : Ro
 {
     this->gait_duration = _gait_period;
 
-    //
-
     stance_period = 0.5 * _gait_period * stance_phase_duration_percentage;
 
     swing_period = 0.5 * (1.0 - stance_phase_duration_percentage) * _gait_period;
@@ -13,19 +11,16 @@ RobotController::RobotController(int _controller_freq, double _gait_period) : Ro
     stance_iterations = stance_period * controller_freq;
 
     swing_iterations = swing_period * controller_freq;
-    //
-
-    /*
-    stance_iterations = _gait_period*controller_freq*stance_phase_duration_percentage;
-
-    stance_period = _gait_period * stance_phase_duration_percentage;
-
-    swing_period = _gait_period * (1.0 - 2.0 * stance_phase_duration_percentage);
-
-    swing_iterations = _gait_period*controller_freq*(1.0 - 2.0*stance_phase_duration_percentage);
-    */
 
     this->final_iteration = this->stance_iterations;
+
+    //double number_of_gait_iterations = _gait_period * _controller_freq;
+
+    //this->_lin_body_vel_x_history.resize(number_of_gait_iterations, 0.0);
+
+    //this->_lin_body_vel_y_history.resize(number_of_gait_iterations, 0.0);
+
+    //this->_ang_body_vel_z_history.resize(number_of_gait_iterations, 0.0);
 }
 
 /*
@@ -46,27 +41,26 @@ void RobotController::UpdateStepDistances()
 {
     double step_duration = 2.0 * stance_period + swing_period;
 
-    this->step_distance_x_linear = step_duration*lin_vel_x;
+    this->step_distance_x_linear = step_duration*_lin_vel_x_command;
 
-    this->step_distance_y_linear = step_duration*lin_vel_y;
+    this->step_distance_y_linear = step_duration*_lin_vel_y_command;
 
     Eigen::Matrix<double, 3, 1> base_to_hip_distance; // = kinematics.GetDistanceFromBaseToFrontLeftHipInB();
 
     double rotation_radius =  sqrt(2*LEG_OFFSET_LENGTH*LEG_OFFSET_LENGTH)
                             + sqrt(base_to_hip_distance(0)*base_to_hip_distance(0) + base_to_hip_distance(1)*base_to_hip_distance(1));
 
-    double step_distance_rotation = ang_vel_z*rotation_radius*step_duration;
+    double step_distance_rotation = _ang_vel_z_command*rotation_radius*step_duration;
 
     this->step_distance_x_rotational = step_distance_rotation/sqrt(2.0);
 
     this->step_distance_y_rotational = step_distance_rotation/sqrt(2.0);
 }
 
-void RobotController::UpdateGaitState()
+bool RobotController::UpdateGaitState()
 {
     if(this->iteration == this->final_iteration - 1)
     {
-        this->UpdateStepDistances();
 
         iteration = 0;
 
@@ -99,10 +93,14 @@ void RobotController::UpdateGaitState()
         default:
             break;
         }
+
+        return true;
     }
     else
     {
         iteration++;
+
+        return false;
     }
 }
 
@@ -455,4 +453,44 @@ void RobotController::PrintFootPositions()
     fr_position_body(0), fr_position_body(1), fr_position_body(2),
     rl_position_body(0), rl_position_body(1), rl_position_body(2),
     rr_position_body(0), rr_position_body(1), rr_position_body(2));
+}
+
+void RobotController::UpdateGuidanceCommands()
+{   
+    if(this->lin_vel_x == 0.0)
+    {
+        this->_lin_vel_x_command = 0.0;
+    }
+    else
+    {
+        this->_lin_vel_x_command = this->lin_vel_x + this->_guidance_lin_vel_gain * (this->lin_vel_x - this->_lin_vel_x_estimated);
+    }
+
+    if(this->lin_vel_y == 0.0)
+    {
+        this->_lin_vel_y_command = 0.0;
+    }
+    else
+    {
+        this->_lin_vel_y_command = this->lin_vel_y + this->_guidance_lin_vel_gain * (this->lin_vel_y - this->_lin_vel_y_estimated);
+    }
+    
+    if(this->ang_vel_z == 0.0)
+    {
+        this->_ang_vel_z_command = 0.0;
+    }
+    else
+    {
+        this->_ang_vel_z_command = ang_vel_z + _guidance_ang_vel_gain * (ang_vel_z - _ang_vel_z_estimated);
+    }
+    
+}
+
+void RobotController::UpdateNonGuidanceCommands()
+{
+    this->_lin_vel_x_command = this->lin_vel_x;
+
+    this->_lin_vel_y_command = this->lin_vel_y;
+
+    this->_ang_vel_z_command = this->ang_vel_z;
 }

@@ -18,7 +18,8 @@ int main(int argc, char **argv)
     {   
         ros::spinOnce();
         state_estimator.UpdateStates();
-        state_estimator.PublishStates();
+        state_estimator.PrintStates();
+        state_estimator.PublishBodyTwistState();
         control_rate.sleep();
     }
     

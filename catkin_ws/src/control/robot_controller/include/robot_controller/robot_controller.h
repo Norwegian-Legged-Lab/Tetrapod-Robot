@@ -14,9 +14,13 @@ class RobotController : public Controller
 
     public: RobotController(int controller_freq, double gait_period);
 
+    public: void UpdateGuidanceCommands();
+
+    public: void UpdateNonGuidanceCommands();
+
     public: void UpdateStepDistances();
 
-    public: void UpdateGaitState();
+    public: bool UpdateGaitState();
 
     /// \brief A function updating the foot positions of the robot in the hip frames
     public: void UpdateFeetReferences();
@@ -84,7 +88,7 @@ class RobotController : public Controller
 
     private: double swing_rise_percentage = 0.3;
 
-    private: double swing_period; // SET SOMEWHERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    private: double swing_period; 
 
     private: double stance_period;
 
@@ -110,6 +114,27 @@ class RobotController : public Controller
 
     private: double rr_step_distance_y;
 
+    private: double _lin_vel_x_command;
+
+    private: double _lin_vel_y_command;
+
+    private: double _ang_vel_z_command;
+
+    private: double _guidance_lin_vel_gain = 1.0;
+
+    private: double _guidance_ang_vel_gain = 1.0;
+
+    //private: std::vector<double> _lin_body_vel_x_history;
+
+    //private: std::vector<double> _lin_body_vel_y_history;
+
+    //private: std::vector<double> _ang_body_vel_z_history;
+
+    //private: double _avg_lin_gait_vel_x;
+
+    //private: double _avg_lin_gait_vel_y;
+
+    //private: double _avg_ang_gait_vel_z;
 
     /*
     Eigen::Matrix<double, 3, 1> fl_trajectory_x;

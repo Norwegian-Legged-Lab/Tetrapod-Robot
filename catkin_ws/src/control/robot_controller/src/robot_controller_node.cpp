@@ -6,6 +6,8 @@
 
 int main(int argc, char **argv)
 {
+    bool USE_GUIDANCE_CONTROL = true;
+
     int controller_frequency = 200;
 
     double gait_period = 0.4;
@@ -31,7 +33,20 @@ int main(int argc, char **argv)
     while(ros::ok())
     {   
         ros::spinOnce();
-        controller.UpdateGaitState();
+
+        if(controller.UpdateGaitState())
+        {
+            if(USE_GUIDANCE_CONTROL)
+            {
+                controller.UpdateGuidanceCommands();
+            }
+            else
+            {
+                controller.UpdateNonGuidanceCommands();
+            }
+            controller.UpdateStepDistances();
+        }
+
         //controller.UpdateFeetReferences();
         controller.UpdateFeetTrajectories();
         controller.UpdateJointCommands();
