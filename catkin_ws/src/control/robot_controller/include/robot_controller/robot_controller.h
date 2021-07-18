@@ -80,9 +80,9 @@ class RobotController : public Controller
 
     private: double max_step_height = 0.1;
 
-    private: double stance_phase_duration_percentage = 0.2;
+    private: double stance_phase_duration_percentage = 0.1;
 
-    private: double swing_rise_percentage = 0.4;
+    private: double swing_rise_percentage = 0.3;
 
     private: double swing_period; // SET SOMEWHERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 

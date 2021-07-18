@@ -49,7 +49,7 @@ void RobotController::UpdateStepDistances()
 
 void RobotController::UpdateGaitState()
 {
-    if(this->iteration == this->final_iteration)
+    if(this->iteration == this->final_iteration - 1)
     {
         this->UpdateStepDistances();
 
