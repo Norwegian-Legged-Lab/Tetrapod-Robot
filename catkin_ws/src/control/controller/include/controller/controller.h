@@ -50,6 +50,8 @@ class Controller{
     /// \brief Converts twist command messages into desired linear and angular body velocities
     void TwistCommandCallback(const geometry_msgs::TwistConstPtr &_msg);
 
+    void TwistStateCallback(const geometry_msgs::TwistConstPtr &_msg);
+
     /*** Variables ***/
     private: bool ready_to_proceed = false;
 
@@ -71,6 +73,8 @@ class Controller{
 
     /// \brief Subscribes to twist command messages from an external controller
     protected: ros::Subscriber twist_command_subscriber;
+
+    protected: ros::Subscriber twist_state_subscriber;
 
     protected: Eigen::Vector3d fl_offset = Eigen::Vector3d(LEG_OFFSET_LENGTH, LEG_OFFSET_LENGTH, 0);
 
@@ -122,4 +126,10 @@ class Controller{
 
     /// \brief The desired angular robot velocity around the robot's z axis
     protected: double ang_vel_z = 0.0;
+
+    protected: double _lin_vel_x_estimated = 0.0;
+
+    protected: double _lin_vel_y_estimated = 0.0;
+
+    protected: double _ang_vel_z_estimated = 0.0;
 };

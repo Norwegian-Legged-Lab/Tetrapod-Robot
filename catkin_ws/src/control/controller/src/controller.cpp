@@ -119,7 +119,6 @@ void Controller::initROS()
         );
     }
 
-    // WHY DO THIS?
     nodeHandle.reset(new ros::NodeHandle(node_name));
 
     // Initialize the ready to move subscriber
@@ -144,6 +143,14 @@ void Controller::initROS()
         "/twist_command",
         1,
         &Controller::TwistCommandCallback,
+        this
+    );
+
+    this->twist_state_subscriber = nodeHandle->subscribe
+    (
+        "/twist_state",
+        1,
+        &Controller::TwistStateCallback,
         this
     );
 
@@ -173,4 +180,11 @@ void Controller::TwistCommandCallback(const geometry_msgs::TwistConstPtr &_msg)
     this->lin_vel_x = _msg->linear.x;
     this->lin_vel_y = _msg->linear.y;
     this->ang_vel_z = _msg->angular.z; 
+}
+
+void Controller::TwistStateCallback(const geometry_msgs::TwistConstPtr &_msg)
+{
+    this->_lin_vel_x_estimated = _msg->linear.x;
+    this->_lin_vel_y_estimated = _msg->linear.y;
+    this->_ang_vel_z_estimated = _msg->angular.z;
 }
