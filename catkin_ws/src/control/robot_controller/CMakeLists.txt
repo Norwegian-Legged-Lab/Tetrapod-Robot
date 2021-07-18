@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   controller
   kinematics
   eigen_conversions
+  modular_gait_controller
 )
 
 find_package(Eigen3 REQUIRED)
@@ -29,6 +30,7 @@ catkin_package(
     controller
     kinematics
     eigen_conversions
+    modular_gait_controller
 #  DEPENDS system_lib
 )
 
@@ -48,14 +50,25 @@ add_executable(robot_controller_node
   src/robot_controller.cpp
 )
 
+add_executable(plot_spline
+  src/plot_spline.cpp
+)
+
 target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
   controller
+  modular_gait_controller
 )
 
 target_link_libraries(robot_controller_node
   ${catkin_LIBRARIES}
   controller
+  modular_gait_controller
+)
+
+target_link_libraries(plot_spline
+  ${catkin_LIBRARIES}
+  modular_gait_controller
 )
 
 install(TARGETS ${PROJECT_NAME}

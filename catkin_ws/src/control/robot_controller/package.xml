@@ -30,6 +30,7 @@
   <depend>kinematics</depend>
   <depend>controller</depend>
   <depend>eigen_conversions</depend>
+  <depend>modular_gait_controller</depend>
 
   <depend>eigen</depend>
 
