@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['kinematics_390',['kinematics',['../classHierarchicalOptimizationControl.html#a3ebddce797dad8acbc82ea07153a152a',1,'HierarchicalOptimizationControl']]]
+  ['encoder_5fturn_5fthreshold_766',['encoder_turn_threshold',['../classMotorControl.html#ab0c172ca680c38bdc09e96573c178056',1,'MotorControl']]]
 ];

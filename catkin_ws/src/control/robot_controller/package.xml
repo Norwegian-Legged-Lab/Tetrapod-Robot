@@ -28,6 +28,7 @@
   <depend>math_utils</depend>
   <depend>debug_utils</depend>
   <depend>kinematics</depend>
+  <depend>modular_gait_controller</depend>
   <depend>controller</depend>
   <depend>eigen_conversions</depend>
   <depend>modular_gait_controller</depend>

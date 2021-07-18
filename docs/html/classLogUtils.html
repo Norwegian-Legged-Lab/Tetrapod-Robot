@@ -65,6 +65,7 @@ $(function() {
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classLogUtils-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">LogUtils Class Reference</div>  </div>
@@ -75,6 +76,15 @@ $(function() {
  <a href="classLogUtils.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="log__utils_8h_source.html">log_utils.h</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for LogUtils:</div>
+<div class="dyncontent">
+<div class="center"><img src="classLogUtils__coll__graph.png" border="0" usemap="#LogUtils_coll__map" alt="Collaboration graph"/></div>
+<map name="LogUtils_coll__map" id="LogUtils_coll__map">
+<area shape="rect" title="A class for logging utilities." alt="" coords="15,95,90,121"/>
+<area shape="rect" href="classKinematics.html" title="A class for analytical Kinematics Solving." alt="" coords="5,5,100,32"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -120,6 +130,93 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogUtils.html#ab7d5e4267109bd8c217e703cb31bf9b6">InitRosQueueThreads</a> ()</td></tr>
 <tr class="memdesc:ab7d5e4267109bd8c217e703cb31bf9b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">The InitRosQueueThreads function is called to initialize the ROS Publish and Process Queue Threads. <br /></td></tr>
 <tr class="separator:ab7d5e4267109bd8c217e703cb31bf9b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a76769b35c2132276f6f1769b7a39a2d3"><td class="memItemLeft" align="right" valign="top"><a id="a76769b35c2132276f6f1769b7a39a2d3"></a>
+<a class="el" href="classKinematics.html">Kinematics</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogUtils.html#a76769b35c2132276f6f1769b7a39a2d3">kinematics</a></td></tr>
+<tr class="memdesc:a76769b35c2132276f6f1769b7a39a2d3"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classKinematics.html" title="A class for analytical Kinematics Solving.">Kinematics</a>. <br /></td></tr>
+<tr class="separator:a76769b35c2132276f6f1769b7a39a2d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f0882691ccb98cfd7ff8a8337772075"><td class="memItemLeft" align="right" valign="top"><a id="a9f0882691ccb98cfd7ff8a8337772075"></a>
+Eigen::Matrix&lt; double, 18, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogUtils.html#a9f0882691ccb98cfd7ff8a8337772075">genCoord</a></td></tr>
+<tr class="memdesc:a9f0882691ccb98cfd7ff8a8337772075"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generalized Coordinates. <br /></td></tr>
+<tr class="separator:a9f0882691ccb98cfd7ff8a8337772075"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8564523437dfb62bb73319aec51d8240"><td class="memItemLeft" align="right" valign="top"><a id="a8564523437dfb62bb73319aec51d8240"></a>
+Eigen::Matrix&lt; double, 18, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogUtils.html#a8564523437dfb62bb73319aec51d8240">genVel</a></td></tr>
+<tr class="memdesc:a8564523437dfb62bb73319aec51d8240"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generalized Velocities. <br /></td></tr>
+<tr class="separator:a8564523437dfb62bb73319aec51d8240"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46658fc92e092bdfc1ee5c8d8e8b2416"><td class="memItemLeft" align="right" valign="top"><a id="a46658fc92e092bdfc1ee5c8d8e8b2416"></a>
+sensor_msgs::JointState&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogUtils.html#a46658fc92e092bdfc1ee5c8d8e8b2416">jointState</a></td></tr>
+<tr class="memdesc:a46658fc92e092bdfc1ee5c8d8e8b2416"><td class="mdescLeft">&#160;</td><td class="mdescRight">Joint State. <br /></td></tr>
+<tr class="separator:a46658fc92e092bdfc1ee5c8d8e8b2416"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f4af56b539406e9a2872699c1f837b8"><td class="memItemLeft" align="right" valign="top"><a id="a1f4af56b539406e9a2872699c1f837b8"></a>
+sensor_msgs::JointState&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogUtils.html#a1f4af56b539406e9a2872699c1f837b8">jointStateCmd</a></td></tr>
+<tr class="memdesc:a1f4af56b539406e9a2872699c1f837b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Joint State Command. <br /></td></tr>
+<tr class="separator:a1f4af56b539406e9a2872699c1f837b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ded52dacbf3d65015fcc5ac684b6a94"><td class="memItemLeft" align="right" valign="top"><a id="a3ded52dacbf3d65015fcc5ac684b6a94"></a>
+Eigen::Matrix&lt; Eigen::Vector3d, 4, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogUtils.html#a3ded52dacbf3d65015fcc5ac684b6a94">fPos</a></td></tr>
+<tr class="memdesc:a3ded52dacbf3d65015fcc5ac684b6a94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Footstep positions. <br /></td></tr>
+<tr class="separator:a3ded52dacbf3d65015fcc5ac684b6a94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4423ae09d5e35f2f34cc90b97164ac4"><td class="memItemLeft" align="right" valign="top"><a id="ae4423ae09d5e35f2f34cc90b97164ac4"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogUtils.html#ae4423ae09d5e35f2f34cc90b97164ac4">contactState</a> [4]</td></tr>
+<tr class="memdesc:ae4423ae09d5e35f2f34cc90b97164ac4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contact State. <br /></td></tr>
+<tr class="separator:ae4423ae09d5e35f2f34cc90b97164ac4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a133020f924c8fa8f8088ed647194a6a1"><td class="memItemLeft" align="right" valign="top"><a id="a133020f924c8fa8f8088ed647194a6a1"></a>
+std::unique_ptr&lt; ros::NodeHandle &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogUtils.html#a133020f924c8fa8f8088ed647194a6a1">rosNode</a></td></tr>
+<tr class="memdesc:a133020f924c8fa8f8088ed647194a6a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Node used for ROS transport. <br /></td></tr>
+<tr class="separator:a133020f924c8fa8f8088ed647194a6a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc5ebcd28aef735fda7c0234a7642923"><td class="memItemLeft" align="right" valign="top"><a id="acc5ebcd28aef735fda7c0234a7642923"></a>
+ros::Subscriber&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogUtils.html#acc5ebcd28aef735fda7c0234a7642923">genCoordSub</a></td></tr>
+<tr class="memdesc:acc5ebcd28aef735fda7c0234a7642923"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS Generalized Coordinates Subscriber. <br /></td></tr>
+<tr class="separator:acc5ebcd28aef735fda7c0234a7642923"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a146a5e656e8b2631a149259930769a43"><td class="memItemLeft" align="right" valign="top"><a id="a146a5e656e8b2631a149259930769a43"></a>
+ros::Subscriber&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogUtils.html#a146a5e656e8b2631a149259930769a43">genVelSub</a></td></tr>
+<tr class="memdesc:a146a5e656e8b2631a149259930769a43"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS Generalized Coordinates Subscriber. <br /></td></tr>
+<tr class="separator:a146a5e656e8b2631a149259930769a43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa09263ffc83b24e77d676091ad8bf786"><td class="memItemLeft" align="right" valign="top"><a id="aa09263ffc83b24e77d676091ad8bf786"></a>
+ros::Subscriber&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogUtils.html#aa09263ffc83b24e77d676091ad8bf786">jointStateSub</a></td></tr>
+<tr class="memdesc:aa09263ffc83b24e77d676091ad8bf786"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS Joint State Subscriber. <br /></td></tr>
+<tr class="separator:aa09263ffc83b24e77d676091ad8bf786"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5b2e838bf3149b0457474fcb2734b0e"><td class="memItemLeft" align="right" valign="top"><a id="ae5b2e838bf3149b0457474fcb2734b0e"></a>
+ros::Subscriber&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogUtils.html#ae5b2e838bf3149b0457474fcb2734b0e">jointStateCmdSub</a></td></tr>
+<tr class="memdesc:ae5b2e838bf3149b0457474fcb2734b0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS Joint State Command Subscriber. <br /></td></tr>
+<tr class="separator:ae5b2e838bf3149b0457474fcb2734b0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b04067978247f846c346f1b93c30e94"><td class="memItemLeft" align="right" valign="top"><a id="a5b04067978247f846c346f1b93c30e94"></a>
+ros::Subscriber&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogUtils.html#a5b04067978247f846c346f1b93c30e94">contactStateSub</a></td></tr>
+<tr class="memdesc:a5b04067978247f846c346f1b93c30e94"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS Contact State Subscriber. <br /></td></tr>
+<tr class="separator:a5b04067978247f846c346f1b93c30e94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96482f3636f792619c4fc694970f2a00"><td class="memItemLeft" align="right" valign="top"><a id="a96482f3636f792619c4fc694970f2a00"></a>
+ros::Publisher&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogUtils.html#a96482f3636f792619c4fc694970f2a00">genCoordLogPub</a></td></tr>
+<tr class="memdesc:a96482f3636f792619c4fc694970f2a00"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS Generalized Coordinates Log Publisher. <br /></td></tr>
+<tr class="separator:a96482f3636f792619c4fc694970f2a00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7ee536b6a1e441997b9501556c9a437"><td class="memItemLeft" align="right" valign="top"><a id="aa7ee536b6a1e441997b9501556c9a437"></a>
+ros::Publisher&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogUtils.html#aa7ee536b6a1e441997b9501556c9a437">genVelLogPub</a></td></tr>
+<tr class="memdesc:aa7ee536b6a1e441997b9501556c9a437"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS Generalized Velocities Log Publisher. <br /></td></tr>
+<tr class="separator:aa7ee536b6a1e441997b9501556c9a437"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebb30b44bc3a2aa697b90e85c303ae18"><td class="memItemLeft" align="right" valign="top"><a id="aebb30b44bc3a2aa697b90e85c303ae18"></a>
+ros::Publisher&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogUtils.html#aebb30b44bc3a2aa697b90e85c303ae18">jointStatePub</a></td></tr>
+<tr class="memdesc:aebb30b44bc3a2aa697b90e85c303ae18"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS Joint State Log Publisher. <br /></td></tr>
+<tr class="separator:aebb30b44bc3a2aa697b90e85c303ae18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0b46a1cc8b4eb02798e79a7cbf7de43"><td class="memItemLeft" align="right" valign="top"><a id="ac0b46a1cc8b4eb02798e79a7cbf7de43"></a>
+ros::Publisher&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogUtils.html#ac0b46a1cc8b4eb02798e79a7cbf7de43">jointStateCmdPub</a></td></tr>
+<tr class="memdesc:ac0b46a1cc8b4eb02798e79a7cbf7de43"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS Joint State Command Log Publisher. <br /></td></tr>
+<tr class="separator:ac0b46a1cc8b4eb02798e79a7cbf7de43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af29fa1f063ccc6e3194b8ae90ae9fbc4"><td class="memItemLeft" align="right" valign="top"><a id="af29fa1f063ccc6e3194b8ae90ae9fbc4"></a>
+ros::CallbackQueue&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogUtils.html#af29fa1f063ccc6e3194b8ae90ae9fbc4">rosPublishQueue</a></td></tr>
+<tr class="memdesc:af29fa1f063ccc6e3194b8ae90ae9fbc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS callbackque that helps publish messages. <br /></td></tr>
+<tr class="separator:af29fa1f063ccc6e3194b8ae90ae9fbc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3e38b4337f5d3f0fd7ef03839f9692a"><td class="memItemLeft" align="right" valign="top"><a id="ae3e38b4337f5d3f0fd7ef03839f9692a"></a>
+ros::CallbackQueue&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogUtils.html#ae3e38b4337f5d3f0fd7ef03839f9692a">rosProcessQueue</a></td></tr>
+<tr class="memdesc:ae3e38b4337f5d3f0fd7ef03839f9692a"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS callbackque that helps process messages. <br /></td></tr>
+<tr class="separator:ae3e38b4337f5d3f0fd7ef03839f9692a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61647054e3f8eb8813df56899f63e153"><td class="memItemLeft" align="right" valign="top"><a id="a61647054e3f8eb8813df56899f63e153"></a>
+std::thread&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogUtils.html#a61647054e3f8eb8813df56899f63e153">rosPublishQueueThread</a></td></tr>
+<tr class="memdesc:a61647054e3f8eb8813df56899f63e153"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread running the rosPublishQueue. <br /></td></tr>
+<tr class="separator:a61647054e3f8eb8813df56899f63e153"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3161987d511392c5331c44ebfe959895"><td class="memItemLeft" align="right" valign="top"><a id="a3161987d511392c5331c44ebfe959895"></a>
+std::thread&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogUtils.html#a3161987d511392c5331c44ebfe959895">rosProcessQueueThread</a></td></tr>
+<tr class="memdesc:a3161987d511392c5331c44ebfe959895"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread running the rosProcessQueue. <br /></td></tr>
+<tr class="separator:a3161987d511392c5331c44ebfe959895"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A class for logging utilities. </p>
@@ -176,37 +273,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
-<a id="acfb95557fa81d007205880849a304a32"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acfb95557fa81d007205880849a304a32">&#9670;&nbsp;</a></span>OnJointStateCmdMsg()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void LogUtils::OnJointStateCmdMsg </td>
-          <td>(</td>
-          <td class="paramtype">const sensor_msgs::JointStateConstPtr &amp;&#160;</td>
-          <td class="paramname"><em>_msg</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The OnJointStateCmdMsg function handles an incoming joint state command message from ROS. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_msg</td><td>A message holding data to describe the state of a set of controlled joints. The state is defined by<ul>
-<li>the position of the joint,</li>
-<li>the velocity of the joint and</li>
-<li>the effort (torque) that is applied in the joint. </li>
-</ul>
-</td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="ab1901bdc3adc37c49eeb1672b135cc92"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab1901bdc3adc37c49eeb1672b135cc92">&#9670;&nbsp;</a></span>OnJointStateMsg()</h2>
 
@@ -224,6 +290,37 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><div class="memdoc">
 
 <p>The OnJointStateMsg function handles an incoming joint state message from ROS. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_msg</td><td>A message holding data to describe the state of a set of controlled joints. The state is defined by<ul>
+<li>the position of the joint,</li>
+<li>the velocity of the joint and</li>
+<li>the effort (torque) that is applied in the joint. </li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acfb95557fa81d007205880849a304a32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfb95557fa81d007205880849a304a32">&#9670;&nbsp;</a></span>OnJointStateCmdMsg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LogUtils::OnJointStateCmdMsg </td>
+          <td>(</td>
+          <td class="paramtype">const sensor_msgs::JointStateConstPtr &amp;&#160;</td>
+          <td class="paramname"><em>_msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The OnJointStateCmdMsg function handles an incoming joint state command message from ROS. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">_msg</td><td>A message holding data to describe the state of a set of controlled joints. The state is defined by<ul>

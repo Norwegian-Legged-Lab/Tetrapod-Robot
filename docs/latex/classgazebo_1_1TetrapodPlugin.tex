@@ -11,8 +11,7 @@ A plugin to control the tetrapod robot.
 
 
 
-Inheritance diagram for gazebo\+::Tetrapod\+Plugin\+:
-\nopagebreak
+Inheritance diagram for gazebo\+::Tetrapod\+Plugin\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,8 +20,7 @@ Inheritance diagram for gazebo\+::Tetrapod\+Plugin\+:
 \end{figure}
 
 
-Collaboration diagram for gazebo\+::Tetrapod\+Plugin\+:
-\nopagebreak
+Collaboration diagram for gazebo\+::Tetrapod\+Plugin\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -115,12 +113,122 @@ void \mbox{\hyperlink{classgazebo_1_1TetrapodPlugin_ada17cc1d60f1d1b8d20133e1aea
 \mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a1ff7ee437819f43f22a13812a420afaa}\label{classgazebo_1_1TetrapodPlugin_a1ff7ee437819f43f22a13812a420afaa}} 
 void \mbox{\hyperlink{classgazebo_1_1TetrapodPlugin_a1ff7ee437819f43f22a13812a420afaa}{Init\+Joint\+Configuration}} ()
 \begin{DoxyCompactList}\small\item\em The Init\+Joint\+Configuration function is called to initialize the desired joint configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a7889dd509beca43169bcb86c44f5396d}\label{classgazebo_1_1TetrapodPlugin_a7889dd509beca43169bcb86c44f5396d}} 
+physics\+::\+Model\+Ptr \mbox{\hyperlink{classgazebo_1_1TetrapodPlugin_a7889dd509beca43169bcb86c44f5396d}{model}}
+\begin{DoxyCompactList}\small\item\em Pointer to the model. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_ae6a6dcf9551776b99ddefa1e1499c9cf}\label{classgazebo_1_1TetrapodPlugin_ae6a6dcf9551776b99ddefa1e1499c9cf}} 
+physics\+::\+World\+Ptr \mbox{\hyperlink{classgazebo_1_1TetrapodPlugin_ae6a6dcf9551776b99ddefa1e1499c9cf}{world}}
+\begin{DoxyCompactList}\small\item\em Pointer to the world. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a847b85a1a5485af4ce1f0942b3b102c1}\label{classgazebo_1_1TetrapodPlugin_a847b85a1a5485af4ce1f0942b3b102c1}} 
+std\+::string \mbox{\hyperlink{classgazebo_1_1TetrapodPlugin_a847b85a1a5485af4ce1f0942b3b102c1}{model\+\_\+name}}
+\begin{DoxyCompactList}\small\item\em Model name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a1ed9828e7eaac1ffca1c63e3b1c57ab2}\label{classgazebo_1_1TetrapodPlugin_a1ed9828e7eaac1ffca1c63e3b1c57ab2}} 
+physics\+::\+Link\+Ptr \mbox{\hyperlink{classgazebo_1_1TetrapodPlugin_a1ed9828e7eaac1ffca1c63e3b1c57ab2}{base}}
+\begin{DoxyCompactList}\small\item\em Pointer to the body link. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_ad635147502526459216c6c2156b3a0ec}\label{classgazebo_1_1TetrapodPlugin_ad635147502526459216c6c2156b3a0ec}} 
+std\+::map$<$ std\+::string, physics\+::\+Joint\+Ptr $>$ \mbox{\hyperlink{classgazebo_1_1TetrapodPlugin_ad635147502526459216c6c2156b3a0ec}{joints}}
+\begin{DoxyCompactList}\small\item\em Pointers to the joints. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_adadbc95520c62bcdaaf7966cad3ed579}\label{classgazebo_1_1TetrapodPlugin_adadbc95520c62bcdaaf7966cad3ed579}} 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classgazebo_1_1TetrapodPlugin_adadbc95520c62bcdaaf7966cad3ed579}{joint\+\_\+names}}
+\begin{DoxyCompactList}\small\item\em Vector of joint names. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_af0aa95d81eff447619d54fef3ea3f350}\label{classgazebo_1_1TetrapodPlugin_af0aa95d81eff447619d54fef3ea3f350}} 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{classgazebo_1_1TetrapodPlugin_af0aa95d81eff447619d54fef3ea3f350}{joint\+\_\+config}}
+\begin{DoxyCompactList}\small\item\em Vector of joint configuration. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a1960f0cb557960a5b1543a1e9e259fed}\label{classgazebo_1_1TetrapodPlugin_a1960f0cb557960a5b1543a1e9e259fed}} 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{classgazebo_1_1TetrapodPlugin_a1960f0cb557960a5b1543a1e9e259fed}{vel\+\_\+p\+\_\+gains}}
+\begin{DoxyCompactList}\small\item\em Vector of Velocity P-\/gains. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a97a1b92e4b3e7a28ff428479c9147804}\label{classgazebo_1_1TetrapodPlugin_a97a1b92e4b3e7a28ff428479c9147804}} 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{classgazebo_1_1TetrapodPlugin_a97a1b92e4b3e7a28ff428479c9147804}{vel\+\_\+i\+\_\+gains}}
+\begin{DoxyCompactList}\small\item\em Vector of Velocity I-\/gains. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_ac80108f47eea394d1a6d0853f7318a99}\label{classgazebo_1_1TetrapodPlugin_ac80108f47eea394d1a6d0853f7318a99}} 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{classgazebo_1_1TetrapodPlugin_ac80108f47eea394d1a6d0853f7318a99}{vel\+\_\+d\+\_\+gains}}
+\begin{DoxyCompactList}\small\item\em Vector of Velocity D-\/gains. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_acfaf8b62caa764ce97b568d429336b76}\label{classgazebo_1_1TetrapodPlugin_acfaf8b62caa764ce97b568d429336b76}} 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{classgazebo_1_1TetrapodPlugin_acfaf8b62caa764ce97b568d429336b76}{pos\+\_\+p\+\_\+gains}}
+\begin{DoxyCompactList}\small\item\em Vector of Position P-\/gains. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a196d4a852622a7d875e43bb641800705}\label{classgazebo_1_1TetrapodPlugin_a196d4a852622a7d875e43bb641800705}} 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{classgazebo_1_1TetrapodPlugin_a196d4a852622a7d875e43bb641800705}{pos\+\_\+i\+\_\+gains}}
+\begin{DoxyCompactList}\small\item\em Vector of Position I-\/gains. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a38d64fd84cab5369862b61685838bf0c}\label{classgazebo_1_1TetrapodPlugin_a38d64fd84cab5369862b61685838bf0c}} 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{classgazebo_1_1TetrapodPlugin_a38d64fd84cab5369862b61685838bf0c}{pos\+\_\+d\+\_\+gains}}
+\begin{DoxyCompactList}\small\item\em Vector of Position D-\/gains. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a8650e4ea5b106a0f92aa33a34760c482}\label{classgazebo_1_1TetrapodPlugin_a8650e4ea5b106a0f92aa33a34760c482}} 
+\mbox{\hyperlink{classgazebo_1_1TetrapodPlugin_a482cfef3ae187631bf53c8d72c6568e7}{Control\+Mode}} \mbox{\hyperlink{classgazebo_1_1TetrapodPlugin_a8650e4ea5b106a0f92aa33a34760c482}{control\+Mode}}
+\begin{DoxyCompactList}\small\item\em Control mode indicator. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_aa38324748a58c99dc32577a293ee9bd8}\label{classgazebo_1_1TetrapodPlugin_aa38324748a58c99dc32577a293ee9bd8}} 
+std\+::unique\+\_\+ptr$<$ ros\+::\+Node\+Handle $>$ \mbox{\hyperlink{classgazebo_1_1TetrapodPlugin_aa38324748a58c99dc32577a293ee9bd8}{ros\+Node}}
+\begin{DoxyCompactList}\small\item\em Node used for R\+OS transport. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a8060caea78189cf71b241313931d4b1d}\label{classgazebo_1_1TetrapodPlugin_a8060caea78189cf71b241313931d4b1d}} 
+ros\+::\+Service\+Server \mbox{\hyperlink{classgazebo_1_1TetrapodPlugin_a8060caea78189cf71b241313931d4b1d}{reset\+Sim\+Service}}
+\begin{DoxyCompactList}\small\item\em R\+OS Reset Simulation Service. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_ab854f7d0c1dcd22562c25c8b077c006d}\label{classgazebo_1_1TetrapodPlugin_ab854f7d0c1dcd22562c25c8b077c006d}} 
+ros\+::\+Publisher \mbox{\hyperlink{classgazebo_1_1TetrapodPlugin_ab854f7d0c1dcd22562c25c8b077c006d}{gen\+Coord\+Pub}}
+\begin{DoxyCompactList}\small\item\em R\+OS Generalized Coordinates Publisher. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a2ae0bb87f4d7e4c3da1f04a436b974cf}\label{classgazebo_1_1TetrapodPlugin_a2ae0bb87f4d7e4c3da1f04a436b974cf}} 
+ros\+::\+Publisher \mbox{\hyperlink{classgazebo_1_1TetrapodPlugin_a2ae0bb87f4d7e4c3da1f04a436b974cf}{gen\+Vel\+Pub}}
+\begin{DoxyCompactList}\small\item\em R\+OS Generalized Velocities Publisher. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a2b9585a4695a7fc4802b9ed39be92d58}\label{classgazebo_1_1TetrapodPlugin_a2b9585a4695a7fc4802b9ed39be92d58}} 
+ros\+::\+Publisher \mbox{\hyperlink{classgazebo_1_1TetrapodPlugin_a2b9585a4695a7fc4802b9ed39be92d58}{base\+Pose\+Pub}}
+\begin{DoxyCompactList}\small\item\em R\+OS Base Pose Publisher. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_ab314704ae02b95b7b04b49067ce08fc9}\label{classgazebo_1_1TetrapodPlugin_ab314704ae02b95b7b04b49067ce08fc9}} 
+ros\+::\+Publisher \mbox{\hyperlink{classgazebo_1_1TetrapodPlugin_ab314704ae02b95b7b04b49067ce08fc9}{base\+Twist\+Pub}}
+\begin{DoxyCompactList}\small\item\em R\+OS Base Twist Publisher. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_afa50f080448b899b847e8b403b088d0c}\label{classgazebo_1_1TetrapodPlugin_afa50f080448b899b847e8b403b088d0c}} 
+ros\+::\+Publisher \mbox{\hyperlink{classgazebo_1_1TetrapodPlugin_afa50f080448b899b847e8b403b088d0c}{joint\+Forces\+Pub}}
+\begin{DoxyCompactList}\small\item\em R\+OS Joint Forces (Torques) Publisher. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_aa46bc11cef3d7d92e2f00bcb89ed82f9}\label{classgazebo_1_1TetrapodPlugin_aa46bc11cef3d7d92e2f00bcb89ed82f9}} 
+ros\+::\+Subscriber \mbox{\hyperlink{classgazebo_1_1TetrapodPlugin_aa46bc11cef3d7d92e2f00bcb89ed82f9}{joint\+State\+Cmd\+Sub}}
+\begin{DoxyCompactList}\small\item\em R\+OS Joint State Subscriber. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_acb86ee69ad20bd52c8b46d8b8bfbaf91}\label{classgazebo_1_1TetrapodPlugin_acb86ee69ad20bd52c8b46d8b8bfbaf91}} 
+ros\+::\+Publisher \mbox{\hyperlink{classgazebo_1_1TetrapodPlugin_acb86ee69ad20bd52c8b46d8b8bfbaf91}{joint\+State\+Pub}}
+\begin{DoxyCompactList}\small\item\em R\+OS Joint State Publisher. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a718ebd1052d6b1f518bb13158c365ff0}\label{classgazebo_1_1TetrapodPlugin_a718ebd1052d6b1f518bb13158c365ff0}} 
+ros\+::\+Subscriber \mbox{\hyperlink{classgazebo_1_1TetrapodPlugin_a718ebd1052d6b1f518bb13158c365ff0}{force\+Sub}}
+\begin{DoxyCompactList}\small\item\em R\+OS Force Subscriber. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a3911adb0099091fc8b138895d310186f}\label{classgazebo_1_1TetrapodPlugin_a3911adb0099091fc8b138895d310186f}} 
+ros\+::\+Subscriber \mbox{\hyperlink{classgazebo_1_1TetrapodPlugin_a3911adb0099091fc8b138895d310186f}{vel\+Sub}}
+\begin{DoxyCompactList}\small\item\em R\+OS Velocity Subscriber. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_abdac63a040d47148ccb33225dfb142c7}\label{classgazebo_1_1TetrapodPlugin_abdac63a040d47148ccb33225dfb142c7}} 
+ros\+::\+Subscriber \mbox{\hyperlink{classgazebo_1_1TetrapodPlugin_abdac63a040d47148ccb33225dfb142c7}{pos\+Sub}}
+\begin{DoxyCompactList}\small\item\em R\+OS Position Subscriber. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a3550cc18d8d7707d4f785f69893315fc}\label{classgazebo_1_1TetrapodPlugin_a3550cc18d8d7707d4f785f69893315fc}} 
+ros\+::\+Callback\+Queue \mbox{\hyperlink{classgazebo_1_1TetrapodPlugin_a3550cc18d8d7707d4f785f69893315fc}{ros\+Process\+Queue}}
+\begin{DoxyCompactList}\small\item\em R\+OS callbackque that helps process messages. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_af3139a8a8c1141c942c764625c492dc1}\label{classgazebo_1_1TetrapodPlugin_af3139a8a8c1141c942c764625c492dc1}} 
+ros\+::\+Callback\+Queue \mbox{\hyperlink{classgazebo_1_1TetrapodPlugin_af3139a8a8c1141c942c764625c492dc1}{ros\+Publish\+Queue}}
+\begin{DoxyCompactList}\small\item\em R\+OS callbackque that helps publish messages. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a29e45a36531e92c7fac1f824e6fca870}\label{classgazebo_1_1TetrapodPlugin_a29e45a36531e92c7fac1f824e6fca870}} 
+std\+::thread \mbox{\hyperlink{classgazebo_1_1TetrapodPlugin_a29e45a36531e92c7fac1f824e6fca870}{ros\+Process\+Queue\+Thread}}
+\begin{DoxyCompactList}\small\item\em Thread running the ros\+Process\+Queue. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_ae6317ffa4fdf8ebfb0655ec972993d4d}\label{classgazebo_1_1TetrapodPlugin_ae6317ffa4fdf8ebfb0655ec972993d4d}} 
+std\+::thread \mbox{\hyperlink{classgazebo_1_1TetrapodPlugin_ae6317ffa4fdf8ebfb0655ec972993d4d}{ros\+Publish\+Queue\+Thread}}
+\begin{DoxyCompactList}\small\item\em Thread running the ros\+Publish\+Queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 A plugin to control the tetrapod robot. 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a528c3a37c4f725dbfcd868203a501840}\label{classgazebo_1_1TetrapodPlugin_a528c3a37c4f725dbfcd868203a501840}} 
+\index{gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}!Load@{Load}}
+\index{Load@{Load}!gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}}
+\doxysubsubsection{\texorpdfstring{Load()}{Load()}}
+{\footnotesize\ttfamily void gazebo\+::\+Tetrapod\+Plugin\+::\+Load (\begin{DoxyParamCaption}\item[{physics\+::\+Model\+Ptr}]{\+\_\+model,  }\item[{sdf\+::\+Element\+Ptr}]{\+\_\+sdf }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+The Load function is called by Gazebo when the plugin is inserted into simulation. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+model} & A pointer to the model that the plugin is attached to. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+sdf} & A pointer to the plugin\textquotesingle{}s S\+DF element. \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a5abcf9f55e149c880b10c4b0291f5e4d}\label{classgazebo_1_1TetrapodPlugin_a5abcf9f55e149c880b10c4b0291f5e4d}} 
 \index{gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}!GetBasePose@{GetBasePose}}
 \index{GetBasePose@{GetBasePose}!gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}}
@@ -179,6 +287,38 @@ Get current joint forces for the robot.
 Returns joint velocities \+: tau\+\_\+r //\+T\+O\+DO maybe the use of tau\+\_\+r needs change ~\newline
  
 \end{DoxyReturn}
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_aae130d99085f11326c9fed94914aecdc}\label{classgazebo_1_1TetrapodPlugin_aae130d99085f11326c9fed94914aecdc}} 
+\index{gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}!GetJointVelocity@{GetJointVelocity}}
+\index{GetJointVelocity@{GetJointVelocity}!gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}}
+\doxysubsubsection{\texorpdfstring{GetJointVelocity()}{GetJointVelocity()}}
+{\footnotesize\ttfamily double gazebo\+::\+Tetrapod\+Plugin\+::\+Get\+Joint\+Velocity (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+joint\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Get current velocity at a specific joint. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+joint\+\_\+name} & Desired joint \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Current joint velocity 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a1c615587c950edf6407a41198969d081}\label{classgazebo_1_1TetrapodPlugin_a1c615587c950edf6407a41198969d081}} 
+\index{gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}!GetJointVelocities@{GetJointVelocities}}
+\index{GetJointVelocities@{GetJointVelocities}!gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}}
+\doxysubsubsection{\texorpdfstring{GetJointVelocities()}{GetJointVelocities()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 12, 1 $>$ gazebo\+::\+Tetrapod\+Plugin\+::\+Get\+Joint\+Velocities (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get current joint velocities for the robot. 
+
+\begin{DoxyReturn}{Returns}
+Returns joint velocities \+: dot\+\_\+q\+\_\+r ~\newline
+ 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a4d5ab6df5224520461113e0b75804b14}\label{classgazebo_1_1TetrapodPlugin_a4d5ab6df5224520461113e0b75804b14}} 
 \index{gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}!GetJointPosition@{GetJointPosition}}
 \index{GetJointPosition@{GetJointPosition}!gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}}
@@ -211,68 +351,122 @@ Get current joint positions for the robot.
 Returns joint configuration \+: q\+\_\+r ~\newline
  
 \end{DoxyReturn}
-\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a1c615587c950edf6407a41198969d081}\label{classgazebo_1_1TetrapodPlugin_a1c615587c950edf6407a41198969d081}} 
-\index{gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}!GetJointVelocities@{GetJointVelocities}}
-\index{GetJointVelocities@{GetJointVelocities}!gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}}
-\doxysubsubsection{\texorpdfstring{GetJointVelocities()}{GetJointVelocities()}}
-{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 12, 1 $>$ gazebo\+::\+Tetrapod\+Plugin\+::\+Get\+Joint\+Velocities (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a946c0bdab4a046f4b2d5173cf2fbf74c}\label{classgazebo_1_1TetrapodPlugin_a946c0bdab4a046f4b2d5173cf2fbf74c}} 
+\index{gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}!SetJointForce@{SetJointForce}}
+\index{SetJointForce@{SetJointForce}!gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}}
+\doxysubsubsection{\texorpdfstring{SetJointForce()}{SetJointForce()}}
+{\footnotesize\ttfamily void gazebo\+::\+Tetrapod\+Plugin\+::\+Set\+Joint\+Force (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+joint\+\_\+name,  }\item[{const double \&}]{\+\_\+force }\end{DoxyParamCaption})}
 
 
 
-Get current joint velocities for the robot. 
-
-\begin{DoxyReturn}{Returns}
-Returns joint velocities \+: dot\+\_\+q\+\_\+r ~\newline
- 
-\end{DoxyReturn}
-\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_aae130d99085f11326c9fed94914aecdc}\label{classgazebo_1_1TetrapodPlugin_aae130d99085f11326c9fed94914aecdc}} 
-\index{gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}!GetJointVelocity@{GetJointVelocity}}
-\index{GetJointVelocity@{GetJointVelocity}!gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}}
-\doxysubsubsection{\texorpdfstring{GetJointVelocity()}{GetJointVelocity()}}
-{\footnotesize\ttfamily double gazebo\+::\+Tetrapod\+Plugin\+::\+Get\+Joint\+Velocity (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+joint\+\_\+name }\end{DoxyParamCaption})}
-
-
-
-Get current velocity at a specific joint. 
+Apply force at a specific joint. 
 
 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ in}}  & {\em \+\_\+joint\+\_\+name} & Desired joint \\
 \hline
+\mbox{\texttt{ in}}  & {\em \+\_\+force} & Force to apply \\
+\hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-Current joint velocity 
-\end{DoxyReturn}
-\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a528c3a37c4f725dbfcd868203a501840}\label{classgazebo_1_1TetrapodPlugin_a528c3a37c4f725dbfcd868203a501840}} 
-\index{gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}!Load@{Load}}
-\index{Load@{Load}!gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}}
-\doxysubsubsection{\texorpdfstring{Load()}{Load()}}
-{\footnotesize\ttfamily void gazebo\+::\+Tetrapod\+Plugin\+::\+Load (\begin{DoxyParamCaption}\item[{physics\+::\+Model\+Ptr}]{\+\_\+model,  }\item[{sdf\+::\+Element\+Ptr}]{\+\_\+sdf }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_af6de4f35dc9c6b70eca662634ccf8a44}\label{classgazebo_1_1TetrapodPlugin_af6de4f35dc9c6b70eca662634ccf8a44}} 
+\index{gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}!SetJointForces@{SetJointForces}}
+\index{SetJointForces@{SetJointForces}!gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}}
+\doxysubsubsection{\texorpdfstring{SetJointForces()}{SetJointForces()}}
+{\footnotesize\ttfamily void gazebo\+::\+Tetrapod\+Plugin\+::\+Set\+Joint\+Forces (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{\+\_\+forces }\end{DoxyParamCaption})}
 
 
 
-The Load function is called by Gazebo when the plugin is inserted into simulation. 
+Apply joint forces. 
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em \+\_\+model} & A pointer to the model that the plugin is attached to. \\
-\hline
-\mbox{\texttt{ in}}  & {\em \+\_\+sdf} & A pointer to the plugin\textquotesingle{}s S\+DF element. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+forces} & Forces to apply \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a8a0608278f019ef875b8ba653a2d6363}\label{classgazebo_1_1TetrapodPlugin_a8a0608278f019ef875b8ba653a2d6363}} 
-\index{gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}!LoadParametersRos@{LoadParametersRos}}
-\index{LoadParametersRos@{LoadParametersRos}!gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}}
-\doxysubsubsection{\texorpdfstring{LoadParametersRos()}{LoadParametersRos()}}
-{\footnotesize\ttfamily bool gazebo\+::\+Tetrapod\+Plugin\+::\+Load\+Parameters\+Ros (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a5296f36563ee64281b2e7cb90dd7e370}\label{classgazebo_1_1TetrapodPlugin_a5296f36563ee64281b2e7cb90dd7e370}} 
+\index{gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}!SetJointVelocity@{SetJointVelocity}}
+\index{SetJointVelocity@{SetJointVelocity}!gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}}
+\doxysubsubsection{\texorpdfstring{SetJointVelocity()}{SetJointVelocity()}}
+{\footnotesize\ttfamily void gazebo\+::\+Tetrapod\+Plugin\+::\+Set\+Joint\+Velocity (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+joint\+\_\+name,  }\item[{const double \&}]{\+\_\+vel }\end{DoxyParamCaption})}
 
 
 
-The Load\+Parameters\+Ros function is called to load conffloatiguration from the parameter server. 
+Set the velocity of the joint. 
 
-\begin{DoxyReturn}{Returns}
-True if parameters loaded successfully. 
-\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+joint\+\_\+name} & Desired joint \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+vel} & New target velocity \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a923532fb3b222be0ca2d857b594d805d}\label{classgazebo_1_1TetrapodPlugin_a923532fb3b222be0ca2d857b594d805d}} 
+\index{gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}!SetJointVelocities@{SetJointVelocities}}
+\index{SetJointVelocities@{SetJointVelocities}!gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}}
+\doxysubsubsection{\texorpdfstring{SetJointVelocities()}{SetJointVelocities()}}
+{\footnotesize\ttfamily void gazebo\+::\+Tetrapod\+Plugin\+::\+Set\+Joint\+Velocities (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{\+\_\+vel }\end{DoxyParamCaption})}
+
+
+
+Set the velocity of the joints. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+vel} & New target velocity \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a9c6319624ab89466ac63fff02b91cea4}\label{classgazebo_1_1TetrapodPlugin_a9c6319624ab89466ac63fff02b91cea4}} 
+\index{gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}!SetJointPosition@{SetJointPosition}}
+\index{SetJointPosition@{SetJointPosition}!gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}}
+\doxysubsubsection{\texorpdfstring{SetJointPosition()}{SetJointPosition()}}
+{\footnotesize\ttfamily void gazebo\+::\+Tetrapod\+Plugin\+::\+Set\+Joint\+Position (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+joint\+\_\+name,  }\item[{const double \&}]{\+\_\+pos }\end{DoxyParamCaption})}
+
+
+
+Set the position of the joint. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+joint\+\_\+name} & Desired joint \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+pos} & New target position in radians \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_ada07d9d4a12c8f1340721fd6fe8f9162}\label{classgazebo_1_1TetrapodPlugin_ada07d9d4a12c8f1340721fd6fe8f9162}} 
+\index{gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}!SetJointPositions@{SetJointPositions}}
+\index{SetJointPositions@{SetJointPositions}!gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}}
+\doxysubsubsection{\texorpdfstring{SetJointPositions()}{SetJointPositions()}}
+{\footnotesize\ttfamily void gazebo\+::\+Tetrapod\+Plugin\+::\+Set\+Joint\+Positions (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{\+\_\+pos }\end{DoxyParamCaption})}
+
+
+
+Set the position of the joints. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+pos} & New target position vector in radians \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a8caf7aaca40c73c65603175778e2f9a8}\label{classgazebo_1_1TetrapodPlugin_a8caf7aaca40c73c65603175778e2f9a8}} 
+\index{gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}!OnJointStateMsg@{OnJointStateMsg}}
+\index{OnJointStateMsg@{OnJointStateMsg}!gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}}
+\doxysubsubsection{\texorpdfstring{OnJointStateMsg()}{OnJointStateMsg()}}
+{\footnotesize\ttfamily void gazebo\+::\+Tetrapod\+Plugin\+::\+On\+Joint\+State\+Msg (\begin{DoxyParamCaption}\item[{const sensor\+\_\+msgs\+::\+Joint\+State\+Const\+Ptr \&}]{\+\_\+msg }\end{DoxyParamCaption})}
+
+
+
+The On\+Joint\+State\+Msg function handles an incoming joint state message from R\+OS. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+msg} & A message holding data to describe the state of a set of controlled joints. The state is defined by
+\begin{DoxyItemize}
+\item the position of the joint,
+\item the velocity of the joint and
+\item the effort (torque) that is applied in the joint. 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a503a40bd2357086fca77b1575af18c4c}\label{classgazebo_1_1TetrapodPlugin_a503a40bd2357086fca77b1575af18c4c}} 
 \index{gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}!OnFlJointStateMsg@{OnFlJointStateMsg}}
 \index{OnFlJointStateMsg@{OnFlJointStateMsg}!gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}}
@@ -308,24 +502,19 @@ The On\+Ros\+Msg function handles an incoming force message from R\+OS.
 \mbox{\texttt{ in}}  & {\em \+\_\+msg} & A float array used to set the force of the joints. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a8caf7aaca40c73c65603175778e2f9a8}\label{classgazebo_1_1TetrapodPlugin_a8caf7aaca40c73c65603175778e2f9a8}} 
-\index{gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}!OnJointStateMsg@{OnJointStateMsg}}
-\index{OnJointStateMsg@{OnJointStateMsg}!gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}}
-\doxysubsubsection{\texorpdfstring{OnJointStateMsg()}{OnJointStateMsg()}}
-{\footnotesize\ttfamily void gazebo\+::\+Tetrapod\+Plugin\+::\+On\+Joint\+State\+Msg (\begin{DoxyParamCaption}\item[{const sensor\+\_\+msgs\+::\+Joint\+State\+Const\+Ptr \&}]{\+\_\+msg }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a8dc7655369ea3821ab3dfd06d298c876}\label{classgazebo_1_1TetrapodPlugin_a8dc7655369ea3821ab3dfd06d298c876}} 
+\index{gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}!OnVelMsg@{OnVelMsg}}
+\index{OnVelMsg@{OnVelMsg}!gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}}
+\doxysubsubsection{\texorpdfstring{OnVelMsg()}{OnVelMsg()}}
+{\footnotesize\ttfamily void gazebo\+::\+Tetrapod\+Plugin\+::\+On\+Vel\+Msg (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&}]{\+\_\+msg }\end{DoxyParamCaption})}
 
 
 
-The On\+Joint\+State\+Msg function handles an incoming joint state message from R\+OS. 
+The On\+Ros\+Msg function handles an incoming velocity message from R\+OS. 
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em \+\_\+msg} & A message holding data to describe the state of a set of controlled joints. The state is defined by
-\begin{DoxyItemize}
-\item the position of the joint,
-\item the velocity of the joint and
-\item the effort (torque) that is applied in the joint. 
-\end{DoxyItemize}\\
+\mbox{\texttt{ in}}  & {\em \+\_\+msg} & A float array used to set the velocity of the joints. \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_ade970b966a0d0f3db2d2b762f09a5973}\label{classgazebo_1_1TetrapodPlugin_ade970b966a0d0f3db2d2b762f09a5973}} 
@@ -343,21 +532,19 @@ The On\+Ros\+Msg function handles an incoming velocity message from R\+OS.
 \mbox{\texttt{ in}}  & {\em \+\_\+msg} & A float array used to set the position of the joints. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a8dc7655369ea3821ab3dfd06d298c876}\label{classgazebo_1_1TetrapodPlugin_a8dc7655369ea3821ab3dfd06d298c876}} 
-\index{gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}!OnVelMsg@{OnVelMsg}}
-\index{OnVelMsg@{OnVelMsg}!gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}}
-\doxysubsubsection{\texorpdfstring{OnVelMsg()}{OnVelMsg()}}
-{\footnotesize\ttfamily void gazebo\+::\+Tetrapod\+Plugin\+::\+On\+Vel\+Msg (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&}]{\+\_\+msg }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a8a0608278f019ef875b8ba653a2d6363}\label{classgazebo_1_1TetrapodPlugin_a8a0608278f019ef875b8ba653a2d6363}} 
+\index{gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}!LoadParametersRos@{LoadParametersRos}}
+\index{LoadParametersRos@{LoadParametersRos}!gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}}
+\doxysubsubsection{\texorpdfstring{LoadParametersRos()}{LoadParametersRos()}}
+{\footnotesize\ttfamily bool gazebo\+::\+Tetrapod\+Plugin\+::\+Load\+Parameters\+Ros (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
-The On\+Ros\+Msg function handles an incoming velocity message from R\+OS. 
+The Load\+Parameters\+Ros function is called to load conffloatiguration from the parameter server. 
 
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em \+\_\+msg} & A float array used to set the velocity of the joints. \\
-\hline
-\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if parameters loaded successfully. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_adc69d815fdfd2e071612d86ca80f7528}\label{classgazebo_1_1TetrapodPlugin_adc69d815fdfd2e071612d86ca80f7528}} 
 \index{gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}!ResetSimulation@{ResetSimulation}}
 \index{ResetSimulation@{ResetSimulation}!gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}}
@@ -378,102 +565,6 @@ The Reset\+Simulation function handles an incoming reset simulation service requ
 \begin{DoxyReturn}{Returns}
 Returns true if success, and false if not. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a946c0bdab4a046f4b2d5173cf2fbf74c}\label{classgazebo_1_1TetrapodPlugin_a946c0bdab4a046f4b2d5173cf2fbf74c}} 
-\index{gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}!SetJointForce@{SetJointForce}}
-\index{SetJointForce@{SetJointForce}!gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}}
-\doxysubsubsection{\texorpdfstring{SetJointForce()}{SetJointForce()}}
-{\footnotesize\ttfamily void gazebo\+::\+Tetrapod\+Plugin\+::\+Set\+Joint\+Force (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+joint\+\_\+name,  }\item[{const double \&}]{\+\_\+force }\end{DoxyParamCaption})}
-
-
-
-Apply force at a specific joint. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em \+\_\+joint\+\_\+name} & Desired joint \\
-\hline
-\mbox{\texttt{ in}}  & {\em \+\_\+force} & Force to apply \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_af6de4f35dc9c6b70eca662634ccf8a44}\label{classgazebo_1_1TetrapodPlugin_af6de4f35dc9c6b70eca662634ccf8a44}} 
-\index{gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}!SetJointForces@{SetJointForces}}
-\index{SetJointForces@{SetJointForces}!gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}}
-\doxysubsubsection{\texorpdfstring{SetJointForces()}{SetJointForces()}}
-{\footnotesize\ttfamily void gazebo\+::\+Tetrapod\+Plugin\+::\+Set\+Joint\+Forces (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{\+\_\+forces }\end{DoxyParamCaption})}
-
-
-
-Apply joint forces. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em \+\_\+forces} & Forces to apply \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a9c6319624ab89466ac63fff02b91cea4}\label{classgazebo_1_1TetrapodPlugin_a9c6319624ab89466ac63fff02b91cea4}} 
-\index{gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}!SetJointPosition@{SetJointPosition}}
-\index{SetJointPosition@{SetJointPosition}!gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}}
-\doxysubsubsection{\texorpdfstring{SetJointPosition()}{SetJointPosition()}}
-{\footnotesize\ttfamily void gazebo\+::\+Tetrapod\+Plugin\+::\+Set\+Joint\+Position (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+joint\+\_\+name,  }\item[{const double \&}]{\+\_\+pos }\end{DoxyParamCaption})}
-
-
-
-Set the position of the joint. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em \+\_\+joint\+\_\+name} & Desired joint \\
-\hline
-\mbox{\texttt{ in}}  & {\em \+\_\+pos} & New target position in radians \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_ada07d9d4a12c8f1340721fd6fe8f9162}\label{classgazebo_1_1TetrapodPlugin_ada07d9d4a12c8f1340721fd6fe8f9162}} 
-\index{gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}!SetJointPositions@{SetJointPositions}}
-\index{SetJointPositions@{SetJointPositions}!gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}}
-\doxysubsubsection{\texorpdfstring{SetJointPositions()}{SetJointPositions()}}
-{\footnotesize\ttfamily void gazebo\+::\+Tetrapod\+Plugin\+::\+Set\+Joint\+Positions (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{\+\_\+pos }\end{DoxyParamCaption})}
-
-
-
-Set the position of the joints. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em \+\_\+pos} & New target position vector in radians \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a923532fb3b222be0ca2d857b594d805d}\label{classgazebo_1_1TetrapodPlugin_a923532fb3b222be0ca2d857b594d805d}} 
-\index{gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}!SetJointVelocities@{SetJointVelocities}}
-\index{SetJointVelocities@{SetJointVelocities}!gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}}
-\doxysubsubsection{\texorpdfstring{SetJointVelocities()}{SetJointVelocities()}}
-{\footnotesize\ttfamily void gazebo\+::\+Tetrapod\+Plugin\+::\+Set\+Joint\+Velocities (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{\+\_\+vel }\end{DoxyParamCaption})}
-
-
-
-Set the velocity of the joints. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em \+\_\+vel} & New target velocity \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{classgazebo_1_1TetrapodPlugin_a5296f36563ee64281b2e7cb90dd7e370}\label{classgazebo_1_1TetrapodPlugin_a5296f36563ee64281b2e7cb90dd7e370}} 
-\index{gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}!SetJointVelocity@{SetJointVelocity}}
-\index{SetJointVelocity@{SetJointVelocity}!gazebo::TetrapodPlugin@{gazebo::TetrapodPlugin}}
-\doxysubsubsection{\texorpdfstring{SetJointVelocity()}{SetJointVelocity()}}
-{\footnotesize\ttfamily void gazebo\+::\+Tetrapod\+Plugin\+::\+Set\+Joint\+Velocity (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+joint\+\_\+name,  }\item[{const double \&}]{\+\_\+vel }\end{DoxyParamCaption})}
-
-
-
-Set the velocity of the joint. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em \+\_\+joint\+\_\+name} & Desired joint \\
-\hline
-\mbox{\texttt{ in}}  & {\em \+\_\+vel} & New target velocity \\
-\hline
-\end{DoxyParams}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

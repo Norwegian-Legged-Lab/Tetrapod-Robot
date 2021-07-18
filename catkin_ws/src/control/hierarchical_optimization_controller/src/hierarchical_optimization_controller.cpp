@@ -70,9 +70,16 @@ void HierarchicalOptimizationControl::StaticTorqueTest()
 
     // Declare torque solution
     Eigen::Matrix<double, 12, 1> desired_tau;
+
+    // TODO Message to send with base pos command to be removed after plotting..
+    std_msgs::Float64MultiArray base_pose_cmd_msg;
+    std_msgs::Float64MultiArray base_twist_cmd_msg;
+
+    base_pose_cmd_msg.data.resize(6);
+    base_twist_cmd_msg.data.resize(6);
         
     // Loop rate
-    ros::Rate loop_rate(100);
+    ros::Rate loop_rate(200);
 
     // Loop
     while(this->rosNode->ok())
@@ -80,20 +87,29 @@ void HierarchicalOptimizationControl::StaticTorqueTest()
         // Set desired values
         desired_base_pos << 0,
                             0,
-                            0.3; 
-        //desired_base_pos = this->genCoord.topRows(3);
-        desired_base_vel.setZero();
-        desired_base_acc.setZero();
+        //                    0.25;
+                            0.05 * std::sin(ros::Time::now().toSec()) + 0.2; 
+        //desired_base_vel.setZero();
+        desired_base_vel << 0,
+                            0,
+                            0.05 * std::cos(ros::Time::now().toSec());
+        //desired_base_acc.setZero();
+        desired_base_acc << 0,
+                            0,
+                            - 0.05 * std::sin(ros::Time::now().toSec());
         desired_base_ori.setZero();
 
+        //desired_base_ori(0) = 0.2 * std::sin(ros::Time::now().toSec());
+
         desired_f_pos = this->fPos;
-        //desired_f_pos(0)(2) = 0.15;
 
         for (int i = 0; i < 4; i++)
         {                
             desired_f_vel(i).setZero();
             desired_f_acc(i).setZero();
         }
+
+        
 
 
         auto start = std::chrono::steady_clock::now();
@@ -121,6 +137,23 @@ void HierarchicalOptimizationControl::StaticTorqueTest()
         //debug_utils::printFootstepPositions(this->fPos);
         //debug_utils::printJointTorques(desired_tau.bottomRows(12));
         //debug_utils::printJointTorques(desired_tau);
+
+        // TODO find better solution to plot data and remove this..
+        base_pose_cmd_msg.data[0] = desired_base_pos(0);
+        base_pose_cmd_msg.data[1] = desired_base_pos(1);
+        base_pose_cmd_msg.data[2] = desired_base_pos(2);
+        base_pose_cmd_msg.data[3] = desired_base_ori(0);
+        base_pose_cmd_msg.data[4] = desired_base_ori(1);
+        base_pose_cmd_msg.data[5] = desired_base_ori(2);
+        this->basePoseCmdPub.publish(base_pose_cmd_msg);
+
+        base_twist_cmd_msg.data[0] = desired_base_vel(0);
+        base_twist_cmd_msg.data[1] = desired_base_vel(1);
+        base_twist_cmd_msg.data[2] = desired_base_vel(2);
+        base_twist_cmd_msg.data[3] = 0;
+        base_twist_cmd_msg.data[4] = 0;
+        base_twist_cmd_msg.data[5] = 0;
+        this->baseTwistCmdPub.publish(base_twist_cmd_msg);
 
         //this->PublishTorqueMsg(desired_tau.bottomRows(12));
         this->PublishTorqueMsg(desired_tau);
@@ -211,11 +244,11 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     double mu = 0.6;
 
     // Motion tracking gains
-    Eigen::Matrix3d k_p_fb_pos = 2*Eigen::Matrix3d::Identity(); // Floating base position proportional gain
+    Eigen::Matrix3d k_p_fb_pos = 15*Eigen::Matrix3d::Identity(); // Floating base position proportional gain
     Eigen::Matrix3d k_d_fb_pos = 2*Eigen::Matrix3d::Identity(); // Floating base position derivative gain
     Eigen::Matrix3d k_p_fb_rot = 15*Eigen::Matrix3d::Identity(); // Floating base rotation proportional gain
     Eigen::Matrix3d k_d_fb_rot = 2*Eigen::Matrix3d::Identity(); // Floating base rotation proportional gain
-    Eigen::Matrix3d k_p_fl = 100*Eigen::Matrix3d::Identity();     // Front left foot proportional gain
+    Eigen::Matrix3d k_p_fl = 2*Eigen::Matrix3d::Identity();     // Front left foot proportional gain
     Eigen::Matrix3d k_d_fl = 2*Eigen::Matrix3d::Identity();     // Front left foot derivative gain
     Eigen::Matrix3d k_p_fr = 2*Eigen::Matrix3d::Identity();     // Front right foot proportional gain
     Eigen::Matrix3d k_d_fr = 2*Eigen::Matrix3d::Identity();     // Front right foot derivative gain
@@ -1243,6 +1276,26 @@ void HierarchicalOptimizationControl::InitRos()
             &this->rosPublishQueue
         );
 
+    ros::AdvertiseOptions base_pose_cmd_ao =
+        ros::AdvertiseOptions::create<std_msgs::Float64MultiArray>(
+            "/my_robot/base_pose_cmd",
+            1,
+            ros::SubscriberStatusCallback(),
+            ros::SubscriberStatusCallback(),
+            ros::VoidPtr(),
+            &this->rosPublishQueue
+        );
+
+    ros::AdvertiseOptions base_twist_cmd_ao =
+        ros::AdvertiseOptions::create<std_msgs::Float64MultiArray>(
+            "/my_robot/base_twist_cmd",
+            1,
+            ros::SubscriberStatusCallback(),
+            ros::SubscriberStatusCallback(),
+            ros::VoidPtr(),
+            &this->rosPublishQueue
+        );
+
     this->genCoordSub = this->rosNode->subscribe(gen_coord_so);
 
     this->genVelSub = this->rosNode->subscribe(gen_vel_so);
@@ -1250,6 +1303,10 @@ void HierarchicalOptimizationControl::InitRos()
     this->contactStateSub = this->rosNode->subscribe(contact_state_so);
 
     this->jointStatePub = this->rosNode->advertise(joint_state_ao);
+    
+    this->basePoseCmdPub = this->rosNode->advertise(base_pose_cmd_ao);
+
+    this->baseTwistCmdPub = this->rosNode->advertise(base_twist_cmd_ao);
 }
 
 // Initialize ROS Publish and Process Queue Threads

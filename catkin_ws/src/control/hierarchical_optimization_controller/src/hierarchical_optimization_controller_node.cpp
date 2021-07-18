@@ -29,9 +29,6 @@
 
 #include <hierarchical_optimization_controller/hierarchical_optimization_controller.h>
 
-//TODO remove
-#include <hierarchical_optimization_controller/hierarchical_optimization_control_tests.h>
-
 // Main
 int main(int argc, char **argv)
 {

@@ -11,8 +11,7 @@ A plugin for the contact sensors.
 
 
 
-Inheritance diagram for gazebo\+::Contact\+Plugin\+:
-\nopagebreak
+Inheritance diagram for gazebo\+::Contact\+Plugin\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,8 +20,7 @@ Inheritance diagram for gazebo\+::Contact\+Plugin\+:
 \end{figure}
 
 
-Collaboration diagram for gazebo\+::Contact\+Plugin\+:
-\nopagebreak
+Collaboration diagram for gazebo\+::Contact\+Plugin\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -40,6 +38,21 @@ virtual \mbox{\hyperlink{classgazebo_1_1ContactPlugin_a915a0b9156a54f3946f11a134
 \begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classgazebo_1_1ContactPlugin_a10d1536023ae58aed4f293c62c5d2c9a}{Load}} (sensors\+::\+Sensor\+Ptr \+\_\+sensor, sdf\+::\+Element\+Ptr \+\_\+sdf)
 \begin{DoxyCompactList}\small\item\em Load the sensor plugin. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classgazebo_1_1ContactPlugin_adc07abc8ef9d8d6a2444940aeaf025b3}\label{classgazebo_1_1ContactPlugin_adc07abc8ef9d8d6a2444940aeaf025b3}} 
+virtual void \mbox{\hyperlink{classgazebo_1_1ContactPlugin_adc07abc8ef9d8d6a2444940aeaf025b3}{On\+Update}} ()
+\begin{DoxyCompactList}\small\item\em Callback that receives the contact sensor\textquotesingle{}s update signal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classgazebo_1_1ContactPlugin_a13163d2b00a9c37132e7d21947b51764}\label{classgazebo_1_1ContactPlugin_a13163d2b00a9c37132e7d21947b51764}} 
+sensors\+::\+Contact\+Sensor\+Ptr \mbox{\hyperlink{classgazebo_1_1ContactPlugin_a13163d2b00a9c37132e7d21947b51764}{parent\+Sensor}}
+\begin{DoxyCompactList}\small\item\em Pointer to the contact sensor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1ContactPlugin_a195df29795fc44cd676effe9e396479f}\label{classgazebo_1_1ContactPlugin_a195df29795fc44cd676effe9e396479f}} 
+event\+::\+Connection\+Ptr \mbox{\hyperlink{classgazebo_1_1ContactPlugin_a195df29795fc44cd676effe9e396479f}{update\+Connection}}
+\begin{DoxyCompactList}\small\item\em Connection that maintains a link between the contact sensor\textquotesingle{}s updated signal and the On\+Update callback. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}

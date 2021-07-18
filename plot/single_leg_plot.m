@@ -583,12 +583,12 @@ filename6 = 'single_leg_3D_trajectory_test_case_5_8.pdf';
 
 
 
-exportgraphics(fig1, filename1)
-exportgraphics(fig2, filename2)
-exportgraphics(fig3, filename3)
-exportgraphics(fig4, filename4)
-exportgraphics(fig5, filename5)
-exportgraphics(fig6, filename6)
+% exportgraphics(fig1, filename1)
+% exportgraphics(fig2, filename2)
+% exportgraphics(fig3, filename3)
+% exportgraphics(fig4, filename4)
+% exportgraphics(fig5, filename5)
+% exportgraphics(fig6, filename6)
 
 
 

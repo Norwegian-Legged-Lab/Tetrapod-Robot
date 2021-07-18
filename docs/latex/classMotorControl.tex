@@ -1,0 +1,514 @@
+\hypertarget{classMotorControl}{}\doxysection{Motor\+Control Class Reference}
+\label{classMotorControl}\index{MotorControl@{MotorControl}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classMotorControl_a56ef29cfa725b1ceebd63722f67cc94f}\label{classMotorControl_a56ef29cfa725b1ceebd63722f67cc94f}} 
+\mbox{\hyperlink{classMotorControl_a56ef29cfa725b1ceebd63722f67cc94f}{Motor\+Control}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor needed for initializing array. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classMotorControl_a0a618c11441af4f2b376e55fb2f19ab2}{Motor\+Control}} (uint8\+\_\+t \+\_\+id, uint8\+\_\+t \+\_\+can\+\_\+port\+\_\+id, int \+\_\+number\+\_\+of\+\_\+inner\+\_\+motor\+\_\+rotations, double \+\_\+position\+\_\+offset)
+\begin{DoxyCompactList}\small\item\em Constructor for a \mbox{\hyperlink{classMotorControl}{Motor\+Control}} object. Motor ID and C\+AN port are set. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classMotorControl_a63731c651017af16698e47ba486d08e9}{read\+P\+I\+D\+Parameters}} ()
+\begin{DoxyCompactList}\small\item\em Read the motor PI parameters and update the private PI values. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classMotorControl_a7583db8b9d31d9598b7163cce2e906a4}{write\+P\+I\+D\+Parameters\+To\+R\+AM}} (double \+\_\+kp\+\_\+pos, double \+\_\+ki\+\_\+pos, double \+\_\+kp\+\_\+speed, double \+\_\+ki\+\_\+speed, double \+\_\+kp\+\_\+torque, double \+\_\+ki\+\_\+torque)
+\begin{DoxyCompactList}\small\item\em Set the motor PI parameters and store them temporary in R\+AM. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotorControl_acfa6eac860b643239260c19b59f4a153}{set\+Position\+Reference}} (double \+\_\+angle)
+\begin{DoxyCompactList}\small\item\em Set the desired multi turn motor angle. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotorControl_a08463c3ab6e6212260dbb33e67b4865b}{set\+Speed\+Reference}} (double \+\_\+speed)
+\begin{DoxyCompactList}\small\item\em Set the desired motor speed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotorControl_adb120e50c64bba7173d2f564c4b4c385}{set\+Torque\+Reference}} (double \+\_\+torque)
+\begin{DoxyCompactList}\small\item\em Set the desired motor torque. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotorControl_a4557833d4596993cdbec55f211b2b812}{set\+Torque\+Current}} (int \+\_\+torque\+\_\+current)
+\begin{DoxyCompactList}\small\item\em Set the desired motor torque current. Scales linearly with torque. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotorControl_a4c7b6656a49ee1a9234774f940c732f1}{read\+Motor\+Control\+Command\+Reply}} (unsigned char $\ast$\+\_\+can\+\_\+message)
+\begin{DoxyCompactList}\small\item\em The state variables position, velocity, and torque are updated based on the latest information from the motor. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classMotorControl_a1c0295d88d6a8815f2f9ce6f5e6cbd38}{stop\+Motor}} ()
+\begin{DoxyCompactList}\small\item\em The motor stops exerting a control output. The motor will remain idle until a new control command or motor resume command is received. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classMotorControl_a13f483eb3198db500e17fd3225cbf30c}{turn\+Off\+Motor}} ()
+\begin{DoxyCompactList}\small\item\em The motor stops exerting a control output. The motor\textquotesingle{}s operating state and previously received control commands are cleared. If a new control command is received the motor will start moving again. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classMotorControl_adbf876096b52138e3d4d2cd3f5a2c719}{read\+Multi\+Turn\+Angle}} ()
+\begin{DoxyCompactList}\small\item\em The multi turn angle of the motor updated. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classMotorControl_a2aa2f8082ecae25915cbe2e555ebd31b}{read\+Motor\+Status}} ()
+\begin{DoxyCompactList}\small\item\em A request is sent to the motor asking it to send back its state. The private state varibles position, velocity, and torque are then updated. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMotorControl_a88d6ab604e8aceb0aad702ebed96cb7a}\label{classMotorControl_a88d6ab604e8aceb0aad702ebed96cb7a}} 
+void \mbox{\hyperlink{classMotorControl_a88d6ab604e8aceb0aad702ebed96cb7a}{request\+Motor\+Status}} ()
+\begin{DoxyCompactList}\small\item\em A request is sent to the motor asking it to send back its state, position, velocity, and torque. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classMotorControl_ab7e8ee7dac639918e2e6474a3dffbcfe}{read\+Complete\+Encoder\+Position}} ()
+\begin{DoxyCompactList}\small\item\em All the encoder data from the motor is read and printed. This includes the encoder value, raw encoder value, and encoder offset. This is mainly for debugging. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{classMotorControl_a962aad2e5369e531efd9c4c78a127d38}{get\+\_\+id}} ()
+\begin{DoxyCompactList}\small\item\em Return the ID of the Motor\+Class object. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classMotorControl_a3da82ed2c8591aefb2f9a5ac2f2d3fca}{get\+Position}} ()
+\begin{DoxyCompactList}\small\item\em Return the position of the Motor\+Class object. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classMotorControl_a51f8529942ac9d799b3283209e8bc8c4}{get\+Velocity}} ()
+\begin{DoxyCompactList}\small\item\em Return the velocity of the Motor\+Class object. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classMotorControl_a09cfe7f082888628e7b51d0111f238bc}{get\+Torque}} ()
+\begin{DoxyCompactList}\small\item\em Return the torque of the Motor\+Class object. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classMotorControl_ab21093a91fa72b1efa8cdffdbc5728b6}{get\+Encoder\+Value}} ()
+\begin{DoxyCompactList}\small\item\em Return the latest received encoder value from the motor. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classMotorControl_a6a3b6d27d44ed6f218caa621f0a952ef}{get\+Multi\+Turn\+Angle}} ()
+\begin{DoxyCompactList}\small\item\em Return the latest received multi turn angle from the motor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMotorControl_a20f66502c3c3f2cf48ab0a747dc4757c}\label{classMotorControl_a20f66502c3c3f2cf48ab0a747dc4757c}} 
+double \mbox{\hyperlink{classMotorControl_a20f66502c3c3f2cf48ab0a747dc4757c}{get\+Multi\+Turn\+Angle\+Raw}} ()
+\begin{DoxyCompactList}\small\item\em Return the raw int64\+\_\+t 0.\+01 degree multi turn angle. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotorControl_a8efb1d05019a36428d8d357a9b011271}{get\+P\+I\+D\+Parameters}} (double \&\+\_\+kp\+\_\+pos, double \&\+\_\+ki\+\_\+pos, double \&\+\_\+kp\+\_\+speed, double \&\+\_\+ki\+\_\+speed, double \&\+\_\+kp\+\_\+torque, double \&\+\_\+ki\+\_\+torque)
+\begin{DoxyCompactList}\small\item\em The input parameters are updated to match the PI parameters of the motor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMotorControl_a2633c618cd6b5caa204108b5b94dc4a0}\label{classMotorControl_a2633c618cd6b5caa204108b5b94dc4a0}} 
+void \mbox{\hyperlink{classMotorControl_a2633c618cd6b5caa204108b5b94dc4a0}{print\+P\+I\+D\+Parameters}} ()
+\begin{DoxyCompactList}\small\item\em The function prints the PI parameters of the motor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMotorControl_adadf296d7e829eae4990f3c940c12223}\label{classMotorControl_adadf296d7e829eae4990f3c940c12223}} 
+void \mbox{\hyperlink{classMotorControl_adadf296d7e829eae4990f3c940c12223}{print\+State}} ()
+\begin{DoxyCompactList}\small\item\em The ID, encoder value, multi turn angle, position, speed and torque of the motor are printed. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMotorControl_abe79c1427cbfca130b710a1a67c58aab}\label{classMotorControl_abe79c1427cbfca130b710a1a67c58aab}} 
+void {\bfseries print\+Torque\+Currents} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classMotorControl_a7bc0d741d39b302d36183699afd94fa0}\label{classMotorControl_a7bc0d741d39b302d36183699afd94fa0}} 
+double {\bfseries raw\+\_\+position\+\_\+reference}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classMotorControl_a68c931e287edfbfbe35c6960c56211b8}{inner\+Motor\+Turn\+Completed}} (uint16\+\_\+t \+\_\+previous\+\_\+encoder\+\_\+value, uint16\+\_\+t \+\_\+new\+\_\+encoder\+\_\+value)
+\begin{DoxyCompactList}\small\item\em This function checks if the inner motor completed a turn. Depending on the difference between the new and previous encoder value we can determine if the motor completed a turn a direction or not. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMotorControl_ad5835dafd2647ea5e3350d09a9e19f71}\label{classMotorControl_ad5835dafd2647ea5e3350d09a9e19f71}} 
+void \mbox{\hyperlink{classMotorControl_ad5835dafd2647ea5e3350d09a9e19f71}{send\+Message}} (C\+A\+N\+\_\+message\+\_\+t \+\_\+can\+\_\+message)
+\begin{DoxyCompactList}\small\item\em This function ensures that the message is sent to the correct C\+AN port. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMotorControl_a516790cba17293dee49a920d736b09b2}\label{classMotorControl_a516790cba17293dee49a920d736b09b2}} 
+int \mbox{\hyperlink{classMotorControl_a516790cba17293dee49a920d736b09b2}{read\+Message}} (C\+A\+N\+\_\+message\+\_\+t \&\+\_\+can\+\_\+message)
+\begin{DoxyCompactList}\small\item\em This function ensures that the message on the correct C\+AN port is read. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMotorControl_a112acf17ee6265c188d5539833b2e3d1}\label{classMotorControl_a112acf17ee6265c188d5539833b2e3d1}} 
+void {\bfseries error\+Message} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classMotorControl_a51647c6042d70555a27f21041286f5ec}\label{classMotorControl_a51647c6042d70555a27f21041286f5ec}} 
+uint8\+\_\+t \mbox{\hyperlink{classMotorControl_a51647c6042d70555a27f21041286f5ec}{id}}
+\begin{DoxyCompactList}\small\item\em Motor ID set through the Serial configurator \mbox{[}1 -\/ 32\mbox{]}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMotorControl_a2125bf85610e5642c9b96cf6ecb7e9ad}\label{classMotorControl_a2125bf85610e5642c9b96cf6ecb7e9ad}} 
+uint16\+\_\+t \mbox{\hyperlink{classMotorControl_a2125bf85610e5642c9b96cf6ecb7e9ad}{address}}
+\begin{DoxyCompactList}\small\item\em Motor address = ID + 0x140. Declared for convenience. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMotorControl_a474dd24a88e301185058d5bd00b6eabf}\label{classMotorControl_a474dd24a88e301185058d5bd00b6eabf}} 
+uint8\+\_\+t \mbox{\hyperlink{classMotorControl_a474dd24a88e301185058d5bd00b6eabf}{can\+\_\+port\+\_\+id}}
+\begin{DoxyCompactList}\small\item\em Used to decide which C\+AN port to use. Possible values \{1, 2\}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMotorControl_af53ad784bf80625139c387b3ccd0ff10}\label{classMotorControl_af53ad784bf80625139c387b3ccd0ff10}} 
+double \mbox{\hyperlink{classMotorControl_af53ad784bf80625139c387b3ccd0ff10}{kp\+\_\+pos}}
+\begin{DoxyCompactList}\small\item\em Motor P\+ID Parameters. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMotorControl_aff8dc7a83771c0c4de76466f2fb86e40}\label{classMotorControl_aff8dc7a83771c0c4de76466f2fb86e40}} 
+double {\bfseries ki\+\_\+pos}
+\item 
+\mbox{\Hypertarget{classMotorControl_a0483e35fe973e4a70a14179d6f8f22c0}\label{classMotorControl_a0483e35fe973e4a70a14179d6f8f22c0}} 
+double {\bfseries kp\+\_\+speed}
+\item 
+\mbox{\Hypertarget{classMotorControl_a7289d06db5369ab7b4b3e293fe10bcc1}\label{classMotorControl_a7289d06db5369ab7b4b3e293fe10bcc1}} 
+double {\bfseries ki\+\_\+speed}
+\item 
+\mbox{\Hypertarget{classMotorControl_a391b325f816e57db9550ced2e38deea4}\label{classMotorControl_a391b325f816e57db9550ced2e38deea4}} 
+double {\bfseries kp\+\_\+torque}
+\item 
+\mbox{\Hypertarget{classMotorControl_a31c16005b2836228351533a94ee1e9bb}\label{classMotorControl_a31c16005b2836228351533a94ee1e9bb}} 
+double {\bfseries ki\+\_\+torque}
+\item 
+\mbox{\Hypertarget{classMotorControl_a05a3cfe598ada9c9c45d8cbdedfd6612}\label{classMotorControl_a05a3cfe598ada9c9c45d8cbdedfd6612}} 
+double \mbox{\hyperlink{classMotorControl_a05a3cfe598ada9c9c45d8cbdedfd6612}{initial\+\_\+number\+\_\+of\+\_\+inner\+\_\+motor\+\_\+rotations}}
+\begin{DoxyCompactList}\small\item\em Number of rotations of the inner motor during startup This is needed to create position commands. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMotorControl_a41853f47391578f88397c82f476c201b}\label{classMotorControl_a41853f47391578f88397c82f476c201b}} 
+double \mbox{\hyperlink{classMotorControl_a41853f47391578f88397c82f476c201b}{number\+\_\+of\+\_\+inner\+\_\+motor\+\_\+rotations}}
+\begin{DoxyCompactList}\small\item\em Number of rotations of the built-\/in motor, not the output-\/shaft. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMotorControl_a311a925139985e93eb2f846beafaeb8b}\label{classMotorControl_a311a925139985e93eb2f846beafaeb8b}} 
+uint16\+\_\+t \mbox{\hyperlink{classMotorControl_a311a925139985e93eb2f846beafaeb8b}{previous\+\_\+encoder\+\_\+value}}
+\begin{DoxyCompactList}\small\item\em Keep track of previous encoder position. This way you can detect turns. See \mbox{\hyperlink{classMotorControl_a68c931e287edfbfbe35c6960c56211b8}{inner\+Motor\+Turn\+Completed()}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMotorControl_aecfb789964ebaef009a70f6822d4b06a}\label{classMotorControl_aecfb789964ebaef009a70f6822d4b06a}} 
+int32\+\_\+t \mbox{\hyperlink{classMotorControl_aecfb789964ebaef009a70f6822d4b06a}{multi\+\_\+turn\+\_\+angle\+\_\+32\+\_\+bit}} = 0
+\begin{DoxyCompactList}\small\item\em This variable contains the multi turn angle read by the motor in degrees. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMotorControl_a936a278d8cd0b63eb97c50427188e685}\label{classMotorControl_a936a278d8cd0b63eb97c50427188e685}} 
+int32\+\_\+t \mbox{\hyperlink{classMotorControl_a936a278d8cd0b63eb97c50427188e685}{multi\+\_\+turn\+\_\+angle\+\_\+32\+\_\+bit\+\_\+001lsb}} = 0
+\begin{DoxyCompactList}\small\item\em This variable contains the 32 bit representation of the raw 0.\+01 degree multi turn angle. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMotorControl_ab3de59f6f96640c0e3cd08b5bd596734}\label{classMotorControl_ab3de59f6f96640c0e3cd08b5bd596734}} 
+int64\+\_\+t \mbox{\hyperlink{classMotorControl_ab3de59f6f96640c0e3cd08b5bd596734}{multi\+\_\+turn\+\_\+angle\+\_\+64\+\_\+bit}} = 0
+\begin{DoxyCompactList}\small\item\em This is the true 64 bit representation of the multi turn angle in degrees. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMotorControl_a2cddfc70767cf167aae07b334e51c724}\label{classMotorControl_a2cddfc70767cf167aae07b334e51c724}} 
+int64\+\_\+t \mbox{\hyperlink{classMotorControl_a2cddfc70767cf167aae07b334e51c724}{multi\+\_\+turn\+\_\+angle\+\_\+001lsb}} = 0
+\begin{DoxyCompactList}\small\item\em This is the 64 bit representation of the raw int64\+\_\+t multi turn angle in 0.\+01 degrees. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMotorControl_a3e3595d03a4b8c3dba2ba4e5f94d6144}\label{classMotorControl_a3e3595d03a4b8c3dba2ba4e5f94d6144}} 
+double \mbox{\hyperlink{classMotorControl_a3e3595d03a4b8c3dba2ba4e5f94d6144}{target\+\_\+position\+\_\+offset}} = 0.\+0
+\begin{DoxyCompactList}\small\item\em If the motor is initialized in certain positions the set\+Position function will have zero offset of 60 degrees. ~\newline
+ \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMotorControl_aad902c2afe2cc8dc4392c1842ef6034e}\label{classMotorControl_aad902c2afe2cc8dc4392c1842ef6034e}} 
+double \mbox{\hyperlink{classMotorControl_aad902c2afe2cc8dc4392c1842ef6034e}{position\+\_\+offset}} = 0.\+0
+\begin{DoxyCompactList}\small\item\em position offset = true position -\/ position \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMotorControl_a65ff777ee56a7ace4cea498b36385a0c}\label{classMotorControl_a65ff777ee56a7ace4cea498b36385a0c}} 
+double \mbox{\hyperlink{classMotorControl_a65ff777ee56a7ace4cea498b36385a0c}{position\+\_\+center\+\_\+offset}} = M\+\_\+\+PI/6.\+0
+\begin{DoxyCompactList}\small\item\em This is used to center the output shaft zero position. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMotorControl_a9da1555bc82e0dc764d0007330f2e14f}\label{classMotorControl_a9da1555bc82e0dc764d0007330f2e14f}} 
+double \mbox{\hyperlink{classMotorControl_a9da1555bc82e0dc764d0007330f2e14f}{position}}
+\begin{DoxyCompactList}\small\item\em Latest measured position of the shaft in radians. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMotorControl_a75730853edf97afa2d2abd864311241e}\label{classMotorControl_a75730853edf97afa2d2abd864311241e}} 
+double \mbox{\hyperlink{classMotorControl_a75730853edf97afa2d2abd864311241e}{speed}}
+\begin{DoxyCompactList}\small\item\em Latest measured speed of the shaft in radians/second. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMotorControl_a6396658604728af128c5b7565f8ec2ae}\label{classMotorControl_a6396658604728af128c5b7565f8ec2ae}} 
+double \mbox{\hyperlink{classMotorControl_a6396658604728af128c5b7565f8ec2ae}{torque}}
+\begin{DoxyCompactList}\small\item\em Latest measured shaft torque in Nm. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMotorControl_a3d447b2ebd86ee5f49444afebdabdf6f}\label{classMotorControl_a3d447b2ebd86ee5f49444afebdabdf6f}} 
+double \mbox{\hyperlink{classMotorControl_a3d447b2ebd86ee5f49444afebdabdf6f}{temperature}}
+\begin{DoxyCompactList}\small\item\em Latest measured temperature of the motor in degree Celsius. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMotorControl_a5dcdf944c68fbe8dc880b33c791656bb}\label{classMotorControl_a5dcdf944c68fbe8dc880b33c791656bb}} 
+int16\+\_\+t \mbox{\hyperlink{classMotorControl_a5dcdf944c68fbe8dc880b33c791656bb}{torque\+\_\+current\+\_\+reference}} = 0
+\begin{DoxyCompactList}\small\item\em The torque current reference set for the motor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMotorControl_a116a0c4dfb6303eb3707965137bf820a}\label{classMotorControl_a116a0c4dfb6303eb3707965137bf820a}} 
+int16\+\_\+t \mbox{\hyperlink{classMotorControl_a116a0c4dfb6303eb3707965137bf820a}{torque\+\_\+current\+\_\+measured}} = 0
+\begin{DoxyCompactList}\small\item\em The measured torque current of the motor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMotorControl_a220532d2dcb7e358243fb4012dd93d34}\label{classMotorControl_a220532d2dcb7e358243fb4012dd93d34}} 
+C\+A\+N\+\_\+message\+\_\+t \mbox{\hyperlink{classMotorControl_a220532d2dcb7e358243fb4012dd93d34}{can\+\_\+message}}
+\begin{DoxyCompactList}\small\item\em C\+AN message for this motor. Only buf field is set for every message sent. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMotorControl_abd056f19e63f8d8a3371c301158a8f73}\label{classMotorControl_abd056f19e63f8d8a3371c301158a8f73}} 
+C\+A\+N\+\_\+message\+\_\+t \mbox{\hyperlink{classMotorControl_abd056f19e63f8d8a3371c301158a8f73}{received\+\_\+can\+\_\+message}}
+\begin{DoxyCompactList}\small\item\em C\+AN message object used to receive incomming C\+AN messages. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMotorControl_a1f03efb175fcd3bbf8e21d7083f09c5b}\label{classMotorControl_a1f03efb175fcd3bbf8e21d7083f09c5b}} 
+double \mbox{\hyperlink{classMotorControl_a1f03efb175fcd3bbf8e21d7083f09c5b}{max\+\_\+torque}}
+\begin{DoxyCompactList}\small\item\em The torque in Newton meter has to lie in the interval \mbox{[}-\/max\+\_\+torque, max\+\_\+torque\mbox{]}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMotorControl_a5b5f94cd2aea557488360b839ce01f8e}\label{classMotorControl_a5b5f94cd2aea557488360b839ce01f8e}} 
+int \mbox{\hyperlink{classMotorControl_a5b5f94cd2aea557488360b839ce01f8e}{max\+\_\+torque\+\_\+current}}
+\begin{DoxyCompactList}\small\item\em All torque values are scaled to the interval \mbox{[}-\/max\+\_\+torque\+\_\+current, max\+\_\+torque\+\_\+current\mbox{]}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMotorControl_afcc84762a4744b5f584403a6a3504d7e}\label{classMotorControl_afcc84762a4744b5f584403a6a3504d7e}} 
+uint16\+\_\+t \mbox{\hyperlink{classMotorControl_afcc84762a4744b5f584403a6a3504d7e}{max\+\_\+encoder\+\_\+value}}
+\begin{DoxyCompactList}\small\item\em The 16 bit encoder measures the position of the inner DC motor, not the shaft. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMotorControl_ab0c172ca680c38bdc09e96573c178056}\label{classMotorControl_ab0c172ca680c38bdc09e96573c178056}} 
+uint16\+\_\+t \mbox{\hyperlink{classMotorControl_ab0c172ca680c38bdc09e96573c178056}{encoder\+\_\+turn\+\_\+threshold}}
+\begin{DoxyCompactList}\small\item\em If the change in encoder value is larger than this it is safe to assume that the inner motor completed a turn. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classMotorControl_a0a618c11441af4f2b376e55fb2f19ab2}\label{classMotorControl_a0a618c11441af4f2b376e55fb2f19ab2}} 
+\index{MotorControl@{MotorControl}!MotorControl@{MotorControl}}
+\index{MotorControl@{MotorControl}!MotorControl@{MotorControl}}
+\doxysubsubsection{\texorpdfstring{MotorControl()}{MotorControl()}}
+{\footnotesize\ttfamily Motor\+Control\+::\+Motor\+Control (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{\+\_\+id,  }\item[{uint8\+\_\+t}]{\+\_\+can\+\_\+port\+\_\+id,  }\item[{int}]{\+\_\+number\+\_\+of\+\_\+inner\+\_\+motor\+\_\+rotations,  }\item[{double}]{\+\_\+position\+\_\+offset }\end{DoxyParamCaption})}
+
+
+
+Constructor for a \mbox{\hyperlink{classMotorControl}{Motor\+Control}} object. Motor ID and C\+AN port are set. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+id} & ID of the motor \mbox{[}1 -\/ 32\mbox{]} \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classMotorControl_a63731c651017af16698e47ba486d08e9}\label{classMotorControl_a63731c651017af16698e47ba486d08e9}} 
+\index{MotorControl@{MotorControl}!readPIDParameters@{readPIDParameters}}
+\index{readPIDParameters@{readPIDParameters}!MotorControl@{MotorControl}}
+\doxysubsubsection{\texorpdfstring{readPIDParameters()}{readPIDParameters()}}
+{\footnotesize\ttfamily bool Motor\+Control\+::read\+P\+I\+D\+Parameters (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Read the motor PI parameters and update the private PI values. 
+
+\begin{DoxyReturn}{Returns}
+If the PI parameters were successfully read, return true. Otherwise return false. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMotorControl_a7583db8b9d31d9598b7163cce2e906a4}\label{classMotorControl_a7583db8b9d31d9598b7163cce2e906a4}} 
+\index{MotorControl@{MotorControl}!writePIDParametersToRAM@{writePIDParametersToRAM}}
+\index{writePIDParametersToRAM@{writePIDParametersToRAM}!MotorControl@{MotorControl}}
+\doxysubsubsection{\texorpdfstring{writePIDParametersToRAM()}{writePIDParametersToRAM()}}
+{\footnotesize\ttfamily bool Motor\+Control\+::write\+P\+I\+D\+Parameters\+To\+R\+AM (\begin{DoxyParamCaption}\item[{double}]{\+\_\+kp\+\_\+pos,  }\item[{double}]{\+\_\+ki\+\_\+pos,  }\item[{double}]{\+\_\+kp\+\_\+speed,  }\item[{double}]{\+\_\+ki\+\_\+speed,  }\item[{double}]{\+\_\+kp\+\_\+torque,  }\item[{double}]{\+\_\+ki\+\_\+torque }\end{DoxyParamCaption})}
+
+
+
+Set the motor PI parameters and store them temporary in R\+AM. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+kp\+\_\+pos} & Desired proportional position gain \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+ki\+\_\+pos} & Desired integral position gain \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+kp\+\_\+speed} & Desired proportional speed gain \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+ki\+\_\+speed} & Desired integral speed gain \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+kp\+\_\+torque} & Desired proportional torque gain \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+ki\+\_\+torque} & Desired integral torque gain ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+If the PI parameters were successfully set true is returned. Otherwise false is returned. ~\newline
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMotorControl_acfa6eac860b643239260c19b59f4a153}\label{classMotorControl_acfa6eac860b643239260c19b59f4a153}} 
+\index{MotorControl@{MotorControl}!setPositionReference@{setPositionReference}}
+\index{setPositionReference@{setPositionReference}!MotorControl@{MotorControl}}
+\doxysubsubsection{\texorpdfstring{setPositionReference()}{setPositionReference()}}
+{\footnotesize\ttfamily void Motor\+Control\+::set\+Position\+Reference (\begin{DoxyParamCaption}\item[{double}]{\+\_\+angle }\end{DoxyParamCaption})}
+
+
+
+Set the desired multi turn motor angle. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+angle} & Setpoint motor angle in radians \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMotorControl_a08463c3ab6e6212260dbb33e67b4865b}\label{classMotorControl_a08463c3ab6e6212260dbb33e67b4865b}} 
+\index{MotorControl@{MotorControl}!setSpeedReference@{setSpeedReference}}
+\index{setSpeedReference@{setSpeedReference}!MotorControl@{MotorControl}}
+\doxysubsubsection{\texorpdfstring{setSpeedReference()}{setSpeedReference()}}
+{\footnotesize\ttfamily void Motor\+Control\+::set\+Speed\+Reference (\begin{DoxyParamCaption}\item[{double}]{\+\_\+speed }\end{DoxyParamCaption})}
+
+
+
+Set the desired motor speed. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+speed} & Setpoint motor speed in radians/second \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMotorControl_adb120e50c64bba7173d2f564c4b4c385}\label{classMotorControl_adb120e50c64bba7173d2f564c4b4c385}} 
+\index{MotorControl@{MotorControl}!setTorqueReference@{setTorqueReference}}
+\index{setTorqueReference@{setTorqueReference}!MotorControl@{MotorControl}}
+\doxysubsubsection{\texorpdfstring{setTorqueReference()}{setTorqueReference()}}
+{\footnotesize\ttfamily void Motor\+Control\+::set\+Torque\+Reference (\begin{DoxyParamCaption}\item[{double}]{\+\_\+torque }\end{DoxyParamCaption})}
+
+
+
+Set the desired motor torque. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+torque} & Setpoint motor torque in Nm \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMotorControl_a4557833d4596993cdbec55f211b2b812}\label{classMotorControl_a4557833d4596993cdbec55f211b2b812}} 
+\index{MotorControl@{MotorControl}!setTorqueCurrent@{setTorqueCurrent}}
+\index{setTorqueCurrent@{setTorqueCurrent}!MotorControl@{MotorControl}}
+\doxysubsubsection{\texorpdfstring{setTorqueCurrent()}{setTorqueCurrent()}}
+{\footnotesize\ttfamily void Motor\+Control\+::set\+Torque\+Current (\begin{DoxyParamCaption}\item[{int}]{\+\_\+torque\+\_\+current }\end{DoxyParamCaption})}
+
+
+
+Set the desired motor torque current. Scales linearly with torque. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+torque\+\_\+current} & Setpoint torque current \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMotorControl_a4c7b6656a49ee1a9234774f940c732f1}\label{classMotorControl_a4c7b6656a49ee1a9234774f940c732f1}} 
+\index{MotorControl@{MotorControl}!readMotorControlCommandReply@{readMotorControlCommandReply}}
+\index{readMotorControlCommandReply@{readMotorControlCommandReply}!MotorControl@{MotorControl}}
+\doxysubsubsection{\texorpdfstring{readMotorControlCommandReply()}{readMotorControlCommandReply()}}
+{\footnotesize\ttfamily void Motor\+Control\+::read\+Motor\+Control\+Command\+Reply (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{\+\_\+can\+\_\+message }\end{DoxyParamCaption})}
+
+
+
+The state variables position, velocity, and torque are updated based on the latest information from the motor. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+can\+\_\+message} & An 8 dimensional array containing the data of a C\+AN message \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMotorControl_a1c0295d88d6a8815f2f9ce6f5e6cbd38}\label{classMotorControl_a1c0295d88d6a8815f2f9ce6f5e6cbd38}} 
+\index{MotorControl@{MotorControl}!stopMotor@{stopMotor}}
+\index{stopMotor@{stopMotor}!MotorControl@{MotorControl}}
+\doxysubsubsection{\texorpdfstring{stopMotor()}{stopMotor()}}
+{\footnotesize\ttfamily bool Motor\+Control\+::stop\+Motor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The motor stops exerting a control output. The motor will remain idle until a new control command or motor resume command is received. 
+
+\begin{DoxyReturn}{Returns}
+If the motor is successfully stopped true is returned, otherwise false. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMotorControl_a13f483eb3198db500e17fd3225cbf30c}\label{classMotorControl_a13f483eb3198db500e17fd3225cbf30c}} 
+\index{MotorControl@{MotorControl}!turnOffMotor@{turnOffMotor}}
+\index{turnOffMotor@{turnOffMotor}!MotorControl@{MotorControl}}
+\doxysubsubsection{\texorpdfstring{turnOffMotor()}{turnOffMotor()}}
+{\footnotesize\ttfamily bool Motor\+Control\+::turn\+Off\+Motor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The motor stops exerting a control output. The motor\textquotesingle{}s operating state and previously received control commands are cleared. If a new control command is received the motor will start moving again. 
+
+\begin{DoxyReturn}{Returns}
+If the motor is successfully turned off true is returned, otherwise false. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMotorControl_adbf876096b52138e3d4d2cd3f5a2c719}\label{classMotorControl_adbf876096b52138e3d4d2cd3f5a2c719}} 
+\index{MotorControl@{MotorControl}!readMultiTurnAngle@{readMultiTurnAngle}}
+\index{readMultiTurnAngle@{readMultiTurnAngle}!MotorControl@{MotorControl}}
+\doxysubsubsection{\texorpdfstring{readMultiTurnAngle()}{readMultiTurnAngle()}}
+{\footnotesize\ttfamily bool Motor\+Control\+::read\+Multi\+Turn\+Angle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The multi turn angle of the motor updated. 
+
+\begin{DoxyReturn}{Returns}
+If the multi turn angle was successfully updated return true, otherwise false. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMotorControl_a2aa2f8082ecae25915cbe2e555ebd31b}\label{classMotorControl_a2aa2f8082ecae25915cbe2e555ebd31b}} 
+\index{MotorControl@{MotorControl}!readMotorStatus@{readMotorStatus}}
+\index{readMotorStatus@{readMotorStatus}!MotorControl@{MotorControl}}
+\doxysubsubsection{\texorpdfstring{readMotorStatus()}{readMotorStatus()}}
+{\footnotesize\ttfamily bool Motor\+Control\+::read\+Motor\+Status (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+A request is sent to the motor asking it to send back its state. The private state varibles position, velocity, and torque are then updated. 
+
+\begin{DoxyReturn}{Returns}
+If the private state variables were successfully updated return true, otherwise return false. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMotorControl_ab7e8ee7dac639918e2e6474a3dffbcfe}\label{classMotorControl_ab7e8ee7dac639918e2e6474a3dffbcfe}} 
+\index{MotorControl@{MotorControl}!readCompleteEncoderPosition@{readCompleteEncoderPosition}}
+\index{readCompleteEncoderPosition@{readCompleteEncoderPosition}!MotorControl@{MotorControl}}
+\doxysubsubsection{\texorpdfstring{readCompleteEncoderPosition()}{readCompleteEncoderPosition()}}
+{\footnotesize\ttfamily bool Motor\+Control\+::read\+Complete\+Encoder\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+All the encoder data from the motor is read and printed. This includes the encoder value, raw encoder value, and encoder offset. This is mainly for debugging. 
+
+\begin{DoxyReturn}{Returns}
+If the encoder data was successfully read true is returned, otherwise false. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMotorControl_a962aad2e5369e531efd9c4c78a127d38}\label{classMotorControl_a962aad2e5369e531efd9c4c78a127d38}} 
+\index{MotorControl@{MotorControl}!get\_id@{get\_id}}
+\index{get\_id@{get\_id}!MotorControl@{MotorControl}}
+\doxysubsubsection{\texorpdfstring{get\_id()}{get\_id()}}
+{\footnotesize\ttfamily uint8\+\_\+t Motor\+Control\+::get\+\_\+id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the ID of the Motor\+Class object. 
+
+\begin{DoxyReturn}{Returns}
+The ID of the Motor\+Class object. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMotorControl_a3da82ed2c8591aefb2f9a5ac2f2d3fca}\label{classMotorControl_a3da82ed2c8591aefb2f9a5ac2f2d3fca}} 
+\index{MotorControl@{MotorControl}!getPosition@{getPosition}}
+\index{getPosition@{getPosition}!MotorControl@{MotorControl}}
+\doxysubsubsection{\texorpdfstring{getPosition()}{getPosition()}}
+{\footnotesize\ttfamily double Motor\+Control\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the position of the Motor\+Class object. 
+
+\begin{DoxyReturn}{Returns}
+The position of the Motor\+Class object. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMotorControl_a51f8529942ac9d799b3283209e8bc8c4}\label{classMotorControl_a51f8529942ac9d799b3283209e8bc8c4}} 
+\index{MotorControl@{MotorControl}!getVelocity@{getVelocity}}
+\index{getVelocity@{getVelocity}!MotorControl@{MotorControl}}
+\doxysubsubsection{\texorpdfstring{getVelocity()}{getVelocity()}}
+{\footnotesize\ttfamily double Motor\+Control\+::get\+Velocity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the velocity of the Motor\+Class object. 
+
+\begin{DoxyReturn}{Returns}
+The velocity of the Motor\+Class object. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMotorControl_a09cfe7f082888628e7b51d0111f238bc}\label{classMotorControl_a09cfe7f082888628e7b51d0111f238bc}} 
+\index{MotorControl@{MotorControl}!getTorque@{getTorque}}
+\index{getTorque@{getTorque}!MotorControl@{MotorControl}}
+\doxysubsubsection{\texorpdfstring{getTorque()}{getTorque()}}
+{\footnotesize\ttfamily double Motor\+Control\+::get\+Torque (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the torque of the Motor\+Class object. 
+
+\begin{DoxyReturn}{Returns}
+The torque of the Motor\+Class object. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMotorControl_ab21093a91fa72b1efa8cdffdbc5728b6}\label{classMotorControl_ab21093a91fa72b1efa8cdffdbc5728b6}} 
+\index{MotorControl@{MotorControl}!getEncoderValue@{getEncoderValue}}
+\index{getEncoderValue@{getEncoderValue}!MotorControl@{MotorControl}}
+\doxysubsubsection{\texorpdfstring{getEncoderValue()}{getEncoderValue()}}
+{\footnotesize\ttfamily double Motor\+Control\+::get\+Encoder\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the latest received encoder value from the motor. 
+
+\begin{DoxyReturn}{Returns}
+The latest received encoder value from the motor 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMotorControl_a6a3b6d27d44ed6f218caa621f0a952ef}\label{classMotorControl_a6a3b6d27d44ed6f218caa621f0a952ef}} 
+\index{MotorControl@{MotorControl}!getMultiTurnAngle@{getMultiTurnAngle}}
+\index{getMultiTurnAngle@{getMultiTurnAngle}!MotorControl@{MotorControl}}
+\doxysubsubsection{\texorpdfstring{getMultiTurnAngle()}{getMultiTurnAngle()}}
+{\footnotesize\ttfamily double Motor\+Control\+::get\+Multi\+Turn\+Angle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the latest received multi turn angle from the motor. 
+
+\begin{DoxyReturn}{Returns}
+The latest received received multi turn angle from the motor 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMotorControl_a8efb1d05019a36428d8d357a9b011271}\label{classMotorControl_a8efb1d05019a36428d8d357a9b011271}} 
+\index{MotorControl@{MotorControl}!getPIDParameters@{getPIDParameters}}
+\index{getPIDParameters@{getPIDParameters}!MotorControl@{MotorControl}}
+\doxysubsubsection{\texorpdfstring{getPIDParameters()}{getPIDParameters()}}
+{\footnotesize\ttfamily void Motor\+Control\+::get\+P\+I\+D\+Parameters (\begin{DoxyParamCaption}\item[{double \&}]{\+\_\+kp\+\_\+pos,  }\item[{double \&}]{\+\_\+ki\+\_\+pos,  }\item[{double \&}]{\+\_\+kp\+\_\+speed,  }\item[{double \&}]{\+\_\+ki\+\_\+speed,  }\item[{double \&}]{\+\_\+kp\+\_\+torque,  }\item[{double \&}]{\+\_\+ki\+\_\+torque }\end{DoxyParamCaption})}
+
+
+
+The input parameters are updated to match the PI parameters of the motor. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+kp\+\_\+pos} & Proportional position gain \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+ki\+\_\+pos} & Integral position gain \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+kp\+\_\+speed} & Proportional speed gain \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+ki\+\_\+speed} & Integral speed gain \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+kp\+\_\+torque} & Proportional torque gain \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+ki\+\_\+torque} & Integral torque gain ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classMotorControl_a68c931e287edfbfbe35c6960c56211b8}\label{classMotorControl_a68c931e287edfbfbe35c6960c56211b8}} 
+\index{MotorControl@{MotorControl}!innerMotorTurnCompleted@{innerMotorTurnCompleted}}
+\index{innerMotorTurnCompleted@{innerMotorTurnCompleted}!MotorControl@{MotorControl}}
+\doxysubsubsection{\texorpdfstring{innerMotorTurnCompleted()}{innerMotorTurnCompleted()}}
+{\footnotesize\ttfamily double Motor\+Control\+::inner\+Motor\+Turn\+Completed (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{\+\_\+previous\+\_\+encoder\+\_\+value,  }\item[{uint16\+\_\+t}]{\+\_\+new\+\_\+encoder\+\_\+value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+This function checks if the inner motor completed a turn. Depending on the difference between the new and previous encoder value we can determine if the motor completed a turn a direction or not. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+previous\+\_\+encoder\+\_\+value} & The previously measured encoder value \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+new\+\_\+encoder\+\_\+value} & The newly measured encoder value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+If new $<$$<$ old return 1, if old $<$$<$ new return -\/1, else return 0 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Arduino/libraries/motor\+\_\+driver/motor\+\_\+driver.\+h\item 
+Arduino/libraries/motor\+\_\+driver/motor\+\_\+driver.\+cpp\end{DoxyCompactItemize}

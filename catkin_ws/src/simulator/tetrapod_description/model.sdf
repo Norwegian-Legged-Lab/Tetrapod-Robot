@@ -54,6 +54,7 @@ z_0 = 0.0
                     </mesh>  
                 </geometry>
             </visual>
+            <!--
             <visual name="face">
                 <pose>0.18 0 0 0 0 0</pose>
                 <geometry>
@@ -69,7 +70,7 @@ z_0 = 0.0
                     </script>
                 </material>
             </visual>
-            <!--
+            -->
             <visual name="eye_left">
                 <pose>0.18 0.05 0.04 0 0 1.57</pose>
                 <geometry>
@@ -85,8 +86,7 @@ z_0 = 0.0
                         <uri>model://tetrapod_description/meshes/eye.dae</uri>
                     </mesh>  
                 </geometry>
-            </visual>
-            --> 
+            </visual> 
             <collision name="body_collision">
                 <geometry>
                     <box>

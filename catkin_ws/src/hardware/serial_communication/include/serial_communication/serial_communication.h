@@ -111,6 +111,10 @@ class SerialCommunication
     /// \param[in] _number_of_motors Number of motors to use
     public: void SetNumberOfMotors(const int &_number_of_motors);
 
+    /// \brief The InitLibSerial function initializes
+    /// the serial port to the correct input and sets baud rate,
+    /// character size, flow control, and stop bits. It also
+    /// sets buffer sizes for transmit (TX) and receive (RX).
     public: void InitLibSerial();
 
     /// \brief Number of motors

@@ -1,6 +1,9 @@
 var searchData=
 [
-  ['task_210',['Task',['../structHierarchicalOptimizationControl_1_1Task.html',1,'HierarchicalOptimizationControl']]],
-  ['tetrapodplugin_211',['TetrapodPlugin',['../classgazebo_1_1TetrapodPlugin.html',1,'gazebo']]],
-  ['thirdorderfilter_212',['ThirdOrderFilter',['../classThirdOrderFilter.html',1,'']]]
+  ['serialcommunication_504',['SerialCommunication',['../classSerialCommunication.html',1,'']]],
+  ['singlelegcontroller_505',['SingleLegController',['../classSingleLegController.html',1,'']]],
+  ['singlelegplugin_506',['SingleLegPlugin',['../classgazebo_1_1SingleLegPlugin.html',1,'gazebo']]],
+  ['singlemotorcontroller_507',['SingleMotorController',['../classSingleMotorController.html',1,'']]],
+  ['staticgaitcontroller_508',['StaticGaitController',['../classStaticGaitController.html',1,'']]],
+  ['subandpub_509',['SubAndPub',['../classSubAndPub.html',1,'']]]
 ];

@@ -65,6 +65,8 @@ $(function() {
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classKinematics-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Kinematics Class Reference</div>  </div>
@@ -267,71 +269,157 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetrlOffset</b> ()</t
 <tr class="memitem:ac7629012c3d42f3ad70e6cb84e7e3a14"><td class="memItemLeft" align="right" valign="top"><a id="ac7629012c3d42f3ad70e6cb84e7e3a14"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetrrOffset</b> ()</td></tr>
 <tr class="separator:ac7629012c3d42f3ad70e6cb84e7e3a14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6049e6ba5565013b410f8d795d7e902e"><td class="memItemLeft" align="right" valign="top"><a id="a6049e6ba5565013b410f8d795d7e902e"></a>
+Eigen::Matrix&lt; double, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetDistanceFromBaseToFrontLeftHipInB</b> ()</td></tr>
+<tr class="separator:a6049e6ba5565013b410f8d795d7e902e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cbb1de8f26d92bf159cdf0f8de9d2f9"><td class="memItemLeft" align="right" valign="top"><a id="a9cbb1de8f26d92bf159cdf0f8de9d2f9"></a>
+Eigen::Matrix&lt; double, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetDistanceFromBaseToFrontRightHipInB</b> ()</td></tr>
+<tr class="separator:a9cbb1de8f26d92bf159cdf0f8de9d2f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2296f6be4a97875029e46f45b3933f85"><td class="memItemLeft" align="right" valign="top"><a id="a2296f6be4a97875029e46f45b3933f85"></a>
+Eigen::Matrix&lt; double, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetDistanceFromBaseToRearLeftHipInB</b> ()</td></tr>
+<tr class="separator:a2296f6be4a97875029e46f45b3933f85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a983aa4fdbabf4644429c536ef7e53b45"><td class="memItemLeft" align="right" valign="top"><a id="a983aa4fdbabf4644429c536ef7e53b45"></a>
+Eigen::Matrix&lt; double, 3, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetDistanceFromBaseToRearRightHipInB</b> ()</td></tr>
+<tr class="separator:a983aa4fdbabf4644429c536ef7e53b45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a6f426b5ac409de6a9528a0f6f837e390"><td class="memItemLeft" align="right" valign="top">Eigen::Matrix&lt; double, 3, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematics.html#a6f426b5ac409de6a9528a0f6f837e390">GetInertiaMatrix</a> (const double &amp;_I_XX, const double &amp;_I_YY, const double &amp;_I_ZZ, const double &amp;_I_XY, const double &amp;_I_XZ, const double &amp;_I_YZ)</td></tr>
+<tr class="memdesc:a6f426b5ac409de6a9528a0f6f837e390"><td class="mdescLeft">&#160;</td><td class="mdescRight">The GetInertiaMatrix function returns the inertia matrix from the six inertial parameters.  <a href="classKinematics.html#a6f426b5ac409de6a9528a0f6f837e390">More...</a><br /></td></tr>
+<tr class="separator:a6f426b5ac409de6a9528a0f6f837e390"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03e006d32f6b1efb3fcaed4a488b936b"><td class="memItemLeft" align="right" valign="top"><a id="a03e006d32f6b1efb3fcaed4a488b936b"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>GetBodyMass</b> (<a class="el" href="classKinematics.html#a390b699225b57bc303653caeb6039df3">BodyType</a> _body)</td></tr>
+<tr class="separator:a03e006d32f6b1efb3fcaed4a488b936b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab662a88a6551884d4cf8c882d735620d"><td class="memItemLeft" align="right" valign="top"><a id="ab662a88a6551884d4cf8c882d735620d"></a>
+Eigen::Matrix&lt; double, 3, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetBodyInertia</b> (<a class="el" href="classKinematics.html#a390b699225b57bc303653caeb6039df3">BodyType</a> _body)</td></tr>
+<tr class="separator:ab662a88a6551884d4cf8c882d735620d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acda981e1f121277218aede2f78811740"><td class="memItemLeft" align="right" valign="top"><a id="acda981e1f121277218aede2f78811740"></a>
+Eigen::Matrix&lt; double, 3, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetBodyInertia</b> (<a class="el" href="classKinematics.html#a390b699225b57bc303653caeb6039df3">BodyType</a> _body, <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> _leg)</td></tr>
+<tr class="separator:acda981e1f121277218aede2f78811740"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ac75f5642395505981f66eff994f1b309"><td class="memItemLeft" align="right" valign="top"><a id="ac75f5642395505981f66eff994f1b309"></a>
+JointSpaceVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematics.html#ac75f5642395505981f66eff994f1b309">min_angles</a></td></tr>
+<tr class="memdesc:ac75f5642395505981f66eff994f1b309"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum joint limits. <br /></td></tr>
+<tr class="separator:ac75f5642395505981f66eff994f1b309"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fc7673ce2605db3fd4ece5e14a323b2"><td class="memItemLeft" align="right" valign="top"><a id="a6fc7673ce2605db3fd4ece5e14a323b2"></a>
+JointSpaceVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematics.html#a6fc7673ce2605db3fd4ece5e14a323b2">max_angles</a></td></tr>
+<tr class="memdesc:a6fc7673ce2605db3fd4ece5e14a323b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum joint limits. <br /></td></tr>
+<tr class="separator:a6fc7673ce2605db3fd4ece5e14a323b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bafab67e908cd74efedad01e1773bdc"><td class="memItemLeft" align="right" valign="top"><a id="a3bafab67e908cd74efedad01e1773bdc"></a>
+Vector3d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematics.html#a3bafab67e908cd74efedad01e1773bdc">positionBaseToFrontLeftInB</a></td></tr>
+<tr class="memdesc:a3bafab67e908cd74efedad01e1773bdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Position vector relating the base coordinates to the front left hip. <br /></td></tr>
+<tr class="separator:a3bafab67e908cd74efedad01e1773bdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac50d9f9296fb4846f2a9b87c50eac7c3"><td class="memItemLeft" align="right" valign="top"><a id="ac50d9f9296fb4846f2a9b87c50eac7c3"></a>
+Vector3d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematics.html#ac50d9f9296fb4846f2a9b87c50eac7c3">positionBaseToFrontRightInB</a></td></tr>
+<tr class="memdesc:ac50d9f9296fb4846f2a9b87c50eac7c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Position vector relating the base coordinates to the front right hip. <br /></td></tr>
+<tr class="separator:ac50d9f9296fb4846f2a9b87c50eac7c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51507eacda7192c7673ab565de414315"><td class="memItemLeft" align="right" valign="top"><a id="a51507eacda7192c7673ab565de414315"></a>
+Vector3d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematics.html#a51507eacda7192c7673ab565de414315">positionBaseToRearLeftInB</a></td></tr>
+<tr class="memdesc:a51507eacda7192c7673ab565de414315"><td class="mdescLeft">&#160;</td><td class="mdescRight">Position vector relating the base coordinates to the rear left hip. <br /></td></tr>
+<tr class="separator:a51507eacda7192c7673ab565de414315"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8fac97d4fab206a6f114dc4372f7879a"><td class="memItemLeft" align="right" valign="top"><a id="a8fac97d4fab206a6f114dc4372f7879a"></a>
+Vector3d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematics.html#a8fac97d4fab206a6f114dc4372f7879a">positionBaseToRearRightInB</a></td></tr>
+<tr class="memdesc:a8fac97d4fab206a6f114dc4372f7879a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Position vector relating the base coordinates to the rear right hip. <br /></td></tr>
+<tr class="separator:a8fac97d4fab206a6f114dc4372f7879a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af731f4e21bd1af1d83a0b22b773e703a"><td class="memItemLeft" align="right" valign="top"><a id="af731f4e21bd1af1d83a0b22b773e703a"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematics.html#af731f4e21bd1af1d83a0b22b773e703a">L1</a></td></tr>
+<tr class="memdesc:af731f4e21bd1af1d83a0b22b773e703a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hip link length. <br /></td></tr>
+<tr class="separator:af731f4e21bd1af1d83a0b22b773e703a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa42ff7b758f092fe11ed072576f7f36"><td class="memItemLeft" align="right" valign="top"><a id="aaa42ff7b758f092fe11ed072576f7f36"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematics.html#aaa42ff7b758f092fe11ed072576f7f36">L2</a></td></tr>
+<tr class="memdesc:aaa42ff7b758f092fe11ed072576f7f36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thigh (Femur) link length. <br /></td></tr>
+<tr class="separator:aaa42ff7b758f092fe11ed072576f7f36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0dd16fdaeb686f1a1224bc325f83a851"><td class="memItemLeft" align="right" valign="top"><a id="a0dd16fdaeb686f1a1224bc325f83a851"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematics.html#a0dd16fdaeb686f1a1224bc325f83a851">L3</a></td></tr>
+<tr class="memdesc:a0dd16fdaeb686f1a1224bc325f83a851"><td class="mdescLeft">&#160;</td><td class="mdescRight">Leg (Fibula &amp; Tibia) link length. <br /></td></tr>
+<tr class="separator:a0dd16fdaeb686f1a1224bc325f83a851"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcc593ba5a0b574b938fe88f9478d304"><td class="memItemLeft" align="right" valign="top"><a id="afcc593ba5a0b574b938fe88f9478d304"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematics.html#afcc593ba5a0b574b938fe88f9478d304">LC1</a></td></tr>
+<tr class="memdesc:afcc593ba5a0b574b938fe88f9478d304"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hip yaw joint to hip CoM length. <br /></td></tr>
+<tr class="separator:afcc593ba5a0b574b938fe88f9478d304"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a548a6e948ecd3c73568b59ed34b5914e"><td class="memItemLeft" align="right" valign="top"><a id="a548a6e948ecd3c73568b59ed34b5914e"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematics.html#a548a6e948ecd3c73568b59ed34b5914e">LC2</a></td></tr>
+<tr class="memdesc:a548a6e948ecd3c73568b59ed34b5914e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hip pitch joint to thigh CoM length. <br /></td></tr>
+<tr class="separator:a548a6e948ecd3c73568b59ed34b5914e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a818474c380afb54ec01c0d05c4789b22"><td class="memItemLeft" align="right" valign="top"><a id="a818474c380afb54ec01c0d05c4789b22"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematics.html#a818474c380afb54ec01c0d05c4789b22">LC3</a></td></tr>
+<tr class="memdesc:a818474c380afb54ec01c0d05c4789b22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Knee pitch joint to leg CoM length. <br /></td></tr>
+<tr class="separator:a818474c380afb54ec01c0d05c4789b22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac679fa54d740d394c093e2ec4b5f4533"><td class="memItemLeft" align="right" valign="top"><a id="ac679fa54d740d394c093e2ec4b5f4533"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematics.html#ac679fa54d740d394c093e2ec4b5f4533">flOffset</a></td></tr>
+<tr class="memdesc:ac679fa54d740d394c093e2ec4b5f4533"><td class="mdescLeft">&#160;</td><td class="mdescRight">Front Left offset. <br /></td></tr>
+<tr class="separator:ac679fa54d740d394c093e2ec4b5f4533"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bcf8567289477307b831c2be788059b"><td class="memItemLeft" align="right" valign="top"><a id="a1bcf8567289477307b831c2be788059b"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematics.html#a1bcf8567289477307b831c2be788059b">frOffset</a></td></tr>
+<tr class="memdesc:a1bcf8567289477307b831c2be788059b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Front Right offset. <br /></td></tr>
+<tr class="separator:a1bcf8567289477307b831c2be788059b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a632528ba1331913e4adac4bb727cb5c6"><td class="memItemLeft" align="right" valign="top"><a id="a632528ba1331913e4adac4bb727cb5c6"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematics.html#a632528ba1331913e4adac4bb727cb5c6">rlOffset</a></td></tr>
+<tr class="memdesc:a632528ba1331913e4adac4bb727cb5c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rear Left offset. <br /></td></tr>
+<tr class="separator:a632528ba1331913e4adac4bb727cb5c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a500584ee8b394a56b0742a5941a674e5"><td class="memItemLeft" align="right" valign="top"><a id="a500584ee8b394a56b0742a5941a674e5"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematics.html#a500584ee8b394a56b0742a5941a674e5">rrOffset</a></td></tr>
+<tr class="memdesc:a500584ee8b394a56b0742a5941a674e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rear Right offset. <br /></td></tr>
+<tr class="separator:a500584ee8b394a56b0742a5941a674e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab06a3f11ac00f9ac30966280ab708132"><td class="memItemLeft" align="right" valign="top"><a id="ab06a3f11ac00f9ac30966280ab708132"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematics.html#ab06a3f11ac00f9ac30966280ab708132">M0</a></td></tr>
+<tr class="memdesc:ab06a3f11ac00f9ac30966280ab708132"><td class="mdescLeft">&#160;</td><td class="mdescRight">Body link mass. <br /></td></tr>
+<tr class="separator:ab06a3f11ac00f9ac30966280ab708132"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa96fc0ed77f742883bf33c938d6fcaee"><td class="memItemLeft" align="right" valign="top"><a id="aa96fc0ed77f742883bf33c938d6fcaee"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematics.html#aa96fc0ed77f742883bf33c938d6fcaee">M1</a></td></tr>
+<tr class="memdesc:aa96fc0ed77f742883bf33c938d6fcaee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hip link mass. <br /></td></tr>
+<tr class="separator:aa96fc0ed77f742883bf33c938d6fcaee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aababf894af6917254556a45f3d950440"><td class="memItemLeft" align="right" valign="top"><a id="aababf894af6917254556a45f3d950440"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematics.html#aababf894af6917254556a45f3d950440">M2</a></td></tr>
+<tr class="memdesc:aababf894af6917254556a45f3d950440"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thigh link mass. <br /></td></tr>
+<tr class="separator:aababf894af6917254556a45f3d950440"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa89a99505f895dfce2e7106706edecc8"><td class="memItemLeft" align="right" valign="top"><a id="aa89a99505f895dfce2e7106706edecc8"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematics.html#aa89a99505f895dfce2e7106706edecc8">M3</a></td></tr>
+<tr class="memdesc:aa89a99505f895dfce2e7106706edecc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Leg link mass. <br /></td></tr>
+<tr class="separator:aa89a99505f895dfce2e7106706edecc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91281d2e5d11ed7e7bc3c5b4145552a3"><td class="memItemLeft" align="right" valign="top"><a id="a91281d2e5d11ed7e7bc3c5b4145552a3"></a>
+Eigen::Matrix&lt; double, 3, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematics.html#a91281d2e5d11ed7e7bc3c5b4145552a3">I0</a></td></tr>
+<tr class="memdesc:a91281d2e5d11ed7e7bc3c5b4145552a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Body link inertia matrix. <br /></td></tr>
+<tr class="separator:a91281d2e5d11ed7e7bc3c5b4145552a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca4537379f10091988ca8f033dfcb9c5"><td class="memItemLeft" align="right" valign="top"><a id="aca4537379f10091988ca8f033dfcb9c5"></a>
+Eigen::Matrix&lt; double, 3, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematics.html#aca4537379f10091988ca8f033dfcb9c5">I1_fl_rr</a></td></tr>
+<tr class="memdesc:aca4537379f10091988ca8f033dfcb9c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Front Left &amp; Rear Right Hip link inertia matrix. <br /></td></tr>
+<tr class="separator:aca4537379f10091988ca8f033dfcb9c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa081fd94fcc554de0e9abc89034eb836"><td class="memItemLeft" align="right" valign="top"><a id="aa081fd94fcc554de0e9abc89034eb836"></a>
+Eigen::Matrix&lt; double, 3, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematics.html#aa081fd94fcc554de0e9abc89034eb836">I1_fr_rl</a></td></tr>
+<tr class="memdesc:aa081fd94fcc554de0e9abc89034eb836"><td class="mdescLeft">&#160;</td><td class="mdescRight">Front Right &amp; Rear Left Hip link inertia matrix. <br /></td></tr>
+<tr class="separator:aa081fd94fcc554de0e9abc89034eb836"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace9df13d43236450c8b61d44b2006e6f"><td class="memItemLeft" align="right" valign="top"><a id="ace9df13d43236450c8b61d44b2006e6f"></a>
+Eigen::Matrix&lt; double, 3, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematics.html#ace9df13d43236450c8b61d44b2006e6f">I2</a></td></tr>
+<tr class="memdesc:ace9df13d43236450c8b61d44b2006e6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thigh link inertia matrix. <br /></td></tr>
+<tr class="separator:ace9df13d43236450c8b61d44b2006e6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a524d4fbdbb923009fda8ec3f90bcf8a9"><td class="memItemLeft" align="right" valign="top"><a id="a524d4fbdbb923009fda8ec3f90bcf8a9"></a>
+Eigen::Matrix&lt; double, 3, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematics.html#a524d4fbdbb923009fda8ec3f90bcf8a9">I3</a></td></tr>
+<tr class="memdesc:a524d4fbdbb923009fda8ec3f90bcf8a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Leg link inertia matrix. <br /></td></tr>
+<tr class="separator:a524d4fbdbb923009fda8ec3f90bcf8a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A class for analytical <a class="el" href="classKinematics.html" title="A class for analytical Kinematics Solving.">Kinematics</a> Solving. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a106d6bbfdaedf2f01c583330567036b3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a106d6bbfdaedf2f01c583330567036b3">&#9670;&nbsp;</a></span>GetContactJacobianInW()</h2>
+<a id="aa1d7bdb6df5dbd5b7b35abd7457f2a6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1d7bdb6df5dbd5b7b35abd7457f2a6a">&#9670;&nbsp;</a></span>SolveForwardKinematics()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Eigen::Matrix&lt; double, Eigen::Dynamic, 18 &gt; Kinematics::GetContactJacobianInW </td>
+          <td class="memname">bool Kinematics::SolveForwardKinematics </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_legs</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_q</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The GetContactJacobianInW function returns the (3*n_c)x18 support Jacobian mapping reaction forces at the contact points to generalized coordinate space. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_legs</td><td>A vector of leg types containing the contact points. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_q</td><td>Generalized coordinates. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns the contact Jacobian Matrix mapping reaction (contact) forces to generalized coordinate space. </dd></dl>
-
-</div>
-</div>
-<a id="aa92bf3e1471683e19129e9dbef4d95a2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa92bf3e1471683e19129e9dbef4d95a2">&#9670;&nbsp;</a></span>GetContactJacobianInWDiff()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Eigen::Matrix&lt; double, Eigen::Dynamic, 18 &gt; Kinematics::GetContactJacobianInWDiff </td>
-          <td>(</td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_legs</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
+          <td class="paramtype">const GeneralizedCoordinates &amp;&#160;</td>
           <td class="paramname"><em>_q</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_u</em>&#160;</td>
+          <td class="paramtype">FootstepPositions &amp;&#160;</td>
+          <td class="paramname"><em>_f_pos</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -341,36 +429,41 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetrrOffset</b> ()</t
       </table>
 </div><div class="memdoc">
 
-<p>The GetContactJacobianInWDiff function returns the time derivative of the (3*n_c)x18 support Jacobian. </p>
+<p>The SolveForwardKinematics function calculates the Forward <a class="el" href="classKinematics.html" title="A class for analytical Kinematics Solving.">Kinematics</a>, i.e. maps joint angles in Joint Space to a coordinate point in Coordinate Space. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_legs</td><td>A vector of leg types containing the contact points. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_q</td><td>Generalized coordinates. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_u</td><td>Generalized velocities. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_q</td><td>Generalized coordinates. containing the floating base and joint positions. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">_f_pos</td><td>Footstep positions generated from solving the forward kinematics. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns the time derivative of the contact Jacobian Matrix. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Evaluates true if an Forward <a class="el" href="classKinematics.html" title="A class for analytical Kinematics Solving.">Kinematics</a> solution is found, and false if not. </dd></dl>
 
 </div>
 </div>
-<a id="afe283fe7fc47a3428a00dd11ff61d91c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afe283fe7fc47a3428a00dd11ff61d91c">&#9670;&nbsp;</a></span>GetCoriolisAndCentrifugalTerms()</h2>
+<a id="a1303e0b91ebbb7c4591ad914d904cc91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1303e0b91ebbb7c4591ad914d904cc91">&#9670;&nbsp;</a></span>SolveInverseKinematics()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Eigen::Matrix&lt; double, 18, 1 &gt; Kinematics::GetCoriolisAndCentrifugalTerms </td>
+          <td class="memname">bool Kinematics::SolveInverseKinematics </td>
           <td>(</td>
-          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_q</em>, </td>
+          <td class="paramtype">const Twist &amp;&#160;</td>
+          <td class="paramname"><em>_q_b</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_u</em>&#160;</td>
+          <td class="paramtype">const FootstepPositions &amp;&#160;</td>
+          <td class="paramname"><em>_f_pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">JointSpaceVector &amp;&#160;</td>
+          <td class="paramname"><em>_q_r</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -380,16 +473,192 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetrrOffset</b> ()</t
       </table>
 </div><div class="memdoc">
 
-<p>The GetCoriolisAndCentrifugalTerms function returns the coriolis and centrifugal terms for the floating base system. </p>
+<p>The SolveInverseKinematics function calculates the Inverse <a class="el" href="classKinematics.html" title="A class for analytical Kinematics Solving.">Kinematics</a>, i.e. maps a coordinate point in the Coordinate Space to joint angles in the Joint Space. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_q</td><td>Generalized coordinates. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_u</td><td>Generalized velocities. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_q_b</td><td>Base Pose in the world frame. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_f_pos</td><td>Footstep positions in the world frame. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">_q_r</td><td>Joint angles from the Inverse <a class="el" href="classKinematics.html" title="A class for analytical Kinematics Solving.">Kinematics</a> solution. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns coriolis and centrifugal terms for the floating base system. <br  />
- </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Evaluates true if an Inverse <a class="el" href="classKinematics.html" title="A class for analytical Kinematics Solving.">Kinematics</a> solution is found, and false if not. </dd></dl>
+
+</div>
+</div>
+<a id="a8f3a80f7c80de2d87e7f18971a452788"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f3a80f7c80de2d87e7f18971a452788">&#9670;&nbsp;</a></span>SolveSingleLegForwardKinematics() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector3d Kinematics::SolveSingleLegForwardKinematics </td>
+          <td>(</td>
+          <td class="paramtype">const Vector3d &amp;&#160;</td>
+          <td class="paramname"><em>_h_pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>_theta_hy</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>_theta_hp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>_theta_kp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The SolveSingleLegForwardKinematics function calculates the Forward <a class="el" href="classKinematics.html" title="A class for analytical Kinematics Solving.">Kinematics</a> for a single leg. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_h_pos</td><td>Hip position in world frame. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_theta_hy</td><td>Hip yaw angle. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_theta_hp</td><td>Hip pitch angle. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_theta_kp</td><td>Knee pitch angle. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns end-effector position in Coordinate Space. </dd></dl>
+
+</div>
+</div>
+<a id="a98ee3885eb0b9056ba830b21d8d3ff0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98ee3885eb0b9056ba830b21d8d3ff0c">&#9670;&nbsp;</a></span>SolveSingleLegForwardKinematics() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector3d Kinematics::SolveSingleLegForwardKinematics </td>
+          <td>(</td>
+          <td class="paramtype">const Vector3d &amp;&#160;</td>
+          <td class="paramname"><em>_joint_angles</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The SolveSingleLegForwardKinematics function calculates the foot position in the hip frame. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_joint_angles</td><td>A vector containing the hip yaw, hip pitch and knee pitch angles </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns end-effector position in the hip frame. </dd></dl>
+
+</div>
+</div>
+<a id="acfec333c272f446eebbc289b9216cb91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfec333c272f446eebbc289b9216cb91">&#9670;&nbsp;</a></span>SolveSingleLegInverseKinematics() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Kinematics::SolveSingleLegInverseKinematics </td>
+          <td>(</td>
+          <td class="paramtype">const bool &amp;&#160;</td>
+          <td class="paramname"><em>_offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Vector3d &amp;&#160;</td>
+          <td class="paramname"><em>_h_pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Vector3d &amp;&#160;</td>
+          <td class="paramname"><em>_f_pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector3d &amp;&#160;</td>
+          <td class="paramname"><em>_joint_angles</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The SolveSingeLegInverseKinematics function calculates the inverse kinematics for a single leg. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_offset</td><td>Bool indicating whether the leg is roll offset to -90 or 90 degrees. True indicates roll offset of of 90 deg, false indicates roll offset of -90 degrees. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_h_pos</td><td>Hip position in world frame. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_f_pos</td><td>Foot position in world frame. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">_joint_angles</td><td>Joint angles from the Inverse <a class="el" href="classKinematics.html" title="A class for analytical Kinematics Solving.">Kinematics</a> solution for a single-leg (sl). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Evaluates true if an Inverse <a class="el" href="classKinematics.html" title="A class for analytical Kinematics Solving.">Kinematics</a> solution is found, and false if not. </dd></dl>
+
+</div>
+</div>
+<a id="ae9be537672b681659fb05808786c90a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9be537672b681659fb05808786c90a6">&#9670;&nbsp;</a></span>SolveSingleLegInverseKinematics() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Kinematics::SolveSingleLegInverseKinematics </td>
+          <td>(</td>
+          <td class="paramtype">const bool &amp;&#160;</td>
+          <td class="paramname"><em>_offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Vector3d &amp;&#160;</td>
+          <td class="paramname"><em>_f_pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector3d &amp;&#160;</td>
+          <td class="paramname"><em>_joint_angles</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The SolveSingeLegInverseKinematics function calculates the inverse kinematics of foot in the hip frame. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_offset</td><td>Bool indicating whether the leg is roll offset to -90 or 90 degrees. True indicates roll offset of of 90 deg, false indicates roll offset of -90 degrees. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_f_pos</td><td>Foot position in hip frame. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">_joint_angles</td><td>Joint angles from the Inverse <a class="el" href="classKinematics.html" title="A class for analytical Kinematics Solving.">Kinematics</a> solution for a single-leg (sl). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Evaluates true if an Inverse <a class="el" href="classKinematics.html" title="A class for analytical Kinematics Solving.">Kinematics</a> solution is found, and false if not. </dd></dl>
 
 </div>
 </div>
@@ -442,34 +711,6 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetrrOffset</b> ()</t
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the kindr homogeneous transformation matrix from frame A to frame B. </dd></dl>
-
-</div>
-</div>
-<a id="aa769e4e016ffe46c164b027ec88ebbb2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa769e4e016ffe46c164b027ec88ebbb2">&#9670;&nbsp;</a></span>GetGravitationalTerms()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Eigen::Matrix&lt; double, 18, 1 &gt; Kinematics::GetGravitationalTerms </td>
-          <td>(</td>
-          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_q</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The GetGravitationalTerms function returns the gravitational terms for the floating base system. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_q</td><td>Generalized coordinates. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns gravitational terms for the floating base system. <br  />
- </dd></dl>
 
 </div>
 </div>
@@ -529,715 +770,6 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetrrOffset</b> ()</t
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the kindr homogeneous transformation matrix from hip to body. </dd></dl>
-
-</div>
-</div>
-<a id="a7151f255bb9c5dc73e804dc59b7569eb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7151f255bb9c5dc73e804dc59b7569eb">&#9670;&nbsp;</a></span>GetJacobianInW()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Eigen::Matrix&lt; double, 6, 18 &gt; Kinematics::GetJacobianInW </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &amp;&#160;</td>
-          <td class="paramname"><em>_leg</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classKinematics.html#a390b699225b57bc303653caeb6039df3">BodyType</a> &amp;&#160;</td>
-          <td class="paramname"><em>_body</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_q</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The GetJacobianInW function returns the 6x18 spatial Jacobian mapping generalized velocities to operational space twist of the body attached frame. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_leg</td><td>Leg type. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_q</td><td>Generalized coordinates. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns the spatial Jacobian Matrix mapping from generalized velocities to the operational space (world-frame) twist of the body attached frame. <br  />
- </dd></dl>
-
-</div>
-</div>
-<a id="af3ece69a434531fe0f9476a645e92c07"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af3ece69a434531fe0f9476a645e92c07">&#9670;&nbsp;</a></span>GetJacobianInWDiff()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Eigen::Matrix&lt; double, 6, 18 &gt; Kinematics::GetJacobianInWDiff </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &amp;&#160;</td>
-          <td class="paramname"><em>_leg</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classKinematics.html#a390b699225b57bc303653caeb6039df3">BodyType</a> &amp;&#160;</td>
-          <td class="paramname"><em>_body</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_q</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_u</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The GetJacobianInW function returns the time derivative of the 6x18 spatial Jacobian. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_leg</td><td>Leg type. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_q</td><td>Generalized coordinates. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_u</td><td>Generalized velocities. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns the time derivative of the spatial Jacobian Matrix. </dd></dl>
-
-</div>
-</div>
-<a id="a1181fedef3cdfb168a60af6bfd8513b1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1181fedef3cdfb168a60af6bfd8513b1">&#9670;&nbsp;</a></span>GetMassMatrix()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Eigen::Matrix&lt; double, 18, 18 &gt; Kinematics::GetMassMatrix </td>
-          <td>(</td>
-          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_q</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The GetMassMatrix function returns the mass matrix for the floating base system. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_q</td><td>Generalized coordinates. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns an orthogonal mass matrix (n_q x n_q) for the floating base system. </dd></dl>
-
-</div>
-</div>
-<a id="abb46d7bcf0c89d8f5493701261ca17b5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abb46d7bcf0c89d8f5493701261ca17b5">&#9670;&nbsp;</a></span>GetPositionBaseToBodyInB()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Eigen::Matrix&lt; double, 3, 1 &gt; Kinematics::GetPositionBaseToBodyInB </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &amp;&#160;</td>
-          <td class="paramname"><em>_leg</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classKinematics.html#a390b699225b57bc303653caeb6039df3">BodyType</a> &amp;&#160;</td>
-          <td class="paramname"><em>_body</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_q</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The GetPositionBaseToBodyInB returns the position vector from base origin to COM position in body-frame for a given body. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_leg</td><td>Leg type. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_body</td><td>Body type. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_q</td><td>Generalized coordinates. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns the position vector from base to foot. </dd></dl>
-
-</div>
-</div>
-<a id="a748785f956d5c6ed96d09c779ffe2096"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a748785f956d5c6ed96d09c779ffe2096">&#9670;&nbsp;</a></span>GetRotationJacobianInB() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Eigen::Matrix&lt; double, 3, 3 &gt; Kinematics::GetRotationJacobianInB </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &amp;&#160;</td>
-          <td class="paramname"><em>_leg</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classKinematics.html#a390b699225b57bc303653caeb6039df3">BodyType</a> &amp;&#160;</td>
-          <td class="paramname"><em>_body</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const double &amp;&#160;</td>
-          <td class="paramname"><em>_theta_hy</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const double &amp;&#160;</td>
-          <td class="paramname"><em>_theta_hp</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const double &amp;&#160;</td>
-          <td class="paramname"><em>_theta_kp</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The GetRotationJacobianInB function returns the 3x3 Jacobian matrix for body angular velocities in the body(base)-frame for a given state. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_leg</td><td>Leg type. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_body</td><td>Body type. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_theta_hy</td><td>Hip yaw angle. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_theta_hp</td><td>Hip pitch angle. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_theta_kp</td><td>Knee pitch angle. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns the 3x3 rotation Jacobian Matrix relating body angular velocities to joint velocities. </dd></dl>
-
-</div>
-</div>
-<a id="aacae7d510c9db32c3fe87ab4908bac4a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aacae7d510c9db32c3fe87ab4908bac4a">&#9670;&nbsp;</a></span>GetRotationJacobianInB() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Eigen::Matrix&lt; double, 3, 12 &gt; Kinematics::GetRotationJacobianInB </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &amp;&#160;</td>
-          <td class="paramname"><em>_leg</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classKinematics.html#a390b699225b57bc303653caeb6039df3">BodyType</a> &amp;&#160;</td>
-          <td class="paramname"><em>_body</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Eigen::Matrix&lt; double, 12, 1 &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_q_r</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The GetRotationJacobianInB function returns the 3x3 Jacobian matrix for body angular velocities in the body(base)-frame for a given state. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_leg</td><td>Leg type. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_body</td><td>Body type. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_q_r</td><td>Joint coordinates. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns the 3x12 rotation Jacobian Matrix relating body angular velocities to joint velocities. </dd></dl>
-
-</div>
-</div>
-<a id="a56697b824a7af6ab06445a3c95cb9928"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a56697b824a7af6ab06445a3c95cb9928">&#9670;&nbsp;</a></span>GetRotationJacobianInBDiff() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Eigen::Matrix&lt; double, 3, 3 &gt; Kinematics::GetRotationJacobianInBDiff </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &amp;&#160;</td>
-          <td class="paramname"><em>_leg</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classKinematics.html#a390b699225b57bc303653caeb6039df3">BodyType</a> &amp;&#160;</td>
-          <td class="paramname"><em>_body</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const double &amp;&#160;</td>
-          <td class="paramname"><em>_theta_hy</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const double &amp;&#160;</td>
-          <td class="paramname"><em>_theta_hp</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const double &amp;&#160;</td>
-          <td class="paramname"><em>_theta_kp</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const double &amp;&#160;</td>
-          <td class="paramname"><em>_dot_theta_hy</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const double &amp;&#160;</td>
-          <td class="paramname"><em>_dot_theta_hp</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const double &amp;&#160;</td>
-          <td class="paramname"><em>_dot_theta_kp</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The GetRotationJacobianInBDiff function returns the time derivative of the 3x3 Rotation Jacobian matrix. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_leg</td><td>Leg type. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_body</td><td>Body type. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_theta_hy</td><td>Hip yaw angle. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_theta_hp</td><td>Hip pitch angle. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_theta_kp</td><td>Knee pitch angle. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_dot_theta_hy</td><td>Hip yaw rate. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_dot_theta_hp</td><td>Hip pitch rate. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_dot_theta_kp</td><td>Knee pitch rate. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns the 3x3 time derivative of the Rotation Jacobian Matrix. </dd></dl>
-
-</div>
-</div>
-<a id="a7d42c7e9b4813c5c6b3d8472e4f9035f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7d42c7e9b4813c5c6b3d8472e4f9035f">&#9670;&nbsp;</a></span>GetRotationJacobianInBDiff() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Eigen::Matrix&lt; double, 3, 12 &gt; Kinematics::GetRotationJacobianInBDiff </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &amp;&#160;</td>
-          <td class="paramname"><em>_leg</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classKinematics.html#a390b699225b57bc303653caeb6039df3">BodyType</a> &amp;&#160;</td>
-          <td class="paramname"><em>_body</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Eigen::Matrix&lt; double, 12, 1 &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_q_r</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Eigen::Matrix&lt; double, 12, 1 &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_dot_q_r</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The GetRotationJacobianDerivativeInB function returns the time derivative of the 3x12 Rotation Jacobian matrix. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_leg</td><td>Leg type. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_body</td><td>Body type. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_q_r</td><td>Joint coordinates. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_dot_q_r</td><td>Joint velocities. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns the 3x12 time derivative of the Rotation Jacobian Matrix. </dd></dl>
-
-</div>
-</div>
-<a id="ac3f39f4785c4988e0bc0a612976b2b91"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac3f39f4785c4988e0bc0a612976b2b91">&#9670;&nbsp;</a></span>GetRotationJacobianInC()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Eigen::Matrix&lt; double, 3, 18 &gt; Kinematics::GetRotationJacobianInC </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &amp;&#160;</td>
-          <td class="paramname"><em>_leg</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classKinematics.html#a390b699225b57bc303653caeb6039df3">BodyType</a> &amp;&#160;</td>
-          <td class="paramname"><em>_body</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_q</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The GetRotationJacobianInC function returns the 3x18 spatial rotation Jacobian mapping generalized velocities to control frame twist of the body attached frame. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_leg</td><td>Leg type. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_body</td><td>Body type. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_q</td><td>Generalized coordinates. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns the rotation Jacobian Matrix mapping from generalized velocities to the control frame twist of the body attached frame. </dd></dl>
-
-</div>
-</div>
-<a id="adf37c77c89b4b4dcca663120fab5953f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adf37c77c89b4b4dcca663120fab5953f">&#9670;&nbsp;</a></span>GetRotationJacobianInCDiff()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Eigen::Matrix&lt; double, 3, 18 &gt; Kinematics::GetRotationJacobianInCDiff </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &amp;&#160;</td>
-          <td class="paramname"><em>_leg</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classKinematics.html#a390b699225b57bc303653caeb6039df3">BodyType</a> &amp;&#160;</td>
-          <td class="paramname"><em>_body</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_q</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_u</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The GetRotationJacobianInCDiff function returns the time derivative of the 3x18 control frame Rotation Jacobian. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_leg</td><td>Leg type. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_body</td><td>Body type. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_q</td><td>Generalized coordinates. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_u</td><td>Generalized velocities. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns the 3x18 time derivative of the Rotation Jacobian Matrix in the control frame. </dd></dl>
-
-</div>
-</div>
-<a id="aedd990de8ab5576a285ec32d8bb1dfd3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aedd990de8ab5576a285ec32d8bb1dfd3">&#9670;&nbsp;</a></span>GetRotationJacobianInW()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Eigen::Matrix&lt; double, 3, 18 &gt; Kinematics::GetRotationJacobianInW </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &amp;&#160;</td>
-          <td class="paramname"><em>_leg</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classKinematics.html#a390b699225b57bc303653caeb6039df3">BodyType</a> &amp;&#160;</td>
-          <td class="paramname"><em>_body</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_q</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The GetRotationJacobianInW function returns the 3x18 spatial rotation Jacobian mapping generalized velocities to operational space twist of the body attached frame. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_leg</td><td>Leg type. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_body</td><td>Body type. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_q</td><td>Generalized coordinates. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns the rotation Jacobian Matrix mapping from generalized velocities to the operational space (world-frame) twist of the body attached frame. </dd></dl>
-
-</div>
-</div>
-<a id="a36b87e3957e657e3b953398072222026"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a36b87e3957e657e3b953398072222026">&#9670;&nbsp;</a></span>GetRotationJacobianInWDiff()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Eigen::Matrix&lt; double, 3, 18 &gt; Kinematics::GetRotationJacobianInWDiff </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &amp;&#160;</td>
-          <td class="paramname"><em>_leg</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classKinematics.html#a390b699225b57bc303653caeb6039df3">BodyType</a> &amp;&#160;</td>
-          <td class="paramname"><em>_body</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_q</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_u</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The GetRotationJacobianInWDiff function returns the time derivative of the 3x18 spatial Rotation Jacobian. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_leg</td><td>Leg type. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_body</td><td>Body type. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_q</td><td>Generalized coordinates. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_u</td><td>Generalized velocities. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns the 3x18 time derivative of the Rotation Jacobian Matrix in the world frame. </dd></dl>
-
-</div>
-</div>
-<a id="aa1fe2d126cda71aff030c50677d400c9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa1fe2d126cda71aff030c50677d400c9">&#9670;&nbsp;</a></span>GetRotationMatrixCToB()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Eigen::Matrix&lt; double, 3, 3 &gt; Kinematics::GetRotationMatrixCToB </td>
-          <td>(</td>
-          <td class="paramtype">const double &amp;&#160;</td>
-          <td class="paramname"><em>_roll</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const double &amp;&#160;</td>
-          <td class="paramname"><em>_pitch</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const double &amp;&#160;</td>
-          <td class="paramname"><em>_yaw</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The GetRotationMatrixCToB function returns the Euler Angles ZYX rotation matrix from Control to Body frame, i.e., the transform from Body to Control. For flat-terrain the yaw angle should be set zero. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_roll</td><td>Roll angle (x-axis). </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_pitch</td><td>Pitch angle (y-axis). </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_yaw</td><td>Yaw angle (z-axis). </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns the rotation matrix from Control to Body frame (transform from Body to Control), using the Euler Angles ZYX convention. </dd></dl>
-
-</div>
-</div>
-<a id="ada07b12404f8b4860572bf9c4aad9a17"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ada07b12404f8b4860572bf9c4aad9a17">&#9670;&nbsp;</a></span>GetRotationMatrixCToBDiff()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Eigen::Matrix&lt; double, 3, 3 &gt; Kinematics::GetRotationMatrixCToBDiff </td>
-          <td>(</td>
-          <td class="paramtype">const double &amp;&#160;</td>
-          <td class="paramname"><em>_roll</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const double &amp;&#160;</td>
-          <td class="paramname"><em>_pitch</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const double &amp;&#160;</td>
-          <td class="paramname"><em>_yaw</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const double &amp;&#160;</td>
-          <td class="paramname"><em>_roll_rate</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const double &amp;&#160;</td>
-          <td class="paramname"><em>_pitch_rate</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const double &amp;&#160;</td>
-          <td class="paramname"><em>_yaw_rate</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The GetRotationMatrixCToBDiff function returns the time derivative of the Euler Angles ZYX rotation matrix from World to Body frame. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_roll</td><td>Roll angle (x-axis). </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_pitch</td><td>Pitch angle (y-axis). </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_yaw</td><td>Yaw angle (z-axis). </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_roll_rate</td><td>Roll rate (x-axis). </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_pitch_rate</td><td>Pitch rate (y-axis). </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_yaw_rate</td><td>Yaw rate (z-axis). </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns the time derivative of the rotation matrix from Control to Body frame, using the Euler Angles ZYX convention. </dd></dl>
 
 </div>
 </div>
@@ -1463,35 +995,29 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetrrOffset</b> ()</t
 
 </div>
 </div>
-<a id="a1b13674b4136654c258d28596e7623e5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1b13674b4136654c258d28596e7623e5">&#9670;&nbsp;</a></span>GetSingleBodyCoriolisAndCentrifugalTerms()</h2>
+<a id="aa1fe2d126cda71aff030c50677d400c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1fe2d126cda71aff030c50677d400c9">&#9670;&nbsp;</a></span>GetRotationMatrixCToB()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Eigen::Matrix&lt; double, 18, 1 &gt; Kinematics::GetSingleBodyCoriolisAndCentrifugalTerms </td>
+          <td class="memname">Eigen::Matrix&lt; double, 3, 3 &gt; Kinematics::GetRotationMatrixCToB </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &amp;&#160;</td>
-          <td class="paramname"><em>_leg</em>, </td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>_roll</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classKinematics.html#a390b699225b57bc303653caeb6039df3">BodyType</a> &amp;&#160;</td>
-          <td class="paramname"><em>_body</em>, </td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>_pitch</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_q</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_u</em>&#160;</td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>_yaw</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1501,28 +1027,93 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetrrOffset</b> ()</t
       </table>
 </div><div class="memdoc">
 
-<p>The GetSingleBodyCoriolisAndCentrifugalTerms function returns the coriolis and centrifugal terms for a single body in the system. </p>
+<p>The GetRotationMatrixCToB function returns the Euler Angles ZYX rotation matrix from Control to Body frame, i.e., the transform from Body to Control. For flat-terrain the yaw angle should be set zero. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_leg</td><td>Leg type. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_body</td><td>Body type. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_q</td><td>Generalized coordinates. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_u</td><td>Generalized velocities. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_roll</td><td>Roll angle (x-axis). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_pitch</td><td>Pitch angle (y-axis). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_yaw</td><td>Yaw angle (z-axis). </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns a single body coriolis and centrifugal terms as specified by leg and body type. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the rotation matrix from Control to Body frame (transform from Body to Control), using the Euler Angles ZYX convention. </dd></dl>
 
 </div>
 </div>
-<a id="a6a93023396ebc887afaff59f9bb4432b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6a93023396ebc887afaff59f9bb4432b">&#9670;&nbsp;</a></span>GetSingleBodyGravitationalTerms()</h2>
+<a id="ada07b12404f8b4860572bf9c4aad9a17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada07b12404f8b4860572bf9c4aad9a17">&#9670;&nbsp;</a></span>GetRotationMatrixCToBDiff()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Eigen::Matrix&lt; double, 18, 1 &gt; Kinematics::GetSingleBodyGravitationalTerms </td>
+          <td class="memname">Eigen::Matrix&lt; double, 3, 3 &gt; Kinematics::GetRotationMatrixCToBDiff </td>
+          <td>(</td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>_roll</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>_pitch</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>_yaw</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>_roll_rate</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>_pitch_rate</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>_yaw_rate</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The GetRotationMatrixCToBDiff function returns the time derivative of the Euler Angles ZYX rotation matrix from World to Body frame. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_roll</td><td>Roll angle (x-axis). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_pitch</td><td>Pitch angle (y-axis). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_yaw</td><td>Yaw angle (z-axis). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_roll_rate</td><td>Roll rate (x-axis). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_pitch_rate</td><td>Pitch rate (y-axis). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_yaw_rate</td><td>Yaw rate (z-axis). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the time derivative of the rotation matrix from Control to Body frame, using the Euler Angles ZYX convention. </dd></dl>
+
+</div>
+</div>
+<a id="abb46d7bcf0c89d8f5493701261ca17b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb46d7bcf0c89d8f5493701261ca17b5">&#9670;&nbsp;</a></span>GetPositionBaseToBodyInB()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::Matrix&lt; double, 3, 1 &gt; Kinematics::GetPositionBaseToBodyInB </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &amp;&#160;</td>
           <td class="paramname"><em>_leg</em>, </td>
@@ -1547,7 +1138,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetrrOffset</b> ()</t
       </table>
 </div><div class="memdoc">
 
-<p>The GetSingleBodyGravitationalTerms function returns the gravitational terms for a single body in the system. </p>
+<p>The GetPositionBaseToBodyInB returns the position vector from base origin to COM position in body-frame for a given body. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">_leg</td><td>Leg type. </td></tr>
@@ -1556,135 +1147,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetrrOffset</b> ()</t
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns a single body gravitational terms as specified by leg and body type. </dd></dl>
-
-</div>
-</div>
-<a id="ab110e0daf4f3c74dbfc3b9e9163291a2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab110e0daf4f3c74dbfc3b9e9163291a2">&#9670;&nbsp;</a></span>GetSingleBodyMassMatrix()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Eigen::Matrix&lt; double, 18, 18 &gt; Kinematics::GetSingleBodyMassMatrix </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &amp;&#160;</td>
-          <td class="paramname"><em>_leg</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classKinematics.html#a390b699225b57bc303653caeb6039df3">BodyType</a> &amp;&#160;</td>
-          <td class="paramname"><em>_body</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_q</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The GetSingleBodyMassMatrix function returns the mass matrix for a single body in the system. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_leg</td><td>Leg type. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_body</td><td>Body type. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_q</td><td>Generalized coordinates. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns a single body mass matrix as specified by leg and body type. </dd></dl>
-
-</div>
-</div>
-<a id="a52ccb0ca7c5d86767e9f1b4db7b0ed79"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a52ccb0ca7c5d86767e9f1b4db7b0ed79">&#9670;&nbsp;</a></span>GetSwingJacobianInW()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Eigen::Matrix&lt; double, Eigen::Dynamic, 18 &gt; Kinematics::GetSwingJacobianInW </td>
-          <td>(</td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_legs</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_q</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The GetSwingJacobianInW function returns the (3*n_s)x18 support Jacobian mapping swing foot velocities to generalized coordinate space. (n_s = 4 - n_c) </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_legs</td><td>A vector of leg types containing the swing legs. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_q</td><td>Generalized coordinates. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns the support Jacobian Matrix mapping swing foot velocities to generalized coordinate space. </dd></dl>
-
-</div>
-</div>
-<a id="ae92f81f90ffc52426d4b1bc1946914d4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae92f81f90ffc52426d4b1bc1946914d4">&#9670;&nbsp;</a></span>GetSwingJacobianInWDiff()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Eigen::Matrix&lt; double, Eigen::Dynamic, 18 &gt; Kinematics::GetSwingJacobianInWDiff </td>
-          <td>(</td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_legs</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_q</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_u</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The GetContactJacobianInWDiff function returns the time derivative of the (3*n_s)x18 support Jacobian. (n_s = 4 - n_c) </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_legs</td><td>A vector of leg types containing the swing legs. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_q</td><td>Generalized coordinates. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_u</td><td>Generalized velocities. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns the time derivative of the support swing-leg Jacobian Matrix. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the position vector from base to foot. </dd></dl>
 
 </div>
 </div>
@@ -1789,6 +1252,96 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetrrOffset</b> ()</t
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the 3x12 translation Jacobian Matrix relating body linear velocities to joint velocities. </dd></dl>
+
+</div>
+</div>
+<a id="a0b6321c5fbd5eb593e4591a1efde2f2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b6321c5fbd5eb593e4591a1efde2f2d">&#9670;&nbsp;</a></span>GetTranslationJacobianInW()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::Matrix&lt; double, 3, 18 &gt; Kinematics::GetTranslationJacobianInW </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &amp;&#160;</td>
+          <td class="paramname"><em>_leg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classKinematics.html#a390b699225b57bc303653caeb6039df3">BodyType</a> &amp;&#160;</td>
+          <td class="paramname"><em>_body</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_q</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The GetTranslationJacobianInW function returns the 3x18 spatial translation Jacobian mapping generalized velocities to operational space twist of the body attached frame. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_leg</td><td>Leg type. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_body</td><td>Body type. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_q</td><td>Generalized coordinates. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the translation Jacobian Matrix mapping from generalized velocities to the operational space (world-frame) twist of the body attached frame. </dd></dl>
+
+</div>
+</div>
+<a id="aba499927a2b02e14fa4d4b5551ed96b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba499927a2b02e14fa4d4b5551ed96b7">&#9670;&nbsp;</a></span>GetTranslationJacobianInC()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::Matrix&lt; double, 3, 18 &gt; Kinematics::GetTranslationJacobianInC </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &amp;&#160;</td>
+          <td class="paramname"><em>_leg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classKinematics.html#a390b699225b57bc303653caeb6039df3">BodyType</a> &amp;&#160;</td>
+          <td class="paramname"><em>_body</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_q</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The GetTranslationJacobianInC function returns the 3x18 spatial translation Jacobian mapping generalized velocities to operational space twist of the control frame. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_leg</td><td>Leg type. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_body</td><td>Body type. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_q</td><td>Generalized coordinates. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the translation Jacobian Matrix mapping from generalized velocities to the operational space (world-frame) twist of the control frame. </dd></dl>
 
 </div>
 </div>
@@ -1924,14 +1477,14 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetrrOffset</b> ()</t
 
 </div>
 </div>
-<a id="aba499927a2b02e14fa4d4b5551ed96b7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aba499927a2b02e14fa4d4b5551ed96b7">&#9670;&nbsp;</a></span>GetTranslationJacobianInC()</h2>
+<a id="ae6ee79028997a34c67c47a9c40567a57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6ee79028997a34c67c47a9c40567a57">&#9670;&nbsp;</a></span>GetTranslationJacobianInWDiff()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Eigen::Matrix&lt; double, 3, 18 &gt; Kinematics::GetTranslationJacobianInC </td>
+          <td class="memname">Eigen::Matrix&lt; double, 3, 18 &gt; Kinematics::GetTranslationJacobianInWDiff </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &amp;&#160;</td>
           <td class="paramname"><em>_leg</em>, </td>
@@ -1946,7 +1499,13 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetrrOffset</b> ()</t
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_q</em>&#160;</td>
+          <td class="paramname"><em>_q</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_u</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1956,16 +1515,17 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetrrOffset</b> ()</t
       </table>
 </div><div class="memdoc">
 
-<p>The GetTranslationJacobianInC function returns the 3x18 spatial translation Jacobian mapping generalized velocities to operational space twist of the control frame. </p>
+<p>The GetTranslationJacobianInWDiff function returns the time derivative of the 3x18 spatial translation Jacobian in the world frame. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">_leg</td><td>Leg type. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">_body</td><td>Body type. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">_q</td><td>Generalized coordinates. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_u</td><td>Generalized velocities. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns the translation Jacobian Matrix mapping from generalized velocities to the operational space (world-frame) twist of the control frame. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the 3x18 time derivative of the translation Jacobian Matrix in the world frame. </dd></dl>
 
 </div>
 </div>
@@ -2021,14 +1581,118 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetrrOffset</b> ()</t
 
 </div>
 </div>
-<a id="a0b6321c5fbd5eb593e4591a1efde2f2d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0b6321c5fbd5eb593e4591a1efde2f2d">&#9670;&nbsp;</a></span>GetTranslationJacobianInW()</h2>
+<a id="a748785f956d5c6ed96d09c779ffe2096"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a748785f956d5c6ed96d09c779ffe2096">&#9670;&nbsp;</a></span>GetRotationJacobianInB() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Eigen::Matrix&lt; double, 3, 18 &gt; Kinematics::GetTranslationJacobianInW </td>
+          <td class="memname">Eigen::Matrix&lt; double, 3, 3 &gt; Kinematics::GetRotationJacobianInB </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &amp;&#160;</td>
+          <td class="paramname"><em>_leg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classKinematics.html#a390b699225b57bc303653caeb6039df3">BodyType</a> &amp;&#160;</td>
+          <td class="paramname"><em>_body</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>_theta_hy</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>_theta_hp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>_theta_kp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The GetRotationJacobianInB function returns the 3x3 Jacobian matrix for body angular velocities in the body(base)-frame for a given state. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_leg</td><td>Leg type. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_body</td><td>Body type. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_theta_hy</td><td>Hip yaw angle. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_theta_hp</td><td>Hip pitch angle. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_theta_kp</td><td>Knee pitch angle. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the 3x3 rotation Jacobian Matrix relating body angular velocities to joint velocities. </dd></dl>
+
+</div>
+</div>
+<a id="aacae7d510c9db32c3fe87ab4908bac4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aacae7d510c9db32c3fe87ab4908bac4a">&#9670;&nbsp;</a></span>GetRotationJacobianInB() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::Matrix&lt; double, 3, 12 &gt; Kinematics::GetRotationJacobianInB </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &amp;&#160;</td>
+          <td class="paramname"><em>_leg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classKinematics.html#a390b699225b57bc303653caeb6039df3">BodyType</a> &amp;&#160;</td>
+          <td class="paramname"><em>_body</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 12, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_q_r</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The GetRotationJacobianInB function returns the 3x3 Jacobian matrix for body angular velocities in the body(base)-frame for a given state. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_leg</td><td>Leg type. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_body</td><td>Body type. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_q_r</td><td>Joint coordinates. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the 3x12 rotation Jacobian Matrix relating body angular velocities to joint velocities. </dd></dl>
+
+</div>
+</div>
+<a id="aedd990de8ab5576a285ec32d8bb1dfd3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aedd990de8ab5576a285ec32d8bb1dfd3">&#9670;&nbsp;</a></span>GetRotationJacobianInW()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::Matrix&lt; double, 3, 18 &gt; Kinematics::GetRotationJacobianInW </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &amp;&#160;</td>
           <td class="paramname"><em>_leg</em>, </td>
@@ -2053,7 +1717,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetrrOffset</b> ()</t
       </table>
 </div><div class="memdoc">
 
-<p>The GetTranslationJacobianInW function returns the 3x18 spatial translation Jacobian mapping generalized velocities to operational space twist of the body attached frame. </p>
+<p>The GetRotationJacobianInW function returns the 3x18 spatial rotation Jacobian mapping generalized velocities to operational space twist of the body attached frame. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">_leg</td><td>Leg type. </td></tr>
@@ -2062,18 +1726,195 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetrrOffset</b> ()</t
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns the translation Jacobian Matrix mapping from generalized velocities to the operational space (world-frame) twist of the body attached frame. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the rotation Jacobian Matrix mapping from generalized velocities to the operational space (world-frame) twist of the body attached frame. </dd></dl>
 
 </div>
 </div>
-<a id="ae6ee79028997a34c67c47a9c40567a57"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae6ee79028997a34c67c47a9c40567a57">&#9670;&nbsp;</a></span>GetTranslationJacobianInWDiff()</h2>
+<a id="ac3f39f4785c4988e0bc0a612976b2b91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3f39f4785c4988e0bc0a612976b2b91">&#9670;&nbsp;</a></span>GetRotationJacobianInC()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Eigen::Matrix&lt; double, 3, 18 &gt; Kinematics::GetTranslationJacobianInWDiff </td>
+          <td class="memname">Eigen::Matrix&lt; double, 3, 18 &gt; Kinematics::GetRotationJacobianInC </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &amp;&#160;</td>
+          <td class="paramname"><em>_leg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classKinematics.html#a390b699225b57bc303653caeb6039df3">BodyType</a> &amp;&#160;</td>
+          <td class="paramname"><em>_body</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_q</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The GetRotationJacobianInC function returns the 3x18 spatial rotation Jacobian mapping generalized velocities to control frame twist of the body attached frame. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_leg</td><td>Leg type. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_body</td><td>Body type. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_q</td><td>Generalized coordinates. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the rotation Jacobian Matrix mapping from generalized velocities to the control frame twist of the body attached frame. </dd></dl>
+
+</div>
+</div>
+<a id="a56697b824a7af6ab06445a3c95cb9928"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56697b824a7af6ab06445a3c95cb9928">&#9670;&nbsp;</a></span>GetRotationJacobianInBDiff() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::Matrix&lt; double, 3, 3 &gt; Kinematics::GetRotationJacobianInBDiff </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &amp;&#160;</td>
+          <td class="paramname"><em>_leg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classKinematics.html#a390b699225b57bc303653caeb6039df3">BodyType</a> &amp;&#160;</td>
+          <td class="paramname"><em>_body</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>_theta_hy</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>_theta_hp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>_theta_kp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>_dot_theta_hy</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>_dot_theta_hp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>_dot_theta_kp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The GetRotationJacobianInBDiff function returns the time derivative of the 3x3 Rotation Jacobian matrix. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_leg</td><td>Leg type. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_body</td><td>Body type. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_theta_hy</td><td>Hip yaw angle. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_theta_hp</td><td>Hip pitch angle. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_theta_kp</td><td>Knee pitch angle. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_dot_theta_hy</td><td>Hip yaw rate. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_dot_theta_hp</td><td>Hip pitch rate. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_dot_theta_kp</td><td>Knee pitch rate. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the 3x3 time derivative of the Rotation Jacobian Matrix. </dd></dl>
+
+</div>
+</div>
+<a id="a7d42c7e9b4813c5c6b3d8472e4f9035f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d42c7e9b4813c5c6b3d8472e4f9035f">&#9670;&nbsp;</a></span>GetRotationJacobianInBDiff() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::Matrix&lt; double, 3, 12 &gt; Kinematics::GetRotationJacobianInBDiff </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &amp;&#160;</td>
+          <td class="paramname"><em>_leg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classKinematics.html#a390b699225b57bc303653caeb6039df3">BodyType</a> &amp;&#160;</td>
+          <td class="paramname"><em>_body</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 12, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_q_r</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 12, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_dot_q_r</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The GetRotationJacobianDerivativeInB function returns the time derivative of the 3x12 Rotation Jacobian matrix. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_leg</td><td>Leg type. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_body</td><td>Body type. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_q_r</td><td>Joint coordinates. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_dot_q_r</td><td>Joint velocities. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the 3x12 time derivative of the Rotation Jacobian Matrix. </dd></dl>
+
+</div>
+</div>
+<a id="a36b87e3957e657e3b953398072222026"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36b87e3957e657e3b953398072222026">&#9670;&nbsp;</a></span>GetRotationJacobianInWDiff()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::Matrix&lt; double, 3, 18 &gt; Kinematics::GetRotationJacobianInWDiff </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &amp;&#160;</td>
           <td class="paramname"><em>_leg</em>, </td>
@@ -2104,7 +1945,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetrrOffset</b> ()</t
       </table>
 </div><div class="memdoc">
 
-<p>The GetTranslationJacobianInWDiff function returns the time derivative of the 3x18 spatial translation Jacobian in the world frame. </p>
+<p>The GetRotationJacobianInWDiff function returns the time derivative of the 3x18 spatial Rotation Jacobian. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">_leg</td><td>Leg type. </td></tr>
@@ -2114,27 +1955,39 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetrrOffset</b> ()</t
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns the 3x18 time derivative of the translation Jacobian Matrix in the world frame. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the 3x18 time derivative of the Rotation Jacobian Matrix in the world frame. </dd></dl>
 
 </div>
 </div>
-<a id="aa1d7bdb6df5dbd5b7b35abd7457f2a6a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa1d7bdb6df5dbd5b7b35abd7457f2a6a">&#9670;&nbsp;</a></span>SolveForwardKinematics()</h2>
+<a id="adf37c77c89b4b4dcca663120fab5953f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf37c77c89b4b4dcca663120fab5953f">&#9670;&nbsp;</a></span>GetRotationJacobianInCDiff()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Kinematics::SolveForwardKinematics </td>
+          <td class="memname">Eigen::Matrix&lt; double, 3, 18 &gt; Kinematics::GetRotationJacobianInCDiff </td>
           <td>(</td>
-          <td class="paramtype">const GeneralizedCoordinates &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &amp;&#160;</td>
+          <td class="paramname"><em>_leg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classKinematics.html#a390b699225b57bc303653caeb6039df3">BodyType</a> &amp;&#160;</td>
+          <td class="paramname"><em>_body</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
           <td class="paramname"><em>_q</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">FootstepPositions &amp;&#160;</td>
-          <td class="paramname"><em>_f_pos</em>&#160;</td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_u</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2144,41 +1997,43 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetrrOffset</b> ()</t
       </table>
 </div><div class="memdoc">
 
-<p>The SolveForwardKinematics function calculates the Forward <a class="el" href="classKinematics.html" title="A class for analytical Kinematics Solving.">Kinematics</a>, i.e. maps joint angles in Joint Space to a coordinate point in Coordinate Space. </p>
+<p>The GetRotationJacobianInCDiff function returns the time derivative of the 3x18 control frame Rotation Jacobian. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_q</td><td>Generalized coordinates. containing the floating base and joint positions. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">_f_pos</td><td>Footstep positions generated from solving the forward kinematics. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_leg</td><td>Leg type. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_body</td><td>Body type. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_q</td><td>Generalized coordinates. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_u</td><td>Generalized velocities. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Evaluates true if an Forward <a class="el" href="classKinematics.html" title="A class for analytical Kinematics Solving.">Kinematics</a> solution is found, and false if not. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the 3x18 time derivative of the Rotation Jacobian Matrix in the control frame. </dd></dl>
 
 </div>
 </div>
-<a id="a1303e0b91ebbb7c4591ad914d904cc91"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1303e0b91ebbb7c4591ad914d904cc91">&#9670;&nbsp;</a></span>SolveInverseKinematics()</h2>
+<a id="a7151f255bb9c5dc73e804dc59b7569eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7151f255bb9c5dc73e804dc59b7569eb">&#9670;&nbsp;</a></span>GetJacobianInW()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Kinematics::SolveInverseKinematics </td>
+          <td class="memname">Eigen::Matrix&lt; double, 6, 18 &gt; Kinematics::GetJacobianInW </td>
           <td>(</td>
-          <td class="paramtype">const Twist &amp;&#160;</td>
-          <td class="paramname"><em>_q_b</em>, </td>
+          <td class="paramtype">const <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &amp;&#160;</td>
+          <td class="paramname"><em>_leg</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const FootstepPositions &amp;&#160;</td>
-          <td class="paramname"><em>_f_pos</em>, </td>
+          <td class="paramtype">const <a class="el" href="classKinematics.html#a390b699225b57bc303653caeb6039df3">BodyType</a> &amp;&#160;</td>
+          <td class="paramname"><em>_body</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">JointSpaceVector &amp;&#160;</td>
-          <td class="paramname"><em>_q_r</em>&#160;</td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_q</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2188,48 +2043,48 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetrrOffset</b> ()</t
       </table>
 </div><div class="memdoc">
 
-<p>The SolveInverseKinematics function calculates the Inverse <a class="el" href="classKinematics.html" title="A class for analytical Kinematics Solving.">Kinematics</a>, i.e. maps a coordinate point in the Coordinate Space to joint angles in the Joint Space. </p>
+<p>The GetJacobianInW function returns the 6x18 spatial Jacobian mapping generalized velocities to operational space twist of the body attached frame. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_q_b</td><td>Base Pose in the world frame. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_f_pos</td><td>Footstep positions in the world frame. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">_q_r</td><td>Joint angles from the Inverse <a class="el" href="classKinematics.html" title="A class for analytical Kinematics Solving.">Kinematics</a> solution. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_leg</td><td>Leg type. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_q</td><td>Generalized coordinates. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Evaluates true if an Inverse <a class="el" href="classKinematics.html" title="A class for analytical Kinematics Solving.">Kinematics</a> solution is found, and false if not. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the spatial Jacobian Matrix mapping from generalized velocities to the operational space (world-frame) twist of the body attached frame. <br  />
+ </dd></dl>
 
 </div>
 </div>
-<a id="a8f3a80f7c80de2d87e7f18971a452788"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8f3a80f7c80de2d87e7f18971a452788">&#9670;&nbsp;</a></span>SolveSingleLegForwardKinematics() <span class="overload">[1/2]</span></h2>
+<a id="af3ece69a434531fe0f9476a645e92c07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3ece69a434531fe0f9476a645e92c07">&#9670;&nbsp;</a></span>GetJacobianInWDiff()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Vector3d Kinematics::SolveSingleLegForwardKinematics </td>
+          <td class="memname">Eigen::Matrix&lt; double, 6, 18 &gt; Kinematics::GetJacobianInWDiff </td>
           <td>(</td>
-          <td class="paramtype">const Vector3d &amp;&#160;</td>
-          <td class="paramname"><em>_h_pos</em>, </td>
+          <td class="paramtype">const <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &amp;&#160;</td>
+          <td class="paramname"><em>_leg</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const double &amp;&#160;</td>
-          <td class="paramname"><em>_theta_hy</em>, </td>
+          <td class="paramtype">const <a class="el" href="classKinematics.html#a390b699225b57bc303653caeb6039df3">BodyType</a> &amp;&#160;</td>
+          <td class="paramname"><em>_body</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const double &amp;&#160;</td>
-          <td class="paramname"><em>_theta_hp</em>, </td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_q</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const double &amp;&#160;</td>
-          <td class="paramname"><em>_theta_kp</em>&#160;</td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_u</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2239,70 +2094,36 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetrrOffset</b> ()</t
       </table>
 </div><div class="memdoc">
 
-<p>The SolveSingleLegForwardKinematics function calculates the Forward <a class="el" href="classKinematics.html" title="A class for analytical Kinematics Solving.">Kinematics</a> for a single leg. </p>
+<p>The GetJacobianInW function returns the time derivative of the 6x18 spatial Jacobian. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_h_pos</td><td>Hip position in world frame. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_theta_hy</td><td>Hip yaw angle. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_theta_hp</td><td>Hip pitch angle. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_theta_kp</td><td>Knee pitch angle. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_leg</td><td>Leg type. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_q</td><td>Generalized coordinates. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_u</td><td>Generalized velocities. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns end-effector position in Coordinate Space. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the time derivative of the spatial Jacobian Matrix. </dd></dl>
 
 </div>
 </div>
-<a id="a98ee3885eb0b9056ba830b21d8d3ff0c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a98ee3885eb0b9056ba830b21d8d3ff0c">&#9670;&nbsp;</a></span>SolveSingleLegForwardKinematics() <span class="overload">[2/2]</span></h2>
+<a id="a106d6bbfdaedf2f01c583330567036b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a106d6bbfdaedf2f01c583330567036b3">&#9670;&nbsp;</a></span>GetContactJacobianInW()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Vector3d Kinematics::SolveSingleLegForwardKinematics </td>
+          <td class="memname">Eigen::Matrix&lt; double, Eigen::Dynamic, 18 &gt; Kinematics::GetContactJacobianInW </td>
           <td>(</td>
-          <td class="paramtype">const Vector3d &amp;&#160;</td>
-          <td class="paramname"><em>_joint_angles</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The SolveSingleLegForwardKinematics function calculates the foot position in the hip frame. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_joint_angles</td><td>A vector containing the hip yaw, hip pitch and knee pitch angles </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns end-effector position in the hip frame. </dd></dl>
-
-</div>
-</div>
-<a id="ae9be537672b681659fb05808786c90a6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae9be537672b681659fb05808786c90a6">&#9670;&nbsp;</a></span>SolveSingleLegInverseKinematics() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Kinematics::SolveSingleLegInverseKinematics </td>
-          <td>(</td>
-          <td class="paramtype">const bool &amp;&#160;</td>
-          <td class="paramname"><em>_offset</em>, </td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_legs</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const Vector3d &amp;&#160;</td>
-          <td class="paramname"><em>_f_pos</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Vector3d &amp;&#160;</td>
-          <td class="paramname"><em>_joint_angles</em>&#160;</td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_q</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2312,48 +2133,41 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetrrOffset</b> ()</t
       </table>
 </div><div class="memdoc">
 
-<p>The SolveSingeLegInverseKinematics function calculates the inverse kinematics of foot in the hip frame. </p>
+<p>The GetContactJacobianInW function returns the (3*n_c)x18 support Jacobian mapping reaction forces at the contact points to generalized coordinate space. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_offset</td><td>Bool indicating whether the leg is roll offset to -90 or 90 degrees. True indicates roll offset of of 90 deg, false indicates roll offset of -90 degrees. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_f_pos</td><td>Foot position in hip frame. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">_joint_angles</td><td>Joint angles from the Inverse <a class="el" href="classKinematics.html" title="A class for analytical Kinematics Solving.">Kinematics</a> solution for a single-leg (sl). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_legs</td><td>A vector of leg types containing the contact points. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_q</td><td>Generalized coordinates. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Evaluates true if an Inverse <a class="el" href="classKinematics.html" title="A class for analytical Kinematics Solving.">Kinematics</a> solution is found, and false if not. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the contact Jacobian Matrix mapping reaction (contact) forces to generalized coordinate space. </dd></dl>
 
 </div>
 </div>
-<a id="acfec333c272f446eebbc289b9216cb91"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acfec333c272f446eebbc289b9216cb91">&#9670;&nbsp;</a></span>SolveSingleLegInverseKinematics() <span class="overload">[2/2]</span></h2>
+<a id="aa92bf3e1471683e19129e9dbef4d95a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa92bf3e1471683e19129e9dbef4d95a2">&#9670;&nbsp;</a></span>GetContactJacobianInWDiff()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool Kinematics::SolveSingleLegInverseKinematics </td>
+          <td class="memname">Eigen::Matrix&lt; double, Eigen::Dynamic, 18 &gt; Kinematics::GetContactJacobianInWDiff </td>
           <td>(</td>
-          <td class="paramtype">const bool &amp;&#160;</td>
-          <td class="paramname"><em>_offset</em>, </td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_legs</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const Vector3d &amp;&#160;</td>
-          <td class="paramname"><em>_h_pos</em>, </td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_q</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const Vector3d &amp;&#160;</td>
-          <td class="paramname"><em>_f_pos</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Vector3d &amp;&#160;</td>
-          <td class="paramname"><em>_joint_angles</em>&#160;</td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_u</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2363,22 +2177,367 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetrrOffset</b> ()</t
       </table>
 </div><div class="memdoc">
 
-<p>The SolveSingeLegInverseKinematics function calculates the inverse kinematics for a single leg. </p>
+<p>The GetContactJacobianInWDiff function returns the time derivative of the (3*n_c)x18 support Jacobian. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_offset</td><td>Bool indicating whether the leg is roll offset to -90 or 90 degrees. True indicates roll offset of of 90 deg, false indicates roll offset of -90 degrees. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_h_pos</td><td>Hip position in world frame. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_f_pos</td><td>Foot position in world frame. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">_joint_angles</td><td>Joint angles from the Inverse <a class="el" href="classKinematics.html" title="A class for analytical Kinematics Solving.">Kinematics</a> solution for a single-leg (sl). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_legs</td><td>A vector of leg types containing the contact points. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_q</td><td>Generalized coordinates. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_u</td><td>Generalized velocities. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Evaluates true if an Inverse <a class="el" href="classKinematics.html" title="A class for analytical Kinematics Solving.">Kinematics</a> solution is found, and false if not. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the time derivative of the contact Jacobian Matrix. </dd></dl>
+
+</div>
+</div>
+<a id="a52ccb0ca7c5d86767e9f1b4db7b0ed79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52ccb0ca7c5d86767e9f1b4db7b0ed79">&#9670;&nbsp;</a></span>GetSwingJacobianInW()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::Matrix&lt; double, Eigen::Dynamic, 18 &gt; Kinematics::GetSwingJacobianInW </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_legs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_q</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The GetSwingJacobianInW function returns the (3*n_s)x18 support Jacobian mapping swing foot velocities to generalized coordinate space. (n_s = 4 - n_c) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_legs</td><td>A vector of leg types containing the swing legs. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_q</td><td>Generalized coordinates. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the support Jacobian Matrix mapping swing foot velocities to generalized coordinate space. </dd></dl>
+
+</div>
+</div>
+<a id="ae92f81f90ffc52426d4b1bc1946914d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae92f81f90ffc52426d4b1bc1946914d4">&#9670;&nbsp;</a></span>GetSwingJacobianInWDiff()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::Matrix&lt; double, Eigen::Dynamic, 18 &gt; Kinematics::GetSwingJacobianInWDiff </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_legs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_q</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_u</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The GetContactJacobianInWDiff function returns the time derivative of the (3*n_s)x18 support Jacobian. (n_s = 4 - n_c) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_legs</td><td>A vector of leg types containing the swing legs. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_q</td><td>Generalized coordinates. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_u</td><td>Generalized velocities. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the time derivative of the support swing-leg Jacobian Matrix. </dd></dl>
+
+</div>
+</div>
+<a id="ab110e0daf4f3c74dbfc3b9e9163291a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab110e0daf4f3c74dbfc3b9e9163291a2">&#9670;&nbsp;</a></span>GetSingleBodyMassMatrix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::Matrix&lt; double, 18, 18 &gt; Kinematics::GetSingleBodyMassMatrix </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &amp;&#160;</td>
+          <td class="paramname"><em>_leg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classKinematics.html#a390b699225b57bc303653caeb6039df3">BodyType</a> &amp;&#160;</td>
+          <td class="paramname"><em>_body</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_q</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The GetSingleBodyMassMatrix function returns the mass matrix for a single body in the system. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_leg</td><td>Leg type. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_body</td><td>Body type. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_q</td><td>Generalized coordinates. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a single body mass matrix as specified by leg and body type. </dd></dl>
+
+</div>
+</div>
+<a id="a1181fedef3cdfb168a60af6bfd8513b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1181fedef3cdfb168a60af6bfd8513b1">&#9670;&nbsp;</a></span>GetMassMatrix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::Matrix&lt; double, 18, 18 &gt; Kinematics::GetMassMatrix </td>
+          <td>(</td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_q</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The GetMassMatrix function returns the mass matrix for the floating base system. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_q</td><td>Generalized coordinates. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns an orthogonal mass matrix (n_q x n_q) for the floating base system. </dd></dl>
+
+</div>
+</div>
+<a id="a1b13674b4136654c258d28596e7623e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b13674b4136654c258d28596e7623e5">&#9670;&nbsp;</a></span>GetSingleBodyCoriolisAndCentrifugalTerms()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::Matrix&lt; double, 18, 1 &gt; Kinematics::GetSingleBodyCoriolisAndCentrifugalTerms </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &amp;&#160;</td>
+          <td class="paramname"><em>_leg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classKinematics.html#a390b699225b57bc303653caeb6039df3">BodyType</a> &amp;&#160;</td>
+          <td class="paramname"><em>_body</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_q</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_u</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The GetSingleBodyCoriolisAndCentrifugalTerms function returns the coriolis and centrifugal terms for a single body in the system. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_leg</td><td>Leg type. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_body</td><td>Body type. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_q</td><td>Generalized coordinates. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_u</td><td>Generalized velocities. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a single body coriolis and centrifugal terms as specified by leg and body type. </dd></dl>
+
+</div>
+</div>
+<a id="afe283fe7fc47a3428a00dd11ff61d91c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe283fe7fc47a3428a00dd11ff61d91c">&#9670;&nbsp;</a></span>GetCoriolisAndCentrifugalTerms()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::Matrix&lt; double, 18, 1 &gt; Kinematics::GetCoriolisAndCentrifugalTerms </td>
+          <td>(</td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_q</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_u</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The GetCoriolisAndCentrifugalTerms function returns the coriolis and centrifugal terms for the floating base system. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_q</td><td>Generalized coordinates. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_u</td><td>Generalized velocities. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns coriolis and centrifugal terms for the floating base system. <br  />
+ </dd></dl>
+
+</div>
+</div>
+<a id="a6a93023396ebc887afaff59f9bb4432b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a93023396ebc887afaff59f9bb4432b">&#9670;&nbsp;</a></span>GetSingleBodyGravitationalTerms()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::Matrix&lt; double, 18, 1 &gt; Kinematics::GetSingleBodyGravitationalTerms </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">LegType</a> &amp;&#160;</td>
+          <td class="paramname"><em>_leg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classKinematics.html#a390b699225b57bc303653caeb6039df3">BodyType</a> &amp;&#160;</td>
+          <td class="paramname"><em>_body</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_q</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The GetSingleBodyGravitationalTerms function returns the gravitational terms for a single body in the system. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_leg</td><td>Leg type. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_body</td><td>Body type. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_q</td><td>Generalized coordinates. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a single body gravitational terms as specified by leg and body type. </dd></dl>
+
+</div>
+</div>
+<a id="aa769e4e016ffe46c164b027ec88ebbb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa769e4e016ffe46c164b027ec88ebbb2">&#9670;&nbsp;</a></span>GetGravitationalTerms()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::Matrix&lt; double, 18, 1 &gt; Kinematics::GetGravitationalTerms </td>
+          <td>(</td>
+          <td class="paramtype">const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_q</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The GetGravitationalTerms function returns the gravitational terms for the floating base system. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_q</td><td>Generalized coordinates. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns gravitational terms for the floating base system. <br  />
+ </dd></dl>
+
+</div>
+</div>
+<a id="a1c6697fbd201589746f21c1be27dab35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c6697fbd201589746f21c1be27dab35">&#9670;&nbsp;</a></span>ValidateSolution() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Kinematics::ValidateSolution </td>
+          <td>(</td>
+          <td class="paramtype">const JointSpaceVector &amp;&#160;</td>
+          <td class="paramname"><em>_q_r</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The ValidateSolution function evaluates whether a set of joint angles is within joint limits. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_q_r</td><td>Joint angles generated by the IK solver. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Evaluates true if IK solution is valid, and false if not. </dd></dl>
 
 </div>
 </div>
 <a id="ae4c5058b67e61502324b965925cc5651"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae4c5058b67e61502324b965925cc5651">&#9670;&nbsp;</a></span>ValidateSolution() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4c5058b67e61502324b965925cc5651">&#9670;&nbsp;</a></span>ValidateSolution() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2404,30 +2563,76 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetrrOffset</b> ()</t
 
 </div>
 </div>
-<a id="a1c6697fbd201589746f21c1be27dab35"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1c6697fbd201589746f21c1be27dab35">&#9670;&nbsp;</a></span>ValidateSolution() <span class="overload">[2/2]</span></h2>
+<a id="a6f426b5ac409de6a9528a0f6f837e390"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f426b5ac409de6a9528a0f6f837e390">&#9670;&nbsp;</a></span>GetInertiaMatrix()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Kinematics::ValidateSolution </td>
+          <td class="memname">Eigen::Matrix&lt; double, 3, 3 &gt; Kinematics::GetInertiaMatrix </td>
           <td>(</td>
-          <td class="paramtype">const JointSpaceVector &amp;&#160;</td>
-          <td class="paramname"><em>_q_r</em></td><td>)</td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>_I_XX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>_I_YY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>_I_ZZ</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>_I_XY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>_I_XZ</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>_I_YZ</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>The ValidateSolution function evaluates whether a set of joint angles is within joint limits. </p>
+<p>The GetInertiaMatrix function returns the inertia matrix from the six inertial parameters. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_q_r</td><td>Joint angles generated by the IK solver. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_I_XX</td><td>inertia about the x axis </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_I_YY</td><td>inertia about the y axis </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_I_ZZ</td><td>inertia about the z axis </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_I_XY</td><td>inertia about the xy axis </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_I_XZ</td><td>inertia about the xz axis </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_I_YZ</td><td>inertia about the yz axis </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Evaluates true if IK solution is valid, and false if not. </dd></dl>
 
 </div>
 </div>

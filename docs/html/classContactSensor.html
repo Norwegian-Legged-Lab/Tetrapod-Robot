@@ -65,6 +65,7 @@ $(function() {
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classContactSensor-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">ContactSensor Class Reference</div>  </div>
@@ -117,6 +118,49 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContactSensor.html#a2f4ba9090431845a23504f016869c417">InitRosQueueThreads</a> ()</td></tr>
 <tr class="memdesc:a2f4ba9090431845a23504f016869c417"><td class="mdescLeft">&#160;</td><td class="mdescRight">The InitRosQueueThreads function is called to initialize the ROS Publish and Process Queue Threads. <br /></td></tr>
 <tr class="separator:a2f4ba9090431845a23504f016869c417"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a5331a4a9b9f6432812d2c61affa15d13"><td class="memItemLeft" align="right" valign="top"><a id="a5331a4a9b9f6432812d2c61affa15d13"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContactSensor.html#a5331a4a9b9f6432812d2c61affa15d13">footContacts</a> [4]</td></tr>
+<tr class="memdesc:a5331a4a9b9f6432812d2c61affa15d13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector of foot contacts, zero indicates no contact and one indicates contact. <br /></td></tr>
+<tr class="separator:a5331a4a9b9f6432812d2c61affa15d13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71515123318234f4cf50dbf7096064d0"><td class="memItemLeft" align="right" valign="top"><a id="a71515123318234f4cf50dbf7096064d0"></a>
+gazebo::transport::NodePtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContactSensor.html#a71515123318234f4cf50dbf7096064d0">gazeboNode</a></td></tr>
+<tr class="memdesc:a71515123318234f4cf50dbf7096064d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Node used for Gazebo transport. <br /></td></tr>
+<tr class="separator:a71515123318234f4cf50dbf7096064d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6f8742d0ea306def99eb16898906397"><td class="memItemLeft" align="right" valign="top"><a id="ae6f8742d0ea306def99eb16898906397"></a>
+gazebo::transport::SubscriberPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContactSensor.html#ae6f8742d0ea306def99eb16898906397">flContactSensorSub</a></td></tr>
+<tr class="memdesc:ae6f8742d0ea306def99eb16898906397"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gazebo front left contact sensor Subscriber. <br /></td></tr>
+<tr class="separator:ae6f8742d0ea306def99eb16898906397"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adab93f23c02fb80b6e371d2064f7c999"><td class="memItemLeft" align="right" valign="top"><a id="adab93f23c02fb80b6e371d2064f7c999"></a>
+gazebo::transport::SubscriberPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContactSensor.html#adab93f23c02fb80b6e371d2064f7c999">frContactSensorSub</a></td></tr>
+<tr class="memdesc:adab93f23c02fb80b6e371d2064f7c999"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gazebo front right contact sensor Subscriber. <br /></td></tr>
+<tr class="separator:adab93f23c02fb80b6e371d2064f7c999"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0387895e040ae21174ecd3d9584e86c"><td class="memItemLeft" align="right" valign="top"><a id="aa0387895e040ae21174ecd3d9584e86c"></a>
+gazebo::transport::SubscriberPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContactSensor.html#aa0387895e040ae21174ecd3d9584e86c">rlContactSensorSub</a></td></tr>
+<tr class="memdesc:aa0387895e040ae21174ecd3d9584e86c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gazebo rear left contact sensor Subscriber. <br /></td></tr>
+<tr class="separator:aa0387895e040ae21174ecd3d9584e86c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6589770b02359b313bb976a0788fc3fe"><td class="memItemLeft" align="right" valign="top"><a id="a6589770b02359b313bb976a0788fc3fe"></a>
+gazebo::transport::SubscriberPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContactSensor.html#a6589770b02359b313bb976a0788fc3fe">rrContactSensorSub</a></td></tr>
+<tr class="memdesc:a6589770b02359b313bb976a0788fc3fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gazebo rear right contact sensor Subscriber. <br /></td></tr>
+<tr class="separator:a6589770b02359b313bb976a0788fc3fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1430679c4047d1e5c846716125e3fee6"><td class="memItemLeft" align="right" valign="top"><a id="a1430679c4047d1e5c846716125e3fee6"></a>
+std::unique_ptr&lt; ros::NodeHandle &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContactSensor.html#a1430679c4047d1e5c846716125e3fee6">rosNode</a></td></tr>
+<tr class="memdesc:a1430679c4047d1e5c846716125e3fee6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Node used for ROS transport. <br /></td></tr>
+<tr class="separator:a1430679c4047d1e5c846716125e3fee6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa183bb0e32cb2e1b9c96291010e4d388"><td class="memItemLeft" align="right" valign="top"><a id="aa183bb0e32cb2e1b9c96291010e4d388"></a>
+ros::Publisher&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContactSensor.html#aa183bb0e32cb2e1b9c96291010e4d388">contactStatePub</a></td></tr>
+<tr class="memdesc:aa183bb0e32cb2e1b9c96291010e4d388"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS Contact State Publisher. <br /></td></tr>
+<tr class="separator:aa183bb0e32cb2e1b9c96291010e4d388"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbed3cdfb88536ccbe9d8ed57bcd02f9"><td class="memItemLeft" align="right" valign="top"><a id="abbed3cdfb88536ccbe9d8ed57bcd02f9"></a>
+ros::CallbackQueue&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContactSensor.html#abbed3cdfb88536ccbe9d8ed57bcd02f9">rosPublishQueue</a></td></tr>
+<tr class="memdesc:abbed3cdfb88536ccbe9d8ed57bcd02f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS callbackque that helps publish messages. <br /></td></tr>
+<tr class="separator:abbed3cdfb88536ccbe9d8ed57bcd02f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a9b339f719f955f01b0b6aa4f7829ca"><td class="memItemLeft" align="right" valign="top"><a id="a9a9b339f719f955f01b0b6aa4f7829ca"></a>
+std::thread&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classContactSensor.html#a9a9b339f719f955f01b0b6aa4f7829ca">rosPublishQueueThread</a></td></tr>
+<tr class="memdesc:a9a9b339f719f955f01b0b6aa4f7829ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread running the rosPublishQueue. <br /></td></tr>
+<tr class="separator:a9a9b339f719f955f01b0b6aa4f7829ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A plugin for the contact sensors. </p>

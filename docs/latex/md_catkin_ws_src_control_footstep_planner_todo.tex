@@ -1,0 +1,41 @@
+\hypertarget{md_catkin_ws_src_control_footstep_planner_todo_autotoc_md1}{}\doxysection{Next steps (simpler ones)}\label{md_catkin_ws_src_control_footstep_planner_todo_autotoc_md1}
+
+\begin{DoxyItemize}
+\item \mbox{[}x\mbox{]}Check out more sophisticated bb-\/solvers supported by drake (\href{https://www.gurobi.com/}{\texttt{ Gurobi}}/\href{https://www.mosek.com/}{\texttt{ Mosek}}, free for academic use)
+\item read survey paper for more efficient transcription techniques \href{https://dspace.mit.edu/bitstream/handle/1721.1/96480/Vielma-2015-Mixed\%20Integer\%20Lineawr.pdf?sequence=1&isAllowed=y}{\texttt{ here}}
+\item Virtualize stepping stone class and add support for (and implement half-\/plane representations for) general convex polytope stepping stones
+\item Add support for non-\/convex polytopes by automatically splitting them up into and representing them as union of multiple convex polytopes?
+\item Figure out which adaptations must be done to deal with 3D environment (still with level plane stepping stones)
+\item Figure out which adaptations must be done to deal with slightly more general 3D environments
+\end{DoxyItemize}\hypertarget{md_catkin_ws_src_control_footstep_planner_todo_autotoc_md2}{}\doxysection{Figure out which adaptations must be done to make the planner applicable to tetrapod}\label{md_catkin_ws_src_control_footstep_planner_todo_autotoc_md2}
+
+\begin{DoxyItemize}
+\item Attempt implementation of \href{https://arxiv.org/pdf/1612.02109.pdf}{\texttt{ Algorithm described here}}
+\item \mbox{[}x\mbox{]} What will replace the simpler box-\/around-\/previous-\/foot constraint from the biped case?
+\item Must we assume/require that at least 3 feet have contact at all times?
+\item How to get nice convex regions around the shoulder joints that are still not prohibitively conservative estimates of the reachable set for each foot? intersection of linear and convex nonlinear constraints?
+\end{DoxyItemize}\hypertarget{md_catkin_ws_src_control_footstep_planner_todo_autotoc_md3}{}\doxysection{Interfacing with a trajectory planner/controller}\label{md_catkin_ws_src_control_footstep_planner_todo_autotoc_md3}
+\hypertarget{md_catkin_ws_src_control_footstep_planner_todo_autotoc_md4}{}\doxysection{tomorrow}\label{md_catkin_ws_src_control_footstep_planner_todo_autotoc_md4}
+\hypertarget{md_catkin_ws_src_control_footstep_planner_todo_autotoc_md5}{}\doxysubsection{Interfacing with Gazebo for visualization}\label{md_catkin_ws_src_control_footstep_planner_todo_autotoc_md5}
+
+\begin{DoxyItemize}
+\item \mbox{[}x\mbox{]} figure out how to ideally send footstep model directly to gazebo, or if not possible then
+\item \mbox{[}x\mbox{]} figure out how to update footstep marker positions on-\/the-\/fly from rosnode (gazebo plugin)
+\end{DoxyItemize}\hypertarget{md_catkin_ws_src_control_footstep_planner_todo_autotoc_md6}{}\doxysubsection{Expand planner}\label{md_catkin_ws_src_control_footstep_planner_todo_autotoc_md6}
+
+\begin{DoxyItemize}
+\item \mbox{[}x\mbox{]} add possibility for stepping stones of different height
+\item \mbox{[} \mbox{]} possible to generalize stepping stone class slightly?
+\item \mbox{[} \mbox{]} add reward for using fewer steps
+\item \mbox{[} \mbox{]} get footstep positions from Gazebo
+\end{DoxyItemize}\hypertarget{md_catkin_ws_src_control_footstep_planner_todo_autotoc_md7}{}\doxysubsection{Controller?}\label{md_catkin_ws_src_control_footstep_planner_todo_autotoc_md7}
+
+\begin{DoxyItemize}
+\item \mbox{[} \mbox{]} write static controller related to footstep planning
+\item \mbox{[} \mbox{]} write gait based controller with better gait
+\end{DoxyItemize}\hypertarget{md_catkin_ws_src_control_footstep_planner_todo_autotoc_md8}{}\doxysection{Tomorrow}\label{md_catkin_ws_src_control_footstep_planner_todo_autotoc_md8}
+
+\begin{DoxyItemize}
+\item \mbox{[} \mbox{]} write new gait controller w/different gait
+\item \mbox{[} \mbox{]} virtualize gait controller?
+\end{DoxyItemize}\hypertarget{md_catkin_ws_src_control_footstep_planner_todo_autotoc_md9}{}\doxysubsection{Thought\+: for a periodic gait controller, it could be written general enough to simply feed it a trajectory to generate a new gait}\label{md_catkin_ws_src_control_footstep_planner_todo_autotoc_md9}

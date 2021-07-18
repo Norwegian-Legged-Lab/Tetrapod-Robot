@@ -41,6 +41,39 @@ void \mbox{\hyperlink{classContactSensor_a2b40b612333b9ff27af8448a083882c5}{Init
 \mbox{\Hypertarget{classContactSensor_a2f4ba9090431845a23504f016869c417}\label{classContactSensor_a2f4ba9090431845a23504f016869c417}} 
 void \mbox{\hyperlink{classContactSensor_a2f4ba9090431845a23504f016869c417}{Init\+Ros\+Queue\+Threads}} ()
 \begin{DoxyCompactList}\small\item\em The Init\+Ros\+Queue\+Threads function is called to initialize the R\+OS Publish and Process Queue Threads. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classContactSensor_a5331a4a9b9f6432812d2c61affa15d13}\label{classContactSensor_a5331a4a9b9f6432812d2c61affa15d13}} 
+int \mbox{\hyperlink{classContactSensor_a5331a4a9b9f6432812d2c61affa15d13}{foot\+Contacts}} \mbox{[}4\mbox{]}
+\begin{DoxyCompactList}\small\item\em Vector of foot contacts, zero indicates no contact and one indicates contact. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classContactSensor_a71515123318234f4cf50dbf7096064d0}\label{classContactSensor_a71515123318234f4cf50dbf7096064d0}} 
+gazebo\+::transport\+::\+Node\+Ptr \mbox{\hyperlink{classContactSensor_a71515123318234f4cf50dbf7096064d0}{gazebo\+Node}}
+\begin{DoxyCompactList}\small\item\em Node used for Gazebo transport. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classContactSensor_ae6f8742d0ea306def99eb16898906397}\label{classContactSensor_ae6f8742d0ea306def99eb16898906397}} 
+gazebo\+::transport\+::\+Subscriber\+Ptr \mbox{\hyperlink{classContactSensor_ae6f8742d0ea306def99eb16898906397}{fl\+Contact\+Sensor\+Sub}}
+\begin{DoxyCompactList}\small\item\em Gazebo front left contact sensor Subscriber. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classContactSensor_adab93f23c02fb80b6e371d2064f7c999}\label{classContactSensor_adab93f23c02fb80b6e371d2064f7c999}} 
+gazebo\+::transport\+::\+Subscriber\+Ptr \mbox{\hyperlink{classContactSensor_adab93f23c02fb80b6e371d2064f7c999}{fr\+Contact\+Sensor\+Sub}}
+\begin{DoxyCompactList}\small\item\em Gazebo front right contact sensor Subscriber. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classContactSensor_aa0387895e040ae21174ecd3d9584e86c}\label{classContactSensor_aa0387895e040ae21174ecd3d9584e86c}} 
+gazebo\+::transport\+::\+Subscriber\+Ptr \mbox{\hyperlink{classContactSensor_aa0387895e040ae21174ecd3d9584e86c}{rl\+Contact\+Sensor\+Sub}}
+\begin{DoxyCompactList}\small\item\em Gazebo rear left contact sensor Subscriber. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classContactSensor_a6589770b02359b313bb976a0788fc3fe}\label{classContactSensor_a6589770b02359b313bb976a0788fc3fe}} 
+gazebo\+::transport\+::\+Subscriber\+Ptr \mbox{\hyperlink{classContactSensor_a6589770b02359b313bb976a0788fc3fe}{rr\+Contact\+Sensor\+Sub}}
+\begin{DoxyCompactList}\small\item\em Gazebo rear right contact sensor Subscriber. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classContactSensor_a1430679c4047d1e5c846716125e3fee6}\label{classContactSensor_a1430679c4047d1e5c846716125e3fee6}} 
+std\+::unique\+\_\+ptr$<$ ros\+::\+Node\+Handle $>$ \mbox{\hyperlink{classContactSensor_a1430679c4047d1e5c846716125e3fee6}{ros\+Node}}
+\begin{DoxyCompactList}\small\item\em Node used for R\+OS transport. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classContactSensor_aa183bb0e32cb2e1b9c96291010e4d388}\label{classContactSensor_aa183bb0e32cb2e1b9c96291010e4d388}} 
+ros\+::\+Publisher \mbox{\hyperlink{classContactSensor_aa183bb0e32cb2e1b9c96291010e4d388}{contact\+State\+Pub}}
+\begin{DoxyCompactList}\small\item\em R\+OS Contact State Publisher. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classContactSensor_abbed3cdfb88536ccbe9d8ed57bcd02f9}\label{classContactSensor_abbed3cdfb88536ccbe9d8ed57bcd02f9}} 
+ros\+::\+Callback\+Queue \mbox{\hyperlink{classContactSensor_abbed3cdfb88536ccbe9d8ed57bcd02f9}{ros\+Publish\+Queue}}
+\begin{DoxyCompactList}\small\item\em R\+OS callbackque that helps publish messages. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classContactSensor_a9a9b339f719f955f01b0b6aa4f7829ca}\label{classContactSensor_a9a9b339f719f955f01b0b6aa4f7829ca}} 
+std\+::thread \mbox{\hyperlink{classContactSensor_a9a9b339f719f955f01b0b6aa4f7829ca}{ros\+Publish\+Queue\+Thread}}
+\begin{DoxyCompactList}\small\item\em Thread running the ros\+Publish\+Queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}

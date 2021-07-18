@@ -1,20 +1,12 @@
 var searchData=
 [
-  ['onbaseheightmsg_289',['OnBaseHeightMsg',['../classPoseControl.html#a6f79ce6f381059d5a350191f4b9cc11d',1,'PoseControl']]],
-  ['onbaseorientationmsg_290',['OnBaseOrientationMsg',['../classPoseControl.html#a64dcd9dfa34235e23785c8b163972842',1,'PoseControl']]],
-  ['onbaseposemsg_291',['OnBasePoseMsg',['../classPoseControl.html#a77c29a9ac56fbbe252486a14f8717897',1,'PoseControl']]],
-  ['onbasepositionmsg_292',['OnBasePositionMsg',['../classPoseControl.html#a52d6a88c5553afc4fb3aab78dbd3ade8',1,'PoseControl']]],
-  ['oncontactstatemsg_293',['OnContactStateMsg',['../classHierarchicalOptimizationControl.html#a9b447e6598894c0201069eed1824d6e0',1,'HierarchicalOptimizationControl']]],
-  ['onflcontactcallback_294',['OnFlContactCallback',['../classContactSensor.html#a9ee28ab097d04c32a5d19919718fde93',1,'ContactSensor']]],
-  ['onfljointstatemsg_295',['OnFlJointStateMsg',['../classgazebo_1_1TetrapodPlugin.html#a503a40bd2357086fca77b1575af18c4c',1,'gazebo::TetrapodPlugin']]],
-  ['onforcemsg_296',['OnForceMsg',['../classgazebo_1_1SingleLegPlugin.html#a021874066534b0dbeb153a38c543aed4',1,'gazebo::SingleLegPlugin::OnForceMsg()'],['../classgazebo_1_1TetrapodPlugin.html#a1c26c2f991b9ca36e655b5f3b3e1c980',1,'gazebo::TetrapodPlugin::OnForceMsg()']]],
-  ['onfrcontactcallback_297',['OnFrContactCallback',['../classContactSensor.html#a435013ac2b71c2c0d9f704ab0313b482',1,'ContactSensor']]],
-  ['ongencoordmsg_298',['OnGenCoordMsg',['../classHierarchicalOptimizationControl.html#a74787630f85dd651a6bd25463c77011d',1,'HierarchicalOptimizationControl::OnGenCoordMsg()'],['../classGaitControl.html#a504b7e84ecd98018b48f2893fdf1dba7',1,'GaitControl::OnGenCoordMsg()'],['../classPoseControl.html#acd653896115732b4e99e059d80327fd2',1,'PoseControl::OnGenCoordMsg()'],['../classLogUtils.html#a2c42c49b0dc74a5eb05923a033ca34c9',1,'LogUtils::OnGenCoordMsg()']]],
-  ['ongenvelmsg_299',['OnGenVelMsg',['../classHierarchicalOptimizationControl.html#ac93711c61e175c11b2a87d72b62ce335',1,'HierarchicalOptimizationControl::OnGenVelMsg()'],['../classGaitControl.html#af938f7692830fff93012672f492724b6',1,'GaitControl::OnGenVelMsg()'],['../classLogUtils.html#a538d484ca1dc7ac3b0127d89ca2e6745',1,'LogUtils::OnGenVelMsg()']]],
-  ['onjointstatecmdmsg_300',['OnJointStateCmdMsg',['../classMotorInterface.html#a5cc0e2f8578dba23550426e28d13b4a2',1,'MotorInterface::OnJointStateCmdMsg()'],['../classLogUtils.html#acfb95557fa81d007205880849a304a32',1,'LogUtils::OnJointStateCmdMsg()']]],
-  ['onjointstatemsg_301',['OnJointStateMsg',['../classgazebo_1_1PendulumPlugin.html#a0eb1ab9152728ea062a5cb6b5214eadb',1,'gazebo::PendulumPlugin::OnJointStateMsg()'],['../classgazebo_1_1SingleLegPlugin.html#a31a76d63668ace36ea862edca1f3cd22',1,'gazebo::SingleLegPlugin::OnJointStateMsg()'],['../classgazebo_1_1TetrapodPlugin.html#a8caf7aaca40c73c65603175778e2f9a8',1,'gazebo::TetrapodPlugin::OnJointStateMsg()'],['../classLogUtils.html#ab1901bdc3adc37c49eeb1672b135cc92',1,'LogUtils::OnJointStateMsg()']]],
-  ['onposmsg_302',['OnPosMsg',['../classgazebo_1_1SingleLegPlugin.html#a91ec5ec137f91dfea7106b27d4a0a49d',1,'gazebo::SingleLegPlugin::OnPosMsg()'],['../classgazebo_1_1TetrapodPlugin.html#ade970b966a0d0f3db2d2b762f09a5973',1,'gazebo::TetrapodPlugin::OnPosMsg()']]],
-  ['onrlcontactcallback_303',['OnRlContactCallback',['../classContactSensor.html#a18b7189648c8ca096b5fd4ce0f39f204',1,'ContactSensor']]],
-  ['onrrcontactcallback_304',['OnRrContactCallback',['../classContactSensor.html#a8c9dd6baa25e67ca5eadf8960410f199',1,'ContactSensor']]],
-  ['onvelmsg_305',['OnVelMsg',['../classgazebo_1_1SingleLegPlugin.html#afa7a7333b605efb9b3b3428d8cd06ed0',1,'gazebo::SingleLegPlugin::OnVelMsg()'],['../classgazebo_1_1TetrapodPlugin.html#a8dc7655369ea3821ab3dfd06d298c876',1,'gazebo::TetrapodPlugin::OnVelMsg()']]]
+  ['motorconfirmationcallback_604',['motorConfirmationCallback',['../classSingleLegController.html#aa24664d461ae96ac654bf22af9151692',1,'SingleLegController']]],
+  ['motorcontrol_605',['MotorControl',['../classMotorControl.html#a56ef29cfa725b1ceebd63722f67cc94f',1,'MotorControl::MotorControl()'],['../classMotorControl.html#a0a618c11441af4f2b376e55fb2f19ab2',1,'MotorControl::MotorControl(uint8_t _id, uint8_t _can_port_id, int _number_of_inner_motor_rotations, double _position_offset)']]],
+  ['motorinterface_606',['MotorInterface',['../classMotorInterface.html#aab48de285663a5b0cfe70ae764d5e491',1,'MotorInterface::MotorInterface()'],['../classMotorInterface.html#a1e1b05c12dcf4d012a84a6d4ffe68fec',1,'MotorInterface::MotorInterface(const int &amp;_num_motors)']]],
+  ['motoroff_607',['motorOff',['../namespacemake__can__msg.html#a80c9bcee24bbf464eaa9f973fe1943b8',1,'make_can_msg']]],
+  ['motorrunning_608',['motorRunning',['../namespacemake__can__msg.html#a43d1e03ba4fd5898260d169887e55624',1,'make_can_msg']]],
+  ['motorstop_609',['motorStop',['../namespacemake__can__msg.html#a0261dba88176df5f4e8cc31bce16d4b1',1,'make_can_msg']]],
+  ['movefoottonominalposition_610',['moveFootToNominalPosition',['../classSingleLegController.html#a3e2bc91ee5c0b1cde6ad9f8da033c83f',1,'SingleLegController']]],
+  ['movefoottoposition_611',['moveFootToPosition',['../classSingleLegController.html#ac94137fdfe9b78dd3c47480341b9af47',1,'SingleLegController::moveFootToPosition(Eigen::Matrix&lt; double, 3, 1 &gt; _foot_goal_pos)'],['../classSingleLegController.html#ae26e0828c2e33d739f5c34223bd38e77',1,'SingleLegController::moveFootToPosition(double _foot_pos_x, double _foot_pos_y, double _foot_pos_z)']]],
+  ['movejointstosetpoints_612',['moveJointsToSetpoints',['../classSingleLegController.html#ac4e4f7ee4fa05991e424b242d149afa3',1,'SingleLegController']]]
 ];

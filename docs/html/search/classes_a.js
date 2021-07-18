@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['joyremap_803',['JoyRemap',['../classjoy__remap_1_1JoyRemap.html',1,'joy_remap']]],
-  ['joysender_804',['JoySender',['../classwiimote__node_1_1JoySender.html',1,'wiimote_node']]],
-  ['joysim_805',['joysim',['../classps3joysim_1_1joysim.html',1,'ps3joysim']]],
-  ['joystick_806',['Joystick',['../classJoystick.html',1,'']]],
-  ['joystickcontroller_807',['JoystickController',['../classJoystickController.html',1,'']]]
+  ['task_510',['Task',['../structHierarchicalOptimizationControl_1_1Task.html',1,'HierarchicalOptimizationControl']]],
+  ['teensyserial_511',['TeensySerial',['../classTeensySerial.html',1,'']]],
+  ['tetrapodplugin_512',['TetrapodPlugin',['../classgazebo_1_1TetrapodPlugin.html',1,'gazebo']]],
+  ['thirdorderfilter_513',['ThirdOrderFilter',['../classThirdOrderFilter.html',1,'']]]
 ];

@@ -1,4 +1,4 @@
-This page contains relevant information about installing the dependencies needed for building and running the R\+OS Environment found in \href{../../catkin_ws/}{\texttt{ catkin\+\_\+ws}}.\hypertarget{md_docs_markdown_install_guide_autotoc_md14}{}\doxysection{R\+OS}\label{md_docs_markdown_install_guide_autotoc_md14}
+This page contains relevant information about installing the dependencies needed for building and running the R\+OS Environment found in \href{../../catkin_ws/}{\texttt{ catkin\+\_\+ws}}.\hypertarget{md_docs_markdown_install_guide_autotoc_md28}{}\doxysection{R\+OS}\label{md_docs_markdown_install_guide_autotoc_md28}
 To install R\+OS Noetic\+:
 
 
@@ -57,7 +57,7 @@ rosdep enables you to easily install system dependencies for source you want to 
 \DoxyCodeLine{sudo rosdep init}
 \DoxyCodeLine{rosdep update}
 \end{DoxyCode}
-\hypertarget{md_docs_markdown_install_guide_autotoc_md15}{}\doxysection{Gazebo}\label{md_docs_markdown_install_guide_autotoc_md15}
+\hypertarget{md_docs_markdown_install_guide_autotoc_md29}{}\doxysection{Gazebo}\label{md_docs_markdown_install_guide_autotoc_md29}
 The Gazebo Simulator depends a number of environment variables to locate files, and set up communications between the server and clients and are explained in detail \href{http://gazebosim.org/tutorials?tut=components&cat=get_started}{\texttt{ here}}. For the current simulator iteration two enviroment variables are of interest, namely
 
 {\ttfamily G\+A\+Z\+E\+B\+O\+\_\+\+M\+O\+D\+E\+L\+\_\+\+P\+A\+TH}\+: A colon-\/separated set of directories where Gazebo will search for models.
@@ -79,7 +79,7 @@ Assuming the \href{https://github.com/Pathorse/Tetrapod-Robot}{\texttt{ github r
 \end{DoxyCode}
 
 
-We recommend adding the set of command lines to your {\ttfamily .bashrc} file for the ease of use (i.\+e. avoid running the commands every time you desire to run the simulator).\hypertarget{md_docs_markdown_install_guide_autotoc_md16}{}\doxysection{Drake}\label{md_docs_markdown_install_guide_autotoc_md16}
+We recommend adding the set of command lines to your {\ttfamily .bashrc} file for the ease of use (i.\+e. avoid running the commands every time you desire to run the simulator).\hypertarget{md_docs_markdown_install_guide_autotoc_md30}{}\doxysection{Drake}\label{md_docs_markdown_install_guide_autotoc_md30}
 The Drake toolbox can be installed using either a binary installation, or from source. The following lines of commands can be run to install Drake on Ubuntu 20.\+04 (Focal) from the latest binary release\+:
 
 
@@ -100,7 +100,7 @@ Note that if Python is to be used you need to ensure that your {\ttfamily P\+Y\+
 \begin{DoxyCode}{0}
 \DoxyCodeLine{export PYTHONPATH=/opt/drake/lib/python3.8/site-\/packages:\$\{PYTHONPATH\}}
 \end{DoxyCode}
-\hypertarget{md_docs_markdown_install_guide_autotoc_md17}{}\doxysection{Ignition}\label{md_docs_markdown_install_guide_autotoc_md17}
+\hypertarget{md_docs_markdown_install_guide_autotoc_md31}{}\doxysection{Ignition}\label{md_docs_markdown_install_guide_autotoc_md31}
 First install some necessary tools\+:
 
 
@@ -120,12 +120,12 @@ Then install Ignition Citadel\+:
 \end{DoxyCode}
 
 
-Make sure all ign-\/gazebo related packages are up to date by running {\ttfamily sudo apt update \&\& sudo apt upgrade -\/y}.\hypertarget{md_docs_markdown_install_guide_autotoc_md18}{}\doxysection{Git submodules}\label{md_docs_markdown_install_guide_autotoc_md18}
+Make sure all ign-\/gazebo related packages are up to date by running {\ttfamily sudo apt update \&\& sudo apt upgrade -\/y}.\hypertarget{md_docs_markdown_install_guide_autotoc_md32}{}\doxysection{Git submodules}\label{md_docs_markdown_install_guide_autotoc_md32}
 Make sure to clone code from all submodules in the repository using
 
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{git submodule update -\/-\/init -\/-\/recursive}
 \end{DoxyCode}
-\hypertarget{md_docs_markdown_install_guide_autotoc_md19}{}\doxysection{R\+O\+S package system dependencies}\label{md_docs_markdown_install_guide_autotoc_md19}
+\hypertarget{md_docs_markdown_install_guide_autotoc_md33}{}\doxysection{R\+O\+S package system dependencies}\label{md_docs_markdown_install_guide_autotoc_md33}
 Make sure rosdep is initialized by first running {\ttfamily catkin\+\_\+make} and then {\ttfamily source devel/setup.\+bash} from the catkin workspace. Then run {\ttfamily rosdep install -\/-\/from-\/paths src -\/-\/ignore-\/src -\/y} to fulfill the system dependencies of all ros packages in the workspace. 

@@ -165,10 +165,10 @@ class HierarchicalOptimizationControl
 
     /// \brief The SolveQP function solves a (convex) quadratic
     /// program (QP) on the form:
-    /// -------------------------------------------------------
+    ///
     ///     min_x        0.5 x^T Q x + c^T x
     ///      s.t.        E_ineq x <= f_ineq
-    /// -------------------------------------------------------
+    ///
     /// The toolbox uses the Drake toolbox for solving the 
     /// problem. Currently Drake identifies the problem
     /// and chooses an appropriate commercial solver, but
@@ -193,10 +193,10 @@ class HierarchicalOptimizationControl
 
     /// \brief The SolveQP function solves a (convex) quadratic
     /// program (QP) on the form:
-    /// -------------------------------------------------------
+    /// 
     ///     min_x        0.5 x^T Q x + c^T x
     ///      s.t.        lb <= A x <= ub        
-    /// -------------------------------------------------------
+    /// 
     /// The toolbox uses the Drake toolbox for solving the 
     /// problem. Currently Drake identifies the problem
     /// and chooses an appropriate commercial solver, but
@@ -223,11 +223,11 @@ class HierarchicalOptimizationControl
 
     /// \brief The SolveQP function solves a (convex) quadratic
     /// program (QP) on the form:
-    /// -------------------------------------------------------
+    /// 
     ///     min_x        0.5 x^T Q x + c^T x
     ///      s.t.          E_eq x  = f_eq
     ///                  E_ineq x <= f_ineq
-    /// -------------------------------------------------------
+    /// 
     /// The toolbox uses the Drake toolbox for solving the 
     /// problem. Currently Drake identifies the problem
     /// and chooses an appropriate commercial solver, but
@@ -325,6 +325,14 @@ class HierarchicalOptimizationControl
 
     /// \brief ROS Joint State Publisher
     private: ros::Publisher jointStatePub;
+
+    // TODO remove as it is only needed to log to plots
+    /// \brief ROS Base Position Command Publisher
+    private: ros::Publisher basePoseCmdPub;
+
+    // TODO remove as it is only needed to log to plots
+    /// \brief ROS Base Position Command Publisher
+    private: ros::Publisher baseTwistCmdPub;
 
     /// \brief ROS callbackque that helps process messages.
     private: ros::CallbackQueue rosProcessQueue;

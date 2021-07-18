@@ -70,6 +70,7 @@ $(function() {
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classgazebo_1_1TetrapodPlugin-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">gazebo::TetrapodPlugin Class Reference</div>  </div>
@@ -214,10 +215,178 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgazebo_1_1TetrapodPlugin.html#a1ff7ee437819f43f22a13812a420afaa">InitJointConfiguration</a> ()</td></tr>
 <tr class="memdesc:a1ff7ee437819f43f22a13812a420afaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">The InitJointConfiguration function is called to initialize the desired joint configuration. <br /></td></tr>
 <tr class="separator:a1ff7ee437819f43f22a13812a420afaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a7889dd509beca43169bcb86c44f5396d"><td class="memItemLeft" align="right" valign="top"><a id="a7889dd509beca43169bcb86c44f5396d"></a>
+physics::ModelPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgazebo_1_1TetrapodPlugin.html#a7889dd509beca43169bcb86c44f5396d">model</a></td></tr>
+<tr class="memdesc:a7889dd509beca43169bcb86c44f5396d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the model. <br /></td></tr>
+<tr class="separator:a7889dd509beca43169bcb86c44f5396d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6a6dcf9551776b99ddefa1e1499c9cf"><td class="memItemLeft" align="right" valign="top"><a id="ae6a6dcf9551776b99ddefa1e1499c9cf"></a>
+physics::WorldPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgazebo_1_1TetrapodPlugin.html#ae6a6dcf9551776b99ddefa1e1499c9cf">world</a></td></tr>
+<tr class="memdesc:ae6a6dcf9551776b99ddefa1e1499c9cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the world. <br /></td></tr>
+<tr class="separator:ae6a6dcf9551776b99ddefa1e1499c9cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a847b85a1a5485af4ce1f0942b3b102c1"><td class="memItemLeft" align="right" valign="top"><a id="a847b85a1a5485af4ce1f0942b3b102c1"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgazebo_1_1TetrapodPlugin.html#a847b85a1a5485af4ce1f0942b3b102c1">model_name</a></td></tr>
+<tr class="memdesc:a847b85a1a5485af4ce1f0942b3b102c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Model name. <br /></td></tr>
+<tr class="separator:a847b85a1a5485af4ce1f0942b3b102c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ed9828e7eaac1ffca1c63e3b1c57ab2"><td class="memItemLeft" align="right" valign="top"><a id="a1ed9828e7eaac1ffca1c63e3b1c57ab2"></a>
+physics::LinkPtr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgazebo_1_1TetrapodPlugin.html#a1ed9828e7eaac1ffca1c63e3b1c57ab2">base</a></td></tr>
+<tr class="memdesc:a1ed9828e7eaac1ffca1c63e3b1c57ab2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the body link. <br /></td></tr>
+<tr class="separator:a1ed9828e7eaac1ffca1c63e3b1c57ab2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad635147502526459216c6c2156b3a0ec"><td class="memItemLeft" align="right" valign="top"><a id="ad635147502526459216c6c2156b3a0ec"></a>
+std::map&lt; std::string, physics::JointPtr &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgazebo_1_1TetrapodPlugin.html#ad635147502526459216c6c2156b3a0ec">joints</a></td></tr>
+<tr class="memdesc:ad635147502526459216c6c2156b3a0ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointers to the joints. <br /></td></tr>
+<tr class="separator:ad635147502526459216c6c2156b3a0ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adadbc95520c62bcdaaf7966cad3ed579"><td class="memItemLeft" align="right" valign="top"><a id="adadbc95520c62bcdaaf7966cad3ed579"></a>
+std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgazebo_1_1TetrapodPlugin.html#adadbc95520c62bcdaaf7966cad3ed579">joint_names</a></td></tr>
+<tr class="memdesc:adadbc95520c62bcdaaf7966cad3ed579"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector of joint names. <br /></td></tr>
+<tr class="separator:adadbc95520c62bcdaaf7966cad3ed579"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0aa95d81eff447619d54fef3ea3f350"><td class="memItemLeft" align="right" valign="top"><a id="af0aa95d81eff447619d54fef3ea3f350"></a>
+std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgazebo_1_1TetrapodPlugin.html#af0aa95d81eff447619d54fef3ea3f350">joint_config</a></td></tr>
+<tr class="memdesc:af0aa95d81eff447619d54fef3ea3f350"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector of joint configuration. <br /></td></tr>
+<tr class="separator:af0aa95d81eff447619d54fef3ea3f350"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1960f0cb557960a5b1543a1e9e259fed"><td class="memItemLeft" align="right" valign="top"><a id="a1960f0cb557960a5b1543a1e9e259fed"></a>
+std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgazebo_1_1TetrapodPlugin.html#a1960f0cb557960a5b1543a1e9e259fed">vel_p_gains</a></td></tr>
+<tr class="memdesc:a1960f0cb557960a5b1543a1e9e259fed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector of Velocity P-gains. <br /></td></tr>
+<tr class="separator:a1960f0cb557960a5b1543a1e9e259fed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97a1b92e4b3e7a28ff428479c9147804"><td class="memItemLeft" align="right" valign="top"><a id="a97a1b92e4b3e7a28ff428479c9147804"></a>
+std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgazebo_1_1TetrapodPlugin.html#a97a1b92e4b3e7a28ff428479c9147804">vel_i_gains</a></td></tr>
+<tr class="memdesc:a97a1b92e4b3e7a28ff428479c9147804"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector of Velocity I-gains. <br /></td></tr>
+<tr class="separator:a97a1b92e4b3e7a28ff428479c9147804"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac80108f47eea394d1a6d0853f7318a99"><td class="memItemLeft" align="right" valign="top"><a id="ac80108f47eea394d1a6d0853f7318a99"></a>
+std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgazebo_1_1TetrapodPlugin.html#ac80108f47eea394d1a6d0853f7318a99">vel_d_gains</a></td></tr>
+<tr class="memdesc:ac80108f47eea394d1a6d0853f7318a99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector of Velocity D-gains. <br /></td></tr>
+<tr class="separator:ac80108f47eea394d1a6d0853f7318a99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfaf8b62caa764ce97b568d429336b76"><td class="memItemLeft" align="right" valign="top"><a id="acfaf8b62caa764ce97b568d429336b76"></a>
+std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgazebo_1_1TetrapodPlugin.html#acfaf8b62caa764ce97b568d429336b76">pos_p_gains</a></td></tr>
+<tr class="memdesc:acfaf8b62caa764ce97b568d429336b76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector of Position P-gains. <br /></td></tr>
+<tr class="separator:acfaf8b62caa764ce97b568d429336b76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a196d4a852622a7d875e43bb641800705"><td class="memItemLeft" align="right" valign="top"><a id="a196d4a852622a7d875e43bb641800705"></a>
+std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgazebo_1_1TetrapodPlugin.html#a196d4a852622a7d875e43bb641800705">pos_i_gains</a></td></tr>
+<tr class="memdesc:a196d4a852622a7d875e43bb641800705"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector of Position I-gains. <br /></td></tr>
+<tr class="separator:a196d4a852622a7d875e43bb641800705"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38d64fd84cab5369862b61685838bf0c"><td class="memItemLeft" align="right" valign="top"><a id="a38d64fd84cab5369862b61685838bf0c"></a>
+std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgazebo_1_1TetrapodPlugin.html#a38d64fd84cab5369862b61685838bf0c">pos_d_gains</a></td></tr>
+<tr class="memdesc:a38d64fd84cab5369862b61685838bf0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector of Position D-gains. <br /></td></tr>
+<tr class="separator:a38d64fd84cab5369862b61685838bf0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8650e4ea5b106a0f92aa33a34760c482"><td class="memItemLeft" align="right" valign="top"><a id="a8650e4ea5b106a0f92aa33a34760c482"></a>
+<a class="el" href="classgazebo_1_1TetrapodPlugin.html#a482cfef3ae187631bf53c8d72c6568e7">ControlMode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgazebo_1_1TetrapodPlugin.html#a8650e4ea5b106a0f92aa33a34760c482">controlMode</a></td></tr>
+<tr class="memdesc:a8650e4ea5b106a0f92aa33a34760c482"><td class="mdescLeft">&#160;</td><td class="mdescRight">Control mode indicator. <br /></td></tr>
+<tr class="separator:a8650e4ea5b106a0f92aa33a34760c482"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa38324748a58c99dc32577a293ee9bd8"><td class="memItemLeft" align="right" valign="top"><a id="aa38324748a58c99dc32577a293ee9bd8"></a>
+std::unique_ptr&lt; ros::NodeHandle &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgazebo_1_1TetrapodPlugin.html#aa38324748a58c99dc32577a293ee9bd8">rosNode</a></td></tr>
+<tr class="memdesc:aa38324748a58c99dc32577a293ee9bd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Node used for ROS transport. <br /></td></tr>
+<tr class="separator:aa38324748a58c99dc32577a293ee9bd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8060caea78189cf71b241313931d4b1d"><td class="memItemLeft" align="right" valign="top"><a id="a8060caea78189cf71b241313931d4b1d"></a>
+ros::ServiceServer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgazebo_1_1TetrapodPlugin.html#a8060caea78189cf71b241313931d4b1d">resetSimService</a></td></tr>
+<tr class="memdesc:a8060caea78189cf71b241313931d4b1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS Reset Simulation Service. <br /></td></tr>
+<tr class="separator:a8060caea78189cf71b241313931d4b1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab854f7d0c1dcd22562c25c8b077c006d"><td class="memItemLeft" align="right" valign="top"><a id="ab854f7d0c1dcd22562c25c8b077c006d"></a>
+ros::Publisher&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgazebo_1_1TetrapodPlugin.html#ab854f7d0c1dcd22562c25c8b077c006d">genCoordPub</a></td></tr>
+<tr class="memdesc:ab854f7d0c1dcd22562c25c8b077c006d"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS Generalized Coordinates Publisher. <br /></td></tr>
+<tr class="separator:ab854f7d0c1dcd22562c25c8b077c006d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ae0bb87f4d7e4c3da1f04a436b974cf"><td class="memItemLeft" align="right" valign="top"><a id="a2ae0bb87f4d7e4c3da1f04a436b974cf"></a>
+ros::Publisher&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgazebo_1_1TetrapodPlugin.html#a2ae0bb87f4d7e4c3da1f04a436b974cf">genVelPub</a></td></tr>
+<tr class="memdesc:a2ae0bb87f4d7e4c3da1f04a436b974cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS Generalized Velocities Publisher. <br /></td></tr>
+<tr class="separator:a2ae0bb87f4d7e4c3da1f04a436b974cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b9585a4695a7fc4802b9ed39be92d58"><td class="memItemLeft" align="right" valign="top"><a id="a2b9585a4695a7fc4802b9ed39be92d58"></a>
+ros::Publisher&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgazebo_1_1TetrapodPlugin.html#a2b9585a4695a7fc4802b9ed39be92d58">basePosePub</a></td></tr>
+<tr class="memdesc:a2b9585a4695a7fc4802b9ed39be92d58"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS Base Pose Publisher. <br /></td></tr>
+<tr class="separator:a2b9585a4695a7fc4802b9ed39be92d58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab314704ae02b95b7b04b49067ce08fc9"><td class="memItemLeft" align="right" valign="top"><a id="ab314704ae02b95b7b04b49067ce08fc9"></a>
+ros::Publisher&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgazebo_1_1TetrapodPlugin.html#ab314704ae02b95b7b04b49067ce08fc9">baseTwistPub</a></td></tr>
+<tr class="memdesc:ab314704ae02b95b7b04b49067ce08fc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS Base Twist Publisher. <br /></td></tr>
+<tr class="separator:ab314704ae02b95b7b04b49067ce08fc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa50f080448b899b847e8b403b088d0c"><td class="memItemLeft" align="right" valign="top"><a id="afa50f080448b899b847e8b403b088d0c"></a>
+ros::Publisher&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgazebo_1_1TetrapodPlugin.html#afa50f080448b899b847e8b403b088d0c">jointForcesPub</a></td></tr>
+<tr class="memdesc:afa50f080448b899b847e8b403b088d0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS Joint Forces (Torques) Publisher. <br /></td></tr>
+<tr class="separator:afa50f080448b899b847e8b403b088d0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa46bc11cef3d7d92e2f00bcb89ed82f9"><td class="memItemLeft" align="right" valign="top"><a id="aa46bc11cef3d7d92e2f00bcb89ed82f9"></a>
+ros::Subscriber&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgazebo_1_1TetrapodPlugin.html#aa46bc11cef3d7d92e2f00bcb89ed82f9">jointStateCmdSub</a></td></tr>
+<tr class="memdesc:aa46bc11cef3d7d92e2f00bcb89ed82f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS Joint State Subscriber. <br /></td></tr>
+<tr class="separator:aa46bc11cef3d7d92e2f00bcb89ed82f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb86ee69ad20bd52c8b46d8b8bfbaf91"><td class="memItemLeft" align="right" valign="top"><a id="acb86ee69ad20bd52c8b46d8b8bfbaf91"></a>
+ros::Publisher&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgazebo_1_1TetrapodPlugin.html#acb86ee69ad20bd52c8b46d8b8bfbaf91">jointStatePub</a></td></tr>
+<tr class="memdesc:acb86ee69ad20bd52c8b46d8b8bfbaf91"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS Joint State Publisher. <br /></td></tr>
+<tr class="separator:acb86ee69ad20bd52c8b46d8b8bfbaf91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a718ebd1052d6b1f518bb13158c365ff0"><td class="memItemLeft" align="right" valign="top"><a id="a718ebd1052d6b1f518bb13158c365ff0"></a>
+ros::Subscriber&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgazebo_1_1TetrapodPlugin.html#a718ebd1052d6b1f518bb13158c365ff0">forceSub</a></td></tr>
+<tr class="memdesc:a718ebd1052d6b1f518bb13158c365ff0"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS Force Subscriber. <br /></td></tr>
+<tr class="separator:a718ebd1052d6b1f518bb13158c365ff0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3911adb0099091fc8b138895d310186f"><td class="memItemLeft" align="right" valign="top"><a id="a3911adb0099091fc8b138895d310186f"></a>
+ros::Subscriber&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgazebo_1_1TetrapodPlugin.html#a3911adb0099091fc8b138895d310186f">velSub</a></td></tr>
+<tr class="memdesc:a3911adb0099091fc8b138895d310186f"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS Velocity Subscriber. <br /></td></tr>
+<tr class="separator:a3911adb0099091fc8b138895d310186f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdac63a040d47148ccb33225dfb142c7"><td class="memItemLeft" align="right" valign="top"><a id="abdac63a040d47148ccb33225dfb142c7"></a>
+ros::Subscriber&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgazebo_1_1TetrapodPlugin.html#abdac63a040d47148ccb33225dfb142c7">posSub</a></td></tr>
+<tr class="memdesc:abdac63a040d47148ccb33225dfb142c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS Position Subscriber. <br /></td></tr>
+<tr class="separator:abdac63a040d47148ccb33225dfb142c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3550cc18d8d7707d4f785f69893315fc"><td class="memItemLeft" align="right" valign="top"><a id="a3550cc18d8d7707d4f785f69893315fc"></a>
+ros::CallbackQueue&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgazebo_1_1TetrapodPlugin.html#a3550cc18d8d7707d4f785f69893315fc">rosProcessQueue</a></td></tr>
+<tr class="memdesc:a3550cc18d8d7707d4f785f69893315fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS callbackque that helps process messages. <br /></td></tr>
+<tr class="separator:a3550cc18d8d7707d4f785f69893315fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3139a8a8c1141c942c764625c492dc1"><td class="memItemLeft" align="right" valign="top"><a id="af3139a8a8c1141c942c764625c492dc1"></a>
+ros::CallbackQueue&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgazebo_1_1TetrapodPlugin.html#af3139a8a8c1141c942c764625c492dc1">rosPublishQueue</a></td></tr>
+<tr class="memdesc:af3139a8a8c1141c942c764625c492dc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS callbackque that helps publish messages. <br /></td></tr>
+<tr class="separator:af3139a8a8c1141c942c764625c492dc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29e45a36531e92c7fac1f824e6fca870"><td class="memItemLeft" align="right" valign="top"><a id="a29e45a36531e92c7fac1f824e6fca870"></a>
+std::thread&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgazebo_1_1TetrapodPlugin.html#a29e45a36531e92c7fac1f824e6fca870">rosProcessQueueThread</a></td></tr>
+<tr class="memdesc:a29e45a36531e92c7fac1f824e6fca870"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread running the rosProcessQueue. <br /></td></tr>
+<tr class="separator:a29e45a36531e92c7fac1f824e6fca870"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6317ffa4fdf8ebfb0655ec972993d4d"><td class="memItemLeft" align="right" valign="top"><a id="ae6317ffa4fdf8ebfb0655ec972993d4d"></a>
+std::thread&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgazebo_1_1TetrapodPlugin.html#ae6317ffa4fdf8ebfb0655ec972993d4d">rosPublishQueueThread</a></td></tr>
+<tr class="memdesc:ae6317ffa4fdf8ebfb0655ec972993d4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thread running the rosPublishQueue. <br /></td></tr>
+<tr class="separator:ae6317ffa4fdf8ebfb0655ec972993d4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A plugin to control the tetrapod robot. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a528c3a37c4f725dbfcd868203a501840"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a528c3a37c4f725dbfcd868203a501840">&#9670;&nbsp;</a></span>Load()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gazebo::TetrapodPlugin::Load </td>
+          <td>(</td>
+          <td class="paramtype">physics::ModelPtr&#160;</td>
+          <td class="paramname"><em>_model</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sdf::ElementPtr&#160;</td>
+          <td class="paramname"><em>_sdf</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The Load function is called by Gazebo when the plugin is inserted into simulation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_model</td><td>A pointer to the model that the plugin is attached to. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_sdf</td><td>A pointer to the plugin's SDF element. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a5abcf9f55e149c880b10c4b0291f5e4d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5abcf9f55e149c880b10c4b0291f5e4d">&#9670;&nbsp;</a></span>GetBasePose()</h2>
 
@@ -306,6 +475,54 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
+<a id="aae130d99085f11326c9fed94914aecdc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae130d99085f11326c9fed94914aecdc">&#9670;&nbsp;</a></span>GetJointVelocity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double gazebo::TetrapodPlugin::GetJointVelocity </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>_joint_name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get current velocity at a specific joint. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_joint_name</td><td>Desired joint </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Current joint velocity </dd></dl>
+
+</div>
+</div>
+<a id="a1c615587c950edf6407a41198969d081"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c615587c950edf6407a41198969d081">&#9670;&nbsp;</a></span>GetJointVelocities()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::Matrix&lt; double, 12, 1 &gt; gazebo::TetrapodPlugin::GetJointVelocities </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get current joint velocities for the robot. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns joint velocities : dot_q_r <br  />
+ </dd></dl>
+
+</div>
+</div>
 <a id="a4d5ab6df5224520461113e0b75804b14"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4d5ab6df5224520461113e0b75804b14">&#9670;&nbsp;</a></span>GetJointPosition()</h2>
 
@@ -351,305 +568,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Get current joint positions for the robot. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns joint configuration : q_r <br  />
  </dd></dl>
-
-</div>
-</div>
-<a id="a1c615587c950edf6407a41198969d081"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1c615587c950edf6407a41198969d081">&#9670;&nbsp;</a></span>GetJointVelocities()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Eigen::Matrix&lt; double, 12, 1 &gt; gazebo::TetrapodPlugin::GetJointVelocities </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get current joint velocities for the robot. </p>
-<dl class="section return"><dt>Returns</dt><dd>Returns joint velocities : dot_q_r <br  />
- </dd></dl>
-
-</div>
-</div>
-<a id="aae130d99085f11326c9fed94914aecdc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aae130d99085f11326c9fed94914aecdc">&#9670;&nbsp;</a></span>GetJointVelocity()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double gazebo::TetrapodPlugin::GetJointVelocity </td>
-          <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>_joint_name</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get current velocity at a specific joint. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_joint_name</td><td>Desired joint </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Current joint velocity </dd></dl>
-
-</div>
-</div>
-<a id="a528c3a37c4f725dbfcd868203a501840"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a528c3a37c4f725dbfcd868203a501840">&#9670;&nbsp;</a></span>Load()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void gazebo::TetrapodPlugin::Load </td>
-          <td>(</td>
-          <td class="paramtype">physics::ModelPtr&#160;</td>
-          <td class="paramname"><em>_model</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">sdf::ElementPtr&#160;</td>
-          <td class="paramname"><em>_sdf</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The Load function is called by Gazebo when the plugin is inserted into simulation. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_model</td><td>A pointer to the model that the plugin is attached to. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_sdf</td><td>A pointer to the plugin's SDF element. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a8a0608278f019ef875b8ba653a2d6363"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8a0608278f019ef875b8ba653a2d6363">&#9670;&nbsp;</a></span>LoadParametersRos()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool gazebo::TetrapodPlugin::LoadParametersRos </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The LoadParametersRos function is called to load conffloatiguration from the parameter server. </p>
-<dl class="section return"><dt>Returns</dt><dd>True if parameters loaded successfully. </dd></dl>
-
-</div>
-</div>
-<a id="a503a40bd2357086fca77b1575af18c4c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a503a40bd2357086fca77b1575af18c4c">&#9670;&nbsp;</a></span>OnFlJointStateMsg()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void gazebo::TetrapodPlugin::OnFlJointStateMsg </td>
-          <td>(</td>
-          <td class="paramtype">const sensor_msgs::JointStateConstPtr &amp;&#160;</td>
-          <td class="paramname"><em>_msg</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The OnFlJointStateMsg function handles an incoming joint state message for the front left leg from ROS. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_msg</td><td>A message holding data to describe the state of a set of controlled joints. The state is defined by<ul>
-<li>the position of the joint,</li>
-<li>the velocity of the joint and</li>
-<li>the effort (torque) that is applied in the joint. </li>
-</ul>
-</td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a1c26c2f991b9ca36e655b5f3b3e1c980"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1c26c2f991b9ca36e655b5f3b3e1c980">&#9670;&nbsp;</a></span>OnForceMsg()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void gazebo::TetrapodPlugin::OnForceMsg </td>
-          <td>(</td>
-          <td class="paramtype">const std_msgs::Float64MultiArrayConstPtr &amp;&#160;</td>
-          <td class="paramname"><em>_msg</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The OnRosMsg function handles an incoming force message from ROS. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_msg</td><td>A float array used to set the force of the joints. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a8caf7aaca40c73c65603175778e2f9a8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8caf7aaca40c73c65603175778e2f9a8">&#9670;&nbsp;</a></span>OnJointStateMsg()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void gazebo::TetrapodPlugin::OnJointStateMsg </td>
-          <td>(</td>
-          <td class="paramtype">const sensor_msgs::JointStateConstPtr &amp;&#160;</td>
-          <td class="paramname"><em>_msg</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The OnJointStateMsg function handles an incoming joint state message from ROS. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_msg</td><td>A message holding data to describe the state of a set of controlled joints. The state is defined by<ul>
-<li>the position of the joint,</li>
-<li>the velocity of the joint and</li>
-<li>the effort (torque) that is applied in the joint. </li>
-</ul>
-</td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="ade970b966a0d0f3db2d2b762f09a5973"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ade970b966a0d0f3db2d2b762f09a5973">&#9670;&nbsp;</a></span>OnPosMsg()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void gazebo::TetrapodPlugin::OnPosMsg </td>
-          <td>(</td>
-          <td class="paramtype">const std_msgs::Float64MultiArrayConstPtr &amp;&#160;</td>
-          <td class="paramname"><em>_msg</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The OnRosMsg function handles an incoming velocity message from ROS. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_msg</td><td>A float array used to set the position of the joints. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a8dc7655369ea3821ab3dfd06d298c876"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8dc7655369ea3821ab3dfd06d298c876">&#9670;&nbsp;</a></span>OnVelMsg()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void gazebo::TetrapodPlugin::OnVelMsg </td>
-          <td>(</td>
-          <td class="paramtype">const std_msgs::Float64MultiArrayConstPtr &amp;&#160;</td>
-          <td class="paramname"><em>_msg</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The OnRosMsg function handles an incoming velocity message from ROS. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_msg</td><td>A float array used to set the velocity of the joints. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="adc69d815fdfd2e071612d86ca80f7528"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adc69d815fdfd2e071612d86ca80f7528">&#9670;&nbsp;</a></span>ResetSimulation()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool gazebo::TetrapodPlugin::ResetSimulation </td>
-          <td>(</td>
-          <td class="paramtype">const std_srvs::Empty::Request &amp;&#160;</td>
-          <td class="paramname"><em>_req</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std_srvs::Empty::Response &amp;&#160;</td>
-          <td class="paramname"><em>_res</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The ResetSimulation function handles an incoming reset simulation service request. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_req</td><td>Service request. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">_res</td><td>Service response. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns true if success, and false if not. </dd></dl>
 
 </div>
 </div>
@@ -710,6 +628,69 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">_forces</td><td>Forces to apply </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5296f36563ee64281b2e7cb90dd7e370"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5296f36563ee64281b2e7cb90dd7e370">&#9670;&nbsp;</a></span>SetJointVelocity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gazebo::TetrapodPlugin::SetJointVelocity </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>_joint_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double &amp;&#160;</td>
+          <td class="paramname"><em>_vel</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the velocity of the joint. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_joint_name</td><td>Desired joint </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_vel</td><td>New target velocity </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a923532fb3b222be0ca2d857b594d805d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a923532fb3b222be0ca2d857b594d805d">&#9670;&nbsp;</a></span>SetJointVelocities()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gazebo::TetrapodPlugin::SetJointVelocities </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; double &gt; &amp;&#160;</td>
+          <td class="paramname"><em>_vel</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the velocity of the joints. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_vel</td><td>New target velocity </td></tr>
   </table>
   </dd>
 </dl>
@@ -779,49 +760,191 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
-<a id="a923532fb3b222be0ca2d857b594d805d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a923532fb3b222be0ca2d857b594d805d">&#9670;&nbsp;</a></span>SetJointVelocities()</h2>
+<a id="a8caf7aaca40c73c65603175778e2f9a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8caf7aaca40c73c65603175778e2f9a8">&#9670;&nbsp;</a></span>OnJointStateMsg()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void gazebo::TetrapodPlugin::SetJointVelocities </td>
+          <td class="memname">void gazebo::TetrapodPlugin::OnJointStateMsg </td>
           <td>(</td>
-          <td class="paramtype">const std::vector&lt; double &gt; &amp;&#160;</td>
-          <td class="paramname"><em>_vel</em></td><td>)</td>
+          <td class="paramtype">const sensor_msgs::JointStateConstPtr &amp;&#160;</td>
+          <td class="paramname"><em>_msg</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Set the velocity of the joints. </p>
+<p>The OnJointStateMsg function handles an incoming joint state message from ROS. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_vel</td><td>New target velocity </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_msg</td><td>A message holding data to describe the state of a set of controlled joints. The state is defined by<ul>
+<li>the position of the joint,</li>
+<li>the velocity of the joint and</li>
+<li>the effort (torque) that is applied in the joint. </li>
+</ul>
+</td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="a5296f36563ee64281b2e7cb90dd7e370"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5296f36563ee64281b2e7cb90dd7e370">&#9670;&nbsp;</a></span>SetJointVelocity()</h2>
+<a id="a503a40bd2357086fca77b1575af18c4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a503a40bd2357086fca77b1575af18c4c">&#9670;&nbsp;</a></span>OnFlJointStateMsg()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void gazebo::TetrapodPlugin::SetJointVelocity </td>
+          <td class="memname">void gazebo::TetrapodPlugin::OnFlJointStateMsg </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>_joint_name</em>, </td>
+          <td class="paramtype">const sensor_msgs::JointStateConstPtr &amp;&#160;</td>
+          <td class="paramname"><em>_msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The OnFlJointStateMsg function handles an incoming joint state message for the front left leg from ROS. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_msg</td><td>A message holding data to describe the state of a set of controlled joints. The state is defined by<ul>
+<li>the position of the joint,</li>
+<li>the velocity of the joint and</li>
+<li>the effort (torque) that is applied in the joint. </li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1c26c2f991b9ca36e655b5f3b3e1c980"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c26c2f991b9ca36e655b5f3b3e1c980">&#9670;&nbsp;</a></span>OnForceMsg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gazebo::TetrapodPlugin::OnForceMsg </td>
+          <td>(</td>
+          <td class="paramtype">const std_msgs::Float64MultiArrayConstPtr &amp;&#160;</td>
+          <td class="paramname"><em>_msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The OnRosMsg function handles an incoming force message from ROS. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_msg</td><td>A float array used to set the force of the joints. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8dc7655369ea3821ab3dfd06d298c876"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8dc7655369ea3821ab3dfd06d298c876">&#9670;&nbsp;</a></span>OnVelMsg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gazebo::TetrapodPlugin::OnVelMsg </td>
+          <td>(</td>
+          <td class="paramtype">const std_msgs::Float64MultiArrayConstPtr &amp;&#160;</td>
+          <td class="paramname"><em>_msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The OnRosMsg function handles an incoming velocity message from ROS. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_msg</td><td>A float array used to set the velocity of the joints. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ade970b966a0d0f3db2d2b762f09a5973"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade970b966a0d0f3db2d2b762f09a5973">&#9670;&nbsp;</a></span>OnPosMsg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gazebo::TetrapodPlugin::OnPosMsg </td>
+          <td>(</td>
+          <td class="paramtype">const std_msgs::Float64MultiArrayConstPtr &amp;&#160;</td>
+          <td class="paramname"><em>_msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The OnRosMsg function handles an incoming velocity message from ROS. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_msg</td><td>A float array used to set the position of the joints. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8a0608278f019ef875b8ba653a2d6363"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a0608278f019ef875b8ba653a2d6363">&#9670;&nbsp;</a></span>LoadParametersRos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool gazebo::TetrapodPlugin::LoadParametersRos </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The LoadParametersRos function is called to load conffloatiguration from the parameter server. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if parameters loaded successfully. </dd></dl>
+
+</div>
+</div>
+<a id="adc69d815fdfd2e071612d86ca80f7528"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc69d815fdfd2e071612d86ca80f7528">&#9670;&nbsp;</a></span>ResetSimulation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool gazebo::TetrapodPlugin::ResetSimulation </td>
+          <td>(</td>
+          <td class="paramtype">const std_srvs::Empty::Request &amp;&#160;</td>
+          <td class="paramname"><em>_req</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const double &amp;&#160;</td>
-          <td class="paramname"><em>_vel</em>&#160;</td>
+          <td class="paramtype">std_srvs::Empty::Response &amp;&#160;</td>
+          <td class="paramname"><em>_res</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -831,14 +954,15 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
       </table>
 </div><div class="memdoc">
 
-<p>Set the velocity of the joint. </p>
+<p>The ResetSimulation function handles an incoming reset simulation service request. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">_joint_name</td><td>Desired joint </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">_vel</td><td>New target velocity </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">_req</td><td>Service request. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">_res</td><td>Service response. </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns true if success, and false if not. </dd></dl>
 
 </div>
 </div>
