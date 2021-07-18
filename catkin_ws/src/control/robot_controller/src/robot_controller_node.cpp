@@ -6,7 +6,7 @@
 
 int main(int argc, char **argv)
 {
-    bool USE_GUIDANCE_CONTROL = true;
+    bool USE_GUIDANCE_CONTROL = false;
 
     int controller_frequency = 200;
 

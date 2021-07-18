@@ -457,33 +457,18 @@ void RobotController::PrintFootPositions()
 
 void RobotController::UpdateGuidanceCommands()
 {   
-    if(this->lin_vel_x == 0.0)
+    if((this->lin_vel_x == 0.0) && (this->lin_vel_y == 0.0) && (this->ang_vel_z == 0.0))
     {
         this->_lin_vel_x_command = 0.0;
-    }
-    else
-    {
-        this->_lin_vel_x_command = this->lin_vel_x + this->_guidance_lin_vel_gain * (this->lin_vel_x - this->_lin_vel_x_estimated);
-    }
-
-    if(this->lin_vel_y == 0.0)
-    {
         this->_lin_vel_y_command = 0.0;
-    }
-    else
-    {
-        this->_lin_vel_y_command = this->lin_vel_y + this->_guidance_lin_vel_gain * (this->lin_vel_y - this->_lin_vel_y_estimated);
-    }
-    
-    if(this->ang_vel_z == 0.0)
-    {
         this->_ang_vel_z_command = 0.0;
     }
     else
     {
+        this->_lin_vel_x_command = this->lin_vel_x + this->_guidance_lin_vel_gain * (this->lin_vel_x - this->_lin_vel_x_estimated);
+        this->_lin_vel_y_command = this->lin_vel_y + this->_guidance_lin_vel_gain * (this->lin_vel_y - this->_lin_vel_y_estimated);
         this->_ang_vel_z_command = ang_vel_z + _guidance_ang_vel_gain * (ang_vel_z - _ang_vel_z_estimated);
     }
-    
 }
 
 void RobotController::UpdateNonGuidanceCommands()

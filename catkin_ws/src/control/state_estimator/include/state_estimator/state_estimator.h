@@ -14,7 +14,9 @@ class StateEstimator
 {
     public: StateEstimator(double gait_period, double controller_frequency);
 
-    public: void PublishStates();
+    public: void PrintStates();
+
+    public: void PublishBodyTwistState();
 
     public: void UpdateStates();
 
@@ -49,6 +51,8 @@ class StateEstimator
     private: ros::Subscriber _generalized_position_subscriber;
 
     private: ros::Subscriber _generalized_velocity_subscriber; 
+
+    private: ros::Publisher _body_twist_state_publisher;
 
     private: void InitializeROS();
 
