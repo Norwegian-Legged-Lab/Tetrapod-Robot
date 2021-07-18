@@ -8,7 +8,7 @@ int main(int argc, char **argv)
 {
     int controller_frequency = 200;
 
-    double gait_period = 0.2;
+    double gait_period = 0.4;
 
     RobotController controller(controller_frequency, gait_period);
 

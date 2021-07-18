@@ -4,6 +4,18 @@ RobotController::RobotController(int _controller_freq, double _gait_period) : Ro
 {
     this->gait_duration = _gait_period;
 
+    //
+
+    stance_period = 0.5 * _gait_period * stance_phase_duration_percentage;
+
+    swing_period = 0.5 * (1.0 - stance_phase_duration_percentage) * _gait_period;
+
+    stance_iterations = stance_period * controller_freq;
+
+    swing_iterations = swing_period * controller_freq;
+    //
+
+    /*
     stance_iterations = _gait_period*controller_freq*stance_phase_duration_percentage;
 
     stance_period = _gait_period * stance_phase_duration_percentage;
@@ -11,6 +23,7 @@ RobotController::RobotController(int _controller_freq, double _gait_period) : Ro
     swing_period = _gait_period * (1.0 - 2.0 * stance_phase_duration_percentage);
 
     swing_iterations = _gait_period*controller_freq*(1.0 - 2.0*stance_phase_duration_percentage);
+    */
 
     this->final_iteration = this->stance_iterations;
 }
@@ -31,16 +44,18 @@ void RobotController::UpdateFeetReferences()
 
 void RobotController::UpdateStepDistances()
 {
-    this->step_distance_x_linear = gait_duration*lin_vel_x;
+    double step_duration = 2.0 * stance_period + swing_period;
 
-    this->step_distance_y_linear = gait_duration*lin_vel_y;
+    this->step_distance_x_linear = step_duration*lin_vel_x;
+
+    this->step_distance_y_linear = step_duration*lin_vel_y;
 
     Eigen::Matrix<double, 3, 1> base_to_hip_distance; // = kinematics.GetDistanceFromBaseToFrontLeftHipInB();
 
     double rotation_radius =  sqrt(2*LEG_OFFSET_LENGTH*LEG_OFFSET_LENGTH)
                             + sqrt(base_to_hip_distance(0)*base_to_hip_distance(0) + base_to_hip_distance(1)*base_to_hip_distance(1));
 
-    double step_distance_rotation = ang_vel_z*rotation_radius*gait_duration;
+    double step_distance_rotation = ang_vel_z*rotation_radius*step_duration;
 
     this->step_distance_x_rotational = step_distance_rotation/sqrt(2.0);
 
