@@ -36,7 +36,7 @@ int main(int argc, char **argv)
         controller.UpdateFeetTrajectories();
         controller.UpdateJointCommands();
         controller.PrintFootPositions();
-        controller.PrintVelCommands();
+        //controller.PrintVelCommands();
         controller.sendJointPositionCommands();
         control_rate.sleep();
         i++;

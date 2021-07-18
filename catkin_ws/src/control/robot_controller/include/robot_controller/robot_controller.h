@@ -94,6 +94,22 @@ class RobotController : public Controller
 
     private: int final_iteration;
 
+    private: double fl_step_distance_x;
+
+    private: double fl_step_distance_y;
+
+    private: double fr_step_distance_x;
+
+    private: double fr_step_distance_y;
+
+    private: double rl_step_distance_x;
+
+    private: double rl_step_distance_y;
+
+    private: double rr_step_distance_x;
+
+    private: double rr_step_distance_y;
+
 
     /*
     Eigen::Matrix<double, 3, 1> fl_trajectory_x;
