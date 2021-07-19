@@ -6,8 +6,10 @@ path = "~/Tetrapod-Robot/bagfiles/ho_tests/";
 %timestamp = "2021-07-15-09-54-39"; % Height test
 %timestamp = "2021-07-15-10-51-57"; % Height & Orientation test
 %timestamp = "2021-07-15-10-54-57"; % Height & Orientation test
-%timestamp = "2021-07-16-14-36-24"; % Height test
-timestamp = "2021-07-19-13-41-32"; % Height test
+% timestamp = "2021-07-16-14-36-24"; % Height test
+% timestamp = "2021-07-19-15-38-21"; % Orientation test
+timestamp = "2021-07-19-15-58-18"; % Orientation test
+
 
 number_of_motors = 12;
 
@@ -208,9 +210,9 @@ fig3 = gcf;
 
 %% Save figure
 
-filename1 = 'single_leg_joint_positions_test_case_5_8.pdf';
-filename2 = 'single_leg_joint_velocities_test_case_5_8.pdf';
-filename3 = 'ho_height_tor.pdf';
+% filename1 = 'single_leg_joint_positions_test_case_5_8.pdf';
+% filename2 = 'ho_roll_joint_vel.pdf';
+filename3 = 'ho_roll_tor.pdf';
 
 % exportgraphics(fig1, filename1)
 % exportgraphics(fig2, filename2)
