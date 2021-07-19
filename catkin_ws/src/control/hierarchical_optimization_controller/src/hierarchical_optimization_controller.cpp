@@ -1195,10 +1195,11 @@ void HierarchicalOptimizationControl::OnContactStateMsg(const std_msgs::Int8Mult
     }
     else
     {
-        this->contactState[0] = _msg->data[0];
-        this->contactState[1] = _msg->data[1];
-        this->contactState[2] = _msg->data[2];
-        this->contactState[3] = _msg->data[3];
+        // TODO Fix this
+        //this->contactState[0] = _msg->data[0];
+        //this->contactState[1] = _msg->data[1];
+        //this->contactState[2] = _msg->data[2];
+        //this->contactState[3] = _msg->data[3];
     }
 }
 
