@@ -6,7 +6,11 @@ path = "~/Tetrapod-Robot/bagfiles/ho_tests/";
 %timestamp = "2021-07-15-09-54-39"; % Height test
 %timestamp = "2021-07-15-10-51-57"; % Height & Orientation test
 %timestamp = "2021-07-15-10-54-57"; % Height & Orientation test
-timestamp = "2021-07-16-14-36-24"; % Height test
+%timestamp = "2021-07-16-14-36-24"; % Height test
+%timestamp = "2021-07-19-15-38-21"; % Orientation test used for video
+timestamp = "2021-07-19-15-58-18"; % Orientation test
+
+
 
 
 %% Extract ROSbag data
@@ -155,7 +159,7 @@ for i = 1:3
         "LineWidth", 5, ...
         "DisplayName", base_vel_legends(i));
     
-    a = plot(reference_time, base_twist_cmd(:,i), ...
+    a = plot(reference_time(1:length(base_twist_cmd)), base_twist_cmd(:,i), ...
          "LineWidth", 5, ...
          "LineStyle", '--', ...
          "Color", 'k', ...
@@ -178,9 +182,9 @@ fig3 = gcf;
 
 %% Save figure
 
-filename1 = 'ho_height_pos.pdf';
-filename2 = 'ho_height_ori.pdf';
-filename3 = 'ho_height_vel.pdf';
+filename1 = 'ho_roll_pos.pdf';
+filename2 = 'ho_roll_ori.pdf';
+filename3 = 'ho_roll_vel.pdf';
 
 
 exportgraphics(fig1, filename1)

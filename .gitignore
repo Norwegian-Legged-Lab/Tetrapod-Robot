@@ -41,3 +41,6 @@
 
 # macOS
 .DS_STORE
+
+# Matlab
+*.asv
