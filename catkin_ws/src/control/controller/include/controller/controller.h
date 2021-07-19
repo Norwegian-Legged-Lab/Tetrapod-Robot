@@ -22,6 +22,8 @@
 #define UNINITIALIZED_JOINT_STATE 10.0
 #define ROBOT_NAME "my_robot"
 #define LEG_OFFSET_LENGTH 0.25
+#define NUMBER_OF_LEGS 4
+#define ACTUATORS_PER_LEG 3
 
 class Controller{
     protected: using JointState = Eigen::Matrix<double, 12, 1>;
@@ -31,6 +33,8 @@ class Controller{
     public: virtual ~Controller() {}
 
     /*** Functions ***/
+    public: bool RunStandUpSequence();
+
     public: void waitForReadyToProceed();
 
     public: virtual void UpdateFeetReferences() = 0;
@@ -44,6 +48,15 @@ class Controller{
     public: void SetTwistCommand(double lin_vel_cmd_x, double lin_vel_cmd_y, double ang_vel_cmd_z);
 
     public: void initROS();
+
+    public: void WaitForInitialState();
+
+    public: bool MoveFeetToPositions(Eigen::Matrix<double, 3, 1> fl_goal_foot_pos, 
+                                     Eigen::Matrix<double, 3, 1> fr_goal_foot_pos, 
+                                     Eigen::Matrix<double, 3, 1> rl_goal_foot_pos, 
+                                     Eigen::Matrix<double, 3, 1> rr_goal_foot_pos);
+
+    public: void UpdateFeetPositions();
 
     void jointStateCallback(const sensor_msgs::JointStatePtr &msg);
 
@@ -138,6 +151,8 @@ class Controller{
     protected: double _lin_vel_y_estimated = 0.0;
 
     protected: double _ang_vel_z_estimated = 0.0;
+
+    protected: double nominal_base_height = 0.35;
 
     // For logging
 
