@@ -41,6 +41,8 @@ class Controller{
 
     public: virtual void setInitialConfiguration();
 
+    public: void SetTwistCommand(double lin_vel_cmd_x, double lin_vel_cmd_y, double ang_vel_cmd_z);
+
     public: void initROS();
 
     void jointStateCallback(const sensor_msgs::JointStatePtr &msg);
@@ -114,9 +116,13 @@ class Controller{
 
     protected: JointState joint_acceleration_commands = JointState::Zero();
 
+    protected: JointState joint_torque_commands = JointState::Zero();
+
     protected: JointState joint_angles = JointState::Constant(UNINITIALIZED_JOINT_STATE);
 
     protected: JointState joint_velocities = JointState::Zero();
+
+    protected: JointState joint_torques = JointState::Zero();
 
     /// \brief The desired linear robot velocity in the body frame's x direction
     protected: double lin_vel_x = 0.0;
@@ -132,4 +138,12 @@ class Controller{
     protected: double _lin_vel_y_estimated = 0.0;
 
     protected: double _ang_vel_z_estimated = 0.0;
+
+    // For logging
+
+    public: void WriteToLog();
+
+    private: ros::Publisher joint_state_logger;
+
+    private: ros::Publisher joint_command_logger;
 };
