@@ -6,7 +6,8 @@ path = "~/Tetrapod-Robot/bagfiles/ho_tests/";
 %timestamp = "2021-07-15-09-54-39"; % Height test
 %timestamp = "2021-07-15-10-51-57"; % Height & Orientation test
 %timestamp = "2021-07-15-10-54-57"; % Height & Orientation test
-timestamp = "2021-07-16-14-36-24"; % Height test
+%timestamp = "2021-07-16-14-36-24"; % Height test
+timestamp = "2021-07-19-13-41-32"; % Height test
 
 number_of_motors = 12;
 
@@ -187,12 +188,12 @@ for i = 1:number_of_motors
         "LineWidth", 5, ...
         "DisplayName", tor_legends(i));    
     
-    a = plot(reference_time, joint_tor_reference(:,i), ...
-        ...
-         "LineWidth", 5, ...
-         "LineStyle", '--', ...
-         "Color", 'k', ...
-         "DisplayName", tor_ref_legends(i));
+%     a = plot(reference_time, joint_tor_reference(:,i), ...
+%         ...
+%          "LineWidth", 5, ...
+%          "LineStyle", '--', ...
+%          "Color", 'k', ...
+%          "DisplayName", tor_ref_legends(i));
      
 
 %     uistack(a, "top");
@@ -209,8 +210,8 @@ fig3 = gcf;
 
 filename1 = 'single_leg_joint_positions_test_case_5_8.pdf';
 filename2 = 'single_leg_joint_velocities_test_case_5_8.pdf';
-filename3 = 'single_leg_joint_torques_test_case_5_8.pdf';
+filename3 = 'ho_height_tor.pdf';
 
 % exportgraphics(fig1, filename1)
 % exportgraphics(fig2, filename2)
-% exportgraphics(fig3, filename3)
+exportgraphics(fig3, filename3)
