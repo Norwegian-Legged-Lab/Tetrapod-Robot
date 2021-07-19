@@ -3,16 +3,16 @@
 
 #include "Arduino.h"
 
-#define SERIAL_PRINT false
+#define SERIAL_PRINT true
 
 #define FRONT_LEGS true
 #define REAR_LEGS false
 
-const double k_p_pos = 20.0;
-const double k_i_pos = 20.0;
-const double k_p_vel = 30.0;
-const double k_i_vel = 30.0;
-const double k_p_tor = 50.0;
+const double k_p_pos = 30.0;
+const double k_i_pos = 15.0;
+const double k_p_vel = 50.0;
+const double k_i_vel = 25.0;
+const double k_p_tor = 100.0;
 const double k_i_tor = 50.0;
 
 // Set the PID gains for the motors
@@ -29,7 +29,7 @@ static int K_I_TOR[6] = {k_i_tor, k_i_tor, k_i_tor, k_i_tor, k_i_tor, k_i_tor};
 // An offset of -30 degrees is added to each actuator to compensate for the encoder zero position 
 
 #if (FRONT_LEGS)
-    #define position_offset_motor_1 M_PI/2.0 // 45 degrees
+    #define position_offset_motor_1 M_PI/4.0 // 45 degrees
     #define position_offset_motor_2 0.0
     #define position_offset_motor_3 0.0
     #define position_offset_motor_4 -M_PI/4.0 // -45 degrees
