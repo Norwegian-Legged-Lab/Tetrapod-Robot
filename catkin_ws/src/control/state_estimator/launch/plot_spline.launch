@@ -1,0 +1,22 @@
+<launch>
+    <node pkg="robot_controller" type="plot_spline" name="plot_spline" output="screen" />
+
+    <!-- ******************************************** -->
+    <!--                  Arguments                   -->
+    <!-- ******************************************** -->
+    <arg name="record_sys" default="true" />
+    <arg name="record_directory" default="/home/omicron/Tetrapod-Robot/logs" />
+
+    <!-- ******************************************** -->
+    <!--                  Logging                     -->
+    <!-- ******************************************** -->
+
+    <!-- Record data automatically in separate rosbags:
+            - system information (robot state)
+            - diagnostics (node output, diagnostics)     -->
+
+    <node pkg="rosbag" type="record" name="rosbag_trajectory"
+        args="record -o $(arg record_directory)/trajectory /trajectory"
+        if="$(arg record_sys)" />
+
+</launch>
