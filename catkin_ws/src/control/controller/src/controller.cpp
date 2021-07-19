@@ -132,7 +132,7 @@ void Controller::initROS()
 
     this->joint_state_subscriber = nodeHandle->subscribe
     (
-        "/motor/states",
+        "/my_robot/joint_state",
         1,
         &Controller::jointStateCallback,
         this
@@ -155,7 +155,13 @@ void Controller::initROS()
     );
 
     // Initialize the joint command publisher
-    joint_command_publisher = nodeHandle->advertise<sensor_msgs::JointState>("/" + robot_name + "/joint_state_cmd", 10);
+    joint_command_publisher = nodeHandle->advertise<sensor_msgs::JointState>("/" + robot_name + "/joint_state_cmd", 1);
+
+    // Initialize the joint state logger
+    joint_state_logger = nodeHandle->advertise<sensor_msgs::JointState>("/log/joint_states", 1);
+
+    // Initialize the joint command logger
+    joint_command_logger = nodeHandle->advertise<sensor_msgs::JointState>("/log/joint_commands", 1);
 }
 
 void Controller::readyToProceedCallback(const std_msgs::Bool &msg)
@@ -172,6 +178,9 @@ void Controller::jointStateCallback(const sensor_msgs::JointStatePtr &msg)
 
         // Store the joint velocities
         this->joint_velocities(i) = msg->velocity[i];
+
+        // Store th joint torques
+        this->joint_torques(i) = msg->effort[i];
     }
 }
 
@@ -187,4 +196,53 @@ void Controller::TwistStateCallback(const geometry_msgs::TwistConstPtr &_msg)
     this->_lin_vel_x_estimated = _msg->linear.x;
     this->_lin_vel_y_estimated = _msg->linear.y;
     this->_ang_vel_z_estimated = _msg->angular.z;
+}
+
+void Controller::SetTwistCommand(double lin_vel_cmd_x, double lin_vel_cmd_y, double ang_vel_cmd_z)
+{
+    this->lin_vel_x = lin_vel_cmd_x;
+    this->lin_vel_y = lin_vel_cmd_y;
+    this->ang_vel_z = ang_vel_cmd_z;
+}
+
+void Controller::WriteToLog()
+{
+    // Creating a general joint state message
+
+    sensor_msgs::JointState joint_state_msg;
+
+    std_msgs::Float64MultiArray joint_state_position;
+    std_msgs::Float64MultiArray joint_state_velocity;
+    std_msgs::Float64MultiArray joint_state_torque;
+
+    joint_state_msg.header.stamp = ros::Time::now();
+
+    // Fill in data for the joint state message
+
+    tf::matrixEigenToMsg(this->joint_angles, joint_state_position);
+    tf::matrixEigenToMsg(this->joint_velocities, joint_state_velocity);
+    tf::matrixEigenToMsg(this->joint_torques, joint_state_torque);
+
+    joint_state_msg.position = joint_state_position.data;
+    joint_state_msg.velocity = joint_state_velocity.data;
+    joint_state_msg.effort = joint_state_torque.data;
+
+    // Publish the joint state message
+
+    joint_state_logger.publish(joint_state_msg);
+
+    // Fill in data for the joint command message
+
+    tf::matrixEigenToMsg(this->joint_angle_commands, joint_state_position);
+    tf::matrixEigenToMsg(this->joint_velocity_commands, joint_state_velocity);
+    tf::matrixEigenToMsg(this->joint_torque_commands, joint_state_torque);
+
+    joint_state_msg.position = joint_state_position.data;
+    joint_state_msg.velocity = joint_state_velocity.data;
+    joint_state_msg.effort = joint_state_torque.data;
+
+    // Publish the joint command message
+
+    joint_command_logger.publish(joint_state_msg);
+    
 }
