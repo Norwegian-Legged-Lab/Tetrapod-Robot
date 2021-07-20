@@ -33,6 +33,15 @@ int main(int argc, char **argv)
 
     controller.RunStandUpSequence();
 
+    while(ros::ok())
+    {
+        ros::spinOnce();
+
+        controller.sendJointPositionCommands();
+
+        control_rate.sleep();
+    }
+
     /*
     controller.setInitialConfiguration();
 

@@ -58,14 +58,16 @@ class Controller{
 
     public: void UpdateFeetPositions();
 
-    void jointStateCallback(const sensor_msgs::JointStatePtr &msg);
+    protected: void jointStateCallback(const sensor_msgs::JointStatePtr &msg);
 
-    void readyToProceedCallback(const std_msgs::Bool &msg);
+    protected: void readyToProceedCallback(const std_msgs::Bool &msg);
 
     /// \brief Converts twist command messages into desired linear and angular body velocities
-    void TwistCommandCallback(const geometry_msgs::TwistConstPtr &_msg);
+    protected: void TwistCommandCallback(const geometry_msgs::TwistConstPtr &_msg);
 
-    void TwistStateCallback(const geometry_msgs::TwistConstPtr &_msg);
+    protected: void TwistStateCallback(const geometry_msgs::TwistConstPtr &_msg);
+
+    protected: void BasePoseStateCallback(const std_msgs::Float64MultiArrayConstPtr &msg);
 
     /*** Variables ***/
     private: bool ready_to_proceed = false;
@@ -83,6 +85,8 @@ class Controller{
     protected: ros::Publisher joint_command_publisher;
 
     protected: ros::Subscriber joint_state_subscriber;
+
+    protected: ros::Subscriber base_pose_state_subscriber;
 
     protected: ros::Subscriber ready_to_proceed_subscriber;
 
@@ -137,6 +141,8 @@ class Controller{
 
     protected: JointState joint_torques = JointState::Zero();
 
+    protected: Eigen::Matrix<double, 6, 1> base_pose_state = Eigen::Matrix<double, 6, 1>::Zero();
+
     /// \brief The desired linear robot velocity in the body frame's x direction
     protected: double lin_vel_x = 0.0;
 
@@ -161,4 +167,12 @@ class Controller{
     private: ros::Publisher joint_state_logger;
 
     private: ros::Publisher joint_command_logger;
+
+    private: ros::Publisher base_twist_state_logger;
+
+    private: ros::Publisher base_pose_state_logger;
+
+    private: ros::Publisher base_twist_command_logger;
+
+    private: ros::Publisher base_pose_command_logger;
 };
