@@ -3,7 +3,7 @@
 
 #include "Arduino.h"
 
-#define SERIAL_PRINT true
+#define SERIAL_PRINT false
 
 #define FRONT_LEGS true
 #define REAR_LEGS false
@@ -36,10 +36,10 @@ static int K_I_TOR[6] = {k_i_tor, k_i_tor, k_i_tor, k_i_tor, k_i_tor, k_i_tor};
     #define position_offset_motor_5 0.0
     #define position_offset_motor_6 0.0
 #elif(REAR_LEGS)
-    #define position_offset_motor_1 0.0
+    #define position_offset_motor_1 M_PI*3.0/4.0
     #define position_offset_motor_2 0.0
     #define position_offset_motor_3 0.0
-    #define position_offset_motor_4 0.0
+    #define position_offset_motor_4 -M_PI*3.0/4.0
     #define position_offset_motor_5 0.0
     #define position_offset_motor_6 0.0
 #else
