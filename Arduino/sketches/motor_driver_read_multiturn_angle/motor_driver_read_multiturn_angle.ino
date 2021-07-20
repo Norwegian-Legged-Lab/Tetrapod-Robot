@@ -10,7 +10,8 @@ MotorControl* motor_array = new MotorControl[1];
 double pos = 0.0;
 CAN_message_t can_message;
 int INITIAL_INNER_MOTOR_ROTATIONS = 0;
-double MOTOR_POSITION_OFFSET = 0.0;
+//double MOTOR_POSITION_OFFSET = 0.0;
+double MOTOR_POSITION_OFFSET = POSITION_OFFSET[0];
 uint8_t CAN_PORT = 1;
 
 bool use_position_control = false;
@@ -32,7 +33,7 @@ void setup() {
 
   // Set the PID parameters of the motor
   Serial.println("Trying to set the PID parameters");
-  motor_array[0].writePIDParametersToRAM(10, 1, 1, 1, 5, 1);
+  motor_array[0].writePIDParametersToRAM(20, 20, 50, 50, 100, 100);
 
   delay_microseconds(1000000);
 
@@ -74,7 +75,7 @@ void loop()
   {
     motor_array[0].setPositionReference(pos);
     
-    delay_microseconds(5000);
+    delay_microseconds(1000);
     
     while(can_port_1.read(can_message))
     {
@@ -93,14 +94,15 @@ void loop()
     // Try to update the motor status
     if(!motor_array[0].readMotorStatus())
     {
-      Serial.print("Failed to read motor status\t");
+      Serial.println(""); Serial.print("Failed to read motor status\n");
     }   
   }
+  
 
   // Try to update the multi-turn angle
   if(!motor_array[0].readMultiTurnAngle())
   {
-    Serial.print("Failed to read multiturn angle\t");
+    Serial.println(""); Serial.print("Failed to read multiturn angle\n");
   }
 
   //int32_t multi_turn_angle_32_bit = motor_array[0].getMultiTurnAngle();
@@ -121,7 +123,7 @@ void loop()
   Serial.print("Multiturn angle deg: "); Serial.print(val/(100.0*6.0), 10); Serial.print("\t");
   Serial.print("Encoder value: "); Serial.print(motor_array[0].getEncoderValue()); Serial.print("\t");
   Serial.print("Position [rad]: "); Serial.print(motor_array[0].getPosition(), 6); Serial.print("\t");
-  Serial.print("Position [deg]: "); Serial.print(motor_array[0].getPosition()*180.0/M_PI); Serial.print("\t");
+  Serial.print("Position [deg]: "); Serial.print(motor_array[0].getPosition()*180.0/M_PI, 3); Serial.print("\t");
 
   Serial.println("");
 

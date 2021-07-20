@@ -6,6 +6,7 @@
 
 int main(int argc, char **argv)
 {
+    bool USE_GUIDANCE_CONTROL = false;
 
     int controller_frequency = 200;
 
@@ -29,11 +30,6 @@ int main(int argc, char **argv)
 
     ROS_INFO("Position joint states received");
 
-    controller.WaitForInitialState();
-
-    controller.RunStandUpSequence();
-
-    /*
     controller.setInitialConfiguration();
 
     controller.waitForReadyToProceed();
@@ -51,10 +47,18 @@ int main(int argc, char **argv)
 
         if(controller.UpdateGaitState())
         {
-            controller.UpdateNonGuidanceCommands();
+            if(USE_GUIDANCE_CONTROL)
+            {
+                controller.UpdateGuidanceCommands();
+            }
+            else
+            {
+                controller.UpdateNonGuidanceCommands();
+            }
             controller.UpdateStepDistances();
         }
 
+        //controller.UpdateFeetReferences();
         controller.UpdateFeetTrajectories();
         controller.UpdateJointCommands();
         controller.PrintFootPositions();
@@ -69,7 +73,6 @@ int main(int argc, char **argv)
         control_rate.sleep();
         iteration++;
     }
-    */
 
     return 0;
 }

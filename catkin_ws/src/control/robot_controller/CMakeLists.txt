@@ -50,6 +50,11 @@ add_executable(robot_controller_node
   src/robot_controller.cpp
 )
 
+add_executable(robot_gait_controller_node
+  src/gait_controller_node.cpp
+  src/robot_controller.cpp
+)
+
 add_executable(plot_spline
   src/plot_spline.cpp
 )
@@ -61,6 +66,12 @@ target_link_libraries(${PROJECT_NAME}
 )
 
 target_link_libraries(robot_controller_node
+  ${catkin_LIBRARIES}
+  controller
+  modular_gait_controller
+)
+
+target_link_libraries(robot_gait_controller_node
   ${catkin_LIBRARIES}
   controller
   modular_gait_controller

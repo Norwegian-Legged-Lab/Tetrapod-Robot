@@ -18,10 +18,8 @@ MotorControl::MotorControl(uint8_t _id, uint8_t _can_port_id, int _number_of_inn
 
     max_torque_current = MAX_TORQUE_CURRENT;
 
-    // To check if the inner motor has completed a turn we check for a large jump
-    // in the encoder value. To prevent an acceidental jump initially we start at
-    // the middle value, preventing this from happening. 
-    previous_encoder_value = (max_encoder_value + 1)/2;
+    // We set the initial encoder value to be just to the left of the shaft pointing straight forward. 
+    previous_encoder_value = MAX_ENCODER_VALUE;
 
     // This value is somewhat arbitrary. It should be scaled relative to the 
     // encoder resolution and large enough so that no inner motor turns are skipped
@@ -56,6 +54,7 @@ MotorControl::MotorControl(uint8_t _id, uint8_t _can_port_id, int _number_of_inn
     }
 
     // Use the sign of the multi turn angle to decide the whether or not to add a target position offset
+    /*
     if (multi_turn_angle_32_bit_001lsb >= 0)
     {
         target_position_offset = 60.0*M_PI/180.0;
@@ -64,6 +63,7 @@ MotorControl::MotorControl(uint8_t _id, uint8_t _can_port_id, int _number_of_inn
     {
         target_position_offset = 0.0;
     }
+    */
     /*
     Serial.println("");
     Serial.print("Multiturn angle raw: "); Serial.println(multi_turn_angle_32_bit_001lsb);
@@ -190,7 +190,7 @@ bool MotorControl::writePIDParametersToRAM
 void MotorControl::setPositionReference(double _angle)
 {
     // Convert the desired shaft angle in radians into an inner motor angle in 0.01 degrees 
-    double inner_motor_reference_angle = -(_angle + position_center_offset - position_offset - target_position_offset)*180.0/M_PI*GEAR_REDUCTION*100;
+    double inner_motor_reference_angle = -(_angle - position_offset)*180.0/M_PI*GEAR_REDUCTION*100;
 
     // Store the postion reference for debugging
     raw_position_reference = inner_motor_reference_angle;
@@ -258,7 +258,7 @@ void MotorControl::readMotorControlCommandReply(unsigned char* _can_message)
     // Update the shaft position in radians
     //position = (number_of_inner_motor_rotations + 1.0 - (double)new_encoder_value/(double)max_encoder_value)*ROTATION_DISTANCE*M_PI/180.0 - position_offset;
 
-    position = -((double)new_encoder_value/(double)max_encoder_value - 1.0 - number_of_inner_motor_rotations)*ROTATION_DISTANCE*M_PI/180.0  - position_center_offset + position_offset;
+    position = -((double)new_encoder_value/(double)max_encoder_value - 1.0 - number_of_inner_motor_rotations)*ROTATION_DISTANCE*M_PI/180.0 + position_offset;
 
     // Get the speed of the inner motor in degrees per second
     int16_t speed_motor_dps = _can_message[5]*256 + _can_message[4];
