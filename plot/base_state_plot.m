@@ -8,7 +8,8 @@ path = "~/Tetrapod-Robot/bagfiles/ho_tests/";
 %timestamp = "2021-07-15-10-54-57"; % Height & Orientation test
 %timestamp = "2021-07-16-14-36-24"; % Height test
 %timestamp = "2021-07-19-15-38-21"; % Orientation test used for video
-timestamp = "2021-07-19-15-58-18"; % Orientation test
+% timestamp = "2021-07-19-15-58-18"; % Orientation test
+timestamp = "2021-07-19-19-11-37"; % Height and orientation test
 
 
 
@@ -155,7 +156,7 @@ for i = 1:3
     grid on
     
 
-    plot(state_time(1:length(base_twist)), base_twist(:,i), ...
+    plot(state_time, base_twist(1:length(state_time),i), ...
         "LineWidth", 5, ...
         "DisplayName", base_vel_legends(i));
     
@@ -182,9 +183,9 @@ fig3 = gcf;
 
 %% Save figure
 
-filename1 = 'ho_roll_pos.pdf';
-filename2 = 'ho_roll_ori.pdf';
-filename3 = 'ho_roll_vel.pdf';
+filename1 = 'ho_height_and_roll_pos.pdf';
+filename2 = 'ho_height_and_roll_ori.pdf';
+filename3 = 'ho_height_and_roll_vel.pdf';
 
 
 exportgraphics(fig1, filename1)

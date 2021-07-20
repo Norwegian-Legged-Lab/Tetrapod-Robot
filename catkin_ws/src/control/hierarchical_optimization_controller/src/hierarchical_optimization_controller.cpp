@@ -87,19 +87,19 @@ void HierarchicalOptimizationControl::StaticTorqueTest()
         // Set desired values
         desired_base_pos << 0,
                             0,
-                            0.25;
-        //                    0.05 * std::sin(ros::Time::now().toSec()) + 0.2; 
+        //                    0.25;
+                            0.05 * std::sin(ros::Time::now().toSec()) + 0.2; 
         desired_base_vel.setZero();
-        //desired_base_vel << 0,
-        //                    0,
-        //                    0.05 * std::cos(ros::Time::now().toSec());
+        desired_base_vel << 0,
+                            0,
+                            0.05 * std::cos(ros::Time::now().toSec());
         desired_base_acc.setZero();
-        //desired_base_acc << 0,
-        //                    0,
-        //                    - 0.05 * std::sin(ros::Time::now().toSec());
+        desired_base_acc << 0,
+                            0,
+                            - 0.05 * std::sin(ros::Time::now().toSec());
         desired_base_ori.setZero();
 
-        desired_base_ori(0) = 0.3 * std::sin(ros::Time::now().toSec());
+        desired_base_ori(0) = 0.3 * std::cos(ros::Time::now().toSec());
 
         desired_f_pos = this->fPos;
 
