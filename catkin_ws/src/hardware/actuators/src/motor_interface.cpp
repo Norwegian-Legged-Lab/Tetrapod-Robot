@@ -278,7 +278,7 @@ void MotorInterface::InitRos()
 
     ros::AdvertiseOptions joint_state_ao =
         ros::AdvertiseOptions::create<sensor_msgs::JointState>(
-            "/motor/states",
+            "/my_robot/joint_state",
             1,
             ros::SubscriberStatusCallback(),
             ros::SubscriberStatusCallback(),
