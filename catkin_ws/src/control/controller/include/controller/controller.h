@@ -56,6 +56,8 @@ class Controller{
                                      Eigen::Matrix<double, 3, 1> rl_goal_foot_pos, 
                                      Eigen::Matrix<double, 3, 1> rr_goal_foot_pos);
 
+    public: bool MoveJointsToSetpoints(Eigen::Matrix<double, 12, 1> goal_joint_angles);
+
     public: void UpdateFeetPositions();
 
     protected: void jointStateCallback(const sensor_msgs::JointStatePtr &msg);
@@ -175,4 +177,5 @@ class Controller{
     private: ros::Publisher base_twist_command_logger;
 
     private: ros::Publisher base_pose_command_logger;
+
 };

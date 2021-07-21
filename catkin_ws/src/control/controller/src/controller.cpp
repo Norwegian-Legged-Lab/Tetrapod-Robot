@@ -53,7 +53,7 @@ bool Controller::UpdateJointCommands()
 
 bool Controller::sendJointPositionCommands()
 {
-    ROS_INFO("Hy: %f\tHp: %f\tKp: %f", joint_angle_commands(0), joint_angle_commands(1), joint_angle_commands(2));
+    //ROS_INFO("Hy: %f\tHp: %f\tKp: %f", joint_angle_commands(0), joint_angle_commands(1), joint_angle_commands(2));
     // Check if the position commands are within the joint angle limit constraints
     if (this->kinematics.ValidateSolution(this->joint_angle_commands) == false)
     {
@@ -313,20 +313,25 @@ void Controller::WaitForInitialState()
 }
 
 bool Controller::RunStandUpSequence()
-{
-    Eigen::Matrix<double, 3, 1> fl_goal_foot_pos;
-    Eigen::Matrix<double, 3, 1> fr_goal_foot_pos;
-    Eigen::Matrix<double, 3, 1> rl_goal_foot_pos;
-    Eigen::Matrix<double, 3, 1> rr_goal_foot_pos;
-    
+{    
     // Stage 1
     // We want to move the yaw actuators so that they all face in a direction of +-45 or +-135 degrees
     // At the same time we want to keep the hip pitch and knee pitch angles equal to zero
+
+    Eigen::Matrix<double, 12, 1> goal_joint_angles = Eigen::Matrix<double, 12, 1>::Zero();
+    goal_joint_angles(0) = M_PI/4.0;
+    goal_joint_angles(3) = - M_PI/4.0;
+    goal_joint_angles(6) = M_PI*3.0/4.0;
+    goal_joint_angles(9) = - M_PI*3.0/4.0;
+
+    this->MoveJointsToSetpoints(goal_joint_angles);
+    /*
     joint_angle_commands(0) = M_PI/4.0;
     joint_angle_commands(3) = - M_PI/4.0;
     joint_angle_commands(6) = M_PI*3.0/4.0;
     joint_angle_commands(9) = - M_PI*3.0/4.0;
-
+    */
+    /*
     Eigen::Matrix<double, 3, 1> fl_desired_joint_angles(joint_angles(0), 0.0, 0.0);
     Eigen::Matrix<double, 3, 1> fr_desired_joint_angles(joint_angles(3), 0.0, 0.0);
     Eigen::Matrix<double, 3, 1> rl_desired_joint_angles(joint_angles(6), 0.0, 0.0);
@@ -336,6 +341,7 @@ bool Controller::RunStandUpSequence()
     fr_goal_foot_pos = this->kinematics.SolveSingleLegForwardKinematics(fr_desired_joint_angles);
     rl_goal_foot_pos = this->kinematics.SolveSingleLegForwardKinematics(rl_desired_joint_angles);
     rr_goal_foot_pos = this->kinematics.SolveSingleLegForwardKinematics(rr_desired_joint_angles);
+    */
 
     //this->MoveFeetToPositions(fl_goal_foot_pos, fr_goal_foot_pos, rl_goal_foot_pos, rr_goal_foot_pos);
 
@@ -343,6 +349,11 @@ bool Controller::RunStandUpSequence()
 
     // Stage 2
     // We want to move the feet to their nominal xy positions while keeping the height equal to zero
+    Eigen::Matrix<double, 3, 1> fl_goal_foot_pos;
+    Eigen::Matrix<double, 3, 1> fr_goal_foot_pos;
+    Eigen::Matrix<double, 3, 1> rl_goal_foot_pos;
+    Eigen::Matrix<double, 3, 1> rr_goal_foot_pos;
+
     double x_nominal = 0.30;
     double y_nominal = 0.30;
 
@@ -455,6 +466,16 @@ bool Controller::MoveFeetToPositions(Eigen::Matrix<double, 3, 1> fl_goal_foot_po
     ROS_INFO("Iterations: %d", number_of_iterations);
     ros::Rate publish_rate(controller_freq);
 
+    ROS_INFO("Initial Angles - FL1: %f\tFL2: %f\tFL3: %f\tFR1: %f\tFR2: %f\tFR3: %f\tRL1: %f\tRL2: %f\tRL3: %f\tRR1: %f\tRR2: %f\tRR3: %f",
+    joint_angles(0), joint_angles(1), joint_angles(2), joint_angles(3), joint_angles(4), joint_angles(5),
+    joint_angles(6), joint_angles(7), joint_angles(8), joint_angles(9), joint_angles(10), joint_angles(11));
+
+    ROS_INFO("Initial - FL1: %f\tFL2: %f\tFL3: %f\tFR1: %f\tFR2: %f\tFR3: %f\tRL1: %f\tRL2: %f\tRL3: %f\tRR1: %f\tRR2: %f\tRR3: %f",
+    fl_initial_foot_pos(0), fl_initial_foot_pos(1), fl_initial_foot_pos(2),
+    fr_initial_foot_pos(0), fr_initial_foot_pos(1), fr_initial_foot_pos(2),
+    rl_initial_foot_pos(0), rl_initial_foot_pos(1), rl_initial_foot_pos(2),
+    rr_initial_foot_pos(0), rr_initial_foot_pos(1), rr_initial_foot_pos(2));
+
     for(int i = 0; i < number_of_iterations; i++)
     {
         ros::spinOnce();
@@ -464,6 +485,12 @@ bool Controller::MoveFeetToPositions(Eigen::Matrix<double, 3, 1> fl_goal_foot_po
         fr_desired_foot_pos = fr_initial_foot_pos + double(i)/double(number_of_iterations) * (fr_goal_foot_pos - fr_initial_foot_pos);
         rl_desired_foot_pos = rl_initial_foot_pos + double(i)/double(number_of_iterations) * (rl_goal_foot_pos - rl_initial_foot_pos);
         rr_desired_foot_pos = rr_initial_foot_pos + double(i)/double(number_of_iterations) * (rr_goal_foot_pos - rr_initial_foot_pos);
+
+        ROS_INFO("Current - FL1: %f\tFL2: %f\tFL3: %f\tFR1: %f\tFR2: %f\tFR3: %f\tRL1: %f\tRL2: %f\tRL3: %f\tRR1: %f\tRR2: %f\tRR3: %f",
+        fl_desired_foot_pos(0), fl_desired_foot_pos(1), fl_desired_foot_pos(2),
+        fr_desired_foot_pos(0), fr_desired_foot_pos(1), fr_desired_foot_pos(2),
+        rl_desired_foot_pos(0), rl_desired_foot_pos(1), rl_desired_foot_pos(2),
+        rr_desired_foot_pos(0), rr_desired_foot_pos(1), rr_desired_foot_pos(2));
 
         // Calculate the inverse joint angles
         if(this->kinematics.SolveSingleLegInverseKinematics(this->kinematics.GetflOffset(), fl_desired_foot_pos, fl_desired_joint_angles) == false)
@@ -492,8 +519,56 @@ bool Controller::MoveFeetToPositions(Eigen::Matrix<double, 3, 1> fl_goal_foot_po
         this->joint_angle_commands.block<3, 1>(6, 0) = rl_desired_joint_angles;
         this->joint_angle_commands.block<3, 1>(9, 0) = rr_desired_joint_angles;
 
-        this->sendJointPositionCommands();
+        ROS_INFO("Angle commands - FL1: %f\tFL2: %f\tFL3: %f\tFR1: %f\tFR2: %f\tFR3: %f\tRL1: %f\tRL2: %f\tRL3: %f\tRR1: %f\tRR2: %f\tRR3: %f",
+        joint_angle_commands(0), joint_angle_commands(1), joint_angle_commands(2), joint_angle_commands(3), joint_angle_commands(4), joint_angle_commands(5),
+        joint_angle_commands(6), joint_angle_commands(7), joint_angle_commands(8), joint_angle_commands(9), joint_angle_commands(10), joint_angle_commands(11));
 
+        this->sendJointPositionCommands();
+        this->WriteToLog();
+        publish_rate.sleep();
+    }
+
+    return true;
+}
+
+bool Controller::MoveJointsToSetpoints(Eigen::Matrix<double, 12, 1> goal_joint_angles)
+{
+    if(this->kinematics.ValidateSolution(goal_joint_angles) == false)
+    {
+        ROS_WARN("MoveJointToSetpoints - Invalid goal joint positions");
+        return false;
+    }
+
+    Eigen::Matrix<double, 12, 1> initial_joint_angles = this->joint_angles;
+
+    double max_error = 0.0;
+
+    for(int i = 0; i < 12; i++)
+    {
+        double error = abs(initial_joint_angles(i) - goal_joint_angles(i));
+
+        if(error > max_error)
+        {
+            max_error = error;
+        }
+    }
+
+    double max_angle_rate = 0.05;
+
+    double trajectory_duration = max_error / max_angle_rate;
+
+    int number_of_iterations = int(trajectory_duration * controller_freq);
+
+    ros::Rate publish_rate(controller_freq);
+
+    for(int i = 0; i < number_of_iterations; i++)
+    {
+        ros::spinOnce();
+
+        joint_angle_commands = initial_joint_angles + double(i)/double(number_of_iterations) * (goal_joint_angles - initial_joint_angles);
+
+        this->sendJointPositionCommands();
+        this->WriteToLog();
         publish_rate.sleep();
     }
 
@@ -502,8 +577,8 @@ bool Controller::MoveFeetToPositions(Eigen::Matrix<double, 3, 1> fl_goal_foot_po
 
 void Controller::UpdateFeetPositions()
 {
-    fl_position_body = kinematics.SolveSingleLegForwardKinematics(joint_angles.block<3, 1>(0, 0));
-    fr_position_body = kinematics.SolveSingleLegForwardKinematics(joint_angles.block<3, 1>(3, 0));
-    rl_position_body = kinematics.SolveSingleLegForwardKinematics(joint_angles.block<3, 1>(6, 0));
-    rr_position_body = kinematics.SolveSingleLegForwardKinematics(joint_angles.block<3, 1>(9, 0));
+    fl_position_body = kinematics.SolveSingleLegHipToFootForwardKinematics(Kinematics::LegType::frontLeft, joint_angles.block<3, 1>(0, 0));
+    fr_position_body = kinematics.SolveSingleLegHipToFootForwardKinematics(Kinematics::LegType::frontRight, joint_angles.block<3, 1>(3, 0));
+    rl_position_body = kinematics.SolveSingleLegHipToFootForwardKinematics(Kinematics::LegType::rearLeft, joint_angles.block<3, 1>(6, 0));
+    rr_position_body = kinematics.SolveSingleLegHipToFootForwardKinematics(Kinematics::LegType::rearRight, joint_angles.block<3, 1>(9, 0));
 }
