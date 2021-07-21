@@ -2,17 +2,22 @@
 
 run("setup.m");
 
-%path = "~/Tetrapod-Robot/bagfiles/ho_tests/";
-path = "~/Tetrapod-Robot/bagfiles/gait_simulation_tests/";
-%timestamp = "2021-07-15-09-54-39"; % Height test
-%timestamp = "2021-07-15-10-51-57"; % Height & Orientation test
-%timestamp = "2021-07-15-10-54-57"; % Height & Orientation test
-%timestamp = "2021-07-16-14-36-24"; % Height test
-timestamp = "2021-07-19-11-44-05"; % Gait Test
+path = "~/Tetrapod-Robot/bagfiles/ho_tests/";
+% path = "~/Tetrapod-Robot/bagfiles/gait_simulation_tests/";
+% timestamp = "2021-07-15-09-54-39"; % Height test
+% timestamp = "2021-07-15-10-51-57"; % Height & Orientation test
+% timestamp = "2021-07-15-10-54-57"; % Height & Orientation test
+% timestamp = "2021-07-16-14-36-24"; % Height test
+% timestamp = "2021-07-19-11-44-05"; % Gait Test
 % timestamp = "2021-07-16-14-36-24"; % Height test
 % timestamp = "2021-07-19-15-38-21"; % Orientation test
 % timestamp = "2021-07-19-15-58-18"; % Orientation test
-timestamp = "2021-07-19-19-11-37"; % Height and orientation test
+% timestamp = "2021-07-19-19-11-37"; % Height and orientation test
+% timestamp = "2021-07-20-07-45-31"; % Height and orientation test (4xt)
+% timestamp = "2021-07-20-08-07-53"; % Height, yaw, roll test (3xt)
+timestamp = "2021-07-20-09-41-08"; % Height, yaw, roll test (3xt) used for video
+
+
 
 
 number_of_motors = 12;
@@ -31,9 +36,9 @@ joint_vel_state = get_joint_velocity_states(joint_state_bag, number_of_motors);
 joint_tor_state = get_joint_effort_states(joint_state_bag, number_of_motors);
 
 
-joint_pos_reference = get_joint_position_states(joint_state_cmd_bag, number_of_motors);
-joint_vel_reference = get_joint_velocity_states(joint_state_cmd_bag, number_of_motors);
-joint_tor_reference = get_joint_effort_states(joint_state_cmd_bag, number_of_motors);
+% joint_pos_reference = get_joint_position_states(joint_state_cmd_bag, number_of_motors);
+% joint_vel_reference = get_joint_velocity_states(joint_state_cmd_bag, number_of_motors);
+% joint_tor_reference = get_joint_effort_states(joint_state_cmd_bag, number_of_motors);
 
 %% Remove time offset from the measurements so that time zero is when the first message of one time is received
 time_offset = 0;
@@ -51,7 +56,7 @@ reference_time = reference_time' - time_offset;
 %% Plot results
 
 % Limits
-xlimit = [0, 1.2];
+xlimit = [5, 25];
 base_pos_ylimits = {[-0.3,0.3], [-0.3,0.3], [0.05,0.35]};
 base_ori_ylimits = {[-40,40], [-10,10], [-10,10]};
 base_vel_ylimits = {[-0.2,0.2], [-0.2,0.2], [-0.2,0.2]};
@@ -112,15 +117,15 @@ for i = 1:number_of_motors
         "LineWidth", 5, ...
         "DisplayName", pos_legends(i));    
     
-    a = plot(reference_time, 180/pi * joint_pos_reference(:,i), ...
-        ...
-         "LineWidth", 5, ...
-         "LineStyle", '--', ...
-         "Color", 'k', ...
-         "DisplayName", pos__ref_legends(i));
+%     a = plot(reference_time, 180/pi * joint_pos_reference(:,i), ...
+%         ...
+%          "LineWidth", 5, ...
+%          "LineStyle", '--', ...
+%          "Color", 'k', ...
+%          "DisplayName", pos__ref_legends(i));
      
 
-    uistack(a, "top");
+%     uistack(a, "top");
     legend('FontSize', 28);
     xlim(xlimit);
     xlabel("Time [s]", 'FontSize', 28);
@@ -216,7 +221,7 @@ fig3 = gcf;
 
 % filename1 = 'single_leg_joint_positions_test_case_5_8.pdf';
 % filename2 = 'ho_roll_joint_vel.pdf';
-filename3 = 'ho_height_and_roll_tor.pdf';
+filename3 = 'ho_height_roll_and_yaw_tor.pdf';
 
 % exportgraphics(fig1, filename1)
 % exportgraphics(fig2, filename2)
