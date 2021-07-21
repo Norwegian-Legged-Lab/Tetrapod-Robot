@@ -43,6 +43,8 @@ class Controller{
 
     public: bool sendJointPositionCommands();
 
+    public: void StandStill(const double &duration);
+
     public: virtual void setInitialConfiguration();
 
     public: void SetTwistCommand(double lin_vel_cmd_x, double lin_vel_cmd_y, double ang_vel_cmd_z);
@@ -56,6 +58,10 @@ class Controller{
                                      Eigen::Matrix<double, 3, 1> rl_goal_foot_pos, 
                                      Eigen::Matrix<double, 3, 1> rr_goal_foot_pos);
 
+    public: bool MoveJointsToSetpoints(Eigen::Matrix<double, 12, 1> goal_joint_angles);
+
+    public: bool MoveFootToPosition(const Kinematics::LegType &leg_type, const Eigen::Matrix<double, 3, 1> &goal_foot_position);
+
     public: void UpdateFeetPositions();
 
     protected: void jointStateCallback(const sensor_msgs::JointStatePtr &msg);
@@ -68,6 +74,12 @@ class Controller{
     protected: void TwistStateCallback(const geometry_msgs::TwistConstPtr &_msg);
 
     protected: void BasePoseStateCallback(const std_msgs::Float64MultiArrayConstPtr &msg);
+
+    public: bool CheckReadyToProceed(){return ready_to_proceed;}
+
+    public: void ResetReadyToProceedFlag(){ready_to_proceed = false;}
+
+    public: void SetReadyToProceedFlag(){ready_to_proceed = true;}
 
     /*** Variables ***/
     private: bool ready_to_proceed = false;
@@ -175,4 +187,5 @@ class Controller{
     private: ros::Publisher base_twist_command_logger;
 
     private: ros::Publisher base_pose_command_logger;
+
 };

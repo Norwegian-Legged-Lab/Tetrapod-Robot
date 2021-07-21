@@ -107,6 +107,22 @@ class Kinematics
     /// \return Returns end-effector position in the hip frame.
     public: Vector3d SolveSingleLegForwardKinematics(const Vector3d &_joint_angles);
 
+    /// \brief The SolveSingleLegForwardKinematics function calculates
+    /// the foot position in the hip frame
+    /// \param[in] _leg_type Indicates which leg it is
+    /// \param[in] _joint_angles A vector containing the hip yaw, hip pitch and
+    /// knee pitch angles 
+    /// \return Returns end-effector position in the hip frame.
+    public: Vector3d SolveSingleLegForwardKinematics(const LegType &_leg_type, const Vector3d &_joint_angles);
+
+    /// \brief The SolveSingleLegHipToFootForwardKinematics function calculates
+    /// the foot position in the hip frame
+    /// \param[in] _leg_type Indicates which leg it is
+    /// \param[in] _joint_angles A vector containing the hip yaw, hip pitch and
+    /// knee pitch angles 
+    /// \return Returns end-effector position in the hip frame.
+    public: Vector3d SolveSingleLegHipToFootForwardKinematics(const LegType &_leg_type, const Vector3d &_joint_angles);
+
     /// \brief The SolveSingeLegInverseKinematics function calculates
     /// the inverse kinematics for a single leg.
     /// \param[in] _offset Bool indicating whether the leg is roll
