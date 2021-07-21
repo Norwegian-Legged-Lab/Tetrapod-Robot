@@ -27,13 +27,17 @@ int main(int argc, char **argv)
 
     controller.waitForReadyToProceed();
 
+    //controller.ResetReadyToProceedFlag();
+
     ROS_INFO("Position joint states received");
 
     controller.WaitForInitialState();
 
     controller.RunStandUpSequence();
 
-    while(ros::ok())
+    //controller.SetReadyToProceedFlag();
+
+    while(ros::ok() && !controller.CheckReadyToProceed())
     {
         ros::spinOnce();
 
@@ -42,21 +46,13 @@ int main(int argc, char **argv)
         control_rate.sleep();
     }
 
-    /*
-    controller.setInitialConfiguration();
-
-    controller.waitForReadyToProceed();
+    //controller.waitForReadyToProceed();
 
     int iteration = 0;
 
     while(ros::ok())
     {   
         ros::spinOnce();
-
-        if(iteration == int(SET_TWIST_TIME * controller_frequency))
-        {
-            controller.SetTwistCommand(1.0, 0.0, 0.0);
-        }
 
         if(controller.UpdateGaitState())
         {
@@ -78,7 +74,6 @@ int main(int argc, char **argv)
         control_rate.sleep();
         iteration++;
     }
-    */
 
     return 0;
 }
