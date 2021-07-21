@@ -241,6 +241,48 @@ Vector3d Kinematics::SolveSingleLegForwardKinematics(const Vector3d &_h_pos,
     return pos;
 }
 
+// Solve single leg forward kinematics from hip to foot
+Vector3d Kinematics::SolveSingleLegForwardKinematics(const LegType &_leg_type, const Vector3d &_joint_angles)
+{
+    // Complete D-H transformation
+    kindr::HomTransformMatrixD transformation = this->GetHipToBodyTransform(_leg_type,
+                                                                            BodyType::foot,
+                                                                            _joint_angles(0),
+                                                                            _joint_angles(1),
+                                                                            _joint_angles(2)); 
+
+    Eigen::Vector3d pos = transformation.transform(kindr::Position3D(0, 0, 0)).vector();
+
+    return pos;
+}
+
+Eigen::Matrix<double, 3, 1> Kinematics::SolveSingleLegHipToFootForwardKinematics(const LegType &_leg_type, const Eigen::Matrix<double, 3, 1> &_joint_angles)
+{
+    Eigen::Matrix<double, 3, 1> pos;
+
+    double hy = _joint_angles(0);
+    double hp = _joint_angles(1);
+    double kp = _joint_angles(2);
+
+    pos(0) = std::cos(hy) * (this->L1 + this->L2 * std::cos(hp) + this->L3 * std::cos(hp + kp));
+    pos(1) = std::sin(hy) * (this->L1 + this->L2 * std::cos(hp) + this->L3 * std::cos(hp + kp));
+    pos(2) = - this->L2 * std::sin(hp) - this->L3 * sin(hp + kp);
+    
+    if((_leg_type == LegType::frontRight) || (_leg_type == LegType::rearLeft))
+    {
+        pos(2) = - pos(2);
+    }
+    
+    /*
+    if((_leg_type == LegType::frontLeft) || (_leg_type == LegType::rearRight))
+    {
+        pos(2) = - pos(2);
+    }
+    */
+
+    return pos;
+}
+
 Vector3d Kinematics::SolveSingleLegForwardKinematics(const Vector3d &_joint_angles)
 {
     Eigen::Matrix<double, 3, 1> zero = Eigen::Matrix<double, 3, 1>::Zero();
