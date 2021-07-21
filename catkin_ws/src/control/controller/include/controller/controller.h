@@ -75,6 +75,12 @@ class Controller{
 
     protected: void BasePoseStateCallback(const std_msgs::Float64MultiArrayConstPtr &msg);
 
+    public: bool CheckReadyToProceed(){return ready_to_proceed;}
+
+    public: void ResetReadyToProceedFlag(){ready_to_proceed = false;}
+
+    public: void SetReadyToProceedFlag(){ready_to_proceed = true;}
+
     /*** Variables ***/
     private: bool ready_to_proceed = false;
 
