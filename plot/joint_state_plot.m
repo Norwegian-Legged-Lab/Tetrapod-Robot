@@ -15,7 +15,9 @@ path = "~/Tetrapod-Robot/bagfiles/ho_tests/";
 % timestamp = "2021-07-19-19-11-37"; % Height and orientation test
 % timestamp = "2021-07-20-07-45-31"; % Height and orientation test (4xt)
 % timestamp = "2021-07-20-08-07-53"; % Height, yaw, roll test (3xt)
-timestamp = "2021-07-20-09-41-08"; % Height, yaw, roll test (3xt) used for video
+% timestamp = "2021-07-20-09-41-08"; % Height, yaw, roll test (3xt) used for video
+% timestamp = "2021-07-21-15-31-44"; % Apply force test z35N
+timestamp = "2021-07-21-14-13-01"; % Apply force test z200N
 
 
 
@@ -57,9 +59,9 @@ reference_time = reference_time' - time_offset;
 
 % Limits
 xlimit = [5, 25];
-base_pos_ylimits = {[-0.3,0.3], [-0.3,0.3], [0.05,0.35]};
-base_ori_ylimits = {[-40,40], [-10,10], [-10,10]};
-base_vel_ylimits = {[-0.2,0.2], [-0.2,0.2], [-0.2,0.2]};
+joint_pos_ylimits = {[-0.3,0.3], [-0.3,0.3], [0.05,0.35]};
+joint_vel_ylimits = {[-40,40], [-10,10], [-20,20]};
+joint_tor_ylimits = {[-5,5], [-40,40], [-15,15]};
 
 pos_legends = ["$\theta_{h,y,fl}$", "$\theta_{h,p,fl}$", "$\theta_{k,p,fl}$" ...
                "$\theta_{h,y,fr}$", "$\theta_{h,p,fr}$", "$\theta_{k,p,fr}$" ...
@@ -185,12 +187,15 @@ for i = 1:number_of_motors
     if mod(i,3) == 1
         subplot(3, 1, 1)
         title(tor_titles(1), 'FontSize', 28);
+        ylim(joint_tor_ylimits{1})
     elseif mod(i,3) == 2
         subplot(3, 1, 2)
         title(tor_titles(2), 'FontSize', 28);
+        ylim(joint_tor_ylimits{2})
     elseif mod(i,3) == 0
         subplot(3, 1, 3)
-        title(tor_titles(3), 'FontSize', 28);        
+        title(tor_titles(3), 'FontSize', 28);
+        ylim(joint_tor_ylimits{3})
     end
     hold on
     grid on
@@ -221,8 +226,8 @@ fig3 = gcf;
 
 % filename1 = 'single_leg_joint_positions_test_case_5_8.pdf';
 % filename2 = 'ho_roll_joint_vel.pdf';
-filename3 = 'ho_height_roll_and_yaw_tor.pdf';
+filename3 = 'ho_force_z200N_tor.pdf';
 
 % exportgraphics(fig1, filename1)
 % exportgraphics(fig2, filename2)
-exportgraphics(fig3, filename3)
+% exportgraphics(fig3, filename3)
