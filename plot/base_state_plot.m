@@ -3,13 +3,16 @@
 run("setup.m");
 
 path = "~/Tetrapod-Robot/bagfiles/ho_tests/";
-%timestamp = "2021-07-15-09-54-39"; % Height test
-%timestamp = "2021-07-15-10-51-57"; % Height & Orientation test
-%timestamp = "2021-07-15-10-54-57"; % Height & Orientation test
-%timestamp = "2021-07-16-14-36-24"; % Height test
-%timestamp = "2021-07-19-15-38-21"; % Orientation test used for video
+% timestamp = "2021-07-15-09-54-39"; % Height test
+% timestamp = "2021-07-15-10-51-57"; % Height & Orientation test
+% timestamp = "2021-07-15-10-54-57"; % Height & Orientation test
+% timestamp = "2021-07-16-14-36-24"; % Height test
+% timestamp = "2021-07-19-15-38-21"; % Orientation test used for video
 % timestamp = "2021-07-19-15-58-18"; % Orientation test
-timestamp = "2021-07-19-19-11-37"; % Height and orientation test
+% timestamp = "2021-07-19-19-11-37"; % Height and orientation test used for video
+% timestamp = "2021-07-20-07-45-31"; % Height and orientation test (4xt)
+% timestamp = "2021-07-20-08-07-53"; % Height, yaw, roll test (3xt)
+timestamp = "2021-07-20-09-41-08"; % Height, yaw, roll test (3xt) used for video
 
 
 
@@ -51,7 +54,7 @@ reference_time = reference_time' - time_offset;
 % Limits
 xlimit = [5, 25];
 base_pos_ylimits = {[-0.3,0.3], [-0.3,0.3], [0.05,0.35]};
-base_ori_ylimits = {[-40,40], [-10,10], [-10,10]};
+base_ori_ylimits = {[-40,40], [-10,10], [-20,20]};
 base_vel_ylimits = {[-0.2,0.2], [-0.2,0.2], [-0.2,0.2]};
 
 
@@ -156,7 +159,7 @@ for i = 1:3
     grid on
     
 
-    plot(state_time, base_twist(1:length(state_time),i), ...
+    plot(state_time(1:length(base_twist)), base_twist(:,i), ...
         "LineWidth", 5, ...
         "DisplayName", base_vel_legends(i));
     
@@ -183,12 +186,12 @@ fig3 = gcf;
 
 %% Save figure
 
-filename1 = 'ho_height_and_roll_pos.pdf';
-filename2 = 'ho_height_and_roll_ori.pdf';
-filename3 = 'ho_height_and_roll_vel.pdf';
+filename1 = 'ho_height_roll_and_yaw_pos.pdf';
+filename2 = 'ho_height_roll_and_yaw_ori.pdf';
+filename3 = 'ho_height_roll_and_yaw_vel.pdf';
 
 
-exportgraphics(fig1, filename1)
-exportgraphics(fig2, filename2)
-exportgraphics(fig3, filename3)
+% exportgraphics(fig1, filename1)
+% exportgraphics(fig2, filename2)
+% exportgraphics(fig3, filename3)
 
