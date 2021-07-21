@@ -43,6 +43,8 @@ class Controller{
 
     public: bool sendJointPositionCommands();
 
+    public: void StandStill(const double &duration);
+
     public: virtual void setInitialConfiguration();
 
     public: void SetTwistCommand(double lin_vel_cmd_x, double lin_vel_cmd_y, double ang_vel_cmd_z);
@@ -57,6 +59,8 @@ class Controller{
                                      Eigen::Matrix<double, 3, 1> rr_goal_foot_pos);
 
     public: bool MoveJointsToSetpoints(Eigen::Matrix<double, 12, 1> goal_joint_angles);
+
+    public: bool MoveFootToPosition(const Kinematics::LegType &leg_type, const Eigen::Matrix<double, 3, 1> &goal_foot_position);
 
     public: void UpdateFeetPositions();
 

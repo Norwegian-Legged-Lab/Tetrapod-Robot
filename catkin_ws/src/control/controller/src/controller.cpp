@@ -370,7 +370,7 @@ bool Controller::RunStandUpSequence()
 
     this->MoveFeetToPositions(fl_goal_foot_pos, fr_goal_foot_pos, rl_goal_foot_pos, rr_goal_foot_pos);
 
-    ROS_WARN("RunStandUpSequence - Stage 1 Complete");
+    ROS_WARN("RunStandUpSequence - Stage 2 Complete");
 
     // Stage 3
     // We want to keep the feet at their nominal xy positions while increasing the the height to the nominal height
@@ -381,7 +381,62 @@ bool Controller::RunStandUpSequence()
 
     this->MoveFeetToPositions(fl_goal_foot_pos, fr_goal_foot_pos, rl_goal_foot_pos, rr_goal_foot_pos);
 
-    return false;
+    ROS_WARN("RunStandUpSequence - Stage 3 Complete");
+
+    // Stage 4
+    // Move each of the feet to the nominal position
+
+    this->StandStill(0.5);
+
+    fl_goal_foot_pos(0) = LEG_OFFSET_LENGTH;
+    fl_goal_foot_pos(1) = LEG_OFFSET_LENGTH;
+    fl_goal_foot_pos(2) = - nominal_base_height;
+
+    this->MoveFootToPosition(Kinematics::LegType::frontLeft, fl_goal_foot_pos);
+
+    ROS_WARN("RunStandUpSequence - FL moved successfully");
+
+    this->StandStill(0.5);
+
+    ROS_WARN("RunStandUpSequence - FL stance completed");
+
+    rr_goal_foot_pos(0) = - LEG_OFFSET_LENGTH;
+    rr_goal_foot_pos(1) = - LEG_OFFSET_LENGTH;
+    rr_goal_foot_pos(2) = - nominal_base_height;
+
+    this->MoveFootToPosition(Kinematics::LegType::rearRight, rr_goal_foot_pos);
+
+    ROS_WARN("RunStandUpSequence - RR moved successfully");
+
+    this->StandStill(0.5);
+
+    ROS_WARN("RunStandUpSequence - RR stance completed");
+
+    fr_goal_foot_pos(0) = LEG_OFFSET_LENGTH;
+    fr_goal_foot_pos(1) = - LEG_OFFSET_LENGTH;
+    fr_goal_foot_pos(2) = - nominal_base_height;
+    
+    this->MoveFootToPosition(Kinematics::LegType::frontRight, fr_goal_foot_pos);
+
+    ROS_WARN("RunStandUpSequence - FR moved successfully");
+
+    this->StandStill(0.5);
+
+    ROS_WARN("RunStandUpSequence - FR stance completed");
+
+    rl_goal_foot_pos(0) = - LEG_OFFSET_LENGTH;
+    rl_goal_foot_pos(1) = LEG_OFFSET_LENGTH;
+    rl_goal_foot_pos(2) = - nominal_base_height;
+
+    this->MoveFootToPosition(Kinematics::LegType::rearLeft, rl_goal_foot_pos);
+
+    ROS_WARN("RunStandUpSequence - RL moved successfully");
+
+    this->StandStill(0.5);
+
+    ROS_WARN("RunStandUpSequence - RL stance completed");
+
+    return true;
 }
 
 bool Controller::MoveFeetToPositions(Eigen::Matrix<double, 3, 1> fl_goal_foot_pos, 
@@ -455,7 +510,7 @@ bool Controller::MoveFeetToPositions(Eigen::Matrix<double, 3, 1> fl_goal_foot_po
         }
     }
 
-    double max_velocity = 0.05; // [m/s]
+    double max_velocity = 0.1; // [m/s]
 
     double trajectory_duration = max_error / max_velocity;
 
@@ -553,7 +608,7 @@ bool Controller::MoveJointsToSetpoints(Eigen::Matrix<double, 12, 1> goal_joint_a
         }
     }
 
-    double max_angle_rate = 0.05;
+    double max_angle_rate = 0.3;
 
     double trajectory_duration = max_error / max_angle_rate;
 
@@ -581,4 +636,117 @@ void Controller::UpdateFeetPositions()
     fr_position_body = kinematics.SolveSingleLegHipToFootForwardKinematics(Kinematics::LegType::frontRight, joint_angles.block<3, 1>(3, 0));
     rl_position_body = kinematics.SolveSingleLegHipToFootForwardKinematics(Kinematics::LegType::rearLeft, joint_angles.block<3, 1>(6, 0));
     rr_position_body = kinematics.SolveSingleLegHipToFootForwardKinematics(Kinematics::LegType::rearRight, joint_angles.block<3, 1>(9, 0));
+}
+
+bool Controller::MoveFootToPosition(const Kinematics::LegType &leg_type, const Eigen::Matrix<double, 3, 1> &goal_foot_position)
+{
+    Eigen::Matrix<double, 3, 1> initial_foot_position;
+
+    bool leg_offset;
+
+    int joint_index_start;
+
+    switch (leg_type)
+    {
+    case Kinematics::LegType::frontLeft:
+    {
+        initial_foot_position = this->fl_position_body;
+        leg_offset = this->kinematics.GetflOffset();
+        joint_index_start = 0;
+        break;
+    }
+    case Kinematics::LegType::frontRight:
+    {
+        initial_foot_position = this->fr_position_body;
+        leg_offset = this->kinematics.GetfrOffset();
+        joint_index_start = 3;
+        break;
+    }
+    case Kinematics::LegType::rearLeft:
+    {
+        initial_foot_position = this->rl_position_body;
+        leg_offset = this->kinematics.GetrlOffset();
+        joint_index_start = 6;
+        break;
+    }
+    case Kinematics::LegType::rearRight:
+    {
+        initial_foot_position = this->rr_position_body;
+        leg_offset = this->kinematics.GetrrOffset();
+        joint_index_start = 9;
+        break;
+    }
+    default:
+        ROS_WARN("MoveFootToPosition - Invalid leg chosen");
+        return false;
+        break;
+    }
+
+    // Can add check to see if the target foot position is feasible
+
+    double swing_period = 0.3;
+
+    double step_height = 0.1;
+
+    int number_of_iterations = int(swing_period * controller_freq);
+
+    int half_number_of_iterations = number_of_iterations/2; 
+
+    number_of_iterations = half_number_of_iterations * 2; // This is to ensure that we have a parallel number of iterations
+
+    Eigen::Matrix<double, 3, 1> desired_foot_position;
+
+    Eigen::Matrix<double, 3, 1> desired_joint_angles;
+
+    ros::Rate publish_rate(controller_freq);
+
+    for(int i = 0; i <= number_of_iterations; i++)
+    {
+        ROS_INFO("Iteration: %d\tN: %d", i, number_of_iterations);
+        desired_foot_position = initial_foot_position + double(i)/double(number_of_iterations) * (goal_foot_position - initial_foot_position);
+
+        if(i <= half_number_of_iterations)
+        {
+            desired_foot_position(2) = - nominal_base_height + step_height * double(i)/double(half_number_of_iterations);
+        }
+        else
+        {
+            desired_foot_position(2) = - nominal_base_height + step_height * (1.0 - double(i - half_number_of_iterations)/double(half_number_of_iterations));
+        }
+ 
+        if(this->kinematics.SolveSingleLegInverseKinematics(leg_offset, desired_foot_position, desired_joint_angles) == false)
+        {
+            ROS_WARN("MoveFootToPosition - Failed to solve IK");
+            return false;
+        }
+        else
+        {
+            joint_angle_commands.block<3, 1>(joint_index_start, 0) = desired_joint_angles;
+
+            this->sendJointPositionCommands();
+
+            this->WriteToLog();
+            
+            publish_rate.sleep();
+        }
+
+    }
+
+    return true;
+}
+
+void Controller::StandStill(const double &duration)
+{
+    ros::Rate control_rate(controller_freq);
+
+    int number_of_iterations = duration * controller_freq;
+
+    for(int i = 0; i < number_of_iterations; i++)
+    {
+        ros::spinOnce();
+
+        this->sendJointPositionCommands();
+
+        control_rate.sleep();
+    }
 }
