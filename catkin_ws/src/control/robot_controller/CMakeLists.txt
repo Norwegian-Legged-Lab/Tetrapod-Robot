@@ -50,8 +50,8 @@ add_executable(robot_controller_node
   src/robot_controller.cpp
 )
 
-add_executable(robot_gait_controller_node
-  src/gait_controller_node.cpp
+add_executable(gait_test_node
+  src/gait_test_node.cpp
   src/robot_controller.cpp
 )
 
@@ -71,7 +71,7 @@ target_link_libraries(robot_controller_node
   modular_gait_controller
 )
 
-target_link_libraries(robot_gait_controller_node
+target_link_libraries(gait_test_node
   ${catkin_LIBRARIES}
   controller
   modular_gait_controller
