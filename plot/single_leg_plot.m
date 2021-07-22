@@ -13,6 +13,7 @@ number_of_motors = 3;
 
 number_of_cases = 5;
 
+leg_type = "front_left";
 %% Set data timestamps (test cases correspond to the ones set in the report)
 
 testcase1 = "2021-06-29-16-44-14"; % Gains (Kpp: 5, Kip: 5, Kpv: 30, Kiv: 30, Kpt: 50, Kit: 50)
@@ -118,26 +119,26 @@ foot_velocity8 = zeros(N, 3);
 foot_velocity_reference = zeros(N, 3);
 
 for i = 1:N
-    foot_position1(i, :) = CalculateFootPosition(joint_position1(i, :));
-    foot_position2(i, :) = CalculateFootPosition(joint_position2(i, :));
-    foot_position3(i, :) = CalculateFootPosition(joint_position3(i, :));
-    foot_position4(i, :) = CalculateFootPosition(joint_position4(i, :));
-    foot_position5(i, :) = CalculateFootPosition(joint_position5(i, :));
-    foot_position6(i, :) = CalculateFootPosition(joint_position6(i, :));
-    foot_position7(i, :) = CalculateFootPosition(joint_position7(i, :));
-    foot_position8(i, :) = CalculateFootPosition(joint_position8(i, :));
-    foot_position_reference(i, :) = CalculateFootPosition(joint_position_reference(i, :));
+    foot_position1(i, :) = CalculateFootPosition(joint_position1(i, :), leg_type);
+    foot_position2(i, :) = CalculateFootPosition(joint_position2(i, :), leg_type);
+    foot_position3(i, :) = CalculateFootPosition(joint_position3(i, :), leg_type);
+    foot_position4(i, :) = CalculateFootPosition(joint_position4(i, :), leg_type);
+    foot_position5(i, :) = CalculateFootPosition(joint_position5(i, :), leg_type);
+    foot_position6(i, :) = CalculateFootPosition(joint_position6(i, :), leg_type);
+    foot_position7(i, :) = CalculateFootPosition(joint_position7(i, :), leg_type);
+    foot_position8(i, :) = CalculateFootPosition(joint_position8(i, :), leg_type);
+    foot_position_reference(i, :) = CalculateFootPosition(joint_position_reference(i, :), leg_type);
     
-    foot_velocity1(i, :) = CalculateFootVelocity(joint_position1(i,:), joint_velocity1(i, :));
-    foot_velocity2(i, :) = CalculateFootVelocity(joint_position2(i,:), joint_velocity2(i, :));
-    foot_velocity3(i, :) = CalculateFootVelocity(joint_position3(i,:), joint_velocity3(i, :));
-    foot_velocity4(i, :) = CalculateFootVelocity(joint_position4(i,:), joint_velocity4(i, :));
-    foot_velocity5(i, :) = CalculateFootVelocity(joint_position5(i,:), joint_velocity5(i, :));
-    foot_velocity6(i, :) = CalculateFootVelocity(joint_position6(i,:), joint_velocity6(i, :));
-    foot_velocity7(i, :) = CalculateFootVelocity(joint_position7(i,:), joint_velocity7(i, :));
-    foot_velocity8(i, :) = CalculateFootVelocity(joint_position8(i,:), joint_velocity8(i, :));
+    foot_velocity1(i, :) = CalculateFootVelocity(joint_position1(i,:), joint_velocity1(i, :), leg_type);
+    foot_velocity2(i, :) = CalculateFootVelocity(joint_position2(i,:), joint_velocity2(i, :), leg_type);
+    foot_velocity3(i, :) = CalculateFootVelocity(joint_position3(i,:), joint_velocity3(i, :), leg_type);
+    foot_velocity4(i, :) = CalculateFootVelocity(joint_position4(i,:), joint_velocity4(i, :), leg_type);
+    foot_velocity5(i, :) = CalculateFootVelocity(joint_position5(i,:), joint_velocity5(i, :), leg_type);
+    foot_velocity6(i, :) = CalculateFootVelocity(joint_position6(i,:), joint_velocity6(i, :), leg_type);
+    foot_velocity7(i, :) = CalculateFootVelocity(joint_position7(i,:), joint_velocity7(i, :), leg_type);
+    foot_velocity8(i, :) = CalculateFootVelocity(joint_position8(i,:), joint_velocity8(i, :), leg_type);
 
-    foot_velocity_reference(i, :) = CalculateFootVelocity(joint_position_reference(i,:), joint_velocity_reference(i, :));
+    foot_velocity_reference(i, :) = CalculateFootVelocity(joint_position_reference(i,:), joint_velocity_reference(i, :), leg_type);
 end
 
 %% Convert from rad to deg
