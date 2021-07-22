@@ -51,6 +51,26 @@ bool Controller::UpdateJointCommands()
     return solved_fl && solved_fr && solved_rl && solved_rr;
 }
 
+bool Controller::UpdateVelocityCommands()
+{
+    if((joint_angle_commands(2) == 0.0) || (joint_angle_commands(5) == 0.0) || (joint_angle_commands(8) == 0.0) || (joint_angle_commands(11) == 0.0))
+    {
+        ROS_WARN("UpdateVelocityCommands - Could not calculate inverse kinematics because of singular translation jacobian");
+        return false;
+    }
+    Eigen::Matrix<double, 3, 3> J_s_fl = this->kinematics.GetTranslationJacobianInB(Kinematics::LegType::frontLeft, Kinematics::BodyType::foot, joint_angle_commands(0), joint_angle_commands(1), joint_angle_commands(2));
+    Eigen::Matrix<double, 3, 3> J_s_fr = this->kinematics.GetTranslationJacobianInB(Kinematics::LegType::frontRight, Kinematics::BodyType::foot, joint_angle_commands(3), joint_angle_commands(4), joint_angle_commands(5));
+    Eigen::Matrix<double, 3, 3> J_s_rl = this->kinematics.GetTranslationJacobianInB(Kinematics::LegType::rearLeft, Kinematics::BodyType::foot, joint_angle_commands(6), joint_angle_commands(7), joint_angle_commands(8));
+    Eigen::Matrix<double, 3, 3> J_s_rr = this->kinematics.GetTranslationJacobianInB(Kinematics::LegType::rearRight, Kinematics::BodyType::foot, joint_angle_commands(9), joint_angle_commands(10), joint_angle_commands(11));
+
+    this->joint_velocity_commands.block<3, 1>(0, 0) = J_s_fl.inverse() * this->fl_velocity_body;
+    this->joint_velocity_commands.block<3, 1>(3, 0) = J_s_fr.inverse() * this->fr_velocity_body;
+    this->joint_velocity_commands.block<3, 1>(6, 0) = J_s_rl.inverse() * this->rl_velocity_body;
+    this->joint_velocity_commands.block<3, 1>(9, 0) = J_s_rr.inverse() * this->rr_velocity_body;
+
+    return true;
+}
+
 bool Controller::sendJointPositionCommands()
 {
     //ROS_INFO("Hy: %f\tHp: %f\tKp: %f", joint_angle_commands(0), joint_angle_commands(1), joint_angle_commands(2));

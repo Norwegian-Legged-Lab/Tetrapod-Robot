@@ -41,6 +41,8 @@ class Controller{
 
     public: bool UpdateJointCommands();
 
+    public: bool UpdateVelocityCommands();
+
     public: bool sendJointPositionCommands();
 
     public: void StandStill(const double &duration);
