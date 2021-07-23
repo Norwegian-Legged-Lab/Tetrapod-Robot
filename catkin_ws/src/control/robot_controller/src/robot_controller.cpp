@@ -162,11 +162,11 @@ void RobotController::UpdateFeetTrajectories()
         double fl_rr_progress = double(iteration + swing_iterations + stance_iterations)/double(swing_iterations + 2 * stance_iterations);
         double fr_rl_progress = double(iteration)/double(swing_iterations + 2 * stance_iterations);
 
-        this->fl_position_body = this->UpdateStanceFootPosition(Kinematics::LegType::frontLeft, fl_rr_progress);
-        this->rr_position_body = this->UpdateStanceFootPosition(Kinematics::LegType::rearRight, fl_rr_progress);
+        this->UpdateStanceFootPosition(Kinematics::LegType::frontLeft, fl_rr_progress);
+        this->UpdateStanceFootPosition(Kinematics::LegType::rearRight, fl_rr_progress);
 
-        this->fr_position_body = this->UpdateStanceFootPosition(Kinematics::LegType::frontRight, fr_rl_progress);
-        this->rl_position_body = this->UpdateStanceFootPosition(Kinematics::LegType::rearLeft, fr_rl_progress);
+        this->UpdateStanceFootPosition(Kinematics::LegType::frontRight, fr_rl_progress);
+        this->UpdateStanceFootPosition(Kinematics::LegType::rearLeft, fr_rl_progress);
 
         break;
     }
@@ -178,8 +178,8 @@ void RobotController::UpdateFeetTrajectories()
         this->UpdateSwingFootTrajectory(Kinematics::LegType::frontLeft, fl_rr_progress);
         this->UpdateSwingFootTrajectory(Kinematics::LegType::rearRight, fl_rr_progress);
 
-        this->fr_position_body = this->UpdateStanceFootPosition(Kinematics::LegType::frontRight, fr_rl_progress);
-        this->rl_position_body = this->UpdateStanceFootPosition(Kinematics::LegType::rearLeft, fr_rl_progress);
+        this->UpdateStanceFootPosition(Kinematics::LegType::frontRight, fr_rl_progress);
+        this->UpdateStanceFootPosition(Kinematics::LegType::rearLeft, fr_rl_progress);
 
         break;
     }
@@ -188,11 +188,11 @@ void RobotController::UpdateFeetTrajectories()
         double fl_rr_progress = double(iteration)/double(swing_iterations + 2 * stance_iterations);
         double fr_rl_progress = double(iteration + swing_iterations + stance_iterations)/double(swing_iterations + 2 * stance_iterations);
 
-        this->fl_position_body = this->UpdateStanceFootPosition(Kinematics::LegType::frontLeft, fl_rr_progress);
-        this->rr_position_body = this->UpdateStanceFootPosition(Kinematics::LegType::rearRight, fl_rr_progress);
+        this->UpdateStanceFootPosition(Kinematics::LegType::frontLeft, fl_rr_progress);
+        this->UpdateStanceFootPosition(Kinematics::LegType::rearRight, fl_rr_progress);
 
-        this->fr_position_body = this->UpdateStanceFootPosition(Kinematics::LegType::frontRight, fr_rl_progress);
-        this->rl_position_body = this->UpdateStanceFootPosition(Kinematics::LegType::rearLeft, fr_rl_progress);
+        this->UpdateStanceFootPosition(Kinematics::LegType::frontRight, fr_rl_progress);
+        this->UpdateStanceFootPosition(Kinematics::LegType::rearLeft, fr_rl_progress);
         break;
     }
     case MotionState::kSwingFrRl:
@@ -200,8 +200,8 @@ void RobotController::UpdateFeetTrajectories()
         double fl_rr_progress = double(stance_iterations + iteration)/double(swing_iterations + 2 * stance_iterations);
         double fr_rl_progress = double(iteration)/double(swing_iterations);
 
-        this->fl_position_body = this->UpdateStanceFootPosition(Kinematics::LegType::frontLeft, fl_rr_progress);
-        this->rr_position_body = this->UpdateStanceFootPosition(Kinematics::LegType::rearRight, fl_rr_progress);
+        this->UpdateStanceFootPosition(Kinematics::LegType::frontLeft, fl_rr_progress);
+        this->UpdateStanceFootPosition(Kinematics::LegType::rearRight, fl_rr_progress);
 
         this->UpdateSwingFootTrajectory(Kinematics::LegType::frontRight, fr_rl_progress);
         this->UpdateSwingFootTrajectory(Kinematics::LegType::rearLeft, fr_rl_progress);
@@ -222,6 +222,8 @@ Eigen::Matrix<double, 3, 1> RobotController::UpdateStanceFootPosition(Kinematics
     foot_pos(1) = (_progress - 0.5)*(- step_distance_y_linear);
     foot_pos(2) = - hip_height;
 
+    double ground_period = swing_period + 2.0 * stance_period;
+
     switch (_leg_type)
     {
     case Kinematics::LegType::frontLeft:
@@ -230,6 +232,15 @@ Eigen::Matrix<double, 3, 1> RobotController::UpdateStanceFootPosition(Kinematics
         foot_pos(1) -= (_progress - 0.5)*step_distance_y_rotational;
 
         foot_pos += fl_offset;
+
+        this->fl_position_body = foot_pos;
+
+        this->fl_velocity_body(0) = (- step_distance_x_linear + step_distance_x_rotational)/ground_period;
+        this->fl_velocity_body(1) = (- step_distance_y_linear - step_distance_y_rotational)/ground_period;
+        this->fl_velocity_body(2) = 0.0;
+
+        this->fl_acceleration_body = Eigen::Matrix<double, 3, 1>::Zero();
+
         break;
     }
     case Kinematics::LegType::frontRight:
@@ -238,6 +249,15 @@ Eigen::Matrix<double, 3, 1> RobotController::UpdateStanceFootPosition(Kinematics
         foot_pos(1) -= (_progress - 0.5)*step_distance_y_rotational;
 
         foot_pos += fr_offset;
+
+        this->fr_position_body = foot_pos;
+
+        this->fr_velocity_body(0) = (-step_distance_x_linear - step_distance_x_rotational)/ground_period;
+        this->fr_velocity_body(1) = (-step_distance_y_linear + step_distance_y_rotational)/ground_period;
+        this->fr_velocity_body(2) = 0.0;
+
+        this->fr_acceleration_body = Eigen::Matrix<double, 3, 1>::Zero();
+
         break;
     }
     case Kinematics::LegType::rearLeft:
@@ -246,6 +266,15 @@ Eigen::Matrix<double, 3, 1> RobotController::UpdateStanceFootPosition(Kinematics
         foot_pos(1) += (_progress - 0.5)*step_distance_y_rotational;
 
         foot_pos += rl_offset;
+
+        this->rl_position_body = foot_pos;
+
+        this->rl_velocity_body(0) = (-step_distance_x_linear + step_distance_x_rotational)/ground_period;
+        this->rl_velocity_body(1) = (-step_distance_y_linear + step_distance_y_rotational)/ground_period;
+        this->rl_velocity_body(2) = 0.0;
+
+        this->rl_acceleration_body = Eigen::Matrix<double, 3, 1>::Zero();
+
         break;
     }
     case Kinematics::LegType::rearRight:
@@ -254,6 +283,15 @@ Eigen::Matrix<double, 3, 1> RobotController::UpdateStanceFootPosition(Kinematics
         foot_pos(1) += (_progress - 0.5)*step_distance_y_rotational;
 
         foot_pos += rr_offset;
+
+        this->rr_position_body = foot_pos;
+
+        this->rr_velocity_body(0) = (-step_distance_x_linear - step_distance_x_rotational)/ground_period;
+        this->rr_velocity_body(1) = (-step_distance_y_linear + step_distance_y_rotational)/ground_period;
+        this->rr_velocity_body(2) = 0.0;
+
+        this->rr_acceleration_body = Eigen::Matrix<double, 3, 1>::Zero();
+
         break;
     }    
     default:
