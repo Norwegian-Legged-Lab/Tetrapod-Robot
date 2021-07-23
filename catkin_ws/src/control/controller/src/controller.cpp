@@ -385,7 +385,7 @@ bool Controller::RunStandUpSequence()
 
     // Stage 4
     // Move each of the feet to the nominal position
-
+    
     this->StandStill(0.5);
 
     fl_goal_foot_pos(0) = LEG_OFFSET_LENGTH;
@@ -395,7 +395,7 @@ bool Controller::RunStandUpSequence()
     this->MoveFootToPosition(Kinematics::LegType::frontLeft, fl_goal_foot_pos);
 
     ROS_WARN("RunStandUpSequence - FL moved successfully");
-
+    
     this->StandStill(0.5);
 
     ROS_WARN("RunStandUpSequence - FL stance completed");
@@ -435,7 +435,7 @@ bool Controller::RunStandUpSequence()
     this->StandStill(0.5);
 
     ROS_WARN("RunStandUpSequence - RL stance completed");
-
+    
     return true;
 }
 
@@ -650,6 +650,7 @@ bool Controller::MoveFootToPosition(const Kinematics::LegType &leg_type, const E
     {
     case Kinematics::LegType::frontLeft:
     {
+        ROS_WARN("MoveFootToPosition - FL");
         initial_foot_position = this->fl_position_body;
         leg_offset = this->kinematics.GetflOffset();
         joint_index_start = 0;
@@ -702,6 +703,8 @@ bool Controller::MoveFootToPosition(const Kinematics::LegType &leg_type, const E
 
     for(int i = 0; i <= number_of_iterations; i++)
     {
+        ros::spinOnce();
+
         ROS_INFO("Iteration: %d\tN: %d", i, number_of_iterations);
         desired_foot_position = initial_foot_position + double(i)/double(number_of_iterations) * (goal_foot_position - initial_foot_position);
 
@@ -717,11 +720,16 @@ bool Controller::MoveFootToPosition(const Kinematics::LegType &leg_type, const E
         if(this->kinematics.SolveSingleLegInverseKinematics(leg_offset, desired_foot_position, desired_joint_angles) == false)
         {
             ROS_WARN("MoveFootToPosition - Failed to solve IK");
+
+
+
             return false;
         }
         else
         {
             joint_angle_commands.block<3, 1>(joint_index_start, 0) = desired_joint_angles;
+
+            ROS_INFO("FL joint angles - hy: %f\thp: %f\tkp: %f", joint_angle_commands(0), joint_angle_commands(1), joint_angle_commands(2));
 
             this->sendJointPositionCommands();
 
@@ -729,7 +737,6 @@ bool Controller::MoveFootToPosition(const Kinematics::LegType &leg_type, const E
             
             publish_rate.sleep();
         }
-
     }
 
     return true;
@@ -746,6 +753,8 @@ void Controller::StandStill(const double &duration)
         ros::spinOnce();
 
         this->sendJointPositionCommands();
+
+        this->WriteToLog();
 
         control_rate.sleep();
     }
