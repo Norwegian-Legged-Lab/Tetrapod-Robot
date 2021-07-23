@@ -66,10 +66,14 @@ int main(int argc, char **argv)
         //controller.PrintVelCommands();
         controller.sendJointPositionCommands();
 
+        controller.WriteToLog();
+
+        /*
         if(iteration >= int(LOG_START_TIME * controller_frequency) && (iteration <= int((LOG_START_TIME + LOG_PERIOD) * controller_frequency)))
         {
             controller.WriteToLog();
         }
+        */
 
         control_rate.sleep();
         iteration++;

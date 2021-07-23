@@ -91,6 +91,8 @@ class HierarchicalOptimizationControl
     // TODO Remove
     public: void StaticTorqueTest();
 
+    // TODO Remove
+    public: void HeightRollYawTest();
 
     /// \brief The HierarchicalOptimization function finds
     /// the optimal joint torques for a desired motion plan.
