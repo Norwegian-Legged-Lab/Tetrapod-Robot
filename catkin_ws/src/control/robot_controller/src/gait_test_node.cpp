@@ -42,7 +42,7 @@ int main(int argc, char **argv)
 
         if(iteration == int(SET_TWIST_TIME * controller_frequency))
         {
-            controller.SetTwistCommand(1.0, 0.0, 0.0);
+            controller.SetTwistCommand(0.0, 0.0, 0.0);
         }
 
         if(controller.UpdateGaitState())
@@ -61,6 +61,7 @@ int main(int argc, char **argv)
         //controller.UpdateFeetReferences();
         controller.UpdateFeetTrajectories();
         controller.UpdateJointCommands();
+        controller.UpdateVelocityCommands();
         controller.PrintFootPositions();
         //controller.PrintVelCommands();
         controller.sendJointPositionCommands();

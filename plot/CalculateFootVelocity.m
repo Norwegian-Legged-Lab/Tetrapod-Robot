@@ -1,4 +1,4 @@
-function foot_vel = CalculateFootVelocity(joint_angles, joint_velocities)
+function foot_vel = CalculateFootVelocity(joint_angles, joint_velocities, leg_type)
     l1 = 0.130;
     l2 = 0.220;
     l3 = 0.279;
@@ -22,6 +22,11 @@ function foot_vel = CalculateFootVelocity(joint_angles, joint_velocities)
     J(1, 3) = -l3*sin(t2 + t3)*cos(t1);
     J(2, 3) = -l3*sin(t2 + t3)*sin(t1);
     J(3, 3) = -l3*cos(t2 + t3);
+    
+    if((leg_type == "front_right") || (leg_type == "rear_left"))
+       J(3, 2) = - J(3, 2);
+       J(3, 3) = - J(3, 3);
+    end
     
     foot_vel = J*joint_velocities;
     

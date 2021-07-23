@@ -1,4 +1,4 @@
-function foot_pos = CalculateFootPosition(joint_angles)
+function foot_pos = CalculateFootPosition(joint_angles, leg_type)
 
     l1 = 0.130;
     l2 = 0.220;
@@ -11,4 +11,8 @@ function foot_pos = CalculateFootPosition(joint_angles)
     foot_pos(1) = (l1 + l2*cos(t2) + l3*cos(t2 + t3))*cos(t1);
     foot_pos(2) = (l1 + l2*cos(t2) + l3*cos(t2 + t3))*sin(t1);
     foot_pos(3) = - l2*sin(t2) - l3*sin(t2 + t3);
+    
+    if((leg_type == "front_right") || (leg_type == "rear_left"))
+        foot_pos(3) = - foot_pos(3);
+    end
 end

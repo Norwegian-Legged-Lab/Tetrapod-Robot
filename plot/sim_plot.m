@@ -2,8 +2,12 @@
 
 run("setup.m");
 
-path = "~/Tetrapod-Robot/catkin_ws/src/utilities/log_utils/bagfiles/";
-timestamp = "2021-07-11-16-32-59";
+path = "~/Tetrapod-Robot/bagfiles/gait_simulation_tests/";
+%timestamp = "2021-07-11-16-32-59";
+timestamp = "2021-07-19-12-15-07"; % Kp = 100, Kd = 1
+timestamp = "2021-07-19-12-48-19"; % Kp = 200, Kd = 5
+timestamp = "2021-07-22-15-53-30";
+timestamp = "2021-07-22-17-53-46";
 
 number_of_motors = 12;
 
@@ -18,8 +22,8 @@ joint_vel_state = get_joint_velocity_states(joint_state_bag, number_of_motors);
 joint_torque = get_joint_effort_states(joint_state_bag, number_of_motors);
 
 reference_time = get_time_states(joint_state_cmd_bag);
-%joint_pos_reference = get_joint_position_states(joint_state_cmd_bag, number_of_motors);
-%joint_vel_reference = get_joint_velocity_states(joint_state_cmd_bag, number_of_motors);
+joint_pos_reference = get_joint_position_states(joint_state_cmd_bag, number_of_motors);
+joint_vel_reference = get_joint_velocity_states(joint_state_cmd_bag, number_of_motors);
 joint_torque_reference = get_joint_effort_states(joint_state_cmd_bag, number_of_motors);
 
 %% Remove time offset from the measurements so that time zero is when the first message of one time is received
@@ -43,13 +47,13 @@ frequency = floor(frequency);
 joint_pos_state = joint_pos_state*180.0/pi;
 joint_vel_state = joint_vel_state*180.0/pi;
 
-% joint_pos_reference = joint_pos_reference*180.0/pi;
-% joint_vel_reference = joint_vel_reference*180.0/pi;
+joint_pos_reference = joint_pos_reference*180.0/pi;
+joint_vel_reference = joint_vel_reference*180.0/pi;
 
 %% Plot results
 
 % Slicing index
-s_i = 300;
+s_i = length(joint_pos_state);
 
 % Joint positions
 figure(1)
@@ -58,13 +62,13 @@ for i = 1:number_of_motors
     subplot(4, 3, i)
     hold on
     grid on
-    a = plot(state_time(1:s_i), joint_torque(1:s_i,i), ...
+    a = plot(state_time(1:s_i), joint_pos_state(1:s_i,i), ...
              "LineWidth", 2, ...
              "DisplayName", "$\theta$");
-%     b = plot(reference_time(1:s_i), joint_pos_reference(1:s_i,i), ...
-%              "-r", ...
-%              "LineWidth", 2, ...
-%              "DisplayName", "$\theta_{ref}$");
+    b = plot(reference_time(1:s_i), joint_pos_reference(1:s_i,i), ...
+             "-r", ...
+             "LineWidth", 2, ...
+             "DisplayName", "$\theta_{ref}$");
     uistack(a, "top");
     title("Motor: " + i);
     legend;
@@ -84,10 +88,10 @@ for i = 1:number_of_motors
     a = plot(state_time(1:s_i), joint_vel_state(1:s_i,i), ...
             "LineWidth", 2, ...
             "DisplayName", "$\omega$");
-%     b = plot(reference_time(1:s_i), joint_vel_reference(1:s_i,i), ...
-%              "-r", ...
-%              "LineWidth", 2, ...
-%              "DisplayName", "$\omega_{ref}$");
+    b = plot(reference_time(1:s_i), joint_vel_reference(1:s_i,i), ...
+             "-r", ...
+             "LineWidth", 2, ...
+             "DisplayName", "$\omega_{ref}$");
     uistack(a, "top");
     title("Motor: " + i);
 
@@ -113,8 +117,8 @@ for i = 1:number_of_motors
          "DisplayName", "$\tau_{ref}$");
     uistack(a, "top");
     title("Motor: " + i);
-    %legend("$\tau$", "$\tau_{ref}$");
-    legend;
+    legend("$\tau$", "$\tau_{ref}$");
+    %legend;
     xlabel("Time [s]");
     ylabel("Torque [Nm]");
     hold off
@@ -190,3 +194,207 @@ fprintf("Standard deviation: %f [Nm]\n", torque_std);
 % ylabel("torque [Nm]");
 % hold off
 
+%% Plotting foot positions
+N = length(joint_pos_state);
+
+fl_foot_pos_ref = zeros(N, 3);
+fl_foot_vel_ref = zeros(N, 3);
+fl_foot_pos_state = zeros(N, 3);
+fl_foot_vel_state = zeros(N, 3);
+
+fr_foot_pos_ref = zeros(N, 3);
+fr_foot_vel_ref = zeros(N, 3);
+fr_foot_pos_state = zeros(N, 3);
+fr_foot_vel_state = zeros(N, 3);
+
+rl_foot_pos_ref = zeros(N, 3);
+rl_foot_vel_ref = zeros(N, 3);
+rl_foot_pos_state = zeros(N, 3);
+rl_foot_vel_state = zeros(N, 3);
+
+rr_foot_pos_ref = zeros(N, 3);
+rr_foot_vel_ref = zeros(N, 3);
+rr_foot_pos_state = zeros(N, 3);
+rr_foot_vel_state = zeros(N, 3);
+
+for i = 1:N
+    fl_foot_pos_ref(i, :) = CalculateFootPosition(joint_pos_reference(i, 1:3)*pi/180.0, "front_left");
+    fl_foot_vel_ref(i, :) = CalculateFootVelocity(joint_pos_reference(i, 1:3)*pi/180, joint_vel_reference(i, 1:3)*pi/180, "front_left");
+    fl_foot_pos_state(i, :) = CalculateFootPosition(joint_pos_state(i, 1:3)*pi/180, "front_left");
+    fl_foot_vel_state(i, :) = CalculateFootVelocity(joint_pos_state(i, 1:3)*pi/180, joint_vel_state(i, 1:3)*pi/180, "front_left");
+    
+    fr_foot_pos_ref(i, :) = CalculateFootPosition(joint_pos_reference(i, 4:6)*pi/180.0, "front_right");
+    fr_foot_vel_ref(i, :) = CalculateFootVelocity(joint_pos_reference(i, 4:6)*pi/180, joint_vel_reference(i, 4:6)*pi/180, "front_right");
+    fr_foot_pos_state(i, :) = CalculateFootPosition(joint_pos_state(i, 4:6)*pi/180, "front_right");
+    fr_foot_vel_state(i, :) = CalculateFootVelocity(joint_pos_state(i, 4:6)*pi/180, joint_vel_state(i, 4:6)*pi/180, "front_right");
+
+    rl_foot_pos_ref(i, :) = CalculateFootPosition(joint_pos_reference(i, 7:9)*pi/180.0, "rear_left");
+    rl_foot_vel_ref(i, :) = CalculateFootVelocity(joint_pos_reference(i, 7:9)*pi/180, joint_vel_reference(i, 7:9)*pi/180, "rear_left");
+    rl_foot_pos_state(i, :) = CalculateFootPosition(joint_pos_state(i, 7:9)*pi/180, "rear_left");
+    rl_foot_vel_state(i, :) = CalculateFootVelocity(joint_pos_state(i, 7:9)*pi/180, joint_vel_state(i, 7:9)*pi/180, "rear_left");
+    
+    rr_foot_pos_ref(i, :) = CalculateFootPosition(joint_pos_reference(i, 10:12)*pi/180.0, "rear_right");
+    rr_foot_vel_ref(i, :) = CalculateFootVelocity(joint_pos_reference(i, 10:12)*pi/180, joint_vel_reference(i, 10:12)*pi/180, "rear_right");
+    rr_foot_pos_state(i, :) = CalculateFootPosition(joint_pos_state(i, 10:12)*pi/180, "rear_right");
+    rr_foot_vel_state(i, :) = CalculateFootVelocity(joint_pos_state(i, 10:12)*pi/180, joint_vel_state(i, 10:12)*pi/180, "rear_right");
+end
+
+figure(7)
+
+subplot(2, 3, 1)
+hold on
+grid on
+plot(reference_time, fl_foot_pos_ref(:, 1));
+plot(state_time, fl_foot_pos_state(:, 1));
+
+subplot(2, 3, 2)
+hold on
+grid on
+plot(reference_time, fl_foot_pos_ref(:, 2));
+plot(state_time, fl_foot_pos_state(:, 2));
+
+subplot(2, 3, 3)
+hold on
+grid on
+plot(reference_time, fl_foot_pos_ref(:, 3));
+plot(state_time, fl_foot_pos_state(:, 3));
+
+subplot(2, 3, 4)
+hold on
+grid on
+plot(reference_time, fl_foot_vel_ref(:, 1));
+plot(state_time, fl_foot_vel_state(:, 1));
+
+subplot(2, 3, 5)
+hold on
+grid on
+plot(reference_time, fl_foot_vel_ref(:, 2));
+plot(state_time, fl_foot_vel_state(:, 2));
+
+subplot(2, 3, 6)
+hold on
+grid on
+plot(reference_time, fl_foot_vel_ref(:, 3));
+plot(state_time, fl_foot_vel_state(:, 3));
+
+sgtitle('Front Left Foot');
+
+figure(8)
+
+subplot(2, 3, 1)
+hold on
+grid on
+plot(reference_time, fr_foot_pos_ref(:, 1));
+plot(state_time, fr_foot_pos_state(:, 1));
+
+subplot(2, 3, 2)
+hold on
+grid on
+plot(reference_time, fr_foot_pos_ref(:, 2));
+plot(state_time, fr_foot_pos_state(:, 2));
+
+subplot(2, 3, 3)
+hold on
+grid on
+plot(reference_time, fr_foot_pos_ref(:, 3));
+plot(state_time, fr_foot_pos_state(:, 3));
+
+subplot(2, 3, 4)
+hold on
+grid on
+plot(reference_time, fr_foot_vel_ref(:, 1));
+plot(state_time, fr_foot_vel_state(:, 1));
+
+subplot(2, 3, 5)
+hold on
+grid on
+plot(reference_time, fr_foot_vel_ref(:, 2));
+plot(state_time, fr_foot_vel_state(:, 2));
+
+subplot(2, 3, 6)
+hold on
+grid on
+plot(reference_time, fr_foot_vel_ref(:, 3));
+plot(state_time, fr_foot_vel_state(:, 3));
+
+sgtitle('Front Right Foot');
+
+figure(9)
+
+subplot(2, 3, 1)
+hold on
+grid on
+plot(reference_time, rl_foot_pos_ref(:, 1));
+plot(state_time, rl_foot_pos_state(:, 1));
+
+subplot(2, 3, 2)
+hold on
+grid on
+plot(reference_time, rl_foot_pos_ref(:, 2));
+plot(state_time, rl_foot_pos_state(:, 2));
+
+subplot(2, 3, 3)
+hold on
+grid on
+plot(reference_time, rl_foot_pos_ref(:, 3));
+plot(state_time, rl_foot_pos_state(:, 3));
+
+subplot(2, 3, 4)
+hold on
+grid on
+plot(reference_time, rl_foot_vel_ref(:, 1));
+plot(state_time, rl_foot_vel_state(:, 1));
+
+subplot(2, 3, 5)
+hold on
+grid on
+plot(reference_time, rl_foot_vel_ref(:, 2));
+plot(state_time, rl_foot_vel_state(:, 2));
+
+subplot(2, 3, 6)
+hold on
+grid on
+plot(reference_time, rl_foot_vel_ref(:, 3));
+plot(state_time, rl_foot_vel_state(:, 3));
+
+sgtitle('Rear Left Foot');
+
+figure(10)
+
+subplot(2, 3, 1)
+hold on
+grid on
+plot(reference_time, rr_foot_pos_ref(:, 1));
+plot(state_time, rr_foot_pos_state(:, 1));
+
+subplot(2, 3, 2)
+hold on
+grid on
+plot(reference_time, rr_foot_pos_ref(:, 2));
+plot(state_time, rr_foot_pos_state(:, 2));
+
+subplot(2, 3, 3)
+hold on
+grid on
+plot(reference_time, rr_foot_pos_ref(:, 3));
+plot(state_time, rr_foot_pos_state(:, 3));
+
+subplot(2, 3, 4)
+hold on
+grid on
+plot(reference_time, rr_foot_vel_ref(:, 1));
+plot(state_time, rr_foot_vel_state(:, 1));
+
+subplot(2, 3, 5)
+hold on
+grid on
+plot(reference_time, rr_foot_vel_ref(:, 2));
+plot(state_time, rr_foot_vel_state(:, 2));
+
+subplot(2, 3, 6)
+hold on
+grid on
+plot(reference_time, rr_foot_vel_ref(:, 3));
+plot(state_time, rr_foot_vel_state(:, 3));
+
+sgtitle('Rear Right Foot');
