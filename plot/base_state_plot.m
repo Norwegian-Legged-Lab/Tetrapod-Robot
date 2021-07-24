@@ -17,14 +17,12 @@ timestamp = "2021-07-20-09-41-08"; % Height, yaw, roll test (3xt) used for video
 % timestamp = "2021-07-21-14-13-01"; % Apply force test z200N
 
 % Simulation results for report % Base twist 2D motion [0.5, 0.0, 0.0]
-
 path = "~/Tetrapod-Robot/bagfiles/gait_simulation_tests/";
-
-%timestamp = "2021-07-24-10-14-01"; % Case 1: Kp = 25, Kd = 1
-%timestamp = "2021-07-24-09-53-57"; % Case 1: Kp = 50, Kd = 2
-timestamp = "2021-07-24-11-36-21"; % Case 1: Kp = 75, Kd = 3
-%timestamp = "2021-07-24-10-02-02"; % Case 1: Kp = 100, Kd = 4
-%timestamp = "2021-07-24-10-06-12"; % Case 1: Kp = 200, Kd = 8
+timestamp = "2021-07-24-12-22-13"; % Case 1: Kp = 25, Kd = 1
+timestamp = "2021-07-24-12-28-36"; % Case 2: Kp = 50, Kd = 2
+timestamp = "2021-07-24-12-32-06"; % Case 3: Kp = 75, Kd = 3
+timestamp = "2021-07-24-12-35-13"; % Case 4: Kp = 100, Kd = 4
+timestamp = "2021-07-24-12-39-53"; % Case 5: Kp = 200, Kd = 8
 
 
 %% Extract ROSbag data
@@ -336,5 +334,5 @@ filename5 = 'ho_force_z200N_2D_twist.pdf';
 %% Calculate Key Parameters
 
 % Calculate twist command rmse
-twist_command_rmse = rms(base_twist_cmd - base_twist);
-
+lin_twist_command_rmse = rms(base_twist_cmd(:, 1:3) - base_twist(:, 1:3))
+ang_twist_command_rmse = rms(base_twist_cmd(:, 4:6)*180/pi - base_twist(:, 4:6)*180/pi)
