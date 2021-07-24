@@ -113,10 +113,10 @@ void StateEstimator::PublishBodyTwistState()
 
     msg.linear.x = _avg_lin_gait_vel_x;
     msg.linear.y = _avg_lin_gait_vel_y;
-    msg.linear.z = 0.0;
+    msg.linear.z = _lin_vel_body(2);
 
-    msg.angular.x = 0.0;
-    msg.angular.y = 0.0;
+    msg.angular.x = _ang_vel(0);
+    msg.angular.y = _ang_vel(1);
     msg.angular.z = _avg_ang_gait_vel_z;
 
     _body_twist_state_publisher.publish(msg);

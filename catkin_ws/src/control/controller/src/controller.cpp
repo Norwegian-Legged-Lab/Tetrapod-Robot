@@ -239,6 +239,10 @@ void Controller::TwistStateCallback(const geometry_msgs::TwistConstPtr &_msg)
     this->_lin_vel_x_estimated = _msg->linear.x;
     this->_lin_vel_y_estimated = _msg->linear.y;
     this->_ang_vel_z_estimated = _msg->angular.z;
+
+    this->_lin_vel_z_measured = _msg->linear.z;
+    this->_ang_vel_x_measured = _msg->angular.x;
+    this->_ang_vel_y_measured = _msg->angular.y;
 }
 
 void Controller::BasePoseStateCallback(const std_msgs::Float64MultiArrayConstPtr &msg)
@@ -280,7 +284,7 @@ void Controller::WriteToLog()
 
     // Publish the joint state message
 
-    joint_state_logger.publish(joint_state_msg);
+    this->joint_state_logger.publish(joint_state_msg);
 
     // Fill in data for the joint command message
 
@@ -294,31 +298,54 @@ void Controller::WriteToLog()
 
     // Publish the joint command message
 
-    joint_command_logger.publish(joint_state_msg);
+    this->joint_command_logger.publish(joint_state_msg);
 
     // Create a twist message
 
-    std_msgs::Float64MultiArray twist_msg;
+    std_msgs::Float64MultiArray base_twist_state_msg;
 
-    Eigen::Matrix<double, 6, 1> twist_data = Eigen::Matrix<double, 6, 1>::Zero();
+    Eigen::Matrix<double, 6, 1> base_twist_state_data = Eigen::Matrix<double, 6, 1>::Zero();
 
-    twist_data(0) = this->_lin_vel_x_estimated;
-    twist_data(1) = this->_lin_vel_y_estimated;
-    twist_data(5) = this->_ang_vel_z_estimated;
+    base_twist_state_data(0) = this->_lin_vel_x_estimated;
+    base_twist_state_data(1) = this->_lin_vel_y_estimated;
+    base_twist_state_data(2) = this->_lin_vel_z_measured;
+    base_twist_state_data(3) = this->_ang_vel_x_measured;
+    base_twist_state_data(4) = this->_ang_vel_y_measured;
+    base_twist_state_data(5) = this->_ang_vel_z_estimated;
 
-    tf::matrixEigenToMsg(twist_data, twist_msg);
+    tf::matrixEigenToMsg(base_twist_state_data, base_twist_state_msg);
 
-    base_twist_state_logger.publish(twist_msg);
+    this->base_twist_state_logger.publish(base_twist_state_msg);
+
+    // Create a twist command message
+
+    std_msgs::Float64MultiArray base_twist_command_msg;
+
+    Eigen::Matrix<double, 6, 1> base_twist_command_data = Eigen::Matrix<double, 6, 1>::Zero();
+
+    base_twist_command_data(0) = this->lin_vel_x;
+    base_twist_command_data(1) = this->lin_vel_y;
+    base_twist_command_data(5) = this->ang_vel_z;
+
+    tf::matrixEigenToMsg(base_twist_command_data, base_twist_command_msg);
+
+    this->base_twist_command_logger.publish(base_twist_command_msg);
 
     // Create a pose message
 
-    std_msgs::Float64MultiArray pose_msg;
+    std_msgs::Float64MultiArray base_pose_msg;
 
-    tf::matrixEigenToMsg(base_pose_state, pose_msg);
+    tf::matrixEigenToMsg(base_pose_state, base_pose_msg);
 
-    base_pose_state_logger.publish(pose_msg);
+    this->base_pose_state_logger.publish(base_pose_msg);
 
-    
+    // Create a pose command message
+
+    std_msgs::Float64MultiArray base_pose_command_msg;
+
+    tf::matrixEigenToMsg(base_pose_commands, base_pose_command_msg);
+
+    this->base_pose_command_logger.publish(base_pose_command_msg);
     
 }
 

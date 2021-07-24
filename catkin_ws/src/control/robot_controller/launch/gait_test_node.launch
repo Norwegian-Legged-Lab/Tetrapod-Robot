@@ -1,4 +1,7 @@
 <launch>
+
+    <node pkg="state_estimator" type="state_estimator_node" name="state_estimator_node" output="screen" />
+
     <node pkg="robot_controller" type="gait_test_node" name="gait_test_node" output="screen" />
 
     <!-- ******************************************** -->

@@ -42,7 +42,7 @@ int main(int argc, char **argv)
 
         if(iteration == int(SET_TWIST_TIME * controller_frequency))
         {
-            controller.SetTwistCommand(0.0, 0.0, 0.0);
+            controller.SetTwistCommand(0.5, 0.0, 0.0);
         }
 
         if(controller.UpdateGaitState())

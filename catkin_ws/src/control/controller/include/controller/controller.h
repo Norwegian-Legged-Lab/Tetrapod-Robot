@@ -157,6 +157,8 @@ class Controller{
 
     protected: Eigen::Matrix<double, 6, 1> base_pose_state = Eigen::Matrix<double, 6, 1>::Zero();
 
+    protected: Eigen::Matrix<double, 6, 1> base_pose_commands = Eigen::Matrix<double, 6, 1>::Zero();
+
     /// \brief The desired linear robot velocity in the body frame's x direction
     protected: double lin_vel_x = 0.0;
 
@@ -171,6 +173,12 @@ class Controller{
     protected: double _lin_vel_y_estimated = 0.0;
 
     protected: double _ang_vel_z_estimated = 0.0;
+
+    protected: double _lin_vel_z_measured = 0.0;
+
+    protected: double _ang_vel_x_measured = 0.0;
+
+    protected: double _ang_vel_y_measured = 0.0;
 
     protected: double nominal_base_height = 0.35;
 
