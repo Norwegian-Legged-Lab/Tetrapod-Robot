@@ -29,13 +29,20 @@ torque = weight * g * arm_length;
 
 %% Interpolation
 
-xq = torque_current(1):1.0:torque_current(end);
+linCoeff = polyfitZero(torque_current, torque, 1);
 
-linCoeff = polyfit(torque_current, torque, 1);
-
-xFit = linspace(torque_current(1), torque_current(end), 100);
+% xFit = linspace(torque_current(1), torque_current(end), 100);
+xFit = torque_current(1):100.0:torque_current(end);
 
 yFit = polyval(linCoeff, xFit);
+
+
+%% RMSE
+
+errors = rms(yFit - torque_current, 2);
+
+fprintf("Errors:\n");
+fprintf("Torque: %f", errors);
 
 %% Plot
 figure('DefaultAxesFontSize',40)
