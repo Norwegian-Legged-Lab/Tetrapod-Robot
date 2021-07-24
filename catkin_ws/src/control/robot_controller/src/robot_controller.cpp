@@ -14,6 +14,8 @@ RobotController::RobotController(int _controller_freq, double _gait_period) : Ro
 
     this->final_iteration = this->stance_iterations;
 
+    this->base_pose_commands(2) = hip_height;
+
     //double number_of_gait_iterations = _gait_period * _controller_freq;
 
     //this->_lin_body_vel_x_history.resize(number_of_gait_iterations, 0.0);
