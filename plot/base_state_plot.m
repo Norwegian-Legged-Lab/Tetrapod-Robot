@@ -16,7 +16,15 @@ path = "~/Tetrapod-Robot/bagfiles/ho_tests/";
 % timestamp = "2021-07-21-15-31-44"; % Apply force test z35N
 % timestamp = "2021-07-21-14-13-01"; % Apply force test z200N
 
+% Simulation results for report % Base twist 2D motion [0.5, 0.0, 0.0]
 
+path = "~/Tetrapod-Robot/bagfiles/gait_simulation_tests/";
+
+%timestamp = "2021-07-24-10-14-01"; % Case 1: Kp = 25, Kd = 1
+%timestamp = "2021-07-24-09-53-57"; % Case 1: Kp = 50, Kd = 2
+timestamp = "2021-07-24-11-36-21"; % Case 1: Kp = 75, Kd = 3
+%timestamp = "2021-07-24-10-02-02"; % Case 1: Kp = 100, Kd = 4
+%timestamp = "2021-07-24-10-06-12"; % Case 1: Kp = 200, Kd = 8
 
 
 %% Extract ROSbag data
@@ -54,7 +62,7 @@ reference_time = reference_time' - time_offset;
 %% Plot results
 
 % Limits
-xlimit = [5, 25];
+xlimit = [0, 1.2];
 base_pos_ylimits = {[-0.3,0.3], [-0.3,0.3], [0.05,0.35]};
 base_ori_ylimits = {[-40,40], [-10,10], [-20,20]};
 base_vel_ylimits = {[-0.4,0.4], [-0.4,0.4], [-0.4,0.4]};
@@ -196,4 +204,9 @@ filename3 = 'ho_force_z200N_vel.pdf';
 % exportgraphics(fig1, filename1)
 % exportgraphics(fig2, filename2)
 % exportgraphics(fig3, filename3)
+
+%% Calculate Key Parameters
+
+% Calculate twist command rmse
+twist_command_rmse = rms(base_twist_cmd - base_twist);
 
