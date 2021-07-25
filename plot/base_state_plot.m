@@ -2,7 +2,7 @@
 
 run("setup.m");
 
-path = "~/Tetrapod-Robot/bagfiles/ho_tests/";
+% path = "~/Tetrapod-Robot/bagfiles/ho_tests/";
 % timestamp = "2021-07-15-09-54-39"; % Height test
 % timestamp = "2021-07-15-10-51-57"; % Height & Orientation test
 % timestamp = "2021-07-15-10-54-57"; % Height & Orientation test
@@ -12,17 +12,17 @@ path = "~/Tetrapod-Robot/bagfiles/ho_tests/";
 % timestamp = "2021-07-19-19-11-37"; % Height and orientation test used for video
 % timestamp = "2021-07-20-07-45-31"; % Height and orientation test (4xt)
 % timestamp = "2021-07-20-08-07-53"; % Height, yaw, roll test (3xt)
-timestamp = "2021-07-20-09-41-08"; % Height, yaw, roll test (3xt) used for video
+% timestamp = "2021-07-20-09-41-08"; % Height, yaw, roll test (3xt) used for video
 % timestamp = "2021-07-21-15-31-44"; % Apply force test z35N
 % timestamp = "2021-07-21-14-13-01"; % Apply force test z200N
 
 % Simulation results for report % Base twist 2D motion [0.5, 0.0, 0.0]
 path = "~/Tetrapod-Robot/bagfiles/gait_simulation_tests/";
 timestamp = "2021-07-24-12-22-13"; % Case 1: Kp = 25, Kd = 1
-timestamp = "2021-07-24-12-28-36"; % Case 2: Kp = 50, Kd = 2
-timestamp = "2021-07-24-12-32-06"; % Case 3: Kp = 75, Kd = 3
-timestamp = "2021-07-24-12-35-13"; % Case 4: Kp = 100, Kd = 4
-timestamp = "2021-07-24-12-39-53"; % Case 5: Kp = 200, Kd = 8
+% timestamp = "2021-07-24-12-28-36"; % Case 2: Kp = 50, Kd = 2
+% timestamp = "2021-07-24-12-32-06"; % Case 3: Kp = 75, Kd = 3
+% timestamp = "2021-07-24-12-35-13"; % Case 4: Kp = 100, Kd = 4
+% timestamp = "2021-07-24-12-39-53"; % Case 5: Kp = 200, Kd = 8
 
 timestamp = "2021-07-24-16-09-49"; % p1=100, d1=5, p2=100, d2=5, p3=100, d3=1
 %timestamp = "2021-07-24-17-14-47"; % p1=100, d1=5, p2=200, d2=5, p3=100, d3=1
@@ -119,7 +119,7 @@ reference_time = reference_time' - time_offset;
 % Limits
 xlimit = [0, 1.2];
 base_pos_ylimits = {[-0.3,0.3], [-0.3,0.3], [0.05,0.35]};
-base_vel_ylimits = {[-0.4,0.4], [-0.4,0.4], [-0.4,0.4]};
+base_vel_ylimits = {[0.0,0.8], [-0.4,0.4], [-0.4,0.4]};
 base_ori_ylimits = {[-40,40], [-10,10], [-20,20]};
 base_ang_vel_ylimits = {[-100,100], [-100,100], [-100,100]};
 base_2D_twist_ylimits = {[-1,1], [-1,1], [-100,100]};
