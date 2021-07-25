@@ -154,6 +154,13 @@ void JoystickController::joystickCallback(const sensor_msgs::JoyConstPtr &_msg)
     {
         twist_command_message.angular.z = 0.0;
     }
+
+    if(_msg->buttons[SELECT] == 1)
+    {
+        std_srvs::Empty shutdownMotorInterfaceSrv;
+        //ros::service::call("/my_robot/motor_interface/shutdown", shutdownMotorInterfaceSrv);
+        ros::service::call("/my_robot/reset_simulation", shutdownMotorInterfaceSrv);
+    }
 }
 
 void JoystickController::keyboardButtonPressedCallback(const keyboard::KeyConstPtr &_msg)
