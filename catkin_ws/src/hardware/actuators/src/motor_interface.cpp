@@ -91,7 +91,6 @@ MotorInterface::~MotorInterface()
     this->rosPublishQueue.clear();
     this->rosPublishQueue.disable();
     this->rosPublishQueueThread.join();
-    
 }
 
 void MotorInterface::SetJointPositions(const std::vector<double> &_pos)
@@ -249,6 +248,14 @@ void MotorInterface::RosPublishQueueThread()
     }
 }
 
+bool MotorInterface::Shutdown(const std_srvs::Empty::Request &_req,
+                              std_srvs::Empty::Response &_res)
+{
+    this->rosNode->shutdown();
+
+    return true;
+}
+
 // Initialize ROS
 void MotorInterface::InitRos()
 {
@@ -265,6 +272,14 @@ void MotorInterface::InitRos()
     }
 
     this->rosNode.reset(new ros::NodeHandle("motor_interface_node"));
+
+    ros::AdvertiseServiceOptions shutdown_aso =
+        ros::AdvertiseServiceOptions::create<std_srvs::Empty>(
+            "/my_robot/motor_interface/shutdown",
+            boost::bind(&MotorInterface::Shutdown, this, _1, _2),
+            ros::VoidPtr(),
+            &this->rosProcessQueue
+        );
     
     ros::SubscribeOptions joint_state_cmd_so = 
         ros::SubscribeOptions::create<sensor_msgs::JointState>(
@@ -285,6 +300,8 @@ void MotorInterface::InitRos()
             ros::VoidPtr(),
             &this->rosPublishQueue
         );
+
+    this->shutdownService = this->rosNode->advertiseService(shutdown_aso);
 
     this->jointStateCmdSub = this->rosNode->subscribe(joint_state_cmd_so);
 

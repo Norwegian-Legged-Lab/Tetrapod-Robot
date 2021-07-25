@@ -32,6 +32,7 @@
 #include "sensor_msgs/JointState.h"
 #include "std_msgs/Float64.h"
 #include "std_msgs/Float64MultiArray.h"
+#include "std_srvs/Empty.h"
 #include "eigen_conversions/eigen_msg.h"
 
 // ROS Package Libraries
@@ -93,6 +94,14 @@ class MotorInterface
     /// that publish state messages.
     public: void RosPublishQueueThread();
 
+    /// \brief The Shutdown function handles an incoming
+    /// shutdown service request.
+    /// \param[in] _req Service request.
+    /// \param[out] _res Service response.
+    /// \return Returns true if success, and false if not.
+    public: bool Shutdown(const std_srvs::Empty::Request &_req,
+                          std_srvs::Empty::Response &_res);
+
     /// \brief The InitRos function is called to initialize ROS 
     protected: void InitRos();
 
@@ -120,6 +129,9 @@ class MotorInterface
 
     /// \brief Joint State Message
     private: sensor_msgs::JointState jointStateMsg;
+
+    /// \brief ROS Shutdown Service.
+    private: ros::ServiceServer shutdownService;
 
     /// \brief ROS Joint State Command Subscriber.
     private: ros::Subscriber jointStateCmdSub;
