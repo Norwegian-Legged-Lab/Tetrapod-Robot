@@ -24,6 +24,63 @@ timestamp = "2021-07-24-12-32-06"; % Case 3: Kp = 75, Kd = 3
 timestamp = "2021-07-24-12-35-13"; % Case 4: Kp = 100, Kd = 4
 timestamp = "2021-07-24-12-39-53"; % Case 5: Kp = 200, Kd = 8
 
+timestamp = "2021-07-24-16-09-49"; % p1=100, d1=5, p2=100, d2=5, p3=100, d3=1
+%timestamp = "2021-07-24-17-14-47"; % p1=100, d1=5, p2=200, d2=5, p3=100, d3=1
+timestamp = "2021-07-24-17-19-47"; % p1=100, d1=5, p2=150, d2=3, p3=100, d3=1
+%timestamp = "2021-07-24-17-23-01"; % p1=100, i1=0, d1=5, p2=150, i2=10, d2=3, p3=100, i3=0, d3=1
+%timestamp = "2021-07-24-17-28-28"; % p1=100, i1=0, d1=5, p2=400, i2=10, d2=3, p3=100, i3=0, d3=1
+timestamp = "2021-07-24-17-33-43"; % p1=300, i1=0, d1=5, p2=400, i2=10, d2=3, p3=100, i3=0, d3=1
+
+
+% Simulation results - Varying base twist commands 
+
+%p1=300, i1=0, d1=5, p2=400, i2=10, d2=3, p3=100, i3=0, d3=1
+timestamp = "2021-07-24-20-57-49"; % vel_x = 0.25, vel_y = 0.0, vel_z = 0.0
+timestamp = "2021-07-24-21-09-39"; % vel_x = 1.00, vel_y = 0.0, vel_z = 0.0
+%timestamp = "2021-07-24-21-15-01"; % vel_x = 0.0, vel_y = 0.0, vel_z = 3.14
+%timestamp = "2021-07-24-21-21-12"; % vel_x = 0.0, vel_y = 0.0, vel_z = 1.00
+%timestamp = "2021-07-24-21-23-15"; % vel_x = 0.0, vel_y = 0.0, vel_z = 0.50
+
+% Kp = 75, Kd = 3
+%timestamp = "2021-07-24-21-27-46"; % vel_x = 0.0, vel_y = 0.0, vel_z = 3.14
+
+% Kp = 200, Kd = 4 // Best gains in human history
+%timestamp = "2021-07-24-21-32-54"; % vel_x = 0.0, vel_y = 0.0, vel_z = 3.14 Pretty decent
+% timestamp = "2021-07-24-21-35-13"; % vel_x = 1.0, vel_y = 0.0, vel_z = 0.0 Pretty decent
+% timestamp = "2021-07-24-21-47-20"; % vel_x = 1.2, vel_y = 0.0, vel_z = 0.0 Pretty decent
+% timestamp = "2021-07-24-21-50-05"; % vel_x = 1.1, vel_y = 0.0, vel_z = 0.0 Pretty decent
+% timestamp = "2021-07-24-21-54-42"; % vel_x = 0.5, vel_y = 0.5, vel_z = 0.5 Pretty decent
+% 
+% timestamp = "2021-07-25-12-25-55"; % vel_x = 0.5, vel_y = 0.0, vel_z = 0.0 Pretty decent
+%timestamp = "2021-07-25-12-30-19"; % vel_x = 0.75, vel_y = 0.75, vel_z = 0.0 Pretty decent
+%timestamp = "2021-07-25-12-42-49"; % vel_x = 0.0, vel_y = 0.0, vel_z = 5.23 Pretty decent
+
+% Linear x velocity
+timestamp = "2021-07-25-13-10-13"; % vel_x = 0.25, vel_y = 0.0, vel_z = 0.0
+% timestamp = "2021-07-25-13-12-46"; % vel_x = 0.5, vel_y = 0.0, vel_z = 0.0
+% timestamp = "2021-07-25-13-14-50"; % vel_x = 0.75, vel_y = 0.0, vel_z = 0.0
+% timestamp = "2021-07-25-13-18-18"; % vel_x = 1.0, vel_y = 0.0, vel_z = 0.0
+% timestamp = "2021-07-25-13-22-13"; % vel_x = 1.1, vel_y = 0.0, vel_z = 0.0
+% timestamp = "2021-07-25-13-29-43"; % vel_x =-0.5, vel_y = 0.0, vel_z = 0.0
+% timestamp = "2021-07-25-13-36-29"; % vel_x =-1.0, vel_y = 0.0, vel_z = 0.0
+
+% Linear y velocity
+% timestamp = "2021-07-25-13-40-20"; % vel_x = 0.0, vel_y = 0.5, vel_z = 0.0
+% timestamp = "2021-07-25-13-47-01"; % vel_x = 0.0, vel_y = 1.0, vel_z = 0.0
+% timestamp = "2021-07-25-14-19-44"; % vel_x = 0.0, vel_y = -0.5, vel_z = 0.0
+% timestamp = "2021-07-25-13-48-55"; % vel_x = 0.0, vel_y = -1.0, vel_z = 0.0
+
+% Angular Velocity
+% timestamp = "2021-07-25-14-52-03";
+% timestamp = "2021-07-25-14-28-53"; % vel_x = 0.0, vel_y = 0.0, vel_z = 100 dps
+% timestamp = "2021-07-25-14-43-41"; % vel_x = 0.0, vel_y = 0.0, vel_z = 200 dps
+% timestamp = "2021-07-25-15-01-04"; % vel_x = 0.0, vel_y = 0.0, vel_z = 300 dps
+% timestamp = "2021-07-25-15-03-16"; % vel_x = 0.0, vel_y = 0.0, vel_z = 360 dps
+
+% Combinations
+% timestamp = "2021-07-25-15-14-48"; % vel_x = 0.7, vel_y = 0.0, vel_z = 0 dps
+%timestamp = "2021-07-25-15-11-58"; % vel_x = 0.7, vel_y = 0.7, vel_z = 0 dps
+% timestamp = "2021-07-25-15-08-12"; % vel_x = 0.7, vel_y = 0.7, vel_z = 100 dps
 
 %% Extract ROSbag data
 base_pose_bag = rosbag(path + "base_pose_" + timestamp + ".bag");
@@ -97,223 +154,223 @@ base_2D_twist_ylabels = {"$x$-velocity [m/s]", "$y$-velocity [m/s]", ["Angular V
 
 %% Plot base states
 
-% Floating base position
-figure('DefaultAxesFontSize',28)
-set(gcf, 'Position',  [100, 100, 2400, 1200])
-colororder(newcolors)
-
-for i = 1:3
-    subplot(3, 1, i)
-    hold on
-    grid on
-    
-
-    plot(state_time, base_pose(:,i), ...
-        "LineWidth", 5, ...
-        "DisplayName", base_pos_legends(i));
-    
-    a = plot(reference_time, base_pose_cmd(:,i), ...
-         "LineWidth", 5, ...
-         "LineStyle", '--', ...
-         "Color", 'k', ...
-         "DisplayName", base_pos_ref_legends(i));    
-   
-   
-
-    uistack(a, "top");
-    title(base_pos_titles(i), 'FontSize', 32);
-    legend('FontSize', 28);
-    xlim(xlimit);
-    ylim(base_pos_ylimits{i});
-    xlabel("Time [s]", 'FontSize', 28);
-    ylabel(base_pos_ylabels(i), 'FontSize', 28);
-    hold off
-end
-
-fig1 = gcf;
-
-% Floating base velocity
-figure('DefaultAxesFontSize',28)
-set(gcf, 'Position',  [100, 100, 2400, 1200])
-colororder(newcolors)
-
-for i = 1:3
-    subplot(3, 1, i)
-    hold on
-    grid on
-    
-
-    plot(state_time(1:length(base_twist)), base_twist(:,i), ...
-        "LineWidth", 5, ...
-        "DisplayName", base_vel_legends(i));
-    
-    a = plot(reference_time(1:length(base_twist_cmd)), base_twist_cmd(:,i), ...
-         "LineWidth", 5, ...
-         "LineStyle", '--', ...
-         "Color", 'k', ...
-         "DisplayName", base_vel_ref_legends(i));    
-   
-   
-
-    uistack(a, "top");
-    title(base_vel_titles(i), 'FontSize', 32);
-    legend('FontSize', 28);
-    xlim(xlimit);
-    ylim(base_vel_ylimits{i});
-    xlabel("Time [s]", 'FontSize', 28);
-    ylabel(base_vel_ylabels(i), 'FontSize', 28);
-    hold off
-end
-
-fig2 = gcf;
-
-% Floating base orientation
-figure('DefaultAxesFontSize',28)
-set(gcf, 'Position',  [100, 100, 2400, 1200])
-colororder(newcolors)
-
-for i = 1:3
-    subplot(3, 1, i)
-    hold on
-    grid on
-    
-
-    plot(state_time, 180/pi * base_pose(:,i + 3), ...
-        "LineWidth", 5, ...
-        "DisplayName", base_ori_legends(i));
-    
-    a = plot(reference_time, 180/pi * base_pose_cmd(:,i + 3), ...
-         "LineWidth", 5, ...
-         "LineStyle", '--', ...
-         "Color", 'k', ...
-         "DisplayName", base_ori_ref_legends(i));    
-   
-   
-
-    uistack(a, "top");
-    title(base_ori_titles(i), 'FontSize', 32);
-    legend('FontSize', 28);
-    xlim(xlimit);
-    ylim(base_ori_ylimits{i});
-    xlabel("Time [s]", 'FontSize', 28);
-    ylabel(base_ori_ylabels(i), 'FontSize', 28);
-    hold off
-end
-
-fig3 = gcf;
-
-% Floating base angular rates
-figure('DefaultAxesFontSize',28)
-set(gcf, 'Position',  [100, 100, 2400, 1200])
-colororder(newcolors)
-
-for i = 1:3
-    subplot(3, 1, i)
-    hold on
-    grid on
-    
-
-    plot(state_time(1:length(base_twist)), 180/pi * base_twist(:,i + 3), ...
-        "LineWidth", 5, ...
-        "DisplayName", base_ang_vel_legends(i));
-    
-    a = plot(reference_time, 180/pi * base_twist_cmd(:,i + 3), ...
-         "LineWidth", 5, ...
-         "LineStyle", '--', ...
-         "Color", 'k', ...
-         "DisplayName", base_ang_vel_ref_legends(i));    
-   
-   
-
-    uistack(a, "top");
-    title(base_ang_vel_titles(i), 'FontSize', 32);
-    legend('FontSize', 28);
-    xlim(xlimit);
-    ylim(base_ang_vel_ylimits{i});
-    xlabel("Time [s]", 'FontSize', 28);
-    ylabel(base_ang_vel_ylabels{i}, 'FontSize', 28);
-    hold off
-end
-
-fig4 = gcf;
+% % Floating base position
+% figure('DefaultAxesFontSize',28)
+% set(gcf, 'Position',  [100, 100, 2400, 1200])
+% colororder(newcolors)
+% 
+% for i = 1:3
+%     subplot(3, 1, i)
+%     hold on
+%     grid on
+%     
+% 
+%     plot(state_time, base_pose(:,i), ...
+%         "LineWidth", 5, ...
+%         "DisplayName", base_pos_legends(i));
+%     
+%     a = plot(reference_time, base_pose_cmd(:,i), ...
+%          "LineWidth", 5, ...
+%          "LineStyle", '--', ...
+%          "Color", 'k', ...
+%          "DisplayName", base_pos_ref_legends(i));    
+%    
+%    
+% 
+%     uistack(a, "top");
+%     title(base_pos_titles(i), 'FontSize', 32);
+%     legend('FontSize', 28);
+%     xlim(xlimit);
+%     ylim(base_pos_ylimits{i});
+%     xlabel("Time [s]", 'FontSize', 28);
+%     ylabel(base_pos_ylabels(i), 'FontSize', 28);
+%     hold off
+% end
+% 
+% fig1 = gcf;
+% 
+% % Floating base velocity
+% figure('DefaultAxesFontSize',28)
+% set(gcf, 'Position',  [100, 100, 2400, 1200])
+% colororder(newcolors)
+% 
+% for i = 1:3
+%     subplot(3, 1, i)
+%     hold on
+%     grid on
+%     
+% 
+%     plot(state_time(1:length(base_twist)), base_twist(:,i), ...
+%         "LineWidth", 5, ...
+%         "DisplayName", base_vel_legends(i));
+%     
+%     a = plot(reference_time(1:length(base_twist_cmd)), base_twist_cmd(:,i), ...
+%          "LineWidth", 5, ...
+%          "LineStyle", '--', ...
+%          "Color", 'k', ...
+%          "DisplayName", base_vel_ref_legends(i));    
+%    
+%    
+% 
+%     uistack(a, "top");
+%     title(base_vel_titles(i), 'FontSize', 32);
+%     legend('FontSize', 28);
+%     xlim(xlimit);
+%     ylim(base_vel_ylimits{i});
+%     xlabel("Time [s]", 'FontSize', 28);
+%     ylabel(base_vel_ylabels(i), 'FontSize', 28);
+%     hold off
+% end
+% 
+% fig2 = gcf;
+% 
+% % Floating base orientation
+% figure('DefaultAxesFontSize',28)
+% set(gcf, 'Position',  [100, 100, 2400, 1200])
+% colororder(newcolors)
+% 
+% for i = 1:3
+%     subplot(3, 1, i)
+%     hold on
+%     grid on
+%     
+% 
+%     plot(state_time, 180/pi * base_pose(:,i + 3), ...
+%         "LineWidth", 5, ...
+%         "DisplayName", base_ori_legends(i));
+%     
+%     a = plot(reference_time, 180/pi * base_pose_cmd(:,i + 3), ...
+%          "LineWidth", 5, ...
+%          "LineStyle", '--', ...
+%          "Color", 'k', ...
+%          "DisplayName", base_ori_ref_legends(i));    
+%    
+%    
+% 
+%     uistack(a, "top");
+%     title(base_ori_titles(i), 'FontSize', 32);
+%     legend('FontSize', 28);
+%     xlim(xlimit);
+%     ylim(base_ori_ylimits{i});
+%     xlabel("Time [s]", 'FontSize', 28);
+%     ylabel(base_ori_ylabels(i), 'FontSize', 28);
+%     hold off
+% end
+% 
+% fig3 = gcf;
+% 
+% % Floating base angular rates
+% figure('DefaultAxesFontSize',28)
+% set(gcf, 'Position',  [100, 100, 2400, 1200])
+% colororder(newcolors)
+% 
+% for i = 1:3
+%     subplot(3, 1, i)
+%     hold on
+%     grid on
+%     
+% 
+%     plot(state_time(1:length(base_twist)), 180/pi * base_twist(:,i + 3), ...
+%         "LineWidth", 5, ...
+%         "DisplayName", base_ang_vel_legends(i));
+%     
+%     a = plot(reference_time, 180/pi * base_twist_cmd(:,i + 3), ...
+%          "LineWidth", 5, ...
+%          "LineStyle", '--', ...
+%          "Color", 'k', ...
+%          "DisplayName", base_ang_vel_ref_legends(i));    
+%    
+%    
+% 
+%     uistack(a, "top");
+%     title(base_ang_vel_titles(i), 'FontSize', 32);
+%     legend('FontSize', 28);
+%     xlim(xlimit);
+%     ylim(base_ang_vel_ylimits{i});
+%     xlabel("Time [s]", 'FontSize', 28);
+%     ylabel(base_ang_vel_ylabels{i}, 'FontSize', 28);
+%     hold off
+% end
+% 
+% fig4 = gcf;
 
 %% 2D twist plot
 
 % Floating base angular rates
-figure('DefaultAxesFontSize',28)
-set(gcf, 'Position',  [100, 100, 2400, 1200])
-colororder(newcolors)
-
-subplot(3, 1, 1)
-hold on
-grid on
-
-plot(state_time(1:length(base_twist)), base_twist(:,1), ...
-     "LineWidth", 5, ...
-     "DisplayName", base_2D_twist_legends(1));
-    
-a = plot(reference_time(1:length(base_twist_cmd)), base_twist_cmd(:,1), ...
-      "LineWidth", 5, ...
-      "LineStyle", '--', ...
-      "Color", 'k', ...
-      "DisplayName", base_2D_twist_ref_legends(1));  
-  
-uistack(a, "top");
-title(base_2D_twist_titles(1), 'FontSize', 32);
-legend('FontSize', 28);
-xlim(xlimit);
-ylim(base_2D_twist_ylimits{1});
-xlabel("Time [s]", 'FontSize', 28);
-ylabel(base_2D_twist_ylabels{1}, 'FontSize', 28);
-hold off
-
-subplot(3, 1, 2)
-hold on
-grid on
-
-plot(state_time(1:length(base_twist)), base_twist(:,2), ...
-     "LineWidth", 5, ...
-     "DisplayName", base_2D_twist_legends(2));
-    
-a = plot(reference_time(1:length(base_twist_cmd)), base_twist_cmd(:,2), ...
-      "LineWidth", 5, ...
-      "LineStyle", '--', ...
-      "Color", 'k', ...
-      "DisplayName", base_2D_twist_ref_legends(2));  
-  
-uistack(a, "top");
-title(base_2D_twist_titles(2), 'FontSize', 32);
-legend('FontSize', 28);
-xlim(xlimit);
-ylim(base_2D_twist_ylimits{2});
-xlabel("Time [s]", 'FontSize', 28);
-ylabel(base_2D_twist_ylabels{2}, 'FontSize', 28);
-hold off
-
-subplot(3, 1, 3)
-hold on
-grid on
-
-plot(state_time(1:length(base_twist)),180/pi * base_twist(:,6), ...
-     "LineWidth", 5, ...
-     "DisplayName", base_2D_twist_legends(3));
-    
-a = plot(reference_time(1:length(base_twist_cmd)), 180/pi * base_twist_cmd(:,6), ...
-      "LineWidth", 5, ...
-      "LineStyle", '--', ...
-      "Color", 'k', ...
-      "DisplayName", base_2D_twist_ref_legends(3));  
-  
-uistack(a, "top");
-title(base_2D_twist_titles(3), 'FontSize', 32);
-legend('FontSize', 28);
-xlim(xlimit);
-ylim(base_2D_twist_ylimits{3});
-xlabel("Time [s]", 'FontSize', 28);
-ylabel(base_2D_twist_ylabels{3}, 'FontSize', 28);
-hold off
-
-fig5 = gcf;
+% figure('DefaultAxesFontSize',28)
+% set(gcf, 'Position',  [100, 100, 2400, 1200])
+% colororder(newcolors)
+% 
+% subplot(3, 1, 1)
+% hold on
+% grid on
+% 
+% plot(state_time(1:length(base_twist)), base_twist(:,1), ...
+%      "LineWidth", 5, ...
+%      "DisplayName", base_2D_twist_legends(1));
+%     
+% a = plot(reference_time(1:length(base_twist_cmd)), base_twist_cmd(:,1), ...
+%       "LineWidth", 5, ...
+%       "LineStyle", '--', ...
+%       "Color", 'k', ...
+%       "DisplayName", base_2D_twist_ref_legends(1));  
+%   
+% uistack(a, "top");
+% title(base_2D_twist_titles(1), 'FontSize', 32);
+% legend('FontSize', 28);
+% xlim(xlimit);
+% ylim(base_2D_twist_ylimits{1});
+% xlabel("Time [s]", 'FontSize', 28);
+% ylabel(base_2D_twist_ylabels{1}, 'FontSize', 28);
+% hold off
+% 
+% subplot(3, 1, 2)
+% hold on
+% grid on
+% 
+% plot(state_time(1:length(base_twist)), base_twist(:,2), ...
+%      "LineWidth", 5, ...
+%      "DisplayName", base_2D_twist_legends(2));
+%     
+% a = plot(reference_time(1:length(base_twist_cmd)), base_twist_cmd(:,2), ...
+%       "LineWidth", 5, ...
+%       "LineStyle", '--', ...
+%       "Color", 'k', ...
+%       "DisplayName", base_2D_twist_ref_legends(2));  
+%   
+% uistack(a, "top");
+% title(base_2D_twist_titles(2), 'FontSize', 32);
+% legend('FontSize', 28);
+% xlim(xlimit);
+% ylim(base_2D_twist_ylimits{2});
+% xlabel("Time [s]", 'FontSize', 28);
+% ylabel(base_2D_twist_ylabels{2}, 'FontSize', 28);
+% hold off
+% 
+% subplot(3, 1, 3)
+% hold on
+% grid on
+% 
+% plot(state_time(1:length(base_twist)),180/pi * base_twist(:,6), ...
+%      "LineWidth", 5, ...
+%      "DisplayName", base_2D_twist_legends(3));
+%     
+% a = plot(reference_time(1:length(base_twist_cmd)), 180/pi * base_twist_cmd(:,6), ...
+%       "LineWidth", 5, ...
+%       "LineStyle", '--', ...
+%       "Color", 'k', ...
+%       "DisplayName", base_2D_twist_ref_legends(3));  
+%   
+% uistack(a, "top");
+% title(base_2D_twist_titles(3), 'FontSize', 32);
+% legend('FontSize', 28);
+% xlim(xlimit);
+% ylim(base_2D_twist_ylimits{3});
+% xlabel("Time [s]", 'FontSize', 28);
+% ylabel(base_2D_twist_ylabels{3}, 'FontSize', 28);
+% hold off
+% 
+% fig5 = gcf;
 
 %% Save figure
 
