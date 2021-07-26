@@ -61,6 +61,9 @@ Kinematics::Kinematics()
     this->L1 = 0.130;
     this->L2 = 0.220;
     this->L3 = 0.279;
+
+    // On the physical robot
+    this->L3 = 0.290
     //this->L3 = 0.207; // Temporary while we are using the short lower legs
 
     this->LC1 = 0.1030;
