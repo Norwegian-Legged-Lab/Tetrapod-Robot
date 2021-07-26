@@ -29,8 +29,8 @@
 // Constructor
 MotorInterface::MotorInterface() :
     NUM_MOTORS { 12 },
-    serialInterface1("/dev/ttyACM0"),
-    serialInterface2("/dev/ttyACM1")
+    serialInterface1("/dev/teensy1"),
+    serialInterface2("/dev/teensy2")
 {
 
     this->num_motors_port_1 = MAX_NUM_MOTORS_PER_PORT;
@@ -49,7 +49,7 @@ MotorInterface::MotorInterface(const int &_num_motors) :
     {
         this->num_motors_port_1 = _num_motors;
 
-        this->serialInterface1.SetPort("/dev/ttyACM0");
+        this->serialInterface1.SetPort("/dev/teensy1");
 
         this->serialInterface1.SetNumberOfMotors(_num_motors);
 
@@ -61,11 +61,11 @@ MotorInterface::MotorInterface(const int &_num_motors) :
         
         num_motors_port_2 = _num_motors - num_motors_port_1;
 
-        this->serialInterface1.SetPort("/dev/ttyACM0");
+        this->serialInterface1.SetPort("/dev/teensy1");
 
         this->serialInterface1.SetNumberOfMotors(num_motors_port_1);
 
-        this->serialInterface2.SetPort("/dev/ttyACM1");
+        this->serialInterface2.SetPort("/dev/teensy2");
 
         this->serialInterface2.SetNumberOfMotors(num_motors_port_2);
 
