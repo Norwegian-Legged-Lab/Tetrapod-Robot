@@ -1,5 +1,16 @@
 #include "controller/controller.h"
 
+Controller::Controller(int controller_freq) : 
+    controller_freq(controller_freq)
+{
+    this->initROS();
+}
+
+Controller::~Controller()
+{
+    this->nodeHandle->shutdown();
+}
+
 void Controller::waitForReadyToProceed()
 {
     ros::Rate rate(5);
@@ -143,8 +154,20 @@ void Controller::initROS()
 
     nodeHandle.reset(new ros::NodeHandle(node_name));
 
+    this->shutdownService = nodeHandle->advertiseService(
+        "/my_robot/controller/shutdown",
+        &Controller::Shutdown,
+        this
+    );
+
+    this->readyToProceedService = nodeHandle->advertiseService(
+        "/my_robot/controller/ready_to_proceed",
+        &Controller::ReadyToProceed,
+        this
+    );
+
     // Initialize the ready to move subscriber
-    ready_to_proceed_subscriber = nodeHandle->subscribe
+    this->ready_to_proceed_subscriber = nodeHandle->subscribe
     (
         "/ready_to_proceed",
         1, 
@@ -806,4 +829,20 @@ void Controller::StandStill(const double &duration)
 
         control_rate.sleep();
     }
+}
+
+bool Controller::ReadyToProceed(std_srvs::Empty::Request &_req,
+                                std_srvs::Empty::Response &_res)
+{
+    this->ready_to_proceed = true;
+
+    return true;
+}
+
+bool Controller::Shutdown(std_srvs::Empty::Request &_req,
+                          std_srvs::Empty::Response &_res)
+{
+    this->nodeHandle->shutdown();
+
+    return true;
 }
