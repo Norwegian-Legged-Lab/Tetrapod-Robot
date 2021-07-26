@@ -155,11 +155,17 @@ void JoystickController::joystickCallback(const sensor_msgs::JoyConstPtr &_msg)
         twist_command_message.angular.z = 0.0;
     }
 
+    if(_msg->buttons[DPAD_UP] == 1)
+    {
+        std_srvs::Empty readyToProceedSrv;
+        ros::service::call("/my_robot/controller/ready_to_proceed", readyToProceedSrv);
+    }
+
     if(_msg->buttons[SELECT] == 1)
     {
-        std_srvs::Empty shutdownMotorInterfaceSrv;
-        //ros::service::call("/my_robot/motor_interface/shutdown", shutdownMotorInterfaceSrv);
-        ros::service::call("/my_robot/reset_simulation", shutdownMotorInterfaceSrv);
+        std_srvs::Empty shutdownSrv;
+        ros::service::call("/my_robot/controller/shutdown", shutdownSrv);
+        ros::service::call("/my_robot/motor_interface/shutdown", shutdownSrv);
     }
 }
 
