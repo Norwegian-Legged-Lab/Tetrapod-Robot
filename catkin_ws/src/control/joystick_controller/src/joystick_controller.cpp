@@ -61,7 +61,7 @@ void JoystickController::initROS()
         this
     );
 
-    twist_command_publisher = nodeHandle->advertise<geometry_msgs::Twist>("/twist_command", 10);
+    twist_command_publisher = nodeHandle->advertise<geometry_msgs::Twist>("/twist_command", 1);
 }
 
 
