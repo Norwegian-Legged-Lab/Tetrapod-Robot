@@ -1,0 +1,9 @@
+<launch>
+
+    <include file="$(find actuators)/launch/motor_interface.launch" />
+
+    <include file="$(find robot_controller)/launch/robot_controller.launch" />
+
+    <include file="$(find robot_controller)/launch/joystick_controller.launch" />
+
+</launch>
