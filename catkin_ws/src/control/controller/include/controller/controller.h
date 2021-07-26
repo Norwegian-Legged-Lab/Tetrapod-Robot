@@ -6,6 +6,7 @@
 #include "std_msgs/Float64MultiArray.h"
 #include "sensor_msgs/JointState.h"
 #include "geometry_msgs/Twist.h"
+#include "std_srvs/Empty.h"
 #include "eigen_conversions/eigen_msg.h"
 
 // Eigen
@@ -28,9 +29,9 @@
 class Controller{
     protected: using JointState = Eigen::Matrix<double, 12, 1>;
     
-    public: Controller(int controller_freq): controller_freq(controller_freq) {initROS();}
+    public: Controller(int controller_freq);
     
-    public: virtual ~Controller() {}
+    public: virtual ~Controller();
 
     /*** Functions ***/
     public: bool RunStandUpSequence();
@@ -83,6 +84,22 @@ class Controller{
 
     public: void SetReadyToProceedFlag(){ready_to_proceed = true;}
 
+    /// \brief The ReadyToProceed function handles an incoming
+    /// readyToProceed service request.
+    /// \param[in] _req Service request.
+    /// \param[out] _res Service response.
+    /// \return Returns true if success, and false if not.
+    public: bool ReadyToProceed(std_srvs::Empty::Request &_req,
+                                std_srvs::Empty::Response &_res);
+
+    /// \brief The Shutdown function handles an incoming
+    /// shutdown service request.
+    /// \param[in] _req Service request.
+    /// \param[out] _res Service response.
+    /// \return Returns true if success, and false if not.
+    public: bool Shutdown(std_srvs::Empty::Request &_req,
+                          std_srvs::Empty::Response &_res);
+
     /*** Variables ***/
     private: bool ready_to_proceed = false;
 
@@ -95,6 +112,12 @@ class Controller{
     protected: Kinematics kinematics;
 
     protected: ros::NodeHandlePtr nodeHandle;
+
+    /// \brief ROS Shutdown Service.
+    private: ros::ServiceServer shutdownService;
+
+    /// \brief ROS Ready to Proceed Service.
+    private: ros::ServiceServer readyToProceedService;
 
     protected: ros::Publisher joint_command_publisher;
 
