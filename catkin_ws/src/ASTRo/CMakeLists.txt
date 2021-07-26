@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(system_launch_files)
+project(ASTRo)
 
 find_package(catkin REQUIRED COMPONENTS)
 
