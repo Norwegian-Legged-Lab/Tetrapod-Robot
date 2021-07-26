@@ -120,13 +120,13 @@ class JoystickController
 
     private: double linear_rate_multiplier_min = 0.2;
 
-    private: double linear_rate_multiplier_max  = 1.0;
+    private: double linear_rate_multiplier_max  = 0.6;
 
     private: double rotational_rate_multiplier = 0.2;
 
-    private: double rotational_rate_multiplier_step = 0.1;
+    private: double rotational_rate_multiplier_step = 0.2;
 
-    private: double rotational_rate_multiplier_max = 1.0;
+    private: double rotational_rate_multiplier_max = 2.6;
 
     private: double rotational_rate_multiplier_min = 0.2;
 
