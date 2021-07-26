@@ -18,6 +18,15 @@ timestamp = "2021-07-24-12-32-06"; % Case 3: Kp = 75, Kd = 3
 timestamp = "2021-07-24-12-35-13"; % Case 4: Kp = 100, Kd = 4
 timestamp = "2021-07-24-12-39-53"; % Case 5: Kp = 200, Kd = 8
 
+% Physical Tetrapod Standup and Tripping Tests
+%path = "~/Tetrapod-Robot/bagfiles/gait_tests/";
+path = "";
+timestamp = "2021-07-26-15-44-40"; % Tripping test. Rear feet bend inwards after some time
+timestamp = "2021-07-26-16-08-19"; % Tripping test. Behavior looked odd
+timestamp = "2021-07-26-16-36-24"; % Pretty successful tripping for a long time. Small velocity commands were given
+timestamp = "2021-07-26-16-43-48"; % Very good tripping test, some movement was completed.
+timestamp = "2021-07-26-18-35-06"; % Attempted walking with crane. Crane was hindering motion
+timestamp = "2021-07-26-18-51-23"; % Attempted walking. Robot slipped eventually
 
 number_of_motors = 12;
 
