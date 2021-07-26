@@ -43,6 +43,8 @@ int main(int argc, char **argv)
 
         controller.sendJointPositionCommands();
 
+        controller.WriteToLog();
+
         control_rate.sleep();
     }
 
