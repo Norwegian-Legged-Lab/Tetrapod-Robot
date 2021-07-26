@@ -64,7 +64,7 @@ int main(int argc, char **argv)
 
         controller.UpdateFeetTrajectories();
         controller.UpdateJointCommands();
-        controller.PrintFootPositions();
+        //controller.PrintFootPositions();
         //controller.PrintVelCommands();
         controller.sendJointPositionCommands();
 

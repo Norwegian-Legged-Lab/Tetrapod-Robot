@@ -588,19 +588,23 @@ bool Controller::MoveFeetToPositions(Eigen::Matrix<double, 3, 1> fl_goal_foot_po
     int number_of_iterations = int(trajectory_duration * controller_freq);
 
     // Move
-    ROS_INFO("Max error: %f", max_error);
-    ROS_INFO("Iterations: %d", number_of_iterations);
+    //ROS_INFO("Max error: %f", max_error);
+    //ROS_INFO("Iterations: %d", number_of_iterations);
     ros::Rate publish_rate(controller_freq);
 
+    /*
     ROS_INFO("Initial Angles - FL1: %f\tFL2: %f\tFL3: %f\tFR1: %f\tFR2: %f\tFR3: %f\tRL1: %f\tRL2: %f\tRL3: %f\tRR1: %f\tRR2: %f\tRR3: %f",
     joint_angles(0), joint_angles(1), joint_angles(2), joint_angles(3), joint_angles(4), joint_angles(5),
     joint_angles(6), joint_angles(7), joint_angles(8), joint_angles(9), joint_angles(10), joint_angles(11));
+    */
 
-    ROS_INFO("Initial - FL1: %f\tFL2: %f\tFL3: %f\tFR1: %f\tFR2: %f\tFR3: %f\tRL1: %f\tRL2: %f\tRL3: %f\tRR1: %f\tRR2: %f\tRR3: %f",
+    /*
+    //ROS_INFO("Initial - FL1: %f\tFL2: %f\tFL3: %f\tFR1: %f\tFR2: %f\tFR3: %f\tRL1: %f\tRL2: %f\tRL3: %f\tRR1: %f\tRR2: %f\tRR3: %f",
     fl_initial_foot_pos(0), fl_initial_foot_pos(1), fl_initial_foot_pos(2),
     fr_initial_foot_pos(0), fr_initial_foot_pos(1), fr_initial_foot_pos(2),
     rl_initial_foot_pos(0), rl_initial_foot_pos(1), rl_initial_foot_pos(2),
     rr_initial_foot_pos(0), rr_initial_foot_pos(1), rr_initial_foot_pos(2));
+    */
 
     for(int i = 0; i < number_of_iterations; i++)
     {
@@ -612,11 +616,13 @@ bool Controller::MoveFeetToPositions(Eigen::Matrix<double, 3, 1> fl_goal_foot_po
         rl_desired_foot_pos = rl_initial_foot_pos + double(i)/double(number_of_iterations) * (rl_goal_foot_pos - rl_initial_foot_pos);
         rr_desired_foot_pos = rr_initial_foot_pos + double(i)/double(number_of_iterations) * (rr_goal_foot_pos - rr_initial_foot_pos);
 
+        /*
         ROS_INFO("Current - FL1: %f\tFL2: %f\tFL3: %f\tFR1: %f\tFR2: %f\tFR3: %f\tRL1: %f\tRL2: %f\tRL3: %f\tRR1: %f\tRR2: %f\tRR3: %f",
         fl_desired_foot_pos(0), fl_desired_foot_pos(1), fl_desired_foot_pos(2),
         fr_desired_foot_pos(0), fr_desired_foot_pos(1), fr_desired_foot_pos(2),
         rl_desired_foot_pos(0), rl_desired_foot_pos(1), rl_desired_foot_pos(2),
         rr_desired_foot_pos(0), rr_desired_foot_pos(1), rr_desired_foot_pos(2));
+        */
 
         // Calculate the inverse joint angles
         if(this->kinematics.SolveSingleLegInverseKinematics(this->kinematics.GetflOffset(), fl_desired_foot_pos, fl_desired_joint_angles) == false)
@@ -645,9 +651,11 @@ bool Controller::MoveFeetToPositions(Eigen::Matrix<double, 3, 1> fl_goal_foot_po
         this->joint_angle_commands.block<3, 1>(6, 0) = rl_desired_joint_angles;
         this->joint_angle_commands.block<3, 1>(9, 0) = rr_desired_joint_angles;
 
+        /*
         ROS_INFO("Angle commands - FL1: %f\tFL2: %f\tFL3: %f\tFR1: %f\tFR2: %f\tFR3: %f\tRL1: %f\tRL2: %f\tRL3: %f\tRR1: %f\tRR2: %f\tRR3: %f",
         joint_angle_commands(0), joint_angle_commands(1), joint_angle_commands(2), joint_angle_commands(3), joint_angle_commands(4), joint_angle_commands(5),
         joint_angle_commands(6), joint_angle_commands(7), joint_angle_commands(8), joint_angle_commands(9), joint_angle_commands(10), joint_angle_commands(11));
+        */
 
         this->sendJointPositionCommands();
         this->WriteToLog();
@@ -776,7 +784,7 @@ bool Controller::MoveFootToPosition(const Kinematics::LegType &leg_type, const E
     {
         ros::spinOnce();
 
-        ROS_INFO("Iteration: %d\tN: %d", i, number_of_iterations);
+        //ROS_INFO("Iteration: %d\tN: %d", i, number_of_iterations);
         desired_foot_position = initial_foot_position + double(i)/double(number_of_iterations) * (goal_foot_position - initial_foot_position);
 
         if(i <= half_number_of_iterations)
@@ -800,7 +808,7 @@ bool Controller::MoveFootToPosition(const Kinematics::LegType &leg_type, const E
         {
             joint_angle_commands.block<3, 1>(joint_index_start, 0) = desired_joint_angles;
 
-            ROS_INFO("FL joint angles - hy: %f\thp: %f\tkp: %f", joint_angle_commands(0), joint_angle_commands(1), joint_angle_commands(2));
+            //ROS_INFO("FL joint angles - hy: %f\thp: %f\tkp: %f", joint_angle_commands(0), joint_angle_commands(1), joint_angle_commands(2));
 
             this->sendJointPositionCommands();
 
