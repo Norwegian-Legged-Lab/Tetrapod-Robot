@@ -18,6 +18,18 @@ timestamp = "2021-07-24-12-32-06"; % Case 3: Kp = 75, Kd = 3
 timestamp = "2021-07-24-12-35-13"; % Case 4: Kp = 100, Kd = 4
 timestamp = "2021-07-24-12-39-53"; % Case 5: Kp = 200, Kd = 8
 
+% Other tests
+%timestamp = "2021-07-24-16-09-49"; % p1=100, d1=5, p2=100, d2=5, p3=100, d3=1
+%timestamp = "2021-07-24-16-13-33"; % p1=100, d1=5, p2=100, d2=2, p3=100, d3=1
+%timestamp = "2021-07-24-17-14-47"; % p1=100, d1=5, p2=200, d2=5, p3=100, d3=1
+%timestamp = "2021-07-24-17-19-47"; % p1=100, d1=5, p2=150, d2=3, p3=100, d3=1
+%timestamp = "2021-07-24-17-23-01"; % p1=100, i1=0, d1=5, p2=150, i2=10, d2=3, p3=100, i3=0, d3=1
+%timestamp = "2021-07-24-17-28-28"; % p1=100, i1=0, d1=5, p2=400, i2=10, d2=3, p3=100, i3=0, d3=1 Very good tracking values
+timestamp = "2021-07-24-17-33-43"; % p1=300, i1=0, d1=5, p2=400, i2=10, d2=3, p3=100, i3=0, d3=1 Very good torques and great tracking USE THIS
+%timestamp = "2021-07-24-17-37-04"; % p1=100, i1=0, d1=5, p2=400, i2=10, d2=3, p3=100, i3=0, d3=1
+
+%path = "~/Tetrapod-Robot/bagfiles/gait_tests/";
+%timestamp = "2021-07-22-21-35-46"; % First long trotting test
 
 number_of_motors = 12;
 
