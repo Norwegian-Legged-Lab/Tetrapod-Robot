@@ -56,7 +56,7 @@ timestamp = "2021-07-24-21-09-39"; % vel_x = 1.00, vel_y = 0.0, vel_z = 0.0
 %timestamp = "2021-07-25-12-42-49"; % vel_x = 0.0, vel_y = 0.0, vel_z = 5.23 Pretty decent
 
 % Linear x velocity
-timestamp = "2021-07-25-13-10-13"; % vel_x = 0.25, vel_y = 0.0, vel_z = 0.0
+% timestamp = "2021-07-25-13-10-13"; % vel_x = 0.25, vel_y = 0.0, vel_z = 0.0
 % timestamp = "2021-07-25-13-12-46"; % vel_x = 0.5, vel_y = 0.0, vel_z = 0.0
 % timestamp = "2021-07-25-13-14-50"; % vel_x = 0.75, vel_y = 0.0, vel_z = 0.0
 % timestamp = "2021-07-25-13-18-18"; % vel_x = 1.0, vel_y = 0.0, vel_z = 0.0
@@ -71,7 +71,7 @@ timestamp = "2021-07-25-13-10-13"; % vel_x = 0.25, vel_y = 0.0, vel_z = 0.0
 % timestamp = "2021-07-25-13-48-55"; % vel_x = 0.0, vel_y = -1.0, vel_z = 0.0
 
 % Angular Velocity
-% timestamp = "2021-07-25-14-52-03";
+% timestamp = "2021-07-25-14-52-03"; % vel_x = 0.0, vel_y = 0.0, vel_z = 50 dps
 % timestamp = "2021-07-25-14-28-53"; % vel_x = 0.0, vel_y = 0.0, vel_z = 100 dps
 % timestamp = "2021-07-25-14-43-41"; % vel_x = 0.0, vel_y = 0.0, vel_z = 200 dps
 % timestamp = "2021-07-25-15-01-04"; % vel_x = 0.0, vel_y = 0.0, vel_z = 300 dps
@@ -297,80 +297,80 @@ base_2D_twist_ylabels = {"$x$-velocity [m/s]", "$y$-velocity [m/s]", ["Angular V
 %% 2D twist plot
 
 % Floating base angular rates
-% figure('DefaultAxesFontSize',28)
-% set(gcf, 'Position',  [100, 100, 2400, 1200])
-% colororder(newcolors)
-% 
-% subplot(3, 1, 1)
-% hold on
-% grid on
-% 
-% plot(state_time(1:length(base_twist)), base_twist(:,1), ...
-%      "LineWidth", 5, ...
-%      "DisplayName", base_2D_twist_legends(1));
-%     
-% a = plot(reference_time(1:length(base_twist_cmd)), base_twist_cmd(:,1), ...
-%       "LineWidth", 5, ...
-%       "LineStyle", '--', ...
-%       "Color", 'k', ...
-%       "DisplayName", base_2D_twist_ref_legends(1));  
-%   
-% uistack(a, "top");
-% title(base_2D_twist_titles(1), 'FontSize', 32);
-% legend('FontSize', 28);
-% xlim(xlimit);
-% ylim(base_2D_twist_ylimits{1});
-% xlabel("Time [s]", 'FontSize', 28);
-% ylabel(base_2D_twist_ylabels{1}, 'FontSize', 28);
-% hold off
-% 
-% subplot(3, 1, 2)
-% hold on
-% grid on
-% 
-% plot(state_time(1:length(base_twist)), base_twist(:,2), ...
-%      "LineWidth", 5, ...
-%      "DisplayName", base_2D_twist_legends(2));
-%     
-% a = plot(reference_time(1:length(base_twist_cmd)), base_twist_cmd(:,2), ...
-%       "LineWidth", 5, ...
-%       "LineStyle", '--', ...
-%       "Color", 'k', ...
-%       "DisplayName", base_2D_twist_ref_legends(2));  
-%   
-% uistack(a, "top");
-% title(base_2D_twist_titles(2), 'FontSize', 32);
-% legend('FontSize', 28);
-% xlim(xlimit);
-% ylim(base_2D_twist_ylimits{2});
-% xlabel("Time [s]", 'FontSize', 28);
-% ylabel(base_2D_twist_ylabels{2}, 'FontSize', 28);
-% hold off
-% 
-% subplot(3, 1, 3)
-% hold on
-% grid on
-% 
-% plot(state_time(1:length(base_twist)),180/pi * base_twist(:,6), ...
-%      "LineWidth", 5, ...
-%      "DisplayName", base_2D_twist_legends(3));
-%     
-% a = plot(reference_time(1:length(base_twist_cmd)), 180/pi * base_twist_cmd(:,6), ...
-%       "LineWidth", 5, ...
-%       "LineStyle", '--', ...
-%       "Color", 'k', ...
-%       "DisplayName", base_2D_twist_ref_legends(3));  
-%   
-% uistack(a, "top");
-% title(base_2D_twist_titles(3), 'FontSize', 32);
-% legend('FontSize', 28);
-% xlim(xlimit);
-% ylim(base_2D_twist_ylimits{3});
-% xlabel("Time [s]", 'FontSize', 28);
-% ylabel(base_2D_twist_ylabels{3}, 'FontSize', 28);
-% hold off
-% 
-% fig5 = gcf;
+figure('DefaultAxesFontSize',28)
+set(gcf, 'Position',  [100, 100, 2400, 1200])
+colororder(newcolors)
+
+subplot(3, 1, 1)
+hold on
+grid on
+
+plot(state_time(1:length(base_twist)), base_twist(:,1), ...
+     "LineWidth", 5, ...
+     "DisplayName", base_2D_twist_legends(1));
+    
+a = plot(reference_time(1:length(base_twist_cmd)), base_twist_cmd(:,1), ...
+      "LineWidth", 5, ...
+      "LineStyle", '--', ...
+      "Color", 'k', ...
+      "DisplayName", base_2D_twist_ref_legends(1));  
+  
+uistack(a, "top");
+title(base_2D_twist_titles(1), 'FontSize', 32);
+legend('FontSize', 28);
+xlim(xlimit);
+ylim(base_2D_twist_ylimits{1});
+xlabel("Time [s]", 'FontSize', 28);
+ylabel(base_2D_twist_ylabels{1}, 'FontSize', 28);
+hold off
+
+subplot(3, 1, 2)
+hold on
+grid on
+
+plot(state_time(1:length(base_twist)), base_twist(:,2), ...
+     "LineWidth", 5, ...
+     "DisplayName", base_2D_twist_legends(2));
+    
+a = plot(reference_time(1:length(base_twist_cmd)), base_twist_cmd(:,2), ...
+      "LineWidth", 5, ...
+      "LineStyle", '--', ...
+      "Color", 'k', ...
+      "DisplayName", base_2D_twist_ref_legends(2));  
+  
+uistack(a, "top");
+title(base_2D_twist_titles(2), 'FontSize', 32);
+legend('FontSize', 28);
+xlim(xlimit);
+ylim(base_2D_twist_ylimits{2});
+xlabel("Time [s]", 'FontSize', 28);
+ylabel(base_2D_twist_ylabels{2}, 'FontSize', 28);
+hold off
+
+subplot(3, 1, 3)
+hold on
+grid on
+
+plot(state_time(1:length(base_twist)),180/pi * base_twist(:,6), ...
+     "LineWidth", 5, ...
+     "DisplayName", base_2D_twist_legends(3));
+    
+a = plot(reference_time(1:length(base_twist_cmd)), 180/pi * base_twist_cmd(:,6), ...
+      "LineWidth", 5, ...
+      "LineStyle", '--', ...
+      "Color", 'k', ...
+      "DisplayName", base_2D_twist_ref_legends(3));  
+  
+uistack(a, "top");
+title(base_2D_twist_titles(3), 'FontSize', 32);
+legend('FontSize', 28);
+xlim(xlimit);
+ylim(base_2D_twist_ylimits{3});
+xlabel("Time [s]", 'FontSize', 28);
+ylabel(base_2D_twist_ylabels{3}, 'FontSize', 28);
+hold off
+
+fig5 = gcf;
 
 %% Save figure
 
@@ -391,5 +391,6 @@ filename5 = 'ho_force_z200N_2D_twist.pdf';
 %% Calculate Key Parameters
 
 % Calculate twist command rmse
-lin_twist_command_rmse = rms(base_twist_cmd(:, 1:3) - base_twist(:, 1:3))
-ang_twist_command_rmse = rms(base_twist_cmd(:, 4:6)*180/pi - base_twist(:, 4:6)*180/pi)
+lin_twist_command_rmse = rms(base_twist_cmd(:, 1:3) - base_twist(:, 1:3));
+ang_twist_command_rmse = rms(base_twist_cmd(:, 4:6)*180/pi - base_twist(:, 4:6)*180/pi);
+fprintf("Lin_vel_x: %f\tLin_vel_y: %f\tAng_vel_z: %f\n", lin_twist_command_rmse(1), lin_twist_command_rmse(2), ang_twist_command_rmse(3));
