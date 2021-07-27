@@ -1,0 +1,8 @@
+<launch>
+    <include file="$(find tetrapod_gazebo)/launch/tetrapod.launch" />
+
+    <include file="$(find robot_controller)/launch/robot_controller.launch" />
+
+    <include file="$(find joystick_controller)/launch/joystick_controller.launch" />
+
+</launch>

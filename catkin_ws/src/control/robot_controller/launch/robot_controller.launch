@@ -5,7 +5,7 @@
     <!--                  Arguments                   -->
     <!-- ******************************************** -->
     <arg name="record_sys" default="true" />
-    <arg name="record_directory" default="/home/omicron/Tetrapod-Robot/bagfiles/gait_simulation_tests" />
+    <arg name="record_directory" default="/home/intel/Tetrapod-Robot/bagfiles/gait_tests" />
 
     <!-- ******************************************** -->
     <!--                  Logging                     -->

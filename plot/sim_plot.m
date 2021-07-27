@@ -30,6 +30,15 @@ timestamp = "2021-07-24-17-33-43"; % p1=300, i1=0, d1=5, p2=400, i2=10, d2=3, p3
 
 %path = "~/Tetrapod-Robot/bagfiles/gait_tests/";
 %timestamp = "2021-07-22-21-35-46"; % First long trotting test
+% Physical Tetrapod Standup and Tripping Tests
+%path = "~/Tetrapod-Robot/bagfiles/gait_tests/";
+path = "";
+timestamp = "2021-07-26-15-44-40"; % Tripping test. Rear feet bend inwards after some time
+timestamp = "2021-07-26-16-08-19"; % Tripping test. Behavior looked odd
+timestamp = "2021-07-26-16-36-24"; % Pretty successful tripping for a long time. Small velocity commands were given
+timestamp = "2021-07-26-16-43-48"; % Very good tripping test, some movement was completed.
+timestamp = "2021-07-26-18-35-06"; % Attempted walking with crane. Crane was hindering motion
+timestamp = "2021-07-26-18-51-23"; % Attempted walking. Robot slipped eventually
 
 number_of_motors = 12;
 
