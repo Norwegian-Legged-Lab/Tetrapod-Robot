@@ -12,7 +12,6 @@ run("setup.m");
 
 % Physical results for report %
 path = "~/Tetrapod-Robot/bagfiles/gait_tests/";
-% test_case1 = "2021-07-26-16-36-24"; % Pretty successful tripping for a long time. Small velocity commands were given
 test_case1 = "2021-07-26-18-51-23"; % Attempted walking. Robot slipped eventually
 
 
@@ -71,7 +70,7 @@ reference_time = reference_time' - time_offset;
 
 %% Plot setup
 % Limits
-xlimit = [0, 9];
+xlimit = [18, 20];
 joint_pos_ylimits = {[-0.3,0.3], [-0.3,0.3], [0.05,0.35]};
 joint_vel_ylimits = {[0.0,0.6], [-0.1,0.1], [-0.26,0.26]};
 joint_tor_ylimits = {[-5,5], [-20,20], [-10,10]};
@@ -239,12 +238,12 @@ fig3 = gcf;
 
 %% Save figure
 
-filename1 = 'gait_test_standup_joint_pos.pdf';
-filename2 = 'gait_test_standup_cases_joint_vel.pdf';
-filename3 = 'gait_test_standup_joint_tor.pdf';
+filename1 = 'gait_test_walking_joint_pos.pdf';
+filename2 = 'gait_test_walking_cases_joint_vel.pdf';
+filename3 = 'gait_test_walking_joint_tor.pdf';
 
 
-exportgraphics(fig1, filename1, 'BackgroundColor','none')
-exportgraphics(fig2, filename2, 'BackgroundColor','none')
-exportgraphics(fig3, filename3, 'BackgroundColor','none')
+exportgraphics(fig1, filename1)
+exportgraphics(fig2, filename2)
+exportgraphics(fig3, filename3)
 

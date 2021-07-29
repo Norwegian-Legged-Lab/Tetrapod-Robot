@@ -3,20 +3,20 @@
 run("setup.m");
 
 path = "~/Tetrapod-Robot/bagfiles/gait_simulation_tests/";
-%timestamp = "2021-07-11-16-32-59";
-timestamp = "2021-07-19-12-15-07"; % Kp = 100, Kd = 1
-timestamp = "2021-07-19-12-48-19"; % Kp = 200, Kd = 5
-%timestamp = "2021-07-22-15-53-30";
-%timestamp = "2021-07-22-17-53-46";
+% timestamp = "2021-07-11-16-32-59";
+% timestamp = "2021-07-19-12-15-07"; % Kp = 100, Kd = 1
+% timestamp = "2021-07-19-12-48-19"; % Kp = 200, Kd = 5
+% timestamp = "2021-07-22-15-53-30";
+% timestamp = "2021-07-22-17-53-46";
 
 
 % Simulation results for report % Base twist 2D motion [0.5, 0.0, 0.0]
-path = "~/Tetrapod-Robot/bagfiles/gait_simulation_tests/";
-timestamp = "2021-07-24-12-22-13"; % Case 1: Kp = 25, Kd = 1
-timestamp = "2021-07-24-12-28-36"; % Case 2: Kp = 50, Kd = 2
-timestamp = "2021-07-24-12-32-06"; % Case 3: Kp = 75, Kd = 3
-timestamp = "2021-07-24-12-35-13"; % Case 4: Kp = 100, Kd = 4
-timestamp = "2021-07-24-12-39-53"; % Case 5: Kp = 200, Kd = 8
+% path = "~/Tetrapod-Robot/bagfiles/gait_simulation_tests/";
+% timestamp = "2021-07-24-12-22-13"; % Case 1: Kp = 25, Kd = 1
+% timestamp = "2021-07-24-12-28-36"; % Case 2: Kp = 50, Kd = 2
+% timestamp = "2021-07-24-12-32-06"; % Case 3: Kp = 75, Kd = 3
+% timestamp = "2021-07-24-12-35-13"; % Case 4: Kp = 100, Kd = 4
+% timestamp = "2021-07-24-12-39-53"; % Case 5: Kp = 200, Kd = 8
 
 % Other tests
 %timestamp = "2021-07-24-16-09-49"; % p1=100, d1=5, p2=100, d2=5, p3=100, d3=1
@@ -31,13 +31,13 @@ timestamp = "2021-07-24-17-33-43"; % p1=300, i1=0, d1=5, p2=400, i2=10, d2=3, p3
 %path = "~/Tetrapod-Robot/bagfiles/gait_tests/";
 %timestamp = "2021-07-22-21-35-46"; % First long trotting test
 % Physical Tetrapod Standup and Tripping Tests
-%path = "~/Tetrapod-Robot/bagfiles/gait_tests/";
-path = "";
+path = "~/Tetrapod-Robot/bagfiles/gait_tests/";
+% path = "";
 timestamp = "2021-07-26-15-44-40"; % Tripping test. Rear feet bend inwards after some time
 timestamp = "2021-07-26-16-08-19"; % Tripping test. Behavior looked odd
 timestamp = "2021-07-26-16-36-24"; % Pretty successful tripping for a long time. Small velocity commands were given
 timestamp = "2021-07-26-16-43-48"; % Very good tripping test, some movement was completed.
-timestamp = "2021-07-26-18-35-06"; % Attempted walking with crane. Crane was hindering motion
+% timestamp = "2021-07-26-18-35-06"; % Attempted walking with crane. Crane was hindering motion
 timestamp = "2021-07-26-18-51-23"; % Attempted walking. Robot slipped eventually
 
 number_of_motors = 12;
