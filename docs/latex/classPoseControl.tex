@@ -1,0 +1,144 @@
+\hypertarget{classPoseControl}{}\doxysection{Pose\+Control Class Reference}
+\label{classPoseControl}\index{PoseControl@{PoseControl}}
+
+
+A class to control the tetrapod robot pose.  
+
+
+
+
+{\ttfamily \#include $<$pose\+\_\+control.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classPoseControl_a6d71d9ed7e1cdee382d142796c238ab1}\label{classPoseControl_a6d71d9ed7e1cdee382d142796c238ab1}} 
+\mbox{\hyperlink{classPoseControl_a6d71d9ed7e1cdee382d142796c238ab1}{Pose\+Control}} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classPoseControl_a3a30efb413a121e089b979b60552b307}\label{classPoseControl_a3a30efb413a121e089b979b60552b307}} 
+virtual \mbox{\hyperlink{classPoseControl_a3a30efb413a121e089b979b60552b307}{$\sim$\+Pose\+Control}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classPoseControl_af405cb853584dee792a0761ccdb135da}\label{classPoseControl_af405cb853584dee792a0761ccdb135da}} 
+void {\bfseries Set\+Base\+Pose} (const Eigen\+::\+Matrix$<$ double, 6, 1 $>$ \&\+\_\+q\+\_\+b)
+\item 
+\mbox{\Hypertarget{classPoseControl_af7e96de88b64af2da6385e09f92fd415}\label{classPoseControl_af7e96de88b64af2da6385e09f92fd415}} 
+void {\bfseries Set\+Base\+Position} (const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+base\+\_\+position)
+\item 
+\mbox{\Hypertarget{classPoseControl_a506a33bcbde498ba503eed98fa11d8bd}\label{classPoseControl_a506a33bcbde498ba503eed98fa11d8bd}} 
+void {\bfseries Set\+Base\+Orientation} (const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+base\+\_\+orientation)
+\item 
+\mbox{\Hypertarget{classPoseControl_ae3b7931fca739655facd0c224eb323c9}\label{classPoseControl_ae3b7931fca739655facd0c224eb323c9}} 
+void {\bfseries Set\+Base\+Height} (const double \&\+\_\+base\+\_\+height)
+\item 
+void \mbox{\hyperlink{classPoseControl_acd653896115732b4e99e059d80327fd2}{On\+Gen\+Coord\+Msg}} (const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&\+\_\+msg)
+\begin{DoxyCompactList}\small\item\em The On\+Gen\+Coord\+Msg function handles an incoming generalized coordinates message from R\+OS. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPoseControl_a77c29a9ac56fbbe252486a14f8717897}{On\+Base\+Pose\+Msg}} (const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&\+\_\+msg)
+\begin{DoxyCompactList}\small\item\em The On\+Base\+Pose\+Msg function handles an incoming pose messages from R\+OS. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPoseControl_a52d6a88c5553afc4fb3aab78dbd3ade8}{On\+Base\+Position\+Msg}} (const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&\+\_\+msg)
+\begin{DoxyCompactList}\small\item\em The On\+Base\+Position\+Msg function handles an incoming base position messages from R\+OS. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPoseControl_a6f79ce6f381059d5a350191f4b9cc11d}{On\+Base\+Height\+Msg}} (const std\+\_\+msgs\+::\+Float64\+Const\+Ptr \&\+\_\+msg)
+\begin{DoxyCompactList}\small\item\em The On\+Base\+Height\+Msg function handles an incoming base height messages from R\+OS. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPoseControl_a64dcd9dfa34235e23785c8b163972842}{On\+Base\+Orientation\+Msg}} (const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&\+\_\+msg)
+\begin{DoxyCompactList}\small\item\em The On\+Base\+Orientation\+Msg function handles an incoming base orientation messages from R\+OS. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classPoseControl_af4102e050e2f4d770cf094ad89e488cb}\label{classPoseControl_af4102e050e2f4d770cf094ad89e488cb}} 
+void \mbox{\hyperlink{classPoseControl_af4102e050e2f4d770cf094ad89e488cb}{Process\+Queue\+Thread}} ()
+\begin{DoxyCompactList}\small\item\em The Process\+Queue\+Thread function is a R\+OS helper function that processes messages. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classPoseControl_a45df21135c41aed2da3decd794ec6890}\label{classPoseControl_a45df21135c41aed2da3decd794ec6890}} 
+void \mbox{\hyperlink{classPoseControl_a45df21135c41aed2da3decd794ec6890}{Publish\+Queue\+Thread}} ()
+\begin{DoxyCompactList}\small\item\em The Publish\+Queue\+Thread function is a R\+OS helper function that publish state messages. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classPoseControl_a0b60b1eec726a0813aa5f6fc813b440f}\label{classPoseControl_a0b60b1eec726a0813aa5f6fc813b440f}} 
+void \mbox{\hyperlink{classPoseControl_a0b60b1eec726a0813aa5f6fc813b440f}{Init\+Ros}} ()
+\begin{DoxyCompactList}\small\item\em The Init\+Ros function is called to initialize R\+OS. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classPoseControl_af45a7877002915ca8e2838fff871bebd}\label{classPoseControl_af45a7877002915ca8e2838fff871bebd}} 
+void \mbox{\hyperlink{classPoseControl_af45a7877002915ca8e2838fff871bebd}{Init\+Ros\+Queue\+Threads}} ()
+\begin{DoxyCompactList}\small\item\em The Init\+Ros\+Queue\+Threads function is called to initialize the R\+OS Publish and Process Queue Threads. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class to control the tetrapod robot pose. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classPoseControl_a6f79ce6f381059d5a350191f4b9cc11d}\label{classPoseControl_a6f79ce6f381059d5a350191f4b9cc11d}} 
+\index{PoseControl@{PoseControl}!OnBaseHeightMsg@{OnBaseHeightMsg}}
+\index{OnBaseHeightMsg@{OnBaseHeightMsg}!PoseControl@{PoseControl}}
+\doxysubsubsection{\texorpdfstring{OnBaseHeightMsg()}{OnBaseHeightMsg()}}
+{\footnotesize\ttfamily void Pose\+Control\+::\+On\+Base\+Height\+Msg (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Float64\+Const\+Ptr \&}]{\+\_\+msg }\end{DoxyParamCaption})}
+
+
+
+The On\+Base\+Height\+Msg function handles an incoming base height messages from R\+OS. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+msg} & A float array containing the desired base height command. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPoseControl_a64dcd9dfa34235e23785c8b163972842}\label{classPoseControl_a64dcd9dfa34235e23785c8b163972842}} 
+\index{PoseControl@{PoseControl}!OnBaseOrientationMsg@{OnBaseOrientationMsg}}
+\index{OnBaseOrientationMsg@{OnBaseOrientationMsg}!PoseControl@{PoseControl}}
+\doxysubsubsection{\texorpdfstring{OnBaseOrientationMsg()}{OnBaseOrientationMsg()}}
+{\footnotesize\ttfamily void Pose\+Control\+::\+On\+Base\+Orientation\+Msg (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&}]{\+\_\+msg }\end{DoxyParamCaption})}
+
+
+
+The On\+Base\+Orientation\+Msg function handles an incoming base orientation messages from R\+OS. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+msg} & A float array containing the desired base orientation command. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPoseControl_a77c29a9ac56fbbe252486a14f8717897}\label{classPoseControl_a77c29a9ac56fbbe252486a14f8717897}} 
+\index{PoseControl@{PoseControl}!OnBasePoseMsg@{OnBasePoseMsg}}
+\index{OnBasePoseMsg@{OnBasePoseMsg}!PoseControl@{PoseControl}}
+\doxysubsubsection{\texorpdfstring{OnBasePoseMsg()}{OnBasePoseMsg()}}
+{\footnotesize\ttfamily void Pose\+Control\+::\+On\+Base\+Pose\+Msg (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&}]{\+\_\+msg }\end{DoxyParamCaption})}
+
+
+
+The On\+Base\+Pose\+Msg function handles an incoming pose messages from R\+OS. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+msg} & A float array containing the desired base pose command. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPoseControl_a52d6a88c5553afc4fb3aab78dbd3ade8}\label{classPoseControl_a52d6a88c5553afc4fb3aab78dbd3ade8}} 
+\index{PoseControl@{PoseControl}!OnBasePositionMsg@{OnBasePositionMsg}}
+\index{OnBasePositionMsg@{OnBasePositionMsg}!PoseControl@{PoseControl}}
+\doxysubsubsection{\texorpdfstring{OnBasePositionMsg()}{OnBasePositionMsg()}}
+{\footnotesize\ttfamily void Pose\+Control\+::\+On\+Base\+Position\+Msg (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&}]{\+\_\+msg }\end{DoxyParamCaption})}
+
+
+
+The On\+Base\+Position\+Msg function handles an incoming base position messages from R\+OS. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+msg} & A float array containing the desired base position command. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPoseControl_acd653896115732b4e99e059d80327fd2}\label{classPoseControl_acd653896115732b4e99e059d80327fd2}} 
+\index{PoseControl@{PoseControl}!OnGenCoordMsg@{OnGenCoordMsg}}
+\index{OnGenCoordMsg@{OnGenCoordMsg}!PoseControl@{PoseControl}}
+\doxysubsubsection{\texorpdfstring{OnGenCoordMsg()}{OnGenCoordMsg()}}
+{\footnotesize\ttfamily void Pose\+Control\+::\+On\+Gen\+Coord\+Msg (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&}]{\+\_\+msg }\end{DoxyParamCaption})}
+
+
+
+The On\+Gen\+Coord\+Msg function handles an incoming generalized coordinates message from R\+OS. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+msg} & A float array containing the generalized coordinates. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+catkin\+\_\+ws/src/control/kinematics/include/kinematics/pose\+\_\+control.\+h\item 
+catkin\+\_\+ws/src/control/kinematics/src/pose\+\_\+control.\+cpp\end{DoxyCompactItemize}

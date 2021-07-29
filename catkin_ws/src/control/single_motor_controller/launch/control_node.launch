@@ -1,0 +1,26 @@
+<launch>
+    <node pkg="single_motor_controller" type="control_node" name="single_motor_controller_node" 
+        output="screen"/> 
+
+    <!-- ******************************************** -->
+    <!--                  Arguments                   -->
+    <!-- ******************************************** -->
+    <arg name="record_sys" default="true" />
+    <arg name="record_directory" default="/home/omicron/Tetrapod-Robot/logs" />
+
+    <!-- ******************************************** -->
+    <!--                  Logging                     -->
+    <!-- ******************************************** -->
+
+    <!-- Record data automatically in separate rosbags:
+            - system information (robot state)
+            - diagnostics (node output, diagnostics)     -->
+
+    <node pkg="rosbag" type="record" name="rosbag_single_motor_states"
+        args="record -o $(arg record_directory)/states /logging/states"
+        if="$(arg record_sys)" />
+
+    <node pkg="rosbag" type="record" name="rosbag_single_motor_references"
+        args="record -o $(arg record_directory)/references /logging/references"
+        if="$(arg record_sys)" />
+</launch>

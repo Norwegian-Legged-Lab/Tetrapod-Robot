@@ -1,0 +1,6 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" title=" " alt="" coords="5,56,108,83"/>
+<area shape="rect" id="node2" href="$classgazebo_1_1PendulumPlugin.html" title="A plugin to control the pendulum robot." alt="" coords="156,5,339,32"/>
+<area shape="rect" id="node3" href="$classgazebo_1_1SingleLegPlugin.html" title="A plugin to control the single_leg robot." alt="" coords="157,56,337,83"/>
+<area shape="rect" id="node4" href="$classgazebo_1_1TetrapodPlugin.html" title="A plugin to control the tetrapod robot." alt="" coords="161,107,334,133"/>
+</map>

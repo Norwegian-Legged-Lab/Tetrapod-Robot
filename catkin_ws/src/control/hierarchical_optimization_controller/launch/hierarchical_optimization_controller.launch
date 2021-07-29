@@ -1,0 +1,47 @@
+<launch>
+    <!-- ******************************************** -->
+    <!--                  Controller                  -->
+    <!-- ******************************************** -->
+    <node 
+        pkg="hierarchical_optimization_controller" type="hierarchical_optimization_controller_node" name="hierarchical_optimization_controller_node" 
+        output="screen" />
+
+    <!-- ******************************************** -->
+    <!--                  Arguments                   -->
+    <!-- ******************************************** -->
+    <arg name="record_sys" default="true" />
+    <arg name="record_directory" default="/home/paal/Tetrapod-Robot/bagfiles/ho_tests" />
+
+    <!-- ******************************************** -->
+    <!--                  Logging                     -->
+    <!-- ******************************************** -->
+
+    <!-- Record data automatically in separate rosbags:
+            - system information (robot state)
+            - diagnostics (node output, diagnostics)     -->
+
+    <node pkg="rosbag" type="record" name="rosbag_base_pose"
+        args="record -o $(arg record_directory)/base_pose /my_robot/base_pose"
+        if="$(arg record_sys)" />
+
+    <node pkg="rosbag" type="record" name="rosbag_base_pose_cmd"
+        args="record -o $(arg record_directory)/base_pose_cmd /my_robot/base_pose_cmd"
+        if="$(arg record_sys)" />
+
+    <node pkg="rosbag" type="record" name="rosbag_base_twist"
+        args="record -o $(arg record_directory)/base_twist /my_robot/base_twist"
+        if="$(arg record_sys)" />
+
+    <node pkg="rosbag" type="record" name="rosbag_base_twist_cmd"
+        args="record -o $(arg record_directory)/base_twist_cmd /my_robot/base_twist_cmd"
+        if="$(arg record_sys)" />
+
+    <node pkg="rosbag" type="record" name="rosbag_joint_states"
+        args="record -o $(arg record_directory)/joint_state /my_robot/joint_state"
+        if="$(arg record_sys)" />
+
+    <node pkg="rosbag" type="record" name="rosbag_joint_references"
+        args="record -o $(arg record_directory)/joint_state_cmd /my_robot/joint_state_cmd"
+        if="$(arg record_sys)" />
+
+</launch>

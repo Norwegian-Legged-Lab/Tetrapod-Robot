@@ -1,0 +1,5 @@
+<launch>
+    <include file="$(find single_motor_controller)/launch/control_node.launch" />
+
+    <include file="$(find single_motor_controller)/launch/rosserial_python.launch" />
+</launch>

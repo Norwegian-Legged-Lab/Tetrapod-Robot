@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+
+<sdf version='1.7'>
+    <model name="pendulum">
+        <pose>0 0 0 0 0 0</pose>
+        <static>false</static>
+
+        <link name="base">
+            <pose>0 0 0 0 0 0</pose>
+
+            <!--We use some large inertial values to prevent the base from moving-->
+            <inertial>
+                <pose>0 0 0 0 0 0</pose>
+                <mass>10000</mass>
+                <inertia>
+                <ixx>10000</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>10000</iyy>
+                <iyz>0.0</iyz>
+                <izz>10000</izz>
+                </inertia>
+            </inertial>
+
+            <visual name="ground_visual">
+                <pose>0 0 0.1 0 0 0</pose>
+                <geometry>
+                    <box>
+                        <size>1.0 1.0 0.2</size>
+                    </box>
+                </geometry>
+            </visual>
+            <collision name="ground_collision">
+                <pose>0 0 0.1 0 0 0</pose>
+                <geometry>
+                    <box>
+                        <size>1.0 1.0 0.2</size>
+                    </box>
+                </geometry>
+            </collision>
+            <visual name="base_visual">
+                <pose>0 0 1.0 0 0 0</pose>
+                <geometry>
+                    <box>
+                        <size>0.1 0.1 2.0</size>
+                    </box>
+                </geometry>
+            </visual>
+            <collision name="base_collision">
+                <pose>0 0 1.0 0 0 0</pose>
+                <geometry>
+                    <box>
+                        <size>0.1 0.1 2.0</size>
+                    </box>
+                </geometry>
+            </collision>
+        </link>
+
+        <link name="arm">
+            <pose>0.10 0 2 0 0 0</pose>
+            <inertial>
+                <pose>0 0 -1 0 0 0</pose>
+                <mass>1</mass>
+                <inertia>
+                <ixx>0.001</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>0.001</iyy>
+                <iyz>0.0</iyz>
+                <izz>0.001</izz>
+                </inertia>
+            </inertial>
+
+            <visual name="arm_visual">
+                <pose>0 0 -0.5 0 0 0</pose>
+                <geometry>
+                    <box>
+                        <size>0.1 0.1 1.0</size>
+                    </box>
+                </geometry>
+            </visual>
+            <collision name="arm_collision">
+                <pose>0 0 -0.5 0 0 0</pose>
+                <geometry>
+                    <box>
+                        <size>0.1 0.1 1.0</size>
+                    </box>
+                </geometry>
+            </collision>
+        </link>
+
+        <joint name="base_to_arm_joint" type="revolute">
+            <pose>0 0 0 0 0 0</pose> 
+
+            <child>arm</child>
+            <parent>base</parent>
+            <axis>
+                <xyz>1 0 0</xyz>
+                <limit>
+                    <lower>-3.14</lower>
+                    <upper>3.14</upper>
+                    <effort>10</effort>
+                    <velocity>1000</velocity>
+                </limit>
+            </axis>
+        </joint>       
+    </model>
+</sdf>

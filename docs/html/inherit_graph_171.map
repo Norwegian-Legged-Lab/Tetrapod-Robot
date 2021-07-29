@@ -1,0 +1,13 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" title=" " alt="" coords="5,107,92,133"/>
+<area shape="rect" id="node2" href="$classps3joy_1_1BadJoystickException.html" title=" " alt="" coords="161,5,367,32"/>
+<area shape="rect" id="node3" href="$classps3joy_1_1Quit.html" title=" " alt="" coords="217,56,311,83"/>
+<area shape="rect" id="node4" href="$classps3joy__node_1_1BadJoystickException.html" title=" " alt="" coords="140,107,388,133"/>
+<area shape="rect" id="node5" href="$classps3joy__node_1_1Quit.html" title=" " alt="" coords="197,157,331,184"/>
+<area shape="rect" id="node6" href="$classwiimote_1_1wiimoteExceptions_1_1WiimoteError.html" title=" " alt="" coords="161,209,367,250"/>
+<area shape="rect" id="node7" href="$classwiimote_1_1wiimoteExceptions_1_1CallbackStackEmptyError.html" title=" " alt="" coords="436,78,643,119"/>
+<area shape="rect" id="node8" href="$classwiimote_1_1wiimoteExceptions_1_1CallbackStackMultInstError.html" title=" " alt="" coords="436,143,643,185"/>
+<area shape="rect" id="node9" href="$classwiimote_1_1wiimoteExceptions_1_1ResumeNonPausedError.html" title=" " alt="" coords="436,209,643,250"/>
+<area shape="rect" id="node10" href="$classwiimote_1_1wiimoteExceptions_1_1WiimoteEnableError.html" title=" " alt="" coords="436,274,643,315"/>
+<area shape="rect" id="node11" href="$classwiimote_1_1wiimoteExceptions_1_1WiimoteNotFoundError.html" title=" " alt="" coords="436,339,643,381"/>
+</map>

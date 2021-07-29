@@ -1,0 +1,93 @@
+\hypertarget{classTeensySerial}{}\doxysection{Teensy\+Serial Class Reference}
+\label{classTeensySerial}\index{TeensySerial@{TeensySerial}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classTeensySerial_ac4b105b5e8932f652d1485e10ac1a27c}\label{classTeensySerial_ac4b105b5e8932f652d1485e10ac1a27c}} 
+{\bfseries Teensy\+Serial} (int \+\_\+number\+\_\+of\+\_\+motors)
+\item 
+bool \mbox{\hyperlink{classTeensySerial_a893027c99927bb0276fbda571478948b}{are\+Control\+Commands\+Available}} ()
+\begin{DoxyCompactList}\small\item\em Checks if there is any available data on the serial port. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTeensySerial_a0a8380ad5a637d05b8002a1a13285db5}{receive\+Control\+Commands}} (double \&\+\_\+control\+\_\+command\+\_\+type, double $\ast$\+\_\+control\+\_\+commands)
+\begin{DoxyCompactList}\small\item\em Reads control command data available on the serial command and stores it. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTeensySerial_a2dafe2375ce64b4f142562b191fe8e43}{send\+States}} (double $\ast$\+\_\+joint\+\_\+positions, double $\ast$\+\_\+joint\+\_\+velocities, double $\ast$\+\_\+joint\+\_\+torques)
+\begin{DoxyCompactList}\small\item\em Sends the joint states to the serial line. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classTeensySerial_ab77a80e1959ec357b036d71c0dc5eecb}\label{classTeensySerial_ab77a80e1959ec357b036d71c0dc5eecb}} 
+void {\bfseries print\+Tx\+Buffer} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classTeensySerial_aa9a5cd2b5714f223ef9458b03e2d855d}\label{classTeensySerial_aa9a5cd2b5714f223ef9458b03e2d855d}} 
+int \mbox{\hyperlink{classTeensySerial_aa9a5cd2b5714f223ef9458b03e2d855d}{number\+\_\+of\+\_\+motors}}
+\begin{DoxyCompactList}\small\item\em Number of motors. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classTeensySerial_a665def69986826f423b21e9ee2f3d554}\label{classTeensySerial_a665def69986826f423b21e9ee2f3d554}} 
+int \mbox{\hyperlink{classTeensySerial_a665def69986826f423b21e9ee2f3d554}{tx\+\_\+buffer\+\_\+size}}
+\begin{DoxyCompactList}\small\item\em Transmit buffer size. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classTeensySerial_a993a211cec364f6a73d9f9d5df5c0cf9}\label{classTeensySerial_a993a211cec364f6a73d9f9d5df5c0cf9}} 
+int \mbox{\hyperlink{classTeensySerial_a993a211cec364f6a73d9f9d5df5c0cf9}{rx\+\_\+buffer\+\_\+size}}
+\begin{DoxyCompactList}\small\item\em Receive buffer size. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classTeensySerial_af658e969788cec6e474ebed89f48a758}\label{classTeensySerial_af658e969788cec6e474ebed89f48a758}} 
+unsigned char $\ast$ \mbox{\hyperlink{classTeensySerial_af658e969788cec6e474ebed89f48a758}{rx\+\_\+buffer}}
+\begin{DoxyCompactList}\small\item\em Receive buffer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classTeensySerial_a0c5e457eb4e7fa8ccd9ca7985570ab47}\label{classTeensySerial_a0c5e457eb4e7fa8ccd9ca7985570ab47}} 
+unsigned char $\ast$ \mbox{\hyperlink{classTeensySerial_a0c5e457eb4e7fa8ccd9ca7985570ab47}{tx\+\_\+buffer}}
+\begin{DoxyCompactList}\small\item\em Transmit buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classTeensySerial_a893027c99927bb0276fbda571478948b}\label{classTeensySerial_a893027c99927bb0276fbda571478948b}} 
+\index{TeensySerial@{TeensySerial}!areControlCommandsAvailable@{areControlCommandsAvailable}}
+\index{areControlCommandsAvailable@{areControlCommandsAvailable}!TeensySerial@{TeensySerial}}
+\doxysubsubsection{\texorpdfstring{areControlCommandsAvailable()}{areControlCommandsAvailable()}}
+{\footnotesize\ttfamily bool Teensy\+Serial\+::are\+Control\+Commands\+Available (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Checks if there is any available data on the serial port. 
+
+\begin{DoxyReturn}{Returns}
+If there is data available on the serial line true is returned, otherwise false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTeensySerial_a0a8380ad5a637d05b8002a1a13285db5}\label{classTeensySerial_a0a8380ad5a637d05b8002a1a13285db5}} 
+\index{TeensySerial@{TeensySerial}!receiveControlCommands@{receiveControlCommands}}
+\index{receiveControlCommands@{receiveControlCommands}!TeensySerial@{TeensySerial}}
+\doxysubsubsection{\texorpdfstring{receiveControlCommands()}{receiveControlCommands()}}
+{\footnotesize\ttfamily void Teensy\+Serial\+::receive\+Control\+Commands (\begin{DoxyParamCaption}\item[{double \&}]{\+\_\+control\+\_\+command\+\_\+type,  }\item[{double $\ast$}]{\+\_\+control\+\_\+commands }\end{DoxyParamCaption})}
+
+
+
+Reads control command data available on the serial command and stores it. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em \+\_\+control\+\_\+command\+\_\+type} & A variable indicating whether position, velocity, or torque control should be used \\
+\hline
+\mbox{\texttt{ out}}  & {\em \+\_\+control\+\_\+commands} & An array of control command values \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classTeensySerial_a2dafe2375ce64b4f142562b191fe8e43}\label{classTeensySerial_a2dafe2375ce64b4f142562b191fe8e43}} 
+\index{TeensySerial@{TeensySerial}!sendStates@{sendStates}}
+\index{sendStates@{sendStates}!TeensySerial@{TeensySerial}}
+\doxysubsubsection{\texorpdfstring{sendStates()}{sendStates()}}
+{\footnotesize\ttfamily void Teensy\+Serial\+::send\+States (\begin{DoxyParamCaption}\item[{double $\ast$}]{\+\_\+joint\+\_\+positions,  }\item[{double $\ast$}]{\+\_\+joint\+\_\+velocities,  }\item[{double $\ast$}]{\+\_\+joint\+\_\+torques }\end{DoxyParamCaption})}
+
+
+
+Sends the joint states to the serial line. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em \+\_\+joint\+\_\+positions} & An array of measured joint positions from the motor \\
+\hline
+\mbox{\texttt{ out}}  & {\em \+\_\+joint\+\_\+velocities} & An array of measured joint velocities from the motor \\
+\hline
+\mbox{\texttt{ out}}  & {\em \+\_\+joint\+\_\+torques} & An array of measured joint torques from the motor \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Arduino/libraries/teensy\+\_\+serial/teensy\+\_\+serial.\+h\item 
+Arduino/libraries/teensy\+\_\+serial/teensy\+\_\+serial.\+cpp\end{DoxyCompactItemize}

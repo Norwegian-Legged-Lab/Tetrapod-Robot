@@ -1,0 +1,4 @@
+<map id="kindr::EulerAnglesXyz&lt; PrimType_ &gt;" name="kindr::EulerAnglesXyz&lt; PrimType_ &gt;">
+<area shape="rect" id="node1" title="Implementation of Euler angles (X&#45;Y&#39;&#45;Z&#39;&#39; / roll&#45;pitch&#45;yaw) rotation based on Eigen::Matrix&lt;Scalar,..." alt="" coords="49,95,213,136"/>
+<area shape="rect" id="node2" href="$classkindr_1_1RotationBase.html" title=" " alt="" coords="5,5,256,47"/>
+</map>

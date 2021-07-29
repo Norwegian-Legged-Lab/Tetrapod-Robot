@@ -1,0 +1,4 @@
+<map id="kindr::EulerAnglesXyzDiff&lt; PrimType_ &gt;" name="kindr::EulerAnglesXyzDiff&lt; PrimType_ &gt;">
+<area shape="rect" id="node1" title="Implementation of time derivatives of Euler angles (X,Y&#39;,Z&#39;&#39; / roll,pitch,yaw) based on Eigen::Matrix..." alt="" coords="5,109,193,151"/>
+<area shape="rect" id="node2" href="$classkindr_1_1RotationDiffBase.html" title=" " alt="" coords="12,5,187,61"/>
+</map>

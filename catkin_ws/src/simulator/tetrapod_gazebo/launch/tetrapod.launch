@@ -1,0 +1,20 @@
+<launch>
+
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find tetrapod_gazebo)/config/tetrapod_control.yaml" command="load"/>
+
+  <!-- Set description param -->
+  <param name="tetrapod_description" textfile="$(find tetrapod_description)/model.sdf"/>
+
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="verbose" value="true"/>
+    <arg name="paused" value="true"/>
+    <arg name="world_name" value="$(find tetrapod_gazebo)/worlds/tetrapod.world"/>
+    <!-- more default parameters can be changed here -->
+  </include>
+
+  <!-- Load contact sensor node -->
+  <node pkg="tetrapod_gazebo" name="contact_sensor" type="contact_sensor" output="screen"/>
+
+</launch>

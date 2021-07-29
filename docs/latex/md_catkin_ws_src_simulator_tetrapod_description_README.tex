@@ -1,0 +1,31 @@
+This R\+E\+A\+D\+ME serves as an overview of the contents of the tetrapod description.\hypertarget{md_catkin_ws_src_simulator_tetrapod_description_README_autotoc_md14}{}\doxysection{Joints}\label{md_catkin_ws_src_simulator_tetrapod_description_README_autotoc_md14}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Name }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Type  }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Name }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Type  }\\\cline{1-2}
+\endhead
+{\ttfamily front\+\_\+left\+\_\+hip\+\_\+yaw} &Revolute  \\\cline{1-2}
+{\ttfamily front\+\_\+left\+\_\+hip\+\_\+pitch} &Revolute  \\\cline{1-2}
+{\ttfamily front\+\_\+left\+\_\+knee\+\_\+joint} &Revolute  \\\cline{1-2}
+{\ttfamily front\+\_\+left\+\_\+foot\+\_\+joint} &Fixed  \\\cline{1-2}
+{\ttfamily front\+\_\+right\+\_\+hip\+\_\+yaw} &Revolute  \\\cline{1-2}
+{\ttfamily front\+\_\+right\+\_\+hip\+\_\+pitch} &Revolute  \\\cline{1-2}
+{\ttfamily front\+\_\+right\+\_\+knee\+\_\+joint} &Revolute  \\\cline{1-2}
+{\ttfamily front\+\_\+right\+\_\+foot\+\_\+joint} &Fixed  \\\cline{1-2}
+{\ttfamily rear\+\_\+left\+\_\+hip\+\_\+yaw} &Revolute  \\\cline{1-2}
+{\ttfamily rear\+\_\+left\+\_\+hip\+\_\+pitch} &Revolute  \\\cline{1-2}
+{\ttfamily rear\+\_\+left\+\_\+knee\+\_\+joint} &Revolute  \\\cline{1-2}
+{\ttfamily rear\+\_\+left\+\_\+foot\+\_\+joint} &Fixed  \\\cline{1-2}
+{\ttfamily rear\+\_\+right\+\_\+hip\+\_\+yaw} &Revolute  \\\cline{1-2}
+{\ttfamily rear\+\_\+right\+\_\+hip\+\_\+pitch} &Revolute  \\\cline{1-2}
+{\ttfamily rear\+\_\+right\+\_\+knee\+\_\+joint} &Revolute  \\\cline{1-2}
+{\ttfamily rear\+\_\+right\+\_\+foot\+\_\+joint} &Fixed  \\\cline{1-2}
+\end{longtabu}
+
+
+N\+B! In the S\+DF model you should not use \char`\"{}too smal\char`\"{} inertial values. This will upset the physics simulator and cause havoc in the simulator. Because there is a lot of jitter in gazebo, the d gains should generally be set low, because this prevents static movement. 

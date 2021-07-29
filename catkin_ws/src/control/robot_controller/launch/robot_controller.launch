@@ -1,0 +1,42 @@
+<launch>
+    <node pkg="robot_controller" type="robot_controller_node" name="robot_controller_node" output="screen" />
+
+    <!-- ******************************************** -->
+    <!--                  Arguments                   -->
+    <!-- ******************************************** -->
+    <arg name="record_sys" default="true" />
+    <arg name="record_directory" default="/home/intel/Tetrapod-Robot/bagfiles/gait_tests" />
+
+    <!-- ******************************************** -->
+    <!--                  Logging                     -->
+    <!-- ******************************************** -->
+
+    <!-- Record data automatically in separate rosbags:
+            - system information (robot state)
+            - diagnostics (node output, diagnostics)     -->
+
+    <node pkg="rosbag" type="record" name="rosbag_base_pose"
+        args="record -o $(arg record_directory)/base_pose /log/base_pose_state"
+        if="$(arg record_sys)" />
+
+    <node pkg="rosbag" type="record" name="rosbag_base_pose_cmd"
+        args="record -o $(arg record_directory)/base_pose_cmd /log/base_pose_commands"
+        if="$(arg record_sys)" />
+
+    <node pkg="rosbag" type="record" name="rosbag_base_twist"
+        args="record -o $(arg record_directory)/base_twist /log/base_twist_state"
+        if="$(arg record_sys)" />
+
+    <node pkg="rosbag" type="record" name="rosbag_base_twist_cmd"
+        args="record -o $(arg record_directory)/base_twist_cmd /log/base_twist_commands"
+        if="$(arg record_sys)" />
+
+    <node pkg="rosbag" type="record" name="rosbag_joint_states"
+        args="record -o $(arg record_directory)/joint_state /log/joint_states"
+        if="$(arg record_sys)" />
+
+    <node pkg="rosbag" type="record" name="rosbag_joint_references"
+        args="record -o $(arg record_directory)/joint_state_cmd /log/joint_commands"
+        if="$(arg record_sys)" />
+
+</launch>

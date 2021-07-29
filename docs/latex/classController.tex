@@ -1,0 +1,173 @@
+\hypertarget{classController}{}\doxysection{Controller Class Reference}
+\label{classController}\index{Controller@{Controller}}
+
+
+Inheritance diagram for Controller\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=173pt]{classController__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Controller\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=174pt]{classController__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classController_a662fe4b20cfb338f0936a1983305770f}\label{classController_a662fe4b20cfb338f0936a1983305770f}} 
+{\bfseries Controller} (int controller\+\_\+freq)
+\item 
+\mbox{\Hypertarget{classController_acd43dfe045373dc46e0b47e120745038}\label{classController_acd43dfe045373dc46e0b47e120745038}} 
+void {\bfseries wait\+For\+Ready\+To\+Proceed} ()
+\item 
+\mbox{\Hypertarget{classController_a9635a5c77031b610febe90725af7f123}\label{classController_a9635a5c77031b610febe90725af7f123}} 
+virtual void {\bfseries Update\+Feet\+References} ()=0
+\item 
+\mbox{\Hypertarget{classController_a0449baeb66c81108867fe63d76b537c5}\label{classController_a0449baeb66c81108867fe63d76b537c5}} 
+bool {\bfseries Update\+Joint\+Commands} ()
+\item 
+\mbox{\Hypertarget{classController_ae736b659b7a5f45b631c87eb0a966d90}\label{classController_ae736b659b7a5f45b631c87eb0a966d90}} 
+bool {\bfseries send\+Joint\+Position\+Commands} ()
+\item 
+\mbox{\Hypertarget{classController_aefc59b1e93e6013faab2b2fd7dad1efb}\label{classController_aefc59b1e93e6013faab2b2fd7dad1efb}} 
+virtual void {\bfseries set\+Initial\+Configuration} ()
+\item 
+\mbox{\Hypertarget{classController_ad3d246e4dc70ae2e333f1b74861558ab}\label{classController_ad3d246e4dc70ae2e333f1b74861558ab}} 
+void {\bfseries init\+R\+OS} ()
+\item 
+\mbox{\Hypertarget{classController_a148eec01e763677b27bb70c726c9ca58}\label{classController_a148eec01e763677b27bb70c726c9ca58}} 
+void {\bfseries joint\+State\+Callback} (const sensor\+\_\+msgs\+::\+Joint\+State\+Ptr \&msg)
+\item 
+\mbox{\Hypertarget{classController_a8a7cc6a5cff67ea6ee709b1bf5d51e28}\label{classController_a8a7cc6a5cff67ea6ee709b1bf5d51e28}} 
+void {\bfseries ready\+To\+Proceed\+Callback} (const std\+\_\+msgs\+::\+Bool \&msg)
+\item 
+\mbox{\Hypertarget{classController_a0a83e6773441e7419a912c06ea0feded}\label{classController_a0a83e6773441e7419a912c06ea0feded}} 
+void \mbox{\hyperlink{classController_a0a83e6773441e7419a912c06ea0feded}{Twist\+Command\+Callback}} (const geometry\+\_\+msgs\+::\+Twist\+Const\+Ptr \&\+\_\+msg)
+\begin{DoxyCompactList}\small\item\em Converts twist command messages into desired linear and angular body velocities. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classController_ad81a67232a89dee5cc3be0a1d4508f3a}\label{classController_ad81a67232a89dee5cc3be0a1d4508f3a}} 
+using {\bfseries Joint\+State} = Eigen\+::\+Matrix$<$ double, 12, 1 $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classController_ab708b9f0c358de5f24038848c033a3b6}\label{classController_ab708b9f0c358de5f24038848c033a3b6}} 
+std\+::string {\bfseries node\+\_\+name} = \char`\"{}controller\+\_\+node\char`\"{}
+\item 
+\mbox{\Hypertarget{classController_ab040f5df5ec13e33e0033de7936eb5bc}\label{classController_ab040f5df5ec13e33e0033de7936eb5bc}} 
+std\+::string {\bfseries robot\+\_\+name} = R\+O\+B\+O\+T\+\_\+\+N\+A\+ME
+\item 
+\mbox{\Hypertarget{classController_a9a68485769c0b78bdd3c5e7050821f19}\label{classController_a9a68485769c0b78bdd3c5e7050821f19}} 
+int {\bfseries controller\+\_\+freq}
+\item 
+\mbox{\Hypertarget{classController_a90e10804b2d5186d39298152bc4d8172}\label{classController_a90e10804b2d5186d39298152bc4d8172}} 
+\mbox{\hyperlink{classKinematics}{Kinematics}} {\bfseries kinematics}
+\item 
+\mbox{\Hypertarget{classController_a0a25cc4805c75c868e3c84b8a45e51ef}\label{classController_a0a25cc4805c75c868e3c84b8a45e51ef}} 
+ros\+::\+Node\+Handle\+Ptr {\bfseries node\+Handle}
+\item 
+\mbox{\Hypertarget{classController_a5c885d5967551508449483dc9a1fd5c6}\label{classController_a5c885d5967551508449483dc9a1fd5c6}} 
+ros\+::\+Publisher {\bfseries joint\+\_\+command\+\_\+publisher}
+\item 
+\mbox{\Hypertarget{classController_aced004f1811ea63a1029482527272bb2}\label{classController_aced004f1811ea63a1029482527272bb2}} 
+ros\+::\+Subscriber {\bfseries joint\+\_\+state\+\_\+subscriber}
+\item 
+\mbox{\Hypertarget{classController_a3c4543445981fe7bdf3e7236719bf3ad}\label{classController_a3c4543445981fe7bdf3e7236719bf3ad}} 
+ros\+::\+Subscriber {\bfseries ready\+\_\+to\+\_\+proceed\+\_\+subscriber}
+\item 
+\mbox{\Hypertarget{classController_a4fba78e17b2518fafcd54239d39afaec}\label{classController_a4fba78e17b2518fafcd54239d39afaec}} 
+ros\+::\+Subscriber \mbox{\hyperlink{classController_a4fba78e17b2518fafcd54239d39afaec}{twist\+\_\+command\+\_\+subscriber}}
+\begin{DoxyCompactList}\small\item\em Subscribes to twist command messages from an external controller. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classController_a1e084a65c35495f9894977939953e801}\label{classController_a1e084a65c35495f9894977939953e801}} 
+Eigen\+::\+Vector3d {\bfseries fl\+\_\+offset} = Eigen\+::\+Vector3d(L\+E\+G\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+L\+E\+N\+G\+TH, L\+E\+G\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+L\+E\+N\+G\+TH, 0)
+\item 
+\mbox{\Hypertarget{classController_a013ca21ece18f7854d2cc7b56736392d}\label{classController_a013ca21ece18f7854d2cc7b56736392d}} 
+Eigen\+::\+Vector3d {\bfseries fr\+\_\+offset} = Eigen\+::\+Vector3d(L\+E\+G\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+L\+E\+N\+G\+TH, -\/L\+E\+G\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+L\+E\+N\+G\+TH, 0)
+\item 
+\mbox{\Hypertarget{classController_ac986315c0ce020553ebb51193387e8d4}\label{classController_ac986315c0ce020553ebb51193387e8d4}} 
+Eigen\+::\+Vector3d {\bfseries rl\+\_\+offset} = Eigen\+::\+Vector3d(-\/L\+E\+G\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+L\+E\+N\+G\+TH, L\+E\+G\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+L\+E\+N\+G\+TH, 0)
+\item 
+\mbox{\Hypertarget{classController_a49b046be06009b1c230693e4fbec81de}\label{classController_a49b046be06009b1c230693e4fbec81de}} 
+Eigen\+::\+Vector3d {\bfseries rr\+\_\+offset} = Eigen\+::\+Vector3d(-\/L\+E\+G\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+L\+E\+N\+G\+TH, -\/L\+E\+G\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+L\+E\+N\+G\+TH, 0)
+\item 
+\mbox{\Hypertarget{classController_a942efe36263a2e13400085845533d0a7}\label{classController_a942efe36263a2e13400085845533d0a7}} 
+Eigen\+::\+Vector3d {\bfseries fl\+\_\+position\+\_\+body}
+\item 
+\mbox{\Hypertarget{classController_aafbb1b494219caa637960dbd6ce8af10}\label{classController_aafbb1b494219caa637960dbd6ce8af10}} 
+Eigen\+::\+Vector3d {\bfseries fr\+\_\+position\+\_\+body}
+\item 
+\mbox{\Hypertarget{classController_a4ee31833098af0ad310e4c826e8f00df}\label{classController_a4ee31833098af0ad310e4c826e8f00df}} 
+Eigen\+::\+Vector3d {\bfseries rl\+\_\+position\+\_\+body}
+\item 
+\mbox{\Hypertarget{classController_a9b598e0530d38498d26c0435d851624c}\label{classController_a9b598e0530d38498d26c0435d851624c}} 
+Eigen\+::\+Vector3d {\bfseries rr\+\_\+position\+\_\+body}
+\item 
+\mbox{\Hypertarget{classController_a3c19cc640f2eb53b89115c7e396f16e1}\label{classController_a3c19cc640f2eb53b89115c7e396f16e1}} 
+Eigen\+::\+Vector3d {\bfseries fl\+\_\+velocity\+\_\+body}
+\item 
+\mbox{\Hypertarget{classController_afa7baf2089ecefa2bf0322a291d02948}\label{classController_afa7baf2089ecefa2bf0322a291d02948}} 
+Eigen\+::\+Vector3d {\bfseries fr\+\_\+velocity\+\_\+body}
+\item 
+\mbox{\Hypertarget{classController_ad3d919c93a1289ff78e7885b7766d502}\label{classController_ad3d919c93a1289ff78e7885b7766d502}} 
+Eigen\+::\+Vector3d {\bfseries rl\+\_\+velocity\+\_\+body}
+\item 
+\mbox{\Hypertarget{classController_ac9073c51c3bc537dbc01ca929451668e}\label{classController_ac9073c51c3bc537dbc01ca929451668e}} 
+Eigen\+::\+Vector3d {\bfseries rr\+\_\+velocity\+\_\+body}
+\item 
+\mbox{\Hypertarget{classController_a0d4e840e2953a762e48c28973daa2165}\label{classController_a0d4e840e2953a762e48c28973daa2165}} 
+Eigen\+::\+Vector3d {\bfseries fl\+\_\+acceleration\+\_\+body}
+\item 
+\mbox{\Hypertarget{classController_aa9417482f4a29ba95ead414d3525bd3c}\label{classController_aa9417482f4a29ba95ead414d3525bd3c}} 
+Eigen\+::\+Vector3d {\bfseries fr\+\_\+acceleration\+\_\+body}
+\item 
+\mbox{\Hypertarget{classController_a755bb8529b9f5baa9d4828235b37615a}\label{classController_a755bb8529b9f5baa9d4828235b37615a}} 
+Eigen\+::\+Vector3d {\bfseries rl\+\_\+acceleration\+\_\+body}
+\item 
+\mbox{\Hypertarget{classController_acd44cbf442635e4a69311fe32d2f040d}\label{classController_acd44cbf442635e4a69311fe32d2f040d}} 
+Eigen\+::\+Vector3d {\bfseries rr\+\_\+acceleration\+\_\+body}
+\item 
+\mbox{\Hypertarget{classController_ad2ad7888a05f837c3ac70c4f0db4c34d}\label{classController_ad2ad7888a05f837c3ac70c4f0db4c34d}} 
+Joint\+State {\bfseries joint\+\_\+angle\+\_\+commands} = Joint\+State\+::\+Zero()
+\item 
+\mbox{\Hypertarget{classController_a8079f9d219c4f86203af7be8a8999e37}\label{classController_a8079f9d219c4f86203af7be8a8999e37}} 
+Joint\+State {\bfseries joint\+\_\+velocity\+\_\+commands} = Joint\+State\+::\+Zero()
+\item 
+\mbox{\Hypertarget{classController_a8b75be0570e4ab65c9c88bdcb6dbaaf0}\label{classController_a8b75be0570e4ab65c9c88bdcb6dbaaf0}} 
+Joint\+State {\bfseries joint\+\_\+acceleration\+\_\+commands} = Joint\+State\+::\+Zero()
+\item 
+\mbox{\Hypertarget{classController_a375d7ae17e48cfa103902550c96017f0}\label{classController_a375d7ae17e48cfa103902550c96017f0}} 
+Joint\+State {\bfseries joint\+\_\+angles} = Joint\+State\+::\+Constant(U\+N\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+E\+D\+\_\+\+J\+O\+I\+N\+T\+\_\+\+S\+T\+A\+TE)
+\item 
+\mbox{\Hypertarget{classController_aea4229966ac06503451b2a1e28ee48ea}\label{classController_aea4229966ac06503451b2a1e28ee48ea}} 
+Joint\+State {\bfseries joint\+\_\+velocities} = Joint\+State\+::\+Zero()
+\item 
+\mbox{\Hypertarget{classController_abc876492f4e70d3c9be7b37681f2d926}\label{classController_abc876492f4e70d3c9be7b37681f2d926}} 
+double \mbox{\hyperlink{classController_abc876492f4e70d3c9be7b37681f2d926}{lin\+\_\+vel\+\_\+x}} = 0.\+0
+\begin{DoxyCompactList}\small\item\em The desired linear robot velocity in the body frame\textquotesingle{}s x direction. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classController_a2734d863bd86af8642cc8f7b6eb115d2}\label{classController_a2734d863bd86af8642cc8f7b6eb115d2}} 
+double \mbox{\hyperlink{classController_a2734d863bd86af8642cc8f7b6eb115d2}{lin\+\_\+vel\+\_\+y}} = 0.\+0
+\begin{DoxyCompactList}\small\item\em The desired linear robot velocity in the body frame\textquotesingle{}s y direction. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classController_aa357248280438bae103c8da7ba5dacf3}\label{classController_aa357248280438bae103c8da7ba5dacf3}} 
+double \mbox{\hyperlink{classController_aa357248280438bae103c8da7ba5dacf3}{ang\+\_\+vel\+\_\+z}} = 0.\+0
+\begin{DoxyCompactList}\small\item\em The desired angular robot velocity around the robot\textquotesingle{}s z axis. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classController_a0f2aa2751bbccb7ef3a7f705827603ec}\label{classController_a0f2aa2751bbccb7ef3a7f705827603ec}} 
+bool {\bfseries ready\+\_\+to\+\_\+proceed} = false
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+catkin\+\_\+ws/src/control/controller/include/controller/controller.\+h\item 
+catkin\+\_\+ws/src/control/controller/src/controller.\+cpp\end{DoxyCompactItemize}

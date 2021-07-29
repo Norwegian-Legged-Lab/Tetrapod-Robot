@@ -1,0 +1,5 @@
+<launch>
+    <include file="$(find single_leg_gazebo)/launch/single_leg.launch" />
+
+    <include file="$(find single_leg_controller)/launch/tracking_test.launch" />
+</launch>

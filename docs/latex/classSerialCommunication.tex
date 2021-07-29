@@ -1,0 +1,274 @@
+\hypertarget{classSerialCommunication}{}\doxysection{Serial\+Communication Class Reference}
+\label{classSerialCommunication}\index{SerialCommunication@{SerialCommunication}}
+
+
+A class for serial communication.  
+
+
+
+
+{\ttfamily \#include $<$serial\+\_\+communication.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classSerialCommunication_a56b84cebdbb578aa2475f7302183ceb3}\label{classSerialCommunication_a56b84cebdbb578aa2475f7302183ceb3}} 
+enum \mbox{\hyperlink{classSerialCommunication_a56b84cebdbb578aa2475f7302183ceb3}{Control\+Mode}} \{ {\bfseries position} = 1, 
+{\bfseries velocity} = 2, 
+{\bfseries torque} = 3
+ \}
+\begin{DoxyCompactList}\small\item\em Control mode enumerator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classSerialCommunication_a3537e3a31982286532e82883da4fc280}\label{classSerialCommunication_a3537e3a31982286532e82883da4fc280}} 
+\mbox{\hyperlink{classSerialCommunication_a3537e3a31982286532e82883da4fc280}{Serial\+Communication}} ()
+\begin{DoxyCompactList}\small\item\em Default Constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classSerialCommunication_a8182dab517152361a2369c06442c9705}{Serial\+Communication}} (const std\+::string \&\+\_\+port)
+\begin{DoxyCompactList}\small\item\em Custom Constructor, defaults number of motors to 6. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classSerialCommunication_ad81f295ec38355ad4092722605ca28b9}{Serial\+Communication}} (const std\+::string \&\+\_\+port, const int \&\+\_\+num\+\_\+motors)
+\begin{DoxyCompactList}\small\item\em Custom Constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSerialCommunication_a60717eff5f66d85af40812811ca6321d}\label{classSerialCommunication_a60717eff5f66d85af40812811ca6321d}} 
+virtual \mbox{\hyperlink{classSerialCommunication_a60717eff5f66d85af40812811ca6321d}{$\sim$\+Serial\+Communication}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix$<$ Eigen\+::\+Vector\+Xd, 3, 1 $>$ \mbox{\hyperlink{classSerialCommunication_afec8804f5bd1f81508125973cf0c3891}{Receive\+Message}} ()
+\begin{DoxyCompactList}\small\item\em The Receive\+Message function listens for serial messages of incoming joint state data from the motors and assign corresponding values to a joint state vector of vectors. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSerialCommunication_a9c053361febd63c80c168857ff04f4d3}{Send\+Message}} (const \mbox{\hyperlink{classSerialCommunication_a56b84cebdbb578aa2475f7302183ceb3}{Control\+Mode}} \&\+\_\+control\+\_\+mode, const std\+::vector$<$ double $>$ \&\+\_\+state)
+\begin{DoxyCompactList}\small\item\em The Send\+Message function handles the sending of joint state command messages to the motors. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classSerialCommunication_aa5d08b015626c6011c4fb6cc8a24d02d}{Is\+New\+Data\+Available}} ()
+\begin{DoxyCompactList}\small\item\em The Is\+New\+Data\+Available function checks if there is available data on the serial port. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSerialCommunication_af2971a59f6d4cd3218d390b24f1998d8}{Set\+Port}} (const std\+::string \&\+\_\+port)
+\begin{DoxyCompactList}\small\item\em Set the port for the Teensy communication after creating the constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSerialCommunication_a039f761bdeb6af087180029f97eb7bba}{Set\+Number\+Of\+Motors}} (const int \&\+\_\+number\+\_\+of\+\_\+motors)
+\begin{DoxyCompactList}\small\item\em Set the number of motors for the port after creating the constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSerialCommunication_a434aa96e2295038ee0a514a878693f58}\label{classSerialCommunication_a434aa96e2295038ee0a514a878693f58}} 
+void \mbox{\hyperlink{classSerialCommunication_a434aa96e2295038ee0a514a878693f58}{Init\+Lib\+Serial}} ()
+\begin{DoxyCompactList}\small\item\em The Init\+Lib\+Serial function initializes the serial port to the correct input and sets baud rate, character size, flow control, and stop bits. It also sets buffer sizes for transmit (TX) and receive (RX). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Eigen\+::\+Matrix$<$ Eigen\+::\+Vector\+Xd, 3, 1 $>$ \mbox{\hyperlink{classSerialCommunication_af62714c9ae5aedc7430cc7f2d189a6df}{Unpackage\+Buffer}} (unsigned char $\ast$\+\_\+data)
+\begin{DoxyCompactList}\small\item\em The Unpackage\+Buffer function unpacks the read buffer data into joint state data vectors. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSerialCommunication_ad2fb05dc147555b81067d0112d43b281}{Package\+Buffer}} (const \mbox{\hyperlink{classSerialCommunication_a56b84cebdbb578aa2475f7302183ceb3}{Control\+Mode}} \&\+\_\+control\+\_\+mode, const double $\ast$\+\_\+data)
+\begin{DoxyCompactList}\small\item\em The Package\+Buffer function fills the transmit buffer with control mode and control command data to be transmitted on the serial port. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSerialCommunication_a267d25805b1fed1b530f2d4337b8ad9e}{Package\+Buffer\+Control\+Mode}} (const double $\ast$\+\_\+data)
+\begin{DoxyCompactList}\small\item\em The Package\+Buffer\+Control\+Mode function fills the transmit buffer with control mode data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSerialCommunication_a2ad3ea03bbb959f4a50afbd217445a61}{Package\+Buffer\+Control\+Command}} (const double $\ast$\+\_\+data)
+\begin{DoxyCompactList}\small\item\em The Package\+Buffer\+Control\+Command function fills the transmit buffer with control command data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classSerialCommunication_abbd72edea278bf93c96dc11e738290a1}\label{classSerialCommunication_abbd72edea278bf93c96dc11e738290a1}} 
+int \mbox{\hyperlink{classSerialCommunication_abbd72edea278bf93c96dc11e738290a1}{num\+\_\+motors}}
+\begin{DoxyCompactList}\small\item\em Number of motors. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSerialCommunication_aaadefe360b83aa67abb14940a7fd5d6c}\label{classSerialCommunication_aaadefe360b83aa67abb14940a7fd5d6c}} 
+std\+::string \mbox{\hyperlink{classSerialCommunication_aaadefe360b83aa67abb14940a7fd5d6c}{port}}
+\begin{DoxyCompactList}\small\item\em Serial Port. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSerialCommunication_ab5200e01361e330cd5ea8776f71428d5}\label{classSerialCommunication_ab5200e01361e330cd5ea8776f71428d5}} 
+Lib\+Serial\+::\+Serial\+Port \mbox{\hyperlink{classSerialCommunication_ab5200e01361e330cd5ea8776f71428d5}{serial\+\_\+port}}
+\begin{DoxyCompactList}\small\item\em Lib\+Serial object instance. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSerialCommunication_adabaa5eb4066bfe28798d9e1fe21683b}\label{classSerialCommunication_adabaa5eb4066bfe28798d9e1fe21683b}} 
+int \mbox{\hyperlink{classSerialCommunication_adabaa5eb4066bfe28798d9e1fe21683b}{T\+X\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}}
+\begin{DoxyCompactList}\small\item\em Serial transmit buffer size. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSerialCommunication_a1c283b93b60c304d522fda6b933e99fc}\label{classSerialCommunication_a1c283b93b60c304d522fda6b933e99fc}} 
+int \mbox{\hyperlink{classSerialCommunication_a1c283b93b60c304d522fda6b933e99fc}{R\+X\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}}
+\begin{DoxyCompactList}\small\item\em Serial read buffer size. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSerialCommunication_a684c7a1393e47ab1d28a99d81b4cb562}\label{classSerialCommunication_a684c7a1393e47ab1d28a99d81b4cb562}} 
+std\+::vector$<$ unsigned char $>$ \mbox{\hyperlink{classSerialCommunication_a684c7a1393e47ab1d28a99d81b4cb562}{tx\+\_\+buffer}}
+\begin{DoxyCompactList}\small\item\em Serial transmit buffer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSerialCommunication_a106312f387aad10048be58f8c8b34ec3}\label{classSerialCommunication_a106312f387aad10048be58f8c8b34ec3}} 
+std\+::vector$<$ unsigned char $>$ \mbox{\hyperlink{classSerialCommunication_a106312f387aad10048be58f8c8b34ec3}{rx\+\_\+buffer}}
+\begin{DoxyCompactList}\small\item\em Serial read buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classSerialCommunication_af88d1a67e4fc25dd5adef7af245cfaa1}\label{classSerialCommunication_af88d1a67e4fc25dd5adef7af245cfaa1}} 
+static constexpr double \mbox{\hyperlink{classSerialCommunication_af88d1a67e4fc25dd5adef7af245cfaa1}{rx\+\_\+timeout}} = 0.\+00001
+\begin{DoxyCompactList}\small\item\em Read buffer timeout. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class for serial communication. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classSerialCommunication_a8182dab517152361a2369c06442c9705}\label{classSerialCommunication_a8182dab517152361a2369c06442c9705}} 
+\index{SerialCommunication@{SerialCommunication}!SerialCommunication@{SerialCommunication}}
+\index{SerialCommunication@{SerialCommunication}!SerialCommunication@{SerialCommunication}}
+\doxysubsubsection{\texorpdfstring{SerialCommunication()}{SerialCommunication()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Serial\+Communication\+::\+Serial\+Communication (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+port }\end{DoxyParamCaption})}
+
+
+
+Custom Constructor, defaults number of motors to 6. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+port} & Serial port name for teensy communication. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSerialCommunication_ad81f295ec38355ad4092722605ca28b9}\label{classSerialCommunication_ad81f295ec38355ad4092722605ca28b9}} 
+\index{SerialCommunication@{SerialCommunication}!SerialCommunication@{SerialCommunication}}
+\index{SerialCommunication@{SerialCommunication}!SerialCommunication@{SerialCommunication}}
+\doxysubsubsection{\texorpdfstring{SerialCommunication()}{SerialCommunication()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Serial\+Communication\+::\+Serial\+Communication (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+port,  }\item[{const int \&}]{\+\_\+num\+\_\+motors }\end{DoxyParamCaption})}
+
+
+
+Custom Constructor. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+port} & Serial port name for teensy communication. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+num\+\_\+motors} & Number of motors in use. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSerialCommunication_afec8804f5bd1f81508125973cf0c3891}\label{classSerialCommunication_afec8804f5bd1f81508125973cf0c3891}} 
+\index{SerialCommunication@{SerialCommunication}!ReceiveMessage@{ReceiveMessage}}
+\index{ReceiveMessage@{ReceiveMessage}!SerialCommunication@{SerialCommunication}}
+\doxysubsubsection{\texorpdfstring{ReceiveMessage()}{ReceiveMessage()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ Eigen\+::\+Vector\+Xd, 3, 1 $>$ Serial\+Communication\+::\+Receive\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The Receive\+Message function listens for serial messages of incoming joint state data from the motors and assign corresponding values to a joint state vector of vectors. 
+
+\begin{DoxyReturn}{Returns}
+Returns joint positions, velocities, and torques in the form of a vector containing the 3 respective vectors. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSerialCommunication_a9c053361febd63c80c168857ff04f4d3}\label{classSerialCommunication_a9c053361febd63c80c168857ff04f4d3}} 
+\index{SerialCommunication@{SerialCommunication}!SendMessage@{SendMessage}}
+\index{SendMessage@{SendMessage}!SerialCommunication@{SerialCommunication}}
+\doxysubsubsection{\texorpdfstring{SendMessage()}{SendMessage()}}
+{\footnotesize\ttfamily void Serial\+Communication\+::\+Send\+Message (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classSerialCommunication_a56b84cebdbb578aa2475f7302183ceb3}{Control\+Mode}} \&}]{\+\_\+control\+\_\+mode,  }\item[{const std\+::vector$<$ double $>$ \&}]{\+\_\+state }\end{DoxyParamCaption})}
+
+
+
+The Send\+Message function handles the sending of joint state command messages to the motors. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+control\+\_\+mode} & Desired motor control mode. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+state} & Desired motor commands. ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSerialCommunication_af62714c9ae5aedc7430cc7f2d189a6df}\label{classSerialCommunication_af62714c9ae5aedc7430cc7f2d189a6df}} 
+\index{SerialCommunication@{SerialCommunication}!UnpackageBuffer@{UnpackageBuffer}}
+\index{UnpackageBuffer@{UnpackageBuffer}!SerialCommunication@{SerialCommunication}}
+\doxysubsubsection{\texorpdfstring{UnpackageBuffer()}{UnpackageBuffer()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ Eigen\+::\+Vector\+Xd, 3, 1 $>$ Serial\+Communication\+::\+Unpackage\+Buffer (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The Unpackage\+Buffer function unpacks the read buffer data into joint state data vectors. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+data} & Read buffer data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns joint positions, velocities, and torques in the form of a vector containing the 3 respective vectors. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSerialCommunication_ad2fb05dc147555b81067d0112d43b281}\label{classSerialCommunication_ad2fb05dc147555b81067d0112d43b281}} 
+\index{SerialCommunication@{SerialCommunication}!PackageBuffer@{PackageBuffer}}
+\index{PackageBuffer@{PackageBuffer}!SerialCommunication@{SerialCommunication}}
+\doxysubsubsection{\texorpdfstring{PackageBuffer()}{PackageBuffer()}}
+{\footnotesize\ttfamily void Serial\+Communication\+::\+Package\+Buffer (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classSerialCommunication_a56b84cebdbb578aa2475f7302183ceb3}{Control\+Mode}} \&}]{\+\_\+control\+\_\+mode,  }\item[{const double $\ast$}]{\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The Package\+Buffer function fills the transmit buffer with control mode and control command data to be transmitted on the serial port. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+control\+\_\+mode} & Motor control mode. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+data} & Motor command data. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSerialCommunication_a267d25805b1fed1b530f2d4337b8ad9e}\label{classSerialCommunication_a267d25805b1fed1b530f2d4337b8ad9e}} 
+\index{SerialCommunication@{SerialCommunication}!PackageBufferControlMode@{PackageBufferControlMode}}
+\index{PackageBufferControlMode@{PackageBufferControlMode}!SerialCommunication@{SerialCommunication}}
+\doxysubsubsection{\texorpdfstring{PackageBufferControlMode()}{PackageBufferControlMode()}}
+{\footnotesize\ttfamily void Serial\+Communication\+::\+Package\+Buffer\+Control\+Mode (\begin{DoxyParamCaption}\item[{const double $\ast$}]{\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The Package\+Buffer\+Control\+Mode function fills the transmit buffer with control mode data. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+data} & Control mode data. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSerialCommunication_a2ad3ea03bbb959f4a50afbd217445a61}\label{classSerialCommunication_a2ad3ea03bbb959f4a50afbd217445a61}} 
+\index{SerialCommunication@{SerialCommunication}!PackageBufferControlCommand@{PackageBufferControlCommand}}
+\index{PackageBufferControlCommand@{PackageBufferControlCommand}!SerialCommunication@{SerialCommunication}}
+\doxysubsubsection{\texorpdfstring{PackageBufferControlCommand()}{PackageBufferControlCommand()}}
+{\footnotesize\ttfamily void Serial\+Communication\+::\+Package\+Buffer\+Control\+Command (\begin{DoxyParamCaption}\item[{const double $\ast$}]{\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The Package\+Buffer\+Control\+Command function fills the transmit buffer with control command data. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+data} & Control command data. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSerialCommunication_aa5d08b015626c6011c4fb6cc8a24d02d}\label{classSerialCommunication_aa5d08b015626c6011c4fb6cc8a24d02d}} 
+\index{SerialCommunication@{SerialCommunication}!IsNewDataAvailable@{IsNewDataAvailable}}
+\index{IsNewDataAvailable@{IsNewDataAvailable}!SerialCommunication@{SerialCommunication}}
+\doxysubsubsection{\texorpdfstring{IsNewDataAvailable()}{IsNewDataAvailable()}}
+{\footnotesize\ttfamily bool Serial\+Communication\+::\+Is\+New\+Data\+Available (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The Is\+New\+Data\+Available function checks if there is available data on the serial port. 
+
+\begin{DoxyReturn}{Returns}
+Returns true if data is available, false if not. ~\newline
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSerialCommunication_af2971a59f6d4cd3218d390b24f1998d8}\label{classSerialCommunication_af2971a59f6d4cd3218d390b24f1998d8}} 
+\index{SerialCommunication@{SerialCommunication}!SetPort@{SetPort}}
+\index{SetPort@{SetPort}!SerialCommunication@{SerialCommunication}}
+\doxysubsubsection{\texorpdfstring{SetPort()}{SetPort()}}
+{\footnotesize\ttfamily void Serial\+Communication\+::\+Set\+Port (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+port }\end{DoxyParamCaption})}
+
+
+
+Set the port for the Teensy communication after creating the constructor. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+port} & Serial port name for the Teensy communication \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSerialCommunication_a039f761bdeb6af087180029f97eb7bba}\label{classSerialCommunication_a039f761bdeb6af087180029f97eb7bba}} 
+\index{SerialCommunication@{SerialCommunication}!SetNumberOfMotors@{SetNumberOfMotors}}
+\index{SetNumberOfMotors@{SetNumberOfMotors}!SerialCommunication@{SerialCommunication}}
+\doxysubsubsection{\texorpdfstring{SetNumberOfMotors()}{SetNumberOfMotors()}}
+{\footnotesize\ttfamily void Serial\+Communication\+::\+Set\+Number\+Of\+Motors (\begin{DoxyParamCaption}\item[{const int \&}]{\+\_\+number\+\_\+of\+\_\+motors }\end{DoxyParamCaption})}
+
+
+
+Set the number of motors for the port after creating the constructor. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+number\+\_\+of\+\_\+motors} & Number of motors to use \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+catkin\+\_\+ws/src/hardware/serial\+\_\+communication/include/serial\+\_\+communication/serial\+\_\+communication.\+h\item 
+catkin\+\_\+ws/src/hardware/serial\+\_\+communication/src/serial\+\_\+communication.\+cpp\end{DoxyCompactItemize}

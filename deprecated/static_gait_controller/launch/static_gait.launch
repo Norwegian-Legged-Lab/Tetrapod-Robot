@@ -1,0 +1,34 @@
+<launch>
+
+<node pkg="static_gait_controller" type="static_gait_node" name="static_gait_node" output="screen"/>
+
+<!-- ******************************************** -->
+<!--                  Arguments                   -->
+<!-- ******************************************** -->
+<arg name="record_sys" default="true" />
+<arg name="record_directory" default="/home/omicron/Tetrapod-Robot/logs" />
+
+<!-- ******************************************** -->
+<!--                  Logging                     -->
+<!-- ******************************************** -->
+
+<!-- Record data automatically in three separate rosbags:
+        - system information (robot state)
+        - diagnostics (node output, diagnostics)     -->
+
+<node pkg="rosbag" type="record" name="rosbag_record_sys"
+      args="record -o $(arg record_directory)/sys /my_robot/joint_state /my_robot/whatevertopic "
+      if="$(arg record_sys)" />
+
+<node pkg="rosbag" type="record" name="rosbag_joint_states"
+      args="record -o $(arg record_directory)/states /static_gait_controller/joint_states"
+      if="$(arg record_sys)" />
+
+<node pkg="rosbag" type="record" name="rosbag_joint_commands"
+      args="record -o $(arg record_directory)/commands /static_gait_controller/joint_commands"
+      if="$(arg record_sys)" />
+
+<node pkg="rosbag" type="record" name="rosbag_record_diag"
+      args="record -o $(arg record_directory)/diag /diagnostics /rosout" />
+
+</launch>

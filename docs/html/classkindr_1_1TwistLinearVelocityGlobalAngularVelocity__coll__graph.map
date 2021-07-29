@@ -1,0 +1,9 @@
+<map id="kindr::TwistLinearVelocityGlobalAngularVelocity&lt; PrimType_ &gt;" name="kindr::TwistLinearVelocityGlobalAngularVelocity&lt; PrimType_ &gt;">
+<area shape="rect" id="node1" title="Spatial twist, i.e. twist where the angular velocity is expressed in the global parent frame." alt="" coords="789,108,979,164"/>
+<area shape="rect" id="node2" href="$classkindr_1_1Twist.html" title=" " alt="" coords="528,101,741,171"/>
+<area shape="rect" id="node3" href="$classkindr_1_1PoseDiffBase.html" title=" " alt="" coords="275,5,477,91"/>
+<area shape="rect" id="node4" href="$classkindr_1_1Vector.html" title="Vector in n&#45;dimensional&#45;space." alt="" coords="301,115,451,157"/>
+<area shape="rect" id="node5" href="$classkindr_1_1VectorBase.html" title=" " alt="" coords="5,72,224,128"/>
+<area shape="rect" id="node6" title=" " alt="" coords="23,153,206,194"/>
+<area shape="rect" id="node7" href="$classkindr_1_1GlobalAngularVelocity.html" title=" " alt="" coords="272,181,480,222"/>
+</map>
