@@ -25,15 +25,46 @@ export GAZEBO_RESOURCE_PATH=~/Tetrapod-Robot/catkin_ws/src/simulator/tetrapod_ga
 
 We recommend adding the set of command lines to your `.bashrc` file for the ease of use (i.e. avoid running the commands every time you desire to run the simulator).
 
-## Keyboard Control
-To use the keyboard-ros package you need the SDL_LIBRARY which can be installed with the following two commands:
-```sudo apt-get install libsdl-image1.2-dev```
-```sudo apt-get install libsdl-dev```
+## ROS
 
-## Joystick Drivers
-The Joystick Drivers package depends on several debs and require the following command to be run:
-```sudo apt-get install libusb-dev libx11-dev libspnav-dev libbluetooth-dev libcwiid-dev```
+To install ROS Noetic:
 
+- First setup your computer to accept packages from packages.ros.org:
+
+```
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+```
+
+- Setup your keys:
+
+```
+curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
+```
+
+- Installation:
+
+
+```
+sudo apt update
+sudo apt install ros-noetic-desktop-full
+```
+
+To automatically source the necessary bash script, run the following commands:
+
+```
+echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+```
+
+- Install and initialize Rosdep
+
+rosdep enables you to easily install system dependencies for source you want to compile and is required to run some core components in ROS. rosdep can be installed and initialized with the following commands:
+
+```
+sudo apt install python3-rosdep -y
+sudo rosdep init
+rosdep update
+```
 ## Drake
 
 The Drake toolbox can be installed using either a binary installation, or from source. The following lines of commands can be run to install Drake on Ubuntu 20.04 (Focal) from the latest binary release:
@@ -54,3 +85,34 @@ Note that if Python is to be used you need to ensure that your `PYTHONPATH` is p
 ```bash
 export PYTHONPATH=/opt/drake/lib/python3.8/site-packages:${PYTHONPATH}
 ```
+
+## Ignition
+
+First install some necessary tools:
+
+```
+sudo apt-get update && sudo apt-get install lsb-release wget gnupg
+```
+
+Then install Ignition Citadel:
+
+```
+sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
+wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
+sudo apt-get update
+sudo apt-get install ignition-citadel
+```
+
+Make sure all ign-gazebo related packages are up to date by running ```sudo apt update && sudo apt upgrade -y```.
+
+## Git submodules
+
+Make sure to clone code from all submodules in the repository using
+
+```
+git submodule update --init --recursive
+```
+
+## ROS package system dependencies
+
+Make sure rosdep is initialized by first running ```catkin_make``` and then ```source devel/setup.bash``` from the catkin workspace. Then run ```rosdep install --from-paths src --ignore-src -y``` to fulfill the system dependencies of all ros packages in the workspace.

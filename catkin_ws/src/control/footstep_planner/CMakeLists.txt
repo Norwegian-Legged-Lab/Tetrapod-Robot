@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(gait_controller)
+project(footstep_planner)
 
 find_package(catkin REQUIRED COMPONENTS
   roscpp
@@ -7,17 +7,20 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   geometry_msgs
   math_utils
+  visualization_utils
   debug_utils
   kinematics
   eigen_conversions
 )
 
 find_package(Eigen3 REQUIRED)
+find_package(drake REQUIRED PATHS /opt/drake)
 
 catkin_package(
   INCLUDE_DIRS include
     ${EIGEN3_INCLUDE_DIR}
   LIBRARIES ${PROJECT_NAME}
+    visualization_utils
   CATKIN_DEPENDS
     roscpp
     std_msgs
@@ -38,38 +41,29 @@ include_directories(
 
 ## Declare a C++ library
 add_library(${PROJECT_NAME}
-  src/gait_controller.cpp
+  src/footstep_planner.cpp
 )
 
-add_executable(gait_controller_node
-  src/gait_controller_node.cpp
-  src/gait_controller.cpp
-)
-
-add_executable(pronk_controller_node
-  src/pronk_controller_node.cpp
-  src/gait_controller.cpp
-)
-
-add_executable(startup_test
-  src/startup_controller.cpp
-  src/gait_controller.cpp
+add_executable(${PROJECT_NAME}_node
+  src/footstep_planner_node.cpp
+  src/footstep_planner.cpp
+  src/miqp_biped.cpp
+  src/miqp_quadruped.cpp
+  src/stepping_stone.cpp
+  src/terrain.cpp
+  src/utils.cpp
 )
 
 target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
+  drake::drake
+  visualization_utils
 )
 
-target_link_libraries(gait_controller_node
+target_link_libraries(${PROJECT_NAME}_node
   ${catkin_LIBRARIES}
-)
-
-target_link_libraries(pronk_controller_node
-  ${catkin_LIBRARIES}
-)
-
-target_link_libraries(startup_test
-  ${catkin_LIBRARIES}
+  drake::drake
+  visualization_utils
 )
 
 install(TARGETS ${PROJECT_NAME}

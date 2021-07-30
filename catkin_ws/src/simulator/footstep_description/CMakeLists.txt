@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(tetrapod_gazebo)
+project(footstep_description)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -7,19 +7,11 @@ project(tetrapod_gazebo)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS
-  roscpp
-  std_msgs
-  sensor_msgs
-  gazebo_ros
-  math_utils
-  visualization_utils
-)
+find_package(catkin REQUIRED)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
-find_package(gazebo REQUIRED)
-find_package(Eigen3 REQUIRED)
+
 
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
@@ -107,15 +99,9 @@ find_package(Eigen3 REQUIRED)
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-  INCLUDE_DIRS include
-  #LIBRARIES tetrapod_gazebo
-  CATKIN_DEPENDS 
-    roscpp 
-    std_msgs 
-    sensor_msgs
-    gazebo_ros 
-    math_utils
-    visualization_utils
+#  INCLUDE_DIRS include
+#  LIBRARIES tetrapod_description
+#  CATKIN_DEPENDS other_catkin_pkg
 #  DEPENDS system_lib
 )
 
@@ -123,39 +109,17 @@ catkin_package(
 ## Build ##
 ###########
 
-## Gazebo flags
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GAZEBO_CXX_FLAGS}")
-
-## Gazebo link dir
-link_directories(${GAZEBO_LIBRARY_DIRS})
-
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-  include
-  ${catkin_INCLUDE_DIRS}
-  ${GAZEBO_INCLUDE_DIRS}
+# include
+# ${catkin_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/tetrapod_gazebo.cpp
+#   src/${PROJECT_NAME}/tetrapod_description.cpp
 # )
-add_library(tetrapod_plugin
-  src/tetrapod_plugin.cpp
-)
-
-add_library(terrain_plugin
-  src/terrain_plugin.cpp
-)
-
-add_library(footstep_planner_plugin
-  src/footstep_planner_plugin.cpp
-)
-
-add_library(contact_plugin
-  src/contact_plugin.cpp
-)
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -165,10 +129,7 @@ add_library(contact_plugin
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/tetrapod_gazebo_node.cpp)
-add_executable(contact_sensor
-  src/contact_sensor.cpp
-)
+# add_executable(${PROJECT_NAME}_node src/tetrapod_description_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -179,40 +140,11 @@ add_executable(contact_sensor
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-#add_dependencies(contact_sensor 
-#  ${catkin_EXPORTED_TARGETS}
-#)
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(tetrapod_plugin
-  ${catkin_LIBRARIES}
-  ${GAZEBO_LIBRARIES}
-)
-
-target_link_libraries(terrain_plugin
-  ${catkin_LIBRARIES}
-  ${GAZEBO_LIBRARIES}
-)
-
-target_link_libraries(footstep_planner_plugin
-  ${catkin_LIBRARIES}
-  ${GAZEBO_LIBRARIES}
-  visualization_utils
-)
-
-target_link_libraries(contact_plugin
-  ${catkin_LIBRARIES}
-  ${GAZEBO_LIBRARIES}
-)
-
-target_link_libraries(contact_sensor
-  ${catkin_LIBRARIES}
-  ${GAZEBO_LIBRARIES}
-)
-
-
-## Add environment hooks
-#catkin_add_env_hooks(tetrapod_gazebo SHELLS sh DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/env-hooks)
+# target_link_libraries(${PROJECT_NAME}_node
+#   ${catkin_LIBRARIES}
+# )
 
 #############
 ## Install ##
@@ -243,11 +175,11 @@ target_link_libraries(contact_sensor
 # )
 
 ## Mark cpp header files for installation
-install(DIRECTORY include/${PROJECT_NAME}/
-  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
-  FILES_MATCHING PATTERN "*.h"
-  PATTERN ".svn" EXCLUDE
-)
+# install(DIRECTORY include/${PROJECT_NAME}/
+#   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+#   FILES_MATCHING PATTERN "*.h"
+#   PATTERN ".svn" EXCLUDE
+# )
 
 ## Mark other files for installation (e.g. launch and bag files, etc.)
 # install(FILES
@@ -255,19 +187,13 @@ install(DIRECTORY include/${PROJECT_NAME}/
 #   # myfile2
 #   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 # )
-install(DIRECTORY launch
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-)
-
-# install(DIRECTORY worlds
-#   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 
 #############
 ## Testing ##
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_tetrapod_gazebo.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_tetrapod_description.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
