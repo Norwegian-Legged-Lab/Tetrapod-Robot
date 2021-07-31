@@ -1,0 +1,47 @@
+\hypertarget{angle__utils_8h}{}\doxysection{catkin\+\_\+ws/src/utilities/math\+\_\+utils/include/math\+\_\+utils/angle\+\_\+utils.h File Reference}
+\label{angle__utils_8h}\index{catkin\_ws/src/utilities/math\_utils/include/math\_utils/angle\_utils.h@{catkin\_ws/src/utilities/math\_utils/include/math\_utils/angle\_utils.h}}
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$boost/math/constants/constants.\+hpp$>$}\newline
+Include dependency graph for angle\+\_\+utils.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacemath__utils}{math\+\_\+utils}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{namespacemath__utils_a61af5f1046b73d327241eb065f02c2ac}{math\+\_\+utils\+::deg\+To\+Rad}} (const double \&\+\_\+deg)
+\begin{DoxyCompactList}\small\item\em The deg\+To\+Rad function converts degrees to radians. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacemath__utils_a9824f52115abead316aee507c19b4806}{math\+\_\+utils\+::rad\+To\+Deg}} (const double \&\+\_\+rad)
+\begin{DoxyCompactList}\small\item\em The rad\+To\+Deg function converts radians to degrees. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacemath__utils_a483056b148c3f37e90dd2587338513f0}{math\+\_\+utils\+::wrap\+Angle\+To\+Pi}} (const double \&\+\_\+rad)
+\begin{DoxyCompactList}\small\item\em The wrap\+Angle\+To\+Pi function wraps an input angle to the interval \mbox{[}-\/pi, pi). \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacemath__utils_ad9ba721cedf993437e2f1b13282b60f0}{math\+\_\+utils\+::wrap\+Angle\+To2\+Pi}} (const double \&\+\_\+rad)
+\begin{DoxyCompactList}\small\item\em The wrap\+Angle\+To2\+Pi function wraps an input angle to the interval \mbox{[}0, 2pi). \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacemath__utils_a7b66cd6c92c0aab4dcc2e1b0c245f0bd}{math\+\_\+utils\+::angle\+Diff}} (const double \&\+\_\+ang1, const double \&\+\_\+ang2)
+\begin{DoxyCompactList}\small\item\em The angle\+Diff function returns the difference in angle between two given angles in the interval \mbox{[}0, pi) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr double \mbox{\hyperlink{namespacemath__utils_aaacf4ae101134cc0116eaa0960cec259}{math\+\_\+utils\+::\+TWO\+\_\+\+PI}} = boost\+::math\+::constants\+::two\+\_\+pi$<$double$>$()
+\begin{DoxyCompactList}\small\item\em Define 2PI. \end{DoxyCompactList}\item 
+static constexpr double \mbox{\hyperlink{namespacemath__utils_ae11e1508f290b7370bfc98be6ac14123}{math\+\_\+utils\+::\+FOUR\+\_\+\+THIRDS\+\_\+\+PI}} = boost\+::math\+::constants\+::four\+\_\+thirds\+\_\+pi$<$double$>$()
+\begin{DoxyCompactList}\small\item\em Define 4PI/3. \end{DoxyCompactList}\item 
+static constexpr double \mbox{\hyperlink{namespacemath__utils_ab77ed9bc6a5263c1912751341b1d96f9}{math\+\_\+utils\+::\+PI}} = boost\+::math\+::constants\+::pi$<$double$>$()
+\begin{DoxyCompactList}\small\item\em Define PI. \end{DoxyCompactList}\item 
+static constexpr double \mbox{\hyperlink{namespacemath__utils_a979a4129b47ae45cda890f7f88a3981e}{math\+\_\+utils\+::\+THREE\+\_\+\+QUARTERS\+\_\+\+PI}} = boost\+::math\+::constants\+::three\+\_\+quarters\+\_\+pi$<$double$>$()
+\begin{DoxyCompactList}\small\item\em Define 3PI/4. \end{DoxyCompactList}\item 
+static constexpr double \mbox{\hyperlink{namespacemath__utils_ae452d318e2aa458306f72ccd442281a7}{math\+\_\+utils\+::\+TWO\+\_\+\+THIRDS\+\_\+\+PI}} = boost\+::math\+::constants\+::two\+\_\+thirds\+\_\+pi$<$double$>$()
+\begin{DoxyCompactList}\small\item\em Define 2PI/3. \end{DoxyCompactList}\item 
+static constexpr double \mbox{\hyperlink{namespacemath__utils_a0667b974bde8c7c206fd5ee18f583f91}{math\+\_\+utils\+::\+HALF\+\_\+\+PI}} = boost\+::math\+::constants\+::half\+\_\+pi$<$double$>$()
+\begin{DoxyCompactList}\small\item\em Define PI/2. \end{DoxyCompactList}\item 
+static constexpr double \mbox{\hyperlink{namespacemath__utils_a1cb98a462545ad84cb92cc663321d0d8}{math\+\_\+utils\+::\+THIRD\+\_\+\+PI}} = boost\+::math\+::constants\+::third\+\_\+pi$<$double$>$()
+\begin{DoxyCompactList}\small\item\em Define PI/3. \end{DoxyCompactList}\item 
+static constexpr double \mbox{\hyperlink{namespacemath__utils_a1b3995366b41539f48168aaef8779175}{math\+\_\+utils\+::\+SIXTH\+\_\+\+PI}} = boost\+::math\+::constants\+::sixth\+\_\+pi$<$double$>$()
+\begin{DoxyCompactList}\small\item\em Define PI/6. \end{DoxyCompactList}\item 
+static constexpr double \mbox{\hyperlink{namespacemath__utils_a7ffd0fa8783c8e8721517ae219d436ff}{math\+\_\+utils\+::\+ONE\+\_\+\+DIV\+\_\+\+TWO\+\_\+\+PI}} = boost\+::math\+::constants\+::one\+\_\+div\+\_\+two\+\_\+pi$<$double$>$()
+\begin{DoxyCompactList}\small\item\em Define 1/2\+PI. \end{DoxyCompactList}\end{DoxyCompactItemize}

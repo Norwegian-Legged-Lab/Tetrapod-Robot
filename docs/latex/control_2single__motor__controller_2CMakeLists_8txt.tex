@@ -1,0 +1,44 @@
+\hypertarget{control_2single__motor__controller_2CMakeLists_8txt}{}\doxysection{catkin\+\_\+ws/src/control/single\+\_\+motor\+\_\+controller/\+CMake\+Lists.txt File Reference}
+\label{control_2single__motor__controller_2CMakeLists_8txt}\index{catkin\_ws/src/control/single\_motor\_controller/CMakeLists.txt@{catkin\_ws/src/control/single\_motor\_controller/CMakeLists.txt}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{control_2single__motor__controller_2CMakeLists_8txt_a5e4b583342848a5e33afec5958dc1c85}{cmake\+\_\+minimum\+\_\+required}} (VERSION 3.\+0.\+2) project(single\+\_\+motor\+\_\+controller) find\+\_\+package(catkin REQUIRED COMPONENTS roscpp std\+\_\+msgs sensor\+\_\+msgs kinematics math\+\_\+utils) find\+\_\+package(Eigen3 REQUIRED) catkin\+\_\+package(INCLUDE\+\_\+\+DIRS include \$
+\item 
+LIBRARIES single\+\_\+motor\+\_\+controller CATKIN\+\_\+\+DEPENDS roscpp std\+\_\+msgs kinematics math\+\_\+utils \mbox{\hyperlink{control_2single__motor__controller_2CMakeLists_8txt_aa9853b457b4a87deed5139fa2d64910d}{include\+\_\+directories}} (include \$\{catkin\+\_\+\+INCLUDE\+\_\+\+DIRS\} \$\{EIGEN3\+\_\+\+INCLUDE\+\_\+\+DIR\}) \mbox{\hyperlink{guidance_2joystick__controller_2CMakeLists_8txt_af3dd492ab4e1af89200a8fdca61fd3e6}{add\+\_\+library}}(\$
+\item 
+src single\+\_\+motor\+\_\+controller cpp \mbox{\hyperlink{control_2single__motor__controller_2CMakeLists_8txt_a4621dd8a94b0616fa2f74dc45f8ca89d}{add\+\_\+executable}} (control\+\_\+node src/control\+\_\+node.\+cpp src/single\+\_\+motor\+\_\+controller.\+cpp) add\+\_\+executable(automatic\+\_\+setpoint\+\_\+publisher src/automatic\+\_\+setpoint\+\_\+publisher.\+cpp src/single\+\_\+motor\+\_\+controller.\+cpp) add\+\_\+executable(torque\+\_\+step\+\_\+response\+\_\+test src/torque\+\_\+step\+\_\+response\+\_\+test.\+cpp src/single\+\_\+motor\+\_\+controller.\+cpp) add\+\_\+executable(velocity\+\_\+step\+\_\+response\+\_\+test src/velocity\+\_\+step\+\_\+response\+\_\+test.\+cpp src/single\+\_\+motor\+\_\+controller.\+cpp) add\+\_\+executable(step\+\_\+response\+\_\+test src/step\+\_\+response\+\_\+test.\+cpp src/single\+\_\+motor\+\_\+controller.\+cpp) add\+\_\+executable(tx\+\_\+node src/tx\+\_\+node.\+cpp) add\+\_\+executable(rx\+\_\+node src/rx\+\_\+node.\+cpp) \mbox{\hyperlink{control_2controller_2CMakeLists_8txt_ac2d4f342a2d0ce624aa90fd46e87583f}{target\+\_\+link\+\_\+libraries}}(\$
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{control_2single__motor__controller_2CMakeLists_8txt_a5e4b583342848a5e33afec5958dc1c85}\label{control_2single__motor__controller_2CMakeLists_8txt_a5e4b583342848a5e33afec5958dc1c85}} 
+\index{CMakeLists.txt@{CMakeLists.txt}!cmake\_minimum\_required@{cmake\_minimum\_required}}
+\index{cmake\_minimum\_required@{cmake\_minimum\_required}!CMakeLists.txt@{CMakeLists.txt}}
+\doxysubsubsection{\texorpdfstring{cmake\_minimum\_required()}{cmake\_minimum\_required()}}
+{\footnotesize\ttfamily cmake\+\_\+minimum\+\_\+required (\begin{DoxyParamCaption}\item[{VERSION 3.\+0.}]{2 }\end{DoxyParamCaption})}
+
+
+
+Definition at line 1 of file CMake\+Lists.\+txt.
+
+\mbox{\Hypertarget{control_2single__motor__controller_2CMakeLists_8txt_aa9853b457b4a87deed5139fa2d64910d}\label{control_2single__motor__controller_2CMakeLists_8txt_aa9853b457b4a87deed5139fa2d64910d}} 
+\index{CMakeLists.txt@{CMakeLists.txt}!include\_directories@{include\_directories}}
+\index{include\_directories@{include\_directories}!CMakeLists.txt@{CMakeLists.txt}}
+\doxysubsubsection{\texorpdfstring{include\_directories()}{include\_directories()}}
+{\footnotesize\ttfamily LIBRARIES single\+\_\+motor\+\_\+controller CATKIN\+\_\+\+DEPENDS roscpp std\+\_\+msgs kinematics math\+\_\+utils include\+\_\+directories (\begin{DoxyParamCaption}\item[{include \$\{catkin\+\_\+\+INCLUDE\+\_\+\+DIRS\} \$\{EIGEN3\+\_\+\+INCLUDE\+\_\+\+DIR\}}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 25 of file CMake\+Lists.\+txt.
+
+\mbox{\Hypertarget{control_2single__motor__controller_2CMakeLists_8txt_a4621dd8a94b0616fa2f74dc45f8ca89d}\label{control_2single__motor__controller_2CMakeLists_8txt_a4621dd8a94b0616fa2f74dc45f8ca89d}} 
+\index{CMakeLists.txt@{CMakeLists.txt}!add\_executable@{add\_executable}}
+\index{add\_executable@{add\_executable}!CMakeLists.txt@{CMakeLists.txt}}
+\doxysubsubsection{\texorpdfstring{add\_executable()}{add\_executable()}}
+{\footnotesize\ttfamily src single\+\_\+motor\+\_\+controller cpp add\+\_\+executable (\begin{DoxyParamCaption}\item[{control\+\_\+node src/control\+\_\+node.\+cpp src/single\+\_\+motor\+\_\+controller.}]{cpp }\end{DoxyParamCaption})}
+
+
+
+Definition at line 35 of file CMake\+Lists.\+txt.
+

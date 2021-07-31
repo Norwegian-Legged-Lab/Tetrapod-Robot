@@ -1,9 +1,6 @@
 var searchData=
 [
-  ['serialcommunication_504',['SerialCommunication',['../classSerialCommunication.html',1,'']]],
-  ['singlelegcontroller_505',['SingleLegController',['../classSingleLegController.html',1,'']]],
-  ['singlelegplugin_506',['SingleLegPlugin',['../classgazebo_1_1SingleLegPlugin.html',1,'gazebo']]],
-  ['singlemotorcontroller_507',['SingleMotorController',['../classSingleMotorController.html',1,'']]],
-  ['staticgaitcontroller_508',['StaticGaitController',['../classStaticGaitController.html',1,'']]],
-  ['subandpub_509',['SubAndPub',['../classSubAndPub.html',1,'']]]
+  ['pendulumplugin_1259',['PendulumPlugin',['../classgazebo_1_1PendulumPlugin.html',1,'gazebo']]],
+  ['polytope_1260',['polytope',['../classpolytope.html',1,'']]],
+  ['polytopes_1261',['polytopes',['../classpolytopes.html',1,'']]]
 ];

@@ -1,0 +1,199 @@
+\hypertarget{namespacemiqp_1_1waypoint}{}\doxysection{miqp\+::waypoint Namespace Reference}
+\label{namespacemiqp_1_1waypoint}\index{miqp::waypoint@{miqp::waypoint}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structmiqp_1_1waypoint_1_1DecVars}{Dec\+Vars}}
+\item 
+struct \mbox{\hyperlink{structmiqp_1_1waypoint_1_1DecVars__res}{Dec\+Vars\+\_\+res}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespacemiqp_1_1waypoint_a2ac4a167de5d1929c0aacfd5eb86e8bc}{Leg}} \{ \mbox{\hyperlink{namespacemiqp_1_1waypoint_a2ac4a167de5d1929c0aacfd5eb86e8bca57809853c5bf7a1b479e16a163095ab5}{front\+\_\+left}}
+, \mbox{\hyperlink{namespacemiqp_1_1waypoint_a2ac4a167de5d1929c0aacfd5eb86e8bcaf6e25649e8b6ac29cf4c5af80e33664c}{front\+\_\+right}}
+, \mbox{\hyperlink{namespacemiqp_1_1waypoint_a2ac4a167de5d1929c0aacfd5eb86e8bca2e0239816c31c8ad8c007644d0626259}{rear\+\_\+left}}
+, \mbox{\hyperlink{namespacemiqp_1_1waypoint_a2ac4a167de5d1929c0aacfd5eb86e8bca5e873215de685045b45331f468571515}{rear\+\_\+right}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structmiqp_1_1waypoint_1_1DecVars}{Dec\+Vars}} \mbox{\hyperlink{namespacemiqp_1_1waypoint_a1d17b9811bda43458b41697ae4337803}{add\+\_\+decision\+\_\+variables}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, \mbox{\hyperlink{classTerrain}{Terrain}} \&terrain, int n\+\_\+points)
+\item 
+void \mbox{\hyperlink{namespacemiqp_1_1waypoint_a2f730c20180eb6bb2d7b1b7227bcd697}{set\+\_\+initial\+\_\+and\+\_\+goal\+\_\+position}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, Eigen\+::\+Vector2d \&initial\+\_\+center, Eigen\+::\+Vector2d \&goal\+\_\+center, \mbox{\hyperlink{structmiqp_1_1waypoint_1_1DecVars}{Dec\+Vars}} \&decision\+\_\+variables)
+\item 
+void \mbox{\hyperlink{namespacemiqp_1_1waypoint_a9471cffe733f8f0823d8b9bafeae2191}{relative\+\_\+position\+\_\+limits}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, int n\+\_\+points, double wp\+\_\+dist, \mbox{\hyperlink{structmiqp_1_1waypoint_1_1DecVars}{Dec\+Vars}} \&decision\+\_\+variables)
+\item 
+void \mbox{\hyperlink{namespacemiqp_1_1waypoint_a86e63da6fa3624378bbb4225bffbd728}{geometry\+\_\+limits}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, int n\+\_\+points, double length\+\_\+legs, double bbox\+\_\+len, \mbox{\hyperlink{structmiqp_1_1waypoint_1_1DecVars}{Dec\+Vars}} \&decision\+\_\+variables)
+\item 
+void \mbox{\hyperlink{namespacemiqp_1_1waypoint_acf3daa2d3ec8b672368c6656a2157280}{theta\+\_\+limits}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, int n\+\_\+points, \mbox{\hyperlink{structmiqp_1_1waypoint_1_1DecVars}{Dec\+Vars}} \&decision\+\_\+variables)
+\item 
+void \mbox{\hyperlink{namespacemiqp_1_1waypoint_a3ca2c9f0fbc94aa8155434385f538922}{one\+\_\+stone\+\_\+per\+\_\+foot}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, int n\+\_\+points, \mbox{\hyperlink{structmiqp_1_1waypoint_1_1DecVars}{Dec\+Vars}} \&decision\+\_\+variables)
+\item 
+void \mbox{\hyperlink{namespacemiqp_1_1waypoint_added3c4d72958322dc8691309e2a7178}{write\+Mat\+To\+File}} (Eigen\+::\+Matrix\+Xd \&mat, std\+::string filename)
+\item 
+void \mbox{\hyperlink{namespacemiqp_1_1waypoint_acea2c4695c1ffb50b23b20a8e38b5a81}{write\+Dec\+Vars\+To\+File}} (\mbox{\hyperlink{structmiqp_1_1waypoint_1_1DecVars__res}{Dec\+Vars\+\_\+res}} \&decision\+\_\+variables, std\+::string base\+\_\+name)
+\item 
+Eigen\+::\+Vector4d \mbox{\hyperlink{namespacemiqp_1_1waypoint_a739a0b8c49739eaeef622006b0921048}{get\+\_\+big\+\_\+M}} (\mbox{\hyperlink{classTerrain}{Terrain}} terrain)
+\item 
+void \mbox{\hyperlink{namespacemiqp_1_1waypoint_a48bf9052a242a0b6a72e0bc0bf1d91be}{foot\+\_\+in\+\_\+stepping\+\_\+stone}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, \mbox{\hyperlink{classTerrain}{Terrain}} \&terrain, int n\+\_\+points, \mbox{\hyperlink{structmiqp_1_1waypoint_1_1DecVars}{Dec\+Vars}} \&decision\+\_\+variables)
+\item 
+void \mbox{\hyperlink{namespacemiqp_1_1waypoint_a5f461223d807be818ab71d4762ccb0f8}{minimize\+\_\+step\+\_\+length}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, int n\+\_\+points, \mbox{\hyperlink{structmiqp_1_1waypoint_1_1DecVars}{Dec\+Vars}} \&decision\+\_\+variables)
+\item 
+void \mbox{\hyperlink{namespacemiqp_1_1waypoint_ad462fdfa29f7b361470bdf1f210b79fe}{minimize\+\_\+theta\+\_\+change}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, int n\+\_\+points, \mbox{\hyperlink{structmiqp_1_1waypoint_1_1DecVars}{Dec\+Vars}} \&decision\+\_\+variables)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{namespacemiqp_1_1waypoint_a2ac4a167de5d1929c0aacfd5eb86e8bc}\label{namespacemiqp_1_1waypoint_a2ac4a167de5d1929c0aacfd5eb86e8bc}} 
+\index{miqp::waypoint@{miqp::waypoint}!Leg@{Leg}}
+\index{Leg@{Leg}!miqp::waypoint@{miqp::waypoint}}
+\doxysubsubsection{\texorpdfstring{Leg}{Leg}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{namespacemiqp_1_1waypoint_a2ac4a167de5d1929c0aacfd5eb86e8bc}{miqp\+::waypoint\+::\+Leg}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{front\_left@{front\_left}!miqp::waypoint@{miqp::waypoint}}\index{miqp::waypoint@{miqp::waypoint}!front\_left@{front\_left}}}\mbox{\Hypertarget{namespacemiqp_1_1waypoint_a2ac4a167de5d1929c0aacfd5eb86e8bca57809853c5bf7a1b479e16a163095ab5}\label{namespacemiqp_1_1waypoint_a2ac4a167de5d1929c0aacfd5eb86e8bca57809853c5bf7a1b479e16a163095ab5}} 
+front\+\_\+left&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{front\_right@{front\_right}!miqp::waypoint@{miqp::waypoint}}\index{miqp::waypoint@{miqp::waypoint}!front\_right@{front\_right}}}\mbox{\Hypertarget{namespacemiqp_1_1waypoint_a2ac4a167de5d1929c0aacfd5eb86e8bcaf6e25649e8b6ac29cf4c5af80e33664c}\label{namespacemiqp_1_1waypoint_a2ac4a167de5d1929c0aacfd5eb86e8bcaf6e25649e8b6ac29cf4c5af80e33664c}} 
+front\+\_\+right&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{rear\_left@{rear\_left}!miqp::waypoint@{miqp::waypoint}}\index{miqp::waypoint@{miqp::waypoint}!rear\_left@{rear\_left}}}\mbox{\Hypertarget{namespacemiqp_1_1waypoint_a2ac4a167de5d1929c0aacfd5eb86e8bca2e0239816c31c8ad8c007644d0626259}\label{namespacemiqp_1_1waypoint_a2ac4a167de5d1929c0aacfd5eb86e8bca2e0239816c31c8ad8c007644d0626259}} 
+rear\+\_\+left&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{rear\_right@{rear\_right}!miqp::waypoint@{miqp::waypoint}}\index{miqp::waypoint@{miqp::waypoint}!rear\_right@{rear\_right}}}\mbox{\Hypertarget{namespacemiqp_1_1waypoint_a2ac4a167de5d1929c0aacfd5eb86e8bca5e873215de685045b45331f468571515}\label{namespacemiqp_1_1waypoint_a2ac4a167de5d1929c0aacfd5eb86e8bca5e873215de685045b45331f468571515}} 
+rear\+\_\+right&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 23 of file miqp\+\_\+waypoint.\+h.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacemiqp_1_1waypoint_a1d17b9811bda43458b41697ae4337803}\label{namespacemiqp_1_1waypoint_a1d17b9811bda43458b41697ae4337803}} 
+\index{miqp::waypoint@{miqp::waypoint}!add\_decision\_variables@{add\_decision\_variables}}
+\index{add\_decision\_variables@{add\_decision\_variables}!miqp::waypoint@{miqp::waypoint}}
+\doxysubsubsection{\texorpdfstring{add\_decision\_variables()}{add\_decision\_variables()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmiqp_1_1waypoint_1_1DecVars}{Dec\+Vars}} miqp\+::waypoint\+::add\+\_\+decision\+\_\+variables (\begin{DoxyParamCaption}\item[{drake\+::solvers\+::\+Mathematical\+Program \&}]{prog,  }\item[{\mbox{\hyperlink{classTerrain}{Terrain}} \&}]{terrain,  }\item[{int}]{n\+\_\+points }\end{DoxyParamCaption})}
+
+
+
+Definition at line 20 of file miqp\+\_\+waypoint.\+cpp.
+
+\mbox{\Hypertarget{namespacemiqp_1_1waypoint_a2f730c20180eb6bb2d7b1b7227bcd697}\label{namespacemiqp_1_1waypoint_a2f730c20180eb6bb2d7b1b7227bcd697}} 
+\index{miqp::waypoint@{miqp::waypoint}!set\_initial\_and\_goal\_position@{set\_initial\_and\_goal\_position}}
+\index{set\_initial\_and\_goal\_position@{set\_initial\_and\_goal\_position}!miqp::waypoint@{miqp::waypoint}}
+\doxysubsubsection{\texorpdfstring{set\_initial\_and\_goal\_position()}{set\_initial\_and\_goal\_position()}}
+{\footnotesize\ttfamily void miqp\+::waypoint\+::set\+\_\+initial\+\_\+and\+\_\+goal\+\_\+position (\begin{DoxyParamCaption}\item[{drake\+::solvers\+::\+Mathematical\+Program \&}]{prog,  }\item[{Eigen\+::\+Vector2d \&}]{initial\+\_\+center,  }\item[{Eigen\+::\+Vector2d \&}]{goal\+\_\+center,  }\item[{\mbox{\hyperlink{structmiqp_1_1waypoint_1_1DecVars}{Dec\+Vars}} \&}]{decision\+\_\+variables }\end{DoxyParamCaption})}
+
+
+
+Definition at line 56 of file miqp\+\_\+waypoint.\+cpp.
+
+\mbox{\Hypertarget{namespacemiqp_1_1waypoint_a9471cffe733f8f0823d8b9bafeae2191}\label{namespacemiqp_1_1waypoint_a9471cffe733f8f0823d8b9bafeae2191}} 
+\index{miqp::waypoint@{miqp::waypoint}!relative\_position\_limits@{relative\_position\_limits}}
+\index{relative\_position\_limits@{relative\_position\_limits}!miqp::waypoint@{miqp::waypoint}}
+\doxysubsubsection{\texorpdfstring{relative\_position\_limits()}{relative\_position\_limits()}}
+{\footnotesize\ttfamily void miqp\+::waypoint\+::relative\+\_\+position\+\_\+limits (\begin{DoxyParamCaption}\item[{drake\+::solvers\+::\+Mathematical\+Program \&}]{prog,  }\item[{int}]{n\+\_\+points,  }\item[{double}]{wp\+\_\+dist,  }\item[{\mbox{\hyperlink{structmiqp_1_1waypoint_1_1DecVars}{Dec\+Vars}} \&}]{decision\+\_\+variables }\end{DoxyParamCaption})}
+
+
+
+Definition at line 71 of file miqp\+\_\+waypoint.\+cpp.
+
+\mbox{\Hypertarget{namespacemiqp_1_1waypoint_a86e63da6fa3624378bbb4225bffbd728}\label{namespacemiqp_1_1waypoint_a86e63da6fa3624378bbb4225bffbd728}} 
+\index{miqp::waypoint@{miqp::waypoint}!geometry\_limits@{geometry\_limits}}
+\index{geometry\_limits@{geometry\_limits}!miqp::waypoint@{miqp::waypoint}}
+\doxysubsubsection{\texorpdfstring{geometry\_limits()}{geometry\_limits()}}
+{\footnotesize\ttfamily void miqp\+::waypoint\+::geometry\+\_\+limits (\begin{DoxyParamCaption}\item[{drake\+::solvers\+::\+Mathematical\+Program \&}]{prog,  }\item[{int}]{n\+\_\+points,  }\item[{double}]{length\+\_\+legs,  }\item[{double}]{bbox\+\_\+len,  }\item[{\mbox{\hyperlink{structmiqp_1_1waypoint_1_1DecVars}{Dec\+Vars}} \&}]{decision\+\_\+variables }\end{DoxyParamCaption})}
+
+
+
+Definition at line 83 of file miqp\+\_\+waypoint.\+cpp.
+
+\mbox{\Hypertarget{namespacemiqp_1_1waypoint_acf3daa2d3ec8b672368c6656a2157280}\label{namespacemiqp_1_1waypoint_acf3daa2d3ec8b672368c6656a2157280}} 
+\index{miqp::waypoint@{miqp::waypoint}!theta\_limits@{theta\_limits}}
+\index{theta\_limits@{theta\_limits}!miqp::waypoint@{miqp::waypoint}}
+\doxysubsubsection{\texorpdfstring{theta\_limits()}{theta\_limits()}}
+{\footnotesize\ttfamily void miqp\+::waypoint\+::theta\+\_\+limits (\begin{DoxyParamCaption}\item[{drake\+::solvers\+::\+Mathematical\+Program \&}]{prog,  }\item[{int}]{n\+\_\+points,  }\item[{\mbox{\hyperlink{structmiqp_1_1waypoint_1_1DecVars}{Dec\+Vars}} \&}]{decision\+\_\+variables }\end{DoxyParamCaption})}
+
+
+
+Definition at line 144 of file miqp\+\_\+waypoint.\+cpp.
+
+\mbox{\Hypertarget{namespacemiqp_1_1waypoint_a3ca2c9f0fbc94aa8155434385f538922}\label{namespacemiqp_1_1waypoint_a3ca2c9f0fbc94aa8155434385f538922}} 
+\index{miqp::waypoint@{miqp::waypoint}!one\_stone\_per\_foot@{one\_stone\_per\_foot}}
+\index{one\_stone\_per\_foot@{one\_stone\_per\_foot}!miqp::waypoint@{miqp::waypoint}}
+\doxysubsubsection{\texorpdfstring{one\_stone\_per\_foot()}{one\_stone\_per\_foot()}}
+{\footnotesize\ttfamily void miqp\+::waypoint\+::one\+\_\+stone\+\_\+per\+\_\+foot (\begin{DoxyParamCaption}\item[{drake\+::solvers\+::\+Mathematical\+Program \&}]{prog,  }\item[{int}]{n\+\_\+points,  }\item[{\mbox{\hyperlink{structmiqp_1_1waypoint_1_1DecVars}{Dec\+Vars}} \&}]{decision\+\_\+variables }\end{DoxyParamCaption})}
+
+
+
+Definition at line 206 of file miqp\+\_\+waypoint.\+cpp.
+
+\mbox{\Hypertarget{namespacemiqp_1_1waypoint_added3c4d72958322dc8691309e2a7178}\label{namespacemiqp_1_1waypoint_added3c4d72958322dc8691309e2a7178}} 
+\index{miqp::waypoint@{miqp::waypoint}!writeMatToFile@{writeMatToFile}}
+\index{writeMatToFile@{writeMatToFile}!miqp::waypoint@{miqp::waypoint}}
+\doxysubsubsection{\texorpdfstring{writeMatToFile()}{writeMatToFile()}}
+{\footnotesize\ttfamily void miqp\+::waypoint\+::write\+Mat\+To\+File (\begin{DoxyParamCaption}\item[{Eigen\+::\+Matrix\+Xd \&}]{mat,  }\item[{std\+::string}]{filename }\end{DoxyParamCaption})}
+
+
+
+Definition at line 323 of file miqp\+\_\+waypoint.\+cpp.
+
+\mbox{\Hypertarget{namespacemiqp_1_1waypoint_acea2c4695c1ffb50b23b20a8e38b5a81}\label{namespacemiqp_1_1waypoint_acea2c4695c1ffb50b23b20a8e38b5a81}} 
+\index{miqp::waypoint@{miqp::waypoint}!writeDecVarsToFile@{writeDecVarsToFile}}
+\index{writeDecVarsToFile@{writeDecVarsToFile}!miqp::waypoint@{miqp::waypoint}}
+\doxysubsubsection{\texorpdfstring{writeDecVarsToFile()}{writeDecVarsToFile()}}
+{\footnotesize\ttfamily void miqp\+::waypoint\+::write\+Dec\+Vars\+To\+File (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmiqp_1_1waypoint_1_1DecVars__res}{Dec\+Vars\+\_\+res}} \&}]{decision\+\_\+variables,  }\item[{std\+::string}]{base\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Definition at line 344 of file miqp\+\_\+waypoint.\+cpp.
+
+\mbox{\Hypertarget{namespacemiqp_1_1waypoint_a739a0b8c49739eaeef622006b0921048}\label{namespacemiqp_1_1waypoint_a739a0b8c49739eaeef622006b0921048}} 
+\index{miqp::waypoint@{miqp::waypoint}!get\_big\_M@{get\_big\_M}}
+\index{get\_big\_M@{get\_big\_M}!miqp::waypoint@{miqp::waypoint}}
+\doxysubsubsection{\texorpdfstring{get\_big\_M()}{get\_big\_M()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector4d miqp\+::waypoint\+::get\+\_\+big\+\_\+M (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classTerrain}{Terrain}}}]{terrain }\end{DoxyParamCaption})}
+
+
+
+Definition at line 226 of file miqp\+\_\+waypoint.\+cpp.
+
+\mbox{\Hypertarget{namespacemiqp_1_1waypoint_a48bf9052a242a0b6a72e0bc0bf1d91be}\label{namespacemiqp_1_1waypoint_a48bf9052a242a0b6a72e0bc0bf1d91be}} 
+\index{miqp::waypoint@{miqp::waypoint}!foot\_in\_stepping\_stone@{foot\_in\_stepping\_stone}}
+\index{foot\_in\_stepping\_stone@{foot\_in\_stepping\_stone}!miqp::waypoint@{miqp::waypoint}}
+\doxysubsubsection{\texorpdfstring{foot\_in\_stepping\_stone()}{foot\_in\_stepping\_stone()}}
+{\footnotesize\ttfamily void miqp\+::waypoint\+::foot\+\_\+in\+\_\+stepping\+\_\+stone (\begin{DoxyParamCaption}\item[{drake\+::solvers\+::\+Mathematical\+Program \&}]{prog,  }\item[{\mbox{\hyperlink{classTerrain}{Terrain}} \&}]{terrain,  }\item[{int}]{n\+\_\+points,  }\item[{\mbox{\hyperlink{structmiqp_1_1waypoint_1_1DecVars}{Dec\+Vars}} \&}]{decision\+\_\+variables }\end{DoxyParamCaption})}
+
+
+
+Definition at line 242 of file miqp\+\_\+waypoint.\+cpp.
+
+\mbox{\Hypertarget{namespacemiqp_1_1waypoint_a5f461223d807be818ab71d4762ccb0f8}\label{namespacemiqp_1_1waypoint_a5f461223d807be818ab71d4762ccb0f8}} 
+\index{miqp::waypoint@{miqp::waypoint}!minimize\_step\_length@{minimize\_step\_length}}
+\index{minimize\_step\_length@{minimize\_step\_length}!miqp::waypoint@{miqp::waypoint}}
+\doxysubsubsection{\texorpdfstring{minimize\_step\_length()}{minimize\_step\_length()}}
+{\footnotesize\ttfamily void miqp\+::waypoint\+::minimize\+\_\+step\+\_\+length (\begin{DoxyParamCaption}\item[{drake\+::solvers\+::\+Mathematical\+Program \&}]{prog,  }\item[{int}]{n\+\_\+points,  }\item[{\mbox{\hyperlink{structmiqp_1_1waypoint_1_1DecVars}{Dec\+Vars}} \&}]{decision\+\_\+variables }\end{DoxyParamCaption})}
+
+
+
+Definition at line 285 of file miqp\+\_\+waypoint.\+cpp.
+
+\mbox{\Hypertarget{namespacemiqp_1_1waypoint_ad462fdfa29f7b361470bdf1f210b79fe}\label{namespacemiqp_1_1waypoint_ad462fdfa29f7b361470bdf1f210b79fe}} 
+\index{miqp::waypoint@{miqp::waypoint}!minimize\_theta\_change@{minimize\_theta\_change}}
+\index{minimize\_theta\_change@{minimize\_theta\_change}!miqp::waypoint@{miqp::waypoint}}
+\doxysubsubsection{\texorpdfstring{minimize\_theta\_change()}{minimize\_theta\_change()}}
+{\footnotesize\ttfamily void miqp\+::waypoint\+::minimize\+\_\+theta\+\_\+change (\begin{DoxyParamCaption}\item[{drake\+::solvers\+::\+Mathematical\+Program \&}]{prog,  }\item[{int}]{n\+\_\+points,  }\item[{\mbox{\hyperlink{structmiqp_1_1waypoint_1_1DecVars}{Dec\+Vars}} \&}]{decision\+\_\+variables }\end{DoxyParamCaption})}
+
+
+
+Definition at line 299 of file miqp\+\_\+waypoint.\+cpp.
+

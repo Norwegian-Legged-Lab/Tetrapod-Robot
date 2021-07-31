@@ -1,0 +1,17 @@
+digraph "catkin_ws/src/guidance" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_7c859f3878cb32062c29919224ce2290 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="src" fontname="Helvetica", fontsize="10", URL="dir_7c859f3878cb32062c29919224ce2290.html"]
+  dir_ccddda87566ee263eec2f42a65371c71 [shape=box label="utilities" fillcolor="white" style="filled" color="red" URL="dir_ccddda87566ee263eec2f42a65371c71.html"];
+  subgraph clusterdir_3bc5830b146180778fb914a1c3335eec {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_3bc5830b146180778fb914a1c3335eec.html"];
+    dir_3bc5830b146180778fb914a1c3335eec [shape=plaintext label="guidance"];
+  dir_e86b67af98557f3798d04913e7ff4fbf [shape=box label="footstep_planner" fillcolor="white" style="filled" color="red" URL="dir_e86b67af98557f3798d04913e7ff4fbf.html"];
+  dir_ad2bef1a089cab40633d66159a55ae7b [shape=box label="joystick_controller" fillcolor="white" style="filled" color="red" URL="dir_ad2bef1a089cab40633d66159a55ae7b.html"];
+  dir_47daa6658bdb4e0f833f4fafb222ba74 [shape=box label="support_polytope_base_planner" fillcolor="white" style="filled" color="red" URL="dir_47daa6658bdb4e0f833f4fafb222ba74.html"];
+  }
+  }
+  dir_e86b67af98557f3798d04913e7ff4fbf->dir_ccddda87566ee263eec2f42a65371c71 [headlabel="2", labeldistance=1.5 headhref="dir_000016_000034.html"];
+}

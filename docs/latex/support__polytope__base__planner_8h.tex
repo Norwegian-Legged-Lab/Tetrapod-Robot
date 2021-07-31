@@ -1,0 +1,37 @@
+\hypertarget{support__polytope__base__planner_8h}{}\doxysection{catkin\+\_\+ws/src/guidance/support\+\_\+polytope\+\_\+base\+\_\+planner/include/support\+\_\+polytope\+\_\+base\+\_\+planner/support\+\_\+polytope\+\_\+base\+\_\+planner.h File Reference}
+\label{support__polytope__base__planner_8h}\index{catkin\_ws/src/guidance/support\_polytope\_base\_planner/include/support\_polytope\_base\_planner/support\_polytope\_base\_planner.h@{catkin\_ws/src/guidance/support\_polytope\_base\_planner/include/support\_polytope\_base\_planner/support\_polytope\_base\_planner.h}}
+{\ttfamily \#include $<$Eigen/\+Core$>$}\newline
+{\ttfamily \#include \char`\"{}drake/solvers/mathematical\+\_\+program.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}drake/solvers/osqp\+\_\+solver.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}drake/solvers/branch\+\_\+and\+\_\+bound.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}drake/common/symbolic.\+h\char`\"{}}\newline
+Include dependency graph for support\+\_\+polytope\+\_\+base\+\_\+planner.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+drake\+::solvers\+::\+Matrix\+XDecision\+Variable \mbox{\hyperlink{support__polytope__base__planner_8h_a57f949db1c97822fafd3454906d98058}{add\+\_\+decision\+\_\+variables}} (int n\+\_\+steps)
+\item 
+void \mbox{\hyperlink{support__polytope__base__planner_8h_a5c3f30876930afc6a519e8e532d76939}{set\+\_\+initial\+\_\+position}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, drake\+::solvers\+::\+Matrix\+XDecision\+Variable \&pos)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{support__polytope__base__planner_8h_a57f949db1c97822fafd3454906d98058}\label{support__polytope__base__planner_8h_a57f949db1c97822fafd3454906d98058}} 
+\index{support\_polytope\_base\_planner.h@{support\_polytope\_base\_planner.h}!add\_decision\_variables@{add\_decision\_variables}}
+\index{add\_decision\_variables@{add\_decision\_variables}!support\_polytope\_base\_planner.h@{support\_polytope\_base\_planner.h}}
+\doxysubsubsection{\texorpdfstring{add\_decision\_variables()}{add\_decision\_variables()}}
+{\footnotesize\ttfamily drake\+::solvers\+::\+Matrix\+XDecision\+Variable add\+\_\+decision\+\_\+variables (\begin{DoxyParamCaption}\item[{int}]{n\+\_\+steps }\end{DoxyParamCaption})}
+
+
+
+Definition at line 3 of file support\+\_\+polytope\+\_\+base\+\_\+planner.\+cpp.
+
+\mbox{\Hypertarget{support__polytope__base__planner_8h_a5c3f30876930afc6a519e8e532d76939}\label{support__polytope__base__planner_8h_a5c3f30876930afc6a519e8e532d76939}} 
+\index{support\_polytope\_base\_planner.h@{support\_polytope\_base\_planner.h}!set\_initial\_position@{set\_initial\_position}}
+\index{set\_initial\_position@{set\_initial\_position}!support\_polytope\_base\_planner.h@{support\_polytope\_base\_planner.h}}
+\doxysubsubsection{\texorpdfstring{set\_initial\_position()}{set\_initial\_position()}}
+{\footnotesize\ttfamily void set\+\_\+initial\+\_\+position (\begin{DoxyParamCaption}\item[{drake\+::solvers\+::\+Mathematical\+Program \&}]{prog,  }\item[{drake\+::solvers\+::\+Matrix\+XDecision\+Variable \&}]{pos }\end{DoxyParamCaption})}
+

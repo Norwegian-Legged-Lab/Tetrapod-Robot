@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['hierarchicaloptimizationcontrol_496',['HierarchicalOptimizationControl',['../classHierarchicalOptimizationControl.html',1,'']]]
+  ['footstepplannerplugin_1251',['FootstepPlannerPlugin',['../classgazebo_1_1FootstepPlannerPlugin.html',1,'gazebo']]]
 ];

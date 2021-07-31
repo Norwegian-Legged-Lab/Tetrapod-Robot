@@ -1,165 +1,647 @@
 \hypertarget{classJoystickController}{}\doxysection{Joystick\+Controller Class Reference}
 \label{classJoystickController}\index{JoystickController@{JoystickController}}
+
+
+{\ttfamily \#include $<$joystick\+\_\+controller.\+h$>$}
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classJoystickController_af5f0de2269eedc392243270b6dd51fea}\label{classJoystickController_af5f0de2269eedc392243270b6dd51fea}} 
-void {\bfseries init\+R\+OS} ()
+\mbox{\hyperlink{classJoystickController_aa7ba7d1b336933c7431ac8796b43c898}{Joystick\+Controller}} ()
 \item 
-\mbox{\Hypertarget{classJoystickController_a3ce615ed0c01afb1e362e97ae541b5b0}\label{classJoystickController_a3ce615ed0c01afb1e362e97ae541b5b0}} 
-void {\bfseries init\+Threads} ()
+virtual \mbox{\hyperlink{classJoystickController_aeba1ba536371a7f3cdbb680c92c3ab20}{$\sim$\+Joystick\+Controller}} ()
 \item 
-\mbox{\Hypertarget{classJoystickController_ac71da2fda6d487355f1f733155404888}\label{classJoystickController_ac71da2fda6d487355f1f733155404888}} 
-void {\bfseries listener\+Thread} ()
+void \mbox{\hyperlink{classJoystickController_af5f0de2269eedc392243270b6dd51fea}{init\+ROS}} ()
 \item 
-\mbox{\Hypertarget{classJoystickController_a0cbb5482d8b6c33ae2477554b7fe9ec4}\label{classJoystickController_a0cbb5482d8b6c33ae2477554b7fe9ec4}} 
-bool {\bfseries is\+Controller\+Paused} ()
+void \mbox{\hyperlink{classJoystickController_a3ce615ed0c01afb1e362e97ae541b5b0}{init\+Threads}} ()
 \item 
-\mbox{\Hypertarget{classJoystickController_a8dd41d71e787832b9cb8d60e868c1145}\label{classJoystickController_a8dd41d71e787832b9cb8d60e868c1145}} 
-void {\bfseries publish\+Twist\+Command} ()
+void \mbox{\hyperlink{classJoystickController_ac71da2fda6d487355f1f733155404888}{listener\+Thread}} ()
+\item 
+bool \mbox{\hyperlink{classJoystickController_a0cbb5482d8b6c33ae2477554b7fe9ec4}{is\+Controller\+Paused}} ()
+\item 
+void \mbox{\hyperlink{classJoystickController_a8dd41d71e787832b9cb8d60e868c1145}{publish\+Twist\+Command}} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Private Types}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classJoystickController_a32f9801cf734880bfb4075a7270c1907}\label{classJoystickController_a32f9801cf734880bfb4075a7270c1907}} 
-enum {\bfseries Button\+Status} \{ {\bfseries P\+R\+E\+S\+S\+ED} = 0, 
-{\bfseries R\+E\+L\+E\+A\+S\+ED} = 1
+enum \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907}{Button\+Status}} \{ \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907af7f03599dc0749e7c58107f53c01a670}{PRESSED}} = 0
+, \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907a65a0791796659903b3142b263c669fbb}{RELEASED}} = 1
  \}
 \item 
-\mbox{\Hypertarget{classJoystickController_a3d760612140aeff26ed988cedd627cff}\label{classJoystickController_a3d760612140aeff26ed988cedd627cff}} 
-enum {\bfseries Keyboard\+Mapping} \{ \newline
-{\bfseries K\+E\+Y\+\_\+\+UP} = 273, 
-{\bfseries K\+E\+Y\+\_\+\+D\+O\+WN} = 274, 
-{\bfseries K\+E\+Y\+\_\+\+L\+E\+FT} = 276, 
-{\bfseries K\+E\+Y\+\_\+\+R\+I\+G\+HT} = 275, 
-\newline
-{\bfseries K\+E\+Y\+\_\+\+C\+O\+U\+N\+T\+E\+R\+\_\+\+C\+L\+O\+C\+K\+W\+I\+S\+E\+\_\+\+R\+O\+T\+A\+T\+I\+ON} = 97, 
-{\bfseries K\+E\+Y\+\_\+\+C\+L\+O\+C\+K\+W\+I\+S\+E\+\_\+\+R\+O\+T\+A\+T\+I\+ON} = 100, 
-{\bfseries K\+E\+Y\+\_\+\+L\+I\+N\+E\+A\+R\+\_\+\+S\+P\+E\+E\+D\+\_\+\+I\+N\+C\+R\+E\+A\+SE} = 109, 
-{\bfseries K\+E\+Y\+\_\+\+L\+I\+N\+E\+A\+R\+\_\+\+S\+P\+E\+E\+D\+\_\+\+D\+E\+C\+R\+E\+A\+SE} = 110, 
-\newline
-{\bfseries K\+E\+Y\+\_\+\+A\+N\+G\+U\+L\+A\+R\+\_\+\+R\+A\+T\+E\+\_\+\+I\+N\+C\+R\+E\+A\+SE} = 120, 
-{\bfseries K\+E\+Y\+\_\+\+A\+N\+G\+U\+L\+A\+R\+\_\+\+R\+A\+T\+E\+\_\+\+D\+E\+C\+R\+E\+A\+SE} = 122, 
-{\bfseries K\+E\+Y\+\_\+\+P\+A\+U\+SE} = 32
+enum \mbox{\hyperlink{classJoystickController_a3d760612140aeff26ed988cedd627cff}{Keyboard\+Mapping}} \{ \newline
+\mbox{\hyperlink{classJoystickController_a3d760612140aeff26ed988cedd627cffad1364adbb3acd05bc54ad5939daee261}{KEY\+\_\+\+UP}} = 273
+, \mbox{\hyperlink{classJoystickController_a3d760612140aeff26ed988cedd627cffa31319f4dfc7443b8f2f9c00d8fccc234}{KEY\+\_\+\+DOWN}} = 274
+, \mbox{\hyperlink{classJoystickController_a3d760612140aeff26ed988cedd627cffa84837aa3285c31f2b0f7a78ed78ec7a4}{KEY\+\_\+\+LEFT}} = 276
+, \mbox{\hyperlink{classJoystickController_a3d760612140aeff26ed988cedd627cffa4b3bc9a61f8c39cf19fe1778701cf60f}{KEY\+\_\+\+RIGHT}} = 275
+, \newline
+\mbox{\hyperlink{classJoystickController_a3d760612140aeff26ed988cedd627cffa02dd0bbd4a267ab0b0ffd304ecad2b85}{KEY\+\_\+\+COUNTER\+\_\+\+CLOCKWISE\+\_\+\+ROTATION}} = 97
+, \mbox{\hyperlink{classJoystickController_a3d760612140aeff26ed988cedd627cffa083026a2fe5ac194b0cd1f2631112bd3}{KEY\+\_\+\+CLOCKWISE\+\_\+\+ROTATION}} = 100
+, \mbox{\hyperlink{classJoystickController_a3d760612140aeff26ed988cedd627cffacf6ae7c8af10cf0ffdcd1a434aef635b}{KEY\+\_\+\+LINEAR\+\_\+\+SPEED\+\_\+\+INCREASE}} = 109
+, \mbox{\hyperlink{classJoystickController_a3d760612140aeff26ed988cedd627cffab59ad4951b2da1d16b027c745adb9d5d}{KEY\+\_\+\+LINEAR\+\_\+\+SPEED\+\_\+\+DECREASE}} = 110
+, \newline
+\mbox{\hyperlink{classJoystickController_a3d760612140aeff26ed988cedd627cffa1978c69aba469cb3ea579c939ad0e448}{KEY\+\_\+\+ANGULAR\+\_\+\+RATE\+\_\+\+INCREASE}} = 120
+, \mbox{\hyperlink{classJoystickController_a3d760612140aeff26ed988cedd627cffa2d100db8dfbc0f121a3b3c61d88cb2e8}{KEY\+\_\+\+ANGULAR\+\_\+\+RATE\+\_\+\+DECREASE}} = 122
+, \mbox{\hyperlink{classJoystickController_a3d760612140aeff26ed988cedd627cffa2a6d360907596c7607d2699f50075e8a}{KEY\+\_\+\+PAUSE}} = 32
  \}
 \end{DoxyCompactItemize}
 \doxysubsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classJoystickController_a5e7f19b777e94278b6d2586753b5df37}\label{classJoystickController_a5e7f19b777e94278b6d2586753b5df37}} 
-void {\bfseries joystick\+Callback} (const sensor\+\_\+msgs\+::\+Joy\+Const\+Ptr \&\+\_\+msg)
+void \mbox{\hyperlink{classJoystickController_a5e7f19b777e94278b6d2586753b5df37}{joystick\+Callback}} (const sensor\+\_\+msgs\+::\+Joy\+Const\+Ptr \&\+\_\+msg)
 \item 
-\mbox{\Hypertarget{classJoystickController_a277bce2135df1070c74e7cba9b7105ef}\label{classJoystickController_a277bce2135df1070c74e7cba9b7105ef}} 
-void {\bfseries keyboard\+Button\+Released\+Callback} (const keyboard\+::\+Key\+Const\+Ptr \&\+\_\+msg)
+void \mbox{\hyperlink{classJoystickController_a277bce2135df1070c74e7cba9b7105ef}{keyboard\+Button\+Released\+Callback}} (const keyboard\+::\+Key\+Const\+Ptr \&\+\_\+msg)
 \item 
-\mbox{\Hypertarget{classJoystickController_a514c5d9c6c9701a098e27ea829407b18}\label{classJoystickController_a514c5d9c6c9701a098e27ea829407b18}} 
-void {\bfseries keyboard\+Button\+Pressed\+Callback} (const keyboard\+::\+Key\+Const\+Ptr \&\+\_\+msg)
+void \mbox{\hyperlink{classJoystickController_a514c5d9c6c9701a098e27ea829407b18}{keyboard\+Button\+Pressed\+Callback}} (const keyboard\+::\+Key\+Const\+Ptr \&\+\_\+msg)
 \item 
-\mbox{\Hypertarget{classJoystickController_aad83db4b266d7d45bcb25358dc0aa124}\label{classJoystickController_aad83db4b266d7d45bcb25358dc0aa124}} 
-void {\bfseries change\+Linear\+Multiplier} (bool \+\_\+increase)
+void \mbox{\hyperlink{classJoystickController_aad83db4b266d7d45bcb25358dc0aa124}{change\+Linear\+Multiplier}} (bool \+\_\+increase)
 \item 
-\mbox{\Hypertarget{classJoystickController_a31ed6d8fab843449db56aaa2f1f27fb2}\label{classJoystickController_a31ed6d8fab843449db56aaa2f1f27fb2}} 
-void {\bfseries change\+Rotational\+Multiplier} (bool \+\_\+increase)
+void \mbox{\hyperlink{classJoystickController_a31ed6d8fab843449db56aaa2f1f27fb2}{change\+Rotational\+Multiplier}} (bool \+\_\+increase)
 \item 
-\mbox{\Hypertarget{classJoystickController_a7e7772003e9f1bc611b8e1be5277f051}\label{classJoystickController_a7e7772003e9f1bc611b8e1be5277f051}} 
-bool {\bfseries ready\+To\+Change\+Linear\+Multiplier} ()
+bool \mbox{\hyperlink{classJoystickController_a7e7772003e9f1bc611b8e1be5277f051}{ready\+To\+Change\+Linear\+Multiplier}} ()
 \item 
-\mbox{\Hypertarget{classJoystickController_a5b4846eb52ffe7b5a48973c47402f3b1}\label{classJoystickController_a5b4846eb52ffe7b5a48973c47402f3b1}} 
-bool {\bfseries ready\+To\+Change\+Rotational\+Multiplier} ()
+bool \mbox{\hyperlink{classJoystickController_a5b4846eb52ffe7b5a48973c47402f3b1}{ready\+To\+Change\+Rotational\+Multiplier}} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classJoystickController_ac29ffb239202278abf8f41b7e10a5a4a}\label{classJoystickController_ac29ffb239202278abf8f41b7e10a5a4a}} 
-ros\+::\+Subscriber {\bfseries keyboard\+\_\+button\+\_\+pressed\+\_\+subscriber}
+ros\+::\+Subscriber \mbox{\hyperlink{classJoystickController_ac29ffb239202278abf8f41b7e10a5a4a}{keyboard\+\_\+button\+\_\+pressed\+\_\+subscriber}}
 \item 
-\mbox{\Hypertarget{classJoystickController_afe013667e133fa640ccb0d23eaab9b6f}\label{classJoystickController_afe013667e133fa640ccb0d23eaab9b6f}} 
-ros\+::\+Subscriber {\bfseries keyboard\+\_\+button\+\_\+released\+\_\+subscriber}
+ros\+::\+Subscriber \mbox{\hyperlink{classJoystickController_afe013667e133fa640ccb0d23eaab9b6f}{keyboard\+\_\+button\+\_\+released\+\_\+subscriber}}
 \item 
-\mbox{\Hypertarget{classJoystickController_ae54d7b2740fe1c8116b1fc4c510eb16d}\label{classJoystickController_ae54d7b2740fe1c8116b1fc4c510eb16d}} 
-Button\+Status {\bfseries F\+O\+R\+W\+A\+RD} = R\+E\+L\+E\+A\+S\+ED
+\mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907}{Button\+Status}} \mbox{\hyperlink{classJoystickController_ae54d7b2740fe1c8116b1fc4c510eb16d}{FORWARD}} = \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907a65a0791796659903b3142b263c669fbb}{RELEASED}}
 \item 
-\mbox{\Hypertarget{classJoystickController_aa079243dfc53e5f8fb2e98911284188f}\label{classJoystickController_aa079243dfc53e5f8fb2e98911284188f}} 
-Button\+Status {\bfseries B\+A\+C\+K\+W\+A\+RD} = R\+E\+L\+E\+A\+S\+ED
+\mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907}{Button\+Status}} \mbox{\hyperlink{classJoystickController_aa079243dfc53e5f8fb2e98911284188f}{BACKWARD}} = \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907a65a0791796659903b3142b263c669fbb}{RELEASED}}
 \item 
-\mbox{\Hypertarget{classJoystickController_a01937412e06601d4a5b70891af8af874}\label{classJoystickController_a01937412e06601d4a5b70891af8af874}} 
-Button\+Status {\bfseries L\+E\+FT} = R\+E\+L\+E\+A\+S\+ED
+\mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907}{Button\+Status}} \mbox{\hyperlink{classJoystickController_a01937412e06601d4a5b70891af8af874}{LEFT}} = \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907a65a0791796659903b3142b263c669fbb}{RELEASED}}
 \item 
-\mbox{\Hypertarget{classJoystickController_a4ee2521b7661e1dc003de048328be91c}\label{classJoystickController_a4ee2521b7661e1dc003de048328be91c}} 
-Button\+Status {\bfseries R\+I\+G\+HT} = R\+E\+L\+E\+A\+S\+ED
+\mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907}{Button\+Status}} \mbox{\hyperlink{classJoystickController_a4ee2521b7661e1dc003de048328be91c}{RIGHT}} = \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907a65a0791796659903b3142b263c669fbb}{RELEASED}}
 \item 
-\mbox{\Hypertarget{classJoystickController_a3e1d13be0314ec464896327ede779d9e}\label{classJoystickController_a3e1d13be0314ec464896327ede779d9e}} 
-Button\+Status {\bfseries C\+L\+O\+C\+K\+W\+I\+S\+E\+\_\+\+R\+O\+T\+A\+T\+I\+ON} = R\+E\+L\+E\+A\+S\+ED
+\mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907}{Button\+Status}} \mbox{\hyperlink{classJoystickController_a3e1d13be0314ec464896327ede779d9e}{CLOCKWISE\+\_\+\+ROTATION}} = \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907a65a0791796659903b3142b263c669fbb}{RELEASED}}
 \item 
-\mbox{\Hypertarget{classJoystickController_a0b1521df74a547676a6ce6d8d2981b53}\label{classJoystickController_a0b1521df74a547676a6ce6d8d2981b53}} 
-Button\+Status {\bfseries C\+O\+U\+N\+T\+E\+R\+\_\+\+C\+L\+O\+C\+K\+W\+I\+S\+E\+\_\+\+R\+O\+T\+A\+T\+I\+ON} = R\+E\+L\+E\+A\+S\+ED
+\mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907}{Button\+Status}} \mbox{\hyperlink{classJoystickController_a0b1521df74a547676a6ce6d8d2981b53}{COUNTER\+\_\+\+CLOCKWISE\+\_\+\+ROTATION}} = \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907a65a0791796659903b3142b263c669fbb}{RELEASED}}
 \item 
-\mbox{\Hypertarget{classJoystickController_a2d4f61be3fef0de9687f2ae948b8bed6}\label{classJoystickController_a2d4f61be3fef0de9687f2ae948b8bed6}} 
-Button\+Status {\bfseries L\+I\+N\+E\+A\+R\+\_\+\+S\+P\+E\+E\+D\+\_\+\+I\+N\+C\+R\+E\+A\+SE} = R\+E\+L\+E\+A\+S\+ED
+\mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907}{Button\+Status}} \mbox{\hyperlink{classJoystickController_a2d4f61be3fef0de9687f2ae948b8bed6}{LINEAR\+\_\+\+SPEED\+\_\+\+INCREASE}} = \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907a65a0791796659903b3142b263c669fbb}{RELEASED}}
 \item 
-\mbox{\Hypertarget{classJoystickController_adb25d537eb3e769a233cbae58d9d9e7d}\label{classJoystickController_adb25d537eb3e769a233cbae58d9d9e7d}} 
-Button\+Status {\bfseries L\+I\+N\+E\+A\+R\+\_\+\+S\+P\+E\+E\+D\+\_\+\+D\+E\+C\+R\+E\+A\+SE} = R\+E\+L\+E\+A\+S\+ED
+\mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907}{Button\+Status}} \mbox{\hyperlink{classJoystickController_adb25d537eb3e769a233cbae58d9d9e7d}{LINEAR\+\_\+\+SPEED\+\_\+\+DECREASE}} = \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907a65a0791796659903b3142b263c669fbb}{RELEASED}}
 \item 
-\mbox{\Hypertarget{classJoystickController_a4376910d0c782a94a3d9e050f59775c6}\label{classJoystickController_a4376910d0c782a94a3d9e050f59775c6}} 
-Button\+Status {\bfseries A\+N\+G\+U\+L\+A\+R\+\_\+\+R\+A\+T\+E\+\_\+\+I\+N\+C\+R\+E\+A\+SE} = R\+E\+L\+E\+A\+S\+ED
+\mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907}{Button\+Status}} \mbox{\hyperlink{classJoystickController_a4376910d0c782a94a3d9e050f59775c6}{ANGULAR\+\_\+\+RATE\+\_\+\+INCREASE}} = \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907a65a0791796659903b3142b263c669fbb}{RELEASED}}
 \item 
-\mbox{\Hypertarget{classJoystickController_a65804a108a5556affd69b90d080806dd}\label{classJoystickController_a65804a108a5556affd69b90d080806dd}} 
-Button\+Status {\bfseries A\+N\+G\+U\+L\+A\+R\+\_\+\+R\+A\+T\+E\+\_\+\+D\+E\+C\+R\+E\+A\+SE} = R\+E\+L\+E\+A\+S\+ED
+\mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907}{Button\+Status}} \mbox{\hyperlink{classJoystickController_a65804a108a5556affd69b90d080806dd}{ANGULAR\+\_\+\+RATE\+\_\+\+DECREASE}} = \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907a65a0791796659903b3142b263c669fbb}{RELEASED}}
 \item 
-\mbox{\Hypertarget{classJoystickController_a9741d2b3da773f7547a80833f32c5889}\label{classJoystickController_a9741d2b3da773f7547a80833f32c5889}} 
-Button\+Status {\bfseries P\+A\+U\+SE} = R\+E\+L\+E\+A\+S\+ED
+\mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907}{Button\+Status}} \mbox{\hyperlink{classJoystickController_a9741d2b3da773f7547a80833f32c5889}{PAUSE}} = \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907a65a0791796659903b3142b263c669fbb}{RELEASED}}
 \item 
-\mbox{\Hypertarget{classJoystickController_a30de995a2341461668f22c8591cfd4df}\label{classJoystickController_a30de995a2341461668f22c8591cfd4df}} 
-std\+::unique\+\_\+ptr$<$ ros\+::\+Node\+Handle $>$ {\bfseries node\+Handle}
+std\+::unique\+\_\+ptr$<$ ros\+::\+Node\+Handle $>$ \mbox{\hyperlink{classJoystickController_a30de995a2341461668f22c8591cfd4df}{node\+Handle}}
 \item 
-\mbox{\Hypertarget{classJoystickController_a4e4f04f631052cda21bda17dadf80a21}\label{classJoystickController_a4e4f04f631052cda21bda17dadf80a21}} 
-ros\+::\+Subscriber {\bfseries joystick\+\_\+subscriber}
+ros\+::\+Subscriber \mbox{\hyperlink{classJoystickController_a4e4f04f631052cda21bda17dadf80a21}{joystick\+\_\+subscriber}}
 \item 
-\mbox{\Hypertarget{classJoystickController_a5c7f6084f13b4bedc941874420d59141}\label{classJoystickController_a5c7f6084f13b4bedc941874420d59141}} 
-ros\+::\+Publisher {\bfseries twist\+\_\+command\+\_\+publisher}
+ros\+::\+Publisher \mbox{\hyperlink{classJoystickController_a5c7f6084f13b4bedc941874420d59141}{twist\+\_\+command\+\_\+publisher}}
 \item 
-\mbox{\Hypertarget{classJoystickController_afe14f438fee19f447e7c5b1c1069ea7c}\label{classJoystickController_afe14f438fee19f447e7c5b1c1069ea7c}} 
-double {\bfseries linear\+\_\+rate\+\_\+multiplier} = 0.\+2
+double \mbox{\hyperlink{classJoystickController_afe14f438fee19f447e7c5b1c1069ea7c}{linear\+\_\+rate\+\_\+multiplier}} = 0.\+2
 \item 
-\mbox{\Hypertarget{classJoystickController_a6695af2faad548f51ca59d2892a79f00}\label{classJoystickController_a6695af2faad548f51ca59d2892a79f00}} 
-double {\bfseries linear\+\_\+rate\+\_\+multiplier\+\_\+step} = 0.\+1
+double \mbox{\hyperlink{classJoystickController_a6695af2faad548f51ca59d2892a79f00}{linear\+\_\+rate\+\_\+multiplier\+\_\+step}} = 0.\+1
 \item 
-\mbox{\Hypertarget{classJoystickController_a5400cb7cc262b0fa39c6ff2538fd1287}\label{classJoystickController_a5400cb7cc262b0fa39c6ff2538fd1287}} 
-double {\bfseries linear\+\_\+rate\+\_\+multiplier\+\_\+min} = 0.\+2
+double \mbox{\hyperlink{classJoystickController_a5400cb7cc262b0fa39c6ff2538fd1287}{linear\+\_\+rate\+\_\+multiplier\+\_\+min}} = 0.\+2
 \item 
-\mbox{\Hypertarget{classJoystickController_adf7e26c9edca3221ea0bf11300c05b40}\label{classJoystickController_adf7e26c9edca3221ea0bf11300c05b40}} 
-double {\bfseries linear\+\_\+rate\+\_\+multiplier\+\_\+max} = 1.\+0
+double \mbox{\hyperlink{classJoystickController_adf7e26c9edca3221ea0bf11300c05b40}{linear\+\_\+rate\+\_\+multiplier\+\_\+max}} = 0.\+6
 \item 
-\mbox{\Hypertarget{classJoystickController_a731477ebc602acc87b7a151a58579f40}\label{classJoystickController_a731477ebc602acc87b7a151a58579f40}} 
-double {\bfseries rotational\+\_\+rate\+\_\+multiplier} = 0.\+2
+double \mbox{\hyperlink{classJoystickController_a731477ebc602acc87b7a151a58579f40}{rotational\+\_\+rate\+\_\+multiplier}} = 0.\+2
 \item 
-\mbox{\Hypertarget{classJoystickController_ab46aabfe68f66432f8a5d666355b6f88}\label{classJoystickController_ab46aabfe68f66432f8a5d666355b6f88}} 
-double {\bfseries rotational\+\_\+rate\+\_\+multiplier\+\_\+step} = 0.\+1
+double \mbox{\hyperlink{classJoystickController_ab46aabfe68f66432f8a5d666355b6f88}{rotational\+\_\+rate\+\_\+multiplier\+\_\+step}} = 0.\+2
 \item 
-\mbox{\Hypertarget{classJoystickController_a27e902008e6c3a68413ae3eec5ef3233}\label{classJoystickController_a27e902008e6c3a68413ae3eec5ef3233}} 
-double {\bfseries rotational\+\_\+rate\+\_\+multiplier\+\_\+max} = 1.\+0
+double \mbox{\hyperlink{classJoystickController_a27e902008e6c3a68413ae3eec5ef3233}{rotational\+\_\+rate\+\_\+multiplier\+\_\+max}} = 2.\+6
 \item 
-\mbox{\Hypertarget{classJoystickController_a72351b62cd4fc72c3d8fcc3808d349c0}\label{classJoystickController_a72351b62cd4fc72c3d8fcc3808d349c0}} 
-double {\bfseries rotational\+\_\+rate\+\_\+multiplier\+\_\+min} = 0.\+2
+double \mbox{\hyperlink{classJoystickController_a72351b62cd4fc72c3d8fcc3808d349c0}{rotational\+\_\+rate\+\_\+multiplier\+\_\+min}} = 0.\+2
 \item 
-\mbox{\Hypertarget{classJoystickController_a322eeb69a76ae37a073326466d31f89f}\label{classJoystickController_a322eeb69a76ae37a073326466d31f89f}} 
-geometry\+\_\+msgs\+::\+Twist {\bfseries twist\+\_\+command\+\_\+message}
+\mbox{\hyperlink{kinematics_8h_ace7064c2a774578880164cc27b69caa5}{geometry\+\_\+msgs\+::\+Twist}} \mbox{\hyperlink{classJoystickController_a322eeb69a76ae37a073326466d31f89f}{twist\+\_\+command\+\_\+message}}
 \item 
-\mbox{\Hypertarget{classJoystickController_ab5cc5e7dc7ff4860a105491f8243444a}\label{classJoystickController_ab5cc5e7dc7ff4860a105491f8243444a}} 
-double {\bfseries pause} = false
+double \mbox{\hyperlink{classJoystickController_ab5cc5e7dc7ff4860a105491f8243444a}{pause}} = false
 \item 
-\mbox{\Hypertarget{classJoystickController_a6fb8fab0759580b5e3bbeff35cfc549b}\label{classJoystickController_a6fb8fab0759580b5e3bbeff35cfc549b}} 
-double {\bfseries minimum\+\_\+seconds\+\_\+between\+\_\+limit\+\_\+change} = 0.\+1
+double \mbox{\hyperlink{classJoystickController_a6fb8fab0759580b5e3bbeff35cfc549b}{minimum\+\_\+seconds\+\_\+between\+\_\+limit\+\_\+change}} = 0.\+1
 \item 
-\mbox{\Hypertarget{classJoystickController_ae603d8640b4fd9549e22b2a956f3c380}\label{classJoystickController_ae603d8640b4fd9549e22b2a956f3c380}} 
-double {\bfseries time\+\_\+of\+\_\+last\+\_\+linear\+\_\+limit\+\_\+change} = 0.\+0
+double \mbox{\hyperlink{classJoystickController_ae603d8640b4fd9549e22b2a956f3c380}{time\+\_\+of\+\_\+last\+\_\+linear\+\_\+limit\+\_\+change}} = 0.\+0
 \item 
-\mbox{\Hypertarget{classJoystickController_ab9b8767c4cade6f60c4003f07e0cd0d4}\label{classJoystickController_ab9b8767c4cade6f60c4003f07e0cd0d4}} 
-double {\bfseries time\+\_\+of\+\_\+last\+\_\+rotational\+\_\+limit\+\_\+change} = 0.\+0
+double \mbox{\hyperlink{classJoystickController_ab9b8767c4cade6f60c4003f07e0cd0d4}{time\+\_\+of\+\_\+last\+\_\+rotational\+\_\+limit\+\_\+change}} = 0.\+0
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 46 of file joystick\+\_\+controller.\+h.
+
+
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{classJoystickController_a32f9801cf734880bfb4075a7270c1907}\label{classJoystickController_a32f9801cf734880bfb4075a7270c1907}} 
+\index{JoystickController@{JoystickController}!ButtonStatus@{ButtonStatus}}
+\index{ButtonStatus@{ButtonStatus}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{ButtonStatus}{ButtonStatus}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907}{Joystick\+Controller\+::\+Button\+Status}}\hspace{0.3cm}{\ttfamily [private]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PRESSED@{PRESSED}!JoystickController@{JoystickController}}\index{JoystickController@{JoystickController}!PRESSED@{PRESSED}}}\mbox{\Hypertarget{classJoystickController_a32f9801cf734880bfb4075a7270c1907af7f03599dc0749e7c58107f53c01a670}\label{classJoystickController_a32f9801cf734880bfb4075a7270c1907af7f03599dc0749e7c58107f53c01a670}} 
+PRESSED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RELEASED@{RELEASED}!JoystickController@{JoystickController}}\index{JoystickController@{JoystickController}!RELEASED@{RELEASED}}}\mbox{\Hypertarget{classJoystickController_a32f9801cf734880bfb4075a7270c1907a65a0791796659903b3142b263c669fbb}\label{classJoystickController_a32f9801cf734880bfb4075a7270c1907a65a0791796659903b3142b263c669fbb}} 
+RELEASED&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 48 of file joystick\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classJoystickController_a3d760612140aeff26ed988cedd627cff}\label{classJoystickController_a3d760612140aeff26ed988cedd627cff}} 
+\index{JoystickController@{JoystickController}!KeyboardMapping@{KeyboardMapping}}
+\index{KeyboardMapping@{KeyboardMapping}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{KeyboardMapping}{KeyboardMapping}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classJoystickController_a3d760612140aeff26ed988cedd627cff}{Joystick\+Controller\+::\+Keyboard\+Mapping}}\hspace{0.3cm}{\ttfamily [private]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KEY\_UP@{KEY\_UP}!JoystickController@{JoystickController}}\index{JoystickController@{JoystickController}!KEY\_UP@{KEY\_UP}}}\mbox{\Hypertarget{classJoystickController_a3d760612140aeff26ed988cedd627cffad1364adbb3acd05bc54ad5939daee261}\label{classJoystickController_a3d760612140aeff26ed988cedd627cffad1364adbb3acd05bc54ad5939daee261}} 
+KEY\+\_\+\+UP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KEY\_DOWN@{KEY\_DOWN}!JoystickController@{JoystickController}}\index{JoystickController@{JoystickController}!KEY\_DOWN@{KEY\_DOWN}}}\mbox{\Hypertarget{classJoystickController_a3d760612140aeff26ed988cedd627cffa31319f4dfc7443b8f2f9c00d8fccc234}\label{classJoystickController_a3d760612140aeff26ed988cedd627cffa31319f4dfc7443b8f2f9c00d8fccc234}} 
+KEY\+\_\+\+DOWN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KEY\_LEFT@{KEY\_LEFT}!JoystickController@{JoystickController}}\index{JoystickController@{JoystickController}!KEY\_LEFT@{KEY\_LEFT}}}\mbox{\Hypertarget{classJoystickController_a3d760612140aeff26ed988cedd627cffa84837aa3285c31f2b0f7a78ed78ec7a4}\label{classJoystickController_a3d760612140aeff26ed988cedd627cffa84837aa3285c31f2b0f7a78ed78ec7a4}} 
+KEY\+\_\+\+LEFT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KEY\_RIGHT@{KEY\_RIGHT}!JoystickController@{JoystickController}}\index{JoystickController@{JoystickController}!KEY\_RIGHT@{KEY\_RIGHT}}}\mbox{\Hypertarget{classJoystickController_a3d760612140aeff26ed988cedd627cffa4b3bc9a61f8c39cf19fe1778701cf60f}\label{classJoystickController_a3d760612140aeff26ed988cedd627cffa4b3bc9a61f8c39cf19fe1778701cf60f}} 
+KEY\+\_\+\+RIGHT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KEY\_COUNTER\_CLOCKWISE\_ROTATION@{KEY\_COUNTER\_CLOCKWISE\_ROTATION}!JoystickController@{JoystickController}}\index{JoystickController@{JoystickController}!KEY\_COUNTER\_CLOCKWISE\_ROTATION@{KEY\_COUNTER\_CLOCKWISE\_ROTATION}}}\mbox{\Hypertarget{classJoystickController_a3d760612140aeff26ed988cedd627cffa02dd0bbd4a267ab0b0ffd304ecad2b85}\label{classJoystickController_a3d760612140aeff26ed988cedd627cffa02dd0bbd4a267ab0b0ffd304ecad2b85}} 
+KEY\+\_\+\+COUNTER\+\_\+\+CLOCKWISE\+\_\+\+ROTATION&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KEY\_CLOCKWISE\_ROTATION@{KEY\_CLOCKWISE\_ROTATION}!JoystickController@{JoystickController}}\index{JoystickController@{JoystickController}!KEY\_CLOCKWISE\_ROTATION@{KEY\_CLOCKWISE\_ROTATION}}}\mbox{\Hypertarget{classJoystickController_a3d760612140aeff26ed988cedd627cffa083026a2fe5ac194b0cd1f2631112bd3}\label{classJoystickController_a3d760612140aeff26ed988cedd627cffa083026a2fe5ac194b0cd1f2631112bd3}} 
+KEY\+\_\+\+CLOCKWISE\+\_\+\+ROTATION&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KEY\_LINEAR\_SPEED\_INCREASE@{KEY\_LINEAR\_SPEED\_INCREASE}!JoystickController@{JoystickController}}\index{JoystickController@{JoystickController}!KEY\_LINEAR\_SPEED\_INCREASE@{KEY\_LINEAR\_SPEED\_INCREASE}}}\mbox{\Hypertarget{classJoystickController_a3d760612140aeff26ed988cedd627cffacf6ae7c8af10cf0ffdcd1a434aef635b}\label{classJoystickController_a3d760612140aeff26ed988cedd627cffacf6ae7c8af10cf0ffdcd1a434aef635b}} 
+KEY\+\_\+\+LINEAR\+\_\+\+SPEED\+\_\+\+INCREASE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KEY\_LINEAR\_SPEED\_DECREASE@{KEY\_LINEAR\_SPEED\_DECREASE}!JoystickController@{JoystickController}}\index{JoystickController@{JoystickController}!KEY\_LINEAR\_SPEED\_DECREASE@{KEY\_LINEAR\_SPEED\_DECREASE}}}\mbox{\Hypertarget{classJoystickController_a3d760612140aeff26ed988cedd627cffab59ad4951b2da1d16b027c745adb9d5d}\label{classJoystickController_a3d760612140aeff26ed988cedd627cffab59ad4951b2da1d16b027c745adb9d5d}} 
+KEY\+\_\+\+LINEAR\+\_\+\+SPEED\+\_\+\+DECREASE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KEY\_ANGULAR\_RATE\_INCREASE@{KEY\_ANGULAR\_RATE\_INCREASE}!JoystickController@{JoystickController}}\index{JoystickController@{JoystickController}!KEY\_ANGULAR\_RATE\_INCREASE@{KEY\_ANGULAR\_RATE\_INCREASE}}}\mbox{\Hypertarget{classJoystickController_a3d760612140aeff26ed988cedd627cffa1978c69aba469cb3ea579c939ad0e448}\label{classJoystickController_a3d760612140aeff26ed988cedd627cffa1978c69aba469cb3ea579c939ad0e448}} 
+KEY\+\_\+\+ANGULAR\+\_\+\+RATE\+\_\+\+INCREASE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KEY\_ANGULAR\_RATE\_DECREASE@{KEY\_ANGULAR\_RATE\_DECREASE}!JoystickController@{JoystickController}}\index{JoystickController@{JoystickController}!KEY\_ANGULAR\_RATE\_DECREASE@{KEY\_ANGULAR\_RATE\_DECREASE}}}\mbox{\Hypertarget{classJoystickController_a3d760612140aeff26ed988cedd627cffa2d100db8dfbc0f121a3b3c61d88cb2e8}\label{classJoystickController_a3d760612140aeff26ed988cedd627cffa2d100db8dfbc0f121a3b3c61d88cb2e8}} 
+KEY\+\_\+\+ANGULAR\+\_\+\+RATE\+\_\+\+DECREASE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KEY\_PAUSE@{KEY\_PAUSE}!JoystickController@{JoystickController}}\index{JoystickController@{JoystickController}!KEY\_PAUSE@{KEY\_PAUSE}}}\mbox{\Hypertarget{classJoystickController_a3d760612140aeff26ed988cedd627cffa2a6d360907596c7607d2699f50075e8a}\label{classJoystickController_a3d760612140aeff26ed988cedd627cffa2a6d360907596c7607d2699f50075e8a}} 
+KEY\+\_\+\+PAUSE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 50 of file joystick\+\_\+controller.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classJoystickController_aa7ba7d1b336933c7431ac8796b43c898}\label{classJoystickController_aa7ba7d1b336933c7431ac8796b43c898}} 
+\index{JoystickController@{JoystickController}!JoystickController@{JoystickController}}
+\index{JoystickController@{JoystickController}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{JoystickController()}{JoystickController()}}
+{\footnotesize\ttfamily Joystick\+Controller\+::\+Joystick\+Controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 3 of file joystick\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classJoystickController_aeba1ba536371a7f3cdbb680c92c3ab20}\label{classJoystickController_aeba1ba536371a7f3cdbb680c92c3ab20}} 
+\index{JoystickController@{JoystickController}!````~JoystickController@{$\sim$JoystickController}}
+\index{````~JoystickController@{$\sim$JoystickController}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{$\sim$JoystickController()}{~JoystickController()}}
+{\footnotesize\ttfamily Joystick\+Controller\+::$\sim$\+Joystick\+Controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 14 of file joystick\+\_\+controller.\+cpp.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classJoystickController_af5f0de2269eedc392243270b6dd51fea}\label{classJoystickController_af5f0de2269eedc392243270b6dd51fea}} 
+\index{JoystickController@{JoystickController}!initROS@{initROS}}
+\index{initROS@{initROS}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{initROS()}{initROS()}}
+{\footnotesize\ttfamily void Joystick\+Controller\+::init\+ROS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 23 of file joystick\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classJoystickController_a3ce615ed0c01afb1e362e97ae541b5b0}\label{classJoystickController_a3ce615ed0c01afb1e362e97ae541b5b0}} 
+\index{JoystickController@{JoystickController}!initThreads@{initThreads}}
+\index{initThreads@{initThreads}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{initThreads()}{initThreads()}}
+{\footnotesize\ttfamily void Joystick\+Controller\+::init\+Threads (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classJoystickController_ac71da2fda6d487355f1f733155404888}\label{classJoystickController_ac71da2fda6d487355f1f733155404888}} 
+\index{JoystickController@{JoystickController}!listenerThread@{listenerThread}}
+\index{listenerThread@{listenerThread}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{listenerThread()}{listenerThread()}}
+{\footnotesize\ttfamily void Joystick\+Controller\+::listener\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classJoystickController_a5e7f19b777e94278b6d2586753b5df37}\label{classJoystickController_a5e7f19b777e94278b6d2586753b5df37}} 
+\index{JoystickController@{JoystickController}!joystickCallback@{joystickCallback}}
+\index{joystickCallback@{joystickCallback}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{joystickCallback()}{joystickCallback()}}
+{\footnotesize\ttfamily void Joystick\+Controller\+::joystick\+Callback (\begin{DoxyParamCaption}\item[{const sensor\+\_\+msgs\+::\+Joy\+Const\+Ptr \&}]{\+\_\+msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 92 of file joystick\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classJoystickController_a277bce2135df1070c74e7cba9b7105ef}\label{classJoystickController_a277bce2135df1070c74e7cba9b7105ef}} 
+\index{JoystickController@{JoystickController}!keyboardButtonReleasedCallback@{keyboardButtonReleasedCallback}}
+\index{keyboardButtonReleasedCallback@{keyboardButtonReleasedCallback}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{keyboardButtonReleasedCallback()}{keyboardButtonReleasedCallback()}}
+{\footnotesize\ttfamily void Joystick\+Controller\+::keyboard\+Button\+Released\+Callback (\begin{DoxyParamCaption}\item[{const keyboard\+::\+Key\+Const\+Ptr \&}]{\+\_\+msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 282 of file joystick\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classJoystickController_a514c5d9c6c9701a098e27ea829407b18}\label{classJoystickController_a514c5d9c6c9701a098e27ea829407b18}} 
+\index{JoystickController@{JoystickController}!keyboardButtonPressedCallback@{keyboardButtonPressedCallback}}
+\index{keyboardButtonPressedCallback@{keyboardButtonPressedCallback}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{keyboardButtonPressedCallback()}{keyboardButtonPressedCallback()}}
+{\footnotesize\ttfamily void Joystick\+Controller\+::keyboard\+Button\+Pressed\+Callback (\begin{DoxyParamCaption}\item[{const keyboard\+::\+Key\+Const\+Ptr \&}]{\+\_\+msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 172 of file joystick\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classJoystickController_aad83db4b266d7d45bcb25358dc0aa124}\label{classJoystickController_aad83db4b266d7d45bcb25358dc0aa124}} 
+\index{JoystickController@{JoystickController}!changeLinearMultiplier@{changeLinearMultiplier}}
+\index{changeLinearMultiplier@{changeLinearMultiplier}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{changeLinearMultiplier()}{changeLinearMultiplier()}}
+{\footnotesize\ttfamily void Joystick\+Controller\+::change\+Linear\+Multiplier (\begin{DoxyParamCaption}\item[{bool}]{\+\_\+increase }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 315 of file joystick\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classJoystickController_a31ed6d8fab843449db56aaa2f1f27fb2}\label{classJoystickController_a31ed6d8fab843449db56aaa2f1f27fb2}} 
+\index{JoystickController@{JoystickController}!changeRotationalMultiplier@{changeRotationalMultiplier}}
+\index{changeRotationalMultiplier@{changeRotationalMultiplier}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{changeRotationalMultiplier()}{changeRotationalMultiplier()}}
+{\footnotesize\ttfamily void Joystick\+Controller\+::change\+Rotational\+Multiplier (\begin{DoxyParamCaption}\item[{bool}]{\+\_\+increase }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 327 of file joystick\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classJoystickController_a0cbb5482d8b6c33ae2477554b7fe9ec4}\label{classJoystickController_a0cbb5482d8b6c33ae2477554b7fe9ec4}} 
+\index{JoystickController@{JoystickController}!isControllerPaused@{isControllerPaused}}
+\index{isControllerPaused@{isControllerPaused}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{isControllerPaused()}{isControllerPaused()}}
+{\footnotesize\ttfamily bool Joystick\+Controller\+::is\+Controller\+Paused (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 137 of file joystick\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classJoystickController_a8dd41d71e787832b9cb8d60e868c1145}\label{classJoystickController_a8dd41d71e787832b9cb8d60e868c1145}} 
+\index{JoystickController@{JoystickController}!publishTwistCommand@{publishTwistCommand}}
+\index{publishTwistCommand@{publishTwistCommand}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{publishTwistCommand()}{publishTwistCommand()}}
+{\footnotesize\ttfamily void Joystick\+Controller\+::publish\+Twist\+Command (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 339 of file joystick\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classJoystickController_a7e7772003e9f1bc611b8e1be5277f051}\label{classJoystickController_a7e7772003e9f1bc611b8e1be5277f051}} 
+\index{JoystickController@{JoystickController}!readyToChangeLinearMultiplier@{readyToChangeLinearMultiplier}}
+\index{readyToChangeLinearMultiplier@{readyToChangeLinearMultiplier}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{readyToChangeLinearMultiplier()}{readyToChangeLinearMultiplier()}}
+{\footnotesize\ttfamily bool Joystick\+Controller\+::ready\+To\+Change\+Linear\+Multiplier (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 68 of file joystick\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classJoystickController_a5b4846eb52ffe7b5a48973c47402f3b1}\label{classJoystickController_a5b4846eb52ffe7b5a48973c47402f3b1}} 
+\index{JoystickController@{JoystickController}!readyToChangeRotationalMultiplier@{readyToChangeRotationalMultiplier}}
+\index{readyToChangeRotationalMultiplier@{readyToChangeRotationalMultiplier}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{readyToChangeRotationalMultiplier()}{readyToChangeRotationalMultiplier()}}
+{\footnotesize\ttfamily bool Joystick\+Controller\+::ready\+To\+Change\+Rotational\+Multiplier (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 80 of file joystick\+\_\+controller.\+cpp.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classJoystickController_ac29ffb239202278abf8f41b7e10a5a4a}\label{classJoystickController_ac29ffb239202278abf8f41b7e10a5a4a}} 
+\index{JoystickController@{JoystickController}!keyboard\_button\_pressed\_subscriber@{keyboard\_button\_pressed\_subscriber}}
+\index{keyboard\_button\_pressed\_subscriber@{keyboard\_button\_pressed\_subscriber}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{keyboard\_button\_pressed\_subscriber}{keyboard\_button\_pressed\_subscriber}}
+{\footnotesize\ttfamily ros\+::\+Subscriber Joystick\+Controller\+::keyboard\+\_\+button\+\_\+pressed\+\_\+subscriber\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 81 of file joystick\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classJoystickController_afe013667e133fa640ccb0d23eaab9b6f}\label{classJoystickController_afe013667e133fa640ccb0d23eaab9b6f}} 
+\index{JoystickController@{JoystickController}!keyboard\_button\_released\_subscriber@{keyboard\_button\_released\_subscriber}}
+\index{keyboard\_button\_released\_subscriber@{keyboard\_button\_released\_subscriber}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{keyboard\_button\_released\_subscriber}{keyboard\_button\_released\_subscriber}}
+{\footnotesize\ttfamily ros\+::\+Subscriber Joystick\+Controller\+::keyboard\+\_\+button\+\_\+released\+\_\+subscriber\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 83 of file joystick\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classJoystickController_ae54d7b2740fe1c8116b1fc4c510eb16d}\label{classJoystickController_ae54d7b2740fe1c8116b1fc4c510eb16d}} 
+\index{JoystickController@{JoystickController}!FORWARD@{FORWARD}}
+\index{FORWARD@{FORWARD}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{FORWARD}{FORWARD}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907}{Button\+Status}} Joystick\+Controller\+::\+FORWARD = \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907a65a0791796659903b3142b263c669fbb}{RELEASED}}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 85 of file joystick\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classJoystickController_aa079243dfc53e5f8fb2e98911284188f}\label{classJoystickController_aa079243dfc53e5f8fb2e98911284188f}} 
+\index{JoystickController@{JoystickController}!BACKWARD@{BACKWARD}}
+\index{BACKWARD@{BACKWARD}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{BACKWARD}{BACKWARD}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907}{Button\+Status}} Joystick\+Controller\+::\+BACKWARD = \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907a65a0791796659903b3142b263c669fbb}{RELEASED}}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 87 of file joystick\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classJoystickController_a01937412e06601d4a5b70891af8af874}\label{classJoystickController_a01937412e06601d4a5b70891af8af874}} 
+\index{JoystickController@{JoystickController}!LEFT@{LEFT}}
+\index{LEFT@{LEFT}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{LEFT}{LEFT}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907}{Button\+Status}} Joystick\+Controller\+::\+LEFT = \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907a65a0791796659903b3142b263c669fbb}{RELEASED}}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 89 of file joystick\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classJoystickController_a4ee2521b7661e1dc003de048328be91c}\label{classJoystickController_a4ee2521b7661e1dc003de048328be91c}} 
+\index{JoystickController@{JoystickController}!RIGHT@{RIGHT}}
+\index{RIGHT@{RIGHT}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{RIGHT}{RIGHT}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907}{Button\+Status}} Joystick\+Controller\+::\+RIGHT = \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907a65a0791796659903b3142b263c669fbb}{RELEASED}}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 91 of file joystick\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classJoystickController_a3e1d13be0314ec464896327ede779d9e}\label{classJoystickController_a3e1d13be0314ec464896327ede779d9e}} 
+\index{JoystickController@{JoystickController}!CLOCKWISE\_ROTATION@{CLOCKWISE\_ROTATION}}
+\index{CLOCKWISE\_ROTATION@{CLOCKWISE\_ROTATION}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{CLOCKWISE\_ROTATION}{CLOCKWISE\_ROTATION}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907}{Button\+Status}} Joystick\+Controller\+::\+CLOCKWISE\+\_\+\+ROTATION = \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907a65a0791796659903b3142b263c669fbb}{RELEASED}}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 93 of file joystick\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classJoystickController_a0b1521df74a547676a6ce6d8d2981b53}\label{classJoystickController_a0b1521df74a547676a6ce6d8d2981b53}} 
+\index{JoystickController@{JoystickController}!COUNTER\_CLOCKWISE\_ROTATION@{COUNTER\_CLOCKWISE\_ROTATION}}
+\index{COUNTER\_CLOCKWISE\_ROTATION@{COUNTER\_CLOCKWISE\_ROTATION}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{COUNTER\_CLOCKWISE\_ROTATION}{COUNTER\_CLOCKWISE\_ROTATION}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907}{Button\+Status}} Joystick\+Controller\+::\+COUNTER\+\_\+\+CLOCKWISE\+\_\+\+ROTATION = \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907a65a0791796659903b3142b263c669fbb}{RELEASED}}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 95 of file joystick\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classJoystickController_a2d4f61be3fef0de9687f2ae948b8bed6}\label{classJoystickController_a2d4f61be3fef0de9687f2ae948b8bed6}} 
+\index{JoystickController@{JoystickController}!LINEAR\_SPEED\_INCREASE@{LINEAR\_SPEED\_INCREASE}}
+\index{LINEAR\_SPEED\_INCREASE@{LINEAR\_SPEED\_INCREASE}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{LINEAR\_SPEED\_INCREASE}{LINEAR\_SPEED\_INCREASE}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907}{Button\+Status}} Joystick\+Controller\+::\+LINEAR\+\_\+\+SPEED\+\_\+\+INCREASE = \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907a65a0791796659903b3142b263c669fbb}{RELEASED}}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 97 of file joystick\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classJoystickController_adb25d537eb3e769a233cbae58d9d9e7d}\label{classJoystickController_adb25d537eb3e769a233cbae58d9d9e7d}} 
+\index{JoystickController@{JoystickController}!LINEAR\_SPEED\_DECREASE@{LINEAR\_SPEED\_DECREASE}}
+\index{LINEAR\_SPEED\_DECREASE@{LINEAR\_SPEED\_DECREASE}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{LINEAR\_SPEED\_DECREASE}{LINEAR\_SPEED\_DECREASE}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907}{Button\+Status}} Joystick\+Controller\+::\+LINEAR\+\_\+\+SPEED\+\_\+\+DECREASE = \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907a65a0791796659903b3142b263c669fbb}{RELEASED}}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 99 of file joystick\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classJoystickController_a4376910d0c782a94a3d9e050f59775c6}\label{classJoystickController_a4376910d0c782a94a3d9e050f59775c6}} 
+\index{JoystickController@{JoystickController}!ANGULAR\_RATE\_INCREASE@{ANGULAR\_RATE\_INCREASE}}
+\index{ANGULAR\_RATE\_INCREASE@{ANGULAR\_RATE\_INCREASE}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{ANGULAR\_RATE\_INCREASE}{ANGULAR\_RATE\_INCREASE}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907}{Button\+Status}} Joystick\+Controller\+::\+ANGULAR\+\_\+\+RATE\+\_\+\+INCREASE = \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907a65a0791796659903b3142b263c669fbb}{RELEASED}}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 101 of file joystick\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classJoystickController_a65804a108a5556affd69b90d080806dd}\label{classJoystickController_a65804a108a5556affd69b90d080806dd}} 
+\index{JoystickController@{JoystickController}!ANGULAR\_RATE\_DECREASE@{ANGULAR\_RATE\_DECREASE}}
+\index{ANGULAR\_RATE\_DECREASE@{ANGULAR\_RATE\_DECREASE}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{ANGULAR\_RATE\_DECREASE}{ANGULAR\_RATE\_DECREASE}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907}{Button\+Status}} Joystick\+Controller\+::\+ANGULAR\+\_\+\+RATE\+\_\+\+DECREASE = \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907a65a0791796659903b3142b263c669fbb}{RELEASED}}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 103 of file joystick\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classJoystickController_a9741d2b3da773f7547a80833f32c5889}\label{classJoystickController_a9741d2b3da773f7547a80833f32c5889}} 
+\index{JoystickController@{JoystickController}!PAUSE@{PAUSE}}
+\index{PAUSE@{PAUSE}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{PAUSE}{PAUSE}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907}{Button\+Status}} Joystick\+Controller\+::\+PAUSE = \mbox{\hyperlink{classJoystickController_a32f9801cf734880bfb4075a7270c1907a65a0791796659903b3142b263c669fbb}{RELEASED}}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 105 of file joystick\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classJoystickController_a30de995a2341461668f22c8591cfd4df}\label{classJoystickController_a30de995a2341461668f22c8591cfd4df}} 
+\index{JoystickController@{JoystickController}!nodeHandle@{nodeHandle}}
+\index{nodeHandle@{nodeHandle}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{nodeHandle}{nodeHandle}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ros\+::\+Node\+Handle$>$ Joystick\+Controller\+::node\+Handle\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 111 of file joystick\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classJoystickController_a4e4f04f631052cda21bda17dadf80a21}\label{classJoystickController_a4e4f04f631052cda21bda17dadf80a21}} 
+\index{JoystickController@{JoystickController}!joystick\_subscriber@{joystick\_subscriber}}
+\index{joystick\_subscriber@{joystick\_subscriber}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{joystick\_subscriber}{joystick\_subscriber}}
+{\footnotesize\ttfamily ros\+::\+Subscriber Joystick\+Controller\+::joystick\+\_\+subscriber\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 113 of file joystick\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classJoystickController_a5c7f6084f13b4bedc941874420d59141}\label{classJoystickController_a5c7f6084f13b4bedc941874420d59141}} 
+\index{JoystickController@{JoystickController}!twist\_command\_publisher@{twist\_command\_publisher}}
+\index{twist\_command\_publisher@{twist\_command\_publisher}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{twist\_command\_publisher}{twist\_command\_publisher}}
+{\footnotesize\ttfamily ros\+::\+Publisher Joystick\+Controller\+::twist\+\_\+command\+\_\+publisher\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 115 of file joystick\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classJoystickController_afe14f438fee19f447e7c5b1c1069ea7c}\label{classJoystickController_afe14f438fee19f447e7c5b1c1069ea7c}} 
+\index{JoystickController@{JoystickController}!linear\_rate\_multiplier@{linear\_rate\_multiplier}}
+\index{linear\_rate\_multiplier@{linear\_rate\_multiplier}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{linear\_rate\_multiplier}{linear\_rate\_multiplier}}
+{\footnotesize\ttfamily double Joystick\+Controller\+::linear\+\_\+rate\+\_\+multiplier = 0.\+2\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 117 of file joystick\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classJoystickController_a6695af2faad548f51ca59d2892a79f00}\label{classJoystickController_a6695af2faad548f51ca59d2892a79f00}} 
+\index{JoystickController@{JoystickController}!linear\_rate\_multiplier\_step@{linear\_rate\_multiplier\_step}}
+\index{linear\_rate\_multiplier\_step@{linear\_rate\_multiplier\_step}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{linear\_rate\_multiplier\_step}{linear\_rate\_multiplier\_step}}
+{\footnotesize\ttfamily double Joystick\+Controller\+::linear\+\_\+rate\+\_\+multiplier\+\_\+step = 0.\+1\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 119 of file joystick\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classJoystickController_a5400cb7cc262b0fa39c6ff2538fd1287}\label{classJoystickController_a5400cb7cc262b0fa39c6ff2538fd1287}} 
+\index{JoystickController@{JoystickController}!linear\_rate\_multiplier\_min@{linear\_rate\_multiplier\_min}}
+\index{linear\_rate\_multiplier\_min@{linear\_rate\_multiplier\_min}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{linear\_rate\_multiplier\_min}{linear\_rate\_multiplier\_min}}
+{\footnotesize\ttfamily double Joystick\+Controller\+::linear\+\_\+rate\+\_\+multiplier\+\_\+min = 0.\+2\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 121 of file joystick\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classJoystickController_adf7e26c9edca3221ea0bf11300c05b40}\label{classJoystickController_adf7e26c9edca3221ea0bf11300c05b40}} 
+\index{JoystickController@{JoystickController}!linear\_rate\_multiplier\_max@{linear\_rate\_multiplier\_max}}
+\index{linear\_rate\_multiplier\_max@{linear\_rate\_multiplier\_max}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{linear\_rate\_multiplier\_max}{linear\_rate\_multiplier\_max}}
+{\footnotesize\ttfamily double Joystick\+Controller\+::linear\+\_\+rate\+\_\+multiplier\+\_\+max = 0.\+6\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 123 of file joystick\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classJoystickController_a731477ebc602acc87b7a151a58579f40}\label{classJoystickController_a731477ebc602acc87b7a151a58579f40}} 
+\index{JoystickController@{JoystickController}!rotational\_rate\_multiplier@{rotational\_rate\_multiplier}}
+\index{rotational\_rate\_multiplier@{rotational\_rate\_multiplier}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{rotational\_rate\_multiplier}{rotational\_rate\_multiplier}}
+{\footnotesize\ttfamily double Joystick\+Controller\+::rotational\+\_\+rate\+\_\+multiplier = 0.\+2\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 125 of file joystick\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classJoystickController_ab46aabfe68f66432f8a5d666355b6f88}\label{classJoystickController_ab46aabfe68f66432f8a5d666355b6f88}} 
+\index{JoystickController@{JoystickController}!rotational\_rate\_multiplier\_step@{rotational\_rate\_multiplier\_step}}
+\index{rotational\_rate\_multiplier\_step@{rotational\_rate\_multiplier\_step}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{rotational\_rate\_multiplier\_step}{rotational\_rate\_multiplier\_step}}
+{\footnotesize\ttfamily double Joystick\+Controller\+::rotational\+\_\+rate\+\_\+multiplier\+\_\+step = 0.\+2\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 127 of file joystick\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classJoystickController_a27e902008e6c3a68413ae3eec5ef3233}\label{classJoystickController_a27e902008e6c3a68413ae3eec5ef3233}} 
+\index{JoystickController@{JoystickController}!rotational\_rate\_multiplier\_max@{rotational\_rate\_multiplier\_max}}
+\index{rotational\_rate\_multiplier\_max@{rotational\_rate\_multiplier\_max}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{rotational\_rate\_multiplier\_max}{rotational\_rate\_multiplier\_max}}
+{\footnotesize\ttfamily double Joystick\+Controller\+::rotational\+\_\+rate\+\_\+multiplier\+\_\+max = 2.\+6\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 129 of file joystick\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classJoystickController_a72351b62cd4fc72c3d8fcc3808d349c0}\label{classJoystickController_a72351b62cd4fc72c3d8fcc3808d349c0}} 
+\index{JoystickController@{JoystickController}!rotational\_rate\_multiplier\_min@{rotational\_rate\_multiplier\_min}}
+\index{rotational\_rate\_multiplier\_min@{rotational\_rate\_multiplier\_min}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{rotational\_rate\_multiplier\_min}{rotational\_rate\_multiplier\_min}}
+{\footnotesize\ttfamily double Joystick\+Controller\+::rotational\+\_\+rate\+\_\+multiplier\+\_\+min = 0.\+2\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 131 of file joystick\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classJoystickController_a322eeb69a76ae37a073326466d31f89f}\label{classJoystickController_a322eeb69a76ae37a073326466d31f89f}} 
+\index{JoystickController@{JoystickController}!twist\_command\_message@{twist\_command\_message}}
+\index{twist\_command\_message@{twist\_command\_message}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{twist\_command\_message}{twist\_command\_message}}
+{\footnotesize\ttfamily \mbox{\hyperlink{kinematics_8h_ace7064c2a774578880164cc27b69caa5}{geometry\+\_\+msgs\+::\+Twist}} Joystick\+Controller\+::twist\+\_\+command\+\_\+message\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 133 of file joystick\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classJoystickController_ab5cc5e7dc7ff4860a105491f8243444a}\label{classJoystickController_ab5cc5e7dc7ff4860a105491f8243444a}} 
+\index{JoystickController@{JoystickController}!pause@{pause}}
+\index{pause@{pause}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{pause}{pause}}
+{\footnotesize\ttfamily double Joystick\+Controller\+::pause = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 135 of file joystick\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classJoystickController_a6fb8fab0759580b5e3bbeff35cfc549b}\label{classJoystickController_a6fb8fab0759580b5e3bbeff35cfc549b}} 
+\index{JoystickController@{JoystickController}!minimum\_seconds\_between\_limit\_change@{minimum\_seconds\_between\_limit\_change}}
+\index{minimum\_seconds\_between\_limit\_change@{minimum\_seconds\_between\_limit\_change}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{minimum\_seconds\_between\_limit\_change}{minimum\_seconds\_between\_limit\_change}}
+{\footnotesize\ttfamily double Joystick\+Controller\+::minimum\+\_\+seconds\+\_\+between\+\_\+limit\+\_\+change = 0.\+1\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 145 of file joystick\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classJoystickController_ae603d8640b4fd9549e22b2a956f3c380}\label{classJoystickController_ae603d8640b4fd9549e22b2a956f3c380}} 
+\index{JoystickController@{JoystickController}!time\_of\_last\_linear\_limit\_change@{time\_of\_last\_linear\_limit\_change}}
+\index{time\_of\_last\_linear\_limit\_change@{time\_of\_last\_linear\_limit\_change}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{time\_of\_last\_linear\_limit\_change}{time\_of\_last\_linear\_limit\_change}}
+{\footnotesize\ttfamily double Joystick\+Controller\+::time\+\_\+of\+\_\+last\+\_\+linear\+\_\+limit\+\_\+change = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 147 of file joystick\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classJoystickController_ab9b8767c4cade6f60c4003f07e0cd0d4}\label{classJoystickController_ab9b8767c4cade6f60c4003f07e0cd0d4}} 
+\index{JoystickController@{JoystickController}!time\_of\_last\_rotational\_limit\_change@{time\_of\_last\_rotational\_limit\_change}}
+\index{time\_of\_last\_rotational\_limit\_change@{time\_of\_last\_rotational\_limit\_change}!JoystickController@{JoystickController}}
+\doxysubsubsection{\texorpdfstring{time\_of\_last\_rotational\_limit\_change}{time\_of\_last\_rotational\_limit\_change}}
+{\footnotesize\ttfamily double Joystick\+Controller\+::time\+\_\+of\+\_\+last\+\_\+rotational\+\_\+limit\+\_\+change = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 149 of file joystick\+\_\+controller.\+h.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-catkin\+\_\+ws/src/control/joystick\+\_\+controller/include/joystick\+\_\+controller/joystick\+\_\+controller.\+h\item 
-catkin\+\_\+ws/src/control/joystick\+\_\+controller/src/joystick\+\_\+controller.\+cpp\end{DoxyCompactItemize}
+catkin\+\_\+ws/src/guidance/joystick\+\_\+controller/include/joystick\+\_\+controller/\mbox{\hyperlink{joystick__controller_8h}{joystick\+\_\+controller.\+h}}\item 
+catkin\+\_\+ws/src/guidance/joystick\+\_\+controller/src/\mbox{\hyperlink{joystick__controller_8cpp}{joystick\+\_\+controller.\+cpp}}\end{DoxyCompactItemize}

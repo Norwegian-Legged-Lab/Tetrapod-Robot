@@ -1,0 +1,31 @@
+digraph "catkin_ws/src/guidance/footstep_planner/include/footstep_planner/terrain.h"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="catkin_ws/src/guidance\l/footstep_planner/include\l/footstep_planner/terrain.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="catkin_ws/src/guidance\l/footstep_planner/include\l/footstep_planner/miqp_biped.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$miqp__biped_8h.html",tooltip=" "];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="catkin_ws/src/guidance\l/footstep_planner/src\l/miqp_biped.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$miqp__biped_8cpp.html",tooltip=" "];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="catkin_ws/src/guidance\l/footstep_planner/include\l/footstep_planner/miqp_quadruped.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$miqp__quadruped_8h.html",tooltip=" "];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="catkin_ws/src/guidance\l/footstep_planner/include\l/footstep_planner/footstep\l_planner.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$footstep__planner_8h.html",tooltip=" "];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="catkin_ws/src/guidance\l/footstep_planner/src\l/footstep_planner.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$footstep__planner_8cpp.html",tooltip=" "];
+  Node5 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="catkin_ws/src/guidance\l/footstep_planner/src\l/footstep_planner_node.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$footstep__planner__node_8cpp.html",tooltip=" "];
+  Node4 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="catkin_ws/src/guidance\l/footstep_planner/src\l/miqp_quadruped.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$miqp__quadruped_8cpp.html",tooltip=" "];
+  Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="catkin_ws/src/guidance\l/footstep_planner/include\l/footstep_planner/miqp_waypoint.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$miqp__waypoint_8h.html",tooltip=" "];
+  Node9 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="catkin_ws/src/guidance\l/footstep_planner/include\l/footstep_planner/waypoint\l_planner.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$waypoint__planner_8h.html",tooltip=" "];
+  Node10 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="catkin_ws/src/guidance\l/footstep_planner/src\l/waypoint_planner.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$waypoint__planner_8cpp.html",tooltip=" "];
+  Node9 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="catkin_ws/src/guidance\l/footstep_planner/src\l/miqp_waypoint.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$miqp__waypoint_8cpp.html",tooltip=" "];
+  Node1 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="catkin_ws/src/guidance\l/footstep_planner/src\l/terrain.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$terrain_8cpp.html",tooltip=" "];
+}

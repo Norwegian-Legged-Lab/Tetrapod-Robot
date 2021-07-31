@@ -1,0 +1,25 @@
+digraph "catkin_ws/src/simulator" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_7c859f3878cb32062c29919224ce2290 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="src" fontname="Helvetica", fontsize="10", URL="dir_7c859f3878cb32062c29919224ce2290.html"]
+  dir_ccddda87566ee263eec2f42a65371c71 [shape=box label="utilities" fillcolor="white" style="filled" color="red" URL="dir_ccddda87566ee263eec2f42a65371c71.html"];
+  subgraph clusterdir_9956b5c6b5de7171c18b9164a501b484 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_9956b5c6b5de7171c18b9164a501b484.html"];
+    dir_9956b5c6b5de7171c18b9164a501b484 [shape=plaintext label="simulator"];
+  dir_67719d95d5080d30b67e9e2213f1e6d5 [shape=box label="footstep_description" fillcolor="white" style="filled" URL="dir_67719d95d5080d30b67e9e2213f1e6d5.html"];
+  dir_cb4c368778696d4c8d2b02451ea4238e [shape=box label="pendulum_description" fillcolor="white" style="filled" URL="dir_cb4c368778696d4c8d2b02451ea4238e.html"];
+  dir_1d4ffe4300b5e12c663632bc8fb2a832 [shape=box label="pendulum_gazebo" fillcolor="white" style="filled" color="red" URL="dir_1d4ffe4300b5e12c663632bc8fb2a832.html"];
+  dir_372ef6954ccff7df7af3cf0679b84375 [shape=box label="single_leg_description" fillcolor="white" style="filled" URL="dir_372ef6954ccff7df7af3cf0679b84375.html"];
+  dir_6c2c4415a37519030cd6e567d0490377 [shape=box label="single_leg_gazebo" fillcolor="white" style="filled" color="red" URL="dir_6c2c4415a37519030cd6e567d0490377.html"];
+  dir_c8ae1f5b09ec0ba51ccc72b6f62e35dd [shape=box label="terrain_description" fillcolor="white" style="filled" URL="dir_c8ae1f5b09ec0ba51ccc72b6f62e35dd.html"];
+  dir_663f649d52b36f731d11d48d9e02927d [shape=box label="tetrapod_description" fillcolor="white" style="filled" URL="dir_663f649d52b36f731d11d48d9e02927d.html"];
+  dir_979bcd87a29dc26e5d00bc10f6f56e83 [shape=box label="tetrapod_gazebo" fillcolor="white" style="filled" color="red" URL="dir_979bcd87a29dc26e5d00bc10f6f56e83.html"];
+  dir_1f6d9b66e7affc1c36d7368e56a3b4b2 [shape=box label="tetrapod_ignition" fillcolor="white" style="filled" URL="dir_1f6d9b66e7affc1c36d7368e56a3b4b2.html"];
+  }
+  }
+  dir_6c2c4415a37519030cd6e567d0490377->dir_ccddda87566ee263eec2f42a65371c71 [headlabel="1", labeldistance=1.5 headhref="dir_000029_000034.html"];
+  dir_1d4ffe4300b5e12c663632bc8fb2a832->dir_ccddda87566ee263eec2f42a65371c71 [headlabel="1", labeldistance=1.5 headhref="dir_000027_000034.html"];
+  dir_979bcd87a29dc26e5d00bc10f6f56e83->dir_ccddda87566ee263eec2f42a65371c71 [headlabel="3", labeldistance=1.5 headhref="dir_000032_000034.html"];
+}

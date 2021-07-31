@@ -1,0 +1,11 @@
+digraph "catkin_ws/src/simulator/pendulum_gazebo/include/pendulum_gazebo" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_e8faa6db23899cdde81cd5147ab50f4e {
+    graph [ bgcolor="#ddddee", pencolor="black", label="include" fontname="Helvetica", fontsize="10", URL="dir_e8faa6db23899cdde81cd5147ab50f4e.html"]
+  dir_58edd89edbe58987d938ee8a9078d91d [shape=box, label="pendulum_gazebo", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_58edd89edbe58987d938ee8a9078d91d.html"];
+  }
+  dir_ccddda87566ee263eec2f42a65371c71 [shape=box label="utilities" fillcolor="white" style="filled" color="red" URL="dir_ccddda87566ee263eec2f42a65371c71.html"];
+  dir_58edd89edbe58987d938ee8a9078d91d->dir_ccddda87566ee263eec2f42a65371c71 [headlabel="1", labeldistance=1.5 headhref="dir_000082_000034.html"];
+}

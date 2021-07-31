@@ -1,0 +1,308 @@
+\hypertarget{config__motor__driver_8h}{}\doxysection{Arduino/libraries/motor\+\_\+driver/config\+\_\+motor\+\_\+driver.h File Reference}
+\label{config__motor__driver_8h}\index{Arduino/libraries/motor\_driver/config\_motor\_driver.h@{Arduino/libraries/motor\_driver/config\_motor\_driver.h}}
+{\ttfamily \#include \char`\"{}Arduino.\+h\char`\"{}}\newline
+Include dependency graph for config\+\_\+motor\+\_\+driver.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{config__motor__driver_8h_ad42686b597ad3258d47e7ea54bd42bce}{SERIAL\+\_\+\+PRINT}}~false
+\item 
+\#define \mbox{\hyperlink{config__motor__driver_8h_a119f4f090ee4672fddbcfd33d3c84ddf}{FRONT\+\_\+\+LEGS}}~true
+\item 
+\#define \mbox{\hyperlink{config__motor__driver_8h_a20b4d9acaf359e3e51785cc1f39f3cd1}{REAR\+\_\+\+LEGS}}~false
+\item 
+\#define \mbox{\hyperlink{config__motor__driver_8h_a773c8897fbc9e32316184b9462e81af6}{position\+\_\+offset\+\_\+motor\+\_\+1}}~0.\+0
+\item 
+\#define \mbox{\hyperlink{config__motor__driver_8h_ac367cb1ef2e74b873e5e9c2046962723}{position\+\_\+offset\+\_\+motor\+\_\+2}}~0.\+0
+\item 
+\#define \mbox{\hyperlink{config__motor__driver_8h_a0fd704688d8608536d99157777e88549}{position\+\_\+offset\+\_\+motor\+\_\+3}}~0.\+0
+\item 
+\#define \mbox{\hyperlink{config__motor__driver_8h_a8e4e97e12ca2246a89812d833063b90d}{position\+\_\+offset\+\_\+motor\+\_\+4}}~0.\+0
+\item 
+\#define \mbox{\hyperlink{config__motor__driver_8h_aea959aaf4f6df674c238370a0d93942d}{position\+\_\+offset\+\_\+motor\+\_\+5}}~0.\+0
+\item 
+\#define \mbox{\hyperlink{config__motor__driver_8h_aa04e63192dd0af348295b23233519318}{position\+\_\+offset\+\_\+motor\+\_\+6}}~0.\+0
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const double \mbox{\hyperlink{config__motor__driver_8h_aec0320ea4b938e0ec7122f9eb40a8a40}{k\+\_\+p\+\_\+pos}} = 30.\+0
+\item 
+const double \mbox{\hyperlink{config__motor__driver_8h_aafd27d03779277825703fae242a36f54}{k\+\_\+i\+\_\+pos}} = 15.\+0
+\item 
+const double \mbox{\hyperlink{config__motor__driver_8h_a99995560312bf9ca4e52e07b83cbe44f}{k\+\_\+p\+\_\+vel}} = 50.\+0
+\item 
+const double \mbox{\hyperlink{config__motor__driver_8h_a7a72b8277118e9f32d420682e50e0334}{k\+\_\+i\+\_\+vel}} = 25.\+0
+\item 
+const double \mbox{\hyperlink{config__motor__driver_8h_a0beac680ee4cf1fccdc5f569c47325e8}{k\+\_\+p\+\_\+tor}} = 100.\+0
+\item 
+const double \mbox{\hyperlink{config__motor__driver_8h_a201f3bd3d38f190d34be0e38a0176cf6}{k\+\_\+i\+\_\+tor}} = 50.\+0
+\item 
+static int \mbox{\hyperlink{config__motor__driver_8h_a7f51cb041197a056121df56fcef48b1c}{K\+\_\+\+P\+\_\+\+POS}} \mbox{[}6\mbox{]} = \{\mbox{\hyperlink{config__motor__driver_8h_aec0320ea4b938e0ec7122f9eb40a8a40}{k\+\_\+p\+\_\+pos}}, \mbox{\hyperlink{config__motor__driver_8h_aec0320ea4b938e0ec7122f9eb40a8a40}{k\+\_\+p\+\_\+pos}}, \mbox{\hyperlink{config__motor__driver_8h_aec0320ea4b938e0ec7122f9eb40a8a40}{k\+\_\+p\+\_\+pos}}, \mbox{\hyperlink{config__motor__driver_8h_aec0320ea4b938e0ec7122f9eb40a8a40}{k\+\_\+p\+\_\+pos}}, \mbox{\hyperlink{config__motor__driver_8h_aec0320ea4b938e0ec7122f9eb40a8a40}{k\+\_\+p\+\_\+pos}}, \mbox{\hyperlink{config__motor__driver_8h_aec0320ea4b938e0ec7122f9eb40a8a40}{k\+\_\+p\+\_\+pos}}\}
+\item 
+static int \mbox{\hyperlink{config__motor__driver_8h_a33275802b53954313645a04ce94ffc99}{K\+\_\+\+I\+\_\+\+POS}} \mbox{[}6\mbox{]} = \{\mbox{\hyperlink{config__motor__driver_8h_aafd27d03779277825703fae242a36f54}{k\+\_\+i\+\_\+pos}}, \mbox{\hyperlink{config__motor__driver_8h_aafd27d03779277825703fae242a36f54}{k\+\_\+i\+\_\+pos}}, \mbox{\hyperlink{config__motor__driver_8h_aafd27d03779277825703fae242a36f54}{k\+\_\+i\+\_\+pos}}, \mbox{\hyperlink{config__motor__driver_8h_aafd27d03779277825703fae242a36f54}{k\+\_\+i\+\_\+pos}}, \mbox{\hyperlink{config__motor__driver_8h_aafd27d03779277825703fae242a36f54}{k\+\_\+i\+\_\+pos}}, \mbox{\hyperlink{config__motor__driver_8h_aafd27d03779277825703fae242a36f54}{k\+\_\+i\+\_\+pos}}\}
+\item 
+static int \mbox{\hyperlink{config__motor__driver_8h_aff62a573d86b0fc2c4bafecc42daf209}{K\+\_\+\+P\+\_\+\+VEL}} \mbox{[}6\mbox{]} = \{\mbox{\hyperlink{config__motor__driver_8h_a99995560312bf9ca4e52e07b83cbe44f}{k\+\_\+p\+\_\+vel}}, \mbox{\hyperlink{config__motor__driver_8h_a99995560312bf9ca4e52e07b83cbe44f}{k\+\_\+p\+\_\+vel}}, \mbox{\hyperlink{config__motor__driver_8h_a99995560312bf9ca4e52e07b83cbe44f}{k\+\_\+p\+\_\+vel}}, \mbox{\hyperlink{config__motor__driver_8h_a99995560312bf9ca4e52e07b83cbe44f}{k\+\_\+p\+\_\+vel}}, \mbox{\hyperlink{config__motor__driver_8h_a99995560312bf9ca4e52e07b83cbe44f}{k\+\_\+p\+\_\+vel}}, \mbox{\hyperlink{config__motor__driver_8h_a99995560312bf9ca4e52e07b83cbe44f}{k\+\_\+p\+\_\+vel}}\}
+\item 
+static int \mbox{\hyperlink{config__motor__driver_8h_a32bf71950e4347bde2f1f7c5bbaf0d73}{K\+\_\+\+I\+\_\+\+VEL}} \mbox{[}6\mbox{]} = \{\mbox{\hyperlink{config__motor__driver_8h_a7a72b8277118e9f32d420682e50e0334}{k\+\_\+i\+\_\+vel}}, \mbox{\hyperlink{config__motor__driver_8h_a7a72b8277118e9f32d420682e50e0334}{k\+\_\+i\+\_\+vel}}, \mbox{\hyperlink{config__motor__driver_8h_a7a72b8277118e9f32d420682e50e0334}{k\+\_\+i\+\_\+vel}}, \mbox{\hyperlink{config__motor__driver_8h_a7a72b8277118e9f32d420682e50e0334}{k\+\_\+i\+\_\+vel}}, \mbox{\hyperlink{config__motor__driver_8h_a7a72b8277118e9f32d420682e50e0334}{k\+\_\+i\+\_\+vel}}, \mbox{\hyperlink{config__motor__driver_8h_a7a72b8277118e9f32d420682e50e0334}{k\+\_\+i\+\_\+vel}}\}
+\item 
+static int \mbox{\hyperlink{config__motor__driver_8h_aa19dddd229cbd90971bef3b1c47683d7}{K\+\_\+\+P\+\_\+\+TOR}} \mbox{[}6\mbox{]} = \{\mbox{\hyperlink{config__motor__driver_8h_a0beac680ee4cf1fccdc5f569c47325e8}{k\+\_\+p\+\_\+tor}}, \mbox{\hyperlink{config__motor__driver_8h_a0beac680ee4cf1fccdc5f569c47325e8}{k\+\_\+p\+\_\+tor}}, \mbox{\hyperlink{config__motor__driver_8h_a0beac680ee4cf1fccdc5f569c47325e8}{k\+\_\+p\+\_\+tor}}, \mbox{\hyperlink{config__motor__driver_8h_a0beac680ee4cf1fccdc5f569c47325e8}{k\+\_\+p\+\_\+tor}}, \mbox{\hyperlink{config__motor__driver_8h_a0beac680ee4cf1fccdc5f569c47325e8}{k\+\_\+p\+\_\+tor}}, \mbox{\hyperlink{config__motor__driver_8h_a0beac680ee4cf1fccdc5f569c47325e8}{k\+\_\+p\+\_\+tor}}\}
+\item 
+static int \mbox{\hyperlink{config__motor__driver_8h_aa42f36d3d8dd3bdb211c46c8c6918689}{K\+\_\+\+I\+\_\+\+TOR}} \mbox{[}6\mbox{]} = \{\mbox{\hyperlink{config__motor__driver_8h_a201f3bd3d38f190d34be0e38a0176cf6}{k\+\_\+i\+\_\+tor}}, \mbox{\hyperlink{config__motor__driver_8h_a201f3bd3d38f190d34be0e38a0176cf6}{k\+\_\+i\+\_\+tor}}, \mbox{\hyperlink{config__motor__driver_8h_a201f3bd3d38f190d34be0e38a0176cf6}{k\+\_\+i\+\_\+tor}}, \mbox{\hyperlink{config__motor__driver_8h_a201f3bd3d38f190d34be0e38a0176cf6}{k\+\_\+i\+\_\+tor}}, \mbox{\hyperlink{config__motor__driver_8h_a201f3bd3d38f190d34be0e38a0176cf6}{k\+\_\+i\+\_\+tor}}, \mbox{\hyperlink{config__motor__driver_8h_a201f3bd3d38f190d34be0e38a0176cf6}{k\+\_\+i\+\_\+tor}}\}
+\item 
+static double \mbox{\hyperlink{config__motor__driver_8h_a1455547e8077b299ceb028afcb067b7f}{POSITION\+\_\+\+OFFSET}} \mbox{[}6\mbox{]}
+\item 
+static int \mbox{\hyperlink{config__motor__driver_8h_a0d41dc6c0ca5aabadaa9296e77ac975c}{INITIAL\+\_\+\+NUMBER\+\_\+\+OF\+\_\+\+MOTOR\+\_\+\+ROTATIONS}} \mbox{[}6\mbox{]} = \{0, 0, 0, 0, 0, 0\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{config__motor__driver_8h_ad42686b597ad3258d47e7ea54bd42bce}\label{config__motor__driver_8h_ad42686b597ad3258d47e7ea54bd42bce}} 
+\index{config\_motor\_driver.h@{config\_motor\_driver.h}!SERIAL\_PRINT@{SERIAL\_PRINT}}
+\index{SERIAL\_PRINT@{SERIAL\_PRINT}!config\_motor\_driver.h@{config\_motor\_driver.h}}
+\doxysubsubsection{\texorpdfstring{SERIAL\_PRINT}{SERIAL\_PRINT}}
+{\footnotesize\ttfamily \#define SERIAL\+\_\+\+PRINT~false}
+
+
+
+Definition at line 6 of file config\+\_\+motor\+\_\+driver.\+h.
+
+\mbox{\Hypertarget{config__motor__driver_8h_a119f4f090ee4672fddbcfd33d3c84ddf}\label{config__motor__driver_8h_a119f4f090ee4672fddbcfd33d3c84ddf}} 
+\index{config\_motor\_driver.h@{config\_motor\_driver.h}!FRONT\_LEGS@{FRONT\_LEGS}}
+\index{FRONT\_LEGS@{FRONT\_LEGS}!config\_motor\_driver.h@{config\_motor\_driver.h}}
+\doxysubsubsection{\texorpdfstring{FRONT\_LEGS}{FRONT\_LEGS}}
+{\footnotesize\ttfamily \#define FRONT\+\_\+\+LEGS~true}
+
+
+
+Definition at line 8 of file config\+\_\+motor\+\_\+driver.\+h.
+
+\mbox{\Hypertarget{config__motor__driver_8h_a20b4d9acaf359e3e51785cc1f39f3cd1}\label{config__motor__driver_8h_a20b4d9acaf359e3e51785cc1f39f3cd1}} 
+\index{config\_motor\_driver.h@{config\_motor\_driver.h}!REAR\_LEGS@{REAR\_LEGS}}
+\index{REAR\_LEGS@{REAR\_LEGS}!config\_motor\_driver.h@{config\_motor\_driver.h}}
+\doxysubsubsection{\texorpdfstring{REAR\_LEGS}{REAR\_LEGS}}
+{\footnotesize\ttfamily \#define REAR\+\_\+\+LEGS~false}
+
+
+
+Definition at line 9 of file config\+\_\+motor\+\_\+driver.\+h.
+
+\mbox{\Hypertarget{config__motor__driver_8h_a773c8897fbc9e32316184b9462e81af6}\label{config__motor__driver_8h_a773c8897fbc9e32316184b9462e81af6}} 
+\index{config\_motor\_driver.h@{config\_motor\_driver.h}!position\_offset\_motor\_1@{position\_offset\_motor\_1}}
+\index{position\_offset\_motor\_1@{position\_offset\_motor\_1}!config\_motor\_driver.h@{config\_motor\_driver.h}}
+\doxysubsubsection{\texorpdfstring{position\_offset\_motor\_1}{position\_offset\_motor\_1}}
+{\footnotesize\ttfamily \#define position\+\_\+offset\+\_\+motor\+\_\+1~0.\+0}
+
+
+
+Definition at line 46 of file config\+\_\+motor\+\_\+driver.\+h.
+
+\mbox{\Hypertarget{config__motor__driver_8h_ac367cb1ef2e74b873e5e9c2046962723}\label{config__motor__driver_8h_ac367cb1ef2e74b873e5e9c2046962723}} 
+\index{config\_motor\_driver.h@{config\_motor\_driver.h}!position\_offset\_motor\_2@{position\_offset\_motor\_2}}
+\index{position\_offset\_motor\_2@{position\_offset\_motor\_2}!config\_motor\_driver.h@{config\_motor\_driver.h}}
+\doxysubsubsection{\texorpdfstring{position\_offset\_motor\_2}{position\_offset\_motor\_2}}
+{\footnotesize\ttfamily \#define position\+\_\+offset\+\_\+motor\+\_\+2~0.\+0}
+
+
+
+Definition at line 47 of file config\+\_\+motor\+\_\+driver.\+h.
+
+\mbox{\Hypertarget{config__motor__driver_8h_a0fd704688d8608536d99157777e88549}\label{config__motor__driver_8h_a0fd704688d8608536d99157777e88549}} 
+\index{config\_motor\_driver.h@{config\_motor\_driver.h}!position\_offset\_motor\_3@{position\_offset\_motor\_3}}
+\index{position\_offset\_motor\_3@{position\_offset\_motor\_3}!config\_motor\_driver.h@{config\_motor\_driver.h}}
+\doxysubsubsection{\texorpdfstring{position\_offset\_motor\_3}{position\_offset\_motor\_3}}
+{\footnotesize\ttfamily \#define position\+\_\+offset\+\_\+motor\+\_\+3~0.\+0}
+
+
+
+Definition at line 48 of file config\+\_\+motor\+\_\+driver.\+h.
+
+\mbox{\Hypertarget{config__motor__driver_8h_a8e4e97e12ca2246a89812d833063b90d}\label{config__motor__driver_8h_a8e4e97e12ca2246a89812d833063b90d}} 
+\index{config\_motor\_driver.h@{config\_motor\_driver.h}!position\_offset\_motor\_4@{position\_offset\_motor\_4}}
+\index{position\_offset\_motor\_4@{position\_offset\_motor\_4}!config\_motor\_driver.h@{config\_motor\_driver.h}}
+\doxysubsubsection{\texorpdfstring{position\_offset\_motor\_4}{position\_offset\_motor\_4}}
+{\footnotesize\ttfamily \#define position\+\_\+offset\+\_\+motor\+\_\+4~0.\+0}
+
+
+
+Definition at line 49 of file config\+\_\+motor\+\_\+driver.\+h.
+
+\mbox{\Hypertarget{config__motor__driver_8h_aea959aaf4f6df674c238370a0d93942d}\label{config__motor__driver_8h_aea959aaf4f6df674c238370a0d93942d}} 
+\index{config\_motor\_driver.h@{config\_motor\_driver.h}!position\_offset\_motor\_5@{position\_offset\_motor\_5}}
+\index{position\_offset\_motor\_5@{position\_offset\_motor\_5}!config\_motor\_driver.h@{config\_motor\_driver.h}}
+\doxysubsubsection{\texorpdfstring{position\_offset\_motor\_5}{position\_offset\_motor\_5}}
+{\footnotesize\ttfamily \#define position\+\_\+offset\+\_\+motor\+\_\+5~0.\+0}
+
+
+
+Definition at line 50 of file config\+\_\+motor\+\_\+driver.\+h.
+
+\mbox{\Hypertarget{config__motor__driver_8h_aa04e63192dd0af348295b23233519318}\label{config__motor__driver_8h_aa04e63192dd0af348295b23233519318}} 
+\index{config\_motor\_driver.h@{config\_motor\_driver.h}!position\_offset\_motor\_6@{position\_offset\_motor\_6}}
+\index{position\_offset\_motor\_6@{position\_offset\_motor\_6}!config\_motor\_driver.h@{config\_motor\_driver.h}}
+\doxysubsubsection{\texorpdfstring{position\_offset\_motor\_6}{position\_offset\_motor\_6}}
+{\footnotesize\ttfamily \#define position\+\_\+offset\+\_\+motor\+\_\+6~0.\+0}
+
+
+
+Definition at line 51 of file config\+\_\+motor\+\_\+driver.\+h.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{config__motor__driver_8h_aec0320ea4b938e0ec7122f9eb40a8a40}\label{config__motor__driver_8h_aec0320ea4b938e0ec7122f9eb40a8a40}} 
+\index{config\_motor\_driver.h@{config\_motor\_driver.h}!k\_p\_pos@{k\_p\_pos}}
+\index{k\_p\_pos@{k\_p\_pos}!config\_motor\_driver.h@{config\_motor\_driver.h}}
+\doxysubsubsection{\texorpdfstring{k\_p\_pos}{k\_p\_pos}}
+{\footnotesize\ttfamily const double k\+\_\+p\+\_\+pos = 30.\+0}
+
+
+
+Definition at line 11 of file config\+\_\+motor\+\_\+driver.\+h.
+
+\mbox{\Hypertarget{config__motor__driver_8h_aafd27d03779277825703fae242a36f54}\label{config__motor__driver_8h_aafd27d03779277825703fae242a36f54}} 
+\index{config\_motor\_driver.h@{config\_motor\_driver.h}!k\_i\_pos@{k\_i\_pos}}
+\index{k\_i\_pos@{k\_i\_pos}!config\_motor\_driver.h@{config\_motor\_driver.h}}
+\doxysubsubsection{\texorpdfstring{k\_i\_pos}{k\_i\_pos}}
+{\footnotesize\ttfamily const double k\+\_\+i\+\_\+pos = 15.\+0}
+
+
+
+Definition at line 12 of file config\+\_\+motor\+\_\+driver.\+h.
+
+\mbox{\Hypertarget{config__motor__driver_8h_a99995560312bf9ca4e52e07b83cbe44f}\label{config__motor__driver_8h_a99995560312bf9ca4e52e07b83cbe44f}} 
+\index{config\_motor\_driver.h@{config\_motor\_driver.h}!k\_p\_vel@{k\_p\_vel}}
+\index{k\_p\_vel@{k\_p\_vel}!config\_motor\_driver.h@{config\_motor\_driver.h}}
+\doxysubsubsection{\texorpdfstring{k\_p\_vel}{k\_p\_vel}}
+{\footnotesize\ttfamily const double k\+\_\+p\+\_\+vel = 50.\+0}
+
+
+
+Definition at line 13 of file config\+\_\+motor\+\_\+driver.\+h.
+
+\mbox{\Hypertarget{config__motor__driver_8h_a7a72b8277118e9f32d420682e50e0334}\label{config__motor__driver_8h_a7a72b8277118e9f32d420682e50e0334}} 
+\index{config\_motor\_driver.h@{config\_motor\_driver.h}!k\_i\_vel@{k\_i\_vel}}
+\index{k\_i\_vel@{k\_i\_vel}!config\_motor\_driver.h@{config\_motor\_driver.h}}
+\doxysubsubsection{\texorpdfstring{k\_i\_vel}{k\_i\_vel}}
+{\footnotesize\ttfamily const double k\+\_\+i\+\_\+vel = 25.\+0}
+
+
+
+Definition at line 14 of file config\+\_\+motor\+\_\+driver.\+h.
+
+\mbox{\Hypertarget{config__motor__driver_8h_a0beac680ee4cf1fccdc5f569c47325e8}\label{config__motor__driver_8h_a0beac680ee4cf1fccdc5f569c47325e8}} 
+\index{config\_motor\_driver.h@{config\_motor\_driver.h}!k\_p\_tor@{k\_p\_tor}}
+\index{k\_p\_tor@{k\_p\_tor}!config\_motor\_driver.h@{config\_motor\_driver.h}}
+\doxysubsubsection{\texorpdfstring{k\_p\_tor}{k\_p\_tor}}
+{\footnotesize\ttfamily const double k\+\_\+p\+\_\+tor = 100.\+0}
+
+
+
+Definition at line 15 of file config\+\_\+motor\+\_\+driver.\+h.
+
+\mbox{\Hypertarget{config__motor__driver_8h_a201f3bd3d38f190d34be0e38a0176cf6}\label{config__motor__driver_8h_a201f3bd3d38f190d34be0e38a0176cf6}} 
+\index{config\_motor\_driver.h@{config\_motor\_driver.h}!k\_i\_tor@{k\_i\_tor}}
+\index{k\_i\_tor@{k\_i\_tor}!config\_motor\_driver.h@{config\_motor\_driver.h}}
+\doxysubsubsection{\texorpdfstring{k\_i\_tor}{k\_i\_tor}}
+{\footnotesize\ttfamily const double k\+\_\+i\+\_\+tor = 50.\+0}
+
+
+
+Definition at line 16 of file config\+\_\+motor\+\_\+driver.\+h.
+
+\mbox{\Hypertarget{config__motor__driver_8h_a7f51cb041197a056121df56fcef48b1c}\label{config__motor__driver_8h_a7f51cb041197a056121df56fcef48b1c}} 
+\index{config\_motor\_driver.h@{config\_motor\_driver.h}!K\_P\_POS@{K\_P\_POS}}
+\index{K\_P\_POS@{K\_P\_POS}!config\_motor\_driver.h@{config\_motor\_driver.h}}
+\doxysubsubsection{\texorpdfstring{K\_P\_POS}{K\_P\_POS}}
+{\footnotesize\ttfamily int K\+\_\+\+P\+\_\+\+POS\mbox{[}6\mbox{]} = \{\mbox{\hyperlink{config__motor__driver_8h_aec0320ea4b938e0ec7122f9eb40a8a40}{k\+\_\+p\+\_\+pos}}, \mbox{\hyperlink{config__motor__driver_8h_aec0320ea4b938e0ec7122f9eb40a8a40}{k\+\_\+p\+\_\+pos}}, \mbox{\hyperlink{config__motor__driver_8h_aec0320ea4b938e0ec7122f9eb40a8a40}{k\+\_\+p\+\_\+pos}}, \mbox{\hyperlink{config__motor__driver_8h_aec0320ea4b938e0ec7122f9eb40a8a40}{k\+\_\+p\+\_\+pos}}, \mbox{\hyperlink{config__motor__driver_8h_aec0320ea4b938e0ec7122f9eb40a8a40}{k\+\_\+p\+\_\+pos}}, \mbox{\hyperlink{config__motor__driver_8h_aec0320ea4b938e0ec7122f9eb40a8a40}{k\+\_\+p\+\_\+pos}}\}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 19 of file config\+\_\+motor\+\_\+driver.\+h.
+
+\mbox{\Hypertarget{config__motor__driver_8h_a33275802b53954313645a04ce94ffc99}\label{config__motor__driver_8h_a33275802b53954313645a04ce94ffc99}} 
+\index{config\_motor\_driver.h@{config\_motor\_driver.h}!K\_I\_POS@{K\_I\_POS}}
+\index{K\_I\_POS@{K\_I\_POS}!config\_motor\_driver.h@{config\_motor\_driver.h}}
+\doxysubsubsection{\texorpdfstring{K\_I\_POS}{K\_I\_POS}}
+{\footnotesize\ttfamily int K\+\_\+\+I\+\_\+\+POS\mbox{[}6\mbox{]} = \{\mbox{\hyperlink{config__motor__driver_8h_aafd27d03779277825703fae242a36f54}{k\+\_\+i\+\_\+pos}}, \mbox{\hyperlink{config__motor__driver_8h_aafd27d03779277825703fae242a36f54}{k\+\_\+i\+\_\+pos}}, \mbox{\hyperlink{config__motor__driver_8h_aafd27d03779277825703fae242a36f54}{k\+\_\+i\+\_\+pos}}, \mbox{\hyperlink{config__motor__driver_8h_aafd27d03779277825703fae242a36f54}{k\+\_\+i\+\_\+pos}}, \mbox{\hyperlink{config__motor__driver_8h_aafd27d03779277825703fae242a36f54}{k\+\_\+i\+\_\+pos}}, \mbox{\hyperlink{config__motor__driver_8h_aafd27d03779277825703fae242a36f54}{k\+\_\+i\+\_\+pos}}\}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 20 of file config\+\_\+motor\+\_\+driver.\+h.
+
+\mbox{\Hypertarget{config__motor__driver_8h_aff62a573d86b0fc2c4bafecc42daf209}\label{config__motor__driver_8h_aff62a573d86b0fc2c4bafecc42daf209}} 
+\index{config\_motor\_driver.h@{config\_motor\_driver.h}!K\_P\_VEL@{K\_P\_VEL}}
+\index{K\_P\_VEL@{K\_P\_VEL}!config\_motor\_driver.h@{config\_motor\_driver.h}}
+\doxysubsubsection{\texorpdfstring{K\_P\_VEL}{K\_P\_VEL}}
+{\footnotesize\ttfamily int K\+\_\+\+P\+\_\+\+VEL\mbox{[}6\mbox{]} = \{\mbox{\hyperlink{config__motor__driver_8h_a99995560312bf9ca4e52e07b83cbe44f}{k\+\_\+p\+\_\+vel}}, \mbox{\hyperlink{config__motor__driver_8h_a99995560312bf9ca4e52e07b83cbe44f}{k\+\_\+p\+\_\+vel}}, \mbox{\hyperlink{config__motor__driver_8h_a99995560312bf9ca4e52e07b83cbe44f}{k\+\_\+p\+\_\+vel}}, \mbox{\hyperlink{config__motor__driver_8h_a99995560312bf9ca4e52e07b83cbe44f}{k\+\_\+p\+\_\+vel}}, \mbox{\hyperlink{config__motor__driver_8h_a99995560312bf9ca4e52e07b83cbe44f}{k\+\_\+p\+\_\+vel}}, \mbox{\hyperlink{config__motor__driver_8h_a99995560312bf9ca4e52e07b83cbe44f}{k\+\_\+p\+\_\+vel}}\}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 21 of file config\+\_\+motor\+\_\+driver.\+h.
+
+\mbox{\Hypertarget{config__motor__driver_8h_a32bf71950e4347bde2f1f7c5bbaf0d73}\label{config__motor__driver_8h_a32bf71950e4347bde2f1f7c5bbaf0d73}} 
+\index{config\_motor\_driver.h@{config\_motor\_driver.h}!K\_I\_VEL@{K\_I\_VEL}}
+\index{K\_I\_VEL@{K\_I\_VEL}!config\_motor\_driver.h@{config\_motor\_driver.h}}
+\doxysubsubsection{\texorpdfstring{K\_I\_VEL}{K\_I\_VEL}}
+{\footnotesize\ttfamily int K\+\_\+\+I\+\_\+\+VEL\mbox{[}6\mbox{]} = \{\mbox{\hyperlink{config__motor__driver_8h_a7a72b8277118e9f32d420682e50e0334}{k\+\_\+i\+\_\+vel}}, \mbox{\hyperlink{config__motor__driver_8h_a7a72b8277118e9f32d420682e50e0334}{k\+\_\+i\+\_\+vel}}, \mbox{\hyperlink{config__motor__driver_8h_a7a72b8277118e9f32d420682e50e0334}{k\+\_\+i\+\_\+vel}}, \mbox{\hyperlink{config__motor__driver_8h_a7a72b8277118e9f32d420682e50e0334}{k\+\_\+i\+\_\+vel}}, \mbox{\hyperlink{config__motor__driver_8h_a7a72b8277118e9f32d420682e50e0334}{k\+\_\+i\+\_\+vel}}, \mbox{\hyperlink{config__motor__driver_8h_a7a72b8277118e9f32d420682e50e0334}{k\+\_\+i\+\_\+vel}}\}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 22 of file config\+\_\+motor\+\_\+driver.\+h.
+
+\mbox{\Hypertarget{config__motor__driver_8h_aa19dddd229cbd90971bef3b1c47683d7}\label{config__motor__driver_8h_aa19dddd229cbd90971bef3b1c47683d7}} 
+\index{config\_motor\_driver.h@{config\_motor\_driver.h}!K\_P\_TOR@{K\_P\_TOR}}
+\index{K\_P\_TOR@{K\_P\_TOR}!config\_motor\_driver.h@{config\_motor\_driver.h}}
+\doxysubsubsection{\texorpdfstring{K\_P\_TOR}{K\_P\_TOR}}
+{\footnotesize\ttfamily int K\+\_\+\+P\+\_\+\+TOR\mbox{[}6\mbox{]} = \{\mbox{\hyperlink{config__motor__driver_8h_a0beac680ee4cf1fccdc5f569c47325e8}{k\+\_\+p\+\_\+tor}}, \mbox{\hyperlink{config__motor__driver_8h_a0beac680ee4cf1fccdc5f569c47325e8}{k\+\_\+p\+\_\+tor}}, \mbox{\hyperlink{config__motor__driver_8h_a0beac680ee4cf1fccdc5f569c47325e8}{k\+\_\+p\+\_\+tor}}, \mbox{\hyperlink{config__motor__driver_8h_a0beac680ee4cf1fccdc5f569c47325e8}{k\+\_\+p\+\_\+tor}}, \mbox{\hyperlink{config__motor__driver_8h_a0beac680ee4cf1fccdc5f569c47325e8}{k\+\_\+p\+\_\+tor}}, \mbox{\hyperlink{config__motor__driver_8h_a0beac680ee4cf1fccdc5f569c47325e8}{k\+\_\+p\+\_\+tor}}\}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 23 of file config\+\_\+motor\+\_\+driver.\+h.
+
+\mbox{\Hypertarget{config__motor__driver_8h_aa42f36d3d8dd3bdb211c46c8c6918689}\label{config__motor__driver_8h_aa42f36d3d8dd3bdb211c46c8c6918689}} 
+\index{config\_motor\_driver.h@{config\_motor\_driver.h}!K\_I\_TOR@{K\_I\_TOR}}
+\index{K\_I\_TOR@{K\_I\_TOR}!config\_motor\_driver.h@{config\_motor\_driver.h}}
+\doxysubsubsection{\texorpdfstring{K\_I\_TOR}{K\_I\_TOR}}
+{\footnotesize\ttfamily int K\+\_\+\+I\+\_\+\+TOR\mbox{[}6\mbox{]} = \{\mbox{\hyperlink{config__motor__driver_8h_a201f3bd3d38f190d34be0e38a0176cf6}{k\+\_\+i\+\_\+tor}}, \mbox{\hyperlink{config__motor__driver_8h_a201f3bd3d38f190d34be0e38a0176cf6}{k\+\_\+i\+\_\+tor}}, \mbox{\hyperlink{config__motor__driver_8h_a201f3bd3d38f190d34be0e38a0176cf6}{k\+\_\+i\+\_\+tor}}, \mbox{\hyperlink{config__motor__driver_8h_a201f3bd3d38f190d34be0e38a0176cf6}{k\+\_\+i\+\_\+tor}}, \mbox{\hyperlink{config__motor__driver_8h_a201f3bd3d38f190d34be0e38a0176cf6}{k\+\_\+i\+\_\+tor}}, \mbox{\hyperlink{config__motor__driver_8h_a201f3bd3d38f190d34be0e38a0176cf6}{k\+\_\+i\+\_\+tor}}\}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 24 of file config\+\_\+motor\+\_\+driver.\+h.
+
+\mbox{\Hypertarget{config__motor__driver_8h_a1455547e8077b299ceb028afcb067b7f}\label{config__motor__driver_8h_a1455547e8077b299ceb028afcb067b7f}} 
+\index{config\_motor\_driver.h@{config\_motor\_driver.h}!POSITION\_OFFSET@{POSITION\_OFFSET}}
+\index{POSITION\_OFFSET@{POSITION\_OFFSET}!config\_motor\_driver.h@{config\_motor\_driver.h}}
+\doxysubsubsection{\texorpdfstring{POSITION\_OFFSET}{POSITION\_OFFSET}}
+{\footnotesize\ttfamily double POSITION\+\_\+\+OFFSET\mbox{[}6\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= }
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \mbox{\hyperlink{config__motor__driver_8h_a773c8897fbc9e32316184b9462e81af6}{position\_offset\_motor\_1}}, }
+\DoxyCodeLine{    \mbox{\hyperlink{config__motor__driver_8h_ac367cb1ef2e74b873e5e9c2046962723}{position\_offset\_motor\_2}}, }
+\DoxyCodeLine{    \mbox{\hyperlink{config__motor__driver_8h_a0fd704688d8608536d99157777e88549}{position\_offset\_motor\_3}},}
+\DoxyCodeLine{    \mbox{\hyperlink{config__motor__driver_8h_a8e4e97e12ca2246a89812d833063b90d}{position\_offset\_motor\_4}},}
+\DoxyCodeLine{    \mbox{\hyperlink{config__motor__driver_8h_aea959aaf4f6df674c238370a0d93942d}{position\_offset\_motor\_5}},}
+\DoxyCodeLine{    \mbox{\hyperlink{config__motor__driver_8h_aa04e63192dd0af348295b23233519318}{position\_offset\_motor\_6}} }
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line 54 of file config\+\_\+motor\+\_\+driver.\+h.
+
+\mbox{\Hypertarget{config__motor__driver_8h_a0d41dc6c0ca5aabadaa9296e77ac975c}\label{config__motor__driver_8h_a0d41dc6c0ca5aabadaa9296e77ac975c}} 
+\index{config\_motor\_driver.h@{config\_motor\_driver.h}!INITIAL\_NUMBER\_OF\_MOTOR\_ROTATIONS@{INITIAL\_NUMBER\_OF\_MOTOR\_ROTATIONS}}
+\index{INITIAL\_NUMBER\_OF\_MOTOR\_ROTATIONS@{INITIAL\_NUMBER\_OF\_MOTOR\_ROTATIONS}!config\_motor\_driver.h@{config\_motor\_driver.h}}
+\doxysubsubsection{\texorpdfstring{INITIAL\_NUMBER\_OF\_MOTOR\_ROTATIONS}{INITIAL\_NUMBER\_OF\_MOTOR\_ROTATIONS}}
+{\footnotesize\ttfamily int INITIAL\+\_\+\+NUMBER\+\_\+\+OF\+\_\+\+MOTOR\+\_\+\+ROTATIONS\mbox{[}6\mbox{]} = \{0, 0, 0, 0, 0, 0\}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 64 of file config\+\_\+motor\+\_\+driver.\+h.
+

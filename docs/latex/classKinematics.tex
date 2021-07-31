@@ -12,65 +12,65 @@ A class for analytical \mbox{\hyperlink{classKinematics}{Kinematics}} Solving.
 \doxysubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}\label{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}} 
 enum \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \{ \newline
-{\bfseries front\+Left} = 1, 
-{\bfseries front\+Right} = 2, 
-{\bfseries rear\+Left} = 3, 
-{\bfseries rear\+Right} = 4, 
-\newline
-{\bfseries N\+O\+NE}
+\mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3aa97e591fd9257540b2c0de26f25280744}{front\+Left}} = 1
+, \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3aa6037530a0c90ae3f2053d3f0d248d2d5}{front\+Right}} = 2
+, \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3aae746cc251855378c27d2b83216bac852}{rear\+Left}} = 3
+, \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3aa5914ce0949510848badd16c38a2d6357}{rear\+Right}} = 4
+, \newline
+\mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3aaec2e46c8dc1f4971d66282238eb81c0f}{NONE}}
  \}
 \begin{DoxyCompactList}\small\item\em Leg type enumerator. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classKinematics_a390b699225b57bc303653caeb6039df3}\label{classKinematics_a390b699225b57bc303653caeb6039df3}} 
 enum \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \{ \newline
-{\bfseries base} = 1, 
-{\bfseries hip} = 2, 
-{\bfseries thigh} = 3, 
-{\bfseries leg} = 4, 
-\newline
-{\bfseries foot} = 5
+\mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3a1f7b05839309b064d946b12d8c64dada}{base}} = 1
+, \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3afc1f7117122a22edce014a96116cc3d3}{hip}} = 2
+, \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3aa587744a5ccdcf082e3f1aaaf9ad239c}{thigh}} = 3
+, \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3a7f3c218b99213acbd78ae8a1a13a7833}{leg}} = 4
+, \newline
+\mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3a8f095f93fade621ed46f900e2ec880e9}{foot}} = 5
  \}
 \begin{DoxyCompactList}\small\item\em Body type enumerator. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classKinematics_af4e587252019eaa863b4246026296d4a}\label{classKinematics_af4e587252019eaa863b4246026296d4a}} 
 \mbox{\hyperlink{classKinematics_af4e587252019eaa863b4246026296d4a}{Kinematics}} ()
 \begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classKinematics_a5d2fb2f14148cc371b80e572c33ecb4d}\label{classKinematics_a5d2fb2f14148cc371b80e572c33ecb4d}} 
 virtual \mbox{\hyperlink{classKinematics_a5d2fb2f14148cc371b80e572c33ecb4d}{$\sim$\+Kinematics}} ()
 \begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{classKinematics_aa1d7bdb6df5dbd5b7b35abd7457f2a6a}{Solve\+Forward\+Kinematics}} (const Generalized\+Coordinates \&\+\_\+q, Footstep\+Positions \&\+\_\+f\+\_\+pos)
+bool \mbox{\hyperlink{classKinematics_aa1d7bdb6df5dbd5b7b35abd7457f2a6a}{Solve\+Forward\+Kinematics}} (const \mbox{\hyperlink{kinematics_8h_a004f934a5332c85e807192da05432f91}{Generalized\+Coordinates}} \&\+\_\+q, \mbox{\hyperlink{kinematics_8h_a86e7a9d5c197ff2c080d9c09fc1cf12e}{Footstep\+Positions}} \&\+\_\+f\+\_\+pos)
 \begin{DoxyCompactList}\small\item\em The Solve\+Forward\+Kinematics function calculates the Forward \mbox{\hyperlink{classKinematics}{Kinematics}}, i.\+e. maps joint angles in Joint Space to a coordinate point in Coordinate Space. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{classKinematics_a1303e0b91ebbb7c4591ad914d904cc91}{Solve\+Inverse\+Kinematics}} (const Twist \&\+\_\+q\+\_\+b, const Footstep\+Positions \&\+\_\+f\+\_\+pos, Joint\+Space\+Vector \&\+\_\+q\+\_\+r)
+bool \mbox{\hyperlink{classKinematics_a1303e0b91ebbb7c4591ad914d904cc91}{Solve\+Inverse\+Kinematics}} (const \mbox{\hyperlink{kinematics_8h_ace7064c2a774578880164cc27b69caa5}{Twist}} \&\+\_\+q\+\_\+b, const \mbox{\hyperlink{kinematics_8h_a86e7a9d5c197ff2c080d9c09fc1cf12e}{Footstep\+Positions}} \&\+\_\+f\+\_\+pos, \mbox{\hyperlink{kinematics_8h_a777bb5e7d16b72f382c989417decd251}{Joint\+Space\+Vector}} \&\+\_\+q\+\_\+r)
 \begin{DoxyCompactList}\small\item\em The Solve\+Inverse\+Kinematics function calculates the Inverse \mbox{\hyperlink{classKinematics}{Kinematics}}, i.\+e. maps a coordinate point in the Coordinate Space to joint angles in the Joint Space. \end{DoxyCompactList}\item 
-Vector3d \mbox{\hyperlink{classKinematics_a8f3a80f7c80de2d87e7f18971a452788}{Solve\+Single\+Leg\+Forward\+Kinematics}} (const Vector3d \&\+\_\+h\+\_\+pos, const double \&\+\_\+theta\+\_\+hy, const double \&\+\_\+theta\+\_\+hp, const double \&\+\_\+theta\+\_\+kp)
+\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Vector3d}} \mbox{\hyperlink{classKinematics_a8f3a80f7c80de2d87e7f18971a452788}{Solve\+Single\+Leg\+Forward\+Kinematics}} (const \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Vector3d}} \&\+\_\+h\+\_\+pos, const double \&\+\_\+theta\+\_\+hy, const double \&\+\_\+theta\+\_\+hp, const double \&\+\_\+theta\+\_\+kp)
 \begin{DoxyCompactList}\small\item\em The Solve\+Single\+Leg\+Forward\+Kinematics function calculates the Forward \mbox{\hyperlink{classKinematics}{Kinematics}} for a single leg. \end{DoxyCompactList}\item 
-Vector3d \mbox{\hyperlink{classKinematics_a98ee3885eb0b9056ba830b21d8d3ff0c}{Solve\+Single\+Leg\+Forward\+Kinematics}} (const Vector3d \&\+\_\+joint\+\_\+angles)
+\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Vector3d}} \mbox{\hyperlink{classKinematics_a98ee3885eb0b9056ba830b21d8d3ff0c}{Solve\+Single\+Leg\+Forward\+Kinematics}} (const \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Vector3d}} \&\+\_\+joint\+\_\+angles)
 \begin{DoxyCompactList}\small\item\em The Solve\+Single\+Leg\+Forward\+Kinematics function calculates the foot position in the hip frame. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{classKinematics_acfec333c272f446eebbc289b9216cb91}{Solve\+Single\+Leg\+Inverse\+Kinematics}} (const bool \&\+\_\+offset, const Vector3d \&\+\_\+h\+\_\+pos, const Vector3d \&\+\_\+f\+\_\+pos, Vector3d \&\+\_\+joint\+\_\+angles)
+\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Vector3d}} \mbox{\hyperlink{classKinematics_a76a1b6854dc328b42e3ad0683d489177}{Solve\+Single\+Leg\+Forward\+Kinematics}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg\+\_\+type, const \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Vector3d}} \&\+\_\+joint\+\_\+angles)
+\begin{DoxyCompactList}\small\item\em The Solve\+Single\+Leg\+Forward\+Kinematics function calculates the foot position in the hip frame. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Vector3d}} \mbox{\hyperlink{classKinematics_a28a18a9dee554c7c444fd2abde35c382}{Solve\+Single\+Leg\+Hip\+To\+Foot\+Forward\+Kinematics}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg\+\_\+type, const \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Vector3d}} \&\+\_\+joint\+\_\+angles)
+\begin{DoxyCompactList}\small\item\em The Solve\+Single\+Leg\+Hip\+To\+Foot\+Forward\+Kinematics function calculates the foot position in the hip frame. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classKinematics_acfec333c272f446eebbc289b9216cb91}{Solve\+Single\+Leg\+Inverse\+Kinematics}} (const bool \&\+\_\+offset, const \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Vector3d}} \&\+\_\+h\+\_\+pos, const \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Vector3d}} \&\+\_\+f\+\_\+pos, \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Vector3d}} \&\+\_\+joint\+\_\+angles)
 \begin{DoxyCompactList}\small\item\em The Solve\+Singe\+Leg\+Inverse\+Kinematics function calculates the inverse kinematics for a single leg. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{classKinematics_ae9be537672b681659fb05808786c90a6}{Solve\+Single\+Leg\+Inverse\+Kinematics}} (const bool \&\+\_\+offset, const Vector3d \&\+\_\+f\+\_\+pos, Vector3d \&\+\_\+joint\+\_\+angles)
+bool \mbox{\hyperlink{classKinematics_ae9be537672b681659fb05808786c90a6}{Solve\+Single\+Leg\+Inverse\+Kinematics}} (const bool \&\+\_\+offset, const \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Vector3d}} \&\+\_\+f\+\_\+pos, \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Vector3d}} \&\+\_\+joint\+\_\+angles)
 \begin{DoxyCompactList}\small\item\em The Solve\+Singe\+Leg\+Inverse\+Kinematics function calculates the inverse kinematics of foot in the hip frame. \end{DoxyCompactList}\item 
-Trans\+Matrix \mbox{\hyperlink{classKinematics_a44e7cc1fa6e9a3e70f5b8b794997f25d}{Get\+Dh\+Transform}} (const double \&\+\_\+a, const double \&\+\_\+alpha, const double \&\+\_\+d, const double \&\+\_\+theta)
+\mbox{\hyperlink{kinematics_8h_ac7e9ffb66ce26f0a49a6aa291038e22a}{Trans\+Matrix}} \mbox{\hyperlink{classKinematics_a44e7cc1fa6e9a3e70f5b8b794997f25d}{Get\+Dh\+Transform}} (const double \&\+\_\+a, const double \&\+\_\+alpha, const double \&\+\_\+d, const double \&\+\_\+theta)
 \begin{DoxyCompactList}\small\item\em The Get\+Dh\+Transform function returns the Denavit-\/\+Hartenberg transformation from frame A to frame B. \end{DoxyCompactList}\item 
-Trans\+Matrix \mbox{\hyperlink{classKinematics_a4c67f7cda22d8684c9a9f35956635557}{Get\+Hip\+To\+Body\+Transform}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg, const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&\+\_\+body, const double \&\+\_\+theta\+\_\+hy, const double \&\+\_\+theta\+\_\+hp, const double \&\+\_\+theta\+\_\+kp)
+\mbox{\hyperlink{kinematics_8h_ac7e9ffb66ce26f0a49a6aa291038e22a}{Trans\+Matrix}} \mbox{\hyperlink{classKinematics_a4c67f7cda22d8684c9a9f35956635557}{Get\+Hip\+To\+Body\+Transform}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg, const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&\+\_\+body, const double \&\+\_\+theta\+\_\+hy, const double \&\+\_\+theta\+\_\+hp, const double \&\+\_\+theta\+\_\+kp)
 \begin{DoxyCompactList}\small\item\em The Get\+Hip\+To\+Body\+Transform function returns the homogeneous transformation from the hip frame to the specified body frame. \end{DoxyCompactList}\item 
-Eigen\+::\+Matrix$<$ double, 3, 3 $>$ \mbox{\hyperlink{classKinematics_a1a245720c27eca48806fb5e421549c9c}{Get\+Rotation\+Matrix\+W\+ToB}} (const double \&\+\_\+roll, const double \&\+\_\+pitch, const double \&\+\_\+yaw)
-\begin{DoxyCompactList}\small\item\em The Get\+Rotation\+Matrix\+W\+ToB function returns the Euler Angles Z\+YX rotation matrix from World to Body frame, i.\+e., the transform from Body to World. \end{DoxyCompactList}\item 
-Eigen\+::\+Matrix$<$ double, 3, 3 $>$ \mbox{\hyperlink{classKinematics_ae589e937b2e9cc3f863bae1b1a9f7976}{Get\+Rotation\+Matrix\+W\+To\+B\+Diff}} (const double \&\+\_\+roll, const double \&\+\_\+pitch, const double \&\+\_\+yaw, const double \&\+\_\+roll\+\_\+rate, const double \&\+\_\+pitch\+\_\+rate, const double \&\+\_\+yaw\+\_\+rate)
-\begin{DoxyCompactList}\small\item\em The Get\+Rotation\+Matrix\+W\+To\+B\+Diff function returns the time derivative of the Euler Angles Z\+YX rotation matrix from World to Body frame. \end{DoxyCompactList}\item 
-Eigen\+::\+Matrix$<$ double, 3, 3 $>$ \mbox{\hyperlink{classKinematics_a3b09d639862a4043f437abbd08414d45}{Get\+Rotation\+Matrix\+W\+ToC}} (const double \&\+\_\+roll, const double \&\+\_\+pitch, const double \&\+\_\+yaw)
-\begin{DoxyCompactList}\small\item\em The Get\+Rotation\+Matrix\+W\+ToC function returns the Euler Angles Z\+YX rotation matrix from World to Control frame, i.\+e., the transform from Control to World. For flat-\/terrain the roll and pitch angles should be set to zero. \end{DoxyCompactList}\item 
-Eigen\+::\+Matrix$<$ double, 3, 3 $>$ \mbox{\hyperlink{classKinematics_ade15415303e92a2af3633506c81d67ae}{Get\+Rotation\+Matrix\+W\+To\+C\+Diff}} (const double \&\+\_\+roll, const double \&\+\_\+pitch, const double \&\+\_\+yaw, const double \&\+\_\+roll\+\_\+rate, const double \&\+\_\+pitch\+\_\+rate, const double \&\+\_\+yaw\+\_\+rate)
-\begin{DoxyCompactList}\small\item\em The Get\+Rotation\+Matrix\+W\+To\+C\+Diff function returns the time derivative of the Euler Angles Z\+YX rotation matrix from World to Control frame. \end{DoxyCompactList}\item 
-Eigen\+::\+Matrix$<$ double, 3, 3 $>$ \mbox{\hyperlink{classKinematics_aa1fe2d126cda71aff030c50677d400c9}{Get\+Rotation\+Matrix\+C\+ToB}} (const double \&\+\_\+roll, const double \&\+\_\+pitch, const double \&\+\_\+yaw)
-\begin{DoxyCompactList}\small\item\em The Get\+Rotation\+Matrix\+C\+ToB function returns the Euler Angles Z\+YX rotation matrix from Control to Body frame, i.\+e., the transform from Body to Control. For flat-\/terrain the yaw angle should be set zero. \end{DoxyCompactList}\item 
-Eigen\+::\+Matrix$<$ double, 3, 3 $>$ \mbox{\hyperlink{classKinematics_ada07b12404f8b4860572bf9c4aad9a17}{Get\+Rotation\+Matrix\+C\+To\+B\+Diff}} (const double \&\+\_\+roll, const double \&\+\_\+pitch, const double \&\+\_\+yaw, const double \&\+\_\+roll\+\_\+rate, const double \&\+\_\+pitch\+\_\+rate, const double \&\+\_\+yaw\+\_\+rate)
-\begin{DoxyCompactList}\small\item\em The Get\+Rotation\+Matrix\+C\+To\+B\+Diff function returns the time derivative of the Euler Angles Z\+YX rotation matrix from World to Body frame. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix$<$ double, 3, 3 $>$ \mbox{\hyperlink{classKinematics_a1a245720c27eca48806fb5e421549c9c}{Get\+Rotation\+Matrix\+WToB}} (const double \&\+\_\+roll, const double \&\+\_\+pitch, const double \&\+\_\+yaw)
+\begin{DoxyCompactList}\small\item\em The Get\+Rotation\+Matrix\+WToB function returns the Euler Angles ZYX rotation matrix from World to Body frame, i.\+e., the transform from Body to World. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix$<$ double, 3, 3 $>$ \mbox{\hyperlink{classKinematics_ae589e937b2e9cc3f863bae1b1a9f7976}{Get\+Rotation\+Matrix\+WTo\+BDiff}} (const double \&\+\_\+roll, const double \&\+\_\+pitch, const double \&\+\_\+yaw, const double \&\+\_\+roll\+\_\+rate, const double \&\+\_\+pitch\+\_\+rate, const double \&\+\_\+yaw\+\_\+rate)
+\begin{DoxyCompactList}\small\item\em The Get\+Rotation\+Matrix\+WTo\+BDiff function returns the time derivative of the Euler Angles ZYX rotation matrix from World to Body frame. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix$<$ double, 3, 3 $>$ \mbox{\hyperlink{classKinematics_a3b09d639862a4043f437abbd08414d45}{Get\+Rotation\+Matrix\+WToC}} (const double \&\+\_\+roll, const double \&\+\_\+pitch, const double \&\+\_\+yaw)
+\begin{DoxyCompactList}\small\item\em The Get\+Rotation\+Matrix\+WToC function returns the Euler Angles ZYX rotation matrix from World to Control frame, i.\+e., the transform from Control to World. For flat-\/terrain the roll and pitch angles should be set to zero. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix$<$ double, 3, 3 $>$ \mbox{\hyperlink{classKinematics_ade15415303e92a2af3633506c81d67ae}{Get\+Rotation\+Matrix\+WTo\+CDiff}} (const double \&\+\_\+roll, const double \&\+\_\+pitch, const double \&\+\_\+yaw, const double \&\+\_\+roll\+\_\+rate, const double \&\+\_\+pitch\+\_\+rate, const double \&\+\_\+yaw\+\_\+rate)
+\begin{DoxyCompactList}\small\item\em The Get\+Rotation\+Matrix\+WTo\+CDiff function returns the time derivative of the Euler Angles ZYX rotation matrix from World to Control frame. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix$<$ double, 3, 3 $>$ \mbox{\hyperlink{classKinematics_aa1fe2d126cda71aff030c50677d400c9}{Get\+Rotation\+Matrix\+CToB}} (const double \&\+\_\+roll, const double \&\+\_\+pitch, const double \&\+\_\+yaw)
+\begin{DoxyCompactList}\small\item\em The Get\+Rotation\+Matrix\+CToB function returns the Euler Angles ZYX rotation matrix from Control to Body frame, i.\+e., the transform from Body to Control. For flat-\/terrain the yaw angle should be set zero. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix$<$ double, 3, 3 $>$ \mbox{\hyperlink{classKinematics_ada07b12404f8b4860572bf9c4aad9a17}{Get\+Rotation\+Matrix\+CTo\+BDiff}} (const double \&\+\_\+roll, const double \&\+\_\+pitch, const double \&\+\_\+yaw, const double \&\+\_\+roll\+\_\+rate, const double \&\+\_\+pitch\+\_\+rate, const double \&\+\_\+yaw\+\_\+rate)
+\begin{DoxyCompactList}\small\item\em The Get\+Rotation\+Matrix\+CTo\+BDiff function returns the time derivative of the Euler Angles ZYX rotation matrix from World to Body frame. \end{DoxyCompactList}\item 
 Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classKinematics_abb46d7bcf0c89d8f5493701261ca17b5}{Get\+Position\+Base\+To\+Body\+InB}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg, const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&\+\_\+body, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+q)
-\begin{DoxyCompactList}\small\item\em The Get\+Position\+Base\+To\+Body\+InB returns the position vector from base origin to C\+OM position in body-\/frame for a given body. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em The Get\+Position\+Base\+To\+Body\+InB returns the position vector from base origin to COM position in body-\/frame for a given body. \end{DoxyCompactList}\item 
 Eigen\+::\+Matrix$<$ double, 3, 3 $>$ \mbox{\hyperlink{classKinematics_a6e56100f9dbd10a999c0335b012ce302}{Get\+Translation\+Jacobian\+InB}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg, const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&\+\_\+body, const double \&\+\_\+theta\+\_\+hy, const double \&\+\_\+theta\+\_\+hp, const double \&\+\_\+theta\+\_\+kp)
 \begin{DoxyCompactList}\small\item\em The Get\+Translation\+Jacobian\+InB function returns the 3x3 Jacobian matrix for body linear velocities in the body(base)-\/frame for a given state. \end{DoxyCompactList}\item 
 Eigen\+::\+Matrix$<$ double, 3, 12 $>$ \mbox{\hyperlink{classKinematics_adff032be3e4877079e0bfb68e8c1224e}{Get\+Translation\+Jacobian\+InB}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg, const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&\+\_\+body, const Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \&\+\_\+q\+\_\+r)
@@ -79,14 +79,14 @@ Eigen\+::\+Matrix$<$ double, 3, 18 $>$ \mbox{\hyperlink{classKinematics_a0b6321c
 \begin{DoxyCompactList}\small\item\em The Get\+Translation\+Jacobian\+InW function returns the 3x18 spatial translation Jacobian mapping generalized velocities to operational space twist of the body attached frame. \end{DoxyCompactList}\item 
 Eigen\+::\+Matrix$<$ double, 3, 18 $>$ \mbox{\hyperlink{classKinematics_aba499927a2b02e14fa4d4b5551ed96b7}{Get\+Translation\+Jacobian\+InC}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg, const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&\+\_\+body, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+q)
 \begin{DoxyCompactList}\small\item\em The Get\+Translation\+Jacobian\+InC function returns the 3x18 spatial translation Jacobian mapping generalized velocities to operational space twist of the control frame. \end{DoxyCompactList}\item 
-Eigen\+::\+Matrix$<$ double, 3, 3 $>$ \mbox{\hyperlink{classKinematics_a95a4ea1b3e991c44ad28ec6196597731}{Get\+Translation\+Jacobian\+In\+B\+Diff}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg, const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&\+\_\+body, const double \&\+\_\+theta\+\_\+hy, const double \&\+\_\+theta\+\_\+hp, const double \&\+\_\+theta\+\_\+kp, const double \&\+\_\+dot\+\_\+theta\+\_\+hy, const double \&\+\_\+dot\+\_\+theta\+\_\+hp, const double \&\+\_\+dot\+\_\+theta\+\_\+kp)
+Eigen\+::\+Matrix$<$ double, 3, 3 $>$ \mbox{\hyperlink{classKinematics_a95a4ea1b3e991c44ad28ec6196597731}{Get\+Translation\+Jacobian\+In\+BDiff}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg, const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&\+\_\+body, const double \&\+\_\+theta\+\_\+hy, const double \&\+\_\+theta\+\_\+hp, const double \&\+\_\+theta\+\_\+kp, const double \&\+\_\+dot\+\_\+theta\+\_\+hy, const double \&\+\_\+dot\+\_\+theta\+\_\+hp, const double \&\+\_\+dot\+\_\+theta\+\_\+kp)
 \begin{DoxyCompactList}\small\item\em The Get\+Translation\+Jacobian\+Derivative\+InB function returns the time derivative of the 3x3 translation Jacobian matrix. \end{DoxyCompactList}\item 
-Eigen\+::\+Matrix$<$ double, 3, 12 $>$ \mbox{\hyperlink{classKinematics_a586c485042b3c56068e85d8ff89fba79}{Get\+Translation\+Jacobian\+In\+B\+Diff}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg, const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&\+\_\+body, const Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \&\+\_\+q\+\_\+r, const Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \&\+\_\+dot\+\_\+q\+\_\+r)
-\begin{DoxyCompactList}\small\item\em The Get\+Translation\+Jacobian\+In\+B\+Diff function returns the time derivative of the 3x12 translation Jacobian matrix. \end{DoxyCompactList}\item 
-Eigen\+::\+Matrix$<$ double, 3, 18 $>$ \mbox{\hyperlink{classKinematics_ae6ee79028997a34c67c47a9c40567a57}{Get\+Translation\+Jacobian\+In\+W\+Diff}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg, const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&\+\_\+body, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+q, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+u)
-\begin{DoxyCompactList}\small\item\em The Get\+Translation\+Jacobian\+In\+W\+Diff function returns the time derivative of the 3x18 spatial translation Jacobian in the world frame. \end{DoxyCompactList}\item 
-Eigen\+::\+Matrix$<$ double, 3, 18 $>$ \mbox{\hyperlink{classKinematics_a33e8e4b6548d8f23dc0e5b51572b9a46}{Get\+Translation\+Jacobian\+In\+C\+Diff}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg, const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&\+\_\+body, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+q, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+u)
-\begin{DoxyCompactList}\small\item\em The Get\+Translation\+Jacobian\+In\+C\+Diff function returns the time derivative of the 3x18 spatial translation Jacobian in the control frame. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix$<$ double, 3, 12 $>$ \mbox{\hyperlink{classKinematics_a586c485042b3c56068e85d8ff89fba79}{Get\+Translation\+Jacobian\+In\+BDiff}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg, const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&\+\_\+body, const Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \&\+\_\+q\+\_\+r, const Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \&\+\_\+dot\+\_\+q\+\_\+r)
+\begin{DoxyCompactList}\small\item\em The Get\+Translation\+Jacobian\+In\+BDiff function returns the time derivative of the 3x12 translation Jacobian matrix. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix$<$ double, 3, 18 $>$ \mbox{\hyperlink{classKinematics_ae6ee79028997a34c67c47a9c40567a57}{Get\+Translation\+Jacobian\+In\+WDiff}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg, const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&\+\_\+body, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+q, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+u)
+\begin{DoxyCompactList}\small\item\em The Get\+Translation\+Jacobian\+In\+WDiff function returns the time derivative of the 3x18 spatial translation Jacobian in the world frame. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix$<$ double, 3, 18 $>$ \mbox{\hyperlink{classKinematics_a33e8e4b6548d8f23dc0e5b51572b9a46}{Get\+Translation\+Jacobian\+In\+CDiff}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg, const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&\+\_\+body, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+q, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+u)
+\begin{DoxyCompactList}\small\item\em The Get\+Translation\+Jacobian\+In\+CDiff function returns the time derivative of the 3x18 spatial translation Jacobian in the control frame. \end{DoxyCompactList}\item 
 Eigen\+::\+Matrix$<$ double, 3, 3 $>$ \mbox{\hyperlink{classKinematics_a748785f956d5c6ed96d09c779ffe2096}{Get\+Rotation\+Jacobian\+InB}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg, const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&\+\_\+body, const double \&\+\_\+theta\+\_\+hy, const double \&\+\_\+theta\+\_\+hp, const double \&\+\_\+theta\+\_\+kp)
 \begin{DoxyCompactList}\small\item\em The Get\+Rotation\+Jacobian\+InB function returns the 3x3 Jacobian matrix for body angular velocities in the body(base)-\/frame for a given state. \end{DoxyCompactList}\item 
 Eigen\+::\+Matrix$<$ double, 3, 12 $>$ \mbox{\hyperlink{classKinematics_aacae7d510c9db32c3fe87ab4908bac4a}{Get\+Rotation\+Jacobian\+InB}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg, const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&\+\_\+body, const Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \&\+\_\+q\+\_\+r)
@@ -95,165 +95,126 @@ Eigen\+::\+Matrix$<$ double, 3, 18 $>$ \mbox{\hyperlink{classKinematics_aedd990d
 \begin{DoxyCompactList}\small\item\em The Get\+Rotation\+Jacobian\+InW function returns the 3x18 spatial rotation Jacobian mapping generalized velocities to operational space twist of the body attached frame. \end{DoxyCompactList}\item 
 Eigen\+::\+Matrix$<$ double, 3, 18 $>$ \mbox{\hyperlink{classKinematics_ac3f39f4785c4988e0bc0a612976b2b91}{Get\+Rotation\+Jacobian\+InC}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg, const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&\+\_\+body, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+q)
 \begin{DoxyCompactList}\small\item\em The Get\+Rotation\+Jacobian\+InC function returns the 3x18 spatial rotation Jacobian mapping generalized velocities to control frame twist of the body attached frame. \end{DoxyCompactList}\item 
-Eigen\+::\+Matrix$<$ double, 3, 3 $>$ \mbox{\hyperlink{classKinematics_a56697b824a7af6ab06445a3c95cb9928}{Get\+Rotation\+Jacobian\+In\+B\+Diff}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg, const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&\+\_\+body, const double \&\+\_\+theta\+\_\+hy, const double \&\+\_\+theta\+\_\+hp, const double \&\+\_\+theta\+\_\+kp, const double \&\+\_\+dot\+\_\+theta\+\_\+hy, const double \&\+\_\+dot\+\_\+theta\+\_\+hp, const double \&\+\_\+dot\+\_\+theta\+\_\+kp)
-\begin{DoxyCompactList}\small\item\em The Get\+Rotation\+Jacobian\+In\+B\+Diff function returns the time derivative of the 3x3 Rotation Jacobian matrix. \end{DoxyCompactList}\item 
-Eigen\+::\+Matrix$<$ double, 3, 12 $>$ \mbox{\hyperlink{classKinematics_a7d42c7e9b4813c5c6b3d8472e4f9035f}{Get\+Rotation\+Jacobian\+In\+B\+Diff}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg, const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&\+\_\+body, const Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \&\+\_\+q\+\_\+r, const Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \&\+\_\+dot\+\_\+q\+\_\+r)
+Eigen\+::\+Matrix$<$ double, 3, 3 $>$ \mbox{\hyperlink{classKinematics_a56697b824a7af6ab06445a3c95cb9928}{Get\+Rotation\+Jacobian\+In\+BDiff}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg, const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&\+\_\+body, const double \&\+\_\+theta\+\_\+hy, const double \&\+\_\+theta\+\_\+hp, const double \&\+\_\+theta\+\_\+kp, const double \&\+\_\+dot\+\_\+theta\+\_\+hy, const double \&\+\_\+dot\+\_\+theta\+\_\+hp, const double \&\+\_\+dot\+\_\+theta\+\_\+kp)
+\begin{DoxyCompactList}\small\item\em The Get\+Rotation\+Jacobian\+In\+BDiff function returns the time derivative of the 3x3 Rotation Jacobian matrix. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix$<$ double, 3, 12 $>$ \mbox{\hyperlink{classKinematics_a7d42c7e9b4813c5c6b3d8472e4f9035f}{Get\+Rotation\+Jacobian\+In\+BDiff}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg, const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&\+\_\+body, const Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \&\+\_\+q\+\_\+r, const Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \&\+\_\+dot\+\_\+q\+\_\+r)
 \begin{DoxyCompactList}\small\item\em The Get\+Rotation\+Jacobian\+Derivative\+InB function returns the time derivative of the 3x12 Rotation Jacobian matrix. \end{DoxyCompactList}\item 
-Eigen\+::\+Matrix$<$ double, 3, 18 $>$ \mbox{\hyperlink{classKinematics_a36b87e3957e657e3b953398072222026}{Get\+Rotation\+Jacobian\+In\+W\+Diff}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg, const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&\+\_\+body, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+q, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+u)
-\begin{DoxyCompactList}\small\item\em The Get\+Rotation\+Jacobian\+In\+W\+Diff function returns the time derivative of the 3x18 spatial Rotation Jacobian. \end{DoxyCompactList}\item 
-Eigen\+::\+Matrix$<$ double, 3, 18 $>$ \mbox{\hyperlink{classKinematics_adf37c77c89b4b4dcca663120fab5953f}{Get\+Rotation\+Jacobian\+In\+C\+Diff}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg, const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&\+\_\+body, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+q, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+u)
-\begin{DoxyCompactList}\small\item\em The Get\+Rotation\+Jacobian\+In\+C\+Diff function returns the time derivative of the 3x18 control frame Rotation Jacobian. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix$<$ double, 3, 18 $>$ \mbox{\hyperlink{classKinematics_a36b87e3957e657e3b953398072222026}{Get\+Rotation\+Jacobian\+In\+WDiff}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg, const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&\+\_\+body, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+q, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+u)
+\begin{DoxyCompactList}\small\item\em The Get\+Rotation\+Jacobian\+In\+WDiff function returns the time derivative of the 3x18 spatial Rotation Jacobian. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix$<$ double, 3, 18 $>$ \mbox{\hyperlink{classKinematics_adf37c77c89b4b4dcca663120fab5953f}{Get\+Rotation\+Jacobian\+In\+CDiff}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg, const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&\+\_\+body, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+q, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+u)
+\begin{DoxyCompactList}\small\item\em The Get\+Rotation\+Jacobian\+In\+CDiff function returns the time derivative of the 3x18 control frame Rotation Jacobian. \end{DoxyCompactList}\item 
 Eigen\+::\+Matrix$<$ double, 6, 18 $>$ \mbox{\hyperlink{classKinematics_a7151f255bb9c5dc73e804dc59b7569eb}{Get\+Jacobian\+InW}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg, const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&\+\_\+body, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+q)
 \begin{DoxyCompactList}\small\item\em The Get\+Jacobian\+InW function returns the 6x18 spatial Jacobian mapping generalized velocities to operational space twist of the body attached frame. \end{DoxyCompactList}\item 
-Eigen\+::\+Matrix$<$ double, 6, 18 $>$ \mbox{\hyperlink{classKinematics_af3ece69a434531fe0f9476a645e92c07}{Get\+Jacobian\+In\+W\+Diff}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg, const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&\+\_\+body, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+q, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+u)
+Eigen\+::\+Matrix$<$ double, 6, 18 $>$ \mbox{\hyperlink{classKinematics_af3ece69a434531fe0f9476a645e92c07}{Get\+Jacobian\+In\+WDiff}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg, const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&\+\_\+body, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+q, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+u)
 \begin{DoxyCompactList}\small\item\em The Get\+Jacobian\+InW function returns the time derivative of the 6x18 spatial Jacobian. \end{DoxyCompactList}\item 
 Eigen\+::\+Matrix$<$ double, Eigen\+::\+Dynamic, 18 $>$ \mbox{\hyperlink{classKinematics_a106d6bbfdaedf2f01c583330567036b3}{Get\+Contact\+Jacobian\+InW}} (std\+::vector$<$ \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} $>$ \&\+\_\+legs, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+q)
 \begin{DoxyCompactList}\small\item\em The Get\+Contact\+Jacobian\+InW function returns the (3$\ast$n\+\_\+c)x18 support Jacobian mapping reaction forces at the contact points to generalized coordinate space. \end{DoxyCompactList}\item 
-Eigen\+::\+Matrix$<$ double, Eigen\+::\+Dynamic, 18 $>$ \mbox{\hyperlink{classKinematics_aa92bf3e1471683e19129e9dbef4d95a2}{Get\+Contact\+Jacobian\+In\+W\+Diff}} (std\+::vector$<$ \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} $>$ \&\+\_\+legs, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+q, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+u)
-\begin{DoxyCompactList}\small\item\em The Get\+Contact\+Jacobian\+In\+W\+Diff function returns the time derivative of the (3$\ast$n\+\_\+c)x18 support Jacobian. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix$<$ double, Eigen\+::\+Dynamic, 18 $>$ \mbox{\hyperlink{classKinematics_aa92bf3e1471683e19129e9dbef4d95a2}{Get\+Contact\+Jacobian\+In\+WDiff}} (std\+::vector$<$ \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} $>$ \&\+\_\+legs, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+q, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+u)
+\begin{DoxyCompactList}\small\item\em The Get\+Contact\+Jacobian\+In\+WDiff function returns the time derivative of the (3$\ast$n\+\_\+c)x18 support Jacobian. \end{DoxyCompactList}\item 
 Eigen\+::\+Matrix$<$ double, Eigen\+::\+Dynamic, 18 $>$ \mbox{\hyperlink{classKinematics_a52ccb0ca7c5d86767e9f1b4db7b0ed79}{Get\+Swing\+Jacobian\+InW}} (std\+::vector$<$ \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} $>$ \&\+\_\+legs, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+q)
 \begin{DoxyCompactList}\small\item\em The Get\+Swing\+Jacobian\+InW function returns the (3$\ast$n\+\_\+s)x18 support Jacobian mapping swing foot velocities to generalized coordinate space. (n\+\_\+s = 4 -\/ n\+\_\+c) \end{DoxyCompactList}\item 
-Eigen\+::\+Matrix$<$ double, Eigen\+::\+Dynamic, 18 $>$ \mbox{\hyperlink{classKinematics_ae92f81f90ffc52426d4b1bc1946914d4}{Get\+Swing\+Jacobian\+In\+W\+Diff}} (std\+::vector$<$ \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} $>$ \&\+\_\+legs, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+q, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+u)
-\begin{DoxyCompactList}\small\item\em The Get\+Contact\+Jacobian\+In\+W\+Diff function returns the time derivative of the (3$\ast$n\+\_\+s)x18 support Jacobian. (n\+\_\+s = 4 -\/ n\+\_\+c) \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix$<$ double, Eigen\+::\+Dynamic, 18 $>$ \mbox{\hyperlink{classKinematics_ae92f81f90ffc52426d4b1bc1946914d4}{Get\+Swing\+Jacobian\+In\+WDiff}} (std\+::vector$<$ \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} $>$ \&\+\_\+legs, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+q, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+u)
+\begin{DoxyCompactList}\small\item\em The Get\+Contact\+Jacobian\+In\+WDiff function returns the time derivative of the (3$\ast$n\+\_\+s)x18 support Jacobian. (n\+\_\+s = 4 -\/ n\+\_\+c) \end{DoxyCompactList}\item 
 Eigen\+::\+Matrix$<$ double, 18, 18 $>$ \mbox{\hyperlink{classKinematics_ab110e0daf4f3c74dbfc3b9e9163291a2}{Get\+Single\+Body\+Mass\+Matrix}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg, const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&\+\_\+body, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+q)
 \begin{DoxyCompactList}\small\item\em The Get\+Single\+Body\+Mass\+Matrix function returns the mass matrix for a single body in the system. \end{DoxyCompactList}\item 
 Eigen\+::\+Matrix$<$ double, 18, 18 $>$ \mbox{\hyperlink{classKinematics_a1181fedef3cdfb168a60af6bfd8513b1}{Get\+Mass\+Matrix}} (const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+q)
 \begin{DoxyCompactList}\small\item\em The Get\+Mass\+Matrix function returns the mass matrix for the floating base system. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classKinematics_a274c192494f741ec58ab2418da5b5848}\label{classKinematics_a274c192494f741ec58ab2418da5b5848}} 
-Eigen\+::\+Matrix$<$ double, 3, 3 $>$ {\bfseries Get\+Single\+Leg\+Mass\+Matrix} (const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+q)
+Eigen\+::\+Matrix$<$ double, 3, 3 $>$ \mbox{\hyperlink{classKinematics_a274c192494f741ec58ab2418da5b5848}{Get\+Single\+Leg\+Mass\+Matrix}} (const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+q)
 \item 
 Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \mbox{\hyperlink{classKinematics_a1b13674b4136654c258d28596e7623e5}{Get\+Single\+Body\+Coriolis\+And\+Centrifugal\+Terms}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg, const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&\+\_\+body, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+q, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+u)
 \begin{DoxyCompactList}\small\item\em The Get\+Single\+Body\+Coriolis\+And\+Centrifugal\+Terms function returns the coriolis and centrifugal terms for a single body in the system. \end{DoxyCompactList}\item 
 Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \mbox{\hyperlink{classKinematics_afe283fe7fc47a3428a00dd11ff61d91c}{Get\+Coriolis\+And\+Centrifugal\+Terms}} (const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+q, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+u)
 \begin{DoxyCompactList}\small\item\em The Get\+Coriolis\+And\+Centrifugal\+Terms function returns the coriolis and centrifugal terms for the floating base system. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classKinematics_a79ba55236987ea750246973b0c156311}\label{classKinematics_a79ba55236987ea750246973b0c156311}} 
-Eigen\+::\+Matrix$<$ double, 3, 1 $>$ {\bfseries Get\+Single\+Leg\+Coriolis\+And\+Centrifugal\+Terms} (const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+q, const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+u)
+Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classKinematics_a79ba55236987ea750246973b0c156311}{Get\+Single\+Leg\+Coriolis\+And\+Centrifugal\+Terms}} (const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+q, const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+u)
 \item 
 Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \mbox{\hyperlink{classKinematics_a6a93023396ebc887afaff59f9bb4432b}{Get\+Single\+Body\+Gravitational\+Terms}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg, const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&\+\_\+body, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+q)
 \begin{DoxyCompactList}\small\item\em The Get\+Single\+Body\+Gravitational\+Terms function returns the gravitational terms for a single body in the system. \end{DoxyCompactList}\item 
 Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \mbox{\hyperlink{classKinematics_aa769e4e016ffe46c164b027ec88ebbb2}{Get\+Gravitational\+Terms}} (const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+q)
 \begin{DoxyCompactList}\small\item\em The Get\+Gravitational\+Terms function returns the gravitational terms for the floating base system. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classKinematics_afbe24573503e150193bff85bc6996401}\label{classKinematics_afbe24573503e150193bff85bc6996401}} 
-Eigen\+::\+Matrix$<$ double, 3, 1 $>$ {\bfseries Get\+Single\+Leg\+Gravitational\+Terms} (const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+q)
+Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classKinematics_afbe24573503e150193bff85bc6996401}{Get\+Single\+Leg\+Gravitational\+Terms}} (const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+q)
 \item 
-bool \mbox{\hyperlink{classKinematics_a1c6697fbd201589746f21c1be27dab35}{Validate\+Solution}} (const Joint\+Space\+Vector \&\+\_\+q\+\_\+r)
+bool \mbox{\hyperlink{classKinematics_a1c6697fbd201589746f21c1be27dab35}{Validate\+Solution}} (const \mbox{\hyperlink{kinematics_8h_a777bb5e7d16b72f382c989417decd251}{Joint\+Space\+Vector}} \&\+\_\+q\+\_\+r)
 \begin{DoxyCompactList}\small\item\em The Validate\+Solution function evaluates whether a set of joint angles is within joint limits. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classKinematics_ae4c5058b67e61502324b965925cc5651}{Validate\+Solution}} (const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+q\+\_\+r)
 \begin{DoxyCompactList}\small\item\em Overloaded version of the Validate\+Solution function, which evaluates whether a set of joint angles for a single leg is within the joint limits. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classKinematics_ace9c8e09c5b58e7f826c73336131a35c}\label{classKinematics_ace9c8e09c5b58e7f826c73336131a35c}} 
-bool {\bfseries Getfl\+Offset} ()
+bool \mbox{\hyperlink{classKinematics_ace9c8e09c5b58e7f826c73336131a35c}{Getfl\+Offset}} ()
 \item 
-\mbox{\Hypertarget{classKinematics_a51d37c9f27a88a34d8c0935b29ccd5db}\label{classKinematics_a51d37c9f27a88a34d8c0935b29ccd5db}} 
-bool {\bfseries Getfr\+Offset} ()
+bool \mbox{\hyperlink{classKinematics_a51d37c9f27a88a34d8c0935b29ccd5db}{Getfr\+Offset}} ()
 \item 
-\mbox{\Hypertarget{classKinematics_a243de9efdfc416c2abbb8d74dedf559a}\label{classKinematics_a243de9efdfc416c2abbb8d74dedf559a}} 
-bool {\bfseries Getrl\+Offset} ()
+bool \mbox{\hyperlink{classKinematics_a243de9efdfc416c2abbb8d74dedf559a}{Getrl\+Offset}} ()
 \item 
-\mbox{\Hypertarget{classKinematics_ac7629012c3d42f3ad70e6cb84e7e3a14}\label{classKinematics_ac7629012c3d42f3ad70e6cb84e7e3a14}} 
-bool {\bfseries Getrr\+Offset} ()
+bool \mbox{\hyperlink{classKinematics_ac7629012c3d42f3ad70e6cb84e7e3a14}{Getrr\+Offset}} ()
 \item 
-\mbox{\Hypertarget{classKinematics_a6049e6ba5565013b410f8d795d7e902e}\label{classKinematics_a6049e6ba5565013b410f8d795d7e902e}} 
-Eigen\+::\+Matrix$<$ double, 3, 1 $>$ {\bfseries Get\+Distance\+From\+Base\+To\+Front\+Left\+Hip\+InB} ()
+Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classKinematics_a6049e6ba5565013b410f8d795d7e902e}{Get\+Distance\+From\+Base\+To\+Front\+Left\+Hip\+InB}} ()
 \item 
-\mbox{\Hypertarget{classKinematics_a9cbb1de8f26d92bf159cdf0f8de9d2f9}\label{classKinematics_a9cbb1de8f26d92bf159cdf0f8de9d2f9}} 
-Eigen\+::\+Matrix$<$ double, 3, 1 $>$ {\bfseries Get\+Distance\+From\+Base\+To\+Front\+Right\+Hip\+InB} ()
+Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classKinematics_a9cbb1de8f26d92bf159cdf0f8de9d2f9}{Get\+Distance\+From\+Base\+To\+Front\+Right\+Hip\+InB}} ()
 \item 
-\mbox{\Hypertarget{classKinematics_a2296f6be4a97875029e46f45b3933f85}\label{classKinematics_a2296f6be4a97875029e46f45b3933f85}} 
-Eigen\+::\+Matrix$<$ double, 3, 1 $>$ {\bfseries Get\+Distance\+From\+Base\+To\+Rear\+Left\+Hip\+InB} ()
+Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classKinematics_a2296f6be4a97875029e46f45b3933f85}{Get\+Distance\+From\+Base\+To\+Rear\+Left\+Hip\+InB}} ()
 \item 
-\mbox{\Hypertarget{classKinematics_a983aa4fdbabf4644429c536ef7e53b45}\label{classKinematics_a983aa4fdbabf4644429c536ef7e53b45}} 
-Eigen\+::\+Matrix$<$ double, 3, 1 $>$ {\bfseries Get\+Distance\+From\+Base\+To\+Rear\+Right\+Hip\+InB} ()
+Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classKinematics_a983aa4fdbabf4644429c536ef7e53b45}{Get\+Distance\+From\+Base\+To\+Rear\+Right\+Hip\+InB}} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 Eigen\+::\+Matrix$<$ double, 3, 3 $>$ \mbox{\hyperlink{classKinematics_a6f426b5ac409de6a9528a0f6f837e390}{Get\+Inertia\+Matrix}} (const double \&\+\_\+\+I\+\_\+\+XX, const double \&\+\_\+\+I\+\_\+\+YY, const double \&\+\_\+\+I\+\_\+\+ZZ, const double \&\+\_\+\+I\+\_\+\+XY, const double \&\+\_\+\+I\+\_\+\+XZ, const double \&\+\_\+\+I\+\_\+\+YZ)
 \begin{DoxyCompactList}\small\item\em The Get\+Inertia\+Matrix function returns the inertia matrix from the six inertial parameters. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classKinematics_a03e006d32f6b1efb3fcaed4a488b936b}\label{classKinematics_a03e006d32f6b1efb3fcaed4a488b936b}} 
-double {\bfseries Get\+Body\+Mass} (\mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \+\_\+body)
+double \mbox{\hyperlink{classKinematics_a03e006d32f6b1efb3fcaed4a488b936b}{Get\+Body\+Mass}} (\mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \+\_\+body)
 \item 
-\mbox{\Hypertarget{classKinematics_ab662a88a6551884d4cf8c882d735620d}\label{classKinematics_ab662a88a6551884d4cf8c882d735620d}} 
-Eigen\+::\+Matrix$<$ double, 3, 3 $>$ {\bfseries Get\+Body\+Inertia} (\mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \+\_\+body)
+Eigen\+::\+Matrix$<$ double, 3, 3 $>$ \mbox{\hyperlink{classKinematics_ab662a88a6551884d4cf8c882d735620d}{Get\+Body\+Inertia}} (\mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \+\_\+body)
 \item 
-\mbox{\Hypertarget{classKinematics_acda981e1f121277218aede2f78811740}\label{classKinematics_acda981e1f121277218aede2f78811740}} 
-Eigen\+::\+Matrix$<$ double, 3, 3 $>$ {\bfseries Get\+Body\+Inertia} (\mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \+\_\+body, \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \+\_\+leg)
+Eigen\+::\+Matrix$<$ double, 3, 3 $>$ \mbox{\hyperlink{classKinematics_acda981e1f121277218aede2f78811740}{Get\+Body\+Inertia}} (\mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \+\_\+body, \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \+\_\+leg)
 \end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classKinematics_ac75f5642395505981f66eff994f1b309}\label{classKinematics_ac75f5642395505981f66eff994f1b309}} 
-Joint\+Space\+Vector \mbox{\hyperlink{classKinematics_ac75f5642395505981f66eff994f1b309}{min\+\_\+angles}}
+\mbox{\hyperlink{kinematics_8h_a777bb5e7d16b72f382c989417decd251}{Joint\+Space\+Vector}} \mbox{\hyperlink{classKinematics_ac75f5642395505981f66eff994f1b309}{min\+\_\+angles}}
 \begin{DoxyCompactList}\small\item\em Minimum joint limits. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classKinematics_a6fc7673ce2605db3fd4ece5e14a323b2}\label{classKinematics_a6fc7673ce2605db3fd4ece5e14a323b2}} 
-Joint\+Space\+Vector \mbox{\hyperlink{classKinematics_a6fc7673ce2605db3fd4ece5e14a323b2}{max\+\_\+angles}}
+\mbox{\hyperlink{kinematics_8h_a777bb5e7d16b72f382c989417decd251}{Joint\+Space\+Vector}} \mbox{\hyperlink{classKinematics_a6fc7673ce2605db3fd4ece5e14a323b2}{max\+\_\+angles}}
 \begin{DoxyCompactList}\small\item\em Maximum joint limits. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classKinematics_a3bafab67e908cd74efedad01e1773bdc}\label{classKinematics_a3bafab67e908cd74efedad01e1773bdc}} 
-Vector3d \mbox{\hyperlink{classKinematics_a3bafab67e908cd74efedad01e1773bdc}{position\+Base\+To\+Front\+Left\+InB}}
+\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Vector3d}} \mbox{\hyperlink{classKinematics_a3bafab67e908cd74efedad01e1773bdc}{position\+Base\+To\+Front\+Left\+InB}}
 \begin{DoxyCompactList}\small\item\em Position vector relating the base coordinates to the front left hip. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classKinematics_ac50d9f9296fb4846f2a9b87c50eac7c3}\label{classKinematics_ac50d9f9296fb4846f2a9b87c50eac7c3}} 
-Vector3d \mbox{\hyperlink{classKinematics_ac50d9f9296fb4846f2a9b87c50eac7c3}{position\+Base\+To\+Front\+Right\+InB}}
+\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Vector3d}} \mbox{\hyperlink{classKinematics_ac50d9f9296fb4846f2a9b87c50eac7c3}{position\+Base\+To\+Front\+Right\+InB}}
 \begin{DoxyCompactList}\small\item\em Position vector relating the base coordinates to the front right hip. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classKinematics_a51507eacda7192c7673ab565de414315}\label{classKinematics_a51507eacda7192c7673ab565de414315}} 
-Vector3d \mbox{\hyperlink{classKinematics_a51507eacda7192c7673ab565de414315}{position\+Base\+To\+Rear\+Left\+InB}}
+\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Vector3d}} \mbox{\hyperlink{classKinematics_a51507eacda7192c7673ab565de414315}{position\+Base\+To\+Rear\+Left\+InB}}
 \begin{DoxyCompactList}\small\item\em Position vector relating the base coordinates to the rear left hip. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classKinematics_a8fac97d4fab206a6f114dc4372f7879a}\label{classKinematics_a8fac97d4fab206a6f114dc4372f7879a}} 
-Vector3d \mbox{\hyperlink{classKinematics_a8fac97d4fab206a6f114dc4372f7879a}{position\+Base\+To\+Rear\+Right\+InB}}
+\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Vector3d}} \mbox{\hyperlink{classKinematics_a8fac97d4fab206a6f114dc4372f7879a}{position\+Base\+To\+Rear\+Right\+InB}}
 \begin{DoxyCompactList}\small\item\em Position vector relating the base coordinates to the rear right hip. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classKinematics_af731f4e21bd1af1d83a0b22b773e703a}\label{classKinematics_af731f4e21bd1af1d83a0b22b773e703a}} 
 double \mbox{\hyperlink{classKinematics_af731f4e21bd1af1d83a0b22b773e703a}{L1}}
 \begin{DoxyCompactList}\small\item\em Hip link length. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classKinematics_aaa42ff7b758f092fe11ed072576f7f36}\label{classKinematics_aaa42ff7b758f092fe11ed072576f7f36}} 
 double \mbox{\hyperlink{classKinematics_aaa42ff7b758f092fe11ed072576f7f36}{L2}}
 \begin{DoxyCompactList}\small\item\em Thigh (Femur) link length. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classKinematics_a0dd16fdaeb686f1a1224bc325f83a851}\label{classKinematics_a0dd16fdaeb686f1a1224bc325f83a851}} 
 double \mbox{\hyperlink{classKinematics_a0dd16fdaeb686f1a1224bc325f83a851}{L3}}
 \begin{DoxyCompactList}\small\item\em Leg (Fibula \& Tibia) link length. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classKinematics_afcc593ba5a0b574b938fe88f9478d304}\label{classKinematics_afcc593ba5a0b574b938fe88f9478d304}} 
-double \mbox{\hyperlink{classKinematics_afcc593ba5a0b574b938fe88f9478d304}{L\+C1}}
+double \mbox{\hyperlink{classKinematics_afcc593ba5a0b574b938fe88f9478d304}{LC1}}
 \begin{DoxyCompactList}\small\item\em Hip yaw joint to hip CoM length. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classKinematics_a548a6e948ecd3c73568b59ed34b5914e}\label{classKinematics_a548a6e948ecd3c73568b59ed34b5914e}} 
-double \mbox{\hyperlink{classKinematics_a548a6e948ecd3c73568b59ed34b5914e}{L\+C2}}
+double \mbox{\hyperlink{classKinematics_a548a6e948ecd3c73568b59ed34b5914e}{LC2}}
 \begin{DoxyCompactList}\small\item\em Hip pitch joint to thigh CoM length. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classKinematics_a818474c380afb54ec01c0d05c4789b22}\label{classKinematics_a818474c380afb54ec01c0d05c4789b22}} 
-double \mbox{\hyperlink{classKinematics_a818474c380afb54ec01c0d05c4789b22}{L\+C3}}
+double \mbox{\hyperlink{classKinematics_a818474c380afb54ec01c0d05c4789b22}{LC3}}
 \begin{DoxyCompactList}\small\item\em Knee pitch joint to leg CoM length. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classKinematics_ac679fa54d740d394c093e2ec4b5f4533}\label{classKinematics_ac679fa54d740d394c093e2ec4b5f4533}} 
 bool \mbox{\hyperlink{classKinematics_ac679fa54d740d394c093e2ec4b5f4533}{fl\+Offset}}
 \begin{DoxyCompactList}\small\item\em Front Left offset. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classKinematics_a1bcf8567289477307b831c2be788059b}\label{classKinematics_a1bcf8567289477307b831c2be788059b}} 
 bool \mbox{\hyperlink{classKinematics_a1bcf8567289477307b831c2be788059b}{fr\+Offset}}
 \begin{DoxyCompactList}\small\item\em Front Right offset. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classKinematics_a632528ba1331913e4adac4bb727cb5c6}\label{classKinematics_a632528ba1331913e4adac4bb727cb5c6}} 
 bool \mbox{\hyperlink{classKinematics_a632528ba1331913e4adac4bb727cb5c6}{rl\+Offset}}
 \begin{DoxyCompactList}\small\item\em Rear Left offset. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classKinematics_a500584ee8b394a56b0742a5941a674e5}\label{classKinematics_a500584ee8b394a56b0742a5941a674e5}} 
 bool \mbox{\hyperlink{classKinematics_a500584ee8b394a56b0742a5941a674e5}{rr\+Offset}}
 \begin{DoxyCompactList}\small\item\em Rear Right offset. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classKinematics_ab06a3f11ac00f9ac30966280ab708132}\label{classKinematics_ab06a3f11ac00f9ac30966280ab708132}} 
 double \mbox{\hyperlink{classKinematics_ab06a3f11ac00f9ac30966280ab708132}{M0}}
 \begin{DoxyCompactList}\small\item\em Body link mass. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classKinematics_aa96fc0ed77f742883bf33c938d6fcaee}\label{classKinematics_aa96fc0ed77f742883bf33c938d6fcaee}} 
 double \mbox{\hyperlink{classKinematics_aa96fc0ed77f742883bf33c938d6fcaee}{M1}}
 \begin{DoxyCompactList}\small\item\em Hip link mass. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classKinematics_aababf894af6917254556a45f3d950440}\label{classKinematics_aababf894af6917254556a45f3d950440}} 
 double \mbox{\hyperlink{classKinematics_aababf894af6917254556a45f3d950440}{M2}}
 \begin{DoxyCompactList}\small\item\em Thigh link mass. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classKinematics_aa89a99505f895dfce2e7106706edecc8}\label{classKinematics_aa89a99505f895dfce2e7106706edecc8}} 
 double \mbox{\hyperlink{classKinematics_aa89a99505f895dfce2e7106706edecc8}{M3}}
 \begin{DoxyCompactList}\small\item\em Leg link mass. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classKinematics_a91281d2e5d11ed7e7bc3c5b4145552a3}\label{classKinematics_a91281d2e5d11ed7e7bc3c5b4145552a3}} 
 Eigen\+::\+Matrix$<$ double, 3, 3 $>$ \mbox{\hyperlink{classKinematics_a91281d2e5d11ed7e7bc3c5b4145552a3}{I0}}
 \begin{DoxyCompactList}\small\item\em Body link inertia matrix. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classKinematics_aca4537379f10091988ca8f033dfcb9c5}\label{classKinematics_aca4537379f10091988ca8f033dfcb9c5}} 
 Eigen\+::\+Matrix$<$ double, 3, 3 $>$ \mbox{\hyperlink{classKinematics_aca4537379f10091988ca8f033dfcb9c5}{I1\+\_\+fl\+\_\+rr}}
 \begin{DoxyCompactList}\small\item\em Front Left \& Rear Right Hip link inertia matrix. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classKinematics_aa081fd94fcc554de0e9abc89034eb836}\label{classKinematics_aa081fd94fcc554de0e9abc89034eb836}} 
 Eigen\+::\+Matrix$<$ double, 3, 3 $>$ \mbox{\hyperlink{classKinematics_aa081fd94fcc554de0e9abc89034eb836}{I1\+\_\+fr\+\_\+rl}}
 \begin{DoxyCompactList}\small\item\em Front Right \& Rear Left Hip link inertia matrix. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classKinematics_ace9df13d43236450c8b61d44b2006e6f}\label{classKinematics_ace9df13d43236450c8b61d44b2006e6f}} 
 Eigen\+::\+Matrix$<$ double, 3, 3 $>$ \mbox{\hyperlink{classKinematics_ace9df13d43236450c8b61d44b2006e6f}{I2}}
 \begin{DoxyCompactList}\small\item\em Thigh link inertia matrix. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classKinematics_a524d4fbdbb923009fda8ec3f90bcf8a9}\label{classKinematics_a524d4fbdbb923009fda8ec3f90bcf8a9}} 
 Eigen\+::\+Matrix$<$ double, 3, 3 $>$ \mbox{\hyperlink{classKinematics_a524d4fbdbb923009fda8ec3f90bcf8a9}{I3}}
 \begin{DoxyCompactList}\small\item\em Leg link inertia matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -261,12 +222,122 @@ Eigen\+::\+Matrix$<$ double, 3, 3 $>$ \mbox{\hyperlink{classKinematics_a524d4fbd
 \doxysubsection{Detailed Description}
 A class for analytical \mbox{\hyperlink{classKinematics}{Kinematics}} Solving. 
 
+Definition at line 53 of file kinematics.\+h.
+
+
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}\label{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}} 
+\index{Kinematics@{Kinematics}!LegType@{LegType}}
+\index{LegType@{LegType}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{LegType}{LegType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Kinematics\+::\+Leg\+Type}}}
+
+
+
+Leg type enumerator. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{frontLeft@{frontLeft}!Kinematics@{Kinematics}}\index{Kinematics@{Kinematics}!frontLeft@{frontLeft}}}\mbox{\Hypertarget{classKinematics_af4fe883429ced792a719f02b4dcc5e3aa97e591fd9257540b2c0de26f25280744}\label{classKinematics_af4fe883429ced792a719f02b4dcc5e3aa97e591fd9257540b2c0de26f25280744}} 
+front\+Left&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{frontRight@{frontRight}!Kinematics@{Kinematics}}\index{Kinematics@{Kinematics}!frontRight@{frontRight}}}\mbox{\Hypertarget{classKinematics_af4fe883429ced792a719f02b4dcc5e3aa6037530a0c90ae3f2053d3f0d248d2d5}\label{classKinematics_af4fe883429ced792a719f02b4dcc5e3aa6037530a0c90ae3f2053d3f0d248d2d5}} 
+front\+Right&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{rearLeft@{rearLeft}!Kinematics@{Kinematics}}\index{Kinematics@{Kinematics}!rearLeft@{rearLeft}}}\mbox{\Hypertarget{classKinematics_af4fe883429ced792a719f02b4dcc5e3aae746cc251855378c27d2b83216bac852}\label{classKinematics_af4fe883429ced792a719f02b4dcc5e3aae746cc251855378c27d2b83216bac852}} 
+rear\+Left&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{rearRight@{rearRight}!Kinematics@{Kinematics}}\index{Kinematics@{Kinematics}!rearRight@{rearRight}}}\mbox{\Hypertarget{classKinematics_af4fe883429ced792a719f02b4dcc5e3aa5914ce0949510848badd16c38a2d6357}\label{classKinematics_af4fe883429ced792a719f02b4dcc5e3aa5914ce0949510848badd16c38a2d6357}} 
+rear\+Right&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NONE@{NONE}!Kinematics@{Kinematics}}\index{Kinematics@{Kinematics}!NONE@{NONE}}}\mbox{\Hypertarget{classKinematics_af4fe883429ced792a719f02b4dcc5e3aaec2e46c8dc1f4971d66282238eb81c0f}\label{classKinematics_af4fe883429ced792a719f02b4dcc5e3aaec2e46c8dc1f4971d66282238eb81c0f}} 
+NONE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 56 of file kinematics.\+h.
+
+\mbox{\Hypertarget{classKinematics_a390b699225b57bc303653caeb6039df3}\label{classKinematics_a390b699225b57bc303653caeb6039df3}} 
+\index{Kinematics@{Kinematics}!BodyType@{BodyType}}
+\index{BodyType@{BodyType}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{BodyType}{BodyType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Kinematics\+::\+Body\+Type}}}
+
+
+
+Body type enumerator. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{base@{base}!Kinematics@{Kinematics}}\index{Kinematics@{Kinematics}!base@{base}}}\mbox{\Hypertarget{classKinematics_a390b699225b57bc303653caeb6039df3a1f7b05839309b064d946b12d8c64dada}\label{classKinematics_a390b699225b57bc303653caeb6039df3a1f7b05839309b064d946b12d8c64dada}} 
+base&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{hip@{hip}!Kinematics@{Kinematics}}\index{Kinematics@{Kinematics}!hip@{hip}}}\mbox{\Hypertarget{classKinematics_a390b699225b57bc303653caeb6039df3afc1f7117122a22edce014a96116cc3d3}\label{classKinematics_a390b699225b57bc303653caeb6039df3afc1f7117122a22edce014a96116cc3d3}} 
+hip&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{thigh@{thigh}!Kinematics@{Kinematics}}\index{Kinematics@{Kinematics}!thigh@{thigh}}}\mbox{\Hypertarget{classKinematics_a390b699225b57bc303653caeb6039df3aa587744a5ccdcf082e3f1aaaf9ad239c}\label{classKinematics_a390b699225b57bc303653caeb6039df3aa587744a5ccdcf082e3f1aaaf9ad239c}} 
+thigh&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{leg@{leg}!Kinematics@{Kinematics}}\index{Kinematics@{Kinematics}!leg@{leg}}}\mbox{\Hypertarget{classKinematics_a390b699225b57bc303653caeb6039df3a7f3c218b99213acbd78ae8a1a13a7833}\label{classKinematics_a390b699225b57bc303653caeb6039df3a7f3c218b99213acbd78ae8a1a13a7833}} 
+leg&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{foot@{foot}!Kinematics@{Kinematics}}\index{Kinematics@{Kinematics}!foot@{foot}}}\mbox{\Hypertarget{classKinematics_a390b699225b57bc303653caeb6039df3a8f095f93fade621ed46f900e2ec880e9}\label{classKinematics_a390b699225b57bc303653caeb6039df3a8f095f93fade621ed46f900e2ec880e9}} 
+foot&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 59 of file kinematics.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classKinematics_af4e587252019eaa863b4246026296d4a}\label{classKinematics_af4e587252019eaa863b4246026296d4a}} 
+\index{Kinematics@{Kinematics}!Kinematics@{Kinematics}}
+\index{Kinematics@{Kinematics}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{Kinematics()}{Kinematics()}}
+{\footnotesize\ttfamily Kinematics\+::\+Kinematics (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+
+Definition at line 31 of file kinematics.\+cpp.
+
+\mbox{\Hypertarget{classKinematics_a5d2fb2f14148cc371b80e572c33ecb4d}\label{classKinematics_a5d2fb2f14148cc371b80e572c33ecb4d}} 
+\index{Kinematics@{Kinematics}!````~Kinematics@{$\sim$Kinematics}}
+\index{````~Kinematics@{$\sim$Kinematics}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{$\sim$Kinematics()}{~Kinematics()}}
+{\footnotesize\ttfamily Kinematics\+::$\sim$\+Kinematics (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Destructor. 
+
+
+
+Definition at line 101 of file kinematics.\+cpp.
+
+
+
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{classKinematics_aa1d7bdb6df5dbd5b7b35abd7457f2a6a}\label{classKinematics_aa1d7bdb6df5dbd5b7b35abd7457f2a6a}} 
 \index{Kinematics@{Kinematics}!SolveForwardKinematics@{SolveForwardKinematics}}
 \index{SolveForwardKinematics@{SolveForwardKinematics}!Kinematics@{Kinematics}}
 \doxysubsubsection{\texorpdfstring{SolveForwardKinematics()}{SolveForwardKinematics()}}
-{\footnotesize\ttfamily bool Kinematics\+::\+Solve\+Forward\+Kinematics (\begin{DoxyParamCaption}\item[{const Generalized\+Coordinates \&}]{\+\_\+q,  }\item[{Footstep\+Positions \&}]{\+\_\+f\+\_\+pos }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool Kinematics\+::\+Solve\+Forward\+Kinematics (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{kinematics_8h_a004f934a5332c85e807192da05432f91}{Generalized\+Coordinates}} \&}]{\+\_\+q,  }\item[{\mbox{\hyperlink{kinematics_8h_a86e7a9d5c197ff2c080d9c09fc1cf12e}{Footstep\+Positions}} \&}]{\+\_\+f\+\_\+pos }\end{DoxyParamCaption})}
 
 
 
@@ -282,11 +353,15 @@ The Solve\+Forward\+Kinematics function calculates the Forward \mbox{\hyperlink{
 \begin{DoxyReturn}{Returns}
 Evaluates true if an Forward \mbox{\hyperlink{classKinematics}{Kinematics}} solution is found, and false if not. 
 \end{DoxyReturn}
+
+
+Definition at line 165 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_a1303e0b91ebbb7c4591ad914d904cc91}\label{classKinematics_a1303e0b91ebbb7c4591ad914d904cc91}} 
 \index{Kinematics@{Kinematics}!SolveInverseKinematics@{SolveInverseKinematics}}
 \index{SolveInverseKinematics@{SolveInverseKinematics}!Kinematics@{Kinematics}}
 \doxysubsubsection{\texorpdfstring{SolveInverseKinematics()}{SolveInverseKinematics()}}
-{\footnotesize\ttfamily bool Kinematics\+::\+Solve\+Inverse\+Kinematics (\begin{DoxyParamCaption}\item[{const Twist \&}]{\+\_\+q\+\_\+b,  }\item[{const Footstep\+Positions \&}]{\+\_\+f\+\_\+pos,  }\item[{Joint\+Space\+Vector \&}]{\+\_\+q\+\_\+r }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool Kinematics\+::\+Solve\+Inverse\+Kinematics (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{kinematics_8h_ace7064c2a774578880164cc27b69caa5}{Twist}} \&}]{\+\_\+q\+\_\+b,  }\item[{const \mbox{\hyperlink{kinematics_8h_a86e7a9d5c197ff2c080d9c09fc1cf12e}{Footstep\+Positions}} \&}]{\+\_\+f\+\_\+pos,  }\item[{\mbox{\hyperlink{kinematics_8h_a777bb5e7d16b72f382c989417decd251}{Joint\+Space\+Vector}} \&}]{\+\_\+q\+\_\+r }\end{DoxyParamCaption})}
 
 
 
@@ -304,11 +379,15 @@ The Solve\+Inverse\+Kinematics function calculates the Inverse \mbox{\hyperlink{
 \begin{DoxyReturn}{Returns}
 Evaluates true if an Inverse \mbox{\hyperlink{classKinematics}{Kinematics}} solution is found, and false if not. 
 \end{DoxyReturn}
+
+
+Definition at line 104 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_a8f3a80f7c80de2d87e7f18971a452788}\label{classKinematics_a8f3a80f7c80de2d87e7f18971a452788}} 
 \index{Kinematics@{Kinematics}!SolveSingleLegForwardKinematics@{SolveSingleLegForwardKinematics}}
 \index{SolveSingleLegForwardKinematics@{SolveSingleLegForwardKinematics}!Kinematics@{Kinematics}}
-\doxysubsubsection{\texorpdfstring{SolveSingleLegForwardKinematics()}{SolveSingleLegForwardKinematics()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily Vector3d Kinematics\+::\+Solve\+Single\+Leg\+Forward\+Kinematics (\begin{DoxyParamCaption}\item[{const Vector3d \&}]{\+\_\+h\+\_\+pos,  }\item[{const double \&}]{\+\_\+theta\+\_\+hy,  }\item[{const double \&}]{\+\_\+theta\+\_\+hp,  }\item[{const double \&}]{\+\_\+theta\+\_\+kp }\end{DoxyParamCaption})}
+\doxysubsubsection{\texorpdfstring{SolveSingleLegForwardKinematics()}{SolveSingleLegForwardKinematics()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Vector3d}} Kinematics\+::\+Solve\+Single\+Leg\+Forward\+Kinematics (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Vector3d}} \&}]{\+\_\+h\+\_\+pos,  }\item[{const double \&}]{\+\_\+theta\+\_\+hy,  }\item[{const double \&}]{\+\_\+theta\+\_\+hp,  }\item[{const double \&}]{\+\_\+theta\+\_\+kp }\end{DoxyParamCaption})}
 
 
 
@@ -328,11 +407,15 @@ The Solve\+Single\+Leg\+Forward\+Kinematics function calculates the Forward \mbo
 \begin{DoxyReturn}{Returns}
 Returns end-\/effector position in Coordinate Space. 
 \end{DoxyReturn}
+
+
+Definition at line 229 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_a98ee3885eb0b9056ba830b21d8d3ff0c}\label{classKinematics_a98ee3885eb0b9056ba830b21d8d3ff0c}} 
 \index{Kinematics@{Kinematics}!SolveSingleLegForwardKinematics@{SolveSingleLegForwardKinematics}}
 \index{SolveSingleLegForwardKinematics@{SolveSingleLegForwardKinematics}!Kinematics@{Kinematics}}
-\doxysubsubsection{\texorpdfstring{SolveSingleLegForwardKinematics()}{SolveSingleLegForwardKinematics()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily Vector3d Kinematics\+::\+Solve\+Single\+Leg\+Forward\+Kinematics (\begin{DoxyParamCaption}\item[{const Vector3d \&}]{\+\_\+joint\+\_\+angles }\end{DoxyParamCaption})}
+\doxysubsubsection{\texorpdfstring{SolveSingleLegForwardKinematics()}{SolveSingleLegForwardKinematics()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Vector3d}} Kinematics\+::\+Solve\+Single\+Leg\+Forward\+Kinematics (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Vector3d}} \&}]{\+\_\+joint\+\_\+angles }\end{DoxyParamCaption})}
 
 
 
@@ -346,11 +429,63 @@ The Solve\+Single\+Leg\+Forward\+Kinematics function calculates the foot positio
 \begin{DoxyReturn}{Returns}
 Returns end-\/effector position in the hip frame. 
 \end{DoxyReturn}
+
+
+Definition at line 289 of file kinematics.\+cpp.
+
+\mbox{\Hypertarget{classKinematics_a76a1b6854dc328b42e3ad0683d489177}\label{classKinematics_a76a1b6854dc328b42e3ad0683d489177}} 
+\index{Kinematics@{Kinematics}!SolveSingleLegForwardKinematics@{SolveSingleLegForwardKinematics}}
+\index{SolveSingleLegForwardKinematics@{SolveSingleLegForwardKinematics}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{SolveSingleLegForwardKinematics()}{SolveSingleLegForwardKinematics()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Vector3d}} Kinematics\+::\+Solve\+Single\+Leg\+Forward\+Kinematics (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&}]{\+\_\+leg\+\_\+type,  }\item[{const \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Vector3d}} \&}]{\+\_\+joint\+\_\+angles }\end{DoxyParamCaption})}
+
+
+
+The Solve\+Single\+Leg\+Forward\+Kinematics function calculates the foot position in the hip frame. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+leg\+\_\+type} & Indicates which leg it is \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+joint\+\_\+angles} & A vector containing the hip yaw, hip pitch and knee pitch angles \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns end-\/effector position in the hip frame. 
+\end{DoxyReturn}
+
+
+Definition at line 248 of file kinematics.\+cpp.
+
+\mbox{\Hypertarget{classKinematics_a28a18a9dee554c7c444fd2abde35c382}\label{classKinematics_a28a18a9dee554c7c444fd2abde35c382}} 
+\index{Kinematics@{Kinematics}!SolveSingleLegHipToFootForwardKinematics@{SolveSingleLegHipToFootForwardKinematics}}
+\index{SolveSingleLegHipToFootForwardKinematics@{SolveSingleLegHipToFootForwardKinematics}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{SolveSingleLegHipToFootForwardKinematics()}{SolveSingleLegHipToFootForwardKinematics()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 1 $>$ Kinematics\+::\+Solve\+Single\+Leg\+Hip\+To\+Foot\+Forward\+Kinematics (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&}]{\+\_\+leg\+\_\+type,  }\item[{const \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Vector3d}} \&}]{\+\_\+joint\+\_\+angles }\end{DoxyParamCaption})}
+
+
+
+The Solve\+Single\+Leg\+Hip\+To\+Foot\+Forward\+Kinematics function calculates the foot position in the hip frame. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+leg\+\_\+type} & Indicates which leg it is \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+joint\+\_\+angles} & A vector containing the hip yaw, hip pitch and knee pitch angles \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns end-\/effector position in the hip frame. 
+\end{DoxyReturn}
+
+
+Definition at line 262 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_acfec333c272f446eebbc289b9216cb91}\label{classKinematics_acfec333c272f446eebbc289b9216cb91}} 
 \index{Kinematics@{Kinematics}!SolveSingleLegInverseKinematics@{SolveSingleLegInverseKinematics}}
 \index{SolveSingleLegInverseKinematics@{SolveSingleLegInverseKinematics}!Kinematics@{Kinematics}}
 \doxysubsubsection{\texorpdfstring{SolveSingleLegInverseKinematics()}{SolveSingleLegInverseKinematics()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily bool Kinematics\+::\+Solve\+Single\+Leg\+Inverse\+Kinematics (\begin{DoxyParamCaption}\item[{const bool \&}]{\+\_\+offset,  }\item[{const Vector3d \&}]{\+\_\+h\+\_\+pos,  }\item[{const Vector3d \&}]{\+\_\+f\+\_\+pos,  }\item[{Vector3d \&}]{\+\_\+joint\+\_\+angles }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool Kinematics\+::\+Solve\+Single\+Leg\+Inverse\+Kinematics (\begin{DoxyParamCaption}\item[{const bool \&}]{\+\_\+offset,  }\item[{const \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Vector3d}} \&}]{\+\_\+h\+\_\+pos,  }\item[{const \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Vector3d}} \&}]{\+\_\+f\+\_\+pos,  }\item[{\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Vector3d}} \&}]{\+\_\+joint\+\_\+angles }\end{DoxyParamCaption})}
 
 
 
@@ -370,11 +505,15 @@ The Solve\+Singe\+Leg\+Inverse\+Kinematics function calculates the inverse kinem
 \begin{DoxyReturn}{Returns}
 Evaluates true if an Inverse \mbox{\hyperlink{classKinematics}{Kinematics}} solution is found, and false if not. 
 \end{DoxyReturn}
+
+
+Definition at line 296 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_ae9be537672b681659fb05808786c90a6}\label{classKinematics_ae9be537672b681659fb05808786c90a6}} 
 \index{Kinematics@{Kinematics}!SolveSingleLegInverseKinematics@{SolveSingleLegInverseKinematics}}
 \index{SolveSingleLegInverseKinematics@{SolveSingleLegInverseKinematics}!Kinematics@{Kinematics}}
 \doxysubsubsection{\texorpdfstring{SolveSingleLegInverseKinematics()}{SolveSingleLegInverseKinematics()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily bool Kinematics\+::\+Solve\+Single\+Leg\+Inverse\+Kinematics (\begin{DoxyParamCaption}\item[{const bool \&}]{\+\_\+offset,  }\item[{const Vector3d \&}]{\+\_\+f\+\_\+pos,  }\item[{Vector3d \&}]{\+\_\+joint\+\_\+angles }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool Kinematics\+::\+Solve\+Single\+Leg\+Inverse\+Kinematics (\begin{DoxyParamCaption}\item[{const bool \&}]{\+\_\+offset,  }\item[{const \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Vector3d}} \&}]{\+\_\+f\+\_\+pos,  }\item[{\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Vector3d}} \&}]{\+\_\+joint\+\_\+angles }\end{DoxyParamCaption})}
 
 
 
@@ -392,11 +531,15 @@ The Solve\+Singe\+Leg\+Inverse\+Kinematics function calculates the inverse kinem
 \begin{DoxyReturn}{Returns}
 Evaluates true if an Inverse \mbox{\hyperlink{classKinematics}{Kinematics}} solution is found, and false if not. 
 \end{DoxyReturn}
+
+
+Definition at line 362 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_a44e7cc1fa6e9a3e70f5b8b794997f25d}\label{classKinematics_a44e7cc1fa6e9a3e70f5b8b794997f25d}} 
 \index{Kinematics@{Kinematics}!GetDhTransform@{GetDhTransform}}
 \index{GetDhTransform@{GetDhTransform}!Kinematics@{Kinematics}}
 \doxysubsubsection{\texorpdfstring{GetDhTransform()}{GetDhTransform()}}
-{\footnotesize\ttfamily Trans\+Matrix Kinematics\+::\+Get\+Dh\+Transform (\begin{DoxyParamCaption}\item[{const double \&}]{\+\_\+a,  }\item[{const double \&}]{\+\_\+alpha,  }\item[{const double \&}]{\+\_\+d,  }\item[{const double \&}]{\+\_\+theta }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{kinematics_8h_ac7e9ffb66ce26f0a49a6aa291038e22a}{Trans\+Matrix}} Kinematics\+::\+Get\+Dh\+Transform (\begin{DoxyParamCaption}\item[{const double \&}]{\+\_\+a,  }\item[{const double \&}]{\+\_\+alpha,  }\item[{const double \&}]{\+\_\+d,  }\item[{const double \&}]{\+\_\+theta }\end{DoxyParamCaption})}
 
 
 
@@ -416,11 +559,15 @@ The Get\+Dh\+Transform function returns the Denavit-\/\+Hartenberg transformatio
 \begin{DoxyReturn}{Returns}
 Returns the kindr homogeneous transformation matrix from frame A to frame B. 
 \end{DoxyReturn}
+
+
+Definition at line 369 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_a4c67f7cda22d8684c9a9f35956635557}\label{classKinematics_a4c67f7cda22d8684c9a9f35956635557}} 
 \index{Kinematics@{Kinematics}!GetHipToBodyTransform@{GetHipToBodyTransform}}
 \index{GetHipToBodyTransform@{GetHipToBodyTransform}!Kinematics@{Kinematics}}
 \doxysubsubsection{\texorpdfstring{GetHipToBodyTransform()}{GetHipToBodyTransform()}}
-{\footnotesize\ttfamily Trans\+Matrix Kinematics\+::\+Get\+Hip\+To\+Body\+Transform (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&}]{\+\_\+leg,  }\item[{const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&}]{\+\_\+body,  }\item[{const double \&}]{\+\_\+theta\+\_\+hy,  }\item[{const double \&}]{\+\_\+theta\+\_\+hp,  }\item[{const double \&}]{\+\_\+theta\+\_\+kp }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{kinematics_8h_ac7e9ffb66ce26f0a49a6aa291038e22a}{Trans\+Matrix}} Kinematics\+::\+Get\+Hip\+To\+Body\+Transform (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&}]{\+\_\+leg,  }\item[{const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&}]{\+\_\+body,  }\item[{const double \&}]{\+\_\+theta\+\_\+hy,  }\item[{const double \&}]{\+\_\+theta\+\_\+hp,  }\item[{const double \&}]{\+\_\+theta\+\_\+kp }\end{DoxyParamCaption})}
 
 
 
@@ -442,15 +589,19 @@ The Get\+Hip\+To\+Body\+Transform function returns the homogeneous transformatio
 \begin{DoxyReturn}{Returns}
 Returns the kindr homogeneous transformation matrix from hip to body. 
 \end{DoxyReturn}
+
+
+Definition at line 389 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_a1a245720c27eca48806fb5e421549c9c}\label{classKinematics_a1a245720c27eca48806fb5e421549c9c}} 
 \index{Kinematics@{Kinematics}!GetRotationMatrixWToB@{GetRotationMatrixWToB}}
 \index{GetRotationMatrixWToB@{GetRotationMatrixWToB}!Kinematics@{Kinematics}}
 \doxysubsubsection{\texorpdfstring{GetRotationMatrixWToB()}{GetRotationMatrixWToB()}}
-{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 3 $>$ Kinematics\+::\+Get\+Rotation\+Matrix\+W\+ToB (\begin{DoxyParamCaption}\item[{const double \&}]{\+\_\+roll,  }\item[{const double \&}]{\+\_\+pitch,  }\item[{const double \&}]{\+\_\+yaw }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 3 $>$ Kinematics\+::\+Get\+Rotation\+Matrix\+WToB (\begin{DoxyParamCaption}\item[{const double \&}]{\+\_\+roll,  }\item[{const double \&}]{\+\_\+pitch,  }\item[{const double \&}]{\+\_\+yaw }\end{DoxyParamCaption})}
 
 
 
-The Get\+Rotation\+Matrix\+W\+ToB function returns the Euler Angles Z\+YX rotation matrix from World to Body frame, i.\+e., the transform from Body to World. 
+The Get\+Rotation\+Matrix\+WToB function returns the Euler Angles ZYX rotation matrix from World to Body frame, i.\+e., the transform from Body to World. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -462,17 +613,21 @@ The Get\+Rotation\+Matrix\+W\+ToB function returns the Euler Angles Z\+YX rotati
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Returns the rotation matrix from World to Body frame (transform from Body to World), using the Euler Angles Z\+YX convention. 
+Returns the rotation matrix from World to Body frame (transform from Body to World), using the Euler Angles ZYX convention. 
 \end{DoxyReturn}
+
+
+Definition at line 539 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_ae589e937b2e9cc3f863bae1b1a9f7976}\label{classKinematics_ae589e937b2e9cc3f863bae1b1a9f7976}} 
 \index{Kinematics@{Kinematics}!GetRotationMatrixWToBDiff@{GetRotationMatrixWToBDiff}}
 \index{GetRotationMatrixWToBDiff@{GetRotationMatrixWToBDiff}!Kinematics@{Kinematics}}
 \doxysubsubsection{\texorpdfstring{GetRotationMatrixWToBDiff()}{GetRotationMatrixWToBDiff()}}
-{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 3 $>$ Kinematics\+::\+Get\+Rotation\+Matrix\+W\+To\+B\+Diff (\begin{DoxyParamCaption}\item[{const double \&}]{\+\_\+roll,  }\item[{const double \&}]{\+\_\+pitch,  }\item[{const double \&}]{\+\_\+yaw,  }\item[{const double \&}]{\+\_\+roll\+\_\+rate,  }\item[{const double \&}]{\+\_\+pitch\+\_\+rate,  }\item[{const double \&}]{\+\_\+yaw\+\_\+rate }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 3 $>$ Kinematics\+::\+Get\+Rotation\+Matrix\+WTo\+BDiff (\begin{DoxyParamCaption}\item[{const double \&}]{\+\_\+roll,  }\item[{const double \&}]{\+\_\+pitch,  }\item[{const double \&}]{\+\_\+yaw,  }\item[{const double \&}]{\+\_\+roll\+\_\+rate,  }\item[{const double \&}]{\+\_\+pitch\+\_\+rate,  }\item[{const double \&}]{\+\_\+yaw\+\_\+rate }\end{DoxyParamCaption})}
 
 
 
-The Get\+Rotation\+Matrix\+W\+To\+B\+Diff function returns the time derivative of the Euler Angles Z\+YX rotation matrix from World to Body frame. 
+The Get\+Rotation\+Matrix\+WTo\+BDiff function returns the time derivative of the Euler Angles ZYX rotation matrix from World to Body frame. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -490,17 +645,21 @@ The Get\+Rotation\+Matrix\+W\+To\+B\+Diff function returns the time derivative o
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Returns the time derivative of the rotation matrix from World to Body frame, using the Euler Angles Z\+YX convention. 
+Returns the time derivative of the rotation matrix from World to Body frame, using the Euler Angles ZYX convention. 
 \end{DoxyReturn}
+
+
+Definition at line 552 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_a3b09d639862a4043f437abbd08414d45}\label{classKinematics_a3b09d639862a4043f437abbd08414d45}} 
 \index{Kinematics@{Kinematics}!GetRotationMatrixWToC@{GetRotationMatrixWToC}}
 \index{GetRotationMatrixWToC@{GetRotationMatrixWToC}!Kinematics@{Kinematics}}
 \doxysubsubsection{\texorpdfstring{GetRotationMatrixWToC()}{GetRotationMatrixWToC()}}
-{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 3 $>$ Kinematics\+::\+Get\+Rotation\+Matrix\+W\+ToC (\begin{DoxyParamCaption}\item[{const double \&}]{\+\_\+roll,  }\item[{const double \&}]{\+\_\+pitch,  }\item[{const double \&}]{\+\_\+yaw }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 3 $>$ Kinematics\+::\+Get\+Rotation\+Matrix\+WToC (\begin{DoxyParamCaption}\item[{const double \&}]{\+\_\+roll,  }\item[{const double \&}]{\+\_\+pitch,  }\item[{const double \&}]{\+\_\+yaw }\end{DoxyParamCaption})}
 
 
 
-The Get\+Rotation\+Matrix\+W\+ToC function returns the Euler Angles Z\+YX rotation matrix from World to Control frame, i.\+e., the transform from Control to World. For flat-\/terrain the roll and pitch angles should be set to zero. 
+The Get\+Rotation\+Matrix\+WToC function returns the Euler Angles ZYX rotation matrix from World to Control frame, i.\+e., the transform from Control to World. For flat-\/terrain the roll and pitch angles should be set to zero. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -512,17 +671,21 @@ The Get\+Rotation\+Matrix\+W\+ToC function returns the Euler Angles Z\+YX rotati
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Returns the rotation matrix from World to Control frame (transform from Body to World), using the Euler Angles Z\+YX convention. 
+Returns the rotation matrix from World to Control frame (transform from Body to World), using the Euler Angles ZYX convention. 
 \end{DoxyReturn}
+
+
+Definition at line 574 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_ade15415303e92a2af3633506c81d67ae}\label{classKinematics_ade15415303e92a2af3633506c81d67ae}} 
 \index{Kinematics@{Kinematics}!GetRotationMatrixWToCDiff@{GetRotationMatrixWToCDiff}}
 \index{GetRotationMatrixWToCDiff@{GetRotationMatrixWToCDiff}!Kinematics@{Kinematics}}
 \doxysubsubsection{\texorpdfstring{GetRotationMatrixWToCDiff()}{GetRotationMatrixWToCDiff()}}
-{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 3 $>$ Kinematics\+::\+Get\+Rotation\+Matrix\+W\+To\+C\+Diff (\begin{DoxyParamCaption}\item[{const double \&}]{\+\_\+roll,  }\item[{const double \&}]{\+\_\+pitch,  }\item[{const double \&}]{\+\_\+yaw,  }\item[{const double \&}]{\+\_\+roll\+\_\+rate,  }\item[{const double \&}]{\+\_\+pitch\+\_\+rate,  }\item[{const double \&}]{\+\_\+yaw\+\_\+rate }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 3 $>$ Kinematics\+::\+Get\+Rotation\+Matrix\+WTo\+CDiff (\begin{DoxyParamCaption}\item[{const double \&}]{\+\_\+roll,  }\item[{const double \&}]{\+\_\+pitch,  }\item[{const double \&}]{\+\_\+yaw,  }\item[{const double \&}]{\+\_\+roll\+\_\+rate,  }\item[{const double \&}]{\+\_\+pitch\+\_\+rate,  }\item[{const double \&}]{\+\_\+yaw\+\_\+rate }\end{DoxyParamCaption})}
 
 
 
-The Get\+Rotation\+Matrix\+W\+To\+C\+Diff function returns the time derivative of the Euler Angles Z\+YX rotation matrix from World to Control frame. 
+The Get\+Rotation\+Matrix\+WTo\+CDiff function returns the time derivative of the Euler Angles ZYX rotation matrix from World to Control frame. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -540,17 +703,21 @@ The Get\+Rotation\+Matrix\+W\+To\+C\+Diff function returns the time derivative o
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Returns the time derivative of the rotation matrix from World to Control frame, using the Euler Angles Z\+YX convention. 
+Returns the time derivative of the rotation matrix from World to Control frame, using the Euler Angles ZYX convention. 
 \end{DoxyReturn}
+
+
+Definition at line 587 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_aa1fe2d126cda71aff030c50677d400c9}\label{classKinematics_aa1fe2d126cda71aff030c50677d400c9}} 
 \index{Kinematics@{Kinematics}!GetRotationMatrixCToB@{GetRotationMatrixCToB}}
 \index{GetRotationMatrixCToB@{GetRotationMatrixCToB}!Kinematics@{Kinematics}}
 \doxysubsubsection{\texorpdfstring{GetRotationMatrixCToB()}{GetRotationMatrixCToB()}}
-{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 3 $>$ Kinematics\+::\+Get\+Rotation\+Matrix\+C\+ToB (\begin{DoxyParamCaption}\item[{const double \&}]{\+\_\+roll,  }\item[{const double \&}]{\+\_\+pitch,  }\item[{const double \&}]{\+\_\+yaw }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 3 $>$ Kinematics\+::\+Get\+Rotation\+Matrix\+CToB (\begin{DoxyParamCaption}\item[{const double \&}]{\+\_\+roll,  }\item[{const double \&}]{\+\_\+pitch,  }\item[{const double \&}]{\+\_\+yaw }\end{DoxyParamCaption})}
 
 
 
-The Get\+Rotation\+Matrix\+C\+ToB function returns the Euler Angles Z\+YX rotation matrix from Control to Body frame, i.\+e., the transform from Body to Control. For flat-\/terrain the yaw angle should be set zero. 
+The Get\+Rotation\+Matrix\+CToB function returns the Euler Angles ZYX rotation matrix from Control to Body frame, i.\+e., the transform from Body to Control. For flat-\/terrain the yaw angle should be set zero. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -562,17 +729,21 @@ The Get\+Rotation\+Matrix\+C\+ToB function returns the Euler Angles Z\+YX rotati
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Returns the rotation matrix from Control to Body frame (transform from Body to Control), using the Euler Angles Z\+YX convention. 
+Returns the rotation matrix from Control to Body frame (transform from Body to Control), using the Euler Angles ZYX convention. 
 \end{DoxyReturn}
+
+
+Definition at line 609 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_ada07b12404f8b4860572bf9c4aad9a17}\label{classKinematics_ada07b12404f8b4860572bf9c4aad9a17}} 
 \index{Kinematics@{Kinematics}!GetRotationMatrixCToBDiff@{GetRotationMatrixCToBDiff}}
 \index{GetRotationMatrixCToBDiff@{GetRotationMatrixCToBDiff}!Kinematics@{Kinematics}}
 \doxysubsubsection{\texorpdfstring{GetRotationMatrixCToBDiff()}{GetRotationMatrixCToBDiff()}}
-{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 3 $>$ Kinematics\+::\+Get\+Rotation\+Matrix\+C\+To\+B\+Diff (\begin{DoxyParamCaption}\item[{const double \&}]{\+\_\+roll,  }\item[{const double \&}]{\+\_\+pitch,  }\item[{const double \&}]{\+\_\+yaw,  }\item[{const double \&}]{\+\_\+roll\+\_\+rate,  }\item[{const double \&}]{\+\_\+pitch\+\_\+rate,  }\item[{const double \&}]{\+\_\+yaw\+\_\+rate }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 3 $>$ Kinematics\+::\+Get\+Rotation\+Matrix\+CTo\+BDiff (\begin{DoxyParamCaption}\item[{const double \&}]{\+\_\+roll,  }\item[{const double \&}]{\+\_\+pitch,  }\item[{const double \&}]{\+\_\+yaw,  }\item[{const double \&}]{\+\_\+roll\+\_\+rate,  }\item[{const double \&}]{\+\_\+pitch\+\_\+rate,  }\item[{const double \&}]{\+\_\+yaw\+\_\+rate }\end{DoxyParamCaption})}
 
 
 
-The Get\+Rotation\+Matrix\+C\+To\+B\+Diff function returns the time derivative of the Euler Angles Z\+YX rotation matrix from World to Body frame. 
+The Get\+Rotation\+Matrix\+CTo\+BDiff function returns the time derivative of the Euler Angles ZYX rotation matrix from World to Body frame. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -590,8 +761,12 @@ The Get\+Rotation\+Matrix\+C\+To\+B\+Diff function returns the time derivative o
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Returns the time derivative of the rotation matrix from Control to Body frame, using the Euler Angles Z\+YX convention. 
+Returns the time derivative of the rotation matrix from Control to Body frame, using the Euler Angles ZYX convention. 
 \end{DoxyReturn}
+
+
+Definition at line 622 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_abb46d7bcf0c89d8f5493701261ca17b5}\label{classKinematics_abb46d7bcf0c89d8f5493701261ca17b5}} 
 \index{Kinematics@{Kinematics}!GetPositionBaseToBodyInB@{GetPositionBaseToBodyInB}}
 \index{GetPositionBaseToBodyInB@{GetPositionBaseToBodyInB}!Kinematics@{Kinematics}}
@@ -600,7 +775,7 @@ Returns the time derivative of the rotation matrix from Control to Body frame, u
 
 
 
-The Get\+Position\+Base\+To\+Body\+InB returns the position vector from base origin to C\+OM position in body-\/frame for a given body. 
+The Get\+Position\+Base\+To\+Body\+InB returns the position vector from base origin to COM position in body-\/frame for a given body. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -614,6 +789,10 @@ The Get\+Position\+Base\+To\+Body\+InB returns the position vector from base ori
 \begin{DoxyReturn}{Returns}
 Returns the position vector from base to foot. 
 \end{DoxyReturn}
+
+
+Definition at line 644 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_a6e56100f9dbd10a999c0335b012ce302}\label{classKinematics_a6e56100f9dbd10a999c0335b012ce302}} 
 \index{Kinematics@{Kinematics}!GetTranslationJacobianInB@{GetTranslationJacobianInB}}
 \index{GetTranslationJacobianInB@{GetTranslationJacobianInB}!Kinematics@{Kinematics}}
@@ -640,6 +819,10 @@ The Get\+Translation\+Jacobian\+InB function returns the 3x3 Jacobian matrix for
 \begin{DoxyReturn}{Returns}
 Returns the 3x3 translation Jacobian Matrix relating body linear velocities to joint velocities. 
 \end{DoxyReturn}
+
+
+Definition at line 723 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_adff032be3e4877079e0bfb68e8c1224e}\label{classKinematics_adff032be3e4877079e0bfb68e8c1224e}} 
 \index{Kinematics@{Kinematics}!GetTranslationJacobianInB@{GetTranslationJacobianInB}}
 \index{GetTranslationJacobianInB@{GetTranslationJacobianInB}!Kinematics@{Kinematics}}
@@ -662,6 +845,10 @@ The Get\+Translation\+Jacobian\+InB function returns the 3x12 Jacobian matrix fo
 \begin{DoxyReturn}{Returns}
 Returns the 3x12 translation Jacobian Matrix relating body linear velocities to joint velocities. 
 \end{DoxyReturn}
+
+
+Definition at line 840 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_a0b6321c5fbd5eb593e4591a1efde2f2d}\label{classKinematics_a0b6321c5fbd5eb593e4591a1efde2f2d}} 
 \index{Kinematics@{Kinematics}!GetTranslationJacobianInW@{GetTranslationJacobianInW}}
 \index{GetTranslationJacobianInW@{GetTranslationJacobianInW}!Kinematics@{Kinematics}}
@@ -684,6 +871,10 @@ The Get\+Translation\+Jacobian\+InW function returns the 3x18 spatial translatio
 \begin{DoxyReturn}{Returns}
 Returns the translation Jacobian Matrix mapping from generalized velocities to the operational space (world-\/frame) twist of the body attached frame. 
 \end{DoxyReturn}
+
+
+Definition at line 911 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_aba499927a2b02e14fa4d4b5551ed96b7}\label{classKinematics_aba499927a2b02e14fa4d4b5551ed96b7}} 
 \index{Kinematics@{Kinematics}!GetTranslationJacobianInC@{GetTranslationJacobianInC}}
 \index{GetTranslationJacobianInC@{GetTranslationJacobianInC}!Kinematics@{Kinematics}}
@@ -706,11 +897,15 @@ The Get\+Translation\+Jacobian\+InC function returns the 3x18 spatial translatio
 \begin{DoxyReturn}{Returns}
 Returns the translation Jacobian Matrix mapping from generalized velocities to the operational space (world-\/frame) twist of the control frame. 
 \end{DoxyReturn}
+
+
+Definition at line 969 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_a95a4ea1b3e991c44ad28ec6196597731}\label{classKinematics_a95a4ea1b3e991c44ad28ec6196597731}} 
 \index{Kinematics@{Kinematics}!GetTranslationJacobianInBDiff@{GetTranslationJacobianInBDiff}}
 \index{GetTranslationJacobianInBDiff@{GetTranslationJacobianInBDiff}!Kinematics@{Kinematics}}
 \doxysubsubsection{\texorpdfstring{GetTranslationJacobianInBDiff()}{GetTranslationJacobianInBDiff()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 3 $>$ Kinematics\+::\+Get\+Translation\+Jacobian\+In\+B\+Diff (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&}]{\+\_\+leg,  }\item[{const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&}]{\+\_\+body,  }\item[{const double \&}]{\+\_\+theta\+\_\+hy,  }\item[{const double \&}]{\+\_\+theta\+\_\+hp,  }\item[{const double \&}]{\+\_\+theta\+\_\+kp,  }\item[{const double \&}]{\+\_\+dot\+\_\+theta\+\_\+hy,  }\item[{const double \&}]{\+\_\+dot\+\_\+theta\+\_\+hp,  }\item[{const double \&}]{\+\_\+dot\+\_\+theta\+\_\+kp }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 3 $>$ Kinematics\+::\+Get\+Translation\+Jacobian\+In\+BDiff (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&}]{\+\_\+leg,  }\item[{const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&}]{\+\_\+body,  }\item[{const double \&}]{\+\_\+theta\+\_\+hy,  }\item[{const double \&}]{\+\_\+theta\+\_\+hp,  }\item[{const double \&}]{\+\_\+theta\+\_\+kp,  }\item[{const double \&}]{\+\_\+dot\+\_\+theta\+\_\+hy,  }\item[{const double \&}]{\+\_\+dot\+\_\+theta\+\_\+hp,  }\item[{const double \&}]{\+\_\+dot\+\_\+theta\+\_\+kp }\end{DoxyParamCaption})}
 
 
 
@@ -738,15 +933,19 @@ The Get\+Translation\+Jacobian\+Derivative\+InB function returns the time deriva
 \begin{DoxyReturn}{Returns}
 Returns the 3x3 time derivative of the translation Jacobian Matrix. 
 \end{DoxyReturn}
+
+
+Definition at line 1027 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_a586c485042b3c56068e85d8ff89fba79}\label{classKinematics_a586c485042b3c56068e85d8ff89fba79}} 
 \index{Kinematics@{Kinematics}!GetTranslationJacobianInBDiff@{GetTranslationJacobianInBDiff}}
 \index{GetTranslationJacobianInBDiff@{GetTranslationJacobianInBDiff}!Kinematics@{Kinematics}}
 \doxysubsubsection{\texorpdfstring{GetTranslationJacobianInBDiff()}{GetTranslationJacobianInBDiff()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 12 $>$ Kinematics\+::\+Get\+Translation\+Jacobian\+In\+B\+Diff (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&}]{\+\_\+leg,  }\item[{const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&}]{\+\_\+body,  }\item[{const Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \&}]{\+\_\+q\+\_\+r,  }\item[{const Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \&}]{\+\_\+dot\+\_\+q\+\_\+r }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 12 $>$ Kinematics\+::\+Get\+Translation\+Jacobian\+In\+BDiff (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&}]{\+\_\+leg,  }\item[{const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&}]{\+\_\+body,  }\item[{const Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \&}]{\+\_\+q\+\_\+r,  }\item[{const Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \&}]{\+\_\+dot\+\_\+q\+\_\+r }\end{DoxyParamCaption})}
 
 
 
-The Get\+Translation\+Jacobian\+In\+B\+Diff function returns the time derivative of the 3x12 translation Jacobian matrix. 
+The Get\+Translation\+Jacobian\+In\+BDiff function returns the time derivative of the 3x12 translation Jacobian matrix. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -762,15 +961,19 @@ The Get\+Translation\+Jacobian\+In\+B\+Diff function returns the time derivative
 \begin{DoxyReturn}{Returns}
 Returns the 3x12 time derivative of the translation Jacobian Matrix. 
 \end{DoxyReturn}
+
+
+Definition at line 1159 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_ae6ee79028997a34c67c47a9c40567a57}\label{classKinematics_ae6ee79028997a34c67c47a9c40567a57}} 
 \index{Kinematics@{Kinematics}!GetTranslationJacobianInWDiff@{GetTranslationJacobianInWDiff}}
 \index{GetTranslationJacobianInWDiff@{GetTranslationJacobianInWDiff}!Kinematics@{Kinematics}}
 \doxysubsubsection{\texorpdfstring{GetTranslationJacobianInWDiff()}{GetTranslationJacobianInWDiff()}}
-{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 18 $>$ Kinematics\+::\+Get\+Translation\+Jacobian\+In\+W\+Diff (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&}]{\+\_\+leg,  }\item[{const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&}]{\+\_\+body,  }\item[{const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&}]{\+\_\+q,  }\item[{const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&}]{\+\_\+u }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 18 $>$ Kinematics\+::\+Get\+Translation\+Jacobian\+In\+WDiff (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&}]{\+\_\+leg,  }\item[{const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&}]{\+\_\+body,  }\item[{const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&}]{\+\_\+q,  }\item[{const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&}]{\+\_\+u }\end{DoxyParamCaption})}
 
 
 
-The Get\+Translation\+Jacobian\+In\+W\+Diff function returns the time derivative of the 3x18 spatial translation Jacobian in the world frame. 
+The Get\+Translation\+Jacobian\+In\+WDiff function returns the time derivative of the 3x18 spatial translation Jacobian in the world frame. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -786,15 +989,19 @@ The Get\+Translation\+Jacobian\+In\+W\+Diff function returns the time derivative
 \begin{DoxyReturn}{Returns}
 Returns the 3x18 time derivative of the translation Jacobian Matrix in the world frame. 
 \end{DoxyReturn}
+
+
+Definition at line 1254 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_a33e8e4b6548d8f23dc0e5b51572b9a46}\label{classKinematics_a33e8e4b6548d8f23dc0e5b51572b9a46}} 
 \index{Kinematics@{Kinematics}!GetTranslationJacobianInCDiff@{GetTranslationJacobianInCDiff}}
 \index{GetTranslationJacobianInCDiff@{GetTranslationJacobianInCDiff}!Kinematics@{Kinematics}}
 \doxysubsubsection{\texorpdfstring{GetTranslationJacobianInCDiff()}{GetTranslationJacobianInCDiff()}}
-{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 18 $>$ Kinematics\+::\+Get\+Translation\+Jacobian\+In\+C\+Diff (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&}]{\+\_\+leg,  }\item[{const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&}]{\+\_\+body,  }\item[{const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&}]{\+\_\+q,  }\item[{const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&}]{\+\_\+u }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 18 $>$ Kinematics\+::\+Get\+Translation\+Jacobian\+In\+CDiff (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&}]{\+\_\+leg,  }\item[{const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&}]{\+\_\+body,  }\item[{const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&}]{\+\_\+q,  }\item[{const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&}]{\+\_\+u }\end{DoxyParamCaption})}
 
 
 
-The Get\+Translation\+Jacobian\+In\+C\+Diff function returns the time derivative of the 3x18 spatial translation Jacobian in the control frame. 
+The Get\+Translation\+Jacobian\+In\+CDiff function returns the time derivative of the 3x18 spatial translation Jacobian in the control frame. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -810,6 +1017,10 @@ The Get\+Translation\+Jacobian\+In\+C\+Diff function returns the time derivative
 \begin{DoxyReturn}{Returns}
 Returns the 3x18 time derivative of the translation Jacobian Matrix in the control frame. 
 \end{DoxyReturn}
+
+
+Definition at line 1337 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_a748785f956d5c6ed96d09c779ffe2096}\label{classKinematics_a748785f956d5c6ed96d09c779ffe2096}} 
 \index{Kinematics@{Kinematics}!GetRotationJacobianInB@{GetRotationJacobianInB}}
 \index{GetRotationJacobianInB@{GetRotationJacobianInB}!Kinematics@{Kinematics}}
@@ -836,6 +1047,10 @@ The Get\+Rotation\+Jacobian\+InB function returns the 3x3 Jacobian matrix for bo
 \begin{DoxyReturn}{Returns}
 Returns the 3x3 rotation Jacobian Matrix relating body angular velocities to joint velocities. 
 \end{DoxyReturn}
+
+
+Definition at line 1420 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_aacae7d510c9db32c3fe87ab4908bac4a}\label{classKinematics_aacae7d510c9db32c3fe87ab4908bac4a}} 
 \index{Kinematics@{Kinematics}!GetRotationJacobianInB@{GetRotationJacobianInB}}
 \index{GetRotationJacobianInB@{GetRotationJacobianInB}!Kinematics@{Kinematics}}
@@ -858,6 +1073,10 @@ The Get\+Rotation\+Jacobian\+InB function returns the 3x3 Jacobian matrix for bo
 \begin{DoxyReturn}{Returns}
 Returns the 3x12 rotation Jacobian Matrix relating body angular velocities to joint velocities. 
 \end{DoxyReturn}
+
+
+Definition at line 1540 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_aedd990de8ab5576a285ec32d8bb1dfd3}\label{classKinematics_aedd990de8ab5576a285ec32d8bb1dfd3}} 
 \index{Kinematics@{Kinematics}!GetRotationJacobianInW@{GetRotationJacobianInW}}
 \index{GetRotationJacobianInW@{GetRotationJacobianInW}!Kinematics@{Kinematics}}
@@ -880,6 +1099,10 @@ The Get\+Rotation\+Jacobian\+InW function returns the 3x18 spatial rotation Jaco
 \begin{DoxyReturn}{Returns}
 Returns the rotation Jacobian Matrix mapping from generalized velocities to the operational space (world-\/frame) twist of the body attached frame. 
 \end{DoxyReturn}
+
+
+Definition at line 1611 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_ac3f39f4785c4988e0bc0a612976b2b91}\label{classKinematics_ac3f39f4785c4988e0bc0a612976b2b91}} 
 \index{Kinematics@{Kinematics}!GetRotationJacobianInC@{GetRotationJacobianInC}}
 \index{GetRotationJacobianInC@{GetRotationJacobianInC}!Kinematics@{Kinematics}}
@@ -902,15 +1125,19 @@ The Get\+Rotation\+Jacobian\+InC function returns the 3x18 spatial rotation Jaco
 \begin{DoxyReturn}{Returns}
 Returns the rotation Jacobian Matrix mapping from generalized velocities to the control frame twist of the body attached frame. 
 \end{DoxyReturn}
+
+
+Definition at line 1661 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_a56697b824a7af6ab06445a3c95cb9928}\label{classKinematics_a56697b824a7af6ab06445a3c95cb9928}} 
 \index{Kinematics@{Kinematics}!GetRotationJacobianInBDiff@{GetRotationJacobianInBDiff}}
 \index{GetRotationJacobianInBDiff@{GetRotationJacobianInBDiff}!Kinematics@{Kinematics}}
 \doxysubsubsection{\texorpdfstring{GetRotationJacobianInBDiff()}{GetRotationJacobianInBDiff()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 3 $>$ Kinematics\+::\+Get\+Rotation\+Jacobian\+In\+B\+Diff (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&}]{\+\_\+leg,  }\item[{const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&}]{\+\_\+body,  }\item[{const double \&}]{\+\_\+theta\+\_\+hy,  }\item[{const double \&}]{\+\_\+theta\+\_\+hp,  }\item[{const double \&}]{\+\_\+theta\+\_\+kp,  }\item[{const double \&}]{\+\_\+dot\+\_\+theta\+\_\+hy,  }\item[{const double \&}]{\+\_\+dot\+\_\+theta\+\_\+hp,  }\item[{const double \&}]{\+\_\+dot\+\_\+theta\+\_\+kp }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 3 $>$ Kinematics\+::\+Get\+Rotation\+Jacobian\+In\+BDiff (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&}]{\+\_\+leg,  }\item[{const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&}]{\+\_\+body,  }\item[{const double \&}]{\+\_\+theta\+\_\+hy,  }\item[{const double \&}]{\+\_\+theta\+\_\+hp,  }\item[{const double \&}]{\+\_\+theta\+\_\+kp,  }\item[{const double \&}]{\+\_\+dot\+\_\+theta\+\_\+hy,  }\item[{const double \&}]{\+\_\+dot\+\_\+theta\+\_\+hp,  }\item[{const double \&}]{\+\_\+dot\+\_\+theta\+\_\+kp }\end{DoxyParamCaption})}
 
 
 
-The Get\+Rotation\+Jacobian\+In\+B\+Diff function returns the time derivative of the 3x3 Rotation Jacobian matrix. 
+The Get\+Rotation\+Jacobian\+In\+BDiff function returns the time derivative of the 3x3 Rotation Jacobian matrix. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -934,11 +1161,15 @@ The Get\+Rotation\+Jacobian\+In\+B\+Diff function returns the time derivative of
 \begin{DoxyReturn}{Returns}
 Returns the 3x3 time derivative of the Rotation Jacobian Matrix. 
 \end{DoxyReturn}
+
+
+Definition at line 1711 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_a7d42c7e9b4813c5c6b3d8472e4f9035f}\label{classKinematics_a7d42c7e9b4813c5c6b3d8472e4f9035f}} 
 \index{Kinematics@{Kinematics}!GetRotationJacobianInBDiff@{GetRotationJacobianInBDiff}}
 \index{GetRotationJacobianInBDiff@{GetRotationJacobianInBDiff}!Kinematics@{Kinematics}}
 \doxysubsubsection{\texorpdfstring{GetRotationJacobianInBDiff()}{GetRotationJacobianInBDiff()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 12 $>$ Kinematics\+::\+Get\+Rotation\+Jacobian\+In\+B\+Diff (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&}]{\+\_\+leg,  }\item[{const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&}]{\+\_\+body,  }\item[{const Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \&}]{\+\_\+q\+\_\+r,  }\item[{const Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \&}]{\+\_\+dot\+\_\+q\+\_\+r }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 12 $>$ Kinematics\+::\+Get\+Rotation\+Jacobian\+In\+BDiff (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&}]{\+\_\+leg,  }\item[{const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&}]{\+\_\+body,  }\item[{const Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \&}]{\+\_\+q\+\_\+r,  }\item[{const Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \&}]{\+\_\+dot\+\_\+q\+\_\+r }\end{DoxyParamCaption})}
 
 
 
@@ -958,15 +1189,19 @@ The Get\+Rotation\+Jacobian\+Derivative\+InB function returns the time derivativ
 \begin{DoxyReturn}{Returns}
 Returns the 3x12 time derivative of the Rotation Jacobian Matrix. 
 \end{DoxyReturn}
+
+
+Definition at line 1822 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_a36b87e3957e657e3b953398072222026}\label{classKinematics_a36b87e3957e657e3b953398072222026}} 
 \index{Kinematics@{Kinematics}!GetRotationJacobianInWDiff@{GetRotationJacobianInWDiff}}
 \index{GetRotationJacobianInWDiff@{GetRotationJacobianInWDiff}!Kinematics@{Kinematics}}
 \doxysubsubsection{\texorpdfstring{GetRotationJacobianInWDiff()}{GetRotationJacobianInWDiff()}}
-{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 18 $>$ Kinematics\+::\+Get\+Rotation\+Jacobian\+In\+W\+Diff (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&}]{\+\_\+leg,  }\item[{const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&}]{\+\_\+body,  }\item[{const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&}]{\+\_\+q,  }\item[{const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&}]{\+\_\+u }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 18 $>$ Kinematics\+::\+Get\+Rotation\+Jacobian\+In\+WDiff (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&}]{\+\_\+leg,  }\item[{const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&}]{\+\_\+body,  }\item[{const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&}]{\+\_\+q,  }\item[{const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&}]{\+\_\+u }\end{DoxyParamCaption})}
 
 
 
-The Get\+Rotation\+Jacobian\+In\+W\+Diff function returns the time derivative of the 3x18 spatial Rotation Jacobian. 
+The Get\+Rotation\+Jacobian\+In\+WDiff function returns the time derivative of the 3x18 spatial Rotation Jacobian. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -982,15 +1217,19 @@ The Get\+Rotation\+Jacobian\+In\+W\+Diff function returns the time derivative of
 \begin{DoxyReturn}{Returns}
 Returns the 3x18 time derivative of the Rotation Jacobian Matrix in the world frame. 
 \end{DoxyReturn}
+
+
+Definition at line 1917 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_adf37c77c89b4b4dcca663120fab5953f}\label{classKinematics_adf37c77c89b4b4dcca663120fab5953f}} 
 \index{Kinematics@{Kinematics}!GetRotationJacobianInCDiff@{GetRotationJacobianInCDiff}}
 \index{GetRotationJacobianInCDiff@{GetRotationJacobianInCDiff}!Kinematics@{Kinematics}}
 \doxysubsubsection{\texorpdfstring{GetRotationJacobianInCDiff()}{GetRotationJacobianInCDiff()}}
-{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 18 $>$ Kinematics\+::\+Get\+Rotation\+Jacobian\+In\+C\+Diff (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&}]{\+\_\+leg,  }\item[{const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&}]{\+\_\+body,  }\item[{const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&}]{\+\_\+q,  }\item[{const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&}]{\+\_\+u }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 18 $>$ Kinematics\+::\+Get\+Rotation\+Jacobian\+In\+CDiff (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&}]{\+\_\+leg,  }\item[{const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&}]{\+\_\+body,  }\item[{const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&}]{\+\_\+q,  }\item[{const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&}]{\+\_\+u }\end{DoxyParamCaption})}
 
 
 
-The Get\+Rotation\+Jacobian\+In\+C\+Diff function returns the time derivative of the 3x18 control frame Rotation Jacobian. 
+The Get\+Rotation\+Jacobian\+In\+CDiff function returns the time derivative of the 3x18 control frame Rotation Jacobian. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -1006,6 +1245,10 @@ The Get\+Rotation\+Jacobian\+In\+C\+Diff function returns the time derivative of
 \begin{DoxyReturn}{Returns}
 Returns the 3x18 time derivative of the Rotation Jacobian Matrix in the control frame. 
 \end{DoxyReturn}
+
+
+Definition at line 1991 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_a7151f255bb9c5dc73e804dc59b7569eb}\label{classKinematics_a7151f255bb9c5dc73e804dc59b7569eb}} 
 \index{Kinematics@{Kinematics}!GetJacobianInW@{GetJacobianInW}}
 \index{GetJacobianInW@{GetJacobianInW}!Kinematics@{Kinematics}}
@@ -1027,11 +1270,15 @@ The Get\+Jacobian\+InW function returns the 6x18 spatial Jacobian mapping genera
 Returns the spatial Jacobian Matrix mapping from generalized velocities to the operational space (world-\/frame) twist of the body attached frame. ~\newline
  
 \end{DoxyReturn}
+
+
+Definition at line 2065 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_af3ece69a434531fe0f9476a645e92c07}\label{classKinematics_af3ece69a434531fe0f9476a645e92c07}} 
 \index{Kinematics@{Kinematics}!GetJacobianInWDiff@{GetJacobianInWDiff}}
 \index{GetJacobianInWDiff@{GetJacobianInWDiff}!Kinematics@{Kinematics}}
 \doxysubsubsection{\texorpdfstring{GetJacobianInWDiff()}{GetJacobianInWDiff()}}
-{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 6, 18 $>$ Kinematics\+::\+Get\+Jacobian\+In\+W\+Diff (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&}]{\+\_\+leg,  }\item[{const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&}]{\+\_\+body,  }\item[{const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&}]{\+\_\+q,  }\item[{const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&}]{\+\_\+u }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 6, 18 $>$ Kinematics\+::\+Get\+Jacobian\+In\+WDiff (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&}]{\+\_\+leg,  }\item[{const \mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}} \&}]{\+\_\+body,  }\item[{const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&}]{\+\_\+q,  }\item[{const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&}]{\+\_\+u }\end{DoxyParamCaption})}
 
 
 
@@ -1049,6 +1296,10 @@ The Get\+Jacobian\+InW function returns the time derivative of the 6x18 spatial 
 \begin{DoxyReturn}{Returns}
 Returns the time derivative of the spatial Jacobian Matrix. 
 \end{DoxyReturn}
+
+
+Definition at line 2083 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_a106d6bbfdaedf2f01c583330567036b3}\label{classKinematics_a106d6bbfdaedf2f01c583330567036b3}} 
 \index{Kinematics@{Kinematics}!GetContactJacobianInW@{GetContactJacobianInW}}
 \index{GetContactJacobianInW@{GetContactJacobianInW}!Kinematics@{Kinematics}}
@@ -1069,15 +1320,19 @@ The Get\+Contact\+Jacobian\+InW function returns the (3$\ast$n\+\_\+c)x18 suppor
 \begin{DoxyReturn}{Returns}
 Returns the contact Jacobian Matrix mapping reaction (contact) forces to generalized coordinate space. 
 \end{DoxyReturn}
+
+
+Definition at line 2104 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_aa92bf3e1471683e19129e9dbef4d95a2}\label{classKinematics_aa92bf3e1471683e19129e9dbef4d95a2}} 
 \index{Kinematics@{Kinematics}!GetContactJacobianInWDiff@{GetContactJacobianInWDiff}}
 \index{GetContactJacobianInWDiff@{GetContactJacobianInWDiff}!Kinematics@{Kinematics}}
 \doxysubsubsection{\texorpdfstring{GetContactJacobianInWDiff()}{GetContactJacobianInWDiff()}}
-{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, Eigen\+::\+Dynamic, 18 $>$ Kinematics\+::\+Get\+Contact\+Jacobian\+In\+W\+Diff (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} $>$ \&}]{\+\_\+legs,  }\item[{const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&}]{\+\_\+q,  }\item[{const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&}]{\+\_\+u }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, Eigen\+::\+Dynamic, 18 $>$ Kinematics\+::\+Get\+Contact\+Jacobian\+In\+WDiff (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} $>$ \&}]{\+\_\+legs,  }\item[{const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&}]{\+\_\+q,  }\item[{const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&}]{\+\_\+u }\end{DoxyParamCaption})}
 
 
 
-The Get\+Contact\+Jacobian\+In\+W\+Diff function returns the time derivative of the (3$\ast$n\+\_\+c)x18 support Jacobian. 
+The Get\+Contact\+Jacobian\+In\+WDiff function returns the time derivative of the (3$\ast$n\+\_\+c)x18 support Jacobian. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -1091,6 +1346,10 @@ The Get\+Contact\+Jacobian\+In\+W\+Diff function returns the time derivative of 
 \begin{DoxyReturn}{Returns}
 Returns the time derivative of the contact Jacobian Matrix. 
 \end{DoxyReturn}
+
+
+Definition at line 2156 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_a52ccb0ca7c5d86767e9f1b4db7b0ed79}\label{classKinematics_a52ccb0ca7c5d86767e9f1b4db7b0ed79}} 
 \index{Kinematics@{Kinematics}!GetSwingJacobianInW@{GetSwingJacobianInW}}
 \index{GetSwingJacobianInW@{GetSwingJacobianInW}!Kinematics@{Kinematics}}
@@ -1111,15 +1370,19 @@ The Get\+Swing\+Jacobian\+InW function returns the (3$\ast$n\+\_\+s)x18 support 
 \begin{DoxyReturn}{Returns}
 Returns the support Jacobian Matrix mapping swing foot velocities to generalized coordinate space. 
 \end{DoxyReturn}
+
+
+Definition at line 2210 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_ae92f81f90ffc52426d4b1bc1946914d4}\label{classKinematics_ae92f81f90ffc52426d4b1bc1946914d4}} 
 \index{Kinematics@{Kinematics}!GetSwingJacobianInWDiff@{GetSwingJacobianInWDiff}}
 \index{GetSwingJacobianInWDiff@{GetSwingJacobianInWDiff}!Kinematics@{Kinematics}}
 \doxysubsubsection{\texorpdfstring{GetSwingJacobianInWDiff()}{GetSwingJacobianInWDiff()}}
-{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, Eigen\+::\+Dynamic, 18 $>$ Kinematics\+::\+Get\+Swing\+Jacobian\+In\+W\+Diff (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} $>$ \&}]{\+\_\+legs,  }\item[{const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&}]{\+\_\+q,  }\item[{const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&}]{\+\_\+u }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, Eigen\+::\+Dynamic, 18 $>$ Kinematics\+::\+Get\+Swing\+Jacobian\+In\+WDiff (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} $>$ \&}]{\+\_\+legs,  }\item[{const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&}]{\+\_\+q,  }\item[{const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&}]{\+\_\+u }\end{DoxyParamCaption})}
 
 
 
-The Get\+Contact\+Jacobian\+In\+W\+Diff function returns the time derivative of the (3$\ast$n\+\_\+s)x18 support Jacobian. (n\+\_\+s = 4 -\/ n\+\_\+c) 
+The Get\+Contact\+Jacobian\+In\+WDiff function returns the time derivative of the (3$\ast$n\+\_\+s)x18 support Jacobian. (n\+\_\+s = 4 -\/ n\+\_\+c) 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -1133,6 +1396,10 @@ The Get\+Contact\+Jacobian\+In\+W\+Diff function returns the time derivative of 
 \begin{DoxyReturn}{Returns}
 Returns the time derivative of the support swing-\/leg Jacobian Matrix. 
 \end{DoxyReturn}
+
+
+Definition at line 2259 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_ab110e0daf4f3c74dbfc3b9e9163291a2}\label{classKinematics_ab110e0daf4f3c74dbfc3b9e9163291a2}} 
 \index{Kinematics@{Kinematics}!GetSingleBodyMassMatrix@{GetSingleBodyMassMatrix}}
 \index{GetSingleBodyMassMatrix@{GetSingleBodyMassMatrix}!Kinematics@{Kinematics}}
@@ -1155,6 +1422,10 @@ The Get\+Single\+Body\+Mass\+Matrix function returns the mass matrix for a singl
 \begin{DoxyReturn}{Returns}
 Returns a single body mass matrix as specified by leg and body type. 
 \end{DoxyReturn}
+
+
+Definition at line 2309 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_a1181fedef3cdfb168a60af6bfd8513b1}\label{classKinematics_a1181fedef3cdfb168a60af6bfd8513b1}} 
 \index{Kinematics@{Kinematics}!GetMassMatrix@{GetMassMatrix}}
 \index{GetMassMatrix@{GetMassMatrix}!Kinematics@{Kinematics}}
@@ -1173,6 +1444,20 @@ The Get\+Mass\+Matrix function returns the mass matrix for the floating base sys
 \begin{DoxyReturn}{Returns}
 Returns an orthogonal mass matrix (n\+\_\+q x n\+\_\+q) for the floating base system. 
 \end{DoxyReturn}
+
+
+Definition at line 2330 of file kinematics.\+cpp.
+
+\mbox{\Hypertarget{classKinematics_a274c192494f741ec58ab2418da5b5848}\label{classKinematics_a274c192494f741ec58ab2418da5b5848}} 
+\index{Kinematics@{Kinematics}!GetSingleLegMassMatrix@{GetSingleLegMassMatrix}}
+\index{GetSingleLegMassMatrix@{GetSingleLegMassMatrix}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{GetSingleLegMassMatrix()}{GetSingleLegMassMatrix()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 3 $>$ Kinematics\+::\+Get\+Single\+Leg\+Mass\+Matrix (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&}]{\+\_\+q }\end{DoxyParamCaption})}
+
+
+
+Definition at line 2363 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_a1b13674b4136654c258d28596e7623e5}\label{classKinematics_a1b13674b4136654c258d28596e7623e5}} 
 \index{Kinematics@{Kinematics}!GetSingleBodyCoriolisAndCentrifugalTerms@{GetSingleBodyCoriolisAndCentrifugalTerms}}
 \index{GetSingleBodyCoriolisAndCentrifugalTerms@{GetSingleBodyCoriolisAndCentrifugalTerms}!Kinematics@{Kinematics}}
@@ -1197,6 +1482,10 @@ The Get\+Single\+Body\+Coriolis\+And\+Centrifugal\+Terms function returns the co
 \begin{DoxyReturn}{Returns}
 Returns a single body coriolis and centrifugal terms as specified by leg and body type. 
 \end{DoxyReturn}
+
+
+Definition at line 2386 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_afe283fe7fc47a3428a00dd11ff61d91c}\label{classKinematics_afe283fe7fc47a3428a00dd11ff61d91c}} 
 \index{Kinematics@{Kinematics}!GetCoriolisAndCentrifugalTerms@{GetCoriolisAndCentrifugalTerms}}
 \index{GetCoriolisAndCentrifugalTerms@{GetCoriolisAndCentrifugalTerms}!Kinematics@{Kinematics}}
@@ -1218,6 +1507,20 @@ The Get\+Coriolis\+And\+Centrifugal\+Terms function returns the coriolis and cen
 Returns coriolis and centrifugal terms for the floating base system. ~\newline
  
 \end{DoxyReturn}
+
+
+Definition at line 2419 of file kinematics.\+cpp.
+
+\mbox{\Hypertarget{classKinematics_a79ba55236987ea750246973b0c156311}\label{classKinematics_a79ba55236987ea750246973b0c156311}} 
+\index{Kinematics@{Kinematics}!GetSingleLegCoriolisAndCentrifugalTerms@{GetSingleLegCoriolisAndCentrifugalTerms}}
+\index{GetSingleLegCoriolisAndCentrifugalTerms@{GetSingleLegCoriolisAndCentrifugalTerms}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{GetSingleLegCoriolisAndCentrifugalTerms()}{GetSingleLegCoriolisAndCentrifugalTerms()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 1 $>$ Kinematics\+::\+Get\+Single\+Leg\+Coriolis\+And\+Centrifugal\+Terms (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&}]{\+\_\+q,  }\item[{const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&}]{\+\_\+u }\end{DoxyParamCaption})}
+
+
+
+Definition at line 2453 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_a6a93023396ebc887afaff59f9bb4432b}\label{classKinematics_a6a93023396ebc887afaff59f9bb4432b}} 
 \index{Kinematics@{Kinematics}!GetSingleBodyGravitationalTerms@{GetSingleBodyGravitationalTerms}}
 \index{GetSingleBodyGravitationalTerms@{GetSingleBodyGravitationalTerms}!Kinematics@{Kinematics}}
@@ -1240,6 +1543,10 @@ The Get\+Single\+Body\+Gravitational\+Terms function returns the gravitational t
 \begin{DoxyReturn}{Returns}
 Returns a single body gravitational terms as specified by leg and body type. 
 \end{DoxyReturn}
+
+
+Definition at line 2488 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_aa769e4e016ffe46c164b027ec88ebbb2}\label{classKinematics_aa769e4e016ffe46c164b027ec88ebbb2}} 
 \index{Kinematics@{Kinematics}!GetGravitationalTerms@{GetGravitationalTerms}}
 \index{GetGravitationalTerms@{GetGravitationalTerms}!Kinematics@{Kinematics}}
@@ -1259,11 +1566,25 @@ The Get\+Gravitational\+Terms function returns the gravitational terms for the f
 Returns gravitational terms for the floating base system. ~\newline
  
 \end{DoxyReturn}
+
+
+Definition at line 2543 of file kinematics.\+cpp.
+
+\mbox{\Hypertarget{classKinematics_afbe24573503e150193bff85bc6996401}\label{classKinematics_afbe24573503e150193bff85bc6996401}} 
+\index{Kinematics@{Kinematics}!GetSingleLegGravitationalTerms@{GetSingleLegGravitationalTerms}}
+\index{GetSingleLegGravitationalTerms@{GetSingleLegGravitationalTerms}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{GetSingleLegGravitationalTerms()}{GetSingleLegGravitationalTerms()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 1 $>$ Kinematics\+::\+Get\+Single\+Leg\+Gravitational\+Terms (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&}]{\+\_\+q }\end{DoxyParamCaption})}
+
+
+
+Definition at line 2578 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_a1c6697fbd201589746f21c1be27dab35}\label{classKinematics_a1c6697fbd201589746f21c1be27dab35}} 
 \index{Kinematics@{Kinematics}!ValidateSolution@{ValidateSolution}}
 \index{ValidateSolution@{ValidateSolution}!Kinematics@{Kinematics}}
 \doxysubsubsection{\texorpdfstring{ValidateSolution()}{ValidateSolution()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily bool Kinematics\+::\+Validate\+Solution (\begin{DoxyParamCaption}\item[{const Joint\+Space\+Vector \&}]{\+\_\+q\+\_\+r }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool Kinematics\+::\+Validate\+Solution (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{kinematics_8h_a777bb5e7d16b72f382c989417decd251}{Joint\+Space\+Vector}} \&}]{\+\_\+q\+\_\+r }\end{DoxyParamCaption})}
 
 
 
@@ -1277,6 +1598,10 @@ The Validate\+Solution function evaluates whether a set of joint angles is withi
 \begin{DoxyReturn}{Returns}
 Evaluates true if IK solution is valid, and false if not. 
 \end{DoxyReturn}
+
+
+Definition at line 2603 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_ae4c5058b67e61502324b965925cc5651}\label{classKinematics_ae4c5058b67e61502324b965925cc5651}} 
 \index{Kinematics@{Kinematics}!ValidateSolution@{ValidateSolution}}
 \index{ValidateSolution@{ValidateSolution}!Kinematics@{Kinematics}}
@@ -1295,6 +1620,10 @@ Overloaded version of the Validate\+Solution function, which evaluates whether a
 \begin{DoxyReturn}{Returns}
 Evaluates true if the IK solution is valid, and false if not. 
 \end{DoxyReturn}
+
+
+Definition at line 2622 of file kinematics.\+cpp.
+
 \mbox{\Hypertarget{classKinematics_a6f426b5ac409de6a9528a0f6f837e390}\label{classKinematics_a6f426b5ac409de6a9528a0f6f837e390}} 
 \index{Kinematics@{Kinematics}!GetInertiaMatrix@{GetInertiaMatrix}}
 \index{GetInertiaMatrix@{GetInertiaMatrix}!Kinematics@{Kinematics}}
@@ -1322,7 +1651,474 @@ The Get\+Inertia\+Matrix function returns the inertia matrix from the six inerti
 \end{DoxyParams}
 
 
+Definition at line 2642 of file kinematics.\+cpp.
+
+\mbox{\Hypertarget{classKinematics_a03e006d32f6b1efb3fcaed4a488b936b}\label{classKinematics_a03e006d32f6b1efb3fcaed4a488b936b}} 
+\index{Kinematics@{Kinematics}!GetBodyMass@{GetBodyMass}}
+\index{GetBodyMass@{GetBodyMass}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{GetBodyMass()}{GetBodyMass()}}
+{\footnotesize\ttfamily double Kinematics\+::\+Get\+Body\+Mass (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}}}]{\+\_\+body }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 2663 of file kinematics.\+cpp.
+
+\mbox{\Hypertarget{classKinematics_ab662a88a6551884d4cf8c882d735620d}\label{classKinematics_ab662a88a6551884d4cf8c882d735620d}} 
+\index{Kinematics@{Kinematics}!GetBodyInertia@{GetBodyInertia}}
+\index{GetBodyInertia@{GetBodyInertia}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{GetBodyInertia()}{GetBodyInertia()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 3 $>$ Kinematics\+::\+Get\+Body\+Inertia (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}}}]{\+\_\+body }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 2705 of file kinematics.\+cpp.
+
+\mbox{\Hypertarget{classKinematics_acda981e1f121277218aede2f78811740}\label{classKinematics_acda981e1f121277218aede2f78811740}} 
+\index{Kinematics@{Kinematics}!GetBodyInertia@{GetBodyInertia}}
+\index{GetBodyInertia@{GetBodyInertia}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{GetBodyInertia()}{GetBodyInertia()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 3 $>$ Kinematics\+::\+Get\+Body\+Inertia (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classKinematics_a390b699225b57bc303653caeb6039df3}{Body\+Type}}}]{\+\_\+body,  }\item[{\mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}}}]{\+\_\+leg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 2747 of file kinematics.\+cpp.
+
+\mbox{\Hypertarget{classKinematics_ace9c8e09c5b58e7f826c73336131a35c}\label{classKinematics_ace9c8e09c5b58e7f826c73336131a35c}} 
+\index{Kinematics@{Kinematics}!GetflOffset@{GetflOffset}}
+\index{GetflOffset@{GetflOffset}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{GetflOffset()}{GetflOffset()}}
+{\footnotesize\ttfamily bool Kinematics\+::\+Getfl\+Offset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 664 of file kinematics.\+h.
+
+\mbox{\Hypertarget{classKinematics_a51d37c9f27a88a34d8c0935b29ccd5db}\label{classKinematics_a51d37c9f27a88a34d8c0935b29ccd5db}} 
+\index{Kinematics@{Kinematics}!GetfrOffset@{GetfrOffset}}
+\index{GetfrOffset@{GetfrOffset}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{GetfrOffset()}{GetfrOffset()}}
+{\footnotesize\ttfamily bool Kinematics\+::\+Getfr\+Offset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 666 of file kinematics.\+h.
+
+\mbox{\Hypertarget{classKinematics_a243de9efdfc416c2abbb8d74dedf559a}\label{classKinematics_a243de9efdfc416c2abbb8d74dedf559a}} 
+\index{Kinematics@{Kinematics}!GetrlOffset@{GetrlOffset}}
+\index{GetrlOffset@{GetrlOffset}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{GetrlOffset()}{GetrlOffset()}}
+{\footnotesize\ttfamily bool Kinematics\+::\+Getrl\+Offset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 668 of file kinematics.\+h.
+
+\mbox{\Hypertarget{classKinematics_ac7629012c3d42f3ad70e6cb84e7e3a14}\label{classKinematics_ac7629012c3d42f3ad70e6cb84e7e3a14}} 
+\index{Kinematics@{Kinematics}!GetrrOffset@{GetrrOffset}}
+\index{GetrrOffset@{GetrrOffset}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{GetrrOffset()}{GetrrOffset()}}
+{\footnotesize\ttfamily bool Kinematics\+::\+Getrr\+Offset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 670 of file kinematics.\+h.
+
+\mbox{\Hypertarget{classKinematics_a6049e6ba5565013b410f8d795d7e902e}\label{classKinematics_a6049e6ba5565013b410f8d795d7e902e}} 
+\index{Kinematics@{Kinematics}!GetDistanceFromBaseToFrontLeftHipInB@{GetDistanceFromBaseToFrontLeftHipInB}}
+\index{GetDistanceFromBaseToFrontLeftHipInB@{GetDistanceFromBaseToFrontLeftHipInB}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{GetDistanceFromBaseToFrontLeftHipInB()}{GetDistanceFromBaseToFrontLeftHipInB()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 1$>$ Kinematics\+::\+Get\+Distance\+From\+Base\+To\+Front\+Left\+Hip\+InB (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 672 of file kinematics.\+h.
+
+\mbox{\Hypertarget{classKinematics_a9cbb1de8f26d92bf159cdf0f8de9d2f9}\label{classKinematics_a9cbb1de8f26d92bf159cdf0f8de9d2f9}} 
+\index{Kinematics@{Kinematics}!GetDistanceFromBaseToFrontRightHipInB@{GetDistanceFromBaseToFrontRightHipInB}}
+\index{GetDistanceFromBaseToFrontRightHipInB@{GetDistanceFromBaseToFrontRightHipInB}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{GetDistanceFromBaseToFrontRightHipInB()}{GetDistanceFromBaseToFrontRightHipInB()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 1$>$ Kinematics\+::\+Get\+Distance\+From\+Base\+To\+Front\+Right\+Hip\+InB (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 674 of file kinematics.\+h.
+
+\mbox{\Hypertarget{classKinematics_a2296f6be4a97875029e46f45b3933f85}\label{classKinematics_a2296f6be4a97875029e46f45b3933f85}} 
+\index{Kinematics@{Kinematics}!GetDistanceFromBaseToRearLeftHipInB@{GetDistanceFromBaseToRearLeftHipInB}}
+\index{GetDistanceFromBaseToRearLeftHipInB@{GetDistanceFromBaseToRearLeftHipInB}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{GetDistanceFromBaseToRearLeftHipInB()}{GetDistanceFromBaseToRearLeftHipInB()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 1$>$ Kinematics\+::\+Get\+Distance\+From\+Base\+To\+Rear\+Left\+Hip\+InB (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 676 of file kinematics.\+h.
+
+\mbox{\Hypertarget{classKinematics_a983aa4fdbabf4644429c536ef7e53b45}\label{classKinematics_a983aa4fdbabf4644429c536ef7e53b45}} 
+\index{Kinematics@{Kinematics}!GetDistanceFromBaseToRearRightHipInB@{GetDistanceFromBaseToRearRightHipInB}}
+\index{GetDistanceFromBaseToRearRightHipInB@{GetDistanceFromBaseToRearRightHipInB}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{GetDistanceFromBaseToRearRightHipInB()}{GetDistanceFromBaseToRearRightHipInB()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 1$>$ Kinematics\+::\+Get\+Distance\+From\+Base\+To\+Rear\+Right\+Hip\+InB (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 678 of file kinematics.\+h.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classKinematics_ac75f5642395505981f66eff994f1b309}\label{classKinematics_ac75f5642395505981f66eff994f1b309}} 
+\index{Kinematics@{Kinematics}!min\_angles@{min\_angles}}
+\index{min\_angles@{min\_angles}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{min\_angles}{min\_angles}}
+{\footnotesize\ttfamily \mbox{\hyperlink{kinematics_8h_a777bb5e7d16b72f382c989417decd251}{Joint\+Space\+Vector}} Kinematics\+::min\+\_\+angles\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Minimum joint limits. 
+
+
+
+Definition at line 681 of file kinematics.\+h.
+
+\mbox{\Hypertarget{classKinematics_a6fc7673ce2605db3fd4ece5e14a323b2}\label{classKinematics_a6fc7673ce2605db3fd4ece5e14a323b2}} 
+\index{Kinematics@{Kinematics}!max\_angles@{max\_angles}}
+\index{max\_angles@{max\_angles}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{max\_angles}{max\_angles}}
+{\footnotesize\ttfamily \mbox{\hyperlink{kinematics_8h_a777bb5e7d16b72f382c989417decd251}{Joint\+Space\+Vector}} Kinematics\+::max\+\_\+angles\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Maximum joint limits. 
+
+
+
+Definition at line 684 of file kinematics.\+h.
+
+\mbox{\Hypertarget{classKinematics_a3bafab67e908cd74efedad01e1773bdc}\label{classKinematics_a3bafab67e908cd74efedad01e1773bdc}} 
+\index{Kinematics@{Kinematics}!positionBaseToFrontLeftInB@{positionBaseToFrontLeftInB}}
+\index{positionBaseToFrontLeftInB@{positionBaseToFrontLeftInB}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{positionBaseToFrontLeftInB}{positionBaseToFrontLeftInB}}
+{\footnotesize\ttfamily \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Vector3d}} Kinematics\+::position\+Base\+To\+Front\+Left\+InB\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Position vector relating the base coordinates to the front left hip. 
+
+
+
+Definition at line 688 of file kinematics.\+h.
+
+\mbox{\Hypertarget{classKinematics_ac50d9f9296fb4846f2a9b87c50eac7c3}\label{classKinematics_ac50d9f9296fb4846f2a9b87c50eac7c3}} 
+\index{Kinematics@{Kinematics}!positionBaseToFrontRightInB@{positionBaseToFrontRightInB}}
+\index{positionBaseToFrontRightInB@{positionBaseToFrontRightInB}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{positionBaseToFrontRightInB}{positionBaseToFrontRightInB}}
+{\footnotesize\ttfamily \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Vector3d}} Kinematics\+::position\+Base\+To\+Front\+Right\+InB\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Position vector relating the base coordinates to the front right hip. 
+
+
+
+Definition at line 692 of file kinematics.\+h.
+
+\mbox{\Hypertarget{classKinematics_a51507eacda7192c7673ab565de414315}\label{classKinematics_a51507eacda7192c7673ab565de414315}} 
+\index{Kinematics@{Kinematics}!positionBaseToRearLeftInB@{positionBaseToRearLeftInB}}
+\index{positionBaseToRearLeftInB@{positionBaseToRearLeftInB}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{positionBaseToRearLeftInB}{positionBaseToRearLeftInB}}
+{\footnotesize\ttfamily \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Vector3d}} Kinematics\+::position\+Base\+To\+Rear\+Left\+InB\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Position vector relating the base coordinates to the rear left hip. 
+
+
+
+Definition at line 696 of file kinematics.\+h.
+
+\mbox{\Hypertarget{classKinematics_a8fac97d4fab206a6f114dc4372f7879a}\label{classKinematics_a8fac97d4fab206a6f114dc4372f7879a}} 
+\index{Kinematics@{Kinematics}!positionBaseToRearRightInB@{positionBaseToRearRightInB}}
+\index{positionBaseToRearRightInB@{positionBaseToRearRightInB}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{positionBaseToRearRightInB}{positionBaseToRearRightInB}}
+{\footnotesize\ttfamily \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Vector3d}} Kinematics\+::position\+Base\+To\+Rear\+Right\+InB\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Position vector relating the base coordinates to the rear right hip. 
+
+
+
+Definition at line 700 of file kinematics.\+h.
+
+\mbox{\Hypertarget{classKinematics_af731f4e21bd1af1d83a0b22b773e703a}\label{classKinematics_af731f4e21bd1af1d83a0b22b773e703a}} 
+\index{Kinematics@{Kinematics}!L1@{L1}}
+\index{L1@{L1}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{L1}{L1}}
+{\footnotesize\ttfamily double Kinematics\+::\+L1\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Hip link length. 
+
+
+
+Definition at line 703 of file kinematics.\+h.
+
+\mbox{\Hypertarget{classKinematics_aaa42ff7b758f092fe11ed072576f7f36}\label{classKinematics_aaa42ff7b758f092fe11ed072576f7f36}} 
+\index{Kinematics@{Kinematics}!L2@{L2}}
+\index{L2@{L2}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{L2}{L2}}
+{\footnotesize\ttfamily double Kinematics\+::\+L2\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Thigh (Femur) link length. 
+
+
+
+Definition at line 706 of file kinematics.\+h.
+
+\mbox{\Hypertarget{classKinematics_a0dd16fdaeb686f1a1224bc325f83a851}\label{classKinematics_a0dd16fdaeb686f1a1224bc325f83a851}} 
+\index{Kinematics@{Kinematics}!L3@{L3}}
+\index{L3@{L3}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{L3}{L3}}
+{\footnotesize\ttfamily double Kinematics\+::\+L3\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Leg (Fibula \& Tibia) link length. 
+
+
+
+Definition at line 709 of file kinematics.\+h.
+
+\mbox{\Hypertarget{classKinematics_afcc593ba5a0b574b938fe88f9478d304}\label{classKinematics_afcc593ba5a0b574b938fe88f9478d304}} 
+\index{Kinematics@{Kinematics}!LC1@{LC1}}
+\index{LC1@{LC1}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{LC1}{LC1}}
+{\footnotesize\ttfamily double Kinematics\+::\+LC1\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Hip yaw joint to hip CoM length. 
+
+
+
+Definition at line 712 of file kinematics.\+h.
+
+\mbox{\Hypertarget{classKinematics_a548a6e948ecd3c73568b59ed34b5914e}\label{classKinematics_a548a6e948ecd3c73568b59ed34b5914e}} 
+\index{Kinematics@{Kinematics}!LC2@{LC2}}
+\index{LC2@{LC2}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{LC2}{LC2}}
+{\footnotesize\ttfamily double Kinematics\+::\+LC2\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Hip pitch joint to thigh CoM length. 
+
+
+
+Definition at line 715 of file kinematics.\+h.
+
+\mbox{\Hypertarget{classKinematics_a818474c380afb54ec01c0d05c4789b22}\label{classKinematics_a818474c380afb54ec01c0d05c4789b22}} 
+\index{Kinematics@{Kinematics}!LC3@{LC3}}
+\index{LC3@{LC3}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{LC3}{LC3}}
+{\footnotesize\ttfamily double Kinematics\+::\+LC3\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Knee pitch joint to leg CoM length. 
+
+
+
+Definition at line 718 of file kinematics.\+h.
+
+\mbox{\Hypertarget{classKinematics_ac679fa54d740d394c093e2ec4b5f4533}\label{classKinematics_ac679fa54d740d394c093e2ec4b5f4533}} 
+\index{Kinematics@{Kinematics}!flOffset@{flOffset}}
+\index{flOffset@{flOffset}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{flOffset}{flOffset}}
+{\footnotesize\ttfamily bool Kinematics\+::fl\+Offset\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Front Left offset. 
+
+
+
+Definition at line 721 of file kinematics.\+h.
+
+\mbox{\Hypertarget{classKinematics_a1bcf8567289477307b831c2be788059b}\label{classKinematics_a1bcf8567289477307b831c2be788059b}} 
+\index{Kinematics@{Kinematics}!frOffset@{frOffset}}
+\index{frOffset@{frOffset}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{frOffset}{frOffset}}
+{\footnotesize\ttfamily bool Kinematics\+::fr\+Offset\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Front Right offset. 
+
+
+
+Definition at line 724 of file kinematics.\+h.
+
+\mbox{\Hypertarget{classKinematics_a632528ba1331913e4adac4bb727cb5c6}\label{classKinematics_a632528ba1331913e4adac4bb727cb5c6}} 
+\index{Kinematics@{Kinematics}!rlOffset@{rlOffset}}
+\index{rlOffset@{rlOffset}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{rlOffset}{rlOffset}}
+{\footnotesize\ttfamily bool Kinematics\+::rl\+Offset\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Rear Left offset. 
+
+
+
+Definition at line 727 of file kinematics.\+h.
+
+\mbox{\Hypertarget{classKinematics_a500584ee8b394a56b0742a5941a674e5}\label{classKinematics_a500584ee8b394a56b0742a5941a674e5}} 
+\index{Kinematics@{Kinematics}!rrOffset@{rrOffset}}
+\index{rrOffset@{rrOffset}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{rrOffset}{rrOffset}}
+{\footnotesize\ttfamily bool Kinematics\+::rr\+Offset\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Rear Right offset. 
+
+
+
+Definition at line 730 of file kinematics.\+h.
+
+\mbox{\Hypertarget{classKinematics_ab06a3f11ac00f9ac30966280ab708132}\label{classKinematics_ab06a3f11ac00f9ac30966280ab708132}} 
+\index{Kinematics@{Kinematics}!M0@{M0}}
+\index{M0@{M0}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{M0}{M0}}
+{\footnotesize\ttfamily double Kinematics\+::\+M0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Body link mass. 
+
+
+
+Definition at line 733 of file kinematics.\+h.
+
+\mbox{\Hypertarget{classKinematics_aa96fc0ed77f742883bf33c938d6fcaee}\label{classKinematics_aa96fc0ed77f742883bf33c938d6fcaee}} 
+\index{Kinematics@{Kinematics}!M1@{M1}}
+\index{M1@{M1}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{M1}{M1}}
+{\footnotesize\ttfamily double Kinematics\+::\+M1\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Hip link mass. 
+
+
+
+Definition at line 736 of file kinematics.\+h.
+
+\mbox{\Hypertarget{classKinematics_aababf894af6917254556a45f3d950440}\label{classKinematics_aababf894af6917254556a45f3d950440}} 
+\index{Kinematics@{Kinematics}!M2@{M2}}
+\index{M2@{M2}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{M2}{M2}}
+{\footnotesize\ttfamily double Kinematics\+::\+M2\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Thigh link mass. 
+
+
+
+Definition at line 739 of file kinematics.\+h.
+
+\mbox{\Hypertarget{classKinematics_aa89a99505f895dfce2e7106706edecc8}\label{classKinematics_aa89a99505f895dfce2e7106706edecc8}} 
+\index{Kinematics@{Kinematics}!M3@{M3}}
+\index{M3@{M3}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{M3}{M3}}
+{\footnotesize\ttfamily double Kinematics\+::\+M3\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Leg link mass. 
+
+
+
+Definition at line 742 of file kinematics.\+h.
+
+\mbox{\Hypertarget{classKinematics_a91281d2e5d11ed7e7bc3c5b4145552a3}\label{classKinematics_a91281d2e5d11ed7e7bc3c5b4145552a3}} 
+\index{Kinematics@{Kinematics}!I0@{I0}}
+\index{I0@{I0}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{I0}{I0}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 3$>$ Kinematics\+::\+I0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Body link inertia matrix. 
+
+
+
+Definition at line 745 of file kinematics.\+h.
+
+\mbox{\Hypertarget{classKinematics_aca4537379f10091988ca8f033dfcb9c5}\label{classKinematics_aca4537379f10091988ca8f033dfcb9c5}} 
+\index{Kinematics@{Kinematics}!I1\_fl\_rr@{I1\_fl\_rr}}
+\index{I1\_fl\_rr@{I1\_fl\_rr}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{I1\_fl\_rr}{I1\_fl\_rr}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 3$>$ Kinematics\+::\+I1\+\_\+fl\+\_\+rr\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Front Left \& Rear Right Hip link inertia matrix. 
+
+
+
+Definition at line 748 of file kinematics.\+h.
+
+\mbox{\Hypertarget{classKinematics_aa081fd94fcc554de0e9abc89034eb836}\label{classKinematics_aa081fd94fcc554de0e9abc89034eb836}} 
+\index{Kinematics@{Kinematics}!I1\_fr\_rl@{I1\_fr\_rl}}
+\index{I1\_fr\_rl@{I1\_fr\_rl}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{I1\_fr\_rl}{I1\_fr\_rl}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 3$>$ Kinematics\+::\+I1\+\_\+fr\+\_\+rl\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Front Right \& Rear Left Hip link inertia matrix. 
+
+
+
+Definition at line 751 of file kinematics.\+h.
+
+\mbox{\Hypertarget{classKinematics_ace9df13d43236450c8b61d44b2006e6f}\label{classKinematics_ace9df13d43236450c8b61d44b2006e6f}} 
+\index{Kinematics@{Kinematics}!I2@{I2}}
+\index{I2@{I2}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{I2}{I2}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 3$>$ Kinematics\+::\+I2\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Thigh link inertia matrix. 
+
+
+
+Definition at line 754 of file kinematics.\+h.
+
+\mbox{\Hypertarget{classKinematics_a524d4fbdbb923009fda8ec3f90bcf8a9}\label{classKinematics_a524d4fbdbb923009fda8ec3f90bcf8a9}} 
+\index{Kinematics@{Kinematics}!I3@{I3}}
+\index{I3@{I3}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{I3}{I3}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 3$>$ Kinematics\+::\+I3\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Leg link inertia matrix. 
+
+
+
+Definition at line 757 of file kinematics.\+h.
+
+
+
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-catkin\+\_\+ws/src/control/kinematics/include/kinematics/kinematics.\+h\item 
-catkin\+\_\+ws/src/control/kinematics/src/kinematics.\+cpp\end{DoxyCompactItemize}
+catkin\+\_\+ws/src/control/kinematics/include/kinematics/\mbox{\hyperlink{kinematics_8h}{kinematics.\+h}}\item 
+catkin\+\_\+ws/src/control/kinematics/src/\mbox{\hyperlink{kinematics_8cpp}{kinematics.\+cpp}}\end{DoxyCompactItemize}

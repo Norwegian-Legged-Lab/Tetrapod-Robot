@@ -2,13 +2,12 @@
 \label{classController}\index{Controller@{Controller}}
 
 
-Inheritance diagram for Controller\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=173pt]{classController__inherit__graph}
-\end{center}
-\end{figure}
+{\ttfamily \#include $<$controller.\+h$>$}
+
+
+
+Inheritance diagram for Controller\+:
+% FIG 0
 
 
 Collaboration diagram for Controller\+:\nopagebreak
@@ -21,153 +20,1104 @@ Collaboration diagram for Controller\+:\nopagebreak
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classController_a662fe4b20cfb338f0936a1983305770f}\label{classController_a662fe4b20cfb338f0936a1983305770f}} 
-{\bfseries Controller} (int controller\+\_\+freq)
+\mbox{\hyperlink{classController_a662fe4b20cfb338f0936a1983305770f}{Controller}} (int \mbox{\hyperlink{classController_a9a68485769c0b78bdd3c5e7050821f19}{controller\+\_\+freq}})
 \item 
-\mbox{\Hypertarget{classController_acd43dfe045373dc46e0b47e120745038}\label{classController_acd43dfe045373dc46e0b47e120745038}} 
-void {\bfseries wait\+For\+Ready\+To\+Proceed} ()
+virtual \mbox{\hyperlink{classController_a0ab87934c4f7a266cfdb86e0f36bc1b5}{$\sim$\+Controller}} ()
 \item 
-\mbox{\Hypertarget{classController_a9635a5c77031b610febe90725af7f123}\label{classController_a9635a5c77031b610febe90725af7f123}} 
-virtual void {\bfseries Update\+Feet\+References} ()=0
+bool \mbox{\hyperlink{classController_ae258a1b24b4fc1afd2383be56bdc9d53}{Run\+Stand\+Up\+Sequence}} ()
 \item 
-\mbox{\Hypertarget{classController_a0449baeb66c81108867fe63d76b537c5}\label{classController_a0449baeb66c81108867fe63d76b537c5}} 
-bool {\bfseries Update\+Joint\+Commands} ()
+void \mbox{\hyperlink{classController_acd43dfe045373dc46e0b47e120745038}{wait\+For\+Ready\+To\+Proceed}} ()
 \item 
-\mbox{\Hypertarget{classController_ae736b659b7a5f45b631c87eb0a966d90}\label{classController_ae736b659b7a5f45b631c87eb0a966d90}} 
-bool {\bfseries send\+Joint\+Position\+Commands} ()
+virtual void \mbox{\hyperlink{classController_a9635a5c77031b610febe90725af7f123}{Update\+Feet\+References}} ()=0
 \item 
-\mbox{\Hypertarget{classController_aefc59b1e93e6013faab2b2fd7dad1efb}\label{classController_aefc59b1e93e6013faab2b2fd7dad1efb}} 
-virtual void {\bfseries set\+Initial\+Configuration} ()
+bool \mbox{\hyperlink{classController_a0449baeb66c81108867fe63d76b537c5}{Update\+Joint\+Commands}} ()
 \item 
-\mbox{\Hypertarget{classController_ad3d246e4dc70ae2e333f1b74861558ab}\label{classController_ad3d246e4dc70ae2e333f1b74861558ab}} 
-void {\bfseries init\+R\+OS} ()
+bool \mbox{\hyperlink{classController_a4cbe0ea983515c9b54b2365e091ffadd}{Update\+Velocity\+Commands}} ()
 \item 
-\mbox{\Hypertarget{classController_a148eec01e763677b27bb70c726c9ca58}\label{classController_a148eec01e763677b27bb70c726c9ca58}} 
-void {\bfseries joint\+State\+Callback} (const sensor\+\_\+msgs\+::\+Joint\+State\+Ptr \&msg)
+bool \mbox{\hyperlink{classController_ae736b659b7a5f45b631c87eb0a966d90}{send\+Joint\+Position\+Commands}} ()
 \item 
-\mbox{\Hypertarget{classController_a8a7cc6a5cff67ea6ee709b1bf5d51e28}\label{classController_a8a7cc6a5cff67ea6ee709b1bf5d51e28}} 
-void {\bfseries ready\+To\+Proceed\+Callback} (const std\+\_\+msgs\+::\+Bool \&msg)
+void \mbox{\hyperlink{classController_a5d80945f46d68bfad97641f464b2203e}{Stand\+Still}} (const double \&duration)
 \item 
-\mbox{\Hypertarget{classController_a0a83e6773441e7419a912c06ea0feded}\label{classController_a0a83e6773441e7419a912c06ea0feded}} 
-void \mbox{\hyperlink{classController_a0a83e6773441e7419a912c06ea0feded}{Twist\+Command\+Callback}} (const geometry\+\_\+msgs\+::\+Twist\+Const\+Ptr \&\+\_\+msg)
-\begin{DoxyCompactList}\small\item\em Converts twist command messages into desired linear and angular body velocities. \end{DoxyCompactList}\end{DoxyCompactItemize}
+virtual void \mbox{\hyperlink{classController_aefc59b1e93e6013faab2b2fd7dad1efb}{set\+Initial\+Configuration}} ()
+\item 
+void \mbox{\hyperlink{classController_ad5bf8536b07e2f5c6ba53042ff00df74}{Set\+Twist\+Command}} (double lin\+\_\+vel\+\_\+cmd\+\_\+x, double lin\+\_\+vel\+\_\+cmd\+\_\+y, double ang\+\_\+vel\+\_\+cmd\+\_\+z)
+\item 
+void \mbox{\hyperlink{classController_ad3d246e4dc70ae2e333f1b74861558ab}{init\+ROS}} ()
+\item 
+void \mbox{\hyperlink{classController_a8941a1168b1768a440c737eaa5c2f601}{Wait\+For\+Initial\+State}} ()
+\item 
+bool \mbox{\hyperlink{classController_ab862de42ac0183d8badaa9e1b8185d91}{Move\+Feet\+To\+Positions}} (Eigen\+::\+Matrix$<$ double, 3, 1 $>$ fl\+\_\+goal\+\_\+foot\+\_\+pos, Eigen\+::\+Matrix$<$ double, 3, 1 $>$ fr\+\_\+goal\+\_\+foot\+\_\+pos, Eigen\+::\+Matrix$<$ double, 3, 1 $>$ rl\+\_\+goal\+\_\+foot\+\_\+pos, Eigen\+::\+Matrix$<$ double, 3, 1 $>$ rr\+\_\+goal\+\_\+foot\+\_\+pos)
+\item 
+bool \mbox{\hyperlink{classController_aef6b7991b879b8c9a3547816cf453aba}{Move\+Joints\+To\+Setpoints}} (Eigen\+::\+Matrix$<$ double, 12, 1 $>$ goal\+\_\+joint\+\_\+angles)
+\item 
+bool \mbox{\hyperlink{classController_ab1d93485ede8521db41e792875928dcf}{Move\+Foot\+To\+Position}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Kinematics\+::\+Leg\+Type}} \&leg\+\_\+type, const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&goal\+\_\+foot\+\_\+position)
+\item 
+void \mbox{\hyperlink{classController_aa498264be5854362a95f5b9dbf95fd31}{Update\+Feet\+Positions}} ()
+\item 
+bool \mbox{\hyperlink{classController_a33dafd3708e6a40e46156ca463b6eef5}{Check\+Ready\+To\+Proceed}} ()
+\item 
+void \mbox{\hyperlink{classController_a5d256ea0bc36f25c2e5c6cf5b354b0e3}{Reset\+Ready\+To\+Proceed\+Flag}} ()
+\item 
+void \mbox{\hyperlink{classController_a294977ab8c7acb44649d2811c26364e0}{Set\+Ready\+To\+Proceed\+Flag}} ()
+\item 
+bool \mbox{\hyperlink{classController_a7890ffdc972c06f77fa8a7dfbbf7d35c}{Ready\+To\+Proceed}} (std\+\_\+srvs\+::\+Empty\+::\+Request \&\+\_\+req, std\+\_\+srvs\+::\+Empty\+::\+Response \&\+\_\+res)
+\begin{DoxyCompactList}\small\item\em The Ready\+To\+Proceed function handles an incoming ready\+To\+Proceed service request. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classController_ab6d9cb349df5c57e76a42669ca99daa8}{Shutdown}} (std\+\_\+srvs\+::\+Empty\+::\+Request \&\+\_\+req, std\+\_\+srvs\+::\+Empty\+::\+Response \&\+\_\+res)
+\begin{DoxyCompactList}\small\item\em The Shutdown function handles an incoming shutdown service request. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classController_ab2a29601a614f6f5deb82743d3c60f23}{Write\+To\+Log}} ()
+\end{DoxyCompactItemize}
 \doxysubsection*{Protected Types}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classController_ad81a67232a89dee5cc3be0a1d4508f3a}\label{classController_ad81a67232a89dee5cc3be0a1d4508f3a}} 
-using {\bfseries Joint\+State} = Eigen\+::\+Matrix$<$ double, 12, 1 $>$
+using \mbox{\hyperlink{classController_ad81a67232a89dee5cc3be0a1d4508f3a}{Joint\+State}} = Eigen\+::\+Matrix$<$ double, 12, 1 $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classController_a148eec01e763677b27bb70c726c9ca58}{joint\+State\+Callback}} (const sensor\+\_\+msgs\+::\+Joint\+State\+Ptr \&msg)
+\item 
+void \mbox{\hyperlink{classController_a8a7cc6a5cff67ea6ee709b1bf5d51e28}{ready\+To\+Proceed\+Callback}} (const std\+\_\+msgs\+::\+Bool \&msg)
+\item 
+void \mbox{\hyperlink{classController_a0a83e6773441e7419a912c06ea0feded}{Twist\+Command\+Callback}} (const geometry\+\_\+msgs\+::\+Twist\+Const\+Ptr \&\+\_\+msg)
+\begin{DoxyCompactList}\small\item\em Converts twist command messages into desired linear and angular body velocities. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classController_a95cd41ea450347c888a2edea95758c59}{Twist\+State\+Callback}} (const geometry\+\_\+msgs\+::\+Twist\+Const\+Ptr \&\+\_\+msg)
+\item 
+void \mbox{\hyperlink{classController_a46b0803428199c59e264168ccad89801}{Base\+Pose\+State\+Callback}} (const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&msg)
 \end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classController_ab708b9f0c358de5f24038848c033a3b6}\label{classController_ab708b9f0c358de5f24038848c033a3b6}} 
-std\+::string {\bfseries node\+\_\+name} = \char`\"{}controller\+\_\+node\char`\"{}
+std\+::string \mbox{\hyperlink{classController_ab708b9f0c358de5f24038848c033a3b6}{node\+\_\+name}} = \char`\"{}controller\+\_\+node\char`\"{}
 \item 
-\mbox{\Hypertarget{classController_ab040f5df5ec13e33e0033de7936eb5bc}\label{classController_ab040f5df5ec13e33e0033de7936eb5bc}} 
-std\+::string {\bfseries robot\+\_\+name} = R\+O\+B\+O\+T\+\_\+\+N\+A\+ME
+std\+::string \mbox{\hyperlink{classController_ab040f5df5ec13e33e0033de7936eb5bc}{robot\+\_\+name}} = \mbox{\hyperlink{controller_8h_af1ae1efbf65c9fe5cbace9d0c592a2cf}{ROBOT\+\_\+\+NAME}}
 \item 
-\mbox{\Hypertarget{classController_a9a68485769c0b78bdd3c5e7050821f19}\label{classController_a9a68485769c0b78bdd3c5e7050821f19}} 
-int {\bfseries controller\+\_\+freq}
+int \mbox{\hyperlink{classController_a9a68485769c0b78bdd3c5e7050821f19}{controller\+\_\+freq}}
 \item 
-\mbox{\Hypertarget{classController_a90e10804b2d5186d39298152bc4d8172}\label{classController_a90e10804b2d5186d39298152bc4d8172}} 
-\mbox{\hyperlink{classKinematics}{Kinematics}} {\bfseries kinematics}
+\mbox{\hyperlink{classKinematics}{Kinematics}} \mbox{\hyperlink{classController_a90e10804b2d5186d39298152bc4d8172}{kinematics}}
 \item 
-\mbox{\Hypertarget{classController_a0a25cc4805c75c868e3c84b8a45e51ef}\label{classController_a0a25cc4805c75c868e3c84b8a45e51ef}} 
-ros\+::\+Node\+Handle\+Ptr {\bfseries node\+Handle}
+ros\+::\+Node\+Handle\+Ptr \mbox{\hyperlink{classController_a0a25cc4805c75c868e3c84b8a45e51ef}{node\+Handle}}
 \item 
-\mbox{\Hypertarget{classController_a5c885d5967551508449483dc9a1fd5c6}\label{classController_a5c885d5967551508449483dc9a1fd5c6}} 
-ros\+::\+Publisher {\bfseries joint\+\_\+command\+\_\+publisher}
+ros\+::\+Publisher \mbox{\hyperlink{classController_a5c885d5967551508449483dc9a1fd5c6}{joint\+\_\+command\+\_\+publisher}}
 \item 
-\mbox{\Hypertarget{classController_aced004f1811ea63a1029482527272bb2}\label{classController_aced004f1811ea63a1029482527272bb2}} 
-ros\+::\+Subscriber {\bfseries joint\+\_\+state\+\_\+subscriber}
+ros\+::\+Subscriber \mbox{\hyperlink{classController_aced004f1811ea63a1029482527272bb2}{joint\+\_\+state\+\_\+subscriber}}
 \item 
-\mbox{\Hypertarget{classController_a3c4543445981fe7bdf3e7236719bf3ad}\label{classController_a3c4543445981fe7bdf3e7236719bf3ad}} 
-ros\+::\+Subscriber {\bfseries ready\+\_\+to\+\_\+proceed\+\_\+subscriber}
+ros\+::\+Subscriber \mbox{\hyperlink{classController_a5b70dcceb5eb6e45c156aeee9d23c1a5}{base\+\_\+pose\+\_\+state\+\_\+subscriber}}
 \item 
-\mbox{\Hypertarget{classController_a4fba78e17b2518fafcd54239d39afaec}\label{classController_a4fba78e17b2518fafcd54239d39afaec}} 
+ros\+::\+Subscriber \mbox{\hyperlink{classController_a3c4543445981fe7bdf3e7236719bf3ad}{ready\+\_\+to\+\_\+proceed\+\_\+subscriber}}
+\item 
 ros\+::\+Subscriber \mbox{\hyperlink{classController_a4fba78e17b2518fafcd54239d39afaec}{twist\+\_\+command\+\_\+subscriber}}
 \begin{DoxyCompactList}\small\item\em Subscribes to twist command messages from an external controller. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classController_a1e084a65c35495f9894977939953e801}\label{classController_a1e084a65c35495f9894977939953e801}} 
-Eigen\+::\+Vector3d {\bfseries fl\+\_\+offset} = Eigen\+::\+Vector3d(L\+E\+G\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+L\+E\+N\+G\+TH, L\+E\+G\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+L\+E\+N\+G\+TH, 0)
+ros\+::\+Subscriber \mbox{\hyperlink{classController_aa44b36ae7a6fc70eadf62843dfd1c922}{twist\+\_\+state\+\_\+subscriber}}
 \item 
-\mbox{\Hypertarget{classController_a013ca21ece18f7854d2cc7b56736392d}\label{classController_a013ca21ece18f7854d2cc7b56736392d}} 
-Eigen\+::\+Vector3d {\bfseries fr\+\_\+offset} = Eigen\+::\+Vector3d(L\+E\+G\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+L\+E\+N\+G\+TH, -\/L\+E\+G\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+L\+E\+N\+G\+TH, 0)
+\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} \mbox{\hyperlink{classController_a1e084a65c35495f9894977939953e801}{fl\+\_\+offset}} = \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}(\mbox{\hyperlink{controller_8h_a2d7da076c74b9aaf3ac9dea2fb4c903c}{LEG\+\_\+\+OFFSET\+\_\+\+LENGTH}}, \mbox{\hyperlink{controller_8h_a2d7da076c74b9aaf3ac9dea2fb4c903c}{LEG\+\_\+\+OFFSET\+\_\+\+LENGTH}}, 0)
 \item 
-\mbox{\Hypertarget{classController_ac986315c0ce020553ebb51193387e8d4}\label{classController_ac986315c0ce020553ebb51193387e8d4}} 
-Eigen\+::\+Vector3d {\bfseries rl\+\_\+offset} = Eigen\+::\+Vector3d(-\/L\+E\+G\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+L\+E\+N\+G\+TH, L\+E\+G\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+L\+E\+N\+G\+TH, 0)
+\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} \mbox{\hyperlink{classController_a013ca21ece18f7854d2cc7b56736392d}{fr\+\_\+offset}} = \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}(\mbox{\hyperlink{controller_8h_a2d7da076c74b9aaf3ac9dea2fb4c903c}{LEG\+\_\+\+OFFSET\+\_\+\+LENGTH}}, -\/\mbox{\hyperlink{controller_8h_a2d7da076c74b9aaf3ac9dea2fb4c903c}{LEG\+\_\+\+OFFSET\+\_\+\+LENGTH}}, 0)
 \item 
-\mbox{\Hypertarget{classController_a49b046be06009b1c230693e4fbec81de}\label{classController_a49b046be06009b1c230693e4fbec81de}} 
-Eigen\+::\+Vector3d {\bfseries rr\+\_\+offset} = Eigen\+::\+Vector3d(-\/L\+E\+G\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+L\+E\+N\+G\+TH, -\/L\+E\+G\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+L\+E\+N\+G\+TH, 0)
+\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} \mbox{\hyperlink{classController_ac986315c0ce020553ebb51193387e8d4}{rl\+\_\+offset}} = \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}(-\/\mbox{\hyperlink{controller_8h_a2d7da076c74b9aaf3ac9dea2fb4c903c}{LEG\+\_\+\+OFFSET\+\_\+\+LENGTH}}, \mbox{\hyperlink{controller_8h_a2d7da076c74b9aaf3ac9dea2fb4c903c}{LEG\+\_\+\+OFFSET\+\_\+\+LENGTH}}, 0)
 \item 
-\mbox{\Hypertarget{classController_a942efe36263a2e13400085845533d0a7}\label{classController_a942efe36263a2e13400085845533d0a7}} 
-Eigen\+::\+Vector3d {\bfseries fl\+\_\+position\+\_\+body}
+\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} \mbox{\hyperlink{classController_a49b046be06009b1c230693e4fbec81de}{rr\+\_\+offset}} = \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}(-\/\mbox{\hyperlink{controller_8h_a2d7da076c74b9aaf3ac9dea2fb4c903c}{LEG\+\_\+\+OFFSET\+\_\+\+LENGTH}}, -\/\mbox{\hyperlink{controller_8h_a2d7da076c74b9aaf3ac9dea2fb4c903c}{LEG\+\_\+\+OFFSET\+\_\+\+LENGTH}}, 0)
 \item 
-\mbox{\Hypertarget{classController_aafbb1b494219caa637960dbd6ce8af10}\label{classController_aafbb1b494219caa637960dbd6ce8af10}} 
-Eigen\+::\+Vector3d {\bfseries fr\+\_\+position\+\_\+body}
+\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} \mbox{\hyperlink{classController_a942efe36263a2e13400085845533d0a7}{fl\+\_\+position\+\_\+body}}
 \item 
-\mbox{\Hypertarget{classController_a4ee31833098af0ad310e4c826e8f00df}\label{classController_a4ee31833098af0ad310e4c826e8f00df}} 
-Eigen\+::\+Vector3d {\bfseries rl\+\_\+position\+\_\+body}
+\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} \mbox{\hyperlink{classController_aafbb1b494219caa637960dbd6ce8af10}{fr\+\_\+position\+\_\+body}}
 \item 
-\mbox{\Hypertarget{classController_a9b598e0530d38498d26c0435d851624c}\label{classController_a9b598e0530d38498d26c0435d851624c}} 
-Eigen\+::\+Vector3d {\bfseries rr\+\_\+position\+\_\+body}
+\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} \mbox{\hyperlink{classController_a4ee31833098af0ad310e4c826e8f00df}{rl\+\_\+position\+\_\+body}}
 \item 
-\mbox{\Hypertarget{classController_a3c19cc640f2eb53b89115c7e396f16e1}\label{classController_a3c19cc640f2eb53b89115c7e396f16e1}} 
-Eigen\+::\+Vector3d {\bfseries fl\+\_\+velocity\+\_\+body}
+\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} \mbox{\hyperlink{classController_a9b598e0530d38498d26c0435d851624c}{rr\+\_\+position\+\_\+body}}
 \item 
-\mbox{\Hypertarget{classController_afa7baf2089ecefa2bf0322a291d02948}\label{classController_afa7baf2089ecefa2bf0322a291d02948}} 
-Eigen\+::\+Vector3d {\bfseries fr\+\_\+velocity\+\_\+body}
+\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} \mbox{\hyperlink{classController_a3c19cc640f2eb53b89115c7e396f16e1}{fl\+\_\+velocity\+\_\+body}}
 \item 
-\mbox{\Hypertarget{classController_ad3d919c93a1289ff78e7885b7766d502}\label{classController_ad3d919c93a1289ff78e7885b7766d502}} 
-Eigen\+::\+Vector3d {\bfseries rl\+\_\+velocity\+\_\+body}
+\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} \mbox{\hyperlink{classController_afa7baf2089ecefa2bf0322a291d02948}{fr\+\_\+velocity\+\_\+body}}
 \item 
-\mbox{\Hypertarget{classController_ac9073c51c3bc537dbc01ca929451668e}\label{classController_ac9073c51c3bc537dbc01ca929451668e}} 
-Eigen\+::\+Vector3d {\bfseries rr\+\_\+velocity\+\_\+body}
+\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} \mbox{\hyperlink{classController_ad3d919c93a1289ff78e7885b7766d502}{rl\+\_\+velocity\+\_\+body}}
 \item 
-\mbox{\Hypertarget{classController_a0d4e840e2953a762e48c28973daa2165}\label{classController_a0d4e840e2953a762e48c28973daa2165}} 
-Eigen\+::\+Vector3d {\bfseries fl\+\_\+acceleration\+\_\+body}
+\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} \mbox{\hyperlink{classController_ac9073c51c3bc537dbc01ca929451668e}{rr\+\_\+velocity\+\_\+body}}
 \item 
-\mbox{\Hypertarget{classController_aa9417482f4a29ba95ead414d3525bd3c}\label{classController_aa9417482f4a29ba95ead414d3525bd3c}} 
-Eigen\+::\+Vector3d {\bfseries fr\+\_\+acceleration\+\_\+body}
+\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} \mbox{\hyperlink{classController_a0d4e840e2953a762e48c28973daa2165}{fl\+\_\+acceleration\+\_\+body}}
 \item 
-\mbox{\Hypertarget{classController_a755bb8529b9f5baa9d4828235b37615a}\label{classController_a755bb8529b9f5baa9d4828235b37615a}} 
-Eigen\+::\+Vector3d {\bfseries rl\+\_\+acceleration\+\_\+body}
+\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} \mbox{\hyperlink{classController_aa9417482f4a29ba95ead414d3525bd3c}{fr\+\_\+acceleration\+\_\+body}}
 \item 
-\mbox{\Hypertarget{classController_acd44cbf442635e4a69311fe32d2f040d}\label{classController_acd44cbf442635e4a69311fe32d2f040d}} 
-Eigen\+::\+Vector3d {\bfseries rr\+\_\+acceleration\+\_\+body}
+\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} \mbox{\hyperlink{classController_a755bb8529b9f5baa9d4828235b37615a}{rl\+\_\+acceleration\+\_\+body}}
 \item 
-\mbox{\Hypertarget{classController_ad2ad7888a05f837c3ac70c4f0db4c34d}\label{classController_ad2ad7888a05f837c3ac70c4f0db4c34d}} 
-Joint\+State {\bfseries joint\+\_\+angle\+\_\+commands} = Joint\+State\+::\+Zero()
+\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} \mbox{\hyperlink{classController_acd44cbf442635e4a69311fe32d2f040d}{rr\+\_\+acceleration\+\_\+body}}
 \item 
-\mbox{\Hypertarget{classController_a8079f9d219c4f86203af7be8a8999e37}\label{classController_a8079f9d219c4f86203af7be8a8999e37}} 
-Joint\+State {\bfseries joint\+\_\+velocity\+\_\+commands} = Joint\+State\+::\+Zero()
+\mbox{\hyperlink{classController_ad81a67232a89dee5cc3be0a1d4508f3a}{Joint\+State}} \mbox{\hyperlink{classController_ad2ad7888a05f837c3ac70c4f0db4c34d}{joint\+\_\+angle\+\_\+commands}} = Joint\+State\+::\+Zero()
 \item 
-\mbox{\Hypertarget{classController_a8b75be0570e4ab65c9c88bdcb6dbaaf0}\label{classController_a8b75be0570e4ab65c9c88bdcb6dbaaf0}} 
-Joint\+State {\bfseries joint\+\_\+acceleration\+\_\+commands} = Joint\+State\+::\+Zero()
+\mbox{\hyperlink{classController_ad81a67232a89dee5cc3be0a1d4508f3a}{Joint\+State}} \mbox{\hyperlink{classController_a8079f9d219c4f86203af7be8a8999e37}{joint\+\_\+velocity\+\_\+commands}} = Joint\+State\+::\+Zero()
 \item 
-\mbox{\Hypertarget{classController_a375d7ae17e48cfa103902550c96017f0}\label{classController_a375d7ae17e48cfa103902550c96017f0}} 
-Joint\+State {\bfseries joint\+\_\+angles} = Joint\+State\+::\+Constant(U\+N\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+E\+D\+\_\+\+J\+O\+I\+N\+T\+\_\+\+S\+T\+A\+TE)
+\mbox{\hyperlink{classController_ad81a67232a89dee5cc3be0a1d4508f3a}{Joint\+State}} \mbox{\hyperlink{classController_a8b75be0570e4ab65c9c88bdcb6dbaaf0}{joint\+\_\+acceleration\+\_\+commands}} = Joint\+State\+::\+Zero()
 \item 
-\mbox{\Hypertarget{classController_aea4229966ac06503451b2a1e28ee48ea}\label{classController_aea4229966ac06503451b2a1e28ee48ea}} 
-Joint\+State {\bfseries joint\+\_\+velocities} = Joint\+State\+::\+Zero()
+\mbox{\hyperlink{classController_ad81a67232a89dee5cc3be0a1d4508f3a}{Joint\+State}} \mbox{\hyperlink{classController_ad16ba23e3c80273721e8bdc29ec37bb3}{joint\+\_\+torque\+\_\+commands}} = Joint\+State\+::\+Zero()
 \item 
-\mbox{\Hypertarget{classController_abc876492f4e70d3c9be7b37681f2d926}\label{classController_abc876492f4e70d3c9be7b37681f2d926}} 
+\mbox{\hyperlink{classController_ad81a67232a89dee5cc3be0a1d4508f3a}{Joint\+State}} \mbox{\hyperlink{classController_a375d7ae17e48cfa103902550c96017f0}{joint\+\_\+angles}} = Joint\+State\+::\+Constant(\mbox{\hyperlink{controller_8h_af13a068991bb960994138f296edbe1ca}{UNINITIALIZED\+\_\+\+JOINT\+\_\+\+STATE}})
+\item 
+\mbox{\hyperlink{classController_ad81a67232a89dee5cc3be0a1d4508f3a}{Joint\+State}} \mbox{\hyperlink{classController_aea4229966ac06503451b2a1e28ee48ea}{joint\+\_\+velocities}} = Joint\+State\+::\+Zero()
+\item 
+\mbox{\hyperlink{classController_ad81a67232a89dee5cc3be0a1d4508f3a}{Joint\+State}} \mbox{\hyperlink{classController_aae0803de875c224384327ffd9728671f}{joint\+\_\+torques}} = Joint\+State\+::\+Zero()
+\item 
+Eigen\+::\+Matrix$<$ double, 6, 1 $>$ \mbox{\hyperlink{classController_aa3e73a1554f479daf48d78875bd42797}{base\+\_\+pose\+\_\+state}} = Eigen\+::\+Matrix$<$double, 6, 1$>$\+::Zero()
+\item 
+Eigen\+::\+Matrix$<$ double, 6, 1 $>$ \mbox{\hyperlink{classController_a8f6e61b4eec1187d68dd087a9f606dd6}{base\+\_\+pose\+\_\+commands}} = Eigen\+::\+Matrix$<$double, 6, 1$>$\+::Zero()
+\item 
 double \mbox{\hyperlink{classController_abc876492f4e70d3c9be7b37681f2d926}{lin\+\_\+vel\+\_\+x}} = 0.\+0
 \begin{DoxyCompactList}\small\item\em The desired linear robot velocity in the body frame\textquotesingle{}s x direction. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classController_a2734d863bd86af8642cc8f7b6eb115d2}\label{classController_a2734d863bd86af8642cc8f7b6eb115d2}} 
 double \mbox{\hyperlink{classController_a2734d863bd86af8642cc8f7b6eb115d2}{lin\+\_\+vel\+\_\+y}} = 0.\+0
 \begin{DoxyCompactList}\small\item\em The desired linear robot velocity in the body frame\textquotesingle{}s y direction. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classController_aa357248280438bae103c8da7ba5dacf3}\label{classController_aa357248280438bae103c8da7ba5dacf3}} 
 double \mbox{\hyperlink{classController_aa357248280438bae103c8da7ba5dacf3}{ang\+\_\+vel\+\_\+z}} = 0.\+0
-\begin{DoxyCompactList}\small\item\em The desired angular robot velocity around the robot\textquotesingle{}s z axis. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The desired angular robot velocity around the robot\textquotesingle{}s z axis. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classController_a140c18de6f9652cec886333fbc1dae08}{\+\_\+lin\+\_\+vel\+\_\+x\+\_\+estimated}} = 0.\+0
+\item 
+double \mbox{\hyperlink{classController_a186fa089bdadfead19d15b06af962072}{\+\_\+lin\+\_\+vel\+\_\+y\+\_\+estimated}} = 0.\+0
+\item 
+double \mbox{\hyperlink{classController_a9608464f0d6285729acd42665fa8ec16}{\+\_\+ang\+\_\+vel\+\_\+z\+\_\+estimated}} = 0.\+0
+\item 
+double \mbox{\hyperlink{classController_adb801818f40e28201a92076fffd80631}{\+\_\+lin\+\_\+vel\+\_\+z\+\_\+measured}} = 0.\+0
+\item 
+double \mbox{\hyperlink{classController_a11c9386a96d7a2f64d2e5f6038e566e5}{\+\_\+ang\+\_\+vel\+\_\+x\+\_\+measured}} = 0.\+0
+\item 
+double \mbox{\hyperlink{classController_a53a4221615c961547b76547b3a70cb97}{\+\_\+ang\+\_\+vel\+\_\+y\+\_\+measured}} = 0.\+0
+\item 
+double \mbox{\hyperlink{classController_add4fbad1f2ed2e8bbdbfd707190d2ee8}{nominal\+\_\+base\+\_\+height}} = 0.\+35
+\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classController_a0f2aa2751bbccb7ef3a7f705827603ec}\label{classController_a0f2aa2751bbccb7ef3a7f705827603ec}} 
-bool {\bfseries ready\+\_\+to\+\_\+proceed} = false
+bool \mbox{\hyperlink{classController_a0f2aa2751bbccb7ef3a7f705827603ec}{ready\+\_\+to\+\_\+proceed}} = false
+\item 
+ros\+::\+Service\+Server \mbox{\hyperlink{classController_ad0befa1432680493812b0316a4497877}{shutdown\+Service}}
+\begin{DoxyCompactList}\small\item\em ROS Shutdown Service. \end{DoxyCompactList}\item 
+ros\+::\+Service\+Server \mbox{\hyperlink{classController_ad0c87b02d387f18d4282cdbbae2aad57}{ready\+To\+Proceed\+Service}}
+\begin{DoxyCompactList}\small\item\em ROS Ready to Proceed Service. \end{DoxyCompactList}\item 
+ros\+::\+Publisher \mbox{\hyperlink{classController_a37e3586c883e4b93ac8bc8eacf130c31}{joint\+\_\+state\+\_\+logger}}
+\item 
+ros\+::\+Publisher \mbox{\hyperlink{classController_aa54d4b9126af8e9199ce1cc9a6fcd096}{joint\+\_\+command\+\_\+logger}}
+\item 
+ros\+::\+Publisher \mbox{\hyperlink{classController_a4d518d658eafe8dc66177e3cde76cc8e}{base\+\_\+twist\+\_\+state\+\_\+logger}}
+\item 
+ros\+::\+Publisher \mbox{\hyperlink{classController_ac0f28fd997bc2b65122f763d183cd1df}{base\+\_\+pose\+\_\+state\+\_\+logger}}
+\item 
+ros\+::\+Publisher \mbox{\hyperlink{classController_ab93f9d685c6681c23447137c31eaad8c}{base\+\_\+twist\+\_\+command\+\_\+logger}}
+\item 
+ros\+::\+Publisher \mbox{\hyperlink{classController_af010d9219a6f3b735a50b93f649bcefd}{base\+\_\+pose\+\_\+command\+\_\+logger}}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 29 of file controller.\+h.
+
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classController_ad81a67232a89dee5cc3be0a1d4508f3a}\label{classController_ad81a67232a89dee5cc3be0a1d4508f3a}} 
+\index{Controller@{Controller}!JointState@{JointState}}
+\index{JointState@{JointState}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{JointState}{JointState}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{classController_ad81a67232a89dee5cc3be0a1d4508f3a}{Controller\+::\+Joint\+State}} =  Eigen\+::\+Matrix$<$double, 12, 1$>$\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 30 of file controller.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classController_a662fe4b20cfb338f0936a1983305770f}\label{classController_a662fe4b20cfb338f0936a1983305770f}} 
+\index{Controller@{Controller}!Controller@{Controller}}
+\index{Controller@{Controller}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{Controller()}{Controller()}}
+{\footnotesize\ttfamily Controller\+::\+Controller (\begin{DoxyParamCaption}\item[{int}]{controller\+\_\+freq }\end{DoxyParamCaption})}
+
+
+
+Definition at line 3 of file controller.\+cpp.
+
+\mbox{\Hypertarget{classController_a0ab87934c4f7a266cfdb86e0f36bc1b5}\label{classController_a0ab87934c4f7a266cfdb86e0f36bc1b5}} 
+\index{Controller@{Controller}!````~Controller@{$\sim$Controller}}
+\index{````~Controller@{$\sim$Controller}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{$\sim$Controller()}{~Controller()}}
+{\footnotesize\ttfamily Controller\+::$\sim$\+Controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 9 of file controller.\+cpp.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classController_ae258a1b24b4fc1afd2383be56bdc9d53}\label{classController_ae258a1b24b4fc1afd2383be56bdc9d53}} 
+\index{Controller@{Controller}!RunStandUpSequence@{RunStandUpSequence}}
+\index{RunStandUpSequence@{RunStandUpSequence}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{RunStandUpSequence()}{RunStandUpSequence()}}
+{\footnotesize\ttfamily bool Controller\+::\+Run\+Stand\+Up\+Sequence (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 386 of file controller.\+cpp.
+
+\mbox{\Hypertarget{classController_acd43dfe045373dc46e0b47e120745038}\label{classController_acd43dfe045373dc46e0b47e120745038}} 
+\index{Controller@{Controller}!waitForReadyToProceed@{waitForReadyToProceed}}
+\index{waitForReadyToProceed@{waitForReadyToProceed}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{waitForReadyToProceed()}{waitForReadyToProceed()}}
+{\footnotesize\ttfamily void Controller\+::wait\+For\+Ready\+To\+Proceed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 14 of file controller.\+cpp.
+
+\mbox{\Hypertarget{classController_a9635a5c77031b610febe90725af7f123}\label{classController_a9635a5c77031b610febe90725af7f123}} 
+\index{Controller@{Controller}!UpdateFeetReferences@{UpdateFeetReferences}}
+\index{UpdateFeetReferences@{UpdateFeetReferences}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{UpdateFeetReferences()}{UpdateFeetReferences()}}
+{\footnotesize\ttfamily virtual void Controller\+::\+Update\+Feet\+References (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classRobotController_a1d1d88612826ea3f55904adc3d08d57b}{Robot\+Controller}}, and \mbox{\hyperlink{classGaitController_a422ac06dd3bda1cb63d16cd3e93ec13f}{Gait\+Controller}}.
+
+\mbox{\Hypertarget{classController_a0449baeb66c81108867fe63d76b537c5}\label{classController_a0449baeb66c81108867fe63d76b537c5}} 
+\index{Controller@{Controller}!UpdateJointCommands@{UpdateJointCommands}}
+\index{UpdateJointCommands@{UpdateJointCommands}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{UpdateJointCommands()}{UpdateJointCommands()}}
+{\footnotesize\ttfamily bool Controller\+::\+Update\+Joint\+Commands (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 28 of file controller.\+cpp.
+
+\mbox{\Hypertarget{classController_a4cbe0ea983515c9b54b2365e091ffadd}\label{classController_a4cbe0ea983515c9b54b2365e091ffadd}} 
+\index{Controller@{Controller}!UpdateVelocityCommands@{UpdateVelocityCommands}}
+\index{UpdateVelocityCommands@{UpdateVelocityCommands}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{UpdateVelocityCommands()}{UpdateVelocityCommands()}}
+{\footnotesize\ttfamily bool Controller\+::\+Update\+Velocity\+Commands (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 65 of file controller.\+cpp.
+
+\mbox{\Hypertarget{classController_ae736b659b7a5f45b631c87eb0a966d90}\label{classController_ae736b659b7a5f45b631c87eb0a966d90}} 
+\index{Controller@{Controller}!sendJointPositionCommands@{sendJointPositionCommands}}
+\index{sendJointPositionCommands@{sendJointPositionCommands}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{sendJointPositionCommands()}{sendJointPositionCommands()}}
+{\footnotesize\ttfamily bool Controller\+::send\+Joint\+Position\+Commands (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 85 of file controller.\+cpp.
+
+\mbox{\Hypertarget{classController_a5d80945f46d68bfad97641f464b2203e}\label{classController_a5d80945f46d68bfad97641f464b2203e}} 
+\index{Controller@{Controller}!StandStill@{StandStill}}
+\index{StandStill@{StandStill}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{StandStill()}{StandStill()}}
+{\footnotesize\ttfamily void Controller\+::\+Stand\+Still (\begin{DoxyParamCaption}\item[{const double \&}]{duration }\end{DoxyParamCaption})}
+
+
+
+Definition at line 824 of file controller.\+cpp.
+
+\mbox{\Hypertarget{classController_aefc59b1e93e6013faab2b2fd7dad1efb}\label{classController_aefc59b1e93e6013faab2b2fd7dad1efb}} 
+\index{Controller@{Controller}!setInitialConfiguration@{setInitialConfiguration}}
+\index{setInitialConfiguration@{setInitialConfiguration}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{setInitialConfiguration()}{setInitialConfiguration()}}
+{\footnotesize\ttfamily void Controller\+::set\+Initial\+Configuration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 120 of file controller.\+cpp.
+
+\mbox{\Hypertarget{classController_ad5bf8536b07e2f5c6ba53042ff00df74}\label{classController_ad5bf8536b07e2f5c6ba53042ff00df74}} 
+\index{Controller@{Controller}!SetTwistCommand@{SetTwistCommand}}
+\index{SetTwistCommand@{SetTwistCommand}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{SetTwistCommand()}{SetTwistCommand()}}
+{\footnotesize\ttfamily void Controller\+::\+Set\+Twist\+Command (\begin{DoxyParamCaption}\item[{double}]{lin\+\_\+vel\+\_\+cmd\+\_\+x,  }\item[{double}]{lin\+\_\+vel\+\_\+cmd\+\_\+y,  }\item[{double}]{ang\+\_\+vel\+\_\+cmd\+\_\+z }\end{DoxyParamCaption})}
+
+
+
+Definition at line 280 of file controller.\+cpp.
+
+\mbox{\Hypertarget{classController_ad3d246e4dc70ae2e333f1b74861558ab}\label{classController_ad3d246e4dc70ae2e333f1b74861558ab}} 
+\index{Controller@{Controller}!initROS@{initROS}}
+\index{initROS@{initROS}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{initROS()}{initROS()}}
+{\footnotesize\ttfamily void Controller\+::init\+ROS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 139 of file controller.\+cpp.
+
+\mbox{\Hypertarget{classController_a8941a1168b1768a440c737eaa5c2f601}\label{classController_a8941a1168b1768a440c737eaa5c2f601}} 
+\index{Controller@{Controller}!WaitForInitialState@{WaitForInitialState}}
+\index{WaitForInitialState@{WaitForInitialState}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{WaitForInitialState()}{WaitForInitialState()}}
+{\footnotesize\ttfamily void Controller\+::\+Wait\+For\+Initial\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 376 of file controller.\+cpp.
+
+\mbox{\Hypertarget{classController_ab862de42ac0183d8badaa9e1b8185d91}\label{classController_ab862de42ac0183d8badaa9e1b8185d91}} 
+\index{Controller@{Controller}!MoveFeetToPositions@{MoveFeetToPositions}}
+\index{MoveFeetToPositions@{MoveFeetToPositions}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{MoveFeetToPositions()}{MoveFeetToPositions()}}
+{\footnotesize\ttfamily bool Controller\+::\+Move\+Feet\+To\+Positions (\begin{DoxyParamCaption}\item[{Eigen\+::\+Matrix$<$ double, 3, 1 $>$}]{fl\+\_\+goal\+\_\+foot\+\_\+pos,  }\item[{Eigen\+::\+Matrix$<$ double, 3, 1 $>$}]{fr\+\_\+goal\+\_\+foot\+\_\+pos,  }\item[{Eigen\+::\+Matrix$<$ double, 3, 1 $>$}]{rl\+\_\+goal\+\_\+foot\+\_\+pos,  }\item[{Eigen\+::\+Matrix$<$ double, 3, 1 $>$}]{rr\+\_\+goal\+\_\+foot\+\_\+pos }\end{DoxyParamCaption})}
+
+
+
+Definition at line 513 of file controller.\+cpp.
+
+\mbox{\Hypertarget{classController_aef6b7991b879b8c9a3547816cf453aba}\label{classController_aef6b7991b879b8c9a3547816cf453aba}} 
+\index{Controller@{Controller}!MoveJointsToSetpoints@{MoveJointsToSetpoints}}
+\index{MoveJointsToSetpoints@{MoveJointsToSetpoints}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{MoveJointsToSetpoints()}{MoveJointsToSetpoints()}}
+{\footnotesize\ttfamily bool Controller\+::\+Move\+Joints\+To\+Setpoints (\begin{DoxyParamCaption}\item[{Eigen\+::\+Matrix$<$ double, 12, 1 $>$}]{goal\+\_\+joint\+\_\+angles }\end{DoxyParamCaption})}
+
+
+
+Definition at line 668 of file controller.\+cpp.
+
+\mbox{\Hypertarget{classController_ab1d93485ede8521db41e792875928dcf}\label{classController_ab1d93485ede8521db41e792875928dcf}} 
+\index{Controller@{Controller}!MoveFootToPosition@{MoveFootToPosition}}
+\index{MoveFootToPosition@{MoveFootToPosition}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{MoveFootToPosition()}{MoveFootToPosition()}}
+{\footnotesize\ttfamily bool Controller\+::\+Move\+Foot\+To\+Position (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Kinematics\+::\+Leg\+Type}} \&}]{leg\+\_\+type,  }\item[{const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&}]{goal\+\_\+foot\+\_\+position }\end{DoxyParamCaption})}
+
+
+
+Definition at line 720 of file controller.\+cpp.
+
+\mbox{\Hypertarget{classController_aa498264be5854362a95f5b9dbf95fd31}\label{classController_aa498264be5854362a95f5b9dbf95fd31}} 
+\index{Controller@{Controller}!UpdateFeetPositions@{UpdateFeetPositions}}
+\index{UpdateFeetPositions@{UpdateFeetPositions}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{UpdateFeetPositions()}{UpdateFeetPositions()}}
+{\footnotesize\ttfamily void Controller\+::\+Update\+Feet\+Positions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 712 of file controller.\+cpp.
+
+\mbox{\Hypertarget{classController_a148eec01e763677b27bb70c726c9ca58}\label{classController_a148eec01e763677b27bb70c726c9ca58}} 
+\index{Controller@{Controller}!jointStateCallback@{jointStateCallback}}
+\index{jointStateCallback@{jointStateCallback}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{jointStateCallback()}{jointStateCallback()}}
+{\footnotesize\ttfamily void Controller\+::joint\+State\+Callback (\begin{DoxyParamCaption}\item[{const sensor\+\_\+msgs\+::\+Joint\+State\+Ptr \&}]{msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 237 of file controller.\+cpp.
+
+\mbox{\Hypertarget{classController_a8a7cc6a5cff67ea6ee709b1bf5d51e28}\label{classController_a8a7cc6a5cff67ea6ee709b1bf5d51e28}} 
+\index{Controller@{Controller}!readyToProceedCallback@{readyToProceedCallback}}
+\index{readyToProceedCallback@{readyToProceedCallback}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{readyToProceedCallback()}{readyToProceedCallback()}}
+{\footnotesize\ttfamily void Controller\+::ready\+To\+Proceed\+Callback (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Bool \&}]{msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 232 of file controller.\+cpp.
+
+\mbox{\Hypertarget{classController_a0a83e6773441e7419a912c06ea0feded}\label{classController_a0a83e6773441e7419a912c06ea0feded}} 
+\index{Controller@{Controller}!TwistCommandCallback@{TwistCommandCallback}}
+\index{TwistCommandCallback@{TwistCommandCallback}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{TwistCommandCallback()}{TwistCommandCallback()}}
+{\footnotesize\ttfamily void Controller\+::\+Twist\+Command\+Callback (\begin{DoxyParamCaption}\item[{const geometry\+\_\+msgs\+::\+Twist\+Const\+Ptr \&}]{\+\_\+msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Converts twist command messages into desired linear and angular body velocities. 
+
+
+
+Definition at line 254 of file controller.\+cpp.
+
+\mbox{\Hypertarget{classController_a95cd41ea450347c888a2edea95758c59}\label{classController_a95cd41ea450347c888a2edea95758c59}} 
+\index{Controller@{Controller}!TwistStateCallback@{TwistStateCallback}}
+\index{TwistStateCallback@{TwistStateCallback}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{TwistStateCallback()}{TwistStateCallback()}}
+{\footnotesize\ttfamily void Controller\+::\+Twist\+State\+Callback (\begin{DoxyParamCaption}\item[{const geometry\+\_\+msgs\+::\+Twist\+Const\+Ptr \&}]{\+\_\+msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 261 of file controller.\+cpp.
+
+\mbox{\Hypertarget{classController_a46b0803428199c59e264168ccad89801}\label{classController_a46b0803428199c59e264168ccad89801}} 
+\index{Controller@{Controller}!BasePoseStateCallback@{BasePoseStateCallback}}
+\index{BasePoseStateCallback@{BasePoseStateCallback}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{BasePoseStateCallback()}{BasePoseStateCallback()}}
+{\footnotesize\ttfamily void Controller\+::\+Base\+Pose\+State\+Callback (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 272 of file controller.\+cpp.
+
+\mbox{\Hypertarget{classController_a33dafd3708e6a40e46156ca463b6eef5}\label{classController_a33dafd3708e6a40e46156ca463b6eef5}} 
+\index{Controller@{Controller}!CheckReadyToProceed@{CheckReadyToProceed}}
+\index{CheckReadyToProceed@{CheckReadyToProceed}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{CheckReadyToProceed()}{CheckReadyToProceed()}}
+{\footnotesize\ttfamily bool Controller\+::\+Check\+Ready\+To\+Proceed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 81 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_a5d256ea0bc36f25c2e5c6cf5b354b0e3}\label{classController_a5d256ea0bc36f25c2e5c6cf5b354b0e3}} 
+\index{Controller@{Controller}!ResetReadyToProceedFlag@{ResetReadyToProceedFlag}}
+\index{ResetReadyToProceedFlag@{ResetReadyToProceedFlag}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{ResetReadyToProceedFlag()}{ResetReadyToProceedFlag()}}
+{\footnotesize\ttfamily void Controller\+::\+Reset\+Ready\+To\+Proceed\+Flag (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 83 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_a294977ab8c7acb44649d2811c26364e0}\label{classController_a294977ab8c7acb44649d2811c26364e0}} 
+\index{Controller@{Controller}!SetReadyToProceedFlag@{SetReadyToProceedFlag}}
+\index{SetReadyToProceedFlag@{SetReadyToProceedFlag}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{SetReadyToProceedFlag()}{SetReadyToProceedFlag()}}
+{\footnotesize\ttfamily void Controller\+::\+Set\+Ready\+To\+Proceed\+Flag (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 85 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_a7890ffdc972c06f77fa8a7dfbbf7d35c}\label{classController_a7890ffdc972c06f77fa8a7dfbbf7d35c}} 
+\index{Controller@{Controller}!ReadyToProceed@{ReadyToProceed}}
+\index{ReadyToProceed@{ReadyToProceed}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{ReadyToProceed()}{ReadyToProceed()}}
+{\footnotesize\ttfamily bool Controller\+::\+Ready\+To\+Proceed (\begin{DoxyParamCaption}\item[{std\+\_\+srvs\+::\+Empty\+::\+Request \&}]{\+\_\+req,  }\item[{std\+\_\+srvs\+::\+Empty\+::\+Response \&}]{\+\_\+res }\end{DoxyParamCaption})}
+
+
+
+The Ready\+To\+Proceed function handles an incoming ready\+To\+Proceed service request. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+req} & Service request. \\
+\hline
+\mbox{\texttt{ out}}  & {\em \+\_\+res} & Service response. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if success, and false if not. 
+\end{DoxyReturn}
+
+
+Definition at line 842 of file controller.\+cpp.
+
+\mbox{\Hypertarget{classController_ab6d9cb349df5c57e76a42669ca99daa8}\label{classController_ab6d9cb349df5c57e76a42669ca99daa8}} 
+\index{Controller@{Controller}!Shutdown@{Shutdown}}
+\index{Shutdown@{Shutdown}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{Shutdown()}{Shutdown()}}
+{\footnotesize\ttfamily bool Controller\+::\+Shutdown (\begin{DoxyParamCaption}\item[{std\+\_\+srvs\+::\+Empty\+::\+Request \&}]{\+\_\+req,  }\item[{std\+\_\+srvs\+::\+Empty\+::\+Response \&}]{\+\_\+res }\end{DoxyParamCaption})}
+
+
+
+The Shutdown function handles an incoming shutdown service request. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+req} & Service request. \\
+\hline
+\mbox{\texttt{ out}}  & {\em \+\_\+res} & Service response. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if success, and false if not. 
+\end{DoxyReturn}
+
+
+Definition at line 850 of file controller.\+cpp.
+
+\mbox{\Hypertarget{classController_ab2a29601a614f6f5deb82743d3c60f23}\label{classController_ab2a29601a614f6f5deb82743d3c60f23}} 
+\index{Controller@{Controller}!WriteToLog@{WriteToLog}}
+\index{WriteToLog@{WriteToLog}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{WriteToLog()}{WriteToLog()}}
+{\footnotesize\ttfamily void Controller\+::\+Write\+To\+Log (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 287 of file controller.\+cpp.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classController_a0f2aa2751bbccb7ef3a7f705827603ec}\label{classController_a0f2aa2751bbccb7ef3a7f705827603ec}} 
+\index{Controller@{Controller}!ready\_to\_proceed@{ready\_to\_proceed}}
+\index{ready\_to\_proceed@{ready\_to\_proceed}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{ready\_to\_proceed}{ready\_to\_proceed}}
+{\footnotesize\ttfamily bool Controller\+::ready\+\_\+to\+\_\+proceed = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 104 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_ab708b9f0c358de5f24038848c033a3b6}\label{classController_ab708b9f0c358de5f24038848c033a3b6}} 
+\index{Controller@{Controller}!node\_name@{node\_name}}
+\index{node\_name@{node\_name}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{node\_name}{node\_name}}
+{\footnotesize\ttfamily std\+::string Controller\+::node\+\_\+name = \char`\"{}controller\+\_\+node\char`\"{}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 106 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_ab040f5df5ec13e33e0033de7936eb5bc}\label{classController_ab040f5df5ec13e33e0033de7936eb5bc}} 
+\index{Controller@{Controller}!robot\_name@{robot\_name}}
+\index{robot\_name@{robot\_name}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{robot\_name}{robot\_name}}
+{\footnotesize\ttfamily std\+::string Controller\+::robot\+\_\+name = \mbox{\hyperlink{controller_8h_af1ae1efbf65c9fe5cbace9d0c592a2cf}{ROBOT\+\_\+\+NAME}}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 108 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_a9a68485769c0b78bdd3c5e7050821f19}\label{classController_a9a68485769c0b78bdd3c5e7050821f19}} 
+\index{Controller@{Controller}!controller\_freq@{controller\_freq}}
+\index{controller\_freq@{controller\_freq}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{controller\_freq}{controller\_freq}}
+{\footnotesize\ttfamily int Controller\+::controller\+\_\+freq\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 110 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_a90e10804b2d5186d39298152bc4d8172}\label{classController_a90e10804b2d5186d39298152bc4d8172}} 
+\index{Controller@{Controller}!kinematics@{kinematics}}
+\index{kinematics@{kinematics}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{kinematics}{kinematics}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classKinematics}{Kinematics}} Controller\+::kinematics\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 112 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_a0a25cc4805c75c868e3c84b8a45e51ef}\label{classController_a0a25cc4805c75c868e3c84b8a45e51ef}} 
+\index{Controller@{Controller}!nodeHandle@{nodeHandle}}
+\index{nodeHandle@{nodeHandle}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{nodeHandle}{nodeHandle}}
+{\footnotesize\ttfamily ros\+::\+Node\+Handle\+Ptr Controller\+::node\+Handle\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 114 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_ad0befa1432680493812b0316a4497877}\label{classController_ad0befa1432680493812b0316a4497877}} 
+\index{Controller@{Controller}!shutdownService@{shutdownService}}
+\index{shutdownService@{shutdownService}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{shutdownService}{shutdownService}}
+{\footnotesize\ttfamily ros\+::\+Service\+Server Controller\+::shutdown\+Service\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+ROS Shutdown Service. 
+
+
+
+Definition at line 117 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_ad0c87b02d387f18d4282cdbbae2aad57}\label{classController_ad0c87b02d387f18d4282cdbbae2aad57}} 
+\index{Controller@{Controller}!readyToProceedService@{readyToProceedService}}
+\index{readyToProceedService@{readyToProceedService}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{readyToProceedService}{readyToProceedService}}
+{\footnotesize\ttfamily ros\+::\+Service\+Server Controller\+::ready\+To\+Proceed\+Service\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+ROS Ready to Proceed Service. 
+
+
+
+Definition at line 120 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_a5c885d5967551508449483dc9a1fd5c6}\label{classController_a5c885d5967551508449483dc9a1fd5c6}} 
+\index{Controller@{Controller}!joint\_command\_publisher@{joint\_command\_publisher}}
+\index{joint\_command\_publisher@{joint\_command\_publisher}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{joint\_command\_publisher}{joint\_command\_publisher}}
+{\footnotesize\ttfamily ros\+::\+Publisher Controller\+::joint\+\_\+command\+\_\+publisher\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 122 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_aced004f1811ea63a1029482527272bb2}\label{classController_aced004f1811ea63a1029482527272bb2}} 
+\index{Controller@{Controller}!joint\_state\_subscriber@{joint\_state\_subscriber}}
+\index{joint\_state\_subscriber@{joint\_state\_subscriber}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{joint\_state\_subscriber}{joint\_state\_subscriber}}
+{\footnotesize\ttfamily ros\+::\+Subscriber Controller\+::joint\+\_\+state\+\_\+subscriber\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 124 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_a5b70dcceb5eb6e45c156aeee9d23c1a5}\label{classController_a5b70dcceb5eb6e45c156aeee9d23c1a5}} 
+\index{Controller@{Controller}!base\_pose\_state\_subscriber@{base\_pose\_state\_subscriber}}
+\index{base\_pose\_state\_subscriber@{base\_pose\_state\_subscriber}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{base\_pose\_state\_subscriber}{base\_pose\_state\_subscriber}}
+{\footnotesize\ttfamily ros\+::\+Subscriber Controller\+::base\+\_\+pose\+\_\+state\+\_\+subscriber\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 126 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_a3c4543445981fe7bdf3e7236719bf3ad}\label{classController_a3c4543445981fe7bdf3e7236719bf3ad}} 
+\index{Controller@{Controller}!ready\_to\_proceed\_subscriber@{ready\_to\_proceed\_subscriber}}
+\index{ready\_to\_proceed\_subscriber@{ready\_to\_proceed\_subscriber}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{ready\_to\_proceed\_subscriber}{ready\_to\_proceed\_subscriber}}
+{\footnotesize\ttfamily ros\+::\+Subscriber Controller\+::ready\+\_\+to\+\_\+proceed\+\_\+subscriber\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 128 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_a4fba78e17b2518fafcd54239d39afaec}\label{classController_a4fba78e17b2518fafcd54239d39afaec}} 
+\index{Controller@{Controller}!twist\_command\_subscriber@{twist\_command\_subscriber}}
+\index{twist\_command\_subscriber@{twist\_command\_subscriber}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{twist\_command\_subscriber}{twist\_command\_subscriber}}
+{\footnotesize\ttfamily ros\+::\+Subscriber Controller\+::twist\+\_\+command\+\_\+subscriber\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Subscribes to twist command messages from an external controller. 
+
+
+
+Definition at line 131 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_aa44b36ae7a6fc70eadf62843dfd1c922}\label{classController_aa44b36ae7a6fc70eadf62843dfd1c922}} 
+\index{Controller@{Controller}!twist\_state\_subscriber@{twist\_state\_subscriber}}
+\index{twist\_state\_subscriber@{twist\_state\_subscriber}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{twist\_state\_subscriber}{twist\_state\_subscriber}}
+{\footnotesize\ttfamily ros\+::\+Subscriber Controller\+::twist\+\_\+state\+\_\+subscriber\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 133 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_a1e084a65c35495f9894977939953e801}\label{classController_a1e084a65c35495f9894977939953e801}} 
+\index{Controller@{Controller}!fl\_offset@{fl\_offset}}
+\index{fl\_offset@{fl\_offset}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{fl\_offset}{fl\_offset}}
+{\footnotesize\ttfamily \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} Controller\+::fl\+\_\+offset = \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}(\mbox{\hyperlink{controller_8h_a2d7da076c74b9aaf3ac9dea2fb4c903c}{LEG\+\_\+\+OFFSET\+\_\+\+LENGTH}}, \mbox{\hyperlink{controller_8h_a2d7da076c74b9aaf3ac9dea2fb4c903c}{LEG\+\_\+\+OFFSET\+\_\+\+LENGTH}}, 0)\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 135 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_a013ca21ece18f7854d2cc7b56736392d}\label{classController_a013ca21ece18f7854d2cc7b56736392d}} 
+\index{Controller@{Controller}!fr\_offset@{fr\_offset}}
+\index{fr\_offset@{fr\_offset}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{fr\_offset}{fr\_offset}}
+{\footnotesize\ttfamily \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} Controller\+::fr\+\_\+offset = \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}(\mbox{\hyperlink{controller_8h_a2d7da076c74b9aaf3ac9dea2fb4c903c}{LEG\+\_\+\+OFFSET\+\_\+\+LENGTH}}, -\/\mbox{\hyperlink{controller_8h_a2d7da076c74b9aaf3ac9dea2fb4c903c}{LEG\+\_\+\+OFFSET\+\_\+\+LENGTH}}, 0)\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 137 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_ac986315c0ce020553ebb51193387e8d4}\label{classController_ac986315c0ce020553ebb51193387e8d4}} 
+\index{Controller@{Controller}!rl\_offset@{rl\_offset}}
+\index{rl\_offset@{rl\_offset}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{rl\_offset}{rl\_offset}}
+{\footnotesize\ttfamily \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} Controller\+::rl\+\_\+offset = \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}(-\/\mbox{\hyperlink{controller_8h_a2d7da076c74b9aaf3ac9dea2fb4c903c}{LEG\+\_\+\+OFFSET\+\_\+\+LENGTH}}, \mbox{\hyperlink{controller_8h_a2d7da076c74b9aaf3ac9dea2fb4c903c}{LEG\+\_\+\+OFFSET\+\_\+\+LENGTH}}, 0)\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 139 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_a49b046be06009b1c230693e4fbec81de}\label{classController_a49b046be06009b1c230693e4fbec81de}} 
+\index{Controller@{Controller}!rr\_offset@{rr\_offset}}
+\index{rr\_offset@{rr\_offset}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{rr\_offset}{rr\_offset}}
+{\footnotesize\ttfamily \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} Controller\+::rr\+\_\+offset = \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}(-\/\mbox{\hyperlink{controller_8h_a2d7da076c74b9aaf3ac9dea2fb4c903c}{LEG\+\_\+\+OFFSET\+\_\+\+LENGTH}}, -\/\mbox{\hyperlink{controller_8h_a2d7da076c74b9aaf3ac9dea2fb4c903c}{LEG\+\_\+\+OFFSET\+\_\+\+LENGTH}}, 0)\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 141 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_a942efe36263a2e13400085845533d0a7}\label{classController_a942efe36263a2e13400085845533d0a7}} 
+\index{Controller@{Controller}!fl\_position\_body@{fl\_position\_body}}
+\index{fl\_position\_body@{fl\_position\_body}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{fl\_position\_body}{fl\_position\_body}}
+{\footnotesize\ttfamily \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} Controller\+::fl\+\_\+position\+\_\+body\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 143 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_aafbb1b494219caa637960dbd6ce8af10}\label{classController_aafbb1b494219caa637960dbd6ce8af10}} 
+\index{Controller@{Controller}!fr\_position\_body@{fr\_position\_body}}
+\index{fr\_position\_body@{fr\_position\_body}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{fr\_position\_body}{fr\_position\_body}}
+{\footnotesize\ttfamily \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} Controller\+::fr\+\_\+position\+\_\+body\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 145 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_a4ee31833098af0ad310e4c826e8f00df}\label{classController_a4ee31833098af0ad310e4c826e8f00df}} 
+\index{Controller@{Controller}!rl\_position\_body@{rl\_position\_body}}
+\index{rl\_position\_body@{rl\_position\_body}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{rl\_position\_body}{rl\_position\_body}}
+{\footnotesize\ttfamily \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} Controller\+::rl\+\_\+position\+\_\+body\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 147 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_a9b598e0530d38498d26c0435d851624c}\label{classController_a9b598e0530d38498d26c0435d851624c}} 
+\index{Controller@{Controller}!rr\_position\_body@{rr\_position\_body}}
+\index{rr\_position\_body@{rr\_position\_body}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{rr\_position\_body}{rr\_position\_body}}
+{\footnotesize\ttfamily \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} Controller\+::rr\+\_\+position\+\_\+body\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 149 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_a3c19cc640f2eb53b89115c7e396f16e1}\label{classController_a3c19cc640f2eb53b89115c7e396f16e1}} 
+\index{Controller@{Controller}!fl\_velocity\_body@{fl\_velocity\_body}}
+\index{fl\_velocity\_body@{fl\_velocity\_body}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{fl\_velocity\_body}{fl\_velocity\_body}}
+{\footnotesize\ttfamily \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} Controller\+::fl\+\_\+velocity\+\_\+body\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 151 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_afa7baf2089ecefa2bf0322a291d02948}\label{classController_afa7baf2089ecefa2bf0322a291d02948}} 
+\index{Controller@{Controller}!fr\_velocity\_body@{fr\_velocity\_body}}
+\index{fr\_velocity\_body@{fr\_velocity\_body}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{fr\_velocity\_body}{fr\_velocity\_body}}
+{\footnotesize\ttfamily \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} Controller\+::fr\+\_\+velocity\+\_\+body\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 153 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_ad3d919c93a1289ff78e7885b7766d502}\label{classController_ad3d919c93a1289ff78e7885b7766d502}} 
+\index{Controller@{Controller}!rl\_velocity\_body@{rl\_velocity\_body}}
+\index{rl\_velocity\_body@{rl\_velocity\_body}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{rl\_velocity\_body}{rl\_velocity\_body}}
+{\footnotesize\ttfamily \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} Controller\+::rl\+\_\+velocity\+\_\+body\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 155 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_ac9073c51c3bc537dbc01ca929451668e}\label{classController_ac9073c51c3bc537dbc01ca929451668e}} 
+\index{Controller@{Controller}!rr\_velocity\_body@{rr\_velocity\_body}}
+\index{rr\_velocity\_body@{rr\_velocity\_body}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{rr\_velocity\_body}{rr\_velocity\_body}}
+{\footnotesize\ttfamily \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} Controller\+::rr\+\_\+velocity\+\_\+body\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 157 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_a0d4e840e2953a762e48c28973daa2165}\label{classController_a0d4e840e2953a762e48c28973daa2165}} 
+\index{Controller@{Controller}!fl\_acceleration\_body@{fl\_acceleration\_body}}
+\index{fl\_acceleration\_body@{fl\_acceleration\_body}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{fl\_acceleration\_body}{fl\_acceleration\_body}}
+{\footnotesize\ttfamily \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} Controller\+::fl\+\_\+acceleration\+\_\+body\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 159 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_aa9417482f4a29ba95ead414d3525bd3c}\label{classController_aa9417482f4a29ba95ead414d3525bd3c}} 
+\index{Controller@{Controller}!fr\_acceleration\_body@{fr\_acceleration\_body}}
+\index{fr\_acceleration\_body@{fr\_acceleration\_body}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{fr\_acceleration\_body}{fr\_acceleration\_body}}
+{\footnotesize\ttfamily \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} Controller\+::fr\+\_\+acceleration\+\_\+body\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 161 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_a755bb8529b9f5baa9d4828235b37615a}\label{classController_a755bb8529b9f5baa9d4828235b37615a}} 
+\index{Controller@{Controller}!rl\_acceleration\_body@{rl\_acceleration\_body}}
+\index{rl\_acceleration\_body@{rl\_acceleration\_body}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{rl\_acceleration\_body}{rl\_acceleration\_body}}
+{\footnotesize\ttfamily \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} Controller\+::rl\+\_\+acceleration\+\_\+body\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 163 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_acd44cbf442635e4a69311fe32d2f040d}\label{classController_acd44cbf442635e4a69311fe32d2f040d}} 
+\index{Controller@{Controller}!rr\_acceleration\_body@{rr\_acceleration\_body}}
+\index{rr\_acceleration\_body@{rr\_acceleration\_body}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{rr\_acceleration\_body}{rr\_acceleration\_body}}
+{\footnotesize\ttfamily \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} Controller\+::rr\+\_\+acceleration\+\_\+body\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 165 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_ad2ad7888a05f837c3ac70c4f0db4c34d}\label{classController_ad2ad7888a05f837c3ac70c4f0db4c34d}} 
+\index{Controller@{Controller}!joint\_angle\_commands@{joint\_angle\_commands}}
+\index{joint\_angle\_commands@{joint\_angle\_commands}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{joint\_angle\_commands}{joint\_angle\_commands}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classController_ad81a67232a89dee5cc3be0a1d4508f3a}{Joint\+State}} Controller\+::joint\+\_\+angle\+\_\+commands = Joint\+State\+::\+Zero()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 167 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_a8079f9d219c4f86203af7be8a8999e37}\label{classController_a8079f9d219c4f86203af7be8a8999e37}} 
+\index{Controller@{Controller}!joint\_velocity\_commands@{joint\_velocity\_commands}}
+\index{joint\_velocity\_commands@{joint\_velocity\_commands}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{joint\_velocity\_commands}{joint\_velocity\_commands}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classController_ad81a67232a89dee5cc3be0a1d4508f3a}{Joint\+State}} Controller\+::joint\+\_\+velocity\+\_\+commands = Joint\+State\+::\+Zero()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 169 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_a8b75be0570e4ab65c9c88bdcb6dbaaf0}\label{classController_a8b75be0570e4ab65c9c88bdcb6dbaaf0}} 
+\index{Controller@{Controller}!joint\_acceleration\_commands@{joint\_acceleration\_commands}}
+\index{joint\_acceleration\_commands@{joint\_acceleration\_commands}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{joint\_acceleration\_commands}{joint\_acceleration\_commands}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classController_ad81a67232a89dee5cc3be0a1d4508f3a}{Joint\+State}} Controller\+::joint\+\_\+acceleration\+\_\+commands = Joint\+State\+::\+Zero()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 171 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_ad16ba23e3c80273721e8bdc29ec37bb3}\label{classController_ad16ba23e3c80273721e8bdc29ec37bb3}} 
+\index{Controller@{Controller}!joint\_torque\_commands@{joint\_torque\_commands}}
+\index{joint\_torque\_commands@{joint\_torque\_commands}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{joint\_torque\_commands}{joint\_torque\_commands}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classController_ad81a67232a89dee5cc3be0a1d4508f3a}{Joint\+State}} Controller\+::joint\+\_\+torque\+\_\+commands = Joint\+State\+::\+Zero()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 173 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_a375d7ae17e48cfa103902550c96017f0}\label{classController_a375d7ae17e48cfa103902550c96017f0}} 
+\index{Controller@{Controller}!joint\_angles@{joint\_angles}}
+\index{joint\_angles@{joint\_angles}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{joint\_angles}{joint\_angles}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classController_ad81a67232a89dee5cc3be0a1d4508f3a}{Joint\+State}} Controller\+::joint\+\_\+angles = Joint\+State\+::\+Constant(\mbox{\hyperlink{controller_8h_af13a068991bb960994138f296edbe1ca}{UNINITIALIZED\+\_\+\+JOINT\+\_\+\+STATE}})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 175 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_aea4229966ac06503451b2a1e28ee48ea}\label{classController_aea4229966ac06503451b2a1e28ee48ea}} 
+\index{Controller@{Controller}!joint\_velocities@{joint\_velocities}}
+\index{joint\_velocities@{joint\_velocities}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{joint\_velocities}{joint\_velocities}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classController_ad81a67232a89dee5cc3be0a1d4508f3a}{Joint\+State}} Controller\+::joint\+\_\+velocities = Joint\+State\+::\+Zero()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 177 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_aae0803de875c224384327ffd9728671f}\label{classController_aae0803de875c224384327ffd9728671f}} 
+\index{Controller@{Controller}!joint\_torques@{joint\_torques}}
+\index{joint\_torques@{joint\_torques}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{joint\_torques}{joint\_torques}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classController_ad81a67232a89dee5cc3be0a1d4508f3a}{Joint\+State}} Controller\+::joint\+\_\+torques = Joint\+State\+::\+Zero()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 179 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_aa3e73a1554f479daf48d78875bd42797}\label{classController_aa3e73a1554f479daf48d78875bd42797}} 
+\index{Controller@{Controller}!base\_pose\_state@{base\_pose\_state}}
+\index{base\_pose\_state@{base\_pose\_state}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{base\_pose\_state}{base\_pose\_state}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 6, 1$>$ Controller\+::base\+\_\+pose\+\_\+state = Eigen\+::\+Matrix$<$double, 6, 1$>$\+::Zero()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 181 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_a8f6e61b4eec1187d68dd087a9f606dd6}\label{classController_a8f6e61b4eec1187d68dd087a9f606dd6}} 
+\index{Controller@{Controller}!base\_pose\_commands@{base\_pose\_commands}}
+\index{base\_pose\_commands@{base\_pose\_commands}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{base\_pose\_commands}{base\_pose\_commands}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 6, 1$>$ Controller\+::base\+\_\+pose\+\_\+commands = Eigen\+::\+Matrix$<$double, 6, 1$>$\+::Zero()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 183 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_abc876492f4e70d3c9be7b37681f2d926}\label{classController_abc876492f4e70d3c9be7b37681f2d926}} 
+\index{Controller@{Controller}!lin\_vel\_x@{lin\_vel\_x}}
+\index{lin\_vel\_x@{lin\_vel\_x}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{lin\_vel\_x}{lin\_vel\_x}}
+{\footnotesize\ttfamily double Controller\+::lin\+\_\+vel\+\_\+x = 0.\+0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The desired linear robot velocity in the body frame\textquotesingle{}s x direction. 
+
+
+
+Definition at line 186 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_a2734d863bd86af8642cc8f7b6eb115d2}\label{classController_a2734d863bd86af8642cc8f7b6eb115d2}} 
+\index{Controller@{Controller}!lin\_vel\_y@{lin\_vel\_y}}
+\index{lin\_vel\_y@{lin\_vel\_y}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{lin\_vel\_y}{lin\_vel\_y}}
+{\footnotesize\ttfamily double Controller\+::lin\+\_\+vel\+\_\+y = 0.\+0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The desired linear robot velocity in the body frame\textquotesingle{}s y direction. 
+
+
+
+Definition at line 189 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_aa357248280438bae103c8da7ba5dacf3}\label{classController_aa357248280438bae103c8da7ba5dacf3}} 
+\index{Controller@{Controller}!ang\_vel\_z@{ang\_vel\_z}}
+\index{ang\_vel\_z@{ang\_vel\_z}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{ang\_vel\_z}{ang\_vel\_z}}
+{\footnotesize\ttfamily double Controller\+::ang\+\_\+vel\+\_\+z = 0.\+0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The desired angular robot velocity around the robot\textquotesingle{}s z axis. 
+
+
+
+Definition at line 192 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_a140c18de6f9652cec886333fbc1dae08}\label{classController_a140c18de6f9652cec886333fbc1dae08}} 
+\index{Controller@{Controller}!\_lin\_vel\_x\_estimated@{\_lin\_vel\_x\_estimated}}
+\index{\_lin\_vel\_x\_estimated@{\_lin\_vel\_x\_estimated}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{\_lin\_vel\_x\_estimated}{\_lin\_vel\_x\_estimated}}
+{\footnotesize\ttfamily double Controller\+::\+\_\+lin\+\_\+vel\+\_\+x\+\_\+estimated = 0.\+0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 194 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_a186fa089bdadfead19d15b06af962072}\label{classController_a186fa089bdadfead19d15b06af962072}} 
+\index{Controller@{Controller}!\_lin\_vel\_y\_estimated@{\_lin\_vel\_y\_estimated}}
+\index{\_lin\_vel\_y\_estimated@{\_lin\_vel\_y\_estimated}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{\_lin\_vel\_y\_estimated}{\_lin\_vel\_y\_estimated}}
+{\footnotesize\ttfamily double Controller\+::\+\_\+lin\+\_\+vel\+\_\+y\+\_\+estimated = 0.\+0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 196 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_a9608464f0d6285729acd42665fa8ec16}\label{classController_a9608464f0d6285729acd42665fa8ec16}} 
+\index{Controller@{Controller}!\_ang\_vel\_z\_estimated@{\_ang\_vel\_z\_estimated}}
+\index{\_ang\_vel\_z\_estimated@{\_ang\_vel\_z\_estimated}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{\_ang\_vel\_z\_estimated}{\_ang\_vel\_z\_estimated}}
+{\footnotesize\ttfamily double Controller\+::\+\_\+ang\+\_\+vel\+\_\+z\+\_\+estimated = 0.\+0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 198 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_adb801818f40e28201a92076fffd80631}\label{classController_adb801818f40e28201a92076fffd80631}} 
+\index{Controller@{Controller}!\_lin\_vel\_z\_measured@{\_lin\_vel\_z\_measured}}
+\index{\_lin\_vel\_z\_measured@{\_lin\_vel\_z\_measured}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{\_lin\_vel\_z\_measured}{\_lin\_vel\_z\_measured}}
+{\footnotesize\ttfamily double Controller\+::\+\_\+lin\+\_\+vel\+\_\+z\+\_\+measured = 0.\+0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 200 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_a11c9386a96d7a2f64d2e5f6038e566e5}\label{classController_a11c9386a96d7a2f64d2e5f6038e566e5}} 
+\index{Controller@{Controller}!\_ang\_vel\_x\_measured@{\_ang\_vel\_x\_measured}}
+\index{\_ang\_vel\_x\_measured@{\_ang\_vel\_x\_measured}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{\_ang\_vel\_x\_measured}{\_ang\_vel\_x\_measured}}
+{\footnotesize\ttfamily double Controller\+::\+\_\+ang\+\_\+vel\+\_\+x\+\_\+measured = 0.\+0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 202 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_a53a4221615c961547b76547b3a70cb97}\label{classController_a53a4221615c961547b76547b3a70cb97}} 
+\index{Controller@{Controller}!\_ang\_vel\_y\_measured@{\_ang\_vel\_y\_measured}}
+\index{\_ang\_vel\_y\_measured@{\_ang\_vel\_y\_measured}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{\_ang\_vel\_y\_measured}{\_ang\_vel\_y\_measured}}
+{\footnotesize\ttfamily double Controller\+::\+\_\+ang\+\_\+vel\+\_\+y\+\_\+measured = 0.\+0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 204 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_add4fbad1f2ed2e8bbdbfd707190d2ee8}\label{classController_add4fbad1f2ed2e8bbdbfd707190d2ee8}} 
+\index{Controller@{Controller}!nominal\_base\_height@{nominal\_base\_height}}
+\index{nominal\_base\_height@{nominal\_base\_height}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{nominal\_base\_height}{nominal\_base\_height}}
+{\footnotesize\ttfamily double Controller\+::nominal\+\_\+base\+\_\+height = 0.\+35\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 206 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_a37e3586c883e4b93ac8bc8eacf130c31}\label{classController_a37e3586c883e4b93ac8bc8eacf130c31}} 
+\index{Controller@{Controller}!joint\_state\_logger@{joint\_state\_logger}}
+\index{joint\_state\_logger@{joint\_state\_logger}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{joint\_state\_logger}{joint\_state\_logger}}
+{\footnotesize\ttfamily ros\+::\+Publisher Controller\+::joint\+\_\+state\+\_\+logger\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 212 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_aa54d4b9126af8e9199ce1cc9a6fcd096}\label{classController_aa54d4b9126af8e9199ce1cc9a6fcd096}} 
+\index{Controller@{Controller}!joint\_command\_logger@{joint\_command\_logger}}
+\index{joint\_command\_logger@{joint\_command\_logger}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{joint\_command\_logger}{joint\_command\_logger}}
+{\footnotesize\ttfamily ros\+::\+Publisher Controller\+::joint\+\_\+command\+\_\+logger\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 214 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_a4d518d658eafe8dc66177e3cde76cc8e}\label{classController_a4d518d658eafe8dc66177e3cde76cc8e}} 
+\index{Controller@{Controller}!base\_twist\_state\_logger@{base\_twist\_state\_logger}}
+\index{base\_twist\_state\_logger@{base\_twist\_state\_logger}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{base\_twist\_state\_logger}{base\_twist\_state\_logger}}
+{\footnotesize\ttfamily ros\+::\+Publisher Controller\+::base\+\_\+twist\+\_\+state\+\_\+logger\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 216 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_ac0f28fd997bc2b65122f763d183cd1df}\label{classController_ac0f28fd997bc2b65122f763d183cd1df}} 
+\index{Controller@{Controller}!base\_pose\_state\_logger@{base\_pose\_state\_logger}}
+\index{base\_pose\_state\_logger@{base\_pose\_state\_logger}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{base\_pose\_state\_logger}{base\_pose\_state\_logger}}
+{\footnotesize\ttfamily ros\+::\+Publisher Controller\+::base\+\_\+pose\+\_\+state\+\_\+logger\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 218 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_ab93f9d685c6681c23447137c31eaad8c}\label{classController_ab93f9d685c6681c23447137c31eaad8c}} 
+\index{Controller@{Controller}!base\_twist\_command\_logger@{base\_twist\_command\_logger}}
+\index{base\_twist\_command\_logger@{base\_twist\_command\_logger}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{base\_twist\_command\_logger}{base\_twist\_command\_logger}}
+{\footnotesize\ttfamily ros\+::\+Publisher Controller\+::base\+\_\+twist\+\_\+command\+\_\+logger\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 220 of file controller.\+h.
+
+\mbox{\Hypertarget{classController_af010d9219a6f3b735a50b93f649bcefd}\label{classController_af010d9219a6f3b735a50b93f649bcefd}} 
+\index{Controller@{Controller}!base\_pose\_command\_logger@{base\_pose\_command\_logger}}
+\index{base\_pose\_command\_logger@{base\_pose\_command\_logger}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{base\_pose\_command\_logger}{base\_pose\_command\_logger}}
+{\footnotesize\ttfamily ros\+::\+Publisher Controller\+::base\+\_\+pose\+\_\+command\+\_\+logger\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 222 of file controller.\+h.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-catkin\+\_\+ws/src/control/controller/include/controller/controller.\+h\item 
-catkin\+\_\+ws/src/control/controller/src/controller.\+cpp\end{DoxyCompactItemize}
+catkin\+\_\+ws/src/control/controller/include/controller/\mbox{\hyperlink{controller_8h}{controller.\+h}}\item 
+catkin\+\_\+ws/src/control/controller/src/\mbox{\hyperlink{controller_8cpp}{controller.\+cpp}}\end{DoxyCompactItemize}

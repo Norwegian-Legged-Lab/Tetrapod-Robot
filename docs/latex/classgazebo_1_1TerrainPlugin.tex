@@ -1,0 +1,229 @@
+\hypertarget{classgazebo_1_1TerrainPlugin}{}\doxysection{gazebo\+::Terrain\+Plugin Class Reference}
+\label{classgazebo_1_1TerrainPlugin}\index{gazebo::TerrainPlugin@{gazebo::TerrainPlugin}}
+
+
+{\ttfamily \#include $<$terrain\+\_\+plugin.\+h$>$}
+
+
+
+Inheritance diagram for gazebo\+::Terrain\+Plugin\+:
+% FIG 0
+
+
+Collaboration diagram for gazebo\+::Terrain\+Plugin\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classgazebo_1_1TerrainPlugin_aa5c10ce32e64a9e25cb0eba3b4dbb9bf}{Terrain\+Plugin}} ()
+\item 
+virtual \mbox{\hyperlink{classgazebo_1_1TerrainPlugin_a4aaf237f9bc347344e9bf68e8c67853c}{$\sim$\+Terrain\+Plugin}} ()
+\item 
+virtual void \mbox{\hyperlink{classgazebo_1_1TerrainPlugin_a03448b46dffe5b0f40451a896952f11c}{Load}} (physics\+::\+World\+Ptr \+\_\+world, sdf\+::\+Element\+Ptr \+\_\+sdf)
+\begin{DoxyCompactList}\small\item\em The Load function is called by Gazebo when the plugin is inserted into simulation. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classgazebo_1_1TerrainPlugin_adabcb8005190b7163f0753d67628ca64}{Reset\+Simulation}} (const std\+\_\+srvs\+::\+Empty\+::\+Request \&\+\_\+req, std\+\_\+srvs\+::\+Empty\+::\+Response \&\+\_\+res)
+\item 
+void \mbox{\hyperlink{classgazebo_1_1TerrainPlugin_ad6565058f8bac6071ba53e3699519830}{Init\+Ros}} ()
+\item 
+void \mbox{\hyperlink{classgazebo_1_1TerrainPlugin_ac1804213350eab5ddee5a90380b64990}{Init\+Ros\+Queue\+Threads}} ()
+\item 
+void \mbox{\hyperlink{classgazebo_1_1TerrainPlugin_aa6d9948ae09d6d141e221c6574057a0c}{Process\+Queue\+Thread}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+physics\+::\+World\+Ptr \mbox{\hyperlink{classgazebo_1_1TerrainPlugin_a89e3cf3109ad27e4cdc696c6c5c83f24}{world}}
+\begin{DoxyCompactList}\small\item\em Pointer to the world. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ ros\+::\+Node\+Handle $>$ \mbox{\hyperlink{classgazebo_1_1TerrainPlugin_a9b183352a1f0f1e0867ca7d1e1727a8c}{ros\+Node}}
+\begin{DoxyCompactList}\small\item\em Node used for ROS transport. \end{DoxyCompactList}\item 
+ros\+::\+Service\+Server \mbox{\hyperlink{classgazebo_1_1TerrainPlugin_a484ec77c08258f74f87e66cad8ac235f}{reset\+Sim\+Service}}
+\begin{DoxyCompactList}\small\item\em ROS Reset Simulation Service. \end{DoxyCompactList}\item 
+ros\+::\+Service\+Client \mbox{\hyperlink{classgazebo_1_1TerrainPlugin_abce58f08ab36333020a735d1b995efca}{tetrapod\+Reset\+Service}}
+\item 
+ros\+::\+Callback\+Queue \mbox{\hyperlink{classgazebo_1_1TerrainPlugin_a31a09f3c64734ce068a2f287ca2adf1f}{ros\+Process\+Queue}}
+\begin{DoxyCompactList}\small\item\em ROS callbackque that helps process messages. \end{DoxyCompactList}\item 
+std\+::thread \mbox{\hyperlink{classgazebo_1_1TerrainPlugin_ab233b93f4aa283d9a0f34ffcdb5bd254}{ros\+Process\+Queue\+Thread}}
+\begin{DoxyCompactList}\small\item\em Thread running the ros\+Process\+Queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 27 of file terrain\+\_\+plugin.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classgazebo_1_1TerrainPlugin_aa5c10ce32e64a9e25cb0eba3b4dbb9bf}\label{classgazebo_1_1TerrainPlugin_aa5c10ce32e64a9e25cb0eba3b4dbb9bf}} 
+\index{gazebo::TerrainPlugin@{gazebo::TerrainPlugin}!TerrainPlugin@{TerrainPlugin}}
+\index{TerrainPlugin@{TerrainPlugin}!gazebo::TerrainPlugin@{gazebo::TerrainPlugin}}
+\doxysubsubsection{\texorpdfstring{TerrainPlugin()}{TerrainPlugin()}}
+{\footnotesize\ttfamily gazebo\+::\+Terrain\+Plugin\+::\+Terrain\+Plugin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 6 of file terrain\+\_\+plugin.\+cpp.
+
+\mbox{\Hypertarget{classgazebo_1_1TerrainPlugin_a4aaf237f9bc347344e9bf68e8c67853c}\label{classgazebo_1_1TerrainPlugin_a4aaf237f9bc347344e9bf68e8c67853c}} 
+\index{gazebo::TerrainPlugin@{gazebo::TerrainPlugin}!````~TerrainPlugin@{$\sim$TerrainPlugin}}
+\index{````~TerrainPlugin@{$\sim$TerrainPlugin}!gazebo::TerrainPlugin@{gazebo::TerrainPlugin}}
+\doxysubsubsection{\texorpdfstring{$\sim$TerrainPlugin()}{~TerrainPlugin()}}
+{\footnotesize\ttfamily gazebo\+::\+Terrain\+Plugin\+::$\sim$\+Terrain\+Plugin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 9 of file terrain\+\_\+plugin.\+cpp.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classgazebo_1_1TerrainPlugin_a03448b46dffe5b0f40451a896952f11c}\label{classgazebo_1_1TerrainPlugin_a03448b46dffe5b0f40451a896952f11c}} 
+\index{gazebo::TerrainPlugin@{gazebo::TerrainPlugin}!Load@{Load}}
+\index{Load@{Load}!gazebo::TerrainPlugin@{gazebo::TerrainPlugin}}
+\doxysubsubsection{\texorpdfstring{Load()}{Load()}}
+{\footnotesize\ttfamily void gazebo\+::\+Terrain\+Plugin\+::\+Load (\begin{DoxyParamCaption}\item[{physics\+::\+World\+Ptr}]{\+\_\+world,  }\item[{sdf\+::\+Element\+Ptr}]{\+\_\+sdf }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+The Load function is called by Gazebo when the plugin is inserted into simulation. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+model} & A pointer to the model that the plugin is attached to. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+sdf} & A pointer to the plugin\textquotesingle{}s SDF element. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 37 of file terrain\+\_\+plugin.\+cpp.
+
+\mbox{\Hypertarget{classgazebo_1_1TerrainPlugin_adabcb8005190b7163f0753d67628ca64}\label{classgazebo_1_1TerrainPlugin_adabcb8005190b7163f0753d67628ca64}} 
+\index{gazebo::TerrainPlugin@{gazebo::TerrainPlugin}!ResetSimulation@{ResetSimulation}}
+\index{ResetSimulation@{ResetSimulation}!gazebo::TerrainPlugin@{gazebo::TerrainPlugin}}
+\doxysubsubsection{\texorpdfstring{ResetSimulation()}{ResetSimulation()}}
+{\footnotesize\ttfamily bool gazebo\+::\+Terrain\+Plugin\+::\+Reset\+Simulation (\begin{DoxyParamCaption}\item[{const std\+\_\+srvs\+::\+Empty\+::\+Request \&}]{\+\_\+req,  }\item[{std\+\_\+srvs\+::\+Empty\+::\+Response \&}]{\+\_\+res }\end{DoxyParamCaption})}
+
+
+
+Definition at line 77 of file terrain\+\_\+plugin.\+cpp.
+
+\mbox{\Hypertarget{classgazebo_1_1TerrainPlugin_ad6565058f8bac6071ba53e3699519830}\label{classgazebo_1_1TerrainPlugin_ad6565058f8bac6071ba53e3699519830}} 
+\index{gazebo::TerrainPlugin@{gazebo::TerrainPlugin}!InitRos@{InitRos}}
+\index{InitRos@{InitRos}!gazebo::TerrainPlugin@{gazebo::TerrainPlugin}}
+\doxysubsubsection{\texorpdfstring{InitRos()}{InitRos()}}
+{\footnotesize\ttfamily void gazebo\+::\+Terrain\+Plugin\+::\+Init\+Ros (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 46 of file terrain\+\_\+plugin.\+cpp.
+
+\mbox{\Hypertarget{classgazebo_1_1TerrainPlugin_ac1804213350eab5ddee5a90380b64990}\label{classgazebo_1_1TerrainPlugin_ac1804213350eab5ddee5a90380b64990}} 
+\index{gazebo::TerrainPlugin@{gazebo::TerrainPlugin}!InitRosQueueThreads@{InitRosQueueThreads}}
+\index{InitRosQueueThreads@{InitRosQueueThreads}!gazebo::TerrainPlugin@{gazebo::TerrainPlugin}}
+\doxysubsubsection{\texorpdfstring{InitRosQueueThreads()}{InitRosQueueThreads()}}
+{\footnotesize\ttfamily void gazebo\+::\+Terrain\+Plugin\+::\+Init\+Ros\+Queue\+Threads (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 19 of file terrain\+\_\+plugin.\+cpp.
+
+\mbox{\Hypertarget{classgazebo_1_1TerrainPlugin_aa6d9948ae09d6d141e221c6574057a0c}\label{classgazebo_1_1TerrainPlugin_aa6d9948ae09d6d141e221c6574057a0c}} 
+\index{gazebo::TerrainPlugin@{gazebo::TerrainPlugin}!ProcessQueueThread@{ProcessQueueThread}}
+\index{ProcessQueueThread@{ProcessQueueThread}!gazebo::TerrainPlugin@{gazebo::TerrainPlugin}}
+\doxysubsubsection{\texorpdfstring{ProcessQueueThread()}{ProcessQueueThread()}}
+{\footnotesize\ttfamily void gazebo\+::\+Terrain\+Plugin\+::\+Process\+Queue\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 27 of file terrain\+\_\+plugin.\+cpp.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classgazebo_1_1TerrainPlugin_a89e3cf3109ad27e4cdc696c6c5c83f24}\label{classgazebo_1_1TerrainPlugin_a89e3cf3109ad27e4cdc696c6c5c83f24}} 
+\index{gazebo::TerrainPlugin@{gazebo::TerrainPlugin}!world@{world}}
+\index{world@{world}!gazebo::TerrainPlugin@{gazebo::TerrainPlugin}}
+\doxysubsubsection{\texorpdfstring{world}{world}}
+{\footnotesize\ttfamily physics\+::\+World\+Ptr gazebo\+::\+Terrain\+Plugin\+::world\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer to the world. 
+
+
+
+Definition at line 50 of file terrain\+\_\+plugin.\+h.
+
+\mbox{\Hypertarget{classgazebo_1_1TerrainPlugin_a9b183352a1f0f1e0867ca7d1e1727a8c}\label{classgazebo_1_1TerrainPlugin_a9b183352a1f0f1e0867ca7d1e1727a8c}} 
+\index{gazebo::TerrainPlugin@{gazebo::TerrainPlugin}!rosNode@{rosNode}}
+\index{rosNode@{rosNode}!gazebo::TerrainPlugin@{gazebo::TerrainPlugin}}
+\doxysubsubsection{\texorpdfstring{rosNode}{rosNode}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ros\+::\+Node\+Handle$>$ gazebo\+::\+Terrain\+Plugin\+::ros\+Node\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Node used for ROS transport. 
+
+
+
+Definition at line 53 of file terrain\+\_\+plugin.\+h.
+
+\mbox{\Hypertarget{classgazebo_1_1TerrainPlugin_a484ec77c08258f74f87e66cad8ac235f}\label{classgazebo_1_1TerrainPlugin_a484ec77c08258f74f87e66cad8ac235f}} 
+\index{gazebo::TerrainPlugin@{gazebo::TerrainPlugin}!resetSimService@{resetSimService}}
+\index{resetSimService@{resetSimService}!gazebo::TerrainPlugin@{gazebo::TerrainPlugin}}
+\doxysubsubsection{\texorpdfstring{resetSimService}{resetSimService}}
+{\footnotesize\ttfamily ros\+::\+Service\+Server gazebo\+::\+Terrain\+Plugin\+::reset\+Sim\+Service\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+ROS Reset Simulation Service. 
+
+
+
+Definition at line 56 of file terrain\+\_\+plugin.\+h.
+
+\mbox{\Hypertarget{classgazebo_1_1TerrainPlugin_abce58f08ab36333020a735d1b995efca}\label{classgazebo_1_1TerrainPlugin_abce58f08ab36333020a735d1b995efca}} 
+\index{gazebo::TerrainPlugin@{gazebo::TerrainPlugin}!tetrapodResetService@{tetrapodResetService}}
+\index{tetrapodResetService@{tetrapodResetService}!gazebo::TerrainPlugin@{gazebo::TerrainPlugin}}
+\doxysubsubsection{\texorpdfstring{tetrapodResetService}{tetrapodResetService}}
+{\footnotesize\ttfamily ros\+::\+Service\+Client gazebo\+::\+Terrain\+Plugin\+::tetrapod\+Reset\+Service\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 58 of file terrain\+\_\+plugin.\+h.
+
+\mbox{\Hypertarget{classgazebo_1_1TerrainPlugin_a31a09f3c64734ce068a2f287ca2adf1f}\label{classgazebo_1_1TerrainPlugin_a31a09f3c64734ce068a2f287ca2adf1f}} 
+\index{gazebo::TerrainPlugin@{gazebo::TerrainPlugin}!rosProcessQueue@{rosProcessQueue}}
+\index{rosProcessQueue@{rosProcessQueue}!gazebo::TerrainPlugin@{gazebo::TerrainPlugin}}
+\doxysubsubsection{\texorpdfstring{rosProcessQueue}{rosProcessQueue}}
+{\footnotesize\ttfamily ros\+::\+Callback\+Queue gazebo\+::\+Terrain\+Plugin\+::ros\+Process\+Queue\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+ROS callbackque that helps process messages. 
+
+
+
+Definition at line 61 of file terrain\+\_\+plugin.\+h.
+
+\mbox{\Hypertarget{classgazebo_1_1TerrainPlugin_ab233b93f4aa283d9a0f34ffcdb5bd254}\label{classgazebo_1_1TerrainPlugin_ab233b93f4aa283d9a0f34ffcdb5bd254}} 
+\index{gazebo::TerrainPlugin@{gazebo::TerrainPlugin}!rosProcessQueueThread@{rosProcessQueueThread}}
+\index{rosProcessQueueThread@{rosProcessQueueThread}!gazebo::TerrainPlugin@{gazebo::TerrainPlugin}}
+\doxysubsubsection{\texorpdfstring{rosProcessQueueThread}{rosProcessQueueThread}}
+{\footnotesize\ttfamily std\+::thread gazebo\+::\+Terrain\+Plugin\+::ros\+Process\+Queue\+Thread\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Thread running the ros\+Process\+Queue. 
+
+
+
+Definition at line 64 of file terrain\+\_\+plugin.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+catkin\+\_\+ws/src/simulator/tetrapod\+\_\+gazebo/include/tetrapod\+\_\+gazebo/\mbox{\hyperlink{terrain__plugin_8h}{terrain\+\_\+plugin.\+h}}\item 
+catkin\+\_\+ws/src/simulator/tetrapod\+\_\+gazebo/src/\mbox{\hyperlink{terrain__plugin_8cpp}{terrain\+\_\+plugin.\+cpp}}\end{DoxyCompactItemize}

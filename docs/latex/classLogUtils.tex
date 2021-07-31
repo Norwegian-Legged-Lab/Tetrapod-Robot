@@ -21,102 +21,74 @@ Collaboration diagram for Log\+Utils\+:\nopagebreak
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classLogUtils_a06e557ba093143fd81ace47f299fba07}\label{classLogUtils_a06e557ba093143fd81ace47f299fba07}} 
 \mbox{\hyperlink{classLogUtils_a06e557ba093143fd81ace47f299fba07}{Log\+Utils}} ()
 \begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classLogUtils_a3777bc5a1059a04b1b8bf94375744139}\label{classLogUtils_a3777bc5a1059a04b1b8bf94375744139}} 
 virtual \mbox{\hyperlink{classLogUtils_a3777bc5a1059a04b1b8bf94375744139}{$\sim$\+Log\+Utils}} ()
 \begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classLogUtils_ac1d32b600a73d5757dda6efe184b75e0}\label{classLogUtils_ac1d32b600a73d5757dda6efe184b75e0}} 
-void {\bfseries Write\+To\+Log} ()
+void \mbox{\hyperlink{classLogUtils_ac1d32b600a73d5757dda6efe184b75e0}{Write\+To\+Log}} ()
 \item 
 void \mbox{\hyperlink{classLogUtils_a2c42c49b0dc74a5eb05923a033ca34c9}{On\+Gen\+Coord\+Msg}} (const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&\+\_\+msg)
-\begin{DoxyCompactList}\small\item\em The On\+Gen\+Coord\+Msg function handles an incoming generalized coordinates message from R\+OS. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em The On\+Gen\+Coord\+Msg function handles an incoming generalized coordinates message from ROS. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classLogUtils_a538d484ca1dc7ac3b0127d89ca2e6745}{On\+Gen\+Vel\+Msg}} (const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&\+\_\+msg)
-\begin{DoxyCompactList}\small\item\em The On\+Gen\+Vel\+Msg function handles an incoming generalized velocities message from R\+OS. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em The On\+Gen\+Vel\+Msg function handles an incoming generalized velocities message from ROS. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classLogUtils_ab1901bdc3adc37c49eeb1672b135cc92}{On\+Joint\+State\+Msg}} (const sensor\+\_\+msgs\+::\+Joint\+State\+Const\+Ptr \&\+\_\+msg)
-\begin{DoxyCompactList}\small\item\em The On\+Joint\+State\+Msg function handles an incoming joint state message from R\+OS. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em The On\+Joint\+State\+Msg function handles an incoming joint state message from ROS. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classLogUtils_acfb95557fa81d007205880849a304a32}{On\+Joint\+State\+Cmd\+Msg}} (const sensor\+\_\+msgs\+::\+Joint\+State\+Const\+Ptr \&\+\_\+msg)
-\begin{DoxyCompactList}\small\item\em The On\+Joint\+State\+Cmd\+Msg function handles an incoming joint state command message from R\+OS. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classLogUtils_ae4c8cfc8d403bbcd1318bd86003613ea}\label{classLogUtils_ae4c8cfc8d403bbcd1318bd86003613ea}} 
+\begin{DoxyCompactList}\small\item\em The On\+Joint\+State\+Cmd\+Msg function handles an incoming joint state command message from ROS. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classLogUtils_ae4c8cfc8d403bbcd1318bd86003613ea}{Publish\+Queue\+Thread}} ()
-\begin{DoxyCompactList}\small\item\em The Publish\+Queue\+Thread function is a R\+OS helper function that publish state messages. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classLogUtils_a1c65adf0101ef76e300aac4a613562bf}\label{classLogUtils_a1c65adf0101ef76e300aac4a613562bf}} 
+\begin{DoxyCompactList}\small\item\em The Publish\+Queue\+Thread function is a ROS helper function that publish state messages. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classLogUtils_a1c65adf0101ef76e300aac4a613562bf}{Process\+Queue\+Thread}} ()
-\begin{DoxyCompactList}\small\item\em The Process\+Queue\+Thread function is a R\+OS helper function that processes messages. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The Process\+Queue\+Thread function is a ROS helper function that processes messages. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classLogUtils_a00cb15c70dea18c7c952f5bc477048cb}\label{classLogUtils_a00cb15c70dea18c7c952f5bc477048cb}} 
 void \mbox{\hyperlink{classLogUtils_a00cb15c70dea18c7c952f5bc477048cb}{Init\+Ros}} ()
-\begin{DoxyCompactList}\small\item\em The Init\+Ros function is called to initialize R\+OS. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classLogUtils_ab7d5e4267109bd8c217e703cb31bf9b6}\label{classLogUtils_ab7d5e4267109bd8c217e703cb31bf9b6}} 
+\begin{DoxyCompactList}\small\item\em The Init\+Ros function is called to initialize ROS. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classLogUtils_ab7d5e4267109bd8c217e703cb31bf9b6}{Init\+Ros\+Queue\+Threads}} ()
-\begin{DoxyCompactList}\small\item\em The Init\+Ros\+Queue\+Threads function is called to initialize the R\+OS Publish and Process Queue Threads. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The Init\+Ros\+Queue\+Threads function is called to initialize the ROS Publish and Process Queue Threads. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classLogUtils_a76769b35c2132276f6f1769b7a39a2d3}\label{classLogUtils_a76769b35c2132276f6f1769b7a39a2d3}} 
 \mbox{\hyperlink{classKinematics}{Kinematics}} \mbox{\hyperlink{classLogUtils_a76769b35c2132276f6f1769b7a39a2d3}{kinematics}}
 \begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classKinematics}{Kinematics}}. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classLogUtils_a9f0882691ccb98cfd7ff8a8337772075}\label{classLogUtils_a9f0882691ccb98cfd7ff8a8337772075}} 
 Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \mbox{\hyperlink{classLogUtils_a9f0882691ccb98cfd7ff8a8337772075}{gen\+Coord}}
 \begin{DoxyCompactList}\small\item\em Generalized Coordinates. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classLogUtils_a8564523437dfb62bb73319aec51d8240}\label{classLogUtils_a8564523437dfb62bb73319aec51d8240}} 
 Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \mbox{\hyperlink{classLogUtils_a8564523437dfb62bb73319aec51d8240}{gen\+Vel}}
 \begin{DoxyCompactList}\small\item\em Generalized Velocities. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classLogUtils_a46658fc92e092bdfc1ee5c8d8e8b2416}\label{classLogUtils_a46658fc92e092bdfc1ee5c8d8e8b2416}} 
 sensor\+\_\+msgs\+::\+Joint\+State \mbox{\hyperlink{classLogUtils_a46658fc92e092bdfc1ee5c8d8e8b2416}{joint\+State}}
 \begin{DoxyCompactList}\small\item\em Joint State. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classLogUtils_a1f4af56b539406e9a2872699c1f837b8}\label{classLogUtils_a1f4af56b539406e9a2872699c1f837b8}} 
 sensor\+\_\+msgs\+::\+Joint\+State \mbox{\hyperlink{classLogUtils_a1f4af56b539406e9a2872699c1f837b8}{joint\+State\+Cmd}}
 \begin{DoxyCompactList}\small\item\em Joint State Command. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classLogUtils_a3ded52dacbf3d65015fcc5ac684b6a94}\label{classLogUtils_a3ded52dacbf3d65015fcc5ac684b6a94}} 
-Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ \mbox{\hyperlink{classLogUtils_a3ded52dacbf3d65015fcc5ac684b6a94}{f\+Pos}}
+Eigen\+::\+Matrix$<$ \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}, 4, 1 $>$ \mbox{\hyperlink{classLogUtils_a3ded52dacbf3d65015fcc5ac684b6a94}{f\+Pos}}
 \begin{DoxyCompactList}\small\item\em Footstep positions. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classLogUtils_ae4423ae09d5e35f2f34cc90b97164ac4}\label{classLogUtils_ae4423ae09d5e35f2f34cc90b97164ac4}} 
 int \mbox{\hyperlink{classLogUtils_ae4423ae09d5e35f2f34cc90b97164ac4}{contact\+State}} \mbox{[}4\mbox{]}
 \begin{DoxyCompactList}\small\item\em Contact State. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classLogUtils_a133020f924c8fa8f8088ed647194a6a1}\label{classLogUtils_a133020f924c8fa8f8088ed647194a6a1}} 
 std\+::unique\+\_\+ptr$<$ ros\+::\+Node\+Handle $>$ \mbox{\hyperlink{classLogUtils_a133020f924c8fa8f8088ed647194a6a1}{ros\+Node}}
-\begin{DoxyCompactList}\small\item\em Node used for R\+OS transport. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classLogUtils_acc5ebcd28aef735fda7c0234a7642923}\label{classLogUtils_acc5ebcd28aef735fda7c0234a7642923}} 
+\begin{DoxyCompactList}\small\item\em Node used for ROS transport. \end{DoxyCompactList}\item 
 ros\+::\+Subscriber \mbox{\hyperlink{classLogUtils_acc5ebcd28aef735fda7c0234a7642923}{gen\+Coord\+Sub}}
-\begin{DoxyCompactList}\small\item\em R\+OS Generalized Coordinates Subscriber. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classLogUtils_a146a5e656e8b2631a149259930769a43}\label{classLogUtils_a146a5e656e8b2631a149259930769a43}} 
+\begin{DoxyCompactList}\small\item\em ROS Generalized Coordinates Subscriber. \end{DoxyCompactList}\item 
 ros\+::\+Subscriber \mbox{\hyperlink{classLogUtils_a146a5e656e8b2631a149259930769a43}{gen\+Vel\+Sub}}
-\begin{DoxyCompactList}\small\item\em R\+OS Generalized Coordinates Subscriber. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classLogUtils_aa09263ffc83b24e77d676091ad8bf786}\label{classLogUtils_aa09263ffc83b24e77d676091ad8bf786}} 
+\begin{DoxyCompactList}\small\item\em ROS Generalized Coordinates Subscriber. \end{DoxyCompactList}\item 
 ros\+::\+Subscriber \mbox{\hyperlink{classLogUtils_aa09263ffc83b24e77d676091ad8bf786}{joint\+State\+Sub}}
-\begin{DoxyCompactList}\small\item\em R\+OS Joint State Subscriber. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classLogUtils_ae5b2e838bf3149b0457474fcb2734b0e}\label{classLogUtils_ae5b2e838bf3149b0457474fcb2734b0e}} 
+\begin{DoxyCompactList}\small\item\em ROS Joint State Subscriber. \end{DoxyCompactList}\item 
 ros\+::\+Subscriber \mbox{\hyperlink{classLogUtils_ae5b2e838bf3149b0457474fcb2734b0e}{joint\+State\+Cmd\+Sub}}
-\begin{DoxyCompactList}\small\item\em R\+OS Joint State Command Subscriber. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classLogUtils_a5b04067978247f846c346f1b93c30e94}\label{classLogUtils_a5b04067978247f846c346f1b93c30e94}} 
+\begin{DoxyCompactList}\small\item\em ROS Joint State Command Subscriber. \end{DoxyCompactList}\item 
 ros\+::\+Subscriber \mbox{\hyperlink{classLogUtils_a5b04067978247f846c346f1b93c30e94}{contact\+State\+Sub}}
-\begin{DoxyCompactList}\small\item\em R\+OS Contact State Subscriber. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classLogUtils_a96482f3636f792619c4fc694970f2a00}\label{classLogUtils_a96482f3636f792619c4fc694970f2a00}} 
+\begin{DoxyCompactList}\small\item\em ROS Contact State Subscriber. \end{DoxyCompactList}\item 
 ros\+::\+Publisher \mbox{\hyperlink{classLogUtils_a96482f3636f792619c4fc694970f2a00}{gen\+Coord\+Log\+Pub}}
-\begin{DoxyCompactList}\small\item\em R\+OS Generalized Coordinates Log Publisher. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classLogUtils_aa7ee536b6a1e441997b9501556c9a437}\label{classLogUtils_aa7ee536b6a1e441997b9501556c9a437}} 
+\begin{DoxyCompactList}\small\item\em ROS Generalized Coordinates Log Publisher. \end{DoxyCompactList}\item 
 ros\+::\+Publisher \mbox{\hyperlink{classLogUtils_aa7ee536b6a1e441997b9501556c9a437}{gen\+Vel\+Log\+Pub}}
-\begin{DoxyCompactList}\small\item\em R\+OS Generalized Velocities Log Publisher. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classLogUtils_aebb30b44bc3a2aa697b90e85c303ae18}\label{classLogUtils_aebb30b44bc3a2aa697b90e85c303ae18}} 
+\begin{DoxyCompactList}\small\item\em ROS Generalized Velocities Log Publisher. \end{DoxyCompactList}\item 
 ros\+::\+Publisher \mbox{\hyperlink{classLogUtils_aebb30b44bc3a2aa697b90e85c303ae18}{joint\+State\+Pub}}
-\begin{DoxyCompactList}\small\item\em R\+OS Joint State Log Publisher. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classLogUtils_ac0b46a1cc8b4eb02798e79a7cbf7de43}\label{classLogUtils_ac0b46a1cc8b4eb02798e79a7cbf7de43}} 
+\begin{DoxyCompactList}\small\item\em ROS Joint State Log Publisher. \end{DoxyCompactList}\item 
 ros\+::\+Publisher \mbox{\hyperlink{classLogUtils_ac0b46a1cc8b4eb02798e79a7cbf7de43}{joint\+State\+Cmd\+Pub}}
-\begin{DoxyCompactList}\small\item\em R\+OS Joint State Command Log Publisher. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classLogUtils_af29fa1f063ccc6e3194b8ae90ae9fbc4}\label{classLogUtils_af29fa1f063ccc6e3194b8ae90ae9fbc4}} 
+\begin{DoxyCompactList}\small\item\em ROS Joint State Command Log Publisher. \end{DoxyCompactList}\item 
 ros\+::\+Callback\+Queue \mbox{\hyperlink{classLogUtils_af29fa1f063ccc6e3194b8ae90ae9fbc4}{ros\+Publish\+Queue}}
-\begin{DoxyCompactList}\small\item\em R\+OS callbackque that helps publish messages. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classLogUtils_ae3e38b4337f5d3f0fd7ef03839f9692a}\label{classLogUtils_ae3e38b4337f5d3f0fd7ef03839f9692a}} 
+\begin{DoxyCompactList}\small\item\em ROS callbackque that helps publish messages. \end{DoxyCompactList}\item 
 ros\+::\+Callback\+Queue \mbox{\hyperlink{classLogUtils_ae3e38b4337f5d3f0fd7ef03839f9692a}{ros\+Process\+Queue}}
-\begin{DoxyCompactList}\small\item\em R\+OS callbackque that helps process messages. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classLogUtils_a61647054e3f8eb8813df56899f63e153}\label{classLogUtils_a61647054e3f8eb8813df56899f63e153}} 
+\begin{DoxyCompactList}\small\item\em ROS callbackque that helps process messages. \end{DoxyCompactList}\item 
 std\+::thread \mbox{\hyperlink{classLogUtils_a61647054e3f8eb8813df56899f63e153}{ros\+Publish\+Queue\+Thread}}
 \begin{DoxyCompactList}\small\item\em Thread running the ros\+Publish\+Queue. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classLogUtils_a3161987d511392c5331c44ebfe959895}\label{classLogUtils_a3161987d511392c5331c44ebfe959895}} 
 std\+::thread \mbox{\hyperlink{classLogUtils_a3161987d511392c5331c44ebfe959895}{ros\+Process\+Queue\+Thread}}
 \begin{DoxyCompactList}\small\item\em Thread running the ros\+Process\+Queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -124,7 +96,52 @@ std\+::thread \mbox{\hyperlink{classLogUtils_a3161987d511392c5331c44ebfe959895}{
 \doxysubsection{Detailed Description}
 A class for logging utilities. 
 
+Definition at line 48 of file log\+\_\+utils.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classLogUtils_a06e557ba093143fd81ace47f299fba07}\label{classLogUtils_a06e557ba093143fd81ace47f299fba07}} 
+\index{LogUtils@{LogUtils}!LogUtils@{LogUtils}}
+\index{LogUtils@{LogUtils}!LogUtils@{LogUtils}}
+\doxysubsubsection{\texorpdfstring{LogUtils()}{LogUtils()}}
+{\footnotesize\ttfamily Log\+Utils\+::\+Log\+Utils (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+
+Definition at line 30 of file log\+\_\+utils.\+cpp.
+
+\mbox{\Hypertarget{classLogUtils_a3777bc5a1059a04b1b8bf94375744139}\label{classLogUtils_a3777bc5a1059a04b1b8bf94375744139}} 
+\index{LogUtils@{LogUtils}!````~LogUtils@{$\sim$LogUtils}}
+\index{````~LogUtils@{$\sim$LogUtils}!LogUtils@{LogUtils}}
+\doxysubsubsection{\texorpdfstring{$\sim$LogUtils()}{~LogUtils()}}
+{\footnotesize\ttfamily Log\+Utils\+::$\sim$\+Log\+Utils (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Destructor. 
+
+
+
+Definition at line 43 of file log\+\_\+utils.\+cpp.
+
+
+
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classLogUtils_ac1d32b600a73d5757dda6efe184b75e0}\label{classLogUtils_ac1d32b600a73d5757dda6efe184b75e0}} 
+\index{LogUtils@{LogUtils}!WriteToLog@{WriteToLog}}
+\index{WriteToLog@{WriteToLog}!LogUtils@{LogUtils}}
+\doxysubsubsection{\texorpdfstring{WriteToLog()}{WriteToLog()}}
+{\footnotesize\ttfamily void Log\+Utils\+::\+Write\+To\+Log (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 57 of file log\+\_\+utils.\+cpp.
+
 \mbox{\Hypertarget{classLogUtils_a2c42c49b0dc74a5eb05923a033ca34c9}\label{classLogUtils_a2c42c49b0dc74a5eb05923a033ca34c9}} 
 \index{LogUtils@{LogUtils}!OnGenCoordMsg@{OnGenCoordMsg}}
 \index{OnGenCoordMsg@{OnGenCoordMsg}!LogUtils@{LogUtils}}
@@ -133,13 +150,17 @@ A class for logging utilities.
 
 
 
-The On\+Gen\+Coord\+Msg function handles an incoming generalized coordinates message from R\+OS. 
+The On\+Gen\+Coord\+Msg function handles an incoming generalized coordinates message from ROS. 
 
 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ in}}  & {\em \+\_\+msg} & A float array containing the generalized coordinates. \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 69 of file log\+\_\+utils.\+cpp.
+
 \mbox{\Hypertarget{classLogUtils_a538d484ca1dc7ac3b0127d89ca2e6745}\label{classLogUtils_a538d484ca1dc7ac3b0127d89ca2e6745}} 
 \index{LogUtils@{LogUtils}!OnGenVelMsg@{OnGenVelMsg}}
 \index{OnGenVelMsg@{OnGenVelMsg}!LogUtils@{LogUtils}}
@@ -148,13 +169,17 @@ The On\+Gen\+Coord\+Msg function handles an incoming generalized coordinates mes
 
 
 
-The On\+Gen\+Vel\+Msg function handles an incoming generalized velocities message from R\+OS. 
+The On\+Gen\+Vel\+Msg function handles an incoming generalized velocities message from ROS. 
 
 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ in}}  & {\em \+\_\+msg} & A float array containing the generalized velocities. \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 87 of file log\+\_\+utils.\+cpp.
+
 \mbox{\Hypertarget{classLogUtils_ab1901bdc3adc37c49eeb1672b135cc92}\label{classLogUtils_ab1901bdc3adc37c49eeb1672b135cc92}} 
 \index{LogUtils@{LogUtils}!OnJointStateMsg@{OnJointStateMsg}}
 \index{OnJointStateMsg@{OnJointStateMsg}!LogUtils@{LogUtils}}
@@ -163,7 +188,7 @@ The On\+Gen\+Vel\+Msg function handles an incoming generalized velocities messag
 
 
 
-The On\+Joint\+State\+Msg function handles an incoming joint state message from R\+OS. 
+The On\+Joint\+State\+Msg function handles an incoming joint state message from ROS. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -175,6 +200,10 @@ The On\+Joint\+State\+Msg function handles an incoming joint state message from 
 \end{DoxyItemize}\\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 96 of file log\+\_\+utils.\+cpp.
+
 \mbox{\Hypertarget{classLogUtils_acfb95557fa81d007205880849a304a32}\label{classLogUtils_acfb95557fa81d007205880849a304a32}} 
 \index{LogUtils@{LogUtils}!OnJointStateCmdMsg@{OnJointStateCmdMsg}}
 \index{OnJointStateCmdMsg@{OnJointStateCmdMsg}!LogUtils@{LogUtils}}
@@ -183,7 +212,7 @@ The On\+Joint\+State\+Msg function handles an incoming joint state message from 
 
 
 
-The On\+Joint\+State\+Cmd\+Msg function handles an incoming joint state command message from R\+OS. 
+The On\+Joint\+State\+Cmd\+Msg function handles an incoming joint state command message from ROS. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -197,7 +226,364 @@ The On\+Joint\+State\+Cmd\+Msg function handles an incoming joint state command 
 \end{DoxyParams}
 
 
+Definition at line 105 of file log\+\_\+utils.\+cpp.
+
+\mbox{\Hypertarget{classLogUtils_ae4c8cfc8d403bbcd1318bd86003613ea}\label{classLogUtils_ae4c8cfc8d403bbcd1318bd86003613ea}} 
+\index{LogUtils@{LogUtils}!PublishQueueThread@{PublishQueueThread}}
+\index{PublishQueueThread@{PublishQueueThread}!LogUtils@{LogUtils}}
+\doxysubsubsection{\texorpdfstring{PublishQueueThread()}{PublishQueueThread()}}
+{\footnotesize\ttfamily void Log\+Utils\+::\+Publish\+Queue\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The Publish\+Queue\+Thread function is a ROS helper function that publish state messages. 
+
+
+
+Definition at line 114 of file log\+\_\+utils.\+cpp.
+
+\mbox{\Hypertarget{classLogUtils_a1c65adf0101ef76e300aac4a613562bf}\label{classLogUtils_a1c65adf0101ef76e300aac4a613562bf}} 
+\index{LogUtils@{LogUtils}!ProcessQueueThread@{ProcessQueueThread}}
+\index{ProcessQueueThread@{ProcessQueueThread}!LogUtils@{LogUtils}}
+\doxysubsubsection{\texorpdfstring{ProcessQueueThread()}{ProcessQueueThread()}}
+{\footnotesize\ttfamily void Log\+Utils\+::\+Process\+Queue\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The Process\+Queue\+Thread function is a ROS helper function that processes messages. 
+
+
+
+Definition at line 124 of file log\+\_\+utils.\+cpp.
+
+\mbox{\Hypertarget{classLogUtils_a00cb15c70dea18c7c952f5bc477048cb}\label{classLogUtils_a00cb15c70dea18c7c952f5bc477048cb}} 
+\index{LogUtils@{LogUtils}!InitRos@{InitRos}}
+\index{InitRos@{InitRos}!LogUtils@{LogUtils}}
+\doxysubsubsection{\texorpdfstring{InitRos()}{InitRos()}}
+{\footnotesize\ttfamily void Log\+Utils\+::\+Init\+Ros (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The Init\+Ros function is called to initialize ROS. 
+
+
+
+Definition at line 134 of file log\+\_\+utils.\+cpp.
+
+\mbox{\Hypertarget{classLogUtils_ab7d5e4267109bd8c217e703cb31bf9b6}\label{classLogUtils_ab7d5e4267109bd8c217e703cb31bf9b6}} 
+\index{LogUtils@{LogUtils}!InitRosQueueThreads@{InitRosQueueThreads}}
+\index{InitRosQueueThreads@{InitRosQueueThreads}!LogUtils@{LogUtils}}
+\doxysubsubsection{\texorpdfstring{InitRosQueueThreads()}{InitRosQueueThreads()}}
+{\footnotesize\ttfamily void Log\+Utils\+::\+Init\+Ros\+Queue\+Threads (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The Init\+Ros\+Queue\+Threads function is called to initialize the ROS Publish and Process Queue Threads. 
+
+
+
+Definition at line 245 of file log\+\_\+utils.\+cpp.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classLogUtils_a76769b35c2132276f6f1769b7a39a2d3}\label{classLogUtils_a76769b35c2132276f6f1769b7a39a2d3}} 
+\index{LogUtils@{LogUtils}!kinematics@{kinematics}}
+\index{kinematics@{kinematics}!LogUtils@{LogUtils}}
+\doxysubsubsection{\texorpdfstring{kinematics}{kinematics}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classKinematics}{Kinematics}} Log\+Utils\+::kinematics\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\mbox{\hyperlink{classKinematics}{Kinematics}}. 
+
+
+
+Definition at line 105 of file log\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{classLogUtils_a9f0882691ccb98cfd7ff8a8337772075}\label{classLogUtils_a9f0882691ccb98cfd7ff8a8337772075}} 
+\index{LogUtils@{LogUtils}!genCoord@{genCoord}}
+\index{genCoord@{genCoord}!LogUtils@{LogUtils}}
+\doxysubsubsection{\texorpdfstring{genCoord}{genCoord}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 18, 1$>$ Log\+Utils\+::gen\+Coord\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Generalized Coordinates. 
+
+
+
+Definition at line 108 of file log\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{classLogUtils_a8564523437dfb62bb73319aec51d8240}\label{classLogUtils_a8564523437dfb62bb73319aec51d8240}} 
+\index{LogUtils@{LogUtils}!genVel@{genVel}}
+\index{genVel@{genVel}!LogUtils@{LogUtils}}
+\doxysubsubsection{\texorpdfstring{genVel}{genVel}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 18, 1$>$ Log\+Utils\+::gen\+Vel\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Generalized Velocities. 
+
+
+
+Definition at line 111 of file log\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{classLogUtils_a46658fc92e092bdfc1ee5c8d8e8b2416}\label{classLogUtils_a46658fc92e092bdfc1ee5c8d8e8b2416}} 
+\index{LogUtils@{LogUtils}!jointState@{jointState}}
+\index{jointState@{jointState}!LogUtils@{LogUtils}}
+\doxysubsubsection{\texorpdfstring{jointState}{jointState}}
+{\footnotesize\ttfamily sensor\+\_\+msgs\+::\+Joint\+State Log\+Utils\+::joint\+State\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Joint State. 
+
+
+
+Definition at line 114 of file log\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{classLogUtils_a1f4af56b539406e9a2872699c1f837b8}\label{classLogUtils_a1f4af56b539406e9a2872699c1f837b8}} 
+\index{LogUtils@{LogUtils}!jointStateCmd@{jointStateCmd}}
+\index{jointStateCmd@{jointStateCmd}!LogUtils@{LogUtils}}
+\doxysubsubsection{\texorpdfstring{jointStateCmd}{jointStateCmd}}
+{\footnotesize\ttfamily sensor\+\_\+msgs\+::\+Joint\+State Log\+Utils\+::joint\+State\+Cmd\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Joint State Command. 
+
+
+
+Definition at line 117 of file log\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{classLogUtils_a3ded52dacbf3d65015fcc5ac684b6a94}\label{classLogUtils_a3ded52dacbf3d65015fcc5ac684b6a94}} 
+\index{LogUtils@{LogUtils}!fPos@{fPos}}
+\index{fPos@{fPos}!LogUtils@{LogUtils}}
+\doxysubsubsection{\texorpdfstring{fPos}{fPos}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}, 4, 1$>$ Log\+Utils\+::f\+Pos\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Footstep positions. 
+
+
+
+Definition at line 120 of file log\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{classLogUtils_ae4423ae09d5e35f2f34cc90b97164ac4}\label{classLogUtils_ae4423ae09d5e35f2f34cc90b97164ac4}} 
+\index{LogUtils@{LogUtils}!contactState@{contactState}}
+\index{contactState@{contactState}!LogUtils@{LogUtils}}
+\doxysubsubsection{\texorpdfstring{contactState}{contactState}}
+{\footnotesize\ttfamily int Log\+Utils\+::contact\+State\mbox{[}4\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Contact State. 
+
+
+
+Definition at line 123 of file log\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{classLogUtils_a133020f924c8fa8f8088ed647194a6a1}\label{classLogUtils_a133020f924c8fa8f8088ed647194a6a1}} 
+\index{LogUtils@{LogUtils}!rosNode@{rosNode}}
+\index{rosNode@{rosNode}!LogUtils@{LogUtils}}
+\doxysubsubsection{\texorpdfstring{rosNode}{rosNode}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ros\+::\+Node\+Handle$>$ Log\+Utils\+::ros\+Node\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Node used for ROS transport. 
+
+
+
+Definition at line 126 of file log\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{classLogUtils_acc5ebcd28aef735fda7c0234a7642923}\label{classLogUtils_acc5ebcd28aef735fda7c0234a7642923}} 
+\index{LogUtils@{LogUtils}!genCoordSub@{genCoordSub}}
+\index{genCoordSub@{genCoordSub}!LogUtils@{LogUtils}}
+\doxysubsubsection{\texorpdfstring{genCoordSub}{genCoordSub}}
+{\footnotesize\ttfamily ros\+::\+Subscriber Log\+Utils\+::gen\+Coord\+Sub\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+ROS Generalized Coordinates Subscriber. 
+
+
+
+Definition at line 129 of file log\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{classLogUtils_a146a5e656e8b2631a149259930769a43}\label{classLogUtils_a146a5e656e8b2631a149259930769a43}} 
+\index{LogUtils@{LogUtils}!genVelSub@{genVelSub}}
+\index{genVelSub@{genVelSub}!LogUtils@{LogUtils}}
+\doxysubsubsection{\texorpdfstring{genVelSub}{genVelSub}}
+{\footnotesize\ttfamily ros\+::\+Subscriber Log\+Utils\+::gen\+Vel\+Sub\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+ROS Generalized Coordinates Subscriber. 
+
+
+
+Definition at line 132 of file log\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{classLogUtils_aa09263ffc83b24e77d676091ad8bf786}\label{classLogUtils_aa09263ffc83b24e77d676091ad8bf786}} 
+\index{LogUtils@{LogUtils}!jointStateSub@{jointStateSub}}
+\index{jointStateSub@{jointStateSub}!LogUtils@{LogUtils}}
+\doxysubsubsection{\texorpdfstring{jointStateSub}{jointStateSub}}
+{\footnotesize\ttfamily ros\+::\+Subscriber Log\+Utils\+::joint\+State\+Sub\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+ROS Joint State Subscriber. 
+
+
+
+Definition at line 135 of file log\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{classLogUtils_ae5b2e838bf3149b0457474fcb2734b0e}\label{classLogUtils_ae5b2e838bf3149b0457474fcb2734b0e}} 
+\index{LogUtils@{LogUtils}!jointStateCmdSub@{jointStateCmdSub}}
+\index{jointStateCmdSub@{jointStateCmdSub}!LogUtils@{LogUtils}}
+\doxysubsubsection{\texorpdfstring{jointStateCmdSub}{jointStateCmdSub}}
+{\footnotesize\ttfamily ros\+::\+Subscriber Log\+Utils\+::joint\+State\+Cmd\+Sub\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+ROS Joint State Command Subscriber. 
+
+
+
+Definition at line 138 of file log\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{classLogUtils_a5b04067978247f846c346f1b93c30e94}\label{classLogUtils_a5b04067978247f846c346f1b93c30e94}} 
+\index{LogUtils@{LogUtils}!contactStateSub@{contactStateSub}}
+\index{contactStateSub@{contactStateSub}!LogUtils@{LogUtils}}
+\doxysubsubsection{\texorpdfstring{contactStateSub}{contactStateSub}}
+{\footnotesize\ttfamily ros\+::\+Subscriber Log\+Utils\+::contact\+State\+Sub\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+ROS Contact State Subscriber. 
+
+
+
+Definition at line 141 of file log\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{classLogUtils_a96482f3636f792619c4fc694970f2a00}\label{classLogUtils_a96482f3636f792619c4fc694970f2a00}} 
+\index{LogUtils@{LogUtils}!genCoordLogPub@{genCoordLogPub}}
+\index{genCoordLogPub@{genCoordLogPub}!LogUtils@{LogUtils}}
+\doxysubsubsection{\texorpdfstring{genCoordLogPub}{genCoordLogPub}}
+{\footnotesize\ttfamily ros\+::\+Publisher Log\+Utils\+::gen\+Coord\+Log\+Pub\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+ROS Generalized Coordinates Log Publisher. 
+
+
+
+Definition at line 144 of file log\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{classLogUtils_aa7ee536b6a1e441997b9501556c9a437}\label{classLogUtils_aa7ee536b6a1e441997b9501556c9a437}} 
+\index{LogUtils@{LogUtils}!genVelLogPub@{genVelLogPub}}
+\index{genVelLogPub@{genVelLogPub}!LogUtils@{LogUtils}}
+\doxysubsubsection{\texorpdfstring{genVelLogPub}{genVelLogPub}}
+{\footnotesize\ttfamily ros\+::\+Publisher Log\+Utils\+::gen\+Vel\+Log\+Pub\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+ROS Generalized Velocities Log Publisher. 
+
+
+
+Definition at line 147 of file log\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{classLogUtils_aebb30b44bc3a2aa697b90e85c303ae18}\label{classLogUtils_aebb30b44bc3a2aa697b90e85c303ae18}} 
+\index{LogUtils@{LogUtils}!jointStatePub@{jointStatePub}}
+\index{jointStatePub@{jointStatePub}!LogUtils@{LogUtils}}
+\doxysubsubsection{\texorpdfstring{jointStatePub}{jointStatePub}}
+{\footnotesize\ttfamily ros\+::\+Publisher Log\+Utils\+::joint\+State\+Pub\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+ROS Joint State Log Publisher. 
+
+
+
+Definition at line 150 of file log\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{classLogUtils_ac0b46a1cc8b4eb02798e79a7cbf7de43}\label{classLogUtils_ac0b46a1cc8b4eb02798e79a7cbf7de43}} 
+\index{LogUtils@{LogUtils}!jointStateCmdPub@{jointStateCmdPub}}
+\index{jointStateCmdPub@{jointStateCmdPub}!LogUtils@{LogUtils}}
+\doxysubsubsection{\texorpdfstring{jointStateCmdPub}{jointStateCmdPub}}
+{\footnotesize\ttfamily ros\+::\+Publisher Log\+Utils\+::joint\+State\+Cmd\+Pub\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+ROS Joint State Command Log Publisher. 
+
+
+
+Definition at line 153 of file log\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{classLogUtils_af29fa1f063ccc6e3194b8ae90ae9fbc4}\label{classLogUtils_af29fa1f063ccc6e3194b8ae90ae9fbc4}} 
+\index{LogUtils@{LogUtils}!rosPublishQueue@{rosPublishQueue}}
+\index{rosPublishQueue@{rosPublishQueue}!LogUtils@{LogUtils}}
+\doxysubsubsection{\texorpdfstring{rosPublishQueue}{rosPublishQueue}}
+{\footnotesize\ttfamily ros\+::\+Callback\+Queue Log\+Utils\+::ros\+Publish\+Queue\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+ROS callbackque that helps publish messages. 
+
+
+
+Definition at line 156 of file log\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{classLogUtils_ae3e38b4337f5d3f0fd7ef03839f9692a}\label{classLogUtils_ae3e38b4337f5d3f0fd7ef03839f9692a}} 
+\index{LogUtils@{LogUtils}!rosProcessQueue@{rosProcessQueue}}
+\index{rosProcessQueue@{rosProcessQueue}!LogUtils@{LogUtils}}
+\doxysubsubsection{\texorpdfstring{rosProcessQueue}{rosProcessQueue}}
+{\footnotesize\ttfamily ros\+::\+Callback\+Queue Log\+Utils\+::ros\+Process\+Queue\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+ROS callbackque that helps process messages. 
+
+
+
+Definition at line 159 of file log\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{classLogUtils_a61647054e3f8eb8813df56899f63e153}\label{classLogUtils_a61647054e3f8eb8813df56899f63e153}} 
+\index{LogUtils@{LogUtils}!rosPublishQueueThread@{rosPublishQueueThread}}
+\index{rosPublishQueueThread@{rosPublishQueueThread}!LogUtils@{LogUtils}}
+\doxysubsubsection{\texorpdfstring{rosPublishQueueThread}{rosPublishQueueThread}}
+{\footnotesize\ttfamily std\+::thread Log\+Utils\+::ros\+Publish\+Queue\+Thread\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Thread running the ros\+Publish\+Queue. 
+
+
+
+Definition at line 162 of file log\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{classLogUtils_a3161987d511392c5331c44ebfe959895}\label{classLogUtils_a3161987d511392c5331c44ebfe959895}} 
+\index{LogUtils@{LogUtils}!rosProcessQueueThread@{rosProcessQueueThread}}
+\index{rosProcessQueueThread@{rosProcessQueueThread}!LogUtils@{LogUtils}}
+\doxysubsubsection{\texorpdfstring{rosProcessQueueThread}{rosProcessQueueThread}}
+{\footnotesize\ttfamily std\+::thread Log\+Utils\+::ros\+Process\+Queue\+Thread\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Thread running the ros\+Process\+Queue. 
+
+
+
+Definition at line 165 of file log\+\_\+utils.\+h.
+
+
+
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-catkin\+\_\+ws/src/utilities/log\+\_\+utils/include/log\+\_\+utils/log\+\_\+utils.\+h\item 
-catkin\+\_\+ws/src/utilities/log\+\_\+utils/src/log\+\_\+utils.\+cpp\end{DoxyCompactItemize}
+catkin\+\_\+ws/src/utilities/log\+\_\+utils/include/log\+\_\+utils/\mbox{\hyperlink{log__utils_8h}{log\+\_\+utils.\+h}}\item 
+catkin\+\_\+ws/src/utilities/log\+\_\+utils/src/\mbox{\hyperlink{log__utils_8cpp}{log\+\_\+utils.\+cpp}}\end{DoxyCompactItemize}

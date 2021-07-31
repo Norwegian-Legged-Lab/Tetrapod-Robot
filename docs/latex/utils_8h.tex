@@ -1,0 +1,117 @@
+\hypertarget{utils_8h}{}\doxysection{catkin\+\_\+ws/src/guidance/footstep\+\_\+planner/include/footstep\+\_\+planner/utils.h File Reference}
+\label{utils_8h}\index{catkin\_ws/src/guidance/footstep\_planner/include/footstep\_planner/utils.h@{catkin\_ws/src/guidance/footstep\_planner/include/footstep\_planner/utils.h}}
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include \char`\"{}drake/common/symbolic.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$Eigen/\+Core$>$}\newline
+Include dependency graph for utils.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{utils_8h_a525335710b53cb064ca56b936120431e}{\+\_\+\+USE\+\_\+\+MATH\+\_\+\+DEFINES}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{utils_8h_a57b7fed9fdd410b01db2594f5354fbc6}{wrap}} (double num, double range=2 $\ast$M\+\_\+\+PI, double offset=-\/M\+\_\+\+PI)
+\item 
+drake\+::symbolic\+::\+Expression \mbox{\hyperlink{utils_8h_afe16adaa58bd74462ba76db421bd4986}{drake\+\_\+or}} (drake\+::symbolic\+::\+Variable \&b1, drake\+::symbolic\+::\+Variable \&b2)
+\item 
+drake\+::symbolic\+::\+Expression \mbox{\hyperlink{utils_8h_ab0575d9a03edaf4bf8b0230f4bb482fd}{drake\+\_\+and}} (drake\+::symbolic\+::\+Variable \&b1, drake\+::symbolic\+::\+Variable \&b2)
+\item 
+drake\+::symbolic\+::\+Expression \mbox{\hyperlink{utils_8h_acf0ddd59e90d9d2620bfe31170ab428c}{drake\+\_\+nor}} (drake\+::symbolic\+::\+Variable \&b1, drake\+::symbolic\+::\+Variable \&b2)
+\item 
+drake\+::symbolic\+::\+Expression \mbox{\hyperlink{utils_8h_aed10989c57740d54ad4d9f8123f41fba}{drake\+\_\+nand}} (drake\+::symbolic\+::\+Variable \&b1, drake\+::symbolic\+::\+Variable \&b2)
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{utils_8h_a811a54f7bcd8cec2809b9d4a31b3f6bd}{get\+\_\+sin\+\_\+coeffs}} ()
+\item 
+Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{utils_8h_a01b8290c463c03be8df6fdd1c455bd34}{get\+\_\+cos\+\_\+coeffs}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{utils_8h_a525335710b53cb064ca56b936120431e}\label{utils_8h_a525335710b53cb064ca56b936120431e}} 
+\index{utils.h@{utils.h}!\_USE\_MATH\_DEFINES@{\_USE\_MATH\_DEFINES}}
+\index{\_USE\_MATH\_DEFINES@{\_USE\_MATH\_DEFINES}!utils.h@{utils.h}}
+\doxysubsubsection{\texorpdfstring{\_USE\_MATH\_DEFINES}{\_USE\_MATH\_DEFINES}}
+{\footnotesize\ttfamily \#define \+\_\+\+USE\+\_\+\+MATH\+\_\+\+DEFINES}
+
+
+
+Definition at line 8 of file utils.\+h.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{utils_8h_a57b7fed9fdd410b01db2594f5354fbc6}\label{utils_8h_a57b7fed9fdd410b01db2594f5354fbc6}} 
+\index{utils.h@{utils.h}!wrap@{wrap}}
+\index{wrap@{wrap}!utils.h@{utils.h}}
+\doxysubsubsection{\texorpdfstring{wrap()}{wrap()}}
+{\footnotesize\ttfamily double wrap (\begin{DoxyParamCaption}\item[{double}]{num,  }\item[{double}]{range = {\ttfamily 2~$\ast$M\+\_\+PI},  }\item[{double}]{offset = {\ttfamily -\/M\+\_\+PI} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 3 of file utils.\+cpp.
+
+\mbox{\Hypertarget{utils_8h_afe16adaa58bd74462ba76db421bd4986}\label{utils_8h_afe16adaa58bd74462ba76db421bd4986}} 
+\index{utils.h@{utils.h}!drake\_or@{drake\_or}}
+\index{drake\_or@{drake\_or}!utils.h@{utils.h}}
+\doxysubsubsection{\texorpdfstring{drake\_or()}{drake\_or()}}
+{\footnotesize\ttfamily drake\+::symbolic\+::\+Expression drake\+\_\+or (\begin{DoxyParamCaption}\item[{drake\+::symbolic\+::\+Variable \&}]{b1,  }\item[{drake\+::symbolic\+::\+Variable \&}]{b2 }\end{DoxyParamCaption})}
+
+
+
+Definition at line 8 of file utils.\+cpp.
+
+\mbox{\Hypertarget{utils_8h_ab0575d9a03edaf4bf8b0230f4bb482fd}\label{utils_8h_ab0575d9a03edaf4bf8b0230f4bb482fd}} 
+\index{utils.h@{utils.h}!drake\_and@{drake\_and}}
+\index{drake\_and@{drake\_and}!utils.h@{utils.h}}
+\doxysubsubsection{\texorpdfstring{drake\_and()}{drake\_and()}}
+{\footnotesize\ttfamily drake\+::symbolic\+::\+Expression drake\+\_\+and (\begin{DoxyParamCaption}\item[{drake\+::symbolic\+::\+Variable \&}]{b1,  }\item[{drake\+::symbolic\+::\+Variable \&}]{b2 }\end{DoxyParamCaption})}
+
+
+
+Definition at line 13 of file utils.\+cpp.
+
+\mbox{\Hypertarget{utils_8h_acf0ddd59e90d9d2620bfe31170ab428c}\label{utils_8h_acf0ddd59e90d9d2620bfe31170ab428c}} 
+\index{utils.h@{utils.h}!drake\_nor@{drake\_nor}}
+\index{drake\_nor@{drake\_nor}!utils.h@{utils.h}}
+\doxysubsubsection{\texorpdfstring{drake\_nor()}{drake\_nor()}}
+{\footnotesize\ttfamily drake\+::symbolic\+::\+Expression drake\+\_\+nor (\begin{DoxyParamCaption}\item[{drake\+::symbolic\+::\+Variable \&}]{b1,  }\item[{drake\+::symbolic\+::\+Variable \&}]{b2 }\end{DoxyParamCaption})}
+
+
+
+Definition at line 18 of file utils.\+cpp.
+
+\mbox{\Hypertarget{utils_8h_aed10989c57740d54ad4d9f8123f41fba}\label{utils_8h_aed10989c57740d54ad4d9f8123f41fba}} 
+\index{utils.h@{utils.h}!drake\_nand@{drake\_nand}}
+\index{drake\_nand@{drake\_nand}!utils.h@{utils.h}}
+\doxysubsubsection{\texorpdfstring{drake\_nand()}{drake\_nand()}}
+{\footnotesize\ttfamily drake\+::symbolic\+::\+Expression drake\+\_\+nand (\begin{DoxyParamCaption}\item[{drake\+::symbolic\+::\+Variable \&}]{b1,  }\item[{drake\+::symbolic\+::\+Variable \&}]{b2 }\end{DoxyParamCaption})}
+
+
+
+Definition at line 23 of file utils.\+cpp.
+
+\mbox{\Hypertarget{utils_8h_a811a54f7bcd8cec2809b9d4a31b3f6bd}\label{utils_8h_a811a54f7bcd8cec2809b9d4a31b3f6bd}} 
+\index{utils.h@{utils.h}!get\_sin\_coeffs@{get\_sin\_coeffs}}
+\index{get\_sin\_coeffs@{get\_sin\_coeffs}!utils.h@{utils.h}}
+\doxysubsubsection{\texorpdfstring{get\_sin\_coeffs()}{get\_sin\_coeffs()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd get\+\_\+sin\+\_\+coeffs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 28 of file utils.\+cpp.
+
+\mbox{\Hypertarget{utils_8h_a01b8290c463c03be8df6fdd1c455bd34}\label{utils_8h_a01b8290c463c03be8df6fdd1c455bd34}} 
+\index{utils.h@{utils.h}!get\_cos\_coeffs@{get\_cos\_coeffs}}
+\index{get\_cos\_coeffs@{get\_cos\_coeffs}!utils.h@{utils.h}}
+\doxysubsubsection{\texorpdfstring{get\_cos\_coeffs()}{get\_cos\_coeffs()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd get\+\_\+cos\+\_\+coeffs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 40 of file utils.\+cpp.
+

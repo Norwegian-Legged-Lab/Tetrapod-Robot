@@ -1,15 +1,6 @@
 var searchData=
 [
-  ['_7econtactplugin_480',['~ContactPlugin',['../classgazebo_1_1ContactPlugin.html#a915a0b9156a54f3946f11a1347971afe',1,'gazebo::ContactPlugin']]],
-  ['_7econtactsensor_481',['~ContactSensor',['../classContactSensor.html#a01a1842782c99e4b3fca9e5db40721eb',1,'ContactSensor']]],
-  ['_7ehierarchicaloptimizationcontrol_482',['~HierarchicalOptimizationControl',['../classHierarchicalOptimizationControl.html#ad296c50c35b6eaabf210c82c3c756201',1,'HierarchicalOptimizationControl']]],
-  ['_7ekinematics_483',['~Kinematics',['../classKinematics.html#a5d2fb2f14148cc371b80e572c33ecb4d',1,'Kinematics']]],
-  ['_7elogutils_484',['~LogUtils',['../classLogUtils.html#a3777bc5a1059a04b1b8bf94375744139',1,'LogUtils']]],
-  ['_7emotorinterface_485',['~MotorInterface',['../classMotorInterface.html#a6348030321aebf0c8824749895b961b7',1,'MotorInterface']]],
-  ['_7ependulumplugin_486',['~PendulumPlugin',['../classgazebo_1_1PendulumPlugin.html#af7c7785a63d5a5febb9bad3c3638227b',1,'gazebo::PendulumPlugin']]],
-  ['_7eserialcommunication_487',['~SerialCommunication',['../classSerialCommunication.html#a60717eff5f66d85af40812811ca6321d',1,'SerialCommunication']]],
-  ['_7esinglelegcontroller_488',['~SingleLegController',['../classSingleLegController.html#a173d75b4ce31036a360ffe231e950314',1,'SingleLegController::~SingleLegController()'],['../classSingleLegController.html#a173d75b4ce31036a360ffe231e950314',1,'SingleLegController::~SingleLegController()']]],
-  ['_7esinglelegplugin_489',['~SingleLegPlugin',['../classgazebo_1_1SingleLegPlugin.html#a0fdaac17ebc347dfe31a9d5f87a2a98a',1,'gazebo::SingleLegPlugin']]],
-  ['_7estaticgaitcontroller_490',['~StaticGaitController',['../classStaticGaitController.html#a197d488068e6ca14b77e20a477191a52',1,'StaticGaitController']]],
-  ['_7etetrapodplugin_491',['~TetrapodPlugin',['../classgazebo_1_1TetrapodPlugin.html#ab95cc50543ae4843b35be224a4bf001b',1,'gazebo::TetrapodPlugin']]]
+  ['y_5fnominal_1223',['y_nominal',['../classSingleLegController.html#ada2d16bff1aec9fd371e4ba09efd017f',1,'SingleLegController']]],
+  ['y_5fstep_5fdistance_1224',['y_step_distance',['../classSingleLegController.html#ab30c1262c5cc5c72f6937194f14c7bd7',1,'SingleLegController']]],
+  ['yaw_5frate_1225',['yaw_rate',['../classRobotController.html#a59b7aa92d5485fbc8263ebb6f65c2829',1,'RobotController']]]
 ];

@@ -1,0 +1,388 @@
+\hypertarget{motor__constants_8h}{}\doxysection{Arduino/libraries/motor\+\_\+driver/motor\+\_\+constants.h File Reference}
+\label{motor__constants_8h}\index{Arduino/libraries/motor\_driver/motor\_constants.h@{Arduino/libraries/motor\_driver/motor\_constants.h}}
+This graph shows which files directly or indirectly include this file\+:
+% FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{motor__constants_8h_a0291c805062ed26f5ca2c26302047caf}{MOTOR\+\_\+\+ADDRESS\+\_\+\+OFFSET}}~0x140
+\item 
+\#define \mbox{\hyperlink{motor__constants_8h_a9eba963cf071d0b66689129598b1c6ee}{MOTOR\+\_\+\+COMMAND\+\_\+\+READ\+\_\+\+PID\+\_\+\+PARAMETERS}}~0x30
+\item 
+\#define \mbox{\hyperlink{motor__constants_8h_ab59d332c10ae00b43901356ea5c36bf1}{MOTOR\+\_\+\+COMMAND\+\_\+\+WRITE\+\_\+\+PID\+\_\+\+PARAMETERS\+\_\+\+TO\+\_\+\+RAM}}~0x31
+\item 
+\#define \mbox{\hyperlink{motor__constants_8h_a6e3498c2faa1e48064f61cadf4420941}{MOTOR\+\_\+\+COMMAND\+\_\+\+WRITE\+\_\+\+PID\+\_\+\+PARAMETERS\+\_\+\+TO\+\_\+\+ROM}}~0x32
+\item 
+\#define \mbox{\hyperlink{motor__constants_8h_ad7259836a5e778c7a544998b4af6fbcf}{MOTOR\+\_\+\+COMMAND\+\_\+\+READ\+\_\+\+ACCELERATION}}~0x33
+\item 
+\#define \mbox{\hyperlink{motor__constants_8h_a9da574cddcc5af23e5016d61590d1782}{MOTOR\+\_\+\+COMMAND\+\_\+\+WRITE\+\_\+\+ACCELERATION\+\_\+\+TO\+\_\+\+RAM}}~0x34
+\item 
+\#define \mbox{\hyperlink{motor__constants_8h_aeb95392cb1b6f1aefa466eef6ba85d72}{MOTOR\+\_\+\+COMMAND\+\_\+\+READ\+\_\+\+ENCODER\+\_\+\+POSITION}}~0x90
+\item 
+\#define \mbox{\hyperlink{motor__constants_8h_a997f6e46e949f5d9f7f17120a1570127}{MOTOR\+\_\+\+COMMAND\+\_\+\+WRITE\+\_\+\+ENCODER\+\_\+\+POSITION\+\_\+\+OFFSET}}~0x91
+\item 
+\#define \mbox{\hyperlink{motor__constants_8h_a53297a54617bcb361a8e77b8d3ef176a}{MOTOR\+\_\+\+COMMAND\+\_\+\+WRITE\+\_\+\+CURRENT\+\_\+\+POSITION\+\_\+\+TO\+\_\+\+ROM}}~0x19
+\item 
+\#define \mbox{\hyperlink{motor__constants_8h_a690438612398fb166c28b37a70812109}{MOTOR\+\_\+\+COMMAND\+\_\+\+READ\+\_\+\+MULTI\+\_\+\+TURN\+\_\+\+ANGLE}}~0x92
+\item 
+\#define \mbox{\hyperlink{motor__constants_8h_a3d05a82aaed4fedfa5f0db42472f2352}{MOTOR\+\_\+\+COMMAND\+\_\+\+READ\+\_\+\+SINGLE\+\_\+\+CIRCLE\+\_\+\+COMMAND}}~0x94
+\item 
+\#define \mbox{\hyperlink{motor__constants_8h_aace3fcc8de5d9172ff396a28f605af48}{MOTOR\+\_\+\+COMMAND\+\_\+\+READ\+\_\+\+MOTOR\+\_\+\+STATUS\+\_\+1\+\_\+\+AND\+\_\+\+ERROR\+\_\+\+FLAG}}~0x9A
+\item 
+\#define \mbox{\hyperlink{motor__constants_8h_ae131bfb0ebcc94d883e4cd57ba142728}{MOTOR\+\_\+\+COMMAND\+\_\+\+CLEAR\+\_\+\+MOTOR\+\_\+\+ERROR\+\_\+\+FLAG}}~0x9B
+\item 
+\#define \mbox{\hyperlink{motor__constants_8h_a8c9c77812e8b5c21fc4e926b2623ff7f}{MOTOR\+\_\+\+COMMAND\+\_\+\+READ\+\_\+\+MOTOR\+\_\+\+STATUS\+\_\+2}}~0x9C
+\item 
+\#define \mbox{\hyperlink{motor__constants_8h_ad03b222039bb05d6828a476827add978}{MOTOR\+\_\+\+COMMAND\+\_\+\+READ\+\_\+\+MOTOR\+\_\+\+STATUS\+\_\+3}}~0x9D
+\item 
+\#define \mbox{\hyperlink{motor__constants_8h_a3410d668daa5fdef49436729686faf8f}{MOTOR\+\_\+\+COMMAND\+\_\+\+MOTOR\+\_\+\+OFF}}~0x80
+\item 
+\#define \mbox{\hyperlink{motor__constants_8h_a1c36e2c68634efb72bf87f1c6f853dc1}{MOTOR\+\_\+\+COMMAND\+\_\+\+MOTOR\+\_\+\+STOP}}~0x81
+\item 
+\#define \mbox{\hyperlink{motor__constants_8h_a6f6a8cf379bbcf9d835dbd054d39fe1c}{MOTOR\+\_\+\+COMMAND\+\_\+\+MOTOR\+\_\+\+RUNNING}}~0x88
+\item 
+\#define \mbox{\hyperlink{motor__constants_8h_ad82dd266f58434bdd2f02b9067ec1e97}{MOTOR\+\_\+\+COMMAND\+\_\+\+TORQUE\+\_\+\+CLOSED\+\_\+\+LOOP}}~0x\+A1
+\item 
+\#define \mbox{\hyperlink{motor__constants_8h_a6f3bf7aa06dba4dd9ce3ea0a90e92dfc}{MOTOR\+\_\+\+COMMAND\+\_\+\+SPEED\+\_\+\+CLOSED\+\_\+\+LOOP}}~0x\+A2
+\item 
+\#define \mbox{\hyperlink{motor__constants_8h_a8e4ec24c982f4fb0cef5cb6ec967dcf4}{MOTOR\+\_\+\+COMMAND\+\_\+\+POSITION\+\_\+\+CLOSED\+\_\+\+LOOP\+\_\+1}}~0x\+A3
+\item 
+\#define \mbox{\hyperlink{motor__constants_8h_a923cd4c4098f86459d5cb513f1242188}{MOTOR\+\_\+\+COMMAND\+\_\+\+POSITION\+\_\+\+CLOSED\+\_\+\+LOOP\+\_\+2}}~0x\+A4
+\item 
+\#define \mbox{\hyperlink{motor__constants_8h_aef804480c951d98e1a0d721f604e2945}{MOTOR\+\_\+\+COMMAND\+\_\+\+POSITION\+\_\+\+CLOSED\+\_\+\+LOOP\+\_\+3}}~0x\+A5
+\item 
+\#define \mbox{\hyperlink{motor__constants_8h_a655c8114ebcbe0733720cca048356675}{MOTOR\+\_\+\+COMMAND\+\_\+\+POSITION\+\_\+\+CLOSED\+\_\+\+LOOP\+\_\+4}}~0x\+A6
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const double \mbox{\hyperlink{motor__constants_8h_adb0824668c3d5c8a5cc08f281a7f7730}{GEAR\+\_\+\+REDUCTION}} = 6.\+0
+\item 
+const double \mbox{\hyperlink{motor__constants_8h_aef62715ac07820136019fd95c87572f3}{ROTATION\+\_\+\+DISTANCE}} = 60.\+0
+\item 
+const int \mbox{\hyperlink{motor__constants_8h_ad761ae46edafc6871fdbf23978202abf}{MOTOR\+\_\+\+BAUD\+\_\+\+RATE}} = 1000000
+\item 
+const int \mbox{\hyperlink{motor__constants_8h_a100441e5c0e4be8b60262830f3fb0559}{MAX\+\_\+\+ENCODER\+\_\+\+VALUE}} = 65535
+\item 
+const int \mbox{\hyperlink{motor__constants_8h_a74c651e3e89a2a6fb6c90f85c371a010}{MAX\+\_\+\+TORQUE\+\_\+\+CURRENT}} = 1200
+\item 
+const double \mbox{\hyperlink{motor__constants_8h_a1866a6fa326e1143042e8d8a470723e8}{MAX\+\_\+\+TORQUE}} = 26.\+88
+\item 
+const double \mbox{\hyperlink{motor__constants_8h_a71c88f4f53d4318bcc6ec2937a9dc0db}{MULTI\+\_\+\+TURN\+\_\+\+THRESHOLD}} = 60.\+0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{motor__constants_8h_a0291c805062ed26f5ca2c26302047caf}\label{motor__constants_8h_a0291c805062ed26f5ca2c26302047caf}} 
+\index{motor\_constants.h@{motor\_constants.h}!MOTOR\_ADDRESS\_OFFSET@{MOTOR\_ADDRESS\_OFFSET}}
+\index{MOTOR\_ADDRESS\_OFFSET@{MOTOR\_ADDRESS\_OFFSET}!motor\_constants.h@{motor\_constants.h}}
+\doxysubsubsection{\texorpdfstring{MOTOR\_ADDRESS\_OFFSET}{MOTOR\_ADDRESS\_OFFSET}}
+{\footnotesize\ttfamily \#define MOTOR\+\_\+\+ADDRESS\+\_\+\+OFFSET~0x140}
+
+
+
+Definition at line 23 of file motor\+\_\+constants.\+h.
+
+\mbox{\Hypertarget{motor__constants_8h_a9eba963cf071d0b66689129598b1c6ee}\label{motor__constants_8h_a9eba963cf071d0b66689129598b1c6ee}} 
+\index{motor\_constants.h@{motor\_constants.h}!MOTOR\_COMMAND\_READ\_PID\_PARAMETERS@{MOTOR\_COMMAND\_READ\_PID\_PARAMETERS}}
+\index{MOTOR\_COMMAND\_READ\_PID\_PARAMETERS@{MOTOR\_COMMAND\_READ\_PID\_PARAMETERS}!motor\_constants.h@{motor\_constants.h}}
+\doxysubsubsection{\texorpdfstring{MOTOR\_COMMAND\_READ\_PID\_PARAMETERS}{MOTOR\_COMMAND\_READ\_PID\_PARAMETERS}}
+{\footnotesize\ttfamily \#define MOTOR\+\_\+\+COMMAND\+\_\+\+READ\+\_\+\+PID\+\_\+\+PARAMETERS~0x30}
+
+
+
+Definition at line 29 of file motor\+\_\+constants.\+h.
+
+\mbox{\Hypertarget{motor__constants_8h_ab59d332c10ae00b43901356ea5c36bf1}\label{motor__constants_8h_ab59d332c10ae00b43901356ea5c36bf1}} 
+\index{motor\_constants.h@{motor\_constants.h}!MOTOR\_COMMAND\_WRITE\_PID\_PARAMETERS\_TO\_RAM@{MOTOR\_COMMAND\_WRITE\_PID\_PARAMETERS\_TO\_RAM}}
+\index{MOTOR\_COMMAND\_WRITE\_PID\_PARAMETERS\_TO\_RAM@{MOTOR\_COMMAND\_WRITE\_PID\_PARAMETERS\_TO\_RAM}!motor\_constants.h@{motor\_constants.h}}
+\doxysubsubsection{\texorpdfstring{MOTOR\_COMMAND\_WRITE\_PID\_PARAMETERS\_TO\_RAM}{MOTOR\_COMMAND\_WRITE\_PID\_PARAMETERS\_TO\_RAM}}
+{\footnotesize\ttfamily \#define MOTOR\+\_\+\+COMMAND\+\_\+\+WRITE\+\_\+\+PID\+\_\+\+PARAMETERS\+\_\+\+TO\+\_\+\+RAM~0x31}
+
+
+
+Definition at line 30 of file motor\+\_\+constants.\+h.
+
+\mbox{\Hypertarget{motor__constants_8h_a6e3498c2faa1e48064f61cadf4420941}\label{motor__constants_8h_a6e3498c2faa1e48064f61cadf4420941}} 
+\index{motor\_constants.h@{motor\_constants.h}!MOTOR\_COMMAND\_WRITE\_PID\_PARAMETERS\_TO\_ROM@{MOTOR\_COMMAND\_WRITE\_PID\_PARAMETERS\_TO\_ROM}}
+\index{MOTOR\_COMMAND\_WRITE\_PID\_PARAMETERS\_TO\_ROM@{MOTOR\_COMMAND\_WRITE\_PID\_PARAMETERS\_TO\_ROM}!motor\_constants.h@{motor\_constants.h}}
+\doxysubsubsection{\texorpdfstring{MOTOR\_COMMAND\_WRITE\_PID\_PARAMETERS\_TO\_ROM}{MOTOR\_COMMAND\_WRITE\_PID\_PARAMETERS\_TO\_ROM}}
+{\footnotesize\ttfamily \#define MOTOR\+\_\+\+COMMAND\+\_\+\+WRITE\+\_\+\+PID\+\_\+\+PARAMETERS\+\_\+\+TO\+\_\+\+ROM~0x32}
+
+
+
+Definition at line 31 of file motor\+\_\+constants.\+h.
+
+\mbox{\Hypertarget{motor__constants_8h_ad7259836a5e778c7a544998b4af6fbcf}\label{motor__constants_8h_ad7259836a5e778c7a544998b4af6fbcf}} 
+\index{motor\_constants.h@{motor\_constants.h}!MOTOR\_COMMAND\_READ\_ACCELERATION@{MOTOR\_COMMAND\_READ\_ACCELERATION}}
+\index{MOTOR\_COMMAND\_READ\_ACCELERATION@{MOTOR\_COMMAND\_READ\_ACCELERATION}!motor\_constants.h@{motor\_constants.h}}
+\doxysubsubsection{\texorpdfstring{MOTOR\_COMMAND\_READ\_ACCELERATION}{MOTOR\_COMMAND\_READ\_ACCELERATION}}
+{\footnotesize\ttfamily \#define MOTOR\+\_\+\+COMMAND\+\_\+\+READ\+\_\+\+ACCELERATION~0x33}
+
+
+
+Definition at line 32 of file motor\+\_\+constants.\+h.
+
+\mbox{\Hypertarget{motor__constants_8h_a9da574cddcc5af23e5016d61590d1782}\label{motor__constants_8h_a9da574cddcc5af23e5016d61590d1782}} 
+\index{motor\_constants.h@{motor\_constants.h}!MOTOR\_COMMAND\_WRITE\_ACCELERATION\_TO\_RAM@{MOTOR\_COMMAND\_WRITE\_ACCELERATION\_TO\_RAM}}
+\index{MOTOR\_COMMAND\_WRITE\_ACCELERATION\_TO\_RAM@{MOTOR\_COMMAND\_WRITE\_ACCELERATION\_TO\_RAM}!motor\_constants.h@{motor\_constants.h}}
+\doxysubsubsection{\texorpdfstring{MOTOR\_COMMAND\_WRITE\_ACCELERATION\_TO\_RAM}{MOTOR\_COMMAND\_WRITE\_ACCELERATION\_TO\_RAM}}
+{\footnotesize\ttfamily \#define MOTOR\+\_\+\+COMMAND\+\_\+\+WRITE\+\_\+\+ACCELERATION\+\_\+\+TO\+\_\+\+RAM~0x34}
+
+
+
+Definition at line 33 of file motor\+\_\+constants.\+h.
+
+\mbox{\Hypertarget{motor__constants_8h_aeb95392cb1b6f1aefa466eef6ba85d72}\label{motor__constants_8h_aeb95392cb1b6f1aefa466eef6ba85d72}} 
+\index{motor\_constants.h@{motor\_constants.h}!MOTOR\_COMMAND\_READ\_ENCODER\_POSITION@{MOTOR\_COMMAND\_READ\_ENCODER\_POSITION}}
+\index{MOTOR\_COMMAND\_READ\_ENCODER\_POSITION@{MOTOR\_COMMAND\_READ\_ENCODER\_POSITION}!motor\_constants.h@{motor\_constants.h}}
+\doxysubsubsection{\texorpdfstring{MOTOR\_COMMAND\_READ\_ENCODER\_POSITION}{MOTOR\_COMMAND\_READ\_ENCODER\_POSITION}}
+{\footnotesize\ttfamily \#define MOTOR\+\_\+\+COMMAND\+\_\+\+READ\+\_\+\+ENCODER\+\_\+\+POSITION~0x90}
+
+
+
+Definition at line 34 of file motor\+\_\+constants.\+h.
+
+\mbox{\Hypertarget{motor__constants_8h_a997f6e46e949f5d9f7f17120a1570127}\label{motor__constants_8h_a997f6e46e949f5d9f7f17120a1570127}} 
+\index{motor\_constants.h@{motor\_constants.h}!MOTOR\_COMMAND\_WRITE\_ENCODER\_POSITION\_OFFSET@{MOTOR\_COMMAND\_WRITE\_ENCODER\_POSITION\_OFFSET}}
+\index{MOTOR\_COMMAND\_WRITE\_ENCODER\_POSITION\_OFFSET@{MOTOR\_COMMAND\_WRITE\_ENCODER\_POSITION\_OFFSET}!motor\_constants.h@{motor\_constants.h}}
+\doxysubsubsection{\texorpdfstring{MOTOR\_COMMAND\_WRITE\_ENCODER\_POSITION\_OFFSET}{MOTOR\_COMMAND\_WRITE\_ENCODER\_POSITION\_OFFSET}}
+{\footnotesize\ttfamily \#define MOTOR\+\_\+\+COMMAND\+\_\+\+WRITE\+\_\+\+ENCODER\+\_\+\+POSITION\+\_\+\+OFFSET~0x91}
+
+
+
+Definition at line 35 of file motor\+\_\+constants.\+h.
+
+\mbox{\Hypertarget{motor__constants_8h_a53297a54617bcb361a8e77b8d3ef176a}\label{motor__constants_8h_a53297a54617bcb361a8e77b8d3ef176a}} 
+\index{motor\_constants.h@{motor\_constants.h}!MOTOR\_COMMAND\_WRITE\_CURRENT\_POSITION\_TO\_ROM@{MOTOR\_COMMAND\_WRITE\_CURRENT\_POSITION\_TO\_ROM}}
+\index{MOTOR\_COMMAND\_WRITE\_CURRENT\_POSITION\_TO\_ROM@{MOTOR\_COMMAND\_WRITE\_CURRENT\_POSITION\_TO\_ROM}!motor\_constants.h@{motor\_constants.h}}
+\doxysubsubsection{\texorpdfstring{MOTOR\_COMMAND\_WRITE\_CURRENT\_POSITION\_TO\_ROM}{MOTOR\_COMMAND\_WRITE\_CURRENT\_POSITION\_TO\_ROM}}
+{\footnotesize\ttfamily \#define MOTOR\+\_\+\+COMMAND\+\_\+\+WRITE\+\_\+\+CURRENT\+\_\+\+POSITION\+\_\+\+TO\+\_\+\+ROM~0x19}
+
+
+
+Definition at line 36 of file motor\+\_\+constants.\+h.
+
+\mbox{\Hypertarget{motor__constants_8h_a690438612398fb166c28b37a70812109}\label{motor__constants_8h_a690438612398fb166c28b37a70812109}} 
+\index{motor\_constants.h@{motor\_constants.h}!MOTOR\_COMMAND\_READ\_MULTI\_TURN\_ANGLE@{MOTOR\_COMMAND\_READ\_MULTI\_TURN\_ANGLE}}
+\index{MOTOR\_COMMAND\_READ\_MULTI\_TURN\_ANGLE@{MOTOR\_COMMAND\_READ\_MULTI\_TURN\_ANGLE}!motor\_constants.h@{motor\_constants.h}}
+\doxysubsubsection{\texorpdfstring{MOTOR\_COMMAND\_READ\_MULTI\_TURN\_ANGLE}{MOTOR\_COMMAND\_READ\_MULTI\_TURN\_ANGLE}}
+{\footnotesize\ttfamily \#define MOTOR\+\_\+\+COMMAND\+\_\+\+READ\+\_\+\+MULTI\+\_\+\+TURN\+\_\+\+ANGLE~0x92}
+
+
+
+Definition at line 37 of file motor\+\_\+constants.\+h.
+
+\mbox{\Hypertarget{motor__constants_8h_a3d05a82aaed4fedfa5f0db42472f2352}\label{motor__constants_8h_a3d05a82aaed4fedfa5f0db42472f2352}} 
+\index{motor\_constants.h@{motor\_constants.h}!MOTOR\_COMMAND\_READ\_SINGLE\_CIRCLE\_COMMAND@{MOTOR\_COMMAND\_READ\_SINGLE\_CIRCLE\_COMMAND}}
+\index{MOTOR\_COMMAND\_READ\_SINGLE\_CIRCLE\_COMMAND@{MOTOR\_COMMAND\_READ\_SINGLE\_CIRCLE\_COMMAND}!motor\_constants.h@{motor\_constants.h}}
+\doxysubsubsection{\texorpdfstring{MOTOR\_COMMAND\_READ\_SINGLE\_CIRCLE\_COMMAND}{MOTOR\_COMMAND\_READ\_SINGLE\_CIRCLE\_COMMAND}}
+{\footnotesize\ttfamily \#define MOTOR\+\_\+\+COMMAND\+\_\+\+READ\+\_\+\+SINGLE\+\_\+\+CIRCLE\+\_\+\+COMMAND~0x94}
+
+
+
+Definition at line 38 of file motor\+\_\+constants.\+h.
+
+\mbox{\Hypertarget{motor__constants_8h_aace3fcc8de5d9172ff396a28f605af48}\label{motor__constants_8h_aace3fcc8de5d9172ff396a28f605af48}} 
+\index{motor\_constants.h@{motor\_constants.h}!MOTOR\_COMMAND\_READ\_MOTOR\_STATUS\_1\_AND\_ERROR\_FLAG@{MOTOR\_COMMAND\_READ\_MOTOR\_STATUS\_1\_AND\_ERROR\_FLAG}}
+\index{MOTOR\_COMMAND\_READ\_MOTOR\_STATUS\_1\_AND\_ERROR\_FLAG@{MOTOR\_COMMAND\_READ\_MOTOR\_STATUS\_1\_AND\_ERROR\_FLAG}!motor\_constants.h@{motor\_constants.h}}
+\doxysubsubsection{\texorpdfstring{MOTOR\_COMMAND\_READ\_MOTOR\_STATUS\_1\_AND\_ERROR\_FLAG}{MOTOR\_COMMAND\_READ\_MOTOR\_STATUS\_1\_AND\_ERROR\_FLAG}}
+{\footnotesize\ttfamily \#define MOTOR\+\_\+\+COMMAND\+\_\+\+READ\+\_\+\+MOTOR\+\_\+\+STATUS\+\_\+1\+\_\+\+AND\+\_\+\+ERROR\+\_\+\+FLAG~0x9A}
+
+
+
+Definition at line 39 of file motor\+\_\+constants.\+h.
+
+\mbox{\Hypertarget{motor__constants_8h_ae131bfb0ebcc94d883e4cd57ba142728}\label{motor__constants_8h_ae131bfb0ebcc94d883e4cd57ba142728}} 
+\index{motor\_constants.h@{motor\_constants.h}!MOTOR\_COMMAND\_CLEAR\_MOTOR\_ERROR\_FLAG@{MOTOR\_COMMAND\_CLEAR\_MOTOR\_ERROR\_FLAG}}
+\index{MOTOR\_COMMAND\_CLEAR\_MOTOR\_ERROR\_FLAG@{MOTOR\_COMMAND\_CLEAR\_MOTOR\_ERROR\_FLAG}!motor\_constants.h@{motor\_constants.h}}
+\doxysubsubsection{\texorpdfstring{MOTOR\_COMMAND\_CLEAR\_MOTOR\_ERROR\_FLAG}{MOTOR\_COMMAND\_CLEAR\_MOTOR\_ERROR\_FLAG}}
+{\footnotesize\ttfamily \#define MOTOR\+\_\+\+COMMAND\+\_\+\+CLEAR\+\_\+\+MOTOR\+\_\+\+ERROR\+\_\+\+FLAG~0x9B}
+
+
+
+Definition at line 40 of file motor\+\_\+constants.\+h.
+
+\mbox{\Hypertarget{motor__constants_8h_a8c9c77812e8b5c21fc4e926b2623ff7f}\label{motor__constants_8h_a8c9c77812e8b5c21fc4e926b2623ff7f}} 
+\index{motor\_constants.h@{motor\_constants.h}!MOTOR\_COMMAND\_READ\_MOTOR\_STATUS\_2@{MOTOR\_COMMAND\_READ\_MOTOR\_STATUS\_2}}
+\index{MOTOR\_COMMAND\_READ\_MOTOR\_STATUS\_2@{MOTOR\_COMMAND\_READ\_MOTOR\_STATUS\_2}!motor\_constants.h@{motor\_constants.h}}
+\doxysubsubsection{\texorpdfstring{MOTOR\_COMMAND\_READ\_MOTOR\_STATUS\_2}{MOTOR\_COMMAND\_READ\_MOTOR\_STATUS\_2}}
+{\footnotesize\ttfamily \#define MOTOR\+\_\+\+COMMAND\+\_\+\+READ\+\_\+\+MOTOR\+\_\+\+STATUS\+\_\+2~0x9C}
+
+
+
+Definition at line 41 of file motor\+\_\+constants.\+h.
+
+\mbox{\Hypertarget{motor__constants_8h_ad03b222039bb05d6828a476827add978}\label{motor__constants_8h_ad03b222039bb05d6828a476827add978}} 
+\index{motor\_constants.h@{motor\_constants.h}!MOTOR\_COMMAND\_READ\_MOTOR\_STATUS\_3@{MOTOR\_COMMAND\_READ\_MOTOR\_STATUS\_3}}
+\index{MOTOR\_COMMAND\_READ\_MOTOR\_STATUS\_3@{MOTOR\_COMMAND\_READ\_MOTOR\_STATUS\_3}!motor\_constants.h@{motor\_constants.h}}
+\doxysubsubsection{\texorpdfstring{MOTOR\_COMMAND\_READ\_MOTOR\_STATUS\_3}{MOTOR\_COMMAND\_READ\_MOTOR\_STATUS\_3}}
+{\footnotesize\ttfamily \#define MOTOR\+\_\+\+COMMAND\+\_\+\+READ\+\_\+\+MOTOR\+\_\+\+STATUS\+\_\+3~0x9D}
+
+
+
+Definition at line 42 of file motor\+\_\+constants.\+h.
+
+\mbox{\Hypertarget{motor__constants_8h_a3410d668daa5fdef49436729686faf8f}\label{motor__constants_8h_a3410d668daa5fdef49436729686faf8f}} 
+\index{motor\_constants.h@{motor\_constants.h}!MOTOR\_COMMAND\_MOTOR\_OFF@{MOTOR\_COMMAND\_MOTOR\_OFF}}
+\index{MOTOR\_COMMAND\_MOTOR\_OFF@{MOTOR\_COMMAND\_MOTOR\_OFF}!motor\_constants.h@{motor\_constants.h}}
+\doxysubsubsection{\texorpdfstring{MOTOR\_COMMAND\_MOTOR\_OFF}{MOTOR\_COMMAND\_MOTOR\_OFF}}
+{\footnotesize\ttfamily \#define MOTOR\+\_\+\+COMMAND\+\_\+\+MOTOR\+\_\+\+OFF~0x80}
+
+
+
+Definition at line 43 of file motor\+\_\+constants.\+h.
+
+\mbox{\Hypertarget{motor__constants_8h_a1c36e2c68634efb72bf87f1c6f853dc1}\label{motor__constants_8h_a1c36e2c68634efb72bf87f1c6f853dc1}} 
+\index{motor\_constants.h@{motor\_constants.h}!MOTOR\_COMMAND\_MOTOR\_STOP@{MOTOR\_COMMAND\_MOTOR\_STOP}}
+\index{MOTOR\_COMMAND\_MOTOR\_STOP@{MOTOR\_COMMAND\_MOTOR\_STOP}!motor\_constants.h@{motor\_constants.h}}
+\doxysubsubsection{\texorpdfstring{MOTOR\_COMMAND\_MOTOR\_STOP}{MOTOR\_COMMAND\_MOTOR\_STOP}}
+{\footnotesize\ttfamily \#define MOTOR\+\_\+\+COMMAND\+\_\+\+MOTOR\+\_\+\+STOP~0x81}
+
+
+
+Definition at line 44 of file motor\+\_\+constants.\+h.
+
+\mbox{\Hypertarget{motor__constants_8h_a6f6a8cf379bbcf9d835dbd054d39fe1c}\label{motor__constants_8h_a6f6a8cf379bbcf9d835dbd054d39fe1c}} 
+\index{motor\_constants.h@{motor\_constants.h}!MOTOR\_COMMAND\_MOTOR\_RUNNING@{MOTOR\_COMMAND\_MOTOR\_RUNNING}}
+\index{MOTOR\_COMMAND\_MOTOR\_RUNNING@{MOTOR\_COMMAND\_MOTOR\_RUNNING}!motor\_constants.h@{motor\_constants.h}}
+\doxysubsubsection{\texorpdfstring{MOTOR\_COMMAND\_MOTOR\_RUNNING}{MOTOR\_COMMAND\_MOTOR\_RUNNING}}
+{\footnotesize\ttfamily \#define MOTOR\+\_\+\+COMMAND\+\_\+\+MOTOR\+\_\+\+RUNNING~0x88}
+
+
+
+Definition at line 45 of file motor\+\_\+constants.\+h.
+
+\mbox{\Hypertarget{motor__constants_8h_ad82dd266f58434bdd2f02b9067ec1e97}\label{motor__constants_8h_ad82dd266f58434bdd2f02b9067ec1e97}} 
+\index{motor\_constants.h@{motor\_constants.h}!MOTOR\_COMMAND\_TORQUE\_CLOSED\_LOOP@{MOTOR\_COMMAND\_TORQUE\_CLOSED\_LOOP}}
+\index{MOTOR\_COMMAND\_TORQUE\_CLOSED\_LOOP@{MOTOR\_COMMAND\_TORQUE\_CLOSED\_LOOP}!motor\_constants.h@{motor\_constants.h}}
+\doxysubsubsection{\texorpdfstring{MOTOR\_COMMAND\_TORQUE\_CLOSED\_LOOP}{MOTOR\_COMMAND\_TORQUE\_CLOSED\_LOOP}}
+{\footnotesize\ttfamily \#define MOTOR\+\_\+\+COMMAND\+\_\+\+TORQUE\+\_\+\+CLOSED\+\_\+\+LOOP~0x\+A1}
+
+
+
+Definition at line 46 of file motor\+\_\+constants.\+h.
+
+\mbox{\Hypertarget{motor__constants_8h_a6f3bf7aa06dba4dd9ce3ea0a90e92dfc}\label{motor__constants_8h_a6f3bf7aa06dba4dd9ce3ea0a90e92dfc}} 
+\index{motor\_constants.h@{motor\_constants.h}!MOTOR\_COMMAND\_SPEED\_CLOSED\_LOOP@{MOTOR\_COMMAND\_SPEED\_CLOSED\_LOOP}}
+\index{MOTOR\_COMMAND\_SPEED\_CLOSED\_LOOP@{MOTOR\_COMMAND\_SPEED\_CLOSED\_LOOP}!motor\_constants.h@{motor\_constants.h}}
+\doxysubsubsection{\texorpdfstring{MOTOR\_COMMAND\_SPEED\_CLOSED\_LOOP}{MOTOR\_COMMAND\_SPEED\_CLOSED\_LOOP}}
+{\footnotesize\ttfamily \#define MOTOR\+\_\+\+COMMAND\+\_\+\+SPEED\+\_\+\+CLOSED\+\_\+\+LOOP~0x\+A2}
+
+
+
+Definition at line 47 of file motor\+\_\+constants.\+h.
+
+\mbox{\Hypertarget{motor__constants_8h_a8e4ec24c982f4fb0cef5cb6ec967dcf4}\label{motor__constants_8h_a8e4ec24c982f4fb0cef5cb6ec967dcf4}} 
+\index{motor\_constants.h@{motor\_constants.h}!MOTOR\_COMMAND\_POSITION\_CLOSED\_LOOP\_1@{MOTOR\_COMMAND\_POSITION\_CLOSED\_LOOP\_1}}
+\index{MOTOR\_COMMAND\_POSITION\_CLOSED\_LOOP\_1@{MOTOR\_COMMAND\_POSITION\_CLOSED\_LOOP\_1}!motor\_constants.h@{motor\_constants.h}}
+\doxysubsubsection{\texorpdfstring{MOTOR\_COMMAND\_POSITION\_CLOSED\_LOOP\_1}{MOTOR\_COMMAND\_POSITION\_CLOSED\_LOOP\_1}}
+{\footnotesize\ttfamily \#define MOTOR\+\_\+\+COMMAND\+\_\+\+POSITION\+\_\+\+CLOSED\+\_\+\+LOOP\+\_\+1~0x\+A3}
+
+
+
+Definition at line 48 of file motor\+\_\+constants.\+h.
+
+\mbox{\Hypertarget{motor__constants_8h_a923cd4c4098f86459d5cb513f1242188}\label{motor__constants_8h_a923cd4c4098f86459d5cb513f1242188}} 
+\index{motor\_constants.h@{motor\_constants.h}!MOTOR\_COMMAND\_POSITION\_CLOSED\_LOOP\_2@{MOTOR\_COMMAND\_POSITION\_CLOSED\_LOOP\_2}}
+\index{MOTOR\_COMMAND\_POSITION\_CLOSED\_LOOP\_2@{MOTOR\_COMMAND\_POSITION\_CLOSED\_LOOP\_2}!motor\_constants.h@{motor\_constants.h}}
+\doxysubsubsection{\texorpdfstring{MOTOR\_COMMAND\_POSITION\_CLOSED\_LOOP\_2}{MOTOR\_COMMAND\_POSITION\_CLOSED\_LOOP\_2}}
+{\footnotesize\ttfamily \#define MOTOR\+\_\+\+COMMAND\+\_\+\+POSITION\+\_\+\+CLOSED\+\_\+\+LOOP\+\_\+2~0x\+A4}
+
+
+
+Definition at line 49 of file motor\+\_\+constants.\+h.
+
+\mbox{\Hypertarget{motor__constants_8h_aef804480c951d98e1a0d721f604e2945}\label{motor__constants_8h_aef804480c951d98e1a0d721f604e2945}} 
+\index{motor\_constants.h@{motor\_constants.h}!MOTOR\_COMMAND\_POSITION\_CLOSED\_LOOP\_3@{MOTOR\_COMMAND\_POSITION\_CLOSED\_LOOP\_3}}
+\index{MOTOR\_COMMAND\_POSITION\_CLOSED\_LOOP\_3@{MOTOR\_COMMAND\_POSITION\_CLOSED\_LOOP\_3}!motor\_constants.h@{motor\_constants.h}}
+\doxysubsubsection{\texorpdfstring{MOTOR\_COMMAND\_POSITION\_CLOSED\_LOOP\_3}{MOTOR\_COMMAND\_POSITION\_CLOSED\_LOOP\_3}}
+{\footnotesize\ttfamily \#define MOTOR\+\_\+\+COMMAND\+\_\+\+POSITION\+\_\+\+CLOSED\+\_\+\+LOOP\+\_\+3~0x\+A5}
+
+
+
+Definition at line 50 of file motor\+\_\+constants.\+h.
+
+\mbox{\Hypertarget{motor__constants_8h_a655c8114ebcbe0733720cca048356675}\label{motor__constants_8h_a655c8114ebcbe0733720cca048356675}} 
+\index{motor\_constants.h@{motor\_constants.h}!MOTOR\_COMMAND\_POSITION\_CLOSED\_LOOP\_4@{MOTOR\_COMMAND\_POSITION\_CLOSED\_LOOP\_4}}
+\index{MOTOR\_COMMAND\_POSITION\_CLOSED\_LOOP\_4@{MOTOR\_COMMAND\_POSITION\_CLOSED\_LOOP\_4}!motor\_constants.h@{motor\_constants.h}}
+\doxysubsubsection{\texorpdfstring{MOTOR\_COMMAND\_POSITION\_CLOSED\_LOOP\_4}{MOTOR\_COMMAND\_POSITION\_CLOSED\_LOOP\_4}}
+{\footnotesize\ttfamily \#define MOTOR\+\_\+\+COMMAND\+\_\+\+POSITION\+\_\+\+CLOSED\+\_\+\+LOOP\+\_\+4~0x\+A6}
+
+
+
+Definition at line 51 of file motor\+\_\+constants.\+h.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{motor__constants_8h_adb0824668c3d5c8a5cc08f281a7f7730}\label{motor__constants_8h_adb0824668c3d5c8a5cc08f281a7f7730}} 
+\index{motor\_constants.h@{motor\_constants.h}!GEAR\_REDUCTION@{GEAR\_REDUCTION}}
+\index{GEAR\_REDUCTION@{GEAR\_REDUCTION}!motor\_constants.h@{motor\_constants.h}}
+\doxysubsubsection{\texorpdfstring{GEAR\_REDUCTION}{GEAR\_REDUCTION}}
+{\footnotesize\ttfamily const double GEAR\+\_\+\+REDUCTION = 6.\+0}
+
+
+
+Definition at line 5 of file motor\+\_\+constants.\+h.
+
+\mbox{\Hypertarget{motor__constants_8h_aef62715ac07820136019fd95c87572f3}\label{motor__constants_8h_aef62715ac07820136019fd95c87572f3}} 
+\index{motor\_constants.h@{motor\_constants.h}!ROTATION\_DISTANCE@{ROTATION\_DISTANCE}}
+\index{ROTATION\_DISTANCE@{ROTATION\_DISTANCE}!motor\_constants.h@{motor\_constants.h}}
+\doxysubsubsection{\texorpdfstring{ROTATION\_DISTANCE}{ROTATION\_DISTANCE}}
+{\footnotesize\ttfamily const double ROTATION\+\_\+\+DISTANCE = 60.\+0}
+
+
+
+Definition at line 8 of file motor\+\_\+constants.\+h.
+
+\mbox{\Hypertarget{motor__constants_8h_ad761ae46edafc6871fdbf23978202abf}\label{motor__constants_8h_ad761ae46edafc6871fdbf23978202abf}} 
+\index{motor\_constants.h@{motor\_constants.h}!MOTOR\_BAUD\_RATE@{MOTOR\_BAUD\_RATE}}
+\index{MOTOR\_BAUD\_RATE@{MOTOR\_BAUD\_RATE}!motor\_constants.h@{motor\_constants.h}}
+\doxysubsubsection{\texorpdfstring{MOTOR\_BAUD\_RATE}{MOTOR\_BAUD\_RATE}}
+{\footnotesize\ttfamily const int MOTOR\+\_\+\+BAUD\+\_\+\+RATE = 1000000}
+
+
+
+Definition at line 11 of file motor\+\_\+constants.\+h.
+
+\mbox{\Hypertarget{motor__constants_8h_a100441e5c0e4be8b60262830f3fb0559}\label{motor__constants_8h_a100441e5c0e4be8b60262830f3fb0559}} 
+\index{motor\_constants.h@{motor\_constants.h}!MAX\_ENCODER\_VALUE@{MAX\_ENCODER\_VALUE}}
+\index{MAX\_ENCODER\_VALUE@{MAX\_ENCODER\_VALUE}!motor\_constants.h@{motor\_constants.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_ENCODER\_VALUE}{MAX\_ENCODER\_VALUE}}
+{\footnotesize\ttfamily const int MAX\+\_\+\+ENCODER\+\_\+\+VALUE = 65535}
+
+
+
+Definition at line 14 of file motor\+\_\+constants.\+h.
+
+\mbox{\Hypertarget{motor__constants_8h_a74c651e3e89a2a6fb6c90f85c371a010}\label{motor__constants_8h_a74c651e3e89a2a6fb6c90f85c371a010}} 
+\index{motor\_constants.h@{motor\_constants.h}!MAX\_TORQUE\_CURRENT@{MAX\_TORQUE\_CURRENT}}
+\index{MAX\_TORQUE\_CURRENT@{MAX\_TORQUE\_CURRENT}!motor\_constants.h@{motor\_constants.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_TORQUE\_CURRENT}{MAX\_TORQUE\_CURRENT}}
+{\footnotesize\ttfamily const int MAX\+\_\+\+TORQUE\+\_\+\+CURRENT = 1200}
+
+
+
+Definition at line 17 of file motor\+\_\+constants.\+h.
+
+\mbox{\Hypertarget{motor__constants_8h_a1866a6fa326e1143042e8d8a470723e8}\label{motor__constants_8h_a1866a6fa326e1143042e8d8a470723e8}} 
+\index{motor\_constants.h@{motor\_constants.h}!MAX\_TORQUE@{MAX\_TORQUE}}
+\index{MAX\_TORQUE@{MAX\_TORQUE}!motor\_constants.h@{motor\_constants.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_TORQUE}{MAX\_TORQUE}}
+{\footnotesize\ttfamily const double MAX\+\_\+\+TORQUE = 26.\+88}
+
+
+
+Definition at line 20 of file motor\+\_\+constants.\+h.
+
+\mbox{\Hypertarget{motor__constants_8h_a71c88f4f53d4318bcc6ec2937a9dc0db}\label{motor__constants_8h_a71c88f4f53d4318bcc6ec2937a9dc0db}} 
+\index{motor\_constants.h@{motor\_constants.h}!MULTI\_TURN\_THRESHOLD@{MULTI\_TURN\_THRESHOLD}}
+\index{MULTI\_TURN\_THRESHOLD@{MULTI\_TURN\_THRESHOLD}!motor\_constants.h@{motor\_constants.h}}
+\doxysubsubsection{\texorpdfstring{MULTI\_TURN\_THRESHOLD}{MULTI\_TURN\_THRESHOLD}}
+{\footnotesize\ttfamily const double MULTI\+\_\+\+TURN\+\_\+\+THRESHOLD = 60.\+0}
+
+
+
+Definition at line 26 of file motor\+\_\+constants.\+h.
+

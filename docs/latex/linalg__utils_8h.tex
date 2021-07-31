@@ -1,0 +1,26 @@
+\hypertarget{linalg__utils_8h}{}\doxysection{catkin\+\_\+ws/src/utilities/math\+\_\+utils/include/math\+\_\+utils/linalg\+\_\+utils.h File Reference}
+\label{linalg__utils_8h}\index{catkin\_ws/src/utilities/math\_utils/include/math\_utils/linalg\_utils.h@{catkin\_ws/src/utilities/math\_utils/include/math\_utils/linalg\_utils.h}}
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$kindr/\+Core$>$}\newline
+{\ttfamily \#include $<$Eigen/\+Core$>$}\newline
+{\ttfamily \#include $<$Eigen/\+SVD$>$}\newline
+Include dependency graph for linalg\+\_\+utils.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacemath__utils}{math\+\_\+utils}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Matrix\+\_\+\+TypeA , typename Matrix\+\_\+\+TypeB $>$ }\\static bool \mbox{\hyperlink{namespacemath__utils_ac385312f2a665d917a4c2724f4b633c3}{math\+\_\+utils\+::damped\+Pseudo\+Inverse}} (const Matrix\+\_\+\+TypeA \&\+\_\+J, Matrix\+\_\+\+TypeB \&\+\_\+d\+PinvJ, const double \+\_\+lambda=0, const double \+\_\+epsilon=std\+::numeric\+\_\+limits$<$ typename Matrix\+\_\+\+Type\+A\+::\+Scalar $>$\+::epsilon())
+\begin{DoxyCompactList}\small\item\em The damped\+Pseudo\+Inverse function calculates the damped pseudo-\/inverse of a matrix using SVD. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Matrix\+\_\+\+TypeA , typename Matrix\+\_\+\+TypeB $>$ }\\static bool \mbox{\hyperlink{namespacemath__utils_ab3c668a5629a048f4a5436f5899b9e11}{math\+\_\+utils\+::null\+Space\+Projector}} (const Matrix\+\_\+\+TypeA \&\+\_\+A, Matrix\+\_\+\+TypeB \&\+\_\+N, const double \+\_\+alpha=1)
+\begin{DoxyCompactList}\small\item\em The null\+Space\+Projector function calculates the null-\/space projector of a given matrix. The null-\/space projector is calculated using the Moore-\/\+Penrose pseudo-\/inverse (N = I -\/ alpha $\ast$ pinvA $\ast$ A). \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Matrix\+\_\+\+TypeA $>$ }\\Eigen\+::\+Matrix$<$ typename Matrix\+\_\+\+Type\+A\+::\+Scalar, Eigen\+::\+Dynamic, Eigen\+::\+Dynamic $>$ \mbox{\hyperlink{namespacemath__utils_a80628cf39b07d1fd346383e807033ce7}{math\+\_\+utils\+::\+SVDNull\+Space\+Projector}} (const Matrix\+\_\+\+TypeA \&\+\_\+A)
+\begin{DoxyCompactList}\small\item\em The SVDNull\+Space\+Projector function calculates the null-\/space projector of a given matrix. The null-\/space projector is calculated using the singular-\/value decomposition (SVD). The null-\/space. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Vector\+\_\+\+TypeA , typename Vector\+\_\+\+TypeB $>$ }\\Eigen\+::\+Matrix$<$ typename Vector\+\_\+\+Type\+A\+::\+Scalar, Eigen\+::\+Dynamic, 1 $>$ \mbox{\hyperlink{namespacemath__utils_a1883ab1807271be329d39873620bc55f}{math\+\_\+utils\+::box\+Minus}} (const Vector\+\_\+\+TypeA \&\+\_\+a, const Vector\+\_\+\+TypeB \&\+\_\+b)
+\begin{DoxyCompactList}\small\item\em The box\+Minus function calculates the box-\/minus operation between two vectors of equal size. \end{DoxyCompactList}\end{DoxyCompactItemize}

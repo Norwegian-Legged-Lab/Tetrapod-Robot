@@ -2,6 +2,10 @@
 \label{classRobotController}\index{RobotController@{RobotController}}
 
 
+{\ttfamily \#include $<$robot\+\_\+controller.\+h$>$}
+
+
+
 Inheritance diagram for Robot\+Controller\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -21,155 +25,814 @@ Collaboration diagram for Robot\+Controller\+:\nopagebreak
 \doxysubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classRobotController_ad5b3f410c210fcfb5e0bdc6bd5b1ea63}\label{classRobotController_ad5b3f410c210fcfb5e0bdc6bd5b1ea63}} 
-enum {\bfseries Super\+State} \{ {\bfseries k\+Idle}, 
-{\bfseries k\+Moving}
+enum \mbox{\hyperlink{classRobotController_ad5b3f410c210fcfb5e0bdc6bd5b1ea63}{Super\+State}} \{ \mbox{\hyperlink{classRobotController_ad5b3f410c210fcfb5e0bdc6bd5b1ea63a6169a518de8e295e0b03a7f36cd03847}{k\+Idle}}
+, \mbox{\hyperlink{classRobotController_ad5b3f410c210fcfb5e0bdc6bd5b1ea63a8e6d9f95ebca48926d380a041f5807aa}{k\+Moving}}
  \}
 \item 
-\mbox{\Hypertarget{classRobotController_a39cdb07b88efd22c4dc014380cd2cc78}\label{classRobotController_a39cdb07b88efd22c4dc014380cd2cc78}} 
-enum {\bfseries Motion\+State} \{ {\bfseries k\+Stance\+Pre\+Swing\+Fl\+Rr}, 
-{\bfseries k\+Swing\+Fl\+Rr}, 
-{\bfseries k\+Stance\+Pre\+Swing\+Fr\+Rl}, 
-{\bfseries k\+Swing\+Fr\+Rl}
+enum \mbox{\hyperlink{classRobotController_a39cdb07b88efd22c4dc014380cd2cc78}{Motion\+State}} \{ \mbox{\hyperlink{classRobotController_a39cdb07b88efd22c4dc014380cd2cc78ab8b97da78b4d386e247bd717e0820a76}{k\+Stance\+Pre\+Swing\+Fl\+Rr}}
+, \mbox{\hyperlink{classRobotController_a39cdb07b88efd22c4dc014380cd2cc78a0644bff55cb8c44968bf682462edd8fc}{k\+Swing\+Fl\+Rr}}
+, \mbox{\hyperlink{classRobotController_a39cdb07b88efd22c4dc014380cd2cc78af79c45016975daf8b744d518a95a20e7}{k\+Stance\+Pre\+Swing\+Fr\+Rl}}
+, \mbox{\hyperlink{classRobotController_a39cdb07b88efd22c4dc014380cd2cc78a9240d13d670869ae6a1cf6b8c9343ee2}{k\+Swing\+Fr\+Rl}}
  \}
 \item 
-\mbox{\Hypertarget{classRobotController_a35346d628c47089f5178bceb51d85f4e}\label{classRobotController_a35346d628c47089f5178bceb51d85f4e}} 
-enum {\bfseries Swing\+State} \{ \newline
-{\bfseries k\+Start}, 
-{\bfseries k\+Rise}, 
-{\bfseries k\+High}, 
-{\bfseries k\+Fall}, 
-\newline
-{\bfseries k\+End}
+enum \mbox{\hyperlink{classRobotController_a35346d628c47089f5178bceb51d85f4e}{Swing\+State}} \{ \newline
+\mbox{\hyperlink{classRobotController_a35346d628c47089f5178bceb51d85f4ea00921b0c1f9771f35530940cb698a9ec}{k\+Start}}
+, \mbox{\hyperlink{classRobotController_a35346d628c47089f5178bceb51d85f4ea3b7db485836d84e767a8d662699f4fe2}{k\+Rise}}
+, \mbox{\hyperlink{classRobotController_a35346d628c47089f5178bceb51d85f4ea0fa7af4368af5bf8e7085cb6822cc394}{k\+High}}
+, \mbox{\hyperlink{classRobotController_a35346d628c47089f5178bceb51d85f4ea72fc90694f90e2a762bec07b144fea4e}{k\+Fall}}
+, \newline
+\mbox{\hyperlink{classRobotController_a35346d628c47089f5178bceb51d85f4ea155842d95beb960f5fa47e0d6480a068}{k\+End}}
  \}
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classRobotController_aaff6ee4f2b34409d88e2db0fe9b6d5c8}\label{classRobotController_aaff6ee4f2b34409d88e2db0fe9b6d5c8}} 
-{\bfseries Robot\+Controller} (int controller\+\_\+freq, double gait\+\_\+period)
+\mbox{\hyperlink{classRobotController_aaff6ee4f2b34409d88e2db0fe9b6d5c8}{Robot\+Controller}} (int \mbox{\hyperlink{classController_a9a68485769c0b78bdd3c5e7050821f19}{controller\+\_\+freq}}, double gait\+\_\+period)
 \item 
-\mbox{\Hypertarget{classRobotController_aa7651434dce9dcb39c6aacc94b464398}\label{classRobotController_aa7651434dce9dcb39c6aacc94b464398}} 
-void {\bfseries Update\+Step\+Distances} ()
+void \mbox{\hyperlink{classRobotController_a931c7071f839d1c6ef2843458f2c44de}{Update\+Guidance\+Commands}} ()
 \item 
-\mbox{\Hypertarget{classRobotController_ab2d90987ea38f7237c3b75d2882f1015}\label{classRobotController_ab2d90987ea38f7237c3b75d2882f1015}} 
-void {\bfseries Update\+Gait\+State} ()
+void \mbox{\hyperlink{classRobotController_a488fae1c35197f095ab7324abb126cb7}{Update\+Non\+Guidance\+Commands}} ()
 \item 
-\mbox{\Hypertarget{classRobotController_a1d1d88612826ea3f55904adc3d08d57b}\label{classRobotController_a1d1d88612826ea3f55904adc3d08d57b}} 
+void \mbox{\hyperlink{classRobotController_aa7651434dce9dcb39c6aacc94b464398}{Update\+Step\+Distances}} ()
+\item 
+bool \mbox{\hyperlink{classRobotController_a604cb0b5468cdf3828fe916cd96cee7f}{Update\+Gait\+State}} ()
+\item 
 void \mbox{\hyperlink{classRobotController_a1d1d88612826ea3f55904adc3d08d57b}{Update\+Feet\+References}} ()
 \begin{DoxyCompactList}\small\item\em A function updating the foot positions of the robot in the hip frames. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classRobotController_a330b76d714d876d93830fec6a1b51f91}\label{classRobotController_a330b76d714d876d93830fec6a1b51f91}} 
-void {\bfseries Update\+Feet\+Trajectories} ()
+void \mbox{\hyperlink{classRobotController_a330b76d714d876d93830fec6a1b51f91}{Update\+Feet\+Trajectories}} ()
 \item 
-\mbox{\Hypertarget{classRobotController_aa900b3483d9cbddbadd0aa38fedd16eb}\label{classRobotController_aa900b3483d9cbddbadd0aa38fedd16eb}} 
 void \mbox{\hyperlink{classRobotController_aa900b3483d9cbddbadd0aa38fedd16eb}{Update\+Feet\+References\+Pose\+Control}} ()
 \begin{DoxyCompactList}\small\item\em A pose controller updating robot\textquotesingle{}s foot positions to control its pose. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classRobotController_a9859f9c6c32e4716b996da4b51a70c43}\label{classRobotController_a9859f9c6c32e4716b996da4b51a70c43}} 
 void \mbox{\hyperlink{classRobotController_a9859f9c6c32e4716b996da4b51a70c43}{Update\+Feet\+References\+Gait\+Control}} ()
 \begin{DoxyCompactList}\small\item\em A gait controller updating the robot\textquotesingle{}s foot positions to walk. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classRobotController_a0dd109e6d4abf8f77d9909a4f4c8bfaa}\label{classRobotController_a0dd109e6d4abf8f77d9909a4f4c8bfaa}} 
 void \mbox{\hyperlink{classRobotController_a0dd109e6d4abf8f77d9909a4f4c8bfaa}{Set\+Feet\+Positions\+Goal\+Pose}} ()
 \begin{DoxyCompactList}\small\item\em A function that sets the goal positions as the targets to reach eventually. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classRobotController_a599b9d91cf7b7a90514b5bbfb5475864}\label{classRobotController_a599b9d91cf7b7a90514b5bbfb5475864}} 
-Eigen\+::\+Matrix$<$ double, 3, 1 $>$ {\bfseries Update\+Stance\+Foot\+Position} (\mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Kinematics\+::\+Leg\+Type}} \+\_\+leg\+\_\+type, double \+\_\+progress)
+Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classRobotController_a599b9d91cf7b7a90514b5bbfb5475864}{Update\+Stance\+Foot\+Position}} (\mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Kinematics\+::\+Leg\+Type}} \+\_\+leg\+\_\+type, double \+\_\+progress)
 \item 
-\mbox{\Hypertarget{classRobotController_a57a7d0bc7f4932f67273480e2d640170}\label{classRobotController_a57a7d0bc7f4932f67273480e2d640170}} 
-Eigen\+::\+Matrix$<$ double, 3, 1 $>$ {\bfseries Update\+Swing\+Foot\+Position} (\mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Kinematics\+::\+Leg\+Type}} \+\_\+leg\+\_\+type, double \+\_\+progress)
+Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classRobotController_a57a7d0bc7f4932f67273480e2d640170}{Update\+Swing\+Foot\+Position}} (\mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Kinematics\+::\+Leg\+Type}} \+\_\+leg\+\_\+type, double \+\_\+progress)
 \item 
-\mbox{\Hypertarget{classRobotController_ac150f100d2faae8ed425ec4d08255963}\label{classRobotController_ac150f100d2faae8ed425ec4d08255963}} 
-void {\bfseries Update\+Swing\+Foot\+Trajectory} (\mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Kinematics\+::\+Leg\+Type}} \+\_\+leg\+\_\+type, double progress)
+void \mbox{\hyperlink{classRobotController_ac150f100d2faae8ed425ec4d08255963}{Update\+Swing\+Foot\+Trajectory}} (\mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Kinematics\+::\+Leg\+Type}} \+\_\+leg\+\_\+type, double progress)
 \item 
-\mbox{\Hypertarget{classRobotController_a8de9a38ae6b026975e4206933525c6a4}\label{classRobotController_a8de9a38ae6b026975e4206933525c6a4}} 
-void {\bfseries Print\+Parameters} ()
+void \mbox{\hyperlink{classRobotController_a8de9a38ae6b026975e4206933525c6a4}{Print\+Parameters}} ()
 \item 
-\mbox{\Hypertarget{classRobotController_a9478dac26a71f15702329037e64ed58f}\label{classRobotController_a9478dac26a71f15702329037e64ed58f}} 
-void {\bfseries Print\+Foot\+Positions} ()
+void \mbox{\hyperlink{classRobotController_a9478dac26a71f15702329037e64ed58f}{Print\+Foot\+Positions}} ()
 \item 
-\mbox{\Hypertarget{classRobotController_ae3ffbbad4ef0425815d30d3d5e99d9b6}\label{classRobotController_ae3ffbbad4ef0425815d30d3d5e99d9b6}} 
-void {\bfseries Print\+Vel\+Commands} ()
+void \mbox{\hyperlink{classRobotController_ae3ffbbad4ef0425815d30d3d5e99d9b6}{Print\+Vel\+Commands}} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classRobotController_aaf2907bbd2010eef313b28d9dc355a01}\label{classRobotController_aaf2907bbd2010eef313b28d9dc355a01}} 
-Super\+State \mbox{\hyperlink{classRobotController_aaf2907bbd2010eef313b28d9dc355a01}{super\+\_\+state}} = Super\+State\+::k\+Idle
+\mbox{\hyperlink{classRobotController_ad5b3f410c210fcfb5e0bdc6bd5b1ea63}{Super\+State}} \mbox{\hyperlink{classRobotController_aaf2907bbd2010eef313b28d9dc355a01}{super\+\_\+state}} = Super\+State\+::k\+Idle
 \begin{DoxyCompactList}\small\item\em The main state of the robot deciding whether the robot is walking or not. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classRobotController_a32ce63004e5d5eb8168fd3b755b1642f}\label{classRobotController_a32ce63004e5d5eb8168fd3b755b1642f}} 
-Motion\+State \mbox{\hyperlink{classRobotController_a32ce63004e5d5eb8168fd3b755b1642f}{motion\+\_\+state}} = Motion\+State\+::k\+Stance\+Pre\+Swing\+Fl\+Rr
+\mbox{\hyperlink{classRobotController_a39cdb07b88efd22c4dc014380cd2cc78}{Motion\+State}} \mbox{\hyperlink{classRobotController_a32ce63004e5d5eb8168fd3b755b1642f}{motion\+\_\+state}} = Motion\+State\+::k\+Stance\+Pre\+Swing\+Fl\+Rr
 \begin{DoxyCompactList}\small\item\em A variable deciding which of the four motion states we are currently in. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classRobotController_aee8aa7a4916b3c2bf3a1c19bff175c57}\label{classRobotController_aee8aa7a4916b3c2bf3a1c19bff175c57}} 
 Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classRobotController_aee8aa7a4916b3c2bf3a1c19bff175c57}{fl\+\_\+goal\+\_\+position}}
 \begin{DoxyCompactList}\small\item\em The front left foot target position in the hip frame when using pose control. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classRobotController_a595acc2b6a0275dcc33a2f3fa2249bb2}\label{classRobotController_a595acc2b6a0275dcc33a2f3fa2249bb2}} 
 Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classRobotController_a595acc2b6a0275dcc33a2f3fa2249bb2}{fr\+\_\+goal\+\_\+position}}
 \begin{DoxyCompactList}\small\item\em The front right foot target position in the hip frame when using pose control. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classRobotController_a3971716c7229da45b7e233d5a8d19418}\label{classRobotController_a3971716c7229da45b7e233d5a8d19418}} 
 Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classRobotController_a3971716c7229da45b7e233d5a8d19418}{rl\+\_\+goal\+\_\+position}}
 \begin{DoxyCompactList}\small\item\em The rear left foot target position in the hip frame when using pose control. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classRobotController_aee81edb35892975a5155a8d82f1663c2}\label{classRobotController_aee81edb35892975a5155a8d82f1663c2}} 
 Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classRobotController_aee81edb35892975a5155a8d82f1663c2}{rr\+\_\+goal\+\_\+position}}
 \begin{DoxyCompactList}\small\item\em The rear right foot target position in the hip frame when using pose control. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classRobotController_a6c68126c7187f3eb2ebd0675d422271e}\label{classRobotController_a6c68126c7187f3eb2ebd0675d422271e}} 
-Eigen\+::\+Matrix$<$ double, 12, 1 $>$ {\bfseries initial\+\_\+feet\+\_\+positions\+\_\+pose\+\_\+control}
+Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \mbox{\hyperlink{classRobotController_a6c68126c7187f3eb2ebd0675d422271e}{initial\+\_\+feet\+\_\+positions\+\_\+pose\+\_\+control}}
 \item 
-\mbox{\Hypertarget{classRobotController_a6695eba2446d77622c5e979476ea5359}\label{classRobotController_a6695eba2446d77622c5e979476ea5359}} 
-double {\bfseries hip\+\_\+height} = 0.\+35
+double \mbox{\hyperlink{classRobotController_a6695eba2446d77622c5e979476ea5359}{hip\+\_\+height}} = 0.\+35
 \item 
-\mbox{\Hypertarget{classRobotController_a060949e5d54bd24037ca59e33dec4ae3}\label{classRobotController_a060949e5d54bd24037ca59e33dec4ae3}} 
-double {\bfseries step\+\_\+distance\+\_\+x\+\_\+linear} = 0.\+0
+double \mbox{\hyperlink{classRobotController_a060949e5d54bd24037ca59e33dec4ae3}{step\+\_\+distance\+\_\+x\+\_\+linear}} = 0.\+0
 \item 
-\mbox{\Hypertarget{classRobotController_a19674b224b7eff5acaf49f4344af3fca}\label{classRobotController_a19674b224b7eff5acaf49f4344af3fca}} 
-double {\bfseries step\+\_\+distance\+\_\+y\+\_\+linear} = 0.\+0
+double \mbox{\hyperlink{classRobotController_a19674b224b7eff5acaf49f4344af3fca}{step\+\_\+distance\+\_\+y\+\_\+linear}} = 0.\+0
 \item 
-\mbox{\Hypertarget{classRobotController_a99a99287a939b53e5278f04c6eef929a}\label{classRobotController_a99a99287a939b53e5278f04c6eef929a}} 
-double {\bfseries step\+\_\+distance\+\_\+x\+\_\+rotational} = 0.\+0
+double \mbox{\hyperlink{classRobotController_a99a99287a939b53e5278f04c6eef929a}{step\+\_\+distance\+\_\+x\+\_\+rotational}} = 0.\+0
 \item 
-\mbox{\Hypertarget{classRobotController_aaad4f816216a6ef698d638efd98f100e}\label{classRobotController_aaad4f816216a6ef698d638efd98f100e}} 
-double {\bfseries step\+\_\+distance\+\_\+y\+\_\+rotational} = 0.\+0
+double \mbox{\hyperlink{classRobotController_aaad4f816216a6ef698d638efd98f100e}{step\+\_\+distance\+\_\+y\+\_\+rotational}} = 0.\+0
 \item 
-\mbox{\Hypertarget{classRobotController_acd1a25618a40b2258e172e4c6d88831c}\label{classRobotController_acd1a25618a40b2258e172e4c6d88831c}} 
-double {\bfseries gait\+\_\+duration} = 0.\+0
+double \mbox{\hyperlink{classRobotController_acd1a25618a40b2258e172e4c6d88831c}{gait\+\_\+duration}} = 0.\+0
 \item 
-\mbox{\Hypertarget{classRobotController_ae34eb9401f81933ac09cf3bbd74ed906}\label{classRobotController_ae34eb9401f81933ac09cf3bbd74ed906}} 
-double {\bfseries vel\+\_\+x} = 0.\+0
+double \mbox{\hyperlink{classRobotController_ae34eb9401f81933ac09cf3bbd74ed906}{vel\+\_\+x}} = 0.\+0
 \item 
-\mbox{\Hypertarget{classRobotController_af4df7cda501672b91b9578b9f6e40ae1}\label{classRobotController_af4df7cda501672b91b9578b9f6e40ae1}} 
-double {\bfseries vel\+\_\+y} = 0.\+0
+double \mbox{\hyperlink{classRobotController_af4df7cda501672b91b9578b9f6e40ae1}{vel\+\_\+y}} = 0.\+0
 \item 
-\mbox{\Hypertarget{classRobotController_a59b7aa92d5485fbc8263ebb6f65c2829}\label{classRobotController_a59b7aa92d5485fbc8263ebb6f65c2829}} 
-double {\bfseries yaw\+\_\+rate} = 0.\+0
+double \mbox{\hyperlink{classRobotController_a59b7aa92d5485fbc8263ebb6f65c2829}{yaw\+\_\+rate}} = 0.\+0
 \item 
-\mbox{\Hypertarget{classRobotController_adee9476872d70de6c681dd33a4c7dbea}\label{classRobotController_adee9476872d70de6c681dd33a4c7dbea}} 
-int {\bfseries iteration} = 0
+int \mbox{\hyperlink{classRobotController_adee9476872d70de6c681dd33a4c7dbea}{iteration}} = 0
 \item 
-\mbox{\Hypertarget{classRobotController_aa88b50eb06d72731cab204d22b56f015}\label{classRobotController_aa88b50eb06d72731cab204d22b56f015}} 
-double {\bfseries max\+\_\+step\+\_\+height} = 0.\+1
+double \mbox{\hyperlink{classRobotController_aa88b50eb06d72731cab204d22b56f015}{max\+\_\+step\+\_\+height}} = 0.\+1
 \item 
-\mbox{\Hypertarget{classRobotController_a5101224430a811b82547d1ed473150b1}\label{classRobotController_a5101224430a811b82547d1ed473150b1}} 
-double {\bfseries stance\+\_\+phase\+\_\+duration\+\_\+percentage} = 0.\+2
+double \mbox{\hyperlink{classRobotController_a5101224430a811b82547d1ed473150b1}{stance\+\_\+phase\+\_\+duration\+\_\+percentage}} = 0.\+1
 \item 
-\mbox{\Hypertarget{classRobotController_a1a458d25c1f50dbd3a927b0c2941393e}\label{classRobotController_a1a458d25c1f50dbd3a927b0c2941393e}} 
-double {\bfseries swing\+\_\+rise\+\_\+percentage} = 0.\+4
+double \mbox{\hyperlink{classRobotController_a1a458d25c1f50dbd3a927b0c2941393e}{swing\+\_\+rise\+\_\+percentage}} = 0.\+3
 \item 
-\mbox{\Hypertarget{classRobotController_ae13042713837bc0d21ed0799b6392fcf}\label{classRobotController_ae13042713837bc0d21ed0799b6392fcf}} 
-double {\bfseries swing\+\_\+period}
+double \mbox{\hyperlink{classRobotController_ae13042713837bc0d21ed0799b6392fcf}{swing\+\_\+period}}
 \item 
-\mbox{\Hypertarget{classRobotController_af4b1aae121fab3f3cab28b0fb5a79843}\label{classRobotController_af4b1aae121fab3f3cab28b0fb5a79843}} 
-double {\bfseries stance\+\_\+period}
+double \mbox{\hyperlink{classRobotController_af4b1aae121fab3f3cab28b0fb5a79843}{stance\+\_\+period}}
 \item 
-\mbox{\Hypertarget{classRobotController_a0e4c36bca3e20729dfa0366b40c885a9}\label{classRobotController_a0e4c36bca3e20729dfa0366b40c885a9}} 
-int {\bfseries swing\+\_\+iterations}
+int \mbox{\hyperlink{classRobotController_a0e4c36bca3e20729dfa0366b40c885a9}{swing\+\_\+iterations}}
 \item 
-\mbox{\Hypertarget{classRobotController_a51f48fc4ef4cf4d55c9e9ebaa4d40531}\label{classRobotController_a51f48fc4ef4cf4d55c9e9ebaa4d40531}} 
-int {\bfseries stance\+\_\+iterations}
+int \mbox{\hyperlink{classRobotController_a51f48fc4ef4cf4d55c9e9ebaa4d40531}{stance\+\_\+iterations}}
 \item 
-\mbox{\Hypertarget{classRobotController_acaa7dca3c33e41936fa26d7d04dc5771}\label{classRobotController_acaa7dca3c33e41936fa26d7d04dc5771}} 
-int {\bfseries final\+\_\+iteration}
+int \mbox{\hyperlink{classRobotController_acaa7dca3c33e41936fa26d7d04dc5771}{final\+\_\+iteration}}
+\item 
+double \mbox{\hyperlink{classRobotController_afde6a8c1f4ed25c9a5d2b62af5867601}{fl\+\_\+step\+\_\+distance\+\_\+x}}
+\item 
+double \mbox{\hyperlink{classRobotController_adf9f3e40413ce572c5ad998f530107f5}{fl\+\_\+step\+\_\+distance\+\_\+y}}
+\item 
+double \mbox{\hyperlink{classRobotController_af4a77bd813d3b8c3fef0f8d3d855d6fe}{fr\+\_\+step\+\_\+distance\+\_\+x}}
+\item 
+double \mbox{\hyperlink{classRobotController_a2874ae57a151e2981d9f18f746fc502b}{fr\+\_\+step\+\_\+distance\+\_\+y}}
+\item 
+double \mbox{\hyperlink{classRobotController_ae30793632d133befa7c87af95bc5bc55}{rl\+\_\+step\+\_\+distance\+\_\+x}}
+\item 
+double \mbox{\hyperlink{classRobotController_aad8422c1f84b570c977057cdfb8beb36}{rl\+\_\+step\+\_\+distance\+\_\+y}}
+\item 
+double \mbox{\hyperlink{classRobotController_a78e09f51d915ad1ce70bafe4a24301cc}{rr\+\_\+step\+\_\+distance\+\_\+x}}
+\item 
+double \mbox{\hyperlink{classRobotController_aa7feeb30ac4201f4fc8ec9a8a85c0d51}{rr\+\_\+step\+\_\+distance\+\_\+y}}
+\item 
+double \mbox{\hyperlink{classRobotController_a330c69d46b6a93436dc219f25579df04}{\+\_\+lin\+\_\+vel\+\_\+x\+\_\+command}}
+\item 
+double \mbox{\hyperlink{classRobotController_aceaba411600d24af5778de0b1fb3deb2}{\+\_\+lin\+\_\+vel\+\_\+y\+\_\+command}}
+\item 
+double \mbox{\hyperlink{classRobotController_a75a33171bac6fa26c4fce6e366b8e780}{\+\_\+ang\+\_\+vel\+\_\+z\+\_\+command}}
+\item 
+double \mbox{\hyperlink{classRobotController_a2422e3590bdc5b30b520d15e31637406}{\+\_\+guidance\+\_\+lin\+\_\+vel\+\_\+gain}} = 1.\+0
+\item 
+double \mbox{\hyperlink{classRobotController_a7ed3c9edf8762607006c9878e71343bb}{\+\_\+guidance\+\_\+ang\+\_\+vel\+\_\+gain}} = 1.\+0
 \end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
 
+\doxysubsection{Detailed Description}
+
+
+Definition at line 7 of file robot\+\_\+controller.\+h.
+
+
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{classRobotController_ad5b3f410c210fcfb5e0bdc6bd5b1ea63}\label{classRobotController_ad5b3f410c210fcfb5e0bdc6bd5b1ea63}} 
+\index{RobotController@{RobotController}!SuperState@{SuperState}}
+\index{SuperState@{SuperState}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{SuperState}{SuperState}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classRobotController_ad5b3f410c210fcfb5e0bdc6bd5b1ea63}{Robot\+Controller\+::\+Super\+State}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{kIdle@{kIdle}!RobotController@{RobotController}}\index{RobotController@{RobotController}!kIdle@{kIdle}}}\mbox{\Hypertarget{classRobotController_ad5b3f410c210fcfb5e0bdc6bd5b1ea63a6169a518de8e295e0b03a7f36cd03847}\label{classRobotController_ad5b3f410c210fcfb5e0bdc6bd5b1ea63a6169a518de8e295e0b03a7f36cd03847}} 
+k\+Idle&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{kMoving@{kMoving}!RobotController@{RobotController}}\index{RobotController@{RobotController}!kMoving@{kMoving}}}\mbox{\Hypertarget{classRobotController_ad5b3f410c210fcfb5e0bdc6bd5b1ea63a8e6d9f95ebca48926d380a041f5807aa}\label{classRobotController_ad5b3f410c210fcfb5e0bdc6bd5b1ea63a8e6d9f95ebca48926d380a041f5807aa}} 
+k\+Moving&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 9 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_a39cdb07b88efd22c4dc014380cd2cc78}\label{classRobotController_a39cdb07b88efd22c4dc014380cd2cc78}} 
+\index{RobotController@{RobotController}!MotionState@{MotionState}}
+\index{MotionState@{MotionState}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{MotionState}{MotionState}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classRobotController_a39cdb07b88efd22c4dc014380cd2cc78}{Robot\+Controller\+::\+Motion\+State}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{kStancePreSwingFlRr@{kStancePreSwingFlRr}!RobotController@{RobotController}}\index{RobotController@{RobotController}!kStancePreSwingFlRr@{kStancePreSwingFlRr}}}\mbox{\Hypertarget{classRobotController_a39cdb07b88efd22c4dc014380cd2cc78ab8b97da78b4d386e247bd717e0820a76}\label{classRobotController_a39cdb07b88efd22c4dc014380cd2cc78ab8b97da78b4d386e247bd717e0820a76}} 
+k\+Stance\+Pre\+Swing\+Fl\+Rr&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{kSwingFlRr@{kSwingFlRr}!RobotController@{RobotController}}\index{RobotController@{RobotController}!kSwingFlRr@{kSwingFlRr}}}\mbox{\Hypertarget{classRobotController_a39cdb07b88efd22c4dc014380cd2cc78a0644bff55cb8c44968bf682462edd8fc}\label{classRobotController_a39cdb07b88efd22c4dc014380cd2cc78a0644bff55cb8c44968bf682462edd8fc}} 
+k\+Swing\+Fl\+Rr&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{kStancePreSwingFrRl@{kStancePreSwingFrRl}!RobotController@{RobotController}}\index{RobotController@{RobotController}!kStancePreSwingFrRl@{kStancePreSwingFrRl}}}\mbox{\Hypertarget{classRobotController_a39cdb07b88efd22c4dc014380cd2cc78af79c45016975daf8b744d518a95a20e7}\label{classRobotController_a39cdb07b88efd22c4dc014380cd2cc78af79c45016975daf8b744d518a95a20e7}} 
+k\+Stance\+Pre\+Swing\+Fr\+Rl&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{kSwingFrRl@{kSwingFrRl}!RobotController@{RobotController}}\index{RobotController@{RobotController}!kSwingFrRl@{kSwingFrRl}}}\mbox{\Hypertarget{classRobotController_a39cdb07b88efd22c4dc014380cd2cc78a9240d13d670869ae6a1cf6b8c9343ee2}\label{classRobotController_a39cdb07b88efd22c4dc014380cd2cc78a9240d13d670869ae6a1cf6b8c9343ee2}} 
+k\+Swing\+Fr\+Rl&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 11 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_a35346d628c47089f5178bceb51d85f4e}\label{classRobotController_a35346d628c47089f5178bceb51d85f4e}} 
+\index{RobotController@{RobotController}!SwingState@{SwingState}}
+\index{SwingState@{SwingState}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{SwingState}{SwingState}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classRobotController_a35346d628c47089f5178bceb51d85f4e}{Robot\+Controller\+::\+Swing\+State}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{kStart@{kStart}!RobotController@{RobotController}}\index{RobotController@{RobotController}!kStart@{kStart}}}\mbox{\Hypertarget{classRobotController_a35346d628c47089f5178bceb51d85f4ea00921b0c1f9771f35530940cb698a9ec}\label{classRobotController_a35346d628c47089f5178bceb51d85f4ea00921b0c1f9771f35530940cb698a9ec}} 
+k\+Start&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{kRise@{kRise}!RobotController@{RobotController}}\index{RobotController@{RobotController}!kRise@{kRise}}}\mbox{\Hypertarget{classRobotController_a35346d628c47089f5178bceb51d85f4ea3b7db485836d84e767a8d662699f4fe2}\label{classRobotController_a35346d628c47089f5178bceb51d85f4ea3b7db485836d84e767a8d662699f4fe2}} 
+k\+Rise&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{kHigh@{kHigh}!RobotController@{RobotController}}\index{RobotController@{RobotController}!kHigh@{kHigh}}}\mbox{\Hypertarget{classRobotController_a35346d628c47089f5178bceb51d85f4ea0fa7af4368af5bf8e7085cb6822cc394}\label{classRobotController_a35346d628c47089f5178bceb51d85f4ea0fa7af4368af5bf8e7085cb6822cc394}} 
+k\+High&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{kFall@{kFall}!RobotController@{RobotController}}\index{RobotController@{RobotController}!kFall@{kFall}}}\mbox{\Hypertarget{classRobotController_a35346d628c47089f5178bceb51d85f4ea72fc90694f90e2a762bec07b144fea4e}\label{classRobotController_a35346d628c47089f5178bceb51d85f4ea72fc90694f90e2a762bec07b144fea4e}} 
+k\+Fall&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{kEnd@{kEnd}!RobotController@{RobotController}}\index{RobotController@{RobotController}!kEnd@{kEnd}}}\mbox{\Hypertarget{classRobotController_a35346d628c47089f5178bceb51d85f4ea155842d95beb960f5fa47e0d6480a068}\label{classRobotController_a35346d628c47089f5178bceb51d85f4ea155842d95beb960f5fa47e0d6480a068}} 
+k\+End&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 13 of file robot\+\_\+controller.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classRobotController_aaff6ee4f2b34409d88e2db0fe9b6d5c8}\label{classRobotController_aaff6ee4f2b34409d88e2db0fe9b6d5c8}} 
+\index{RobotController@{RobotController}!RobotController@{RobotController}}
+\index{RobotController@{RobotController}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{RobotController()}{RobotController()}}
+{\footnotesize\ttfamily Robot\+Controller\+::\+Robot\+Controller (\begin{DoxyParamCaption}\item[{int}]{controller\+\_\+freq,  }\item[{double}]{gait\+\_\+period }\end{DoxyParamCaption})}
+
+
+
+Definition at line 3 of file robot\+\_\+controller.\+cpp.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classRobotController_a931c7071f839d1c6ef2843458f2c44de}\label{classRobotController_a931c7071f839d1c6ef2843458f2c44de}} 
+\index{RobotController@{RobotController}!UpdateGuidanceCommands@{UpdateGuidanceCommands}}
+\index{UpdateGuidanceCommands@{UpdateGuidanceCommands}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{UpdateGuidanceCommands()}{UpdateGuidanceCommands()}}
+{\footnotesize\ttfamily void Robot\+Controller\+::\+Update\+Guidance\+Commands (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 498 of file robot\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classRobotController_a488fae1c35197f095ab7324abb126cb7}\label{classRobotController_a488fae1c35197f095ab7324abb126cb7}} 
+\index{RobotController@{RobotController}!UpdateNonGuidanceCommands@{UpdateNonGuidanceCommands}}
+\index{UpdateNonGuidanceCommands@{UpdateNonGuidanceCommands}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{UpdateNonGuidanceCommands()}{UpdateNonGuidanceCommands()}}
+{\footnotesize\ttfamily void Robot\+Controller\+::\+Update\+Non\+Guidance\+Commands (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 514 of file robot\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classRobotController_aa7651434dce9dcb39c6aacc94b464398}\label{classRobotController_aa7651434dce9dcb39c6aacc94b464398}} 
+\index{RobotController@{RobotController}!UpdateStepDistances@{UpdateStepDistances}}
+\index{UpdateStepDistances@{UpdateStepDistances}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{UpdateStepDistances()}{UpdateStepDistances()}}
+{\footnotesize\ttfamily void Robot\+Controller\+::\+Update\+Step\+Distances (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 42 of file robot\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classRobotController_a604cb0b5468cdf3828fe916cd96cee7f}\label{classRobotController_a604cb0b5468cdf3828fe916cd96cee7f}} 
+\index{RobotController@{RobotController}!UpdateGaitState@{UpdateGaitState}}
+\index{UpdateGaitState@{UpdateGaitState}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{UpdateGaitState()}{UpdateGaitState()}}
+{\footnotesize\ttfamily bool Robot\+Controller\+::\+Update\+Gait\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 62 of file robot\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classRobotController_a1d1d88612826ea3f55904adc3d08d57b}\label{classRobotController_a1d1d88612826ea3f55904adc3d08d57b}} 
+\index{RobotController@{RobotController}!UpdateFeetReferences@{UpdateFeetReferences}}
+\index{UpdateFeetReferences@{UpdateFeetReferences}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{UpdateFeetReferences()}{UpdateFeetReferences()}}
+{\footnotesize\ttfamily void Robot\+Controller\+::\+Update\+Feet\+References (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+A function updating the foot positions of the robot in the hip frames. 
+
+
+
+Implements \mbox{\hyperlink{classController_a9635a5c77031b610febe90725af7f123}{Controller}}.
+
+
+
+Definition at line 109 of file robot\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classRobotController_a330b76d714d876d93830fec6a1b51f91}\label{classRobotController_a330b76d714d876d93830fec6a1b51f91}} 
+\index{RobotController@{RobotController}!UpdateFeetTrajectories@{UpdateFeetTrajectories}}
+\index{UpdateFeetTrajectories@{UpdateFeetTrajectories}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{UpdateFeetTrajectories()}{UpdateFeetTrajectories()}}
+{\footnotesize\ttfamily void Robot\+Controller\+::\+Update\+Feet\+Trajectories (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 157 of file robot\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classRobotController_aa900b3483d9cbddbadd0aa38fedd16eb}\label{classRobotController_aa900b3483d9cbddbadd0aa38fedd16eb}} 
+\index{RobotController@{RobotController}!UpdateFeetReferencesPoseControl@{UpdateFeetReferencesPoseControl}}
+\index{UpdateFeetReferencesPoseControl@{UpdateFeetReferencesPoseControl}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{UpdateFeetReferencesPoseControl()}{UpdateFeetReferencesPoseControl()}}
+{\footnotesize\ttfamily void Robot\+Controller\+::\+Update\+Feet\+References\+Pose\+Control (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+A pose controller updating robot\textquotesingle{}s foot positions to control its pose. 
+
+\mbox{\Hypertarget{classRobotController_a9859f9c6c32e4716b996da4b51a70c43}\label{classRobotController_a9859f9c6c32e4716b996da4b51a70c43}} 
+\index{RobotController@{RobotController}!UpdateFeetReferencesGaitControl@{UpdateFeetReferencesGaitControl}}
+\index{UpdateFeetReferencesGaitControl@{UpdateFeetReferencesGaitControl}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{UpdateFeetReferencesGaitControl()}{UpdateFeetReferencesGaitControl()}}
+{\footnotesize\ttfamily void Robot\+Controller\+::\+Update\+Feet\+References\+Gait\+Control (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+A gait controller updating the robot\textquotesingle{}s foot positions to walk. 
+
+\mbox{\Hypertarget{classRobotController_a0dd109e6d4abf8f77d9909a4f4c8bfaa}\label{classRobotController_a0dd109e6d4abf8f77d9909a4f4c8bfaa}} 
+\index{RobotController@{RobotController}!SetFeetPositionsGoalPose@{SetFeetPositionsGoalPose}}
+\index{SetFeetPositionsGoalPose@{SetFeetPositionsGoalPose}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{SetFeetPositionsGoalPose()}{SetFeetPositionsGoalPose()}}
+{\footnotesize\ttfamily void Robot\+Controller\+::\+Set\+Feet\+Positions\+Goal\+Pose (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+A function that sets the goal positions as the targets to reach eventually. 
+
+\mbox{\Hypertarget{classRobotController_a599b9d91cf7b7a90514b5bbfb5475864}\label{classRobotController_a599b9d91cf7b7a90514b5bbfb5475864}} 
+\index{RobotController@{RobotController}!UpdateStanceFootPosition@{UpdateStanceFootPosition}}
+\index{UpdateStanceFootPosition@{UpdateStanceFootPosition}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{UpdateStanceFootPosition()}{UpdateStanceFootPosition()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 1 $>$ Robot\+Controller\+::\+Update\+Stance\+Foot\+Position (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Kinematics\+::\+Leg\+Type}}}]{\+\_\+leg\+\_\+type,  }\item[{double}]{\+\_\+progress }\end{DoxyParamCaption})}
+
+
+
+Definition at line 219 of file robot\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classRobotController_a57a7d0bc7f4932f67273480e2d640170}\label{classRobotController_a57a7d0bc7f4932f67273480e2d640170}} 
+\index{RobotController@{RobotController}!UpdateSwingFootPosition@{UpdateSwingFootPosition}}
+\index{UpdateSwingFootPosition@{UpdateSwingFootPosition}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{UpdateSwingFootPosition()}{UpdateSwingFootPosition()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 1 $>$ Robot\+Controller\+::\+Update\+Swing\+Foot\+Position (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Kinematics\+::\+Leg\+Type}}}]{\+\_\+leg\+\_\+type,  }\item[{double}]{\+\_\+progress }\end{DoxyParamCaption})}
+
+
+
+Definition at line 307 of file robot\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classRobotController_ac150f100d2faae8ed425ec4d08255963}\label{classRobotController_ac150f100d2faae8ed425ec4d08255963}} 
+\index{RobotController@{RobotController}!UpdateSwingFootTrajectory@{UpdateSwingFootTrajectory}}
+\index{UpdateSwingFootTrajectory@{UpdateSwingFootTrajectory}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{UpdateSwingFootTrajectory()}{UpdateSwingFootTrajectory()}}
+{\footnotesize\ttfamily void Robot\+Controller\+::\+Update\+Swing\+Foot\+Trajectory (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Kinematics\+::\+Leg\+Type}}}]{\+\_\+leg\+\_\+type,  }\item[{double}]{progress }\end{DoxyParamCaption})}
+
+
+
+Definition at line 359 of file robot\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classRobotController_a8de9a38ae6b026975e4206933525c6a4}\label{classRobotController_a8de9a38ae6b026975e4206933525c6a4}} 
+\index{RobotController@{RobotController}!PrintParameters@{PrintParameters}}
+\index{PrintParameters@{PrintParameters}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{PrintParameters()}{PrintParameters()}}
+{\footnotesize\ttfamily void Robot\+Controller\+::\+Print\+Parameters (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 477 of file robot\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classRobotController_a9478dac26a71f15702329037e64ed58f}\label{classRobotController_a9478dac26a71f15702329037e64ed58f}} 
+\index{RobotController@{RobotController}!PrintFootPositions@{PrintFootPositions}}
+\index{PrintFootPositions@{PrintFootPositions}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{PrintFootPositions()}{PrintFootPositions()}}
+{\footnotesize\ttfamily void Robot\+Controller\+::\+Print\+Foot\+Positions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 487 of file robot\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classRobotController_ae3ffbbad4ef0425815d30d3d5e99d9b6}\label{classRobotController_ae3ffbbad4ef0425815d30d3d5e99d9b6}} 
+\index{RobotController@{RobotController}!PrintVelCommands@{PrintVelCommands}}
+\index{PrintVelCommands@{PrintVelCommands}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{PrintVelCommands()}{PrintVelCommands()}}
+{\footnotesize\ttfamily void Robot\+Controller\+::\+Print\+Vel\+Commands (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 482 of file robot\+\_\+controller.\+cpp.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classRobotController_aaf2907bbd2010eef313b28d9dc355a01}\label{classRobotController_aaf2907bbd2010eef313b28d9dc355a01}} 
+\index{RobotController@{RobotController}!super\_state@{super\_state}}
+\index{super\_state@{super\_state}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{super\_state}{super\_state}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classRobotController_ad5b3f410c210fcfb5e0bdc6bd5b1ea63}{Super\+State}} Robot\+Controller\+::super\+\_\+state = Super\+State\+::k\+Idle\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The main state of the robot deciding whether the robot is walking or not. 
+
+
+
+Definition at line 46 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_a32ce63004e5d5eb8168fd3b755b1642f}\label{classRobotController_a32ce63004e5d5eb8168fd3b755b1642f}} 
+\index{RobotController@{RobotController}!motion\_state@{motion\_state}}
+\index{motion\_state@{motion\_state}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{motion\_state}{motion\_state}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classRobotController_a39cdb07b88efd22c4dc014380cd2cc78}{Motion\+State}} Robot\+Controller\+::motion\+\_\+state = Motion\+State\+::k\+Stance\+Pre\+Swing\+Fl\+Rr\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+A variable deciding which of the four motion states we are currently in. 
+
+
+
+Definition at line 49 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_aee8aa7a4916b3c2bf3a1c19bff175c57}\label{classRobotController_aee8aa7a4916b3c2bf3a1c19bff175c57}} 
+\index{RobotController@{RobotController}!fl\_goal\_position@{fl\_goal\_position}}
+\index{fl\_goal\_position@{fl\_goal\_position}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{fl\_goal\_position}{fl\_goal\_position}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 1$>$ Robot\+Controller\+::fl\+\_\+goal\+\_\+position\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The front left foot target position in the hip frame when using pose control. 
+
+
+
+Definition at line 52 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_a595acc2b6a0275dcc33a2f3fa2249bb2}\label{classRobotController_a595acc2b6a0275dcc33a2f3fa2249bb2}} 
+\index{RobotController@{RobotController}!fr\_goal\_position@{fr\_goal\_position}}
+\index{fr\_goal\_position@{fr\_goal\_position}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{fr\_goal\_position}{fr\_goal\_position}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 1$>$ Robot\+Controller\+::fr\+\_\+goal\+\_\+position\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The front right foot target position in the hip frame when using pose control. 
+
+
+
+Definition at line 55 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_a3971716c7229da45b7e233d5a8d19418}\label{classRobotController_a3971716c7229da45b7e233d5a8d19418}} 
+\index{RobotController@{RobotController}!rl\_goal\_position@{rl\_goal\_position}}
+\index{rl\_goal\_position@{rl\_goal\_position}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{rl\_goal\_position}{rl\_goal\_position}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 1$>$ Robot\+Controller\+::rl\+\_\+goal\+\_\+position\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The rear left foot target position in the hip frame when using pose control. 
+
+
+
+Definition at line 58 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_aee81edb35892975a5155a8d82f1663c2}\label{classRobotController_aee81edb35892975a5155a8d82f1663c2}} 
+\index{RobotController@{RobotController}!rr\_goal\_position@{rr\_goal\_position}}
+\index{rr\_goal\_position@{rr\_goal\_position}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{rr\_goal\_position}{rr\_goal\_position}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 1$>$ Robot\+Controller\+::rr\+\_\+goal\+\_\+position\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The rear right foot target position in the hip frame when using pose control. 
+
+
+
+Definition at line 61 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_a6c68126c7187f3eb2ebd0675d422271e}\label{classRobotController_a6c68126c7187f3eb2ebd0675d422271e}} 
+\index{RobotController@{RobotController}!initial\_feet\_positions\_pose\_control@{initial\_feet\_positions\_pose\_control}}
+\index{initial\_feet\_positions\_pose\_control@{initial\_feet\_positions\_pose\_control}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{initial\_feet\_positions\_pose\_control}{initial\_feet\_positions\_pose\_control}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 12, 1$>$ Robot\+Controller\+::initial\+\_\+feet\+\_\+positions\+\_\+pose\+\_\+control\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 63 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_a6695eba2446d77622c5e979476ea5359}\label{classRobotController_a6695eba2446d77622c5e979476ea5359}} 
+\index{RobotController@{RobotController}!hip\_height@{hip\_height}}
+\index{hip\_height@{hip\_height}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{hip\_height}{hip\_height}}
+{\footnotesize\ttfamily double Robot\+Controller\+::hip\+\_\+height = 0.\+35\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 65 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_a060949e5d54bd24037ca59e33dec4ae3}\label{classRobotController_a060949e5d54bd24037ca59e33dec4ae3}} 
+\index{RobotController@{RobotController}!step\_distance\_x\_linear@{step\_distance\_x\_linear}}
+\index{step\_distance\_x\_linear@{step\_distance\_x\_linear}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{step\_distance\_x\_linear}{step\_distance\_x\_linear}}
+{\footnotesize\ttfamily double Robot\+Controller\+::step\+\_\+distance\+\_\+x\+\_\+linear = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 67 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_a19674b224b7eff5acaf49f4344af3fca}\label{classRobotController_a19674b224b7eff5acaf49f4344af3fca}} 
+\index{RobotController@{RobotController}!step\_distance\_y\_linear@{step\_distance\_y\_linear}}
+\index{step\_distance\_y\_linear@{step\_distance\_y\_linear}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{step\_distance\_y\_linear}{step\_distance\_y\_linear}}
+{\footnotesize\ttfamily double Robot\+Controller\+::step\+\_\+distance\+\_\+y\+\_\+linear = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 69 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_a99a99287a939b53e5278f04c6eef929a}\label{classRobotController_a99a99287a939b53e5278f04c6eef929a}} 
+\index{RobotController@{RobotController}!step\_distance\_x\_rotational@{step\_distance\_x\_rotational}}
+\index{step\_distance\_x\_rotational@{step\_distance\_x\_rotational}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{step\_distance\_x\_rotational}{step\_distance\_x\_rotational}}
+{\footnotesize\ttfamily double Robot\+Controller\+::step\+\_\+distance\+\_\+x\+\_\+rotational = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 71 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_aaad4f816216a6ef698d638efd98f100e}\label{classRobotController_aaad4f816216a6ef698d638efd98f100e}} 
+\index{RobotController@{RobotController}!step\_distance\_y\_rotational@{step\_distance\_y\_rotational}}
+\index{step\_distance\_y\_rotational@{step\_distance\_y\_rotational}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{step\_distance\_y\_rotational}{step\_distance\_y\_rotational}}
+{\footnotesize\ttfamily double Robot\+Controller\+::step\+\_\+distance\+\_\+y\+\_\+rotational = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 73 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_acd1a25618a40b2258e172e4c6d88831c}\label{classRobotController_acd1a25618a40b2258e172e4c6d88831c}} 
+\index{RobotController@{RobotController}!gait\_duration@{gait\_duration}}
+\index{gait\_duration@{gait\_duration}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{gait\_duration}{gait\_duration}}
+{\footnotesize\ttfamily double Robot\+Controller\+::gait\+\_\+duration = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 75 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_ae34eb9401f81933ac09cf3bbd74ed906}\label{classRobotController_ae34eb9401f81933ac09cf3bbd74ed906}} 
+\index{RobotController@{RobotController}!vel\_x@{vel\_x}}
+\index{vel\_x@{vel\_x}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{vel\_x}{vel\_x}}
+{\footnotesize\ttfamily double Robot\+Controller\+::vel\+\_\+x = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 77 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_af4df7cda501672b91b9578b9f6e40ae1}\label{classRobotController_af4df7cda501672b91b9578b9f6e40ae1}} 
+\index{RobotController@{RobotController}!vel\_y@{vel\_y}}
+\index{vel\_y@{vel\_y}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{vel\_y}{vel\_y}}
+{\footnotesize\ttfamily double Robot\+Controller\+::vel\+\_\+y = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 79 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_a59b7aa92d5485fbc8263ebb6f65c2829}\label{classRobotController_a59b7aa92d5485fbc8263ebb6f65c2829}} 
+\index{RobotController@{RobotController}!yaw\_rate@{yaw\_rate}}
+\index{yaw\_rate@{yaw\_rate}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{yaw\_rate}{yaw\_rate}}
+{\footnotesize\ttfamily double Robot\+Controller\+::yaw\+\_\+rate = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 81 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_adee9476872d70de6c681dd33a4c7dbea}\label{classRobotController_adee9476872d70de6c681dd33a4c7dbea}} 
+\index{RobotController@{RobotController}!iteration@{iteration}}
+\index{iteration@{iteration}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{iteration}{iteration}}
+{\footnotesize\ttfamily int Robot\+Controller\+::iteration = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 83 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_aa88b50eb06d72731cab204d22b56f015}\label{classRobotController_aa88b50eb06d72731cab204d22b56f015}} 
+\index{RobotController@{RobotController}!max\_step\_height@{max\_step\_height}}
+\index{max\_step\_height@{max\_step\_height}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{max\_step\_height}{max\_step\_height}}
+{\footnotesize\ttfamily double Robot\+Controller\+::max\+\_\+step\+\_\+height = 0.\+1\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 85 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_a5101224430a811b82547d1ed473150b1}\label{classRobotController_a5101224430a811b82547d1ed473150b1}} 
+\index{RobotController@{RobotController}!stance\_phase\_duration\_percentage@{stance\_phase\_duration\_percentage}}
+\index{stance\_phase\_duration\_percentage@{stance\_phase\_duration\_percentage}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{stance\_phase\_duration\_percentage}{stance\_phase\_duration\_percentage}}
+{\footnotesize\ttfamily double Robot\+Controller\+::stance\+\_\+phase\+\_\+duration\+\_\+percentage = 0.\+1\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 87 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_a1a458d25c1f50dbd3a927b0c2941393e}\label{classRobotController_a1a458d25c1f50dbd3a927b0c2941393e}} 
+\index{RobotController@{RobotController}!swing\_rise\_percentage@{swing\_rise\_percentage}}
+\index{swing\_rise\_percentage@{swing\_rise\_percentage}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{swing\_rise\_percentage}{swing\_rise\_percentage}}
+{\footnotesize\ttfamily double Robot\+Controller\+::swing\+\_\+rise\+\_\+percentage = 0.\+3\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 89 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_ae13042713837bc0d21ed0799b6392fcf}\label{classRobotController_ae13042713837bc0d21ed0799b6392fcf}} 
+\index{RobotController@{RobotController}!swing\_period@{swing\_period}}
+\index{swing\_period@{swing\_period}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{swing\_period}{swing\_period}}
+{\footnotesize\ttfamily double Robot\+Controller\+::swing\+\_\+period\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 91 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_af4b1aae121fab3f3cab28b0fb5a79843}\label{classRobotController_af4b1aae121fab3f3cab28b0fb5a79843}} 
+\index{RobotController@{RobotController}!stance\_period@{stance\_period}}
+\index{stance\_period@{stance\_period}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{stance\_period}{stance\_period}}
+{\footnotesize\ttfamily double Robot\+Controller\+::stance\+\_\+period\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 93 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_a0e4c36bca3e20729dfa0366b40c885a9}\label{classRobotController_a0e4c36bca3e20729dfa0366b40c885a9}} 
+\index{RobotController@{RobotController}!swing\_iterations@{swing\_iterations}}
+\index{swing\_iterations@{swing\_iterations}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{swing\_iterations}{swing\_iterations}}
+{\footnotesize\ttfamily int Robot\+Controller\+::swing\+\_\+iterations\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 95 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_a51f48fc4ef4cf4d55c9e9ebaa4d40531}\label{classRobotController_a51f48fc4ef4cf4d55c9e9ebaa4d40531}} 
+\index{RobotController@{RobotController}!stance\_iterations@{stance\_iterations}}
+\index{stance\_iterations@{stance\_iterations}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{stance\_iterations}{stance\_iterations}}
+{\footnotesize\ttfamily int Robot\+Controller\+::stance\+\_\+iterations\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 97 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_acaa7dca3c33e41936fa26d7d04dc5771}\label{classRobotController_acaa7dca3c33e41936fa26d7d04dc5771}} 
+\index{RobotController@{RobotController}!final\_iteration@{final\_iteration}}
+\index{final\_iteration@{final\_iteration}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{final\_iteration}{final\_iteration}}
+{\footnotesize\ttfamily int Robot\+Controller\+::final\+\_\+iteration\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 99 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_afde6a8c1f4ed25c9a5d2b62af5867601}\label{classRobotController_afde6a8c1f4ed25c9a5d2b62af5867601}} 
+\index{RobotController@{RobotController}!fl\_step\_distance\_x@{fl\_step\_distance\_x}}
+\index{fl\_step\_distance\_x@{fl\_step\_distance\_x}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{fl\_step\_distance\_x}{fl\_step\_distance\_x}}
+{\footnotesize\ttfamily double Robot\+Controller\+::fl\+\_\+step\+\_\+distance\+\_\+x\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 101 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_adf9f3e40413ce572c5ad998f530107f5}\label{classRobotController_adf9f3e40413ce572c5ad998f530107f5}} 
+\index{RobotController@{RobotController}!fl\_step\_distance\_y@{fl\_step\_distance\_y}}
+\index{fl\_step\_distance\_y@{fl\_step\_distance\_y}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{fl\_step\_distance\_y}{fl\_step\_distance\_y}}
+{\footnotesize\ttfamily double Robot\+Controller\+::fl\+\_\+step\+\_\+distance\+\_\+y\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 103 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_af4a77bd813d3b8c3fef0f8d3d855d6fe}\label{classRobotController_af4a77bd813d3b8c3fef0f8d3d855d6fe}} 
+\index{RobotController@{RobotController}!fr\_step\_distance\_x@{fr\_step\_distance\_x}}
+\index{fr\_step\_distance\_x@{fr\_step\_distance\_x}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{fr\_step\_distance\_x}{fr\_step\_distance\_x}}
+{\footnotesize\ttfamily double Robot\+Controller\+::fr\+\_\+step\+\_\+distance\+\_\+x\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 105 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_a2874ae57a151e2981d9f18f746fc502b}\label{classRobotController_a2874ae57a151e2981d9f18f746fc502b}} 
+\index{RobotController@{RobotController}!fr\_step\_distance\_y@{fr\_step\_distance\_y}}
+\index{fr\_step\_distance\_y@{fr\_step\_distance\_y}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{fr\_step\_distance\_y}{fr\_step\_distance\_y}}
+{\footnotesize\ttfamily double Robot\+Controller\+::fr\+\_\+step\+\_\+distance\+\_\+y\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 107 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_ae30793632d133befa7c87af95bc5bc55}\label{classRobotController_ae30793632d133befa7c87af95bc5bc55}} 
+\index{RobotController@{RobotController}!rl\_step\_distance\_x@{rl\_step\_distance\_x}}
+\index{rl\_step\_distance\_x@{rl\_step\_distance\_x}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{rl\_step\_distance\_x}{rl\_step\_distance\_x}}
+{\footnotesize\ttfamily double Robot\+Controller\+::rl\+\_\+step\+\_\+distance\+\_\+x\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 109 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_aad8422c1f84b570c977057cdfb8beb36}\label{classRobotController_aad8422c1f84b570c977057cdfb8beb36}} 
+\index{RobotController@{RobotController}!rl\_step\_distance\_y@{rl\_step\_distance\_y}}
+\index{rl\_step\_distance\_y@{rl\_step\_distance\_y}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{rl\_step\_distance\_y}{rl\_step\_distance\_y}}
+{\footnotesize\ttfamily double Robot\+Controller\+::rl\+\_\+step\+\_\+distance\+\_\+y\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 111 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_a78e09f51d915ad1ce70bafe4a24301cc}\label{classRobotController_a78e09f51d915ad1ce70bafe4a24301cc}} 
+\index{RobotController@{RobotController}!rr\_step\_distance\_x@{rr\_step\_distance\_x}}
+\index{rr\_step\_distance\_x@{rr\_step\_distance\_x}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{rr\_step\_distance\_x}{rr\_step\_distance\_x}}
+{\footnotesize\ttfamily double Robot\+Controller\+::rr\+\_\+step\+\_\+distance\+\_\+x\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 113 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_aa7feeb30ac4201f4fc8ec9a8a85c0d51}\label{classRobotController_aa7feeb30ac4201f4fc8ec9a8a85c0d51}} 
+\index{RobotController@{RobotController}!rr\_step\_distance\_y@{rr\_step\_distance\_y}}
+\index{rr\_step\_distance\_y@{rr\_step\_distance\_y}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{rr\_step\_distance\_y}{rr\_step\_distance\_y}}
+{\footnotesize\ttfamily double Robot\+Controller\+::rr\+\_\+step\+\_\+distance\+\_\+y\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 115 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_a330c69d46b6a93436dc219f25579df04}\label{classRobotController_a330c69d46b6a93436dc219f25579df04}} 
+\index{RobotController@{RobotController}!\_lin\_vel\_x\_command@{\_lin\_vel\_x\_command}}
+\index{\_lin\_vel\_x\_command@{\_lin\_vel\_x\_command}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{\_lin\_vel\_x\_command}{\_lin\_vel\_x\_command}}
+{\footnotesize\ttfamily double Robot\+Controller\+::\+\_\+lin\+\_\+vel\+\_\+x\+\_\+command\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 117 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_aceaba411600d24af5778de0b1fb3deb2}\label{classRobotController_aceaba411600d24af5778de0b1fb3deb2}} 
+\index{RobotController@{RobotController}!\_lin\_vel\_y\_command@{\_lin\_vel\_y\_command}}
+\index{\_lin\_vel\_y\_command@{\_lin\_vel\_y\_command}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{\_lin\_vel\_y\_command}{\_lin\_vel\_y\_command}}
+{\footnotesize\ttfamily double Robot\+Controller\+::\+\_\+lin\+\_\+vel\+\_\+y\+\_\+command\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 119 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_a75a33171bac6fa26c4fce6e366b8e780}\label{classRobotController_a75a33171bac6fa26c4fce6e366b8e780}} 
+\index{RobotController@{RobotController}!\_ang\_vel\_z\_command@{\_ang\_vel\_z\_command}}
+\index{\_ang\_vel\_z\_command@{\_ang\_vel\_z\_command}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{\_ang\_vel\_z\_command}{\_ang\_vel\_z\_command}}
+{\footnotesize\ttfamily double Robot\+Controller\+::\+\_\+ang\+\_\+vel\+\_\+z\+\_\+command\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 121 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_a2422e3590bdc5b30b520d15e31637406}\label{classRobotController_a2422e3590bdc5b30b520d15e31637406}} 
+\index{RobotController@{RobotController}!\_guidance\_lin\_vel\_gain@{\_guidance\_lin\_vel\_gain}}
+\index{\_guidance\_lin\_vel\_gain@{\_guidance\_lin\_vel\_gain}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{\_guidance\_lin\_vel\_gain}{\_guidance\_lin\_vel\_gain}}
+{\footnotesize\ttfamily double Robot\+Controller\+::\+\_\+guidance\+\_\+lin\+\_\+vel\+\_\+gain = 1.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 123 of file robot\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classRobotController_a7ed3c9edf8762607006c9878e71343bb}\label{classRobotController_a7ed3c9edf8762607006c9878e71343bb}} 
+\index{RobotController@{RobotController}!\_guidance\_ang\_vel\_gain@{\_guidance\_ang\_vel\_gain}}
+\index{\_guidance\_ang\_vel\_gain@{\_guidance\_ang\_vel\_gain}!RobotController@{RobotController}}
+\doxysubsubsection{\texorpdfstring{\_guidance\_ang\_vel\_gain}{\_guidance\_ang\_vel\_gain}}
+{\footnotesize\ttfamily double Robot\+Controller\+::\+\_\+guidance\+\_\+ang\+\_\+vel\+\_\+gain = 1.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 125 of file robot\+\_\+controller.\+h.
+
+
+
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-catkin\+\_\+ws/src/control/robot\+\_\+controller/include/robot\+\_\+controller/robot\+\_\+controller.\+h\item 
-catkin\+\_\+ws/src/control/robot\+\_\+controller/src/robot\+\_\+controller.\+cpp\end{DoxyCompactItemize}
+catkin\+\_\+ws/src/control/robot\+\_\+controller/include/robot\+\_\+controller/\mbox{\hyperlink{robot__controller_8h}{robot\+\_\+controller.\+h}}\item 
+catkin\+\_\+ws/src/control/robot\+\_\+controller/src/\mbox{\hyperlink{robot__controller_8cpp}{robot\+\_\+controller.\+cpp}}\end{DoxyCompactItemize}

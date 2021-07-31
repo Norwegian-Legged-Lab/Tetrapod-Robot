@@ -1,0 +1,39 @@
+\hypertarget{miqp__biped_8cpp}{}\doxysection{catkin\+\_\+ws/src/guidance/footstep\+\_\+planner/src/miqp\+\_\+biped.cpp File Reference}
+\label{miqp__biped_8cpp}\index{catkin\_ws/src/guidance/footstep\_planner/src/miqp\_biped.cpp@{catkin\_ws/src/guidance/footstep\_planner/src/miqp\_biped.cpp}}
+{\ttfamily \#include \char`\"{}footstep\+\_\+planner/miqp\+\_\+biped.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ros/console.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$cassert$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+Include dependency graph for miqp\+\_\+biped.\+cpp\+:
+% FIG 0
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacemiqp}{miqp}}
+\item 
+ \mbox{\hyperlink{namespacemiqp_1_1biped}{miqp\+::biped}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Dec\+Vars \mbox{\hyperlink{namespacemiqp_1_1biped_a69bc244df40a3158fdc07b565b8889d3}{miqp\+::biped\+::add\+\_\+decision\+\_\+variables}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, \mbox{\hyperlink{classTerrain}{Terrain}} \&terrain, int n\+\_\+steps)
+\item 
+void \mbox{\hyperlink{namespacemiqp_1_1biped_a3f21422712470650cdb350ef8a099e6f}{miqp\+::biped\+::set\+\_\+initial\+\_\+and\+\_\+goal\+\_\+position}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, \mbox{\hyperlink{classTerrain}{Terrain}} \&terrain, Dec\+Vars \&decision\+\_\+variables)
+\item 
+void \mbox{\hyperlink{namespacemiqp_1_1biped_a30b2b45a8a1d89f9332fe227ab8ec3b0}{miqp\+::biped\+::relative\+\_\+position\+\_\+limits}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, int n\+\_\+steps, double step\+\_\+span, double step\+\_\+height, Dec\+Vars \&decision\+\_\+variables)
+\item 
+void \mbox{\hyperlink{namespacemiqp_1_1biped_ac56bcce68a50e5d4d0295947bd48cee6}{miqp\+::biped\+::step\+\_\+sequence}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, int n\+\_\+steps, double step\+\_\+span, Dec\+Vars \&decision\+\_\+variables)
+\item 
+void \mbox{\hyperlink{namespacemiqp_1_1biped_ae5fde6f9af610d4c7088d156c1f4622a}{miqp\+::biped\+::one\+\_\+stone\+\_\+per\+\_\+foot}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, int n\+\_\+steps, Dec\+Vars \&decision\+\_\+variables)
+\item 
+Eigen\+::\+Vector4d \mbox{\hyperlink{namespacemiqp_1_1biped_a97323d2aee2f8d56b95c81d18ca7924c}{miqp\+::biped\+::get\+\_\+big\+\_\+M}} (\mbox{\hyperlink{classTerrain}{Terrain}} terrain)
+\item 
+void \mbox{\hyperlink{namespacemiqp_1_1biped_a1fb405b02dd0c37937958095fa6110c2}{miqp\+::biped\+::foot\+\_\+in\+\_\+stepping\+\_\+stone}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, \mbox{\hyperlink{classTerrain}{Terrain}} \&terrain, int n\+\_\+steps, Dec\+Vars \&decision\+\_\+variables)
+\item 
+void \mbox{\hyperlink{namespacemiqp_1_1biped_a9b74386181c086ba792069305955df2a}{miqp\+::biped\+::minimize\+\_\+step\+\_\+length}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, int n\+\_\+steps, Dec\+Vars \&decision\+\_\+variables)
+\item 
+void \mbox{\hyperlink{namespacemiqp_1_1biped_a5405b2343db2719b68c4984e3bf26453}{miqp\+::biped\+::write\+Mat\+To\+File}} (Eigen\+::\+Matrix\+Xd \&mat, std\+::string filename)
+\item 
+void \mbox{\hyperlink{namespacemiqp_1_1biped_ad29d7f6b64c045657411f15deb3cd9e1}{miqp\+::biped\+::write\+Dec\+Vars\+To\+File}} (Dec\+Vars\+\_\+res \&decision\+\_\+variables, std\+::string base\+\_\+name=\char`\"{}footstep\+\_\+planner\char`\"{})
+\end{DoxyCompactItemize}

@@ -12,23 +12,17 @@
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{structHierarchicalOptimizationControl_1_1Task_a11dc6f5fd4494a4b42d559c380ac81fd}\label{structHierarchicalOptimizationControl_1_1Task_a11dc6f5fd4494a4b42d559c380ac81fd}} 
 bool \mbox{\hyperlink{structHierarchicalOptimizationControl_1_1Task_a11dc6f5fd4494a4b42d559c380ac81fd}{has\+\_\+eq\+\_\+constraint}} = false
 \begin{DoxyCompactList}\small\item\em Bool indicating whether the task has a linear equality constraint. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{structHierarchicalOptimizationControl_1_1Task_a84b6c5269a6ba5237988b680bff3504c}\label{structHierarchicalOptimizationControl_1_1Task_a84b6c5269a6ba5237988b680bff3504c}} 
 bool \mbox{\hyperlink{structHierarchicalOptimizationControl_1_1Task_a84b6c5269a6ba5237988b680bff3504c}{has\+\_\+ineq\+\_\+constraint}} = false
 \begin{DoxyCompactList}\small\item\em Bool indicating whether the task has a linear inequality constraint. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{structHierarchicalOptimizationControl_1_1Task_af53a541c5b60f35649f0bb2a592a3953}\label{structHierarchicalOptimizationControl_1_1Task_af53a541c5b60f35649f0bb2a592a3953}} 
 Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{structHierarchicalOptimizationControl_1_1Task_af53a541c5b60f35649f0bb2a592a3953}{A\+\_\+eq}}
 \begin{DoxyCompactList}\small\item\em Linear equality constraint matrix A. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{structHierarchicalOptimizationControl_1_1Task_a75fa1fb54d3b625479b35dec0230d36f}\label{structHierarchicalOptimizationControl_1_1Task_a75fa1fb54d3b625479b35dec0230d36f}} 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{structHierarchicalOptimizationControl_1_1Task_a75fa1fb54d3b625479b35dec0230d36f}{b\+\_\+eq}}
 \begin{DoxyCompactList}\small\item\em Linear equality constraint vector b. ~\newline
  \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{structHierarchicalOptimizationControl_1_1Task_a4d3c6c31e4dec4f436ca1a8958c84009}\label{structHierarchicalOptimizationControl_1_1Task_a4d3c6c31e4dec4f436ca1a8958c84009}} 
 Eigen\+::\+Matrix\+Xd \mbox{\hyperlink{structHierarchicalOptimizationControl_1_1Task_a4d3c6c31e4dec4f436ca1a8958c84009}{A\+\_\+ineq}}
 \begin{DoxyCompactList}\small\item\em Linear inequality constraint matrix A. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{structHierarchicalOptimizationControl_1_1Task_a72ec1287c89ef88b093d5edde65c7bd2}\label{structHierarchicalOptimizationControl_1_1Task_a72ec1287c89ef88b093d5edde65c7bd2}} 
 Eigen\+::\+Vector\+Xd \mbox{\hyperlink{structHierarchicalOptimizationControl_1_1Task_a72ec1287c89ef88b093d5edde65c7bd2}{b\+\_\+ineq}}
 \begin{DoxyCompactList}\small\item\em Linear inequality constraint vector b. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -36,6 +30,98 @@ Eigen\+::\+Vector\+Xd \mbox{\hyperlink{structHierarchicalOptimizationControl_1_1
 \doxysubsection{Detailed Description}
 \mbox{\hyperlink{structHierarchicalOptimizationControl_1_1Task}{Task}} struct. 
 
+Definition at line 67 of file hierarchical\+\_\+optimization\+\_\+controller.\+h.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structHierarchicalOptimizationControl_1_1Task_a11dc6f5fd4494a4b42d559c380ac81fd}\label{structHierarchicalOptimizationControl_1_1Task_a11dc6f5fd4494a4b42d559c380ac81fd}} 
+\index{HierarchicalOptimizationControl::Task@{HierarchicalOptimizationControl::Task}!has\_eq\_constraint@{has\_eq\_constraint}}
+\index{has\_eq\_constraint@{has\_eq\_constraint}!HierarchicalOptimizationControl::Task@{HierarchicalOptimizationControl::Task}}
+\doxysubsubsection{\texorpdfstring{has\_eq\_constraint}{has\_eq\_constraint}}
+{\footnotesize\ttfamily bool Hierarchical\+Optimization\+Control\+::\+Task\+::has\+\_\+eq\+\_\+constraint = false}
+
+
+
+Bool indicating whether the task has a linear equality constraint. 
+
+
+
+Definition at line 68 of file hierarchical\+\_\+optimization\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{structHierarchicalOptimizationControl_1_1Task_a84b6c5269a6ba5237988b680bff3504c}\label{structHierarchicalOptimizationControl_1_1Task_a84b6c5269a6ba5237988b680bff3504c}} 
+\index{HierarchicalOptimizationControl::Task@{HierarchicalOptimizationControl::Task}!has\_ineq\_constraint@{has\_ineq\_constraint}}
+\index{has\_ineq\_constraint@{has\_ineq\_constraint}!HierarchicalOptimizationControl::Task@{HierarchicalOptimizationControl::Task}}
+\doxysubsubsection{\texorpdfstring{has\_ineq\_constraint}{has\_ineq\_constraint}}
+{\footnotesize\ttfamily bool Hierarchical\+Optimization\+Control\+::\+Task\+::has\+\_\+ineq\+\_\+constraint = false}
+
+
+
+Bool indicating whether the task has a linear inequality constraint. 
+
+
+
+Definition at line 69 of file hierarchical\+\_\+optimization\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{structHierarchicalOptimizationControl_1_1Task_af53a541c5b60f35649f0bb2a592a3953}\label{structHierarchicalOptimizationControl_1_1Task_af53a541c5b60f35649f0bb2a592a3953}} 
+\index{HierarchicalOptimizationControl::Task@{HierarchicalOptimizationControl::Task}!A\_eq@{A\_eq}}
+\index{A\_eq@{A\_eq}!HierarchicalOptimizationControl::Task@{HierarchicalOptimizationControl::Task}}
+\doxysubsubsection{\texorpdfstring{A\_eq}{A\_eq}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd Hierarchical\+Optimization\+Control\+::\+Task\+::\+A\+\_\+eq}
+
+
+
+Linear equality constraint matrix A. 
+
+
+
+Definition at line 70 of file hierarchical\+\_\+optimization\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{structHierarchicalOptimizationControl_1_1Task_a75fa1fb54d3b625479b35dec0230d36f}\label{structHierarchicalOptimizationControl_1_1Task_a75fa1fb54d3b625479b35dec0230d36f}} 
+\index{HierarchicalOptimizationControl::Task@{HierarchicalOptimizationControl::Task}!b\_eq@{b\_eq}}
+\index{b\_eq@{b\_eq}!HierarchicalOptimizationControl::Task@{HierarchicalOptimizationControl::Task}}
+\doxysubsubsection{\texorpdfstring{b\_eq}{b\_eq}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd Hierarchical\+Optimization\+Control\+::\+Task\+::b\+\_\+eq}
+
+
+
+Linear equality constraint vector b. ~\newline
+ 
+
+
+
+Definition at line 71 of file hierarchical\+\_\+optimization\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{structHierarchicalOptimizationControl_1_1Task_a4d3c6c31e4dec4f436ca1a8958c84009}\label{structHierarchicalOptimizationControl_1_1Task_a4d3c6c31e4dec4f436ca1a8958c84009}} 
+\index{HierarchicalOptimizationControl::Task@{HierarchicalOptimizationControl::Task}!A\_ineq@{A\_ineq}}
+\index{A\_ineq@{A\_ineq}!HierarchicalOptimizationControl::Task@{HierarchicalOptimizationControl::Task}}
+\doxysubsubsection{\texorpdfstring{A\_ineq}{A\_ineq}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd Hierarchical\+Optimization\+Control\+::\+Task\+::\+A\+\_\+ineq}
+
+
+
+Linear inequality constraint matrix A. 
+
+
+
+Definition at line 72 of file hierarchical\+\_\+optimization\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{structHierarchicalOptimizationControl_1_1Task_a72ec1287c89ef88b093d5edde65c7bd2}\label{structHierarchicalOptimizationControl_1_1Task_a72ec1287c89ef88b093d5edde65c7bd2}} 
+\index{HierarchicalOptimizationControl::Task@{HierarchicalOptimizationControl::Task}!b\_ineq@{b\_ineq}}
+\index{b\_ineq@{b\_ineq}!HierarchicalOptimizationControl::Task@{HierarchicalOptimizationControl::Task}}
+\doxysubsubsection{\texorpdfstring{b\_ineq}{b\_ineq}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd Hierarchical\+Optimization\+Control\+::\+Task\+::b\+\_\+ineq}
+
+
+
+Linear inequality constraint vector b. 
+
+
+
+Definition at line 73 of file hierarchical\+\_\+optimization\+\_\+controller.\+h.
+
+
+
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-catkin\+\_\+ws/src/control/hierarchical\+\_\+optimization\+\_\+controller/include/hierarchical\+\_\+optimization\+\_\+controller/hierarchical\+\_\+optimization\+\_\+controller.\+h\end{DoxyCompactItemize}
+catkin\+\_\+ws/src/control/hierarchical\+\_\+optimization\+\_\+controller/include/hierarchical\+\_\+optimization\+\_\+controller/\mbox{\hyperlink{hierarchical__optimization__controller_8h}{hierarchical\+\_\+optimization\+\_\+controller.\+h}}\end{DoxyCompactItemize}

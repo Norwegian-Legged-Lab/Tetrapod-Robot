@@ -1,0 +1,15 @@
+digraph "catkin_ws/src/utilities/visualization_utils/include/visualization_utils/xml_utils.h"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="catkin_ws/src/utilities\l/visualization_utils/include\l/visualization_utils/xml_utils.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="catkin_ws/src/guidance\l/footstep_planner/src\l/footstep_planner_node.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$footstep__planner__node_8cpp.html",tooltip=" "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="catkin_ws/src/simulator\l/tetrapod_gazebo/include\l/tetrapod_gazebo/footstep\l_planner_plugin.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$footstep__planner__plugin_8h.html",tooltip=" "];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="catkin_ws/src/simulator\l/tetrapod_gazebo/src/footstep\l_planner_plugin.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$footstep__planner__plugin_8cpp.html",tooltip=" "];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="catkin_ws/src/utilities\l/visualization_utils/src\l/xml_utils.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$xml__utils_8cpp.html",tooltip=" "];
+}

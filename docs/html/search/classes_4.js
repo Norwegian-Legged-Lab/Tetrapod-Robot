@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['kinematics_498',['Kinematics',['../classKinematics.html',1,'']]]
+  ['hierarchicaloptimizationcontrol_1253',['HierarchicalOptimizationControl',['../classHierarchicalOptimizationControl.html',1,'']]]
 ];

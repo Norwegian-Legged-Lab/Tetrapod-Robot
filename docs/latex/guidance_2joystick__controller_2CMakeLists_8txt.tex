@@ -1,0 +1,32 @@
+\hypertarget{guidance_2joystick__controller_2CMakeLists_8txt}{}\doxysection{catkin\+\_\+ws/src/guidance/joystick\+\_\+controller/\+CMake\+Lists.txt File Reference}
+\label{guidance_2joystick__controller_2CMakeLists_8txt}\index{catkin\_ws/src/guidance/joystick\_controller/CMakeLists.txt@{catkin\_ws/src/guidance/joystick\_controller/CMakeLists.txt}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{guidance_2joystick__controller_2CMakeLists_8txt_a3ff13ddd67bddf3e91a1dd59cb3819fe}{cmake\+\_\+minimum\+\_\+required}} (VERSION 3.\+0.\+2) project(joystick\+\_\+controller) find\+\_\+package(catkin REQUIRED COMPONENTS roscpp std\+\_\+msgs geometry\+\_\+msgs sensor\+\_\+msgs keyboard) catkin\+\_\+package(INCLUDE\+\_\+\+DIRS include LIBRARIES joystick\+\_\+controller CATKIN\+\_\+\+DEPENDS roscpp std\+\_\+msgs sensor\+\_\+msgs geometry\+\_\+msgs keyboard) \mbox{\hyperlink{navigation_2state__estimator_2CMakeLists_8txt_ac53a4eac02ddcbdd91a0047a4ec4f10d}{include\+\_\+directories}}(include \$
+\item 
+\mbox{\hyperlink{guidance_2joystick__controller_2CMakeLists_8txt_af3dd492ab4e1af89200a8fdca61fd3e6}{add\+\_\+library}} (\$\{PROJECT\+\_\+\+NAME\} src/joystick\+\_\+controller.\+cpp) \mbox{\hyperlink{navigation_2state__estimator_2CMakeLists_8txt_a913eb62ec481cd5240632f2848b621de}{add\+\_\+executable}}(joystick\+\_\+controller\+\_\+node src/joystick\+\_\+controller\+\_\+node.\+cpp src/joystick\+\_\+controller.\+cpp) \mbox{\hyperlink{control_2controller_2CMakeLists_8txt_ac2d4f342a2d0ce624aa90fd46e87583f}{target\+\_\+link\+\_\+libraries}}(\$
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{guidance_2joystick__controller_2CMakeLists_8txt_a3ff13ddd67bddf3e91a1dd59cb3819fe}\label{guidance_2joystick__controller_2CMakeLists_8txt_a3ff13ddd67bddf3e91a1dd59cb3819fe}} 
+\index{CMakeLists.txt@{CMakeLists.txt}!cmake\_minimum\_required@{cmake\_minimum\_required}}
+\index{cmake\_minimum\_required@{cmake\_minimum\_required}!CMakeLists.txt@{CMakeLists.txt}}
+\doxysubsubsection{\texorpdfstring{cmake\_minimum\_required()}{cmake\_minimum\_required()}}
+{\footnotesize\ttfamily cmake\+\_\+minimum\+\_\+required (\begin{DoxyParamCaption}\item[{VERSION 3.\+0.}]{2 }\end{DoxyParamCaption})}
+
+
+
+Definition at line 1 of file CMake\+Lists.\+txt.
+
+\mbox{\Hypertarget{guidance_2joystick__controller_2CMakeLists_8txt_af3dd492ab4e1af89200a8fdca61fd3e6}\label{guidance_2joystick__controller_2CMakeLists_8txt_af3dd492ab4e1af89200a8fdca61fd3e6}} 
+\index{CMakeLists.txt@{CMakeLists.txt}!add\_library@{add\_library}}
+\index{add\_library@{add\_library}!CMakeLists.txt@{CMakeLists.txt}}
+\doxysubsubsection{\texorpdfstring{add\_library()}{add\_library()}}
+{\footnotesize\ttfamily add\+\_\+library (\begin{DoxyParamCaption}\item[{}]{\$\{\+PROJECT\+\_\+\+NAME\} src/joystick\+\_\+controller. }\end{DoxyParamCaption})}
+
+
+
+Definition at line 30 of file CMake\+Lists.\+txt.
+

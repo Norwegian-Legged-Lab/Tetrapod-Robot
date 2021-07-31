@@ -1,0 +1,325 @@
+\hypertarget{classStateEstimator}{}\doxysection{State\+Estimator Class Reference}
+\label{classStateEstimator}\index{StateEstimator@{StateEstimator}}
+
+
+{\ttfamily \#include $<$state\+\_\+estimator.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classStateEstimator_a563534883f8f6fa529e7dabe0e1db992}{State\+Estimator}} (double gait\+\_\+period, double controller\+\_\+frequency)
+\item 
+void \mbox{\hyperlink{classStateEstimator_a2558a3f82473f984c93a610fe28a2a79}{Print\+States}} ()
+\item 
+void \mbox{\hyperlink{classStateEstimator_abd02575184a379c7dc0abb093e30dee3}{Publish\+Body\+Twist\+State}} ()
+\item 
+void \mbox{\hyperlink{classStateEstimator_a2ca443f19f66516efdef6a0507d74dc0}{Update\+States}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classStateEstimator_acd3c5d9d132743f40f28869747a243ac}{Initialize\+ROS}} ()
+\item 
+void \mbox{\hyperlink{classStateEstimator_aa62bb5e87b283183bcd018fee699c437}{Generalized\+Position\+Callback}} (const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&msg)
+\item 
+void \mbox{\hyperlink{classStateEstimator_ac231ab45cd0281c961553b7620205113}{Generalized\+Velocity\+Callback}} (const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&msg)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classStateEstimator_a0fb528228a4d882e7d08e32f16f181e2}{\+\_\+attitude}} = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()
+\item 
+Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classStateEstimator_a1c2c873ed84dec6b4726828877ec74cb}{\+\_\+lin\+\_\+vel\+\_\+body}} = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()
+\item 
+Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classStateEstimator_afc6f7d321b66010d48d8f26ee166daf7}{\+\_\+ang\+\_\+vel}} = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()
+\item 
+Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classStateEstimator_a926cdf5d34868ceb0fb560554a6008e8}{\+\_\+lin\+\_\+vel\+\_\+world}} = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()
+\item 
+double \mbox{\hyperlink{classStateEstimator_acb44895a3b1f2cf958bf18ca5c3f72d2}{\+\_\+avg\+\_\+lin\+\_\+gait\+\_\+vel\+\_\+x}} = 0.\+0
+\item 
+double \mbox{\hyperlink{classStateEstimator_a31ec2b34c4dcb2c7ffb17de77a1b3c73}{\+\_\+avg\+\_\+lin\+\_\+gait\+\_\+vel\+\_\+y}} = 0.\+0
+\item 
+double \mbox{\hyperlink{classStateEstimator_a1a94ed33287f803137efbcf247a9121f}{\+\_\+avg\+\_\+ang\+\_\+gait\+\_\+vel\+\_\+z}} = 0.\+0
+\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{classStateEstimator_aa2523f2a34228beccc89b9cf3d611a7c}{\+\_\+lin\+\_\+vel\+\_\+body\+\_\+x\+\_\+history}}
+\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{classStateEstimator_a17c3086e857e5e211880ba5d12a79743}{\+\_\+lin\+\_\+vel\+\_\+body\+\_\+y\+\_\+history}}
+\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{classStateEstimator_a17a2f288b3eca85c94e4dd1fff9f124d}{\+\_\+ang\+\_\+vel\+\_\+body\+\_\+z\+\_\+history}}
+\item 
+int \mbox{\hyperlink{classStateEstimator_a5fa608b1e6feda1f42dc93a8c9c69893}{gait\+\_\+iteration}} = 0
+\item 
+int \mbox{\hyperlink{classStateEstimator_a859f4bbc895c05720a127ee73384d77a}{number\+\_\+of\+\_\+gait\+\_\+iterations}}
+\item 
+std\+::string \mbox{\hyperlink{classStateEstimator_a59ba87943fb092e4a77425731b70f1e4}{\+\_\+node\+\_\+name}} = \char`\"{}state\+\_\+estimation\+\_\+node\char`\"{}
+\item 
+ros\+::\+Node\+Handle\+Ptr \mbox{\hyperlink{classStateEstimator_afc5d600889869184ccc0bafa228fb498}{\+\_\+node\+\_\+handle}}
+\item 
+ros\+::\+Subscriber \mbox{\hyperlink{classStateEstimator_a07511aebaefcd18ed526395c91f4827d}{\+\_\+generalized\+\_\+position\+\_\+subscriber}}
+\item 
+ros\+::\+Subscriber \mbox{\hyperlink{classStateEstimator_a4769fbb0247b090b1865c74804aaade9}{\+\_\+generalized\+\_\+velocity\+\_\+subscriber}}
+\item 
+ros\+::\+Publisher \mbox{\hyperlink{classStateEstimator_a4755a91b887477655ad2425da85ba815}{\+\_\+body\+\_\+twist\+\_\+state\+\_\+publisher}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 13 of file state\+\_\+estimator.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classStateEstimator_a563534883f8f6fa529e7dabe0e1db992}\label{classStateEstimator_a563534883f8f6fa529e7dabe0e1db992}} 
+\index{StateEstimator@{StateEstimator}!StateEstimator@{StateEstimator}}
+\index{StateEstimator@{StateEstimator}!StateEstimator@{StateEstimator}}
+\doxysubsubsection{\texorpdfstring{StateEstimator()}{StateEstimator()}}
+{\footnotesize\ttfamily State\+Estimator\+::\+State\+Estimator (\begin{DoxyParamCaption}\item[{double}]{gait\+\_\+period,  }\item[{double}]{controller\+\_\+frequency }\end{DoxyParamCaption})}
+
+
+
+Definition at line 3 of file state\+\_\+estimator.\+cpp.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classStateEstimator_a2558a3f82473f984c93a610fe28a2a79}\label{classStateEstimator_a2558a3f82473f984c93a610fe28a2a79}} 
+\index{StateEstimator@{StateEstimator}!PrintStates@{PrintStates}}
+\index{PrintStates@{PrintStates}!StateEstimator@{StateEstimator}}
+\doxysubsubsection{\texorpdfstring{PrintStates()}{PrintStates()}}
+{\footnotesize\ttfamily void State\+Estimator\+::\+Print\+States (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 105 of file state\+\_\+estimator.\+cpp.
+
+\mbox{\Hypertarget{classStateEstimator_abd02575184a379c7dc0abb093e30dee3}\label{classStateEstimator_abd02575184a379c7dc0abb093e30dee3}} 
+\index{StateEstimator@{StateEstimator}!PublishBodyTwistState@{PublishBodyTwistState}}
+\index{PublishBodyTwistState@{PublishBodyTwistState}!StateEstimator@{StateEstimator}}
+\doxysubsubsection{\texorpdfstring{PublishBodyTwistState()}{PublishBodyTwistState()}}
+{\footnotesize\ttfamily void State\+Estimator\+::\+Publish\+Body\+Twist\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 110 of file state\+\_\+estimator.\+cpp.
+
+\mbox{\Hypertarget{classStateEstimator_a2ca443f19f66516efdef6a0507d74dc0}\label{classStateEstimator_a2ca443f19f66516efdef6a0507d74dc0}} 
+\index{StateEstimator@{StateEstimator}!UpdateStates@{UpdateStates}}
+\index{UpdateStates@{UpdateStates}!StateEstimator@{StateEstimator}}
+\doxysubsubsection{\texorpdfstring{UpdateStates()}{UpdateStates()}}
+{\footnotesize\ttfamily void State\+Estimator\+::\+Update\+States (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 81 of file state\+\_\+estimator.\+cpp.
+
+\mbox{\Hypertarget{classStateEstimator_acd3c5d9d132743f40f28869747a243ac}\label{classStateEstimator_acd3c5d9d132743f40f28869747a243ac}} 
+\index{StateEstimator@{StateEstimator}!InitializeROS@{InitializeROS}}
+\index{InitializeROS@{InitializeROS}!StateEstimator@{StateEstimator}}
+\doxysubsubsection{\texorpdfstring{InitializeROS()}{InitializeROS()}}
+{\footnotesize\ttfamily void State\+Estimator\+::\+Initialize\+ROS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 18 of file state\+\_\+estimator.\+cpp.
+
+\mbox{\Hypertarget{classStateEstimator_aa62bb5e87b283183bcd018fee699c437}\label{classStateEstimator_aa62bb5e87b283183bcd018fee699c437}} 
+\index{StateEstimator@{StateEstimator}!GeneralizedPositionCallback@{GeneralizedPositionCallback}}
+\index{GeneralizedPositionCallback@{GeneralizedPositionCallback}!StateEstimator@{StateEstimator}}
+\doxysubsubsection{\texorpdfstring{GeneralizedPositionCallback()}{GeneralizedPositionCallback()}}
+{\footnotesize\ttfamily void State\+Estimator\+::\+Generalized\+Position\+Callback (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 54 of file state\+\_\+estimator.\+cpp.
+
+\mbox{\Hypertarget{classStateEstimator_ac231ab45cd0281c961553b7620205113}\label{classStateEstimator_ac231ab45cd0281c961553b7620205113}} 
+\index{StateEstimator@{StateEstimator}!GeneralizedVelocityCallback@{GeneralizedVelocityCallback}}
+\index{GeneralizedVelocityCallback@{GeneralizedVelocityCallback}!StateEstimator@{StateEstimator}}
+\doxysubsubsection{\texorpdfstring{GeneralizedVelocityCallback()}{GeneralizedVelocityCallback()}}
+{\footnotesize\ttfamily void State\+Estimator\+::\+Generalized\+Velocity\+Callback (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 62 of file state\+\_\+estimator.\+cpp.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classStateEstimator_a0fb528228a4d882e7d08e32f16f181e2}\label{classStateEstimator_a0fb528228a4d882e7d08e32f16f181e2}} 
+\index{StateEstimator@{StateEstimator}!\_attitude@{\_attitude}}
+\index{\_attitude@{\_attitude}!StateEstimator@{StateEstimator}}
+\doxysubsubsection{\texorpdfstring{\_attitude}{\_attitude}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 1$>$ State\+Estimator\+::\+\_\+attitude = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 23 of file state\+\_\+estimator.\+h.
+
+\mbox{\Hypertarget{classStateEstimator_a1c2c873ed84dec6b4726828877ec74cb}\label{classStateEstimator_a1c2c873ed84dec6b4726828877ec74cb}} 
+\index{StateEstimator@{StateEstimator}!\_lin\_vel\_body@{\_lin\_vel\_body}}
+\index{\_lin\_vel\_body@{\_lin\_vel\_body}!StateEstimator@{StateEstimator}}
+\doxysubsubsection{\texorpdfstring{\_lin\_vel\_body}{\_lin\_vel\_body}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 1$>$ State\+Estimator\+::\+\_\+lin\+\_\+vel\+\_\+body = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 25 of file state\+\_\+estimator.\+h.
+
+\mbox{\Hypertarget{classStateEstimator_afc6f7d321b66010d48d8f26ee166daf7}\label{classStateEstimator_afc6f7d321b66010d48d8f26ee166daf7}} 
+\index{StateEstimator@{StateEstimator}!\_ang\_vel@{\_ang\_vel}}
+\index{\_ang\_vel@{\_ang\_vel}!StateEstimator@{StateEstimator}}
+\doxysubsubsection{\texorpdfstring{\_ang\_vel}{\_ang\_vel}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 1$>$ State\+Estimator\+::\+\_\+ang\+\_\+vel = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 27 of file state\+\_\+estimator.\+h.
+
+\mbox{\Hypertarget{classStateEstimator_a926cdf5d34868ceb0fb560554a6008e8}\label{classStateEstimator_a926cdf5d34868ceb0fb560554a6008e8}} 
+\index{StateEstimator@{StateEstimator}!\_lin\_vel\_world@{\_lin\_vel\_world}}
+\index{\_lin\_vel\_world@{\_lin\_vel\_world}!StateEstimator@{StateEstimator}}
+\doxysubsubsection{\texorpdfstring{\_lin\_vel\_world}{\_lin\_vel\_world}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 1$>$ State\+Estimator\+::\+\_\+lin\+\_\+vel\+\_\+world = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 29 of file state\+\_\+estimator.\+h.
+
+\mbox{\Hypertarget{classStateEstimator_acb44895a3b1f2cf958bf18ca5c3f72d2}\label{classStateEstimator_acb44895a3b1f2cf958bf18ca5c3f72d2}} 
+\index{StateEstimator@{StateEstimator}!\_avg\_lin\_gait\_vel\_x@{\_avg\_lin\_gait\_vel\_x}}
+\index{\_avg\_lin\_gait\_vel\_x@{\_avg\_lin\_gait\_vel\_x}!StateEstimator@{StateEstimator}}
+\doxysubsubsection{\texorpdfstring{\_avg\_lin\_gait\_vel\_x}{\_avg\_lin\_gait\_vel\_x}}
+{\footnotesize\ttfamily double State\+Estimator\+::\+\_\+avg\+\_\+lin\+\_\+gait\+\_\+vel\+\_\+x = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 31 of file state\+\_\+estimator.\+h.
+
+\mbox{\Hypertarget{classStateEstimator_a31ec2b34c4dcb2c7ffb17de77a1b3c73}\label{classStateEstimator_a31ec2b34c4dcb2c7ffb17de77a1b3c73}} 
+\index{StateEstimator@{StateEstimator}!\_avg\_lin\_gait\_vel\_y@{\_avg\_lin\_gait\_vel\_y}}
+\index{\_avg\_lin\_gait\_vel\_y@{\_avg\_lin\_gait\_vel\_y}!StateEstimator@{StateEstimator}}
+\doxysubsubsection{\texorpdfstring{\_avg\_lin\_gait\_vel\_y}{\_avg\_lin\_gait\_vel\_y}}
+{\footnotesize\ttfamily double State\+Estimator\+::\+\_\+avg\+\_\+lin\+\_\+gait\+\_\+vel\+\_\+y = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 33 of file state\+\_\+estimator.\+h.
+
+\mbox{\Hypertarget{classStateEstimator_a1a94ed33287f803137efbcf247a9121f}\label{classStateEstimator_a1a94ed33287f803137efbcf247a9121f}} 
+\index{StateEstimator@{StateEstimator}!\_avg\_ang\_gait\_vel\_z@{\_avg\_ang\_gait\_vel\_z}}
+\index{\_avg\_ang\_gait\_vel\_z@{\_avg\_ang\_gait\_vel\_z}!StateEstimator@{StateEstimator}}
+\doxysubsubsection{\texorpdfstring{\_avg\_ang\_gait\_vel\_z}{\_avg\_ang\_gait\_vel\_z}}
+{\footnotesize\ttfamily double State\+Estimator\+::\+\_\+avg\+\_\+ang\+\_\+gait\+\_\+vel\+\_\+z = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 35 of file state\+\_\+estimator.\+h.
+
+\mbox{\Hypertarget{classStateEstimator_aa2523f2a34228beccc89b9cf3d611a7c}\label{classStateEstimator_aa2523f2a34228beccc89b9cf3d611a7c}} 
+\index{StateEstimator@{StateEstimator}!\_lin\_vel\_body\_x\_history@{\_lin\_vel\_body\_x\_history}}
+\index{\_lin\_vel\_body\_x\_history@{\_lin\_vel\_body\_x\_history}!StateEstimator@{StateEstimator}}
+\doxysubsubsection{\texorpdfstring{\_lin\_vel\_body\_x\_history}{\_lin\_vel\_body\_x\_history}}
+{\footnotesize\ttfamily std\+::vector$<$double$>$ State\+Estimator\+::\+\_\+lin\+\_\+vel\+\_\+body\+\_\+x\+\_\+history\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 37 of file state\+\_\+estimator.\+h.
+
+\mbox{\Hypertarget{classStateEstimator_a17c3086e857e5e211880ba5d12a79743}\label{classStateEstimator_a17c3086e857e5e211880ba5d12a79743}} 
+\index{StateEstimator@{StateEstimator}!\_lin\_vel\_body\_y\_history@{\_lin\_vel\_body\_y\_history}}
+\index{\_lin\_vel\_body\_y\_history@{\_lin\_vel\_body\_y\_history}!StateEstimator@{StateEstimator}}
+\doxysubsubsection{\texorpdfstring{\_lin\_vel\_body\_y\_history}{\_lin\_vel\_body\_y\_history}}
+{\footnotesize\ttfamily std\+::vector$<$double$>$ State\+Estimator\+::\+\_\+lin\+\_\+vel\+\_\+body\+\_\+y\+\_\+history\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 39 of file state\+\_\+estimator.\+h.
+
+\mbox{\Hypertarget{classStateEstimator_a17a2f288b3eca85c94e4dd1fff9f124d}\label{classStateEstimator_a17a2f288b3eca85c94e4dd1fff9f124d}} 
+\index{StateEstimator@{StateEstimator}!\_ang\_vel\_body\_z\_history@{\_ang\_vel\_body\_z\_history}}
+\index{\_ang\_vel\_body\_z\_history@{\_ang\_vel\_body\_z\_history}!StateEstimator@{StateEstimator}}
+\doxysubsubsection{\texorpdfstring{\_ang\_vel\_body\_z\_history}{\_ang\_vel\_body\_z\_history}}
+{\footnotesize\ttfamily std\+::vector$<$double$>$ State\+Estimator\+::\+\_\+ang\+\_\+vel\+\_\+body\+\_\+z\+\_\+history\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 41 of file state\+\_\+estimator.\+h.
+
+\mbox{\Hypertarget{classStateEstimator_a5fa608b1e6feda1f42dc93a8c9c69893}\label{classStateEstimator_a5fa608b1e6feda1f42dc93a8c9c69893}} 
+\index{StateEstimator@{StateEstimator}!gait\_iteration@{gait\_iteration}}
+\index{gait\_iteration@{gait\_iteration}!StateEstimator@{StateEstimator}}
+\doxysubsubsection{\texorpdfstring{gait\_iteration}{gait\_iteration}}
+{\footnotesize\ttfamily int State\+Estimator\+::gait\+\_\+iteration = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 43 of file state\+\_\+estimator.\+h.
+
+\mbox{\Hypertarget{classStateEstimator_a859f4bbc895c05720a127ee73384d77a}\label{classStateEstimator_a859f4bbc895c05720a127ee73384d77a}} 
+\index{StateEstimator@{StateEstimator}!number\_of\_gait\_iterations@{number\_of\_gait\_iterations}}
+\index{number\_of\_gait\_iterations@{number\_of\_gait\_iterations}!StateEstimator@{StateEstimator}}
+\doxysubsubsection{\texorpdfstring{number\_of\_gait\_iterations}{number\_of\_gait\_iterations}}
+{\footnotesize\ttfamily int State\+Estimator\+::number\+\_\+of\+\_\+gait\+\_\+iterations\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 45 of file state\+\_\+estimator.\+h.
+
+\mbox{\Hypertarget{classStateEstimator_a59ba87943fb092e4a77425731b70f1e4}\label{classStateEstimator_a59ba87943fb092e4a77425731b70f1e4}} 
+\index{StateEstimator@{StateEstimator}!\_node\_name@{\_node\_name}}
+\index{\_node\_name@{\_node\_name}!StateEstimator@{StateEstimator}}
+\doxysubsubsection{\texorpdfstring{\_node\_name}{\_node\_name}}
+{\footnotesize\ttfamily std\+::string State\+Estimator\+::\+\_\+node\+\_\+name = \char`\"{}state\+\_\+estimation\+\_\+node\char`\"{}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 47 of file state\+\_\+estimator.\+h.
+
+\mbox{\Hypertarget{classStateEstimator_afc5d600889869184ccc0bafa228fb498}\label{classStateEstimator_afc5d600889869184ccc0bafa228fb498}} 
+\index{StateEstimator@{StateEstimator}!\_node\_handle@{\_node\_handle}}
+\index{\_node\_handle@{\_node\_handle}!StateEstimator@{StateEstimator}}
+\doxysubsubsection{\texorpdfstring{\_node\_handle}{\_node\_handle}}
+{\footnotesize\ttfamily ros\+::\+Node\+Handle\+Ptr State\+Estimator\+::\+\_\+node\+\_\+handle\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 49 of file state\+\_\+estimator.\+h.
+
+\mbox{\Hypertarget{classStateEstimator_a07511aebaefcd18ed526395c91f4827d}\label{classStateEstimator_a07511aebaefcd18ed526395c91f4827d}} 
+\index{StateEstimator@{StateEstimator}!\_generalized\_position\_subscriber@{\_generalized\_position\_subscriber}}
+\index{\_generalized\_position\_subscriber@{\_generalized\_position\_subscriber}!StateEstimator@{StateEstimator}}
+\doxysubsubsection{\texorpdfstring{\_generalized\_position\_subscriber}{\_generalized\_position\_subscriber}}
+{\footnotesize\ttfamily ros\+::\+Subscriber State\+Estimator\+::\+\_\+generalized\+\_\+position\+\_\+subscriber\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 51 of file state\+\_\+estimator.\+h.
+
+\mbox{\Hypertarget{classStateEstimator_a4769fbb0247b090b1865c74804aaade9}\label{classStateEstimator_a4769fbb0247b090b1865c74804aaade9}} 
+\index{StateEstimator@{StateEstimator}!\_generalized\_velocity\_subscriber@{\_generalized\_velocity\_subscriber}}
+\index{\_generalized\_velocity\_subscriber@{\_generalized\_velocity\_subscriber}!StateEstimator@{StateEstimator}}
+\doxysubsubsection{\texorpdfstring{\_generalized\_velocity\_subscriber}{\_generalized\_velocity\_subscriber}}
+{\footnotesize\ttfamily ros\+::\+Subscriber State\+Estimator\+::\+\_\+generalized\+\_\+velocity\+\_\+subscriber\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 53 of file state\+\_\+estimator.\+h.
+
+\mbox{\Hypertarget{classStateEstimator_a4755a91b887477655ad2425da85ba815}\label{classStateEstimator_a4755a91b887477655ad2425da85ba815}} 
+\index{StateEstimator@{StateEstimator}!\_body\_twist\_state\_publisher@{\_body\_twist\_state\_publisher}}
+\index{\_body\_twist\_state\_publisher@{\_body\_twist\_state\_publisher}!StateEstimator@{StateEstimator}}
+\doxysubsubsection{\texorpdfstring{\_body\_twist\_state\_publisher}{\_body\_twist\_state\_publisher}}
+{\footnotesize\ttfamily ros\+::\+Publisher State\+Estimator\+::\+\_\+body\+\_\+twist\+\_\+state\+\_\+publisher\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 55 of file state\+\_\+estimator.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+catkin\+\_\+ws/src/navigation/state\+\_\+estimator/include/state\+\_\+estimator/\mbox{\hyperlink{state__estimator_8h}{state\+\_\+estimator.\+h}}\item 
+catkin\+\_\+ws/src/navigation/state\+\_\+estimator/src/\mbox{\hyperlink{state__estimator_8cpp}{state\+\_\+estimator.\+cpp}}\end{DoxyCompactItemize}

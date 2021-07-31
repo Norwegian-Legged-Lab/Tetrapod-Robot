@@ -1,0 +1,11 @@
+digraph "catkin_ws/src/utilities/log_utils/src" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_70416f2c89e349f5d142d7e549b0e54a {
+    graph [ bgcolor="#ddddee", pencolor="black", label="log_utils" fontname="Helvetica", fontsize="10", URL="dir_70416f2c89e349f5d142d7e549b0e54a.html"]
+  dir_7fae60e4c5d0058fb7a2edc037f182c8 [shape=box label="include" fillcolor="white" style="filled" color="red" URL="dir_7fae60e4c5d0058fb7a2edc037f182c8.html"];
+  dir_e93486e81abdf66ad7f299124961b12b [shape=box, label="src", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_e93486e81abdf66ad7f299124961b12b.html"];
+  }
+  dir_e93486e81abdf66ad7f299124961b12b->dir_7fae60e4c5d0058fb7a2edc037f182c8 [headlabel="2", labeldistance=1.5 headhref="dir_000098_000096.html"];
+}

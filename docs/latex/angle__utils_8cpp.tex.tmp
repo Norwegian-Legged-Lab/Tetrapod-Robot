@@ -1,0 +1,23 @@
+\hypertarget{angle__utils_8cpp}{}\doxysection{catkin\+\_\+ws/src/utilities/math\+\_\+utils/src/angle\+\_\+utils.cpp File Reference}
+\label{angle__utils_8cpp}\index{catkin\_ws/src/utilities/math\_utils/src/angle\_utils.cpp@{catkin\_ws/src/utilities/math\_utils/src/angle\_utils.cpp}}
+{\ttfamily \#include $<$math\+\_\+utils/angle\+\_\+utils.\+h$>$}\newline
+Include dependency graph for angle\+\_\+utils.\+cpp\+:
+% FIG 0
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacemath__utils}{math\+\_\+utils}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{namespacemath__utils_a61af5f1046b73d327241eb065f02c2ac}{math\+\_\+utils\+::deg\+To\+Rad}} (const double \&\+\_\+deg)
+\begin{DoxyCompactList}\small\item\em The deg\+To\+Rad function converts degrees to radians. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacemath__utils_a9824f52115abead316aee507c19b4806}{math\+\_\+utils\+::rad\+To\+Deg}} (const double \&\+\_\+rad)
+\begin{DoxyCompactList}\small\item\em The rad\+To\+Deg function converts radians to degrees. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacemath__utils_a483056b148c3f37e90dd2587338513f0}{math\+\_\+utils\+::wrap\+Angle\+To\+Pi}} (const double \&\+\_\+rad)
+\begin{DoxyCompactList}\small\item\em The wrap\+Angle\+To\+Pi function wraps an input angle to the interval \mbox{[}-\/pi, pi). \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacemath__utils_ad9ba721cedf993437e2f1b13282b60f0}{math\+\_\+utils\+::wrap\+Angle\+To2\+Pi}} (const double \&\+\_\+rad)
+\begin{DoxyCompactList}\small\item\em The wrap\+Angle\+To2\+Pi function wraps an input angle to the interval \mbox{[}0, 2pi). \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacemath__utils_a7b66cd6c92c0aab4dcc2e1b0c245f0bd}{math\+\_\+utils\+::angle\+Diff}} (const double \&\+\_\+ang1, const double \&\+\_\+ang2)
+\begin{DoxyCompactList}\small\item\em The angle\+Diff function returns the difference in angle between two given angles in the interval \mbox{[}0, pi) \end{DoxyCompactList}\end{DoxyCompactItemize}

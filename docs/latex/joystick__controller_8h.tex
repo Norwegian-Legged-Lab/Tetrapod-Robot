@@ -1,0 +1,188 @@
+\hypertarget{joystick__controller_8h}{}\doxysection{catkin\+\_\+ws/src/guidance/joystick\+\_\+controller/include/joystick\+\_\+controller/joystick\+\_\+controller.h File Reference}
+\label{joystick__controller_8h}\index{catkin\_ws/src/guidance/joystick\_controller/include/joystick\_controller/joystick\_controller.h@{catkin\_ws/src/guidance/joystick\_controller/include/joystick\_controller/joystick\_controller.h}}
+{\ttfamily \#include \char`\"{}ros/ros.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}geometry\+\_\+msgs/\+Twist.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}sensor\+\_\+msgs/\+Joy.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}std\+\_\+srvs/\+Empty.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}keyboard/\+Key.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$thread$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$sys/select.\+h$>$}\newline
+Include dependency graph for joystick\+\_\+controller.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classJoystickController}{Joystick\+Controller}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{joystick__controller_8h_af35c160dede38b4a0c1c7ab94f9cf78f}{BUTTON\+\_\+\+ERROR}}~0.\+01
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{joystick__controller_8h_a18c27a1ff63ed877975355e02db860cc}{Joy\+Axis\+Indices}} \{ \newline
+\mbox{\hyperlink{joystick__controller_8h_a18c27a1ff63ed877975355e02db860cca1ddd098ef624bf05b8b53f6a33dd3132}{RIGHT\+\_\+\+STICK\+\_\+\+UD}} = 4
+, \mbox{\hyperlink{joystick__controller_8h_a18c27a1ff63ed877975355e02db860ccaa1f9886372a8456b9b024279957e280a}{RIGHT\+\_\+\+STICK\+\_\+\+LR}} = 3
+, \mbox{\hyperlink{joystick__controller_8h_a18c27a1ff63ed877975355e02db860cca3eda7665d87fb657ae6c0cc96aa7f1ef}{LEFT\+\_\+\+STICK\+\_\+\+UD}} = 1
+, \mbox{\hyperlink{joystick__controller_8h_a18c27a1ff63ed877975355e02db860ccaffac26081ace7d09e4b44e1431f9897d}{LEFT\+\_\+\+STICK\+\_\+\+LR}} = 0
+, \newline
+\mbox{\hyperlink{joystick__controller_8h_a18c27a1ff63ed877975355e02db860cca629d7b403cea5f826352f3aefb9a6d6a}{R2}} = 5
+, \mbox{\hyperlink{joystick__controller_8h_a18c27a1ff63ed877975355e02db860cca0adffb24dae0c41be5b803f4d444f066}{L2}} = 2
+ \}
+\item 
+enum \mbox{\hyperlink{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586}{Joy\+Button\+Indices}} \{ \newline
+\mbox{\hyperlink{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586af8d87ff07efe24755164f550526f4dac}{R1}} = 5
+, \mbox{\hyperlink{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586a9194587abd347fd3a31e34f76f704ff7}{R2\+\_\+\+BUTTON}} = 7
+, \mbox{\hyperlink{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586aad0b4725f69a34fed2c914517bcd9baa}{R3}} = 12
+, \mbox{\hyperlink{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586ae5bc7ee7d6dda5340a28f91834f10543}{L1}} = 4
+, \newline
+\mbox{\hyperlink{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586a80ef75ed21947812c1b834857f4daee9}{L2\+\_\+\+BUTTON}} = 6
+, \mbox{\hyperlink{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586a78d20b793a10e7c2f1012114803147c3}{L3}} = 11
+, \mbox{\hyperlink{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586af0f91a0468a0f49170b119f7de0d5cec}{DPAD\+\_\+\+RIGHT}} = 16
+, \mbox{\hyperlink{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586afe9bfbd6550b91f6640b74a155000cba}{DPAD\+\_\+\+LEFT}} = 15
+, \newline
+\mbox{\hyperlink{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586aafb58dc961545afb332266b117e4a332}{DPAD\+\_\+\+UP}} = 13
+, \mbox{\hyperlink{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586ab5e7d62ac3dfe6a925d1d6be3c756faa}{DPAD\+\_\+\+DOWN}} = 14
+, \mbox{\hyperlink{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586a13d000b4d7dc70d90239b7430d1eb6b2}{START}} = 9
+, \mbox{\hyperlink{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586a1697a91b22c2369eb2ba427c2d193329}{SELECT}} = 8
+, \newline
+\mbox{\hyperlink{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586a2fd33892864d1c342d3bead2f2d9ad56}{TRIANGLE}} = 2
+, \mbox{\hyperlink{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586aa79c827759ea48f0735386c4b1188911}{CIRCLE}} = 1
+, \mbox{\hyperlink{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586ad699bdf1731bd839b56c299536ba1d9d}{CROSS}} = 0
+, \mbox{\hyperlink{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586a4233fbf0cafb86abcee94b38d769fc59}{SQUARE}} = 3
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{joystick__controller_8h_af35c160dede38b4a0c1c7ab94f9cf78f}\label{joystick__controller_8h_af35c160dede38b4a0c1c7ab94f9cf78f}} 
+\index{joystick\_controller.h@{joystick\_controller.h}!BUTTON\_ERROR@{BUTTON\_ERROR}}
+\index{BUTTON\_ERROR@{BUTTON\_ERROR}!joystick\_controller.h@{joystick\_controller.h}}
+\doxysubsubsection{\texorpdfstring{BUTTON\_ERROR}{BUTTON\_ERROR}}
+{\footnotesize\ttfamily \#define BUTTON\+\_\+\+ERROR~0.\+01}
+
+
+
+Definition at line 14 of file joystick\+\_\+controller.\+h.
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{joystick__controller_8h_a18c27a1ff63ed877975355e02db860cc}\label{joystick__controller_8h_a18c27a1ff63ed877975355e02db860cc}} 
+\index{joystick\_controller.h@{joystick\_controller.h}!JoyAxisIndices@{JoyAxisIndices}}
+\index{JoyAxisIndices@{JoyAxisIndices}!joystick\_controller.h@{joystick\_controller.h}}
+\doxysubsubsection{\texorpdfstring{JoyAxisIndices}{JoyAxisIndices}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{joystick__controller_8h_a18c27a1ff63ed877975355e02db860cc}{Joy\+Axis\+Indices}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RIGHT\_STICK\_UD@{RIGHT\_STICK\_UD}!joystick\_controller.h@{joystick\_controller.h}}\index{joystick\_controller.h@{joystick\_controller.h}!RIGHT\_STICK\_UD@{RIGHT\_STICK\_UD}}}\mbox{\Hypertarget{joystick__controller_8h_a18c27a1ff63ed877975355e02db860cca1ddd098ef624bf05b8b53f6a33dd3132}\label{joystick__controller_8h_a18c27a1ff63ed877975355e02db860cca1ddd098ef624bf05b8b53f6a33dd3132}} 
+RIGHT\+\_\+\+STICK\+\_\+\+UD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RIGHT\_STICK\_LR@{RIGHT\_STICK\_LR}!joystick\_controller.h@{joystick\_controller.h}}\index{joystick\_controller.h@{joystick\_controller.h}!RIGHT\_STICK\_LR@{RIGHT\_STICK\_LR}}}\mbox{\Hypertarget{joystick__controller_8h_a18c27a1ff63ed877975355e02db860ccaa1f9886372a8456b9b024279957e280a}\label{joystick__controller_8h_a18c27a1ff63ed877975355e02db860ccaa1f9886372a8456b9b024279957e280a}} 
+RIGHT\+\_\+\+STICK\+\_\+\+LR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEFT\_STICK\_UD@{LEFT\_STICK\_UD}!joystick\_controller.h@{joystick\_controller.h}}\index{joystick\_controller.h@{joystick\_controller.h}!LEFT\_STICK\_UD@{LEFT\_STICK\_UD}}}\mbox{\Hypertarget{joystick__controller_8h_a18c27a1ff63ed877975355e02db860cca3eda7665d87fb657ae6c0cc96aa7f1ef}\label{joystick__controller_8h_a18c27a1ff63ed877975355e02db860cca3eda7665d87fb657ae6c0cc96aa7f1ef}} 
+LEFT\+\_\+\+STICK\+\_\+\+UD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEFT\_STICK\_LR@{LEFT\_STICK\_LR}!joystick\_controller.h@{joystick\_controller.h}}\index{joystick\_controller.h@{joystick\_controller.h}!LEFT\_STICK\_LR@{LEFT\_STICK\_LR}}}\mbox{\Hypertarget{joystick__controller_8h_a18c27a1ff63ed877975355e02db860ccaffac26081ace7d09e4b44e1431f9897d}\label{joystick__controller_8h_a18c27a1ff63ed877975355e02db860ccaffac26081ace7d09e4b44e1431f9897d}} 
+LEFT\+\_\+\+STICK\+\_\+\+LR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{R2@{R2}!joystick\_controller.h@{joystick\_controller.h}}\index{joystick\_controller.h@{joystick\_controller.h}!R2@{R2}}}\mbox{\Hypertarget{joystick__controller_8h_a18c27a1ff63ed877975355e02db860cca629d7b403cea5f826352f3aefb9a6d6a}\label{joystick__controller_8h_a18c27a1ff63ed877975355e02db860cca629d7b403cea5f826352f3aefb9a6d6a}} 
+R2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{L2@{L2}!joystick\_controller.h@{joystick\_controller.h}}\index{joystick\_controller.h@{joystick\_controller.h}!L2@{L2}}}\mbox{\Hypertarget{joystick__controller_8h_a18c27a1ff63ed877975355e02db860cca0adffb24dae0c41be5b803f4d444f066}\label{joystick__controller_8h_a18c27a1ff63ed877975355e02db860cca0adffb24dae0c41be5b803f4d444f066}} 
+L2&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 16 of file joystick\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586}\label{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586}} 
+\index{joystick\_controller.h@{joystick\_controller.h}!JoyButtonIndices@{JoyButtonIndices}}
+\index{JoyButtonIndices@{JoyButtonIndices}!joystick\_controller.h@{joystick\_controller.h}}
+\doxysubsubsection{\texorpdfstring{JoyButtonIndices}{JoyButtonIndices}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586}{Joy\+Button\+Indices}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{R1@{R1}!joystick\_controller.h@{joystick\_controller.h}}\index{joystick\_controller.h@{joystick\_controller.h}!R1@{R1}}}\mbox{\Hypertarget{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586af8d87ff07efe24755164f550526f4dac}\label{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586af8d87ff07efe24755164f550526f4dac}} 
+R1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{R2\_BUTTON@{R2\_BUTTON}!joystick\_controller.h@{joystick\_controller.h}}\index{joystick\_controller.h@{joystick\_controller.h}!R2\_BUTTON@{R2\_BUTTON}}}\mbox{\Hypertarget{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586a9194587abd347fd3a31e34f76f704ff7}\label{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586a9194587abd347fd3a31e34f76f704ff7}} 
+R2\+\_\+\+BUTTON&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{R3@{R3}!joystick\_controller.h@{joystick\_controller.h}}\index{joystick\_controller.h@{joystick\_controller.h}!R3@{R3}}}\mbox{\Hypertarget{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586aad0b4725f69a34fed2c914517bcd9baa}\label{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586aad0b4725f69a34fed2c914517bcd9baa}} 
+R3&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{L1@{L1}!joystick\_controller.h@{joystick\_controller.h}}\index{joystick\_controller.h@{joystick\_controller.h}!L1@{L1}}}\mbox{\Hypertarget{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586ae5bc7ee7d6dda5340a28f91834f10543}\label{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586ae5bc7ee7d6dda5340a28f91834f10543}} 
+L1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{L2\_BUTTON@{L2\_BUTTON}!joystick\_controller.h@{joystick\_controller.h}}\index{joystick\_controller.h@{joystick\_controller.h}!L2\_BUTTON@{L2\_BUTTON}}}\mbox{\Hypertarget{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586a80ef75ed21947812c1b834857f4daee9}\label{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586a80ef75ed21947812c1b834857f4daee9}} 
+L2\+\_\+\+BUTTON&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{L3@{L3}!joystick\_controller.h@{joystick\_controller.h}}\index{joystick\_controller.h@{joystick\_controller.h}!L3@{L3}}}\mbox{\Hypertarget{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586a78d20b793a10e7c2f1012114803147c3}\label{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586a78d20b793a10e7c2f1012114803147c3}} 
+L3&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DPAD\_RIGHT@{DPAD\_RIGHT}!joystick\_controller.h@{joystick\_controller.h}}\index{joystick\_controller.h@{joystick\_controller.h}!DPAD\_RIGHT@{DPAD\_RIGHT}}}\mbox{\Hypertarget{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586af0f91a0468a0f49170b119f7de0d5cec}\label{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586af0f91a0468a0f49170b119f7de0d5cec}} 
+DPAD\+\_\+\+RIGHT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DPAD\_LEFT@{DPAD\_LEFT}!joystick\_controller.h@{joystick\_controller.h}}\index{joystick\_controller.h@{joystick\_controller.h}!DPAD\_LEFT@{DPAD\_LEFT}}}\mbox{\Hypertarget{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586afe9bfbd6550b91f6640b74a155000cba}\label{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586afe9bfbd6550b91f6640b74a155000cba}} 
+DPAD\+\_\+\+LEFT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DPAD\_UP@{DPAD\_UP}!joystick\_controller.h@{joystick\_controller.h}}\index{joystick\_controller.h@{joystick\_controller.h}!DPAD\_UP@{DPAD\_UP}}}\mbox{\Hypertarget{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586aafb58dc961545afb332266b117e4a332}\label{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586aafb58dc961545afb332266b117e4a332}} 
+DPAD\+\_\+\+UP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DPAD\_DOWN@{DPAD\_DOWN}!joystick\_controller.h@{joystick\_controller.h}}\index{joystick\_controller.h@{joystick\_controller.h}!DPAD\_DOWN@{DPAD\_DOWN}}}\mbox{\Hypertarget{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586ab5e7d62ac3dfe6a925d1d6be3c756faa}\label{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586ab5e7d62ac3dfe6a925d1d6be3c756faa}} 
+DPAD\+\_\+\+DOWN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{START@{START}!joystick\_controller.h@{joystick\_controller.h}}\index{joystick\_controller.h@{joystick\_controller.h}!START@{START}}}\mbox{\Hypertarget{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586a13d000b4d7dc70d90239b7430d1eb6b2}\label{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586a13d000b4d7dc70d90239b7430d1eb6b2}} 
+START&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SELECT@{SELECT}!joystick\_controller.h@{joystick\_controller.h}}\index{joystick\_controller.h@{joystick\_controller.h}!SELECT@{SELECT}}}\mbox{\Hypertarget{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586a1697a91b22c2369eb2ba427c2d193329}\label{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586a1697a91b22c2369eb2ba427c2d193329}} 
+SELECT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TRIANGLE@{TRIANGLE}!joystick\_controller.h@{joystick\_controller.h}}\index{joystick\_controller.h@{joystick\_controller.h}!TRIANGLE@{TRIANGLE}}}\mbox{\Hypertarget{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586a2fd33892864d1c342d3bead2f2d9ad56}\label{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586a2fd33892864d1c342d3bead2f2d9ad56}} 
+TRIANGLE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CIRCLE@{CIRCLE}!joystick\_controller.h@{joystick\_controller.h}}\index{joystick\_controller.h@{joystick\_controller.h}!CIRCLE@{CIRCLE}}}\mbox{\Hypertarget{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586aa79c827759ea48f0735386c4b1188911}\label{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586aa79c827759ea48f0735386c4b1188911}} 
+CIRCLE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CROSS@{CROSS}!joystick\_controller.h@{joystick\_controller.h}}\index{joystick\_controller.h@{joystick\_controller.h}!CROSS@{CROSS}}}\mbox{\Hypertarget{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586ad699bdf1731bd839b56c299536ba1d9d}\label{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586ad699bdf1731bd839b56c299536ba1d9d}} 
+CROSS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SQUARE@{SQUARE}!joystick\_controller.h@{joystick\_controller.h}}\index{joystick\_controller.h@{joystick\_controller.h}!SQUARE@{SQUARE}}}\mbox{\Hypertarget{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586a4233fbf0cafb86abcee94b38d769fc59}\label{joystick__controller_8h_a315fd8facda6c3d020d328c5c4b07586a4233fbf0cafb86abcee94b38d769fc59}} 
+SQUARE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 26 of file joystick\+\_\+controller.\+h.
+

@@ -1,0 +1,10 @@
+digraph "Arduino" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_a991eec27578c865874ede3d8ec657c2 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_a991eec27578c865874ede3d8ec657c2.html"];
+    dir_a991eec27578c865874ede3d8ec657c2 [shape=plaintext label="Arduino"];
+  dir_481cc946b8a81b8d9363a4aad6201160 [shape=box label="libraries" fillcolor="white" style="filled" color="red" URL="dir_481cc946b8a81b8d9363a4aad6201160.html"];
+  }
+}

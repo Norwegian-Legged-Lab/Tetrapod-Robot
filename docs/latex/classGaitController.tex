@@ -2,280 +2,154 @@
 \label{classGaitController}\index{GaitController@{GaitController}}
 
 
-Collaboration diagram for Gait\+Controller\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=181pt]{classGaitController__coll__graph}
-\end{center}
-\end{figure}
+{\ttfamily \#include $<$gait\+\_\+controller.\+h$>$}
+
+
+
+Inheritance diagram for Gait\+Controller\+:
+% FIG 0
+
+
+Collaboration diagram for Gait\+Controller\+:
+% FIG 1
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classGaitController_a410472c7e060c737de65459afb2027c5}\label{classGaitController_a410472c7e060c737de65459afb2027c5}} 
-void {\bfseries init\+R\+OS} ()
+\mbox{\hyperlink{classGaitController_afd9ce348e434cedcbc29eae436607837}{Gait\+Controller}} (int \mbox{\hyperlink{classController_a9a68485769c0b78bdd3c5e7050821f19}{controller\+\_\+freq}}, double \mbox{\hyperlink{classGaitController_a5daf1598221c86daf95d241b348d565c}{gait\+\_\+period}}, std\+::function$<$ \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}(double)$>$ \mbox{\hyperlink{classGaitController_a25984d3bf31c6c2c249131acbce4f44c}{fl\+\_\+traj}}, std\+::function$<$ \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}(double)$>$ \mbox{\hyperlink{classGaitController_abf8c26dc16de026deb32834bb4914782}{fr\+\_\+traj}}, std\+::function$<$ \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}(double)$>$ \mbox{\hyperlink{classGaitController_a5d64ff25c91bd19d73b19864da1277db}{rl\+\_\+traj}}, std\+::function$<$ \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}(double)$>$ \mbox{\hyperlink{classGaitController_a068377926053732f8f82253c72d5d54e}{rr\+\_\+traj}})
 \item 
-\mbox{\Hypertarget{classGaitController_aead3250c6b57658ef8757aa0a09ab5c2}\label{classGaitController_aead3250c6b57658ef8757aa0a09ab5c2}} 
-void {\bfseries check\+For\+New\+Messages} ()
+void \mbox{\hyperlink{classGaitController_abcec037ef050d3c4b949ac884a9b839b}{increment}} ()
 \item 
-\mbox{\Hypertarget{classGaitController_a4ddd8184e441ba5c1cf7094b51f411d8}\label{classGaitController_a4ddd8184e441ba5c1cf7094b51f411d8}} 
-bool {\bfseries set\+Initial\+Configuration} ()
-\item 
-\mbox{\Hypertarget{classGaitController_a5310a325ac2e8ae002b18b37bbfcf76d}\label{classGaitController_a5310a325ac2e8ae002b18b37bbfcf76d}} 
-void {\bfseries update\+Feet\+References} ()
-\item 
-\mbox{\Hypertarget{classGaitController_ab406bd31c350afb410f50b7fdb2f0478}\label{classGaitController_ab406bd31c350afb410f50b7fdb2f0478}} 
-bool {\bfseries update\+Joint\+Commands} ()
-\item 
-\mbox{\Hypertarget{classGaitController_a5e3027aa062815f47b6d822b5c5c9c9b}\label{classGaitController_a5e3027aa062815f47b6d822b5c5c9c9b}} 
-void {\bfseries publish\+Joint\+Commands} ()
-\item 
-\mbox{\Hypertarget{classGaitController_a2b234fe078101e49dcb3c7cfb335164f}\label{classGaitController_a2b234fe078101e49dcb3c7cfb335164f}} 
-void {\bfseries wait\+For\+Ready\+To\+Proceed\+Message} ()
-\item 
-\mbox{\Hypertarget{classGaitController_aec20e003c3869f130ec0bebb0fc184bf}\label{classGaitController_aec20e003c3869f130ec0bebb0fc184bf}} 
-bool {\bfseries ready\+To\+Proceed} ()
-\item 
-\mbox{\Hypertarget{classGaitController_ae8c399271f3688668440fb69b53e5b4c}\label{classGaitController_ae8c399271f3688668440fb69b53e5b4c}} 
-void {\bfseries set\+Ready\+To\+Proceed\+To\+False} ()
-\item 
-\mbox{\Hypertarget{classGaitController_a052d311204f7046103592bdcb954d676}\label{classGaitController_a052d311204f7046103592bdcb954d676}} 
-void {\bfseries wait\+For\+Position\+Joint\+States} ()
-\item 
-\mbox{\Hypertarget{classGaitController_a771840dcd69ba801fc1c50c991a10f4c}\label{classGaitController_a771840dcd69ba801fc1c50c991a10f4c}} 
-bool {\bfseries stand\+Up} ()
-\item 
-\mbox{\Hypertarget{classGaitController_ad2f62d287456cd1b8aa21064f56f474f}\label{classGaitController_ad2f62d287456cd1b8aa21064f56f474f}} 
-bool {\bfseries initialize\+Pronking} ()
-\item 
-\mbox{\Hypertarget{classGaitController_a214c8c03080f3d6dc265f96d03ed7b7e}\label{classGaitController_a214c8c03080f3d6dc265f96d03ed7b7e}} 
-void {\bfseries update\+Pronk\+Controller} ()
-\item 
-\mbox{\Hypertarget{classGaitController_afd9ce348e434cedcbc29eae436607837}\label{classGaitController_afd9ce348e434cedcbc29eae436607837}} 
-{\bfseries Gait\+Controller} (int controller\+\_\+freq, double gait\+\_\+period, std\+::function$<$ Eigen\+::\+Vector3d(double)$>$ fl\+\_\+traj, std\+::function$<$ Eigen\+::\+Vector3d(double)$>$ fr\+\_\+traj, std\+::function$<$ Eigen\+::\+Vector3d(double)$>$ rl\+\_\+traj, std\+::function$<$ Eigen\+::\+Vector3d(double)$>$ rr\+\_\+traj)
-\item 
-\mbox{\Hypertarget{classGaitController_abcec037ef050d3c4b949ac884a9b839b}\label{classGaitController_abcec037ef050d3c4b949ac884a9b839b}} 
-void {\bfseries increment} ()
-\item 
-\mbox{\Hypertarget{classGaitController_a422ac06dd3bda1cb63d16cd3e93ec13f}\label{classGaitController_a422ac06dd3bda1cb63d16cd3e93ec13f}} 
-void {\bfseries Update\+Feet\+References} ()
-\end{DoxyCompactItemize}
-\doxysubsection*{Private Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{classGaitController_a01083db6616fbb3f76547ea8bc8d7fda}\label{classGaitController_a01083db6616fbb3f76547ea8bc8d7fda}} 
-void {\bfseries generalized\+Position\+Callback} (const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&\+\_\+msg)
-\item 
-\mbox{\Hypertarget{classGaitController_a705f2535cf48829b68c0dca0448d2784}\label{classGaitController_a705f2535cf48829b68c0dca0448d2784}} 
-void {\bfseries generalized\+Velocity\+Callback} (const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&\+\_\+msg)
-\item 
-\mbox{\Hypertarget{classGaitController_a93d25b2aae0e737266c6c2fcbe5c6912}\label{classGaitController_a93d25b2aae0e737266c6c2fcbe5c6912}} 
-void {\bfseries ready\+To\+Proceed\+Callback} (const std\+\_\+msgs\+::\+Bool \&\+\_\+msg)
-\item 
-\mbox{\Hypertarget{classGaitController_a4a2b72baaa78af4d76c0474c9133ea50}\label{classGaitController_a4a2b72baaa78af4d76c0474c9133ea50}} 
-void {\bfseries twist\+Command\+Callback} (const geometry\+\_\+msgs\+::\+Twist\+Const\+Ptr \&\+\_\+msg)
-\item 
-\mbox{\Hypertarget{classGaitController_a0933a327349ddf3e6d844a2909e71b0a}\label{classGaitController_a0933a327349ddf3e6d844a2909e71b0a}} 
-bool {\bfseries move\+Foot\+To\+Position} (Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \+\_\+foot\+\_\+pos, bool \+\_\+offset, int \+\_\+leg\+\_\+index)
-\item 
-\mbox{\Hypertarget{classGaitController_a048aabbc26525f441b1c22e7c73f12e8}\label{classGaitController_a048aabbc26525f441b1c22e7c73f12e8}} 
-Eigen\+::\+Matrix$<$ double, 3, 1 $>$ {\bfseries reverse\+XY} (Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \+\_\+v\+\_\+in)
-\item 
-\mbox{\Hypertarget{classGaitController_a241e0e41a343580a1f05d6401a74fa3a}\label{classGaitController_a241e0e41a343580a1f05d6401a74fa3a}} 
-Eigen\+::\+Matrix$<$ double, 3, 1 $>$ {\bfseries calculate\+Full\+Stance\+Foot\+Position} (Leg\+ID \+\_\+leg)
-\item 
-\mbox{\Hypertarget{classGaitController_a896620d6693a605b7e2f9c831233135a}\label{classGaitController_a896620d6693a605b7e2f9c831233135a}} 
-Eigen\+::\+Matrix$<$ double, 3, 1 $>$ {\bfseries calculate\+Stance\+Foot\+Position} (Leg\+ID \+\_\+leg)
-\item 
-\mbox{\Hypertarget{classGaitController_a3d0f02803f2fd9ddb5d2cdca5491dfa6}\label{classGaitController_a3d0f02803f2fd9ddb5d2cdca5491dfa6}} 
-Eigen\+::\+Matrix$<$ double, 3, 1 $>$ {\bfseries calculate\+Swing\+Foot\+Position} (Leg\+ID \+\_\+leg)
-\item 
-\mbox{\Hypertarget{classGaitController_a547f3bb8653e3cf28992ef77cd1fc9a4}\label{classGaitController_a547f3bb8653e3cf28992ef77cd1fc9a4}} 
-double {\bfseries calculate\+Swing\+Foot\+Height} (double \+\_\+current\+\_\+iteration, double \+\_\+max\+\_\+iteration)
-\item 
-\mbox{\Hypertarget{classGaitController_ac0bee030ab51afd7244fa9ef415b1714}\label{classGaitController_ac0bee030ab51afd7244fa9ef415b1714}} 
-double {\bfseries calculate\+Swing\+Foot\+Height} (double \+\_\+hip\+\_\+height, double \+\_\+max\+\_\+swing\+\_\+foot\+\_\+height, double \+\_\+current\+\_\+iteration, double \+\_\+max\+\_\+iteration)
-\item 
-\mbox{\Hypertarget{classGaitController_aa629070812444360013f6271e21477e4}\label{classGaitController_aa629070812444360013f6271e21477e4}} 
-bool {\bfseries move\+Joints\+To\+Setpoints} ()
-\item 
-\mbox{\Hypertarget{classGaitController_ab8cb511e82661ad6be84e7da57c3a62b}\label{classGaitController_ab8cb511e82661ad6be84e7da57c3a62b}} 
-bool {\bfseries joint\+Setpoints\+Reached} ()
-\item 
-\mbox{\Hypertarget{classGaitController_a74a6765cdff6e7738e1ccc319a1dd444}\label{classGaitController_a74a6765cdff6e7738e1ccc319a1dd444}} 
-void {\bfseries print\+Joint\+States} ()
-\item 
-\mbox{\Hypertarget{classGaitController_aa7527cd6b9f87f3b021921b6841ef01c}\label{classGaitController_aa7527cd6b9f87f3b021921b6841ef01c}} 
-void {\bfseries print\+Joint\+Command\+States} ()
-\item 
-\mbox{\Hypertarget{classGaitController_a79318bfb11609d98f096613ce9864c5f}\label{classGaitController_a79318bfb11609d98f096613ce9864c5f}} 
-void {\bfseries print\+Feet\+Positions} ()
-\item 
-\mbox{\Hypertarget{classGaitController_aaf1b7e62e0c370a959a48b8c36483625}\label{classGaitController_aaf1b7e62e0c370a959a48b8c36483625}} 
-void {\bfseries update\+Feet\+Positions} ()
-\item 
-\mbox{\Hypertarget{classGaitController_a36543d9c9ce69fddb58acb67c18285c3}\label{classGaitController_a36543d9c9ce69fddb58acb67c18285c3}} 
-Eigen\+::\+Matrix$<$ double, 3, 1 $>$ {\bfseries calculate\+Pronk\+Stance\+Foot\+Position} (Leg\+ID \+\_\+leg)
-\item 
-\mbox{\Hypertarget{classGaitController_a2cc4dcc9c719066c751764c3b13e38da}\label{classGaitController_a2cc4dcc9c719066c751764c3b13e38da}} 
-Eigen\+::\+Matrix$<$ double, 3, 1 $>$ {\bfseries calculate\+Pronk\+Swing\+Foot\+Position} (Leg\+ID \+\_\+leg)
+void \mbox{\hyperlink{classGaitController_a422ac06dd3bda1cb63d16cd3e93ec13f}{Update\+Feet\+References}} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classGaitController_a69bc1ff6e7acbbd213c58200b6faed25}\label{classGaitController_a69bc1ff6e7acbbd213c58200b6faed25}} 
-std\+::unique\+\_\+ptr$<$ ros\+::\+Node\+Handle $>$ {\bfseries node\+Handle}
+std\+::function$<$ \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}(double)$>$ \mbox{\hyperlink{classGaitController_a25984d3bf31c6c2c249131acbce4f44c}{fl\+\_\+traj}}
 \item 
-\mbox{\Hypertarget{classGaitController_a7677b69392dfa581536c7b3a3dc20ec4}\label{classGaitController_a7677b69392dfa581536c7b3a3dc20ec4}} 
-ros\+::\+Subscriber {\bfseries ready\+\_\+to\+\_\+proceed\+\_\+subscriber}
+std\+::function$<$ \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}(double)$>$ \mbox{\hyperlink{classGaitController_abf8c26dc16de026deb32834bb4914782}{fr\+\_\+traj}}
 \item 
-\mbox{\Hypertarget{classGaitController_af9e7ecc8e317b652b0dd446015f960a8}\label{classGaitController_af9e7ecc8e317b652b0dd446015f960a8}} 
-ros\+::\+Subscriber {\bfseries generalized\+\_\+position\+\_\+subscriber}
+std\+::function$<$ \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}(double)$>$ \mbox{\hyperlink{classGaitController_a5d64ff25c91bd19d73b19864da1277db}{rl\+\_\+traj}}
 \item 
-\mbox{\Hypertarget{classGaitController_a2822cb7ac72a42f031e04089d8e91df2}\label{classGaitController_a2822cb7ac72a42f031e04089d8e91df2}} 
-ros\+::\+Subscriber {\bfseries generalized\+\_\+velocity\+\_\+subscriber}
+std\+::function$<$ \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}(double)$>$ \mbox{\hyperlink{classGaitController_a068377926053732f8f82253c72d5d54e}{rr\+\_\+traj}}
 \item 
-\mbox{\Hypertarget{classGaitController_a4c00c8cd74e53a65e4ac0bf8612c92ac}\label{classGaitController_a4c00c8cd74e53a65e4ac0bf8612c92ac}} 
-ros\+::\+Subscriber {\bfseries twist\+\_\+command\+\_\+subscriber}
+double \mbox{\hyperlink{classGaitController_a5daf1598221c86daf95d241b348d565c}{gait\+\_\+period}}
 \item 
-\mbox{\Hypertarget{classGaitController_a03f101dac8dcef234f98629e576292dd}\label{classGaitController_a03f101dac8dcef234f98629e576292dd}} 
-ros\+::\+Publisher {\bfseries joint\+\_\+command\+\_\+publisher}
-\item 
-\mbox{\Hypertarget{classGaitController_a6fc809bec2cc7d1e890e4d9bb81228cb}\label{classGaitController_a6fc809bec2cc7d1e890e4d9bb81228cb}} 
-\mbox{\hyperlink{classKinematics}{Kinematics}} {\bfseries kinematics}
-\item 
-\mbox{\Hypertarget{classGaitController_aa9d301545abd839f8c6bdeeb8b002fdd}\label{classGaitController_aa9d301545abd839f8c6bdeeb8b002fdd}} 
-Eigen\+::\+Matrix$<$ double, 12, 1 $>$ {\bfseries joint\+\_\+angle\+\_\+commands} = Eigen\+::\+Matrix$<$double, 12, 1$>$\+::Zero()
-\item 
-\mbox{\Hypertarget{classGaitController_a2a081c293555479ca0b7d1118715aece}\label{classGaitController_a2a081c293555479ca0b7d1118715aece}} 
-Eigen\+::\+Matrix$<$ double, 12, 1 $>$ {\bfseries joint\+\_\+angles} = Eigen\+::\+Matrix$<$double, 12, 1$>$\+::Zero()
-\item 
-\mbox{\Hypertarget{classGaitController_a615e7fb65664b9fb12aaf4d3456743dc}\label{classGaitController_a615e7fb65664b9fb12aaf4d3456743dc}} 
-Eigen\+::\+Matrix$<$ double, 12, 1 $>$ {\bfseries joint\+\_\+velocities} = Eigen\+::\+Matrix$<$double, 12, 1$>$\+::Zero()
-\item 
-\mbox{\Hypertarget{classGaitController_a45ef9243fd1df85a83934caeea32ad32}\label{classGaitController_a45ef9243fd1df85a83934caeea32ad32}} 
-Eigen\+::\+Matrix$<$ double, 12, 1 $>$ {\bfseries feet\+\_\+positions} = Eigen\+::\+Matrix$<$double, 12, 1$>$\+::Zero()
-\item 
-\mbox{\Hypertarget{classGaitController_a9f123ee98587d68f595cb7d790a55917}\label{classGaitController_a9f123ee98587d68f595cb7d790a55917}} 
-double {\bfseries hip\+\_\+height} = 0.\+36
-\item 
-\mbox{\Hypertarget{classGaitController_afc818cbf6bf71464b7442aa7cde4f84c}\label{classGaitController_afc818cbf6bf71464b7442aa7cde4f84c}} 
-double {\bfseries max\+\_\+step\+\_\+height} = 0.\+2
-\item 
-\mbox{\Hypertarget{classGaitController_a52f9d684e30c16689025df89b88fa294}\label{classGaitController_a52f9d684e30c16689025df89b88fa294}} 
-double {\bfseries current\+\_\+iteration\+\_\+full\+\_\+stance} = 0.\+0
-\item 
-\mbox{\Hypertarget{classGaitController_a2dddc03141c9312917d47748526a7bd8}\label{classGaitController_a2dddc03141c9312917d47748526a7bd8}} 
-double {\bfseries max\+\_\+iteration\+\_\+full\+\_\+stance} = 10.\+0
-\item 
-\mbox{\Hypertarget{classGaitController_aca3ef02aece128e570557b16e8311707}\label{classGaitController_aca3ef02aece128e570557b16e8311707}} 
-double {\bfseries current\+\_\+iteration\+\_\+swing} = 0.\+0
-\item 
-\mbox{\Hypertarget{classGaitController_acf51dae8462f925b5f021e06a06a8b13}\label{classGaitController_acf51dae8462f925b5f021e06a06a8b13}} 
-double {\bfseries max\+\_\+iteration\+\_\+swing} = 40.\+0
-\item 
-\mbox{\Hypertarget{classGaitController_aeb38efa5e387b955d4ff0dffe91ef6e2}\label{classGaitController_aeb38efa5e387b955d4ff0dffe91ef6e2}} 
-double {\bfseries lin\+\_\+vel\+\_\+x} = 0.\+0
-\item 
-\mbox{\Hypertarget{classGaitController_a520f06d7f399870ecae2182c25b7d11a}\label{classGaitController_a520f06d7f399870ecae2182c25b7d11a}} 
-double {\bfseries lin\+\_\+vel\+\_\+y} = 0.\+0
-\item 
-\mbox{\Hypertarget{classGaitController_a03d26ca2a796cc6c05afdc0640528d56}\label{classGaitController_a03d26ca2a796cc6c05afdc0640528d56}} 
-double {\bfseries ang\+\_\+vel\+\_\+z} = 0.\+0
-\item 
-\mbox{\Hypertarget{classGaitController_aa282d4799c95f6464488d5fc9d673bd9}\label{classGaitController_aa282d4799c95f6464488d5fc9d673bd9}} 
-bool {\bfseries fl\+\_\+offset} = false
-\item 
-\mbox{\Hypertarget{classGaitController_a507dbc6809eeac36073252bcd870ef60}\label{classGaitController_a507dbc6809eeac36073252bcd870ef60}} 
-bool {\bfseries rr\+\_\+offset} = false
-\item 
-\mbox{\Hypertarget{classGaitController_a2d554d61a0f4252709f312d3054bf39d}\label{classGaitController_a2d554d61a0f4252709f312d3054bf39d}} 
-bool {\bfseries fr\+\_\+offset} = true
-\item 
-\mbox{\Hypertarget{classGaitController_aee4cf456d61832dd1c8aa6c3982fc547}\label{classGaitController_aee4cf456d61832dd1c8aa6c3982fc547}} 
-bool {\bfseries rl\+\_\+offset} = true
-\item 
-\mbox{\Hypertarget{classGaitController_ada93a33f0593cc959020354d739123bd}\label{classGaitController_ada93a33f0593cc959020354d739123bd}} 
-Gait\+Phase {\bfseries current\+\_\+gait\+\_\+phase} = gait\+\_\+phase\+\_\+not\+\_\+set
-\item 
-\mbox{\Hypertarget{classGaitController_ac5ecaf92f7660ffbac9bd37dd7ad416c}\label{classGaitController_ac5ecaf92f7660ffbac9bd37dd7ad416c}} 
-bool {\bfseries ready\+\_\+to\+\_\+proceed} = false
-\item 
-\mbox{\Hypertarget{classGaitController_a889f527420bb4b51361f6c5f314aad0a}\label{classGaitController_a889f527420bb4b51361f6c5f314aad0a}} 
-double {\bfseries x\+\_\+0} = 0.\+22
-\item 
-\mbox{\Hypertarget{classGaitController_ab38cada189747e25da7aa5920b5b9d49}\label{classGaitController_ab38cada189747e25da7aa5920b5b9d49}} 
-double {\bfseries y\+\_\+0} = 0.\+22
-\item 
-\mbox{\Hypertarget{classGaitController_a033eac0e6635af97acfec41be2d71425}\label{classGaitController_a033eac0e6635af97acfec41be2d71425}} 
-double {\bfseries dx\+\_\+max} = 0.\+0
-\item 
-\mbox{\Hypertarget{classGaitController_abd14448f1970bf83794fa3cf462379d2}\label{classGaitController_abd14448f1970bf83794fa3cf462379d2}} 
-double {\bfseries dy\+\_\+max} = 0.\+0
-\item 
-\mbox{\Hypertarget{classGaitController_abcf42c75c680998e48c28ba8c464b64e}\label{classGaitController_abcf42c75c680998e48c28ba8c464b64e}} 
-double {\bfseries dr\+\_\+max} = 0.\+0
-\item 
-\mbox{\Hypertarget{classGaitController_ad6230bdc12e1def3dfecc718ebef245b}\label{classGaitController_ad6230bdc12e1def3dfecc718ebef245b}} 
-double {\bfseries t\+\_\+full} = 0.\+1
-\item 
-\mbox{\Hypertarget{classGaitController_ab5a0223d1727a0b6231711f93ec6a4d8}\label{classGaitController_ab5a0223d1727a0b6231711f93ec6a4d8}} 
-double {\bfseries t\+\_\+double} = 1.\+0 -\/ 2.\+0$\ast$t\+\_\+full
-\item 
-\mbox{\Hypertarget{classGaitController_a82552f7f39a23eb6f9ff3658e8681fba}\label{classGaitController_a82552f7f39a23eb6f9ff3658e8681fba}} 
-Eigen\+::\+Matrix$<$ double, 3, 1 $>$ {\bfseries fl\+\_\+foot\+\_\+position\+\_\+in\+\_\+body}
-\item 
-\mbox{\Hypertarget{classGaitController_a768d9ca6d317faa5dfa3cd25c315a6c1}\label{classGaitController_a768d9ca6d317faa5dfa3cd25c315a6c1}} 
-Eigen\+::\+Matrix$<$ double, 3, 1 $>$ {\bfseries fr\+\_\+foot\+\_\+position\+\_\+in\+\_\+body}
-\item 
-\mbox{\Hypertarget{classGaitController_acc1ed908724d3a112c7e5180cd7c6d10}\label{classGaitController_acc1ed908724d3a112c7e5180cd7c6d10}} 
-Eigen\+::\+Matrix$<$ double, 3, 1 $>$ {\bfseries rl\+\_\+foot\+\_\+position\+\_\+in\+\_\+body}
-\item 
-\mbox{\Hypertarget{classGaitController_ae36649f7ac0511b38a60924b5feaf042}\label{classGaitController_ae36649f7ac0511b38a60924b5feaf042}} 
-Eigen\+::\+Matrix$<$ double, 3, 1 $>$ {\bfseries rr\+\_\+foot\+\_\+position\+\_\+in\+\_\+body}
-\item 
-\mbox{\Hypertarget{classGaitController_af858396ea3ed703583c0cc328d1916a9}\label{classGaitController_af858396ea3ed703583c0cc328d1916a9}} 
-sensor\+\_\+msgs\+::\+Joint\+State {\bfseries joint\+\_\+command\+\_\+msg}
-\item 
-\mbox{\Hypertarget{classGaitController_a7d8a7ef22a84dd24ba5c1e18d256e8ea}\label{classGaitController_a7d8a7ef22a84dd24ba5c1e18d256e8ea}} 
-double {\bfseries joint\+\_\+states\+\_\+received} = false
-\item 
-\mbox{\Hypertarget{classGaitController_ada249d0cf57910c21bd9e0844db0b6bd}\label{classGaitController_ada249d0cf57910c21bd9e0844db0b6bd}} 
-Pronk\+Phase {\bfseries pronk\+\_\+phase}
-\item 
-\mbox{\Hypertarget{classGaitController_a26a9df9232fd4f8ab12f7ad1ec0ede02}\label{classGaitController_a26a9df9232fd4f8ab12f7ad1ec0ede02}} 
-double {\bfseries pronk\+\_\+height} = 0.\+3
-\item 
-\mbox{\Hypertarget{classGaitController_a01c6522fede44addc95294e684dee952}\label{classGaitController_a01c6522fede44addc95294e684dee952}} 
-double {\bfseries max\+\_\+pronk\+\_\+travel\+\_\+distance} = 0.\+2
-\item 
-\mbox{\Hypertarget{classGaitController_a2a395a7a24ec749ede591dd39a1895f5}\label{classGaitController_a2a395a7a24ec749ede591dd39a1895f5}} 
-double {\bfseries current\+\_\+pronk\+\_\+iteration} = 0.\+0
-\item 
-\mbox{\Hypertarget{classGaitController_a27576ec1047cba9832bd86e1c1c15705}\label{classGaitController_a27576ec1047cba9832bd86e1c1c15705}} 
-double {\bfseries max\+\_\+pronk\+\_\+iteration} = 30
-\item 
-\mbox{\Hypertarget{classGaitController_a25984d3bf31c6c2c249131acbce4f44c}\label{classGaitController_a25984d3bf31c6c2c249131acbce4f44c}} 
-std\+::function$<$ Eigen\+::\+Vector3d(double)$>$ {\bfseries fl\+\_\+traj}
-\item 
-\mbox{\Hypertarget{classGaitController_abf8c26dc16de026deb32834bb4914782}\label{classGaitController_abf8c26dc16de026deb32834bb4914782}} 
-std\+::function$<$ Eigen\+::\+Vector3d(double)$>$ {\bfseries fr\+\_\+traj}
-\item 
-\mbox{\Hypertarget{classGaitController_a5d64ff25c91bd19d73b19864da1277db}\label{classGaitController_a5d64ff25c91bd19d73b19864da1277db}} 
-std\+::function$<$ Eigen\+::\+Vector3d(double)$>$ {\bfseries rl\+\_\+traj}
-\item 
-\mbox{\Hypertarget{classGaitController_a068377926053732f8f82253c72d5d54e}\label{classGaitController_a068377926053732f8f82253c72d5d54e}} 
-std\+::function$<$ Eigen\+::\+Vector3d(double)$>$ {\bfseries rr\+\_\+traj}
-\item 
-\mbox{\Hypertarget{classGaitController_a5daf1598221c86daf95d241b348d565c}\label{classGaitController_a5daf1598221c86daf95d241b348d565c}} 
-double {\bfseries gait\+\_\+period}
-\item 
-\mbox{\Hypertarget{classGaitController_ad0ea94e09d5a050d4dca9552bb83c4e0}\label{classGaitController_ad0ea94e09d5a050d4dca9552bb83c4e0}} 
-int {\bfseries iteration} = 0
+int \mbox{\hyperlink{classGaitController_ad0ea94e09d5a050d4dca9552bb83c4e0}{iteration}} = 0
 \end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 5 of file gait\+\_\+controller.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classGaitController_afd9ce348e434cedcbc29eae436607837}\label{classGaitController_afd9ce348e434cedcbc29eae436607837}} 
+\index{GaitController@{GaitController}!GaitController@{GaitController}}
+\index{GaitController@{GaitController}!GaitController@{GaitController}}
+\doxysubsubsection{\texorpdfstring{GaitController()}{GaitController()}}
+{\footnotesize\ttfamily Gait\+Controller\+::\+Gait\+Controller (\begin{DoxyParamCaption}\item[{int}]{controller\+\_\+freq,  }\item[{double}]{gait\+\_\+period,  }\item[{std\+::function$<$ \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}(double)$>$}]{fl\+\_\+traj,  }\item[{std\+::function$<$ \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}(double)$>$}]{fr\+\_\+traj,  }\item[{std\+::function$<$ \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}(double)$>$}]{rl\+\_\+traj,  }\item[{std\+::function$<$ \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}(double)$>$}]{rr\+\_\+traj }\end{DoxyParamCaption})}
+
+
+
+Definition at line 3 of file gait\+\_\+controller.\+cpp.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGaitController_abcec037ef050d3c4b949ac884a9b839b}\label{classGaitController_abcec037ef050d3c4b949ac884a9b839b}} 
+\index{GaitController@{GaitController}!increment@{increment}}
+\index{increment@{increment}!GaitController@{GaitController}}
+\doxysubsubsection{\texorpdfstring{increment()}{increment()}}
+{\footnotesize\ttfamily void Gait\+Controller\+::increment (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 19 of file gait\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classGaitController_a422ac06dd3bda1cb63d16cd3e93ec13f}\label{classGaitController_a422ac06dd3bda1cb63d16cd3e93ec13f}} 
+\index{GaitController@{GaitController}!UpdateFeetReferences@{UpdateFeetReferences}}
+\index{UpdateFeetReferences@{UpdateFeetReferences}!GaitController@{GaitController}}
+\doxysubsubsection{\texorpdfstring{UpdateFeetReferences()}{UpdateFeetReferences()}}
+{\footnotesize\ttfamily void Gait\+Controller\+::\+Update\+Feet\+References (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classController_a9635a5c77031b610febe90725af7f123}{Controller}}.
+
+
+
+Definition at line 24 of file gait\+\_\+controller.\+cpp.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classGaitController_a25984d3bf31c6c2c249131acbce4f44c}\label{classGaitController_a25984d3bf31c6c2c249131acbce4f44c}} 
+\index{GaitController@{GaitController}!fl\_traj@{fl\_traj}}
+\index{fl\_traj@{fl\_traj}!GaitController@{GaitController}}
+\doxysubsubsection{\texorpdfstring{fl\_traj}{fl\_traj}}
+{\footnotesize\ttfamily std\+::function$<$\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}(double)$>$ Gait\+Controller\+::fl\+\_\+traj\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 16 of file gait\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classGaitController_abf8c26dc16de026deb32834bb4914782}\label{classGaitController_abf8c26dc16de026deb32834bb4914782}} 
+\index{GaitController@{GaitController}!fr\_traj@{fr\_traj}}
+\index{fr\_traj@{fr\_traj}!GaitController@{GaitController}}
+\doxysubsubsection{\texorpdfstring{fr\_traj}{fr\_traj}}
+{\footnotesize\ttfamily std\+::function$<$\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}(double)$>$ Gait\+Controller\+::fr\+\_\+traj\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 18 of file gait\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classGaitController_a5d64ff25c91bd19d73b19864da1277db}\label{classGaitController_a5d64ff25c91bd19d73b19864da1277db}} 
+\index{GaitController@{GaitController}!rl\_traj@{rl\_traj}}
+\index{rl\_traj@{rl\_traj}!GaitController@{GaitController}}
+\doxysubsubsection{\texorpdfstring{rl\_traj}{rl\_traj}}
+{\footnotesize\ttfamily std\+::function$<$\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}(double)$>$ Gait\+Controller\+::rl\+\_\+traj\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 20 of file gait\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classGaitController_a068377926053732f8f82253c72d5d54e}\label{classGaitController_a068377926053732f8f82253c72d5d54e}} 
+\index{GaitController@{GaitController}!rr\_traj@{rr\_traj}}
+\index{rr\_traj@{rr\_traj}!GaitController@{GaitController}}
+\doxysubsubsection{\texorpdfstring{rr\_traj}{rr\_traj}}
+{\footnotesize\ttfamily std\+::function$<$\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}(double)$>$ Gait\+Controller\+::rr\+\_\+traj\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 22 of file gait\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classGaitController_a5daf1598221c86daf95d241b348d565c}\label{classGaitController_a5daf1598221c86daf95d241b348d565c}} 
+\index{GaitController@{GaitController}!gait\_period@{gait\_period}}
+\index{gait\_period@{gait\_period}!GaitController@{GaitController}}
+\doxysubsubsection{\texorpdfstring{gait\_period}{gait\_period}}
+{\footnotesize\ttfamily double Gait\+Controller\+::gait\+\_\+period\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 24 of file gait\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classGaitController_ad0ea94e09d5a050d4dca9552bb83c4e0}\label{classGaitController_ad0ea94e09d5a050d4dca9552bb83c4e0}} 
+\index{GaitController@{GaitController}!iteration@{iteration}}
+\index{iteration@{iteration}!GaitController@{GaitController}}
+\doxysubsubsection{\texorpdfstring{iteration}{iteration}}
+{\footnotesize\ttfamily int Gait\+Controller\+::iteration = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 26 of file gait\+\_\+controller.\+h.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-catkin\+\_\+ws/src/control/gait\+\_\+controller/include/gait\+\_\+controller/gait\+\_\+controller.\+h\item 
-catkin\+\_\+ws/src/control/gait\+\_\+controller/src/gait\+\_\+controller.\+cpp\end{DoxyCompactItemize}
+catkin\+\_\+ws/src/control/modular\+\_\+gait\+\_\+controller/include/modular\+\_\+gait\+\_\+controller/\mbox{\hyperlink{gait__controller_8h}{gait\+\_\+controller.\+h}}\item 
+catkin\+\_\+ws/src/control/modular\+\_\+gait\+\_\+controller/src/\mbox{\hyperlink{gait__controller_8cpp}{gait\+\_\+controller.\+cpp}}\end{DoxyCompactItemize}

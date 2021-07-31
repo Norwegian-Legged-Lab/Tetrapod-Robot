@@ -1,0 +1,272 @@
+\hypertarget{namespacecalculate__polynomials}{}\doxysection{calculate\+\_\+polynomials Namespace Reference}
+\label{namespacecalculate__polynomials}\index{calculate\_polynomials@{calculate\_polynomials}}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{namespacecalculate__polynomials_ac9dad17d6444ffe6ba3bde5f52489e8f}{Ttot}} = 2
+\item 
+int \mbox{\hyperlink{namespacecalculate__polynomials_ab33e9ec31c91f21e61a528f9bb936b0f}{amax}} = 4
+\item 
+int \mbox{\hyperlink{namespacecalculate__polynomials_a91946af146e44632841ff2143a9556ba}{Vrob}} = 1
+\item 
+int \mbox{\hyperlink{namespacecalculate__polynomials_a856b31ea0fed20e6f2bf99854d5220bb}{dtot}} = 2
+\item 
+tuple \mbox{\hyperlink{namespacecalculate__polynomials_ac4c64e3f1ab034276699ee9c2e50fafb}{Tr\+\_\+poly\+\_\+coeffs}} = (-\/\mbox{\hyperlink{namespacecalculate__polynomials_a856b31ea0fed20e6f2bf99854d5220bb}{dtot}} -\/\mbox{\hyperlink{namespacecalculate__polynomials_ac9dad17d6444ffe6ba3bde5f52489e8f}{Ttot}}$\ast$\mbox{\hyperlink{namespacecalculate__polynomials_a91946af146e44632841ff2143a9556ba}{Vrob}}, (2/3)$\ast$\mbox{\hyperlink{namespacecalculate__polynomials_ab33e9ec31c91f21e61a528f9bb936b0f}{amax}}$\ast$\mbox{\hyperlink{namespacecalculate__polynomials_ac9dad17d6444ffe6ba3bde5f52489e8f}{Ttot}}, -\/4/3 + (8/9 -\/ 4/15)$\ast$\mbox{\hyperlink{namespacecalculate__polynomials_ab33e9ec31c91f21e61a528f9bb936b0f}{amax}})
+\item 
+\mbox{\hyperlink{namespacecalculate__polynomials_aba9153e11fca3cbcc549595b6ae6d77f}{Tr\+\_\+list}} = poly.\+Polynomial(\mbox{\hyperlink{namespacecalculate__polynomials_ac4c64e3f1ab034276699ee9c2e50fafb}{Tr\+\_\+poly\+\_\+coeffs}}).roots()
+\item 
+\mbox{\hyperlink{namespacecalculate__polynomials_a34ae6227c2018e98b6ee22f8ab3cb965}{Tr}} = \mbox{\hyperlink{namespacecalculate__polynomials_aba9153e11fca3cbcc549595b6ae6d77f}{Tr\+\_\+list}}\mbox{[}isreal(\mbox{\hyperlink{namespacecalculate__polynomials_aba9153e11fca3cbcc549595b6ae6d77f}{Tr\+\_\+list}})$\ast$(\mbox{\hyperlink{namespacecalculate__polynomials_aba9153e11fca3cbcc549595b6ae6d77f}{Tr\+\_\+list}}$>$=0)\mbox{]}\mbox{[}0\mbox{]}
+\item 
+int \mbox{\hyperlink{namespacecalculate__polynomials_acf9c70365555b99ac016257c1721c311}{Th}} = \mbox{\hyperlink{namespacecalculate__polynomials_ac9dad17d6444ffe6ba3bde5f52489e8f}{Ttot}} -\/ 2$\ast$\mbox{\hyperlink{namespacecalculate__polynomials_a34ae6227c2018e98b6ee22f8ab3cb965}{Tr}}
+\item 
+int \mbox{\hyperlink{namespacecalculate__polynomials_a08a78f676995f3e1b013c7a5dbbf86bc}{a}} = -\/(2/3)$\ast$\mbox{\hyperlink{namespacecalculate__polynomials_ab33e9ec31c91f21e61a528f9bb936b0f}{amax}}/(\mbox{\hyperlink{namespacecalculate__polynomials_a34ae6227c2018e98b6ee22f8ab3cb965}{Tr}}$\ast$$\ast$3)
+\item 
+tuple \mbox{\hyperlink{namespacecalculate__polynomials_a1df177963b8138e8a32214182097387b}{b}} = (4/3)$\ast$\mbox{\hyperlink{namespacecalculate__polynomials_ab33e9ec31c91f21e61a528f9bb936b0f}{amax}}/\mbox{\hyperlink{namespacecalculate__polynomials_a34ae6227c2018e98b6ee22f8ab3cb965}{Tr}}
+\item 
+int \mbox{\hyperlink{namespacecalculate__polynomials_a66df1a70d317116e832b1ac83571b7e4}{c}} = -\/\mbox{\hyperlink{namespacecalculate__polynomials_a91946af146e44632841ff2143a9556ba}{Vrob}}
+\item 
+tuple \mbox{\hyperlink{namespacecalculate__polynomials_afef440babf8d1e51ca2ea3bbb9ce68d5}{coeffs}} = (\mbox{\hyperlink{namespacecalculate__polynomials_a66df1a70d317116e832b1ac83571b7e4}{c}}, 0, \mbox{\hyperlink{namespacecalculate__polynomials_a1df177963b8138e8a32214182097387b}{b}}, 0, \mbox{\hyperlink{namespacecalculate__polynomials_a08a78f676995f3e1b013c7a5dbbf86bc}{a}})
+\item 
+\mbox{\hyperlink{namespacecalculate__polynomials_ae8fb12c07d07bac895f7d5b0183e4411}{t1}} = np.\+linspace(0, \mbox{\hyperlink{namespacecalculate__polynomials_a34ae6227c2018e98b6ee22f8ab3cb965}{Tr}}, 50)
+\item 
+\mbox{\hyperlink{namespacecalculate__polynomials_acedc14c21af1e06cd9dfbf6c5daed326}{t2}} = np.\+linspace(\mbox{\hyperlink{namespacecalculate__polynomials_a34ae6227c2018e98b6ee22f8ab3cb965}{Tr}}, \mbox{\hyperlink{namespacecalculate__polynomials_a34ae6227c2018e98b6ee22f8ab3cb965}{Tr}} + \mbox{\hyperlink{namespacecalculate__polynomials_acf9c70365555b99ac016257c1721c311}{Th}}, 100)
+\item 
+\mbox{\hyperlink{namespacecalculate__polynomials_a397e56bd5b88b8b2412afd4d237ba011}{t3}} = np.\+linspace(\mbox{\hyperlink{namespacecalculate__polynomials_a34ae6227c2018e98b6ee22f8ab3cb965}{Tr}} + \mbox{\hyperlink{namespacecalculate__polynomials_acf9c70365555b99ac016257c1721c311}{Th}}, \mbox{\hyperlink{namespacecalculate__polynomials_ac9dad17d6444ffe6ba3bde5f52489e8f}{Ttot}}, 50)
+\item 
+\mbox{\hyperlink{namespacecalculate__polynomials_a5baa6b964beadb5713815286c7ab8293}{f}} = poly.\+Polynomial(\mbox{\hyperlink{namespacecalculate__polynomials_afef440babf8d1e51ca2ea3bbb9ce68d5}{coeffs}})
+\item 
+\mbox{\hyperlink{namespacecalculate__polynomials_a3910989afaa7fdc5b49c9860d6243362}{f\+\_\+int}} = f.\+integ()
+\item 
+\mbox{\hyperlink{namespacecalculate__polynomials_a9e457b939a5193994f132a15223439a6}{x1}} = \mbox{\hyperlink{namespacecalculate__polynomials_a5baa6b964beadb5713815286c7ab8293}{f}}(\mbox{\hyperlink{namespacecalculate__polynomials_ae8fb12c07d07bac895f7d5b0183e4411}{t1}})
+\item 
+\mbox{\hyperlink{namespacecalculate__polynomials_a9d26eef5294e4b2b00507571cca85046}{x2}} = np.\+array(\mbox{[}\mbox{\hyperlink{namespacecalculate__polynomials_a5baa6b964beadb5713815286c7ab8293}{f}}(\mbox{\hyperlink{namespacecalculate__polynomials_a34ae6227c2018e98b6ee22f8ab3cb965}{Tr}})\mbox{]}$\ast$t2.\+shape\mbox{[}0\mbox{]})
+\item 
+\mbox{\hyperlink{namespacecalculate__polynomials_ab747c47bae3eed927f533011fa7fb2f7}{x3}} = \mbox{\hyperlink{namespacecalculate__polynomials_a5baa6b964beadb5713815286c7ab8293}{f}}(-\/\mbox{\hyperlink{namespacecalculate__polynomials_a397e56bd5b88b8b2412afd4d237ba011}{t3}} + \mbox{\hyperlink{namespacecalculate__polynomials_ac9dad17d6444ffe6ba3bde5f52489e8f}{Ttot}})
+\item 
+\mbox{\hyperlink{namespacecalculate__polynomials_a15a7e61640fba451bf494d8276bb9fee}{t}} = np.\+concatenate((\mbox{\hyperlink{namespacecalculate__polynomials_ae8fb12c07d07bac895f7d5b0183e4411}{t1}}, \mbox{\hyperlink{namespacecalculate__polynomials_acedc14c21af1e06cd9dfbf6c5daed326}{t2}}, \mbox{\hyperlink{namespacecalculate__polynomials_a397e56bd5b88b8b2412afd4d237ba011}{t3}}))
+\item 
+\mbox{\hyperlink{namespacecalculate__polynomials_a9f630785c83bcfdfe45dfd07b0355374}{x}} = np.\+concatenate((\mbox{\hyperlink{namespacecalculate__polynomials_a9e457b939a5193994f132a15223439a6}{x1}}, \mbox{\hyperlink{namespacecalculate__polynomials_a9d26eef5294e4b2b00507571cca85046}{x2}}, \mbox{\hyperlink{namespacecalculate__polynomials_ab747c47bae3eed927f533011fa7fb2f7}{x3}}))
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespacecalculate__polynomials_ac9dad17d6444ffe6ba3bde5f52489e8f}\label{namespacecalculate__polynomials_ac9dad17d6444ffe6ba3bde5f52489e8f}} 
+\index{calculate\_polynomials@{calculate\_polynomials}!Ttot@{Ttot}}
+\index{Ttot@{Ttot}!calculate\_polynomials@{calculate\_polynomials}}
+\doxysubsubsection{\texorpdfstring{Ttot}{Ttot}}
+{\footnotesize\ttfamily int calculate\+\_\+polynomials.\+Ttot = 2}
+
+
+
+Definition at line 8 of file calculate\+\_\+polynomials.\+py.
+
+\mbox{\Hypertarget{namespacecalculate__polynomials_ab33e9ec31c91f21e61a528f9bb936b0f}\label{namespacecalculate__polynomials_ab33e9ec31c91f21e61a528f9bb936b0f}} 
+\index{calculate\_polynomials@{calculate\_polynomials}!amax@{amax}}
+\index{amax@{amax}!calculate\_polynomials@{calculate\_polynomials}}
+\doxysubsubsection{\texorpdfstring{amax}{amax}}
+{\footnotesize\ttfamily int calculate\+\_\+polynomials.\+amax = 4}
+
+
+
+Definition at line 9 of file calculate\+\_\+polynomials.\+py.
+
+\mbox{\Hypertarget{namespacecalculate__polynomials_a91946af146e44632841ff2143a9556ba}\label{namespacecalculate__polynomials_a91946af146e44632841ff2143a9556ba}} 
+\index{calculate\_polynomials@{calculate\_polynomials}!Vrob@{Vrob}}
+\index{Vrob@{Vrob}!calculate\_polynomials@{calculate\_polynomials}}
+\doxysubsubsection{\texorpdfstring{Vrob}{Vrob}}
+{\footnotesize\ttfamily int calculate\+\_\+polynomials.\+Vrob = 1}
+
+
+
+Definition at line 10 of file calculate\+\_\+polynomials.\+py.
+
+\mbox{\Hypertarget{namespacecalculate__polynomials_a856b31ea0fed20e6f2bf99854d5220bb}\label{namespacecalculate__polynomials_a856b31ea0fed20e6f2bf99854d5220bb}} 
+\index{calculate\_polynomials@{calculate\_polynomials}!dtot@{dtot}}
+\index{dtot@{dtot}!calculate\_polynomials@{calculate\_polynomials}}
+\doxysubsubsection{\texorpdfstring{dtot}{dtot}}
+{\footnotesize\ttfamily int calculate\+\_\+polynomials.\+dtot = 2}
+
+
+
+Definition at line 11 of file calculate\+\_\+polynomials.\+py.
+
+\mbox{\Hypertarget{namespacecalculate__polynomials_ac4c64e3f1ab034276699ee9c2e50fafb}\label{namespacecalculate__polynomials_ac4c64e3f1ab034276699ee9c2e50fafb}} 
+\index{calculate\_polynomials@{calculate\_polynomials}!Tr\_poly\_coeffs@{Tr\_poly\_coeffs}}
+\index{Tr\_poly\_coeffs@{Tr\_poly\_coeffs}!calculate\_polynomials@{calculate\_polynomials}}
+\doxysubsubsection{\texorpdfstring{Tr\_poly\_coeffs}{Tr\_poly\_coeffs}}
+{\footnotesize\ttfamily tuple calculate\+\_\+polynomials.\+Tr\+\_\+poly\+\_\+coeffs = (-\/\mbox{\hyperlink{namespacecalculate__polynomials_a856b31ea0fed20e6f2bf99854d5220bb}{dtot}} -\/\mbox{\hyperlink{namespacecalculate__polynomials_ac9dad17d6444ffe6ba3bde5f52489e8f}{Ttot}}$\ast$\mbox{\hyperlink{namespacecalculate__polynomials_a91946af146e44632841ff2143a9556ba}{Vrob}}, (2/3)$\ast$\mbox{\hyperlink{namespacecalculate__polynomials_ab33e9ec31c91f21e61a528f9bb936b0f}{amax}}$\ast$\mbox{\hyperlink{namespacecalculate__polynomials_ac9dad17d6444ffe6ba3bde5f52489e8f}{Ttot}}, -\/4/3 + (8/9 -\/ 4/15)$\ast$\mbox{\hyperlink{namespacecalculate__polynomials_ab33e9ec31c91f21e61a528f9bb936b0f}{amax}})}
+
+
+
+Definition at line 13 of file calculate\+\_\+polynomials.\+py.
+
+\mbox{\Hypertarget{namespacecalculate__polynomials_aba9153e11fca3cbcc549595b6ae6d77f}\label{namespacecalculate__polynomials_aba9153e11fca3cbcc549595b6ae6d77f}} 
+\index{calculate\_polynomials@{calculate\_polynomials}!Tr\_list@{Tr\_list}}
+\index{Tr\_list@{Tr\_list}!calculate\_polynomials@{calculate\_polynomials}}
+\doxysubsubsection{\texorpdfstring{Tr\_list}{Tr\_list}}
+{\footnotesize\ttfamily calculate\+\_\+polynomials.\+Tr\+\_\+list = poly.\+Polynomial(\mbox{\hyperlink{namespacecalculate__polynomials_ac4c64e3f1ab034276699ee9c2e50fafb}{Tr\+\_\+poly\+\_\+coeffs}}).roots()}
+
+
+
+Definition at line 15 of file calculate\+\_\+polynomials.\+py.
+
+\mbox{\Hypertarget{namespacecalculate__polynomials_a34ae6227c2018e98b6ee22f8ab3cb965}\label{namespacecalculate__polynomials_a34ae6227c2018e98b6ee22f8ab3cb965}} 
+\index{calculate\_polynomials@{calculate\_polynomials}!Tr@{Tr}}
+\index{Tr@{Tr}!calculate\_polynomials@{calculate\_polynomials}}
+\doxysubsubsection{\texorpdfstring{Tr}{Tr}}
+{\footnotesize\ttfamily calculate\+\_\+polynomials.\+Tr = \mbox{\hyperlink{namespacecalculate__polynomials_aba9153e11fca3cbcc549595b6ae6d77f}{Tr\+\_\+list}}\mbox{[}isreal(\mbox{\hyperlink{namespacecalculate__polynomials_aba9153e11fca3cbcc549595b6ae6d77f}{Tr\+\_\+list}})$\ast$(\mbox{\hyperlink{namespacecalculate__polynomials_aba9153e11fca3cbcc549595b6ae6d77f}{Tr\+\_\+list}}$>$=0)\mbox{]}\mbox{[}0\mbox{]}}
+
+
+
+Definition at line 22 of file calculate\+\_\+polynomials.\+py.
+
+\mbox{\Hypertarget{namespacecalculate__polynomials_acf9c70365555b99ac016257c1721c311}\label{namespacecalculate__polynomials_acf9c70365555b99ac016257c1721c311}} 
+\index{calculate\_polynomials@{calculate\_polynomials}!Th@{Th}}
+\index{Th@{Th}!calculate\_polynomials@{calculate\_polynomials}}
+\doxysubsubsection{\texorpdfstring{Th}{Th}}
+{\footnotesize\ttfamily int calculate\+\_\+polynomials.\+Th = \mbox{\hyperlink{namespacecalculate__polynomials_ac9dad17d6444ffe6ba3bde5f52489e8f}{Ttot}} -\/ 2$\ast$\mbox{\hyperlink{namespacecalculate__polynomials_a34ae6227c2018e98b6ee22f8ab3cb965}{Tr}}}
+
+
+
+Definition at line 24 of file calculate\+\_\+polynomials.\+py.
+
+\mbox{\Hypertarget{namespacecalculate__polynomials_a08a78f676995f3e1b013c7a5dbbf86bc}\label{namespacecalculate__polynomials_a08a78f676995f3e1b013c7a5dbbf86bc}} 
+\index{calculate\_polynomials@{calculate\_polynomials}!a@{a}}
+\index{a@{a}!calculate\_polynomials@{calculate\_polynomials}}
+\doxysubsubsection{\texorpdfstring{a}{a}}
+{\footnotesize\ttfamily int calculate\+\_\+polynomials.\+a = -\/(2/3)$\ast$\mbox{\hyperlink{namespacecalculate__polynomials_ab33e9ec31c91f21e61a528f9bb936b0f}{amax}}/(\mbox{\hyperlink{namespacecalculate__polynomials_a34ae6227c2018e98b6ee22f8ab3cb965}{Tr}}$\ast$$\ast$3)}
+
+
+
+Definition at line 26 of file calculate\+\_\+polynomials.\+py.
+
+\mbox{\Hypertarget{namespacecalculate__polynomials_a1df177963b8138e8a32214182097387b}\label{namespacecalculate__polynomials_a1df177963b8138e8a32214182097387b}} 
+\index{calculate\_polynomials@{calculate\_polynomials}!b@{b}}
+\index{b@{b}!calculate\_polynomials@{calculate\_polynomials}}
+\doxysubsubsection{\texorpdfstring{b}{b}}
+{\footnotesize\ttfamily tuple calculate\+\_\+polynomials.\+b = (4/3)$\ast$\mbox{\hyperlink{namespacecalculate__polynomials_ab33e9ec31c91f21e61a528f9bb936b0f}{amax}}/\mbox{\hyperlink{namespacecalculate__polynomials_a34ae6227c2018e98b6ee22f8ab3cb965}{Tr}}}
+
+
+
+Definition at line 27 of file calculate\+\_\+polynomials.\+py.
+
+\mbox{\Hypertarget{namespacecalculate__polynomials_a66df1a70d317116e832b1ac83571b7e4}\label{namespacecalculate__polynomials_a66df1a70d317116e832b1ac83571b7e4}} 
+\index{calculate\_polynomials@{calculate\_polynomials}!c@{c}}
+\index{c@{c}!calculate\_polynomials@{calculate\_polynomials}}
+\doxysubsubsection{\texorpdfstring{c}{c}}
+{\footnotesize\ttfamily int calculate\+\_\+polynomials.\+c = -\/\mbox{\hyperlink{namespacecalculate__polynomials_a91946af146e44632841ff2143a9556ba}{Vrob}}}
+
+
+
+Definition at line 28 of file calculate\+\_\+polynomials.\+py.
+
+\mbox{\Hypertarget{namespacecalculate__polynomials_afef440babf8d1e51ca2ea3bbb9ce68d5}\label{namespacecalculate__polynomials_afef440babf8d1e51ca2ea3bbb9ce68d5}} 
+\index{calculate\_polynomials@{calculate\_polynomials}!coeffs@{coeffs}}
+\index{coeffs@{coeffs}!calculate\_polynomials@{calculate\_polynomials}}
+\doxysubsubsection{\texorpdfstring{coeffs}{coeffs}}
+{\footnotesize\ttfamily tuple calculate\+\_\+polynomials.\+coeffs = (\mbox{\hyperlink{namespacecalculate__polynomials_a66df1a70d317116e832b1ac83571b7e4}{c}}, 0, \mbox{\hyperlink{namespacecalculate__polynomials_a1df177963b8138e8a32214182097387b}{b}}, 0, \mbox{\hyperlink{namespacecalculate__polynomials_a08a78f676995f3e1b013c7a5dbbf86bc}{a}})}
+
+
+
+Definition at line 30 of file calculate\+\_\+polynomials.\+py.
+
+\mbox{\Hypertarget{namespacecalculate__polynomials_ae8fb12c07d07bac895f7d5b0183e4411}\label{namespacecalculate__polynomials_ae8fb12c07d07bac895f7d5b0183e4411}} 
+\index{calculate\_polynomials@{calculate\_polynomials}!t1@{t1}}
+\index{t1@{t1}!calculate\_polynomials@{calculate\_polynomials}}
+\doxysubsubsection{\texorpdfstring{t1}{t1}}
+{\footnotesize\ttfamily calculate\+\_\+polynomials.\+t1 = np.\+linspace(0, \mbox{\hyperlink{namespacecalculate__polynomials_a34ae6227c2018e98b6ee22f8ab3cb965}{Tr}}, 50)}
+
+
+
+Definition at line 32 of file calculate\+\_\+polynomials.\+py.
+
+\mbox{\Hypertarget{namespacecalculate__polynomials_acedc14c21af1e06cd9dfbf6c5daed326}\label{namespacecalculate__polynomials_acedc14c21af1e06cd9dfbf6c5daed326}} 
+\index{calculate\_polynomials@{calculate\_polynomials}!t2@{t2}}
+\index{t2@{t2}!calculate\_polynomials@{calculate\_polynomials}}
+\doxysubsubsection{\texorpdfstring{t2}{t2}}
+{\footnotesize\ttfamily calculate\+\_\+polynomials.\+t2 = np.\+linspace(\mbox{\hyperlink{namespacecalculate__polynomials_a34ae6227c2018e98b6ee22f8ab3cb965}{Tr}}, \mbox{\hyperlink{namespacecalculate__polynomials_a34ae6227c2018e98b6ee22f8ab3cb965}{Tr}} + \mbox{\hyperlink{namespacecalculate__polynomials_acf9c70365555b99ac016257c1721c311}{Th}}, 100)}
+
+
+
+Definition at line 33 of file calculate\+\_\+polynomials.\+py.
+
+\mbox{\Hypertarget{namespacecalculate__polynomials_a397e56bd5b88b8b2412afd4d237ba011}\label{namespacecalculate__polynomials_a397e56bd5b88b8b2412afd4d237ba011}} 
+\index{calculate\_polynomials@{calculate\_polynomials}!t3@{t3}}
+\index{t3@{t3}!calculate\_polynomials@{calculate\_polynomials}}
+\doxysubsubsection{\texorpdfstring{t3}{t3}}
+{\footnotesize\ttfamily calculate\+\_\+polynomials.\+t3 = np.\+linspace(\mbox{\hyperlink{namespacecalculate__polynomials_a34ae6227c2018e98b6ee22f8ab3cb965}{Tr}} + \mbox{\hyperlink{namespacecalculate__polynomials_acf9c70365555b99ac016257c1721c311}{Th}}, \mbox{\hyperlink{namespacecalculate__polynomials_ac9dad17d6444ffe6ba3bde5f52489e8f}{Ttot}}, 50)}
+
+
+
+Definition at line 34 of file calculate\+\_\+polynomials.\+py.
+
+\mbox{\Hypertarget{namespacecalculate__polynomials_a5baa6b964beadb5713815286c7ab8293}\label{namespacecalculate__polynomials_a5baa6b964beadb5713815286c7ab8293}} 
+\index{calculate\_polynomials@{calculate\_polynomials}!f@{f}}
+\index{f@{f}!calculate\_polynomials@{calculate\_polynomials}}
+\doxysubsubsection{\texorpdfstring{f}{f}}
+{\footnotesize\ttfamily calculate\+\_\+polynomials.\+f = poly.\+Polynomial(\mbox{\hyperlink{namespacecalculate__polynomials_afef440babf8d1e51ca2ea3bbb9ce68d5}{coeffs}})}
+
+
+
+Definition at line 35 of file calculate\+\_\+polynomials.\+py.
+
+\mbox{\Hypertarget{namespacecalculate__polynomials_a3910989afaa7fdc5b49c9860d6243362}\label{namespacecalculate__polynomials_a3910989afaa7fdc5b49c9860d6243362}} 
+\index{calculate\_polynomials@{calculate\_polynomials}!f\_int@{f\_int}}
+\index{f\_int@{f\_int}!calculate\_polynomials@{calculate\_polynomials}}
+\doxysubsubsection{\texorpdfstring{f\_int}{f\_int}}
+{\footnotesize\ttfamily calculate\+\_\+polynomials.\+f\+\_\+int = f.\+integ()}
+
+
+
+Definition at line 36 of file calculate\+\_\+polynomials.\+py.
+
+\mbox{\Hypertarget{namespacecalculate__polynomials_a9e457b939a5193994f132a15223439a6}\label{namespacecalculate__polynomials_a9e457b939a5193994f132a15223439a6}} 
+\index{calculate\_polynomials@{calculate\_polynomials}!x1@{x1}}
+\index{x1@{x1}!calculate\_polynomials@{calculate\_polynomials}}
+\doxysubsubsection{\texorpdfstring{x1}{x1}}
+{\footnotesize\ttfamily calculate\+\_\+polynomials.\+x1 = \mbox{\hyperlink{namespacecalculate__polynomials_a5baa6b964beadb5713815286c7ab8293}{f}}(\mbox{\hyperlink{namespacecalculate__polynomials_ae8fb12c07d07bac895f7d5b0183e4411}{t1}})}
+
+
+
+Definition at line 37 of file calculate\+\_\+polynomials.\+py.
+
+\mbox{\Hypertarget{namespacecalculate__polynomials_a9d26eef5294e4b2b00507571cca85046}\label{namespacecalculate__polynomials_a9d26eef5294e4b2b00507571cca85046}} 
+\index{calculate\_polynomials@{calculate\_polynomials}!x2@{x2}}
+\index{x2@{x2}!calculate\_polynomials@{calculate\_polynomials}}
+\doxysubsubsection{\texorpdfstring{x2}{x2}}
+{\footnotesize\ttfamily calculate\+\_\+polynomials.\+x2 = np.\+array(\mbox{[}\mbox{\hyperlink{namespacecalculate__polynomials_a5baa6b964beadb5713815286c7ab8293}{f}}(\mbox{\hyperlink{namespacecalculate__polynomials_a34ae6227c2018e98b6ee22f8ab3cb965}{Tr}})\mbox{]}$\ast$t2.\+shape\mbox{[}0\mbox{]})}
+
+
+
+Definition at line 38 of file calculate\+\_\+polynomials.\+py.
+
+\mbox{\Hypertarget{namespacecalculate__polynomials_ab747c47bae3eed927f533011fa7fb2f7}\label{namespacecalculate__polynomials_ab747c47bae3eed927f533011fa7fb2f7}} 
+\index{calculate\_polynomials@{calculate\_polynomials}!x3@{x3}}
+\index{x3@{x3}!calculate\_polynomials@{calculate\_polynomials}}
+\doxysubsubsection{\texorpdfstring{x3}{x3}}
+{\footnotesize\ttfamily calculate\+\_\+polynomials.\+x3 = \mbox{\hyperlink{namespacecalculate__polynomials_a5baa6b964beadb5713815286c7ab8293}{f}}(-\/\mbox{\hyperlink{namespacecalculate__polynomials_a397e56bd5b88b8b2412afd4d237ba011}{t3}} + \mbox{\hyperlink{namespacecalculate__polynomials_ac9dad17d6444ffe6ba3bde5f52489e8f}{Ttot}})}
+
+
+
+Definition at line 39 of file calculate\+\_\+polynomials.\+py.
+
+\mbox{\Hypertarget{namespacecalculate__polynomials_a15a7e61640fba451bf494d8276bb9fee}\label{namespacecalculate__polynomials_a15a7e61640fba451bf494d8276bb9fee}} 
+\index{calculate\_polynomials@{calculate\_polynomials}!t@{t}}
+\index{t@{t}!calculate\_polynomials@{calculate\_polynomials}}
+\doxysubsubsection{\texorpdfstring{t}{t}}
+{\footnotesize\ttfamily calculate\+\_\+polynomials.\+t = np.\+concatenate((\mbox{\hyperlink{namespacecalculate__polynomials_ae8fb12c07d07bac895f7d5b0183e4411}{t1}}, \mbox{\hyperlink{namespacecalculate__polynomials_acedc14c21af1e06cd9dfbf6c5daed326}{t2}}, \mbox{\hyperlink{namespacecalculate__polynomials_a397e56bd5b88b8b2412afd4d237ba011}{t3}}))}
+
+
+
+Definition at line 41 of file calculate\+\_\+polynomials.\+py.
+
+\mbox{\Hypertarget{namespacecalculate__polynomials_a9f630785c83bcfdfe45dfd07b0355374}\label{namespacecalculate__polynomials_a9f630785c83bcfdfe45dfd07b0355374}} 
+\index{calculate\_polynomials@{calculate\_polynomials}!x@{x}}
+\index{x@{x}!calculate\_polynomials@{calculate\_polynomials}}
+\doxysubsubsection{\texorpdfstring{x}{x}}
+{\footnotesize\ttfamily calculate\+\_\+polynomials.\+x = np.\+concatenate((\mbox{\hyperlink{namespacecalculate__polynomials_a9e457b939a5193994f132a15223439a6}{x1}}, \mbox{\hyperlink{namespacecalculate__polynomials_a9d26eef5294e4b2b00507571cca85046}{x2}}, \mbox{\hyperlink{namespacecalculate__polynomials_ab747c47bae3eed927f533011fa7fb2f7}{x3}}))}
+
+
+
+Definition at line 42 of file calculate\+\_\+polynomials.\+py.
+

@@ -1,0 +1,263 @@
+\hypertarget{namespacedebug__utils}{}\doxysection{debug\+\_\+utils Namespace Reference}
+\label{namespacedebug__utils}\index{debug\_utils@{debug\_utils}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespacedebug__utils_abecef2591beb928345d1a6b2d98394c5}{print\+Base\+State}} (const Eigen\+::\+Matrix$<$ double, 6, 1 $>$ \&\+\_\+base\+\_\+state)
+\begin{DoxyCompactList}\small\item\em The print\+Base\+State function prints a given base-\/ state to ROS using print level INFO. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedebug__utils_ab095b27c8b30892d076a2cefdffcbc77}{print\+Base\+Twist}} (const Eigen\+::\+Matrix$<$ double, 6, 1 $>$ \&\+\_\+base\+\_\+twist)
+\begin{DoxyCompactList}\small\item\em The print\+Base\+Twist function prints a given base-\/ twist to ROS using print level INFO. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedebug__utils_a8e8edbf4d79e7f711b5f8b96066cc844}{print\+Base\+Accel}} (const Eigen\+::\+Matrix$<$ double, 6, 1 $>$ \&\+\_\+base\+\_\+accel)
+\begin{DoxyCompactList}\small\item\em The print\+Base\+Accel function prints a given base-\/ accel to ROS using print level INFO. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedebug__utils_a419f0686df9b545ad7b5e41a6bc06bda}{print\+Joint\+State}} (const Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \&\+\_\+joint\+\_\+state)
+\begin{DoxyCompactList}\small\item\em The print\+Joint\+State function prints a given joint-\/ state to ROS using print level INFO. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedebug__utils_a2cc8eef9caa55dc39bc42b0780184326}{print\+Joint\+Velocities}} (const Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \&\+\_\+joint\+\_\+vel)
+\begin{DoxyCompactList}\small\item\em The print\+Joint\+Velocities function prints given joint-\/ velocities to ROS using print level INFO. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedebug__utils_a31a6ee18cc4940aee380e7f849e5165f}{print\+Joint\+Accelerations}} (const Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \&\+\_\+joint\+\_\+vel)
+\begin{DoxyCompactList}\small\item\em The print\+Joint\+Accelerations function prints given joint-\/ accelerations to ROS using print level INFO. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedebug__utils_a6bf4a403f7a791c0287b0ea00f266df9}{print\+Joint\+Torques}} (const Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \&\+\_\+joint\+\_\+trq)
+\begin{DoxyCompactList}\small\item\em The print\+Joint\+Torques function prints given joint-\/ torques to ROS using print level INFO. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedebug__utils_a5c6978c35a69115963cd984ec4a7e0ed}{print\+Generalized\+Coordinates}} (const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+gen\+\_\+coord)
+\begin{DoxyCompactList}\small\item\em The print\+Generalized\+Coordinates function prints a given set of generalized coordinates to ROS using print level INFO. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedebug__utils_add603531581360cd8b5a436949ced5dc}{print\+Generalized\+Velocities}} (const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+gen\+\_\+vel)
+\begin{DoxyCompactList}\small\item\em The print\+Generalized\+Velocities function prints a given set of generalized velocities to ROS using print level INFO. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedebug__utils_a4a86068252267e3ae140d3af9e350c3f}{print\+Generalized\+Accelerations}} (const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+gen\+\_\+accel)
+\begin{DoxyCompactList}\small\item\em The print\+Generalized\+Accelerations function prints a given set of generalized accelerations to ROS using print level INFO. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedebug__utils_a935269b3acc9f6eb8befcd0a6da88764}{print\+Footstep\+Positions}} (const Eigen\+::\+Matrix$<$ \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}, 4, 1 $>$ \&\+\_\+f\+\_\+pos)
+\begin{DoxyCompactList}\small\item\em The print\+Footstep\+Positions function prints a given set of footstep positions to ROS using print level INFO. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedebug__utils_afcffa65c7693bf60b3b9df288ad33794}{print\+Footstep\+Forces}} (const int $\ast$\+\_\+contact\+\_\+state, const Eigen\+::\+Vector\+Xd \&\+\_\+\+F\+\_\+c)
+\begin{DoxyCompactList}\small\item\em The print\+Footstep\+Positions function prints a given set of footstep forces to ROS using print level INFO. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacedebug__utils_abecef2591beb928345d1a6b2d98394c5}\label{namespacedebug__utils_abecef2591beb928345d1a6b2d98394c5}} 
+\index{debug\_utils@{debug\_utils}!printBaseState@{printBaseState}}
+\index{printBaseState@{printBaseState}!debug\_utils@{debug\_utils}}
+\doxysubsubsection{\texorpdfstring{printBaseState()}{printBaseState()}}
+{\footnotesize\ttfamily void debug\+\_\+utils\+::print\+Base\+State (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix$<$ double, 6, 1 $>$ \&}]{\+\_\+base\+\_\+state }\end{DoxyParamCaption})}
+
+
+
+The print\+Base\+State function prints a given base-\/ state to ROS using print level INFO. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+base\+\_\+state} & Base State (x,y,z,roll,pitch,yaw) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 33 of file debug\+\_\+utils.\+cpp.
+
+\mbox{\Hypertarget{namespacedebug__utils_ab095b27c8b30892d076a2cefdffcbc77}\label{namespacedebug__utils_ab095b27c8b30892d076a2cefdffcbc77}} 
+\index{debug\_utils@{debug\_utils}!printBaseTwist@{printBaseTwist}}
+\index{printBaseTwist@{printBaseTwist}!debug\_utils@{debug\_utils}}
+\doxysubsubsection{\texorpdfstring{printBaseTwist()}{printBaseTwist()}}
+{\footnotesize\ttfamily void debug\+\_\+utils\+::print\+Base\+Twist (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix$<$ double, 6, 1 $>$ \&}]{\+\_\+base\+\_\+twist }\end{DoxyParamCaption})}
+
+
+
+The print\+Base\+Twist function prints a given base-\/ twist to ROS using print level INFO. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+base\+\_\+twist} & Base Twist (x\+\_\+vel,y\+\_\+vel,z\+\_\+vel,roll\+\_\+rate,pitch\+\_\+rate,yaw\+\_\+rate) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 46 of file debug\+\_\+utils.\+cpp.
+
+\mbox{\Hypertarget{namespacedebug__utils_a8e8edbf4d79e7f711b5f8b96066cc844}\label{namespacedebug__utils_a8e8edbf4d79e7f711b5f8b96066cc844}} 
+\index{debug\_utils@{debug\_utils}!printBaseAccel@{printBaseAccel}}
+\index{printBaseAccel@{printBaseAccel}!debug\_utils@{debug\_utils}}
+\doxysubsubsection{\texorpdfstring{printBaseAccel()}{printBaseAccel()}}
+{\footnotesize\ttfamily void debug\+\_\+utils\+::print\+Base\+Accel (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix$<$ double, 6, 1 $>$ \&}]{\+\_\+base\+\_\+accel }\end{DoxyParamCaption})}
+
+
+
+The print\+Base\+Accel function prints a given base-\/ accel to ROS using print level INFO. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+base\+\_\+accel} & Base Accel (x\+\_\+accel,y\+\_\+accel,z\+\_\+accel,roll\+\_\+accel,pitch\+\_\+accel,yaw\+\_\+accel) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 59 of file debug\+\_\+utils.\+cpp.
+
+\mbox{\Hypertarget{namespacedebug__utils_a419f0686df9b545ad7b5e41a6bc06bda}\label{namespacedebug__utils_a419f0686df9b545ad7b5e41a6bc06bda}} 
+\index{debug\_utils@{debug\_utils}!printJointState@{printJointState}}
+\index{printJointState@{printJointState}!debug\_utils@{debug\_utils}}
+\doxysubsubsection{\texorpdfstring{printJointState()}{printJointState()}}
+{\footnotesize\ttfamily void debug\+\_\+utils\+::print\+Joint\+State (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \&}]{\+\_\+joint\+\_\+state }\end{DoxyParamCaption})}
+
+
+
+The print\+Joint\+State function prints a given joint-\/ state to ROS using print level INFO. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+joint\+\_\+state} & Joint angles \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 72 of file debug\+\_\+utils.\+cpp.
+
+\mbox{\Hypertarget{namespacedebug__utils_a2cc8eef9caa55dc39bc42b0780184326}\label{namespacedebug__utils_a2cc8eef9caa55dc39bc42b0780184326}} 
+\index{debug\_utils@{debug\_utils}!printJointVelocities@{printJointVelocities}}
+\index{printJointVelocities@{printJointVelocities}!debug\_utils@{debug\_utils}}
+\doxysubsubsection{\texorpdfstring{printJointVelocities()}{printJointVelocities()}}
+{\footnotesize\ttfamily void debug\+\_\+utils\+::print\+Joint\+Velocities (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \&}]{\+\_\+joint\+\_\+vel }\end{DoxyParamCaption})}
+
+
+
+The print\+Joint\+Velocities function prints given joint-\/ velocities to ROS using print level INFO. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+joint\+\_\+vel} & Joint velocities \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 91 of file debug\+\_\+utils.\+cpp.
+
+\mbox{\Hypertarget{namespacedebug__utils_a31a6ee18cc4940aee380e7f849e5165f}\label{namespacedebug__utils_a31a6ee18cc4940aee380e7f849e5165f}} 
+\index{debug\_utils@{debug\_utils}!printJointAccelerations@{printJointAccelerations}}
+\index{printJointAccelerations@{printJointAccelerations}!debug\_utils@{debug\_utils}}
+\doxysubsubsection{\texorpdfstring{printJointAccelerations()}{printJointAccelerations()}}
+{\footnotesize\ttfamily void debug\+\_\+utils\+::print\+Joint\+Accelerations (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \&}]{\+\_\+joint\+\_\+vel }\end{DoxyParamCaption})}
+
+
+
+The print\+Joint\+Accelerations function prints given joint-\/ accelerations to ROS using print level INFO. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+joint\+\_\+accel} & Joint accelerations \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 110 of file debug\+\_\+utils.\+cpp.
+
+\mbox{\Hypertarget{namespacedebug__utils_a6bf4a403f7a791c0287b0ea00f266df9}\label{namespacedebug__utils_a6bf4a403f7a791c0287b0ea00f266df9}} 
+\index{debug\_utils@{debug\_utils}!printJointTorques@{printJointTorques}}
+\index{printJointTorques@{printJointTorques}!debug\_utils@{debug\_utils}}
+\doxysubsubsection{\texorpdfstring{printJointTorques()}{printJointTorques()}}
+{\footnotesize\ttfamily void debug\+\_\+utils\+::print\+Joint\+Torques (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \&}]{\+\_\+joint\+\_\+trq }\end{DoxyParamCaption})}
+
+
+
+The print\+Joint\+Torques function prints given joint-\/ torques to ROS using print level INFO. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+joint\+\_\+trq} & Joint torques \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 129 of file debug\+\_\+utils.\+cpp.
+
+\mbox{\Hypertarget{namespacedebug__utils_a5c6978c35a69115963cd984ec4a7e0ed}\label{namespacedebug__utils_a5c6978c35a69115963cd984ec4a7e0ed}} 
+\index{debug\_utils@{debug\_utils}!printGeneralizedCoordinates@{printGeneralizedCoordinates}}
+\index{printGeneralizedCoordinates@{printGeneralizedCoordinates}!debug\_utils@{debug\_utils}}
+\doxysubsubsection{\texorpdfstring{printGeneralizedCoordinates()}{printGeneralizedCoordinates()}}
+{\footnotesize\ttfamily void debug\+\_\+utils\+::print\+Generalized\+Coordinates (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&}]{\+\_\+gen\+\_\+coord }\end{DoxyParamCaption})}
+
+
+
+The print\+Generalized\+Coordinates function prints a given set of generalized coordinates to ROS using print level INFO. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+gen\+\_\+coord} & Generalized coordinates \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 148 of file debug\+\_\+utils.\+cpp.
+
+\mbox{\Hypertarget{namespacedebug__utils_add603531581360cd8b5a436949ced5dc}\label{namespacedebug__utils_add603531581360cd8b5a436949ced5dc}} 
+\index{debug\_utils@{debug\_utils}!printGeneralizedVelocities@{printGeneralizedVelocities}}
+\index{printGeneralizedVelocities@{printGeneralizedVelocities}!debug\_utils@{debug\_utils}}
+\doxysubsubsection{\texorpdfstring{printGeneralizedVelocities()}{printGeneralizedVelocities()}}
+{\footnotesize\ttfamily void debug\+\_\+utils\+::print\+Generalized\+Velocities (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&}]{\+\_\+gen\+\_\+vel }\end{DoxyParamCaption})}
+
+
+
+The print\+Generalized\+Velocities function prints a given set of generalized velocities to ROS using print level INFO. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+gen\+\_\+vel} & Generalized velocities \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 155 of file debug\+\_\+utils.\+cpp.
+
+\mbox{\Hypertarget{namespacedebug__utils_a4a86068252267e3ae140d3af9e350c3f}\label{namespacedebug__utils_a4a86068252267e3ae140d3af9e350c3f}} 
+\index{debug\_utils@{debug\_utils}!printGeneralizedAccelerations@{printGeneralizedAccelerations}}
+\index{printGeneralizedAccelerations@{printGeneralizedAccelerations}!debug\_utils@{debug\_utils}}
+\doxysubsubsection{\texorpdfstring{printGeneralizedAccelerations()}{printGeneralizedAccelerations()}}
+{\footnotesize\ttfamily void debug\+\_\+utils\+::print\+Generalized\+Accelerations (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&}]{\+\_\+gen\+\_\+accel }\end{DoxyParamCaption})}
+
+
+
+The print\+Generalized\+Accelerations function prints a given set of generalized accelerations to ROS using print level INFO. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+gen\+\_\+accel} & Generalized accelerations ~\newline
+ \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 162 of file debug\+\_\+utils.\+cpp.
+
+\mbox{\Hypertarget{namespacedebug__utils_a935269b3acc9f6eb8befcd0a6da88764}\label{namespacedebug__utils_a935269b3acc9f6eb8befcd0a6da88764}} 
+\index{debug\_utils@{debug\_utils}!printFootstepPositions@{printFootstepPositions}}
+\index{printFootstepPositions@{printFootstepPositions}!debug\_utils@{debug\_utils}}
+\doxysubsubsection{\texorpdfstring{printFootstepPositions()}{printFootstepPositions()}}
+{\footnotesize\ttfamily void debug\+\_\+utils\+::print\+Footstep\+Positions (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix$<$ \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}, 4, 1 $>$ \&}]{\+\_\+f\+\_\+pos }\end{DoxyParamCaption})}
+
+
+
+The print\+Footstep\+Positions function prints a given set of footstep positions to ROS using print level INFO. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+gen\+\_\+coord} & Generalized coordinates \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 169 of file debug\+\_\+utils.\+cpp.
+
+\mbox{\Hypertarget{namespacedebug__utils_afcffa65c7693bf60b3b9df288ad33794}\label{namespacedebug__utils_afcffa65c7693bf60b3b9df288ad33794}} 
+\index{debug\_utils@{debug\_utils}!printFootstepForces@{printFootstepForces}}
+\index{printFootstepForces@{printFootstepForces}!debug\_utils@{debug\_utils}}
+\doxysubsubsection{\texorpdfstring{printFootstepForces()}{printFootstepForces()}}
+{\footnotesize\ttfamily void debug\+\_\+utils\+::print\+Footstep\+Forces (\begin{DoxyParamCaption}\item[{const int $\ast$}]{\+\_\+contact\+\_\+state,  }\item[{const Eigen\+::\+Vector\+Xd \&}]{\+\_\+\+F\+\_\+c }\end{DoxyParamCaption})}
+
+
+
+The print\+Footstep\+Positions function prints a given set of footstep forces to ROS using print level INFO. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+contact\+\_\+state} & Pointer to array of contact state \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+\+F\+\_\+c} & Contact forces \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 196 of file debug\+\_\+utils.\+cpp.
+

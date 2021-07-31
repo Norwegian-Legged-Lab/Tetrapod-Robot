@@ -1,0 +1,15 @@
+digraph "catkin_ws/src/control/hierarchical_optimization_controller/include/hierarchical_optimization_controller" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_0ae3a711ce6fb0fe98d21600e41fe626 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="include" fontname="Helvetica", fontsize="10", URL="dir_0ae3a711ce6fb0fe98d21600e41fe626.html"]
+  dir_e7d604a345c02bbae79f8db106d4f230 [shape=box, label="hierarchical_optimization_controller", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_e7d604a345c02bbae79f8db106d4f230.html"];
+  }
+  dir_ccddda87566ee263eec2f42a65371c71 [shape=box label="utilities" fillcolor="white" style="filled" color="red" URL="dir_ccddda87566ee263eec2f42a65371c71.html"];
+  dir_ec790efbf722e6db93e0634c133a57ed [shape=box label="kinematics" fillcolor="white" style="filled" color="red" URL="dir_ec790efbf722e6db93e0634c133a57ed.html"];
+  dir_ccddda87566ee263eec2f42a65371c71->dir_ec790efbf722e6db93e0634c133a57ed [headlabel="1", labeldistance=1.5 headhref="dir_000034_000010.html"];
+  dir_ec790efbf722e6db93e0634c133a57ed->dir_ccddda87566ee263eec2f42a65371c71 [headlabel="2", labeldistance=1.5 headhref="dir_000010_000034.html"];
+  dir_e7d604a345c02bbae79f8db106d4f230->dir_ccddda87566ee263eec2f42a65371c71 [headlabel="1", labeldistance=1.5 headhref="dir_000044_000034.html"];
+  dir_e7d604a345c02bbae79f8db106d4f230->dir_ec790efbf722e6db93e0634c133a57ed [headlabel="1", labeldistance=1.5 headhref="dir_000044_000010.html"];
+}

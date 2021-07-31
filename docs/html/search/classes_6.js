@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['motorcontrol_500',['MotorControl',['../classMotorControl.html',1,'']]],
-  ['motorinterface_501',['MotorInterface',['../classMotorInterface.html',1,'']]]
+  ['kinematics_1255',['Kinematics',['../classKinematics.html',1,'']]]
 ];

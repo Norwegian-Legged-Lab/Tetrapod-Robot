@@ -1,62 +1,238 @@
 \hypertarget{classThirdOrderFilter}{}\doxysection{Third\+Order\+Filter Class Reference}
 \label{classThirdOrderFilter}\index{ThirdOrderFilter@{ThirdOrderFilter}}
+
+
+{\ttfamily \#include $<$filter\+\_\+utils.\+h$>$}
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classThirdOrderFilter_a2b3ff6dbaf999ebbda0164d1d9656e85}\label{classThirdOrderFilter_a2b3ff6dbaf999ebbda0164d1d9656e85}} 
-{\bfseries Third\+Order\+Filter} (double \+\_\+dt, double \+\_\+x\+\_\+current, double \+\_\+x\+\_\+goal, double \+\_\+omega, double \+\_\+zeta)
+\mbox{\hyperlink{classThirdOrderFilter_af32d6e7248147296422c3b62701dfe0c}{Third\+Order\+Filter}} ()
 \item 
-\mbox{\Hypertarget{classThirdOrderFilter_a9c7701da8ca6f500545d2e6773469da3}\label{classThirdOrderFilter_a9c7701da8ca6f500545d2e6773469da3}} 
-void {\bfseries set\+Reference} (double \+\_\+x\+\_\+goal)
+\mbox{\hyperlink{classThirdOrderFilter_a2b3ff6dbaf999ebbda0164d1d9656e85}{Third\+Order\+Filter}} (double \+\_\+dt, double \+\_\+x\+\_\+current, double \+\_\+x\+\_\+goal, double \+\_\+omega, double \+\_\+zeta)
 \item 
-\mbox{\Hypertarget{classThirdOrderFilter_a9f4f287461c8c7e9c534f3ae7395ce23}\label{classThirdOrderFilter_a9f4f287461c8c7e9c534f3ae7395ce23}} 
-void {\bfseries set\+Parameters} (double \+\_\+frequency, double \+\_\+damping)
+void \mbox{\hyperlink{classThirdOrderFilter_a9c7701da8ca6f500545d2e6773469da3}{set\+Reference}} (double \+\_\+x\+\_\+goal)
 \item 
-\mbox{\Hypertarget{classThirdOrderFilter_ac2efe31ea29267b61be6e89f7a6f5657}\label{classThirdOrderFilter_ac2efe31ea29267b61be6e89f7a6f5657}} 
-void {\bfseries set\+Timestep} (double \+\_\+dt)
+void \mbox{\hyperlink{classThirdOrderFilter_a9f4f287461c8c7e9c534f3ae7395ce23}{set\+Parameters}} (double \+\_\+frequency, double \+\_\+damping)
 \item 
-\mbox{\Hypertarget{classThirdOrderFilter_aa9d8618a434f3ab2be3beb057f52b6e4}\label{classThirdOrderFilter_aa9d8618a434f3ab2be3beb057f52b6e4}} 
-void {\bfseries set\+Current\+Pos} (double \+\_\+x\+\_\+current)
+void \mbox{\hyperlink{classThirdOrderFilter_ac2efe31ea29267b61be6e89f7a6f5657}{set\+Timestep}} (double \+\_\+dt)
 \item 
-\mbox{\Hypertarget{classThirdOrderFilter_afe858caa5adf5a03da6b48ad97f918df}\label{classThirdOrderFilter_afe858caa5adf5a03da6b48ad97f918df}} 
-double {\bfseries get\+Position} ()
+void \mbox{\hyperlink{classThirdOrderFilter_aa9d8618a434f3ab2be3beb057f52b6e4}{set\+Current\+Pos}} (double \+\_\+x\+\_\+current)
 \item 
-\mbox{\Hypertarget{classThirdOrderFilter_ab8d15c0d68986031bf7900bc220c4131}\label{classThirdOrderFilter_ab8d15c0d68986031bf7900bc220c4131}} 
-double {\bfseries get\+Speed} ()
+double \mbox{\hyperlink{classThirdOrderFilter_afe858caa5adf5a03da6b48ad97f918df}{get\+Position}} ()
 \item 
-\mbox{\Hypertarget{classThirdOrderFilter_abd903706906ba9a4d6664c8ac3a396cc}\label{classThirdOrderFilter_abd903706906ba9a4d6664c8ac3a396cc}} 
-double {\bfseries get\+Acceleration} ()
+double \mbox{\hyperlink{classThirdOrderFilter_ab8d15c0d68986031bf7900bc220c4131}{get\+Speed}} ()
 \item 
-\mbox{\Hypertarget{classThirdOrderFilter_a0a626046883f45922a1093798201f8eb}\label{classThirdOrderFilter_a0a626046883f45922a1093798201f8eb}} 
-void {\bfseries update\+Filter} ()
+double \mbox{\hyperlink{classThirdOrderFilter_abd903706906ba9a4d6664c8ac3a396cc}{get\+Acceleration}} ()
 \item 
-\mbox{\Hypertarget{classThirdOrderFilter_a20ac66044d93c0dd0072d08bd4c5b0c2}\label{classThirdOrderFilter_a20ac66044d93c0dd0072d08bd4c5b0c2}} 
-Eigen\+::\+Matrix$<$ double, 3, 1 $>$ {\bfseries get\+State} ()
+void \mbox{\hyperlink{classThirdOrderFilter_a0a626046883f45922a1093798201f8eb}{update\+Filter}} ()
 \item 
-\mbox{\Hypertarget{classThirdOrderFilter_ab9d86159c83bcccb4f1dfc42019d28e4}\label{classThirdOrderFilter_ab9d86159c83bcccb4f1dfc42019d28e4}} 
-double {\bfseries get\+Goal\+Pos} ()
+Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classThirdOrderFilter_a20ac66044d93c0dd0072d08bd4c5b0c2}{get\+State}} ()
+\item 
+double \mbox{\hyperlink{classThirdOrderFilter_ab9d86159c83bcccb4f1dfc42019d28e4}{get\+Goal\+Pos}} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classThirdOrderFilter_a32128c4a0be360a96e85e4854829bb2f}\label{classThirdOrderFilter_a32128c4a0be360a96e85e4854829bb2f}} 
-Eigen\+::\+Matrix$<$ double, 3, 1 $>$ {\bfseries X} = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()
+Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classThirdOrderFilter_a32128c4a0be360a96e85e4854829bb2f}{X}} = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()
 \item 
-\mbox{\Hypertarget{classThirdOrderFilter_aa4c6b79db4c6335a43e794ffebf60f90}\label{classThirdOrderFilter_aa4c6b79db4c6335a43e794ffebf60f90}} 
-double {\bfseries x\+\_\+goal}
+double \mbox{\hyperlink{classThirdOrderFilter_aa4c6b79db4c6335a43e794ffebf60f90}{x\+\_\+goal}}
 \item 
-\mbox{\Hypertarget{classThirdOrderFilter_a1393a1abdf4a178d078ebe22c4e3d183}\label{classThirdOrderFilter_a1393a1abdf4a178d078ebe22c4e3d183}} 
-double {\bfseries dt}
+double \mbox{\hyperlink{classThirdOrderFilter_a1393a1abdf4a178d078ebe22c4e3d183}{dt}}
 \item 
-\mbox{\Hypertarget{classThirdOrderFilter_aa5c2fc3dea8c7d25558252c4e742c963}\label{classThirdOrderFilter_aa5c2fc3dea8c7d25558252c4e742c963}} 
-Eigen\+::\+Matrix$<$ double, 3, 3 $>$ {\bfseries A\+\_\+d}
+Eigen\+::\+Matrix$<$ double, 3, 3 $>$ \mbox{\hyperlink{classThirdOrderFilter_aa5c2fc3dea8c7d25558252c4e742c963}{A\+\_\+d}}
 \item 
-\mbox{\Hypertarget{classThirdOrderFilter_ae94f2d80a460f42d10f8f326013f1f49}\label{classThirdOrderFilter_ae94f2d80a460f42d10f8f326013f1f49}} 
-Eigen\+::\+Matrix$<$ double, 3, 1 $>$ {\bfseries B\+\_\+d}
+Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classThirdOrderFilter_ae94f2d80a460f42d10f8f326013f1f49}{B\+\_\+d}}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 6 of file filter\+\_\+utils.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classThirdOrderFilter_af32d6e7248147296422c3b62701dfe0c}\label{classThirdOrderFilter_af32d6e7248147296422c3b62701dfe0c}} 
+\index{ThirdOrderFilter@{ThirdOrderFilter}!ThirdOrderFilter@{ThirdOrderFilter}}
+\index{ThirdOrderFilter@{ThirdOrderFilter}!ThirdOrderFilter@{ThirdOrderFilter}}
+\doxysubsubsection{\texorpdfstring{ThirdOrderFilter()}{ThirdOrderFilter()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Third\+Order\+Filter\+::\+Third\+Order\+Filter (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 9 of file filter\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{classThirdOrderFilter_a2b3ff6dbaf999ebbda0164d1d9656e85}\label{classThirdOrderFilter_a2b3ff6dbaf999ebbda0164d1d9656e85}} 
+\index{ThirdOrderFilter@{ThirdOrderFilter}!ThirdOrderFilter@{ThirdOrderFilter}}
+\index{ThirdOrderFilter@{ThirdOrderFilter}!ThirdOrderFilter@{ThirdOrderFilter}}
+\doxysubsubsection{\texorpdfstring{ThirdOrderFilter()}{ThirdOrderFilter()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Third\+Order\+Filter\+::\+Third\+Order\+Filter (\begin{DoxyParamCaption}\item[{double}]{\+\_\+dt,  }\item[{double}]{\+\_\+x\+\_\+current,  }\item[{double}]{\+\_\+x\+\_\+goal,  }\item[{double}]{\+\_\+omega,  }\item[{double}]{\+\_\+zeta }\end{DoxyParamCaption})}
+
+
+
+Definition at line 3 of file filter\+\_\+utils.\+cpp.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classThirdOrderFilter_a9c7701da8ca6f500545d2e6773469da3}\label{classThirdOrderFilter_a9c7701da8ca6f500545d2e6773469da3}} 
+\index{ThirdOrderFilter@{ThirdOrderFilter}!setReference@{setReference}}
+\index{setReference@{setReference}!ThirdOrderFilter@{ThirdOrderFilter}}
+\doxysubsubsection{\texorpdfstring{setReference()}{setReference()}}
+{\footnotesize\ttfamily void Third\+Order\+Filter\+::set\+Reference (\begin{DoxyParamCaption}\item[{double}]{\+\_\+x\+\_\+goal }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 11 of file filter\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{classThirdOrderFilter_a9f4f287461c8c7e9c534f3ae7395ce23}\label{classThirdOrderFilter_a9f4f287461c8c7e9c534f3ae7395ce23}} 
+\index{ThirdOrderFilter@{ThirdOrderFilter}!setParameters@{setParameters}}
+\index{setParameters@{setParameters}!ThirdOrderFilter@{ThirdOrderFilter}}
+\doxysubsubsection{\texorpdfstring{setParameters()}{setParameters()}}
+{\footnotesize\ttfamily void Third\+Order\+Filter\+::set\+Parameters (\begin{DoxyParamCaption}\item[{double}]{\+\_\+frequency,  }\item[{double}]{\+\_\+damping }\end{DoxyParamCaption})}
+
+
+
+Definition at line 29 of file filter\+\_\+utils.\+cpp.
+
+\mbox{\Hypertarget{classThirdOrderFilter_ac2efe31ea29267b61be6e89f7a6f5657}\label{classThirdOrderFilter_ac2efe31ea29267b61be6e89f7a6f5657}} 
+\index{ThirdOrderFilter@{ThirdOrderFilter}!setTimestep@{setTimestep}}
+\index{setTimestep@{setTimestep}!ThirdOrderFilter@{ThirdOrderFilter}}
+\doxysubsubsection{\texorpdfstring{setTimestep()}{setTimestep()}}
+{\footnotesize\ttfamily void Third\+Order\+Filter\+::set\+Timestep (\begin{DoxyParamCaption}\item[{double}]{\+\_\+dt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 13 of file filter\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{classThirdOrderFilter_aa9d8618a434f3ab2be3beb057f52b6e4}\label{classThirdOrderFilter_aa9d8618a434f3ab2be3beb057f52b6e4}} 
+\index{ThirdOrderFilter@{ThirdOrderFilter}!setCurrentPos@{setCurrentPos}}
+\index{setCurrentPos@{setCurrentPos}!ThirdOrderFilter@{ThirdOrderFilter}}
+\doxysubsubsection{\texorpdfstring{setCurrentPos()}{setCurrentPos()}}
+{\footnotesize\ttfamily void Third\+Order\+Filter\+::set\+Current\+Pos (\begin{DoxyParamCaption}\item[{double}]{\+\_\+x\+\_\+current }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 14 of file filter\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{classThirdOrderFilter_afe858caa5adf5a03da6b48ad97f918df}\label{classThirdOrderFilter_afe858caa5adf5a03da6b48ad97f918df}} 
+\index{ThirdOrderFilter@{ThirdOrderFilter}!getPosition@{getPosition}}
+\index{getPosition@{getPosition}!ThirdOrderFilter@{ThirdOrderFilter}}
+\doxysubsubsection{\texorpdfstring{getPosition()}{getPosition()}}
+{\footnotesize\ttfamily double Third\+Order\+Filter\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 15 of file filter\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{classThirdOrderFilter_ab8d15c0d68986031bf7900bc220c4131}\label{classThirdOrderFilter_ab8d15c0d68986031bf7900bc220c4131}} 
+\index{ThirdOrderFilter@{ThirdOrderFilter}!getSpeed@{getSpeed}}
+\index{getSpeed@{getSpeed}!ThirdOrderFilter@{ThirdOrderFilter}}
+\doxysubsubsection{\texorpdfstring{getSpeed()}{getSpeed()}}
+{\footnotesize\ttfamily double Third\+Order\+Filter\+::get\+Speed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 16 of file filter\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{classThirdOrderFilter_abd903706906ba9a4d6664c8ac3a396cc}\label{classThirdOrderFilter_abd903706906ba9a4d6664c8ac3a396cc}} 
+\index{ThirdOrderFilter@{ThirdOrderFilter}!getAcceleration@{getAcceleration}}
+\index{getAcceleration@{getAcceleration}!ThirdOrderFilter@{ThirdOrderFilter}}
+\doxysubsubsection{\texorpdfstring{getAcceleration()}{getAcceleration()}}
+{\footnotesize\ttfamily double Third\+Order\+Filter\+::get\+Acceleration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 17 of file filter\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{classThirdOrderFilter_a0a626046883f45922a1093798201f8eb}\label{classThirdOrderFilter_a0a626046883f45922a1093798201f8eb}} 
+\index{ThirdOrderFilter@{ThirdOrderFilter}!updateFilter@{updateFilter}}
+\index{updateFilter@{updateFilter}!ThirdOrderFilter@{ThirdOrderFilter}}
+\doxysubsubsection{\texorpdfstring{updateFilter()}{updateFilter()}}
+{\footnotesize\ttfamily void Third\+Order\+Filter\+::update\+Filter (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 23 of file filter\+\_\+utils.\+cpp.
+
+\mbox{\Hypertarget{classThirdOrderFilter_a20ac66044d93c0dd0072d08bd4c5b0c2}\label{classThirdOrderFilter_a20ac66044d93c0dd0072d08bd4c5b0c2}} 
+\index{ThirdOrderFilter@{ThirdOrderFilter}!getState@{getState}}
+\index{getState@{getState}!ThirdOrderFilter@{ThirdOrderFilter}}
+\doxysubsubsection{\texorpdfstring{getState()}{getState()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 1$>$ Third\+Order\+Filter\+::get\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 19 of file filter\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{classThirdOrderFilter_ab9d86159c83bcccb4f1dfc42019d28e4}\label{classThirdOrderFilter_ab9d86159c83bcccb4f1dfc42019d28e4}} 
+\index{ThirdOrderFilter@{ThirdOrderFilter}!getGoalPos@{getGoalPos}}
+\index{getGoalPos@{getGoalPos}!ThirdOrderFilter@{ThirdOrderFilter}}
+\doxysubsubsection{\texorpdfstring{getGoalPos()}{getGoalPos()}}
+{\footnotesize\ttfamily double Third\+Order\+Filter\+::get\+Goal\+Pos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 20 of file filter\+\_\+utils.\+h.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classThirdOrderFilter_a32128c4a0be360a96e85e4854829bb2f}\label{classThirdOrderFilter_a32128c4a0be360a96e85e4854829bb2f}} 
+\index{ThirdOrderFilter@{ThirdOrderFilter}!X@{X}}
+\index{X@{X}!ThirdOrderFilter@{ThirdOrderFilter}}
+\doxysubsubsection{\texorpdfstring{X}{X}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 1$>$ Third\+Order\+Filter\+::X = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 22 of file filter\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{classThirdOrderFilter_aa4c6b79db4c6335a43e794ffebf60f90}\label{classThirdOrderFilter_aa4c6b79db4c6335a43e794ffebf60f90}} 
+\index{ThirdOrderFilter@{ThirdOrderFilter}!x\_goal@{x\_goal}}
+\index{x\_goal@{x\_goal}!ThirdOrderFilter@{ThirdOrderFilter}}
+\doxysubsubsection{\texorpdfstring{x\_goal}{x\_goal}}
+{\footnotesize\ttfamily double Third\+Order\+Filter\+::x\+\_\+goal\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 23 of file filter\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{classThirdOrderFilter_a1393a1abdf4a178d078ebe22c4e3d183}\label{classThirdOrderFilter_a1393a1abdf4a178d078ebe22c4e3d183}} 
+\index{ThirdOrderFilter@{ThirdOrderFilter}!dt@{dt}}
+\index{dt@{dt}!ThirdOrderFilter@{ThirdOrderFilter}}
+\doxysubsubsection{\texorpdfstring{dt}{dt}}
+{\footnotesize\ttfamily double Third\+Order\+Filter\+::dt\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 24 of file filter\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{classThirdOrderFilter_aa5c2fc3dea8c7d25558252c4e742c963}\label{classThirdOrderFilter_aa5c2fc3dea8c7d25558252c4e742c963}} 
+\index{ThirdOrderFilter@{ThirdOrderFilter}!A\_d@{A\_d}}
+\index{A\_d@{A\_d}!ThirdOrderFilter@{ThirdOrderFilter}}
+\doxysubsubsection{\texorpdfstring{A\_d}{A\_d}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 3$>$ Third\+Order\+Filter\+::\+A\+\_\+d\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 25 of file filter\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{classThirdOrderFilter_ae94f2d80a460f42d10f8f326013f1f49}\label{classThirdOrderFilter_ae94f2d80a460f42d10f8f326013f1f49}} 
+\index{ThirdOrderFilter@{ThirdOrderFilter}!B\_d@{B\_d}}
+\index{B\_d@{B\_d}!ThirdOrderFilter@{ThirdOrderFilter}}
+\doxysubsubsection{\texorpdfstring{B\_d}{B\_d}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 1$>$ Third\+Order\+Filter\+::\+B\+\_\+d\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 26 of file filter\+\_\+utils.\+h.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-catkin\+\_\+ws/src/utilities/filter\+\_\+utils/include/filter\+\_\+utils/filter\+\_\+utils.\+h\item 
-catkin\+\_\+ws/src/utilities/filter\+\_\+utils/src/filter\+\_\+utils.\+cpp\end{DoxyCompactItemize}
+catkin\+\_\+ws/src/utilities/filter\+\_\+utils/include/filter\+\_\+utils/\mbox{\hyperlink{filter__utils_8h}{filter\+\_\+utils.\+h}}\item 
+catkin\+\_\+ws/src/utilities/filter\+\_\+utils/src/\mbox{\hyperlink{filter__utils_8cpp}{filter\+\_\+utils.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,44 @@
+\hypertarget{control_2robot__controller_2CMakeLists_8txt}{}\doxysection{catkin\+\_\+ws/src/control/robot\+\_\+controller/\+CMake\+Lists.txt File Reference}
+\label{control_2robot__controller_2CMakeLists_8txt}\index{catkin\_ws/src/control/robot\_controller/CMakeLists.txt@{catkin\_ws/src/control/robot\_controller/CMakeLists.txt}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{control_2robot__controller_2CMakeLists_8txt_adf2517d79a196470b525515f68795695}{cmake\+\_\+minimum\+\_\+required}} (VERSION 3.\+0.\+2) project(robot\+\_\+controller) find\+\_\+package(catkin REQUIRED COMPONENTS roscpp std\+\_\+msgs sensor\+\_\+msgs geometry\+\_\+msgs math\+\_\+utils debug\+\_\+utils controller kinematics eigen\+\_\+conversions modular\+\_\+gait\+\_\+controller) find\+\_\+package(Eigen3 REQUIRED) catkin\+\_\+package(INCLUDE\+\_\+\+DIRS include \$
+\item 
+LIBRARIES gait\+\_\+controller CATKIN\+\_\+\+DEPENDS roscpp std\+\_\+msgs sensor\+\_\+msgs geometry\+\_\+msgs math\+\_\+utils debug\+\_\+utils controller kinematics eigen\+\_\+conversions modular\+\_\+gait\+\_\+controller \mbox{\hyperlink{control_2robot__controller_2CMakeLists_8txt_a9cb4cf3d7c927f9475f4673b599dd535}{include\+\_\+directories}} (include \$\{catkin\+\_\+\+INCLUDE\+\_\+\+DIRS\} \$\{EIGEN3\+\_\+\+INCLUDE\+\_\+\+DIR\}) \mbox{\hyperlink{guidance_2joystick__controller_2CMakeLists_8txt_af3dd492ab4e1af89200a8fdca61fd3e6}{add\+\_\+library}}(\$
+\item 
+src robot\+\_\+controller cpp \mbox{\hyperlink{control_2robot__controller_2CMakeLists_8txt_a9f2065ec89ca60fb47ae43a9daac5788}{add\+\_\+executable}} (robot\+\_\+controller\+\_\+node src/robot\+\_\+controller\+\_\+node.\+cpp src/robot\+\_\+controller.\+cpp) add\+\_\+executable(gait\+\_\+test\+\_\+node src/gait\+\_\+test\+\_\+node.\+cpp src/robot\+\_\+controller.\+cpp) add\+\_\+executable(plot\+\_\+spline src/plot\+\_\+spline.\+cpp) \mbox{\hyperlink{control_2controller_2CMakeLists_8txt_ac2d4f342a2d0ce624aa90fd46e87583f}{target\+\_\+link\+\_\+libraries}}(\$
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{control_2robot__controller_2CMakeLists_8txt_adf2517d79a196470b525515f68795695}\label{control_2robot__controller_2CMakeLists_8txt_adf2517d79a196470b525515f68795695}} 
+\index{CMakeLists.txt@{CMakeLists.txt}!cmake\_minimum\_required@{cmake\_minimum\_required}}
+\index{cmake\_minimum\_required@{cmake\_minimum\_required}!CMakeLists.txt@{CMakeLists.txt}}
+\doxysubsubsection{\texorpdfstring{cmake\_minimum\_required()}{cmake\_minimum\_required()}}
+{\footnotesize\ttfamily cmake\+\_\+minimum\+\_\+required (\begin{DoxyParamCaption}\item[{VERSION 3.\+0.}]{2 }\end{DoxyParamCaption})}
+
+
+
+Definition at line 1 of file CMake\+Lists.\+txt.
+
+\mbox{\Hypertarget{control_2robot__controller_2CMakeLists_8txt_a9cb4cf3d7c927f9475f4673b599dd535}\label{control_2robot__controller_2CMakeLists_8txt_a9cb4cf3d7c927f9475f4673b599dd535}} 
+\index{CMakeLists.txt@{CMakeLists.txt}!include\_directories@{include\_directories}}
+\index{include\_directories@{include\_directories}!CMakeLists.txt@{CMakeLists.txt}}
+\doxysubsubsection{\texorpdfstring{include\_directories()}{include\_directories()}}
+{\footnotesize\ttfamily LIBRARIES gait\+\_\+controller CATKIN\+\_\+\+DEPENDS roscpp std\+\_\+msgs sensor\+\_\+msgs geometry\+\_\+msgs math\+\_\+utils debug\+\_\+utils controller kinematics eigen\+\_\+conversions modular\+\_\+gait\+\_\+controller include\+\_\+directories (\begin{DoxyParamCaption}\item[{include \$\{catkin\+\_\+\+INCLUDE\+\_\+\+DIRS\} \$\{EIGEN3\+\_\+\+INCLUDE\+\_\+\+DIR\}}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 37 of file CMake\+Lists.\+txt.
+
+\mbox{\Hypertarget{control_2robot__controller_2CMakeLists_8txt_a9f2065ec89ca60fb47ae43a9daac5788}\label{control_2robot__controller_2CMakeLists_8txt_a9f2065ec89ca60fb47ae43a9daac5788}} 
+\index{CMakeLists.txt@{CMakeLists.txt}!add\_executable@{add\_executable}}
+\index{add\_executable@{add\_executable}!CMakeLists.txt@{CMakeLists.txt}}
+\doxysubsubsection{\texorpdfstring{add\_executable()}{add\_executable()}}
+{\footnotesize\ttfamily src robot\+\_\+controller cpp add\+\_\+executable (\begin{DoxyParamCaption}\item[{robot\+\_\+controller\+\_\+node src/robot\+\_\+controller\+\_\+node.\+cpp src/robot\+\_\+controller.}]{cpp }\end{DoxyParamCaption})}
+
+
+
+Definition at line 48 of file CMake\+Lists.\+txt.
+
