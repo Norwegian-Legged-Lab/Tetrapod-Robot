@@ -5,7 +5,7 @@
 This project documents the development of software for the torque controllable tetrapod robot, ASTRo.
 
 ## Documentation
-This software is documented using [Doxygen](https://www.doxygen.nl/index.html) and is readily available [here](https://pathorse.github.io/Tetrapod-Robot/).
+This software is documented using [Doxygen](https://www.doxygen.nl/index.html) and is readily available [here](https://norwegian-legged-lab.github.io/Tetrapod-Robot).
 
 ## License
 
