@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>footstep_planner</name>
+  <name>support_polytope_base_planner</name>
   <version>0.0.0</version>
-  <description>The footstep_planner Package</description>
+  <description>The support_polytope_base_planner Package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
@@ -78,6 +78,7 @@
   <exec_depend>geometry_msgs</exec_depend>
   <exec_depend>eigen_conversions</exec_depend>
   <exec_depend>message_runtime</exec_depend>
+  <depend>footstep_planner</depend>
 
 
   <!-- The export tag contains other, unspecified, tags -->

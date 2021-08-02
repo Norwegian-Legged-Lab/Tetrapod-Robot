@@ -1,0 +1,5 @@
+<launch>
+
+      <node pkg="support_polytope_base_planner" type="support_polytope_base_planner_node" name="support_polytope_base_planner_node" output="screen"/>
+
+</launch>

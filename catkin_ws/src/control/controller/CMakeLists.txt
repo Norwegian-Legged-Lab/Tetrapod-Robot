@@ -17,7 +17,7 @@ find_package(Eigen3 REQUIRED)
 catkin_package(
   INCLUDE_DIRS include
     ${EIGEN3_INCLUDE_DIR}
-  LIBRARIES gait_controller
+  #LIBRARIES gait_controller
   CATKIN_DEPENDS
     roscpp
     std_msgs

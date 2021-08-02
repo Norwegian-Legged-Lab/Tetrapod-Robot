@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(footstep_planner)
+project(support_polytope_base_planner)
 
 find_package(catkin REQUIRED COMPONENTS
   roscpp
@@ -7,10 +7,10 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   geometry_msgs
   math_utils
-  visualization_utils
   debug_utils
   kinematics
   eigen_conversions
+  footstep_planner
 )
 
 find_package(Eigen3 REQUIRED)
@@ -21,6 +21,7 @@ catkin_package(
     ${EIGEN3_INCLUDE_DIR}
   LIBRARIES ${PROJECT_NAME}
     visualization_utils
+    footstep_planner
   CATKIN_DEPENDS
     roscpp
     std_msgs
@@ -41,29 +42,28 @@ include_directories(
 
 ## Declare a C++ library
 add_library(${PROJECT_NAME}
-  src/footstep_planner.cpp
+  src/support_polytope_base_planner.cpp
+  src/polytope.cpp
+  src/polytopes.cpp
 )
 
 add_executable(${PROJECT_NAME}_node
-  src/footstep_planner_node.cpp
-  src/footstep_planner.cpp
-  src/miqp_biped.cpp
-  src/miqp_quadruped.cpp
-  src/stepping_stone.cpp
-  src/terrain.cpp
-  src/utils.cpp
-)
-
-target_link_libraries(${PROJECT_NAME}
-  ${catkin_LIBRARIES}
-  drake::drake
-  visualization_utils
+  src/main.cpp
+  src/support_polytope_base_planner.cpp
+  src/polytope.cpp
+  src/polytopes.cpp
 )
 
 target_link_libraries(${PROJECT_NAME}_node
   ${catkin_LIBRARIES}
   drake::drake
-  visualization_utils
+  footstep_planner
+)
+
+target_link_libraries(${PROJECT_NAME}
+  ${catkin_LIBRARIES}
+  drake::drake
+  footstep_planner
 )
 
 install(TARGETS ${PROJECT_NAME}
