@@ -123,8 +123,6 @@ Eigen::Array<Eigen::MatrixXd, Eigen::Dynamic, 1> get_uncompressed_arrays(Eigen::
 DecVars_res get_decvars_res(DecVars_res_raw &decision_variables_raw, int n_steps, int n_legs, Leg step_sequence[]);
 
 void writeDecVarsToFile(DecVars_res &decision_variables, std::string base_name="footstep_planner");
-
-void writeMatToFile(Eigen::MatrixXd &mat, std::string filename);
 }
 }
 #endif

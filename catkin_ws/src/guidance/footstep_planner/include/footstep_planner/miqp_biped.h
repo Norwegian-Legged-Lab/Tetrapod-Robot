@@ -65,8 +65,6 @@ void foot_in_stepping_stone(drake::solvers::MathematicalProgram &prog, Terrain &
 void minimize_step_length(drake::solvers::MathematicalProgram &prog, int n_steps, DecVars &decision_variables);
 #endif
 
-void writeMatToFile(Eigen::MatrixXd &mat, std::string filename);
-
 void writeDecVarsToFile(DecVars_res &decision_variables, std::string base_name="footstep_planner");
 
 }

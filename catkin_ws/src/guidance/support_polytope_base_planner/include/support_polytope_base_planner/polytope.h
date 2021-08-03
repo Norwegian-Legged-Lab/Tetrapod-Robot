@@ -6,6 +6,8 @@
 
 #include<cmath>
 
+#include<iostream>
+
 class Polytope {
     public: Polytope();
     

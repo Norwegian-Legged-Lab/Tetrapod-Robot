@@ -49,3 +49,20 @@ Eigen::MatrixXd get_cos_coeffs()
     
     return res;
 }
+
+void writeMatToFile(const Eigen::MatrixXd &mat, std::string filename)
+{
+    std::ofstream file(filename);
+
+    if (file.is_open())
+    {
+        file.clear();
+
+        file << mat;
+    } else
+    {
+        throw "could not open file " + filename;
+    }
+    
+    file.close();
+}

@@ -47,5 +47,9 @@ int main(int argc, char **argv)
 
     Eigen::Matrix<double, Eigen::Dynamic, 2> base_res = get_solution(foot_points, init, true);
 
+    std::cout << base_res << std::endl;
+
+    std::cout << foot_res.position_ts.block(0, 0, 6, 2);
+
     return 0;
 }

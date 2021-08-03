@@ -4,6 +4,7 @@
 #include<cmath>
 #include "drake/common/symbolic.h"
 #include<Eigen/Core>
+#include<fstream>
 
 #define _USE_MATH_DEFINES
 
@@ -20,4 +21,6 @@ drake::symbolic::Expression drake_nand(drake::symbolic::Variable &b1, drake::sym
 Eigen::MatrixXd get_sin_coeffs();
 
 Eigen::MatrixXd get_cos_coeffs();
+
+void writeMatToFile(const Eigen::MatrixXd &mat, std::string filename);
 #endif

@@ -412,27 +412,6 @@ DecVars_res get_decvars_res(DecVars_res_raw &decision_variables_raw, int n_steps
     return res;
 }
 
-void writeMatToFile(Eigen::MatrixXd &mat, std::string filename)
-{
-    std::ofstream file(filename);
-
-    if (file.is_open())
-    {
-        file.clear();
-
-        file << mat;
-
-        ROS_INFO("writeMatToFile: Successfully wrote to file");
-    } else
-    {
-        ROS_ERROR("could not open file");
-
-        throw "could not open file " + filename;
-    }
-    
-    file.close();
-}
-
 void writeDecVarsToFile(DecVars_res &decision_variables, std::string base_name)
 {
     std::string fend = ".csv";

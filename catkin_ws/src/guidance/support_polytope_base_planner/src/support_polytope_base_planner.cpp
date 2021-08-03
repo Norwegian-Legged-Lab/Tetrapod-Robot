@@ -49,7 +49,9 @@ Eigen::Matrix<double, Eigen::Dynamic, 2> get_solution(Eigen::Matrix<double, Eige
 {
     Eigen::Matrix<double, Eigen::Dynamic, 2> steps_2d(steps.leftCols(2));
 
-    Polytopes polytopes(steps_2d, 0, true);
+    double epsilon = 0.05;
+
+    Polytopes polytopes(steps_2d, epsilon, true);
 
     int n_steps = polytopes.getPolytopes().rows();
 
@@ -119,5 +121,9 @@ Eigen::Matrix<double, Eigen::Dynamic, 2> get_solution(Eigen::Matrix<double, Eige
             success = true;
         }
     }
+
+    polytopes.writePolytopesTofile("/home/melyso/Documents/csv_files/polytopes");
+    writeMatToFile(pos_var_opt, "/home/melyso/Documents/csv_files/base_positions.csv");
     return pos_var_opt;
 }
+

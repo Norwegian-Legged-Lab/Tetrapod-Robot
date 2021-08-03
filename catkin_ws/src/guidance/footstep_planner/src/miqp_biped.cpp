@@ -4,6 +4,7 @@
 #include<iostream>
 #include<cassert>
 #include<fstream>
+#include "footstep_planner/utils.h"
 
 namespace miqp{
 namespace biped{
@@ -237,27 +238,6 @@ void minimize_step_length(drake::solvers::MathematicalProgram &prog, int n_steps
 
         prog.AddQuadraticCost(res);
     }
-}
-
-void writeMatToFile(Eigen::MatrixXd &mat, std::string filename)
-{
-    std::ofstream file(filename);
-
-    if (file.is_open())
-    {
-        file.clear();
-
-        file << mat;
-
-        ROS_INFO("writeMatToFile: Successfully wrote to file");
-    } else
-    {
-        ROS_ERROR("could not open file");
-
-        throw "could not open file " + filename;
-    }
-    
-    file.close();
 }
 
 void writeDecVarsToFile(DecVars_res &decision_variables, std::string base_name)

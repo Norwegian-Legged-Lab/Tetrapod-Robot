@@ -6,6 +6,7 @@
 #include "ros/ros.h"
 #include "ros/console.h"
 #include "geometry_msgs/PoseArray.h"
+#include "footstep_planner/utils.h"
 
 bool footstep_planner_service(sensor_msgs::SetCameraInfoRequest &req, sensor_msgs::SetCameraInfoResponse &res){ return true;}
 
