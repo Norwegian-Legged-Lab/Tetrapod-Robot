@@ -126,6 +126,8 @@ include_directories(
 add_library(${PROJECT_NAME}
   src/angle_utils.cpp
   src/linalg_utils.cpp
+  src/trajectory_utils.cpp
+  src/orientation_utils.cpp
 )
 
 ## Add cmake target dependencies of the library
