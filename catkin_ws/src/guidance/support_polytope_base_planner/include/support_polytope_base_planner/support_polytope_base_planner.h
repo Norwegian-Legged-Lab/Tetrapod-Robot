@@ -18,6 +18,8 @@ void set_initial_position(drake::solvers::MathematicalProgram &prog, drake::solv
 
 void base_within_support_polytope(drake::solvers::MathematicalProgram &prog, drake::solvers::MatrixXDecisionVariable &pos, Polytopes &polytopes);
 
-void add_quadratic_cost(drake::solvers::MathematicalProgram &prog, drake::solvers::MatrixXDecisionVariable &pos);
+void add_quadratic_cost_reduce_travel(drake::solvers::MathematicalProgram &prog, drake::solvers::MatrixXDecisionVariable &pos);
+
+void add_quadratic_cost_reduce_stretch(drake::solvers::MathematicalProgram &prog, drake::solvers::MatrixXDecisionVariable &pos, Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> &steps);
 
 Eigen::Matrix<double, Eigen::Dynamic, 2> support_polytope_base_planner(Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> &steps, Eigen::Vector2d init, bool use_gurobi=false);

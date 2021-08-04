@@ -33,13 +33,25 @@ void base_within_support_polytope(drake::solvers::MathematicalProgram &prog, dra
     }
 }
 
-void add_quadratic_cost(drake::solvers::MathematicalProgram &prog, drake::solvers::MatrixXDecisionVariable &pos)
+void add_quadratic_cost_reduce_travel(drake::solvers::MathematicalProgram &prog, drake::solvers::MatrixXDecisionVariable &pos)
 {
     int num_dists = pos.rows() - 1;
 
     for (int i = 0; i < num_dists; ++i)
     {
         Eigen::Matrix<drake::symbolic::Expression, 2, 1> err = pos.row(i + 1).transpose() - pos.row(i).transpose();
+
+        prog.AddQuadraticCost(err.transpose()*err);
+    }
+}
+
+void add_quadratic_cost_reduce_stretch(drake::solvers::MathematicalProgram &prog, drake::solvers::MatrixXDecisionVariable &pos, Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> &steps)
+{
+    int num_dists = pos.rows() - 1;
+
+    for (int i = 0; i < num_dists; ++i)
+    {
+        Eigen::Matrix<drake::symbolic::Expression, 2, 1> err = pos.row(i + 1).transpose() - steps.block(i + 4, 0, 1, 2).transpose();
 
         prog.AddQuadraticCost(err.transpose()*err);
     }
@@ -73,7 +85,7 @@ Eigen::Matrix<double, Eigen::Dynamic, 2> support_polytope_base_planner(Eigen::Ma
 
     ROS_INFO("About to set quadratic cost");
 
-    add_quadratic_cost(prog, pos_var);
+    add_quadratic_cost_reduce_stretch(prog, pos_var, steps);
 
     Eigen::Matrix<double, Eigen::Dynamic, 2> pos_var_opt;
     
