@@ -644,7 +644,44 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
                                                                                        const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_f_vel,
                                                                                        const Eigen::Matrix<double, 18, 1> &_q,
                                                                                        const Eigen::Matrix<double, 18, 1> &_u,
-                                                                                       const bool stance_legs[4],
+                                                                                       const bool _stance_legs[4],
+                                                                                       const int &_v)
+{
+    bool desired_support_legs[] = {true, true, true, true};
+
+    TasksToBeIncluded include_tasks;
+
+    return HierarchicalOptimization(_desired_base_pos,
+                                    _desired_base_vel,
+                                    _desired_base_acc,
+                                    _desired_base_ori,
+                                    _desired_f_pos,
+                                    _desired_f_vel,
+                                    _desired_f_acc,
+                                    _f_pos,
+                                    _f_vel,
+                                    _q,
+                                    _u,
+                                    _stance_legs,
+                                    desired_support_legs,
+                                    include_tasks,
+                                    _v);
+}
+
+Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimization(const Eigen::Matrix<double, 3, 1> &_desired_base_pos,
+                                                                                       const Eigen::Matrix<double, 3, 1> &_desired_base_vel,
+                                                                                       const Eigen::Matrix<double, 3, 1> &_desired_base_acc,
+                                                                                       const Eigen::Matrix<double, 3, 1> &_desired_base_ori,
+                                                                                       const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_pos,
+                                                                                       const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_vel,
+                                                                                       const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_acc,
+                                                                                       const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_f_pos,
+                                                                                       const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_f_vel,
+                                                                                       const Eigen::Matrix<double, 18, 1> &_q,
+                                                                                       const Eigen::Matrix<double, 18, 1> &_u,
+                                                                                       const bool _stance_legs[4],
+                                                                                       const bool _desired_support_legs[4],
+                                                                                       const TasksToBeIncluded &_include_tasks,
                                                                                        const int &_v) 
 {
     //*************************************************************************************
@@ -665,6 +702,7 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     Task t_mt;      // Task for the motion tracking of the floating base and swing legs
     Task t_pt;      // Task for posture tracking, for a nominal posture
     Task t_cfm;     // Task for the contact force minimization
+    Task t_cmsp;    // Task for restraining the center of mass to the support polygon
 
     std::vector<Task> tasks; // Set of tasks
 
@@ -704,7 +742,7 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
 
     std::vector<Kinematics::LegType> contact_legs; // Vector of contact points (legs)
     std::vector<Kinematics::LegType> swing_legs;   // Vector of swing legs
-
+    std::vector<Kinematics::LegType> support_legs;
     //*************************************************************************************
     // Tuning parameters
     //*************************************************************************************
@@ -738,7 +776,7 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     for (size_t i = 0; i < 4; i++)
     {
         // Contact State is assumed sorted by fl, fr, rl, rr
-        if (stance_legs[i])
+        if (_stance_legs[i])
         {
             // fl = 1, fr = 2, rl = 3, rr = 4
             contact_legs.push_back(Kinematics::LegType(i + 1));
@@ -747,6 +785,12 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
         {
             // fl = 1, fr = 2, rl = 3, rr = 4
             swing_legs.push_back(Kinematics::LegType(i + 1));
+        }
+
+        if (_desired_support_legs[i])
+        {
+            // fl = 1, fr = 2, rl = 3, rr = 4
+            support_legs.push_back(Kinematics::LegType(i + 1));
         }
     }
 
@@ -775,6 +819,9 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
 
     t_cfm.A_eq.resize(3*n_c, state_dim);
     t_cfm.b_eq.resize(3*n_c, 1);
+
+    t_cmsp.A_ineq.resize(3, state_dim);
+    t_cmsp.b_ineq.resize(3, 1);
 
     // Resize dynamic matrices and terms
     x_opt.resize(state_dim, 1);
@@ -929,48 +976,54 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
         // Floating base position
     t_mt.A_eq.setZero();
     t_mt.b_eq.setZero();
-    
-    t_mt.A_eq.block(0, 0, 3, state_dim).leftCols(18) = J_P_fb;
-    t_mt.A_eq.block(0, 0, 3, state_dim).rightCols(3*n_c).setZero();
-    t_mt.b_eq.block(0, 0, 3, 1) = _desired_base_acc + k_p_fb_pos * (_desired_base_pos - _q.topRows(3))
-                                  + k_d_fb_pos * (_desired_base_vel - _u.topRows(3)) - dot_J_P_fb * _u;
+
+    if (_include_tasks.mt_body_position){
+        t_mt.A_eq.block(0, 0, 3, state_dim).leftCols(18) = J_P_fb;
+        t_mt.A_eq.block(0, 0, 3, state_dim).rightCols(3*n_c).setZero();
+        t_mt.b_eq.block(0, 0, 3, 1) = _desired_base_acc + k_p_fb_pos * (_desired_base_pos - _q.topRows(3))
+                                    + k_d_fb_pos * (_desired_base_vel - _u.topRows(3)) - dot_J_P_fb * _u;
+    }
     //t_mt.A_eq.block(0, 0, 3, state_dim).setZero();
     //t_mt.b_eq.block(0, 0, 3, 1).setZero();
         // Floating base orientation
-    t_mt.A_eq.block(3, 0, 3, state_dim).leftCols(18) = J_R_fb;
-    t_mt.A_eq.block(3, 0, 3, state_dim).rightCols(3*n_c).setZero();
+    
+    if(_include_tasks.mt_body_orientation){
+        t_mt.A_eq.block(3, 0, 3, state_dim).leftCols(18) = J_R_fb;
+        t_mt.A_eq.block(3, 0, 3, state_dim).rightCols(3*n_c).setZero();
+        
+        //t_mt.b_eq.block(3, 0, 3, 1) = k_p_fb_rot * (_desired_base_ori - _q.segment(3,3)) 
+        //                              + k_d_fb_rot * (- _u.segment(3,3)) - dot_J_R_fb * _u;
+        t_mt.b_eq.block(3, 0, 3, 1) = k_p_fb_rot * (orientation_error)
+                                    + k_d_fb_rot * (- _u.segment(3,3)) - dot_J_R_fb * _u;
+        //t_mt.A_eq.block(3, 0, 3, state_dim).setZero();
+        //t_mt.b_eq.block(3, 0, 3, 1).setZero();
+    }
 
-    //t_mt.b_eq.block(3, 0, 3, 1) = k_p_fb_rot * (_desired_base_ori - _q.segment(3,3)) 
-    //                              + k_d_fb_rot * (- _u.segment(3,3)) - dot_J_R_fb * _u;
+    if(_include_tasks.mt_fp){
+            // Front-left foot
+        t_mt.A_eq.block(6, 0, 3, state_dim).leftCols(18) = J_P_fl;
+        t_mt.A_eq.block(6, 0, 3, state_dim).rightCols(3*n_c).setZero();
+        t_mt.b_eq.block(6, 0, 3, 1) = _desired_f_acc(0) + k_p_fl * (_desired_f_pos(0) - _f_pos(0))
+                                    + k_d_fl * (_desired_f_vel(0) - _f_vel(0)) - dot_J_P_fl * _u;
 
-    t_mt.b_eq.block(3, 0, 3, 1) = k_p_fb_rot * (orientation_error)
-                                  + k_d_fb_rot * (- _u.segment(3,3)) - dot_J_R_fb * _u;
-    //t_mt.A_eq.block(3, 0, 3, state_dim).setZero();
-    //t_mt.b_eq.block(3, 0, 3, 1).setZero();
+            // Front-right foot
+        t_mt.A_eq.block(9, 0, 3, state_dim).leftCols(18) = J_P_fr;
+        t_mt.A_eq.block(9, 0, 3, state_dim).rightCols(3*n_c).setZero();
+        t_mt.b_eq.block(9, 0, 3, 1) = _desired_f_acc(1) + k_p_fr * (_desired_f_pos(1) - _f_pos(1))
+                                    + k_d_fr * (_desired_f_vel(1) - _f_vel(1)) - dot_J_P_fr * _u;
 
-        // Front-left foot
-    t_mt.A_eq.block(6, 0, 3, state_dim).leftCols(18) = J_P_fl;
-    t_mt.A_eq.block(6, 0, 3, state_dim).rightCols(3*n_c).setZero();
-    t_mt.b_eq.block(6, 0, 3, 1) = _desired_f_acc(0) + k_p_fl * (_desired_f_pos(0) - _f_pos(0))
-                                  + k_d_fl * (_desired_f_vel(0) - _f_vel(0)) - dot_J_P_fl * _u;
+            // Rear-left foot
+        t_mt.A_eq.block(12, 0, 3, state_dim).leftCols(18) = J_P_rl;
+        t_mt.A_eq.block(12, 0, 3, state_dim).rightCols(3*n_c).setZero();
+        t_mt.b_eq.block(12, 0, 3, 1) = _desired_f_acc(2) + k_p_rl * (_desired_f_pos(2) - _f_pos(2))
+                                    + k_d_rl * (_desired_f_vel(2) - _f_vel(2)) - dot_J_P_rl * _u;
 
-        // Front-right foot
-    t_mt.A_eq.block(9, 0, 3, state_dim).leftCols(18) = J_P_fr;
-    t_mt.A_eq.block(9, 0, 3, state_dim).rightCols(3*n_c).setZero();
-    t_mt.b_eq.block(9, 0, 3, 1) = _desired_f_acc(1) + k_p_fr * (_desired_f_pos(1) - _f_pos(1))
-                                  + k_d_fr * (_desired_f_vel(1) - _f_vel(1)) - dot_J_P_fr * _u;
-
-        // Rear-left foot
-    t_mt.A_eq.block(12, 0, 3, state_dim).leftCols(18) = J_P_rl;
-    t_mt.A_eq.block(12, 0, 3, state_dim).rightCols(3*n_c).setZero();
-    t_mt.b_eq.block(12, 0, 3, 1) = _desired_f_acc(2) + k_p_rl * (_desired_f_pos(2) - _f_pos(2))
-                                  + k_d_rl * (_desired_f_vel(2) - _f_vel(2)) - dot_J_P_rl * _u;
-
-        // Rear-right foot
-    t_mt.A_eq.block(15, 0, 3, state_dim).leftCols(18) = J_P_rr;
-    t_mt.A_eq.block(15, 0, 3, state_dim).rightCols(3*n_c).setZero();
-    t_mt.b_eq.block(15, 0, 3, 1) = _desired_f_acc(3) + k_p_rr * (_desired_f_pos(3) - _f_pos(3))
-                                  + k_d_rr * (_desired_f_vel(3) - _f_vel(3)) - dot_J_P_rr * _u;
+            // Rear-right foot
+        t_mt.A_eq.block(15, 0, 3, state_dim).leftCols(18) = J_P_rr;
+        t_mt.A_eq.block(15, 0, 3, state_dim).rightCols(3*n_c).setZero();
+        t_mt.b_eq.block(15, 0, 3, 1) = _desired_f_acc(3) + k_p_rr * (_desired_f_pos(3) - _f_pos(3))
+                                    + k_d_rr * (_desired_f_vel(3) - _f_vel(3)) - dot_J_P_rr * _u;
+    }
 
     // Update posture tracking task
     t_pt.A_eq.leftCols(6).setZero();
@@ -983,6 +1036,25 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     t_cfm.A_eq.rightCols(3*n_c).setIdentity();
     t_cfm.b_eq.setZero();
 
+    // Update support polygon task
+
+    t_cmsp.A_ineq.setZero();
+    t_cmsp.b_ineq.setZero();
+
+    Eigen::Matrix<double, 3, 2> support_points_2d;
+
+    double support_margin = 0.02;
+
+    for (int i = 0; i < support_points_2d.rows(); ++i)
+    {
+        support_points_2d.row(i) = _f_pos(support_legs[i] - 1).segment(0,2).transpose();
+    }
+
+    Polytope support_polytope(support_points_2d, support_margin);
+
+    t_cmsp.A_ineq.block(0, 0, 3, 2) = support_polytope.getA();
+    t_cmsp.b_ineq = support_polytope.getB();
+
     // Update task constraint setting
     t_eom.has_eq_constraint = true;
     t_cftl.has_ineq_constraint = true;
@@ -990,18 +1062,20 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     t_mt.has_eq_constraint = true;
     t_pt.has_eq_constraint = true;
     t_cfm.has_eq_constraint = true;
+    t_cmsp.has_ineq_constraint = true;
 
     //*************************************************************************************
     // Hierarchical QP Optimization
     //*************************************************************************************
 
     // Add tasks in prioritized order
-    tasks.push_back(t_eom);
-    tasks.push_back(t_cftl);
-    tasks.push_back(t_cmc);
+    if(_include_tasks.eom) tasks.push_back(t_eom);
+    if (_include_tasks.cftl) tasks.push_back(t_cftl);
+    if (_include_tasks.cmc) tasks.push_back(t_cmc);
+    if (_include_tasks.cmsp) tasks.push_back(t_cmsp);
     tasks.push_back(t_mt);
-    //tasks.push_back(t_pt);
-    tasks.push_back(t_cfm);
+    if (_include_tasks.pt) tasks.push_back(t_pt);
+    if (_include_tasks.cfm) tasks.push_back(t_cfm);
 
     Eigen::Matrix<Eigen::MatrixXd, 5, 1> A_ls;
     Eigen::Matrix<Eigen::VectorXd, 5, 1> b_ls;

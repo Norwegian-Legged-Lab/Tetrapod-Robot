@@ -65,6 +65,7 @@
 #include "math_utils/orientation_utils.h"
 #include "footstep_planner/terrain.h"
 #include "support_polytope_base_planner/support_polytope_base_planner.h"
+#include "support_polytope_base_planner/polytope.h"
 #include "visualization_utils/xml_utils.h"
 #include "visualization_utils/eigen_geometry_msgs.h"
 
@@ -72,6 +73,17 @@
 /// \brief A class for hierarchical optimization control
 class HierarchicalOptimizationControl
 {
+    public: struct TasksToBeIncluded {
+        bool eom = true;
+        bool cftl = true;
+        bool cmc = true;
+        bool mt_fp = true;
+        bool mt_body_position = true;
+        bool mt_body_orientation = true;
+        bool pt = true;
+        bool cfm = true;
+        bool cmsp = false;
+    };
     /// \brief Task struct
     public: struct Task {
         bool has_eq_constraint = false;     ///< Bool indicating whether the task has a linear equality constraint.
@@ -134,7 +146,7 @@ class HierarchicalOptimizationControl
     /// \param[in] _v Verbosity level [0,1,2,3].
     /// \return Returns the optimal set of joint torques for
     /// the whole-body control problem leveraging hierarchical 
-    /// optimization. 
+    /// optimization.
     public: Eigen::Matrix<double, 12, 1> HierarchicalOptimization(const Eigen::Matrix<double, 3, 1> &_desired_base_pos,
                                                                   const Eigen::Matrix<double, 3, 1> &_desired_base_vel,
                                                                   const Eigen::Matrix<double, 3, 1> &_desired_base_acc,
@@ -146,7 +158,23 @@ class HierarchicalOptimizationControl
                                                                   const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_f_vel,
                                                                   const Eigen::Matrix<double, 18, 1> &_q,
                                                                   const Eigen::Matrix<double, 18, 1> &_u,
-                                                                  const bool stance_legs[4],
+                                                                  const bool _stance_legs[4],
+                                                                  const int &_v = 0); 
+
+    public: Eigen::Matrix<double, 12, 1> HierarchicalOptimization(const Eigen::Matrix<double, 3, 1> &_desired_base_pos,
+                                                                  const Eigen::Matrix<double, 3, 1> &_desired_base_vel,
+                                                                  const Eigen::Matrix<double, 3, 1> &_desired_base_acc,
+                                                                  const Eigen::Matrix<double, 3, 1> &_desired_base_ori,
+                                                                  const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_pos,
+                                                                  const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_vel,
+                                                                  const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_acc,
+                                                                  const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_f_pos,
+                                                                  const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_f_vel,
+                                                                  const Eigen::Matrix<double, 18, 1> &_q,
+                                                                  const Eigen::Matrix<double, 18, 1> &_u,
+                                                                  const bool _stance_legs[4],
+                                                                  const bool _desired_support_legs[4],
+                                                                  const TasksToBeIncluded &_include_tasks,
                                                                   const int &_v = 0); 
 
     /// \brief The HierarchicalQPOptimization function finds the 
