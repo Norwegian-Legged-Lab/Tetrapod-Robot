@@ -5,15 +5,41 @@
 #include "drake/solvers/osqp_solver.h"
 #include "drake/solvers/gurobi_solver.h"
 #include <iostream>
-DecVars_res footstep_planner(Terrain &terrain, int n_steps, int n_legs, double length_legs, Leg step_sequence[], double bbox_len, double step_span, double step_height, bool use_gurobi)
+DecVars_res footstep_planner(Terrain &terrain, Eigen::Matrix<Eigen::Vector3d, 4, 1> init_f_pos, Eigen::Matrix<Eigen::Vector3d, 4, 1> goal_f_pos, int n_steps, int n_legs, double length_legs, LegType step_sequence[], double bbox_len, double step_span, double step_height, bool enforce_goal_hard, bool use_gurobi)
 {
+    
+    std::cout << "initial position: " << std::endl;
+    for (int i = 0; i < 4; ++i)
+    {
+        std::cout << init_f_pos(i) << std::endl;
+    }
+    std::cout << "goal position: " << std::endl;
+    for (int i = 0; i < 4; ++i)
+    {
+        std::cout << goal_f_pos(i) << std::endl;
+    }
+
+    std::cout << "n_steps: " << n_steps << std::endl;
+    std::cout << "n_legs: " << n_legs << std::endl;
+    std::cout << "length_legs: " << length_legs << std::endl;
+    std::cout << "step_sequence: ";
+    for (int i = 0; i < 4; ++i)
+    {
+        std::cout << step_sequence[i] << " ";
+    }
+    std::cout << std::endl;
+    std::cout << "bbox_len: " << bbox_len << std::endl;
+    std::cout << "step_span: " << step_span << std::endl;
+    std::cout << "step_height: " << step_height << std::endl;
+    std::cout << "use_gurobi: " << use_gurobi << std::endl << std::endl;
+
     drake::solvers::MathematicalProgram prog;
     std::cout << "is gurobi solver available?: " << drake::solvers::GurobiSolver::is_available() << "is it enabled?: " << drake::solvers::GurobiSolver::is_enabled() << "is the license valid? " << drake::solvers::GurobiSolver::AcquireLicense() << std::endl;
     ROS_INFO("adding decision variables");
     DecVars decision_variables = add_decision_variables(prog, terrain, n_steps, n_legs);
-    bool enforce_goal_hard = true;
+
     ROS_INFO("setting initial and goal position");
-    set_initial_and_goal_position(prog, n_steps, length_legs, step_sequence, terrain, decision_variables, enforce_goal_hard);
+    set_initial_and_goal_position(prog, init_f_pos, goal_f_pos, n_steps, length_legs, step_sequence, terrain, decision_variables, enforce_goal_hard);
 
     ROS_INFO("setting theta limits");
     theta_limits(prog, n_steps, n_legs, decision_variables);
@@ -74,6 +100,7 @@ DecVars_res footstep_planner(Terrain &terrain, int n_steps, int n_legs, double l
         }
         else
         {
+            ROS_INFO("Optimization problem solved");
             decision_variables_opt.success = true;
         }
     }
@@ -117,6 +144,7 @@ DecVars_res footstep_planner(Terrain &terrain, int n_steps, int n_legs, double l
         }
         else
         {
+            ROS_INFO("Optimization problem solved");
             decision_variables_opt.success = true;
         }
     }

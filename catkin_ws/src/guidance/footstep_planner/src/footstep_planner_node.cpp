@@ -31,7 +31,7 @@ int main(int argc, char **argv)
 
     int n_legs = 4;
 
-    Leg step_sequence[] = {front_left, rear_right, front_right, rear_left};
+    LegType step_sequence[] = {front_left, rear_right, front_right, rear_left};
 
     double step_span = 0.5;
 
@@ -41,12 +41,48 @@ int main(int argc, char **argv)
 
     double bbox_len = 0.3;
 
+    Eigen::Matrix<Eigen::Vector3d, 4, 1> init_f_pos;
+
+    Eigen::Vector3d center(terrain.getStoneByName("initial").getCenter());
+    
+    double angle_divided = 2*M_PI/n_legs;
+
+    double phis[] = {0.5*angle_divided, -0.5*angle_divided, 1.5*angle_divided, -1.5*angle_divided};
+
+    double theta_0 = 0;
+
+    double angle_front_left = theta_0 + phis[front_left - 1];
+
+    double angle_front_right = theta_0 + phis[front_right - 1];
+
+    double angle_rear_left = theta_0 + phis[rear_left - 1];
+
+    double angle_rear_right = theta_0 + phis[rear_right - 1];
+
+    init_f_pos(front_left - 1) = center + length_legs*Eigen::Vector3d(std::cos(angle_front_left), std::sin(angle_front_left), 0);
+
+    init_f_pos(front_right - 1) = center + length_legs*Eigen::Vector3d(std::cos(angle_front_right), std::sin(angle_front_right), 0);
+
+    init_f_pos(rear_left - 1) = center + length_legs*Eigen::Vector3d(std::cos(angle_rear_left), std::sin(angle_rear_left), 0);
+
+    init_f_pos(rear_right - 1) = center + length_legs*Eigen::Vector3d(std::cos(angle_rear_right), std::sin(angle_rear_right), 0);
+
+    Eigen::Matrix<Eigen::Vector3d, 4, 1> goal_f_pos;
+
+    center = terrain.getStoneByName("goal").getCenter();
+
+    goal_f_pos(front_left - 1) = center + length_legs*Eigen::Vector3d(std::cos(angle_front_left), std::sin(angle_front_left), 0);
+
+    goal_f_pos(front_right - 1) = center + length_legs*Eigen::Vector3d(std::cos(angle_front_right), std::sin(angle_front_right), 0);
+
+    goal_f_pos(rear_left - 1) = center + length_legs*Eigen::Vector3d(std::cos(angle_rear_left), std::sin(angle_rear_left), 0);
+
+    goal_f_pos(rear_right - 1) = center + length_legs*Eigen::Vector3d(std::cos(angle_rear_right), std::sin(angle_rear_right), 0);
+
     ROS_INFO("About to begin planning");
     
-    DecVars_res res = footstep_planner(terrain, n_steps, n_legs, length_legs, step_sequence, bbox_len, step_span, step_height);
-    double wp_dist = 2;
-    int n_points = 4;
-    //DecVars_res res = waypoint_planner(terrain, n_points, length_legs, bbox_len, wp_dist);
+    DecVars_res res = footstep_planner(terrain, init_f_pos, goal_f_pos, n_steps, n_legs, length_legs, step_sequence, bbox_len, step_span, step_height);
+
     if (res.success)
     {
         ROS_INFO("Writing to file...");

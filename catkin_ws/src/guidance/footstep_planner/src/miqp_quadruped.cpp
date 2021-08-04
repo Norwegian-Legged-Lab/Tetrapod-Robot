@@ -44,7 +44,7 @@ DecVars add_decision_variables(drake::solvers::MathematicalProgram &prog, Terrai
     return decision_variables;
 }
 
-void set_initial_and_goal_position(drake::solvers::MathematicalProgram &prog, int n_steps, double length_legs, Leg step_sequence[], Terrain &terrain, DecVars &decision_variables, bool enforce_goal_hard)
+void set_initial_and_goal_position(drake::solvers::MathematicalProgram &prog, Eigen::Matrix<Eigen::Vector3d, 4, 1> init_f_pos, Eigen::Matrix<Eigen::Vector3d, 4, 1> goal_f_pos, int n_steps, double length_legs, LegType step_sequence[], Terrain &terrain, DecVars &decision_variables, bool enforce_goal_hard)
 {
     MatrixXDecisionVariable &position = decision_variables.position;
 
@@ -63,32 +63,32 @@ void set_initial_and_goal_position(drake::solvers::MathematicalProgram &prog, in
 
     Eigen::Vector3d center(terrain.getStoneByName("initial").getCenter());
     
-    double angle_front_left = theta_0 + phis[front_left];
+    double angle_front_left = theta_0 + phis[front_left - 1];
 
-    double angle_front_right = theta_0 + phis[front_right];
+    double angle_front_right = theta_0 + phis[front_right - 1];
 
-    double angle_rear_left = theta_0 + phis[rear_left];
+    double angle_rear_left = theta_0 + phis[rear_left - 1];
 
-    double angle_rear_right = theta_0 + phis[rear_right];
+    double angle_rear_right = theta_0 + phis[rear_right - 1];
 
-    Eigen::Vector3d initial_position_front_left = center + length_legs*Eigen::Vector3d(std::cos(angle_front_left), std::sin(angle_front_left), 0);
+    Eigen::Vector3d initial_position_front_left = init_f_pos(LegType::front_left - 1);
 
-    Eigen::Vector3d initial_position_rear_left = center + length_legs*Eigen::Vector3d(std::cos(angle_rear_left), std::sin(angle_rear_left), 0);
+    Eigen::Vector3d initial_position_rear_left = init_f_pos(LegType::rear_left - 1);
 
-    Eigen::Vector3d initial_position_front_right = center + length_legs*Eigen::Vector3d(std::cos(angle_front_right), std::sin(angle_front_right), 0);
+    Eigen::Vector3d initial_position_front_right = init_f_pos(LegType::front_right - 1);
 
-    Eigen::Vector3d initial_position_rear_right = center + length_legs*Eigen::Vector3d(std::cos(angle_rear_right), std::sin(angle_rear_right), 0);
+    Eigen::Vector3d initial_position_rear_right = init_f_pos(LegType::rear_right - 1);
 
     center = terrain.getStoneByName("goal").getCenter();
 
     //Enforce initial positions and goal positions
-    Eigen::Vector3d goal_position_front_left = center + length_legs*Eigen::Vector3d(std::cos(angle_front_left), std::sin(angle_front_left), 0);
+    Eigen::Vector3d goal_position_front_left = goal_f_pos(LegType::front_left - 1);
 
-    Eigen::Vector3d goal_position_rear_left = center + length_legs*Eigen::Vector3d(std::cos(angle_rear_left), std::sin(angle_rear_left), 0);
+    Eigen::Vector3d goal_position_rear_left = goal_f_pos(LegType::rear_left - 1);
 
-    Eigen::Vector3d goal_position_front_right = center + length_legs*Eigen::Vector3d(std::cos(angle_front_right), std::sin(angle_front_right), 0);
+    Eigen::Vector3d goal_position_front_right = goal_f_pos(LegType::front_right - 1);
 
-    Eigen::Vector3d goal_position_rear_right = center + length_legs*Eigen::Vector3d(std::cos(angle_rear_right), std::sin(angle_rear_right), 0);
+    Eigen::Vector3d goal_position_rear_right = goal_f_pos(LegType::rear_right - 1);
     
     Eigen::Vector3d initial_positions[] = {initial_position_front_left, initial_position_front_right, initial_position_rear_left, initial_position_rear_right};
 
@@ -100,19 +100,19 @@ void set_initial_and_goal_position(drake::solvers::MathematicalProgram &prog, in
 
     for (int i = 0; i < n_legs; ++i)
     {
-        init_pos_i = sequence_offset(0)*initial_positions[step_sequence[i]]
-        + sequence_offset(1)*initial_positions[step_sequence[(i + 1) % n_legs]]
-        + sequence_offset(2)*initial_positions[step_sequence[(i + 2) % n_legs]]
-        + sequence_offset(3)*initial_positions[(i + 3) % n_legs];
+        init_pos_i = sequence_offset(0)*init_f_pos(step_sequence[i] - 1)
+        + sequence_offset(1)*init_f_pos(step_sequence[(i + 1) % n_legs] - 1)
+        + sequence_offset(2)*init_f_pos(step_sequence[(i + 2) % n_legs] - 1)
+        + sequence_offset(3)*init_f_pos(step_sequence[(i + 3) % n_legs] - 1);
 
         auto constr_init = prog.AddLinearConstraint(position.row(i).transpose() == init_pos_i);
 
         if (enforce_goal_hard)
         {
-            goal_pos_i = sequence_offset(0)*goal_positions[step_sequence[(n_steps + i) % n_legs]]
-            + sequence_offset(1)*goal_positions[step_sequence[(n_steps + i + 1) % n_legs]]
-            + sequence_offset(2)*goal_positions[step_sequence[(n_steps + i + 2) % n_legs]]
-            + sequence_offset(3)*goal_positions[(n_steps + i + 3) % n_legs];
+            goal_pos_i = sequence_offset(0)*goal_f_pos(step_sequence[(n_steps + i) % n_legs] - 1)
+            + sequence_offset(1)*goal_f_pos(step_sequence[(n_steps + i + 1) % n_legs] - 1)
+            + sequence_offset(2)*goal_f_pos(step_sequence[(n_steps + i + 2) % n_legs] - 1)
+            + sequence_offset(3)*goal_f_pos(step_sequence[(n_steps + i + 3) % n_legs] - 1);
 
             auto constr_goal = prog.AddLinearConstraint(position.row(n_steps - n_legs + i).transpose() == goal_pos_i);
         }
@@ -187,7 +187,7 @@ void theta_limits(drake::solvers::MathematicalProgram &prog, int n_steps, int n_
     }
 }
 
-void geometry_limits(drake::solvers::MathematicalProgram &prog, int n_steps, int n_legs, double length_legs, Leg step_sequence[], Terrain &terrain, double bbox_len, DecVars &decision_variables)
+void geometry_limits(drake::solvers::MathematicalProgram &prog, int n_steps, int n_legs, double length_legs, LegType step_sequence[], Terrain &terrain, double bbox_len, DecVars &decision_variables)
 {
     MatrixXDecisionVariable &position = decision_variables.position;
 
@@ -203,7 +203,7 @@ void geometry_limits(drake::solvers::MathematicalProgram &prog, int n_steps, int
 
     double phis[] = {0.5*angle_divided, -0.5*angle_divided, 1.5*angle_divided, -1.5*angle_divided};
 
-    double phis_ordered[] = {phis[step_sequence[0]], phis[step_sequence[1]], phis[step_sequence[2]], phis[step_sequence[3]]};
+    double phis_ordered[] = {phis[step_sequence[0] - 1], phis[step_sequence[1] - 1], phis[step_sequence[2] - 1], phis[step_sequence[3] - 1]};
 
     Eigen::Matrix<drake::symbolic::Expression, 2, 1> p_i;
 
@@ -331,10 +331,10 @@ void minimize_remaining_length(drake::solvers::MathematicalProgram &prog, Terrai
 
     dist = terrain.getStoneByName("goal").getCenter() - center;
 
-    prog.AddQuadraticCost(10*(dist.transpose()*dist)(0));
+    prog.AddQuadraticCost(10*n_legs*(dist.transpose()*dist)(0));
 }
 
-Eigen::Array<Eigen::MatrixXd, Eigen::Dynamic, 1> get_uncompressed_arrays(Eigen::MatrixXd &arr, Eigen::MatrixXd &sequence_offset, int n_steps, int n_legs, Leg step_sequence[])
+Eigen::Array<Eigen::MatrixXd, Eigen::Dynamic, 1> get_uncompressed_arrays(Eigen::MatrixXd &arr, Eigen::MatrixXd &sequence_offset, int n_steps, int n_legs, LegType step_sequence[])
 {
     int offset;
 
@@ -356,7 +356,7 @@ Eigen::Array<Eigen::MatrixXd, Eigen::Dynamic, 1> get_uncompressed_arrays(Eigen::
 
     for (int l = 0; l < n_legs; ++l)
     {
-        ind = step_sequence[(l + offset) % n_legs];
+        ind = step_sequence[(l + offset) % n_legs] - 1;
 
         res(ind) = Eigen::MatrixXd();
         
@@ -379,7 +379,7 @@ Eigen::Array<Eigen::MatrixXd, Eigen::Dynamic, 1> get_uncompressed_arrays(Eigen::
     return res;
 }
 
-DecVars_res get_decvars_res(DecVars_res_raw &decision_variables_raw, int n_steps, int n_legs, Leg step_sequence[])
+DecVars_res get_decvars_res(DecVars_res_raw &decision_variables_raw, int n_steps, int n_legs, LegType step_sequence[])
 {
     Eigen::Array<Eigen::MatrixXd, Eigen::Dynamic, 1> positions = get_uncompressed_arrays(decision_variables_raw.position, decision_variables_raw.sequence_offset, n_steps, n_legs, step_sequence);
 
@@ -409,6 +409,8 @@ DecVars_res get_decvars_res(DecVars_res_raw &decision_variables_raw, int n_steps
 
     res.success = decision_variables_raw.success;
 
+    res.theta = decision_variables_raw.theta;
+
     return res;
 }
 
@@ -433,6 +435,8 @@ void writeDecVarsToFile(DecVars_res &decision_variables, std::string base_name)
     writeMatToFile(decision_variables.stone_rear_right, base_name + "_stone_rear_right" + fend);
 
     writeMatToFile(decision_variables.position_ts, base_name + "_position_ts" + fend);
+
+    writeMatToFile(decision_variables.theta, base_name + "_theta" + fend);
 }
 
 }

@@ -23,7 +23,7 @@ namespace quadruped{
 using drake::solvers::MatrixXDecisionVariable;
 
 
-enum Leg {front_left, front_right, rear_left, rear_right};
+enum LegType {front_left=1, front_right=2, rear_left=3, rear_right=4, NONE};
 
 // Trying slightly different representation of step sequence: More compact, less unnecessary copy of states and equality constraints
 
@@ -89,6 +89,8 @@ struct DecVars_res
 
     Eigen::MatrixXd position_ts;
 
+    Eigen::MatrixXd theta;
+
     bool first_left;
 
     bool first_front;
@@ -100,9 +102,9 @@ struct DecVars_res
 
 DecVars add_decision_variables(drake::solvers::MathematicalProgram &prog, Terrain &terrain, int n_steps, int n_legs);
 
-void set_initial_and_goal_position(drake::solvers::MathematicalProgram &prog, int n_steps, double length_legs, Leg step_sequence[], Terrain &terrain, DecVars &decision_variables, bool enforce_goal_hard=true);
+void set_initial_and_goal_position(drake::solvers::MathematicalProgram &prog, Eigen::Matrix<Eigen::Vector3d, 4, 1> init_f_pos, Eigen::Matrix<Eigen::Vector3d, 4, 1> goal_f_pos, int n_steps, double length_legs, LegType step_sequence[], Terrain &terrain, DecVars &decision_variables, bool enforce_goal_hard=true);
 
-void geometry_limits(drake::solvers::MathematicalProgram &prog, int n_steps, int n_legs, double length_legs, Leg step_sequence[], Terrain &terrain, double bbox_len, DecVars &decision_variables);
+void geometry_limits(drake::solvers::MathematicalProgram &prog, int n_steps, int n_legs, double length_legs, LegType step_sequence[], Terrain &terrain, double bbox_len, DecVars &decision_variables);
 
 void theta_limits(drake::solvers::MathematicalProgram &prog, int n_steps, int n_legs, DecVars &decision_variables);
 
@@ -118,9 +120,9 @@ void minimize_step_length(drake::solvers::MathematicalProgram &prog, int n_steps
 
 void minimize_remaining_length(drake::solvers::MathematicalProgram &prog, Terrain &terrain, int n_steps, int n_legs, DecVars &decision_variables);
 
-Eigen::Array<Eigen::MatrixXd, Eigen::Dynamic, 1> get_uncompressed_arrays(Eigen::MatrixXd &arr, Eigen::MatrixXd &sequence_offset, int n_steps, int n_legs, Leg step_sequence[]);
+Eigen::Array<Eigen::MatrixXd, Eigen::Dynamic, 1> get_uncompressed_arrays(Eigen::MatrixXd &arr, Eigen::MatrixXd &sequence_offset, int n_steps, int n_legs, LegType step_sequence[]);
 
-DecVars_res get_decvars_res(DecVars_res_raw &decision_variables_raw, int n_steps, int n_legs, Leg step_sequence[]);
+DecVars_res get_decvars_res(DecVars_res_raw &decision_variables_raw, int n_steps, int n_legs, LegType step_sequence[]);
 
 void writeDecVarsToFile(DecVars_res &decision_variables, std::string base_name="footstep_planner");
 }
