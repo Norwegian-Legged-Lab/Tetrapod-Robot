@@ -114,6 +114,12 @@ class HierarchicalOptimizationControl
 
     public: void TakeStep(Eigen::Vector3d end_pos, int step_leg_ind, double step_speed=1, double step_height=0.2);
 
+    public: void ReachSupport(
+        const bool support_legs[4],
+        Eigen::Vector3d desired_base_ori,
+        double epsilon=0.001,
+        double delta_t=0.5);
+
     public: void SetBasePose(
     Eigen::Vector3d desired_base_pos,
     Eigen::Vector3d desired_base_ori,

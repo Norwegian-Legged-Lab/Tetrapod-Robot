@@ -155,6 +155,132 @@ void HierarchicalOptimizationControl::StaticTorqueTest()
     }
 }
 
+void HierarchicalOptimizationControl::ReachSupport(
+    const bool support_legs[4],
+    Eigen::Vector3d desired_base_ori,
+    double epsilon,
+    double delta_t
+)
+{
+    // Declare desired states
+    Eigen::Vector3d desired_base_pos;
+    Eigen::Vector3d desired_base_vel;
+    Eigen::Vector3d desired_base_acc;
+    Eigen::Matrix<Eigen::Vector3d, 4, 1> desired_f_pos;
+    Eigen::Matrix<Eigen::Vector3d, 4, 1> desired_f_vel;
+    Eigen::Matrix<Eigen::Vector3d, 4, 1> desired_f_acc;
+
+    desired_base_pos.setZero();
+    desired_base_vel.setZero();
+    desired_base_acc.setZero();
+
+    desired_f_pos = this->fPos;
+
+    for (int i = 0; i < 4; ++i)
+    {
+        desired_f_vel.setZero();
+
+        desired_f_acc.setZero();
+    }
+
+    TasksToBeIncluded include_tasks;
+
+    include_tasks.mt_body_position = false;
+    include_tasks.mt_body_orientation = false;
+    include_tasks.pt = false;
+    include_tasks.cmsp = true;
+
+    // Declare torque solution
+    Eigen::Matrix<double, 12, 1> desired_tau;
+
+    // TODO Message to send with base pos command to be removed after plotting..
+    std_msgs::Float64MultiArray base_pose_cmd_msg;
+    std_msgs::Float64MultiArray base_twist_cmd_msg;
+
+    base_pose_cmd_msg.data.resize(6);
+    base_twist_cmd_msg.data.resize(6);
+
+    // Loop rate
+    ros::Rate loop_rate(200);
+
+    bool stance_legs[] = {true, true, true, true};
+
+    double t0 = ros::Time::now().toSec();
+    
+    Eigen::Matrix<double, 6, 1> errorvec;
+
+    double error;
+    double energy;
+    bool success = false;
+    // Loop
+    while(this->rosNode->ok() && !success)
+    {
+        
+        auto start = std::chrono::steady_clock::now();
+
+        desired_tau = this->HierarchicalOptimization(desired_base_pos,
+                                                     desired_base_vel,
+                                                     desired_base_acc,
+                                                     desired_base_ori,
+                                                     desired_f_pos,
+                                                     desired_f_vel,
+                                                     desired_f_acc,
+                                                     this->fPos,
+                                                     this->fVel,
+                                                     this->genCoord,
+                                                     this->genVel,
+                                                     stance_legs,
+                                                     support_legs,
+                                                     include_tasks,
+                                                     0);
+
+        auto end = std::chrono::steady_clock::now();
+
+        std::chrono::duration<double, std::micro> diff = end - start;
+
+        ROS_INFO_STREAM("HO run-time: " << diff.count() << " microseconds. \n");
+
+        //debug_utils::printBaseState(this->genCoord.topRows(6));
+        //debug_utils::printFootstepPositions(this->fPos);
+        //debug_utils::printJointTorques(desired_tau.bottomRows(12));
+        //debug_utils::printJointTorques(desired_tau);
+
+        // TODO find better solution to plot data and remove this..
+        base_pose_cmd_msg.data[0] = desired_base_pos(0);
+        base_pose_cmd_msg.data[1] = desired_base_pos(1);
+        base_pose_cmd_msg.data[2] = desired_base_pos(2);
+        base_pose_cmd_msg.data[3] = desired_base_ori(0);
+        base_pose_cmd_msg.data[4] = desired_base_ori(1);
+        base_pose_cmd_msg.data[5] = desired_base_ori(2);
+        this->basePoseCmdPub.publish(base_pose_cmd_msg);
+
+        base_twist_cmd_msg.data[0] = desired_base_vel(0);
+        base_twist_cmd_msg.data[1] = desired_base_vel(1);
+        base_twist_cmd_msg.data[2] = desired_base_vel(2);
+        base_twist_cmd_msg.data[3] = 0;
+        base_twist_cmd_msg.data[4] = 0;
+        base_twist_cmd_msg.data[5] = 0;
+        this->baseTwistCmdPub.publish(base_twist_cmd_msg);
+
+        //this->PublishTorqueMsg(desired_tau.bottomRows(12));
+        this->PublishTorqueMsg(desired_tau);
+
+        energy = this->genVel.segment(0, 6).norm();
+
+        if (energy > epsilon)
+        {
+            t0 = ros::Time::now().toSec();
+        }
+        else if (ros::Time::now().toSec() - t0 > delta_t)
+        {
+            success = true;
+        }
+
+        loop_rate.sleep();
+    }
+    ROS_INFO_STREAM("successfully stabilized configuration");
+}
+
 void HierarchicalOptimizationControl::SetBasePose(
     Eigen::Vector3d desired_base_pos,
     Eigen::Vector3d desired_base_ori,
@@ -321,6 +447,17 @@ void HierarchicalOptimizationControl::TakeStep(Eigen::Vector3d end_pos, int step
 
     stance_legs[step_leg_ind] = false;
 
+    bool support_legs[] = {true, true, true, true};
+
+    support_legs[step_leg_ind] = false;
+
+    TasksToBeIncluded include_tasks;
+    /*
+    include_tasks.mt_body_position = false;
+    include_tasks.mt_body_orientation = false;
+    include_tasks.cmsp = true;
+    include_tasks.pt = false;
+    */
     // Loop rate
     ros::Rate loop_rate(200);
     // Time factor
@@ -349,6 +486,8 @@ void HierarchicalOptimizationControl::TakeStep(Eigen::Vector3d end_pos, int step
                                                      this->genCoord,
                                                      this->genVel,
                                                      stance_legs,
+                                                     support_legs,
+                                                     include_tasks,
                                                      0);
 
         auto end = std::chrono::steady_clock::now();
@@ -472,11 +611,16 @@ void HierarchicalOptimizationControl::PlannedWalk(const Eigen::Matrix<Eigen::Vec
 
     for (int i = 0; i < n_moving_steps; ++i)
     {
+        
         desired_base_ori(2) = nominalOrientation(base_pos.row(i + 1).transpose(), this->fPos, angle_offsets);
-
-        SetBasePose(base_pos.row(i + 1).transpose(), desired_base_ori, 0.001, 0.1);
-
-        TakeStep(foot_points.row(i + 4).transpose(), step_sequence[i % 4] - 1, 0.5, 0.05);
+        
+        SetBasePose(base_pos.row(i + 1).transpose(), desired_base_ori, 0.005, 0.05);
+        /*
+        bool support_legs[] = {true, true, true, true};
+        support_legs[step_sequence[i % 4] - 1] = false;
+        ReachSupport(support_legs, desired_base_ori, 0.005, 0.1);
+        */
+        TakeStep(foot_points.row(i + 4).transpose(), step_sequence[i % 4] - 1, 1, 0.05);
     }
 }
 
@@ -754,20 +898,23 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     Eigen::Matrix3d k_p_fb_pos = 15*Eigen::Matrix3d::Identity(); // Floating base position proportional gain
     Eigen::Matrix3d k_d_fb_pos = 6*Eigen::Matrix3d::Identity(); // Floating base position derivative gain
     Eigen::Matrix3d k_p_fb_rot = 30*Eigen::Matrix3d::Identity(); // Floating base rotation proportional gain
-    Eigen::Matrix3d k_d_fb_rot = 6*Eigen::Matrix3d::Identity(); // Floating base rotation proportional gain
+    Eigen::Matrix3d k_d_fb_rot = 10*Eigen::Matrix3d::Identity(); // Floating base rotation proportional gain
     Eigen::Matrix3d k_p_fl = 15*Eigen::Matrix3d::Identity();     // Front left foot proportional gain
-    Eigen::Matrix3d k_d_fl = 4*Eigen::Matrix3d::Identity();     // Front left foot derivative gain
+    Eigen::Matrix3d k_d_fl = 6*Eigen::Matrix3d::Identity();     // Front left foot derivative gain
     Eigen::Matrix3d k_p_fr = 15*Eigen::Matrix3d::Identity();     // Front right foot proportional gain
-    Eigen::Matrix3d k_d_fr = 4*Eigen::Matrix3d::Identity();     // Front right foot derivative gain
+    Eigen::Matrix3d k_d_fr = 6*Eigen::Matrix3d::Identity();     // Front right foot derivative gain
     Eigen::Matrix3d k_p_rl = 15*Eigen::Matrix3d::Identity();     // Rear left foot proportional gain
-    Eigen::Matrix3d k_d_rl = 4*Eigen::Matrix3d::Identity();     // Rear left foot derivative gain
+    Eigen::Matrix3d k_d_rl = 6*Eigen::Matrix3d::Identity();     // Rear left foot derivative gain
     Eigen::Matrix3d k_p_rr = 15*Eigen::Matrix3d::Identity();     // Rear right foot proportional gain
-    Eigen::Matrix3d k_d_rr = 4*Eigen::Matrix3d::Identity();     // Rear right foot derivative gain
+    Eigen::Matrix3d k_d_rr = 6*Eigen::Matrix3d::Identity();     // Rear right foot derivative gain
 
     // Posture tracking gains
     Eigen::Matrix<double, 12, 12> k_p_pt = 15*Eigen::Matrix<double, 12, 12>::Identity();      // Posture tracking proportional gain
-    Eigen::Matrix<double, 12, 12> k_d_pt = 4*Eigen::Matrix<double, 12, 12>::Identity();      // Posture tracking derivative gain
+    Eigen::Matrix<double, 12, 12> k_d_pt = 6*Eigen::Matrix<double, 12, 12>::Identity();      // Posture tracking derivative gain
 
+    // Support polygon gains
+    double k_p_sp = 15;
+    Eigen::Matrix3d k_d_sp = 3*Eigen::Matrix3d::Identity(); // Support polygon position derivative gain
     //*************************************************************************************
     // Updates
     //*************************************************************************************
@@ -822,6 +969,9 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
 
     t_cmsp.A_ineq.resize(3, state_dim);
     t_cmsp.b_ineq.resize(3, 1);
+
+    t_cmsp.A_eq.resize(3, state_dim);
+    t_cmsp.b_eq.resize(3, 1);
 
     // Resize dynamic matrices and terms
     x_opt.resize(state_dim, 1);
@@ -1041,6 +1191,9 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     t_cmsp.A_ineq.setZero();
     t_cmsp.b_ineq.setZero();
 
+    t_cmsp.A_eq.setZero();
+    t_cmsp.b_eq.setZero();
+
     Eigen::Matrix<double, 3, 2> support_points_2d;
 
     double support_margin = 0.02;
@@ -1052,8 +1205,15 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
 
     Polytope support_polytope(support_points_2d, support_margin);
 
-    t_cmsp.A_ineq.block(0, 0, 3, 2) = support_polytope.getA();
-    t_cmsp.b_ineq = support_polytope.getB();
+    k_p_sp = 1;
+    t_cmsp.A_ineq.block(0, 0, 3, 2) = k_p_sp*support_polytope.getA();
+    t_cmsp.b_ineq = k_p_sp*support_polytope.getB();
+
+    t_cmsp.A_eq.block(0, 0, 3, state_dim).leftCols(18) = J_P_fb;
+    t_cmsp.A_eq.block(0, 0, 3, state_dim).rightCols(3*n_c).setZero();
+    t_cmsp.b_eq.block(0, 0, 3, 1) = k_d_sp * (- _u.topRows(3)) - dot_J_P_fb * _u;
+    
+    t_cmsp.b_eq.block(2, 0, 1, 1) += k_p_fb_pos.block(2,2,1,1)*(0.25 - _q(2));
 
     // Update task constraint setting
     t_eom.has_eq_constraint = true;
@@ -1063,6 +1223,7 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     t_pt.has_eq_constraint = true;
     t_cfm.has_eq_constraint = true;
     t_cmsp.has_ineq_constraint = true;
+    t_cmsp.has_eq_constraint = true;
 
     //*************************************************************************************
     // Hierarchical QP Optimization
