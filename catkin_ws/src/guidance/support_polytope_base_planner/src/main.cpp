@@ -23,7 +23,7 @@ int main(int argc, char **argv)
 
     int n_legs = 4;
 
-    Leg step_sequence[] = {front_left, rear_right, front_right, rear_left};
+    LegType step_sequence[] = {front_left, rear_right, front_right, rear_left};
 
     double step_span = 0.5;
 
@@ -33,9 +33,47 @@ int main(int argc, char **argv)
 
     double bbox_len = 0.3;
 
+    Eigen::Matrix<Eigen::Vector3d, 4, 1> init_f_pos;
+
+    Eigen::Vector3d center(terrain.getStoneByName("initial").getCenter());
+    
+    double angle_divided = 2*M_PI/n_legs;
+
+    double phis[] = {0.5*angle_divided, -0.5*angle_divided, 1.5*angle_divided, -1.5*angle_divided};
+
+    double theta_0 = 0;
+
+    double angle_front_left = theta_0 + phis[front_left - 1];
+
+    double angle_front_right = theta_0 + phis[front_right - 1];
+
+    double angle_rear_left = theta_0 + phis[rear_left - 1];
+
+    double angle_rear_right = theta_0 + phis[rear_right - 1];
+
+    init_f_pos(front_left - 1) = center + length_legs*Eigen::Vector3d(std::cos(angle_front_left), std::sin(angle_front_left), 0);
+
+    init_f_pos(front_right - 1) = center + length_legs*Eigen::Vector3d(std::cos(angle_front_right), std::sin(angle_front_right), 0);
+
+    init_f_pos(rear_left - 1) = center + length_legs*Eigen::Vector3d(std::cos(angle_rear_left), std::sin(angle_rear_left), 0);
+
+    init_f_pos(rear_right - 1) = center + length_legs*Eigen::Vector3d(std::cos(angle_rear_right), std::sin(angle_rear_right), 0);
+
+    Eigen::Matrix<Eigen::Vector3d, 4, 1> goal_f_pos;
+
+    center = terrain.getStoneByName("goal").getCenter();
+
+    goal_f_pos(front_left - 1) = center + length_legs*Eigen::Vector3d(std::cos(angle_front_left), std::sin(angle_front_left), 0);
+
+    goal_f_pos(front_right - 1) = center + length_legs*Eigen::Vector3d(std::cos(angle_front_right), std::sin(angle_front_right), 0);
+
+    goal_f_pos(rear_left - 1) = center + length_legs*Eigen::Vector3d(std::cos(angle_rear_left), std::sin(angle_rear_left), 0);
+
+    goal_f_pos(rear_right - 1) = center + length_legs*Eigen::Vector3d(std::cos(angle_rear_right), std::sin(angle_rear_right), 0);
+
     ROS_INFO("About to begin footstep planning");
     
-    DecVars_res foot_res = footstep_planner(terrain, n_steps, n_legs, length_legs, step_sequence, bbox_len, step_span, step_height);
+    DecVars_res foot_res = footstep_planner(terrain, init_f_pos, goal_f_pos, n_steps, n_legs, length_legs, step_sequence, bbox_len, step_span, step_height);
 
     ROS_INFO("About to begin base position planning");
     
@@ -45,7 +83,7 @@ int main(int argc, char **argv)
 
     Eigen::Vector2d init = foot_points.block(0, 0, 4, 2).transpose()*Eigen::Vector4d::Constant(0.25);
 
-    Eigen::Matrix<double, Eigen::Dynamic, 2> base_res = get_solution(foot_points, init, true);
+    Eigen::Matrix<double, Eigen::Dynamic, 2> base_res = support_polytope_base_planner(foot_points, init, true);
 
     std::cout << base_res << std::endl;
 

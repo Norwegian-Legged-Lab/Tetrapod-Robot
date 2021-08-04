@@ -45,7 +45,7 @@ void add_quadratic_cost(drake::solvers::MathematicalProgram &prog, drake::solver
     }
 }
 
-Eigen::Matrix<double, Eigen::Dynamic, 2> get_solution(Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> &steps, Eigen::Vector2d init, bool use_gurobi)
+Eigen::Matrix<double, Eigen::Dynamic, 2> support_polytope_base_planner(Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> &steps, Eigen::Vector2d init, bool use_gurobi)
 {
     Eigen::Matrix<double, Eigen::Dynamic, 2> steps_2d(steps.leftCols(2));
 
