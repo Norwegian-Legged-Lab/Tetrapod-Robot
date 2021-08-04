@@ -70,6 +70,9 @@
   <exec_depend>roscpp</exec_depend>
   <exec_depend>sensor_msgs</exec_depend>
   <exec_depend>std_msgs</exec_depend>
+  <depend>footstep_planner</depend>
+  <depend>support_polytope_base_planner</depend>
+  <depend>visualization_utils</depend>
 
 
   <!-- The export tag contains other, unspecified, tags -->

@@ -38,6 +38,7 @@
 #include "std_msgs/Int8MultiArray.h"
 #include "std_msgs/Float64MultiArray.h"
 #include "sensor_msgs/JointState.h"
+#include "geometry_msgs/PoseArray.h"
 
 // ROS Package Libraries
 #include <kinematics/kinematics.h>
@@ -59,6 +60,14 @@
 #include <drake/solvers/clp_solver.h>
 #include <drake/solvers/scs_solver.h>
 #include <drake/solvers/snopt_solver.h>
+
+#include "footstep_planner/footstep_planner.h"
+#include "math_utils/orientation_utils.h"
+#include "footstep_planner/terrain.h"
+#include "support_polytope_base_planner/support_polytope_base_planner.h"
+#include "visualization_utils/xml_utils.h"
+#include "visualization_utils/eigen_geometry_msgs.h"
+
 
 /// \brief A class for hierarchical optimization control
 class HierarchicalOptimizationControl
@@ -91,6 +100,19 @@ class HierarchicalOptimizationControl
     // TODO Remove
     public: void StaticTorqueTest();
 
+    public: void TakeStep(Eigen::Vector3d end_pos, int step_leg_ind, double step_speed=1, double step_height=0.2);
+
+    public: void SetBasePose(
+    Eigen::Vector3d desired_base_pos,
+    Eigen::Vector3d desired_base_ori,
+    double epsilon=0.001,
+    double delta_t=0.5);
+
+    public: Eigen::MatrixXd GetSteps(const Eigen::Matrix<Eigen::Vector3d, 4, 1> &end_f_pos, Terrain terrain, int n_steps, LegType step_sequence[]);
+
+    public: void PlannedWalk(const Eigen::Matrix<Eigen::Vector3d, 4, 1> &end_f_pos, double desired_height, Terrain terrain, int n_steps, LegType step_sequence[]);
+
+    public: void WalkTest();
     // TODO Remove
     public: void HeightRollYawTest();
 
@@ -124,6 +146,7 @@ class HierarchicalOptimizationControl
                                                                   const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_f_vel,
                                                                   const Eigen::Matrix<double, 18, 1> &_q,
                                                                   const Eigen::Matrix<double, 18, 1> &_u,
+                                                                  const bool stance_legs[4],
                                                                   const int &_v = 0); 
 
     /// \brief The HierarchicalQPOptimization function finds the 

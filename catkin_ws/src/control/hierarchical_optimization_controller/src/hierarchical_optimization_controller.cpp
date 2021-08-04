@@ -26,6 +26,8 @@
 
 #include <hierarchical_optimization_controller/hierarchical_optimization_controller.h>
 
+#include "math_utils/trajectory_utils.h"
+
 // Constructor
 HierarchicalOptimizationControl::HierarchicalOptimizationControl()
 {
@@ -77,6 +79,8 @@ void HierarchicalOptimizationControl::StaticTorqueTest()
 
     base_pose_cmd_msg.data.resize(6);
     base_twist_cmd_msg.data.resize(6);
+
+    bool stance_legs[] = {true, true, true, true};
         
     // Loop rate
     ros::Rate loop_rate(200);
@@ -113,6 +117,7 @@ void HierarchicalOptimizationControl::StaticTorqueTest()
                                                      this->fVel,
                                                      this->genCoord,
                                                      this->genVel,
+                                                     stance_legs,
                                                      0);
 
         auto end = std::chrono::steady_clock::now();
@@ -150,6 +155,368 @@ void HierarchicalOptimizationControl::StaticTorqueTest()
     }
 }
 
+void HierarchicalOptimizationControl::SetBasePose(
+    Eigen::Vector3d desired_base_pos,
+    Eigen::Vector3d desired_base_ori,
+    double epsilon,
+    double delta_t
+)
+{
+    Eigen::Vector3d desired_base_vel;
+    Eigen::Vector3d desired_base_acc;
+    Eigen::Matrix<Eigen::Vector3d, 4, 1> desired_f_pos;
+    Eigen::Matrix<Eigen::Vector3d, 4, 1> desired_f_vel;
+    Eigen::Matrix<Eigen::Vector3d, 4, 1> desired_f_acc;
+
+    // Declare torque solution
+    Eigen::Matrix<double, 12, 1> desired_tau;
+
+    // TODO Message to send with base pos command to be removed after plotting..
+    std_msgs::Float64MultiArray base_pose_cmd_msg;
+    std_msgs::Float64MultiArray base_twist_cmd_msg;
+
+    base_pose_cmd_msg.data.resize(6);
+    base_twist_cmd_msg.data.resize(6);
+
+    // Loop rate
+    ros::Rate loop_rate(200);
+
+    desired_f_pos = this->fPos;
+
+    desired_base_vel.setZero();
+
+    desired_base_acc.setZero();
+
+    for (int i = 0; i < 4; ++i)
+    {
+        desired_f_vel(i).setZero();
+
+        desired_f_acc(i).setZero();
+    }
+
+    bool stance_legs[] = {true, true, true, true};
+
+    double t0 = ros::Time::now().toSec();
+    
+    Eigen::Matrix<double, 6, 1> errorvec;
+
+    double error;
+    double energy;
+    bool success = false;
+    // Loop
+    while(this->rosNode->ok() && !success)
+    {
+        
+        auto start = std::chrono::steady_clock::now();
+
+        desired_tau = this->HierarchicalOptimization(desired_base_pos,
+                                                     desired_base_vel,
+                                                     desired_base_acc,
+                                                     desired_base_ori,
+                                                     desired_f_pos,
+                                                     desired_f_vel,
+                                                     desired_f_acc,
+                                                     this->fPos,
+                                                     this->fVel,
+                                                     this->genCoord,
+                                                     this->genVel,
+                                                     stance_legs,
+                                                     0);
+
+        auto end = std::chrono::steady_clock::now();
+
+        std::chrono::duration<double, std::micro> diff = end - start;
+
+        ROS_INFO_STREAM("HO run-time: " << diff.count() << " microseconds. \n");
+
+        //debug_utils::printBaseState(this->genCoord.topRows(6));
+        //debug_utils::printFootstepPositions(this->fPos);
+        //debug_utils::printJointTorques(desired_tau.bottomRows(12));
+        //debug_utils::printJointTorques(desired_tau);
+
+        // TODO find better solution to plot data and remove this..
+        base_pose_cmd_msg.data[0] = desired_base_pos(0);
+        base_pose_cmd_msg.data[1] = desired_base_pos(1);
+        base_pose_cmd_msg.data[2] = desired_base_pos(2);
+        base_pose_cmd_msg.data[3] = desired_base_ori(0);
+        base_pose_cmd_msg.data[4] = desired_base_ori(1);
+        base_pose_cmd_msg.data[5] = desired_base_ori(2);
+        this->basePoseCmdPub.publish(base_pose_cmd_msg);
+
+        base_twist_cmd_msg.data[0] = desired_base_vel(0);
+        base_twist_cmd_msg.data[1] = desired_base_vel(1);
+        base_twist_cmd_msg.data[2] = desired_base_vel(2);
+        base_twist_cmd_msg.data[3] = 0;
+        base_twist_cmd_msg.data[4] = 0;
+        base_twist_cmd_msg.data[5] = 0;
+        this->baseTwistCmdPub.publish(base_twist_cmd_msg);
+
+        //this->PublishTorqueMsg(desired_tau.bottomRows(12));
+        this->PublishTorqueMsg(desired_tau);
+
+        //break;
+
+        //errorvec << desired_base_pos, desired_base_ori;
+
+        //errorvec -= this->genCoord.segment(0,6);
+
+        energy = this->genVel.segment(0, 6).norm();
+
+        if (energy > epsilon)
+        {
+            t0 = ros::Time::now().toSec();
+        }
+        else if (ros::Time::now().toSec() - t0 > delta_t)
+        {
+            success = true;
+        }
+
+        loop_rate.sleep();
+    }
+    ROS_INFO_STREAM("successfully stabilized configuration");
+}
+
+void HierarchicalOptimizationControl::TakeStep(Eigen::Vector3d end_pos, int step_leg_ind, double step_speed, double step_height)
+{
+    // Declare desired states
+    Eigen::Vector3d desired_base_pos;
+    Eigen::Vector3d desired_base_vel;
+    Eigen::Vector3d desired_base_acc;
+    Eigen::Vector3d desired_base_ori;
+    Eigen::Matrix<Eigen::Vector3d, 4, 1> desired_f_pos;
+    Eigen::Matrix<Eigen::Vector3d, 4, 1> desired_f_vel;
+    Eigen::Matrix<Eigen::Vector3d, 4, 1> desired_f_acc;
+
+    // Declare torque solution
+    Eigen::Matrix<double, 12, 1> desired_tau;
+
+    // TODO Message to send with base pos command to be removed after plotting..
+    std_msgs::Float64MultiArray base_pose_cmd_msg;
+    std_msgs::Float64MultiArray base_twist_cmd_msg;
+
+    base_pose_cmd_msg.data.resize(6);
+    base_twist_cmd_msg.data.resize(6);
+
+    desired_base_pos = this->genCoord.segment(0,3);
+    desired_base_ori.setZero();
+    desired_base_vel.setZero();
+    desired_base_acc.setZero();
+
+    desired_f_pos = this->fPos;
+
+    double foot_radius = 0.008;
+
+    end_pos(2) += foot_radius;
+
+    for (int i = 0; i < 4; ++i)
+    {
+        desired_f_vel(i).setZero();
+
+        desired_f_acc(i).setZero();
+    }
+
+    Eigen::Vector3d start_pos = this->fPos(step_leg_ind);
+
+    bool stance_legs[] = {true, true, true, true};
+
+    stance_legs[step_leg_ind] = false;
+
+    // Loop rate
+    ros::Rate loop_rate(200);
+    // Time factor
+    double t0 = ros::Time::now().toSec();
+    double dt = 0;
+    // Loop
+    while(this->rosNode->ok() && step_speed*dt <= 1.01)
+    {
+        dt = ros::Time::now().toSec() - t0;
+
+        desired_f_pos(step_leg_ind) = parabolic_step(step_speed*dt, step_height, start_pos, end_pos);
+        desired_f_vel(step_leg_ind) = parabolic_step_velocity(step_speed*dt, step_height, start_pos, end_pos);
+        desired_f_acc(step_leg_ind) = parabolic_step_acceleration(step_speed*dt, step_height, start_pos, end_pos);
+
+        auto start = std::chrono::steady_clock::now();
+
+        desired_tau = this->HierarchicalOptimization(desired_base_pos,
+                                                     desired_base_vel,
+                                                     desired_base_acc,
+                                                     desired_base_ori,
+                                                     desired_f_pos,
+                                                     desired_f_vel,
+                                                     desired_f_acc,
+                                                     this->fPos,
+                                                     this->fVel,
+                                                     this->genCoord,
+                                                     this->genVel,
+                                                     stance_legs,
+                                                     0);
+
+        auto end = std::chrono::steady_clock::now();
+
+        std::chrono::duration<double, std::micro> diff = end - start;
+
+        ROS_INFO_STREAM("HO run-time: " << diff.count() << " microseconds. \n");
+
+        //debug_utils::printBaseState(this->genCoord.topRows(6));
+        //debug_utils::printFootstepPositions(this->fPos);
+        //debug_utils::printJointTorques(desired_tau.bottomRows(12));
+        //debug_utils::printJointTorques(desired_tau);
+
+        // TODO find better solution to plot data and remove this..
+        base_pose_cmd_msg.data[0] = desired_base_pos(0);
+        base_pose_cmd_msg.data[1] = desired_base_pos(1);
+        base_pose_cmd_msg.data[2] = desired_base_pos(2);
+        base_pose_cmd_msg.data[3] = desired_base_ori(0);
+        base_pose_cmd_msg.data[4] = desired_base_ori(1);
+        base_pose_cmd_msg.data[5] = desired_base_ori(2);
+        this->basePoseCmdPub.publish(base_pose_cmd_msg);
+
+        base_twist_cmd_msg.data[0] = desired_base_vel(0);
+        base_twist_cmd_msg.data[1] = desired_base_vel(1);
+        base_twist_cmd_msg.data[2] = desired_base_vel(2);
+        base_twist_cmd_msg.data[3] = 0;
+        base_twist_cmd_msg.data[4] = 0;
+        base_twist_cmd_msg.data[5] = 0;
+        this->baseTwistCmdPub.publish(base_twist_cmd_msg);
+
+        //this->PublishTorqueMsg(desired_tau.bottomRows(12));
+        this->PublishTorqueMsg(desired_tau);
+
+        //break;
+
+        loop_rate.sleep();
+    }
+}
+
+void HierarchicalOptimizationControl::WalkTest()
+{
+    Eigen::Array<bool, 4, 1> bool_bridge;
+
+    bool_bridge << true, true, true, true;
+
+    Terrain terrain(bool_bridge);
+    //Terrain terrain;
+
+    int n_steps = 4*20;
+
+    int n_legs = 4;
+
+    HierarchicalOptimizationControl::LegType step_sequence[] = {frontLeft, rearRight, frontRight, rearLeft};
+
+    double angle_divided = 2*M_PI/n_legs;
+
+    double phis[] = {0.5*angle_divided, -0.5*angle_divided, 1.5*angle_divided, -1.5*angle_divided};
+
+    double theta_0 = 0;
+
+    double angle_front_left = theta_0 + phis[front_left - 1];
+
+    double angle_front_right = theta_0 + phis[front_right - 1];
+
+    double angle_rear_left = theta_0 + phis[rear_left - 1];
+
+    double angle_rear_right = theta_0 + phis[rear_right - 1];
+
+    Eigen::Matrix<Eigen::Vector3d, 4, 1> end_f_pos;
+
+    Eigen::Vector3d center(terrain.getStoneByName("goal").getCenter());
+
+    double length_legs = 0.5;
+
+    end_f_pos(front_left - 1) = center + length_legs*Eigen::Vector3d(std::cos(angle_front_left), std::sin(angle_front_left), 0);
+
+    end_f_pos(front_right - 1) = center + length_legs*Eigen::Vector3d(std::cos(angle_front_right), std::sin(angle_front_right), 0);
+
+    end_f_pos(rear_left - 1) = center + length_legs*Eigen::Vector3d(std::cos(angle_rear_left), std::sin(angle_rear_left), 0);
+
+    end_f_pos(rear_right - 1) = center + length_legs*Eigen::Vector3d(std::cos(angle_rear_right), std::sin(angle_rear_right), 0);
+
+    double desired_height = 0.26;
+
+    std::cout << this->fPos(0) << std::endl;
+
+    ros::Duration(5).sleep();
+
+    PlannedWalk(end_f_pos, desired_height, terrain, n_steps, step_sequence);
+}
+
+void HierarchicalOptimizationControl::PlannedWalk(const Eigen::Matrix<Eigen::Vector3d, 4, 1> &end_f_pos, double desired_height, Terrain terrain, int n_steps, LegType step_sequence[])
+{
+    Eigen::Vector3d init_base_pos = this->genCoord.segment(0,3);
+
+    Eigen::Vector3d desired_base_ori = this->genCoord.segment(3,3);
+
+    Eigen::MatrixXd foot_points = GetSteps(end_f_pos, terrain, n_steps, step_sequence);
+
+    ros::Publisher footstep_pub = rosNode->advertise<geometry_msgs::PoseArray>("/footstep_planner/footstep_plan", 1000);
+
+    ros::Duration(1).sleep();
+
+    geometry_msgs::PoseArray msg = pose_array_from_eigen_matr(foot_points);
+
+    footstep_pub.publish(msg);    
+
+    Eigen::Matrix<double, Eigen::Dynamic, 2> base_res = support_polytope_base_planner(foot_points, init_base_pos.segment(0,2), true);
+
+    Eigen::Matrix<double, Eigen::Dynamic, 3> base_pos = Eigen::Matrix<double, Eigen::Dynamic, 3>::Constant(base_res.rows(), 3, desired_height);
+
+    base_pos.leftCols(2) = base_res;
+
+    int n_moving_steps = base_pos.rows() - 1;
+
+    SetBasePose(base_pos.row(0).transpose(), desired_base_ori);
+
+    ROS_INFO_STREAM("ready to begin walk");
+
+    Eigen::Vector4d angle_offsets(M_PI/4, -M_PI/4, 3*M_PI/4, -3*M_PI/4);
+
+    for (int i = 0; i < n_moving_steps; ++i)
+    {
+        desired_base_ori(2) = nominalOrientation(base_pos.row(i + 1).transpose(), this->fPos, angle_offsets);
+
+        SetBasePose(base_pos.row(i + 1).transpose(), desired_base_ori, 0.001, 0.1);
+
+        TakeStep(foot_points.row(i + 4).transpose(), step_sequence[i % 4] - 1, 0.5, 0.05);
+    }
+}
+
+Eigen::MatrixXd HierarchicalOptimizationControl::GetSteps(const Eigen::Matrix<Eigen::Vector3d, 4, 1> &end_f_pos, Terrain terrain, int n_steps, LegType step_sequence[])
+{
+    Eigen::Matrix<Eigen::Vector3d, 4, 1> init_f_pos = this->fPos;
+
+    
+    for (int i = 0; i < 4; ++i)
+    {
+        init_f_pos(i)(2) = 0;
+    }
+
+    double step_span = 0.4;
+
+    double step_height = 0.2;
+
+    double length_legs = 0.5;
+
+    double bbox_len = 0.3;
+
+    int n_legs = 4;
+
+    miqp::quadruped::LegType step_sequence_miqp[4];
+    for (int i = 0; i < 4; ++i)
+    {
+        step_sequence_miqp[i] = miqp::quadruped::LegType(step_sequence[i]);
+    }
+
+    DecVars_res res = footstep_planner(terrain, init_f_pos, end_f_pos, n_steps, 4, length_legs, step_sequence_miqp, bbox_len, step_span, step_height, true, true);
+    if (res.success) {
+        return res.position_ts;
+    }
+    else
+    {
+        res = footstep_planner(terrain, init_f_pos, end_f_pos, n_steps, 4, length_legs, step_sequence_miqp, bbox_len, step_span, step_height, false, true);
+        return res.position_ts;
+    }
+}
+
 // TODO remove this
 void HierarchicalOptimizationControl::HeightRollYawTest()
 {
@@ -171,7 +538,9 @@ void HierarchicalOptimizationControl::HeightRollYawTest()
 
     base_pose_cmd_msg.data.resize(6);
     base_twist_cmd_msg.data.resize(6);
-        
+
+    bool stance_legs[] = {true, true, true, true};
+
     // Loop rate
     ros::Rate loop_rate(200);
 
@@ -223,6 +592,7 @@ void HierarchicalOptimizationControl::HeightRollYawTest()
                                                      this->fVel,
                                                      this->genCoord,
                                                      this->genVel,
+                                                     stance_legs,
                                                      0);
 
         auto end = std::chrono::steady_clock::now();
@@ -274,6 +644,7 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
                                                                                        const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_f_vel,
                                                                                        const Eigen::Matrix<double, 18, 1> &_q,
                                                                                        const Eigen::Matrix<double, 18, 1> &_u,
+                                                                                       const bool stance_legs[4],
                                                                                        const int &_v) 
 {
     //*************************************************************************************
@@ -343,17 +714,17 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
 
     // Motion tracking gains
     Eigen::Matrix3d k_p_fb_pos = 15*Eigen::Matrix3d::Identity(); // Floating base position proportional gain
-    Eigen::Matrix3d k_d_fb_pos = 2*Eigen::Matrix3d::Identity(); // Floating base position derivative gain
+    Eigen::Matrix3d k_d_fb_pos = 6*Eigen::Matrix3d::Identity(); // Floating base position derivative gain
     Eigen::Matrix3d k_p_fb_rot = 30*Eigen::Matrix3d::Identity(); // Floating base rotation proportional gain
-    Eigen::Matrix3d k_d_fb_rot = 2*Eigen::Matrix3d::Identity(); // Floating base rotation proportional gain
-    Eigen::Matrix3d k_p_fl = 2*Eigen::Matrix3d::Identity();     // Front left foot proportional gain
-    Eigen::Matrix3d k_d_fl = 2*Eigen::Matrix3d::Identity();     // Front left foot derivative gain
-    Eigen::Matrix3d k_p_fr = 2*Eigen::Matrix3d::Identity();     // Front right foot proportional gain
-    Eigen::Matrix3d k_d_fr = 2*Eigen::Matrix3d::Identity();     // Front right foot derivative gain
-    Eigen::Matrix3d k_p_rl = 2*Eigen::Matrix3d::Identity();     // Rear left foot proportional gain
-    Eigen::Matrix3d k_d_rl = 2*Eigen::Matrix3d::Identity();     // Rear left foot derivative gain
-    Eigen::Matrix3d k_p_rr = 2*Eigen::Matrix3d::Identity();     // Rear right foot proportional gain
-    Eigen::Matrix3d k_d_rr = 2*Eigen::Matrix3d::Identity();     // Rear right foot derivative gain
+    Eigen::Matrix3d k_d_fb_rot = 6*Eigen::Matrix3d::Identity(); // Floating base rotation proportional gain
+    Eigen::Matrix3d k_p_fl = 15*Eigen::Matrix3d::Identity();     // Front left foot proportional gain
+    Eigen::Matrix3d k_d_fl = 4*Eigen::Matrix3d::Identity();     // Front left foot derivative gain
+    Eigen::Matrix3d k_p_fr = 15*Eigen::Matrix3d::Identity();     // Front right foot proportional gain
+    Eigen::Matrix3d k_d_fr = 4*Eigen::Matrix3d::Identity();     // Front right foot derivative gain
+    Eigen::Matrix3d k_p_rl = 15*Eigen::Matrix3d::Identity();     // Rear left foot proportional gain
+    Eigen::Matrix3d k_d_rl = 4*Eigen::Matrix3d::Identity();     // Rear left foot derivative gain
+    Eigen::Matrix3d k_p_rr = 15*Eigen::Matrix3d::Identity();     // Rear right foot proportional gain
+    Eigen::Matrix3d k_d_rr = 4*Eigen::Matrix3d::Identity();     // Rear right foot derivative gain
 
     // Posture tracking gains
     Eigen::Matrix<double, 12, 12> k_p_pt = 15*Eigen::Matrix<double, 12, 12>::Identity();      // Posture tracking proportional gain
@@ -367,7 +738,7 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     for (size_t i = 0; i < 4; i++)
     {
         // Contact State is assumed sorted by fl, fr, rl, rr
-        if (contactState[i])
+        if (stance_legs[i])
         {
             // fl = 1, fr = 2, rl = 3, rr = 4
             contact_legs.push_back(Kinematics::LegType(i + 1));

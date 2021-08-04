@@ -15,6 +15,9 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   sensor_msgs
   std_msgs
+  footstep_planner
+  support_polytope_base_planner
+  visualization_utils
 )
 
 ## System dependencies are found with CMake's conventions
@@ -112,7 +115,7 @@ catkin_package(
   INCLUDE_DIRS include
     ${EIGEN3_INCLUDE_DIR}
   LIBRARIES hierarchical_optimization_controller
-  CATKIN_DEPENDS debug_utils kindr kinematics math_utils roscpp sensor_msgs std_msgs
+  CATKIN_DEPENDS debug_utils kindr kinematics math_utils footstep_planner support_polytope_base_planner visualization_utils roscpp sensor_msgs std_msgs
   DEPENDS drake
 )
 
