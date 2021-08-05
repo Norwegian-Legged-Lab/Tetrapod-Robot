@@ -51,9 +51,21 @@ void add_quadratic_cost_reduce_stretch(drake::solvers::MathematicalProgram &prog
 
     for (int i = 0; i < num_dists; ++i)
     {
-        Eigen::Matrix<drake::symbolic::Expression, 2, 1> err = pos.row(i + 1).transpose() - steps.block(i + 4, 0, 1, 2).transpose();
-
+        Eigen::Matrix<drake::symbolic::Expression, 2, 1> err = pos.row(i + 1).transpose() - steps.block(i + 1, 0, 1, 2).transpose();
+        
         prog.AddQuadraticCost(err.transpose()*err);
+
+        err = pos.row(i + 1).transpose() - steps.block(i + 2, 0, 1, 2).transpose();
+        
+        prog.AddQuadraticCost(err.transpose()*err);
+
+        err = pos.row(i + 1).transpose() - steps.block(i + 3, 0, 1, 2).transpose();
+        
+        prog.AddQuadraticCost(err.transpose()*err);
+
+        err = pos.row(i + 1).transpose() - steps.block(i + 4, 0, 1, 2).transpose();
+
+        prog.AddQuadraticCost(3*err.transpose()*err);
     }
 }
 

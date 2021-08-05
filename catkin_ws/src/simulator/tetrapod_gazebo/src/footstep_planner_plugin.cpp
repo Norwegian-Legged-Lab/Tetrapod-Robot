@@ -3,7 +3,7 @@
 namespace gazebo{
 
 // Constructor
-FootstepPlannerPlugin::FootstepPlannerPlugin() {std::cout << "Footstep_planner_plugin is constructed" << std::endl;}
+FootstepPlannerPlugin::FootstepPlannerPlugin() {}
 
 // Destructor
 FootstepPlannerPlugin::~FootstepPlannerPlugin() 
@@ -76,9 +76,7 @@ void FootstepPlannerPlugin::InitGazebo()
 void FootstepPlannerPlugin::SetVisuals(Eigen::MatrixX3d &poses)
 {
     indicators = Eigen::Matrix<msgs::Visual, Eigen::Dynamic, 1>();
-    ROS_INFO("created new indicator matrix.");
     indicators.conservativeResize(poses.rows(), Eigen::NoChange);
-    ROS_INFO("resized new indicator matrix");
 
     int n_steps = indicators.rows();
 
@@ -104,7 +102,6 @@ void FootstepPlannerPlugin::SetVisuals(Eigen::MatrixX3d &poses)
 
     for (int i = 0; i < n_steps; ++i)
     {
-        ROS_INFO("start of loop");
         c.Set(colors(0, i), colors(1, i), colors(2, i));
 
         pose = poses.row(i).transpose();
@@ -112,9 +109,7 @@ void FootstepPlannerPlugin::SetVisuals(Eigen::MatrixX3d &poses)
         indicator = &(indicators(i));
         
         name = "footstep " + std::to_string(i);
-        ROS_INFO("about to set name");
         indicator->set_name(name);
-        ROS_INFO("set name completed");
         indicator->set_visible(true);
 
         indicator->set_parent_name(parent_name);
@@ -130,7 +125,7 @@ void FootstepPlannerPlugin::SetVisuals(Eigen::MatrixX3d &poses)
         geometry->mutable_cylinder()->set_length(0.01);
 
         msgs::Set(indicator->mutable_pose(), ignition::math::Pose3d(pose(0), pose(1), pose(2), 0, 0, 0));
-        std::cout << pose(0) << " " << pose(1) << " " << pose(2) << std::endl;
+
         msgs::Set(indicator->mutable_material()->mutable_ambient(), c);
         
         msgs::Set(indicator->mutable_material()->mutable_diffuse(), c);
@@ -140,7 +135,6 @@ void FootstepPlannerPlugin::SetVisuals(Eigen::MatrixX3d &poses)
         msgs::Set(indicator->mutable_material()->mutable_emissive(), c);
 
         indicator->set_is_static(true);
-        ROS_INFO("end of loop");
     }
 }
 

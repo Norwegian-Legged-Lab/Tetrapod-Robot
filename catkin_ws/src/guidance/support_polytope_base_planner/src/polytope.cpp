@@ -10,7 +10,6 @@ Polytope::Polytope()
 Polytope::Polytope(Eigen::Matrix<double, Eigen::Dynamic, 2> points, double epsilon)
 {
     int num_points = points.rows();
-    std::cout << "num_points: " << num_points << std::endl;
     Eigen::Vector3d normal;
     
     normal << 0, 0, 1;
@@ -32,9 +31,6 @@ Polytope::Polytope(Eigen::Matrix<double, Eigen::Dynamic, 2> points, double epsil
         points_cc.row(0) = points.row(2);
         points_cc.row(1) = points.row(1);
         points_cc.row(2) = points.row(0);
-        std::cout << std::endl << std::endl << "new polygon" << std::endl;
-        std::cout << points << std::endl;
-        std::cout << points_cc << std::endl;
     }
 
     A = Eigen::Matrix<double, Eigen::Dynamic, 2>::Zero(num_points, 2);
@@ -76,6 +72,5 @@ Polytope::Polytope(Eigen::Matrix<double, Eigen::Dynamic, 2> points, double epsil
         A.row(i)(0) = y_diff;
         A.row(i)(1) = -x_diff;
         b.row(i)(0) = (x - epsilon*x_ortho)*y_diff - (y - epsilon*y_ortho)*x_diff;
-        std::cout << "idiot test: " << A.row(i)*points_cc.row(i_next).transpose() - b.row(i)(0) << std::endl;
     }
 }
