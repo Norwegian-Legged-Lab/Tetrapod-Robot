@@ -5,7 +5,7 @@
 #include "drake/solvers/osqp_solver.h"
 #include "drake/solvers/gurobi_solver.h"
 #include <iostream>
-DecVars_res footstep_planner(Terrain &terrain, Eigen::Matrix<Eigen::Vector3d, 4, 1> init_f_pos, Eigen::Matrix<Eigen::Vector3d, 4, 1> goal_f_pos, int n_steps, int n_legs, double length_legs, LegType step_sequence[], double bbox_len, double step_span, double step_height, bool enforce_goal_hard, bool use_gurobi)
+DecVars_res footstep_planner(Terrain &terrain, Eigen::Matrix<Eigen::Vector3d, 4, 1> init_f_pos, Eigen::Matrix<Eigen::Vector3d, 4, 1> goal_f_pos, int n_steps, int n_legs, double length_legs, LegType step_sequence[], double bbox_len, double step_span, double step_height, double ledge_margin, bool enforce_goal_hard, bool use_gurobi)
 {
     
     std::cout << "initial position: " << std::endl;
@@ -54,7 +54,7 @@ DecVars_res footstep_planner(Terrain &terrain, Eigen::Matrix<Eigen::Vector3d, 4,
     one_stone_per_foot(prog, n_steps, decision_variables);
 
     ROS_INFO("foot in stepping stone");
-    foot_in_stepping_stone(prog, terrain, n_steps, decision_variables);
+    foot_in_stepping_stone(prog, terrain, n_steps, decision_variables, ledge_margin);
 
     ROS_INFO("minimize step length");
     minimize_step_length(prog, n_steps, n_legs, decision_variables);

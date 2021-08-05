@@ -114,7 +114,7 @@ void one_stone_per_foot(drake::solvers::MathematicalProgram &prog, int n_steps, 
 
 Eigen::Vector4d get_big_M(Terrain terrain);
 
-void foot_in_stepping_stone(drake::solvers::MathematicalProgram &prog, Terrain &terrain, int n_steps, DecVars &decision_variables);
+void foot_in_stepping_stone(drake::solvers::MathematicalProgram &prog, Terrain &terrain, int n_steps, DecVars &decision_variables, double ledge_margin=0);
 
 void minimize_step_length(drake::solvers::MathematicalProgram &prog, int n_steps, int n_legs, DecVars &decision_variables);
 

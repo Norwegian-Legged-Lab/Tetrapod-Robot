@@ -271,7 +271,7 @@ Eigen::Vector4d get_big_M(Terrain terrain)
     return res;
 }
 
-void foot_in_stepping_stone(drake::solvers::MathematicalProgram &prog, Terrain &terrain, int n_steps, DecVars &decision_variables)
+void foot_in_stepping_stone(drake::solvers::MathematicalProgram &prog, Terrain &terrain, int n_steps, DecVars &decision_variables, double ledge_margin)
 {
     MatrixXDecisionVariable &position = decision_variables.position;
 
@@ -290,7 +290,7 @@ void foot_in_stepping_stone(drake::solvers::MathematicalProgram &prog, Terrain &
         {
             A_ineq = terrain.getSteppingStones()(l).getAIneq();
 
-            b_ineq = terrain.getSteppingStones()(l).getBIneq();
+            b_ineq = terrain.getSteppingStones()(l).getBIneq() - Eigen::Vector4d::Constant(ledge_margin);
 
             A_eq = terrain.getSteppingStones()(l).getAEq();
 
