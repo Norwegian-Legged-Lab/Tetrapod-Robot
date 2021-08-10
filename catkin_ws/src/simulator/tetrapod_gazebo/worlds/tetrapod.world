@@ -14,10 +14,12 @@
     </scene>
 
     <!-- A ground plane -->
+    <!--
     <include>
       <uri>model://ground_plane</uri>
     </include> 
-
+    -->
+    
     <!-- <model name="gplane">
       <pose>0.000000 0.000000 0.000000 0.000000 -0.000000 0.000000</pose>
       <link name="plane">

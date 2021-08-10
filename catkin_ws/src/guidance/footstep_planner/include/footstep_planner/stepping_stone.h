@@ -12,29 +12,29 @@ class SteppingStone
 
     public: virtual ~SteppingStone();
 
-    public: const Eigen::Vector3d &getCenter() const {return center;}
+    public: const Eigen::Vector3d &GetCenter() const {return center;}
 
-    public: const double &getWidth() {return width;}
+    public: const double &GetWidth() {return width;}
 
-    public: const double &getHeight() {return height;}
+    public: const double &GetHeight() {return height;}
 
-    public: const std::string &getName() const {return name;}
+    public: const std::string &GetName() const {return name;}
 
-    public: const Eigen::Vector3d &getTopRight() const {return top_right;}
+    public: const Eigen::Vector3d &GetTopRight() const {return top_right;}
 
-    public: const Eigen::Vector3d &getBottomRight() const {return bottom_right;}
+    public: const Eigen::Vector3d &GetBottomRight() const {return bottom_right;}
 
-    public: const Eigen::Vector3d &getTopLeft() const {return top_left;}
+    public: const Eigen::Vector3d &GetTopLeft() const {return top_left;}
 
-    public: const Eigen::Vector3d getBottomLeft() const {return bottom_left;}
+    public: const Eigen::Vector3d GetBottomLeft() const {return bottom_left;}
 
-    public: const Eigen::Matrix<double, 4, 3> &getAIneq() const {return A_ineq;}
+    public: const Eigen::Matrix<double, 4, 3> &GetAIneq() const {return A_ineq;}
 
-    public: const Eigen::Matrix<double, 4, 1> &getBIneq() const {return b_ineq;}
+    public: const Eigen::Matrix<double, 4, 1> &GetBIneq() const {return b_ineq;}
 
-    public: const Eigen::Matrix<double, 1, 3> &getAEq() const {return A_eq;}
+    public: const Eigen::Matrix<double, 1, 3> &GetAEq() const {return A_eq;}
 
-    public: const Eigen::Matrix<double, 1, 1> &getBEq() const {return b_eq;}
+    public: const Eigen::Matrix<double, 1, 1> &GetBEq() const {return b_eq;}
     /*** Variables ***/
 
     private: Eigen::Vector3d center;

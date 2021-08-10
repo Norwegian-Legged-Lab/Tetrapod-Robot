@@ -2,11 +2,11 @@
 
 Terrain::Terrain(Eigen::Array<bool, Eigen::Dynamic, 1> bool_bridge)
 {
-    SteppingStone initial = addStone(Eigen::Vector3d::Zero(), 1.2, 1.2, "initial");
+    SteppingStone initial = AddStone(Eigen::Vector3d::Zero(), 1.2, 1.2, "initial");
 
     double width_bridge = 0.24;
 
-    Eigen::Vector3d center = initial.getBottomRight() + Eigen::Vector3d(width_bridge*1.5, initial.getHeight()/2, 0);
+    Eigen::Vector3d center = initial.GetBottomRight() + Eigen::Vector3d(width_bridge*1.5, initial.GetHeight()/2, 0);
 
     int num_stones = bool_bridge.colwise().count()(0);
 
@@ -20,45 +20,45 @@ Terrain::Terrain(Eigen::Array<bool, Eigen::Dynamic, 1> bool_bridge)
         }
     }
 
-    addStones(centers,
+    AddStones(centers,
         Eigen::Array<double, Eigen::Dynamic, 1>::Constant(num_stones, 1, width_bridge*1.5),
-        Eigen::Array<double, Eigen::Dynamic, 1>::Constant(num_stones, 1, initial.getHeight()),
+        Eigen::Array<double, Eigen::Dynamic, 1>::Constant(num_stones, 1, initial.GetHeight()),
         "bridge");
     
-    center = initial.getCenter() + Eigen::Vector3d(initial.getWidth() + (bool_bridge.rows()*2 + 1)*width_bridge, 0, 0);
+    center = initial.GetCenter() + Eigen::Vector3d(initial.GetWidth() + (bool_bridge.rows()*2 + 1)*width_bridge, 0, 0);
 
-    SteppingStone goal = addStone(center, initial.getWidth(), initial.getHeight(), "goal");
+    SteppingStone goal = AddStone(center, initial.GetWidth(), initial.GetHeight(), "goal");
 
     double height = 0.8;
 
     double clearance = 0.1;
 
-    Eigen::Vector3d c2g = goal.getCenter() - initial.getCenter();
+    Eigen::Vector3d c2g = goal.GetCenter() - initial.GetCenter();
 
-    double width = initial.getWidth() + c2g(0);
+    double width = initial.GetWidth() + c2g(0);
 
-    center = initial.getCenter() + Eigen::Vector3d(0, (initial.getHeight() + height)/2 + clearance, 0);
+    center = initial.GetCenter() + Eigen::Vector3d(0, (initial.GetHeight() + height)/2 + clearance, 0);
 
-    addStone(center, width, height, "lateral");
+    AddStone(center, width, height, "lateral");
 }
 
 Terrain::Terrain()
 {
-    SteppingStone initial = addStone(Eigen::Vector3d(0, 0, 0), 1.2, 1.2, "initial");
+    SteppingStone initial = AddStone(Eigen::Vector3d(0, 0, 0), 1.2, 1.2, "initial");
 
     for (int i = 0; i < 2; ++i)
     {
-        addStone(Eigen::Vector3d(1 + 2*i, 0, 0), 1.2, 4.2, "vertical");
-        addStone(Eigen::Vector3d(2, -1.5 + 3*i, 0), 3.2, 1.2, "lateral");
+        AddStone(Eigen::Vector3d(1 + 2*i, 0, 0), 1.2, 4.2, "vertical");
+        AddStone(Eigen::Vector3d(2, -1.5 + 3*i, 0), 3.2, 1.2, "lateral");
     }
 
-    SteppingStone goal = addStone(Eigen::Vector3d(4, 0, 0.1), 1.2, 1.2, "goal");
+    SteppingStone goal = AddStone(Eigen::Vector3d(4, 0, 0), 1.2, 1.2, "goal");
 }
 
 Terrain::~Terrain()
 {}
 
-SteppingStone Terrain::addStone(Eigen::Vector3d center, double width, double height, std::string name)
+SteppingStone Terrain::AddStone(Eigen::Vector3d center, double width, double height, std::string name)
 {
     SteppingStone stone(center, width, height, name);
 
@@ -69,7 +69,7 @@ SteppingStone Terrain::addStone(Eigen::Vector3d center, double width, double hei
     return stone;
 }
 
-Eigen::Array<SteppingStone, Eigen::Dynamic, 1> Terrain::addStones(Eigen::Array<Eigen::Vector3d, Eigen::Dynamic, 1> centers, Eigen::Array<double, Eigen::Dynamic, 1> widths, Eigen::Array<double, Eigen::Dynamic, 1> heights, std::string name)
+Eigen::Array<SteppingStone, Eigen::Dynamic, 1> Terrain::AddStones(Eigen::Array<Eigen::Vector3d, Eigen::Dynamic, 1> centers, Eigen::Array<double, Eigen::Dynamic, 1> widths, Eigen::Array<double, Eigen::Dynamic, 1> heights, std::string name)
 {
     int n = centers.rows();
 
@@ -86,17 +86,17 @@ Eigen::Array<SteppingStone, Eigen::Dynamic, 1> Terrain::addStones(Eigen::Array<E
     {
         std::string stone_name = (name.empty()) ? name : name + std::to_string(i);
 
-        stones(stones.rows() - n + i) = addStone(centers(i), widths(i), heights(i), stone_name);
+        stones(stones.rows() - n + i) = AddStone(centers(i), widths(i), heights(i), stone_name);
     }
 
     return stones;
 }
 
-SteppingStone const &Terrain::getStoneByName(std::string name) const
+SteppingStone const &Terrain::GetStoneByName(std::string name) const
 {
     for (int i = 0; i < stepping_stones.rows(); ++i)
     {
-        if (stepping_stones(i).getName() == name)
+        if (stepping_stones(i).GetName() == name)
         {
             return stepping_stones(i);
         }

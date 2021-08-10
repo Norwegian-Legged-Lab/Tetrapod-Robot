@@ -68,30 +68,30 @@ $(function() {
 <div class="contents">
 <div class="textblock"><p>This library can be used control Gyems RMDX Motors through Arduino and ROS using CAN. The current implementation assumes that a Teensy 4.0/4.1 microcontroller is used together with RMDX8 Pro Motors. Other Arduino capable boards and RMD X motors can be used with some configurations.</p>
 <p>The library offers the opportunity to use multiturn position control, speed control, and torque control. There also exists functions to read/write the PI parameters of the motor and to log the motor states.</p>
-<h1><a class="anchor" id="autotoc_md18"></a>
+<h1><a class="anchor" id="autotoc_md8"></a>
 Use:</h1>
 <p>TODO</p>
-<h1><a class="anchor" id="autotoc_md19"></a>
+<h1><a class="anchor" id="autotoc_md9"></a>
 Code overview:</h1>
-<h3><a class="anchor" id="autotoc_md20"></a>
+<h3><a class="anchor" id="autotoc_md10"></a>
 make_can_msg.h/cpp</h3>
 <p>The header file <a class="el" href="make__can__msg_8h_source.html">make_can_msg.h</a> contains functions that transforms the data segment of a CAN message into a CAN message that correponds to the protocols used for the motor. Please take a look at the official protocol guide for a complete description over the commands: <a href="https://www.dropbox.com/s/2yzt90i10d6dn27/RMD%20servo%20motor%20control%20protocol%20%28CAN%20BUS%20%29V1.61.pdf?dl=0">https://www.dropbox.com/s/2yzt90i10d6dn27/RMD%20servo%20motor%20control%20protocol%20%28CAN%20BUS%20%29V1.61.pdf?dl=0</a></p>
-<h3><a class="anchor" id="autotoc_md21"></a>
+<h3><a class="anchor" id="autotoc_md11"></a>
 motor_driver.h/cpp</h3>
 <p>This contains a class named <a class="el" href="classMotorControl.html">MotorControl</a>. One <a class="el" href="classMotorControl.html">MotorControl</a> object should be made for every physical motor. All communication with the motors goes through MotorClass objects.</p>
-<h3><a class="anchor" id="autotoc_md22"></a>
+<h3><a class="anchor" id="autotoc_md12"></a>
 motor_constants.h</h3>
 <p>This header file contains different constants related to the RMDX motors, both hardware and the communication protocol.</p>
-<h3><a class="anchor" id="autotoc_md23"></a>
+<h3><a class="anchor" id="autotoc_md13"></a>
 ros_node_handle.h</h3>
 <p>This file only contains a static global node handle. By declaring the node handle in this way it can easily be used by both the <a class="el" href="classMotorControl.html">MotorControl</a> class for logging and in the main file for communicating with the host PC.</p>
-<h3><a class="anchor" id="autotoc_md24"></a>
+<h3><a class="anchor" id="autotoc_md14"></a>
 teensy_can_ports.h</h3>
 <p>This file contains static definitions of the two non-FD CAN ports in the Teensy 4. This makes it possible for the different motors to access the appropriate CAN port.</p>
-<h3><a class="anchor" id="autotoc_md25"></a>
+<h3><a class="anchor" id="autotoc_md15"></a>
 main.ino</h3>
 <p>This is the script that runs on the Teensy. The script initializes the CAN ports and the ROS node.</p>
-<h1><a class="anchor" id="autotoc_md26"></a>
+<h1><a class="anchor" id="autotoc_md16"></a>
 Other comments</h1>
 <p>TODO </p>
 </div></div><!-- contents -->

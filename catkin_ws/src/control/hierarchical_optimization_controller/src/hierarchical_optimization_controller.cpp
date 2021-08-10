@@ -320,11 +320,14 @@ void HierarchicalOptimizationControl::SetBasePose(
         desired_f_acc(i).setZero();
     }
 
+    TasksToBeIncluded include_tasks;
+    include_tasks.mt_body_orientation = false;
+
     bool stance_legs[] = {true, true, true, true};
 
     double t0 = ros::Time::now().toSec();
     
-    Eigen::Matrix<double, 6, 1> errorvec;
+    Eigen::Matrix<double, 2, 1> errorvec;
 
     double error;
     double energy;
@@ -347,6 +350,8 @@ void HierarchicalOptimizationControl::SetBasePose(
                                                      this->genCoord,
                                                      this->genVel,
                                                      stance_legs,
+                                                     stance_legs,
+                                                     include_tasks,
                                                      0);
 
         auto end = std::chrono::steady_clock::now();
@@ -382,13 +387,15 @@ void HierarchicalOptimizationControl::SetBasePose(
 
         //break;
 
-        //errorvec << desired_base_pos, desired_base_ori;
+        errorvec << desired_base_pos.segment(0,2);
 
-        //errorvec -= this->genCoord.segment(0,6);
+        errorvec -= this->genCoord.segment(0,2);
 
         energy = this->genVel.segment(0, 6).norm();
 
-        if (energy > epsilon)
+        error = errorvec.norm();
+
+        if (error + energy > epsilon)
         {
             t0 = ros::Time::now().toSec();
         }
@@ -430,6 +437,8 @@ void HierarchicalOptimizationControl::TakeStep(Eigen::Vector3d end_pos, int step
 
     desired_f_pos = this->fPos;
 
+    desired_base_ori = this->genCoord.segment(3, 3);
+
     double foot_radius = 0.008;
 
     end_pos(2) += foot_radius;
@@ -452,10 +461,10 @@ void HierarchicalOptimizationControl::TakeStep(Eigen::Vector3d end_pos, int step
     support_legs[step_leg_ind] = false;
 
     TasksToBeIncluded include_tasks;
-    /*
-    include_tasks.mt_body_position = false;
+    //include_tasks.mt_body_position = false;
+    //include_tasks.cmsp = true;
     include_tasks.mt_body_orientation = false;
-    include_tasks.cmsp = true;
+    /*
     include_tasks.pt = false;
     */
     // Loop rate
@@ -536,11 +545,11 @@ void HierarchicalOptimizationControl::WalkTest()
     Terrain terrain(bool_bridge);
     //Terrain terrain;
 
-    int n_steps = 4*20;
+    int n_steps = 4*50;
 
     int n_legs = 4;
 
-    HierarchicalOptimizationControl::LegType step_sequence[] = {frontLeft, rearRight, frontRight, rearLeft};
+    HierarchicalOptimizationControl::LegType step_sequence[] = {frontLeft, rearLeft, rearRight, frontRight};
 
     double angle_divided = 2*M_PI/n_legs;
 
@@ -548,35 +557,33 @@ void HierarchicalOptimizationControl::WalkTest()
 
     double theta_0 = 0;
 
-    double angle_front_left = theta_0 + phis[front_left - 1];
+    double angle_front_left = theta_0 + phis[footstep_planner::front_left - 1];
 
-    double angle_front_right = theta_0 + phis[front_right - 1];
+    double angle_front_right = theta_0 + phis[footstep_planner::front_right - 1];
 
-    double angle_rear_left = theta_0 + phis[rear_left - 1];
+    double angle_rear_left = theta_0 + phis[footstep_planner::rear_left - 1];
 
-    double angle_rear_right = theta_0 + phis[rear_right - 1];
+    double angle_rear_right = theta_0 + phis[footstep_planner::rear_right - 1];
 
     Eigen::Matrix<Eigen::Vector3d, 4, 1> end_f_pos;
 
-    Eigen::Vector3d center(terrain.getStoneByName("goal").getCenter());
+    Eigen::Vector3d center(terrain.GetStoneByName("goal").GetCenter());
 
     double length_legs = 0.5;
 
-    end_f_pos(front_left - 1) = center + length_legs*Eigen::Vector3d(std::cos(angle_front_left), std::sin(angle_front_left), 0);
+    end_f_pos(footstep_planner::front_left - 1) = center + length_legs*Eigen::Vector3d(std::cos(angle_front_left), std::sin(angle_front_left), 0);
 
-    end_f_pos(front_right - 1) = center + length_legs*Eigen::Vector3d(std::cos(angle_front_right), std::sin(angle_front_right), 0);
+    end_f_pos(footstep_planner::front_right - 1) = center + length_legs*Eigen::Vector3d(std::cos(angle_front_right), std::sin(angle_front_right), 0);
 
-    end_f_pos(rear_left - 1) = center + length_legs*Eigen::Vector3d(std::cos(angle_rear_left), std::sin(angle_rear_left), 0);
+    end_f_pos(footstep_planner::rear_left - 1) = center + length_legs*Eigen::Vector3d(std::cos(angle_rear_left), std::sin(angle_rear_left), 0);
 
-    end_f_pos(rear_right - 1) = center + length_legs*Eigen::Vector3d(std::cos(angle_rear_right), std::sin(angle_rear_right), 0);
+    end_f_pos(footstep_planner::rear_right - 1) = center + length_legs*Eigen::Vector3d(std::cos(angle_rear_right), std::sin(angle_rear_right), 0);
 
     double desired_height = 0.26;
 
-    std::cout << this->fPos(0) << std::endl;
-
-    ros::Duration(5).sleep();
-
     PlannedWalk(end_f_pos, desired_height, terrain, n_steps, step_sequence);
+
+    StaticTorqueTest();
 }
 
 void HierarchicalOptimizationControl::PlannedWalk(const Eigen::Matrix<Eigen::Vector3d, 4, 1> &end_f_pos, double desired_height, Terrain terrain, int n_steps, LegType step_sequence[])
@@ -585,9 +592,9 @@ void HierarchicalOptimizationControl::PlannedWalk(const Eigen::Matrix<Eigen::Vec
 
     Eigen::Vector3d desired_base_ori = this->genCoord.segment(3,3);
 
-    Eigen::MatrixXd foot_points = GetSteps(end_f_pos, terrain, n_steps, step_sequence);
-
     ros::Publisher footstep_pub = rosNode->advertise<geometry_msgs::PoseArray>("/footstep_planner/footstep_plan", 1000);
+
+    Eigen::MatrixXd foot_points = GetSteps(end_f_pos, terrain, n_steps, step_sequence);
 
     ros::Duration(1).sleep();
 
@@ -595,7 +602,7 @@ void HierarchicalOptimizationControl::PlannedWalk(const Eigen::Matrix<Eigen::Vec
 
     footstep_pub.publish(msg);    
 
-    Eigen::Matrix<double, Eigen::Dynamic, 2> base_res = support_polytope_base_planner(foot_points, init_base_pos.segment(0,2), true);
+    Eigen::Matrix<double, Eigen::Dynamic, 2> base_res = support_polytope_base_planner::PlanSequence(foot_points, init_base_pos.segment(0,2), true);
 
     Eigen::Matrix<double, Eigen::Dynamic, 3> base_pos = Eigen::Matrix<double, Eigen::Dynamic, 3>::Constant(base_res.rows(), 3, desired_height);
 
@@ -603,7 +610,7 @@ void HierarchicalOptimizationControl::PlannedWalk(const Eigen::Matrix<Eigen::Vec
 
     int n_moving_steps = base_pos.rows() - 1;
 
-    SetBasePose(base_pos.row(0).transpose(), desired_base_ori);
+    SetBasePose(base_pos.row(0).transpose(), desired_base_ori, 0.02, 0.5);
 
     ROS_INFO_STREAM("ready to begin walk");
 
@@ -614,13 +621,14 @@ void HierarchicalOptimizationControl::PlannedWalk(const Eigen::Matrix<Eigen::Vec
         
         desired_base_ori(2) = nominalOrientation(base_pos.row(i + 1).transpose(), this->fPos, angle_offsets);
         
-        SetBasePose(base_pos.row(i + 1).transpose(), desired_base_ori, 0.005, 0.05);
+        SetBasePose(base_pos.row(i + 1).transpose(), desired_base_ori, 0.04, 0.01);
         /*
         bool support_legs[] = {true, true, true, true};
         support_legs[step_sequence[i % 4] - 1] = false;
         ReachSupport(support_legs, desired_base_ori, 0.005, 0.1);
         */
-        TakeStep(foot_points.row(i + 4).transpose(), step_sequence[i % 4] - 1, 1, 0.05);
+        TakeStep(foot_points.row(i + 4).transpose(), step_sequence[i % 4] - 1, 1.5, 0.05);
+        SetBasePose(this->genCoord.segment(0,3), this->genCoord.segment(3,3), 0.04, 0.01);
     }
 }
 
@@ -638,25 +646,28 @@ Eigen::MatrixXd HierarchicalOptimizationControl::GetSteps(const Eigen::Matrix<Ei
 
     double step_height = 0.2;
 
-    double length_legs = 0.5;
+    double length_legs = 0.45;
 
-    double bbox_len = 0.3;
+    double bbox_len = 0.25;
 
     int n_legs = 4;
 
-    miqp::quadruped::LegType step_sequence_miqp[4];
+    double ledge_margin = 0.05;
+
+    footstep_planner::LegType step_sequence_footstep_planner[4];
     for (int i = 0; i < 4; ++i)
     {
-        step_sequence_miqp[i] = miqp::quadruped::LegType(step_sequence[i]);
+        step_sequence_footstep_planner[i] = footstep_planner::LegType(step_sequence[i]);
     }
 
-    DecVars_res res = footstep_planner(terrain, init_f_pos, end_f_pos, n_steps, 4, length_legs, step_sequence_miqp, bbox_len, step_span, step_height, true, true);
+    footstep_planner::DecVarsRes res = footstep_planner::PlanSequence(terrain, init_f_pos, end_f_pos, n_steps, 4, length_legs, step_sequence_footstep_planner, bbox_len, step_span, step_height, ledge_margin, true, true);
     if (res.success) {
         return res.position_ts;
     }
     else
     {
-        res = footstep_planner(terrain, init_f_pos, end_f_pos, n_steps, 4, length_legs, step_sequence_miqp, bbox_len, step_span, step_height, false, true);
+        n_steps = 4*15;
+        res = footstep_planner::PlanSequence(terrain, init_f_pos, end_f_pos, n_steps, 4, length_legs, step_sequence_footstep_planner, bbox_len, step_span, step_height, ledge_margin, false, true);
         return res.position_ts;
     }
 }
@@ -895,26 +906,26 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     double mu = 0.6;
 
     // Motion tracking gains
-    Eigen::Matrix3d k_p_fb_pos = 15*Eigen::Matrix3d::Identity(); // Floating base position proportional gain
-    Eigen::Matrix3d k_d_fb_pos = 6*Eigen::Matrix3d::Identity(); // Floating base position derivative gain
+    Eigen::Matrix3d k_p_fb_pos = 45*Eigen::Matrix3d::Identity(); // Floating base position proportional gain
+    Eigen::Matrix3d k_d_fb_pos = 18*Eigen::Matrix3d::Identity(); // Floating base position derivative gain
     Eigen::Matrix3d k_p_fb_rot = 30*Eigen::Matrix3d::Identity(); // Floating base rotation proportional gain
-    Eigen::Matrix3d k_d_fb_rot = 10*Eigen::Matrix3d::Identity(); // Floating base rotation proportional gain
-    Eigen::Matrix3d k_p_fl = 15*Eigen::Matrix3d::Identity();     // Front left foot proportional gain
-    Eigen::Matrix3d k_d_fl = 6*Eigen::Matrix3d::Identity();     // Front left foot derivative gain
-    Eigen::Matrix3d k_p_fr = 15*Eigen::Matrix3d::Identity();     // Front right foot proportional gain
-    Eigen::Matrix3d k_d_fr = 6*Eigen::Matrix3d::Identity();     // Front right foot derivative gain
-    Eigen::Matrix3d k_p_rl = 15*Eigen::Matrix3d::Identity();     // Rear left foot proportional gain
-    Eigen::Matrix3d k_d_rl = 6*Eigen::Matrix3d::Identity();     // Rear left foot derivative gain
-    Eigen::Matrix3d k_p_rr = 15*Eigen::Matrix3d::Identity();     // Rear right foot proportional gain
-    Eigen::Matrix3d k_d_rr = 6*Eigen::Matrix3d::Identity();     // Rear right foot derivative gain
+    Eigen::Matrix3d k_d_fb_rot = 18*Eigen::Matrix3d::Identity(); // Floating base rotation proportional gain
+    Eigen::Matrix3d k_p_fl = 30*Eigen::Matrix3d::Identity();     // Front left foot proportional gain
+    Eigen::Matrix3d k_d_fl = 10*Eigen::Matrix3d::Identity();     // Front left foot derivative gain
+    Eigen::Matrix3d k_p_fr = 30*Eigen::Matrix3d::Identity();     // Front right foot proportional gain
+    Eigen::Matrix3d k_d_fr = 10*Eigen::Matrix3d::Identity();     // Front right foot derivative gain
+    Eigen::Matrix3d k_p_rl = 30*Eigen::Matrix3d::Identity();     // Rear left foot proportional gain
+    Eigen::Matrix3d k_d_rl = 10*Eigen::Matrix3d::Identity();     // Rear left foot derivative gain
+    Eigen::Matrix3d k_p_rr = 30*Eigen::Matrix3d::Identity();     // Rear right foot proportional gain
+    Eigen::Matrix3d k_d_rr = 10*Eigen::Matrix3d::Identity();     // Rear right foot derivative gain
 
     // Posture tracking gains
-    Eigen::Matrix<double, 12, 12> k_p_pt = 15*Eigen::Matrix<double, 12, 12>::Identity();      // Posture tracking proportional gain
-    Eigen::Matrix<double, 12, 12> k_d_pt = 6*Eigen::Matrix<double, 12, 12>::Identity();      // Posture tracking derivative gain
+    Eigen::Matrix<double, 12, 12> k_p_pt = 30*Eigen::Matrix<double, 12, 12>::Identity();      // Posture tracking proportional gain
+    Eigen::Matrix<double, 12, 12> k_d_pt = 24*Eigen::Matrix<double, 12, 12>::Identity();      // Posture tracking derivative gain
 
     // Support polygon gains
     double k_p_sp = 15;
-    Eigen::Matrix3d k_d_sp = 3*Eigen::Matrix3d::Identity(); // Support polygon position derivative gain
+    Eigen::Matrix3d k_d_sp = 4*Eigen::Matrix3d::Identity(); // Support polygon position derivative gain
     //*************************************************************************************
     // Updates
     //*************************************************************************************
@@ -1068,6 +1079,19 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     //           math_utils::degToRad(40),
     //           math_utils::degToRad(35);
 
+    /*q_r_nom << math_utils::degToRad(45),
+                math_utils::degToRad(40),
+                math_utils::degToRad(35),
+                math_utils::degToRad(-45),
+                math_utils::degToRad(-40),
+                math_utils::degToRad(-35),
+                math_utils::degToRad(135),
+                math_utils::degToRad(-40),
+                math_utils::degToRad(-35),
+                math_utils::degToRad(-135),
+                math_utils::degToRad(40),
+                math_utils::degToRad(35),
+                */
     // Update terms used by the contact force and torque limits
     rotationWToC = kinematics.GetRotationMatrixWToC(0, 0, _q(5));
 
@@ -1180,6 +1204,17 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     t_pt.A_eq.block(0, 6, 12, 12).setIdentity();
     t_pt.A_eq.rightCols(3*n_c).setZero();
     t_pt.b_eq = k_p_pt * (q_r_nom - _q.bottomRows(12)) + k_d_pt * (-_u.bottomRows(12));
+    /*
+    t_pt.b_eq(1) = 0;
+    t_pt.b_eq(4) = 0;
+    t_pt.b_eq(7) = 0;
+    t_pt.b_eq(10) = 0;
+    
+    t_pt.A_eq(1, 7) = 0;
+    t_pt.A_eq(4, 10) = 0;
+    t_pt.A_eq(7, 13) = 0;
+    t_pt.A_eq(10, 16) = 0;
+    */
 
     // Update contact force minimization task
     t_cfm.A_eq.leftCols(18).setZero();
@@ -1206,14 +1241,14 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     Polytope support_polytope(support_points_2d, support_margin);
 
     k_p_sp = 1;
-    t_cmsp.A_ineq.block(0, 0, 3, 2) = k_p_sp*support_polytope.getA();
-    t_cmsp.b_ineq = k_p_sp*support_polytope.getB();
+    t_cmsp.A_ineq.block(0, 0, 3, 2) = k_p_sp*support_polytope.GetA();
+    t_cmsp.b_ineq = k_p_sp*support_polytope.GetB();
 
     t_cmsp.A_eq.block(0, 0, 3, state_dim).leftCols(18) = J_P_fb;
     t_cmsp.A_eq.block(0, 0, 3, state_dim).rightCols(3*n_c).setZero();
     t_cmsp.b_eq.block(0, 0, 3, 1) = k_d_sp * (- _u.topRows(3)) - dot_J_P_fb * _u;
     
-    t_cmsp.b_eq.block(2, 0, 1, 1) += k_p_fb_pos.block(2,2,1,1)*(0.25 - _q(2));
+    //t_cmsp.b_eq.block(2, 0, 1, 1) += k_p_fb_pos.block(2,2,1,1)*(0.25 - _q(2));
 
     // Update task constraint setting
     t_eom.has_eq_constraint = true;

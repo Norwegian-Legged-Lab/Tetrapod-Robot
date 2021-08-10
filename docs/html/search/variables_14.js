@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['world_983',['world',['../classgazebo_1_1SingleLegPlugin.html#a81ddad66c47b8124197190093ecdc39e',1,'gazebo::SingleLegPlugin::world()'],['../classgazebo_1_1TetrapodPlugin.html#ae6a6dcf9551776b99ddefa1e1499c9cf',1,'gazebo::TetrapodPlugin::world()']]]
+  ['x_5fnominal_968',['x_nominal',['../classSingleLegController.html#afdba1143d0827abef078b2102e2171b4',1,'SingleLegController']]],
+  ['x_5fstep_5fdistance_969',['x_step_distance',['../classSingleLegController.html#a8e0450f49760446ecc4c01a2d4e13d6b',1,'SingleLegController']]]
 ];

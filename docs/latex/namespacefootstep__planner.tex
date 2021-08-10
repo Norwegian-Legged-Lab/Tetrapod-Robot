@@ -1,0 +1,400 @@
+\hypertarget{namespacefootstep__planner}{}\doxysection{footstep\+\_\+planner Namespace Reference}
+\label{namespacefootstep__planner}\index{footstep\_planner@{footstep\_planner}}
+
+
+A namespace containing functionality for the footstep planning algorithm.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structfootstep__planner_1_1DecVars}{Dec\+Vars}}
+\item 
+struct \mbox{\hyperlink{structfootstep__planner_1_1DecVarsRes}{Dec\+Vars\+Res}}
+\item 
+struct \mbox{\hyperlink{structfootstep__planner_1_1DecVarsResRaw}{Dec\+Vars\+Res\+Raw}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{namespacefootstep__planner_ab615e753260ade9e2d21442f3afa7f60}\label{namespacefootstep__planner_ab615e753260ade9e2d21442f3afa7f60}} 
+enum {\bfseries Leg\+Type} \{ \newline
+{\bfseries front\+\_\+left} =1, 
+{\bfseries front\+\_\+right} =2, 
+{\bfseries rear\+\_\+left} =3, 
+{\bfseries rear\+\_\+right} =4, 
+\newline
+{\bfseries N\+O\+NE}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structfootstep__planner_1_1DecVarsRes}{Dec\+Vars\+Res}} \mbox{\hyperlink{namespacefootstep__planner_a8b15fb3227f056244a4302138f1b7334}{Plan\+Sequence}} (\mbox{\hyperlink{classTerrain}{Terrain}} \&terrain, Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ init\+\_\+f\+\_\+pos, Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ goal\+\_\+f\+\_\+pos, int n\+\_\+steps, int n\+\_\+legs, double length\+\_\+legs, Leg\+Type step\+\_\+sequence\mbox{[}$\,$\mbox{]}, double bbox\+\_\+len=0.\+3, double step\+\_\+span=0.\+5, double step\+\_\+height=0.\+2, double ledge\+\_\+margin=0, bool enforce\+\_\+goal\+\_\+hard=true, bool use\+\_\+gurobi=true)
+\begin{DoxyCompactList}\small\item\em the Plan\+Sequence function finds the optimal sequence of footholds to get from a given initial position to or as close as possible to a given goal position. This is done using a mixed-\/integer quadratic formulation to yield a convex problem in the face of non-\/convex or non-\/connected permissible stepping areas. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structfootstep__planner_1_1DecVars}{Dec\+Vars}} \mbox{\hyperlink{namespacefootstep__planner_a1428c13b5c1069d25c9e583eea43011b}{Add\+Decision\+Variables}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, \mbox{\hyperlink{classTerrain}{Terrain}} \&terrain, int n\+\_\+steps, int n\+\_\+legs)
+\begin{DoxyCompactList}\small\item\em The Add\+Decision\+Variables function adds decision variables to a mathematical program. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacefootstep__planner_a6bb0b7535ac6f6d845cd6b93d4ef644c}{Initial\+And\+Goal\+Position\+Constraints}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ init\+\_\+f\+\_\+pos, Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ goal\+\_\+f\+\_\+pos, int n\+\_\+steps, double length\+\_\+legs, Leg\+Type step\+\_\+sequence\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{structfootstep__planner_1_1DecVars}{Dec\+Vars}} \&decision\+\_\+variables, bool enforce\+\_\+goal\+\_\+hard=true)
+\begin{DoxyCompactList}\small\item\em The Initial\+And\+Goal\+Position\+Constraints function adds equality constraints for initial and goal positions to a mathematical program. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacefootstep__planner_a9daded03dacfd9917c1a7a283376ef91}{Geometry\+Constraints}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, int n\+\_\+steps, int n\+\_\+legs, double length\+\_\+legs, Leg\+Type step\+\_\+sequence\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{classTerrain}{Terrain}} \&terrain, double bbox\+\_\+len, \mbox{\hyperlink{structfootstep__planner_1_1DecVars}{Dec\+Vars}} \&decision\+\_\+variables)
+\begin{DoxyCompactList}\small\item\em The Geometry\+Constraints function adds inequality constraints for keeping the leg configuration in the vicinity of a nominal configuration. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacefootstep__planner_ac3151365dfdffe0aae2608d9fa5627cc}{Theta\+Constraints}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, int n\+\_\+steps, int n\+\_\+legs, \mbox{\hyperlink{structfootstep__planner_1_1DecVars}{Dec\+Vars}} \&decision\+\_\+variables)
+\begin{DoxyCompactList}\small\item\em the Theta\+Constraints function adds constraints related to the linearized trigonometric functions used in the problem. These are used to approximate the nominal position of each leg given an angle theta. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacefootstep__planner_afbafac7d3fba965264530775186e72c1}{Relative\+Position\+Constraints}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, int n\+\_\+steps, int n\+\_\+legs, double step\+\_\+span, double step\+\_\+height, \mbox{\hyperlink{structfootstep__planner_1_1DecVars}{Dec\+Vars}} \&decision\+\_\+variables)
+\begin{DoxyCompactList}\small\item\em the Relative\+Position\+Constraints function adds inequality constraints to enforce the maximum length a step can have. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacefootstep__planner_a317c80c3880c63a44e03b7951fd45a43}{One\+Stone\+Per\+Foot\+Constraints}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, int n\+\_\+steps, \mbox{\hyperlink{structfootstep__planner_1_1DecVars}{Dec\+Vars}} \&decision\+\_\+variables)
+\begin{DoxyCompactList}\small\item\em the One\+Stone\+Per\+Foot\+Constraints function adds equality constraints to ensure a footstep to be in only one permissible area. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector4d \mbox{\hyperlink{namespacefootstep__planner_a9bc5f1b6f14342425d4bed08c837ab8f}{Get\+BigM}} (\mbox{\hyperlink{classTerrain}{Terrain}} terrain)
+\begin{DoxyCompactList}\small\item\em the Get\+BigM function is returns a suitable M for the big-\/\+M-\/method given a set of permissible areas. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacefootstep__planner_a7f6763f1e994218a0639b2f0aacd7a97}{Foot\+In\+Stepping\+Stone\+Constraints}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, \mbox{\hyperlink{classTerrain}{Terrain}} \&terrain, int n\+\_\+steps, \mbox{\hyperlink{structfootstep__planner_1_1DecVars}{Dec\+Vars}} \&decision\+\_\+variables, double ledge\+\_\+margin=0)
+\begin{DoxyCompactList}\small\item\em the Foot\+In\+Stepping\+Stone\+Constraints function adds inequality constraints to ensure that a footstep is within the bounds of the permissible area the corresponding binary variables determines it is in. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacefootstep__planner_a18d4887db7b4942808ab2c1f4aa7766a}{Step\+Length\+Minimization}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, int n\+\_\+steps, int n\+\_\+legs, \mbox{\hyperlink{structfootstep__planner_1_1DecVars}{Dec\+Vars}} \&decision\+\_\+variables)
+\begin{DoxyCompactList}\small\item\em the Step\+Length\+Minimization function adds a quadratic cost for the length of each step, to incentivize shorter steps. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacefootstep__planner_a2abc9ba064d05ed0a79d2b8d89894251}{Remaining\+Length\+Minimization}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, \mbox{\hyperlink{classTerrain}{Terrain}} \&terrain, int n\+\_\+steps, int n\+\_\+legs, \mbox{\hyperlink{structfootstep__planner_1_1DecVars}{Dec\+Vars}} \&decision\+\_\+variables)
+\begin{DoxyCompactList}\small\item\em the Remaining\+Length\+Minimization function adds a quadratic cost for the length from the last position of each foot to its corresponding goal position. This might be used as an alternative to a hard equality constraint, in order to avoid an infeasible problem. \end{DoxyCompactList}\item 
+Eigen\+::\+Array$<$ Eigen\+::\+Matrix\+Xd, Eigen\+::\+Dynamic, 1 $>$ \mbox{\hyperlink{namespacefootstep__planner_a02228c3588748167a092db5ad79e6612}{Get\+Uncompressed\+Arrays}} (Eigen\+::\+Matrix\+Xd \&arr, int n\+\_\+steps, int n\+\_\+legs, Leg\+Type step\+\_\+sequence\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em the Get\+Uncompressed\+Arrays function converts an array containing only the new position of the moving foot, into a timeseries for each foot. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structfootstep__planner_1_1DecVarsRes}{Dec\+Vars\+Res}} \mbox{\hyperlink{namespacefootstep__planner_a8d6b1bc1b1470ee9888f678a92bf45c6}{Get\+Dec\+Vars\+Res}} (\mbox{\hyperlink{structfootstep__planner_1_1DecVarsResRaw}{Dec\+Vars\+Res\+Raw}} \&decision\+\_\+variables\+\_\+raw, int n\+\_\+steps, int n\+\_\+legs, Leg\+Type step\+\_\+sequence\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em the Get\+Dec\+Vars\+Res function converts a struct containing the solution from the program, into a solution for each leg. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacefootstep__planner_a3e5d8ce7716164ffb40f497ee5bac6ee}{Write\+Dec\+Vars\+To\+File}} (\mbox{\hyperlink{structfootstep__planner_1_1DecVarsRes}{Dec\+Vars\+Res}} \&decision\+\_\+variables, std\+::string base\+\_\+name=\char`\"{}footstep\+\_\+planner\char`\"{})
+\begin{DoxyCompactList}\small\item\em the Write\+Dec\+Vars\+To\+File function writes the matrices containing the solutions for each leg to csv-\/files at a specified path. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A namespace containing functionality for the footstep planning algorithm. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacefootstep__planner_a8b15fb3227f056244a4302138f1b7334}\label{namespacefootstep__planner_a8b15fb3227f056244a4302138f1b7334}} 
+\index{footstep\_planner@{footstep\_planner}!PlanSequence@{PlanSequence}}
+\index{PlanSequence@{PlanSequence}!footstep\_planner@{footstep\_planner}}
+\doxysubsubsection{\texorpdfstring{PlanSequence()}{PlanSequence()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structfootstep__planner_1_1DecVarsRes}{Dec\+Vars\+Res}} footstep\+\_\+planner\+::\+Plan\+Sequence (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classTerrain}{Terrain}} \&}]{terrain,  }\item[{Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$}]{init\+\_\+f\+\_\+pos,  }\item[{Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$}]{goal\+\_\+f\+\_\+pos,  }\item[{int}]{n\+\_\+steps,  }\item[{int}]{n\+\_\+legs,  }\item[{double}]{length\+\_\+legs,  }\item[{Leg\+Type}]{step\+\_\+sequence\mbox{[}$\,$\mbox{]},  }\item[{double}]{bbox\+\_\+len = {\ttfamily 0.3},  }\item[{double}]{step\+\_\+span = {\ttfamily 0.5},  }\item[{double}]{step\+\_\+height = {\ttfamily 0.2},  }\item[{double}]{ledge\+\_\+margin = {\ttfamily 0},  }\item[{bool}]{enforce\+\_\+goal\+\_\+hard = {\ttfamily true},  }\item[{bool}]{use\+\_\+gurobi = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+the Plan\+Sequence function finds the optimal sequence of footholds to get from a given initial position to or as close as possible to a given goal position. This is done using a mixed-\/integer quadratic formulation to yield a convex problem in the face of non-\/convex or non-\/connected permissible stepping areas. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em terrain} & \mbox{\hyperlink{classTerrain}{Terrain}} describing the set of permissible areas in which to place a foothold. \\
+\hline
+\mbox{\texttt{ in}}  & {\em init\+\_\+f\+\_\+pos} & Initial position of feet, given in the order in which they are to move. \\
+\hline
+\mbox{\texttt{ in}}  & {\em goal\+\_\+f\+\_\+pos} & Goal position of feet, given in the order in which they are to move. \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+\_\+steps} & Number of steps in total, including both initial positions and goal positions. \\
+\hline
+\mbox{\texttt{ in}}  & {\em length\+\_\+legs} & Length from the center of the robot to the nominal position of each foot in the X\+Y-\/plane. \\
+\hline
+\mbox{\texttt{ in}}  & {\em step\+\_\+sequence} & Sequence defining the order in which the legs are to move. \\
+\hline
+\mbox{\texttt{ in}}  & {\em bbox\+\_\+len} & Side length of bounding box around nominal leg position in which a foot is allowed to be placed. \\
+\hline
+\mbox{\texttt{ in}}  & {\em step\+\_\+span} & Side length of bounding box around leg position limiting the area to which it may move. \\
+\hline
+\mbox{\texttt{ in}}  & {\em step\+\_\+height} & Maximum allowed height difference between a given leg before and after moving. \\
+\hline
+\mbox{\texttt{ in}}  & {\em ledge\+\_\+margin} & Margin to edge of each permissible area which each foothold must be within. \\
+\hline
+\mbox{\texttt{ in}}  & {\em enforce\+\_\+goal\+\_\+hard} & Parameter for toggling whether the final position is imposed as an equality constraint, or if the distance from the last foot position to the goal is imposed as a cost. \\
+\hline
+\mbox{\texttt{ in}}  & {\em use\+\_\+gurobi} & Parameter for toggling whether to use the Gurobi proprietary solver or the branch-\/and-\/bound solver freely available with Drake. The Gurobi solver is in practice necessary for even a moderate number of steps, but requires a license and building drake from source. Academic/\+Non-\/commercial license is freely available. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a struct containing the solution to the optimization problem if such a solution is found, as well as a boolean indicating whether a solution was found. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacefootstep__planner_a1428c13b5c1069d25c9e583eea43011b}\label{namespacefootstep__planner_a1428c13b5c1069d25c9e583eea43011b}} 
+\index{footstep\_planner@{footstep\_planner}!AddDecisionVariables@{AddDecisionVariables}}
+\index{AddDecisionVariables@{AddDecisionVariables}!footstep\_planner@{footstep\_planner}}
+\doxysubsubsection{\texorpdfstring{AddDecisionVariables()}{AddDecisionVariables()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structfootstep__planner_1_1DecVars}{Dec\+Vars}} footstep\+\_\+planner\+::\+Add\+Decision\+Variables (\begin{DoxyParamCaption}\item[{drake\+::solvers\+::\+Mathematical\+Program \&}]{prog,  }\item[{\mbox{\hyperlink{classTerrain}{Terrain}} \&}]{terrain,  }\item[{int}]{n\+\_\+steps,  }\item[{int}]{n\+\_\+legs }\end{DoxyParamCaption})}
+
+
+
+The Add\+Decision\+Variables function adds decision variables to a mathematical program. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em prog} & The mathematical program object to which decision variables are added. \\
+\hline
+\mbox{\texttt{ in}}  & {\em terrain} & The terrain for which a sequence of footsteps is made. \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+\_\+steps} & Number of footsteps the plan consists of. \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+\_\+legs} & Number of legs the robot posesses. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a struct containing the decision variables of the mathematical program. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacefootstep__planner_a6bb0b7535ac6f6d845cd6b93d4ef644c}\label{namespacefootstep__planner_a6bb0b7535ac6f6d845cd6b93d4ef644c}} 
+\index{footstep\_planner@{footstep\_planner}!InitialAndGoalPositionConstraints@{InitialAndGoalPositionConstraints}}
+\index{InitialAndGoalPositionConstraints@{InitialAndGoalPositionConstraints}!footstep\_planner@{footstep\_planner}}
+\doxysubsubsection{\texorpdfstring{InitialAndGoalPositionConstraints()}{InitialAndGoalPositionConstraints()}}
+{\footnotesize\ttfamily void footstep\+\_\+planner\+::\+Initial\+And\+Goal\+Position\+Constraints (\begin{DoxyParamCaption}\item[{drake\+::solvers\+::\+Mathematical\+Program \&}]{prog,  }\item[{Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$}]{init\+\_\+f\+\_\+pos,  }\item[{Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$}]{goal\+\_\+f\+\_\+pos,  }\item[{int}]{n\+\_\+steps,  }\item[{double}]{length\+\_\+legs,  }\item[{Leg\+Type}]{step\+\_\+sequence\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{structfootstep__planner_1_1DecVars}{Dec\+Vars}} \&}]{decision\+\_\+variables,  }\item[{bool}]{enforce\+\_\+goal\+\_\+hard = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+The Initial\+And\+Goal\+Position\+Constraints function adds equality constraints for initial and goal positions to a mathematical program. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em prog} & The mathematical program object to which equality constraints are added. \\
+\hline
+\mbox{\texttt{ in}}  & {\em init\+\_\+f\+\_\+pos} & Initial position of feet, given in the order in which they are to move. \\
+\hline
+\mbox{\texttt{ in}}  & {\em goal\+\_\+f\+\_\+pos} & Goal position of feet, given in the order in which they are to move. \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+\_\+steps} & Number of steps in total, including both initial positions and goal positions. \\
+\hline
+\mbox{\texttt{ in}}  & {\em length\+\_\+legs} & Length from the center of the robot to the nominal position of each foot in the X\+Y-\/plane. \\
+\hline
+\mbox{\texttt{ in}}  & {\em step\+\_\+sequence} & Sequence defining the order in which the legs are to move. \\
+\hline
+\mbox{\texttt{ in}}  & {\em decision\+\_\+variables} & A struct containing the decision variables of the mathematical program. \\
+\hline
+\mbox{\texttt{ in}}  & {\em enforce\+\_\+goal\+\_\+hard} & Parameter for toggling whether the final position is imposed as an equality constraint, or if the distance from the last foot position to the goal is imposed as a cost. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacefootstep__planner_a9daded03dacfd9917c1a7a283376ef91}\label{namespacefootstep__planner_a9daded03dacfd9917c1a7a283376ef91}} 
+\index{footstep\_planner@{footstep\_planner}!GeometryConstraints@{GeometryConstraints}}
+\index{GeometryConstraints@{GeometryConstraints}!footstep\_planner@{footstep\_planner}}
+\doxysubsubsection{\texorpdfstring{GeometryConstraints()}{GeometryConstraints()}}
+{\footnotesize\ttfamily void footstep\+\_\+planner\+::\+Geometry\+Constraints (\begin{DoxyParamCaption}\item[{drake\+::solvers\+::\+Mathematical\+Program \&}]{prog,  }\item[{int}]{n\+\_\+steps,  }\item[{int}]{n\+\_\+legs,  }\item[{double}]{length\+\_\+legs,  }\item[{Leg\+Type}]{step\+\_\+sequence\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{classTerrain}{Terrain}} \&}]{terrain,  }\item[{double}]{bbox\+\_\+len,  }\item[{\mbox{\hyperlink{structfootstep__planner_1_1DecVars}{Dec\+Vars}} \&}]{decision\+\_\+variables }\end{DoxyParamCaption})}
+
+
+
+The Geometry\+Constraints function adds inequality constraints for keeping the leg configuration in the vicinity of a nominal configuration. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em prog} & The mathematical program object to which inequality constraints are added. \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+\_\+steps} & Number of steps in total, including both initial positions and goal positions. \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+\_\+legs} & Number of legs the robot posesses. \\
+\hline
+\mbox{\texttt{ in}}  & {\em length\+\_\+legs} & Length from the center of the robot to the nominal position of each foot in the X\+Y-\/plane. \\
+\hline
+\mbox{\texttt{ in}}  & {\em step\+\_\+sequence} & Sequence defining the order in which the legs are to move. \\
+\hline
+\mbox{\texttt{ in}}  & {\em terrain} & \mbox{\hyperlink{classTerrain}{Terrain}} describing the set of permissible areas in which to place a foothold. \\
+\hline
+\mbox{\texttt{ in}}  & {\em bbox\+\_\+len} & Side length of bounding box around nominal leg position in which a foot is allowed to be placed. \\
+\hline
+\mbox{\texttt{ in}}  & {\em decision\+\_\+variables} & A struct containing the decision variables of the mathematical program. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacefootstep__planner_ac3151365dfdffe0aae2608d9fa5627cc}\label{namespacefootstep__planner_ac3151365dfdffe0aae2608d9fa5627cc}} 
+\index{footstep\_planner@{footstep\_planner}!ThetaConstraints@{ThetaConstraints}}
+\index{ThetaConstraints@{ThetaConstraints}!footstep\_planner@{footstep\_planner}}
+\doxysubsubsection{\texorpdfstring{ThetaConstraints()}{ThetaConstraints()}}
+{\footnotesize\ttfamily void footstep\+\_\+planner\+::\+Theta\+Constraints (\begin{DoxyParamCaption}\item[{drake\+::solvers\+::\+Mathematical\+Program \&}]{prog,  }\item[{int}]{n\+\_\+steps,  }\item[{int}]{n\+\_\+legs,  }\item[{\mbox{\hyperlink{structfootstep__planner_1_1DecVars}{Dec\+Vars}} \&}]{decision\+\_\+variables }\end{DoxyParamCaption})}
+
+
+
+the Theta\+Constraints function adds constraints related to the linearized trigonometric functions used in the problem. These are used to approximate the nominal position of each leg given an angle theta. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em prog} & The mathematical program object to which constraints are added. \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+\_\+steps} & Number of steps in total, including both initial positions and goal positions. \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+\_\+legs} & Number of legs the robot posesses. \\
+\hline
+\mbox{\texttt{ in}}  & {\em decision\+\_\+variables} & A struct containing the decision variables of the mathematical program. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacefootstep__planner_afbafac7d3fba965264530775186e72c1}\label{namespacefootstep__planner_afbafac7d3fba965264530775186e72c1}} 
+\index{footstep\_planner@{footstep\_planner}!RelativePositionConstraints@{RelativePositionConstraints}}
+\index{RelativePositionConstraints@{RelativePositionConstraints}!footstep\_planner@{footstep\_planner}}
+\doxysubsubsection{\texorpdfstring{RelativePositionConstraints()}{RelativePositionConstraints()}}
+{\footnotesize\ttfamily void footstep\+\_\+planner\+::\+Relative\+Position\+Constraints (\begin{DoxyParamCaption}\item[{drake\+::solvers\+::\+Mathematical\+Program \&}]{prog,  }\item[{int}]{n\+\_\+steps,  }\item[{int}]{n\+\_\+legs,  }\item[{double}]{step\+\_\+span,  }\item[{double}]{step\+\_\+height,  }\item[{\mbox{\hyperlink{structfootstep__planner_1_1DecVars}{Dec\+Vars}} \&}]{decision\+\_\+variables }\end{DoxyParamCaption})}
+
+
+
+the Relative\+Position\+Constraints function adds inequality constraints to enforce the maximum length a step can have. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em prog} & The mathematical program object to which constraints are added. \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+\_\+steps} & Number of steps in total, including both initial positions and goal positions. \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+\_\+legs} & Number of legs the robot posesses. \\
+\hline
+\mbox{\texttt{ in}}  & {\em step\+\_\+span} & Side length of bounding box around leg position limiting the area to which it may move. \\
+\hline
+\mbox{\texttt{ in}}  & {\em step\+\_\+height} & Maximum allowed height difference between a given leg before and after moving. \\
+\hline
+\mbox{\texttt{ in}}  & {\em decision\+\_\+variables} & A struct containing the decision variables of the mathematical program. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacefootstep__planner_a317c80c3880c63a44e03b7951fd45a43}\label{namespacefootstep__planner_a317c80c3880c63a44e03b7951fd45a43}} 
+\index{footstep\_planner@{footstep\_planner}!OneStonePerFootConstraints@{OneStonePerFootConstraints}}
+\index{OneStonePerFootConstraints@{OneStonePerFootConstraints}!footstep\_planner@{footstep\_planner}}
+\doxysubsubsection{\texorpdfstring{OneStonePerFootConstraints()}{OneStonePerFootConstraints()}}
+{\footnotesize\ttfamily void footstep\+\_\+planner\+::\+One\+Stone\+Per\+Foot\+Constraints (\begin{DoxyParamCaption}\item[{drake\+::solvers\+::\+Mathematical\+Program \&}]{prog,  }\item[{int}]{n\+\_\+steps,  }\item[{\mbox{\hyperlink{structfootstep__planner_1_1DecVars}{Dec\+Vars}} \&}]{decision\+\_\+variables }\end{DoxyParamCaption})}
+
+
+
+the One\+Stone\+Per\+Foot\+Constraints function adds equality constraints to ensure a footstep to be in only one permissible area. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em prog} & The mathematical program object to which constraints are added. \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+\_\+steps} & Number of steps in total, including both initial positions and goal positions. \\
+\hline
+\mbox{\texttt{ in}}  & {\em decision\+\_\+variables} & A struct containing the decision variables of the mathematical program. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacefootstep__planner_a9bc5f1b6f14342425d4bed08c837ab8f}\label{namespacefootstep__planner_a9bc5f1b6f14342425d4bed08c837ab8f}} 
+\index{footstep\_planner@{footstep\_planner}!GetBigM@{GetBigM}}
+\index{GetBigM@{GetBigM}!footstep\_planner@{footstep\_planner}}
+\doxysubsubsection{\texorpdfstring{GetBigM()}{GetBigM()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector4d footstep\+\_\+planner\+::\+Get\+BigM (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classTerrain}{Terrain}}}]{terrain }\end{DoxyParamCaption})}
+
+
+
+the Get\+BigM function is returns a suitable M for the big-\/\+M-\/method given a set of permissible areas. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em terrain} & \mbox{\hyperlink{classTerrain}{Terrain}} describing the set of permissible areas in which to place a foothold. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a vector of the offsets to be used in the big-\/\+M-\/method. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacefootstep__planner_a7f6763f1e994218a0639b2f0aacd7a97}\label{namespacefootstep__planner_a7f6763f1e994218a0639b2f0aacd7a97}} 
+\index{footstep\_planner@{footstep\_planner}!FootInSteppingStoneConstraints@{FootInSteppingStoneConstraints}}
+\index{FootInSteppingStoneConstraints@{FootInSteppingStoneConstraints}!footstep\_planner@{footstep\_planner}}
+\doxysubsubsection{\texorpdfstring{FootInSteppingStoneConstraints()}{FootInSteppingStoneConstraints()}}
+{\footnotesize\ttfamily void footstep\+\_\+planner\+::\+Foot\+In\+Stepping\+Stone\+Constraints (\begin{DoxyParamCaption}\item[{drake\+::solvers\+::\+Mathematical\+Program \&}]{prog,  }\item[{\mbox{\hyperlink{classTerrain}{Terrain}} \&}]{terrain,  }\item[{int}]{n\+\_\+steps,  }\item[{\mbox{\hyperlink{structfootstep__planner_1_1DecVars}{Dec\+Vars}} \&}]{decision\+\_\+variables,  }\item[{double}]{ledge\+\_\+margin = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+the Foot\+In\+Stepping\+Stone\+Constraints function adds inequality constraints to ensure that a footstep is within the bounds of the permissible area the corresponding binary variables determines it is in. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em prog} & The mathematical program object to which constraints are added. \\
+\hline
+\mbox{\texttt{ in}}  & {\em terrain} & \mbox{\hyperlink{classTerrain}{Terrain}} describing the set of permissible areas in which to place a foothold. \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+\_\+steps} & Number of steps in total, including both initial positions and goal positions. \\
+\hline
+\mbox{\texttt{ in}}  & {\em decision\+\_\+variables} & A struct containing the decision variables of the mathematical program. \\
+\hline
+\mbox{\texttt{ in}}  & {\em ledge\+\_\+margin} & Margin to edge of each permissible area which each foothold must be within. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacefootstep__planner_a18d4887db7b4942808ab2c1f4aa7766a}\label{namespacefootstep__planner_a18d4887db7b4942808ab2c1f4aa7766a}} 
+\index{footstep\_planner@{footstep\_planner}!StepLengthMinimization@{StepLengthMinimization}}
+\index{StepLengthMinimization@{StepLengthMinimization}!footstep\_planner@{footstep\_planner}}
+\doxysubsubsection{\texorpdfstring{StepLengthMinimization()}{StepLengthMinimization()}}
+{\footnotesize\ttfamily void footstep\+\_\+planner\+::\+Step\+Length\+Minimization (\begin{DoxyParamCaption}\item[{drake\+::solvers\+::\+Mathematical\+Program \&}]{prog,  }\item[{int}]{n\+\_\+steps,  }\item[{int}]{n\+\_\+legs,  }\item[{\mbox{\hyperlink{structfootstep__planner_1_1DecVars}{Dec\+Vars}} \&}]{decision\+\_\+variables }\end{DoxyParamCaption})}
+
+
+
+the Step\+Length\+Minimization function adds a quadratic cost for the length of each step, to incentivize shorter steps. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em prog} & The mathematical program object to which constraints are added. \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+\_\+steps} & Number of steps in total, including both initial positions and goal positions. \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+\_\+legs} & Number of legs the robot posesses. \\
+\hline
+\mbox{\texttt{ in}}  & {\em decision\+\_\+variables} & A struct containing the decision variables of the mathematical program. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacefootstep__planner_a2abc9ba064d05ed0a79d2b8d89894251}\label{namespacefootstep__planner_a2abc9ba064d05ed0a79d2b8d89894251}} 
+\index{footstep\_planner@{footstep\_planner}!RemainingLengthMinimization@{RemainingLengthMinimization}}
+\index{RemainingLengthMinimization@{RemainingLengthMinimization}!footstep\_planner@{footstep\_planner}}
+\doxysubsubsection{\texorpdfstring{RemainingLengthMinimization()}{RemainingLengthMinimization()}}
+{\footnotesize\ttfamily void footstep\+\_\+planner\+::\+Remaining\+Length\+Minimization (\begin{DoxyParamCaption}\item[{drake\+::solvers\+::\+Mathematical\+Program \&}]{prog,  }\item[{\mbox{\hyperlink{classTerrain}{Terrain}} \&}]{terrain,  }\item[{int}]{n\+\_\+steps,  }\item[{int}]{n\+\_\+legs,  }\item[{\mbox{\hyperlink{structfootstep__planner_1_1DecVars}{Dec\+Vars}} \&}]{decision\+\_\+variables }\end{DoxyParamCaption})}
+
+
+
+the Remaining\+Length\+Minimization function adds a quadratic cost for the length from the last position of each foot to its corresponding goal position. This might be used as an alternative to a hard equality constraint, in order to avoid an infeasible problem. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em prog} & The mathematical program object to which constraints are added. \\
+\hline
+\mbox{\texttt{ in}}  & {\em terrain} & \mbox{\hyperlink{classTerrain}{Terrain}} describing the set of permissible areas in which to place a foothold. \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+\_\+steps} & Number of steps in total, including both initial positions and goal positions. \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+\_\+legs} & Number of legs the robot posesses. \\
+\hline
+\mbox{\texttt{ in}}  & {\em decision\+\_\+variables} & A struct containing the decision variables of the mathematical program. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacefootstep__planner_a02228c3588748167a092db5ad79e6612}\label{namespacefootstep__planner_a02228c3588748167a092db5ad79e6612}} 
+\index{footstep\_planner@{footstep\_planner}!GetUncompressedArrays@{GetUncompressedArrays}}
+\index{GetUncompressedArrays@{GetUncompressedArrays}!footstep\_planner@{footstep\_planner}}
+\doxysubsubsection{\texorpdfstring{GetUncompressedArrays()}{GetUncompressedArrays()}}
+{\footnotesize\ttfamily Eigen\+::\+Array$<$ Eigen\+::\+Matrix\+Xd, Eigen\+::\+Dynamic, 1 $>$ footstep\+\_\+planner\+::\+Get\+Uncompressed\+Arrays (\begin{DoxyParamCaption}\item[{Eigen\+::\+Matrix\+Xd \&}]{arr,  }\item[{int}]{n\+\_\+steps,  }\item[{int}]{n\+\_\+legs,  }\item[{Leg\+Type}]{step\+\_\+sequence\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+the Get\+Uncompressed\+Arrays function converts an array containing only the new position of the moving foot, into a timeseries for each foot. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em arr} & The array containing the new position of a moving foot \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+\_\+steps} & Number of steps in total, including both initial positions and goal positions. \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+\_\+legs} & Number of legs the robot posesses. \\
+\hline
+\mbox{\texttt{ in}}  & {\em step\+\_\+sequence} & Sequence defining the order in which the legs are to move. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns an array of timeseries, one for each foot. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacefootstep__planner_a8d6b1bc1b1470ee9888f678a92bf45c6}\label{namespacefootstep__planner_a8d6b1bc1b1470ee9888f678a92bf45c6}} 
+\index{footstep\_planner@{footstep\_planner}!GetDecVarsRes@{GetDecVarsRes}}
+\index{GetDecVarsRes@{GetDecVarsRes}!footstep\_planner@{footstep\_planner}}
+\doxysubsubsection{\texorpdfstring{GetDecVarsRes()}{GetDecVarsRes()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structfootstep__planner_1_1DecVarsRes}{Dec\+Vars\+Res}} footstep\+\_\+planner\+::\+Get\+Dec\+Vars\+Res (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfootstep__planner_1_1DecVarsResRaw}{Dec\+Vars\+Res\+Raw}} \&}]{decision\+\_\+variables\+\_\+raw,  }\item[{int}]{n\+\_\+steps,  }\item[{int}]{n\+\_\+legs,  }\item[{Leg\+Type}]{step\+\_\+sequence\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+the Get\+Dec\+Vars\+Res function converts a struct containing the solution from the program, into a solution for each leg. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em decision\+\_\+variables\+\_\+raw} & The struct containing the solution from the program. \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+\_\+steps} & Number of steps in total, including both initial positions and goal positions. \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+\_\+legs} & Number of legs the robot posesses. \\
+\hline
+\mbox{\texttt{ in}}  & {\em step\+\_\+sequence} & Sequence defining the order in which the legs are to move. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacefootstep__planner_a3e5d8ce7716164ffb40f497ee5bac6ee}\label{namespacefootstep__planner_a3e5d8ce7716164ffb40f497ee5bac6ee}} 
+\index{footstep\_planner@{footstep\_planner}!WriteDecVarsToFile@{WriteDecVarsToFile}}
+\index{WriteDecVarsToFile@{WriteDecVarsToFile}!footstep\_planner@{footstep\_planner}}
+\doxysubsubsection{\texorpdfstring{WriteDecVarsToFile()}{WriteDecVarsToFile()}}
+{\footnotesize\ttfamily void footstep\+\_\+planner\+::\+Write\+Dec\+Vars\+To\+File (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfootstep__planner_1_1DecVarsRes}{Dec\+Vars\+Res}} \&}]{decision\+\_\+variables,  }\item[{std\+::string}]{base\+\_\+name = {\ttfamily \char`\"{}footstep\+\_\+planner\char`\"{}} }\end{DoxyParamCaption})}
+
+
+
+the Write\+Dec\+Vars\+To\+File function writes the matrices containing the solutions for each leg to csv-\/files at a specified path. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em decision\+\_\+variables} & The struct containing the solutions. \\
+\hline
+\mbox{\texttt{ in}}  & {\em base\+\_\+name} & The path to and beginning of filename of each csv-\/file. \\
+\hline
+\end{DoxyParams}

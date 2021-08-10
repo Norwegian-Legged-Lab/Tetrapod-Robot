@@ -94,6 +94,8 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structHierarchicalOptimizationControl_1_1Task.html">Task</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structHierarchicalOptimizationControl_1_1Task.html" title="Task struct.">Task</a> struct.  <a href="structHierarchicalOptimizationControl_1_1Task.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structHierarchicalOptimizationControl_1_1TasksToBeIncluded.html">TasksToBeIncluded</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -145,9 +147,33 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:ae2515ead8270fb9a8015cec81f1d1678"><td class="memItemLeft" align="right" valign="top"><a id="ae2515ead8270fb9a8015cec81f1d1678"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>StaticTorqueTest</b> ()</td></tr>
 <tr class="separator:ae2515ead8270fb9a8015cec81f1d1678"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a911cef032be8319e4ed16b0a26dd8804"><td class="memItemLeft" align="right" valign="top">Eigen::Matrix&lt; double, 12, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHierarchicalOptimizationControl.html#a911cef032be8319e4ed16b0a26dd8804">HierarchicalOptimization</a> (const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;_desired_base_pos, const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;_desired_base_vel, const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;_desired_base_acc, const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;_desired_base_ori, const Eigen::Matrix&lt; Eigen::Vector3d, 4, 1 &gt; &amp;_desired_f_pos, const Eigen::Matrix&lt; Eigen::Vector3d, 4, 1 &gt; &amp;_desired_f_vel, const Eigen::Matrix&lt; Eigen::Vector3d, 4, 1 &gt; &amp;_desired_f_acc, const Eigen::Matrix&lt; Eigen::Vector3d, 4, 1 &gt; &amp;_f_pos, const Eigen::Matrix&lt; Eigen::Vector3d, 4, 1 &gt; &amp;_f_vel, const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;_q, const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;_u, const int &amp;_v=0)</td></tr>
-<tr class="memdesc:a911cef032be8319e4ed16b0a26dd8804"><td class="mdescLeft">&#160;</td><td class="mdescRight">The HierarchicalOptimization function finds the optimal joint torques for a desired motion plan. It finds joint torques by finding optimal joint accelerations and contact forces for a set of whole-body control QP tasks, and leveraging inverse dynamics.  <a href="classHierarchicalOptimizationControl.html#a911cef032be8319e4ed16b0a26dd8804">More...</a><br /></td></tr>
-<tr class="separator:a911cef032be8319e4ed16b0a26dd8804"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1440652fd4c19567014a31ca82fb071"><td class="memItemLeft" align="right" valign="top"><a id="af1440652fd4c19567014a31ca82fb071"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>TakeStep</b> (Eigen::Vector3d end_pos, int step_leg_ind, double step_speed=1, double step_height=0.2)</td></tr>
+<tr class="separator:af1440652fd4c19567014a31ca82fb071"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae63b2b034875b94dcc6f7e6311f3538c"><td class="memItemLeft" align="right" valign="top"><a id="ae63b2b034875b94dcc6f7e6311f3538c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>ReachSupport</b> (const bool support_legs[4], Eigen::Vector3d desired_base_ori, double epsilon=0.001, double delta_t=0.5)</td></tr>
+<tr class="separator:ae63b2b034875b94dcc6f7e6311f3538c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d78fbf53ae295d8011e6d2dd98ef3fd"><td class="memItemLeft" align="right" valign="top"><a id="a3d78fbf53ae295d8011e6d2dd98ef3fd"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetBasePose</b> (Eigen::Vector3d desired_base_pos, Eigen::Vector3d desired_base_ori, double epsilon=0.001, double delta_t=0.5)</td></tr>
+<tr class="separator:a3d78fbf53ae295d8011e6d2dd98ef3fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcf34cfa511ebc8e41e5eddc059cfa5e"><td class="memItemLeft" align="right" valign="top"><a id="abcf34cfa511ebc8e41e5eddc059cfa5e"></a>
+Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><b>GetSteps</b> (const Eigen::Matrix&lt; Eigen::Vector3d, 4, 1 &gt; &amp;end_f_pos, <a class="el" href="classTerrain.html">Terrain</a> terrain, int n_steps, <a class="el" href="classHierarchicalOptimizationControl.html#a595a20872c103fe6c0332012648d9b9e">LegType</a> step_sequence[])</td></tr>
+<tr class="separator:abcf34cfa511ebc8e41e5eddc059cfa5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86fdb868a62a71bb169e092c41bf0cd5"><td class="memItemLeft" align="right" valign="top"><a id="a86fdb868a62a71bb169e092c41bf0cd5"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>PlannedWalk</b> (const Eigen::Matrix&lt; Eigen::Vector3d, 4, 1 &gt; &amp;end_f_pos, double desired_height, <a class="el" href="classTerrain.html">Terrain</a> terrain, int n_steps, <a class="el" href="classHierarchicalOptimizationControl.html#a595a20872c103fe6c0332012648d9b9e">LegType</a> step_sequence[])</td></tr>
+<tr class="separator:a86fdb868a62a71bb169e092c41bf0cd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb18716f50493a52b1463beee4419ad7"><td class="memItemLeft" align="right" valign="top"><a id="adb18716f50493a52b1463beee4419ad7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>WalkTest</b> ()</td></tr>
+<tr class="separator:adb18716f50493a52b1463beee4419ad7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bba105a2a0ad4cd02ef8263f9d97c87"><td class="memItemLeft" align="right" valign="top"><a id="a4bba105a2a0ad4cd02ef8263f9d97c87"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>HeightRollYawTest</b> ()</td></tr>
+<tr class="separator:a4bba105a2a0ad4cd02ef8263f9d97c87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0056113f2f82c0502ce0f25213288419"><td class="memItemLeft" align="right" valign="top">Eigen::Matrix&lt; double, 12, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHierarchicalOptimizationControl.html#a0056113f2f82c0502ce0f25213288419">HierarchicalOptimization</a> (const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;_desired_base_pos, const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;_desired_base_vel, const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;_desired_base_acc, const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;_desired_base_ori, const Eigen::Matrix&lt; Eigen::Vector3d, 4, 1 &gt; &amp;_desired_f_pos, const Eigen::Matrix&lt; Eigen::Vector3d, 4, 1 &gt; &amp;_desired_f_vel, const Eigen::Matrix&lt; Eigen::Vector3d, 4, 1 &gt; &amp;_desired_f_acc, const Eigen::Matrix&lt; Eigen::Vector3d, 4, 1 &gt; &amp;_f_pos, const Eigen::Matrix&lt; Eigen::Vector3d, 4, 1 &gt; &amp;_f_vel, const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;_q, const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;_u, const bool _stance_legs[4], const int &amp;_v=0)</td></tr>
+<tr class="memdesc:a0056113f2f82c0502ce0f25213288419"><td class="mdescLeft">&#160;</td><td class="mdescRight">The HierarchicalOptimization function finds the optimal joint torques for a desired motion plan. It finds joint torques by finding optimal joint accelerations and contact forces for a set of whole-body control QP tasks, and leveraging inverse dynamics.  <a href="classHierarchicalOptimizationControl.html#a0056113f2f82c0502ce0f25213288419">More...</a><br /></td></tr>
+<tr class="separator:a0056113f2f82c0502ce0f25213288419"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e1f09ed48470b0d580ddd367a7184eb"><td class="memItemLeft" align="right" valign="top"><a id="a5e1f09ed48470b0d580ddd367a7184eb"></a>
+Eigen::Matrix&lt; double, 12, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>HierarchicalOptimization</b> (const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;_desired_base_pos, const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;_desired_base_vel, const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;_desired_base_acc, const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;_desired_base_ori, const Eigen::Matrix&lt; Eigen::Vector3d, 4, 1 &gt; &amp;_desired_f_pos, const Eigen::Matrix&lt; Eigen::Vector3d, 4, 1 &gt; &amp;_desired_f_vel, const Eigen::Matrix&lt; Eigen::Vector3d, 4, 1 &gt; &amp;_desired_f_acc, const Eigen::Matrix&lt; Eigen::Vector3d, 4, 1 &gt; &amp;_f_pos, const Eigen::Matrix&lt; Eigen::Vector3d, 4, 1 &gt; &amp;_f_vel, const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;_q, const Eigen::Matrix&lt; double, 18, 1 &gt; &amp;_u, const bool _stance_legs[4], const bool _desired_support_legs[4], const <a class="el" href="structHierarchicalOptimizationControl_1_1TasksToBeIncluded.html">TasksToBeIncluded</a> &amp;_include_tasks, const int &amp;_v=0)</td></tr>
+<tr class="separator:a5e1f09ed48470b0d580ddd367a7184eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64f7ef31eba78810a479bc70ecd26543"><td class="memItemLeft" align="right" valign="top">Eigen::Matrix&lt; double, Eigen::Dynamic, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHierarchicalOptimizationControl.html#a64f7ef31eba78810a479bc70ecd26543">HierarchicalQPOptimization</a> (const int &amp;_state_dim, const std::vector&lt; <a class="el" href="structHierarchicalOptimizationControl_1_1Task.html">Task</a> &gt; &amp;_tasks, const <a class="el" href="classHierarchicalOptimizationControl.html#ae49f08ceaee8df6933d8708fb68c3b99">SolverType</a> &amp;_solver=SolverType::OSQP, const int &amp;_v=0)</td></tr>
 <tr class="memdesc:a64f7ef31eba78810a479bc70ecd26543"><td class="mdescLeft">&#160;</td><td class="mdescRight">The HierarchicalQPOptimization function finds the optimal solution for a set of tasks in a strictly prioritized order. The method iterates through the set of tasks and searches for a new solution in the null-space of all higher priority equality constraints. At each iteration a QP problem is solved to find a vector lying in the row-space of the null-space of all equality constraints, which improve on the current solution.  <a href="classHierarchicalOptimizationControl.html#a64f7ef31eba78810a479bc70ecd26543">More...</a><br /></td></tr>
 <tr class="separator:a64f7ef31eba78810a479bc70ecd26543"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -244,6 +270,14 @@ ros::Subscriber&#160;</td><td class="memItemRight" valign="bottom"><a class="el"
 ros::Publisher&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHierarchicalOptimizationControl.html#aa2a139ccf51e5752acb6444ba5538012">jointStatePub</a></td></tr>
 <tr class="memdesc:aa2a139ccf51e5752acb6444ba5538012"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS Joint State Publisher. <br /></td></tr>
 <tr class="separator:aa2a139ccf51e5752acb6444ba5538012"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad90adf047dbfc7952c8a6bd7513c4bad"><td class="memItemLeft" align="right" valign="top"><a id="ad90adf047dbfc7952c8a6bd7513c4bad"></a>
+ros::Publisher&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHierarchicalOptimizationControl.html#ad90adf047dbfc7952c8a6bd7513c4bad">basePoseCmdPub</a></td></tr>
+<tr class="memdesc:ad90adf047dbfc7952c8a6bd7513c4bad"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS Base Position Command Publisher. <br /></td></tr>
+<tr class="separator:ad90adf047dbfc7952c8a6bd7513c4bad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeead76f38c43d44bca1fa32db917facb"><td class="memItemLeft" align="right" valign="top"><a id="aeead76f38c43d44bca1fa32db917facb"></a>
+ros::Publisher&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHierarchicalOptimizationControl.html#aeead76f38c43d44bca1fa32db917facb">baseTwistCmdPub</a></td></tr>
+<tr class="memdesc:aeead76f38c43d44bca1fa32db917facb"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS Base Position Command Publisher. <br /></td></tr>
+<tr class="separator:aeead76f38c43d44bca1fa32db917facb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a682c7813dae3fb5095471020aeacb66c"><td class="memItemLeft" align="right" valign="top"><a id="a682c7813dae3fb5095471020aeacb66c"></a>
 ros::CallbackQueue&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHierarchicalOptimizationControl.html#a682c7813dae3fb5095471020aeacb66c">rosProcessQueue</a></td></tr>
 <tr class="memdesc:a682c7813dae3fb5095471020aeacb66c"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS callbackque that helps process messages. <br /></td></tr>
@@ -264,8 +298,8 @@ std::thread&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A class for hierarchical optimization control. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a911cef032be8319e4ed16b0a26dd8804"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a911cef032be8319e4ed16b0a26dd8804">&#9670;&nbsp;</a></span>HierarchicalOptimization()</h2>
+<a id="a0056113f2f82c0502ce0f25213288419"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0056113f2f82c0502ce0f25213288419">&#9670;&nbsp;</a></span>HierarchicalOptimization()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -339,6 +373,12 @@ std::thread&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
         <tr>
           <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>_stance_legs</em>[4], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">const int &amp;&#160;</td>
           <td class="paramname"><em>_v</em> = <code>0</code>&#160;</td>
         </tr>
@@ -366,8 +406,7 @@ std::thread&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns the optimal set of joint torques for the whole-body control problem leveraging hierarchical optimization. <br  />
- </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the optimal set of joint torques for the whole-body control problem leveraging hierarchical optimization. </dd></dl>
 
 </div>
 </div>

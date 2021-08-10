@@ -14,13 +14,13 @@ class Terrain
 
     public: virtual ~Terrain();
 
-    public: SteppingStone addStone(Eigen::Vector3d center, double width, double height, std::string name=nullptr);
+    public: SteppingStone AddStone(Eigen::Vector3d center, double width, double height, std::string name=nullptr);
 
-    public: Eigen::Array<SteppingStone, Eigen::Dynamic, 1> addStones(Eigen::Array<Eigen::Vector3d, Eigen::Dynamic, 1> centers, Eigen::Array<double, Eigen::Dynamic, 1> widths, Eigen::Array<double, Eigen::Dynamic, 1> heights, std::string name="");
+    public: Eigen::Array<SteppingStone, Eigen::Dynamic, 1> AddStones(Eigen::Array<Eigen::Vector3d, Eigen::Dynamic, 1> centers, Eigen::Array<double, Eigen::Dynamic, 1> widths, Eigen::Array<double, Eigen::Dynamic, 1> heights, std::string name="");
 
-    public: const SteppingStone &getStoneByName(std::string name) const;
+    public: const SteppingStone &GetStoneByName(std::string name) const;
 
-    public: const Eigen::Array<SteppingStone, Eigen::Dynamic, 1> &getSteppingStones() const {return stepping_stones;}
+    public: const Eigen::Array<SteppingStone, Eigen::Dynamic, 1> &GetSteppingStones() const {return stepping_stones;}
     /*** Variables ***/
 
     private: Eigen::Array<SteppingStone, Eigen::Dynamic, 1> stepping_stones;

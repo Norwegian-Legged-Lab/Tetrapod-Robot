@@ -6,7 +6,7 @@ Inheritance diagram for Controller\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=173pt]{classController__inherit__graph}
+\includegraphics[width=276pt]{classController__inherit__graph}
 \end{center}
 \end{figure}
 
@@ -24,6 +24,9 @@ Collaboration diagram for Controller\+:\nopagebreak
 \mbox{\Hypertarget{classController_a662fe4b20cfb338f0936a1983305770f}\label{classController_a662fe4b20cfb338f0936a1983305770f}} 
 {\bfseries Controller} (int controller\+\_\+freq)
 \item 
+\mbox{\Hypertarget{classController_ae258a1b24b4fc1afd2383be56bdc9d53}\label{classController_ae258a1b24b4fc1afd2383be56bdc9d53}} 
+bool {\bfseries Run\+Stand\+Up\+Sequence} ()
+\item 
 \mbox{\Hypertarget{classController_acd43dfe045373dc46e0b47e120745038}\label{classController_acd43dfe045373dc46e0b47e120745038}} 
 void {\bfseries wait\+For\+Ready\+To\+Proceed} ()
 \item 
@@ -33,14 +36,63 @@ virtual void {\bfseries Update\+Feet\+References} ()=0
 \mbox{\Hypertarget{classController_a0449baeb66c81108867fe63d76b537c5}\label{classController_a0449baeb66c81108867fe63d76b537c5}} 
 bool {\bfseries Update\+Joint\+Commands} ()
 \item 
+\mbox{\Hypertarget{classController_a4cbe0ea983515c9b54b2365e091ffadd}\label{classController_a4cbe0ea983515c9b54b2365e091ffadd}} 
+bool {\bfseries Update\+Velocity\+Commands} ()
+\item 
 \mbox{\Hypertarget{classController_ae736b659b7a5f45b631c87eb0a966d90}\label{classController_ae736b659b7a5f45b631c87eb0a966d90}} 
 bool {\bfseries send\+Joint\+Position\+Commands} ()
+\item 
+\mbox{\Hypertarget{classController_a5d80945f46d68bfad97641f464b2203e}\label{classController_a5d80945f46d68bfad97641f464b2203e}} 
+void {\bfseries Stand\+Still} (const double \&duration)
 \item 
 \mbox{\Hypertarget{classController_aefc59b1e93e6013faab2b2fd7dad1efb}\label{classController_aefc59b1e93e6013faab2b2fd7dad1efb}} 
 virtual void {\bfseries set\+Initial\+Configuration} ()
 \item 
+\mbox{\Hypertarget{classController_ad5bf8536b07e2f5c6ba53042ff00df74}\label{classController_ad5bf8536b07e2f5c6ba53042ff00df74}} 
+void {\bfseries Set\+Twist\+Command} (double lin\+\_\+vel\+\_\+cmd\+\_\+x, double lin\+\_\+vel\+\_\+cmd\+\_\+y, double ang\+\_\+vel\+\_\+cmd\+\_\+z)
+\item 
 \mbox{\Hypertarget{classController_ad3d246e4dc70ae2e333f1b74861558ab}\label{classController_ad3d246e4dc70ae2e333f1b74861558ab}} 
 void {\bfseries init\+R\+OS} ()
+\item 
+\mbox{\Hypertarget{classController_a8941a1168b1768a440c737eaa5c2f601}\label{classController_a8941a1168b1768a440c737eaa5c2f601}} 
+void {\bfseries Wait\+For\+Initial\+State} ()
+\item 
+\mbox{\Hypertarget{classController_ab862de42ac0183d8badaa9e1b8185d91}\label{classController_ab862de42ac0183d8badaa9e1b8185d91}} 
+bool {\bfseries Move\+Feet\+To\+Positions} (Eigen\+::\+Matrix$<$ double, 3, 1 $>$ fl\+\_\+goal\+\_\+foot\+\_\+pos, Eigen\+::\+Matrix$<$ double, 3, 1 $>$ fr\+\_\+goal\+\_\+foot\+\_\+pos, Eigen\+::\+Matrix$<$ double, 3, 1 $>$ rl\+\_\+goal\+\_\+foot\+\_\+pos, Eigen\+::\+Matrix$<$ double, 3, 1 $>$ rr\+\_\+goal\+\_\+foot\+\_\+pos)
+\item 
+\mbox{\Hypertarget{classController_aef6b7991b879b8c9a3547816cf453aba}\label{classController_aef6b7991b879b8c9a3547816cf453aba}} 
+bool {\bfseries Move\+Joints\+To\+Setpoints} (Eigen\+::\+Matrix$<$ double, 12, 1 $>$ goal\+\_\+joint\+\_\+angles)
+\item 
+\mbox{\Hypertarget{classController_ab1d93485ede8521db41e792875928dcf}\label{classController_ab1d93485ede8521db41e792875928dcf}} 
+bool {\bfseries Move\+Foot\+To\+Position} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Kinematics\+::\+Leg\+Type}} \&leg\+\_\+type, const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&goal\+\_\+foot\+\_\+position)
+\item 
+\mbox{\Hypertarget{classController_aa498264be5854362a95f5b9dbf95fd31}\label{classController_aa498264be5854362a95f5b9dbf95fd31}} 
+void {\bfseries Update\+Feet\+Positions} ()
+\item 
+\mbox{\Hypertarget{classController_a33dafd3708e6a40e46156ca463b6eef5}\label{classController_a33dafd3708e6a40e46156ca463b6eef5}} 
+bool {\bfseries Check\+Ready\+To\+Proceed} ()
+\item 
+\mbox{\Hypertarget{classController_a5d256ea0bc36f25c2e5c6cf5b354b0e3}\label{classController_a5d256ea0bc36f25c2e5c6cf5b354b0e3}} 
+void {\bfseries Reset\+Ready\+To\+Proceed\+Flag} ()
+\item 
+\mbox{\Hypertarget{classController_a294977ab8c7acb44649d2811c26364e0}\label{classController_a294977ab8c7acb44649d2811c26364e0}} 
+void {\bfseries Set\+Ready\+To\+Proceed\+Flag} ()
+\item 
+bool \mbox{\hyperlink{classController_a7890ffdc972c06f77fa8a7dfbbf7d35c}{Ready\+To\+Proceed}} (std\+\_\+srvs\+::\+Empty\+::\+Request \&\+\_\+req, std\+\_\+srvs\+::\+Empty\+::\+Response \&\+\_\+res)
+\begin{DoxyCompactList}\small\item\em The Ready\+To\+Proceed function handles an incoming ready\+To\+Proceed service request. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classController_ab6d9cb349df5c57e76a42669ca99daa8}{Shutdown}} (std\+\_\+srvs\+::\+Empty\+::\+Request \&\+\_\+req, std\+\_\+srvs\+::\+Empty\+::\+Response \&\+\_\+res)
+\begin{DoxyCompactList}\small\item\em The Shutdown function handles an incoming shutdown service request. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classController_ab2a29601a614f6f5deb82743d3c60f23}\label{classController_ab2a29601a614f6f5deb82743d3c60f23}} 
+void {\bfseries Write\+To\+Log} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classController_ad81a67232a89dee5cc3be0a1d4508f3a}\label{classController_ad81a67232a89dee5cc3be0a1d4508f3a}} 
+using {\bfseries Joint\+State} = Eigen\+::\+Matrix$<$ double, 12, 1 $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{classController_a148eec01e763677b27bb70c726c9ca58}\label{classController_a148eec01e763677b27bb70c726c9ca58}} 
 void {\bfseries joint\+State\+Callback} (const sensor\+\_\+msgs\+::\+Joint\+State\+Ptr \&msg)
@@ -50,12 +102,12 @@ void {\bfseries ready\+To\+Proceed\+Callback} (const std\+\_\+msgs\+::\+Bool \&m
 \item 
 \mbox{\Hypertarget{classController_a0a83e6773441e7419a912c06ea0feded}\label{classController_a0a83e6773441e7419a912c06ea0feded}} 
 void \mbox{\hyperlink{classController_a0a83e6773441e7419a912c06ea0feded}{Twist\+Command\+Callback}} (const geometry\+\_\+msgs\+::\+Twist\+Const\+Ptr \&\+\_\+msg)
-\begin{DoxyCompactList}\small\item\em Converts twist command messages into desired linear and angular body velocities. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Protected Types}
-\begin{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Converts twist command messages into desired linear and angular body velocities. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classController_a95cd41ea450347c888a2edea95758c59}\label{classController_a95cd41ea450347c888a2edea95758c59}} 
+void {\bfseries Twist\+State\+Callback} (const geometry\+\_\+msgs\+::\+Twist\+Const\+Ptr \&\+\_\+msg)
 \item 
-\mbox{\Hypertarget{classController_ad81a67232a89dee5cc3be0a1d4508f3a}\label{classController_ad81a67232a89dee5cc3be0a1d4508f3a}} 
-using {\bfseries Joint\+State} = Eigen\+::\+Matrix$<$ double, 12, 1 $>$
+\mbox{\Hypertarget{classController_a46b0803428199c59e264168ccad89801}\label{classController_a46b0803428199c59e264168ccad89801}} 
+void {\bfseries Base\+Pose\+State\+Callback} (const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&msg)
 \end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
@@ -81,12 +133,18 @@ ros\+::\+Publisher {\bfseries joint\+\_\+command\+\_\+publisher}
 \mbox{\Hypertarget{classController_aced004f1811ea63a1029482527272bb2}\label{classController_aced004f1811ea63a1029482527272bb2}} 
 ros\+::\+Subscriber {\bfseries joint\+\_\+state\+\_\+subscriber}
 \item 
+\mbox{\Hypertarget{classController_a5b70dcceb5eb6e45c156aeee9d23c1a5}\label{classController_a5b70dcceb5eb6e45c156aeee9d23c1a5}} 
+ros\+::\+Subscriber {\bfseries base\+\_\+pose\+\_\+state\+\_\+subscriber}
+\item 
 \mbox{\Hypertarget{classController_a3c4543445981fe7bdf3e7236719bf3ad}\label{classController_a3c4543445981fe7bdf3e7236719bf3ad}} 
 ros\+::\+Subscriber {\bfseries ready\+\_\+to\+\_\+proceed\+\_\+subscriber}
 \item 
 \mbox{\Hypertarget{classController_a4fba78e17b2518fafcd54239d39afaec}\label{classController_a4fba78e17b2518fafcd54239d39afaec}} 
 ros\+::\+Subscriber \mbox{\hyperlink{classController_a4fba78e17b2518fafcd54239d39afaec}{twist\+\_\+command\+\_\+subscriber}}
 \begin{DoxyCompactList}\small\item\em Subscribes to twist command messages from an external controller. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classController_aa44b36ae7a6fc70eadf62843dfd1c922}\label{classController_aa44b36ae7a6fc70eadf62843dfd1c922}} 
+ros\+::\+Subscriber {\bfseries twist\+\_\+state\+\_\+subscriber}
+\item 
 \mbox{\Hypertarget{classController_a1e084a65c35495f9894977939953e801}\label{classController_a1e084a65c35495f9894977939953e801}} 
 Eigen\+::\+Vector3d {\bfseries fl\+\_\+offset} = Eigen\+::\+Vector3d(L\+E\+G\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+L\+E\+N\+G\+TH, L\+E\+G\+\_\+\+O\+F\+F\+S\+E\+T\+\_\+\+L\+E\+N\+G\+TH, 0)
 \item 
@@ -144,11 +202,23 @@ Joint\+State {\bfseries joint\+\_\+velocity\+\_\+commands} = Joint\+State\+::\+Z
 \mbox{\Hypertarget{classController_a8b75be0570e4ab65c9c88bdcb6dbaaf0}\label{classController_a8b75be0570e4ab65c9c88bdcb6dbaaf0}} 
 Joint\+State {\bfseries joint\+\_\+acceleration\+\_\+commands} = Joint\+State\+::\+Zero()
 \item 
+\mbox{\Hypertarget{classController_ad16ba23e3c80273721e8bdc29ec37bb3}\label{classController_ad16ba23e3c80273721e8bdc29ec37bb3}} 
+Joint\+State {\bfseries joint\+\_\+torque\+\_\+commands} = Joint\+State\+::\+Zero()
+\item 
 \mbox{\Hypertarget{classController_a375d7ae17e48cfa103902550c96017f0}\label{classController_a375d7ae17e48cfa103902550c96017f0}} 
 Joint\+State {\bfseries joint\+\_\+angles} = Joint\+State\+::\+Constant(U\+N\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+E\+D\+\_\+\+J\+O\+I\+N\+T\+\_\+\+S\+T\+A\+TE)
 \item 
 \mbox{\Hypertarget{classController_aea4229966ac06503451b2a1e28ee48ea}\label{classController_aea4229966ac06503451b2a1e28ee48ea}} 
 Joint\+State {\bfseries joint\+\_\+velocities} = Joint\+State\+::\+Zero()
+\item 
+\mbox{\Hypertarget{classController_aae0803de875c224384327ffd9728671f}\label{classController_aae0803de875c224384327ffd9728671f}} 
+Joint\+State {\bfseries joint\+\_\+torques} = Joint\+State\+::\+Zero()
+\item 
+\mbox{\Hypertarget{classController_aa3e73a1554f479daf48d78875bd42797}\label{classController_aa3e73a1554f479daf48d78875bd42797}} 
+Eigen\+::\+Matrix$<$ double, 6, 1 $>$ {\bfseries base\+\_\+pose\+\_\+state} = Eigen\+::\+Matrix$<$double, 6, 1$>$\+::Zero()
+\item 
+\mbox{\Hypertarget{classController_a8f6e61b4eec1187d68dd087a9f606dd6}\label{classController_a8f6e61b4eec1187d68dd087a9f606dd6}} 
+Eigen\+::\+Matrix$<$ double, 6, 1 $>$ {\bfseries base\+\_\+pose\+\_\+commands} = Eigen\+::\+Matrix$<$double, 6, 1$>$\+::Zero()
 \item 
 \mbox{\Hypertarget{classController_abc876492f4e70d3c9be7b37681f2d926}\label{classController_abc876492f4e70d3c9be7b37681f2d926}} 
 double \mbox{\hyperlink{classController_abc876492f4e70d3c9be7b37681f2d926}{lin\+\_\+vel\+\_\+x}} = 0.\+0
@@ -158,13 +228,101 @@ double \mbox{\hyperlink{classController_a2734d863bd86af8642cc8f7b6eb115d2}{lin\+
 \begin{DoxyCompactList}\small\item\em The desired linear robot velocity in the body frame\textquotesingle{}s y direction. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classController_aa357248280438bae103c8da7ba5dacf3}\label{classController_aa357248280438bae103c8da7ba5dacf3}} 
 double \mbox{\hyperlink{classController_aa357248280438bae103c8da7ba5dacf3}{ang\+\_\+vel\+\_\+z}} = 0.\+0
-\begin{DoxyCompactList}\small\item\em The desired angular robot velocity around the robot\textquotesingle{}s z axis. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The desired angular robot velocity around the robot\textquotesingle{}s z axis. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classController_a140c18de6f9652cec886333fbc1dae08}\label{classController_a140c18de6f9652cec886333fbc1dae08}} 
+double {\bfseries \+\_\+lin\+\_\+vel\+\_\+x\+\_\+estimated} = 0.\+0
+\item 
+\mbox{\Hypertarget{classController_a186fa089bdadfead19d15b06af962072}\label{classController_a186fa089bdadfead19d15b06af962072}} 
+double {\bfseries \+\_\+lin\+\_\+vel\+\_\+y\+\_\+estimated} = 0.\+0
+\item 
+\mbox{\Hypertarget{classController_a9608464f0d6285729acd42665fa8ec16}\label{classController_a9608464f0d6285729acd42665fa8ec16}} 
+double {\bfseries \+\_\+ang\+\_\+vel\+\_\+z\+\_\+estimated} = 0.\+0
+\item 
+\mbox{\Hypertarget{classController_adb801818f40e28201a92076fffd80631}\label{classController_adb801818f40e28201a92076fffd80631}} 
+double {\bfseries \+\_\+lin\+\_\+vel\+\_\+z\+\_\+measured} = 0.\+0
+\item 
+\mbox{\Hypertarget{classController_a11c9386a96d7a2f64d2e5f6038e566e5}\label{classController_a11c9386a96d7a2f64d2e5f6038e566e5}} 
+double {\bfseries \+\_\+ang\+\_\+vel\+\_\+x\+\_\+measured} = 0.\+0
+\item 
+\mbox{\Hypertarget{classController_a53a4221615c961547b76547b3a70cb97}\label{classController_a53a4221615c961547b76547b3a70cb97}} 
+double {\bfseries \+\_\+ang\+\_\+vel\+\_\+y\+\_\+measured} = 0.\+0
+\item 
+\mbox{\Hypertarget{classController_add4fbad1f2ed2e8bbdbfd707190d2ee8}\label{classController_add4fbad1f2ed2e8bbdbfd707190d2ee8}} 
+double {\bfseries nominal\+\_\+base\+\_\+height} = 0.\+35
+\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{classController_a0f2aa2751bbccb7ef3a7f705827603ec}\label{classController_a0f2aa2751bbccb7ef3a7f705827603ec}} 
 bool {\bfseries ready\+\_\+to\+\_\+proceed} = false
+\item 
+\mbox{\Hypertarget{classController_ad0befa1432680493812b0316a4497877}\label{classController_ad0befa1432680493812b0316a4497877}} 
+ros\+::\+Service\+Server \mbox{\hyperlink{classController_ad0befa1432680493812b0316a4497877}{shutdown\+Service}}
+\begin{DoxyCompactList}\small\item\em R\+OS Shutdown Service. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classController_ad0c87b02d387f18d4282cdbbae2aad57}\label{classController_ad0c87b02d387f18d4282cdbbae2aad57}} 
+ros\+::\+Service\+Server \mbox{\hyperlink{classController_ad0c87b02d387f18d4282cdbbae2aad57}{ready\+To\+Proceed\+Service}}
+\begin{DoxyCompactList}\small\item\em R\+OS Ready to Proceed Service. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classController_a37e3586c883e4b93ac8bc8eacf130c31}\label{classController_a37e3586c883e4b93ac8bc8eacf130c31}} 
+ros\+::\+Publisher {\bfseries joint\+\_\+state\+\_\+logger}
+\item 
+\mbox{\Hypertarget{classController_aa54d4b9126af8e9199ce1cc9a6fcd096}\label{classController_aa54d4b9126af8e9199ce1cc9a6fcd096}} 
+ros\+::\+Publisher {\bfseries joint\+\_\+command\+\_\+logger}
+\item 
+\mbox{\Hypertarget{classController_a4d518d658eafe8dc66177e3cde76cc8e}\label{classController_a4d518d658eafe8dc66177e3cde76cc8e}} 
+ros\+::\+Publisher {\bfseries base\+\_\+twist\+\_\+state\+\_\+logger}
+\item 
+\mbox{\Hypertarget{classController_ac0f28fd997bc2b65122f763d183cd1df}\label{classController_ac0f28fd997bc2b65122f763d183cd1df}} 
+ros\+::\+Publisher {\bfseries base\+\_\+pose\+\_\+state\+\_\+logger}
+\item 
+\mbox{\Hypertarget{classController_ab93f9d685c6681c23447137c31eaad8c}\label{classController_ab93f9d685c6681c23447137c31eaad8c}} 
+ros\+::\+Publisher {\bfseries base\+\_\+twist\+\_\+command\+\_\+logger}
+\item 
+\mbox{\Hypertarget{classController_af010d9219a6f3b735a50b93f649bcefd}\label{classController_af010d9219a6f3b735a50b93f649bcefd}} 
+ros\+::\+Publisher {\bfseries base\+\_\+pose\+\_\+command\+\_\+logger}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classController_a7890ffdc972c06f77fa8a7dfbbf7d35c}\label{classController_a7890ffdc972c06f77fa8a7dfbbf7d35c}} 
+\index{Controller@{Controller}!ReadyToProceed@{ReadyToProceed}}
+\index{ReadyToProceed@{ReadyToProceed}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{ReadyToProceed()}{ReadyToProceed()}}
+{\footnotesize\ttfamily bool Controller\+::\+Ready\+To\+Proceed (\begin{DoxyParamCaption}\item[{std\+\_\+srvs\+::\+Empty\+::\+Request \&}]{\+\_\+req,  }\item[{std\+\_\+srvs\+::\+Empty\+::\+Response \&}]{\+\_\+res }\end{DoxyParamCaption})}
+
+
+
+The Ready\+To\+Proceed function handles an incoming ready\+To\+Proceed service request. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+req} & Service request. \\
+\hline
+\mbox{\texttt{ out}}  & {\em \+\_\+res} & Service response. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if success, and false if not. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classController_ab6d9cb349df5c57e76a42669ca99daa8}\label{classController_ab6d9cb349df5c57e76a42669ca99daa8}} 
+\index{Controller@{Controller}!Shutdown@{Shutdown}}
+\index{Shutdown@{Shutdown}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{Shutdown()}{Shutdown()}}
+{\footnotesize\ttfamily bool Controller\+::\+Shutdown (\begin{DoxyParamCaption}\item[{std\+\_\+srvs\+::\+Empty\+::\+Request \&}]{\+\_\+req,  }\item[{std\+\_\+srvs\+::\+Empty\+::\+Response \&}]{\+\_\+res }\end{DoxyParamCaption})}
+
+
+
+The Shutdown function handles an incoming shutdown service request. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+req} & Service request. \\
+\hline
+\mbox{\texttt{ out}}  & {\em \+\_\+res} & Service response. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if success, and false if not. 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

@@ -1,0 +1,129 @@
+\hypertarget{namespacesupport__polytope__base__planner}{}\doxysection{support\+\_\+polytope\+\_\+base\+\_\+planner Namespace Reference}
+\label{namespacesupport__polytope__base__planner}\index{support\_polytope\_base\_planner@{support\_polytope\_base\_planner}}
+
+
+A namespace containing functionality for the support-\/polytope based base position planning algorithm.  
+
+
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+drake\+::solvers\+::\+Matrix\+X\+Decision\+Variable \mbox{\hyperlink{namespacesupport__polytope__base__planner_acd66a779ccac496630c309a7b4ba450d}{Add\+Decision\+Variables}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, int n\+\_\+steps)
+\begin{DoxyCompactList}\small\item\em The Add\+Decision\+Variables function adds decision variables to a mathematical program. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacesupport__polytope__base__planner_ae540fd9e2762b3dc81688a9cc9e5002a}{Initial\+Position\+Constraints}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, drake\+::solvers\+::\+Matrix\+X\+Decision\+Variable \&pos, Eigen\+::\+Vector2d init)
+\begin{DoxyCompactList}\small\item\em The Initial\+Position\+Constraints function adds equality constraints for the initial position of the base. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacesupport__polytope__base__planner_a90423f35c1d16c8af823d7ea86ebecb3}{Base\+Within\+Support\+Polytope\+Constraints}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, drake\+::solvers\+::\+Matrix\+X\+Decision\+Variable \&pos, \mbox{\hyperlink{classPolytopes}{Polytopes}} \&polytopes)
+\begin{DoxyCompactList}\small\item\em The Base\+Withing\+Support\+Polytope\+Constraints function adds inequality to ensure that the base position is within the current support polytope at all timesteps. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacesupport__polytope__base__planner_a11179397af5877b58d9baf8c9f36d4ba}\label{namespacesupport__polytope__base__planner_a11179397af5877b58d9baf8c9f36d4ba}} 
+void \mbox{\hyperlink{namespacesupport__polytope__base__planner_a11179397af5877b58d9baf8c9f36d4ba}{Travel\+Minimization}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, drake\+::solvers\+::\+Matrix\+X\+Decision\+Variable \&pos)
+\begin{DoxyCompactList}\small\item\em The Travel\+Minimization function adds a quadratic cost for the distance between each base position, incentivizing a shorter total travel path. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacesupport__polytope__base__planner_a3c0da66cbf17c2a8e625c3dc98fad197}{Leg\+Stretch\+Minimization}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, drake\+::solvers\+::\+Matrix\+X\+Decision\+Variable \&pos, Eigen\+::\+Matrix$<$ double, Eigen\+::\+Dynamic, Eigen\+::\+Dynamic $>$ \&steps)
+\begin{DoxyCompactList}\small\item\em The Leg\+Stretch\+Minimization function adds a quadratic cost for the distance between the base position and current foot positions, incentivizing a shorter distance between each foot and the base at each timestep. \end{DoxyCompactList}\item 
+Eigen\+::\+Matrix$<$ double, Eigen\+::\+Dynamic, 2 $>$ \mbox{\hyperlink{namespacesupport__polytope__base__planner_a4d9c01eedf821ef8033cdf3f7164546f}{Plan\+Sequence}} (Eigen\+::\+Matrix$<$ double, Eigen\+::\+Dynamic, Eigen\+::\+Dynamic $>$ \&steps, Eigen\+::\+Vector2d init, bool use\+\_\+gurobi=false)
+\begin{DoxyCompactList}\small\item\em The Plan\+Sequence function finds an optimal sequence of stabilizable base positions given a sequence of footsteps to take. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A namespace containing functionality for the support-\/polytope based base position planning algorithm. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacesupport__polytope__base__planner_acd66a779ccac496630c309a7b4ba450d}\label{namespacesupport__polytope__base__planner_acd66a779ccac496630c309a7b4ba450d}} 
+\index{support\_polytope\_base\_planner@{support\_polytope\_base\_planner}!AddDecisionVariables@{AddDecisionVariables}}
+\index{AddDecisionVariables@{AddDecisionVariables}!support\_polytope\_base\_planner@{support\_polytope\_base\_planner}}
+\doxysubsubsection{\texorpdfstring{AddDecisionVariables()}{AddDecisionVariables()}}
+{\footnotesize\ttfamily drake\+::solvers\+::\+Matrix\+X\+Decision\+Variable support\+\_\+polytope\+\_\+base\+\_\+planner\+::\+Add\+Decision\+Variables (\begin{DoxyParamCaption}\item[{drake\+::solvers\+::\+Mathematical\+Program \&}]{prog,  }\item[{int}]{n\+\_\+steps }\end{DoxyParamCaption})}
+
+
+
+The Add\+Decision\+Variables function adds decision variables to a mathematical program. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em prog} & The mathematical program object to which decision variables are added. \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+\_\+steps} & Number of footsteps the footstep plan consists of. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacesupport__polytope__base__planner_ae540fd9e2762b3dc81688a9cc9e5002a}\label{namespacesupport__polytope__base__planner_ae540fd9e2762b3dc81688a9cc9e5002a}} 
+\index{support\_polytope\_base\_planner@{support\_polytope\_base\_planner}!InitialPositionConstraints@{InitialPositionConstraints}}
+\index{InitialPositionConstraints@{InitialPositionConstraints}!support\_polytope\_base\_planner@{support\_polytope\_base\_planner}}
+\doxysubsubsection{\texorpdfstring{InitialPositionConstraints()}{InitialPositionConstraints()}}
+{\footnotesize\ttfamily void support\+\_\+polytope\+\_\+base\+\_\+planner\+::\+Initial\+Position\+Constraints (\begin{DoxyParamCaption}\item[{drake\+::solvers\+::\+Mathematical\+Program \&}]{prog,  }\item[{drake\+::solvers\+::\+Matrix\+X\+Decision\+Variable \&}]{pos,  }\item[{Eigen\+::\+Vector2d}]{init }\end{DoxyParamCaption})}
+
+
+
+The Initial\+Position\+Constraints function adds equality constraints for the initial position of the base. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em prog} & The mathematical program object to which equality constraints are added. \\
+\hline
+\mbox{\texttt{ in}}  & {\em pos} & The decision variables for the position of the base. \\
+\hline
+\mbox{\texttt{ in}}  & {\em init} & The initial position of the base. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacesupport__polytope__base__planner_a90423f35c1d16c8af823d7ea86ebecb3}\label{namespacesupport__polytope__base__planner_a90423f35c1d16c8af823d7ea86ebecb3}} 
+\index{support\_polytope\_base\_planner@{support\_polytope\_base\_planner}!BaseWithinSupportPolytopeConstraints@{BaseWithinSupportPolytopeConstraints}}
+\index{BaseWithinSupportPolytopeConstraints@{BaseWithinSupportPolytopeConstraints}!support\_polytope\_base\_planner@{support\_polytope\_base\_planner}}
+\doxysubsubsection{\texorpdfstring{BaseWithinSupportPolytopeConstraints()}{BaseWithinSupportPolytopeConstraints()}}
+{\footnotesize\ttfamily void support\+\_\+polytope\+\_\+base\+\_\+planner\+::\+Base\+Within\+Support\+Polytope\+Constraints (\begin{DoxyParamCaption}\item[{drake\+::solvers\+::\+Mathematical\+Program \&}]{prog,  }\item[{drake\+::solvers\+::\+Matrix\+X\+Decision\+Variable \&}]{pos,  }\item[{\mbox{\hyperlink{classPolytopes}{Polytopes}} \&}]{polytopes }\end{DoxyParamCaption})}
+
+
+
+The Base\+Withing\+Support\+Polytope\+Constraints function adds inequality to ensure that the base position is within the current support polytope at all timesteps. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em prog} & The mathematical program object to which equality constraints are added. \\
+\hline
+\mbox{\texttt{ in}}  & {\em pos} & The decision variables for the position of the base. \\
+\hline
+\mbox{\texttt{ in}}  & {\em polytopes} & The support polytopes; one for each timestep. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacesupport__polytope__base__planner_a3c0da66cbf17c2a8e625c3dc98fad197}\label{namespacesupport__polytope__base__planner_a3c0da66cbf17c2a8e625c3dc98fad197}} 
+\index{support\_polytope\_base\_planner@{support\_polytope\_base\_planner}!LegStretchMinimization@{LegStretchMinimization}}
+\index{LegStretchMinimization@{LegStretchMinimization}!support\_polytope\_base\_planner@{support\_polytope\_base\_planner}}
+\doxysubsubsection{\texorpdfstring{LegStretchMinimization()}{LegStretchMinimization()}}
+{\footnotesize\ttfamily void support\+\_\+polytope\+\_\+base\+\_\+planner\+::\+Leg\+Stretch\+Minimization (\begin{DoxyParamCaption}\item[{drake\+::solvers\+::\+Mathematical\+Program \&}]{prog,  }\item[{drake\+::solvers\+::\+Matrix\+X\+Decision\+Variable \&}]{pos,  }\item[{Eigen\+::\+Matrix$<$ double, Eigen\+::\+Dynamic, Eigen\+::\+Dynamic $>$ \&}]{steps }\end{DoxyParamCaption})}
+
+
+
+The Leg\+Stretch\+Minimization function adds a quadratic cost for the distance between the base position and current foot positions, incentivizing a shorter distance between each foot and the base at each timestep. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em prog} & The mathematical program object to which equality constraints are added. \\
+\hline
+\mbox{\texttt{ in}}  & {\em pos} & The decision variables for the position of the base. \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em prog} & The mathematical program object to which equality constraints are added. \\
+\hline
+\mbox{\texttt{ in}}  & {\em pos} & The decision variables for the position of the base. \\
+\hline
+\mbox{\texttt{ in}}  & {\em steps} & A matrix containing the position of each step in the footstep plan. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacesupport__polytope__base__planner_a4d9c01eedf821ef8033cdf3f7164546f}\label{namespacesupport__polytope__base__planner_a4d9c01eedf821ef8033cdf3f7164546f}} 
+\index{support\_polytope\_base\_planner@{support\_polytope\_base\_planner}!PlanSequence@{PlanSequence}}
+\index{PlanSequence@{PlanSequence}!support\_polytope\_base\_planner@{support\_polytope\_base\_planner}}
+\doxysubsubsection{\texorpdfstring{PlanSequence()}{PlanSequence()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, Eigen\+::\+Dynamic, 2 $>$ support\+\_\+polytope\+\_\+base\+\_\+planner\+::\+Plan\+Sequence (\begin{DoxyParamCaption}\item[{Eigen\+::\+Matrix$<$ double, Eigen\+::\+Dynamic, Eigen\+::\+Dynamic $>$ \&}]{steps,  }\item[{Eigen\+::\+Vector2d}]{init,  }\item[{bool}]{use\+\_\+gurobi = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+The Plan\+Sequence function finds an optimal sequence of stabilizable base positions given a sequence of footsteps to take. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em steps} & A matrix containing the position of each step in the footstep plan. \\
+\hline
+\mbox{\texttt{ in}}  & {\em init} & The initial position of the base. \\
+\hline
+\mbox{\texttt{ in}}  & {\em use\+\_\+gurobi} & Parameter for toggling whether to use the Gurobi proprietary solver or the branch-\/and-\/bound solver freely available with Drake. The Gurobi solver is in practice necessary for even a moderate number of steps, but requires a license and building drake from source. Academic/\+Non-\/commercial license is freely available. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a matrix containing the solution to the optimization problem. 
+\end{DoxyReturn}

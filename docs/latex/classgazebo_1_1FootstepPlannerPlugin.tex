@@ -1,0 +1,102 @@
+\hypertarget{classgazebo_1_1FootstepPlannerPlugin}{}\doxysection{gazebo\+::Footstep\+Planner\+Plugin Class Reference}
+\label{classgazebo_1_1FootstepPlannerPlugin}\index{gazebo::FootstepPlannerPlugin@{gazebo::FootstepPlannerPlugin}}
+
+
+Inheritance diagram for gazebo\+::Footstep\+Planner\+Plugin\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=247pt]{classgazebo_1_1FootstepPlannerPlugin__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for gazebo\+::Footstep\+Planner\+Plugin\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=247pt]{classgazebo_1_1FootstepPlannerPlugin__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classgazebo_1_1FootstepPlannerPlugin_aa43060094e7bde49e8b09cbc5eb02439}{Load}} (physics\+::\+World\+Ptr \+\_\+world, sdf\+::\+Element\+Ptr \+\_\+sdf)
+\begin{DoxyCompactList}\small\item\em The Load function is called by Gazebo when the plugin is inserted into simulation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1FootstepPlannerPlugin_a27922cef6da634fb411b8c64ff565fa5}\label{classgazebo_1_1FootstepPlannerPlugin_a27922cef6da634fb411b8c64ff565fa5}} 
+void {\bfseries Update\+Footstep\+Plan} (const geometry\+\_\+msgs\+::\+Pose\+Array\+::\+Const\+Ptr \&msg)
+\item 
+\mbox{\Hypertarget{classgazebo_1_1FootstepPlannerPlugin_ae5979dfc5f94cb5312feda3c41935cab}\label{classgazebo_1_1FootstepPlannerPlugin_ae5979dfc5f94cb5312feda3c41935cab}} 
+void {\bfseries Init\+Ros} ()
+\item 
+\mbox{\Hypertarget{classgazebo_1_1FootstepPlannerPlugin_aa15a1dd488978b4ea88ac8931420305e}\label{classgazebo_1_1FootstepPlannerPlugin_aa15a1dd488978b4ea88ac8931420305e}} 
+void {\bfseries Init\+Ros\+Queue\+Threads} ()
+\item 
+\mbox{\Hypertarget{classgazebo_1_1FootstepPlannerPlugin_a9cbb62b56f2624f25d22c5c0badf6eb2}\label{classgazebo_1_1FootstepPlannerPlugin_a9cbb62b56f2624f25d22c5c0badf6eb2}} 
+void {\bfseries Process\+Queue\+Thread} ()
+\item 
+\mbox{\Hypertarget{classgazebo_1_1FootstepPlannerPlugin_a7e8eb4a103dfb11a0bb19aae2f97a8a5}\label{classgazebo_1_1FootstepPlannerPlugin_a7e8eb4a103dfb11a0bb19aae2f97a8a5}} 
+void {\bfseries Init\+Gazebo} ()
+\item 
+\mbox{\Hypertarget{classgazebo_1_1FootstepPlannerPlugin_ad13e0ca17978410d380042cd7cbff8f5}\label{classgazebo_1_1FootstepPlannerPlugin_ad13e0ca17978410d380042cd7cbff8f5}} 
+void {\bfseries Delete\+Visuals} ()
+\item 
+\mbox{\Hypertarget{classgazebo_1_1FootstepPlannerPlugin_a72942f51a0f4f3ecb738f503a28b7f11}\label{classgazebo_1_1FootstepPlannerPlugin_a72942f51a0f4f3ecb738f503a28b7f11}} 
+void {\bfseries Set\+Visuals} (Eigen\+::\+Matrix\+X3d \&poses)
+\item 
+\mbox{\Hypertarget{classgazebo_1_1FootstepPlannerPlugin_ac6da5967f072ddcea030f29d6dfc3e45}\label{classgazebo_1_1FootstepPlannerPlugin_ac6da5967f072ddcea030f29d6dfc3e45}} 
+void {\bfseries Publish\+Visuals} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classgazebo_1_1FootstepPlannerPlugin_a139949d4399e2025048fd33712d18bdb}\label{classgazebo_1_1FootstepPlannerPlugin_a139949d4399e2025048fd33712d18bdb}} 
+physics\+::\+World\+Ptr \mbox{\hyperlink{classgazebo_1_1FootstepPlannerPlugin_a139949d4399e2025048fd33712d18bdb}{world}}
+\begin{DoxyCompactList}\small\item\em Pointer to the world. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1FootstepPlannerPlugin_a2d319952c7ee758482ad66b3eef5b849}\label{classgazebo_1_1FootstepPlannerPlugin_a2d319952c7ee758482ad66b3eef5b849}} 
+std\+::unique\+\_\+ptr$<$ ros\+::\+Node\+Handle $>$ \mbox{\hyperlink{classgazebo_1_1FootstepPlannerPlugin_a2d319952c7ee758482ad66b3eef5b849}{ros\+Node}}
+\begin{DoxyCompactList}\small\item\em Node used for R\+OS transport. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1FootstepPlannerPlugin_a6c724519d6349563f7fdc17c5580a2b1}\label{classgazebo_1_1FootstepPlannerPlugin_a6c724519d6349563f7fdc17c5580a2b1}} 
+ros\+::\+Subscriber {\bfseries footstep\+Planner\+Sub}
+\item 
+\mbox{\Hypertarget{classgazebo_1_1FootstepPlannerPlugin_a8cacb282913eeaae4d2ce6ae061d37b1}\label{classgazebo_1_1FootstepPlannerPlugin_a8cacb282913eeaae4d2ce6ae061d37b1}} 
+ros\+::\+Callback\+Queue \mbox{\hyperlink{classgazebo_1_1FootstepPlannerPlugin_a8cacb282913eeaae4d2ce6ae061d37b1}{ros\+Process\+Queue}}
+\begin{DoxyCompactList}\small\item\em R\+OS callbackque that helps process messages. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1FootstepPlannerPlugin_a3d9baeada6ab439f3276c38b57665f45}\label{classgazebo_1_1FootstepPlannerPlugin_a3d9baeada6ab439f3276c38b57665f45}} 
+std\+::thread \mbox{\hyperlink{classgazebo_1_1FootstepPlannerPlugin_a3d9baeada6ab439f3276c38b57665f45}{ros\+Process\+Queue\+Thread}}
+\begin{DoxyCompactList}\small\item\em Thread running the ros\+Process\+Queue. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgazebo_1_1FootstepPlannerPlugin_a8109225d81eda6720fb1d9cf4f05ac36}\label{classgazebo_1_1FootstepPlannerPlugin_a8109225d81eda6720fb1d9cf4f05ac36}} 
+Eigen\+::\+Matrix$<$ msgs\+::\+Visual, Eigen\+::\+Dynamic, 1 $>$ {\bfseries indicators}
+\item 
+\mbox{\Hypertarget{classgazebo_1_1FootstepPlannerPlugin_a1d606b508b4c120d1960ee04b5fb77ec}\label{classgazebo_1_1FootstepPlannerPlugin_a1d606b508b4c120d1960ee04b5fb77ec}} 
+transport\+::\+Publisher\+Ptr {\bfseries indicator\+Pub}
+\item 
+\mbox{\Hypertarget{classgazebo_1_1FootstepPlannerPlugin_a29a18ee6a96dfba8f6efdca73abd7d10}\label{classgazebo_1_1FootstepPlannerPlugin_a29a18ee6a96dfba8f6efdca73abd7d10}} 
+transport\+::\+Node\+Ptr {\bfseries gazebo\+Node}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classgazebo_1_1FootstepPlannerPlugin_aa43060094e7bde49e8b09cbc5eb02439}\label{classgazebo_1_1FootstepPlannerPlugin_aa43060094e7bde49e8b09cbc5eb02439}} 
+\index{gazebo::FootstepPlannerPlugin@{gazebo::FootstepPlannerPlugin}!Load@{Load}}
+\index{Load@{Load}!gazebo::FootstepPlannerPlugin@{gazebo::FootstepPlannerPlugin}}
+\doxysubsubsection{\texorpdfstring{Load()}{Load()}}
+{\footnotesize\ttfamily void gazebo\+::\+Footstep\+Planner\+Plugin\+::\+Load (\begin{DoxyParamCaption}\item[{physics\+::\+World\+Ptr}]{\+\_\+world,  }\item[{sdf\+::\+Element\+Ptr}]{\+\_\+sdf }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+The Load function is called by Gazebo when the plugin is inserted into simulation. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+model} & A pointer to the model that the plugin is attached to. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+sdf} & A pointer to the plugin\textquotesingle{}s S\+DF element. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+catkin\+\_\+ws/src/simulator/tetrapod\+\_\+gazebo/include/tetrapod\+\_\+gazebo/footstep\+\_\+planner\+\_\+plugin.\+h\item 
+catkin\+\_\+ws/src/simulator/tetrapod\+\_\+gazebo/src/footstep\+\_\+planner\+\_\+plugin.\+cpp\end{DoxyCompactItemize}

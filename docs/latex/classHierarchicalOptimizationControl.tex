@@ -22,7 +22,9 @@ Collaboration diagram for Hierarchical\+Optimization\+Control\+:\nopagebreak
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{structHierarchicalOptimizationControl_1_1Task}{Task}}
-\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{structHierarchicalOptimizationControl_1_1Task}{Task}} struct. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{structHierarchicalOptimizationControl_1_1Task}{Task}} struct. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structHierarchicalOptimizationControl_1_1TasksToBeIncluded}{Tasks\+To\+Be\+Included}}
+\end{DoxyCompactItemize}
 \doxysubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
@@ -69,8 +71,32 @@ virtual \mbox{\hyperlink{classHierarchicalOptimizationControl_ad296c50c35b6eaabf
 \mbox{\Hypertarget{classHierarchicalOptimizationControl_ae2515ead8270fb9a8015cec81f1d1678}\label{classHierarchicalOptimizationControl_ae2515ead8270fb9a8015cec81f1d1678}} 
 void {\bfseries Static\+Torque\+Test} ()
 \item 
-Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \mbox{\hyperlink{classHierarchicalOptimizationControl_a911cef032be8319e4ed16b0a26dd8804}{Hierarchical\+Optimization}} (const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+desired\+\_\+base\+\_\+pos, const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+desired\+\_\+base\+\_\+vel, const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+desired\+\_\+base\+\_\+acc, const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+desired\+\_\+base\+\_\+ori, const Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ \&\+\_\+desired\+\_\+f\+\_\+pos, const Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ \&\+\_\+desired\+\_\+f\+\_\+vel, const Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ \&\+\_\+desired\+\_\+f\+\_\+acc, const Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ \&\+\_\+f\+\_\+pos, const Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ \&\+\_\+f\+\_\+vel, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+q, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+u, const int \&\+\_\+v=0)
+\mbox{\Hypertarget{classHierarchicalOptimizationControl_af1440652fd4c19567014a31ca82fb071}\label{classHierarchicalOptimizationControl_af1440652fd4c19567014a31ca82fb071}} 
+void {\bfseries Take\+Step} (Eigen\+::\+Vector3d end\+\_\+pos, int step\+\_\+leg\+\_\+ind, double step\+\_\+speed=1, double step\+\_\+height=0.\+2)
+\item 
+\mbox{\Hypertarget{classHierarchicalOptimizationControl_ae63b2b034875b94dcc6f7e6311f3538c}\label{classHierarchicalOptimizationControl_ae63b2b034875b94dcc6f7e6311f3538c}} 
+void {\bfseries Reach\+Support} (const bool support\+\_\+legs\mbox{[}4\mbox{]}, Eigen\+::\+Vector3d desired\+\_\+base\+\_\+ori, double epsilon=0.\+001, double delta\+\_\+t=0.\+5)
+\item 
+\mbox{\Hypertarget{classHierarchicalOptimizationControl_a3d78fbf53ae295d8011e6d2dd98ef3fd}\label{classHierarchicalOptimizationControl_a3d78fbf53ae295d8011e6d2dd98ef3fd}} 
+void {\bfseries Set\+Base\+Pose} (Eigen\+::\+Vector3d desired\+\_\+base\+\_\+pos, Eigen\+::\+Vector3d desired\+\_\+base\+\_\+ori, double epsilon=0.\+001, double delta\+\_\+t=0.\+5)
+\item 
+\mbox{\Hypertarget{classHierarchicalOptimizationControl_abcf34cfa511ebc8e41e5eddc059cfa5e}\label{classHierarchicalOptimizationControl_abcf34cfa511ebc8e41e5eddc059cfa5e}} 
+Eigen\+::\+Matrix\+Xd {\bfseries Get\+Steps} (const Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ \&end\+\_\+f\+\_\+pos, \mbox{\hyperlink{classTerrain}{Terrain}} terrain, int n\+\_\+steps, \mbox{\hyperlink{classHierarchicalOptimizationControl_a595a20872c103fe6c0332012648d9b9e}{Leg\+Type}} step\+\_\+sequence\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\Hypertarget{classHierarchicalOptimizationControl_a86fdb868a62a71bb169e092c41bf0cd5}\label{classHierarchicalOptimizationControl_a86fdb868a62a71bb169e092c41bf0cd5}} 
+void {\bfseries Planned\+Walk} (const Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ \&end\+\_\+f\+\_\+pos, double desired\+\_\+height, \mbox{\hyperlink{classTerrain}{Terrain}} terrain, int n\+\_\+steps, \mbox{\hyperlink{classHierarchicalOptimizationControl_a595a20872c103fe6c0332012648d9b9e}{Leg\+Type}} step\+\_\+sequence\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\Hypertarget{classHierarchicalOptimizationControl_adb18716f50493a52b1463beee4419ad7}\label{classHierarchicalOptimizationControl_adb18716f50493a52b1463beee4419ad7}} 
+void {\bfseries Walk\+Test} ()
+\item 
+\mbox{\Hypertarget{classHierarchicalOptimizationControl_a4bba105a2a0ad4cd02ef8263f9d97c87}\label{classHierarchicalOptimizationControl_a4bba105a2a0ad4cd02ef8263f9d97c87}} 
+void {\bfseries Height\+Roll\+Yaw\+Test} ()
+\item 
+Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \mbox{\hyperlink{classHierarchicalOptimizationControl_a0056113f2f82c0502ce0f25213288419}{Hierarchical\+Optimization}} (const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+desired\+\_\+base\+\_\+pos, const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+desired\+\_\+base\+\_\+vel, const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+desired\+\_\+base\+\_\+acc, const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+desired\+\_\+base\+\_\+ori, const Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ \&\+\_\+desired\+\_\+f\+\_\+pos, const Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ \&\+\_\+desired\+\_\+f\+\_\+vel, const Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ \&\+\_\+desired\+\_\+f\+\_\+acc, const Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ \&\+\_\+f\+\_\+pos, const Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ \&\+\_\+f\+\_\+vel, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+q, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+u, const bool \+\_\+stance\+\_\+legs\mbox{[}4\mbox{]}, const int \&\+\_\+v=0)
 \begin{DoxyCompactList}\small\item\em The Hierarchical\+Optimization function finds the optimal joint torques for a desired motion plan. It finds joint torques by finding optimal joint accelerations and contact forces for a set of whole-\/body control QP tasks, and leveraging inverse dynamics. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classHierarchicalOptimizationControl_a5e1f09ed48470b0d580ddd367a7184eb}\label{classHierarchicalOptimizationControl_a5e1f09ed48470b0d580ddd367a7184eb}} 
+Eigen\+::\+Matrix$<$ double, 12, 1 $>$ {\bfseries Hierarchical\+Optimization} (const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+desired\+\_\+base\+\_\+pos, const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+desired\+\_\+base\+\_\+vel, const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+desired\+\_\+base\+\_\+acc, const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+desired\+\_\+base\+\_\+ori, const Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ \&\+\_\+desired\+\_\+f\+\_\+pos, const Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ \&\+\_\+desired\+\_\+f\+\_\+vel, const Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ \&\+\_\+desired\+\_\+f\+\_\+acc, const Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ \&\+\_\+f\+\_\+pos, const Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ \&\+\_\+f\+\_\+vel, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+q, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+u, const bool \+\_\+stance\+\_\+legs\mbox{[}4\mbox{]}, const bool \+\_\+desired\+\_\+support\+\_\+legs\mbox{[}4\mbox{]}, const \mbox{\hyperlink{structHierarchicalOptimizationControl_1_1TasksToBeIncluded}{Tasks\+To\+Be\+Included}} \&\+\_\+include\+\_\+tasks, const int \&\+\_\+v=0)
+\item 
 Eigen\+::\+Matrix$<$ double, Eigen\+::\+Dynamic, 1 $>$ \mbox{\hyperlink{classHierarchicalOptimizationControl_a64f7ef31eba78810a479bc70ecd26543}{Hierarchical\+Q\+P\+Optimization}} (const int \&\+\_\+state\+\_\+dim, const std\+::vector$<$ \mbox{\hyperlink{structHierarchicalOptimizationControl_1_1Task}{Task}} $>$ \&\+\_\+tasks, const \mbox{\hyperlink{classHierarchicalOptimizationControl_ae49f08ceaee8df6933d8708fb68c3b99}{Solver\+Type}} \&\+\_\+solver=Solver\+Type\+::\+O\+S\+QP, const int \&\+\_\+v=0)
 \begin{DoxyCompactList}\small\item\em The Hierarchical\+Q\+P\+Optimization function finds the optimal solution for a set of tasks in a strictly prioritized order. The method iterates through the set of tasks and searches for a new solution in the null-\/space of all higher priority equality constraints. At each iteration a QP problem is solved to find a vector lying in the row-\/space of the null-\/space of all equality constraints, which improve on the current solution. \end{DoxyCompactList}\item 
 Eigen\+::\+Matrix$<$ double, Eigen\+::\+Dynamic, 1 $>$ \mbox{\hyperlink{classHierarchicalOptimizationControl_aa5be7152ab8fe0eb6dcb595aa5d961b5}{Hierarchical\+Least\+Square\+Optimization}} (const Eigen\+::\+Matrix$<$ Eigen\+::\+Matrix\+Xd, Eigen\+::\+Dynamic, 1 $>$ \&\+\_\+A, const Eigen\+::\+Matrix$<$ Eigen\+::\+Matrix$<$ double, Eigen\+::\+Dynamic, 1 $>$, Eigen\+::\+Dynamic, 1 $>$ \&\+\_\+b, const int \&\+\_\+v=0)
@@ -143,6 +169,12 @@ ros\+::\+Subscriber \mbox{\hyperlink{classHierarchicalOptimizationControl_ae96f0
 \mbox{\Hypertarget{classHierarchicalOptimizationControl_aa2a139ccf51e5752acb6444ba5538012}\label{classHierarchicalOptimizationControl_aa2a139ccf51e5752acb6444ba5538012}} 
 ros\+::\+Publisher \mbox{\hyperlink{classHierarchicalOptimizationControl_aa2a139ccf51e5752acb6444ba5538012}{joint\+State\+Pub}}
 \begin{DoxyCompactList}\small\item\em R\+OS Joint State Publisher. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classHierarchicalOptimizationControl_ad90adf047dbfc7952c8a6bd7513c4bad}\label{classHierarchicalOptimizationControl_ad90adf047dbfc7952c8a6bd7513c4bad}} 
+ros\+::\+Publisher \mbox{\hyperlink{classHierarchicalOptimizationControl_ad90adf047dbfc7952c8a6bd7513c4bad}{base\+Pose\+Cmd\+Pub}}
+\begin{DoxyCompactList}\small\item\em R\+OS Base Position Command Publisher. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classHierarchicalOptimizationControl_aeead76f38c43d44bca1fa32db917facb}\label{classHierarchicalOptimizationControl_aeead76f38c43d44bca1fa32db917facb}} 
+ros\+::\+Publisher \mbox{\hyperlink{classHierarchicalOptimizationControl_aeead76f38c43d44bca1fa32db917facb}{base\+Twist\+Cmd\+Pub}}
+\begin{DoxyCompactList}\small\item\em R\+OS Base Position Command Publisher. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classHierarchicalOptimizationControl_a682c7813dae3fb5095471020aeacb66c}\label{classHierarchicalOptimizationControl_a682c7813dae3fb5095471020aeacb66c}} 
 ros\+::\+Callback\+Queue \mbox{\hyperlink{classHierarchicalOptimizationControl_a682c7813dae3fb5095471020aeacb66c}{ros\+Process\+Queue}}
 \begin{DoxyCompactList}\small\item\em R\+OS callbackque that helps process messages. \end{DoxyCompactList}\item 
@@ -161,11 +193,11 @@ std\+::thread \mbox{\hyperlink{classHierarchicalOptimizationControl_a277b358c6f3
 A class for hierarchical optimization control. 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classHierarchicalOptimizationControl_a911cef032be8319e4ed16b0a26dd8804}\label{classHierarchicalOptimizationControl_a911cef032be8319e4ed16b0a26dd8804}} 
+\mbox{\Hypertarget{classHierarchicalOptimizationControl_a0056113f2f82c0502ce0f25213288419}\label{classHierarchicalOptimizationControl_a0056113f2f82c0502ce0f25213288419}} 
 \index{HierarchicalOptimizationControl@{HierarchicalOptimizationControl}!HierarchicalOptimization@{HierarchicalOptimization}}
 \index{HierarchicalOptimization@{HierarchicalOptimization}!HierarchicalOptimizationControl@{HierarchicalOptimizationControl}}
 \doxysubsubsection{\texorpdfstring{HierarchicalOptimization()}{HierarchicalOptimization()}}
-{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 12, 1 $>$ Hierarchical\+Optimization\+Control\+::\+Hierarchical\+Optimization (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&}]{\+\_\+desired\+\_\+base\+\_\+pos,  }\item[{const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&}]{\+\_\+desired\+\_\+base\+\_\+vel,  }\item[{const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&}]{\+\_\+desired\+\_\+base\+\_\+acc,  }\item[{const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&}]{\+\_\+desired\+\_\+base\+\_\+ori,  }\item[{const Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ \&}]{\+\_\+desired\+\_\+f\+\_\+pos,  }\item[{const Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ \&}]{\+\_\+desired\+\_\+f\+\_\+vel,  }\item[{const Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ \&}]{\+\_\+desired\+\_\+f\+\_\+acc,  }\item[{const Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ \&}]{\+\_\+f\+\_\+pos,  }\item[{const Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ \&}]{\+\_\+f\+\_\+vel,  }\item[{const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&}]{\+\_\+q,  }\item[{const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&}]{\+\_\+u,  }\item[{const int \&}]{\+\_\+v = {\ttfamily 0} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 12, 1 $>$ Hierarchical\+Optimization\+Control\+::\+Hierarchical\+Optimization (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&}]{\+\_\+desired\+\_\+base\+\_\+pos,  }\item[{const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&}]{\+\_\+desired\+\_\+base\+\_\+vel,  }\item[{const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&}]{\+\_\+desired\+\_\+base\+\_\+acc,  }\item[{const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&}]{\+\_\+desired\+\_\+base\+\_\+ori,  }\item[{const Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ \&}]{\+\_\+desired\+\_\+f\+\_\+pos,  }\item[{const Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ \&}]{\+\_\+desired\+\_\+f\+\_\+vel,  }\item[{const Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ \&}]{\+\_\+desired\+\_\+f\+\_\+acc,  }\item[{const Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ \&}]{\+\_\+f\+\_\+pos,  }\item[{const Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ \&}]{\+\_\+f\+\_\+vel,  }\item[{const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&}]{\+\_\+q,  }\item[{const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&}]{\+\_\+u,  }\item[{const bool}]{\+\_\+stance\+\_\+legs\mbox{[}4\mbox{]},  }\item[{const int \&}]{\+\_\+v = {\ttfamily 0} }\end{DoxyParamCaption})}
 
 
 
@@ -195,8 +227,7 @@ The Hierarchical\+Optimization function finds the optimal joint torques for a de
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Returns the optimal set of joint torques for the whole-\/body control problem leveraging hierarchical optimization. ~\newline
- 
+Returns the optimal set of joint torques for the whole-\/body control problem leveraging hierarchical optimization. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classHierarchicalOptimizationControl_a64f7ef31eba78810a479bc70ecd26543}\label{classHierarchicalOptimizationControl_a64f7ef31eba78810a479bc70ecd26543}} 
 \index{HierarchicalOptimizationControl@{HierarchicalOptimizationControl}!HierarchicalQPOptimization@{HierarchicalQPOptimization}}

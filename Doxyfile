@@ -832,6 +832,7 @@ WARN_LOGFILE           =
 INPUT                  = catkin_ws/src/control \
                          catkin_ws/src/hardware \
                          catkin_ws/src/simulator \
+                         catkin_ws/src/guidance \
                          catkin_ws/src/utilities/debug_utils \
                          catkin_ws/src/utilities/filter_utils \
                          catkin_ws/src/utilities/math_utils \
@@ -839,7 +840,7 @@ INPUT                  = catkin_ws/src/control \
                          Arduino/libraries/motor_driver \
                          Arduino/libraries/teensy_serial \
                          Arduino/libraries/utilities \
-                         Arduino/teensy_main/main \
+                         Arduino/teensy_main/main \	
                          docs/markdown
 
 # This tag can be used to specify the character encoding of the source files

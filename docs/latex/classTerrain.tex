@@ -1,0 +1,32 @@
+\hypertarget{classTerrain}{}\doxysection{Terrain Class Reference}
+\label{classTerrain}\index{Terrain@{Terrain}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classTerrain_a01a2fd83a129afcadf47fd58920b2ba9}\label{classTerrain_a01a2fd83a129afcadf47fd58920b2ba9}} 
+{\bfseries Terrain} (Eigen\+::\+Array$<$ bool, Eigen\+::\+Dynamic, 1 $>$ bool\+\_\+bridge)
+\item 
+\mbox{\Hypertarget{classTerrain_a50c8120e5c43e4db143c667bd339e4f6}\label{classTerrain_a50c8120e5c43e4db143c667bd339e4f6}} 
+\mbox{\hyperlink{classSteppingStone}{Stepping\+Stone}} {\bfseries Add\+Stone} (Eigen\+::\+Vector3d center, double width, double height, std\+::string name=nullptr)
+\item 
+\mbox{\Hypertarget{classTerrain_af9d99dadd5431d2436c25e731c6bbfe6}\label{classTerrain_af9d99dadd5431d2436c25e731c6bbfe6}} 
+Eigen\+::\+Array$<$ \mbox{\hyperlink{classSteppingStone}{Stepping\+Stone}}, Eigen\+::\+Dynamic, 1 $>$ {\bfseries Add\+Stones} (Eigen\+::\+Array$<$ Eigen\+::\+Vector3d, Eigen\+::\+Dynamic, 1 $>$ centers, Eigen\+::\+Array$<$ double, Eigen\+::\+Dynamic, 1 $>$ widths, Eigen\+::\+Array$<$ double, Eigen\+::\+Dynamic, 1 $>$ heights, std\+::string name=\char`\"{}\char`\"{})
+\item 
+\mbox{\Hypertarget{classTerrain_ad6947607c823ac1c60b12be96eaa0321}\label{classTerrain_ad6947607c823ac1c60b12be96eaa0321}} 
+const \mbox{\hyperlink{classSteppingStone}{Stepping\+Stone}} \& {\bfseries Get\+Stone\+By\+Name} (std\+::string name) const
+\item 
+\mbox{\Hypertarget{classTerrain_aa89a3a22c803a7e15c740d7e5458d5d2}\label{classTerrain_aa89a3a22c803a7e15c740d7e5458d5d2}} 
+const Eigen\+::\+Array$<$ \mbox{\hyperlink{classSteppingStone}{Stepping\+Stone}}, Eigen\+::\+Dynamic, 1 $>$ \& {\bfseries Get\+Stepping\+Stones} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classTerrain_a450942ac710f7c19a3bf347de4694f7d}\label{classTerrain_a450942ac710f7c19a3bf347de4694f7d}} 
+Eigen\+::\+Array$<$ \mbox{\hyperlink{classSteppingStone}{Stepping\+Stone}}, Eigen\+::\+Dynamic, 1 $>$ {\bfseries stepping\+\_\+stones}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+catkin\+\_\+ws/src/guidance/footstep\+\_\+planner/include/footstep\+\_\+planner/terrain.\+h\item 
+catkin\+\_\+ws/src/guidance/footstep\+\_\+planner/src/terrain.\+cpp\end{DoxyCompactItemize}

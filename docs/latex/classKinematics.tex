@@ -49,6 +49,10 @@ Vector3d \mbox{\hyperlink{classKinematics_a8f3a80f7c80de2d87e7f18971a452788}{Sol
 \begin{DoxyCompactList}\small\item\em The Solve\+Single\+Leg\+Forward\+Kinematics function calculates the Forward \mbox{\hyperlink{classKinematics}{Kinematics}} for a single leg. \end{DoxyCompactList}\item 
 Vector3d \mbox{\hyperlink{classKinematics_a98ee3885eb0b9056ba830b21d8d3ff0c}{Solve\+Single\+Leg\+Forward\+Kinematics}} (const Vector3d \&\+\_\+joint\+\_\+angles)
 \begin{DoxyCompactList}\small\item\em The Solve\+Single\+Leg\+Forward\+Kinematics function calculates the foot position in the hip frame. \end{DoxyCompactList}\item 
+Vector3d \mbox{\hyperlink{classKinematics_a76a1b6854dc328b42e3ad0683d489177}{Solve\+Single\+Leg\+Forward\+Kinematics}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg\+\_\+type, const Vector3d \&\+\_\+joint\+\_\+angles)
+\begin{DoxyCompactList}\small\item\em The Solve\+Single\+Leg\+Forward\+Kinematics function calculates the foot position in the hip frame. \end{DoxyCompactList}\item 
+Vector3d \mbox{\hyperlink{classKinematics_a28a18a9dee554c7c444fd2abde35c382}{Solve\+Single\+Leg\+Hip\+To\+Foot\+Forward\+Kinematics}} (const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&\+\_\+leg\+\_\+type, const Vector3d \&\+\_\+joint\+\_\+angles)
+\begin{DoxyCompactList}\small\item\em The Solve\+Single\+Leg\+Hip\+To\+Foot\+Forward\+Kinematics function calculates the foot position in the hip frame. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classKinematics_acfec333c272f446eebbc289b9216cb91}{Solve\+Single\+Leg\+Inverse\+Kinematics}} (const bool \&\+\_\+offset, const Vector3d \&\+\_\+h\+\_\+pos, const Vector3d \&\+\_\+f\+\_\+pos, Vector3d \&\+\_\+joint\+\_\+angles)
 \begin{DoxyCompactList}\small\item\em The Solve\+Singe\+Leg\+Inverse\+Kinematics function calculates the inverse kinematics for a single leg. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classKinematics_ae9be537672b681659fb05808786c90a6}{Solve\+Single\+Leg\+Inverse\+Kinematics}} (const bool \&\+\_\+offset, const Vector3d \&\+\_\+f\+\_\+pos, Vector3d \&\+\_\+joint\+\_\+angles)
@@ -307,7 +311,7 @@ Evaluates true if an Inverse \mbox{\hyperlink{classKinematics}{Kinematics}} solu
 \mbox{\Hypertarget{classKinematics_a8f3a80f7c80de2d87e7f18971a452788}\label{classKinematics_a8f3a80f7c80de2d87e7f18971a452788}} 
 \index{Kinematics@{Kinematics}!SolveSingleLegForwardKinematics@{SolveSingleLegForwardKinematics}}
 \index{SolveSingleLegForwardKinematics@{SolveSingleLegForwardKinematics}!Kinematics@{Kinematics}}
-\doxysubsubsection{\texorpdfstring{SolveSingleLegForwardKinematics()}{SolveSingleLegForwardKinematics()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+\doxysubsubsection{\texorpdfstring{SolveSingleLegForwardKinematics()}{SolveSingleLegForwardKinematics()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
 {\footnotesize\ttfamily Vector3d Kinematics\+::\+Solve\+Single\+Leg\+Forward\+Kinematics (\begin{DoxyParamCaption}\item[{const Vector3d \&}]{\+\_\+h\+\_\+pos,  }\item[{const double \&}]{\+\_\+theta\+\_\+hy,  }\item[{const double \&}]{\+\_\+theta\+\_\+hp,  }\item[{const double \&}]{\+\_\+theta\+\_\+kp }\end{DoxyParamCaption})}
 
 
@@ -331,7 +335,7 @@ Returns end-\/effector position in Coordinate Space.
 \mbox{\Hypertarget{classKinematics_a98ee3885eb0b9056ba830b21d8d3ff0c}\label{classKinematics_a98ee3885eb0b9056ba830b21d8d3ff0c}} 
 \index{Kinematics@{Kinematics}!SolveSingleLegForwardKinematics@{SolveSingleLegForwardKinematics}}
 \index{SolveSingleLegForwardKinematics@{SolveSingleLegForwardKinematics}!Kinematics@{Kinematics}}
-\doxysubsubsection{\texorpdfstring{SolveSingleLegForwardKinematics()}{SolveSingleLegForwardKinematics()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+\doxysubsubsection{\texorpdfstring{SolveSingleLegForwardKinematics()}{SolveSingleLegForwardKinematics()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
 {\footnotesize\ttfamily Vector3d Kinematics\+::\+Solve\+Single\+Leg\+Forward\+Kinematics (\begin{DoxyParamCaption}\item[{const Vector3d \&}]{\+\_\+joint\+\_\+angles }\end{DoxyParamCaption})}
 
 
@@ -340,6 +344,46 @@ The Solve\+Single\+Leg\+Forward\+Kinematics function calculates the foot positio
 
 
 \begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+joint\+\_\+angles} & A vector containing the hip yaw, hip pitch and knee pitch angles \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns end-\/effector position in the hip frame. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classKinematics_a76a1b6854dc328b42e3ad0683d489177}\label{classKinematics_a76a1b6854dc328b42e3ad0683d489177}} 
+\index{Kinematics@{Kinematics}!SolveSingleLegForwardKinematics@{SolveSingleLegForwardKinematics}}
+\index{SolveSingleLegForwardKinematics@{SolveSingleLegForwardKinematics}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{SolveSingleLegForwardKinematics()}{SolveSingleLegForwardKinematics()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Vector3d Kinematics\+::\+Solve\+Single\+Leg\+Forward\+Kinematics (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&}]{\+\_\+leg\+\_\+type,  }\item[{const Vector3d \&}]{\+\_\+joint\+\_\+angles }\end{DoxyParamCaption})}
+
+
+
+The Solve\+Single\+Leg\+Forward\+Kinematics function calculates the foot position in the hip frame. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+leg\+\_\+type} & Indicates which leg it is \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+joint\+\_\+angles} & A vector containing the hip yaw, hip pitch and knee pitch angles \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns end-\/effector position in the hip frame. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classKinematics_a28a18a9dee554c7c444fd2abde35c382}\label{classKinematics_a28a18a9dee554c7c444fd2abde35c382}} 
+\index{Kinematics@{Kinematics}!SolveSingleLegHipToFootForwardKinematics@{SolveSingleLegHipToFootForwardKinematics}}
+\index{SolveSingleLegHipToFootForwardKinematics@{SolveSingleLegHipToFootForwardKinematics}!Kinematics@{Kinematics}}
+\doxysubsubsection{\texorpdfstring{SolveSingleLegHipToFootForwardKinematics()}{SolveSingleLegHipToFootForwardKinematics()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$ double, 3, 1 $>$ Kinematics\+::\+Solve\+Single\+Leg\+Hip\+To\+Foot\+Forward\+Kinematics (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Leg\+Type}} \&}]{\+\_\+leg\+\_\+type,  }\item[{const Vector3d \&}]{\+\_\+joint\+\_\+angles }\end{DoxyParamCaption})}
+
+
+
+The Solve\+Single\+Leg\+Hip\+To\+Foot\+Forward\+Kinematics function calculates the foot position in the hip frame. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+leg\+\_\+type} & Indicates which leg it is \\
+\hline
 \mbox{\texttt{ in}}  & {\em \+\_\+joint\+\_\+angles} & A vector containing the hip yaw, hip pitch and knee pitch angles \\
 \hline
 \end{DoxyParams}

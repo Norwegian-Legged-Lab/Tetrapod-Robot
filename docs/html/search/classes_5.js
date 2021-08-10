@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['logutils_499',['LogUtils',['../classLogUtils.html',1,'']]]
+  ['joystickcontroller_492',['JoystickController',['../classJoystickController.html',1,'']]]
 ];

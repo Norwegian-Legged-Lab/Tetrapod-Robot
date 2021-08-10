@@ -25,7 +25,7 @@ drake::symbolic::Expression drake_nand(drake::symbolic::Variable &b1, drake::sym
     return 1 - b1*b2;
 }
 
-Eigen::MatrixXd get_sin_coeffs()
+Eigen::MatrixXd GetSinCoeffs()
 {
     Eigen::Matrix<double, 5, 2> res;
     res << 0, 1,
@@ -37,7 +37,7 @@ Eigen::MatrixXd get_sin_coeffs()
     return res;
 }
 
-Eigen::MatrixXd get_cos_coeffs()
+Eigen::MatrixXd GetCosCoeffs()
 {
     Eigen::Matrix<double, 5, 2> res;
 
@@ -50,7 +50,7 @@ Eigen::MatrixXd get_cos_coeffs()
     return res;
 }
 
-void writeMatToFile(const Eigen::MatrixXd &mat, std::string filename)
+void WriteMatToFile(const Eigen::MatrixXd &mat, std::string filename)
 {
     std::ofstream file(filename);
 

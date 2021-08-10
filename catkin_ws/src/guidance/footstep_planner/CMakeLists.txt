@@ -42,7 +42,6 @@ include_directories(
 ## Declare a C++ library
 add_library(${PROJECT_NAME}
   src/footstep_planner.cpp
-  src/miqp_biped.cpp
   src/miqp_quadruped.cpp
   src/stepping_stone.cpp
   src/terrain.cpp
@@ -52,7 +51,6 @@ add_library(${PROJECT_NAME}
 add_executable(${PROJECT_NAME}_node
   src/footstep_planner_node.cpp
   src/footstep_planner.cpp
-  src/miqp_biped.cpp
   src/miqp_quadruped.cpp
   src/stepping_stone.cpp
   src/terrain.cpp

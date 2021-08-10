@@ -16,7 +16,7 @@ Polytopes::Polytopes(Eigen::Matrix<double, Eigen::Dynamic, 2> points, double eps
 
 }
 
-void Polytopes::writePolytopesTofile(std::string base_name)
+void Polytopes::WritePolytopesTofile(std::string base_name)
 {
     int num_polytopes = this->polytope_list.rows();
 
@@ -26,13 +26,13 @@ void Polytopes::writePolytopesTofile(std::string base_name)
 
     for (int i = 0; i < num_polytopes; ++i)
     {
-        As.block(i*3, 0, 3, 2) << this->polytope_list(i).getA();
-        bs.block(i*3, 0, 3, 1) << this->polytope_list(i).getB();
+        As.block(i*3, 0, 3, 2) << this->polytope_list(i).GetA();
+        bs.block(i*3, 0, 3, 1) << this->polytope_list(i).GetB();
     }
 
     std::cout << As.rows() << " " << As.cols() << std::endl;
     std::cout << bs.rows() << " " << bs.cols() << std::endl;
-    writeMatToFile(As, base_name + "_As.csv");
+    WriteMatToFile(As, base_name + "_As.csv");
 
-    writeMatToFile(bs, base_name + "_bs.csv");
+    WriteMatToFile(bs, base_name + "_bs.csv");
 }

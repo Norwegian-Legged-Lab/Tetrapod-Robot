@@ -18,9 +18,9 @@ drake::symbolic::Expression drake_nor(drake::symbolic::Variable &b1, drake::symb
 
 drake::symbolic::Expression drake_nand(drake::symbolic::Variable &b1, drake::symbolic::Variable &b2);
 
-Eigen::MatrixXd get_sin_coeffs();
+Eigen::MatrixXd GetSinCoeffs();
 
-Eigen::MatrixXd get_cos_coeffs();
+Eigen::MatrixXd GetCosCoeffs();
 
-void writeMatToFile(const Eigen::MatrixXd &mat, std::string filename);
+void WriteMatToFile(const Eigen::MatrixXd &mat, std::string filename);
 #endif
