@@ -1,10 +1,5 @@
 var searchData=
 [
-  ['world_467',['world',['../classgazebo_1_1SingleLegPlugin.html#a81ddad66c47b8124197190093ecdc39e',1,'gazebo::SingleLegPlugin::world()'],['../classgazebo_1_1TetrapodPlugin.html#ae6a6dcf9551776b99ddefa1e1499c9cf',1,'gazebo::TetrapodPlugin::world()']]],
-  ['writeaccelerationtoram_468',['writeAccelerationToRAM',['../namespacemake__can__msg.html#a2c9c3c7cfc9b88d9db5484d254a49b98',1,'make_can_msg']]],
-  ['writecurrentpositiontorom_469',['writeCurrentPositionToROM',['../namespacemake__can__msg.html#ab4a09b29de3b61657a4edf8a3b253fee',1,'make_can_msg']]],
-  ['writeencoderpositionoffset_470',['writeEncoderPositionOffset',['../namespacemake__can__msg.html#ac08bfde7a65190e9f3f46c1cfb3f12ed',1,'make_can_msg']]],
-  ['writepidparameterstoram_471',['writePIDParametersToRAM',['../classMotorControl.html#a7583db8b9d31d9598b7163cce2e906a4',1,'MotorControl::writePIDParametersToRAM()'],['../namespacemake__can__msg.html#aa463b4b9e439e7d920738edefb0098cb',1,'make_can_msg::writePIDParametersToRAM()']]],
-  ['writepidparameterstorom_472',['writePIDParametersToROM',['../namespacemake__can__msg.html#a8eb6f31203ff8401d24ffa0f6eb0efc3',1,'make_can_msg']]],
-  ['writetolog_473',['writeToLog',['../classSingleLegController.html#a05e369f7eaf16b2d0cab0a1e79984fd2',1,'SingleLegController']]]
+  ['x_5fnominal_439',['x_nominal',['../classSingleLegController.html#afdba1143d0827abef078b2102e2171b4',1,'SingleLegController']]],
+  ['x_5fstep_5fdistance_440',['x_step_distance',['../classSingleLegController.html#a8e0450f49760446ecc4c01a2d4e13d6b',1,'SingleLegController']]]
 ];

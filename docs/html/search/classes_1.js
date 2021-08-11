@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['gaitcontroller_495',['GaitController',['../classGaitController.html',1,'']]]
+  ['footstepplannerplugin_457',['FootstepPlannerPlugin',['../classgazebo_1_1FootstepPlannerPlugin.html',1,'gazebo']]]
 ];

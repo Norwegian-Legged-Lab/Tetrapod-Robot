@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['joystickcontroller_497',['JoystickController',['../classJoystickController.html',1,'']]]
+  ['hierarchicaloptimizationcontrol_459',['HierarchicalOptimizationControl',['../classHierarchicalOptimizationControl.html',1,'']]]
 ];

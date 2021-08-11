@@ -48,7 +48,9 @@ void \mbox{\hyperlink{classMotorInterface_a34745056579d721f6c0aa9132c8e8a84}{Ros
 \begin{DoxyCompactList}\small\item\em The Ros\+Process\+Queue\+Thread function is a R\+OS helper function that processes messages. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classMotorInterface_a4e24395d423fac2276b586aa269675b8}\label{classMotorInterface_a4e24395d423fac2276b586aa269675b8}} 
 void \mbox{\hyperlink{classMotorInterface_a4e24395d423fac2276b586aa269675b8}{Ros\+Publish\+Queue\+Thread}} ()
-\begin{DoxyCompactList}\small\item\em The Ros\+Publish\+Queue\+Thread function is a R\+OS helper function that publish state messages. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The Ros\+Publish\+Queue\+Thread function is a R\+OS helper function that publish state messages. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classMotorInterface_abf980218561d0226fac3823b59045113}{Shutdown}} (const std\+\_\+srvs\+::\+Empty\+::\+Request \&\+\_\+req, std\+\_\+srvs\+::\+Empty\+::\+Response \&\+\_\+res)
+\begin{DoxyCompactList}\small\item\em The Shutdown function handles an incoming shutdown service request. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -82,6 +84,9 @@ std\+::unique\+\_\+ptr$<$ ros\+::\+Node\+Handle $>$ \mbox{\hyperlink{classMotorI
 \mbox{\Hypertarget{classMotorInterface_a92dc1d8ea5cbcb48acb70f75f1d165de}\label{classMotorInterface_a92dc1d8ea5cbcb48acb70f75f1d165de}} 
 sensor\+\_\+msgs\+::\+Joint\+State \mbox{\hyperlink{classMotorInterface_a92dc1d8ea5cbcb48acb70f75f1d165de}{joint\+State\+Msg}}
 \begin{DoxyCompactList}\small\item\em Joint State Message. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMotorInterface_aa7536098e5030f042e3eceb1c201703e}\label{classMotorInterface_aa7536098e5030f042e3eceb1c201703e}} 
+ros\+::\+Service\+Server \mbox{\hyperlink{classMotorInterface_aa7536098e5030f042e3eceb1c201703e}{shutdown\+Service}}
+\begin{DoxyCompactList}\small\item\em R\+OS Shutdown Service. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classMotorInterface_aa07b7b6b987594c573ca9b093a1e3b69}\label{classMotorInterface_aa07b7b6b987594c573ca9b093a1e3b69}} 
 ros\+::\+Subscriber \mbox{\hyperlink{classMotorInterface_aa07b7b6b987594c573ca9b093a1e3b69}{joint\+State\+Cmd\+Sub}}
 \begin{DoxyCompactList}\small\item\em R\+OS Joint State Command Subscriber. \end{DoxyCompactList}\item 
@@ -193,6 +198,26 @@ The On\+Gen\+Coord\+Msg function handles an incoming generalized coordinates mes
 \mbox{\texttt{ in}}  & {\em \+\_\+msg} & A float array containing the generalized coordinates. \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classMotorInterface_abf980218561d0226fac3823b59045113}\label{classMotorInterface_abf980218561d0226fac3823b59045113}} 
+\index{MotorInterface@{MotorInterface}!Shutdown@{Shutdown}}
+\index{Shutdown@{Shutdown}!MotorInterface@{MotorInterface}}
+\doxysubsubsection{\texorpdfstring{Shutdown()}{Shutdown()}}
+{\footnotesize\ttfamily bool Motor\+Interface\+::\+Shutdown (\begin{DoxyParamCaption}\item[{const std\+\_\+srvs\+::\+Empty\+::\+Request \&}]{\+\_\+req,  }\item[{std\+\_\+srvs\+::\+Empty\+::\+Response \&}]{\+\_\+res }\end{DoxyParamCaption})}
+
+
+
+The Shutdown function handles an incoming shutdown service request. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+req} & Service request. \\
+\hline
+\mbox{\texttt{ out}}  & {\em \+\_\+res} & Service response. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if success, and false if not. 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

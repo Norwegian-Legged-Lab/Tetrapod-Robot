@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['hierarchicaloptimizationcontrol_496',['HierarchicalOptimizationControl',['../classHierarchicalOptimizationControl.html',1,'']]]
+  ['gaitcontroller_458',['GaitController',['../classGaitController.html',1,'']]]
 ];
