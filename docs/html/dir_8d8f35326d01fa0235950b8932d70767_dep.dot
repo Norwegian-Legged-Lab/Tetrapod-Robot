@@ -1,0 +1,11 @@
+digraph "catkin_ws/src/control/modular_gait_controller/src" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_9df13c985a4a121f40d831a26c919ebf {
+    graph [ bgcolor="#ddddee", pencolor="black", label="modular_gait_controller" fontname="Helvetica", fontsize="10", URL="dir_9df13c985a4a121f40d831a26c919ebf.html"]
+  dir_a19ea287388c4be6493f4742562ee17b [shape=box label="include" fillcolor="white" style="filled" color="red" URL="dir_a19ea287388c4be6493f4742562ee17b.html"];
+  dir_8d8f35326d01fa0235950b8932d70767 [shape=box, label="src", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_8d8f35326d01fa0235950b8932d70767.html"];
+  }
+  dir_8d8f35326d01fa0235950b8932d70767->dir_a19ea287388c4be6493f4742562ee17b [headlabel="5", labeldistance=1.5 headhref="dir_000052_000049.html"];
+}

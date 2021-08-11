@@ -1,0 +1,11 @@
+digraph "catkin_ws/src/hardware/actuators/include/actuators" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_d395d6ca70d480966144fed78956b9d5 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="include" fontname="Helvetica", fontsize="10", URL="dir_d395d6ca70d480966144fed78956b9d5.html"]
+  dir_f9a2910ac4999cd4d8e01648b7835362 [shape=box, label="actuators", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_f9a2910ac4999cd4d8e01648b7835362.html"];
+  }
+  dir_1aa341485bb1ab881cf01e1913f76376 [shape=box label="serial_communication" fillcolor="white" style="filled" color="red" URL="dir_1aa341485bb1ab881cf01e1913f76376.html"];
+  dir_f9a2910ac4999cd4d8e01648b7835362->dir_1aa341485bb1ab881cf01e1913f76376 [headlabel="1", labeldistance=1.5 headhref="dir_000073_000021.html"];
+}

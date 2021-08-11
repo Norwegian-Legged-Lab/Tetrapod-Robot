@@ -1,0 +1,411 @@
+\hypertarget{namespacemath__utils}{}\doxysection{math\+\_\+utils Namespace Reference}
+\label{namespacemath__utils}\index{math\_utils@{math\_utils}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{namespacemath__utils_a61af5f1046b73d327241eb065f02c2ac}{deg\+To\+Rad}} (const double \&\+\_\+deg)
+\begin{DoxyCompactList}\small\item\em The deg\+To\+Rad function converts degrees to radians. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacemath__utils_a9824f52115abead316aee507c19b4806}{rad\+To\+Deg}} (const double \&\+\_\+rad)
+\begin{DoxyCompactList}\small\item\em The rad\+To\+Deg function converts radians to degrees. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacemath__utils_a483056b148c3f37e90dd2587338513f0}{wrap\+Angle\+To\+Pi}} (const double \&\+\_\+rad)
+\begin{DoxyCompactList}\small\item\em The wrap\+Angle\+To\+Pi function wraps an input angle to the interval \mbox{[}-\/pi, pi). \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacemath__utils_ad9ba721cedf993437e2f1b13282b60f0}{wrap\+Angle\+To2\+Pi}} (const double \&\+\_\+rad)
+\begin{DoxyCompactList}\small\item\em The wrap\+Angle\+To2\+Pi function wraps an input angle to the interval \mbox{[}0, 2pi). \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacemath__utils_a7b66cd6c92c0aab4dcc2e1b0c245f0bd}{angle\+Diff}} (const double \&\+\_\+ang1, const double \&\+\_\+ang2)
+\begin{DoxyCompactList}\small\item\em The angle\+Diff function returns the difference in angle between two given angles in the interval \mbox{[}0, pi) \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Matrix\+\_\+\+TypeA , typename Matrix\+\_\+\+TypeB $>$ }\\static bool \mbox{\hyperlink{namespacemath__utils_ac385312f2a665d917a4c2724f4b633c3}{damped\+Pseudo\+Inverse}} (const Matrix\+\_\+\+TypeA \&\+\_\+J, Matrix\+\_\+\+TypeB \&\+\_\+d\+PinvJ, const double \+\_\+lambda=0, const double \+\_\+epsilon=std\+::numeric\+\_\+limits$<$ typename Matrix\+\_\+\+Type\+A\+::\+Scalar $>$\+::epsilon())
+\begin{DoxyCompactList}\small\item\em The damped\+Pseudo\+Inverse function calculates the damped pseudo-\/inverse of a matrix using SVD. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Matrix\+\_\+\+TypeA , typename Matrix\+\_\+\+TypeB $>$ }\\static bool \mbox{\hyperlink{namespacemath__utils_ab3c668a5629a048f4a5436f5899b9e11}{null\+Space\+Projector}} (const Matrix\+\_\+\+TypeA \&\+\_\+A, Matrix\+\_\+\+TypeB \&\+\_\+N, const double \+\_\+alpha=1)
+\begin{DoxyCompactList}\small\item\em The null\+Space\+Projector function calculates the null-\/space projector of a given matrix. The null-\/space projector is calculated using the Moore-\/\+Penrose pseudo-\/inverse (N = I -\/ alpha $\ast$ pinvA $\ast$ A). \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Matrix\+\_\+\+TypeA $>$ }\\Eigen\+::\+Matrix$<$ typename Matrix\+\_\+\+Type\+A\+::\+Scalar, Eigen\+::\+Dynamic, Eigen\+::\+Dynamic $>$ \mbox{\hyperlink{namespacemath__utils_a80628cf39b07d1fd346383e807033ce7}{SVDNull\+Space\+Projector}} (const Matrix\+\_\+\+TypeA \&\+\_\+A)
+\begin{DoxyCompactList}\small\item\em The SVDNull\+Space\+Projector function calculates the null-\/space projector of a given matrix. The null-\/space projector is calculated using the singular-\/value decomposition (SVD). The null-\/space. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Vector\+\_\+\+TypeA , typename Vector\+\_\+\+TypeB $>$ }\\Eigen\+::\+Matrix$<$ typename Vector\+\_\+\+Type\+A\+::\+Scalar, Eigen\+::\+Dynamic, 1 $>$ \mbox{\hyperlink{namespacemath__utils_a1883ab1807271be329d39873620bc55f}{box\+Minus}} (const Vector\+\_\+\+TypeA \&\+\_\+a, const Vector\+\_\+\+TypeB \&\+\_\+b)
+\begin{DoxyCompactList}\small\item\em The box\+Minus function calculates the box-\/minus operation between two vectors of equal size. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr double \mbox{\hyperlink{namespacemath__utils_aaacf4ae101134cc0116eaa0960cec259}{TWO\+\_\+\+PI}} = boost\+::math\+::constants\+::two\+\_\+pi$<$double$>$()
+\begin{DoxyCompactList}\small\item\em Define 2PI. \end{DoxyCompactList}\item 
+static constexpr double \mbox{\hyperlink{namespacemath__utils_ae11e1508f290b7370bfc98be6ac14123}{FOUR\+\_\+\+THIRDS\+\_\+\+PI}} = boost\+::math\+::constants\+::four\+\_\+thirds\+\_\+pi$<$double$>$()
+\begin{DoxyCompactList}\small\item\em Define 4PI/3. \end{DoxyCompactList}\item 
+static constexpr double \mbox{\hyperlink{namespacemath__utils_ab77ed9bc6a5263c1912751341b1d96f9}{PI}} = boost\+::math\+::constants\+::pi$<$double$>$()
+\begin{DoxyCompactList}\small\item\em Define PI. \end{DoxyCompactList}\item 
+static constexpr double \mbox{\hyperlink{namespacemath__utils_a979a4129b47ae45cda890f7f88a3981e}{THREE\+\_\+\+QUARTERS\+\_\+\+PI}} = boost\+::math\+::constants\+::three\+\_\+quarters\+\_\+pi$<$double$>$()
+\begin{DoxyCompactList}\small\item\em Define 3PI/4. \end{DoxyCompactList}\item 
+static constexpr double \mbox{\hyperlink{namespacemath__utils_ae452d318e2aa458306f72ccd442281a7}{TWO\+\_\+\+THIRDS\+\_\+\+PI}} = boost\+::math\+::constants\+::two\+\_\+thirds\+\_\+pi$<$double$>$()
+\begin{DoxyCompactList}\small\item\em Define 2PI/3. \end{DoxyCompactList}\item 
+static constexpr double \mbox{\hyperlink{namespacemath__utils_a0667b974bde8c7c206fd5ee18f583f91}{HALF\+\_\+\+PI}} = boost\+::math\+::constants\+::half\+\_\+pi$<$double$>$()
+\begin{DoxyCompactList}\small\item\em Define PI/2. \end{DoxyCompactList}\item 
+static constexpr double \mbox{\hyperlink{namespacemath__utils_a1cb98a462545ad84cb92cc663321d0d8}{THIRD\+\_\+\+PI}} = boost\+::math\+::constants\+::third\+\_\+pi$<$double$>$()
+\begin{DoxyCompactList}\small\item\em Define PI/3. \end{DoxyCompactList}\item 
+static constexpr double \mbox{\hyperlink{namespacemath__utils_a1b3995366b41539f48168aaef8779175}{SIXTH\+\_\+\+PI}} = boost\+::math\+::constants\+::sixth\+\_\+pi$<$double$>$()
+\begin{DoxyCompactList}\small\item\em Define PI/6. \end{DoxyCompactList}\item 
+static constexpr double \mbox{\hyperlink{namespacemath__utils_a7ffd0fa8783c8e8721517ae219d436ff}{ONE\+\_\+\+DIV\+\_\+\+TWO\+\_\+\+PI}} = boost\+::math\+::constants\+::one\+\_\+div\+\_\+two\+\_\+pi$<$double$>$()
+\begin{DoxyCompactList}\small\item\em Define 1/2\+PI. \end{DoxyCompactList}\item 
+static constexpr double \mbox{\hyperlink{namespacemath__utils_acf6b48eb150cf7c7670230f256fd5cbe}{INF}} = std\+::numeric\+\_\+limits$<$double$>$\+::infinity()
+\begin{DoxyCompactList}\small\item\em Define infinity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacemath__utils_a61af5f1046b73d327241eb065f02c2ac}\label{namespacemath__utils_a61af5f1046b73d327241eb065f02c2ac}} 
+\index{math\_utils@{math\_utils}!degToRad@{degToRad}}
+\index{degToRad@{degToRad}!math\_utils@{math\_utils}}
+\doxysubsubsection{\texorpdfstring{degToRad()}{degToRad()}}
+{\footnotesize\ttfamily double math\+\_\+utils\+::deg\+To\+Rad (\begin{DoxyParamCaption}\item[{const double \&}]{\+\_\+deg }\end{DoxyParamCaption})}
+
+
+
+The deg\+To\+Rad function converts degrees to radians. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+deg} & Angle in degrees. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Angle in radians. 
+\end{DoxyReturn}
+
+
+Definition at line 33 of file angle\+\_\+utils.\+cpp.
+
+\mbox{\Hypertarget{namespacemath__utils_a9824f52115abead316aee507c19b4806}\label{namespacemath__utils_a9824f52115abead316aee507c19b4806}} 
+\index{math\_utils@{math\_utils}!radToDeg@{radToDeg}}
+\index{radToDeg@{radToDeg}!math\_utils@{math\_utils}}
+\doxysubsubsection{\texorpdfstring{radToDeg()}{radToDeg()}}
+{\footnotesize\ttfamily double math\+\_\+utils\+::rad\+To\+Deg (\begin{DoxyParamCaption}\item[{const double \&}]{\+\_\+rad }\end{DoxyParamCaption})}
+
+
+
+The rad\+To\+Deg function converts radians to degrees. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+rad} & Angle in radians. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Angle in degrees. 
+\end{DoxyReturn}
+
+
+Definition at line 39 of file angle\+\_\+utils.\+cpp.
+
+\mbox{\Hypertarget{namespacemath__utils_a483056b148c3f37e90dd2587338513f0}\label{namespacemath__utils_a483056b148c3f37e90dd2587338513f0}} 
+\index{math\_utils@{math\_utils}!wrapAngleToPi@{wrapAngleToPi}}
+\index{wrapAngleToPi@{wrapAngleToPi}!math\_utils@{math\_utils}}
+\doxysubsubsection{\texorpdfstring{wrapAngleToPi()}{wrapAngleToPi()}}
+{\footnotesize\ttfamily double math\+\_\+utils\+::wrap\+Angle\+To\+Pi (\begin{DoxyParamCaption}\item[{const double \&}]{\+\_\+rad }\end{DoxyParamCaption})}
+
+
+
+The wrap\+Angle\+To\+Pi function wraps an input angle to the interval \mbox{[}-\/pi, pi). 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+rad} & Angle in radians. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Angle in radians in the interval \mbox{[}-\/pi,pi) 
+\end{DoxyReturn}
+
+
+Definition at line 45 of file angle\+\_\+utils.\+cpp.
+
+\mbox{\Hypertarget{namespacemath__utils_ad9ba721cedf993437e2f1b13282b60f0}\label{namespacemath__utils_ad9ba721cedf993437e2f1b13282b60f0}} 
+\index{math\_utils@{math\_utils}!wrapAngleTo2Pi@{wrapAngleTo2Pi}}
+\index{wrapAngleTo2Pi@{wrapAngleTo2Pi}!math\_utils@{math\_utils}}
+\doxysubsubsection{\texorpdfstring{wrapAngleTo2Pi()}{wrapAngleTo2Pi()}}
+{\footnotesize\ttfamily double math\+\_\+utils\+::wrap\+Angle\+To2\+Pi (\begin{DoxyParamCaption}\item[{const double \&}]{\+\_\+rad }\end{DoxyParamCaption})}
+
+
+
+The wrap\+Angle\+To2\+Pi function wraps an input angle to the interval \mbox{[}0, 2pi). 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+rad} & Angle in radians. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Angle in radians in the interval \mbox{[}0, 2pi). 
+\end{DoxyReturn}
+
+
+Definition at line 59 of file angle\+\_\+utils.\+cpp.
+
+\mbox{\Hypertarget{namespacemath__utils_a7b66cd6c92c0aab4dcc2e1b0c245f0bd}\label{namespacemath__utils_a7b66cd6c92c0aab4dcc2e1b0c245f0bd}} 
+\index{math\_utils@{math\_utils}!angleDiff@{angleDiff}}
+\index{angleDiff@{angleDiff}!math\_utils@{math\_utils}}
+\doxysubsubsection{\texorpdfstring{angleDiff()}{angleDiff()}}
+{\footnotesize\ttfamily double math\+\_\+utils\+::angle\+Diff (\begin{DoxyParamCaption}\item[{const double \&}]{\+\_\+ang1,  }\item[{const double \&}]{\+\_\+ang2 }\end{DoxyParamCaption})}
+
+
+
+The angle\+Diff function returns the difference in angle between two given angles in the interval \mbox{[}0, pi) 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+ang1} & First angle in radians \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+ang2} & Second angle in radians \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Angle difference from \+\_\+ang1 relative \+\_\+ang2 ~\newline
+ 
+\end{DoxyReturn}
+
+
+Definition at line 72 of file angle\+\_\+utils.\+cpp.
+
+\mbox{\Hypertarget{namespacemath__utils_ac385312f2a665d917a4c2724f4b633c3}\label{namespacemath__utils_ac385312f2a665d917a4c2724f4b633c3}} 
+\index{math\_utils@{math\_utils}!dampedPseudoInverse@{dampedPseudoInverse}}
+\index{dampedPseudoInverse@{dampedPseudoInverse}!math\_utils@{math\_utils}}
+\doxysubsubsection{\texorpdfstring{dampedPseudoInverse()}{dampedPseudoInverse()}}
+{\footnotesize\ttfamily template$<$typename Matrix\+\_\+\+TypeA , typename Matrix\+\_\+\+TypeB $>$ \\
+static bool math\+\_\+utils\+::damped\+Pseudo\+Inverse (\begin{DoxyParamCaption}\item[{const Matrix\+\_\+\+TypeA \&}]{\+\_\+J,  }\item[{Matrix\+\_\+\+TypeB \&}]{\+\_\+d\+PinvJ,  }\item[{const double}]{\+\_\+lambda = {\ttfamily 0},  }\item[{const double}]{\+\_\+epsilon = {\ttfamily std\+:\+:numeric\+\_\+limits$<$typename~Matrix\+\_\+TypeA\+:\+:Scalar$>$\+:\+:epsilon()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The damped\+Pseudo\+Inverse function calculates the damped pseudo-\/inverse of a matrix using SVD. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+J} & Input Matrix. \\
+\hline
+\mbox{\texttt{ out}}  & {\em \+\_\+d\+PinvJ} & Output Matrix (damped pseudo-\/inverse of the input matrix). \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+lambda} & Damping factor. Defaults to zero, i.\+e. the moore-\/penrose pseudo-\/inverse. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+epsilon} & Numerical precision (singular value threshold). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the damped pseudo-\/inverse is calculated successfully. 
+\end{DoxyReturn}
+
+
+Definition at line 50 of file linalg\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{namespacemath__utils_ab3c668a5629a048f4a5436f5899b9e11}\label{namespacemath__utils_ab3c668a5629a048f4a5436f5899b9e11}} 
+\index{math\_utils@{math\_utils}!nullSpaceProjector@{nullSpaceProjector}}
+\index{nullSpaceProjector@{nullSpaceProjector}!math\_utils@{math\_utils}}
+\doxysubsubsection{\texorpdfstring{nullSpaceProjector()}{nullSpaceProjector()}}
+{\footnotesize\ttfamily template$<$typename Matrix\+\_\+\+TypeA , typename Matrix\+\_\+\+TypeB $>$ \\
+static bool math\+\_\+utils\+::null\+Space\+Projector (\begin{DoxyParamCaption}\item[{const Matrix\+\_\+\+TypeA \&}]{\+\_\+A,  }\item[{Matrix\+\_\+\+TypeB \&}]{\+\_\+N,  }\item[{const double}]{\+\_\+alpha = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The null\+Space\+Projector function calculates the null-\/space projector of a given matrix. The null-\/space projector is calculated using the Moore-\/\+Penrose pseudo-\/inverse (N = I -\/ alpha $\ast$ pinvA $\ast$ A). 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+A} & Input matrix A. \\
+\hline
+\mbox{\texttt{ out}}  & {\em \+\_\+N} & Output matrix N (null-\/space projector of the input matrix). \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+alpha} & Scalar parameter between 0 and 1 used to regulate the priority between two tasks (if used in a hierarchical control approach). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if a null-\/space projector is calculated successfully. 
+\end{DoxyReturn}
+
+
+Definition at line 104 of file linalg\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{namespacemath__utils_a80628cf39b07d1fd346383e807033ce7}\label{namespacemath__utils_a80628cf39b07d1fd346383e807033ce7}} 
+\index{math\_utils@{math\_utils}!SVDNullSpaceProjector@{SVDNullSpaceProjector}}
+\index{SVDNullSpaceProjector@{SVDNullSpaceProjector}!math\_utils@{math\_utils}}
+\doxysubsubsection{\texorpdfstring{SVDNullSpaceProjector()}{SVDNullSpaceProjector()}}
+{\footnotesize\ttfamily template$<$typename Matrix\+\_\+\+TypeA $>$ \\
+Eigen\+::\+Matrix$<$typename Matrix\+\_\+\+Type\+A\+::\+Scalar, Eigen\+::\+Dynamic, Eigen\+::\+Dynamic$>$ math\+\_\+utils\+::\+SVDNull\+Space\+Projector (\begin{DoxyParamCaption}\item[{const Matrix\+\_\+\+TypeA \&}]{\+\_\+A }\end{DoxyParamCaption})}
+
+
+
+The SVDNull\+Space\+Projector function calculates the null-\/space projector of a given matrix. The null-\/space projector is calculated using the singular-\/value decomposition (SVD). The null-\/space. 
+
+\hypertarget{namespacemath__utils_autotoc_md5}{}\doxysubsubsection{projector is found as N(\+\_\+\+A) = V\+\_\+\+N$^\wedge$$\ast$, where the SVD comprises\+:}\label{namespacemath__utils_autotoc_md5}
+A = \mbox{[}U\+\_\+R, U\+\_\+N\mbox{]}\mbox{[}S, 0;\mbox{[}V\+\_\+\+R$^\wedge$$\ast$; \hypertarget{namespacemath__utils_autotoc_md6}{}\doxysubsubsection{0, 0\mbox{]} V\+\_\+\+N$^\wedge$$\ast$\mbox{]}}\label{namespacemath__utils_autotoc_md6}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+A} & Input matrix A. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the SVD null-\/space projector of the input matrix \+\_\+A. 
+\end{DoxyReturn}
+
+
+Definition at line 144 of file linalg\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{namespacemath__utils_a1883ab1807271be329d39873620bc55f}\label{namespacemath__utils_a1883ab1807271be329d39873620bc55f}} 
+\index{math\_utils@{math\_utils}!boxMinus@{boxMinus}}
+\index{boxMinus@{boxMinus}!math\_utils@{math\_utils}}
+\doxysubsubsection{\texorpdfstring{boxMinus()}{boxMinus()}}
+{\footnotesize\ttfamily template$<$typename Vector\+\_\+\+TypeA , typename Vector\+\_\+\+TypeB $>$ \\
+Eigen\+::\+Matrix$<$typename Vector\+\_\+\+Type\+A\+::\+Scalar, Eigen\+::\+Dynamic, 1$>$ math\+\_\+utils\+::box\+Minus (\begin{DoxyParamCaption}\item[{const Vector\+\_\+\+TypeA \&}]{\+\_\+a,  }\item[{const Vector\+\_\+\+TypeB \&}]{\+\_\+b }\end{DoxyParamCaption})}
+
+
+
+The box\+Minus function calculates the box-\/minus operation between two vectors of equal size. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+a} & LHS vector. \\
+\hline
+\mbox{\texttt{ in}}  & {\em \+\_\+b} & RHS vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the box-\/minus operation between the two vectors. 
+\end{DoxyReturn}
+
+
+Definition at line 180 of file linalg\+\_\+utils.\+h.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespacemath__utils_aaacf4ae101134cc0116eaa0960cec259}\label{namespacemath__utils_aaacf4ae101134cc0116eaa0960cec259}} 
+\index{math\_utils@{math\_utils}!TWO\_PI@{TWO\_PI}}
+\index{TWO\_PI@{TWO\_PI}!math\_utils@{math\_utils}}
+\doxysubsubsection{\texorpdfstring{TWO\_PI}{TWO\_PI}}
+{\footnotesize\ttfamily constexpr double math\+\_\+utils\+::\+TWO\+\_\+\+PI = boost\+::math\+::constants\+::two\+\_\+pi$<$double$>$()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Define 2PI. 
+
+
+
+Definition at line 38 of file angle\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{namespacemath__utils_ae11e1508f290b7370bfc98be6ac14123}\label{namespacemath__utils_ae11e1508f290b7370bfc98be6ac14123}} 
+\index{math\_utils@{math\_utils}!FOUR\_THIRDS\_PI@{FOUR\_THIRDS\_PI}}
+\index{FOUR\_THIRDS\_PI@{FOUR\_THIRDS\_PI}!math\_utils@{math\_utils}}
+\doxysubsubsection{\texorpdfstring{FOUR\_THIRDS\_PI}{FOUR\_THIRDS\_PI}}
+{\footnotesize\ttfamily constexpr double math\+\_\+utils\+::\+FOUR\+\_\+\+THIRDS\+\_\+\+PI = boost\+::math\+::constants\+::four\+\_\+thirds\+\_\+pi$<$double$>$()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Define 4PI/3. 
+
+
+
+Definition at line 41 of file angle\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{namespacemath__utils_ab77ed9bc6a5263c1912751341b1d96f9}\label{namespacemath__utils_ab77ed9bc6a5263c1912751341b1d96f9}} 
+\index{math\_utils@{math\_utils}!PI@{PI}}
+\index{PI@{PI}!math\_utils@{math\_utils}}
+\doxysubsubsection{\texorpdfstring{PI}{PI}}
+{\footnotesize\ttfamily constexpr double math\+\_\+utils\+::\+PI = boost\+::math\+::constants\+::pi$<$double$>$()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Define PI. 
+
+
+
+Definition at line 44 of file angle\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{namespacemath__utils_a979a4129b47ae45cda890f7f88a3981e}\label{namespacemath__utils_a979a4129b47ae45cda890f7f88a3981e}} 
+\index{math\_utils@{math\_utils}!THREE\_QUARTERS\_PI@{THREE\_QUARTERS\_PI}}
+\index{THREE\_QUARTERS\_PI@{THREE\_QUARTERS\_PI}!math\_utils@{math\_utils}}
+\doxysubsubsection{\texorpdfstring{THREE\_QUARTERS\_PI}{THREE\_QUARTERS\_PI}}
+{\footnotesize\ttfamily constexpr double math\+\_\+utils\+::\+THREE\+\_\+\+QUARTERS\+\_\+\+PI = boost\+::math\+::constants\+::three\+\_\+quarters\+\_\+pi$<$double$>$()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Define 3PI/4. 
+
+
+
+Definition at line 47 of file angle\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{namespacemath__utils_ae452d318e2aa458306f72ccd442281a7}\label{namespacemath__utils_ae452d318e2aa458306f72ccd442281a7}} 
+\index{math\_utils@{math\_utils}!TWO\_THIRDS\_PI@{TWO\_THIRDS\_PI}}
+\index{TWO\_THIRDS\_PI@{TWO\_THIRDS\_PI}!math\_utils@{math\_utils}}
+\doxysubsubsection{\texorpdfstring{TWO\_THIRDS\_PI}{TWO\_THIRDS\_PI}}
+{\footnotesize\ttfamily constexpr double math\+\_\+utils\+::\+TWO\+\_\+\+THIRDS\+\_\+\+PI = boost\+::math\+::constants\+::two\+\_\+thirds\+\_\+pi$<$double$>$()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Define 2PI/3. 
+
+
+
+Definition at line 50 of file angle\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{namespacemath__utils_a0667b974bde8c7c206fd5ee18f583f91}\label{namespacemath__utils_a0667b974bde8c7c206fd5ee18f583f91}} 
+\index{math\_utils@{math\_utils}!HALF\_PI@{HALF\_PI}}
+\index{HALF\_PI@{HALF\_PI}!math\_utils@{math\_utils}}
+\doxysubsubsection{\texorpdfstring{HALF\_PI}{HALF\_PI}}
+{\footnotesize\ttfamily constexpr double math\+\_\+utils\+::\+HALF\+\_\+\+PI = boost\+::math\+::constants\+::half\+\_\+pi$<$double$>$()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Define PI/2. 
+
+
+
+Definition at line 53 of file angle\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{namespacemath__utils_a1cb98a462545ad84cb92cc663321d0d8}\label{namespacemath__utils_a1cb98a462545ad84cb92cc663321d0d8}} 
+\index{math\_utils@{math\_utils}!THIRD\_PI@{THIRD\_PI}}
+\index{THIRD\_PI@{THIRD\_PI}!math\_utils@{math\_utils}}
+\doxysubsubsection{\texorpdfstring{THIRD\_PI}{THIRD\_PI}}
+{\footnotesize\ttfamily constexpr double math\+\_\+utils\+::\+THIRD\+\_\+\+PI = boost\+::math\+::constants\+::third\+\_\+pi$<$double$>$()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Define PI/3. 
+
+
+
+Definition at line 56 of file angle\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{namespacemath__utils_a1b3995366b41539f48168aaef8779175}\label{namespacemath__utils_a1b3995366b41539f48168aaef8779175}} 
+\index{math\_utils@{math\_utils}!SIXTH\_PI@{SIXTH\_PI}}
+\index{SIXTH\_PI@{SIXTH\_PI}!math\_utils@{math\_utils}}
+\doxysubsubsection{\texorpdfstring{SIXTH\_PI}{SIXTH\_PI}}
+{\footnotesize\ttfamily constexpr double math\+\_\+utils\+::\+SIXTH\+\_\+\+PI = boost\+::math\+::constants\+::sixth\+\_\+pi$<$double$>$()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Define PI/6. 
+
+
+
+Definition at line 59 of file angle\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{namespacemath__utils_a7ffd0fa8783c8e8721517ae219d436ff}\label{namespacemath__utils_a7ffd0fa8783c8e8721517ae219d436ff}} 
+\index{math\_utils@{math\_utils}!ONE\_DIV\_TWO\_PI@{ONE\_DIV\_TWO\_PI}}
+\index{ONE\_DIV\_TWO\_PI@{ONE\_DIV\_TWO\_PI}!math\_utils@{math\_utils}}
+\doxysubsubsection{\texorpdfstring{ONE\_DIV\_TWO\_PI}{ONE\_DIV\_TWO\_PI}}
+{\footnotesize\ttfamily constexpr double math\+\_\+utils\+::\+ONE\+\_\+\+DIV\+\_\+\+TWO\+\_\+\+PI = boost\+::math\+::constants\+::one\+\_\+div\+\_\+two\+\_\+pi$<$double$>$()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Define 1/2\+PI. 
+
+
+
+Definition at line 62 of file angle\+\_\+utils.\+h.
+
+\mbox{\Hypertarget{namespacemath__utils_acf6b48eb150cf7c7670230f256fd5cbe}\label{namespacemath__utils_acf6b48eb150cf7c7670230f256fd5cbe}} 
+\index{math\_utils@{math\_utils}!INF@{INF}}
+\index{INF@{INF}!math\_utils@{math\_utils}}
+\doxysubsubsection{\texorpdfstring{INF}{INF}}
+{\footnotesize\ttfamily constexpr double math\+\_\+utils\+::\+INF = std\+::numeric\+\_\+limits$<$double$>$\+::infinity()\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Define infinity. 
+
+
+
+Definition at line 33 of file const\+\_\+utils.\+h.
+

@@ -1,0 +1,15 @@
+digraph "catkin_ws/src/hardware" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_7c859f3878cb32062c29919224ce2290 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="src" fontname="Helvetica", fontsize="10", URL="dir_7c859f3878cb32062c29919224ce2290.html"]
+  subgraph clusterdir_dff6d95cd477fdce004da0b2ce223d01 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_dff6d95cd477fdce004da0b2ce223d01.html"];
+    dir_dff6d95cd477fdce004da0b2ce223d01 [shape=plaintext label="hardware"];
+  dir_505a92d04ae516fa1bd5598d51b36237 [shape=box label="actuators" fillcolor="white" style="filled" color="red" URL="dir_505a92d04ae516fa1bd5598d51b36237.html"];
+  dir_1aa341485bb1ab881cf01e1913f76376 [shape=box label="serial_communication" fillcolor="white" style="filled" color="red" URL="dir_1aa341485bb1ab881cf01e1913f76376.html"];
+  }
+  }
+  dir_505a92d04ae516fa1bd5598d51b36237->dir_1aa341485bb1ab881cf01e1913f76376 [headlabel="1", labeldistance=1.5 headhref="dir_000020_000021.html"];
+}

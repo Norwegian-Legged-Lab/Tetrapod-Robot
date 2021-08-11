@@ -1,5 +1,6 @@
 var searchData=
 [
+<<<<<<< HEAD
   ['joint_752',['joint',['../classgazebo_1_1PendulumPlugin.html#a8d811eae2374749ae3e89c79665b62a0',1,'gazebo::PendulumPlugin']]],
   ['joint_5facc_5fref_753',['joint_acc_ref',['../classSingleLegController.html#a3ef1befaf2e65f02d10ab4387598e619',1,'SingleLegController']]],
   ['joint_5fconfig_754',['joint_config',['../classgazebo_1_1SingleLegPlugin.html#a2d275a8f830d62aa0e1edacfecd53c70',1,'gazebo::SingleLegPlugin::joint_config()'],['../classgazebo_1_1TetrapodPlugin.html#af0aa95d81eff447619d54fef3ea3f350',1,'gazebo::TetrapodPlugin::joint_config()']]],
@@ -29,4 +30,11 @@ var searchData=
   ['jointstatemsg_778',['jointStateMsg',['../classMotorInterface.html#a92dc1d8ea5cbcb48acb70f75f1d165de',1,'MotorInterface']]],
   ['jointstatepub_779',['jointStatePub',['../classHierarchicalOptimizationControl.html#aa2a139ccf51e5752acb6444ba5538012',1,'HierarchicalOptimizationControl::jointStatePub()'],['../classMotorInterface.html#a8881cd754c5891b9af6b0cb9368d54cf',1,'MotorInterface::jointStatePub()'],['../classgazebo_1_1TetrapodPlugin.html#acb86ee69ad20bd52c8b46d8b8bfbaf91',1,'gazebo::TetrapodPlugin::jointStatePub()'],['../classLogUtils.html#aebb30b44bc3a2aa697b90e85c303ae18',1,'LogUtils::jointStatePub()']]],
   ['jointstatesub_780',['jointStateSub',['../classgazebo_1_1PendulumPlugin.html#a9e41bb42b5fb17e675c86c58981c5b85',1,'gazebo::PendulumPlugin::jointStateSub()'],['../classgazebo_1_1SingleLegPlugin.html#a97760d277a68cb9e87269e46db176537',1,'gazebo::SingleLegPlugin::jointStateSub()'],['../classLogUtils.html#aa09263ffc83b24e77d676091ad8bf786',1,'LogUtils::jointStateSub()']]]
+=======
+  ['half_5fpi_2019',['HALF_PI',['../namespacemath__utils.html#a0667b974bde8c7c206fd5ee18f583f91',1,'math_utils']]],
+  ['has_5feq_5fconstraint_2020',['has_eq_constraint',['../structHierarchicalOptimizationControl_1_1Task.html#a11dc6f5fd4494a4b42d559c380ac81fd',1,'HierarchicalOptimizationControl::Task']]],
+  ['has_5fineq_5fconstraint_2021',['has_ineq_constraint',['../structHierarchicalOptimizationControl_1_1Task.html#a84b6c5269a6ba5237988b680bff3504c',1,'HierarchicalOptimizationControl::Task']]],
+  ['height_2022',['height',['../classSteppingStone.html#ae1459d59a3b8351c03b8295aee008450',1,'SteppingStone::height()'],['../classutils_1_1SteppingStone.html#a65f5cf57d5ca73c21835d2be8b2b3c0f',1,'utils.SteppingStone.height()']]],
+  ['hip_5fheight_2023',['hip_height',['../classRobotController.html#a6695eba2446d77622c5e979476ea5359',1,'RobotController::hip_height()'],['../classSingleLegController.html#a9af55628c4322ff2afe9a7d03f78d8f1',1,'SingleLegController::hip_height()']]]
+>>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
 ];

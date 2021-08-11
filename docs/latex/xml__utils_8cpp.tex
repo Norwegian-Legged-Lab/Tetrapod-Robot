@@ -1,0 +1,151 @@
+\hypertarget{xml__utils_8cpp}{}\doxysection{catkin\+\_\+ws/src/utilities/visualization\+\_\+utils/src/xml\+\_\+utils.cpp File Reference}
+\label{xml__utils_8cpp}\index{catkin\_ws/src/utilities/visualization\_utils/src/xml\_utils.cpp@{catkin\_ws/src/utilities/visualization\_utils/src/xml\_utils.cpp}}
+{\ttfamily \#include \char`\"{}visualization\+\_\+utils/xml\+\_\+utils.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+Include dependency graph for xml\+\_\+utils.\+cpp\+:
+% FIG 0
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{xml__utils_8cpp_a142bd5609e53140fd78cf56de8cb5fc6}{p\+\_\+el}} = DOMElement $\ast$
+\item 
+using \mbox{\hyperlink{xml__utils_8cpp_aa9ce50fc9e0815390605151d530ed385}{p\+\_\+text}} = DOMText $\ast$
+\item 
+using \mbox{\hyperlink{xml__utils_8cpp_ae2e1c27a9ae904a6aa622fc2e8cbd3b4}{p\+\_\+doc}} = DOMDocument $\ast$
+\item 
+using \mbox{\hyperlink{xml__utils_8cpp_af969a534a6e721b332bba9f26b177dbe}{p\+\_\+impl}} = DOMImplementation $\ast$
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{xml__utils_8cpp_a596c6bbaca4bafa35d26aa894cdd23a2}{safe\+Set\+Attribute}} (\mbox{\hyperlink{xml__utils_8cpp_a142bd5609e53140fd78cf56de8cb5fc6}{p\+\_\+el}} p\+Elem, std\+::string key, std\+::string val)
+\item 
+void \mbox{\hyperlink{xml__utils_8cpp_a014dd46c7002c0dfd6a9a07391c8e7a7}{safe\+Set\+Text\+Content}} (\mbox{\hyperlink{xml__utils_8cpp_a142bd5609e53140fd78cf56de8cb5fc6}{p\+\_\+el}} p\+Elem, std\+::string text\+Content)
+\item 
+std\+::string \mbox{\hyperlink{xml__utils_8cpp_a878b0c0bf6e1c59cdaaa1db917c3e4c6}{safe\+Transcode}} (XMLCh $\ast$xmlstring)
+\item 
+\mbox{\hyperlink{xml__utils_8cpp_a142bd5609e53140fd78cf56de8cb5fc6}{p\+\_\+el}} \mbox{\hyperlink{xml__utils_8cpp_ac3991c0daf8a110f920a310528b7ad67}{safe\+Create\+Element}} (\mbox{\hyperlink{xml__utils_8cpp_ae2e1c27a9ae904a6aa622fc2e8cbd3b4}{p\+\_\+doc}} p\+Parent, std\+::string name)
+\item 
+void \mbox{\hyperlink{xml__utils_8cpp_ad7e85e61a86bc30167e7bb10ec6becee}{dummy\+Example}} ()
+\item 
+std\+::string \mbox{\hyperlink{xml__utils_8cpp_a55323703607b77f60e73f5e0330d35fd}{get\+Footstep\+SDFString\+Pugi}} (Eigen\+::\+Matrix\+X3d footsteps)
+\item 
+std\+::string \mbox{\hyperlink{xml__utils_8cpp_a2b89e07998ac7841155a85034d7d7a27}{get\+Footstep\+SDFString}} (Eigen\+::\+Matrix\+X3d footsteps)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{xml__utils_8cpp_a142bd5609e53140fd78cf56de8cb5fc6}\label{xml__utils_8cpp_a142bd5609e53140fd78cf56de8cb5fc6}} 
+\index{xml\_utils.cpp@{xml\_utils.cpp}!p\_el@{p\_el}}
+\index{p\_el@{p\_el}!xml\_utils.cpp@{xml\_utils.cpp}}
+\doxysubsubsection{\texorpdfstring{p\_el}{p\_el}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{xml__utils_8cpp_a142bd5609e53140fd78cf56de8cb5fc6}{p\+\_\+el}} =  DOMElement$\ast$}
+
+
+
+Definition at line 5 of file xml\+\_\+utils.\+cpp.
+
+\mbox{\Hypertarget{xml__utils_8cpp_aa9ce50fc9e0815390605151d530ed385}\label{xml__utils_8cpp_aa9ce50fc9e0815390605151d530ed385}} 
+\index{xml\_utils.cpp@{xml\_utils.cpp}!p\_text@{p\_text}}
+\index{p\_text@{p\_text}!xml\_utils.cpp@{xml\_utils.cpp}}
+\doxysubsubsection{\texorpdfstring{p\_text}{p\_text}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{xml__utils_8cpp_aa9ce50fc9e0815390605151d530ed385}{p\+\_\+text}} =  DOMText$\ast$}
+
+
+
+Definition at line 6 of file xml\+\_\+utils.\+cpp.
+
+\mbox{\Hypertarget{xml__utils_8cpp_ae2e1c27a9ae904a6aa622fc2e8cbd3b4}\label{xml__utils_8cpp_ae2e1c27a9ae904a6aa622fc2e8cbd3b4}} 
+\index{xml\_utils.cpp@{xml\_utils.cpp}!p\_doc@{p\_doc}}
+\index{p\_doc@{p\_doc}!xml\_utils.cpp@{xml\_utils.cpp}}
+\doxysubsubsection{\texorpdfstring{p\_doc}{p\_doc}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{xml__utils_8cpp_ae2e1c27a9ae904a6aa622fc2e8cbd3b4}{p\+\_\+doc}} =  DOMDocument$\ast$}
+
+
+
+Definition at line 7 of file xml\+\_\+utils.\+cpp.
+
+\mbox{\Hypertarget{xml__utils_8cpp_af969a534a6e721b332bba9f26b177dbe}\label{xml__utils_8cpp_af969a534a6e721b332bba9f26b177dbe}} 
+\index{xml\_utils.cpp@{xml\_utils.cpp}!p\_impl@{p\_impl}}
+\index{p\_impl@{p\_impl}!xml\_utils.cpp@{xml\_utils.cpp}}
+\doxysubsubsection{\texorpdfstring{p\_impl}{p\_impl}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{xml__utils_8cpp_af969a534a6e721b332bba9f26b177dbe}{p\+\_\+impl}} =  DOMImplementation$\ast$}
+
+
+
+Definition at line 8 of file xml\+\_\+utils.\+cpp.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{xml__utils_8cpp_a596c6bbaca4bafa35d26aa894cdd23a2}\label{xml__utils_8cpp_a596c6bbaca4bafa35d26aa894cdd23a2}} 
+\index{xml\_utils.cpp@{xml\_utils.cpp}!safeSetAttribute@{safeSetAttribute}}
+\index{safeSetAttribute@{safeSetAttribute}!xml\_utils.cpp@{xml\_utils.cpp}}
+\doxysubsubsection{\texorpdfstring{safeSetAttribute()}{safeSetAttribute()}}
+{\footnotesize\ttfamily void safe\+Set\+Attribute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{xml__utils_8cpp_a142bd5609e53140fd78cf56de8cb5fc6}{p\+\_\+el}}}]{p\+Elem,  }\item[{std\+::string}]{key,  }\item[{std\+::string}]{val }\end{DoxyParamCaption})}
+
+
+
+Definition at line 10 of file xml\+\_\+utils.\+cpp.
+
+\mbox{\Hypertarget{xml__utils_8cpp_a014dd46c7002c0dfd6a9a07391c8e7a7}\label{xml__utils_8cpp_a014dd46c7002c0dfd6a9a07391c8e7a7}} 
+\index{xml\_utils.cpp@{xml\_utils.cpp}!safeSetTextContent@{safeSetTextContent}}
+\index{safeSetTextContent@{safeSetTextContent}!xml\_utils.cpp@{xml\_utils.cpp}}
+\doxysubsubsection{\texorpdfstring{safeSetTextContent()}{safeSetTextContent()}}
+{\footnotesize\ttfamily void safe\+Set\+Text\+Content (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{xml__utils_8cpp_a142bd5609e53140fd78cf56de8cb5fc6}{p\+\_\+el}}}]{p\+Elem,  }\item[{std\+::string}]{text\+Content }\end{DoxyParamCaption})}
+
+
+
+Definition at line 22 of file xml\+\_\+utils.\+cpp.
+
+\mbox{\Hypertarget{xml__utils_8cpp_a878b0c0bf6e1c59cdaaa1db917c3e4c6}\label{xml__utils_8cpp_a878b0c0bf6e1c59cdaaa1db917c3e4c6}} 
+\index{xml\_utils.cpp@{xml\_utils.cpp}!safeTranscode@{safeTranscode}}
+\index{safeTranscode@{safeTranscode}!xml\_utils.cpp@{xml\_utils.cpp}}
+\doxysubsubsection{\texorpdfstring{safeTranscode()}{safeTranscode()}}
+{\footnotesize\ttfamily std\+::string safe\+Transcode (\begin{DoxyParamCaption}\item[{XMLCh $\ast$}]{xmlstring }\end{DoxyParamCaption})}
+
+
+
+Definition at line 33 of file xml\+\_\+utils.\+cpp.
+
+\mbox{\Hypertarget{xml__utils_8cpp_ac3991c0daf8a110f920a310528b7ad67}\label{xml__utils_8cpp_ac3991c0daf8a110f920a310528b7ad67}} 
+\index{xml\_utils.cpp@{xml\_utils.cpp}!safeCreateElement@{safeCreateElement}}
+\index{safeCreateElement@{safeCreateElement}!xml\_utils.cpp@{xml\_utils.cpp}}
+\doxysubsubsection{\texorpdfstring{safeCreateElement()}{safeCreateElement()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{xml__utils_8cpp_a142bd5609e53140fd78cf56de8cb5fc6}{p\+\_\+el}} safe\+Create\+Element (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{xml__utils_8cpp_ae2e1c27a9ae904a6aa622fc2e8cbd3b4}{p\+\_\+doc}}}]{p\+Parent,  }\item[{std\+::string}]{name }\end{DoxyParamCaption})}
+
+
+
+Definition at line 46 of file xml\+\_\+utils.\+cpp.
+
+\mbox{\Hypertarget{xml__utils_8cpp_ad7e85e61a86bc30167e7bb10ec6becee}\label{xml__utils_8cpp_ad7e85e61a86bc30167e7bb10ec6becee}} 
+\index{xml\_utils.cpp@{xml\_utils.cpp}!dummyExample@{dummyExample}}
+\index{dummyExample@{dummyExample}!xml\_utils.cpp@{xml\_utils.cpp}}
+\doxysubsubsection{\texorpdfstring{dummyExample()}{dummyExample()}}
+{\footnotesize\ttfamily void dummy\+Example (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 59 of file xml\+\_\+utils.\+cpp.
+
+\mbox{\Hypertarget{xml__utils_8cpp_a55323703607b77f60e73f5e0330d35fd}\label{xml__utils_8cpp_a55323703607b77f60e73f5e0330d35fd}} 
+\index{xml\_utils.cpp@{xml\_utils.cpp}!getFootstepSDFStringPugi@{getFootstepSDFStringPugi}}
+\index{getFootstepSDFStringPugi@{getFootstepSDFStringPugi}!xml\_utils.cpp@{xml\_utils.cpp}}
+\doxysubsubsection{\texorpdfstring{getFootstepSDFStringPugi()}{getFootstepSDFStringPugi()}}
+{\footnotesize\ttfamily std\+::string get\+Footstep\+SDFString\+Pugi (\begin{DoxyParamCaption}\item[{Eigen\+::\+Matrix\+X3d}]{footsteps }\end{DoxyParamCaption})}
+
+
+
+Definition at line 65 of file xml\+\_\+utils.\+cpp.
+
+\mbox{\Hypertarget{xml__utils_8cpp_a2b89e07998ac7841155a85034d7d7a27}\label{xml__utils_8cpp_a2b89e07998ac7841155a85034d7d7a27}} 
+\index{xml\_utils.cpp@{xml\_utils.cpp}!getFootstepSDFString@{getFootstepSDFString}}
+\index{getFootstepSDFString@{getFootstepSDFString}!xml\_utils.cpp@{xml\_utils.cpp}}
+\doxysubsubsection{\texorpdfstring{getFootstepSDFString()}{getFootstepSDFString()}}
+{\footnotesize\ttfamily std\+::string get\+Footstep\+SDFString (\begin{DoxyParamCaption}\item[{Eigen\+::\+Matrix\+X3d}]{footsteps }\end{DoxyParamCaption})}
+
+
+
+Definition at line 238 of file xml\+\_\+utils.\+cpp.
+

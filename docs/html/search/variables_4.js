@@ -1,5 +1,6 @@
 var searchData=
 [
+<<<<<<< HEAD
   ['final_5fiteration_712',['final_iteration',['../classSingleLegController.html#aa578d487193bc0bc1c4821749e995c34',1,'SingleLegController']]],
   ['final_5fpose_5fiteration_713',['final_pose_iteration',['../classSingleLegController.html#a3c637cd144c5799024607d8c1ad1eef2',1,'SingleLegController']]],
   ['fl_5fgoal_5fposition_714',['fl_goal_position',['../classRobotController.html#aee8aa7a4916b3c2bf3a1c19bff175c57',1,'RobotController']]],
@@ -16,4 +17,8 @@ var searchData=
   ['frcontactsensorsub_725',['frContactSensorSub',['../classContactSensor.html#adab93f23c02fb80b6e371d2064f7c999',1,'ContactSensor']]],
   ['froffset_726',['frOffset',['../classKinematics.html#a1bcf8567289477307b831c2be788059b',1,'Kinematics']]],
   ['fvel_727',['fVel',['../classHierarchicalOptimizationControl.html#a826091dcae900863dc889d6a08b28c7a',1,'HierarchicalOptimizationControl']]]
+=======
+  ['dt_1961',['dt',['../classThirdOrderFilter.html#a1393a1abdf4a178d078ebe22c4e3d183',1,'ThirdOrderFilter']]],
+  ['dtot_1962',['dtot',['../namespacecalculate__polynomials.html#a856b31ea0fed20e6f2bf99854d5220bb',1,'calculate_polynomials']]]
+>>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
 ];

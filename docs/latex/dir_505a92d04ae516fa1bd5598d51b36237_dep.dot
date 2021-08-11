@@ -1,0 +1,17 @@
+digraph "catkin_ws/src/hardware/actuators" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_dff6d95cd477fdce004da0b2ce223d01 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="hardware" fontname="Helvetica", fontsize="10", URL="dir_dff6d95cd477fdce004da0b2ce223d01.html"]
+  dir_1aa341485bb1ab881cf01e1913f76376 [shape=box label="serial_communication" fillcolor="white" style="filled" color="red" URL="dir_1aa341485bb1ab881cf01e1913f76376.html"];
+  subgraph clusterdir_505a92d04ae516fa1bd5598d51b36237 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_505a92d04ae516fa1bd5598d51b36237.html"];
+    dir_505a92d04ae516fa1bd5598d51b36237 [shape=plaintext label="actuators"];
+  dir_d395d6ca70d480966144fed78956b9d5 [shape=box label="include" fillcolor="white" style="filled" color="red" URL="dir_d395d6ca70d480966144fed78956b9d5.html"];
+  dir_dee39ade7a5baa4c1896d120f597b78f [shape=box label="src" fillcolor="white" style="filled" URL="dir_dee39ade7a5baa4c1896d120f597b78f.html"];
+  }
+  }
+  dir_dee39ade7a5baa4c1896d120f597b78f->dir_d395d6ca70d480966144fed78956b9d5 [headlabel="2", labeldistance=1.5 headhref="dir_000074_000072.html"];
+  dir_d395d6ca70d480966144fed78956b9d5->dir_1aa341485bb1ab881cf01e1913f76376 [headlabel="1", labeldistance=1.5 headhref="dir_000072_000021.html"];
+}

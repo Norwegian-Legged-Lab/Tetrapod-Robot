@@ -1,5 +1,6 @@
 var searchData=
 [
+<<<<<<< HEAD
   ['world_432',['world',['../classgazebo_1_1SingleLegPlugin.html#a81ddad66c47b8124197190093ecdc39e',1,'gazebo::SingleLegPlugin::world()'],['../classgazebo_1_1FootstepPlannerPlugin.html#a139949d4399e2025048fd33712d18bdb',1,'gazebo::FootstepPlannerPlugin::world()'],['../classgazebo_1_1TerrainPlugin.html#a89e3cf3109ad27e4cdc696c6c5c83f24',1,'gazebo::TerrainPlugin::world()'],['../classgazebo_1_1TetrapodPlugin.html#ae6a6dcf9551776b99ddefa1e1499c9cf',1,'gazebo::TetrapodPlugin::world()']]],
   ['writeaccelerationtoram_433',['writeAccelerationToRAM',['../namespacemake__can__msg.html#a2c9c3c7cfc9b88d9db5484d254a49b98',1,'make_can_msg']]],
   ['writecurrentpositiontorom_434',['writeCurrentPositionToROM',['../namespacemake__can__msg.html#ab4a09b29de3b61657a4edf8a3b253fee',1,'make_can_msg']]],
@@ -7,4 +8,45 @@ var searchData=
   ['writepidparameterstoram_436',['writePIDParametersToRAM',['../classMotorControl.html#a7583db8b9d31d9598b7163cce2e906a4',1,'MotorControl::writePIDParametersToRAM()'],['../namespacemake__can__msg.html#aa463b4b9e439e7d920738edefb0098cb',1,'make_can_msg::writePIDParametersToRAM()']]],
   ['writepidparameterstorom_437',['writePIDParametersToROM',['../namespacemake__can__msg.html#a8eb6f31203ff8401d24ffa0f6eb0efc3',1,'make_can_msg']]],
   ['writetolog_438',['writeToLog',['../classSingleLegController.html#a05e369f7eaf16b2d0cab0a1e79984fd2',1,'SingleLegController']]]
+=======
+  ['uninitialized_1133',['uninitialized',['../classSingleLegController.html#a7334d4583d94d34addc8f7dc898fe5c7a6dd6d79c6c9af95b81d7422f31c1b384',1,'SingleLegController']]],
+  ['uninitialized_5fjoint_5fstate_1134',['UNINITIALIZED_JOINT_STATE',['../controller_8h.html#af13a068991bb960994138f296edbe1ca',1,'controller.h']]],
+  ['uninitialized_5fstate_1135',['UNINITIALIZED_STATE',['../classSingleLegController.html#ae881be0ce2a2ec472da2a99edc6b609b',1,'SingleLegController::UNINITIALIZED_STATE()'],['../classSingleMotorController.html#ae5afc10b4530e08ecf22e4a65da4ee07',1,'SingleMotorController::UNINITIALIZED_STATE()']]],
+  ['unpackagebuffer_1136',['UnpackageBuffer',['../classSerialCommunication.html#af62714c9ae5aedc7430cc7f2d189a6df',1,'SerialCommunication']]],
+  ['unspecified_1137',['UNSPECIFIED',['../classHierarchicalOptimizationControl.html#ae49f08ceaee8df6933d8708fb68c3b99ac4f5c5d1ed1b20d14fcf027c32a6f7b3',1,'HierarchicalOptimizationControl']]],
+  ['updateclosedlooptorquecommands_1138',['updateClosedLoopTorqueCommands',['../classSingleLegController.html#a3453715cb0120cdc1fb5f6494051f2bd',1,'SingleLegController']]],
+  ['updateconnection_1139',['updateConnection',['../classgazebo_1_1ContactPlugin.html#a195df29795fc44cd676effe9e396479f',1,'gazebo::ContactPlugin']]],
+  ['updatefeetpositions_1140',['UpdateFeetPositions',['../classController.html#aa498264be5854362a95f5b9dbf95fd31',1,'Controller']]],
+  ['updatefeetreferences_1141',['UpdateFeetReferences',['../classRobotController.html#a1d1d88612826ea3f55904adc3d08d57b',1,'RobotController::UpdateFeetReferences()'],['../classController.html#a9635a5c77031b610febe90725af7f123',1,'Controller::UpdateFeetReferences()'],['../classGaitController.html#a422ac06dd3bda1cb63d16cd3e93ec13f',1,'GaitController::UpdateFeetReferences()']]],
+  ['updatefeetreferencesgaitcontrol_1142',['UpdateFeetReferencesGaitControl',['../classRobotController.html#a9859f9c6c32e4716b996da4b51a70c43',1,'RobotController']]],
+  ['updatefeetreferencesposecontrol_1143',['UpdateFeetReferencesPoseControl',['../classRobotController.html#aa900b3483d9cbddbadd0aa38fedd16eb',1,'RobotController']]],
+  ['updatefeettrajectories_1144',['UpdateFeetTrajectories',['../classRobotController.html#a330b76d714d876d93830fec6a1b51f91',1,'RobotController']]],
+  ['updatefilter_1145',['updateFilter',['../classThirdOrderFilter.html#a0a626046883f45922a1093798201f8eb',1,'ThirdOrderFilter']]],
+  ['updatefootstepplan_1146',['UpdateFootstepPlan',['../classgazebo_1_1FootstepPlannerPlugin.html#a27922cef6da634fb411b8c64ff565fa5',1,'gazebo::FootstepPlannerPlugin']]],
+  ['updatefoottrajectoryreference_1147',['updateFootTrajectoryReference',['../classSingleLegController.html#a2751303302b0a0d937c3bcb768d92ad5',1,'SingleLegController']]],
+  ['updategaitphase_1148',['updateGaitPhase',['../classSingleLegController.html#ac8866042e708855270f78a0ebbc90721',1,'SingleLegController']]],
+  ['updategaitstate_1149',['UpdateGaitState',['../classRobotController.html#a604cb0b5468cdf3828fe916cd96cee7f',1,'RobotController']]],
+  ['updateguidancecommands_1150',['UpdateGuidanceCommands',['../classRobotController.html#a931c7071f839d1c6ef2843458f2c44de',1,'RobotController']]],
+  ['updatejointcommands_1151',['UpdateJointCommands',['../classController.html#a0449baeb66c81108867fe63d76b537c5',1,'Controller']]],
+  ['updatejointreferences_1152',['updateJointReferences',['../classSingleLegController.html#ab981f262fd6959dea6432a238136e5ec',1,'SingleLegController']]],
+  ['updatejointtorquecommands_1153',['updateJointTorqueCommands',['../classSingleLegController.html#aaab478fc232623423c50ea3f462266da',1,'SingleLegController::updateJointTorqueCommands(const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;_joint_pos_ref, const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;_joint_vel_ref, const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;_joint_acc_ref, const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;_joint_pos, const Eigen::Matrix&lt; double, 3, 1 &gt; &amp;_joint_vel)'],['../classSingleLegController.html#ad5b6382db1463b29715b6a0f11dc7253',1,'SingleLegController::updateJointTorqueCommands()']]],
+  ['updatejointvelocitycommands_1154',['updateJointVelocityCommands',['../classSingleLegController.html#a16531ceeb159200803bf59ac37134f71',1,'SingleLegController']]],
+  ['updatenonguidancecommands_1155',['UpdateNonGuidanceCommands',['../classRobotController.html#a488fae1c35197f095ab7324abb126cb7',1,'RobotController']]],
+  ['updateposecontroljointtrajectoryreference_1156',['updatePoseControlJointTrajectoryReference',['../classSingleLegController.html#a9082ad9153ed6666c5922caeb31613f4',1,'SingleLegController']]],
+  ['updatestancefootposition_1157',['UpdateStanceFootPosition',['../classRobotController.html#a599b9d91cf7b7a90514b5bbfb5475864',1,'RobotController']]],
+  ['updatestancefootpositiontrajectory_1158',['updateStanceFootPositionTrajectory',['../classSingleLegController.html#a4546fd0c6d563f693c8a7217ee400626',1,'SingleLegController']]],
+  ['updatestates_1159',['UpdateStates',['../classStateEstimator.html#a2ca443f19f66516efdef6a0507d74dc0',1,'StateEstimator']]],
+  ['updatestepdistances_1160',['UpdateStepDistances',['../classRobotController.html#aa7651434dce9dcb39c6aacc94b464398',1,'RobotController']]],
+  ['updateswingfootposition_1161',['UpdateSwingFootPosition',['../classRobotController.html#a57a7d0bc7f4932f67273480e2d640170',1,'RobotController']]],
+  ['updateswingfootpositiontrajectory_1162',['updateSwingFootPositionTrajectory',['../classSingleLegController.html#aab175156b57045ba31d2048dde75ea9d',1,'SingleLegController']]],
+  ['updateswingfoottrajectory_1163',['UpdateSwingFootTrajectory',['../classRobotController.html#ac150f100d2faae8ed425ec4d08255963',1,'RobotController']]],
+  ['updatetrajectory_1164',['updateTrajectory',['../classSingleMotorController.html#ab065e4d61a45f13fbc9a8ca74647e414',1,'SingleMotorController']]],
+  ['updatevelocitycommands_1165',['UpdateVelocityCommands',['../classController.html#a4cbe0ea983515c9b54b2365e091ffadd',1,'Controller']]],
+  ['utilities_2ecpp_1166',['utilities.cpp',['../utilities_8cpp.html',1,'']]],
+  ['utilities_2eh_1167',['utilities.h',['../utilities_8h.html',1,'']]],
+  ['utils_1168',['utils',['../namespaceutils.html',1,'']]],
+  ['utils_2ecpp_1169',['utils.cpp',['../utils_8cpp.html',1,'']]],
+  ['utils_2eh_1170',['utils.h',['../utils_8h.html',1,'']]],
+  ['utils_2epy_1171',['utils.py',['../utils_8py.html',1,'']]]
+>>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
 ];

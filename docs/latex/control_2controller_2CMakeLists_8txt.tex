@@ -1,0 +1,44 @@
+\hypertarget{control_2controller_2CMakeLists_8txt}{}\doxysection{catkin\+\_\+ws/src/control/controller/\+CMake\+Lists.txt File Reference}
+\label{control_2controller_2CMakeLists_8txt}\index{catkin\_ws/src/control/controller/CMakeLists.txt@{catkin\_ws/src/control/controller/CMakeLists.txt}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{control_2controller_2CMakeLists_8txt_a6843e4ae863703586cbbfe3d61bd3694}{cmake\+\_\+minimum\+\_\+required}} (VERSION 3.\+0.\+2) project(controller) find\+\_\+package(catkin REQUIRED COMPONENTS roscpp std\+\_\+msgs sensor\+\_\+msgs geometry\+\_\+msgs math\+\_\+utils debug\+\_\+utils kinematics eigen\+\_\+conversions) find\+\_\+package(Eigen3 REQUIRED) catkin\+\_\+package(INCLUDE\+\_\+\+DIRS include \$
+\item 
+LIBRARIES gait\+\_\+controller CATKIN\+\_\+\+DEPENDS roscpp std\+\_\+msgs sensor\+\_\+msgs geometry\+\_\+msgs math\+\_\+utils debug\+\_\+utils kinematics eigen\+\_\+conversions \mbox{\hyperlink{control_2controller_2CMakeLists_8txt_ace6764d980116f0096e84e62c8578a58}{include\+\_\+directories}} (include \$\{catkin\+\_\+\+INCLUDE\+\_\+\+DIRS\} \$\{EIGEN3\+\_\+\+INCLUDE\+\_\+\+DIR\}) \mbox{\hyperlink{guidance_2joystick__controller_2CMakeLists_8txt_af3dd492ab4e1af89200a8fdca61fd3e6}{add\+\_\+library}}(\$
+\item 
+src controller cpp \mbox{\hyperlink{control_2controller_2CMakeLists_8txt_ac2d4f342a2d0ce624aa90fd46e87583f}{target\+\_\+link\+\_\+libraries}} (\$\{PROJECT\+\_\+\+NAME\} \$\{catkin\+\_\+\+LIBRARIES\}) install(TARGETS \$
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{control_2controller_2CMakeLists_8txt_a6843e4ae863703586cbbfe3d61bd3694}\label{control_2controller_2CMakeLists_8txt_a6843e4ae863703586cbbfe3d61bd3694}} 
+\index{CMakeLists.txt@{CMakeLists.txt}!cmake\_minimum\_required@{cmake\_minimum\_required}}
+\index{cmake\_minimum\_required@{cmake\_minimum\_required}!CMakeLists.txt@{CMakeLists.txt}}
+\doxysubsubsection{\texorpdfstring{cmake\_minimum\_required()}{cmake\_minimum\_required()}}
+{\footnotesize\ttfamily cmake\+\_\+minimum\+\_\+required (\begin{DoxyParamCaption}\item[{VERSION 3.\+0.}]{2 }\end{DoxyParamCaption})}
+
+
+
+Definition at line 1 of file CMake\+Lists.\+txt.
+
+\mbox{\Hypertarget{control_2controller_2CMakeLists_8txt_ace6764d980116f0096e84e62c8578a58}\label{control_2controller_2CMakeLists_8txt_ace6764d980116f0096e84e62c8578a58}} 
+\index{CMakeLists.txt@{CMakeLists.txt}!include\_directories@{include\_directories}}
+\index{include\_directories@{include\_directories}!CMakeLists.txt@{CMakeLists.txt}}
+\doxysubsubsection{\texorpdfstring{include\_directories()}{include\_directories()}}
+{\footnotesize\ttfamily LIBRARIES gait\+\_\+controller CATKIN\+\_\+\+DEPENDS roscpp std\+\_\+msgs sensor\+\_\+msgs geometry\+\_\+msgs math\+\_\+utils debug\+\_\+utils kinematics eigen\+\_\+conversions include\+\_\+directories (\begin{DoxyParamCaption}\item[{include \$\{catkin\+\_\+\+INCLUDE\+\_\+\+DIRS\} \$\{EIGEN3\+\_\+\+INCLUDE\+\_\+\+DIR\}}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 33 of file CMake\+Lists.\+txt.
+
+\mbox{\Hypertarget{control_2controller_2CMakeLists_8txt_ac2d4f342a2d0ce624aa90fd46e87583f}\label{control_2controller_2CMakeLists_8txt_ac2d4f342a2d0ce624aa90fd46e87583f}} 
+\index{CMakeLists.txt@{CMakeLists.txt}!target\_link\_libraries@{target\_link\_libraries}}
+\index{target\_link\_libraries@{target\_link\_libraries}!CMakeLists.txt@{CMakeLists.txt}}
+\doxysubsubsection{\texorpdfstring{target\_link\_libraries()}{target\_link\_libraries()}}
+{\footnotesize\ttfamily src controller cpp target\+\_\+link\+\_\+libraries (\begin{DoxyParamCaption}\item[{}]{\$\{\+PROJECT\+\_\+\+NAME\} \$\{catkin\+\_\+\+LIBRARIES\} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 45 of file CMake\+Lists.\+txt.
+

@@ -1,0 +1,75 @@
+\hypertarget{utilities_8cpp}{}\doxysection{Arduino/libraries/utilities/utilities.cpp File Reference}
+\label{utilities_8cpp}\index{Arduino/libraries/utilities/utilities.cpp@{Arduino/libraries/utilities/utilities.cpp}}
+{\ttfamily \#include \char`\"{}utilities.\+h\char`\"{}}\newline
+Include dependency graph for utilities.\+cpp\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{utilities_8cpp_a37b8255f9f2fa5c5cfdee886b2120646}{delay\+\_\+microseconds}} (double microsecond\+\_\+delay)
+\begin{DoxyCompactList}\small\item\em Performs a nonblocking delay in the program Functions such as delay might block some interrupts. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{utilities_8cpp_a7c3f72f1dfaf7844d566e44ee957dfe8}{print\+CANMessage\+Data}} (unsigned char $\ast$\+\_\+can\+\_\+message)
+\begin{DoxyCompactList}\small\item\em The function takes in an array and prints the corresponding message to serial print. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{utilities_8cpp_aa56d7e2cb4c7272da5dcf69af0bbd34f}{empty\+Can\+Message}} (unsigned char $\ast$\+\_\+can\+\_\+message)
+\begin{DoxyCompactList}\small\item\em The function takes in an array are converts the first 8 elements to zero. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{utilities_8cpp_a37b8255f9f2fa5c5cfdee886b2120646}\label{utilities_8cpp_a37b8255f9f2fa5c5cfdee886b2120646}} 
+\index{utilities.cpp@{utilities.cpp}!delay\_microseconds@{delay\_microseconds}}
+\index{delay\_microseconds@{delay\_microseconds}!utilities.cpp@{utilities.cpp}}
+\doxysubsubsection{\texorpdfstring{delay\_microseconds()}{delay\_microseconds()}}
+{\footnotesize\ttfamily void delay\+\_\+microseconds (\begin{DoxyParamCaption}\item[{double}]{\+\_\+microseconds\+\_\+delay }\end{DoxyParamCaption})}
+
+
+
+Performs a nonblocking delay in the program Functions such as delay might block some interrupts. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+microseconds\+\_\+delay} & Number of microseconds the program should wait \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 3 of file utilities.\+cpp.
+
+\mbox{\Hypertarget{utilities_8cpp_a7c3f72f1dfaf7844d566e44ee957dfe8}\label{utilities_8cpp_a7c3f72f1dfaf7844d566e44ee957dfe8}} 
+\index{utilities.cpp@{utilities.cpp}!printCANMessageData@{printCANMessageData}}
+\index{printCANMessageData@{printCANMessageData}!utilities.cpp@{utilities.cpp}}
+\doxysubsubsection{\texorpdfstring{printCANMessageData()}{printCANMessageData()}}
+{\footnotesize\ttfamily void print\+CANMessage\+Data (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{\+\_\+can\+\_\+message }\end{DoxyParamCaption})}
+
+
+
+The function takes in an array and prints the corresponding message to serial print. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+can\+\_\+message} & CAN message. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 9 of file utilities.\+cpp.
+
+\mbox{\Hypertarget{utilities_8cpp_aa56d7e2cb4c7272da5dcf69af0bbd34f}\label{utilities_8cpp_aa56d7e2cb4c7272da5dcf69af0bbd34f}} 
+\index{utilities.cpp@{utilities.cpp}!emptyCanMessage@{emptyCanMessage}}
+\index{emptyCanMessage@{emptyCanMessage}!utilities.cpp@{utilities.cpp}}
+\doxysubsubsection{\texorpdfstring{emptyCanMessage()}{emptyCanMessage()}}
+{\footnotesize\ttfamily void empty\+Can\+Message (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{\+\_\+can\+\_\+message }\end{DoxyParamCaption})}
+
+
+
+The function takes in an array are converts the first 8 elements to zero. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+can\+\_\+message} & The first 8 elements are set to zero. ~\newline
+ \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 20 of file utilities.\+cpp.
+

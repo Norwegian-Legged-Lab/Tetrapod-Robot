@@ -1,0 +1,21 @@
+digraph "catkin_ws/src/control/modular_gait_controller/include/modular_gait_controller/gaits.h"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="catkin_ws/src/control\l/modular_gait_controller\l/include/modular_gait_controller\l/gaits.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="catkin_ws/src/control\l/modular_gait_controller\l/src/gait_controller_node.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$gait__controller__node_8cpp.html",tooltip=" "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="catkin_ws/src/control\l/modular_gait_controller\l/src/gaits.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$gaits_8cpp.html",tooltip=" "];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="catkin_ws/src/control\l/robot_controller/include\l/robot_controller/robot\l_controller.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$robot__controller_8h.html",tooltip=" "];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="catkin_ws/src/control\l/robot_controller/src\l/gait_test_node.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$gait__test__node_8cpp.html",tooltip=" "];
+  Node4 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="catkin_ws/src/control\l/robot_controller/src\l/robot_controller.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$robot__controller_8cpp.html",tooltip=" "];
+  Node4 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="catkin_ws/src/control\l/robot_controller/src\l/robot_controller_node.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$robot__controller__node_8cpp.html",tooltip=" "];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="catkin_ws/src/control\l/robot_controller/src\l/plot_spline.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$plot__spline_8cpp.html",tooltip=" "];
+}

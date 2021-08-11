@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 This page contains relevant information about installing the dependencies needed for building and running the R\+OS Environment found in \href{../../catkin_ws/}{\texttt{ catkin\+\_\+ws}}.\hypertarget{md_docs_markdown_install_guide_autotoc_md18}{}\doxysection{R\+OS}\label{md_docs_markdown_install_guide_autotoc_md18}
 To install R\+OS Noetic\+:
+=======
+This page contains relevant information about installing the dependencies needed for building and running the ROS Environment found in \href{../../catkin_ws/}{\texttt{ catkin\+\_\+ws}}.\hypertarget{md_docs_markdown_install_guide_autotoc_md18}{}\doxysection{ROS}\label{md_docs_markdown_install_guide_autotoc_md18}
+To install ROS Noetic\+:
+>>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
 
 
 \begin{DoxyItemize}
@@ -8,7 +13,8 @@ To install R\+OS Noetic\+:
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{sudo sh -\/c 'echo "deb http://packages.ros.org/ros/ubuntu \$(lsb\_release -\/sc) main" > /etc/apt/sources.list.d/ros-\/latest.list'}
+\DoxyCodeLine{sudo sh -\/c 'echo "{}deb http://packages.ros.org/ros/ubuntu \$(lsb\_release -\/sc) main"{} > /etc/apt/sources.list.d/ros-\/latest.list'}
+
 \end{DoxyCode}
 
 
@@ -20,6 +26,7 @@ To install R\+OS Noetic\+:
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{curl -\/s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-\/key add -\/}
+
 \end{DoxyCode}
 
 
@@ -32,6 +39,7 @@ To install R\+OS Noetic\+:
 \begin{DoxyCode}{0}
 \DoxyCodeLine{sudo apt update}
 \DoxyCodeLine{sudo apt install ros-\/noetic-\/desktop-\/full}
+
 \end{DoxyCode}
 
 
@@ -39,8 +47,9 @@ To automatically source the necessary bash script, run the following commands\+:
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{echo "source /opt/ros/noetic/setup.bash" >> \string~/.bashrc}
+\DoxyCodeLine{echo "{}source /opt/ros/noetic/setup.bash"{} >> \string~/.bashrc}
 \DoxyCodeLine{source \string~/.bashrc}
+
 \end{DoxyCode}
 
 
@@ -49,20 +58,25 @@ To automatically source the necessary bash script, run the following commands\+:
 \item Install and initialize Rosdep
 \end{DoxyItemize}
 
-rosdep enables you to easily install system dependencies for source you want to compile and is required to run some core components in R\+OS. rosdep can be installed and initialized with the following commands\+:
+rosdep enables you to easily install system dependencies for source you want to compile and is required to run some core components in ROS. rosdep can be installed and initialized with the following commands\+:
 
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{sudo apt install python3-\/rosdep -\/y}
 \DoxyCodeLine{sudo rosdep init}
 \DoxyCodeLine{rosdep update}
+
 \end{DoxyCode}
+<<<<<<< HEAD
 \hypertarget{md_docs_markdown_install_guide_autotoc_md19}{}\doxysection{Gazebo}\label{md_docs_markdown_install_guide_autotoc_md19}
+=======
+ \hypertarget{md_docs_markdown_install_guide_autotoc_md19}{}\doxysection{Gazebo}\label{md_docs_markdown_install_guide_autotoc_md19}
+>>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
 The Gazebo Simulator depends a number of environment variables to locate files, and set up communications between the server and clients and are explained in detail \href{http://gazebosim.org/tutorials?tut=components&cat=get_started}{\texttt{ here}}. For the current simulator iteration two enviroment variables are of interest, namely
 
-{\ttfamily G\+A\+Z\+E\+B\+O\+\_\+\+M\+O\+D\+E\+L\+\_\+\+P\+A\+TH}\+: A colon-\/separated set of directories where Gazebo will search for models.
+{\ttfamily GAZEBO\+\_\+\+MODEL\+\_\+\+PATH}\+: A colon-\/separated set of directories where Gazebo will search for models.
 
-{\ttfamily G\+A\+Z\+E\+B\+O\+\_\+\+R\+E\+S\+O\+U\+R\+C\+E\+\_\+\+P\+A\+TH}\+: A colon-\/separated set of directories where Gazebo will search for other resources such as world and media files.
+{\ttfamily GAZEBO\+\_\+\+RESOURCE\+\_\+\+PATH}\+: A colon-\/separated set of directories where Gazebo will search for other resources such as world and media files.
 
 Assuming the \href{https://github.com/Pathorse/Tetrapod-Robot}{\texttt{ github repository}} is located at your home folder, i.\+e., at {\ttfamily $\sim$/}, the following set of lines can be added to set the needed enviroment variables.
 
@@ -76,6 +90,7 @@ Assuming the \href{https://github.com/Pathorse/Tetrapod-Robot}{\texttt{ github r
 \DoxyCodeLine{export GAZEBO\_MODEL\_PATH=\string~/Tetrapod-\/Robot/catkin\_ws/src/simulator}
 \DoxyCodeLine{export GAZEBO\_MODEL\_PATH=\string~/Tetrapod-\/Robot/catkin\_ws/src/simulator/tetrapod\_gazebo/models:\$GAZEBO\_MODEL\_PATH}
 \DoxyCodeLine{export GAZEBO\_RESOURCE\_PATH=\string~/Tetrapod-\/Robot/catkin\_ws/src/simulator/tetrapod\_gazebo/worlds:\$GAZEBO\_RESOURCE\_PATH}
+
 \end{DoxyCode}
 
 
@@ -95,14 +110,16 @@ From binary\+:
 \DoxyCodeLine{}
 \DoxyCodeLine{\# Install system dependencies}
 \DoxyCodeLine{sudo /opt/drake/share/drake/setup/install\_prereqs}
+
 \end{DoxyCode}
 
 
-Note that if Python is to be used you need to ensure that your {\ttfamily P\+Y\+T\+H\+O\+N\+P\+A\+TH} is properly configured (for Ubuntu 20.\+04 (Focal) by running the following command\+:
+Note that if Python is to be used you need to ensure that your {\ttfamily PYTHONPATH} is properly configured (for Ubuntu 20.\+04 (Focal) by running the following command\+:
 
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{export PYTHONPATH=/opt/drake/lib/python3.8/site-\/packages:\$\{PYTHONPATH\}}
+
 \end{DoxyCode}
 \hypertarget{md_docs_markdown_install_guide_autotoc_md21}{}\doxysection{Ignition}\label{md_docs_markdown_install_guide_autotoc_md21}
 First install some necessary tools\+:
@@ -110,6 +127,7 @@ First install some necessary tools\+:
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{sudo apt-\/get update \&\& sudo apt-\/get install lsb-\/release wget gnupg}
+
 \end{DoxyCode}
 
 
@@ -117,10 +135,11 @@ Then install Ignition Citadel\+:
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{sudo sh -\/c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-\/stable `lsb\_release -\/cs` main" > /etc/apt/sources.list.d/gazebo-\/stable.list'}
+\DoxyCodeLine{sudo sh -\/c 'echo "{}deb http://packages.osrfoundation.org/gazebo/ubuntu-\/stable `lsb\_release -\/cs` main"{} > /etc/apt/sources.list.d/gazebo-\/stable.list'}
 \DoxyCodeLine{wget http://packages.osrfoundation.org/gazebo.key -\/O -\/ | sudo apt-\/key add -\/}
 \DoxyCodeLine{sudo apt-\/get update}
 \DoxyCodeLine{sudo apt-\/get install ignition-\/citadel}
+
 \end{DoxyCode}
 
 
@@ -130,6 +149,11 @@ Make sure to clone code from all submodules in the repository using
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{git submodule update -\/-\/init -\/-\/recursive}
+
 \end{DoxyCode}
+<<<<<<< HEAD
 \hypertarget{md_docs_markdown_install_guide_autotoc_md23}{}\doxysection{R\+O\+S package system dependencies}\label{md_docs_markdown_install_guide_autotoc_md23}
+=======
+\hypertarget{md_docs_markdown_install_guide_autotoc_md23}{}\doxysection{ROS package system dependencies}\label{md_docs_markdown_install_guide_autotoc_md23}
+>>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
 Make sure rosdep is initialized by first running {\ttfamily catkin\+\_\+make} and then {\ttfamily source devel/setup.\+bash} from the catkin workspace. Then run {\ttfamily rosdep install -\/-\/from-\/paths src -\/-\/ignore-\/src -\/y} to fulfill the system dependencies of all ros packages in the workspace. 

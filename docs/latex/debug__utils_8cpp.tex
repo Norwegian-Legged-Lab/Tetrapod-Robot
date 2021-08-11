@@ -1,0 +1,37 @@
+\hypertarget{debug__utils_8cpp}{}\doxysection{catkin\+\_\+ws/src/utilities/debug\+\_\+utils/src/debug\+\_\+utils.cpp File Reference}
+\label{debug__utils_8cpp}\index{catkin\_ws/src/utilities/debug\_utils/src/debug\_utils.cpp@{catkin\_ws/src/utilities/debug\_utils/src/debug\_utils.cpp}}
+{\ttfamily \#include $<$debug\+\_\+utils/debug\+\_\+utils.\+h$>$}\newline
+Include dependency graph for debug\+\_\+utils.\+cpp\+:
+% FIG 0
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacedebug__utils}{debug\+\_\+utils}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespacedebug__utils_abecef2591beb928345d1a6b2d98394c5}{debug\+\_\+utils\+::print\+Base\+State}} (const Eigen\+::\+Matrix$<$ double, 6, 1 $>$ \&\+\_\+base\+\_\+state)
+\begin{DoxyCompactList}\small\item\em The print\+Base\+State function prints a given base-\/ state to ROS using print level INFO. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedebug__utils_ab095b27c8b30892d076a2cefdffcbc77}{debug\+\_\+utils\+::print\+Base\+Twist}} (const Eigen\+::\+Matrix$<$ double, 6, 1 $>$ \&\+\_\+base\+\_\+twist)
+\begin{DoxyCompactList}\small\item\em The print\+Base\+Twist function prints a given base-\/ twist to ROS using print level INFO. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedebug__utils_a8e8edbf4d79e7f711b5f8b96066cc844}{debug\+\_\+utils\+::print\+Base\+Accel}} (const Eigen\+::\+Matrix$<$ double, 6, 1 $>$ \&\+\_\+base\+\_\+accel)
+\begin{DoxyCompactList}\small\item\em The print\+Base\+Accel function prints a given base-\/ accel to ROS using print level INFO. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedebug__utils_a419f0686df9b545ad7b5e41a6bc06bda}{debug\+\_\+utils\+::print\+Joint\+State}} (const Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \&\+\_\+joint\+\_\+state)
+\begin{DoxyCompactList}\small\item\em The print\+Joint\+State function prints a given joint-\/ state to ROS using print level INFO. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedebug__utils_a2cc8eef9caa55dc39bc42b0780184326}{debug\+\_\+utils\+::print\+Joint\+Velocities}} (const Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \&\+\_\+joint\+\_\+vel)
+\begin{DoxyCompactList}\small\item\em The print\+Joint\+Velocities function prints given joint-\/ velocities to ROS using print level INFO. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedebug__utils_a31a6ee18cc4940aee380e7f849e5165f}{debug\+\_\+utils\+::print\+Joint\+Accelerations}} (const Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \&\+\_\+joint\+\_\+vel)
+\begin{DoxyCompactList}\small\item\em The print\+Joint\+Accelerations function prints given joint-\/ accelerations to ROS using print level INFO. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedebug__utils_a6bf4a403f7a791c0287b0ea00f266df9}{debug\+\_\+utils\+::print\+Joint\+Torques}} (const Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \&\+\_\+joint\+\_\+trq)
+\begin{DoxyCompactList}\small\item\em The print\+Joint\+Torques function prints given joint-\/ torques to ROS using print level INFO. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedebug__utils_a5c6978c35a69115963cd984ec4a7e0ed}{debug\+\_\+utils\+::print\+Generalized\+Coordinates}} (const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+gen\+\_\+coord)
+\begin{DoxyCompactList}\small\item\em The print\+Generalized\+Coordinates function prints a given set of generalized coordinates to ROS using print level INFO. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedebug__utils_add603531581360cd8b5a436949ced5dc}{debug\+\_\+utils\+::print\+Generalized\+Velocities}} (const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+gen\+\_\+vel)
+\begin{DoxyCompactList}\small\item\em The print\+Generalized\+Velocities function prints a given set of generalized velocities to ROS using print level INFO. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedebug__utils_a4a86068252267e3ae140d3af9e350c3f}{debug\+\_\+utils\+::print\+Generalized\+Accelerations}} (const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+gen\+\_\+accel)
+\begin{DoxyCompactList}\small\item\em The print\+Generalized\+Accelerations function prints a given set of generalized accelerations to ROS using print level INFO. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedebug__utils_a935269b3acc9f6eb8befcd0a6da88764}{debug\+\_\+utils\+::print\+Footstep\+Positions}} (const Eigen\+::\+Matrix$<$ \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}, 4, 1 $>$ \&\+\_\+f\+\_\+pos)
+\begin{DoxyCompactList}\small\item\em The print\+Footstep\+Positions function prints a given set of footstep positions to ROS using print level INFO. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacedebug__utils_afcffa65c7693bf60b3b9df288ad33794}{debug\+\_\+utils\+::print\+Footstep\+Forces}} (const int $\ast$\+\_\+contact\+\_\+state, const Eigen\+::\+Vector\+Xd \&\+\_\+\+F\+\_\+c)
+\begin{DoxyCompactList}\small\item\em The print\+Footstep\+Positions function prints a given set of footstep forces to ROS using print level INFO. \end{DoxyCompactList}\end{DoxyCompactItemize}

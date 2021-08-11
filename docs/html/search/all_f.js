@@ -1,5 +1,6 @@
 var searchData=
 [
+<<<<<<< HEAD
   ['readacceleration_307',['readAcceleration',['../namespacemake__can__msg.html#a2137b5ce7abdfac529eeee6e42c22bc8',1,'make_can_msg']]],
   ['readcircleturnangle_308',['readCircleTurnAngle',['../namespacemake__can__msg.html#a534b2f49d254fb49d6690a35c88ebe64',1,'make_can_msg']]],
   ['readcompleteencoderposition_309',['readCompleteEncoderPosition',['../classMotorControl.html#ab7e8ee7dac639918e2e6474a3dffbcfe',1,'MotorControl']]],
@@ -39,4 +40,23 @@ var searchData=
   ['rx_5fbuffer_343',['rx_buffer',['../classSerialCommunication.html#a106312f387aad10048be58f8c8b34ec3',1,'SerialCommunication::rx_buffer()'],['../classTeensySerial.html#af658e969788cec6e474ebed89f48a758',1,'TeensySerial::rx_buffer()']]],
   ['rx_5fbuffer_5fsize_344',['RX_BUFFER_SIZE',['../classSerialCommunication.html#a1c283b93b60c304d522fda6b933e99fc',1,'SerialCommunication::RX_BUFFER_SIZE()'],['../classTeensySerial.html#a993a211cec364f6a73d9f9d5df5c0cf9',1,'TeensySerial::rx_buffer_size()']]],
   ['rx_5ftimeout_345',['rx_timeout',['../classSerialCommunication.html#af88d1a67e4fc25dd5adef7af245cfaa1',1,'SerialCommunication']]]
+=======
+  ['oncontactstatemsg_700',['OnContactStateMsg',['../classHierarchicalOptimizationControl.html#a9b447e6598894c0201069eed1824d6e0',1,'HierarchicalOptimizationControl']]],
+  ['one_5fdiv_5ftwo_5fpi_701',['ONE_DIV_TWO_PI',['../namespacemath__utils.html#a7ffd0fa8783c8e8721517ae219d436ff',1,'math_utils']]],
+  ['one_5fstone_5fper_5ffoot_702',['one_stone_per_foot',['../namespacemiqp_1_1biped.html#ae5fde6f9af610d4c7088d156c1f4622a',1,'miqp::biped::one_stone_per_foot()'],['../namespacemiqp_1_1quadruped.html#a22466234401c24f14e81d29308861d26',1,'miqp::quadruped::one_stone_per_foot()'],['../namespacemiqp_1_1waypoint.html#a3ca2c9f0fbc94aa8155434385f538922',1,'miqp::waypoint::one_stone_per_foot()']]],
+  ['onflcontactcallback_703',['OnFlContactCallback',['../classContactSensor.html#a9ee28ab097d04c32a5d19919718fde93',1,'ContactSensor']]],
+  ['onfljointstatemsg_704',['OnFlJointStateMsg',['../classgazebo_1_1TetrapodPlugin.html#a503a40bd2357086fca77b1575af18c4c',1,'gazebo::TetrapodPlugin']]],
+  ['onforcemsg_705',['OnForceMsg',['../classgazebo_1_1SingleLegPlugin.html#a021874066534b0dbeb153a38c543aed4',1,'gazebo::SingleLegPlugin::OnForceMsg()'],['../classgazebo_1_1TetrapodPlugin.html#a1c26c2f991b9ca36e655b5f3b3e1c980',1,'gazebo::TetrapodPlugin::OnForceMsg()']]],
+  ['onfrcontactcallback_706',['OnFrContactCallback',['../classContactSensor.html#a435013ac2b71c2c0d9f704ab0313b482',1,'ContactSensor']]],
+  ['ongencoordmsg_707',['OnGenCoordMsg',['../classHierarchicalOptimizationControl.html#a74787630f85dd651a6bd25463c77011d',1,'HierarchicalOptimizationControl::OnGenCoordMsg()'],['../classLogUtils.html#a2c42c49b0dc74a5eb05923a033ca34c9',1,'LogUtils::OnGenCoordMsg()']]],
+  ['ongenvelmsg_708',['OnGenVelMsg',['../classHierarchicalOptimizationControl.html#ac93711c61e175c11b2a87d72b62ce335',1,'HierarchicalOptimizationControl::OnGenVelMsg()'],['../classLogUtils.html#a538d484ca1dc7ac3b0127d89ca2e6745',1,'LogUtils::OnGenVelMsg()']]],
+  ['onjointstatecmdmsg_709',['OnJointStateCmdMsg',['../classMotorInterface.html#a5cc0e2f8578dba23550426e28d13b4a2',1,'MotorInterface::OnJointStateCmdMsg()'],['../classLogUtils.html#acfb95557fa81d007205880849a304a32',1,'LogUtils::OnJointStateCmdMsg()']]],
+  ['onjointstatemsg_710',['OnJointStateMsg',['../classgazebo_1_1PendulumPlugin.html#a0eb1ab9152728ea062a5cb6b5214eadb',1,'gazebo::PendulumPlugin::OnJointStateMsg()'],['../classgazebo_1_1SingleLegPlugin.html#a31a76d63668ace36ea862edca1f3cd22',1,'gazebo::SingleLegPlugin::OnJointStateMsg()'],['../classgazebo_1_1TetrapodPlugin.html#a8caf7aaca40c73c65603175778e2f9a8',1,'gazebo::TetrapodPlugin::OnJointStateMsg()'],['../classLogUtils.html#ab1901bdc3adc37c49eeb1672b135cc92',1,'LogUtils::OnJointStateMsg()']]],
+  ['onposmsg_711',['OnPosMsg',['../classgazebo_1_1SingleLegPlugin.html#a91ec5ec137f91dfea7106b27d4a0a49d',1,'gazebo::SingleLegPlugin::OnPosMsg()'],['../classgazebo_1_1TetrapodPlugin.html#ade970b966a0d0f3db2d2b762f09a5973',1,'gazebo::TetrapodPlugin::OnPosMsg()']]],
+  ['onrlcontactcallback_712',['OnRlContactCallback',['../classContactSensor.html#a18b7189648c8ca096b5fd4ce0f39f204',1,'ContactSensor']]],
+  ['onrrcontactcallback_713',['OnRrContactCallback',['../classContactSensor.html#a8c9dd6baa25e67ca5eadf8960410f199',1,'ContactSensor']]],
+  ['onupdate_714',['OnUpdate',['../classgazebo_1_1ContactPlugin.html#adc07abc8ef9d8d6a2444940aeaf025b3',1,'gazebo::ContactPlugin']]],
+  ['onvelmsg_715',['OnVelMsg',['../classgazebo_1_1SingleLegPlugin.html#afa7a7333b605efb9b3b3428d8cd06ed0',1,'gazebo::SingleLegPlugin::OnVelMsg()'],['../classgazebo_1_1TetrapodPlugin.html#a8dc7655369ea3821ab3dfd06d298c876',1,'gazebo::TetrapodPlugin::OnVelMsg()']]],
+  ['osqp_716',['OSQP',['../classHierarchicalOptimizationControl.html#ae49f08ceaee8df6933d8708fb68c3b99a031f412dae6741fcffcb5c95b14a6fd2',1,'HierarchicalOptimizationControl']]]
+>>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
 ];

@@ -1,0 +1,10 @@
+digraph "catkin_ws" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_5c9b1b03f6e45e6a48c8e8f7b0f905ad {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_5c9b1b03f6e45e6a48c8e8f7b0f905ad.html"];
+    dir_5c9b1b03f6e45e6a48c8e8f7b0f905ad [shape=plaintext label="catkin_ws"];
+  dir_7c859f3878cb32062c29919224ce2290 [shape=box label="src" fillcolor="white" style="filled" color="red" URL="dir_7c859f3878cb32062c29919224ce2290.html"];
+  }
+}

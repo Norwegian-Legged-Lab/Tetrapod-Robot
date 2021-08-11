@@ -21,12 +21,10 @@ Collaboration diagram for Motor\+Interface\+:\nopagebreak
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classMotorInterface_aab48de285663a5b0cfe70ae764d5e491}\label{classMotorInterface_aab48de285663a5b0cfe70ae764d5e491}} 
 \mbox{\hyperlink{classMotorInterface_aab48de285663a5b0cfe70ae764d5e491}{Motor\+Interface}} ()
 \begin{DoxyCompactList}\small\item\em Default Constructor. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classMotorInterface_a1e1b05c12dcf4d012a84a6d4ffe68fec}{Motor\+Interface}} (const int \&\+\_\+num\+\_\+motors)
 \begin{DoxyCompactList}\small\item\em Custom Constructor. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classMotorInterface_a6348030321aebf0c8824749895b961b7}\label{classMotorInterface_a6348030321aebf0c8824749895b961b7}} 
 virtual \mbox{\hyperlink{classMotorInterface_a6348030321aebf0c8824749895b961b7}{$\sim$\+Motor\+Interface}} ()
 \begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classMotorInterface_a52f74f553b08b8f5c71864e48d6deb0a}{Set\+Joint\+Positions}} (const std\+::vector$<$ double $>$ \&\+\_\+pos)
@@ -35,95 +33,102 @@ void \mbox{\hyperlink{classMotorInterface_af502ecc49f8d8f709ae7b0f9baac7b5e}{Set
 \begin{DoxyCompactList}\small\item\em Set the velocity of the joints. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classMotorInterface_a6495aa1f3d70580c1d724944bc0181ca}{Set\+Joint\+Torques}} (const std\+::vector$<$ double $>$ \&\+\_\+torque)
 \begin{DoxyCompactList}\small\item\em Set the torque of the joints. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classMotorInterface_a3093e44e803f256481e2120c3b5b6539}\label{classMotorInterface_a3093e44e803f256481e2120c3b5b6539}} 
 void \mbox{\hyperlink{classMotorInterface_a3093e44e803f256481e2120c3b5b6539}{Process\+Serial\+Messages}} ()
 \begin{DoxyCompactList}\small\item\em Checks if there are any incomming messages from the serial ports. If there are new replies these are read and published. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classMotorInterface_a5cc0e2f8578dba23550426e28d13b4a2}{On\+Joint\+State\+Cmd\+Msg}} (const sensor\+\_\+msgs\+::\+Joint\+State\+Const\+Ptr \&\+\_\+msg)
-\begin{DoxyCompactList}\small\item\em The On\+Gen\+Coord\+Msg function handles an incoming generalized coordinates message from R\+OS. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classMotorInterface_a48a28659081250121f9b055d66a82dcd}\label{classMotorInterface_a48a28659081250121f9b055d66a82dcd}} 
+\begin{DoxyCompactList}\small\item\em The On\+Gen\+Coord\+Msg function handles an incoming generalized coordinates message from ROS. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classMotorInterface_a48a28659081250121f9b055d66a82dcd}{Serial\+Process\+Queue\+Thread}} ()
 \begin{DoxyCompactList}\small\item\em The Serial\+Process\+Queue\+Thread function is a helper function that processes serial messages. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classMotorInterface_a34745056579d721f6c0aa9132c8e8a84}\label{classMotorInterface_a34745056579d721f6c0aa9132c8e8a84}} 
 void \mbox{\hyperlink{classMotorInterface_a34745056579d721f6c0aa9132c8e8a84}{Ros\+Process\+Queue\+Thread}} ()
-\begin{DoxyCompactList}\small\item\em The Ros\+Process\+Queue\+Thread function is a R\+OS helper function that processes messages. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classMotorInterface_a4e24395d423fac2276b586aa269675b8}\label{classMotorInterface_a4e24395d423fac2276b586aa269675b8}} 
+\begin{DoxyCompactList}\small\item\em The Ros\+Process\+Queue\+Thread function is a ROS helper function that processes messages. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classMotorInterface_a4e24395d423fac2276b586aa269675b8}{Ros\+Publish\+Queue\+Thread}} ()
+<<<<<<< HEAD
 \begin{DoxyCompactList}\small\item\em The Ros\+Publish\+Queue\+Thread function is a R\+OS helper function that publish state messages. \end{DoxyCompactList}\item 
+=======
+\begin{DoxyCompactList}\small\item\em The Ros\+Publish\+Queue\+Thread function is a ROS helper function that publish state messages. \end{DoxyCompactList}\item 
+>>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
 bool \mbox{\hyperlink{classMotorInterface_abf980218561d0226fac3823b59045113}{Shutdown}} (const std\+\_\+srvs\+::\+Empty\+::\+Request \&\+\_\+req, std\+\_\+srvs\+::\+Empty\+::\+Response \&\+\_\+res)
 \begin{DoxyCompactList}\small\item\em The Shutdown function handles an incoming shutdown service request. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classMotorInterface_a90641f6adea38a1d523c2a5d81d6dda3}\label{classMotorInterface_a90641f6adea38a1d523c2a5d81d6dda3}} 
 void \mbox{\hyperlink{classMotorInterface_a90641f6adea38a1d523c2a5d81d6dda3}{Init\+Ros}} ()
-\begin{DoxyCompactList}\small\item\em The Init\+Ros function is called to initialize R\+OS. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classMotorInterface_a159c6794e8b6bb16ad696bd5c8734804}\label{classMotorInterface_a159c6794e8b6bb16ad696bd5c8734804}} 
+\begin{DoxyCompactList}\small\item\em The Init\+Ros function is called to initialize ROS. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classMotorInterface_a159c6794e8b6bb16ad696bd5c8734804}{Init\+Ros\+Queue\+Threads}} ()
-\begin{DoxyCompactList}\small\item\em The Init\+Ros\+Queue\+Threads function is called to initialize the R\+OS Publish and Process Queue Threads. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The Init\+Ros\+Queue\+Threads function is called to initialize the ROS Publish and Process Queue Threads. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classMotorInterface_a51bfed632dff4cdd1f20fec880391a09}\label{classMotorInterface_a51bfed632dff4cdd1f20fec880391a09}} 
-const int \mbox{\hyperlink{classMotorInterface_a51bfed632dff4cdd1f20fec880391a09}{N\+U\+M\+\_\+\+M\+O\+T\+O\+RS}}
+const int \mbox{\hyperlink{classMotorInterface_a51bfed632dff4cdd1f20fec880391a09}{NUM\+\_\+\+MOTORS}}
 \begin{DoxyCompactList}\small\item\em The number of motors to interface with. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classMotorInterface_ad4b84f7ebd0b565da0a1bfa2aca19790}\label{classMotorInterface_ad4b84f7ebd0b565da0a1bfa2aca19790}} 
 int \mbox{\hyperlink{classMotorInterface_ad4b84f7ebd0b565da0a1bfa2aca19790}{num\+\_\+motors\+\_\+port\+\_\+1}}
 \begin{DoxyCompactList}\small\item\em The number of motors interfaced by the first Teensy. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classMotorInterface_a0721041582a21b07cd5002d829bd4123}\label{classMotorInterface_a0721041582a21b07cd5002d829bd4123}} 
 int \mbox{\hyperlink{classMotorInterface_a0721041582a21b07cd5002d829bd4123}{num\+\_\+motors\+\_\+port\+\_\+2}}
 \begin{DoxyCompactList}\small\item\em The number of motors interfaced by the second Teensy. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classMotorInterface_ab6779402a5511b963602a80418bc5c19}\label{classMotorInterface_ab6779402a5511b963602a80418bc5c19}} 
 \mbox{\hyperlink{classSerialCommunication}{Serial\+Communication}} \mbox{\hyperlink{classMotorInterface_ab6779402a5511b963602a80418bc5c19}{serial\+Interface1}}
 \begin{DoxyCompactList}\small\item\em The serial interface used to communicate with the first Teensy. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classMotorInterface_a348eb45a64dec3a31957c2daf6d81c55}\label{classMotorInterface_a348eb45a64dec3a31957c2daf6d81c55}} 
 \mbox{\hyperlink{classSerialCommunication}{Serial\+Communication}} \mbox{\hyperlink{classMotorInterface_a348eb45a64dec3a31957c2daf6d81c55}{serial\+Interface2}}
 \begin{DoxyCompactList}\small\item\em The serial interface used to communicate with the second Teensy. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classMotorInterface_ad37dacffac485895d4d69dc6ac34cf71}\label{classMotorInterface_ad37dacffac485895d4d69dc6ac34cf71}} 
 std\+::unique\+\_\+ptr$<$ ros\+::\+Node\+Handle $>$ \mbox{\hyperlink{classMotorInterface_ad37dacffac485895d4d69dc6ac34cf71}{ros\+Node}}
-\begin{DoxyCompactList}\small\item\em Node used for R\+OS transport. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classMotorInterface_a92dc1d8ea5cbcb48acb70f75f1d165de}\label{classMotorInterface_a92dc1d8ea5cbcb48acb70f75f1d165de}} 
+\begin{DoxyCompactList}\small\item\em Node used for ROS transport. \end{DoxyCompactList}\item 
 sensor\+\_\+msgs\+::\+Joint\+State \mbox{\hyperlink{classMotorInterface_a92dc1d8ea5cbcb48acb70f75f1d165de}{joint\+State\+Msg}}
 \begin{DoxyCompactList}\small\item\em Joint State Message. \end{DoxyCompactList}\item 
+<<<<<<< HEAD
 \mbox{\Hypertarget{classMotorInterface_aa7536098e5030f042e3eceb1c201703e}\label{classMotorInterface_aa7536098e5030f042e3eceb1c201703e}} 
 ros\+::\+Service\+Server \mbox{\hyperlink{classMotorInterface_aa7536098e5030f042e3eceb1c201703e}{shutdown\+Service}}
 \begin{DoxyCompactList}\small\item\em R\+OS Shutdown Service. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classMotorInterface_aa07b7b6b987594c573ca9b093a1e3b69}\label{classMotorInterface_aa07b7b6b987594c573ca9b093a1e3b69}} 
+=======
+ros\+::\+Service\+Server \mbox{\hyperlink{classMotorInterface_aa7536098e5030f042e3eceb1c201703e}{shutdown\+Service}}
+\begin{DoxyCompactList}\small\item\em ROS Shutdown Service. \end{DoxyCompactList}\item 
+>>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
 ros\+::\+Subscriber \mbox{\hyperlink{classMotorInterface_aa07b7b6b987594c573ca9b093a1e3b69}{joint\+State\+Cmd\+Sub}}
-\begin{DoxyCompactList}\small\item\em R\+OS Joint State Command Subscriber. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classMotorInterface_a8881cd754c5891b9af6b0cb9368d54cf}\label{classMotorInterface_a8881cd754c5891b9af6b0cb9368d54cf}} 
+\begin{DoxyCompactList}\small\item\em ROS Joint State Command Subscriber. \end{DoxyCompactList}\item 
 ros\+::\+Publisher \mbox{\hyperlink{classMotorInterface_a8881cd754c5891b9af6b0cb9368d54cf}{joint\+State\+Pub}}
-\begin{DoxyCompactList}\small\item\em R\+OS Joint State Publisher. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classMotorInterface_acdb1f716b197c4cf8b76ded42a1cfee6}\label{classMotorInterface_acdb1f716b197c4cf8b76ded42a1cfee6}} 
+\begin{DoxyCompactList}\small\item\em ROS Joint State Publisher. \end{DoxyCompactList}\item 
 ros\+::\+Callback\+Queue \mbox{\hyperlink{classMotorInterface_acdb1f716b197c4cf8b76ded42a1cfee6}{ros\+Process\+Queue}}
-\begin{DoxyCompactList}\small\item\em R\+OS callbackque that helps process messages. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classMotorInterface_a76c9e4dec71215f63dcc944b6d8bb88e}\label{classMotorInterface_a76c9e4dec71215f63dcc944b6d8bb88e}} 
+\begin{DoxyCompactList}\small\item\em ROS callbackque that helps process messages. \end{DoxyCompactList}\item 
 ros\+::\+Callback\+Queue \mbox{\hyperlink{classMotorInterface_a76c9e4dec71215f63dcc944b6d8bb88e}{ros\+Publish\+Queue}}
-\begin{DoxyCompactList}\small\item\em R\+OS callbackque that helps publish messages. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classMotorInterface_a93046b35c6caedeb7de250b0abbcad9f}\label{classMotorInterface_a93046b35c6caedeb7de250b0abbcad9f}} 
+\begin{DoxyCompactList}\small\item\em ROS callbackque that helps publish messages. \end{DoxyCompactList}\item 
 std\+::thread \mbox{\hyperlink{classMotorInterface_a93046b35c6caedeb7de250b0abbcad9f}{serial\+Process\+Queue\+Thread}}
 \begin{DoxyCompactList}\small\item\em Thread running the serial\+Process\+Queue. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classMotorInterface_a23a5a30545e9040d45f0d35760990866}\label{classMotorInterface_a23a5a30545e9040d45f0d35760990866}} 
 std\+::thread \mbox{\hyperlink{classMotorInterface_a23a5a30545e9040d45f0d35760990866}{ros\+Process\+Queue\+Thread}}
 \begin{DoxyCompactList}\small\item\em Thread running the ros\+Process\+Queue. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classMotorInterface_a1ebe1b16574f4ace15a0946f2b737386}\label{classMotorInterface_a1ebe1b16574f4ace15a0946f2b737386}} 
 std\+::thread \mbox{\hyperlink{classMotorInterface_a1ebe1b16574f4ace15a0946f2b737386}{ros\+Publish\+Queue\+Thread}}
 \begin{DoxyCompactList}\small\item\em Thread running the ros\+Publish\+Queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classMotorInterface_a64b1219cfca4200a7fd5cad8c397dd0d}\label{classMotorInterface_a64b1219cfca4200a7fd5cad8c397dd0d}} 
-static constexpr int \mbox{\hyperlink{classMotorInterface_a64b1219cfca4200a7fd5cad8c397dd0d}{M\+A\+X\+\_\+\+N\+U\+M\+\_\+\+M\+O\+T\+O\+R\+S\+\_\+\+P\+E\+R\+\_\+\+P\+O\+RT}} = 6
+static constexpr int \mbox{\hyperlink{classMotorInterface_a64b1219cfca4200a7fd5cad8c397dd0d}{MAX\+\_\+\+NUM\+\_\+\+MOTORS\+\_\+\+PER\+\_\+\+PORT}} = 6
 \begin{DoxyCompactList}\small\item\em The maximum numbers of motors to be interfaced with by one Teensy. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 A class to control and distribute motor position, velocity and torque information. 
 
+Definition at line 48 of file motor\+\_\+interface.\+h.
+
+
+
 \doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classMotorInterface_aab48de285663a5b0cfe70ae764d5e491}\label{classMotorInterface_aab48de285663a5b0cfe70ae764d5e491}} 
+\index{MotorInterface@{MotorInterface}!MotorInterface@{MotorInterface}}
+\index{MotorInterface@{MotorInterface}!MotorInterface@{MotorInterface}}
+\doxysubsubsection{\texorpdfstring{MotorInterface()}{MotorInterface()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Motor\+Interface\+::\+Motor\+Interface (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Default Constructor. 
+
+
+
+Definition at line 30 of file motor\+\_\+interface.\+cpp.
+
 \mbox{\Hypertarget{classMotorInterface_a1e1b05c12dcf4d012a84a6d4ffe68fec}\label{classMotorInterface_a1e1b05c12dcf4d012a84a6d4ffe68fec}} 
 \index{MotorInterface@{MotorInterface}!MotorInterface@{MotorInterface}}
 \index{MotorInterface@{MotorInterface}!MotorInterface@{MotorInterface}}
-\doxysubsubsection{\texorpdfstring{MotorInterface()}{MotorInterface()}}
+\doxysubsubsection{\texorpdfstring{MotorInterface()}{MotorInterface()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily Motor\+Interface\+::\+Motor\+Interface (\begin{DoxyParamCaption}\item[{const int \&}]{\+\_\+num\+\_\+motors }\end{DoxyParamCaption})}
 
 
@@ -135,6 +140,24 @@ Custom Constructor.
 \mbox{\texttt{ in}}  & {\em \+\_\+num\+\_\+motors} & Number of motors in use. \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 44 of file motor\+\_\+interface.\+cpp.
+
+\mbox{\Hypertarget{classMotorInterface_a6348030321aebf0c8824749895b961b7}\label{classMotorInterface_a6348030321aebf0c8824749895b961b7}} 
+\index{MotorInterface@{MotorInterface}!````~MotorInterface@{$\sim$MotorInterface}}
+\index{````~MotorInterface@{$\sim$MotorInterface}!MotorInterface@{MotorInterface}}
+\doxysubsubsection{\texorpdfstring{$\sim$MotorInterface()}{~MotorInterface()}}
+{\footnotesize\ttfamily Motor\+Interface\+::$\sim$\+Motor\+Interface (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Destructor. 
+
+
+
+Definition at line 83 of file motor\+\_\+interface.\+cpp.
+
 
 
 \doxysubsection{Member Function Documentation}
@@ -153,6 +176,10 @@ Set the position of the joints.
 \mbox{\texttt{ in}}  & {\em \+\_\+pos} & New target position vector in radians \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 96 of file motor\+\_\+interface.\+cpp.
+
 \mbox{\Hypertarget{classMotorInterface_af502ecc49f8d8f709ae7b0f9baac7b5e}\label{classMotorInterface_af502ecc49f8d8f709ae7b0f9baac7b5e}} 
 \index{MotorInterface@{MotorInterface}!SetJointVelocities@{SetJointVelocities}}
 \index{SetJointVelocities@{SetJointVelocities}!MotorInterface@{MotorInterface}}
@@ -168,6 +195,10 @@ Set the velocity of the joints.
 \mbox{\texttt{ in}}  & {\em \+\_\+vel} & New target velocity \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 112 of file motor\+\_\+interface.\+cpp.
+
 \mbox{\Hypertarget{classMotorInterface_a6495aa1f3d70580c1d724944bc0181ca}\label{classMotorInterface_a6495aa1f3d70580c1d724944bc0181ca}} 
 \index{MotorInterface@{MotorInterface}!SetJointTorques@{SetJointTorques}}
 \index{SetJointTorques@{SetJointTorques}!MotorInterface@{MotorInterface}}
@@ -183,6 +214,24 @@ Set the torque of the joints.
 \mbox{\texttt{ in}}  & {\em \+\_\+torque} & New target torque \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 128 of file motor\+\_\+interface.\+cpp.
+
+\mbox{\Hypertarget{classMotorInterface_a3093e44e803f256481e2120c3b5b6539}\label{classMotorInterface_a3093e44e803f256481e2120c3b5b6539}} 
+\index{MotorInterface@{MotorInterface}!ProcessSerialMessages@{ProcessSerialMessages}}
+\index{ProcessSerialMessages@{ProcessSerialMessages}!MotorInterface@{MotorInterface}}
+\doxysubsubsection{\texorpdfstring{ProcessSerialMessages()}{ProcessSerialMessages()}}
+{\footnotesize\ttfamily void Motor\+Interface\+::\+Process\+Serial\+Messages (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Checks if there are any incomming messages from the serial ports. If there are new replies these are read and published. 
+
+
+
+Definition at line 144 of file motor\+\_\+interface.\+cpp.
+
 \mbox{\Hypertarget{classMotorInterface_a5cc0e2f8578dba23550426e28d13b4a2}\label{classMotorInterface_a5cc0e2f8578dba23550426e28d13b4a2}} 
 \index{MotorInterface@{MotorInterface}!OnJointStateCmdMsg@{OnJointStateCmdMsg}}
 \index{OnJointStateCmdMsg@{OnJointStateCmdMsg}!MotorInterface@{MotorInterface}}
@@ -191,7 +240,7 @@ Set the torque of the joints.
 
 
 
-The On\+Gen\+Coord\+Msg function handles an incoming generalized coordinates message from R\+OS. 
+The On\+Gen\+Coord\+Msg function handles an incoming generalized coordinates message from ROS. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -220,7 +269,332 @@ Returns true if success, and false if not.
 \end{DoxyReturn}
 
 
+Definition at line 192 of file motor\+\_\+interface.\+cpp.
+
+\mbox{\Hypertarget{classMotorInterface_a48a28659081250121f9b055d66a82dcd}\label{classMotorInterface_a48a28659081250121f9b055d66a82dcd}} 
+\index{MotorInterface@{MotorInterface}!SerialProcessQueueThread@{SerialProcessQueueThread}}
+\index{SerialProcessQueueThread@{SerialProcessQueueThread}!MotorInterface@{MotorInterface}}
+\doxysubsubsection{\texorpdfstring{SerialProcessQueueThread()}{SerialProcessQueueThread()}}
+{\footnotesize\ttfamily void Motor\+Interface\+::\+Serial\+Process\+Queue\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The Serial\+Process\+Queue\+Thread function is a helper function that processes serial messages. 
+
+
+
+Definition at line 215 of file motor\+\_\+interface.\+cpp.
+
+\mbox{\Hypertarget{classMotorInterface_a34745056579d721f6c0aa9132c8e8a84}\label{classMotorInterface_a34745056579d721f6c0aa9132c8e8a84}} 
+\index{MotorInterface@{MotorInterface}!RosProcessQueueThread@{RosProcessQueueThread}}
+\index{RosProcessQueueThread@{RosProcessQueueThread}!MotorInterface@{MotorInterface}}
+\doxysubsubsection{\texorpdfstring{RosProcessQueueThread()}{RosProcessQueueThread()}}
+{\footnotesize\ttfamily void Motor\+Interface\+::\+Ros\+Process\+Queue\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The Ros\+Process\+Queue\+Thread function is a ROS helper function that processes messages. 
+
+
+
+Definition at line 228 of file motor\+\_\+interface.\+cpp.
+
+\mbox{\Hypertarget{classMotorInterface_a4e24395d423fac2276b586aa269675b8}\label{classMotorInterface_a4e24395d423fac2276b586aa269675b8}} 
+\index{MotorInterface@{MotorInterface}!RosPublishQueueThread@{RosPublishQueueThread}}
+\index{RosPublishQueueThread@{RosPublishQueueThread}!MotorInterface@{MotorInterface}}
+\doxysubsubsection{\texorpdfstring{RosPublishQueueThread()}{RosPublishQueueThread()}}
+{\footnotesize\ttfamily void Motor\+Interface\+::\+Ros\+Publish\+Queue\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The Ros\+Publish\+Queue\+Thread function is a ROS helper function that publish state messages. 
+
+
+
+Definition at line 238 of file motor\+\_\+interface.\+cpp.
+
+\mbox{\Hypertarget{classMotorInterface_abf980218561d0226fac3823b59045113}\label{classMotorInterface_abf980218561d0226fac3823b59045113}} 
+\index{MotorInterface@{MotorInterface}!Shutdown@{Shutdown}}
+\index{Shutdown@{Shutdown}!MotorInterface@{MotorInterface}}
+\doxysubsubsection{\texorpdfstring{Shutdown()}{Shutdown()}}
+{\footnotesize\ttfamily bool Motor\+Interface\+::\+Shutdown (\begin{DoxyParamCaption}\item[{const std\+\_\+srvs\+::\+Empty\+::\+Request \&}]{\+\_\+req,  }\item[{std\+\_\+srvs\+::\+Empty\+::\+Response \&}]{\+\_\+res }\end{DoxyParamCaption})}
+
+
+
+The Shutdown function handles an incoming shutdown service request. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em \+\_\+req} & Service request. \\
+\hline
+\mbox{\texttt{ out}}  & {\em \+\_\+res} & Service response. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if success, and false if not. 
+\end{DoxyReturn}
+
+
+Definition at line 251 of file motor\+\_\+interface.\+cpp.
+
+\mbox{\Hypertarget{classMotorInterface_a90641f6adea38a1d523c2a5d81d6dda3}\label{classMotorInterface_a90641f6adea38a1d523c2a5d81d6dda3}} 
+\index{MotorInterface@{MotorInterface}!InitRos@{InitRos}}
+\index{InitRos@{InitRos}!MotorInterface@{MotorInterface}}
+\doxysubsubsection{\texorpdfstring{InitRos()}{InitRos()}}
+{\footnotesize\ttfamily void Motor\+Interface\+::\+Init\+Ros (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The Init\+Ros function is called to initialize ROS. 
+
+
+
+Definition at line 260 of file motor\+\_\+interface.\+cpp.
+
+\mbox{\Hypertarget{classMotorInterface_a159c6794e8b6bb16ad696bd5c8734804}\label{classMotorInterface_a159c6794e8b6bb16ad696bd5c8734804}} 
+\index{MotorInterface@{MotorInterface}!InitRosQueueThreads@{InitRosQueueThreads}}
+\index{InitRosQueueThreads@{InitRosQueueThreads}!MotorInterface@{MotorInterface}}
+\doxysubsubsection{\texorpdfstring{InitRosQueueThreads()}{InitRosQueueThreads()}}
+{\footnotesize\ttfamily void Motor\+Interface\+::\+Init\+Ros\+Queue\+Threads (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The Init\+Ros\+Queue\+Threads function is called to initialize the ROS Publish and Process Queue Threads. 
+
+
+
+Definition at line 316 of file motor\+\_\+interface.\+cpp.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classMotorInterface_a64b1219cfca4200a7fd5cad8c397dd0d}\label{classMotorInterface_a64b1219cfca4200a7fd5cad8c397dd0d}} 
+\index{MotorInterface@{MotorInterface}!MAX\_NUM\_MOTORS\_PER\_PORT@{MAX\_NUM\_MOTORS\_PER\_PORT}}
+\index{MAX\_NUM\_MOTORS\_PER\_PORT@{MAX\_NUM\_MOTORS\_PER\_PORT}!MotorInterface@{MotorInterface}}
+\doxysubsubsection{\texorpdfstring{MAX\_NUM\_MOTORS\_PER\_PORT}{MAX\_NUM\_MOTORS\_PER\_PORT}}
+{\footnotesize\ttfamily constexpr int Motor\+Interface\+::\+MAX\+\_\+\+NUM\+\_\+\+MOTORS\+\_\+\+PER\+\_\+\+PORT = 6\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}, {\ttfamily [private]}}
+
+
+
+The maximum numbers of motors to be interfaced with by one Teensy. 
+
+
+
+Definition at line 51 of file motor\+\_\+interface.\+h.
+
+\mbox{\Hypertarget{classMotorInterface_a51bfed632dff4cdd1f20fec880391a09}\label{classMotorInterface_a51bfed632dff4cdd1f20fec880391a09}} 
+\index{MotorInterface@{MotorInterface}!NUM\_MOTORS@{NUM\_MOTORS}}
+\index{NUM\_MOTORS@{NUM\_MOTORS}!MotorInterface@{MotorInterface}}
+\doxysubsubsection{\texorpdfstring{NUM\_MOTORS}{NUM\_MOTORS}}
+{\footnotesize\ttfamily const int Motor\+Interface\+::\+NUM\+\_\+\+MOTORS\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The number of motors to interface with. 
+
+
+
+Definition at line 113 of file motor\+\_\+interface.\+h.
+
+\mbox{\Hypertarget{classMotorInterface_ad4b84f7ebd0b565da0a1bfa2aca19790}\label{classMotorInterface_ad4b84f7ebd0b565da0a1bfa2aca19790}} 
+\index{MotorInterface@{MotorInterface}!num\_motors\_port\_1@{num\_motors\_port\_1}}
+\index{num\_motors\_port\_1@{num\_motors\_port\_1}!MotorInterface@{MotorInterface}}
+\doxysubsubsection{\texorpdfstring{num\_motors\_port\_1}{num\_motors\_port\_1}}
+{\footnotesize\ttfamily int Motor\+Interface\+::num\+\_\+motors\+\_\+port\+\_\+1\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The number of motors interfaced by the first Teensy. 
+
+
+
+Definition at line 116 of file motor\+\_\+interface.\+h.
+
+\mbox{\Hypertarget{classMotorInterface_a0721041582a21b07cd5002d829bd4123}\label{classMotorInterface_a0721041582a21b07cd5002d829bd4123}} 
+\index{MotorInterface@{MotorInterface}!num\_motors\_port\_2@{num\_motors\_port\_2}}
+\index{num\_motors\_port\_2@{num\_motors\_port\_2}!MotorInterface@{MotorInterface}}
+\doxysubsubsection{\texorpdfstring{num\_motors\_port\_2}{num\_motors\_port\_2}}
+{\footnotesize\ttfamily int Motor\+Interface\+::num\+\_\+motors\+\_\+port\+\_\+2\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The number of motors interfaced by the second Teensy. 
+
+
+
+Definition at line 119 of file motor\+\_\+interface.\+h.
+
+\mbox{\Hypertarget{classMotorInterface_ab6779402a5511b963602a80418bc5c19}\label{classMotorInterface_ab6779402a5511b963602a80418bc5c19}} 
+\index{MotorInterface@{MotorInterface}!serialInterface1@{serialInterface1}}
+\index{serialInterface1@{serialInterface1}!MotorInterface@{MotorInterface}}
+\doxysubsubsection{\texorpdfstring{serialInterface1}{serialInterface1}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSerialCommunication}{Serial\+Communication}} Motor\+Interface\+::serial\+Interface1\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The serial interface used to communicate with the first Teensy. 
+
+
+
+Definition at line 122 of file motor\+\_\+interface.\+h.
+
+\mbox{\Hypertarget{classMotorInterface_a348eb45a64dec3a31957c2daf6d81c55}\label{classMotorInterface_a348eb45a64dec3a31957c2daf6d81c55}} 
+\index{MotorInterface@{MotorInterface}!serialInterface2@{serialInterface2}}
+\index{serialInterface2@{serialInterface2}!MotorInterface@{MotorInterface}}
+\doxysubsubsection{\texorpdfstring{serialInterface2}{serialInterface2}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSerialCommunication}{Serial\+Communication}} Motor\+Interface\+::serial\+Interface2\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The serial interface used to communicate with the second Teensy. 
+
+
+
+Definition at line 125 of file motor\+\_\+interface.\+h.
+
+\mbox{\Hypertarget{classMotorInterface_ad37dacffac485895d4d69dc6ac34cf71}\label{classMotorInterface_ad37dacffac485895d4d69dc6ac34cf71}} 
+\index{MotorInterface@{MotorInterface}!rosNode@{rosNode}}
+\index{rosNode@{rosNode}!MotorInterface@{MotorInterface}}
+\doxysubsubsection{\texorpdfstring{rosNode}{rosNode}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ros\+::\+Node\+Handle$>$ Motor\+Interface\+::ros\+Node\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Node used for ROS transport. 
+
+
+
+Definition at line 128 of file motor\+\_\+interface.\+h.
+
+\mbox{\Hypertarget{classMotorInterface_a92dc1d8ea5cbcb48acb70f75f1d165de}\label{classMotorInterface_a92dc1d8ea5cbcb48acb70f75f1d165de}} 
+\index{MotorInterface@{MotorInterface}!jointStateMsg@{jointStateMsg}}
+\index{jointStateMsg@{jointStateMsg}!MotorInterface@{MotorInterface}}
+\doxysubsubsection{\texorpdfstring{jointStateMsg}{jointStateMsg}}
+{\footnotesize\ttfamily sensor\+\_\+msgs\+::\+Joint\+State Motor\+Interface\+::joint\+State\+Msg\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Joint State Message. 
+
+
+
+Definition at line 131 of file motor\+\_\+interface.\+h.
+
+\mbox{\Hypertarget{classMotorInterface_aa7536098e5030f042e3eceb1c201703e}\label{classMotorInterface_aa7536098e5030f042e3eceb1c201703e}} 
+\index{MotorInterface@{MotorInterface}!shutdownService@{shutdownService}}
+\index{shutdownService@{shutdownService}!MotorInterface@{MotorInterface}}
+\doxysubsubsection{\texorpdfstring{shutdownService}{shutdownService}}
+{\footnotesize\ttfamily ros\+::\+Service\+Server Motor\+Interface\+::shutdown\+Service\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+ROS Shutdown Service. 
+
+
+
+Definition at line 134 of file motor\+\_\+interface.\+h.
+
+\mbox{\Hypertarget{classMotorInterface_aa07b7b6b987594c573ca9b093a1e3b69}\label{classMotorInterface_aa07b7b6b987594c573ca9b093a1e3b69}} 
+\index{MotorInterface@{MotorInterface}!jointStateCmdSub@{jointStateCmdSub}}
+\index{jointStateCmdSub@{jointStateCmdSub}!MotorInterface@{MotorInterface}}
+\doxysubsubsection{\texorpdfstring{jointStateCmdSub}{jointStateCmdSub}}
+{\footnotesize\ttfamily ros\+::\+Subscriber Motor\+Interface\+::joint\+State\+Cmd\+Sub\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+ROS Joint State Command Subscriber. 
+
+
+
+Definition at line 137 of file motor\+\_\+interface.\+h.
+
+\mbox{\Hypertarget{classMotorInterface_a8881cd754c5891b9af6b0cb9368d54cf}\label{classMotorInterface_a8881cd754c5891b9af6b0cb9368d54cf}} 
+\index{MotorInterface@{MotorInterface}!jointStatePub@{jointStatePub}}
+\index{jointStatePub@{jointStatePub}!MotorInterface@{MotorInterface}}
+\doxysubsubsection{\texorpdfstring{jointStatePub}{jointStatePub}}
+{\footnotesize\ttfamily ros\+::\+Publisher Motor\+Interface\+::joint\+State\+Pub\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+ROS Joint State Publisher. 
+
+
+
+Definition at line 140 of file motor\+\_\+interface.\+h.
+
+\mbox{\Hypertarget{classMotorInterface_acdb1f716b197c4cf8b76ded42a1cfee6}\label{classMotorInterface_acdb1f716b197c4cf8b76ded42a1cfee6}} 
+\index{MotorInterface@{MotorInterface}!rosProcessQueue@{rosProcessQueue}}
+\index{rosProcessQueue@{rosProcessQueue}!MotorInterface@{MotorInterface}}
+\doxysubsubsection{\texorpdfstring{rosProcessQueue}{rosProcessQueue}}
+{\footnotesize\ttfamily ros\+::\+Callback\+Queue Motor\+Interface\+::ros\+Process\+Queue\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+ROS callbackque that helps process messages. 
+
+
+
+Definition at line 143 of file motor\+\_\+interface.\+h.
+
+\mbox{\Hypertarget{classMotorInterface_a76c9e4dec71215f63dcc944b6d8bb88e}\label{classMotorInterface_a76c9e4dec71215f63dcc944b6d8bb88e}} 
+\index{MotorInterface@{MotorInterface}!rosPublishQueue@{rosPublishQueue}}
+\index{rosPublishQueue@{rosPublishQueue}!MotorInterface@{MotorInterface}}
+\doxysubsubsection{\texorpdfstring{rosPublishQueue}{rosPublishQueue}}
+{\footnotesize\ttfamily ros\+::\+Callback\+Queue Motor\+Interface\+::ros\+Publish\+Queue\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+ROS callbackque that helps publish messages. 
+
+
+
+Definition at line 146 of file motor\+\_\+interface.\+h.
+
+\mbox{\Hypertarget{classMotorInterface_a93046b35c6caedeb7de250b0abbcad9f}\label{classMotorInterface_a93046b35c6caedeb7de250b0abbcad9f}} 
+\index{MotorInterface@{MotorInterface}!serialProcessQueueThread@{serialProcessQueueThread}}
+\index{serialProcessQueueThread@{serialProcessQueueThread}!MotorInterface@{MotorInterface}}
+\doxysubsubsection{\texorpdfstring{serialProcessQueueThread}{serialProcessQueueThread}}
+{\footnotesize\ttfamily std\+::thread Motor\+Interface\+::serial\+Process\+Queue\+Thread\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Thread running the serial\+Process\+Queue. 
+
+
+
+Definition at line 149 of file motor\+\_\+interface.\+h.
+
+\mbox{\Hypertarget{classMotorInterface_a23a5a30545e9040d45f0d35760990866}\label{classMotorInterface_a23a5a30545e9040d45f0d35760990866}} 
+\index{MotorInterface@{MotorInterface}!rosProcessQueueThread@{rosProcessQueueThread}}
+\index{rosProcessQueueThread@{rosProcessQueueThread}!MotorInterface@{MotorInterface}}
+\doxysubsubsection{\texorpdfstring{rosProcessQueueThread}{rosProcessQueueThread}}
+{\footnotesize\ttfamily std\+::thread Motor\+Interface\+::ros\+Process\+Queue\+Thread\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Thread running the ros\+Process\+Queue. 
+
+
+
+Definition at line 152 of file motor\+\_\+interface.\+h.
+
+\mbox{\Hypertarget{classMotorInterface_a1ebe1b16574f4ace15a0946f2b737386}\label{classMotorInterface_a1ebe1b16574f4ace15a0946f2b737386}} 
+\index{MotorInterface@{MotorInterface}!rosPublishQueueThread@{rosPublishQueueThread}}
+\index{rosPublishQueueThread@{rosPublishQueueThread}!MotorInterface@{MotorInterface}}
+\doxysubsubsection{\texorpdfstring{rosPublishQueueThread}{rosPublishQueueThread}}
+{\footnotesize\ttfamily std\+::thread Motor\+Interface\+::ros\+Publish\+Queue\+Thread\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Thread running the ros\+Publish\+Queue. 
+
+
+
+Definition at line 155 of file motor\+\_\+interface.\+h.
+
+
+
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-catkin\+\_\+ws/src/hardware/actuators/include/actuators/motor\+\_\+interface.\+h\item 
-catkin\+\_\+ws/src/hardware/actuators/src/motor\+\_\+interface.\+cpp\end{DoxyCompactItemize}
+catkin\+\_\+ws/src/hardware/actuators/include/actuators/\mbox{\hyperlink{motor__interface_8h}{motor\+\_\+interface.\+h}}\item 
+catkin\+\_\+ws/src/hardware/actuators/src/\mbox{\hyperlink{motor__interface_8cpp}{motor\+\_\+interface.\+cpp}}\end{DoxyCompactItemize}

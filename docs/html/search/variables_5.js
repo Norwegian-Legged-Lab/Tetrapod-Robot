@@ -1,5 +1,6 @@
 var searchData=
 [
+<<<<<<< HEAD
   ['gains_5fset_728',['gains_set',['../classSingleLegController.html#a6a2c3158c7d9014b8e6192bf3f569540',1,'SingleLegController']]],
   ['gait_5fphase_729',['gait_phase',['../classSingleLegController.html#af16632c82859f299cd1ae5545043c5f6',1,'SingleLegController']]],
   ['gazebonode_730',['gazeboNode',['../classContactSensor.html#a71515123318234f4cf50dbf7096064d0',1,'ContactSensor']]],
@@ -14,4 +15,7 @@ var searchData=
   ['genvellogpub_739',['genVelLogPub',['../classLogUtils.html#aa7ee536b6a1e441997b9501556c9a437',1,'LogUtils']]],
   ['genvelpub_740',['genVelPub',['../classgazebo_1_1SingleLegPlugin.html#aa0fa6f64a020044db492dfe947ce9cfb',1,'gazebo::SingleLegPlugin::genVelPub()'],['../classgazebo_1_1TetrapodPlugin.html#a2ae0bb87f4d7e4c3da1f04a436b974cf',1,'gazebo::TetrapodPlugin::genVelPub()']]],
   ['genvelsub_741',['genVelSub',['../classHierarchicalOptimizationControl.html#a1aaae9d1fd83d092f74b3b43f28ba89f',1,'HierarchicalOptimizationControl::genVelSub()'],['../classLogUtils.html#a146a5e656e8b2631a149259930769a43',1,'LogUtils::genVelSub()']]]
+=======
+  ['encoder_5fturn_5fthreshold_1963',['encoder_turn_threshold',['../classMotorControl.html#ab0c172ca680c38bdc09e96573c178056',1,'MotorControl']]]
+>>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
 ];

@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['vector_1325',['Vector',['../classkindr_1_1EulerAnglesXyz.html#a220725409bf0fb11f5ab90cdae9b26b1',1,'kindr::EulerAnglesXyz::Vector()'],['../classkindr_1_1EulerAnglesZyx.html#aa2be0b72f616c63eb7c27787a0dec456',1,'kindr::EulerAnglesZyx::Vector()'],['../classkindr_1_1RotationVector.html#ad8e039926f77691f2ed4e60dd3afc0cb',1,'kindr::RotationVector::Vector()']]],
-  ['vector3_1326',['Vector3',['../classkindr_1_1AngleAxis.html#ad783855f25d68c1e3b2f8f0d528a1d45',1,'kindr::AngleAxis']]],
-  ['vector4_1327',['Vector4',['../classkindr_1_1Quaternion.html#a635546e66511ccd59d14b43dc4b62664',1,'kindr::Quaternion::Vector4()'],['../classkindr_1_1UnitQuaternion.html#abff135496e54ce7b44f2933e3c0c7495',1,'kindr::UnitQuaternion::Vector4()'],['../classkindr_1_1AngleAxis.html#a860a1d28b3327b5b71f1a0806a9062f2',1,'kindr::AngleAxis::Vector4()'],['../classkindr_1_1RotationQuaternion.html#a51f99ed4d774d23c42f57ede9fd130db',1,'kindr::RotationQuaternion::Vector4()'],['../classkindr_1_1RotationQuaternionDiff.html#abb1ac058ce9cc7443feb4427f6e1a0b0',1,'kindr::RotationQuaternionDiff::Vector4()']]]
+  ['p_5fdoc_2385',['p_doc',['../xml__utils_8cpp.html#ae2e1c27a9ae904a6aa622fc2e8cbd3b4',1,'xml_utils.cpp']]],
+  ['p_5fel_2386',['p_el',['../xml__utils_8cpp.html#a142bd5609e53140fd78cf56de8cb5fc6',1,'xml_utils.cpp']]],
+  ['p_5fimpl_2387',['p_impl',['../xml__utils_8cpp.html#af969a534a6e721b332bba9f26b177dbe',1,'xml_utils.cpp']]],
+  ['p_5ftext_2388',['p_text',['../xml__utils_8cpp.html#aa9ce50fc9e0815390605151d530ed385',1,'xml_utils.cpp']]]
 ];

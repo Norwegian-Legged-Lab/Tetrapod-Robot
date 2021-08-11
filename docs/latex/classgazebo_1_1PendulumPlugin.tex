@@ -30,19 +30,16 @@ Collaboration diagram for gazebo\+::Pendulum\+Plugin\+:\nopagebreak
 \doxysubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a24ce9de399c62510f2e86dba916dafbd}\label{classgazebo_1_1PendulumPlugin_a24ce9de399c62510f2e86dba916dafbd}} 
-enum \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_a24ce9de399c62510f2e86dba916dafbd}{Control\+Mode}} \{ {\bfseries position} = 1, 
-{\bfseries velocity} = 2, 
-{\bfseries torque} = 3
+enum \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_a24ce9de399c62510f2e86dba916dafbd}{Control\+Mode}} \{ \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_a24ce9de399c62510f2e86dba916dafbda700639622973d6b9b9d70bad676367e2}{position}} = 1
+, \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_a24ce9de399c62510f2e86dba916dafbda7491123f15a84124394500226956f0cb}{velocity}} = 2
+, \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_a24ce9de399c62510f2e86dba916dafbdae57ee36b40271dc9d8f649aaa3505448}{torque}} = 3
  \}
 \begin{DoxyCompactList}\small\item\em Control mode enumerator. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a4898d6527855f6b0426d6bf6e59f1aec}\label{classgazebo_1_1PendulumPlugin_a4898d6527855f6b0426d6bf6e59f1aec}} 
 \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_a4898d6527855f6b0426d6bf6e59f1aec}{Pendulum\+Plugin}} ()
 \begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_af7c7785a63d5a5febb9bad3c3638227b}\label{classgazebo_1_1PendulumPlugin_af7c7785a63d5a5febb9bad3c3638227b}} 
 virtual \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_af7c7785a63d5a5febb9bad3c3638227b}{$\sim$\+Pendulum\+Plugin}} ()
 \begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_a0508f3a8ed035a42312cd2aecd601e31}{Load}} (physics\+::\+Model\+Ptr \+\_\+model, sdf\+::\+Element\+Ptr \+\_\+sdf)
@@ -56,86 +53,129 @@ void \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_a3ecb91c38fcd2083266e1c12ae7
 void \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_a08f93ed3eada2e0b464ecd9478d1b57d}{Set\+Joint\+Position}} (const double \&\+\_\+pos)
 \begin{DoxyCompactList}\small\item\em Set the position of the joint. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_a0eb1ab9152728ea062a5cb6b5214eadb}{On\+Joint\+State\+Msg}} (const sensor\+\_\+msgs\+::\+Joint\+State\+Const\+Ptr \&\+\_\+msg)
-\begin{DoxyCompactList}\small\item\em The On\+Joint\+State\+Msg function handles an incoming joint state message from R\+OS. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_acfdabd2adcf0aa71e8da75336bf892f3}\label{classgazebo_1_1PendulumPlugin_acfdabd2adcf0aa71e8da75336bf892f3}} 
+\begin{DoxyCompactList}\small\item\em The On\+Joint\+State\+Msg function handles an incoming joint state message from ROS. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_acfdabd2adcf0aa71e8da75336bf892f3}{Process\+Queue\+Thread}} ()
-\begin{DoxyCompactList}\small\item\em The Process\+Queue\+Thread function is a R\+OS helper function that processes messages. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_aefd4eb7477a26fe7dd5d56e272d9098d}\label{classgazebo_1_1PendulumPlugin_aefd4eb7477a26fe7dd5d56e272d9098d}} 
+\begin{DoxyCompactList}\small\item\em The Process\+Queue\+Thread function is a ROS helper function that processes messages. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_aefd4eb7477a26fe7dd5d56e272d9098d}{Publish\+Queue\+Thread}} ()
-\begin{DoxyCompactList}\small\item\em The Publish\+Queue\+Thread function is a R\+OS helper function that publish state messages. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The Publish\+Queue\+Thread function is a ROS helper function that publish state messages. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_aaf27012b818e0b07e4827307061e5300}\label{classgazebo_1_1PendulumPlugin_aaf27012b818e0b07e4827307061e5300}} 
 void \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_aaf27012b818e0b07e4827307061e5300}{Init\+Ros}} ()
-\begin{DoxyCompactList}\small\item\em The init\+Ros function is called to initialize R\+OS. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_acd00f2083bc68aa3cac12e53f36c84ed}\label{classgazebo_1_1PendulumPlugin_acd00f2083bc68aa3cac12e53f36c84ed}} 
+\begin{DoxyCompactList}\small\item\em The init\+Ros function is called to initialize ROS. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_acd00f2083bc68aa3cac12e53f36c84ed}{Init\+Ros\+Queue\+Threads}} ()
-\begin{DoxyCompactList}\small\item\em The Init\+Ros\+Queue\+Threads function is called to initialize the R\+OS Publish and Process Queue Threads. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a6d49a19000bbfd3c51dcb9571ed10aa2}\label{classgazebo_1_1PendulumPlugin_a6d49a19000bbfd3c51dcb9571ed10aa2}} 
+\begin{DoxyCompactList}\small\item\em The Init\+Ros\+Queue\+Threads function is called to initialize the ROS Publish and Process Queue Threads. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_a6d49a19000bbfd3c51dcb9571ed10aa2}{Init\+Joint\+Controller}} ()
-\begin{DoxyCompactList}\small\item\em The Init\+Joint\+Controllers function is called to setup joint P\+ID controllers. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_ad55eb1411d9cee39434364b69977782f}\label{classgazebo_1_1PendulumPlugin_ad55eb1411d9cee39434364b69977782f}} 
+\begin{DoxyCompactList}\small\item\em The Init\+Joint\+Controllers function is called to setup joint PID controllers. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_ad55eb1411d9cee39434364b69977782f}{Init\+Joint\+Configuration}} ()
 \begin{DoxyCompactList}\small\item\em The Init\+Joint\+Configuration function is called to initialize the desired joint configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a757010edccbb2a0e2edd8ca6337c01da}\label{classgazebo_1_1PendulumPlugin_a757010edccbb2a0e2edd8ca6337c01da}} 
 physics\+::\+Model\+Ptr \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_a757010edccbb2a0e2edd8ca6337c01da}{model}}
 \begin{DoxyCompactList}\small\item\em Pointer to the model. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a10602e9acf3c463089104ab38fd399c9}\label{classgazebo_1_1PendulumPlugin_a10602e9acf3c463089104ab38fd399c9}} 
 std\+::string \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_a10602e9acf3c463089104ab38fd399c9}{model\+\_\+name}}
 \begin{DoxyCompactList}\small\item\em Model name. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a8d811eae2374749ae3e89c79665b62a0}\label{classgazebo_1_1PendulumPlugin_a8d811eae2374749ae3e89c79665b62a0}} 
 physics\+::\+Joint\+Ptr \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_a8d811eae2374749ae3e89c79665b62a0}{joint}}
 \begin{DoxyCompactList}\small\item\em Pointers to the joint. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_ae377ca7d46942d849c1d1a7fd921b458}\label{classgazebo_1_1PendulumPlugin_ae377ca7d46942d849c1d1a7fd921b458}} 
 double \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_ae377ca7d46942d849c1d1a7fd921b458}{vel\+\_\+p\+\_\+gain}}
 \begin{DoxyCompactList}\small\item\em Velocity P-\/gain. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a572a4268b6f15eb1349d74d6c757cd47}\label{classgazebo_1_1PendulumPlugin_a572a4268b6f15eb1349d74d6c757cd47}} 
 double \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_a572a4268b6f15eb1349d74d6c757cd47}{vel\+\_\+i\+\_\+gain}}
 \begin{DoxyCompactList}\small\item\em Velocity I-\/gain. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a5bc17631437418437b91fb808b003dcf}\label{classgazebo_1_1PendulumPlugin_a5bc17631437418437b91fb808b003dcf}} 
 double \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_a5bc17631437418437b91fb808b003dcf}{vel\+\_\+d\+\_\+gain}}
 \begin{DoxyCompactList}\small\item\em Velocity D-\/gain. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a951bd0acb7a1e784ac6f5b9194d0c55f}\label{classgazebo_1_1PendulumPlugin_a951bd0acb7a1e784ac6f5b9194d0c55f}} 
 double \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_a951bd0acb7a1e784ac6f5b9194d0c55f}{pos\+\_\+p\+\_\+gain}}
 \begin{DoxyCompactList}\small\item\em Position P-\/gain. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a6323ee830df36a0c7558a45e4db60d86}\label{classgazebo_1_1PendulumPlugin_a6323ee830df36a0c7558a45e4db60d86}} 
 double \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_a6323ee830df36a0c7558a45e4db60d86}{pos\+\_\+i\+\_\+gain}}
 \begin{DoxyCompactList}\small\item\em Position I-\/gain. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a36f32798d87ae7c255db98feb0a91c0a}\label{classgazebo_1_1PendulumPlugin_a36f32798d87ae7c255db98feb0a91c0a}} 
 double \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_a36f32798d87ae7c255db98feb0a91c0a}{pos\+\_\+d\+\_\+gain}}
 \begin{DoxyCompactList}\small\item\em Position D-\/gain. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_aaf2e43f3c96db64225cb3089967a45a8}\label{classgazebo_1_1PendulumPlugin_aaf2e43f3c96db64225cb3089967a45a8}} 
 \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_a24ce9de399c62510f2e86dba916dafbd}{Control\+Mode}} \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_aaf2e43f3c96db64225cb3089967a45a8}{control\+Mode}}
 \begin{DoxyCompactList}\small\item\em Control mode indicator \{ position = 1, velocity = 2, torque = 3 \}. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_aa493aceca048d8e3f3359efc1c3c6e80}\label{classgazebo_1_1PendulumPlugin_aa493aceca048d8e3f3359efc1c3c6e80}} 
 std\+::unique\+\_\+ptr$<$ ros\+::\+Node\+Handle $>$ \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_aa493aceca048d8e3f3359efc1c3c6e80}{ros\+Node}}
-\begin{DoxyCompactList}\small\item\em Node used for R\+OS transport. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a9e41bb42b5fb17e675c86c58981c5b85}\label{classgazebo_1_1PendulumPlugin_a9e41bb42b5fb17e675c86c58981c5b85}} 
+\begin{DoxyCompactList}\small\item\em Node used for ROS transport. \end{DoxyCompactList}\item 
 ros\+::\+Subscriber \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_a9e41bb42b5fb17e675c86c58981c5b85}{joint\+State\+Sub}}
-\begin{DoxyCompactList}\small\item\em R\+OS Joint State Subscriber. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a34451bbe34d5b2dc2a1543f70f8e47fa}\label{classgazebo_1_1PendulumPlugin_a34451bbe34d5b2dc2a1543f70f8e47fa}} 
+\begin{DoxyCompactList}\small\item\em ROS Joint State Subscriber. \end{DoxyCompactList}\item 
 ros\+::\+Publisher \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_a34451bbe34d5b2dc2a1543f70f8e47fa}{joint\+Force\+Pub}}
-\begin{DoxyCompactList}\small\item\em R\+OS Joint Force (Torque) Publisher. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_ac8866cc4937c840382db4995bdc31471}\label{classgazebo_1_1PendulumPlugin_ac8866cc4937c840382db4995bdc31471}} 
+\begin{DoxyCompactList}\small\item\em ROS Joint Force (Torque) Publisher. \end{DoxyCompactList}\item 
 ros\+::\+Callback\+Queue \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_ac8866cc4937c840382db4995bdc31471}{ros\+Process\+Queue}}
-\begin{DoxyCompactList}\small\item\em R\+OS callbackque that helps process messages. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a597c067450ecd58b9e545bb6520342bd}\label{classgazebo_1_1PendulumPlugin_a597c067450ecd58b9e545bb6520342bd}} 
+\begin{DoxyCompactList}\small\item\em ROS callbackque that helps process messages. \end{DoxyCompactList}\item 
 ros\+::\+Callback\+Queue \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_a597c067450ecd58b9e545bb6520342bd}{ros\+Publish\+Queue}}
-\begin{DoxyCompactList}\small\item\em R\+OS callbackque that helps publish messages. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_aa4e40ed1603fd78ccb29041ef522d357}\label{classgazebo_1_1PendulumPlugin_aa4e40ed1603fd78ccb29041ef522d357}} 
+\begin{DoxyCompactList}\small\item\em ROS callbackque that helps publish messages. \end{DoxyCompactList}\item 
 std\+::thread \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_aa4e40ed1603fd78ccb29041ef522d357}{ros\+Process\+Queue\+Thread}}
 \begin{DoxyCompactList}\small\item\em Thread running the ros\+Process\+Queue. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a095c48391e918252a075296ab157c7c8}\label{classgazebo_1_1PendulumPlugin_a095c48391e918252a075296ab157c7c8}} 
 std\+::thread \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_a095c48391e918252a075296ab157c7c8}{ros\+Publish\+Queue\+Thread}}
 \begin{DoxyCompactList}\small\item\em Thread running the ros\+Publish\+Queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 A plugin to control the pendulum robot. 
+
+Definition at line 63 of file pendulum\+\_\+plugin.\+h.
+
+
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a24ce9de399c62510f2e86dba916dafbd}\label{classgazebo_1_1PendulumPlugin_a24ce9de399c62510f2e86dba916dafbd}} 
+\index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!ControlMode@{ControlMode}}
+\index{ControlMode@{ControlMode}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
+\doxysubsubsection{\texorpdfstring{ControlMode}{ControlMode}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_a24ce9de399c62510f2e86dba916dafbd}{gazebo\+::\+Pendulum\+Plugin\+::\+Control\+Mode}}}
+
+
+
+Control mode enumerator. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{position@{position}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}\index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!position@{position}}}\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a24ce9de399c62510f2e86dba916dafbda700639622973d6b9b9d70bad676367e2}\label{classgazebo_1_1PendulumPlugin_a24ce9de399c62510f2e86dba916dafbda700639622973d6b9b9d70bad676367e2}} 
+position&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{velocity@{velocity}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}\index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!velocity@{velocity}}}\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a24ce9de399c62510f2e86dba916dafbda7491123f15a84124394500226956f0cb}\label{classgazebo_1_1PendulumPlugin_a24ce9de399c62510f2e86dba916dafbda7491123f15a84124394500226956f0cb}} 
+velocity&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{torque@{torque}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}\index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!torque@{torque}}}\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a24ce9de399c62510f2e86dba916dafbdae57ee36b40271dc9d8f649aaa3505448}\label{classgazebo_1_1PendulumPlugin_a24ce9de399c62510f2e86dba916dafbdae57ee36b40271dc9d8f649aaa3505448}} 
+torque&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 66 of file pendulum\+\_\+plugin.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a4898d6527855f6b0426d6bf6e59f1aec}\label{classgazebo_1_1PendulumPlugin_a4898d6527855f6b0426d6bf6e59f1aec}} 
+\index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!PendulumPlugin@{PendulumPlugin}}
+\index{PendulumPlugin@{PendulumPlugin}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
+\doxysubsubsection{\texorpdfstring{PendulumPlugin()}{PendulumPlugin()}}
+{\footnotesize\ttfamily gazebo\+::\+Pendulum\+Plugin\+::\+Pendulum\+Plugin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+
+Definition at line 34 of file pendulum\+\_\+plugin.\+cpp.
+
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_af7c7785a63d5a5febb9bad3c3638227b}\label{classgazebo_1_1PendulumPlugin_af7c7785a63d5a5febb9bad3c3638227b}} 
+\index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!````~PendulumPlugin@{$\sim$PendulumPlugin}}
+\index{````~PendulumPlugin@{$\sim$PendulumPlugin}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
+\doxysubsubsection{\texorpdfstring{$\sim$PendulumPlugin()}{~PendulumPlugin()}}
+{\footnotesize\ttfamily gazebo\+::\+Pendulum\+Plugin\+::$\sim$\+Pendulum\+Plugin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Destructor. 
+
+
+
+Definition at line 46 of file pendulum\+\_\+plugin.\+cpp.
+
+
 
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a0508f3a8ed035a42312cd2aecd601e31}\label{classgazebo_1_1PendulumPlugin_a0508f3a8ed035a42312cd2aecd601e31}} 
@@ -152,9 +192,13 @@ The Load function is called by Gazebo when the plugin is inserted into simulatio
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ in}}  & {\em \+\_\+model} & A pointer to the model that the plugin is attached to. \\
 \hline
-\mbox{\texttt{ in}}  & {\em \+\_\+sdf} & A pointer to the plugin\textquotesingle{}s S\+DF element. \\
+\mbox{\texttt{ in}}  & {\em \+\_\+sdf} & A pointer to the plugin\textquotesingle{}s SDF element. \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 56 of file pendulum\+\_\+plugin.\+cpp.
+
 \mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_aa0b4f8d519f47257898f94fe7cda8e08}\label{classgazebo_1_1PendulumPlugin_aa0b4f8d519f47257898f94fe7cda8e08}} 
 \index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!GetJointForce@{GetJointForce}}
 \index{GetJointForce@{GetJointForce}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
@@ -168,6 +212,10 @@ Get currently applied force at the joint.
 \begin{DoxyReturn}{Returns}
 Current joint force 
 \end{DoxyReturn}
+
+
+Definition at line 81 of file pendulum\+\_\+plugin.\+cpp.
+
 \mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a7a67ddbd0c27a985ae261e691cb5dd56}\label{classgazebo_1_1PendulumPlugin_a7a67ddbd0c27a985ae261e691cb5dd56}} 
 \index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!SetJointForce@{SetJointForce}}
 \index{SetJointForce@{SetJointForce}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
@@ -183,6 +231,10 @@ Apply force at a specific joint.
 \mbox{\texttt{ in}}  & {\em \+\_\+force} & Force to apply \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 89 of file pendulum\+\_\+plugin.\+cpp.
+
 \mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a3ecb91c38fcd2083266e1c12ae753f51}\label{classgazebo_1_1PendulumPlugin_a3ecb91c38fcd2083266e1c12ae753f51}} 
 \index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!SetJointVelocity@{SetJointVelocity}}
 \index{SetJointVelocity@{SetJointVelocity}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
@@ -198,6 +250,10 @@ Set the velocity of the joint.
 \mbox{\texttt{ in}}  & {\em \+\_\+vel} & New target velocity \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 106 of file pendulum\+\_\+plugin.\+cpp.
+
 \mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a08f93ed3eada2e0b464ecd9478d1b57d}\label{classgazebo_1_1PendulumPlugin_a08f93ed3eada2e0b464ecd9478d1b57d}} 
 \index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!SetJointPosition@{SetJointPosition}}
 \index{SetJointPosition@{SetJointPosition}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
@@ -213,6 +269,10 @@ Set the position of the joint.
 \mbox{\texttt{ in}}  & {\em \+\_\+pos} & New target position in radians \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 123 of file pendulum\+\_\+plugin.\+cpp.
+
 \mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a0eb1ab9152728ea062a5cb6b5214eadb}\label{classgazebo_1_1PendulumPlugin_a0eb1ab9152728ea062a5cb6b5214eadb}} 
 \index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!OnJointStateMsg@{OnJointStateMsg}}
 \index{OnJointStateMsg@{OnJointStateMsg}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
@@ -221,7 +281,7 @@ Set the position of the joint.
 
 
 
-The On\+Joint\+State\+Msg function handles an incoming joint state message from R\+OS. 
+The On\+Joint\+State\+Msg function handles an incoming joint state message from ROS. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -235,7 +295,336 @@ The On\+Joint\+State\+Msg function handles an incoming joint state message from 
 \end{DoxyParams}
 
 
+Definition at line 139 of file pendulum\+\_\+plugin.\+cpp.
+
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_acfdabd2adcf0aa71e8da75336bf892f3}\label{classgazebo_1_1PendulumPlugin_acfdabd2adcf0aa71e8da75336bf892f3}} 
+\index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!ProcessQueueThread@{ProcessQueueThread}}
+\index{ProcessQueueThread@{ProcessQueueThread}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
+\doxysubsubsection{\texorpdfstring{ProcessQueueThread()}{ProcessQueueThread()}}
+{\footnotesize\ttfamily void gazebo\+::\+Pendulum\+Plugin\+::\+Process\+Queue\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The Process\+Queue\+Thread function is a ROS helper function that processes messages. 
+
+
+
+Definition at line 158 of file pendulum\+\_\+plugin.\+cpp.
+
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_aefd4eb7477a26fe7dd5d56e272d9098d}\label{classgazebo_1_1PendulumPlugin_aefd4eb7477a26fe7dd5d56e272d9098d}} 
+\index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!PublishQueueThread@{PublishQueueThread}}
+\index{PublishQueueThread@{PublishQueueThread}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
+\doxysubsubsection{\texorpdfstring{PublishQueueThread()}{PublishQueueThread()}}
+{\footnotesize\ttfamily void gazebo\+::\+Pendulum\+Plugin\+::\+Publish\+Queue\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The Publish\+Queue\+Thread function is a ROS helper function that publish state messages. 
+
+
+
+Definition at line 168 of file pendulum\+\_\+plugin.\+cpp.
+
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_aaf27012b818e0b07e4827307061e5300}\label{classgazebo_1_1PendulumPlugin_aaf27012b818e0b07e4827307061e5300}} 
+\index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!InitRos@{InitRos}}
+\index{InitRos@{InitRos}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
+\doxysubsubsection{\texorpdfstring{InitRos()}{InitRos()}}
+{\footnotesize\ttfamily void gazebo\+::\+Pendulum\+Plugin\+::\+Init\+Ros (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The init\+Ros function is called to initialize ROS. 
+
+
+
+Definition at line 183 of file pendulum\+\_\+plugin.\+cpp.
+
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_acd00f2083bc68aa3cac12e53f36c84ed}\label{classgazebo_1_1PendulumPlugin_acd00f2083bc68aa3cac12e53f36c84ed}} 
+\index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!InitRosQueueThreads@{InitRosQueueThreads}}
+\index{InitRosQueueThreads@{InitRosQueueThreads}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
+\doxysubsubsection{\texorpdfstring{InitRosQueueThreads()}{InitRosQueueThreads()}}
+{\footnotesize\ttfamily void gazebo\+::\+Pendulum\+Plugin\+::\+Init\+Ros\+Queue\+Threads (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The Init\+Ros\+Queue\+Threads function is called to initialize the ROS Publish and Process Queue Threads. 
+
+
+
+Definition at line 224 of file pendulum\+\_\+plugin.\+cpp.
+
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a6d49a19000bbfd3c51dcb9571ed10aa2}\label{classgazebo_1_1PendulumPlugin_a6d49a19000bbfd3c51dcb9571ed10aa2}} 
+\index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!InitJointController@{InitJointController}}
+\index{InitJointController@{InitJointController}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
+\doxysubsubsection{\texorpdfstring{InitJointController()}{InitJointController()}}
+{\footnotesize\ttfamily void gazebo\+::\+Pendulum\+Plugin\+::\+Init\+Joint\+Controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The Init\+Joint\+Controllers function is called to setup joint PID controllers. 
+
+
+
+Definition at line 236 of file pendulum\+\_\+plugin.\+cpp.
+
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_ad55eb1411d9cee39434364b69977782f}\label{classgazebo_1_1PendulumPlugin_ad55eb1411d9cee39434364b69977782f}} 
+\index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!InitJointConfiguration@{InitJointConfiguration}}
+\index{InitJointConfiguration@{InitJointConfiguration}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
+\doxysubsubsection{\texorpdfstring{InitJointConfiguration()}{InitJointConfiguration()}}
+{\footnotesize\ttfamily void gazebo\+::\+Pendulum\+Plugin\+::\+Init\+Joint\+Configuration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The Init\+Joint\+Configuration function is called to initialize the desired joint configuration. 
+
+
+
+Definition at line 250 of file pendulum\+\_\+plugin.\+cpp.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a757010edccbb2a0e2edd8ca6337c01da}\label{classgazebo_1_1PendulumPlugin_a757010edccbb2a0e2edd8ca6337c01da}} 
+\index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!model@{model}}
+\index{model@{model}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
+\doxysubsubsection{\texorpdfstring{model}{model}}
+{\footnotesize\ttfamily physics\+::\+Model\+Ptr gazebo\+::\+Pendulum\+Plugin\+::model\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer to the model. 
+
+
+
+Definition at line 130 of file pendulum\+\_\+plugin.\+h.
+
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a10602e9acf3c463089104ab38fd399c9}\label{classgazebo_1_1PendulumPlugin_a10602e9acf3c463089104ab38fd399c9}} 
+\index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!model\_name@{model\_name}}
+\index{model\_name@{model\_name}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
+\doxysubsubsection{\texorpdfstring{model\_name}{model\_name}}
+{\footnotesize\ttfamily std\+::string gazebo\+::\+Pendulum\+Plugin\+::model\+\_\+name\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Model name. 
+
+
+
+Definition at line 133 of file pendulum\+\_\+plugin.\+h.
+
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a8d811eae2374749ae3e89c79665b62a0}\label{classgazebo_1_1PendulumPlugin_a8d811eae2374749ae3e89c79665b62a0}} 
+\index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!joint@{joint}}
+\index{joint@{joint}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
+\doxysubsubsection{\texorpdfstring{joint}{joint}}
+{\footnotesize\ttfamily physics\+::\+Joint\+Ptr gazebo\+::\+Pendulum\+Plugin\+::joint\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointers to the joint. 
+
+
+
+Definition at line 136 of file pendulum\+\_\+plugin.\+h.
+
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_ae377ca7d46942d849c1d1a7fd921b458}\label{classgazebo_1_1PendulumPlugin_ae377ca7d46942d849c1d1a7fd921b458}} 
+\index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!vel\_p\_gain@{vel\_p\_gain}}
+\index{vel\_p\_gain@{vel\_p\_gain}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
+\doxysubsubsection{\texorpdfstring{vel\_p\_gain}{vel\_p\_gain}}
+{\footnotesize\ttfamily double gazebo\+::\+Pendulum\+Plugin\+::vel\+\_\+p\+\_\+gain\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Velocity P-\/gain. 
+
+
+
+Definition at line 139 of file pendulum\+\_\+plugin.\+h.
+
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a572a4268b6f15eb1349d74d6c757cd47}\label{classgazebo_1_1PendulumPlugin_a572a4268b6f15eb1349d74d6c757cd47}} 
+\index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!vel\_i\_gain@{vel\_i\_gain}}
+\index{vel\_i\_gain@{vel\_i\_gain}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
+\doxysubsubsection{\texorpdfstring{vel\_i\_gain}{vel\_i\_gain}}
+{\footnotesize\ttfamily double gazebo\+::\+Pendulum\+Plugin\+::vel\+\_\+i\+\_\+gain\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Velocity I-\/gain. 
+
+
+
+Definition at line 142 of file pendulum\+\_\+plugin.\+h.
+
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a5bc17631437418437b91fb808b003dcf}\label{classgazebo_1_1PendulumPlugin_a5bc17631437418437b91fb808b003dcf}} 
+\index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!vel\_d\_gain@{vel\_d\_gain}}
+\index{vel\_d\_gain@{vel\_d\_gain}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
+\doxysubsubsection{\texorpdfstring{vel\_d\_gain}{vel\_d\_gain}}
+{\footnotesize\ttfamily double gazebo\+::\+Pendulum\+Plugin\+::vel\+\_\+d\+\_\+gain\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Velocity D-\/gain. 
+
+
+
+Definition at line 145 of file pendulum\+\_\+plugin.\+h.
+
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a951bd0acb7a1e784ac6f5b9194d0c55f}\label{classgazebo_1_1PendulumPlugin_a951bd0acb7a1e784ac6f5b9194d0c55f}} 
+\index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!pos\_p\_gain@{pos\_p\_gain}}
+\index{pos\_p\_gain@{pos\_p\_gain}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
+\doxysubsubsection{\texorpdfstring{pos\_p\_gain}{pos\_p\_gain}}
+{\footnotesize\ttfamily double gazebo\+::\+Pendulum\+Plugin\+::pos\+\_\+p\+\_\+gain\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Position P-\/gain. 
+
+
+
+Definition at line 148 of file pendulum\+\_\+plugin.\+h.
+
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a6323ee830df36a0c7558a45e4db60d86}\label{classgazebo_1_1PendulumPlugin_a6323ee830df36a0c7558a45e4db60d86}} 
+\index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!pos\_i\_gain@{pos\_i\_gain}}
+\index{pos\_i\_gain@{pos\_i\_gain}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
+\doxysubsubsection{\texorpdfstring{pos\_i\_gain}{pos\_i\_gain}}
+{\footnotesize\ttfamily double gazebo\+::\+Pendulum\+Plugin\+::pos\+\_\+i\+\_\+gain\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Position I-\/gain. 
+
+
+
+Definition at line 151 of file pendulum\+\_\+plugin.\+h.
+
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a36f32798d87ae7c255db98feb0a91c0a}\label{classgazebo_1_1PendulumPlugin_a36f32798d87ae7c255db98feb0a91c0a}} 
+\index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!pos\_d\_gain@{pos\_d\_gain}}
+\index{pos\_d\_gain@{pos\_d\_gain}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
+\doxysubsubsection{\texorpdfstring{pos\_d\_gain}{pos\_d\_gain}}
+{\footnotesize\ttfamily double gazebo\+::\+Pendulum\+Plugin\+::pos\+\_\+d\+\_\+gain\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Position D-\/gain. 
+
+
+
+Definition at line 154 of file pendulum\+\_\+plugin.\+h.
+
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_aaf2e43f3c96db64225cb3089967a45a8}\label{classgazebo_1_1PendulumPlugin_aaf2e43f3c96db64225cb3089967a45a8}} 
+\index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!controlMode@{controlMode}}
+\index{controlMode@{controlMode}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
+\doxysubsubsection{\texorpdfstring{controlMode}{controlMode}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classgazebo_1_1PendulumPlugin_a24ce9de399c62510f2e86dba916dafbd}{Control\+Mode}} gazebo\+::\+Pendulum\+Plugin\+::control\+Mode\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Control mode indicator \{ position = 1, velocity = 2, torque = 3 \}. 
+
+
+
+Definition at line 158 of file pendulum\+\_\+plugin.\+h.
+
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_aa493aceca048d8e3f3359efc1c3c6e80}\label{classgazebo_1_1PendulumPlugin_aa493aceca048d8e3f3359efc1c3c6e80}} 
+\index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!rosNode@{rosNode}}
+\index{rosNode@{rosNode}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
+\doxysubsubsection{\texorpdfstring{rosNode}{rosNode}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ros\+::\+Node\+Handle$>$ gazebo\+::\+Pendulum\+Plugin\+::ros\+Node\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Node used for ROS transport. 
+
+
+
+Definition at line 161 of file pendulum\+\_\+plugin.\+h.
+
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a9e41bb42b5fb17e675c86c58981c5b85}\label{classgazebo_1_1PendulumPlugin_a9e41bb42b5fb17e675c86c58981c5b85}} 
+\index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!jointStateSub@{jointStateSub}}
+\index{jointStateSub@{jointStateSub}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
+\doxysubsubsection{\texorpdfstring{jointStateSub}{jointStateSub}}
+{\footnotesize\ttfamily ros\+::\+Subscriber gazebo\+::\+Pendulum\+Plugin\+::joint\+State\+Sub\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+ROS Joint State Subscriber. 
+
+
+
+Definition at line 164 of file pendulum\+\_\+plugin.\+h.
+
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a34451bbe34d5b2dc2a1543f70f8e47fa}\label{classgazebo_1_1PendulumPlugin_a34451bbe34d5b2dc2a1543f70f8e47fa}} 
+\index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!jointForcePub@{jointForcePub}}
+\index{jointForcePub@{jointForcePub}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
+\doxysubsubsection{\texorpdfstring{jointForcePub}{jointForcePub}}
+{\footnotesize\ttfamily ros\+::\+Publisher gazebo\+::\+Pendulum\+Plugin\+::joint\+Force\+Pub\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+ROS Joint Force (Torque) Publisher. 
+
+
+
+Definition at line 167 of file pendulum\+\_\+plugin.\+h.
+
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_ac8866cc4937c840382db4995bdc31471}\label{classgazebo_1_1PendulumPlugin_ac8866cc4937c840382db4995bdc31471}} 
+\index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!rosProcessQueue@{rosProcessQueue}}
+\index{rosProcessQueue@{rosProcessQueue}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
+\doxysubsubsection{\texorpdfstring{rosProcessQueue}{rosProcessQueue}}
+{\footnotesize\ttfamily ros\+::\+Callback\+Queue gazebo\+::\+Pendulum\+Plugin\+::ros\+Process\+Queue\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+ROS callbackque that helps process messages. 
+
+
+
+Definition at line 170 of file pendulum\+\_\+plugin.\+h.
+
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a597c067450ecd58b9e545bb6520342bd}\label{classgazebo_1_1PendulumPlugin_a597c067450ecd58b9e545bb6520342bd}} 
+\index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!rosPublishQueue@{rosPublishQueue}}
+\index{rosPublishQueue@{rosPublishQueue}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
+\doxysubsubsection{\texorpdfstring{rosPublishQueue}{rosPublishQueue}}
+{\footnotesize\ttfamily ros\+::\+Callback\+Queue gazebo\+::\+Pendulum\+Plugin\+::ros\+Publish\+Queue\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+ROS callbackque that helps publish messages. 
+
+
+
+Definition at line 173 of file pendulum\+\_\+plugin.\+h.
+
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_aa4e40ed1603fd78ccb29041ef522d357}\label{classgazebo_1_1PendulumPlugin_aa4e40ed1603fd78ccb29041ef522d357}} 
+\index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!rosProcessQueueThread@{rosProcessQueueThread}}
+\index{rosProcessQueueThread@{rosProcessQueueThread}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
+\doxysubsubsection{\texorpdfstring{rosProcessQueueThread}{rosProcessQueueThread}}
+{\footnotesize\ttfamily std\+::thread gazebo\+::\+Pendulum\+Plugin\+::ros\+Process\+Queue\+Thread\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Thread running the ros\+Process\+Queue. 
+
+
+
+Definition at line 176 of file pendulum\+\_\+plugin.\+h.
+
+\mbox{\Hypertarget{classgazebo_1_1PendulumPlugin_a095c48391e918252a075296ab157c7c8}\label{classgazebo_1_1PendulumPlugin_a095c48391e918252a075296ab157c7c8}} 
+\index{gazebo::PendulumPlugin@{gazebo::PendulumPlugin}!rosPublishQueueThread@{rosPublishQueueThread}}
+\index{rosPublishQueueThread@{rosPublishQueueThread}!gazebo::PendulumPlugin@{gazebo::PendulumPlugin}}
+\doxysubsubsection{\texorpdfstring{rosPublishQueueThread}{rosPublishQueueThread}}
+{\footnotesize\ttfamily std\+::thread gazebo\+::\+Pendulum\+Plugin\+::ros\+Publish\+Queue\+Thread\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Thread running the ros\+Publish\+Queue. 
+
+
+
+Definition at line 179 of file pendulum\+\_\+plugin.\+h.
+
+
+
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-catkin\+\_\+ws/src/simulator/pendulum\+\_\+gazebo/include/pendulum\+\_\+gazebo/pendulum\+\_\+plugin.\+h\item 
-catkin\+\_\+ws/src/simulator/pendulum\+\_\+gazebo/src/pendulum\+\_\+plugin.\+cpp\end{DoxyCompactItemize}
+catkin\+\_\+ws/src/simulator/pendulum\+\_\+gazebo/include/pendulum\+\_\+gazebo/\mbox{\hyperlink{pendulum__plugin_8h}{pendulum\+\_\+plugin.\+h}}\item 
+catkin\+\_\+ws/src/simulator/pendulum\+\_\+gazebo/src/\mbox{\hyperlink{pendulum__plugin_8cpp}{pendulum\+\_\+plugin.\+cpp}}\end{DoxyCompactItemize}

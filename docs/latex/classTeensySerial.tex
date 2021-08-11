@@ -1,10 +1,15 @@
 \hypertarget{classTeensySerial}{}\doxysection{Teensy\+Serial Class Reference}
 \label{classTeensySerial}\index{TeensySerial@{TeensySerial}}
+
+
+{\ttfamily \#include $<$teensy\+\_\+serial.\+h$>$}
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classTeensySerial_ac4b105b5e8932f652d1485e10ac1a27c}\label{classTeensySerial_ac4b105b5e8932f652d1485e10ac1a27c}} 
-{\bfseries Teensy\+Serial} (int \+\_\+number\+\_\+of\+\_\+motors)
+\mbox{\hyperlink{classTeensySerial_ac4b105b5e8932f652d1485e10ac1a27c}{Teensy\+Serial}} (int \+\_\+number\+\_\+of\+\_\+motors)
+\item 
+\mbox{\hyperlink{classTeensySerial_a4b29ab01250007e5c0a33d41c3867433}{$\sim$\+Teensy\+Serial}} ()
 \item 
 bool \mbox{\hyperlink{classTeensySerial_a893027c99927bb0276fbda571478948b}{are\+Control\+Commands\+Available}} ()
 \begin{DoxyCompactList}\small\item\em Checks if there is any available data on the serial port. \end{DoxyCompactList}\item 
@@ -12,27 +17,51 @@ void \mbox{\hyperlink{classTeensySerial_a0a8380ad5a637d05b8002a1a13285db5}{recei
 \begin{DoxyCompactList}\small\item\em Reads control command data available on the serial command and stores it. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classTeensySerial_a2dafe2375ce64b4f142562b191fe8e43}{send\+States}} (double $\ast$\+\_\+joint\+\_\+positions, double $\ast$\+\_\+joint\+\_\+velocities, double $\ast$\+\_\+joint\+\_\+torques)
 \begin{DoxyCompactList}\small\item\em Sends the joint states to the serial line. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classTeensySerial_ab77a80e1959ec357b036d71c0dc5eecb}\label{classTeensySerial_ab77a80e1959ec357b036d71c0dc5eecb}} 
-void {\bfseries print\+Tx\+Buffer} ()
+void \mbox{\hyperlink{classTeensySerial_ab77a80e1959ec357b036d71c0dc5eecb}{print\+Tx\+Buffer}} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classTeensySerial_aa9a5cd2b5714f223ef9458b03e2d855d}\label{classTeensySerial_aa9a5cd2b5714f223ef9458b03e2d855d}} 
 int \mbox{\hyperlink{classTeensySerial_aa9a5cd2b5714f223ef9458b03e2d855d}{number\+\_\+of\+\_\+motors}}
 \begin{DoxyCompactList}\small\item\em Number of motors. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classTeensySerial_a665def69986826f423b21e9ee2f3d554}\label{classTeensySerial_a665def69986826f423b21e9ee2f3d554}} 
 int \mbox{\hyperlink{classTeensySerial_a665def69986826f423b21e9ee2f3d554}{tx\+\_\+buffer\+\_\+size}}
 \begin{DoxyCompactList}\small\item\em Transmit buffer size. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classTeensySerial_a993a211cec364f6a73d9f9d5df5c0cf9}\label{classTeensySerial_a993a211cec364f6a73d9f9d5df5c0cf9}} 
 int \mbox{\hyperlink{classTeensySerial_a993a211cec364f6a73d9f9d5df5c0cf9}{rx\+\_\+buffer\+\_\+size}}
 \begin{DoxyCompactList}\small\item\em Receive buffer size. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classTeensySerial_af658e969788cec6e474ebed89f48a758}\label{classTeensySerial_af658e969788cec6e474ebed89f48a758}} 
 unsigned char $\ast$ \mbox{\hyperlink{classTeensySerial_af658e969788cec6e474ebed89f48a758}{rx\+\_\+buffer}}
 \begin{DoxyCompactList}\small\item\em Receive buffer. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classTeensySerial_a0c5e457eb4e7fa8ccd9ca7985570ab47}\label{classTeensySerial_a0c5e457eb4e7fa8ccd9ca7985570ab47}} 
 unsigned char $\ast$ \mbox{\hyperlink{classTeensySerial_a0c5e457eb4e7fa8ccd9ca7985570ab47}{tx\+\_\+buffer}}
 \begin{DoxyCompactList}\small\item\em Transmit buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 6 of file teensy\+\_\+serial.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classTeensySerial_ac4b105b5e8932f652d1485e10ac1a27c}\label{classTeensySerial_ac4b105b5e8932f652d1485e10ac1a27c}} 
+\index{TeensySerial@{TeensySerial}!TeensySerial@{TeensySerial}}
+\index{TeensySerial@{TeensySerial}!TeensySerial@{TeensySerial}}
+\doxysubsubsection{\texorpdfstring{TeensySerial()}{TeensySerial()}}
+{\footnotesize\ttfamily Teensy\+Serial\+::\+Teensy\+Serial (\begin{DoxyParamCaption}\item[{int}]{\+\_\+number\+\_\+of\+\_\+motors }\end{DoxyParamCaption})}
+
+
+
+Definition at line 3 of file teensy\+\_\+serial.\+cpp.
+
+\mbox{\Hypertarget{classTeensySerial_a4b29ab01250007e5c0a33d41c3867433}\label{classTeensySerial_a4b29ab01250007e5c0a33d41c3867433}} 
+\index{TeensySerial@{TeensySerial}!````~TeensySerial@{$\sim$TeensySerial}}
+\index{````~TeensySerial@{$\sim$TeensySerial}!TeensySerial@{TeensySerial}}
+\doxysubsubsection{\texorpdfstring{$\sim$TeensySerial()}{~TeensySerial()}}
+{\footnotesize\ttfamily Teensy\+Serial\+::$\sim$\+Teensy\+Serial (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 24 of file teensy\+\_\+serial.\+cpp.
+
 
 
 \doxysubsection{Member Function Documentation}
@@ -49,6 +78,10 @@ Checks if there is any available data on the serial port.
 \begin{DoxyReturn}{Returns}
 If there is data available on the serial line true is returned, otherwise false 
 \end{DoxyReturn}
+
+
+Definition at line 33 of file teensy\+\_\+serial.\+cpp.
+
 \mbox{\Hypertarget{classTeensySerial_a0a8380ad5a637d05b8002a1a13285db5}\label{classTeensySerial_a0a8380ad5a637d05b8002a1a13285db5}} 
 \index{TeensySerial@{TeensySerial}!receiveControlCommands@{receiveControlCommands}}
 \index{receiveControlCommands@{receiveControlCommands}!TeensySerial@{TeensySerial}}
@@ -66,6 +99,10 @@ Reads control command data available on the serial command and stores it.
 \mbox{\texttt{ out}}  & {\em \+\_\+control\+\_\+commands} & An array of control command values \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 48 of file teensy\+\_\+serial.\+cpp.
+
 \mbox{\Hypertarget{classTeensySerial_a2dafe2375ce64b4f142562b191fe8e43}\label{classTeensySerial_a2dafe2375ce64b4f142562b191fe8e43}} 
 \index{TeensySerial@{TeensySerial}!sendStates@{sendStates}}
 \index{sendStates@{sendStates}!TeensySerial@{TeensySerial}}
@@ -87,7 +124,94 @@ Sends the joint states to the serial line.
 \end{DoxyParams}
 
 
+Definition at line 92 of file teensy\+\_\+serial.\+cpp.
+
+\mbox{\Hypertarget{classTeensySerial_ab77a80e1959ec357b036d71c0dc5eecb}\label{classTeensySerial_ab77a80e1959ec357b036d71c0dc5eecb}} 
+\index{TeensySerial@{TeensySerial}!printTxBuffer@{printTxBuffer}}
+\index{printTxBuffer@{printTxBuffer}!TeensySerial@{TeensySerial}}
+\doxysubsubsection{\texorpdfstring{printTxBuffer()}{printTxBuffer()}}
+{\footnotesize\ttfamily void Teensy\+Serial\+::print\+Tx\+Buffer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 120 of file teensy\+\_\+serial.\+cpp.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classTeensySerial_aa9a5cd2b5714f223ef9458b03e2d855d}\label{classTeensySerial_aa9a5cd2b5714f223ef9458b03e2d855d}} 
+\index{TeensySerial@{TeensySerial}!number\_of\_motors@{number\_of\_motors}}
+\index{number\_of\_motors@{number\_of\_motors}!TeensySerial@{TeensySerial}}
+\doxysubsubsection{\texorpdfstring{number\_of\_motors}{number\_of\_motors}}
+{\footnotesize\ttfamily int Teensy\+Serial\+::number\+\_\+of\+\_\+motors\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Number of motors. 
+
+
+
+Definition at line 33 of file teensy\+\_\+serial.\+h.
+
+\mbox{\Hypertarget{classTeensySerial_a665def69986826f423b21e9ee2f3d554}\label{classTeensySerial_a665def69986826f423b21e9ee2f3d554}} 
+\index{TeensySerial@{TeensySerial}!tx\_buffer\_size@{tx\_buffer\_size}}
+\index{tx\_buffer\_size@{tx\_buffer\_size}!TeensySerial@{TeensySerial}}
+\doxysubsubsection{\texorpdfstring{tx\_buffer\_size}{tx\_buffer\_size}}
+{\footnotesize\ttfamily int Teensy\+Serial\+::tx\+\_\+buffer\+\_\+size\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Transmit buffer size. 
+
+
+
+Definition at line 36 of file teensy\+\_\+serial.\+h.
+
+\mbox{\Hypertarget{classTeensySerial_a993a211cec364f6a73d9f9d5df5c0cf9}\label{classTeensySerial_a993a211cec364f6a73d9f9d5df5c0cf9}} 
+\index{TeensySerial@{TeensySerial}!rx\_buffer\_size@{rx\_buffer\_size}}
+\index{rx\_buffer\_size@{rx\_buffer\_size}!TeensySerial@{TeensySerial}}
+\doxysubsubsection{\texorpdfstring{rx\_buffer\_size}{rx\_buffer\_size}}
+{\footnotesize\ttfamily int Teensy\+Serial\+::rx\+\_\+buffer\+\_\+size\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Receive buffer size. 
+
+
+
+Definition at line 39 of file teensy\+\_\+serial.\+h.
+
+\mbox{\Hypertarget{classTeensySerial_af658e969788cec6e474ebed89f48a758}\label{classTeensySerial_af658e969788cec6e474ebed89f48a758}} 
+\index{TeensySerial@{TeensySerial}!rx\_buffer@{rx\_buffer}}
+\index{rx\_buffer@{rx\_buffer}!TeensySerial@{TeensySerial}}
+\doxysubsubsection{\texorpdfstring{rx\_buffer}{rx\_buffer}}
+{\footnotesize\ttfamily unsigned char$\ast$ Teensy\+Serial\+::rx\+\_\+buffer\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Receive buffer. 
+
+
+
+Definition at line 42 of file teensy\+\_\+serial.\+h.
+
+\mbox{\Hypertarget{classTeensySerial_a0c5e457eb4e7fa8ccd9ca7985570ab47}\label{classTeensySerial_a0c5e457eb4e7fa8ccd9ca7985570ab47}} 
+\index{TeensySerial@{TeensySerial}!tx\_buffer@{tx\_buffer}}
+\index{tx\_buffer@{tx\_buffer}!TeensySerial@{TeensySerial}}
+\doxysubsubsection{\texorpdfstring{tx\_buffer}{tx\_buffer}}
+{\footnotesize\ttfamily unsigned char$\ast$ Teensy\+Serial\+::tx\+\_\+buffer\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Transmit buffer. 
+
+
+
+Definition at line 45 of file teensy\+\_\+serial.\+h.
+
+
+
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Arduino/libraries/teensy\+\_\+serial/teensy\+\_\+serial.\+h\item 
-Arduino/libraries/teensy\+\_\+serial/teensy\+\_\+serial.\+cpp\end{DoxyCompactItemize}
+Arduino/libraries/teensy\+\_\+serial/\mbox{\hyperlink{teensy__serial_8h}{teensy\+\_\+serial.\+h}}\item 
+Arduino/libraries/teensy\+\_\+serial/\mbox{\hyperlink{teensy__serial_8cpp}{teensy\+\_\+serial.\+cpp}}\end{DoxyCompactItemize}

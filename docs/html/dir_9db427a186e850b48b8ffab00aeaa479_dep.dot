@@ -1,0 +1,15 @@
+digraph "catkin_ws/src/control/single_motor_controller/include" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_c5f8920db8dd6d4e0b2040e1ba7758b1 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="single_motor_controller" fontname="Helvetica", fontsize="10", URL="dir_c5f8920db8dd6d4e0b2040e1ba7758b1.html"]
+  subgraph clusterdir_9db427a186e850b48b8ffab00aeaa479 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_9db427a186e850b48b8ffab00aeaa479.html"];
+    dir_9db427a186e850b48b8ffab00aeaa479 [shape=plaintext label="include"];
+  dir_e4af1ffe472cb9660c924a8485f367dd [shape=box label="single_motor_controller" fillcolor="white" style="filled" URL="dir_e4af1ffe472cb9660c924a8485f367dd.html"];
+  }
+  }
+  dir_ec790efbf722e6db93e0634c133a57ed [shape=box label="kinematics" fillcolor="white" style="filled" color="red" URL="dir_ec790efbf722e6db93e0634c133a57ed.html"];
+  dir_e4af1ffe472cb9660c924a8485f367dd->dir_ec790efbf722e6db93e0634c133a57ed [headlabel="1", labeldistance=1.5 headhref="dir_000060_000010.html"];
+}

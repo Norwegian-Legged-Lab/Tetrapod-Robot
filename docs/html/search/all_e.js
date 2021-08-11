@@ -1,5 +1,6 @@
 var searchData=
 [
+<<<<<<< HEAD
   ['pendulum_20description_266',['Pendulum Description',['../md_catkin_ws_src_simulator_pendulum_description_README.html',1,'']]],
   ['packagebuffer_267',['PackageBuffer',['../classSerialCommunication.html#ad2fb05dc147555b81067d0112d43b281',1,'SerialCommunication']]],
   ['packagebuffercontrolcommand_268',['PackageBufferControlCommand',['../classSerialCommunication.html#a2ad3ea03bbb959f4a50afbd217445a61',1,'SerialCommunication']]],
@@ -41,4 +42,25 @@ var searchData=
   ['publish_5ffrequency_304',['publish_frequency',['../classSingleLegController.html#a274c428f5d4bf405cd7ef2ff1b74065b',1,'SingleLegController']]],
   ['publishqueuethread_305',['PublishQueueThread',['../classHierarchicalOptimizationControl.html#a9d93520a2d70e8e8be5e5a43c1ce1029',1,'HierarchicalOptimizationControl::PublishQueueThread()'],['../classgazebo_1_1PendulumPlugin.html#aefd4eb7477a26fe7dd5d56e272d9098d',1,'gazebo::PendulumPlugin::PublishQueueThread()'],['../classgazebo_1_1SingleLegPlugin.html#a7c4e9248906cd8b0196caa9446418214',1,'gazebo::SingleLegPlugin::PublishQueueThread()'],['../classContactSensor.html#a8bd693e23eacefa76401c863a99895a6',1,'ContactSensor::PublishQueueThread()'],['../classgazebo_1_1TetrapodPlugin.html#a5af8625f777d3fe9df7cd764089c3586',1,'gazebo::TetrapodPlugin::PublishQueueThread()'],['../classLogUtils.html#ae4c8cfc8d403bbcd1318bd86003613ea',1,'LogUtils::PublishQueueThread()']]],
   ['publishtorquemsg_306',['PublishTorqueMsg',['../classHierarchicalOptimizationControl.html#a4b10d0ecf2dd9c9fbed0864913e5f1f7',1,'HierarchicalOptimizationControl']]]
+=======
+  ['name_681',['name',['../classSteppingStone.html#a0a424f98f81d48952a46ee6be25e7d55',1,'SteppingStone::name()'],['../classutils_1_1SteppingStone.html#a5b32efc296704b473b14ef24dac3afdf',1,'utils.SteppingStone.name()']]],
+  ['nh_682',['nh',['../classSubAndPub.html#afb778d204871101aef95ff134c39ca7f',1,'SubAndPub']]],
+  ['node_5fhandle_683',['node_handle',['../classSingleLegController.html#a0b907e0542a167b63f1878ec4550ac9f',1,'SingleLegController::node_handle()'],['../classSingleMotorController.html#a76502f954b0741ca74f624ef9d25eff3',1,'SingleMotorController::node_handle()']]],
+  ['node_5fname_684',['node_name',['../classController.html#ab708b9f0c358de5f24038848c033a3b6',1,'Controller']]],
+  ['nodehandle_685',['nodeHandle',['../classController.html#a0a25cc4805c75c868e3c84b8a45e51ef',1,'Controller::nodeHandle()'],['../classJoystickController.html#a30de995a2341461668f22c8591cfd4df',1,'JoystickController::nodeHandle()']]],
+  ['nominal_5fbase_5fheight_686',['nominal_base_height',['../classController.html#add4fbad1f2ed2e8bbdbfd707190d2ee8',1,'Controller']]],
+  ['none_687',['NONE',['../classHierarchicalOptimizationControl.html#a595a20872c103fe6c0332012648d9b9ea390dd52de5fce668045dbbd3871ea10e',1,'HierarchicalOptimizationControl::NONE()'],['../classKinematics.html#af4fe883429ced792a719f02b4dcc5e3aaec2e46c8dc1f4971d66282238eb81c0f',1,'Kinematics::NONE()']]],
+  ['none_688',['None',['../namespacevisualize.html#a226a745edd02bf84033e3bd802cc4bf1',1,'visualize']]],
+  ['nullspaceprojector_689',['nullSpaceProjector',['../namespacemath__utils.html#ab3c668a5629a048f4a5436f5899b9e11',1,'math_utils']]],
+  ['num_5fmotors_690',['num_motors',['../classSerialCommunication.html#abbd72edea278bf93c96dc11e738290a1',1,'SerialCommunication']]],
+  ['num_5fmotors_691',['NUM_MOTORS',['../classMotorInterface.html#a51bfed632dff4cdd1f20fec880391a09',1,'MotorInterface']]],
+  ['num_5fmotors_5fport_5f1_692',['num_motors_port_1',['../classMotorInterface.html#ad4b84f7ebd0b565da0a1bfa2aca19790',1,'MotorInterface']]],
+  ['num_5fmotors_5fport_5f2_693',['num_motors_port_2',['../classMotorInterface.html#a0721041582a21b07cd5002d829bd4123',1,'MotorInterface']]],
+  ['number_5fof_5fgait_5fiterations_694',['number_of_gait_iterations',['../classStateEstimator.html#a859f4bbc895c05720a127ee73384d77a',1,'StateEstimator']]],
+  ['number_5fof_5finner_5fmotor_5frotations_695',['number_of_inner_motor_rotations',['../classMotorControl.html#a41853f47391578f88397c82f476c201b',1,'MotorControl']]],
+  ['number_5fof_5flegs_696',['NUMBER_OF_LEGS',['../controller_8h.html#a41e303f3b34872235c51e367c538c28c',1,'controller.h']]],
+  ['number_5fof_5fmotors_697',['NUMBER_OF_MOTORS',['../classSingleLegController.html#a00829f4edd3d805747a09c7c1c1de4f2',1,'SingleLegController::NUMBER_OF_MOTORS()'],['../classSubAndPub.html#a8c99580195f533fa3926b72eb4507343',1,'SubAndPub::NUMBER_OF_MOTORS()']]],
+  ['number_5fof_5fmotors_698',['number_of_motors',['../classTeensySerial.html#aa9a5cd2b5714f223ef9458b03e2d855d',1,'TeensySerial']]],
+  ['numjoints_699',['NUMJOINTS',['../namespacegazebo.html#abc8bafa1987c32600a921937689503e5',1,'gazebo::NUMJOINTS()'],['../namespacegazebo.html#abc8bafa1987c32600a921937689503e5',1,'gazebo::NUMJOINTS()'],['../namespacegazebo.html#abc8bafa1987c32600a921937689503e5',1,'gazebo::NUMJOINTS()']]]
+>>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
 ];

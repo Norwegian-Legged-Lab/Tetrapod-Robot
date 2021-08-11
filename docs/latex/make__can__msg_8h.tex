@@ -1,0 +1,63 @@
+\hypertarget{make__can__msg_8h}{}\doxysection{Arduino/libraries/motor\+\_\+driver/make\+\_\+can\+\_\+msg.h File Reference}
+\label{make__can__msg_8h}\index{Arduino/libraries/motor\_driver/make\_can\_msg.h@{Arduino/libraries/motor\_driver/make\_can\_msg.h}}
+{\ttfamily \#include \char`\"{}Arduino.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}motor\+\_\+constants.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utilities.\+h\char`\"{}}\newline
+Include dependency graph for make\+\_\+can\+\_\+msg.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacemake__can__msg}{make\+\_\+can\+\_\+msg}}
+\begin{DoxyCompactList}\small\item\em The functions within this namespace converts the incomming 8-\/byte arrays to CAN data messages for RMDX motors. Please see the attached pdf, RMD\+\_\+servo\+\_\+motor\+\_\+driver\+\_\+protocol for full details. NB! All messages are related to the inner motor, not the output shaft. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespacemake__can__msg_a8eac2e3b71b4665ee27a801491b70f69}{make\+\_\+can\+\_\+msg\+::read\+PIDParameters}} (unsigned char $\ast$\+\_\+can\+\_\+message)
+\begin{DoxyCompactList}\small\item\em The function creates a CAN data message that can be used to request the motor to send back a CAN message containing the motor\textquotesingle{}s PI parameters. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacemake__can__msg_aa463b4b9e439e7d920738edefb0098cb}{make\+\_\+can\+\_\+msg\+::write\+PIDParameters\+To\+RAM}} (unsigned char $\ast$\+\_\+can\+\_\+message, unsigned char \+\_\+k\+\_\+p\+\_\+position, unsigned char \+\_\+k\+\_\+i\+\_\+position, unsigned char \+\_\+k\+\_\+p\+\_\+speed, unsigned char \+\_\+k\+\_\+i\+\_\+speed, unsigned char \+\_\+k\+\_\+p\+\_\+torque, unsigned char \+\_\+k\+\_\+i\+\_\+torque)
+\begin{DoxyCompactList}\small\item\em The function creates a CAN data message that can be used to set the PI parameters of the motor in RAM. The parameters are deleted when the motor is turned off. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacemake__can__msg_a8eb6f31203ff8401d24ffa0f6eb0efc3}{make\+\_\+can\+\_\+msg\+::write\+PIDParameters\+To\+ROM}} (unsigned char $\ast$\+\_\+can\+\_\+message, unsigned char \+\_\+k\+\_\+p\+\_\+position, unsigned char \+\_\+k\+\_\+i\+\_\+position, unsigned char \+\_\+k\+\_\+p\+\_\+speed, unsigned char \+\_\+k\+\_\+i\+\_\+speed, unsigned char \+\_\+k\+\_\+p\+\_\+torque, unsigned char \+\_\+k\+\_\+i\+\_\+torque)
+\begin{DoxyCompactList}\small\item\em The function creates a CAN data message that can be used to set the PI parameters of the motor. The parameters are stored even when the motor is turned off. NB! This should be avoided as the ROM memory will quickly wear out from writing to it. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacemake__can__msg_a2137b5ce7abdfac529eeee6e42c22bc8}{make\+\_\+can\+\_\+msg\+::read\+Acceleration}} (unsigned char $\ast$\+\_\+can\+\_\+message)
+\begin{DoxyCompactList}\small\item\em The function creates a CAN data message that can be used to request the motor to send back a CAN message containing the motor\textquotesingle{}s acceleration. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacemake__can__msg_a2c9c3c7cfc9b88d9db5484d254a49b98}{make\+\_\+can\+\_\+msg\+::write\+Acceleration\+To\+RAM}} (unsigned char $\ast$\+\_\+can\+\_\+message, int32\+\_\+t \+\_\+acceleration)
+\begin{DoxyCompactList}\small\item\em The function creates a CAN data message that can be used to set the acceleration of the motor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacemake__can__msg_a961fd0d11041c223a03d545670a87d11}{make\+\_\+can\+\_\+msg\+::read\+Encoder\+Position}} (unsigned char $\ast$\+\_\+can\+\_\+message)
+\begin{DoxyCompactList}\small\item\em The function creates a CAN data message that can be used to request the motor to send back a CAN message containing the motor\textquotesingle{}s enocder data, raw encoder data, and encoder offset. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacemake__can__msg_ac08bfde7a65190e9f3f46c1cfb3f12ed}{make\+\_\+can\+\_\+msg\+::write\+Encoder\+Position\+Offset}} (unsigned char $\ast$\+\_\+can\+\_\+message, uint16\+\_\+t \+\_\+encoder\+\_\+offset)
+\begin{DoxyCompactList}\small\item\em The function creates a CAN data message that can be used to request the motor to set the encoder position offset. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacemake__can__msg_ab4a09b29de3b61657a4edf8a3b253fee}{make\+\_\+can\+\_\+msg\+::write\+Current\+Position\+To\+ROM}} (unsigned char $\ast$\+\_\+can\+\_\+message)
+\begin{DoxyCompactList}\small\item\em The function creates a CAN data message that can be used to request the motor to set the current position as the zero position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacemake__can__msg_a8abe606450a04893f2823a9641447a0f}{make\+\_\+can\+\_\+msg\+::read\+Multi\+Turn\+Angle}} (unsigned char $\ast$\+\_\+can\+\_\+message)
+\begin{DoxyCompactList}\small\item\em The function creates a CAN data message that can be used to request the motor to send back a CAN message containing the position of the motor even through multiple rotations. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacemake__can__msg_a534b2f49d254fb49d6690a35c88ebe64}{make\+\_\+can\+\_\+msg\+::read\+Circle\+Turn\+Angle}} (unsigned char $\ast$\+\_\+can\+\_\+message)
+\begin{DoxyCompactList}\small\item\em The function creates a CAN data message that can be used to request the motor to send back a CAN message containing the position of the motor for a single rotation. The position is reset after each revolution of the motor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacemake__can__msg_a80c9bcee24bbf464eaa9f973fe1943b8}{make\+\_\+can\+\_\+msg\+::motor\+Off}} (unsigned char $\ast$\+\_\+can\+\_\+message)
+\begin{DoxyCompactList}\small\item\em The function creates a CAN data message that can be used to request the motor to turn off its controller, clear its operating status and clear previously received control commands. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacemake__can__msg_a0261dba88176df5f4e8cc31bce16d4b1}{make\+\_\+can\+\_\+msg\+::motor\+Stop}} (unsigned char $\ast$\+\_\+can\+\_\+message)
+\begin{DoxyCompactList}\small\item\em The function creates a CAN data message that can be used to request the motor to stop its controller and clear previously received control commands. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacemake__can__msg_a43d1e03ba4fd5898260d169887e55624}{make\+\_\+can\+\_\+msg\+::motor\+Running}} (unsigned char $\ast$\+\_\+can\+\_\+message)
+\begin{DoxyCompactList}\small\item\em The function creates a CAN data message that can be used to request the motor to resume its control object from before it was stopped. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacemake__can__msg_a01dbf6189885404200eb9e35f759c234}{make\+\_\+can\+\_\+msg\+::read\+Motor\+Status1\+And\+Error\+Flag}} (unsigned char $\ast$\+\_\+can\+\_\+message)
+\begin{DoxyCompactList}\small\item\em The function creates a CAN data message that can be used to request the motor to send back a CAN message containing its error status, voltage, and temperature. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacemake__can__msg_a827231a3819b73069db82380b87ba2bc}{make\+\_\+can\+\_\+msg\+::clear\+Motor\+Error\+Flag}} (unsigned char $\ast$\+\_\+can\+\_\+message)
+\begin{DoxyCompactList}\small\item\em The function creates a CAN data message that can be used to request the motor to clear its error status. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacemake__can__msg_a2484c037d756b16691866396779b9c91}{make\+\_\+can\+\_\+msg\+::read\+Motor\+Status2}} (unsigned char $\ast$\+\_\+can\+\_\+message)
+\begin{DoxyCompactList}\small\item\em The function creates a CAN data message that can be used to request the motor to send back a CAN message containing its temperature, torque current, speed, and encoder position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacemake__can__msg_af32a724b4ed1552384628ee9957a97b0}{make\+\_\+can\+\_\+msg\+::read\+Motor\+Status3}} (unsigned char $\ast$\+\_\+can\+\_\+message)
+\begin{DoxyCompactList}\small\item\em The function creates a CAN data message that can be used to request the motor to send back a CAN message cointaining its three phase currents. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacemake__can__msg_a26b5469bdd4c4077e5478b0ae3166b36}{make\+\_\+can\+\_\+msg\+::torque\+Current\+Control}} (unsigned char $\ast$\+\_\+can\+\_\+message, int16\+\_\+t \+\_\+torque\+\_\+current)
+\begin{DoxyCompactList}\small\item\em The function creates a CAN data message that can be used to set the motor\textquotesingle{}s torque current. After receiving the command the motor will reply with a CAN message containing temperature, torque current, speed and encoder position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacemake__can__msg_a2a1b74ce94fa701c43a8173283c7f7ea}{make\+\_\+can\+\_\+msg\+::speed\+Control}} (unsigned char $\ast$\+\_\+can\+\_\+message, int32\+\_\+t speed)
+\begin{DoxyCompactList}\small\item\em The function creates a CAN data message that can be used to set the motor\textquotesingle{}s speed. After receiving the command the motor will reply with a CAN message containing temperature, torque current, speed and encoder position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacemake__can__msg_a419e98a33746b6f4bd9db3f5fd09338a}{make\+\_\+can\+\_\+msg\+::position\+Control1}} (unsigned char $\ast$\+\_\+can\+\_\+message, int32\+\_\+t \+\_\+multiturn\+\_\+angle)
+\begin{DoxyCompactList}\small\item\em The function creates a CAN data message that can be used to set the motor\textquotesingle{}s multi turn position. After receiving the command the motor will reply with a CAN message containing temperature, torque current, speed and encoder position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacemake__can__msg_af035fe7e98a70057c12fe18152f9f272}{make\+\_\+can\+\_\+msg\+::position\+Control2}} (unsigned char $\ast$\+\_\+can\+\_\+message, int32\+\_\+t \+\_\+multiturn\+\_\+angle, uint16\+\_\+t \+\_\+max\+\_\+speed)
+\begin{DoxyCompactList}\small\item\em The function creates a CAN data message that can be used to set the motor\textquotesingle{}s multi turn position with a maximum speed. After receiving the command the motor will reply with a CAN message containing temperature, torque current, speed and encoder position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacemake__can__msg_a0b400595e36b7b10841cb021ad6b4cb3}{make\+\_\+can\+\_\+msg\+::position\+Control3}} (unsigned char $\ast$\+\_\+can\+\_\+message, uint16\+\_\+t \+\_\+singleturn\+\_\+angle, uint8\+\_\+t \+\_\+spin\+\_\+direction)
+\begin{DoxyCompactList}\small\item\em The function creates a CAN data message that can be used to set the motor\textquotesingle{}s single turn position with a specified rotation direction. After receiving the command the motor will reply with a CAN message containing temperature, torque current, speed and encoder position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacemake__can__msg_a7d903b4dff17bad58b5042dedf80c5ac}{make\+\_\+can\+\_\+msg\+::position\+Control4}} (unsigned char $\ast$\+\_\+can\+\_\+message, uint16\+\_\+t \+\_\+single\+\_\+turn\+\_\+angle, uint8\+\_\+t \+\_\+spin\+\_\+direction, uint16\+\_\+t max\+\_\+speed)
+\begin{DoxyCompactList}\small\item\em The function creates a CAN data message that can be used to set the motor\textquotesingle{}s single turn position with a specified rotation direction and maximum speed. After receiving the command the motor will reply with a CAN message containing temperature, torque current, speed and encoder position. \end{DoxyCompactList}\end{DoxyCompactItemize}

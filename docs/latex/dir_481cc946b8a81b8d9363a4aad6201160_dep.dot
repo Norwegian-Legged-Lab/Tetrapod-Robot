@@ -1,0 +1,16 @@
+digraph "Arduino/libraries" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_a991eec27578c865874ede3d8ec657c2 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="Arduino" fontname="Helvetica", fontsize="10", URL="dir_a991eec27578c865874ede3d8ec657c2.html"]
+  subgraph clusterdir_481cc946b8a81b8d9363a4aad6201160 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_481cc946b8a81b8d9363a4aad6201160.html"];
+    dir_481cc946b8a81b8d9363a4aad6201160 [shape=plaintext label="libraries"];
+  dir_24900cfa9e09bb4174be1b800b035ede [shape=box label="motor_driver" fillcolor="white" style="filled" URL="dir_24900cfa9e09bb4174be1b800b035ede.html"];
+  dir_f403e565cb7c4c04a4e34c9adbb804e0 [shape=box label="teensy_serial" fillcolor="white" style="filled" URL="dir_f403e565cb7c4c04a4e34c9adbb804e0.html"];
+  dir_59937046036e71ab0c534dad9585255f [shape=box label="utilities" fillcolor="white" style="filled" URL="dir_59937046036e71ab0c534dad9585255f.html"];
+  }
+  }
+  dir_24900cfa9e09bb4174be1b800b035ede->dir_59937046036e71ab0c534dad9585255f [headlabel="2", labeldistance=1.5 headhref="dir_000002_000004.html"];
+}

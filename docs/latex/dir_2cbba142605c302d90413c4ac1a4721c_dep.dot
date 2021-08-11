@@ -1,0 +1,11 @@
+digraph "catkin_ws/src/hardware/serial_communication/src" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_1aa341485bb1ab881cf01e1913f76376 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="serial_communication" fontname="Helvetica", fontsize="10", URL="dir_1aa341485bb1ab881cf01e1913f76376.html"]
+  dir_850e9c54412962a0184af129b2ae6c7e [shape=box label="include" fillcolor="white" style="filled" color="red" URL="dir_850e9c54412962a0184af129b2ae6c7e.html"];
+  dir_2cbba142605c302d90413c4ac1a4721c [shape=box, label="src", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_2cbba142605c302d90413c4ac1a4721c.html"];
+  }
+  dir_2cbba142605c302d90413c4ac1a4721c->dir_850e9c54412962a0184af129b2ae6c7e [headlabel="1", labeldistance=1.5 headhref="dir_000077_000075.html"];
+}

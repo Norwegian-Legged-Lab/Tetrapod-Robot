@@ -1,5 +1,6 @@
 var searchData=
 [
+<<<<<<< HEAD
   ['generalizedcoordinatescallback_484',['generalizedCoordinatesCallback',['../classSingleLegController.html#adfd046b154a005e93e5463c13f1ed5d6',1,'SingleLegController']]],
   ['generalizedforcescallback_485',['generalizedForcesCallback',['../classSingleLegController.html#a66929d863702713ac5ebaefb0eed40e8',1,'SingleLegController']]],
   ['generalizedvelocitiescallback_486',['generalizedVelocitiesCallback',['../classSingleLegController.html#abce5e2d8277d3de86baeedddcad95a83',1,'SingleLegController']]],
@@ -54,4 +55,8 @@ var searchData=
   ['gettranslationjacobianinw_535',['GetTranslationJacobianInW',['../classKinematics.html#a0b6321c5fbd5eb593e4591a1efde2f2d',1,'Kinematics']]],
   ['gettranslationjacobianinwdiff_536',['GetTranslationJacobianInWDiff',['../classKinematics.html#ae6ee79028997a34c67c47a9c40567a57',1,'Kinematics']]],
   ['getvelocity_537',['getVelocity',['../classMotorControl.html#a51f8529942ac9d799b3283209e8bc8c4',1,'MotorControl']]]
+=======
+  ['baseposestatecallback_1421',['BasePoseStateCallback',['../classController.html#a46b0803428199c59e264168ccad89801',1,'Controller']]],
+  ['boxminus_1422',['boxMinus',['../namespacemath__utils.html#a1883ab1807271be329d39873620bc55f',1,'math_utils']]]
+>>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
 ];

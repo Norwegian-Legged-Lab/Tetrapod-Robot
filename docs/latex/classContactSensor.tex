@@ -12,10 +12,8 @@ A plugin for the contact sensors.
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classContactSensor_adf00bb183bcb37206adb5c036e1ad3c6}\label{classContactSensor_adf00bb183bcb37206adb5c036e1ad3c6}} 
 \mbox{\hyperlink{classContactSensor_adf00bb183bcb37206adb5c036e1ad3c6}{Contact\+Sensor}} ()
 \begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classContactSensor_a01a1842782c99e4b3fca9e5db40721eb}\label{classContactSensor_a01a1842782c99e4b3fca9e5db40721eb}} 
 virtual \mbox{\hyperlink{classContactSensor_a01a1842782c99e4b3fca9e5db40721eb}{$\sim$\+Contact\+Sensor}} ()
 \begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classContactSensor_a9ee28ab097d04c32a5d19919718fde93}{On\+Fl\+Contact\+Callback}} (const Const\+Contacts\+Ptr \&\+\_\+msg)
@@ -26,58 +24,79 @@ void \mbox{\hyperlink{classContactSensor_a18b7189648c8ca096b5fd4ce0f39f204}{On\+
 \begin{DoxyCompactList}\small\item\em The On\+Rl\+Contact\+Callback function handles an incoming contact message from the rear left contact sensor in Gazebo. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classContactSensor_a8c9dd6baa25e67ca5eadf8960410f199}{On\+Rr\+Contact\+Callback}} (const Const\+Contacts\+Ptr \&\+\_\+msg)
 \begin{DoxyCompactList}\small\item\em The On\+Rr\+Contact\+Callback function handles an incoming contact message from the rear rear contact sensor in Gazebo. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classContactSensor_a8bd693e23eacefa76401c863a99895a6}\label{classContactSensor_a8bd693e23eacefa76401c863a99895a6}} 
 void \mbox{\hyperlink{classContactSensor_a8bd693e23eacefa76401c863a99895a6}{Publish\+Queue\+Thread}} ()
-\begin{DoxyCompactList}\small\item\em The Publish\+Queue\+Thread function is a R\+OS helper function that publish state messages. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The Publish\+Queue\+Thread function is a ROS helper function that publish state messages. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classContactSensor_af6f63df279b291ef642b9f985e30ede6}\label{classContactSensor_af6f63df279b291ef642b9f985e30ede6}} 
 void \mbox{\hyperlink{classContactSensor_af6f63df279b291ef642b9f985e30ede6}{Init\+Gazebo}} ()
 \begin{DoxyCompactList}\small\item\em The Init\+Ros function is called to initialize Gazebo. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classContactSensor_a2b40b612333b9ff27af8448a083882c5}\label{classContactSensor_a2b40b612333b9ff27af8448a083882c5}} 
 void \mbox{\hyperlink{classContactSensor_a2b40b612333b9ff27af8448a083882c5}{Init\+Ros}} ()
-\begin{DoxyCompactList}\small\item\em The Init\+Ros function is called to initialize R\+OS. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classContactSensor_a2f4ba9090431845a23504f016869c417}\label{classContactSensor_a2f4ba9090431845a23504f016869c417}} 
+\begin{DoxyCompactList}\small\item\em The Init\+Ros function is called to initialize ROS. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classContactSensor_a2f4ba9090431845a23504f016869c417}{Init\+Ros\+Queue\+Threads}} ()
-\begin{DoxyCompactList}\small\item\em The Init\+Ros\+Queue\+Threads function is called to initialize the R\+OS Publish and Process Queue Threads. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The Init\+Ros\+Queue\+Threads function is called to initialize the ROS Publish and Process Queue Threads. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classContactSensor_a5331a4a9b9f6432812d2c61affa15d13}\label{classContactSensor_a5331a4a9b9f6432812d2c61affa15d13}} 
 int \mbox{\hyperlink{classContactSensor_a5331a4a9b9f6432812d2c61affa15d13}{foot\+Contacts}} \mbox{[}4\mbox{]}
 \begin{DoxyCompactList}\small\item\em Vector of foot contacts, zero indicates no contact and one indicates contact. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classContactSensor_a71515123318234f4cf50dbf7096064d0}\label{classContactSensor_a71515123318234f4cf50dbf7096064d0}} 
 gazebo\+::transport\+::\+Node\+Ptr \mbox{\hyperlink{classContactSensor_a71515123318234f4cf50dbf7096064d0}{gazebo\+Node}}
 \begin{DoxyCompactList}\small\item\em Node used for Gazebo transport. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classContactSensor_ae6f8742d0ea306def99eb16898906397}\label{classContactSensor_ae6f8742d0ea306def99eb16898906397}} 
 gazebo\+::transport\+::\+Subscriber\+Ptr \mbox{\hyperlink{classContactSensor_ae6f8742d0ea306def99eb16898906397}{fl\+Contact\+Sensor\+Sub}}
 \begin{DoxyCompactList}\small\item\em Gazebo front left contact sensor Subscriber. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classContactSensor_adab93f23c02fb80b6e371d2064f7c999}\label{classContactSensor_adab93f23c02fb80b6e371d2064f7c999}} 
 gazebo\+::transport\+::\+Subscriber\+Ptr \mbox{\hyperlink{classContactSensor_adab93f23c02fb80b6e371d2064f7c999}{fr\+Contact\+Sensor\+Sub}}
 \begin{DoxyCompactList}\small\item\em Gazebo front right contact sensor Subscriber. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classContactSensor_aa0387895e040ae21174ecd3d9584e86c}\label{classContactSensor_aa0387895e040ae21174ecd3d9584e86c}} 
 gazebo\+::transport\+::\+Subscriber\+Ptr \mbox{\hyperlink{classContactSensor_aa0387895e040ae21174ecd3d9584e86c}{rl\+Contact\+Sensor\+Sub}}
 \begin{DoxyCompactList}\small\item\em Gazebo rear left contact sensor Subscriber. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classContactSensor_a6589770b02359b313bb976a0788fc3fe}\label{classContactSensor_a6589770b02359b313bb976a0788fc3fe}} 
 gazebo\+::transport\+::\+Subscriber\+Ptr \mbox{\hyperlink{classContactSensor_a6589770b02359b313bb976a0788fc3fe}{rr\+Contact\+Sensor\+Sub}}
 \begin{DoxyCompactList}\small\item\em Gazebo rear right contact sensor Subscriber. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classContactSensor_a1430679c4047d1e5c846716125e3fee6}\label{classContactSensor_a1430679c4047d1e5c846716125e3fee6}} 
 std\+::unique\+\_\+ptr$<$ ros\+::\+Node\+Handle $>$ \mbox{\hyperlink{classContactSensor_a1430679c4047d1e5c846716125e3fee6}{ros\+Node}}
-\begin{DoxyCompactList}\small\item\em Node used for R\+OS transport. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classContactSensor_aa183bb0e32cb2e1b9c96291010e4d388}\label{classContactSensor_aa183bb0e32cb2e1b9c96291010e4d388}} 
+\begin{DoxyCompactList}\small\item\em Node used for ROS transport. \end{DoxyCompactList}\item 
 ros\+::\+Publisher \mbox{\hyperlink{classContactSensor_aa183bb0e32cb2e1b9c96291010e4d388}{contact\+State\+Pub}}
-\begin{DoxyCompactList}\small\item\em R\+OS Contact State Publisher. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classContactSensor_abbed3cdfb88536ccbe9d8ed57bcd02f9}\label{classContactSensor_abbed3cdfb88536ccbe9d8ed57bcd02f9}} 
+\begin{DoxyCompactList}\small\item\em ROS Contact State Publisher. \end{DoxyCompactList}\item 
 ros\+::\+Callback\+Queue \mbox{\hyperlink{classContactSensor_abbed3cdfb88536ccbe9d8ed57bcd02f9}{ros\+Publish\+Queue}}
-\begin{DoxyCompactList}\small\item\em R\+OS callbackque that helps publish messages. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classContactSensor_a9a9b339f719f955f01b0b6aa4f7829ca}\label{classContactSensor_a9a9b339f719f955f01b0b6aa4f7829ca}} 
+\begin{DoxyCompactList}\small\item\em ROS callbackque that helps publish messages. \end{DoxyCompactList}\item 
 std\+::thread \mbox{\hyperlink{classContactSensor_a9a9b339f719f955f01b0b6aa4f7829ca}{ros\+Publish\+Queue\+Thread}}
 \begin{DoxyCompactList}\small\item\em Thread running the ros\+Publish\+Queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 A plugin for the contact sensors. 
+
+Definition at line 45 of file contact\+\_\+sensor.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classContactSensor_adf00bb183bcb37206adb5c036e1ad3c6}\label{classContactSensor_adf00bb183bcb37206adb5c036e1ad3c6}} 
+\index{ContactSensor@{ContactSensor}!ContactSensor@{ContactSensor}}
+\index{ContactSensor@{ContactSensor}!ContactSensor@{ContactSensor}}
+\doxysubsubsection{\texorpdfstring{ContactSensor()}{ContactSensor()}}
+{\footnotesize\ttfamily Contact\+Sensor\+::\+Contact\+Sensor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+
+Definition at line 30 of file contact\+\_\+sensor.\+cpp.
+
+\mbox{\Hypertarget{classContactSensor_a01a1842782c99e4b3fca9e5db40721eb}\label{classContactSensor_a01a1842782c99e4b3fca9e5db40721eb}} 
+\index{ContactSensor@{ContactSensor}!````~ContactSensor@{$\sim$ContactSensor}}
+\index{````~ContactSensor@{$\sim$ContactSensor}!ContactSensor@{ContactSensor}}
+\doxysubsubsection{\texorpdfstring{$\sim$ContactSensor()}{~ContactSensor()}}
+{\footnotesize\ttfamily Contact\+Sensor\+::$\sim$\+Contact\+Sensor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Destructor. 
+
+
+
+Definition at line 44 of file contact\+\_\+sensor.\+cpp.
+
+
 
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{classContactSensor_a9ee28ab097d04c32a5d19919718fde93}\label{classContactSensor_a9ee28ab097d04c32a5d19919718fde93}} 
@@ -95,6 +114,10 @@ The On\+Fl\+Contact\+Callback function handles an incoming contact message from 
 \mbox{\texttt{ in}}  & {\em \+\_\+msg} & A contact message. \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 56 of file contact\+\_\+sensor.\+cpp.
+
 \mbox{\Hypertarget{classContactSensor_a435013ac2b71c2c0d9f704ab0313b482}\label{classContactSensor_a435013ac2b71c2c0d9f704ab0313b482}} 
 \index{ContactSensor@{ContactSensor}!OnFrContactCallback@{OnFrContactCallback}}
 \index{OnFrContactCallback@{OnFrContactCallback}!ContactSensor@{ContactSensor}}
@@ -110,6 +133,10 @@ The On\+Fr\+Contact\+Callback function handles an incoming contact message from 
 \mbox{\texttt{ in}}  & {\em \+\_\+msg} & A contact message. \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 69 of file contact\+\_\+sensor.\+cpp.
+
 \mbox{\Hypertarget{classContactSensor_a18b7189648c8ca096b5fd4ce0f39f204}\label{classContactSensor_a18b7189648c8ca096b5fd4ce0f39f204}} 
 \index{ContactSensor@{ContactSensor}!OnRlContactCallback@{OnRlContactCallback}}
 \index{OnRlContactCallback@{OnRlContactCallback}!ContactSensor@{ContactSensor}}
@@ -125,6 +152,10 @@ The On\+Rl\+Contact\+Callback function handles an incoming contact message from 
 \mbox{\texttt{ in}}  & {\em \+\_\+msg} & A contact message. \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 82 of file contact\+\_\+sensor.\+cpp.
+
 \mbox{\Hypertarget{classContactSensor_a8c9dd6baa25e67ca5eadf8960410f199}\label{classContactSensor_a8c9dd6baa25e67ca5eadf8960410f199}} 
 \index{ContactSensor@{ContactSensor}!OnRrContactCallback@{OnRrContactCallback}}
 \index{OnRrContactCallback@{OnRrContactCallback}!ContactSensor@{ContactSensor}}
@@ -142,7 +173,210 @@ The On\+Rr\+Contact\+Callback function handles an incoming contact message from 
 \end{DoxyParams}
 
 
+Definition at line 95 of file contact\+\_\+sensor.\+cpp.
+
+\mbox{\Hypertarget{classContactSensor_a8bd693e23eacefa76401c863a99895a6}\label{classContactSensor_a8bd693e23eacefa76401c863a99895a6}} 
+\index{ContactSensor@{ContactSensor}!PublishQueueThread@{PublishQueueThread}}
+\index{PublishQueueThread@{PublishQueueThread}!ContactSensor@{ContactSensor}}
+\doxysubsubsection{\texorpdfstring{PublishQueueThread()}{PublishQueueThread()}}
+{\footnotesize\ttfamily void Contact\+Sensor\+::\+Publish\+Queue\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The Publish\+Queue\+Thread function is a ROS helper function that publish state messages. 
+
+
+
+Definition at line 108 of file contact\+\_\+sensor.\+cpp.
+
+\mbox{\Hypertarget{classContactSensor_af6f63df279b291ef642b9f985e30ede6}\label{classContactSensor_af6f63df279b291ef642b9f985e30ede6}} 
+\index{ContactSensor@{ContactSensor}!InitGazebo@{InitGazebo}}
+\index{InitGazebo@{InitGazebo}!ContactSensor@{ContactSensor}}
+\doxysubsubsection{\texorpdfstring{InitGazebo()}{InitGazebo()}}
+{\footnotesize\ttfamily void Contact\+Sensor\+::\+Init\+Gazebo (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The Init\+Ros function is called to initialize Gazebo. 
+
+
+
+Definition at line 129 of file contact\+\_\+sensor.\+cpp.
+
+\mbox{\Hypertarget{classContactSensor_a2b40b612333b9ff27af8448a083882c5}\label{classContactSensor_a2b40b612333b9ff27af8448a083882c5}} 
+\index{ContactSensor@{ContactSensor}!InitRos@{InitRos}}
+\index{InitRos@{InitRos}!ContactSensor@{ContactSensor}}
+\doxysubsubsection{\texorpdfstring{InitRos()}{InitRos()}}
+{\footnotesize\ttfamily void Contact\+Sensor\+::\+Init\+Ros (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The Init\+Ros function is called to initialize ROS. 
+
+
+
+Definition at line 155 of file contact\+\_\+sensor.\+cpp.
+
+\mbox{\Hypertarget{classContactSensor_a2f4ba9090431845a23504f016869c417}\label{classContactSensor_a2f4ba9090431845a23504f016869c417}} 
+\index{ContactSensor@{ContactSensor}!InitRosQueueThreads@{InitRosQueueThreads}}
+\index{InitRosQueueThreads@{InitRosQueueThreads}!ContactSensor@{ContactSensor}}
+\doxysubsubsection{\texorpdfstring{InitRosQueueThreads()}{InitRosQueueThreads()}}
+{\footnotesize\ttfamily void Contact\+Sensor\+::\+Init\+Ros\+Queue\+Threads (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The Init\+Ros\+Queue\+Threads function is called to initialize the ROS Publish and Process Queue Threads. 
+
+
+
+Definition at line 185 of file contact\+\_\+sensor.\+cpp.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classContactSensor_a5331a4a9b9f6432812d2c61affa15d13}\label{classContactSensor_a5331a4a9b9f6432812d2c61affa15d13}} 
+\index{ContactSensor@{ContactSensor}!footContacts@{footContacts}}
+\index{footContacts@{footContacts}!ContactSensor@{ContactSensor}}
+\doxysubsubsection{\texorpdfstring{footContacts}{footContacts}}
+{\footnotesize\ttfamily int Contact\+Sensor\+::foot\+Contacts\mbox{[}4\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Vector of foot contacts, zero indicates no contact and one indicates contact. 
+
+
+
+Definition at line 89 of file contact\+\_\+sensor.\+h.
+
+\mbox{\Hypertarget{classContactSensor_a71515123318234f4cf50dbf7096064d0}\label{classContactSensor_a71515123318234f4cf50dbf7096064d0}} 
+\index{ContactSensor@{ContactSensor}!gazeboNode@{gazeboNode}}
+\index{gazeboNode@{gazeboNode}!ContactSensor@{ContactSensor}}
+\doxysubsubsection{\texorpdfstring{gazeboNode}{gazeboNode}}
+{\footnotesize\ttfamily gazebo\+::transport\+::\+Node\+Ptr Contact\+Sensor\+::gazebo\+Node\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Node used for Gazebo transport. 
+
+
+
+Definition at line 92 of file contact\+\_\+sensor.\+h.
+
+\mbox{\Hypertarget{classContactSensor_ae6f8742d0ea306def99eb16898906397}\label{classContactSensor_ae6f8742d0ea306def99eb16898906397}} 
+\index{ContactSensor@{ContactSensor}!flContactSensorSub@{flContactSensorSub}}
+\index{flContactSensorSub@{flContactSensorSub}!ContactSensor@{ContactSensor}}
+\doxysubsubsection{\texorpdfstring{flContactSensorSub}{flContactSensorSub}}
+{\footnotesize\ttfamily gazebo\+::transport\+::\+Subscriber\+Ptr Contact\+Sensor\+::fl\+Contact\+Sensor\+Sub\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Gazebo front left contact sensor Subscriber. 
+
+
+
+Definition at line 95 of file contact\+\_\+sensor.\+h.
+
+\mbox{\Hypertarget{classContactSensor_adab93f23c02fb80b6e371d2064f7c999}\label{classContactSensor_adab93f23c02fb80b6e371d2064f7c999}} 
+\index{ContactSensor@{ContactSensor}!frContactSensorSub@{frContactSensorSub}}
+\index{frContactSensorSub@{frContactSensorSub}!ContactSensor@{ContactSensor}}
+\doxysubsubsection{\texorpdfstring{frContactSensorSub}{frContactSensorSub}}
+{\footnotesize\ttfamily gazebo\+::transport\+::\+Subscriber\+Ptr Contact\+Sensor\+::fr\+Contact\+Sensor\+Sub\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Gazebo front right contact sensor Subscriber. 
+
+
+
+Definition at line 98 of file contact\+\_\+sensor.\+h.
+
+\mbox{\Hypertarget{classContactSensor_aa0387895e040ae21174ecd3d9584e86c}\label{classContactSensor_aa0387895e040ae21174ecd3d9584e86c}} 
+\index{ContactSensor@{ContactSensor}!rlContactSensorSub@{rlContactSensorSub}}
+\index{rlContactSensorSub@{rlContactSensorSub}!ContactSensor@{ContactSensor}}
+\doxysubsubsection{\texorpdfstring{rlContactSensorSub}{rlContactSensorSub}}
+{\footnotesize\ttfamily gazebo\+::transport\+::\+Subscriber\+Ptr Contact\+Sensor\+::rl\+Contact\+Sensor\+Sub\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Gazebo rear left contact sensor Subscriber. 
+
+
+
+Definition at line 101 of file contact\+\_\+sensor.\+h.
+
+\mbox{\Hypertarget{classContactSensor_a6589770b02359b313bb976a0788fc3fe}\label{classContactSensor_a6589770b02359b313bb976a0788fc3fe}} 
+\index{ContactSensor@{ContactSensor}!rrContactSensorSub@{rrContactSensorSub}}
+\index{rrContactSensorSub@{rrContactSensorSub}!ContactSensor@{ContactSensor}}
+\doxysubsubsection{\texorpdfstring{rrContactSensorSub}{rrContactSensorSub}}
+{\footnotesize\ttfamily gazebo\+::transport\+::\+Subscriber\+Ptr Contact\+Sensor\+::rr\+Contact\+Sensor\+Sub\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Gazebo rear right contact sensor Subscriber. 
+
+
+
+Definition at line 104 of file contact\+\_\+sensor.\+h.
+
+\mbox{\Hypertarget{classContactSensor_a1430679c4047d1e5c846716125e3fee6}\label{classContactSensor_a1430679c4047d1e5c846716125e3fee6}} 
+\index{ContactSensor@{ContactSensor}!rosNode@{rosNode}}
+\index{rosNode@{rosNode}!ContactSensor@{ContactSensor}}
+\doxysubsubsection{\texorpdfstring{rosNode}{rosNode}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ros\+::\+Node\+Handle$>$ Contact\+Sensor\+::ros\+Node\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Node used for ROS transport. 
+
+
+
+Definition at line 107 of file contact\+\_\+sensor.\+h.
+
+\mbox{\Hypertarget{classContactSensor_aa183bb0e32cb2e1b9c96291010e4d388}\label{classContactSensor_aa183bb0e32cb2e1b9c96291010e4d388}} 
+\index{ContactSensor@{ContactSensor}!contactStatePub@{contactStatePub}}
+\index{contactStatePub@{contactStatePub}!ContactSensor@{ContactSensor}}
+\doxysubsubsection{\texorpdfstring{contactStatePub}{contactStatePub}}
+{\footnotesize\ttfamily ros\+::\+Publisher Contact\+Sensor\+::contact\+State\+Pub\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+ROS Contact State Publisher. 
+
+
+
+Definition at line 110 of file contact\+\_\+sensor.\+h.
+
+\mbox{\Hypertarget{classContactSensor_abbed3cdfb88536ccbe9d8ed57bcd02f9}\label{classContactSensor_abbed3cdfb88536ccbe9d8ed57bcd02f9}} 
+\index{ContactSensor@{ContactSensor}!rosPublishQueue@{rosPublishQueue}}
+\index{rosPublishQueue@{rosPublishQueue}!ContactSensor@{ContactSensor}}
+\doxysubsubsection{\texorpdfstring{rosPublishQueue}{rosPublishQueue}}
+{\footnotesize\ttfamily ros\+::\+Callback\+Queue Contact\+Sensor\+::ros\+Publish\+Queue\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+ROS callbackque that helps publish messages. 
+
+
+
+Definition at line 113 of file contact\+\_\+sensor.\+h.
+
+\mbox{\Hypertarget{classContactSensor_a9a9b339f719f955f01b0b6aa4f7829ca}\label{classContactSensor_a9a9b339f719f955f01b0b6aa4f7829ca}} 
+\index{ContactSensor@{ContactSensor}!rosPublishQueueThread@{rosPublishQueueThread}}
+\index{rosPublishQueueThread@{rosPublishQueueThread}!ContactSensor@{ContactSensor}}
+\doxysubsubsection{\texorpdfstring{rosPublishQueueThread}{rosPublishQueueThread}}
+{\footnotesize\ttfamily std\+::thread Contact\+Sensor\+::ros\+Publish\+Queue\+Thread\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Thread running the ros\+Publish\+Queue. 
+
+
+
+Definition at line 116 of file contact\+\_\+sensor.\+h.
+
+
+
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-catkin\+\_\+ws/src/simulator/tetrapod\+\_\+gazebo/include/tetrapod\+\_\+gazebo/contact\+\_\+sensor.\+h\item 
-catkin\+\_\+ws/src/simulator/tetrapod\+\_\+gazebo/src/contact\+\_\+sensor.\+cpp\end{DoxyCompactItemize}
+catkin\+\_\+ws/src/simulator/tetrapod\+\_\+gazebo/include/tetrapod\+\_\+gazebo/\mbox{\hyperlink{contact__sensor_8h}{contact\+\_\+sensor.\+h}}\item 
+catkin\+\_\+ws/src/simulator/tetrapod\+\_\+gazebo/src/\mbox{\hyperlink{contact__sensor_8cpp}{contact\+\_\+sensor.\+cpp}}\end{DoxyCompactItemize}

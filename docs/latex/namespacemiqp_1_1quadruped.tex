@@ -1,0 +1,225 @@
+\hypertarget{namespacemiqp_1_1quadruped}{}\doxysection{miqp\+::quadruped Namespace Reference}
+\label{namespacemiqp_1_1quadruped}\index{miqp::quadruped@{miqp::quadruped}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structmiqp_1_1quadruped_1_1DecVars}{Dec\+Vars}}
+\item 
+struct \mbox{\hyperlink{structmiqp_1_1quadruped_1_1DecVars__res__raw}{Dec\+Vars\+\_\+res\+\_\+raw}}
+\item 
+struct \mbox{\hyperlink{structmiqp_1_1quadruped_1_1DecVars__res}{Dec\+Vars\+\_\+res}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespacemiqp_1_1quadruped_a6f687afd875b86123ae3149eb77bb2df}{Leg}} \{ \mbox{\hyperlink{namespacemiqp_1_1quadruped_a6f687afd875b86123ae3149eb77bb2dfa0444c62927fa0c1f037b723a409b6095}{front\+\_\+left}}
+, \mbox{\hyperlink{namespacemiqp_1_1quadruped_a6f687afd875b86123ae3149eb77bb2dfae9b82035b8f9d053a813cf9e7a31f81a}{front\+\_\+right}}
+, \mbox{\hyperlink{namespacemiqp_1_1quadruped_a6f687afd875b86123ae3149eb77bb2dfaceeba8d23589fffb9187619a18842f0b}{rear\+\_\+left}}
+, \mbox{\hyperlink{namespacemiqp_1_1quadruped_a6f687afd875b86123ae3149eb77bb2dfa5e4790f3c2f3441c56a49ec5d4bd5a49}{rear\+\_\+right}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structmiqp_1_1quadruped_1_1DecVars}{Dec\+Vars}} \mbox{\hyperlink{namespacemiqp_1_1quadruped_aafd35745abd7778878e471b68c6a7a8d}{add\+\_\+decision\+\_\+variables}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, \mbox{\hyperlink{classTerrain}{Terrain}} \&terrain, int n\+\_\+steps, int n\+\_\+legs)
+\item 
+void \mbox{\hyperlink{namespacemiqp_1_1quadruped_acfe1a97b2e528d0dfc49a6236684112c}{set\+\_\+initial\+\_\+and\+\_\+goal\+\_\+position}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, int n\+\_\+steps, double length\+\_\+legs, \mbox{\hyperlink{namespacemiqp_1_1quadruped_a6f687afd875b86123ae3149eb77bb2df}{Leg}} step\+\_\+sequence\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{classTerrain}{Terrain}} \&terrain, \mbox{\hyperlink{structmiqp_1_1quadruped_1_1DecVars}{Dec\+Vars}} \&decision\+\_\+variables, bool enforce\+\_\+goal\+\_\+hard=true)
+\item 
+void \mbox{\hyperlink{namespacemiqp_1_1quadruped_ad87e178da98e518d3d168b18f8ef3cce}{geometry\+\_\+limits}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, int n\+\_\+steps, int n\+\_\+legs, double length\+\_\+legs, \mbox{\hyperlink{namespacemiqp_1_1quadruped_a6f687afd875b86123ae3149eb77bb2df}{Leg}} step\+\_\+sequence\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{classTerrain}{Terrain}} \&terrain, double bbox\+\_\+len, \mbox{\hyperlink{structmiqp_1_1quadruped_1_1DecVars}{Dec\+Vars}} \&decision\+\_\+variables)
+\item 
+void \mbox{\hyperlink{namespacemiqp_1_1quadruped_a09474c9c024762832d436da2aa2e4b1c}{theta\+\_\+limits}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, int n\+\_\+steps, int n\+\_\+legs, \mbox{\hyperlink{structmiqp_1_1quadruped_1_1DecVars}{Dec\+Vars}} \&decision\+\_\+variables)
+\item 
+void \mbox{\hyperlink{namespacemiqp_1_1quadruped_a6187a873bc0ed9e1082d9065daab4ce6}{relative\+\_\+position\+\_\+limits}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, int n\+\_\+steps, int n\+\_\+legs, double step\+\_\+span, double step\+\_\+height, \mbox{\hyperlink{structmiqp_1_1quadruped_1_1DecVars}{Dec\+Vars}} \&decision\+\_\+variables)
+\item 
+void \mbox{\hyperlink{namespacemiqp_1_1quadruped_a22466234401c24f14e81d29308861d26}{one\+\_\+stone\+\_\+per\+\_\+foot}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, int n\+\_\+steps, \mbox{\hyperlink{structmiqp_1_1quadruped_1_1DecVars}{Dec\+Vars}} \&decision\+\_\+variables)
+\item 
+Eigen\+::\+Vector4d \mbox{\hyperlink{namespacemiqp_1_1quadruped_a1adc3d3f53ac3d091b627f72b3fce308}{get\+\_\+big\+\_\+M}} (\mbox{\hyperlink{classTerrain}{Terrain}} terrain)
+\item 
+void \mbox{\hyperlink{namespacemiqp_1_1quadruped_a7cdc42a2db1cdc45802a878992585504}{foot\+\_\+in\+\_\+stepping\+\_\+stone}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, \mbox{\hyperlink{classTerrain}{Terrain}} \&terrain, int n\+\_\+steps, \mbox{\hyperlink{structmiqp_1_1quadruped_1_1DecVars}{Dec\+Vars}} \&decision\+\_\+variables)
+\item 
+void \mbox{\hyperlink{namespacemiqp_1_1quadruped_a4c5d61544d1041ada708ed7b9a88b65e}{minimize\+\_\+step\+\_\+length}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, int n\+\_\+steps, int n\+\_\+legs, \mbox{\hyperlink{structmiqp_1_1quadruped_1_1DecVars}{Dec\+Vars}} \&decision\+\_\+variables)
+\item 
+void \mbox{\hyperlink{namespacemiqp_1_1quadruped_af92e3a015cc6cfacf222fe60b26206fc}{minimize\+\_\+remaining\+\_\+length}} (drake\+::solvers\+::\+Mathematical\+Program \&prog, \mbox{\hyperlink{classTerrain}{Terrain}} \&terrain, int n\+\_\+steps, int n\+\_\+legs, \mbox{\hyperlink{structmiqp_1_1quadruped_1_1DecVars}{Dec\+Vars}} \&decision\+\_\+variables)
+\item 
+Eigen\+::\+Array$<$ Eigen\+::\+Matrix\+Xd, Eigen\+::\+Dynamic, 1 $>$ \mbox{\hyperlink{namespacemiqp_1_1quadruped_ac0a6aa191b8ded857db385fbb1075491}{get\+\_\+uncompressed\+\_\+arrays}} (Eigen\+::\+Matrix\+Xd \&arr, Eigen\+::\+Matrix\+Xd \&sequence\+\_\+offset, int n\+\_\+steps, int n\+\_\+legs, \mbox{\hyperlink{namespacemiqp_1_1quadruped_a6f687afd875b86123ae3149eb77bb2df}{Leg}} step\+\_\+sequence\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\hyperlink{structmiqp_1_1quadruped_1_1DecVars__res}{Dec\+Vars\+\_\+res}} \mbox{\hyperlink{namespacemiqp_1_1quadruped_a174bd0a900b08ea0cad7e46914d954c3}{get\+\_\+decvars\+\_\+res}} (\mbox{\hyperlink{structmiqp_1_1quadruped_1_1DecVars__res__raw}{Dec\+Vars\+\_\+res\+\_\+raw}} \&decision\+\_\+variables\+\_\+raw, int n\+\_\+steps, int n\+\_\+legs, \mbox{\hyperlink{namespacemiqp_1_1quadruped_a6f687afd875b86123ae3149eb77bb2df}{Leg}} step\+\_\+sequence\mbox{[}$\,$\mbox{]})
+\item 
+void \mbox{\hyperlink{namespacemiqp_1_1quadruped_ae8b3684901d6b1ac3269c38b8d63498d}{write\+Dec\+Vars\+To\+File}} (\mbox{\hyperlink{structmiqp_1_1quadruped_1_1DecVars__res}{Dec\+Vars\+\_\+res}} \&decision\+\_\+variables, std\+::string base\+\_\+name=\char`\"{}footstep\+\_\+planner\char`\"{})
+\item 
+void \mbox{\hyperlink{namespacemiqp_1_1quadruped_ad86dce75e15193bf7a6a04566912015c}{write\+Mat\+To\+File}} (Eigen\+::\+Matrix\+Xd \&mat, std\+::string filename)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{namespacemiqp_1_1quadruped_a6f687afd875b86123ae3149eb77bb2df}\label{namespacemiqp_1_1quadruped_a6f687afd875b86123ae3149eb77bb2df}} 
+\index{miqp::quadruped@{miqp::quadruped}!Leg@{Leg}}
+\index{Leg@{Leg}!miqp::quadruped@{miqp::quadruped}}
+\doxysubsubsection{\texorpdfstring{Leg}{Leg}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{namespacemiqp_1_1quadruped_a6f687afd875b86123ae3149eb77bb2df}{miqp\+::quadruped\+::\+Leg}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{front\_left@{front\_left}!miqp::quadruped@{miqp::quadruped}}\index{miqp::quadruped@{miqp::quadruped}!front\_left@{front\_left}}}\mbox{\Hypertarget{namespacemiqp_1_1quadruped_a6f687afd875b86123ae3149eb77bb2dfa0444c62927fa0c1f037b723a409b6095}\label{namespacemiqp_1_1quadruped_a6f687afd875b86123ae3149eb77bb2dfa0444c62927fa0c1f037b723a409b6095}} 
+front\+\_\+left&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{front\_right@{front\_right}!miqp::quadruped@{miqp::quadruped}}\index{miqp::quadruped@{miqp::quadruped}!front\_right@{front\_right}}}\mbox{\Hypertarget{namespacemiqp_1_1quadruped_a6f687afd875b86123ae3149eb77bb2dfae9b82035b8f9d053a813cf9e7a31f81a}\label{namespacemiqp_1_1quadruped_a6f687afd875b86123ae3149eb77bb2dfae9b82035b8f9d053a813cf9e7a31f81a}} 
+front\+\_\+right&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{rear\_left@{rear\_left}!miqp::quadruped@{miqp::quadruped}}\index{miqp::quadruped@{miqp::quadruped}!rear\_left@{rear\_left}}}\mbox{\Hypertarget{namespacemiqp_1_1quadruped_a6f687afd875b86123ae3149eb77bb2dfaceeba8d23589fffb9187619a18842f0b}\label{namespacemiqp_1_1quadruped_a6f687afd875b86123ae3149eb77bb2dfaceeba8d23589fffb9187619a18842f0b}} 
+rear\+\_\+left&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{rear\_right@{rear\_right}!miqp::quadruped@{miqp::quadruped}}\index{miqp::quadruped@{miqp::quadruped}!rear\_right@{rear\_right}}}\mbox{\Hypertarget{namespacemiqp_1_1quadruped_a6f687afd875b86123ae3149eb77bb2dfa5e4790f3c2f3441c56a49ec5d4bd5a49}\label{namespacemiqp_1_1quadruped_a6f687afd875b86123ae3149eb77bb2dfa5e4790f3c2f3441c56a49ec5d4bd5a49}} 
+rear\+\_\+right&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 26 of file miqp\+\_\+quadruped.\+h.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacemiqp_1_1quadruped_aafd35745abd7778878e471b68c6a7a8d}\label{namespacemiqp_1_1quadruped_aafd35745abd7778878e471b68c6a7a8d}} 
+\index{miqp::quadruped@{miqp::quadruped}!add\_decision\_variables@{add\_decision\_variables}}
+\index{add\_decision\_variables@{add\_decision\_variables}!miqp::quadruped@{miqp::quadruped}}
+\doxysubsubsection{\texorpdfstring{add\_decision\_variables()}{add\_decision\_variables()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmiqp_1_1quadruped_1_1DecVars}{Dec\+Vars}} miqp\+::quadruped\+::add\+\_\+decision\+\_\+variables (\begin{DoxyParamCaption}\item[{drake\+::solvers\+::\+Mathematical\+Program \&}]{prog,  }\item[{\mbox{\hyperlink{classTerrain}{Terrain}} \&}]{terrain,  }\item[{int}]{n\+\_\+steps,  }\item[{int}]{n\+\_\+legs }\end{DoxyParamCaption})}
+
+
+
+Definition at line 22 of file miqp\+\_\+quadruped.\+cpp.
+
+\mbox{\Hypertarget{namespacemiqp_1_1quadruped_acfe1a97b2e528d0dfc49a6236684112c}\label{namespacemiqp_1_1quadruped_acfe1a97b2e528d0dfc49a6236684112c}} 
+\index{miqp::quadruped@{miqp::quadruped}!set\_initial\_and\_goal\_position@{set\_initial\_and\_goal\_position}}
+\index{set\_initial\_and\_goal\_position@{set\_initial\_and\_goal\_position}!miqp::quadruped@{miqp::quadruped}}
+\doxysubsubsection{\texorpdfstring{set\_initial\_and\_goal\_position()}{set\_initial\_and\_goal\_position()}}
+{\footnotesize\ttfamily void miqp\+::quadruped\+::set\+\_\+initial\+\_\+and\+\_\+goal\+\_\+position (\begin{DoxyParamCaption}\item[{drake\+::solvers\+::\+Mathematical\+Program \&}]{prog,  }\item[{int}]{n\+\_\+steps,  }\item[{double}]{length\+\_\+legs,  }\item[{\mbox{\hyperlink{namespacemiqp_1_1quadruped_a6f687afd875b86123ae3149eb77bb2df}{Leg}}}]{step\+\_\+sequence\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{classTerrain}{Terrain}} \&}]{terrain,  }\item[{\mbox{\hyperlink{structmiqp_1_1quadruped_1_1DecVars}{Dec\+Vars}} \&}]{decision\+\_\+variables,  }\item[{bool}]{enforce\+\_\+goal\+\_\+hard = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 47 of file miqp\+\_\+quadruped.\+cpp.
+
+\mbox{\Hypertarget{namespacemiqp_1_1quadruped_ad87e178da98e518d3d168b18f8ef3cce}\label{namespacemiqp_1_1quadruped_ad87e178da98e518d3d168b18f8ef3cce}} 
+\index{miqp::quadruped@{miqp::quadruped}!geometry\_limits@{geometry\_limits}}
+\index{geometry\_limits@{geometry\_limits}!miqp::quadruped@{miqp::quadruped}}
+\doxysubsubsection{\texorpdfstring{geometry\_limits()}{geometry\_limits()}}
+{\footnotesize\ttfamily void miqp\+::quadruped\+::geometry\+\_\+limits (\begin{DoxyParamCaption}\item[{drake\+::solvers\+::\+Mathematical\+Program \&}]{prog,  }\item[{int}]{n\+\_\+steps,  }\item[{int}]{n\+\_\+legs,  }\item[{double}]{length\+\_\+legs,  }\item[{\mbox{\hyperlink{namespacemiqp_1_1quadruped_a6f687afd875b86123ae3149eb77bb2df}{Leg}}}]{step\+\_\+sequence\mbox{[}$\,$\mbox{]},  }\item[{\mbox{\hyperlink{classTerrain}{Terrain}} \&}]{terrain,  }\item[{double}]{bbox\+\_\+len,  }\item[{\mbox{\hyperlink{structmiqp_1_1quadruped_1_1DecVars}{Dec\+Vars}} \&}]{decision\+\_\+variables }\end{DoxyParamCaption})}
+
+
+
+Definition at line 190 of file miqp\+\_\+quadruped.\+cpp.
+
+\mbox{\Hypertarget{namespacemiqp_1_1quadruped_a09474c9c024762832d436da2aa2e4b1c}\label{namespacemiqp_1_1quadruped_a09474c9c024762832d436da2aa2e4b1c}} 
+\index{miqp::quadruped@{miqp::quadruped}!theta\_limits@{theta\_limits}}
+\index{theta\_limits@{theta\_limits}!miqp::quadruped@{miqp::quadruped}}
+\doxysubsubsection{\texorpdfstring{theta\_limits()}{theta\_limits()}}
+{\footnotesize\ttfamily void miqp\+::quadruped\+::theta\+\_\+limits (\begin{DoxyParamCaption}\item[{drake\+::solvers\+::\+Mathematical\+Program \&}]{prog,  }\item[{int}]{n\+\_\+steps,  }\item[{int}]{n\+\_\+legs,  }\item[{\mbox{\hyperlink{structmiqp_1_1quadruped_1_1DecVars}{Dec\+Vars}} \&}]{decision\+\_\+variables }\end{DoxyParamCaption})}
+
+
+
+Definition at line 132 of file miqp\+\_\+quadruped.\+cpp.
+
+\mbox{\Hypertarget{namespacemiqp_1_1quadruped_a6187a873bc0ed9e1082d9065daab4ce6}\label{namespacemiqp_1_1quadruped_a6187a873bc0ed9e1082d9065daab4ce6}} 
+\index{miqp::quadruped@{miqp::quadruped}!relative\_position\_limits@{relative\_position\_limits}}
+\index{relative\_position\_limits@{relative\_position\_limits}!miqp::quadruped@{miqp::quadruped}}
+\doxysubsubsection{\texorpdfstring{relative\_position\_limits()}{relative\_position\_limits()}}
+{\footnotesize\ttfamily void miqp\+::quadruped\+::relative\+\_\+position\+\_\+limits (\begin{DoxyParamCaption}\item[{drake\+::solvers\+::\+Mathematical\+Program \&}]{prog,  }\item[{int}]{n\+\_\+steps,  }\item[{int}]{n\+\_\+legs,  }\item[{double}]{step\+\_\+span,  }\item[{double}]{step\+\_\+height,  }\item[{\mbox{\hyperlink{structmiqp_1_1quadruped_1_1DecVars}{Dec\+Vars}} \&}]{decision\+\_\+variables }\end{DoxyParamCaption})}
+
+
+
+Definition at line 230 of file miqp\+\_\+quadruped.\+cpp.
+
+\mbox{\Hypertarget{namespacemiqp_1_1quadruped_a22466234401c24f14e81d29308861d26}\label{namespacemiqp_1_1quadruped_a22466234401c24f14e81d29308861d26}} 
+\index{miqp::quadruped@{miqp::quadruped}!one\_stone\_per\_foot@{one\_stone\_per\_foot}}
+\index{one\_stone\_per\_foot@{one\_stone\_per\_foot}!miqp::quadruped@{miqp::quadruped}}
+\doxysubsubsection{\texorpdfstring{one\_stone\_per\_foot()}{one\_stone\_per\_foot()}}
+{\footnotesize\ttfamily void miqp\+::quadruped\+::one\+\_\+stone\+\_\+per\+\_\+foot (\begin{DoxyParamCaption}\item[{drake\+::solvers\+::\+Mathematical\+Program \&}]{prog,  }\item[{int}]{n\+\_\+steps,  }\item[{\mbox{\hyperlink{structmiqp_1_1quadruped_1_1DecVars}{Dec\+Vars}} \&}]{decision\+\_\+variables }\end{DoxyParamCaption})}
+
+
+
+Definition at line 250 of file miqp\+\_\+quadruped.\+cpp.
+
+\mbox{\Hypertarget{namespacemiqp_1_1quadruped_a1adc3d3f53ac3d091b627f72b3fce308}\label{namespacemiqp_1_1quadruped_a1adc3d3f53ac3d091b627f72b3fce308}} 
+\index{miqp::quadruped@{miqp::quadruped}!get\_big\_M@{get\_big\_M}}
+\index{get\_big\_M@{get\_big\_M}!miqp::quadruped@{miqp::quadruped}}
+\doxysubsubsection{\texorpdfstring{get\_big\_M()}{get\_big\_M()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector4d miqp\+::quadruped\+::get\+\_\+big\+\_\+M (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classTerrain}{Terrain}}}]{terrain }\end{DoxyParamCaption})}
+
+
+
+Definition at line 257 of file miqp\+\_\+quadruped.\+cpp.
+
+\mbox{\Hypertarget{namespacemiqp_1_1quadruped_a7cdc42a2db1cdc45802a878992585504}\label{namespacemiqp_1_1quadruped_a7cdc42a2db1cdc45802a878992585504}} 
+\index{miqp::quadruped@{miqp::quadruped}!foot\_in\_stepping\_stone@{foot\_in\_stepping\_stone}}
+\index{foot\_in\_stepping\_stone@{foot\_in\_stepping\_stone}!miqp::quadruped@{miqp::quadruped}}
+\doxysubsubsection{\texorpdfstring{foot\_in\_stepping\_stone()}{foot\_in\_stepping\_stone()}}
+{\footnotesize\ttfamily void miqp\+::quadruped\+::foot\+\_\+in\+\_\+stepping\+\_\+stone (\begin{DoxyParamCaption}\item[{drake\+::solvers\+::\+Mathematical\+Program \&}]{prog,  }\item[{\mbox{\hyperlink{classTerrain}{Terrain}} \&}]{terrain,  }\item[{int}]{n\+\_\+steps,  }\item[{\mbox{\hyperlink{structmiqp_1_1quadruped_1_1DecVars}{Dec\+Vars}} \&}]{decision\+\_\+variables }\end{DoxyParamCaption})}
+
+
+
+Definition at line 274 of file miqp\+\_\+quadruped.\+cpp.
+
+\mbox{\Hypertarget{namespacemiqp_1_1quadruped_a4c5d61544d1041ada708ed7b9a88b65e}\label{namespacemiqp_1_1quadruped_a4c5d61544d1041ada708ed7b9a88b65e}} 
+\index{miqp::quadruped@{miqp::quadruped}!minimize\_step\_length@{minimize\_step\_length}}
+\index{minimize\_step\_length@{minimize\_step\_length}!miqp::quadruped@{miqp::quadruped}}
+\doxysubsubsection{\texorpdfstring{minimize\_step\_length()}{minimize\_step\_length()}}
+{\footnotesize\ttfamily void miqp\+::quadruped\+::minimize\+\_\+step\+\_\+length (\begin{DoxyParamCaption}\item[{drake\+::solvers\+::\+Mathematical\+Program \&}]{prog,  }\item[{int}]{n\+\_\+steps,  }\item[{int}]{n\+\_\+legs,  }\item[{\mbox{\hyperlink{structmiqp_1_1quadruped_1_1DecVars}{Dec\+Vars}} \&}]{decision\+\_\+variables }\end{DoxyParamCaption})}
+
+
+
+Definition at line 308 of file miqp\+\_\+quadruped.\+cpp.
+
+\mbox{\Hypertarget{namespacemiqp_1_1quadruped_af92e3a015cc6cfacf222fe60b26206fc}\label{namespacemiqp_1_1quadruped_af92e3a015cc6cfacf222fe60b26206fc}} 
+\index{miqp::quadruped@{miqp::quadruped}!minimize\_remaining\_length@{minimize\_remaining\_length}}
+\index{minimize\_remaining\_length@{minimize\_remaining\_length}!miqp::quadruped@{miqp::quadruped}}
+\doxysubsubsection{\texorpdfstring{minimize\_remaining\_length()}{minimize\_remaining\_length()}}
+{\footnotesize\ttfamily void miqp\+::quadruped\+::minimize\+\_\+remaining\+\_\+length (\begin{DoxyParamCaption}\item[{drake\+::solvers\+::\+Mathematical\+Program \&}]{prog,  }\item[{\mbox{\hyperlink{classTerrain}{Terrain}} \&}]{terrain,  }\item[{int}]{n\+\_\+steps,  }\item[{int}]{n\+\_\+legs,  }\item[{\mbox{\hyperlink{structmiqp_1_1quadruped_1_1DecVars}{Dec\+Vars}} \&}]{decision\+\_\+variables }\end{DoxyParamCaption})}
+
+
+
+Definition at line 322 of file miqp\+\_\+quadruped.\+cpp.
+
+\mbox{\Hypertarget{namespacemiqp_1_1quadruped_ac0a6aa191b8ded857db385fbb1075491}\label{namespacemiqp_1_1quadruped_ac0a6aa191b8ded857db385fbb1075491}} 
+\index{miqp::quadruped@{miqp::quadruped}!get\_uncompressed\_arrays@{get\_uncompressed\_arrays}}
+\index{get\_uncompressed\_arrays@{get\_uncompressed\_arrays}!miqp::quadruped@{miqp::quadruped}}
+\doxysubsubsection{\texorpdfstring{get\_uncompressed\_arrays()}{get\_uncompressed\_arrays()}}
+{\footnotesize\ttfamily Eigen\+::\+Array$<$ Eigen\+::\+Matrix\+Xd, Eigen\+::\+Dynamic, 1 $>$ miqp\+::quadruped\+::get\+\_\+uncompressed\+\_\+arrays (\begin{DoxyParamCaption}\item[{Eigen\+::\+Matrix\+Xd \&}]{arr,  }\item[{Eigen\+::\+Matrix\+Xd \&}]{sequence\+\_\+offset,  }\item[{int}]{n\+\_\+steps,  }\item[{int}]{n\+\_\+legs,  }\item[{\mbox{\hyperlink{namespacemiqp_1_1quadruped_a6f687afd875b86123ae3149eb77bb2df}{Leg}}}]{step\+\_\+sequence\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 337 of file miqp\+\_\+quadruped.\+cpp.
+
+\mbox{\Hypertarget{namespacemiqp_1_1quadruped_a174bd0a900b08ea0cad7e46914d954c3}\label{namespacemiqp_1_1quadruped_a174bd0a900b08ea0cad7e46914d954c3}} 
+\index{miqp::quadruped@{miqp::quadruped}!get\_decvars\_res@{get\_decvars\_res}}
+\index{get\_decvars\_res@{get\_decvars\_res}!miqp::quadruped@{miqp::quadruped}}
+\doxysubsubsection{\texorpdfstring{get\_decvars\_res()}{get\_decvars\_res()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmiqp_1_1quadruped_1_1DecVars__res}{Dec\+Vars\+\_\+res}} miqp\+::quadruped\+::get\+\_\+decvars\+\_\+res (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmiqp_1_1quadruped_1_1DecVars__res__raw}{Dec\+Vars\+\_\+res\+\_\+raw}} \&}]{decision\+\_\+variables\+\_\+raw,  }\item[{int}]{n\+\_\+steps,  }\item[{int}]{n\+\_\+legs,  }\item[{\mbox{\hyperlink{namespacemiqp_1_1quadruped_a6f687afd875b86123ae3149eb77bb2df}{Leg}}}]{step\+\_\+sequence\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 382 of file miqp\+\_\+quadruped.\+cpp.
+
+\mbox{\Hypertarget{namespacemiqp_1_1quadruped_ae8b3684901d6b1ac3269c38b8d63498d}\label{namespacemiqp_1_1quadruped_ae8b3684901d6b1ac3269c38b8d63498d}} 
+\index{miqp::quadruped@{miqp::quadruped}!writeDecVarsToFile@{writeDecVarsToFile}}
+\index{writeDecVarsToFile@{writeDecVarsToFile}!miqp::quadruped@{miqp::quadruped}}
+\doxysubsubsection{\texorpdfstring{writeDecVarsToFile()}{writeDecVarsToFile()}}
+{\footnotesize\ttfamily void miqp\+::quadruped\+::write\+Dec\+Vars\+To\+File (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmiqp_1_1quadruped_1_1DecVars__res}{Dec\+Vars\+\_\+res}} \&}]{decision\+\_\+variables,  }\item[{std\+::string}]{base\+\_\+name = {\ttfamily \char`\"{}footstep\+\_\+planner\char`\"{}} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 436 of file miqp\+\_\+quadruped.\+cpp.
+
+\mbox{\Hypertarget{namespacemiqp_1_1quadruped_ad86dce75e15193bf7a6a04566912015c}\label{namespacemiqp_1_1quadruped_ad86dce75e15193bf7a6a04566912015c}} 
+\index{miqp::quadruped@{miqp::quadruped}!writeMatToFile@{writeMatToFile}}
+\index{writeMatToFile@{writeMatToFile}!miqp::quadruped@{miqp::quadruped}}
+\doxysubsubsection{\texorpdfstring{writeMatToFile()}{writeMatToFile()}}
+{\footnotesize\ttfamily void miqp\+::quadruped\+::write\+Mat\+To\+File (\begin{DoxyParamCaption}\item[{Eigen\+::\+Matrix\+Xd \&}]{mat,  }\item[{std\+::string}]{filename }\end{DoxyParamCaption})}
+
+
+
+Definition at line 415 of file miqp\+\_\+quadruped.\+cpp.
+

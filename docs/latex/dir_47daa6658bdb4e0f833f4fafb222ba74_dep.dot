@@ -1,0 +1,15 @@
+digraph "catkin_ws/src/guidance/support_polytope_base_planner" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_3bc5830b146180778fb914a1c3335eec {
+    graph [ bgcolor="#ddddee", pencolor="black", label="guidance" fontname="Helvetica", fontsize="10", URL="dir_3bc5830b146180778fb914a1c3335eec.html"]
+  subgraph clusterdir_47daa6658bdb4e0f833f4fafb222ba74 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_47daa6658bdb4e0f833f4fafb222ba74.html"];
+    dir_47daa6658bdb4e0f833f4fafb222ba74 [shape=plaintext label="support_polytope_base_planner"];
+  dir_cba6b0fc397307dc41f79d86389c4c99 [shape=box label="include" fillcolor="white" style="filled" color="red" URL="dir_cba6b0fc397307dc41f79d86389c4c99.html"];
+  dir_2fea23a534f7dee5f5ef1cbd2e97afa5 [shape=box label="src" fillcolor="white" style="filled" URL="dir_2fea23a534f7dee5f5ef1cbd2e97afa5.html"];
+  }
+  }
+  dir_2fea23a534f7dee5f5ef1cbd2e97afa5->dir_cba6b0fc397307dc41f79d86389c4c99 [headlabel="3", labeldistance=1.5 headhref="dir_000071_000069.html"];
+}

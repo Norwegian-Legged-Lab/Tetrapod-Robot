@@ -1,5 +1,6 @@
 var searchData=
 [
+<<<<<<< HEAD
   ['_7econtactplugin_681',['~ContactPlugin',['../classgazebo_1_1ContactPlugin.html#a915a0b9156a54f3946f11a1347971afe',1,'gazebo::ContactPlugin']]],
   ['_7econtactsensor_682',['~ContactSensor',['../classContactSensor.html#a01a1842782c99e4b3fca9e5db40721eb',1,'ContactSensor']]],
   ['_7ehierarchicaloptimizationcontrol_683',['~HierarchicalOptimizationControl',['../classHierarchicalOptimizationControl.html#ad296c50c35b6eaabf210c82c3c756201',1,'HierarchicalOptimizationControl']]],
@@ -11,4 +12,36 @@ var searchData=
   ['_7esinglelegcontroller_689',['~SingleLegController',['../classSingleLegController.html#a173d75b4ce31036a360ffe231e950314',1,'SingleLegController']]],
   ['_7esinglelegplugin_690',['~SingleLegPlugin',['../classgazebo_1_1SingleLegPlugin.html#a0fdaac17ebc347dfe31a9d5f87a2a98a',1,'gazebo::SingleLegPlugin']]],
   ['_7etetrapodplugin_691',['~TetrapodPlugin',['../classgazebo_1_1TetrapodPlugin.html#ab95cc50543ae4843b35be224a4bf001b',1,'gazebo::TetrapodPlugin']]]
+=======
+  ['radtodeg_1679',['radToDeg',['../namespacemath__utils.html#a9824f52115abead316aee507c19b4806',1,'math_utils']]],
+  ['readacceleration_1680',['readAcceleration',['../namespacemake__can__msg.html#a2137b5ce7abdfac529eeee6e42c22bc8',1,'make_can_msg']]],
+  ['readcircleturnangle_1681',['readCircleTurnAngle',['../namespacemake__can__msg.html#a534b2f49d254fb49d6690a35c88ebe64',1,'make_can_msg']]],
+  ['readcompleteencoderposition_1682',['readCompleteEncoderPosition',['../classMotorControl.html#ab7e8ee7dac639918e2e6474a3dffbcfe',1,'MotorControl']]],
+  ['readencoderposition_1683',['readEncoderPosition',['../namespacemake__can__msg.html#a961fd0d11041c223a03d545670a87d11',1,'make_can_msg']]],
+  ['readmessage_1684',['readMessage',['../classMotorControl.html#a516790cba17293dee49a920d736b09b2',1,'MotorControl']]],
+  ['readmotorcontrolcommandreply_1685',['readMotorControlCommandReply',['../classMotorControl.html#a4c7b6656a49ee1a9234774f940c732f1',1,'MotorControl']]],
+  ['readmotorstatus_1686',['readMotorStatus',['../classMotorControl.html#a2aa2f8082ecae25915cbe2e555ebd31b',1,'MotorControl']]],
+  ['readmotorstatus1anderrorflag_1687',['readMotorStatus1AndErrorFlag',['../namespacemake__can__msg.html#a01dbf6189885404200eb9e35f759c234',1,'make_can_msg']]],
+  ['readmotorstatus2_1688',['readMotorStatus2',['../namespacemake__can__msg.html#a2484c037d756b16691866396779b9c91',1,'make_can_msg']]],
+  ['readmotorstatus3_1689',['readMotorStatus3',['../namespacemake__can__msg.html#af32a724b4ed1552384628ee9957a97b0',1,'make_can_msg']]],
+  ['readmultiturnangle_1690',['readMultiTurnAngle',['../namespacemake__can__msg.html#a8abe606450a04893f2823a9641447a0f',1,'make_can_msg::readMultiTurnAngle()'],['../classMotorControl.html#adbf876096b52138e3d4d2cd3f5a2c719',1,'MotorControl::readMultiTurnAngle()']]],
+  ['readpidparameters_1691',['readPIDParameters',['../namespacemake__can__msg.html#a8eac2e3b71b4665ee27a801491b70f69',1,'make_can_msg::readPIDParameters()'],['../classMotorControl.html#a63731c651017af16698e47ba486d08e9',1,'MotorControl::readPIDParameters()']]],
+  ['readytochangelinearmultiplier_1692',['readyToChangeLinearMultiplier',['../classJoystickController.html#a7e7772003e9f1bc611b8e1be5277f051',1,'JoystickController']]],
+  ['readytochangerotationalmultiplier_1693',['readyToChangeRotationalMultiplier',['../classJoystickController.html#a5b4846eb52ffe7b5a48973c47402f3b1',1,'JoystickController']]],
+  ['readytoproceed_1694',['readyToProceed',['../classSingleMotorController.html#a743edb251fc7cfbc42da116107b74049',1,'SingleMotorController::readyToProceed()'],['../classSingleLegController.html#af65cd13c9740c47df2e430a744361f85',1,'SingleLegController::readyToProceed()']]],
+  ['readytoproceed_1695',['ReadyToProceed',['../classController.html#a7890ffdc972c06f77fa8a7dfbbf7d35c',1,'Controller']]],
+  ['readytoproceedcallback_1696',['readyToProceedCallback',['../classController.html#a8a7cc6a5cff67ea6ee709b1bf5d51e28',1,'Controller::readyToProceedCallback()'],['../classSingleLegController.html#ace838f549ab9d124d02ce4daa07bddf9',1,'SingleLegController::readyToProceedCallback()'],['../classSingleMotorController.html#a3aa9bf23aab7969aa0294259e3ceddd5',1,'SingleMotorController::readyToProceedCallback()']]],
+  ['receivecontrolcommands_1697',['receiveControlCommands',['../classTeensySerial.html#a0a8380ad5a637d05b8002a1a13285db5',1,'TeensySerial']]],
+  ['receivemessage_1698',['ReceiveMessage',['../classSerialCommunication.html#afec8804f5bd1f81508125973cf0c3891',1,'SerialCommunication']]],
+  ['relative_5fposition_5flimits_1699',['relative_position_limits',['../namespacemiqp_1_1biped.html#a30b2b45a8a1d89f9332fe227ab8ec3b0',1,'miqp::biped::relative_position_limits()'],['../namespacemiqp_1_1waypoint.html#a9471cffe733f8f0823d8b9bafeae2191',1,'miqp::waypoint::relative_position_limits()'],['../namespacemiqp_1_1quadruped.html#a6187a873bc0ed9e1082d9065daab4ce6',1,'miqp::quadruped::relative_position_limits()'],['../namespacemiqp_1_1biped.html#a2a76ddf72efb1e74e947467f0bf9bc9c',1,'miqp::biped::relative_position_limits()']]],
+  ['requestmotorstatus_1700',['requestMotorStatus',['../classMotorControl.html#a88d6ab604e8aceb0aad702ebed96cb7a',1,'MotorControl']]],
+  ['resetreadytoproceed_1701',['resetReadyToProceed',['../classSingleLegController.html#a7bf974dae57964d754a2e4e1900903f1',1,'SingleLegController']]],
+  ['resetreadytoproceedflag_1702',['ResetReadyToProceedFlag',['../classController.html#a5d256ea0bc36f25c2e5c6cf5b354b0e3',1,'Controller']]],
+  ['resetsimulation_1703',['ResetSimulation',['../classgazebo_1_1TerrainPlugin.html#adabcb8005190b7163f0753d67628ca64',1,'gazebo::TerrainPlugin::ResetSimulation()'],['../classgazebo_1_1TetrapodPlugin.html#adc69d815fdfd2e071612d86ca80f7528',1,'gazebo::TetrapodPlugin::ResetSimulation()'],['../classgazebo_1_1SingleLegPlugin.html#a8b6e03c7000b13ae16400eb380ab76d5',1,'gazebo::SingleLegPlugin::ResetSimulation()']]],
+  ['rgbtohsv_1704',['RGBtoHSV',['../hsvrgb_8h.html#a162351f4ad27d60f60ad488577a826d0',1,'RGBtoHSV(double &amp;fR, double &amp;fG, double fB, double &amp;fH, double &amp;fS, double &amp;fV):&#160;hsvrgb.cpp'],['../hsvrgb_8cpp.html#a162351f4ad27d60f60ad488577a826d0',1,'RGBtoHSV(double &amp;fR, double &amp;fG, double fB, double &amp;fH, double &amp;fS, double &amp;fV):&#160;hsvrgb.cpp']]],
+  ['robotcontroller_1705',['RobotController',['../classRobotController.html#aaff6ee4f2b34409d88e2db0fe9b6d5c8',1,'RobotController']]],
+  ['rosprocessqueuethread_1706',['RosProcessQueueThread',['../classMotorInterface.html#a34745056579d721f6c0aa9132c8e8a84',1,'MotorInterface']]],
+  ['rospublishqueuethread_1707',['RosPublishQueueThread',['../classMotorInterface.html#a4e24395d423fac2276b586aa269675b8',1,'MotorInterface']]],
+  ['runstandupsequence_1708',['RunStandUpSequence',['../classController.html#ae258a1b24b4fc1afd2383be56bdc9d53',1,'Controller']]]
+>>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
 ];

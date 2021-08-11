@@ -1,0 +1,14 @@
+digraph "catkin_ws/src/control/robot_controller/include/robot_controller" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_9e88933bffb8c363040895dce01f25df {
+    graph [ bgcolor="#ddddee", pencolor="black", label="include" fontname="Helvetica", fontsize="10", URL="dir_9e88933bffb8c363040895dce01f25df.html"]
+  dir_2e4c789d4e496e6c6598e6d51e3cab51 [shape=box, label="robot_controller", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_2e4c789d4e496e6c6598e6d51e3cab51.html"];
+  }
+  dir_9df13c985a4a121f40d831a26c919ebf [shape=box label="modular_gait_controller" fillcolor="white" style="filled" color="red" URL="dir_9df13c985a4a121f40d831a26c919ebf.html"];
+  dir_f18325caa9b500100f9e41ac088b4b56 [shape=box label="controller" fillcolor="white" style="filled" color="red" URL="dir_f18325caa9b500100f9e41ac088b4b56.html"];
+  dir_9df13c985a4a121f40d831a26c919ebf->dir_f18325caa9b500100f9e41ac088b4b56 [headlabel="1", labeldistance=1.5 headhref="dir_000011_000008.html"];
+  dir_2e4c789d4e496e6c6598e6d51e3cab51->dir_9df13c985a4a121f40d831a26c919ebf [headlabel="1", labeldistance=1.5 headhref="dir_000054_000011.html"];
+  dir_2e4c789d4e496e6c6598e6d51e3cab51->dir_f18325caa9b500100f9e41ac088b4b56 [headlabel="1", labeldistance=1.5 headhref="dir_000054_000008.html"];
+}

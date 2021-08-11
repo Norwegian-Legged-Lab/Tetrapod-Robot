@@ -1,5 +1,6 @@
 var searchData=
 [
+<<<<<<< HEAD
   ['unpackagebuffer_661',['UnpackageBuffer',['../classSerialCommunication.html#af62714c9ae5aedc7430cc7f2d189a6df',1,'SerialCommunication']]],
   ['updateclosedlooptorquecommands_662',['updateClosedLoopTorqueCommands',['../classSingleLegController.html#a3453715cb0120cdc1fb5f6494051f2bd',1,'SingleLegController']]],
   ['updatefeetreferences_663',['UpdateFeetReferences',['../classRobotController.html#a1d1d88612826ea3f55904adc3d08d57b',1,'RobotController']]],
@@ -13,4 +14,7 @@ var searchData=
   ['updateposecontroljointtrajectoryreference_671',['updatePoseControlJointTrajectoryReference',['../classSingleLegController.html#a9082ad9153ed6666c5922caeb31613f4',1,'SingleLegController']]],
   ['updatestancefootpositiontrajectory_672',['updateStanceFootPositionTrajectory',['../classSingleLegController.html#a4546fd0c6d563f693c8a7217ee400626',1,'SingleLegController']]],
   ['updateswingfootpositiontrajectory_673',['updateSwingFootPositionTrajectory',['../classSingleLegController.html#aab175156b57045ba31d2048dde75ea9d',1,'SingleLegController']]]
+=======
+  ['nullspaceprojector_1615',['nullSpaceProjector',['../namespacemath__utils.html#ab3c668a5629a048f4a5436f5899b9e11',1,'math_utils']]]
+>>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
 ];

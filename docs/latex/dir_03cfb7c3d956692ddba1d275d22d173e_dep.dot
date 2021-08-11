@@ -1,0 +1,11 @@
+digraph "catkin_ws/src/simulator/tetrapod_gazebo/src" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_979bcd87a29dc26e5d00bc10f6f56e83 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="tetrapod_gazebo" fontname="Helvetica", fontsize="10", URL="dir_979bcd87a29dc26e5d00bc10f6f56e83.html"]
+  dir_86fd2a100fbbf5d5d0f5544aedddb069 [shape=box label="include" fillcolor="white" style="filled" color="red" URL="dir_86fd2a100fbbf5d5d0f5544aedddb069.html"];
+  dir_03cfb7c3d956692ddba1d275d22d173e [shape=box, label="src", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_03cfb7c3d956692ddba1d275d22d173e.html"];
+  }
+  dir_03cfb7c3d956692ddba1d275d22d173e->dir_86fd2a100fbbf5d5d0f5544aedddb069 [headlabel="5", labeldistance=1.5 headhref="dir_000089_000087.html"];
+}

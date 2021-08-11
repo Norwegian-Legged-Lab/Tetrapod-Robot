@@ -1,0 +1,130 @@
+\hypertarget{classTerrain}{}\doxysection{Terrain Class Reference}
+\label{classTerrain}\index{Terrain@{Terrain}}
+
+
+{\ttfamily \#include $<$terrain.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classTerrain_a01a2fd83a129afcadf47fd58920b2ba9}{Terrain}} (Eigen\+::\+Array$<$ bool, Eigen\+::\+Dynamic, 1 $>$ bool\+\_\+bridge)
+\item 
+\mbox{\hyperlink{classTerrain_a7160a06ab07a86ed97d23374405e8ef6}{Terrain}} ()
+\item 
+virtual \mbox{\hyperlink{classTerrain_a2f7f0a2aee54886324ccf48a6f321de0}{$\sim$\+Terrain}} ()
+\item 
+\mbox{\hyperlink{classSteppingStone}{Stepping\+Stone}} \mbox{\hyperlink{classTerrain_a04afbfef9b7ea8d6d2872b02fb9db7d3}{add\+Stone}} (\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} center, double width, double height, std\+::string name=nullptr)
+\item 
+Eigen\+::\+Array$<$ \mbox{\hyperlink{classSteppingStone}{Stepping\+Stone}}, Eigen\+::\+Dynamic, 1 $>$ \mbox{\hyperlink{classTerrain_a973cb4bd97a2f2135b3a62a5b0db3743}{add\+Stones}} (Eigen\+::\+Array$<$ \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}, Eigen\+::\+Dynamic, 1 $>$ centers, Eigen\+::\+Array$<$ double, Eigen\+::\+Dynamic, 1 $>$ widths, Eigen\+::\+Array$<$ double, Eigen\+::\+Dynamic, 1 $>$ heights, std\+::string name=\char`\"{}\char`\"{})
+\item 
+const \mbox{\hyperlink{classSteppingStone}{Stepping\+Stone}} \& \mbox{\hyperlink{classTerrain_aa3ef1c327e871d8beb327024e002c1ba}{get\+Stone\+By\+Name}} (std\+::string name) const
+\item 
+const Eigen\+::\+Array$<$ \mbox{\hyperlink{classSteppingStone}{Stepping\+Stone}}, Eigen\+::\+Dynamic, 1 $>$ \& \mbox{\hyperlink{classTerrain_acef306b3e575a362040ca2541a731bc0}{get\+Stepping\+Stones}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Eigen\+::\+Array$<$ \mbox{\hyperlink{classSteppingStone}{Stepping\+Stone}}, Eigen\+::\+Dynamic, 1 $>$ \mbox{\hyperlink{classTerrain_a450942ac710f7c19a3bf347de4694f7d}{stepping\+\_\+stones}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 9 of file terrain.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classTerrain_a01a2fd83a129afcadf47fd58920b2ba9}\label{classTerrain_a01a2fd83a129afcadf47fd58920b2ba9}} 
+\index{Terrain@{Terrain}!Terrain@{Terrain}}
+\index{Terrain@{Terrain}!Terrain@{Terrain}}
+\doxysubsubsection{\texorpdfstring{Terrain()}{Terrain()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Terrain\+::\+Terrain (\begin{DoxyParamCaption}\item[{Eigen\+::\+Array$<$ bool, Eigen\+::\+Dynamic, 1 $>$}]{bool\+\_\+bridge }\end{DoxyParamCaption})}
+
+
+
+Definition at line 3 of file terrain.\+cpp.
+
+\mbox{\Hypertarget{classTerrain_a7160a06ab07a86ed97d23374405e8ef6}\label{classTerrain_a7160a06ab07a86ed97d23374405e8ef6}} 
+\index{Terrain@{Terrain}!Terrain@{Terrain}}
+\index{Terrain@{Terrain}!Terrain@{Terrain}}
+\doxysubsubsection{\texorpdfstring{Terrain()}{Terrain()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Terrain\+::\+Terrain (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 45 of file terrain.\+cpp.
+
+\mbox{\Hypertarget{classTerrain_a2f7f0a2aee54886324ccf48a6f321de0}\label{classTerrain_a2f7f0a2aee54886324ccf48a6f321de0}} 
+\index{Terrain@{Terrain}!````~Terrain@{$\sim$Terrain}}
+\index{````~Terrain@{$\sim$Terrain}!Terrain@{Terrain}}
+\doxysubsubsection{\texorpdfstring{$\sim$Terrain()}{~Terrain()}}
+{\footnotesize\ttfamily Terrain\+::$\sim$\+Terrain (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 58 of file terrain.\+cpp.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classTerrain_a04afbfef9b7ea8d6d2872b02fb9db7d3}\label{classTerrain_a04afbfef9b7ea8d6d2872b02fb9db7d3}} 
+\index{Terrain@{Terrain}!addStone@{addStone}}
+\index{addStone@{addStone}!Terrain@{Terrain}}
+\doxysubsubsection{\texorpdfstring{addStone()}{addStone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSteppingStone}{Stepping\+Stone}} Terrain\+::add\+Stone (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}}]{center,  }\item[{double}]{width,  }\item[{double}]{height,  }\item[{std\+::string}]{name = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 61 of file terrain.\+cpp.
+
+\mbox{\Hypertarget{classTerrain_a973cb4bd97a2f2135b3a62a5b0db3743}\label{classTerrain_a973cb4bd97a2f2135b3a62a5b0db3743}} 
+\index{Terrain@{Terrain}!addStones@{addStones}}
+\index{addStones@{addStones}!Terrain@{Terrain}}
+\doxysubsubsection{\texorpdfstring{addStones()}{addStones()}}
+{\footnotesize\ttfamily Eigen\+::\+Array$<$ \mbox{\hyperlink{classSteppingStone}{Stepping\+Stone}}, Eigen\+::\+Dynamic, 1 $>$ Terrain\+::add\+Stones (\begin{DoxyParamCaption}\item[{Eigen\+::\+Array$<$ \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}, Eigen\+::\+Dynamic, 1 $>$}]{centers,  }\item[{Eigen\+::\+Array$<$ double, Eigen\+::\+Dynamic, 1 $>$}]{widths,  }\item[{Eigen\+::\+Array$<$ double, Eigen\+::\+Dynamic, 1 $>$}]{heights,  }\item[{std\+::string}]{name = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 72 of file terrain.\+cpp.
+
+\mbox{\Hypertarget{classTerrain_aa3ef1c327e871d8beb327024e002c1ba}\label{classTerrain_aa3ef1c327e871d8beb327024e002c1ba}} 
+\index{Terrain@{Terrain}!getStoneByName@{getStoneByName}}
+\index{getStoneByName@{getStoneByName}!Terrain@{Terrain}}
+\doxysubsubsection{\texorpdfstring{getStoneByName()}{getStoneByName()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSteppingStone}{Stepping\+Stone}} const  \& Terrain\+::get\+Stone\+By\+Name (\begin{DoxyParamCaption}\item[{std\+::string}]{name }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 95 of file terrain.\+cpp.
+
+\mbox{\Hypertarget{classTerrain_acef306b3e575a362040ca2541a731bc0}\label{classTerrain_acef306b3e575a362040ca2541a731bc0}} 
+\index{Terrain@{Terrain}!getSteppingStones@{getSteppingStones}}
+\index{getSteppingStones@{getSteppingStones}!Terrain@{Terrain}}
+\doxysubsubsection{\texorpdfstring{getSteppingStones()}{getSteppingStones()}}
+{\footnotesize\ttfamily const Eigen\+::\+Array$<$\mbox{\hyperlink{classSteppingStone}{Stepping\+Stone}}, Eigen\+::\+Dynamic, 1$>$\& Terrain\+::get\+Stepping\+Stones (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 23 of file terrain.\+h.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classTerrain_a450942ac710f7c19a3bf347de4694f7d}\label{classTerrain_a450942ac710f7c19a3bf347de4694f7d}} 
+\index{Terrain@{Terrain}!stepping\_stones@{stepping\_stones}}
+\index{stepping\_stones@{stepping\_stones}!Terrain@{Terrain}}
+\doxysubsubsection{\texorpdfstring{stepping\_stones}{stepping\_stones}}
+{\footnotesize\ttfamily Eigen\+::\+Array$<$\mbox{\hyperlink{classSteppingStone}{Stepping\+Stone}}, Eigen\+::\+Dynamic, 1$>$ Terrain\+::stepping\+\_\+stones\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 26 of file terrain.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+catkin\+\_\+ws/src/guidance/footstep\+\_\+planner/include/footstep\+\_\+planner/\mbox{\hyperlink{terrain_8h}{terrain.\+h}}\item 
+catkin\+\_\+ws/src/guidance/footstep\+\_\+planner/src/\mbox{\hyperlink{terrain_8cpp}{terrain.\+cpp}}\end{DoxyCompactItemize}

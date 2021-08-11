@@ -1,0 +1,54 @@
+\hypertarget{calculate__polynomials_8py}{}\doxysection{catkin\+\_\+ws/src/control/modular\+\_\+gait\+\_\+controller/python/calculate\+\_\+polynomials.py File Reference}
+\label{calculate__polynomials_8py}\index{catkin\_ws/src/control/modular\_gait\_controller/python/calculate\_polynomials.py@{catkin\_ws/src/control/modular\_gait\_controller/python/calculate\_polynomials.py}}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacecalculate__polynomials}{calculate\+\_\+polynomials}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{namespacecalculate__polynomials_ac9dad17d6444ffe6ba3bde5f52489e8f}{calculate\+\_\+polynomials.\+Ttot}} = 2
+\item 
+int \mbox{\hyperlink{namespacecalculate__polynomials_ab33e9ec31c91f21e61a528f9bb936b0f}{calculate\+\_\+polynomials.\+amax}} = 4
+\item 
+int \mbox{\hyperlink{namespacecalculate__polynomials_a91946af146e44632841ff2143a9556ba}{calculate\+\_\+polynomials.\+Vrob}} = 1
+\item 
+int \mbox{\hyperlink{namespacecalculate__polynomials_a856b31ea0fed20e6f2bf99854d5220bb}{calculate\+\_\+polynomials.\+dtot}} = 2
+\item 
+tuple \mbox{\hyperlink{namespacecalculate__polynomials_ac4c64e3f1ab034276699ee9c2e50fafb}{calculate\+\_\+polynomials.\+Tr\+\_\+poly\+\_\+coeffs}} = (-\/dtot -\/Ttot$\ast$Vrob, (2/3)$\ast$amax$\ast$Ttot, -\/4/3 + (8/9 -\/ 4/15)$\ast$amax)
+\item 
+\mbox{\hyperlink{namespacecalculate__polynomials_aba9153e11fca3cbcc549595b6ae6d77f}{calculate\+\_\+polynomials.\+Tr\+\_\+list}} = poly.\+Polynomial(Tr\+\_\+poly\+\_\+coeffs).roots()
+\item 
+\mbox{\hyperlink{namespacecalculate__polynomials_a34ae6227c2018e98b6ee22f8ab3cb965}{calculate\+\_\+polynomials.\+Tr}} = Tr\+\_\+list\mbox{[}isreal(Tr\+\_\+list)$\ast$(Tr\+\_\+list$>$=0)\mbox{]}\mbox{[}0\mbox{]}
+\item 
+int \mbox{\hyperlink{namespacecalculate__polynomials_acf9c70365555b99ac016257c1721c311}{calculate\+\_\+polynomials.\+Th}} = Ttot -\/ 2$\ast$Tr
+\item 
+int \mbox{\hyperlink{namespacecalculate__polynomials_a08a78f676995f3e1b013c7a5dbbf86bc}{calculate\+\_\+polynomials.\+a}} = -\/(2/3)$\ast$amax/(Tr$\ast$$\ast$3)
+\item 
+tuple \mbox{\hyperlink{namespacecalculate__polynomials_a1df177963b8138e8a32214182097387b}{calculate\+\_\+polynomials.\+b}} = (4/3)$\ast$amax/Tr
+\item 
+int \mbox{\hyperlink{namespacecalculate__polynomials_a66df1a70d317116e832b1ac83571b7e4}{calculate\+\_\+polynomials.\+c}} = -\/Vrob
+\item 
+tuple \mbox{\hyperlink{namespacecalculate__polynomials_afef440babf8d1e51ca2ea3bbb9ce68d5}{calculate\+\_\+polynomials.\+coeffs}} = (c, 0, b, 0, a)
+\item 
+\mbox{\hyperlink{namespacecalculate__polynomials_ae8fb12c07d07bac895f7d5b0183e4411}{calculate\+\_\+polynomials.\+t1}} = np.\+linspace(0, Tr, 50)
+\item 
+\mbox{\hyperlink{namespacecalculate__polynomials_acedc14c21af1e06cd9dfbf6c5daed326}{calculate\+\_\+polynomials.\+t2}} = np.\+linspace(Tr, Tr + Th, 100)
+\item 
+\mbox{\hyperlink{namespacecalculate__polynomials_a397e56bd5b88b8b2412afd4d237ba011}{calculate\+\_\+polynomials.\+t3}} = np.\+linspace(Tr + Th, Ttot, 50)
+\item 
+\mbox{\hyperlink{namespacecalculate__polynomials_a5baa6b964beadb5713815286c7ab8293}{calculate\+\_\+polynomials.\+f}} = poly.\+Polynomial(coeffs)
+\item 
+\mbox{\hyperlink{namespacecalculate__polynomials_a3910989afaa7fdc5b49c9860d6243362}{calculate\+\_\+polynomials.\+f\+\_\+int}} = f.\+integ()
+\item 
+\mbox{\hyperlink{namespacecalculate__polynomials_a9e457b939a5193994f132a15223439a6}{calculate\+\_\+polynomials.\+x1}} = f(t1)
+\item 
+\mbox{\hyperlink{namespacecalculate__polynomials_a9d26eef5294e4b2b00507571cca85046}{calculate\+\_\+polynomials.\+x2}} = np.\+array(\mbox{[}f(Tr)\mbox{]}$\ast$t2.\+shape\mbox{[}0\mbox{]})
+\item 
+\mbox{\hyperlink{namespacecalculate__polynomials_ab747c47bae3eed927f533011fa7fb2f7}{calculate\+\_\+polynomials.\+x3}} = f(-\/t3 + Ttot)
+\item 
+\mbox{\hyperlink{namespacecalculate__polynomials_a15a7e61640fba451bf494d8276bb9fee}{calculate\+\_\+polynomials.\+t}} = np.\+concatenate((t1, t2, t3))
+\item 
+\mbox{\hyperlink{namespacecalculate__polynomials_a9f630785c83bcfdfe45dfd07b0355374}{calculate\+\_\+polynomials.\+x}} = np.\+concatenate((x1, x2, x3))
+\end{DoxyCompactItemize}

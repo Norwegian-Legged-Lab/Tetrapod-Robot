@@ -1,221 +1,865 @@
 \hypertarget{classSingleMotorController}{}\doxysection{Single\+Motor\+Controller Class Reference}
 \label{classSingleMotorController}\index{SingleMotorController@{SingleMotorController}}
+
+
+{\ttfamily \#include $<$single\+\_\+motor\+\_\+controller.\+h$>$}
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classSingleMotorController_ac950a79ed54e50b54b56aafa011a5ac0}\label{classSingleMotorController_ac950a79ed54e50b54b56aafa011a5ac0}} 
-{\bfseries Single\+Motor\+Controller} (double \+\_\+publish\+\_\+frequency, bool \+\_\+use\+\_\+position\+\_\+control)
+\mbox{\hyperlink{classSingleMotorController_ac950a79ed54e50b54b56aafa011a5ac0}{Single\+Motor\+Controller}} (double \+\_\+publish\+\_\+frequency, bool \+\_\+use\+\_\+position\+\_\+control)
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a8c2e423743a3db2b4fd72840c111b985}\label{classSingleMotorController_a8c2e423743a3db2b4fd72840c111b985}} 
-{\bfseries Single\+Motor\+Controller} (double \+\_\+publish\+\_\+frequency)
+\mbox{\hyperlink{classSingleMotorController_a8c2e423743a3db2b4fd72840c111b985}{Single\+Motor\+Controller}} (double \+\_\+publish\+\_\+frequency)
 \item 
-\mbox{\Hypertarget{classSingleMotorController_ae99f67747d465ebaeb77afaea16d57b8}\label{classSingleMotorController_ae99f67747d465ebaeb77afaea16d57b8}} 
-void {\bfseries init\+R\+OS} ()
+virtual \mbox{\hyperlink{classSingleMotorController_a2cd91a44acd2591275b86807238ef78b}{$\sim$\+Single\+Motor\+Controller}} ()
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a50b33c7efcd7bdb1561d5567661618db}\label{classSingleMotorController_a50b33c7efcd7bdb1561d5567661618db}} 
-void {\bfseries calculate\+Single\+Axis\+Trajectory} (const double \&\+\_\+percentage, const double \&\+\_\+period, const double \&\+\_\+max\+\_\+travel, double \&\+\_\+x, double \&\+\_\+x\+\_\+d, double \&\+\_\+x\+\_\+dd)
+void \mbox{\hyperlink{classSingleMotorController_ae99f67747d465ebaeb77afaea16d57b8}{init\+ROS}} ()
 \item 
-\mbox{\Hypertarget{classSingleMotorController_ab065e4d61a45f13fbc9a8ca74647e414}\label{classSingleMotorController_ab065e4d61a45f13fbc9a8ca74647e414}} 
-void {\bfseries update\+Trajectory} ()
+void \mbox{\hyperlink{classSingleMotorController_a50b33c7efcd7bdb1561d5567661618db}{calculate\+Single\+Axis\+Trajectory}} (const double \&\+\_\+percentage, const double \&\+\_\+period, const double \&\+\_\+max\+\_\+travel, double \&\+\_\+x, double \&\+\_\+x\+\_\+d, double \&\+\_\+x\+\_\+dd)
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a637c2f37c284398f725cd4dc8a10c68f}\label{classSingleMotorController_a637c2f37c284398f725cd4dc8a10c68f}} 
-void {\bfseries send\+Joint\+Position\+Command} ()
+void \mbox{\hyperlink{classSingleMotorController_ab065e4d61a45f13fbc9a8ca74647e414}{update\+Trajectory}} ()
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a529d40be7d33f5a8e4c4727e8174e569}\label{classSingleMotorController_a529d40be7d33f5a8e4c4727e8174e569}} 
-void {\bfseries send\+Joint\+Torque\+Command} ()
+void \mbox{\hyperlink{classSingleMotorController_a637c2f37c284398f725cd4dc8a10c68f}{send\+Joint\+Position\+Command}} ()
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a3c0a2afbebb2f47836142ed4e7312246}\label{classSingleMotorController_a3c0a2afbebb2f47836142ed4e7312246}} 
-void {\bfseries increase\+Iterator} ()
+void \mbox{\hyperlink{classSingleMotorController_a529d40be7d33f5a8e4c4727e8174e569}{send\+Joint\+Torque\+Command}} ()
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a03d4e1ca80779bc65f2fe5b3ca28e83a}\label{classSingleMotorController_a03d4e1ca80779bc65f2fe5b3ca28e83a}} 
-void {\bfseries move\+To\+Zero} ()
+void \mbox{\hyperlink{classSingleMotorController_a3c0a2afbebb2f47836142ed4e7312246}{increase\+Iterator}} ()
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a7d2cc0229dc10ddf9808ff484e21df2e}\label{classSingleMotorController_a7d2cc0229dc10ddf9808ff484e21df2e}} 
-void {\bfseries set\+Position\+Directly} (double \+\_\+joint\+\_\+pos)
+void \mbox{\hyperlink{classSingleMotorController_a03d4e1ca80779bc65f2fe5b3ca28e83a}{move\+To\+Zero}} ()
 \item 
-\mbox{\Hypertarget{classSingleMotorController_aac4ab3c037c9eb20af5975316a42bec8}\label{classSingleMotorController_aac4ab3c037c9eb20af5975316a42bec8}} 
-void {\bfseries set\+Velocity\+Directly} (double \+\_\+joint\+\_\+vel)
+void \mbox{\hyperlink{classSingleMotorController_a7d2cc0229dc10ddf9808ff484e21df2e}{set\+Position\+Directly}} (double \+\_\+joint\+\_\+pos)
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a8da274bef4390989cd0d5fdb5000d7b9}\label{classSingleMotorController_a8da274bef4390989cd0d5fdb5000d7b9}} 
-void {\bfseries set\+Torque\+Directly} (double \+\_\+torque)
+void \mbox{\hyperlink{classSingleMotorController_aac4ab3c037c9eb20af5975316a42bec8}{set\+Velocity\+Directly}} (double \+\_\+joint\+\_\+vel)
 \item 
-\mbox{\Hypertarget{classSingleMotorController_adaf327818f63dbfc517ea385f2224d7e}\label{classSingleMotorController_adaf327818f63dbfc517ea385f2224d7e}} 
-void {\bfseries initialize\+Motor} (double \+\_\+k\+\_\+p\+\_\+pos, double \+\_\+k\+\_\+d\+\_\+pos, double \+\_\+k\+\_\+p\+\_\+vel, double \+\_\+k\+\_\+i\+\_\+vel, double \+\_\+k\+\_\+p\+\_\+torque, double \+\_\+k\+\_\+i\+\_\+torque)
+void \mbox{\hyperlink{classSingleMotorController_a8da274bef4390989cd0d5fdb5000d7b9}{set\+Torque\+Directly}} (double \+\_\+torque)
 \item 
-\mbox{\Hypertarget{classSingleMotorController_ad9de47f3694b31b045f1c2e2521a4243}\label{classSingleMotorController_ad9de47f3694b31b045f1c2e2521a4243}} 
-void {\bfseries initialize\+Motor} ()
+void \mbox{\hyperlink{classSingleMotorController_adaf327818f63dbfc517ea385f2224d7e}{initialize\+Motor}} (double \+\_\+k\+\_\+p\+\_\+pos, double \+\_\+k\+\_\+d\+\_\+pos, double \+\_\+k\+\_\+p\+\_\+vel, double \+\_\+k\+\_\+i\+\_\+vel, double \+\_\+k\+\_\+p\+\_\+torque, double \+\_\+k\+\_\+i\+\_\+torque)
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a743edb251fc7cfbc42da116107b74049}\label{classSingleMotorController_a743edb251fc7cfbc42da116107b74049}} 
-bool {\bfseries ready\+To\+Proceed} ()
+void \mbox{\hyperlink{classSingleMotorController_ad9de47f3694b31b045f1c2e2521a4243}{initialize\+Motor}} ()
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a2d80cd70409d125038cbf0b7223fb055}\label{classSingleMotorController_a2d80cd70409d125038cbf0b7223fb055}} 
-bool {\bfseries initial\+State\+Received} ()
+bool \mbox{\hyperlink{classSingleMotorController_a743edb251fc7cfbc42da116107b74049}{ready\+To\+Proceed}} ()
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a153e1946a1c277571ede65be75bc3386}\label{classSingleMotorController_a153e1946a1c277571ede65be75bc3386}} 
-void {\bfseries check\+For\+New\+Messages} ()
+bool \mbox{\hyperlink{classSingleMotorController_a2d80cd70409d125038cbf0b7223fb055}{initial\+State\+Received}} ()
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a47ee13e6aa30c74398b20f1f44896950}\label{classSingleMotorController_a47ee13e6aa30c74398b20f1f44896950}} 
-void {\bfseries print\+All} ()
+void \mbox{\hyperlink{classSingleMotorController_a153e1946a1c277571ede65be75bc3386}{check\+For\+New\+Messages}} ()
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a4520212fbbb596f4e4da7ee628ffd163}\label{classSingleMotorController_a4520212fbbb596f4e4da7ee628ffd163}} 
-void {\bfseries write\+To\+Log} ()
+void \mbox{\hyperlink{classSingleMotorController_a47ee13e6aa30c74398b20f1f44896950}{print\+All}} ()
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a2c4e76b5cfc9a1c0904d81b6fe35c080}\label{classSingleMotorController_a2c4e76b5cfc9a1c0904d81b6fe35c080}} 
-bool {\bfseries keep\+Logging} ()
+void \mbox{\hyperlink{classSingleMotorController_a4520212fbbb596f4e4da7ee628ffd163}{write\+To\+Log}} ()
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a8298e6b6ba13db9de06f736e9e83e9ae}\label{classSingleMotorController_a8298e6b6ba13db9de06f736e9e83e9ae}} 
-double {\bfseries get\+Position} ()
+bool \mbox{\hyperlink{classSingleMotorController_a2c4e76b5cfc9a1c0904d81b6fe35c080}{keep\+Logging}} ()
+\item 
+double \mbox{\hyperlink{classSingleMotorController_a8298e6b6ba13db9de06f736e9e83e9ae}{get\+Position}} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classSingleMotorController_ae9feee88992e9ef2b39e4ff9b85766cb}\label{classSingleMotorController_ae9feee88992e9ef2b39e4ff9b85766cb}} 
-void {\bfseries motor\+State\+Callback} (const sensor\+\_\+msgs\+::\+Joint\+State\+Ptr \&\+\_\+msg)
+void \mbox{\hyperlink{classSingleMotorController_ae9feee88992e9ef2b39e4ff9b85766cb}{motor\+State\+Callback}} (const sensor\+\_\+msgs\+::\+Joint\+State\+Ptr \&\+\_\+msg)
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a3aa9bf23aab7969aa0294259e3ceddd5}\label{classSingleMotorController_a3aa9bf23aab7969aa0294259e3ceddd5}} 
-void {\bfseries ready\+To\+Proceed\+Callback} (const std\+\_\+msgs\+::\+Bool \&\+\_\+msg)
+void \mbox{\hyperlink{classSingleMotorController_a3aa9bf23aab7969aa0294259e3ceddd5}{ready\+To\+Proceed\+Callback}} (const std\+\_\+msgs\+::\+Bool \&\+\_\+msg)
 \item 
-\mbox{\Hypertarget{classSingleMotorController_aefc4bba827bd715a41c16166ace0f26b}\label{classSingleMotorController_aefc4bba827bd715a41c16166ace0f26b}} 
-void {\bfseries set\+Goal\+Callback} (const std\+\_\+msgs\+::\+Float32 \&\+\_\+msg)
+void \mbox{\hyperlink{classSingleMotorController_aefc4bba827bd715a41c16166ace0f26b}{set\+Goal\+Callback}} (const std\+\_\+msgs\+::\+Float32 \&\+\_\+msg)
 \item 
-\mbox{\Hypertarget{classSingleMotorController_ac635fc2c0f07b098e766539c5c46b9aa}\label{classSingleMotorController_ac635fc2c0f07b098e766539c5c46b9aa}} 
-void {\bfseries motor\+Confirmation\+Callback} (const std\+\_\+msgs\+::\+Bool \&\+\_\+msg)
+void \mbox{\hyperlink{classSingleMotorController_ac635fc2c0f07b098e766539c5c46b9aa}{motor\+Confirmation\+Callback}} (const std\+\_\+msgs\+::\+Bool \&\+\_\+msg)
 \item 
-\mbox{\Hypertarget{classSingleMotorController_abc5d3cc774e230b6432b4e63ef7ecc2a}\label{classSingleMotorController_abc5d3cc774e230b6432b4e63ef7ecc2a}} 
-void {\bfseries keep\+Logging\+Callback} (const std\+\_\+msgs\+::\+Bool \&\+\_\+msg)
+void \mbox{\hyperlink{classSingleMotorController_abc5d3cc774e230b6432b4e63ef7ecc2a}{keep\+Logging\+Callback}} (const std\+\_\+msgs\+::\+Bool \&\+\_\+msg)
 \end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classSingleMotorController_ae5afc10b4530e08ecf22e4a65da4ee07}\label{classSingleMotorController_ae5afc10b4530e08ecf22e4a65da4ee07}} 
-const double {\bfseries U\+N\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+E\+D\+\_\+\+S\+T\+A\+TE} = 1000.\+0
+const double \mbox{\hyperlink{classSingleMotorController_ae5afc10b4530e08ecf22e4a65da4ee07}{UNINITIALIZED\+\_\+\+STATE}} = 1000.\+0
 \item 
-\mbox{\Hypertarget{classSingleMotorController_af4244f505f34c545d8981dc0ebc3f159}\label{classSingleMotorController_af4244f505f34c545d8981dc0ebc3f159}} 
-const double {\bfseries I\+D\+L\+E\+\_\+\+C\+O\+M\+M\+A\+ND} = 1000.\+0
+const double \mbox{\hyperlink{classSingleMotorController_af4244f505f34c545d8981dc0ebc3f159}{IDLE\+\_\+\+COMMAND}} = 1000.\+0
 \item 
-\mbox{\Hypertarget{classSingleMotorController_ab2d359b583a160eaa218de5a455a4039}\label{classSingleMotorController_ab2d359b583a160eaa218de5a455a4039}} 
-double {\bfseries angle\+\_\+offset} = 0.\+0
+double \mbox{\hyperlink{classSingleMotorController_ab2d359b583a160eaa218de5a455a4039}{angle\+\_\+offset}} = 0.\+0
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a25b0694bddb447c20863ca4df011f4a9}\label{classSingleMotorController_a25b0694bddb447c20863ca4df011f4a9}} 
-double {\bfseries angle\+\_\+pos} = U\+N\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+E\+D\+\_\+\+S\+T\+A\+TE
+double \mbox{\hyperlink{classSingleMotorController_a25b0694bddb447c20863ca4df011f4a9}{angle\+\_\+pos}} = \mbox{\hyperlink{classSingleMotorController_ae5afc10b4530e08ecf22e4a65da4ee07}{UNINITIALIZED\+\_\+\+STATE}}
 \item 
-\mbox{\Hypertarget{classSingleMotorController_ad31cf018547457e5b59be1dde575e697}\label{classSingleMotorController_ad31cf018547457e5b59be1dde575e697}} 
-double {\bfseries angle\+\_\+vel} = 0
+double \mbox{\hyperlink{classSingleMotorController_ad31cf018547457e5b59be1dde575e697}{angle\+\_\+vel}} = 0
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a7240c72fa6e8e78573bd12f30141dc1e}\label{classSingleMotorController_a7240c72fa6e8e78573bd12f30141dc1e}} 
-double {\bfseries angle\+\_\+pos\+\_\+ref} = 0
+double \mbox{\hyperlink{classSingleMotorController_a7240c72fa6e8e78573bd12f30141dc1e}{angle\+\_\+pos\+\_\+ref}} = 0
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a9fa692ef1fddf7ee2438000483e41b3a}\label{classSingleMotorController_a9fa692ef1fddf7ee2438000483e41b3a}} 
-double {\bfseries angle\+\_\+vel\+\_\+ref} = 0
+double \mbox{\hyperlink{classSingleMotorController_a9fa692ef1fddf7ee2438000483e41b3a}{angle\+\_\+vel\+\_\+ref}} = 0
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a0e536f87304c3477344dbb5d2da60fe5}\label{classSingleMotorController_a0e536f87304c3477344dbb5d2da60fe5}} 
-double {\bfseries angle\+\_\+acc\+\_\+ref} = 0
+double \mbox{\hyperlink{classSingleMotorController_a0e536f87304c3477344dbb5d2da60fe5}{angle\+\_\+acc\+\_\+ref}} = 0
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a3b0f4a42e0bc53aef3bd1b09a8cdd857}\label{classSingleMotorController_a3b0f4a42e0bc53aef3bd1b09a8cdd857}} 
-double {\bfseries torque} = 0
+double \mbox{\hyperlink{classSingleMotorController_a3b0f4a42e0bc53aef3bd1b09a8cdd857}{torque}} = 0
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a49071923fa52124732e2d14e918ed0d3}\label{classSingleMotorController_a49071923fa52124732e2d14e918ed0d3}} 
-double {\bfseries torque\+\_\+ref} = 0
+double \mbox{\hyperlink{classSingleMotorController_a49071923fa52124732e2d14e918ed0d3}{torque\+\_\+ref}} = 0
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a03a08a0adf627b014b82e704247d21c9}\label{classSingleMotorController_a03a08a0adf627b014b82e704247d21c9}} 
-bool {\bfseries ready\+\_\+to\+\_\+proceed} = false
+bool \mbox{\hyperlink{classSingleMotorController_a03a08a0adf627b014b82e704247d21c9}{ready\+\_\+to\+\_\+proceed}} = false
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a797c0ded776522f007938760b2835107}\label{classSingleMotorController_a797c0ded776522f007938760b2835107}} 
-bool {\bfseries motor\+\_\+initialized} = false
+bool \mbox{\hyperlink{classSingleMotorController_a797c0ded776522f007938760b2835107}{motor\+\_\+initialized}} = false
 \item 
-\mbox{\Hypertarget{classSingleMotorController_ab1efa501050708820de695948622e6a7}\label{classSingleMotorController_ab1efa501050708820de695948622e6a7}} 
-double {\bfseries current\+\_\+iteration} = 0.\+0
+double \mbox{\hyperlink{classSingleMotorController_ab1efa501050708820de695948622e6a7}{current\+\_\+iteration}} = 0.\+0
 \item 
-\mbox{\Hypertarget{classSingleMotorController_ac8ca5f6eef3f2b1647d7ff156115f886}\label{classSingleMotorController_ac8ca5f6eef3f2b1647d7ff156115f886}} 
-bool {\bfseries keep\+\_\+logging} = true
+bool \mbox{\hyperlink{classSingleMotorController_ac8ca5f6eef3f2b1647d7ff156115f886}{keep\+\_\+logging}} = true
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a8ffdc2c128c73e0c3febde169920a14b}\label{classSingleMotorController_a8ffdc2c128c73e0c3febde169920a14b}} 
-bool {\bfseries gains\+\_\+set} = false
+bool \mbox{\hyperlink{classSingleMotorController_a8ffdc2c128c73e0c3febde169920a14b}{gains\+\_\+set}} = false
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a43d5b90edc4ab4586ae1603ee810c452}\label{classSingleMotorController_a43d5b90edc4ab4586ae1603ee810c452}} 
-double {\bfseries publish\+\_\+frequency} = 100.\+0
+double \mbox{\hyperlink{classSingleMotorController_a43d5b90edc4ab4586ae1603ee810c452}{publish\+\_\+frequency}} = 100.\+0
 \item 
-\mbox{\Hypertarget{classSingleMotorController_acb3c14605545d6e0da905c7458097728}\label{classSingleMotorController_acb3c14605545d6e0da905c7458097728}} 
-double {\bfseries period} = 2.\+0
+double \mbox{\hyperlink{classSingleMotorController_acb3c14605545d6e0da905c7458097728}{period}} = 2.\+0
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a2d769f8c6d1d1c0896e6a3de8c291ab5}\label{classSingleMotorController_a2d769f8c6d1d1c0896e6a3de8c291ab5}} 
-double {\bfseries max\+\_\+iterations}
+double \mbox{\hyperlink{classSingleMotorController_a2d769f8c6d1d1c0896e6a3de8c291ab5}{max\+\_\+iterations}}
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a2a6f25578569ebb244b66b07933e3fa0}\label{classSingleMotorController_a2a6f25578569ebb244b66b07933e3fa0}} 
-double {\bfseries max\+\_\+travel} = 0.\+0
+double \mbox{\hyperlink{classSingleMotorController_a2a6f25578569ebb244b66b07933e3fa0}{max\+\_\+travel}} = 0.\+0
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a7139a352f39b2fb532d5dd31066235e7}\label{classSingleMotorController_a7139a352f39b2fb532d5dd31066235e7}} 
-double {\bfseries inertia} = 0.\+1
+double \mbox{\hyperlink{classSingleMotorController_a7139a352f39b2fb532d5dd31066235e7}{inertia}} = 0.\+1
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a36b3cae29535ead8a148b01ba9355db7}\label{classSingleMotorController_a36b3cae29535ead8a148b01ba9355db7}} 
-double {\bfseries k\+\_\+p\+\_\+controller} = 50.\+0
+double \mbox{\hyperlink{classSingleMotorController_a36b3cae29535ead8a148b01ba9355db7}{k\+\_\+p\+\_\+controller}} = 50.\+0
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a1e8cac2e37297494ecd37338ad0c4e7a}\label{classSingleMotorController_a1e8cac2e37297494ecd37338ad0c4e7a}} 
-double {\bfseries k\+\_\+i\+\_\+controller} = 10.\+0
+double \mbox{\hyperlink{classSingleMotorController_a1e8cac2e37297494ecd37338ad0c4e7a}{k\+\_\+i\+\_\+controller}} = 10.\+0
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a9e1826780118fe34eec8cc31a5f7207f}\label{classSingleMotorController_a9e1826780118fe34eec8cc31a5f7207f}} 
-double {\bfseries k\+\_\+d\+\_\+controller} = 5.\+0
+double \mbox{\hyperlink{classSingleMotorController_a9e1826780118fe34eec8cc31a5f7207f}{k\+\_\+d\+\_\+controller}} = 5.\+0
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a04f8fd69e1fa5913821161cadeb84fa8}\label{classSingleMotorController_a04f8fd69e1fa5913821161cadeb84fa8}} 
-double {\bfseries k\+\_\+p\+\_\+pos} = 1.\+0
+double \mbox{\hyperlink{classSingleMotorController_a04f8fd69e1fa5913821161cadeb84fa8}{k\+\_\+p\+\_\+pos}} = 1.\+0
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a06fe17bbf137eeb80d4af0ad2b3a4c76}\label{classSingleMotorController_a06fe17bbf137eeb80d4af0ad2b3a4c76}} 
-double {\bfseries k\+\_\+i\+\_\+pos} = 1.\+0
+double \mbox{\hyperlink{classSingleMotorController_a06fe17bbf137eeb80d4af0ad2b3a4c76}{k\+\_\+i\+\_\+pos}} = 1.\+0
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a8260f1935e76ca2f1467751cb7dce4df}\label{classSingleMotorController_a8260f1935e76ca2f1467751cb7dce4df}} 
-double {\bfseries k\+\_\+d\+\_\+pos} = 5.\+0
+double \mbox{\hyperlink{classSingleMotorController_a8260f1935e76ca2f1467751cb7dce4df}{k\+\_\+d\+\_\+pos}} = 5.\+0
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a9a473d671ac88930c26f5860ccda611a}\label{classSingleMotorController_a9a473d671ac88930c26f5860ccda611a}} 
-double {\bfseries k\+\_\+p\+\_\+vel} = 50.\+0
+double \mbox{\hyperlink{classSingleMotorController_a9a473d671ac88930c26f5860ccda611a}{k\+\_\+p\+\_\+vel}} = 50.\+0
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a0f5911164311b811b972f6dcf008efc9}\label{classSingleMotorController_a0f5911164311b811b972f6dcf008efc9}} 
-double {\bfseries k\+\_\+i\+\_\+vel} = 50.\+0
+double \mbox{\hyperlink{classSingleMotorController_a0f5911164311b811b972f6dcf008efc9}{k\+\_\+i\+\_\+vel}} = 50.\+0
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a9b55813ae94801f665fc0b0a8f14f4d0}\label{classSingleMotorController_a9b55813ae94801f665fc0b0a8f14f4d0}} 
-double {\bfseries k\+\_\+d\+\_\+vel} = 0.\+0
+double \mbox{\hyperlink{classSingleMotorController_a9b55813ae94801f665fc0b0a8f14f4d0}{k\+\_\+d\+\_\+vel}} = 0.\+0
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a7d9a99e7a215c5bf437b2242d86c92bd}\label{classSingleMotorController_a7d9a99e7a215c5bf437b2242d86c92bd}} 
-double {\bfseries k\+\_\+p\+\_\+torque} = 100.\+0
+double \mbox{\hyperlink{classSingleMotorController_a7d9a99e7a215c5bf437b2242d86c92bd}{k\+\_\+p\+\_\+torque}} = 100.\+0
 \item 
-\mbox{\Hypertarget{classSingleMotorController_ad2f16d9e9d042602d059ba6e4956f3dd}\label{classSingleMotorController_ad2f16d9e9d042602d059ba6e4956f3dd}} 
-double {\bfseries k\+\_\+i\+\_\+torque} = 100.\+0
+double \mbox{\hyperlink{classSingleMotorController_ad2f16d9e9d042602d059ba6e4956f3dd}{k\+\_\+i\+\_\+torque}} = 100.\+0
 \item 
-\mbox{\Hypertarget{classSingleMotorController_adbe6bbd15a2394512088f2e60927318e}\label{classSingleMotorController_adbe6bbd15a2394512088f2e60927318e}} 
-double {\bfseries k\+\_\+d\+\_\+torque} = 0.\+0
+double \mbox{\hyperlink{classSingleMotorController_adbe6bbd15a2394512088f2e60927318e}{k\+\_\+d\+\_\+torque}} = 0.\+0
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a76502f954b0741ca74f624ef9d25eff3}\label{classSingleMotorController_a76502f954b0741ca74f624ef9d25eff3}} 
-std\+::unique\+\_\+ptr$<$ ros\+::\+Node\+Handle $>$ {\bfseries node\+\_\+handle}
+std\+::unique\+\_\+ptr$<$ ros\+::\+Node\+Handle $>$ \mbox{\hyperlink{classSingleMotorController_a76502f954b0741ca74f624ef9d25eff3}{node\+\_\+handle}}
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a976ff27ab08f1817210338c378762575}\label{classSingleMotorController_a976ff27ab08f1817210338c378762575}} 
-ros\+::\+Subscriber {\bfseries motor\+\_\+state\+\_\+subscriber}
+ros\+::\+Subscriber \mbox{\hyperlink{classSingleMotorController_a976ff27ab08f1817210338c378762575}{motor\+\_\+state\+\_\+subscriber}}
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a11635962a4981a1e2570569a681cfc89}\label{classSingleMotorController_a11635962a4981a1e2570569a681cfc89}} 
-ros\+::\+Subscriber {\bfseries ready\+\_\+to\+\_\+proceed\+\_\+subscriber}
+ros\+::\+Subscriber \mbox{\hyperlink{classSingleMotorController_a11635962a4981a1e2570569a681cfc89}{ready\+\_\+to\+\_\+proceed\+\_\+subscriber}}
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a4d7f8f5f2c1aa121f7c9d7c5ccc24c1a}\label{classSingleMotorController_a4d7f8f5f2c1aa121f7c9d7c5ccc24c1a}} 
-ros\+::\+Subscriber {\bfseries set\+\_\+goal\+\_\+subscriber}
+ros\+::\+Subscriber \mbox{\hyperlink{classSingleMotorController_a4d7f8f5f2c1aa121f7c9d7c5ccc24c1a}{set\+\_\+goal\+\_\+subscriber}}
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a28a75ccaf248f17f6cf9235c486dbdad}\label{classSingleMotorController_a28a75ccaf248f17f6cf9235c486dbdad}} 
-ros\+::\+Subscriber {\bfseries motor\+\_\+confirmation\+\_\+subscriber}
+ros\+::\+Subscriber \mbox{\hyperlink{classSingleMotorController_a28a75ccaf248f17f6cf9235c486dbdad}{motor\+\_\+confirmation\+\_\+subscriber}}
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a587271dcdd8f8d2786f0d5da71d53892}\label{classSingleMotorController_a587271dcdd8f8d2786f0d5da71d53892}} 
-ros\+::\+Subscriber {\bfseries keep\+\_\+logging\+\_\+subscriber}
+ros\+::\+Subscriber \mbox{\hyperlink{classSingleMotorController_a587271dcdd8f8d2786f0d5da71d53892}{keep\+\_\+logging\+\_\+subscriber}}
 \item 
-\mbox{\Hypertarget{classSingleMotorController_a95f36462f20c896988b14aad7a198db1}\label{classSingleMotorController_a95f36462f20c896988b14aad7a198db1}} 
-ros\+::\+Publisher {\bfseries joint\+\_\+command\+\_\+publisher}
+ros\+::\+Publisher \mbox{\hyperlink{classSingleMotorController_a95f36462f20c896988b14aad7a198db1}{joint\+\_\+command\+\_\+publisher}}
 \item 
-\mbox{\Hypertarget{classSingleMotorController_abbb58056ad56d53443cd2b59725e1c01}\label{classSingleMotorController_abbb58056ad56d53443cd2b59725e1c01}} 
-ros\+::\+Publisher {\bfseries motor\+\_\+gain\+\_\+publisher}
+ros\+::\+Publisher \mbox{\hyperlink{classSingleMotorController_abbb58056ad56d53443cd2b59725e1c01}{motor\+\_\+gain\+\_\+publisher}}
 \item 
-\mbox{\Hypertarget{classSingleMotorController_abc2fa2b9ffa9192cc99c9c54e6ad86c7}\label{classSingleMotorController_abc2fa2b9ffa9192cc99c9c54e6ad86c7}} 
-ros\+::\+Publisher {\bfseries log\+\_\+motor\+\_\+state\+\_\+publisher}
+ros\+::\+Publisher \mbox{\hyperlink{classSingleMotorController_abc2fa2b9ffa9192cc99c9c54e6ad86c7}{log\+\_\+motor\+\_\+state\+\_\+publisher}}
 \item 
-\mbox{\Hypertarget{classSingleMotorController_af0908287039a8a8c2262fac5f1c653fb}\label{classSingleMotorController_af0908287039a8a8c2262fac5f1c653fb}} 
-ros\+::\+Publisher {\bfseries log\+\_\+motor\+\_\+reference\+\_\+publisher}
+ros\+::\+Publisher \mbox{\hyperlink{classSingleMotorController_af0908287039a8a8c2262fac5f1c653fb}{log\+\_\+motor\+\_\+reference\+\_\+publisher}}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 14 of file single\+\_\+motor\+\_\+controller.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classSingleMotorController_ac950a79ed54e50b54b56aafa011a5ac0}\label{classSingleMotorController_ac950a79ed54e50b54b56aafa011a5ac0}} 
+\index{SingleMotorController@{SingleMotorController}!SingleMotorController@{SingleMotorController}}
+\index{SingleMotorController@{SingleMotorController}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{SingleMotorController()}{SingleMotorController()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Single\+Motor\+Controller\+::\+Single\+Motor\+Controller (\begin{DoxyParamCaption}\item[{double}]{\+\_\+publish\+\_\+frequency,  }\item[{bool}]{\+\_\+use\+\_\+position\+\_\+control }\end{DoxyParamCaption})}
+
+
+
+Definition at line 3 of file single\+\_\+motor\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleMotorController_a8c2e423743a3db2b4fd72840c111b985}\label{classSingleMotorController_a8c2e423743a3db2b4fd72840c111b985}} 
+\index{SingleMotorController@{SingleMotorController}!SingleMotorController@{SingleMotorController}}
+\index{SingleMotorController@{SingleMotorController}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{SingleMotorController()}{SingleMotorController()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Single\+Motor\+Controller\+::\+Single\+Motor\+Controller (\begin{DoxyParamCaption}\item[{double}]{\+\_\+publish\+\_\+frequency }\end{DoxyParamCaption})}
+
+
+
+Definition at line 10 of file single\+\_\+motor\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleMotorController_a2cd91a44acd2591275b86807238ef78b}\label{classSingleMotorController_a2cd91a44acd2591275b86807238ef78b}} 
+\index{SingleMotorController@{SingleMotorController}!````~SingleMotorController@{$\sim$SingleMotorController}}
+\index{````~SingleMotorController@{$\sim$SingleMotorController}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{$\sim$SingleMotorController()}{~SingleMotorController()}}
+{\footnotesize\ttfamily virtual Single\+Motor\+Controller\+::$\sim$\+Single\+Motor\+Controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line 26 of file single\+\_\+motor\+\_\+controller.\+h.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSingleMotorController_ae99f67747d465ebaeb77afaea16d57b8}\label{classSingleMotorController_ae99f67747d465ebaeb77afaea16d57b8}} 
+\index{SingleMotorController@{SingleMotorController}!initROS@{initROS}}
+\index{initROS@{initROS}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{initROS()}{initROS()}}
+{\footnotesize\ttfamily void Single\+Motor\+Controller\+::init\+ROS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 17 of file single\+\_\+motor\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleMotorController_ae9feee88992e9ef2b39e4ff9b85766cb}\label{classSingleMotorController_ae9feee88992e9ef2b39e4ff9b85766cb}} 
+\index{SingleMotorController@{SingleMotorController}!motorStateCallback@{motorStateCallback}}
+\index{motorStateCallback@{motorStateCallback}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{motorStateCallback()}{motorStateCallback()}}
+{\footnotesize\ttfamily void Single\+Motor\+Controller\+::motor\+State\+Callback (\begin{DoxyParamCaption}\item[{const sensor\+\_\+msgs\+::\+Joint\+State\+Ptr \&}]{\+\_\+msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 85 of file single\+\_\+motor\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleMotorController_a3aa9bf23aab7969aa0294259e3ceddd5}\label{classSingleMotorController_a3aa9bf23aab7969aa0294259e3ceddd5}} 
+\index{SingleMotorController@{SingleMotorController}!readyToProceedCallback@{readyToProceedCallback}}
+\index{readyToProceedCallback@{readyToProceedCallback}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{readyToProceedCallback()}{readyToProceedCallback()}}
+{\footnotesize\ttfamily void Single\+Motor\+Controller\+::ready\+To\+Proceed\+Callback (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Bool \&}]{\+\_\+msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 93 of file single\+\_\+motor\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleMotorController_aefc4bba827bd715a41c16166ace0f26b}\label{classSingleMotorController_aefc4bba827bd715a41c16166ace0f26b}} 
+\index{SingleMotorController@{SingleMotorController}!setGoalCallback@{setGoalCallback}}
+\index{setGoalCallback@{setGoalCallback}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{setGoalCallback()}{setGoalCallback()}}
+{\footnotesize\ttfamily void Single\+Motor\+Controller\+::set\+Goal\+Callback (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Float32 \&}]{\+\_\+msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 99 of file single\+\_\+motor\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleMotorController_ac635fc2c0f07b098e766539c5c46b9aa}\label{classSingleMotorController_ac635fc2c0f07b098e766539c5c46b9aa}} 
+\index{SingleMotorController@{SingleMotorController}!motorConfirmationCallback@{motorConfirmationCallback}}
+\index{motorConfirmationCallback@{motorConfirmationCallback}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{motorConfirmationCallback()}{motorConfirmationCallback()}}
+{\footnotesize\ttfamily void Single\+Motor\+Controller\+::motor\+Confirmation\+Callback (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Bool \&}]{\+\_\+msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 108 of file single\+\_\+motor\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleMotorController_abc5d3cc774e230b6432b4e63ef7ecc2a}\label{classSingleMotorController_abc5d3cc774e230b6432b4e63ef7ecc2a}} 
+\index{SingleMotorController@{SingleMotorController}!keepLoggingCallback@{keepLoggingCallback}}
+\index{keepLoggingCallback@{keepLoggingCallback}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{keepLoggingCallback()}{keepLoggingCallback()}}
+{\footnotesize\ttfamily void Single\+Motor\+Controller\+::keep\+Logging\+Callback (\begin{DoxyParamCaption}\item[{const std\+\_\+msgs\+::\+Bool \&}]{\+\_\+msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 116 of file single\+\_\+motor\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleMotorController_a50b33c7efcd7bdb1561d5567661618db}\label{classSingleMotorController_a50b33c7efcd7bdb1561d5567661618db}} 
+\index{SingleMotorController@{SingleMotorController}!calculateSingleAxisTrajectory@{calculateSingleAxisTrajectory}}
+\index{calculateSingleAxisTrajectory@{calculateSingleAxisTrajectory}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{calculateSingleAxisTrajectory()}{calculateSingleAxisTrajectory()}}
+{\footnotesize\ttfamily void Single\+Motor\+Controller\+::calculate\+Single\+Axis\+Trajectory (\begin{DoxyParamCaption}\item[{const double \&}]{\+\_\+percentage,  }\item[{const double \&}]{\+\_\+period,  }\item[{const double \&}]{\+\_\+max\+\_\+travel,  }\item[{double \&}]{\+\_\+x,  }\item[{double \&}]{\+\_\+x\+\_\+d,  }\item[{double \&}]{\+\_\+x\+\_\+dd }\end{DoxyParamCaption})}
+
+
+
+Definition at line 121 of file single\+\_\+motor\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleMotorController_ab065e4d61a45f13fbc9a8ca74647e414}\label{classSingleMotorController_ab065e4d61a45f13fbc9a8ca74647e414}} 
+\index{SingleMotorController@{SingleMotorController}!updateTrajectory@{updateTrajectory}}
+\index{updateTrajectory@{updateTrajectory}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{updateTrajectory()}{updateTrajectory()}}
+{\footnotesize\ttfamily void Single\+Motor\+Controller\+::update\+Trajectory (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 141 of file single\+\_\+motor\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleMotorController_a637c2f37c284398f725cd4dc8a10c68f}\label{classSingleMotorController_a637c2f37c284398f725cd4dc8a10c68f}} 
+\index{SingleMotorController@{SingleMotorController}!sendJointPositionCommand@{sendJointPositionCommand}}
+\index{sendJointPositionCommand@{sendJointPositionCommand}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{sendJointPositionCommand()}{sendJointPositionCommand()}}
+{\footnotesize\ttfamily void Single\+Motor\+Controller\+::send\+Joint\+Position\+Command (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 150 of file single\+\_\+motor\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleMotorController_a529d40be7d33f5a8e4c4727e8174e569}\label{classSingleMotorController_a529d40be7d33f5a8e4c4727e8174e569}} 
+\index{SingleMotorController@{SingleMotorController}!sendJointTorqueCommand@{sendJointTorqueCommand}}
+\index{sendJointTorqueCommand@{sendJointTorqueCommand}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{sendJointTorqueCommand()}{sendJointTorqueCommand()}}
+{\footnotesize\ttfamily void Single\+Motor\+Controller\+::send\+Joint\+Torque\+Command (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 163 of file single\+\_\+motor\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleMotorController_a3c0a2afbebb2f47836142ed4e7312246}\label{classSingleMotorController_a3c0a2afbebb2f47836142ed4e7312246}} 
+\index{SingleMotorController@{SingleMotorController}!increaseIterator@{increaseIterator}}
+\index{increaseIterator@{increaseIterator}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{increaseIterator()}{increaseIterator()}}
+{\footnotesize\ttfamily void Single\+Motor\+Controller\+::increase\+Iterator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 178 of file single\+\_\+motor\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleMotorController_a03d4e1ca80779bc65f2fe5b3ca28e83a}\label{classSingleMotorController_a03d4e1ca80779bc65f2fe5b3ca28e83a}} 
+\index{SingleMotorController@{SingleMotorController}!moveToZero@{moveToZero}}
+\index{moveToZero@{moveToZero}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{moveToZero()}{moveToZero()}}
+{\footnotesize\ttfamily void Single\+Motor\+Controller\+::move\+To\+Zero (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 193 of file single\+\_\+motor\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleMotorController_a7d2cc0229dc10ddf9808ff484e21df2e}\label{classSingleMotorController_a7d2cc0229dc10ddf9808ff484e21df2e}} 
+\index{SingleMotorController@{SingleMotorController}!setPositionDirectly@{setPositionDirectly}}
+\index{setPositionDirectly@{setPositionDirectly}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{setPositionDirectly()}{setPositionDirectly()}}
+{\footnotesize\ttfamily void Single\+Motor\+Controller\+::set\+Position\+Directly (\begin{DoxyParamCaption}\item[{double}]{\+\_\+joint\+\_\+pos }\end{DoxyParamCaption})}
+
+
+
+Definition at line 215 of file single\+\_\+motor\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleMotorController_aac4ab3c037c9eb20af5975316a42bec8}\label{classSingleMotorController_aac4ab3c037c9eb20af5975316a42bec8}} 
+\index{SingleMotorController@{SingleMotorController}!setVelocityDirectly@{setVelocityDirectly}}
+\index{setVelocityDirectly@{setVelocityDirectly}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{setVelocityDirectly()}{setVelocityDirectly()}}
+{\footnotesize\ttfamily void Single\+Motor\+Controller\+::set\+Velocity\+Directly (\begin{DoxyParamCaption}\item[{double}]{\+\_\+joint\+\_\+vel }\end{DoxyParamCaption})}
+
+
+
+Definition at line 230 of file single\+\_\+motor\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleMotorController_a8da274bef4390989cd0d5fdb5000d7b9}\label{classSingleMotorController_a8da274bef4390989cd0d5fdb5000d7b9}} 
+\index{SingleMotorController@{SingleMotorController}!setTorqueDirectly@{setTorqueDirectly}}
+\index{setTorqueDirectly@{setTorqueDirectly}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{setTorqueDirectly()}{setTorqueDirectly()}}
+{\footnotesize\ttfamily void Single\+Motor\+Controller\+::set\+Torque\+Directly (\begin{DoxyParamCaption}\item[{double}]{\+\_\+torque }\end{DoxyParamCaption})}
+
+
+
+Definition at line 245 of file single\+\_\+motor\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleMotorController_adaf327818f63dbfc517ea385f2224d7e}\label{classSingleMotorController_adaf327818f63dbfc517ea385f2224d7e}} 
+\index{SingleMotorController@{SingleMotorController}!initializeMotor@{initializeMotor}}
+\index{initializeMotor@{initializeMotor}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{initializeMotor()}{initializeMotor()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Single\+Motor\+Controller\+::initialize\+Motor (\begin{DoxyParamCaption}\item[{double}]{\+\_\+k\+\_\+p\+\_\+pos,  }\item[{double}]{\+\_\+k\+\_\+d\+\_\+pos,  }\item[{double}]{\+\_\+k\+\_\+p\+\_\+vel,  }\item[{double}]{\+\_\+k\+\_\+i\+\_\+vel,  }\item[{double}]{\+\_\+k\+\_\+p\+\_\+torque,  }\item[{double}]{\+\_\+k\+\_\+i\+\_\+torque }\end{DoxyParamCaption})}
+
+
+
+Definition at line 260 of file single\+\_\+motor\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleMotorController_ad9de47f3694b31b045f1c2e2521a4243}\label{classSingleMotorController_ad9de47f3694b31b045f1c2e2521a4243}} 
+\index{SingleMotorController@{SingleMotorController}!initializeMotor@{initializeMotor}}
+\index{initializeMotor@{initializeMotor}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{initializeMotor()}{initializeMotor()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Single\+Motor\+Controller\+::initialize\+Motor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 291 of file single\+\_\+motor\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleMotorController_a743edb251fc7cfbc42da116107b74049}\label{classSingleMotorController_a743edb251fc7cfbc42da116107b74049}} 
+\index{SingleMotorController@{SingleMotorController}!readyToProceed@{readyToProceed}}
+\index{readyToProceed@{readyToProceed}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{readyToProceed()}{readyToProceed()}}
+{\footnotesize\ttfamily bool Single\+Motor\+Controller\+::ready\+To\+Proceed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 296 of file single\+\_\+motor\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleMotorController_a2d80cd70409d125038cbf0b7223fb055}\label{classSingleMotorController_a2d80cd70409d125038cbf0b7223fb055}} 
+\index{SingleMotorController@{SingleMotorController}!initialStateReceived@{initialStateReceived}}
+\index{initialStateReceived@{initialStateReceived}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{initialStateReceived()}{initialStateReceived()}}
+{\footnotesize\ttfamily bool Single\+Motor\+Controller\+::initial\+State\+Received (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 308 of file single\+\_\+motor\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleMotorController_a153e1946a1c277571ede65be75bc3386}\label{classSingleMotorController_a153e1946a1c277571ede65be75bc3386}} 
+\index{SingleMotorController@{SingleMotorController}!checkForNewMessages@{checkForNewMessages}}
+\index{checkForNewMessages@{checkForNewMessages}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{checkForNewMessages()}{checkForNewMessages()}}
+{\footnotesize\ttfamily void Single\+Motor\+Controller\+::check\+For\+New\+Messages (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 320 of file single\+\_\+motor\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleMotorController_a47ee13e6aa30c74398b20f1f44896950}\label{classSingleMotorController_a47ee13e6aa30c74398b20f1f44896950}} 
+\index{SingleMotorController@{SingleMotorController}!printAll@{printAll}}
+\index{printAll@{printAll}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{printAll()}{printAll()}}
+{\footnotesize\ttfamily void Single\+Motor\+Controller\+::print\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 325 of file single\+\_\+motor\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleMotorController_a4520212fbbb596f4e4da7ee628ffd163}\label{classSingleMotorController_a4520212fbbb596f4e4da7ee628ffd163}} 
+\index{SingleMotorController@{SingleMotorController}!writeToLog@{writeToLog}}
+\index{writeToLog@{writeToLog}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{writeToLog()}{writeToLog()}}
+{\footnotesize\ttfamily void Single\+Motor\+Controller\+::write\+To\+Log (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 331 of file single\+\_\+motor\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleMotorController_a2c4e76b5cfc9a1c0904d81b6fe35c080}\label{classSingleMotorController_a2c4e76b5cfc9a1c0904d81b6fe35c080}} 
+\index{SingleMotorController@{SingleMotorController}!keepLogging@{keepLogging}}
+\index{keepLogging@{keepLogging}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{keepLogging()}{keepLogging()}}
+{\footnotesize\ttfamily bool Single\+Motor\+Controller\+::keep\+Logging (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 96 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_a8298e6b6ba13db9de06f736e9e83e9ae}\label{classSingleMotorController_a8298e6b6ba13db9de06f736e9e83e9ae}} 
+\index{SingleMotorController@{SingleMotorController}!getPosition@{getPosition}}
+\index{getPosition@{getPosition}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{getPosition()}{getPosition()}}
+{\footnotesize\ttfamily double Single\+Motor\+Controller\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 98 of file single\+\_\+motor\+\_\+controller.\+h.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classSingleMotorController_ae5afc10b4530e08ecf22e4a65da4ee07}\label{classSingleMotorController_ae5afc10b4530e08ecf22e4a65da4ee07}} 
+\index{SingleMotorController@{SingleMotorController}!UNINITIALIZED\_STATE@{UNINITIALIZED\_STATE}}
+\index{UNINITIALIZED\_STATE@{UNINITIALIZED\_STATE}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{UNINITIALIZED\_STATE}{UNINITIALIZED\_STATE}}
+{\footnotesize\ttfamily const double Single\+Motor\+Controller\+::\+UNINITIALIZED\+\_\+\+STATE = 1000.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 16 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_af4244f505f34c545d8981dc0ebc3f159}\label{classSingleMotorController_af4244f505f34c545d8981dc0ebc3f159}} 
+\index{SingleMotorController@{SingleMotorController}!IDLE\_COMMAND@{IDLE\_COMMAND}}
+\index{IDLE\_COMMAND@{IDLE\_COMMAND}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{IDLE\_COMMAND}{IDLE\_COMMAND}}
+{\footnotesize\ttfamily const double Single\+Motor\+Controller\+::\+IDLE\+\_\+\+COMMAND = 1000.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 18 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_ab2d359b583a160eaa218de5a455a4039}\label{classSingleMotorController_ab2d359b583a160eaa218de5a455a4039}} 
+\index{SingleMotorController@{SingleMotorController}!angle\_offset@{angle\_offset}}
+\index{angle\_offset@{angle\_offset}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{angle\_offset}{angle\_offset}}
+{\footnotesize\ttfamily double Single\+Motor\+Controller\+::angle\+\_\+offset = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 102 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_a25b0694bddb447c20863ca4df011f4a9}\label{classSingleMotorController_a25b0694bddb447c20863ca4df011f4a9}} 
+\index{SingleMotorController@{SingleMotorController}!angle\_pos@{angle\_pos}}
+\index{angle\_pos@{angle\_pos}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{angle\_pos}{angle\_pos}}
+{\footnotesize\ttfamily double Single\+Motor\+Controller\+::angle\+\_\+pos = \mbox{\hyperlink{classSingleMotorController_ae5afc10b4530e08ecf22e4a65da4ee07}{UNINITIALIZED\+\_\+\+STATE}}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 104 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_ad31cf018547457e5b59be1dde575e697}\label{classSingleMotorController_ad31cf018547457e5b59be1dde575e697}} 
+\index{SingleMotorController@{SingleMotorController}!angle\_vel@{angle\_vel}}
+\index{angle\_vel@{angle\_vel}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{angle\_vel}{angle\_vel}}
+{\footnotesize\ttfamily double Single\+Motor\+Controller\+::angle\+\_\+vel = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 106 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_a7240c72fa6e8e78573bd12f30141dc1e}\label{classSingleMotorController_a7240c72fa6e8e78573bd12f30141dc1e}} 
+\index{SingleMotorController@{SingleMotorController}!angle\_pos\_ref@{angle\_pos\_ref}}
+\index{angle\_pos\_ref@{angle\_pos\_ref}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{angle\_pos\_ref}{angle\_pos\_ref}}
+{\footnotesize\ttfamily double Single\+Motor\+Controller\+::angle\+\_\+pos\+\_\+ref = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 108 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_a9fa692ef1fddf7ee2438000483e41b3a}\label{classSingleMotorController_a9fa692ef1fddf7ee2438000483e41b3a}} 
+\index{SingleMotorController@{SingleMotorController}!angle\_vel\_ref@{angle\_vel\_ref}}
+\index{angle\_vel\_ref@{angle\_vel\_ref}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{angle\_vel\_ref}{angle\_vel\_ref}}
+{\footnotesize\ttfamily double Single\+Motor\+Controller\+::angle\+\_\+vel\+\_\+ref = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 110 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_a0e536f87304c3477344dbb5d2da60fe5}\label{classSingleMotorController_a0e536f87304c3477344dbb5d2da60fe5}} 
+\index{SingleMotorController@{SingleMotorController}!angle\_acc\_ref@{angle\_acc\_ref}}
+\index{angle\_acc\_ref@{angle\_acc\_ref}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{angle\_acc\_ref}{angle\_acc\_ref}}
+{\footnotesize\ttfamily double Single\+Motor\+Controller\+::angle\+\_\+acc\+\_\+ref = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 112 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_a3b0f4a42e0bc53aef3bd1b09a8cdd857}\label{classSingleMotorController_a3b0f4a42e0bc53aef3bd1b09a8cdd857}} 
+\index{SingleMotorController@{SingleMotorController}!torque@{torque}}
+\index{torque@{torque}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{torque}{torque}}
+{\footnotesize\ttfamily double Single\+Motor\+Controller\+::torque = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 114 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_a49071923fa52124732e2d14e918ed0d3}\label{classSingleMotorController_a49071923fa52124732e2d14e918ed0d3}} 
+\index{SingleMotorController@{SingleMotorController}!torque\_ref@{torque\_ref}}
+\index{torque\_ref@{torque\_ref}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{torque\_ref}{torque\_ref}}
+{\footnotesize\ttfamily double Single\+Motor\+Controller\+::torque\+\_\+ref = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 116 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_a03a08a0adf627b014b82e704247d21c9}\label{classSingleMotorController_a03a08a0adf627b014b82e704247d21c9}} 
+\index{SingleMotorController@{SingleMotorController}!ready\_to\_proceed@{ready\_to\_proceed}}
+\index{ready\_to\_proceed@{ready\_to\_proceed}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{ready\_to\_proceed}{ready\_to\_proceed}}
+{\footnotesize\ttfamily bool Single\+Motor\+Controller\+::ready\+\_\+to\+\_\+proceed = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 118 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_a797c0ded776522f007938760b2835107}\label{classSingleMotorController_a797c0ded776522f007938760b2835107}} 
+\index{SingleMotorController@{SingleMotorController}!motor\_initialized@{motor\_initialized}}
+\index{motor\_initialized@{motor\_initialized}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{motor\_initialized}{motor\_initialized}}
+{\footnotesize\ttfamily bool Single\+Motor\+Controller\+::motor\+\_\+initialized = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 120 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_ab1efa501050708820de695948622e6a7}\label{classSingleMotorController_ab1efa501050708820de695948622e6a7}} 
+\index{SingleMotorController@{SingleMotorController}!current\_iteration@{current\_iteration}}
+\index{current\_iteration@{current\_iteration}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{current\_iteration}{current\_iteration}}
+{\footnotesize\ttfamily double Single\+Motor\+Controller\+::current\+\_\+iteration = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 122 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_ac8ca5f6eef3f2b1647d7ff156115f886}\label{classSingleMotorController_ac8ca5f6eef3f2b1647d7ff156115f886}} 
+\index{SingleMotorController@{SingleMotorController}!keep\_logging@{keep\_logging}}
+\index{keep\_logging@{keep\_logging}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{keep\_logging}{keep\_logging}}
+{\footnotesize\ttfamily bool Single\+Motor\+Controller\+::keep\+\_\+logging = true\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 124 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_a8ffdc2c128c73e0c3febde169920a14b}\label{classSingleMotorController_a8ffdc2c128c73e0c3febde169920a14b}} 
+\index{SingleMotorController@{SingleMotorController}!gains\_set@{gains\_set}}
+\index{gains\_set@{gains\_set}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{gains\_set}{gains\_set}}
+{\footnotesize\ttfamily bool Single\+Motor\+Controller\+::gains\+\_\+set = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 126 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_a43d5b90edc4ab4586ae1603ee810c452}\label{classSingleMotorController_a43d5b90edc4ab4586ae1603ee810c452}} 
+\index{SingleMotorController@{SingleMotorController}!publish\_frequency@{publish\_frequency}}
+\index{publish\_frequency@{publish\_frequency}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{publish\_frequency}{publish\_frequency}}
+{\footnotesize\ttfamily double Single\+Motor\+Controller\+::publish\+\_\+frequency = 100.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 130 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_acb3c14605545d6e0da905c7458097728}\label{classSingleMotorController_acb3c14605545d6e0da905c7458097728}} 
+\index{SingleMotorController@{SingleMotorController}!period@{period}}
+\index{period@{period}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{period}{period}}
+{\footnotesize\ttfamily double Single\+Motor\+Controller\+::period = 2.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 132 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_a2d769f8c6d1d1c0896e6a3de8c291ab5}\label{classSingleMotorController_a2d769f8c6d1d1c0896e6a3de8c291ab5}} 
+\index{SingleMotorController@{SingleMotorController}!max\_iterations@{max\_iterations}}
+\index{max\_iterations@{max\_iterations}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{max\_iterations}{max\_iterations}}
+{\footnotesize\ttfamily double Single\+Motor\+Controller\+::max\+\_\+iterations\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 134 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_a2a6f25578569ebb244b66b07933e3fa0}\label{classSingleMotorController_a2a6f25578569ebb244b66b07933e3fa0}} 
+\index{SingleMotorController@{SingleMotorController}!max\_travel@{max\_travel}}
+\index{max\_travel@{max\_travel}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{max\_travel}{max\_travel}}
+{\footnotesize\ttfamily double Single\+Motor\+Controller\+::max\+\_\+travel = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 136 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_a7139a352f39b2fb532d5dd31066235e7}\label{classSingleMotorController_a7139a352f39b2fb532d5dd31066235e7}} 
+\index{SingleMotorController@{SingleMotorController}!inertia@{inertia}}
+\index{inertia@{inertia}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{inertia}{inertia}}
+{\footnotesize\ttfamily double Single\+Motor\+Controller\+::inertia = 0.\+1\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 138 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_a36b3cae29535ead8a148b01ba9355db7}\label{classSingleMotorController_a36b3cae29535ead8a148b01ba9355db7}} 
+\index{SingleMotorController@{SingleMotorController}!k\_p\_controller@{k\_p\_controller}}
+\index{k\_p\_controller@{k\_p\_controller}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{k\_p\_controller}{k\_p\_controller}}
+{\footnotesize\ttfamily double Single\+Motor\+Controller\+::k\+\_\+p\+\_\+controller = 50.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 140 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_a1e8cac2e37297494ecd37338ad0c4e7a}\label{classSingleMotorController_a1e8cac2e37297494ecd37338ad0c4e7a}} 
+\index{SingleMotorController@{SingleMotorController}!k\_i\_controller@{k\_i\_controller}}
+\index{k\_i\_controller@{k\_i\_controller}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{k\_i\_controller}{k\_i\_controller}}
+{\footnotesize\ttfamily double Single\+Motor\+Controller\+::k\+\_\+i\+\_\+controller = 10.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 142 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_a9e1826780118fe34eec8cc31a5f7207f}\label{classSingleMotorController_a9e1826780118fe34eec8cc31a5f7207f}} 
+\index{SingleMotorController@{SingleMotorController}!k\_d\_controller@{k\_d\_controller}}
+\index{k\_d\_controller@{k\_d\_controller}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{k\_d\_controller}{k\_d\_controller}}
+{\footnotesize\ttfamily double Single\+Motor\+Controller\+::k\+\_\+d\+\_\+controller = 5.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 144 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_a04f8fd69e1fa5913821161cadeb84fa8}\label{classSingleMotorController_a04f8fd69e1fa5913821161cadeb84fa8}} 
+\index{SingleMotorController@{SingleMotorController}!k\_p\_pos@{k\_p\_pos}}
+\index{k\_p\_pos@{k\_p\_pos}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{k\_p\_pos}{k\_p\_pos}}
+{\footnotesize\ttfamily double Single\+Motor\+Controller\+::k\+\_\+p\+\_\+pos = 1.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 146 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_a06fe17bbf137eeb80d4af0ad2b3a4c76}\label{classSingleMotorController_a06fe17bbf137eeb80d4af0ad2b3a4c76}} 
+\index{SingleMotorController@{SingleMotorController}!k\_i\_pos@{k\_i\_pos}}
+\index{k\_i\_pos@{k\_i\_pos}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{k\_i\_pos}{k\_i\_pos}}
+{\footnotesize\ttfamily double Single\+Motor\+Controller\+::k\+\_\+i\+\_\+pos = 1.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 148 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_a8260f1935e76ca2f1467751cb7dce4df}\label{classSingleMotorController_a8260f1935e76ca2f1467751cb7dce4df}} 
+\index{SingleMotorController@{SingleMotorController}!k\_d\_pos@{k\_d\_pos}}
+\index{k\_d\_pos@{k\_d\_pos}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{k\_d\_pos}{k\_d\_pos}}
+{\footnotesize\ttfamily double Single\+Motor\+Controller\+::k\+\_\+d\+\_\+pos = 5.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 150 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_a9a473d671ac88930c26f5860ccda611a}\label{classSingleMotorController_a9a473d671ac88930c26f5860ccda611a}} 
+\index{SingleMotorController@{SingleMotorController}!k\_p\_vel@{k\_p\_vel}}
+\index{k\_p\_vel@{k\_p\_vel}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{k\_p\_vel}{k\_p\_vel}}
+{\footnotesize\ttfamily double Single\+Motor\+Controller\+::k\+\_\+p\+\_\+vel = 50.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 152 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_a0f5911164311b811b972f6dcf008efc9}\label{classSingleMotorController_a0f5911164311b811b972f6dcf008efc9}} 
+\index{SingleMotorController@{SingleMotorController}!k\_i\_vel@{k\_i\_vel}}
+\index{k\_i\_vel@{k\_i\_vel}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{k\_i\_vel}{k\_i\_vel}}
+{\footnotesize\ttfamily double Single\+Motor\+Controller\+::k\+\_\+i\+\_\+vel = 50.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 154 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_a9b55813ae94801f665fc0b0a8f14f4d0}\label{classSingleMotorController_a9b55813ae94801f665fc0b0a8f14f4d0}} 
+\index{SingleMotorController@{SingleMotorController}!k\_d\_vel@{k\_d\_vel}}
+\index{k\_d\_vel@{k\_d\_vel}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{k\_d\_vel}{k\_d\_vel}}
+{\footnotesize\ttfamily double Single\+Motor\+Controller\+::k\+\_\+d\+\_\+vel = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 156 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_a7d9a99e7a215c5bf437b2242d86c92bd}\label{classSingleMotorController_a7d9a99e7a215c5bf437b2242d86c92bd}} 
+\index{SingleMotorController@{SingleMotorController}!k\_p\_torque@{k\_p\_torque}}
+\index{k\_p\_torque@{k\_p\_torque}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{k\_p\_torque}{k\_p\_torque}}
+{\footnotesize\ttfamily double Single\+Motor\+Controller\+::k\+\_\+p\+\_\+torque = 100.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 158 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_ad2f16d9e9d042602d059ba6e4956f3dd}\label{classSingleMotorController_ad2f16d9e9d042602d059ba6e4956f3dd}} 
+\index{SingleMotorController@{SingleMotorController}!k\_i\_torque@{k\_i\_torque}}
+\index{k\_i\_torque@{k\_i\_torque}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{k\_i\_torque}{k\_i\_torque}}
+{\footnotesize\ttfamily double Single\+Motor\+Controller\+::k\+\_\+i\+\_\+torque = 100.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 160 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_adbe6bbd15a2394512088f2e60927318e}\label{classSingleMotorController_adbe6bbd15a2394512088f2e60927318e}} 
+\index{SingleMotorController@{SingleMotorController}!k\_d\_torque@{k\_d\_torque}}
+\index{k\_d\_torque@{k\_d\_torque}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{k\_d\_torque}{k\_d\_torque}}
+{\footnotesize\ttfamily double Single\+Motor\+Controller\+::k\+\_\+d\+\_\+torque = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 162 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_a76502f954b0741ca74f624ef9d25eff3}\label{classSingleMotorController_a76502f954b0741ca74f624ef9d25eff3}} 
+\index{SingleMotorController@{SingleMotorController}!node\_handle@{node\_handle}}
+\index{node\_handle@{node\_handle}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{node\_handle}{node\_handle}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ros\+::\+Node\+Handle$>$ Single\+Motor\+Controller\+::node\+\_\+handle\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 166 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_a976ff27ab08f1817210338c378762575}\label{classSingleMotorController_a976ff27ab08f1817210338c378762575}} 
+\index{SingleMotorController@{SingleMotorController}!motor\_state\_subscriber@{motor\_state\_subscriber}}
+\index{motor\_state\_subscriber@{motor\_state\_subscriber}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{motor\_state\_subscriber}{motor\_state\_subscriber}}
+{\footnotesize\ttfamily ros\+::\+Subscriber Single\+Motor\+Controller\+::motor\+\_\+state\+\_\+subscriber\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 168 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_a11635962a4981a1e2570569a681cfc89}\label{classSingleMotorController_a11635962a4981a1e2570569a681cfc89}} 
+\index{SingleMotorController@{SingleMotorController}!ready\_to\_proceed\_subscriber@{ready\_to\_proceed\_subscriber}}
+\index{ready\_to\_proceed\_subscriber@{ready\_to\_proceed\_subscriber}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{ready\_to\_proceed\_subscriber}{ready\_to\_proceed\_subscriber}}
+{\footnotesize\ttfamily ros\+::\+Subscriber Single\+Motor\+Controller\+::ready\+\_\+to\+\_\+proceed\+\_\+subscriber\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 170 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_a4d7f8f5f2c1aa121f7c9d7c5ccc24c1a}\label{classSingleMotorController_a4d7f8f5f2c1aa121f7c9d7c5ccc24c1a}} 
+\index{SingleMotorController@{SingleMotorController}!set\_goal\_subscriber@{set\_goal\_subscriber}}
+\index{set\_goal\_subscriber@{set\_goal\_subscriber}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{set\_goal\_subscriber}{set\_goal\_subscriber}}
+{\footnotesize\ttfamily ros\+::\+Subscriber Single\+Motor\+Controller\+::set\+\_\+goal\+\_\+subscriber\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 172 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_a28a75ccaf248f17f6cf9235c486dbdad}\label{classSingleMotorController_a28a75ccaf248f17f6cf9235c486dbdad}} 
+\index{SingleMotorController@{SingleMotorController}!motor\_confirmation\_subscriber@{motor\_confirmation\_subscriber}}
+\index{motor\_confirmation\_subscriber@{motor\_confirmation\_subscriber}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{motor\_confirmation\_subscriber}{motor\_confirmation\_subscriber}}
+{\footnotesize\ttfamily ros\+::\+Subscriber Single\+Motor\+Controller\+::motor\+\_\+confirmation\+\_\+subscriber\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 174 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_a587271dcdd8f8d2786f0d5da71d53892}\label{classSingleMotorController_a587271dcdd8f8d2786f0d5da71d53892}} 
+\index{SingleMotorController@{SingleMotorController}!keep\_logging\_subscriber@{keep\_logging\_subscriber}}
+\index{keep\_logging\_subscriber@{keep\_logging\_subscriber}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{keep\_logging\_subscriber}{keep\_logging\_subscriber}}
+{\footnotesize\ttfamily ros\+::\+Subscriber Single\+Motor\+Controller\+::keep\+\_\+logging\+\_\+subscriber\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 176 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_a95f36462f20c896988b14aad7a198db1}\label{classSingleMotorController_a95f36462f20c896988b14aad7a198db1}} 
+\index{SingleMotorController@{SingleMotorController}!joint\_command\_publisher@{joint\_command\_publisher}}
+\index{joint\_command\_publisher@{joint\_command\_publisher}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{joint\_command\_publisher}{joint\_command\_publisher}}
+{\footnotesize\ttfamily ros\+::\+Publisher Single\+Motor\+Controller\+::joint\+\_\+command\+\_\+publisher\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 178 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_abbb58056ad56d53443cd2b59725e1c01}\label{classSingleMotorController_abbb58056ad56d53443cd2b59725e1c01}} 
+\index{SingleMotorController@{SingleMotorController}!motor\_gain\_publisher@{motor\_gain\_publisher}}
+\index{motor\_gain\_publisher@{motor\_gain\_publisher}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{motor\_gain\_publisher}{motor\_gain\_publisher}}
+{\footnotesize\ttfamily ros\+::\+Publisher Single\+Motor\+Controller\+::motor\+\_\+gain\+\_\+publisher\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 180 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_abc2fa2b9ffa9192cc99c9c54e6ad86c7}\label{classSingleMotorController_abc2fa2b9ffa9192cc99c9c54e6ad86c7}} 
+\index{SingleMotorController@{SingleMotorController}!log\_motor\_state\_publisher@{log\_motor\_state\_publisher}}
+\index{log\_motor\_state\_publisher@{log\_motor\_state\_publisher}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{log\_motor\_state\_publisher}{log\_motor\_state\_publisher}}
+{\footnotesize\ttfamily ros\+::\+Publisher Single\+Motor\+Controller\+::log\+\_\+motor\+\_\+state\+\_\+publisher\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 182 of file single\+\_\+motor\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleMotorController_af0908287039a8a8c2262fac5f1c653fb}\label{classSingleMotorController_af0908287039a8a8c2262fac5f1c653fb}} 
+\index{SingleMotorController@{SingleMotorController}!log\_motor\_reference\_publisher@{log\_motor\_reference\_publisher}}
+\index{log\_motor\_reference\_publisher@{log\_motor\_reference\_publisher}!SingleMotorController@{SingleMotorController}}
+\doxysubsubsection{\texorpdfstring{log\_motor\_reference\_publisher}{log\_motor\_reference\_publisher}}
+{\footnotesize\ttfamily ros\+::\+Publisher Single\+Motor\+Controller\+::log\+\_\+motor\+\_\+reference\+\_\+publisher\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 184 of file single\+\_\+motor\+\_\+controller.\+h.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-catkin\+\_\+ws/src/control/single\+\_\+motor\+\_\+controller/include/single\+\_\+motor\+\_\+controller/single\+\_\+motor\+\_\+controller.\+h\item 
-catkin\+\_\+ws/src/control/single\+\_\+motor\+\_\+controller/src/single\+\_\+motor\+\_\+controller.\+cpp\end{DoxyCompactItemize}
+catkin\+\_\+ws/src/control/single\+\_\+motor\+\_\+controller/include/single\+\_\+motor\+\_\+controller/\mbox{\hyperlink{single__motor__controller_8h}{single\+\_\+motor\+\_\+controller.\+h}}\item 
+catkin\+\_\+ws/src/control/single\+\_\+motor\+\_\+controller/src/\mbox{\hyperlink{single__motor__controller_8cpp}{single\+\_\+motor\+\_\+controller.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,14 @@
+digraph "Graphical Class Hierarchy"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node16 [label="ModelPlugin",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node16 -> Node0 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node0 [label="gazebo::PendulumPlugin",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classgazebo_1_1PendulumPlugin.html",tooltip="A plugin to control the pendulum robot."];
+  Node16 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 [label="gazebo::SingleLegPlugin",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classgazebo_1_1SingleLegPlugin.html",tooltip="A plugin to control the single_leg robot."];
+  Node16 -> Node19 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node19 [label="gazebo::TetrapodPlugin",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classgazebo_1_1TetrapodPlugin.html",tooltip="A plugin to control the tetrapod robot."];
+}

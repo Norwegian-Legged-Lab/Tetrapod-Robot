@@ -2,6 +2,7 @@
 \label{classSingleLegController}\index{SingleLegController@{SingleLegController}}
 
 
+<<<<<<< HEAD
 Collaboration diagram for Single\+Leg\+Controller\+:
 \nopagebreak
 \begin{figure}[H]
@@ -10,27 +11,37 @@ Collaboration diagram for Single\+Leg\+Controller\+:
 \includegraphics[width=194pt]{classSingleLegController__coll__graph}
 \end{center}
 \end{figure}
+=======
+{\ttfamily \#include $<$single\+\_\+leg\+\_\+controller.\+h$>$}
+
+
+
+Collaboration diagram for Single\+Leg\+Controller\+:
+% FIG 0
+>>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
 \doxysubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classSingleLegController_a7334d4583d94d34addc8f7dc898fe5c7}\label{classSingleLegController_a7334d4583d94d34addc8f7dc898fe5c7}} 
-enum \mbox{\hyperlink{classSingleLegController_a7334d4583d94d34addc8f7dc898fe5c7}{Gait\+Phase}} \{ {\bfseries stance} = 1, 
-{\bfseries swing} = 2, 
-{\bfseries uninitialized} = 3
+enum \mbox{\hyperlink{classSingleLegController_a7334d4583d94d34addc8f7dc898fe5c7}{Gait\+Phase}} \{ \mbox{\hyperlink{classSingleLegController_a7334d4583d94d34addc8f7dc898fe5c7aed26a980c6db040499ec13e13074a197}{stance}} = 1
+, \mbox{\hyperlink{classSingleLegController_a7334d4583d94d34addc8f7dc898fe5c7a508701e67f3e4eb55116bf007370e2b7}{swing}} = 2
+, \mbox{\hyperlink{classSingleLegController_a7334d4583d94d34addc8f7dc898fe5c7a6dd6d79c6c9af95b81d7422f31c1b384}{uninitialized}} = 3
  \}
 \begin{DoxyCompactList}\small\item\em Gait phases. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classSingleLegController_a8308336b28fb929f9b9b935aa8c0e710}\label{classSingleLegController_a8308336b28fb929f9b9b935aa8c0e710}} 
 \mbox{\hyperlink{classSingleLegController_a8308336b28fb929f9b9b935aa8c0e710}{Single\+Leg\+Controller}} (double \+\_\+publish\+\_\+frequency)
 \begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a173d75b4ce31036a360ffe231e950314}\label{classSingleLegController_a173d75b4ce31036a360ffe231e950314}} 
 virtual \mbox{\hyperlink{classSingleLegController_a173d75b4ce31036a360ffe231e950314}{$\sim$\+Single\+Leg\+Controller}} ()
 \begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+<<<<<<< HEAD
 \mbox{\Hypertarget{classSingleLegController_a82cbc4d3ae647d0929994edf00bba8dc}\label{classSingleLegController_a82cbc4d3ae647d0929994edf00bba8dc}} 
 void \mbox{\hyperlink{classSingleLegController_a82cbc4d3ae647d0929994edf00bba8dc}{init\+R\+OS}} ()
 \begin{DoxyCompactList}\small\item\em This function initilizes R\+OS. \end{DoxyCompactList}\item 
+=======
+void \mbox{\hyperlink{classSingleLegController_a82cbc4d3ae647d0929994edf00bba8dc}{init\+ROS}} ()
+\begin{DoxyCompactList}\small\item\em This function initilizes ROS. \end{DoxyCompactList}\item 
+>>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
 void \mbox{\hyperlink{classSingleLegController_adfd046b154a005e93e5463c13f1ed5d6}{generalized\+Coordinates\+Callback}} (const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&\+\_\+msg)
 \begin{DoxyCompactList}\small\item\em Listens to joint angle messages from the simulated leg. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classSingleLegController_abce5e2d8277d3de86baeedddcad95a83}{generalized\+Velocities\+Callback}} (const std\+\_\+msgs\+::\+Float64\+Multi\+Array\+Const\+Ptr \&\+\_\+msg)
@@ -39,92 +50,64 @@ void \mbox{\hyperlink{classSingleLegController_a66929d863702713ac5ebaefb0eed40e8
 \begin{DoxyCompactList}\small\item\em Listens to joint force messages from the simulated leg. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classSingleLegController_ace838f549ab9d124d02ce4daa07bddf9}{ready\+To\+Proceed\+Callback}} (const std\+\_\+msgs\+::\+Bool \&\+\_\+msg)
 \begin{DoxyCompactList}\small\item\em The ready\+\_\+to\+\_\+proceed parameter is changed based on the incomming message. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_aab175156b57045ba31d2048dde75ea9d}\label{classSingleLegController_aab175156b57045ba31d2048dde75ea9d}} 
 void \mbox{\hyperlink{classSingleLegController_aab175156b57045ba31d2048dde75ea9d}{update\+Swing\+Foot\+Position\+Trajectory}} ()
 \begin{DoxyCompactList}\small\item\em Update the swing foot trajectory for the leg. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a4546fd0c6d563f693c8a7217ee400626}\label{classSingleLegController_a4546fd0c6d563f693c8a7217ee400626}} 
 void \mbox{\hyperlink{classSingleLegController_a4546fd0c6d563f693c8a7217ee400626}{update\+Stance\+Foot\+Position\+Trajectory}} ()
 \begin{DoxyCompactList}\small\item\em Update the stance foot tractory for the leg. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_ab981f262fd6959dea6432a238136e5ec}\label{classSingleLegController_ab981f262fd6959dea6432a238136e5ec}} 
 void \mbox{\hyperlink{classSingleLegController_ab981f262fd6959dea6432a238136e5ec}{update\+Joint\+References}} ()
 \begin{DoxyCompactList}\small\item\em Update The joint trajectory reference based on the spatial foot trajectory. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classSingleLegController_aaab478fc232623423c50ea3f462266da}{update\+Joint\+Torque\+Commands}} (const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+joint\+\_\+pos\+\_\+ref, const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+joint\+\_\+vel\+\_\+ref, const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+joint\+\_\+acc\+\_\+ref, const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+joint\+\_\+pos, const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+joint\+\_\+vel)
 \begin{DoxyCompactList}\small\item\em Update the joint torqes references based on the joint trajectories and joint states. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_ad5b6382db1463b29715b6a0f11dc7253}\label{classSingleLegController_ad5b6382db1463b29715b6a0f11dc7253}} 
 void \mbox{\hyperlink{classSingleLegController_ad5b6382db1463b29715b6a0f11dc7253}{update\+Joint\+Torque\+Commands}} ()
 \begin{DoxyCompactList}\small\item\em Overloaded function that uses the current joint references and joint states. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a3453715cb0120cdc1fb5f6494051f2bd}\label{classSingleLegController_a3453715cb0120cdc1fb5f6494051f2bd}} 
 void \mbox{\hyperlink{classSingleLegController_a3453715cb0120cdc1fb5f6494051f2bd}{update\+Closed\+Loop\+Torque\+Commands}} ()
 \begin{DoxyCompactList}\small\item\em A non model based torque controller. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a16531ceeb159200803bf59ac37134f71}\label{classSingleLegController_a16531ceeb159200803bf59ac37134f71}} 
 void \mbox{\hyperlink{classSingleLegController_a16531ceeb159200803bf59ac37134f71}{update\+Joint\+Velocity\+Commands}} ()
 \begin{DoxyCompactList}\small\item\em Updates the joint velocity control commands based on the joint velocity reference and the joint position error. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a8cf90255f28a7ac48ae04f0d69e012ba}\label{classSingleLegController_a8cf90255f28a7ac48ae04f0d69e012ba}} 
 void \mbox{\hyperlink{classSingleLegController_a8cf90255f28a7ac48ae04f0d69e012ba}{send\+Joint\+Position\+Commands}} ()
 \begin{DoxyCompactList}\small\item\em Sends a joint position commands to the motors. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a8ac17a2799b0e20089e03d5bc1297ad7}\label{classSingleLegController_a8ac17a2799b0e20089e03d5bc1297ad7}} 
 void \mbox{\hyperlink{classSingleLegController_a8ac17a2799b0e20089e03d5bc1297ad7}{send\+Joint\+Velocity\+Commands}} ()
 \begin{DoxyCompactList}\small\item\em Updates the joint velocity commands and send them to the motors. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_acee61da82c06e1b45d9f9d3b14847747}\label{classSingleLegController_acee61da82c06e1b45d9f9d3b14847747}} 
 void \mbox{\hyperlink{classSingleLegController_acee61da82c06e1b45d9f9d3b14847747}{send\+Joint\+Torque\+Commands}} ()
 \begin{DoxyCompactList}\small\item\em Updates the joint torque control commands based on the desired foot position. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_acbab400d2767ed683ceaf3162d52c6e8}\label{classSingleLegController_acbab400d2767ed683ceaf3162d52c6e8}} 
 void \mbox{\hyperlink{classSingleLegController_acbab400d2767ed683ceaf3162d52c6e8}{increase\+Iterator}} ()
 \begin{DoxyCompactList}\small\item\em Increment the gait cycle iterator. It stops iterating when the final iteration is reached. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_ac8866042e708855270f78a0ebbc90721}\label{classSingleLegController_ac8866042e708855270f78a0ebbc90721}} 
 bool \mbox{\hyperlink{classSingleLegController_ac8866042e708855270f78a0ebbc90721}{update\+Gait\+Phase}} ()
 \begin{DoxyCompactList}\small\item\em Increments the gait cycle iterator and updates the leg state. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a2751303302b0a0d937c3bcb768d92ad5}\label{classSingleLegController_a2751303302b0a0d937c3bcb768d92ad5}} 
 void \mbox{\hyperlink{classSingleLegController_a2751303302b0a0d937c3bcb768d92ad5}{update\+Foot\+Trajectory\+Reference}} ()
 \begin{DoxyCompactList}\small\item\em Update the foot trajectory based on the leg state. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a9082ad9153ed6666c5922caeb31613f4}\label{classSingleLegController_a9082ad9153ed6666c5922caeb31613f4}} 
 bool \mbox{\hyperlink{classSingleLegController_a9082ad9153ed6666c5922caeb31613f4}{update\+Pose\+Control\+Joint\+Trajectory\+Reference}} ()
 \begin{DoxyCompactList}\small\item\em Update the pose control trajectory reference for the single leg. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_aad9b3bce8878864bc100adea73b083ee}\label{classSingleLegController_aad9b3bce8878864bc100adea73b083ee}} 
 void \mbox{\hyperlink{classSingleLegController_aad9b3bce8878864bc100adea73b083ee}{set\+Pose\+Goal}} (Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \+\_\+foot\+\_\+pos)
 \begin{DoxyCompactList}\small\item\em Set the final and initial states for pose control trajectories. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a1ccb9a1cc0f8118faaef28229de335f1}\label{classSingleLegController_a1ccb9a1cc0f8118faaef28229de335f1}} 
 void \mbox{\hyperlink{classSingleLegController_a1ccb9a1cc0f8118faaef28229de335f1}{set\+Motor\+Gains}} ()
 \begin{DoxyCompactList}\small\item\em Tries to set the control gains in the motors. The function loops until it succeeds. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_ac94137fdfe9b78dd3c47480341b9af47}\label{classSingleLegController_ac94137fdfe9b78dd3c47480341b9af47}} 
 bool \mbox{\hyperlink{classSingleLegController_ac94137fdfe9b78dd3c47480341b9af47}{move\+Foot\+To\+Position}} (Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \+\_\+foot\+\_\+goal\+\_\+pos)
 \begin{DoxyCompactList}\small\item\em Creates a trajectory from the current foot position to the goal foot position and moves the foot to the target position along the trajectory. Function returns when the foot is standing still at the goal position. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_ac4e4f7ee4fa05991e424b242d149afa3}\label{classSingleLegController_ac4e4f7ee4fa05991e424b242d149afa3}} 
 bool \mbox{\hyperlink{classSingleLegController_ac4e4f7ee4fa05991e424b242d149afa3}{move\+Joints\+To\+Setpoints}} ()
 \begin{DoxyCompactList}\small\item\em The function tries to move the foot to the foot position given by the input parameters. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a3e2bc91ee5c0b1cde6ad9f8da033c83f}\label{classSingleLegController_a3e2bc91ee5c0b1cde6ad9f8da033c83f}} 
 bool \mbox{\hyperlink{classSingleLegController_a3e2bc91ee5c0b1cde6ad9f8da033c83f}{move\+Foot\+To\+Nominal\+Position}} ()
 \begin{DoxyCompactList}\small\item\em The function tries to move the foot to the nominal trajectory position. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_ad1dcb26e9bec916df129a00c2347b35b}\label{classSingleLegController_ad1dcb26e9bec916df129a00c2347b35b}} 
 void \mbox{\hyperlink{classSingleLegController_ad1dcb26e9bec916df129a00c2347b35b}{check\+For\+New\+Messages}} ()
-\begin{DoxyCompactList}\small\item\em Function used to check if any new R\+OS messages has been received. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Function used to check if any new ROS messages has been received. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classSingleLegController_af65cd13c9740c47df2e430a744361f85}{ready\+To\+Proceed}} ()
 \begin{DoxyCompactList}\small\item\em Check whether or not a ready to proceed message has been received. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a7bf974dae57964d754a2e4e1900903f1}\label{classSingleLegController_a7bf974dae57964d754a2e4e1900903f1}} 
 void \mbox{\hyperlink{classSingleLegController_a7bf974dae57964d754a2e4e1900903f1}{reset\+Ready\+To\+Proceed}} ()
 \begin{DoxyCompactList}\small\item\em Set the ready\+\_\+to\+\_\+proceed flag to false. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_ae2d6915c29fbcb40f6ec20dc91229f69}\label{classSingleLegController_ae2d6915c29fbcb40f6ec20dc91229f69}} 
 bool \mbox{\hyperlink{classSingleLegController_ae2d6915c29fbcb40f6ec20dc91229f69}{is\+Target\+Position\+Reached}} ()
 \begin{DoxyCompactList}\small\item\em Check if the squared error between the current joint angles and target joint angles is smaller than some threshold. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_aa7cfe14f25926f4870ea6628c3aee9f7}\label{classSingleLegController_aa7cfe14f25926f4870ea6628c3aee9f7}} 
 bool \mbox{\hyperlink{classSingleLegController_aa7cfe14f25926f4870ea6628c3aee9f7}{is\+Joint\+Velocity\+Small}} ()
 \begin{DoxyCompactList}\small\item\em Checks if the sum of squared joint velocities are smaller than a certain threshold. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a945a86bd3320c349b6fa027d27a79ff1}\label{classSingleLegController_a945a86bd3320c349b6fa027d27a79ff1}} 
 bool \mbox{\hyperlink{classSingleLegController_a945a86bd3320c349b6fa027d27a79ff1}{is\+Initial\+State\+Received}} ()
 \begin{DoxyCompactList}\small\item\em Check if the uninitalized joint state of the robot has been overridden by measurements. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a5f61e78b03357ff8fa62eb636108279a}\label{classSingleLegController_a5f61e78b03357ff8fa62eb636108279a}} 
 void \mbox{\hyperlink{classSingleLegController_a5f61e78b03357ff8fa62eb636108279a}{print\+Torque\+References}} ()
 \begin{DoxyCompactList}\small\item\em Print the joint torque references. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a370642148f6c440f43f0c830c385e4bc}\label{classSingleLegController_a370642148f6c440f43f0c830c385e4bc}} 
 void \mbox{\hyperlink{classSingleLegController_a370642148f6c440f43f0c830c385e4bc}{print\+Spatial\+Trajectories}} ()
 \begin{DoxyCompactList}\small\item\em Print the foot trajectory reference. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a1d5b3a6fcece39f3e78957fd0b8fc894}\label{classSingleLegController_a1d5b3a6fcece39f3e78957fd0b8fc894}} 
 void \mbox{\hyperlink{classSingleLegController_a1d5b3a6fcece39f3e78957fd0b8fc894}{print\+Joint\+Trajectories}} ()
 \begin{DoxyCompactList}\small\item\em Print the joint trajectory references. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a26e0d5ba16c20c675d5316b0018b05b3}\label{classSingleLegController_a26e0d5ba16c20c675d5316b0018b05b3}} 
 void \mbox{\hyperlink{classSingleLegController_a26e0d5ba16c20c675d5316b0018b05b3}{print\+All\+States}} ()
 \begin{DoxyCompactList}\small\item\em Print various information about all joints. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a05e369f7eaf16b2d0cab0a1e79984fd2}\label{classSingleLegController_a05e369f7eaf16b2d0cab0a1e79984fd2}} 
 void \mbox{\hyperlink{classSingleLegController_a05e369f7eaf16b2d0cab0a1e79984fd2}{write\+To\+Log}} ()
 \begin{DoxyCompactList}\small\item\em Write the joint references and estimated states to the log. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classSingleLegController_a7334d4583d94d34addc8f7dc898fe5c7}{Gait\+Phase}} \mbox{\hyperlink{classSingleLegController_a139948fa97ac0f095f14ba49ddff018e}{get\+Gait\+Phase}} ()
@@ -145,234 +128,248 @@ void \mbox{\hyperlink{classSingleLegController_af614ac5b64336539c3384d7f75318272
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classSingleLegController_a7f3cbefbc3a36616969da3acbaf5ca54}\label{classSingleLegController_a7f3cbefbc3a36616969da3acbaf5ca54}} 
 Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classSingleLegController_a7f3cbefbc3a36616969da3acbaf5ca54}{foot\+\_\+pos\+\_\+ref}} = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()
 \begin{DoxyCompactList}\small\item\em The foot position reference relative to the hip. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_ab8b750a16a42bf0f9e7d4fcbff77f762}\label{classSingleLegController_ab8b750a16a42bf0f9e7d4fcbff77f762}} 
 Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classSingleLegController_ab8b750a16a42bf0f9e7d4fcbff77f762}{foot\+\_\+vel\+\_\+ref}} = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()
 \begin{DoxyCompactList}\small\item\em The foot velocity reference relative to the hip. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a2cffd5d89c5fa67f45da085dd5154e8d}\label{classSingleLegController_a2cffd5d89c5fa67f45da085dd5154e8d}} 
 Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classSingleLegController_a2cffd5d89c5fa67f45da085dd5154e8d}{foot\+\_\+acc\+\_\+ref}} = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()
 \begin{DoxyCompactList}\small\item\em The foot acceleration reference relative to the hip. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a03f2a6f26d19340da3a4a7071c798999}\label{classSingleLegController_a03f2a6f26d19340da3a4a7071c798999}} 
 Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classSingleLegController_a03f2a6f26d19340da3a4a7071c798999}{foot\+\_\+pos\+\_\+goal}} = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()
 \begin{DoxyCompactList}\small\item\em When using setpoint\+Trajectory control these are the joint angles we want to reach eventually. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a386b8d073a06ddb3fc240e2fed525a5e}\label{classSingleLegController_a386b8d073a06ddb3fc240e2fed525a5e}} 
 Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classSingleLegController_a386b8d073a06ddb3fc240e2fed525a5e}{joint\+\_\+pos\+\_\+goal}} = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()
 \begin{DoxyCompactList}\small\item\em The joint angles we want to eventually reach when using pose trajectory control. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_ac5919dbede31dc9178918196b364b8e0}\label{classSingleLegController_ac5919dbede31dc9178918196b364b8e0}} 
 Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classSingleLegController_ac5919dbede31dc9178918196b364b8e0}{joint\+\_\+pos\+\_\+initial}} = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()
 \begin{DoxyCompactList}\small\item\em The joint angles at the beginning of a trajectory. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a3e52b8652d2660e57b4fe523048960af}\label{classSingleLegController_a3e52b8652d2660e57b4fe523048960af}} 
 Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classSingleLegController_a3e52b8652d2660e57b4fe523048960af}{joint\+\_\+pos}} = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()
 \begin{DoxyCompactList}\small\item\em The estimated joint angles of the motors. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a7ac471ce6bf8e598d74cf23502301108}\label{classSingleLegController_a7ac471ce6bf8e598d74cf23502301108}} 
 Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classSingleLegController_a7ac471ce6bf8e598d74cf23502301108}{joint\+\_\+vel}} = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()
 \begin{DoxyCompactList}\small\item\em The estimated joint velocities of the motors. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a379fc2391ca36f1e580e405e520dc1e3}\label{classSingleLegController_a379fc2391ca36f1e580e405e520dc1e3}} 
 Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classSingleLegController_a379fc2391ca36f1e580e405e520dc1e3}{joint\+\_\+torque}} = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()
 \begin{DoxyCompactList}\small\item\em The estimated joint torques of the motors. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a47b7a0975f0255c614b8f2ddf4728393}\label{classSingleLegController_a47b7a0975f0255c614b8f2ddf4728393}} 
 Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classSingleLegController_a47b7a0975f0255c614b8f2ddf4728393}{joint\+\_\+pos\+\_\+ref}} = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()
 \begin{DoxyCompactList}\small\item\em The reference joint angles for the motors. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a1c00bef302e56d1fd13e8062759dd2b3}\label{classSingleLegController_a1c00bef302e56d1fd13e8062759dd2b3}} 
 Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classSingleLegController_a1c00bef302e56d1fd13e8062759dd2b3}{joint\+\_\+vel\+\_\+ref}} = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()
 \begin{DoxyCompactList}\small\item\em The reference joint velocities for the motors. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a3ef1befaf2e65f02d10ab4387598e619}\label{classSingleLegController_a3ef1befaf2e65f02d10ab4387598e619}} 
 Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classSingleLegController_a3ef1befaf2e65f02d10ab4387598e619}{joint\+\_\+acc\+\_\+ref}} = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()
 \begin{DoxyCompactList}\small\item\em The reference joint accelerations for the motors. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a1592d781e7ed32db229ff163f94388e7}\label{classSingleLegController_a1592d781e7ed32db229ff163f94388e7}} 
 Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classSingleLegController_a1592d781e7ed32db229ff163f94388e7}{joint\+\_\+torque\+\_\+ref}} = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()
 \begin{DoxyCompactList}\small\item\em The reference joint torques for the motors. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_aeb528f36ae245332672e1cb793bdf21d}\label{classSingleLegController_aeb528f36ae245332672e1cb793bdf21d}} 
 Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classSingleLegController_aeb528f36ae245332672e1cb793bdf21d}{joint\+\_\+vel\+\_\+commands}} = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()
 \begin{DoxyCompactList}\small\item\em The velocity commands sent to the motors. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a39020eeb57a9dbb6db5f7cfa1ede91e5}\label{classSingleLegController_a39020eeb57a9dbb6db5f7cfa1ede91e5}} 
 Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \mbox{\hyperlink{classSingleLegController_a39020eeb57a9dbb6db5f7cfa1ede91e5}{joint\+\_\+torque\+\_\+commands}} = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()
 \begin{DoxyCompactList}\small\item\em The joint torque command being sent to the motors. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_af16632c82859f299cd1ae5545043c5f6}\label{classSingleLegController_af16632c82859f299cd1ae5545043c5f6}} 
 \mbox{\hyperlink{classSingleLegController_a7334d4583d94d34addc8f7dc898fe5c7}{Gait\+Phase}} \mbox{\hyperlink{classSingleLegController_af16632c82859f299cd1ae5545043c5f6}{gait\+\_\+phase}} = Gait\+Phase\+::stance
 \begin{DoxyCompactList}\small\item\em The current gait phase of the leg. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_ac607f0ae44ff2992ad5a469c725e83c1}\label{classSingleLegController_ac607f0ae44ff2992ad5a469c725e83c1}} 
 bool \mbox{\hyperlink{classSingleLegController_ac607f0ae44ff2992ad5a469c725e83c1}{ready\+\_\+to\+\_\+proceed}} = false
 \begin{DoxyCompactList}\small\item\em A variable used to control the flow of the program. It can be set throuh a boolean message received by the ready\+\_\+to\+\_\+proceed\+\_\+subscriber. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_abc288c445f45646cf114b7d383589fbb}\label{classSingleLegController_abc288c445f45646cf114b7d383589fbb}} 
 double \mbox{\hyperlink{classSingleLegController_abc288c445f45646cf114b7d383589fbb}{current\+\_\+iteration}} = 0
 \begin{DoxyCompactList}\small\item\em The current iteration in a gait phase. This should be incremented for every control loop. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_aa578d487193bc0bc1c4821749e995c34}\label{classSingleLegController_aa578d487193bc0bc1c4821749e995c34}} 
 double \mbox{\hyperlink{classSingleLegController_aa578d487193bc0bc1c4821749e995c34}{final\+\_\+iteration}} = 400.\+0
 \begin{DoxyCompactList}\small\item\em The final iteration of a gait phase. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a957a131e443d08ec0a352ee5fcd1cc2c}\label{classSingleLegController_a957a131e443d08ec0a352ee5fcd1cc2c}} 
 double \mbox{\hyperlink{classSingleLegController_a957a131e443d08ec0a352ee5fcd1cc2c}{current\+\_\+pose\+\_\+iteration}} = 0
 \begin{DoxyCompactList}\small\item\em The current iteration used for pose control. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a3c637cd144c5799024607d8c1ad1eef2}\label{classSingleLegController_a3c637cd144c5799024607d8c1ad1eef2}} 
 double \mbox{\hyperlink{classSingleLegController_a3c637cd144c5799024607d8c1ad1eef2}{final\+\_\+pose\+\_\+iteration}} = 100
 \begin{DoxyCompactList}\small\item\em The final iteration used for pose control. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a6a2c3158c7d9014b8e6192bf3f569540}\label{classSingleLegController_a6a2c3158c7d9014b8e6192bf3f569540}} 
 bool \mbox{\hyperlink{classSingleLegController_a6a2c3158c7d9014b8e6192bf3f569540}{gains\+\_\+set}} = false
 \begin{DoxyCompactList}\small\item\em Keeps track of whether or not the motor gains have been set. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a00829f4edd3d805747a09c7c1c1de4f2}\label{classSingleLegController_a00829f4edd3d805747a09c7c1c1de4f2}} 
-const int \mbox{\hyperlink{classSingleLegController_a00829f4edd3d805747a09c7c1c1de4f2}{N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+M\+O\+T\+O\+RS}} = 3
+const int \mbox{\hyperlink{classSingleLegController_a00829f4edd3d805747a09c7c1c1de4f2}{NUMBER\+\_\+\+OF\+\_\+\+MOTORS}} = 3
 \begin{DoxyCompactList}\small\item\em The number of motors used in single leg control tests. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_ae881be0ce2a2ec472da2a99edc6b609b}\label{classSingleLegController_ae881be0ce2a2ec472da2a99edc6b609b}} 
-const double \mbox{\hyperlink{classSingleLegController_ae881be0ce2a2ec472da2a99edc6b609b}{U\+N\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+E\+D\+\_\+\+S\+T\+A\+TE}} = 100.\+0
+const double \mbox{\hyperlink{classSingleLegController_ae881be0ce2a2ec472da2a99edc6b609b}{UNINITIALIZED\+\_\+\+STATE}} = 100.\+0
 \begin{DoxyCompactList}\small\item\em The value of an uninitialized state. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a2b09d870e9dd7f9591cbd4e193232d73}\label{classSingleLegController_a2b09d870e9dd7f9591cbd4e193232d73}} 
-const double \mbox{\hyperlink{classSingleLegController_a2b09d870e9dd7f9591cbd4e193232d73}{P\+O\+S\+I\+T\+I\+O\+N\+\_\+\+C\+O\+N\+V\+E\+R\+G\+E\+N\+C\+E\+\_\+\+C\+R\+I\+T\+E\+R\+IA}} = 0.\+01
+const double \mbox{\hyperlink{classSingleLegController_a2b09d870e9dd7f9591cbd4e193232d73}{POSITION\+\_\+\+CONVERGENCE\+\_\+\+CRITERIA}} = 0.\+01
 \begin{DoxyCompactList}\small\item\em Convergence crieria for position control test. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a4b26621a2a9f3c0edf295c208d88c22f}\label{classSingleLegController_a4b26621a2a9f3c0edf295c208d88c22f}} 
-const double \mbox{\hyperlink{classSingleLegController_a4b26621a2a9f3c0edf295c208d88c22f}{P\+O\+S\+I\+T\+I\+O\+N\+\_\+\+C\+O\+M\+M\+A\+ND}} = 1.\+0
+const double \mbox{\hyperlink{classSingleLegController_a4b26621a2a9f3c0edf295c208d88c22f}{POSITION\+\_\+\+COMMAND}} = 1.\+0
 \begin{DoxyCompactList}\small\item\em The identifier to be used for position command messages. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_ac5a6be5095664c0dd3c37a73159227d2}\label{classSingleLegController_ac5a6be5095664c0dd3c37a73159227d2}} 
-const double \mbox{\hyperlink{classSingleLegController_ac5a6be5095664c0dd3c37a73159227d2}{V\+E\+L\+O\+C\+I\+T\+Y\+\_\+\+C\+O\+M\+M\+A\+ND}} = 2.\+0
+const double \mbox{\hyperlink{classSingleLegController_ac5a6be5095664c0dd3c37a73159227d2}{VELOCITY\+\_\+\+COMMAND}} = 2.\+0
 \begin{DoxyCompactList}\small\item\em The identifier to be used for velocity command messages. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_aa1d28cd0bbf37759552004777c0ed4f4}\label{classSingleLegController_aa1d28cd0bbf37759552004777c0ed4f4}} 
-const double \mbox{\hyperlink{classSingleLegController_aa1d28cd0bbf37759552004777c0ed4f4}{T\+O\+R\+Q\+U\+E\+\_\+\+C\+O\+M\+M\+A\+ND}} = 3.\+0
+const double \mbox{\hyperlink{classSingleLegController_aa1d28cd0bbf37759552004777c0ed4f4}{TORQUE\+\_\+\+COMMAND}} = 3.\+0
 \begin{DoxyCompactList}\small\item\em The identifier to be used for torque command messages. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_abf6927a1eefee5f43622f9068b792106}\label{classSingleLegController_abf6927a1eefee5f43622f9068b792106}} 
 Eigen\+::\+Matrix$<$ double, 3, 3 $>$ \mbox{\hyperlink{classSingleLegController_abf6927a1eefee5f43622f9068b792106}{K\+\_\+p}} = Eigen\+::\+Matrix$<$double, 3, 3$>$\+::Zero()
 \begin{DoxyCompactList}\small\item\em A diagonal matrix of proportional gains for the closed loop torque controller. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a794008b874d186a8f0186206fccbc161}\label{classSingleLegController_a794008b874d186a8f0186206fccbc161}} 
 Eigen\+::\+Matrix$<$ double, 3, 3 $>$ \mbox{\hyperlink{classSingleLegController_a794008b874d186a8f0186206fccbc161}{K\+\_\+d}} = Eigen\+::\+Matrix$<$double, 3, 3$>$\+::Zero()
 \begin{DoxyCompactList}\small\item\em A diagonal matrix of derivative gains for the closed loop torque controller. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_aebf153f67a1f8b3fd234ebdad310dfea}\label{classSingleLegController_aebf153f67a1f8b3fd234ebdad310dfea}} 
 Eigen\+::\+Matrix$<$ double, 3, 3 $>$ \mbox{\hyperlink{classSingleLegController_aebf153f67a1f8b3fd234ebdad310dfea}{K\+\_\+pos\+\_\+error\+\_\+vel\+\_\+control}} = Eigen\+::\+Matrix$<$double, 3, 3$>$\+::Zero()
 \begin{DoxyCompactList}\small\item\em A digonal matrix for of gains used for the position error in the closed loop velocity controller. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a274c428f5d4bf405cd7ef2ff1b74065b}\label{classSingleLegController_a274c428f5d4bf405cd7ef2ff1b74065b}} 
 double \mbox{\hyperlink{classSingleLegController_a274c428f5d4bf405cd7ef2ff1b74065b}{publish\+\_\+frequency}} = 200.\+0
 \begin{DoxyCompactList}\small\item\em The expected publish frequency of the robot. This is used to calculate the maximum number of iterations per gait phase. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a6914cf6a8c0b7fec112cf8144cd8b0e5}\label{classSingleLegController_a6914cf6a8c0b7fec112cf8144cd8b0e5}} 
 double \mbox{\hyperlink{classSingleLegController_a6914cf6a8c0b7fec112cf8144cd8b0e5}{phase\+\_\+period}} = 0.\+5
 \begin{DoxyCompactList}\small\item\em The duration of a phase period in seconds. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a9af55628c4322ff2afe9a7d03f78d8f1}\label{classSingleLegController_a9af55628c4322ff2afe9a7d03f78d8f1}} 
 double \mbox{\hyperlink{classSingleLegController_a9af55628c4322ff2afe9a7d03f78d8f1}{hip\+\_\+height}} = 0.\+35
 \begin{DoxyCompactList}\small\item\em The standard height of the hips above the ground. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_afdba1143d0827abef078b2102e2171b4}\label{classSingleLegController_afdba1143d0827abef078b2102e2171b4}} 
 double \mbox{\hyperlink{classSingleLegController_afdba1143d0827abef078b2102e2171b4}{x\+\_\+nominal}} = 0.\+1
 \begin{DoxyCompactList}\small\item\em The nominal x position of the foot relative to the hip. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_ada2d16bff1aec9fd371e4ba09efd017f}\label{classSingleLegController_ada2d16bff1aec9fd371e4ba09efd017f}} 
 double \mbox{\hyperlink{classSingleLegController_ada2d16bff1aec9fd371e4ba09efd017f}{y\+\_\+nominal}} = 0.\+3
 \begin{DoxyCompactList}\small\item\em The nominal y position of the foot relative to the hip. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a8e0450f49760446ecc4c01a2d4e13d6b}\label{classSingleLegController_a8e0450f49760446ecc4c01a2d4e13d6b}} 
 double \mbox{\hyperlink{classSingleLegController_a8e0450f49760446ecc4c01a2d4e13d6b}{x\+\_\+step\+\_\+distance}} = 0.\+2
 \begin{DoxyCompactList}\small\item\em The step distance in the x direction. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_ab30c1262c5cc5c72f6937194f14c7bd7}\label{classSingleLegController_ab30c1262c5cc5c72f6937194f14c7bd7}} 
 double \mbox{\hyperlink{classSingleLegController_ab30c1262c5cc5c72f6937194f14c7bd7}{y\+\_\+step\+\_\+distance}} = 0.\+0
 \begin{DoxyCompactList}\small\item\em The step distance in the y direction. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a0590ff89947ace8ca0a33da844f73d83}\label{classSingleLegController_a0590ff89947ace8ca0a33da844f73d83}} 
 double \mbox{\hyperlink{classSingleLegController_a0590ff89947ace8ca0a33da844f73d83}{max\+\_\+swing\+\_\+height}} = 0.\+12
 \begin{DoxyCompactList}\small\item\em The maximum height above the ground to lift the foot. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_ae02b2a12924a88f5f2573d5d580f5c53}\label{classSingleLegController_ae02b2a12924a88f5f2573d5d580f5c53}} 
 double \mbox{\hyperlink{classSingleLegController_ae02b2a12924a88f5f2573d5d580f5c53}{pose\+\_\+period}}
 \begin{DoxyCompactList}\small\item\em The time used to change from one pose to the next. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a15491ad415316576b883c5e9f9c3c130}\label{classSingleLegController_a15491ad415316576b883c5e9f9c3c130}} 
-double \mbox{\hyperlink{classSingleLegController_a15491ad415316576b883c5e9f9c3c130}{max\+\_\+pose\+\_\+vel}} = math\+\_\+utils\+::deg\+To\+Rad(50)
+double \mbox{\hyperlink{classSingleLegController_a15491ad415316576b883c5e9f9c3c130}{max\+\_\+pose\+\_\+vel}} = \mbox{\hyperlink{namespacemath__utils_a61af5f1046b73d327241eb065f02c2ac}{math\+\_\+utils\+::deg\+To\+Rad}}(50)
 \begin{DoxyCompactList}\small\item\em Max pose control joint angle velocity \mbox{[}rad/s\mbox{]}. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_acc44e6ff0221abd5b1595b71c36cdf20}\label{classSingleLegController_acc44e6ff0221abd5b1595b71c36cdf20}} 
 double \mbox{\hyperlink{classSingleLegController_acc44e6ff0221abd5b1595b71c36cdf20}{k\+\_\+p\+\_\+pos\+\_\+hy}}
 \begin{DoxyCompactList}\small\item\em Hip yaw joint motor position control proportional gain. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_ab72a23f967203ff0ac05c66153bc3fb5}\label{classSingleLegController_ab72a23f967203ff0ac05c66153bc3fb5}} 
 double \mbox{\hyperlink{classSingleLegController_ab72a23f967203ff0ac05c66153bc3fb5}{k\+\_\+i\+\_\+pos\+\_\+hy}}
 \begin{DoxyCompactList}\small\item\em Hip yaw joint motor position control integral gain. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a960dbaefa2daced2473af80d1cd705e1}\label{classSingleLegController_a960dbaefa2daced2473af80d1cd705e1}} 
 double \mbox{\hyperlink{classSingleLegController_a960dbaefa2daced2473af80d1cd705e1}{k\+\_\+p\+\_\+pos\+\_\+hp}}
 \begin{DoxyCompactList}\small\item\em Hip pitch joint motor position control proportional gain. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_aee973906548bb210bcdc6b4b95d5cdab}\label{classSingleLegController_aee973906548bb210bcdc6b4b95d5cdab}} 
 double \mbox{\hyperlink{classSingleLegController_aee973906548bb210bcdc6b4b95d5cdab}{k\+\_\+i\+\_\+pos\+\_\+hp}}
 \begin{DoxyCompactList}\small\item\em Hip pitch joint motor position control integral gain. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a61a3f4d50c50cff00e05b2ff0248e182}\label{classSingleLegController_a61a3f4d50c50cff00e05b2ff0248e182}} 
 double \mbox{\hyperlink{classSingleLegController_a61a3f4d50c50cff00e05b2ff0248e182}{k\+\_\+p\+\_\+pos\+\_\+kp}}
 \begin{DoxyCompactList}\small\item\em Knee pitch joint motor position control proportional gain. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_ae30ee9a0e4e085bcf04833f494f24a19}\label{classSingleLegController_ae30ee9a0e4e085bcf04833f494f24a19}} 
 double \mbox{\hyperlink{classSingleLegController_ae30ee9a0e4e085bcf04833f494f24a19}{k\+\_\+i\+\_\+pos\+\_\+kp}}
 \begin{DoxyCompactList}\small\item\em Knee pitch joint motor position control integral gain. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a30dff80a8cba95654afd7ebf79e4dc86}\label{classSingleLegController_a30dff80a8cba95654afd7ebf79e4dc86}} 
 double \mbox{\hyperlink{classSingleLegController_a30dff80a8cba95654afd7ebf79e4dc86}{k\+\_\+p\+\_\+vel\+\_\+hy}}
 \begin{DoxyCompactList}\small\item\em Hip yaw joint motor velocity control proportional gain. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a3980dc3548490e897fdbb2cdb9dd8699}\label{classSingleLegController_a3980dc3548490e897fdbb2cdb9dd8699}} 
 double \mbox{\hyperlink{classSingleLegController_a3980dc3548490e897fdbb2cdb9dd8699}{k\+\_\+i\+\_\+vel\+\_\+hy}}
 \begin{DoxyCompactList}\small\item\em Hip yaw joint motor velocity control integral gain. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a4d6444d7f4c7a26f560cdea085c0c068}\label{classSingleLegController_a4d6444d7f4c7a26f560cdea085c0c068}} 
 double \mbox{\hyperlink{classSingleLegController_a4d6444d7f4c7a26f560cdea085c0c068}{k\+\_\+p\+\_\+vel\+\_\+hp}}
 \begin{DoxyCompactList}\small\item\em Hip pitch joint motor velocity control proportional gain. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a392470da81eb7116d88b5109ff63f837}\label{classSingleLegController_a392470da81eb7116d88b5109ff63f837}} 
 double \mbox{\hyperlink{classSingleLegController_a392470da81eb7116d88b5109ff63f837}{k\+\_\+i\+\_\+vel\+\_\+hp}}
 \begin{DoxyCompactList}\small\item\em Hip pitch joint motor velocity control integral gain. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a6ee0802dc3eb74fc58c38009455dcc2f}\label{classSingleLegController_a6ee0802dc3eb74fc58c38009455dcc2f}} 
 double \mbox{\hyperlink{classSingleLegController_a6ee0802dc3eb74fc58c38009455dcc2f}{k\+\_\+p\+\_\+vel\+\_\+kp}}
 \begin{DoxyCompactList}\small\item\em Knee pitch joint motor velocity control proportional gain. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_afe10da8eb153ab95e54f46ffb07c6f00}\label{classSingleLegController_afe10da8eb153ab95e54f46ffb07c6f00}} 
 double \mbox{\hyperlink{classSingleLegController_afe10da8eb153ab95e54f46ffb07c6f00}{k\+\_\+i\+\_\+vel\+\_\+kp}}
 \begin{DoxyCompactList}\small\item\em Knee pitch joint motor velocity control integral gain. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a22aa1970a3d9a7d05a38e4e686b50e50}\label{classSingleLegController_a22aa1970a3d9a7d05a38e4e686b50e50}} 
 double \mbox{\hyperlink{classSingleLegController_a22aa1970a3d9a7d05a38e4e686b50e50}{k\+\_\+p\+\_\+torque\+\_\+hy}}
 \begin{DoxyCompactList}\small\item\em Hip yaw motor torque control proportional gain. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_ab858deb6bd3b6de90a75f1732e3dbfc8}\label{classSingleLegController_ab858deb6bd3b6de90a75f1732e3dbfc8}} 
 double \mbox{\hyperlink{classSingleLegController_ab858deb6bd3b6de90a75f1732e3dbfc8}{k\+\_\+i\+\_\+torque\+\_\+hy}}
 \begin{DoxyCompactList}\small\item\em Hip yaw motor torque control integral gain. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a1d17c6c67b0695bb88591819b2d5b196}\label{classSingleLegController_a1d17c6c67b0695bb88591819b2d5b196}} 
 double \mbox{\hyperlink{classSingleLegController_a1d17c6c67b0695bb88591819b2d5b196}{k\+\_\+p\+\_\+torque\+\_\+hp}}
 \begin{DoxyCompactList}\small\item\em Hip pitch motor torque control proportional gain. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a10ebb4019d198c4090f8b82681a26075}\label{classSingleLegController_a10ebb4019d198c4090f8b82681a26075}} 
 double \mbox{\hyperlink{classSingleLegController_a10ebb4019d198c4090f8b82681a26075}{k\+\_\+i\+\_\+torque\+\_\+hp}}
 \begin{DoxyCompactList}\small\item\em Hip pitch motor torque control integral gain. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a0423a7bdef2fcff2ba2f6560c81f5ad6}\label{classSingleLegController_a0423a7bdef2fcff2ba2f6560c81f5ad6}} 
 double \mbox{\hyperlink{classSingleLegController_a0423a7bdef2fcff2ba2f6560c81f5ad6}{k\+\_\+p\+\_\+torque\+\_\+kp}}
 \begin{DoxyCompactList}\small\item\em Knee pitch motor torque control proportional gain. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a3bfd5bbc49d7c0ab117c8bd4049b48bd}\label{classSingleLegController_a3bfd5bbc49d7c0ab117c8bd4049b48bd}} 
 double \mbox{\hyperlink{classSingleLegController_a3bfd5bbc49d7c0ab117c8bd4049b48bd}{k\+\_\+i\+\_\+torque\+\_\+kp}}
 \begin{DoxyCompactList}\small\item\em Knee pitch motor torque control integral gain. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a0b907e0542a167b63f1878ec4550ac9f}\label{classSingleLegController_a0b907e0542a167b63f1878ec4550ac9f}} 
 std\+::unique\+\_\+ptr$<$ ros\+::\+Node\+Handle $>$ \mbox{\hyperlink{classSingleLegController_a0b907e0542a167b63f1878ec4550ac9f}{node\+\_\+handle}}
-\begin{DoxyCompactList}\small\item\em R\+OS node handle. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a5f764e7ce87ac6d8d8dcecdfb30f9c7c}\label{classSingleLegController_a5f764e7ce87ac6d8d8dcecdfb30f9c7c}} 
+\begin{DoxyCompactList}\small\item\em ROS node handle. \end{DoxyCompactList}\item 
 ros\+::\+Subscriber \mbox{\hyperlink{classSingleLegController_a5f764e7ce87ac6d8d8dcecdfb30f9c7c}{generalized\+\_\+coordinates\+\_\+subscriber}}
 \begin{DoxyCompactList}\small\item\em Subscribes to generalized coordinates messages. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a525563e99e73cab543a0899388f9b525}\label{classSingleLegController_a525563e99e73cab543a0899388f9b525}} 
 ros\+::\+Subscriber \mbox{\hyperlink{classSingleLegController_a525563e99e73cab543a0899388f9b525}{generalized\+\_\+velocities\+\_\+subscriber}}
 \begin{DoxyCompactList}\small\item\em Subscribes to generalized velocities messages. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a0ac51dd91cece854c5554e9b279af7c7}\label{classSingleLegController_a0ac51dd91cece854c5554e9b279af7c7}} 
 ros\+::\+Subscriber \mbox{\hyperlink{classSingleLegController_a0ac51dd91cece854c5554e9b279af7c7}{generalized\+\_\+forces\+\_\+subscriber}}
 \begin{DoxyCompactList}\small\item\em Subscribes to generalized forces messages. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_abb3cd5f4302dd625410e1834d260a0de}\label{classSingleLegController_abb3cd5f4302dd625410e1834d260a0de}} 
 ros\+::\+Subscriber \mbox{\hyperlink{classSingleLegController_abb3cd5f4302dd625410e1834d260a0de}{joint\+\_\+state\+\_\+subscriber}}
 \begin{DoxyCompactList}\small\item\em Subscribes to joint state messages from the motors. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a42a84c23c09832361880e97a01807439}\label{classSingleLegController_a42a84c23c09832361880e97a01807439}} 
 ros\+::\+Subscriber \mbox{\hyperlink{classSingleLegController_a42a84c23c09832361880e97a01807439}{ready\+\_\+to\+\_\+proceed\+\_\+subscriber}}
 \begin{DoxyCompactList}\small\item\em Subscribes to messages deciding whether or not we should proceed in the script. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a71acfb659750dafb0f20953ed42446ab}\label{classSingleLegController_a71acfb659750dafb0f20953ed42446ab}} 
 ros\+::\+Subscriber \mbox{\hyperlink{classSingleLegController_a71acfb659750dafb0f20953ed42446ab}{joint\+\_\+setpoint\+\_\+subscriber}}
 \begin{DoxyCompactList}\small\item\em Subscribes to joint setpoint messages. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a0525553c4d0a90ff67be01590829b2ff}\label{classSingleLegController_a0525553c4d0a90ff67be01590829b2ff}} 
 ros\+::\+Subscriber \mbox{\hyperlink{classSingleLegController_a0525553c4d0a90ff67be01590829b2ff}{motor\+\_\+confirmation\+\_\+subscriber}}
 \begin{DoxyCompactList}\small\item\em Subscribes to confirmation messages from the motor. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a5875a17d12aeab4ce0c5728d3481b838}\label{classSingleLegController_a5875a17d12aeab4ce0c5728d3481b838}} 
 ros\+::\+Publisher \mbox{\hyperlink{classSingleLegController_a5875a17d12aeab4ce0c5728d3481b838}{joint\+\_\+state\+\_\+publisher}}
 \begin{DoxyCompactList}\small\item\em Publishes velocity commands to the teensy to control the motors. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_ac1cccef3695042a38de31d21d6ca2bf8}\label{classSingleLegController_ac1cccef3695042a38de31d21d6ca2bf8}} 
 ros\+::\+Publisher \mbox{\hyperlink{classSingleLegController_ac1cccef3695042a38de31d21d6ca2bf8}{motor\+\_\+gain\+\_\+publisher}}
 \begin{DoxyCompactList}\small\item\em Publishes desired motor gains to the motors. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a23ef6a1389a4803159704c89d1bb104a}\label{classSingleLegController_a23ef6a1389a4803159704c89d1bb104a}} 
 sensor\+\_\+msgs\+::\+Joint\+State \mbox{\hyperlink{classSingleLegController_a23ef6a1389a4803159704c89d1bb104a}{motor\+\_\+command\+\_\+msg}}
 \begin{DoxyCompactList}\small\item\em The joint state message that is sent to the Teensy. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a46f0de7a43c6910349226245d4dc8128}\label{classSingleLegController_a46f0de7a43c6910349226245d4dc8128}} 
 ros\+::\+Publisher \mbox{\hyperlink{classSingleLegController_a46f0de7a43c6910349226245d4dc8128}{log\+\_\+joint\+\_\+states\+\_\+publisher}}
 \begin{DoxyCompactList}\small\item\em Publishes joint positions for logging. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_ab33009754d047652cbfbdbd117408233}\label{classSingleLegController_ab33009754d047652cbfbdbd117408233}} 
 sensor\+\_\+msgs\+::\+Joint\+State \mbox{\hyperlink{classSingleLegController_ab33009754d047652cbfbdbd117408233}{joint\+\_\+state\+\_\+log\+\_\+msg}}
 \begin{DoxyCompactList}\small\item\em The joint state message that is used to log states. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a22c5d4e611cfcb4adcbaef1d94d19d4d}\label{classSingleLegController_a22c5d4e611cfcb4adcbaef1d94d19d4d}} 
 ros\+::\+Publisher \mbox{\hyperlink{classSingleLegController_a22c5d4e611cfcb4adcbaef1d94d19d4d}{log\+\_\+joint\+\_\+references\+\_\+publisher}}
 \begin{DoxyCompactList}\small\item\em Publishes joint position references for logging. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_ac710ba47a2b3578d5ac7b8c1b87fa4c9}\label{classSingleLegController_ac710ba47a2b3578d5ac7b8c1b87fa4c9}} 
 sensor\+\_\+msgs\+::\+Joint\+State \mbox{\hyperlink{classSingleLegController_ac710ba47a2b3578d5ac7b8c1b87fa4c9}{joint\+\_\+reference\+\_\+log\+\_\+msg}}
 \begin{DoxyCompactList}\small\item\em The joint state message that is used to log references. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSingleLegController_a5bd286879d534f71b1938468472669f3}\label{classSingleLegController_a5bd286879d534f71b1938468472669f3}} 
 \mbox{\hyperlink{classKinematics}{Kinematics}} \mbox{\hyperlink{classSingleLegController_a5bd286879d534f71b1938468472669f3}{kinematics}}
 \begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classKinematics}{Kinematics}} object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+<<<<<<< HEAD
 
 
 \doxysubsection{Member Function Documentation}
+=======
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 27 of file single\+\_\+leg\+\_\+controller.\+h.
+
+
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{classSingleLegController_a7334d4583d94d34addc8f7dc898fe5c7}\label{classSingleLegController_a7334d4583d94d34addc8f7dc898fe5c7}} 
+\index{SingleLegController@{SingleLegController}!GaitPhase@{GaitPhase}}
+\index{GaitPhase@{GaitPhase}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{GaitPhase}{GaitPhase}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classSingleLegController_a7334d4583d94d34addc8f7dc898fe5c7}{Single\+Leg\+Controller\+::\+Gait\+Phase}}}
+
+
+
+Gait phases. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{stance@{stance}!SingleLegController@{SingleLegController}}\index{SingleLegController@{SingleLegController}!stance@{stance}}}\mbox{\Hypertarget{classSingleLegController_a7334d4583d94d34addc8f7dc898fe5c7aed26a980c6db040499ec13e13074a197}\label{classSingleLegController_a7334d4583d94d34addc8f7dc898fe5c7aed26a980c6db040499ec13e13074a197}} 
+stance&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{swing@{swing}!SingleLegController@{SingleLegController}}\index{SingleLegController@{SingleLegController}!swing@{swing}}}\mbox{\Hypertarget{classSingleLegController_a7334d4583d94d34addc8f7dc898fe5c7a508701e67f3e4eb55116bf007370e2b7}\label{classSingleLegController_a7334d4583d94d34addc8f7dc898fe5c7a508701e67f3e4eb55116bf007370e2b7}} 
+swing&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{uninitialized@{uninitialized}!SingleLegController@{SingleLegController}}\index{SingleLegController@{SingleLegController}!uninitialized@{uninitialized}}}\mbox{\Hypertarget{classSingleLegController_a7334d4583d94d34addc8f7dc898fe5c7a6dd6d79c6c9af95b81d7422f31c1b384}\label{classSingleLegController_a7334d4583d94d34addc8f7dc898fe5c7a6dd6d79c6c9af95b81d7422f31c1b384}} 
+uninitialized&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 30 of file single\+\_\+leg\+\_\+controller.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classSingleLegController_a8308336b28fb929f9b9b935aa8c0e710}\label{classSingleLegController_a8308336b28fb929f9b9b935aa8c0e710}} 
+\index{SingleLegController@{SingleLegController}!SingleLegController@{SingleLegController}}
+\index{SingleLegController@{SingleLegController}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{SingleLegController()}{SingleLegController()}}
+{\footnotesize\ttfamily Single\+Leg\+Controller\+::\+Single\+Leg\+Controller (\begin{DoxyParamCaption}\item[{double}]{\+\_\+publish\+\_\+frequency }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+
+Definition at line 3 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleLegController_a173d75b4ce31036a360ffe231e950314}\label{classSingleLegController_a173d75b4ce31036a360ffe231e950314}} 
+\index{SingleLegController@{SingleLegController}!````~SingleLegController@{$\sim$SingleLegController}}
+\index{````~SingleLegController@{$\sim$SingleLegController}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{$\sim$SingleLegController()}{~SingleLegController()}}
+{\footnotesize\ttfamily virtual Single\+Leg\+Controller\+::$\sim$\+Single\+Leg\+Controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Destructor. 
+
+
+
+Definition at line 38 of file single\+\_\+leg\+\_\+controller.\+h.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSingleLegController_a82cbc4d3ae647d0929994edf00bba8dc}\label{classSingleLegController_a82cbc4d3ae647d0929994edf00bba8dc}} 
+\index{SingleLegController@{SingleLegController}!initROS@{initROS}}
+\index{initROS@{initROS}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{initROS()}{initROS()}}
+{\footnotesize\ttfamily void Single\+Leg\+Controller\+::init\+ROS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This function initilizes ROS. 
+
+
+
+Definition at line 100 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
+>>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
 \mbox{\Hypertarget{classSingleLegController_adfd046b154a005e93e5463c13f1ed5d6}\label{classSingleLegController_adfd046b154a005e93e5463c13f1ed5d6}} 
 \index{SingleLegController@{SingleLegController}!generalizedCoordinatesCallback@{generalizedCoordinatesCallback}}
 \index{generalizedCoordinatesCallback@{generalizedCoordinatesCallback}!SingleLegController@{SingleLegController}}
@@ -389,6 +386,10 @@ Listens to joint angle messages from the simulated leg.
  \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 194 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
 \mbox{\Hypertarget{classSingleLegController_abce5e2d8277d3de86baeedddcad95a83}\label{classSingleLegController_abce5e2d8277d3de86baeedddcad95a83}} 
 \index{SingleLegController@{SingleLegController}!generalizedVelocitiesCallback@{generalizedVelocitiesCallback}}
 \index{generalizedVelocitiesCallback@{generalizedVelocitiesCallback}!SingleLegController@{SingleLegController}}
@@ -404,6 +405,10 @@ Listens to joint velocity messages from the simulated leg.
 \mbox{\texttt{ in}}  & {\em \+\_\+msg} & A float array containing the simulated single leg joint velocities \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 204 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
 \mbox{\Hypertarget{classSingleLegController_a66929d863702713ac5ebaefb0eed40e8}\label{classSingleLegController_a66929d863702713ac5ebaefb0eed40e8}} 
 \index{SingleLegController@{SingleLegController}!generalizedForcesCallback@{generalizedForcesCallback}}
 \index{generalizedForcesCallback@{generalizedForcesCallback}!SingleLegController@{SingleLegController}}
@@ -419,6 +424,10 @@ Listens to joint force messages from the simulated leg.
 \mbox{\texttt{ in}}  & {\em \+\_\+msg} & A float array containing the simulated single leg joint forces \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 214 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
 \mbox{\Hypertarget{classSingleLegController_a7b4ea1c8e62e720596019700f364fa4c}\label{classSingleLegController_a7b4ea1c8e62e720596019700f364fa4c}} 
 \index{SingleLegController@{SingleLegController}!jointStateCallback@{jointStateCallback}}
 \index{jointStateCallback@{jointStateCallback}!SingleLegController@{SingleLegController}}
@@ -434,6 +443,10 @@ Listens to joint state messages from the motors The messages contains joint angl
 \mbox{\texttt{ in}}  & {\em \+\_\+msg} & A float array containing the motor joint states \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 224 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
 \mbox{\Hypertarget{classSingleLegController_ace838f549ab9d124d02ce4daa07bddf9}\label{classSingleLegController_ace838f549ab9d124d02ce4daa07bddf9}} 
 \index{SingleLegController@{SingleLegController}!readyToProceedCallback@{readyToProceedCallback}}
 \index{readyToProceedCallback@{readyToProceedCallback}!SingleLegController@{SingleLegController}}
@@ -449,6 +462,10 @@ The ready\+\_\+to\+\_\+proceed parameter is changed based on the incomming messa
 \mbox{\texttt{ in}}  & {\em \+\_\+msg} & A bool message indicating whether or not a script can proceed \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 239 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
 \mbox{\Hypertarget{classSingleLegController_a1416bcc7d48bd32ac977ecbc182dfade}\label{classSingleLegController_a1416bcc7d48bd32ac977ecbc182dfade}} 
 \index{SingleLegController@{SingleLegController}!jointSetpointCallback@{jointSetpointCallback}}
 \index{jointSetpointCallback@{jointSetpointCallback}!SingleLegController@{SingleLegController}}
@@ -464,6 +481,10 @@ Listens to joint setpoints messages.
 \mbox{\texttt{ in}}  & {\em \+\_\+msg} & A float array containing the desired hy, hp, and kp angles \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 245 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
 \mbox{\Hypertarget{classSingleLegController_aa24664d461ae96ac654bf22af9151692}\label{classSingleLegController_aa24664d461ae96ac654bf22af9151692}} 
 \index{SingleLegController@{SingleLegController}!motorConfirmationCallback@{motorConfirmationCallback}}
 \index{motorConfirmationCallback@{motorConfirmationCallback}!SingleLegController@{SingleLegController}}
@@ -479,6 +500,10 @@ Listens to a confirmation message from the motors which is used to indicate if t
 \mbox{\texttt{ in}}  & {\em \+\_\+msg} & A bool indicating whether or not the gains have been set successfully \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 254 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
 \mbox{\Hypertarget{classSingleLegController_a9c76cba3a3c445291560d9774f9c24a7}\label{classSingleLegController_a9c76cba3a3c445291560d9774f9c24a7}} 
 \index{SingleLegController@{SingleLegController}!calculateSwingLegHeightTrajectory@{calculateSwingLegHeightTrajectory}}
 \index{calculateSwingLegHeightTrajectory@{calculateSwingLegHeightTrajectory}!SingleLegController@{SingleLegController}}
@@ -503,6 +528,10 @@ This function calculates the swing leg height trajectory based on various gait c
 \begin{DoxyReturn}{Returns}
 A vector containing the desired foot height \mbox{[}m\mbox{]}, foot vertical velocity \mbox{[}m/s\mbox{]} and foot vertical acceleration \mbox{[}m/s$^\wedge$2\mbox{]} in the hip frame 
 \end{DoxyReturn}
+
+
+Definition at line 263 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
 \mbox{\Hypertarget{classSingleLegController_af614ac5b64336539c3384d7f75318272}\label{classSingleLegController_af614ac5b64336539c3384d7f75318272}} 
 \index{SingleLegController@{SingleLegController}!calculateSingleAxisTrajectory@{calculateSingleAxisTrajectory}}
 \index{calculateSingleAxisTrajectory@{calculateSingleAxisTrajectory}!SingleLegController@{SingleLegController}}
@@ -528,10 +557,56 @@ This functions calculates a smooth trajectory along a single linear axis. Please
 \mbox{\texttt{ out}}  & {\em \+\_\+x\+\_\+dd} & The desired acceleration along the axis \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 289 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleLegController_aab175156b57045ba31d2048dde75ea9d}\label{classSingleLegController_aab175156b57045ba31d2048dde75ea9d}} 
+\index{SingleLegController@{SingleLegController}!updateSwingFootPositionTrajectory@{updateSwingFootPositionTrajectory}}
+\index{updateSwingFootPositionTrajectory@{updateSwingFootPositionTrajectory}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{updateSwingFootPositionTrajectory()}{updateSwingFootPositionTrajectory()}}
+{\footnotesize\ttfamily void Single\+Leg\+Controller\+::update\+Swing\+Foot\+Position\+Trajectory (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Update the swing foot trajectory for the leg. 
+
+
+
+Definition at line 315 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleLegController_a4546fd0c6d563f693c8a7217ee400626}\label{classSingleLegController_a4546fd0c6d563f693c8a7217ee400626}} 
+\index{SingleLegController@{SingleLegController}!updateStanceFootPositionTrajectory@{updateStanceFootPositionTrajectory}}
+\index{updateStanceFootPositionTrajectory@{updateStanceFootPositionTrajectory}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{updateStanceFootPositionTrajectory()}{updateStanceFootPositionTrajectory()}}
+{\footnotesize\ttfamily void Single\+Leg\+Controller\+::update\+Stance\+Foot\+Position\+Trajectory (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Update the stance foot tractory for the leg. 
+
+
+
+Definition at line 367 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleLegController_ab981f262fd6959dea6432a238136e5ec}\label{classSingleLegController_ab981f262fd6959dea6432a238136e5ec}} 
+\index{SingleLegController@{SingleLegController}!updateJointReferences@{updateJointReferences}}
+\index{updateJointReferences@{updateJointReferences}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{updateJointReferences()}{updateJointReferences()}}
+{\footnotesize\ttfamily void Single\+Leg\+Controller\+::update\+Joint\+References (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Update The joint trajectory reference based on the spatial foot trajectory. 
+
+
+
+Definition at line 525 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
 \mbox{\Hypertarget{classSingleLegController_aaab478fc232623423c50ea3f462266da}\label{classSingleLegController_aaab478fc232623423c50ea3f462266da}} 
 \index{SingleLegController@{SingleLegController}!updateJointTorqueCommands@{updateJointTorqueCommands}}
 \index{updateJointTorqueCommands@{updateJointTorqueCommands}!SingleLegController@{SingleLegController}}
-\doxysubsubsection{\texorpdfstring{updateJointTorqueCommands()}{updateJointTorqueCommands()}}
+\doxysubsubsection{\texorpdfstring{updateJointTorqueCommands()}{updateJointTorqueCommands()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily void Single\+Leg\+Controller\+::update\+Joint\+Torque\+Commands (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&}]{\+\_\+joint\+\_\+pos\+\_\+ref,  }\item[{const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&}]{\+\_\+joint\+\_\+vel\+\_\+ref,  }\item[{const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&}]{\+\_\+joint\+\_\+acc\+\_\+ref,  }\item[{const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&}]{\+\_\+joint\+\_\+pos,  }\item[{const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&}]{\+\_\+joint\+\_\+vel }\end{DoxyParamCaption})}
 
 
@@ -551,6 +626,239 @@ Update the joint torqes references based on the joint trajectories and joint sta
 \mbox{\texttt{ in}}  & {\em \+\_\+joint\+\_\+vel} & The estimated joint velocities \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 559 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleLegController_ad5b6382db1463b29715b6a0f11dc7253}\label{classSingleLegController_ad5b6382db1463b29715b6a0f11dc7253}} 
+\index{SingleLegController@{SingleLegController}!updateJointTorqueCommands@{updateJointTorqueCommands}}
+\index{updateJointTorqueCommands@{updateJointTorqueCommands}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{updateJointTorqueCommands()}{updateJointTorqueCommands()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Single\+Leg\+Controller\+::update\+Joint\+Torque\+Commands (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Overloaded function that uses the current joint references and joint states. 
+
+
+<<<<<<< HEAD
+\begin{DoxyReturn}{Returns}
+The phase state of the single leg 
+\end{DoxyReturn}
+=======
+
+Definition at line 553 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleLegController_a3453715cb0120cdc1fb5f6494051f2bd}\label{classSingleLegController_a3453715cb0120cdc1fb5f6494051f2bd}} 
+\index{SingleLegController@{SingleLegController}!updateClosedLoopTorqueCommands@{updateClosedLoopTorqueCommands}}
+\index{updateClosedLoopTorqueCommands@{updateClosedLoopTorqueCommands}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{updateClosedLoopTorqueCommands()}{updateClosedLoopTorqueCommands()}}
+{\footnotesize\ttfamily void Single\+Leg\+Controller\+::update\+Closed\+Loop\+Torque\+Commands (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+A non model based torque controller. 
+
+
+
+Definition at line 596 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleLegController_a16531ceeb159200803bf59ac37134f71}\label{classSingleLegController_a16531ceeb159200803bf59ac37134f71}} 
+\index{SingleLegController@{SingleLegController}!updateJointVelocityCommands@{updateJointVelocityCommands}}
+\index{updateJointVelocityCommands@{updateJointVelocityCommands}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{updateJointVelocityCommands()}{updateJointVelocityCommands()}}
+{\footnotesize\ttfamily void Single\+Leg\+Controller\+::update\+Joint\+Velocity\+Commands (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Updates the joint velocity control commands based on the joint velocity reference and the joint position error. 
+
+
+
+Definition at line 548 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleLegController_a8cf90255f28a7ac48ae04f0d69e012ba}\label{classSingleLegController_a8cf90255f28a7ac48ae04f0d69e012ba}} 
+\index{SingleLegController@{SingleLegController}!sendJointPositionCommands@{sendJointPositionCommands}}
+\index{sendJointPositionCommands@{sendJointPositionCommands}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{sendJointPositionCommands()}{sendJointPositionCommands()}}
+{\footnotesize\ttfamily void Single\+Leg\+Controller\+::send\+Joint\+Position\+Commands (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Sends a joint position commands to the motors. 
+
+
+
+Definition at line 601 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleLegController_a8ac17a2799b0e20089e03d5bc1297ad7}\label{classSingleLegController_a8ac17a2799b0e20089e03d5bc1297ad7}} 
+\index{SingleLegController@{SingleLegController}!sendJointVelocityCommands@{sendJointVelocityCommands}}
+\index{sendJointVelocityCommands@{sendJointVelocityCommands}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{sendJointVelocityCommands()}{sendJointVelocityCommands()}}
+{\footnotesize\ttfamily void Single\+Leg\+Controller\+::send\+Joint\+Velocity\+Commands (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Updates the joint velocity commands and send them to the motors. 
+
+
+
+Definition at line 634 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleLegController_acee61da82c06e1b45d9f9d3b14847747}\label{classSingleLegController_acee61da82c06e1b45d9f9d3b14847747}} 
+\index{SingleLegController@{SingleLegController}!sendJointTorqueCommands@{sendJointTorqueCommands}}
+\index{sendJointTorqueCommands@{sendJointTorqueCommands}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{sendJointTorqueCommands()}{sendJointTorqueCommands()}}
+{\footnotesize\ttfamily void Single\+Leg\+Controller\+::send\+Joint\+Torque\+Commands (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Updates the joint torque control commands based on the desired foot position. 
+
+
+
+Definition at line 658 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleLegController_acbab400d2767ed683ceaf3162d52c6e8}\label{classSingleLegController_acbab400d2767ed683ceaf3162d52c6e8}} 
+\index{SingleLegController@{SingleLegController}!increaseIterator@{increaseIterator}}
+\index{increaseIterator@{increaseIterator}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{increaseIterator()}{increaseIterator()}}
+{\footnotesize\ttfamily void Single\+Leg\+Controller\+::increase\+Iterator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Increment the gait cycle iterator. It stops iterating when the final iteration is reached. 
+
+
+
+Definition at line 763 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleLegController_ac8866042e708855270f78a0ebbc90721}\label{classSingleLegController_ac8866042e708855270f78a0ebbc90721}} 
+\index{SingleLegController@{SingleLegController}!updateGaitPhase@{updateGaitPhase}}
+\index{updateGaitPhase@{updateGaitPhase}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{updateGaitPhase()}{updateGaitPhase()}}
+{\footnotesize\ttfamily bool Single\+Leg\+Controller\+::update\+Gait\+Phase (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Increments the gait cycle iterator and updates the leg state. 
+
+
+
+Definition at line 775 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleLegController_a2751303302b0a0d937c3bcb768d92ad5}\label{classSingleLegController_a2751303302b0a0d937c3bcb768d92ad5}} 
+\index{SingleLegController@{SingleLegController}!updateFootTrajectoryReference@{updateFootTrajectoryReference}}
+\index{updateFootTrajectoryReference@{updateFootTrajectoryReference}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{updateFootTrajectoryReference()}{updateFootTrajectoryReference()}}
+{\footnotesize\ttfamily void Single\+Leg\+Controller\+::update\+Foot\+Trajectory\+Reference (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Update the foot trajectory based on the leg state. 
+
+
+
+Definition at line 804 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleLegController_a9082ad9153ed6666c5922caeb31613f4}\label{classSingleLegController_a9082ad9153ed6666c5922caeb31613f4}} 
+\index{SingleLegController@{SingleLegController}!updatePoseControlJointTrajectoryReference@{updatePoseControlJointTrajectoryReference}}
+\index{updatePoseControlJointTrajectoryReference@{updatePoseControlJointTrajectoryReference}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{updatePoseControlJointTrajectoryReference()}{updatePoseControlJointTrajectoryReference()}}
+{\footnotesize\ttfamily bool Single\+Leg\+Controller\+::update\+Pose\+Control\+Joint\+Trajectory\+Reference (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Update the pose control trajectory reference for the single leg. 
+
+
+
+Definition at line 466 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleLegController_aad9b3bce8878864bc100adea73b083ee}\label{classSingleLegController_aad9b3bce8878864bc100adea73b083ee}} 
+\index{SingleLegController@{SingleLegController}!setPoseGoal@{setPoseGoal}}
+\index{setPoseGoal@{setPoseGoal}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{setPoseGoal()}{setPoseGoal()}}
+{\footnotesize\ttfamily void Single\+Leg\+Controller\+::set\+Pose\+Goal (\begin{DoxyParamCaption}\item[{Eigen\+::\+Matrix$<$ double, 3, 1 $>$}]{\+\_\+foot\+\_\+pos }\end{DoxyParamCaption})}
+
+
+
+Set the final and initial states for pose control trajectories. 
+
+
+
+Definition at line 428 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleLegController_a1ccb9a1cc0f8118faaef28229de335f1}\label{classSingleLegController_a1ccb9a1cc0f8118faaef28229de335f1}} 
+\index{SingleLegController@{SingleLegController}!setMotorGains@{setMotorGains}}
+\index{setMotorGains@{setMotorGains}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{setMotorGains()}{setMotorGains()}}
+{\footnotesize\ttfamily void Single\+Leg\+Controller\+::set\+Motor\+Gains (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Tries to set the control gains in the motors. The function loops until it succeeds. 
+
+
+
+Definition at line 924 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleLegController_ac94137fdfe9b78dd3c47480341b9af47}\label{classSingleLegController_ac94137fdfe9b78dd3c47480341b9af47}} 
+\index{SingleLegController@{SingleLegController}!moveFootToPosition@{moveFootToPosition}}
+\index{moveFootToPosition@{moveFootToPosition}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{moveFootToPosition()}{moveFootToPosition()}}
+{\footnotesize\ttfamily bool Single\+Leg\+Controller\+::move\+Foot\+To\+Position (\begin{DoxyParamCaption}\item[{Eigen\+::\+Matrix$<$ double, 3, 1 $>$}]{\+\_\+foot\+\_\+goal\+\_\+pos }\end{DoxyParamCaption})}
+
+
+
+Creates a trajectory from the current foot position to the goal foot position and moves the foot to the target position along the trajectory. Function returns when the foot is standing still at the goal position. 
+
+
+
+Definition at line 682 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleLegController_ac4e4f7ee4fa05991e424b242d149afa3}\label{classSingleLegController_ac4e4f7ee4fa05991e424b242d149afa3}} 
+\index{SingleLegController@{SingleLegController}!moveJointsToSetpoints@{moveJointsToSetpoints}}
+\index{moveJointsToSetpoints@{moveJointsToSetpoints}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{moveJointsToSetpoints()}{moveJointsToSetpoints()}}
+{\footnotesize\ttfamily bool Single\+Leg\+Controller\+::move\+Joints\+To\+Setpoints (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The function tries to move the foot to the foot position given by the input parameters. 
+
+
+
+Definition at line 751 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleLegController_a3e2bc91ee5c0b1cde6ad9f8da033c83f}\label{classSingleLegController_a3e2bc91ee5c0b1cde6ad9f8da033c83f}} 
+\index{SingleLegController@{SingleLegController}!moveFootToNominalPosition@{moveFootToNominalPosition}}
+\index{moveFootToNominalPosition@{moveFootToNominalPosition}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{moveFootToNominalPosition()}{moveFootToNominalPosition()}}
+{\footnotesize\ttfamily bool Single\+Leg\+Controller\+::move\+Foot\+To\+Nominal\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The function tries to move the foot to the nominal trajectory position. 
+
+
+
+Definition at line 756 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleLegController_ad1dcb26e9bec916df129a00c2347b35b}\label{classSingleLegController_ad1dcb26e9bec916df129a00c2347b35b}} 
+\index{SingleLegController@{SingleLegController}!checkForNewMessages@{checkForNewMessages}}
+\index{checkForNewMessages@{checkForNewMessages}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{checkForNewMessages()}{checkForNewMessages()}}
+{\footnotesize\ttfamily void Single\+Leg\+Controller\+::check\+For\+New\+Messages (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function used to check if any new ROS messages has been received. 
+
+
+
+Definition at line 826 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
 \mbox{\Hypertarget{classSingleLegController_af65cd13c9740c47df2e430a744361f85}\label{classSingleLegController_af65cd13c9740c47df2e430a744361f85}} 
 \index{SingleLegController@{SingleLegController}!readyToProceed@{readyToProceed}}
 \index{readyToProceed@{readyToProceed}!SingleLegController@{SingleLegController}}
@@ -564,6 +872,136 @@ Check whether or not a ready to proceed message has been received.
 \begin{DoxyReturn}{Returns}
 The status of the ready\+\_\+to\+\_\+proceed boolean value 
 \end{DoxyReturn}
+
+
+Definition at line 183 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a7bf974dae57964d754a2e4e1900903f1}\label{classSingleLegController_a7bf974dae57964d754a2e4e1900903f1}} 
+\index{SingleLegController@{SingleLegController}!resetReadyToProceed@{resetReadyToProceed}}
+\index{resetReadyToProceed@{resetReadyToProceed}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{resetReadyToProceed()}{resetReadyToProceed()}}
+{\footnotesize\ttfamily void Single\+Leg\+Controller\+::reset\+Ready\+To\+Proceed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the ready\+\_\+to\+\_\+proceed flag to false. 
+
+
+
+Definition at line 186 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_ae2d6915c29fbcb40f6ec20dc91229f69}\label{classSingleLegController_ae2d6915c29fbcb40f6ec20dc91229f69}} 
+\index{SingleLegController@{SingleLegController}!isTargetPositionReached@{isTargetPositionReached}}
+\index{isTargetPositionReached@{isTargetPositionReached}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{isTargetPositionReached()}{isTargetPositionReached()}}
+{\footnotesize\ttfamily bool Single\+Leg\+Controller\+::is\+Target\+Position\+Reached (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Check if the squared error between the current joint angles and target joint angles is smaller than some threshold. 
+
+
+
+Definition at line 831 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleLegController_aa7cfe14f25926f4870ea6628c3aee9f7}\label{classSingleLegController_aa7cfe14f25926f4870ea6628c3aee9f7}} 
+\index{SingleLegController@{SingleLegController}!isJointVelocitySmall@{isJointVelocitySmall}}
+\index{isJointVelocitySmall@{isJointVelocitySmall}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{isJointVelocitySmall()}{isJointVelocitySmall()}}
+{\footnotesize\ttfamily bool Single\+Leg\+Controller\+::is\+Joint\+Velocity\+Small (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Checks if the sum of squared joint velocities are smaller than a certain threshold. 
+
+
+
+Definition at line 848 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleLegController_a945a86bd3320c349b6fa027d27a79ff1}\label{classSingleLegController_a945a86bd3320c349b6fa027d27a79ff1}} 
+\index{SingleLegController@{SingleLegController}!isInitialStateReceived@{isInitialStateReceived}}
+\index{isInitialStateReceived@{isInitialStateReceived}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{isInitialStateReceived()}{isInitialStateReceived()}}
+{\footnotesize\ttfamily bool Single\+Leg\+Controller\+::is\+Initial\+State\+Received (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Check if the uninitalized joint state of the robot has been overridden by measurements. 
+
+
+
+Definition at line 862 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleLegController_a5f61e78b03357ff8fa62eb636108279a}\label{classSingleLegController_a5f61e78b03357ff8fa62eb636108279a}} 
+\index{SingleLegController@{SingleLegController}!printTorqueReferences@{printTorqueReferences}}
+\index{printTorqueReferences@{printTorqueReferences}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{printTorqueReferences()}{printTorqueReferences()}}
+{\footnotesize\ttfamily void Single\+Leg\+Controller\+::print\+Torque\+References (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Print the joint torque references. 
+
+
+
+Definition at line 875 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleLegController_a370642148f6c440f43f0c830c385e4bc}\label{classSingleLegController_a370642148f6c440f43f0c830c385e4bc}} 
+\index{SingleLegController@{SingleLegController}!printSpatialTrajectories@{printSpatialTrajectories}}
+\index{printSpatialTrajectories@{printSpatialTrajectories}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{printSpatialTrajectories()}{printSpatialTrajectories()}}
+{\footnotesize\ttfamily void Single\+Leg\+Controller\+::print\+Spatial\+Trajectories (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Print the foot trajectory reference. 
+
+
+
+Definition at line 880 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleLegController_a1d5b3a6fcece39f3e78957fd0b8fc894}\label{classSingleLegController_a1d5b3a6fcece39f3e78957fd0b8fc894}} 
+\index{SingleLegController@{SingleLegController}!printJointTrajectories@{printJointTrajectories}}
+\index{printJointTrajectories@{printJointTrajectories}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{printJointTrajectories()}{printJointTrajectories()}}
+{\footnotesize\ttfamily void Single\+Leg\+Controller\+::print\+Joint\+Trajectories (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Print the joint trajectory references. 
+
+
+
+Definition at line 885 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleLegController_a26e0d5ba16c20c675d5316b0018b05b3}\label{classSingleLegController_a26e0d5ba16c20c675d5316b0018b05b3}} 
+\index{SingleLegController@{SingleLegController}!printAllStates@{printAllStates}}
+\index{printAllStates@{printAllStates}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{printAllStates()}{printAllStates()}}
+{\footnotesize\ttfamily void Single\+Leg\+Controller\+::print\+All\+States (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Print various information about all joints. 
+
+
+
+Definition at line 890 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
+\mbox{\Hypertarget{classSingleLegController_a05e369f7eaf16b2d0cab0a1e79984fd2}\label{classSingleLegController_a05e369f7eaf16b2d0cab0a1e79984fd2}} 
+\index{SingleLegController@{SingleLegController}!writeToLog@{writeToLog}}
+\index{writeToLog@{writeToLog}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{writeToLog()}{writeToLog()}}
+{\footnotesize\ttfamily void Single\+Leg\+Controller\+::write\+To\+Log (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Write the joint references and estimated states to the log. 
+
+
+
+Definition at line 901 of file single\+\_\+leg\+\_\+controller.\+cpp.
+
 \mbox{\Hypertarget{classSingleLegController_a139948fa97ac0f095f14ba49ddff018e}\label{classSingleLegController_a139948fa97ac0f095f14ba49ddff018e}} 
 \index{SingleLegController@{SingleLegController}!getGaitPhase@{getGaitPhase}}
 \index{getGaitPhase@{getGaitPhase}!SingleLegController@{SingleLegController}}
@@ -579,7 +1017,1070 @@ The phase state of the single leg
 \end{DoxyReturn}
 
 
+Definition at line 215 of file single\+\_\+leg\+\_\+controller.\+h.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classSingleLegController_a7f3cbefbc3a36616969da3acbaf5ca54}\label{classSingleLegController_a7f3cbefbc3a36616969da3acbaf5ca54}} 
+\index{SingleLegController@{SingleLegController}!foot\_pos\_ref@{foot\_pos\_ref}}
+\index{foot\_pos\_ref@{foot\_pos\_ref}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{foot\_pos\_ref}{foot\_pos\_ref}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 1$>$ Single\+Leg\+Controller\+::foot\+\_\+pos\+\_\+ref = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The foot position reference relative to the hip. 
+
+
+
+Definition at line 221 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_ab8b750a16a42bf0f9e7d4fcbff77f762}\label{classSingleLegController_ab8b750a16a42bf0f9e7d4fcbff77f762}} 
+\index{SingleLegController@{SingleLegController}!foot\_vel\_ref@{foot\_vel\_ref}}
+\index{foot\_vel\_ref@{foot\_vel\_ref}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{foot\_vel\_ref}{foot\_vel\_ref}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 1$>$ Single\+Leg\+Controller\+::foot\+\_\+vel\+\_\+ref = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The foot velocity reference relative to the hip. 
+
+
+
+Definition at line 224 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a2cffd5d89c5fa67f45da085dd5154e8d}\label{classSingleLegController_a2cffd5d89c5fa67f45da085dd5154e8d}} 
+\index{SingleLegController@{SingleLegController}!foot\_acc\_ref@{foot\_acc\_ref}}
+\index{foot\_acc\_ref@{foot\_acc\_ref}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{foot\_acc\_ref}{foot\_acc\_ref}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 1$>$ Single\+Leg\+Controller\+::foot\+\_\+acc\+\_\+ref = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The foot acceleration reference relative to the hip. 
+
+
+
+Definition at line 227 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a03f2a6f26d19340da3a4a7071c798999}\label{classSingleLegController_a03f2a6f26d19340da3a4a7071c798999}} 
+\index{SingleLegController@{SingleLegController}!foot\_pos\_goal@{foot\_pos\_goal}}
+\index{foot\_pos\_goal@{foot\_pos\_goal}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{foot\_pos\_goal}{foot\_pos\_goal}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 1$>$ Single\+Leg\+Controller\+::foot\+\_\+pos\+\_\+goal = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+When using setpoint\+Trajectory control these are the joint angles we want to reach eventually. 
+
+
+
+Definition at line 230 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a386b8d073a06ddb3fc240e2fed525a5e}\label{classSingleLegController_a386b8d073a06ddb3fc240e2fed525a5e}} 
+\index{SingleLegController@{SingleLegController}!joint\_pos\_goal@{joint\_pos\_goal}}
+\index{joint\_pos\_goal@{joint\_pos\_goal}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{joint\_pos\_goal}{joint\_pos\_goal}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 1$>$ Single\+Leg\+Controller\+::joint\+\_\+pos\+\_\+goal = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The joint angles we want to eventually reach when using pose trajectory control. 
+
+
+
+Definition at line 233 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_ac5919dbede31dc9178918196b364b8e0}\label{classSingleLegController_ac5919dbede31dc9178918196b364b8e0}} 
+\index{SingleLegController@{SingleLegController}!joint\_pos\_initial@{joint\_pos\_initial}}
+\index{joint\_pos\_initial@{joint\_pos\_initial}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{joint\_pos\_initial}{joint\_pos\_initial}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 1$>$ Single\+Leg\+Controller\+::joint\+\_\+pos\+\_\+initial = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The joint angles at the beginning of a trajectory. 
+
+
+
+Definition at line 236 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a3e52b8652d2660e57b4fe523048960af}\label{classSingleLegController_a3e52b8652d2660e57b4fe523048960af}} 
+\index{SingleLegController@{SingleLegController}!joint\_pos@{joint\_pos}}
+\index{joint\_pos@{joint\_pos}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{joint\_pos}{joint\_pos}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 1$>$ Single\+Leg\+Controller\+::joint\+\_\+pos = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The estimated joint angles of the motors. 
+
+
+
+Definition at line 239 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a7ac471ce6bf8e598d74cf23502301108}\label{classSingleLegController_a7ac471ce6bf8e598d74cf23502301108}} 
+\index{SingleLegController@{SingleLegController}!joint\_vel@{joint\_vel}}
+\index{joint\_vel@{joint\_vel}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{joint\_vel}{joint\_vel}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 1$>$ Single\+Leg\+Controller\+::joint\+\_\+vel = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The estimated joint velocities of the motors. 
+
+
+
+Definition at line 242 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a379fc2391ca36f1e580e405e520dc1e3}\label{classSingleLegController_a379fc2391ca36f1e580e405e520dc1e3}} 
+\index{SingleLegController@{SingleLegController}!joint\_torque@{joint\_torque}}
+\index{joint\_torque@{joint\_torque}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{joint\_torque}{joint\_torque}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 1$>$ Single\+Leg\+Controller\+::joint\+\_\+torque = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The estimated joint torques of the motors. 
+
+
+
+Definition at line 245 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a47b7a0975f0255c614b8f2ddf4728393}\label{classSingleLegController_a47b7a0975f0255c614b8f2ddf4728393}} 
+\index{SingleLegController@{SingleLegController}!joint\_pos\_ref@{joint\_pos\_ref}}
+\index{joint\_pos\_ref@{joint\_pos\_ref}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{joint\_pos\_ref}{joint\_pos\_ref}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 1$>$ Single\+Leg\+Controller\+::joint\+\_\+pos\+\_\+ref = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The reference joint angles for the motors. 
+
+
+
+Definition at line 248 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a1c00bef302e56d1fd13e8062759dd2b3}\label{classSingleLegController_a1c00bef302e56d1fd13e8062759dd2b3}} 
+\index{SingleLegController@{SingleLegController}!joint\_vel\_ref@{joint\_vel\_ref}}
+\index{joint\_vel\_ref@{joint\_vel\_ref}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{joint\_vel\_ref}{joint\_vel\_ref}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 1$>$ Single\+Leg\+Controller\+::joint\+\_\+vel\+\_\+ref = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The reference joint velocities for the motors. 
+
+
+
+Definition at line 251 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a3ef1befaf2e65f02d10ab4387598e619}\label{classSingleLegController_a3ef1befaf2e65f02d10ab4387598e619}} 
+\index{SingleLegController@{SingleLegController}!joint\_acc\_ref@{joint\_acc\_ref}}
+\index{joint\_acc\_ref@{joint\_acc\_ref}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{joint\_acc\_ref}{joint\_acc\_ref}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 1$>$ Single\+Leg\+Controller\+::joint\+\_\+acc\+\_\+ref = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The reference joint accelerations for the motors. 
+
+
+
+Definition at line 254 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a1592d781e7ed32db229ff163f94388e7}\label{classSingleLegController_a1592d781e7ed32db229ff163f94388e7}} 
+\index{SingleLegController@{SingleLegController}!joint\_torque\_ref@{joint\_torque\_ref}}
+\index{joint\_torque\_ref@{joint\_torque\_ref}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{joint\_torque\_ref}{joint\_torque\_ref}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 1$>$ Single\+Leg\+Controller\+::joint\+\_\+torque\+\_\+ref = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The reference joint torques for the motors. 
+
+
+
+Definition at line 257 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_aeb528f36ae245332672e1cb793bdf21d}\label{classSingleLegController_aeb528f36ae245332672e1cb793bdf21d}} 
+\index{SingleLegController@{SingleLegController}!joint\_vel\_commands@{joint\_vel\_commands}}
+\index{joint\_vel\_commands@{joint\_vel\_commands}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{joint\_vel\_commands}{joint\_vel\_commands}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 1$>$ Single\+Leg\+Controller\+::joint\+\_\+vel\+\_\+commands = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The velocity commands sent to the motors. 
+
+
+
+Definition at line 260 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a39020eeb57a9dbb6db5f7cfa1ede91e5}\label{classSingleLegController_a39020eeb57a9dbb6db5f7cfa1ede91e5}} 
+\index{SingleLegController@{SingleLegController}!joint\_torque\_commands@{joint\_torque\_commands}}
+\index{joint\_torque\_commands@{joint\_torque\_commands}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{joint\_torque\_commands}{joint\_torque\_commands}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 1$>$ Single\+Leg\+Controller\+::joint\+\_\+torque\+\_\+commands = Eigen\+::\+Matrix$<$double, 3, 1$>$\+::Zero()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The joint torque command being sent to the motors. 
+
+
+
+Definition at line 263 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_af16632c82859f299cd1ae5545043c5f6}\label{classSingleLegController_af16632c82859f299cd1ae5545043c5f6}} 
+\index{SingleLegController@{SingleLegController}!gait\_phase@{gait\_phase}}
+\index{gait\_phase@{gait\_phase}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{gait\_phase}{gait\_phase}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSingleLegController_a7334d4583d94d34addc8f7dc898fe5c7}{Gait\+Phase}} Single\+Leg\+Controller\+::gait\+\_\+phase = Gait\+Phase\+::stance\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The current gait phase of the leg. 
+
+
+
+Definition at line 266 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_ac607f0ae44ff2992ad5a469c725e83c1}\label{classSingleLegController_ac607f0ae44ff2992ad5a469c725e83c1}} 
+\index{SingleLegController@{SingleLegController}!ready\_to\_proceed@{ready\_to\_proceed}}
+\index{ready\_to\_proceed@{ready\_to\_proceed}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{ready\_to\_proceed}{ready\_to\_proceed}}
+{\footnotesize\ttfamily bool Single\+Leg\+Controller\+::ready\+\_\+to\+\_\+proceed = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+A variable used to control the flow of the program. It can be set throuh a boolean message received by the ready\+\_\+to\+\_\+proceed\+\_\+subscriber. 
+
+
+
+Definition at line 270 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_abc288c445f45646cf114b7d383589fbb}\label{classSingleLegController_abc288c445f45646cf114b7d383589fbb}} 
+\index{SingleLegController@{SingleLegController}!current\_iteration@{current\_iteration}}
+\index{current\_iteration@{current\_iteration}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{current\_iteration}{current\_iteration}}
+{\footnotesize\ttfamily double Single\+Leg\+Controller\+::current\+\_\+iteration = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The current iteration in a gait phase. This should be incremented for every control loop. 
+
+
+
+Definition at line 274 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_aa578d487193bc0bc1c4821749e995c34}\label{classSingleLegController_aa578d487193bc0bc1c4821749e995c34}} 
+\index{SingleLegController@{SingleLegController}!final\_iteration@{final\_iteration}}
+\index{final\_iteration@{final\_iteration}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{final\_iteration}{final\_iteration}}
+{\footnotesize\ttfamily double Single\+Leg\+Controller\+::final\+\_\+iteration = 400.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The final iteration of a gait phase. 
+
+
+
+Definition at line 277 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a957a131e443d08ec0a352ee5fcd1cc2c}\label{classSingleLegController_a957a131e443d08ec0a352ee5fcd1cc2c}} 
+\index{SingleLegController@{SingleLegController}!current\_pose\_iteration@{current\_pose\_iteration}}
+\index{current\_pose\_iteration@{current\_pose\_iteration}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{current\_pose\_iteration}{current\_pose\_iteration}}
+{\footnotesize\ttfamily double Single\+Leg\+Controller\+::current\+\_\+pose\+\_\+iteration = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The current iteration used for pose control. 
+
+
+
+Definition at line 280 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a3c637cd144c5799024607d8c1ad1eef2}\label{classSingleLegController_a3c637cd144c5799024607d8c1ad1eef2}} 
+\index{SingleLegController@{SingleLegController}!final\_pose\_iteration@{final\_pose\_iteration}}
+\index{final\_pose\_iteration@{final\_pose\_iteration}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{final\_pose\_iteration}{final\_pose\_iteration}}
+{\footnotesize\ttfamily double Single\+Leg\+Controller\+::final\+\_\+pose\+\_\+iteration = 100\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The final iteration used for pose control. 
+
+
+
+Definition at line 283 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a6a2c3158c7d9014b8e6192bf3f569540}\label{classSingleLegController_a6a2c3158c7d9014b8e6192bf3f569540}} 
+\index{SingleLegController@{SingleLegController}!gains\_set@{gains\_set}}
+\index{gains\_set@{gains\_set}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{gains\_set}{gains\_set}}
+{\footnotesize\ttfamily bool Single\+Leg\+Controller\+::gains\+\_\+set = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Keeps track of whether or not the motor gains have been set. 
+
+
+
+Definition at line 286 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a00829f4edd3d805747a09c7c1c1de4f2}\label{classSingleLegController_a00829f4edd3d805747a09c7c1c1de4f2}} 
+\index{SingleLegController@{SingleLegController}!NUMBER\_OF\_MOTORS@{NUMBER\_OF\_MOTORS}}
+\index{NUMBER\_OF\_MOTORS@{NUMBER\_OF\_MOTORS}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{NUMBER\_OF\_MOTORS}{NUMBER\_OF\_MOTORS}}
+{\footnotesize\ttfamily const int Single\+Leg\+Controller\+::\+NUMBER\+\_\+\+OF\+\_\+\+MOTORS = 3\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The number of motors used in single leg control tests. 
+
+
+
+Definition at line 293 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_ae881be0ce2a2ec472da2a99edc6b609b}\label{classSingleLegController_ae881be0ce2a2ec472da2a99edc6b609b}} 
+\index{SingleLegController@{SingleLegController}!UNINITIALIZED\_STATE@{UNINITIALIZED\_STATE}}
+\index{UNINITIALIZED\_STATE@{UNINITIALIZED\_STATE}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{UNINITIALIZED\_STATE}{UNINITIALIZED\_STATE}}
+{\footnotesize\ttfamily const double Single\+Leg\+Controller\+::\+UNINITIALIZED\+\_\+\+STATE = 100.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The value of an uninitialized state. 
+
+
+
+Definition at line 296 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a2b09d870e9dd7f9591cbd4e193232d73}\label{classSingleLegController_a2b09d870e9dd7f9591cbd4e193232d73}} 
+\index{SingleLegController@{SingleLegController}!POSITION\_CONVERGENCE\_CRITERIA@{POSITION\_CONVERGENCE\_CRITERIA}}
+\index{POSITION\_CONVERGENCE\_CRITERIA@{POSITION\_CONVERGENCE\_CRITERIA}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{POSITION\_CONVERGENCE\_CRITERIA}{POSITION\_CONVERGENCE\_CRITERIA}}
+{\footnotesize\ttfamily const double Single\+Leg\+Controller\+::\+POSITION\+\_\+\+CONVERGENCE\+\_\+\+CRITERIA = 0.\+01\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Convergence crieria for position control test. 
+
+
+
+Definition at line 299 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a4b26621a2a9f3c0edf295c208d88c22f}\label{classSingleLegController_a4b26621a2a9f3c0edf295c208d88c22f}} 
+\index{SingleLegController@{SingleLegController}!POSITION\_COMMAND@{POSITION\_COMMAND}}
+\index{POSITION\_COMMAND@{POSITION\_COMMAND}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{POSITION\_COMMAND}{POSITION\_COMMAND}}
+{\footnotesize\ttfamily const double Single\+Leg\+Controller\+::\+POSITION\+\_\+\+COMMAND = 1.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The identifier to be used for position command messages. 
+
+
+
+Definition at line 302 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_ac5a6be5095664c0dd3c37a73159227d2}\label{classSingleLegController_ac5a6be5095664c0dd3c37a73159227d2}} 
+\index{SingleLegController@{SingleLegController}!VELOCITY\_COMMAND@{VELOCITY\_COMMAND}}
+\index{VELOCITY\_COMMAND@{VELOCITY\_COMMAND}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{VELOCITY\_COMMAND}{VELOCITY\_COMMAND}}
+{\footnotesize\ttfamily const double Single\+Leg\+Controller\+::\+VELOCITY\+\_\+\+COMMAND = 2.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The identifier to be used for velocity command messages. 
+
+
+
+Definition at line 305 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_aa1d28cd0bbf37759552004777c0ed4f4}\label{classSingleLegController_aa1d28cd0bbf37759552004777c0ed4f4}} 
+\index{SingleLegController@{SingleLegController}!TORQUE\_COMMAND@{TORQUE\_COMMAND}}
+\index{TORQUE\_COMMAND@{TORQUE\_COMMAND}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{TORQUE\_COMMAND}{TORQUE\_COMMAND}}
+{\footnotesize\ttfamily const double Single\+Leg\+Controller\+::\+TORQUE\+\_\+\+COMMAND = 3.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The identifier to be used for torque command messages. 
+
+
+
+Definition at line 308 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_abf6927a1eefee5f43622f9068b792106}\label{classSingleLegController_abf6927a1eefee5f43622f9068b792106}} 
+\index{SingleLegController@{SingleLegController}!K\_p@{K\_p}}
+\index{K\_p@{K\_p}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{K\_p}{K\_p}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 3$>$ Single\+Leg\+Controller\+::\+K\+\_\+p = Eigen\+::\+Matrix$<$double, 3, 3$>$\+::Zero()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+A diagonal matrix of proportional gains for the closed loop torque controller. 
+
+
+
+Definition at line 311 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a794008b874d186a8f0186206fccbc161}\label{classSingleLegController_a794008b874d186a8f0186206fccbc161}} 
+\index{SingleLegController@{SingleLegController}!K\_d@{K\_d}}
+\index{K\_d@{K\_d}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{K\_d}{K\_d}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 3$>$ Single\+Leg\+Controller\+::\+K\+\_\+d = Eigen\+::\+Matrix$<$double, 3, 3$>$\+::Zero()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+A diagonal matrix of derivative gains for the closed loop torque controller. 
+
+
+
+Definition at line 314 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_aebf153f67a1f8b3fd234ebdad310dfea}\label{classSingleLegController_aebf153f67a1f8b3fd234ebdad310dfea}} 
+\index{SingleLegController@{SingleLegController}!K\_pos\_error\_vel\_control@{K\_pos\_error\_vel\_control}}
+\index{K\_pos\_error\_vel\_control@{K\_pos\_error\_vel\_control}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{K\_pos\_error\_vel\_control}{K\_pos\_error\_vel\_control}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 3, 3$>$ Single\+Leg\+Controller\+::\+K\+\_\+pos\+\_\+error\+\_\+vel\+\_\+control = Eigen\+::\+Matrix$<$double, 3, 3$>$\+::Zero()\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+A digonal matrix for of gains used for the position error in the closed loop velocity controller. 
+
+
+
+Definition at line 317 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a274c428f5d4bf405cd7ef2ff1b74065b}\label{classSingleLegController_a274c428f5d4bf405cd7ef2ff1b74065b}} 
+\index{SingleLegController@{SingleLegController}!publish\_frequency@{publish\_frequency}}
+\index{publish\_frequency@{publish\_frequency}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{publish\_frequency}{publish\_frequency}}
+{\footnotesize\ttfamily double Single\+Leg\+Controller\+::publish\+\_\+frequency = 200.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The expected publish frequency of the robot. This is used to calculate the maximum number of iterations per gait phase. 
+
+
+
+Definition at line 321 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a6914cf6a8c0b7fec112cf8144cd8b0e5}\label{classSingleLegController_a6914cf6a8c0b7fec112cf8144cd8b0e5}} 
+\index{SingleLegController@{SingleLegController}!phase\_period@{phase\_period}}
+\index{phase\_period@{phase\_period}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{phase\_period}{phase\_period}}
+{\footnotesize\ttfamily double Single\+Leg\+Controller\+::phase\+\_\+period = 0.\+5\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The duration of a phase period in seconds. 
+
+
+
+Definition at line 324 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a9af55628c4322ff2afe9a7d03f78d8f1}\label{classSingleLegController_a9af55628c4322ff2afe9a7d03f78d8f1}} 
+\index{SingleLegController@{SingleLegController}!hip\_height@{hip\_height}}
+\index{hip\_height@{hip\_height}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{hip\_height}{hip\_height}}
+{\footnotesize\ttfamily double Single\+Leg\+Controller\+::hip\+\_\+height = 0.\+35\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The standard height of the hips above the ground. 
+
+
+
+Definition at line 327 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_afdba1143d0827abef078b2102e2171b4}\label{classSingleLegController_afdba1143d0827abef078b2102e2171b4}} 
+\index{SingleLegController@{SingleLegController}!x\_nominal@{x\_nominal}}
+\index{x\_nominal@{x\_nominal}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{x\_nominal}{x\_nominal}}
+{\footnotesize\ttfamily double Single\+Leg\+Controller\+::x\+\_\+nominal = 0.\+1\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The nominal x position of the foot relative to the hip. 
+
+
+
+Definition at line 330 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_ada2d16bff1aec9fd371e4ba09efd017f}\label{classSingleLegController_ada2d16bff1aec9fd371e4ba09efd017f}} 
+\index{SingleLegController@{SingleLegController}!y\_nominal@{y\_nominal}}
+\index{y\_nominal@{y\_nominal}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{y\_nominal}{y\_nominal}}
+{\footnotesize\ttfamily double Single\+Leg\+Controller\+::y\+\_\+nominal = 0.\+3\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The nominal y position of the foot relative to the hip. 
+
+
+
+Definition at line 333 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a8e0450f49760446ecc4c01a2d4e13d6b}\label{classSingleLegController_a8e0450f49760446ecc4c01a2d4e13d6b}} 
+\index{SingleLegController@{SingleLegController}!x\_step\_distance@{x\_step\_distance}}
+\index{x\_step\_distance@{x\_step\_distance}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{x\_step\_distance}{x\_step\_distance}}
+{\footnotesize\ttfamily double Single\+Leg\+Controller\+::x\+\_\+step\+\_\+distance = 0.\+2\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The step distance in the x direction. 
+
+
+
+Definition at line 336 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_ab30c1262c5cc5c72f6937194f14c7bd7}\label{classSingleLegController_ab30c1262c5cc5c72f6937194f14c7bd7}} 
+\index{SingleLegController@{SingleLegController}!y\_step\_distance@{y\_step\_distance}}
+\index{y\_step\_distance@{y\_step\_distance}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{y\_step\_distance}{y\_step\_distance}}
+{\footnotesize\ttfamily double Single\+Leg\+Controller\+::y\+\_\+step\+\_\+distance = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The step distance in the y direction. 
+
+
+
+Definition at line 339 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a0590ff89947ace8ca0a33da844f73d83}\label{classSingleLegController_a0590ff89947ace8ca0a33da844f73d83}} 
+\index{SingleLegController@{SingleLegController}!max\_swing\_height@{max\_swing\_height}}
+\index{max\_swing\_height@{max\_swing\_height}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{max\_swing\_height}{max\_swing\_height}}
+{\footnotesize\ttfamily double Single\+Leg\+Controller\+::max\+\_\+swing\+\_\+height = 0.\+12\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The maximum height above the ground to lift the foot. 
+
+
+
+Definition at line 342 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_ae02b2a12924a88f5f2573d5d580f5c53}\label{classSingleLegController_ae02b2a12924a88f5f2573d5d580f5c53}} 
+\index{SingleLegController@{SingleLegController}!pose\_period@{pose\_period}}
+\index{pose\_period@{pose\_period}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{pose\_period}{pose\_period}}
+{\footnotesize\ttfamily double Single\+Leg\+Controller\+::pose\+\_\+period\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The time used to change from one pose to the next. 
+
+
+
+Definition at line 345 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a15491ad415316576b883c5e9f9c3c130}\label{classSingleLegController_a15491ad415316576b883c5e9f9c3c130}} 
+\index{SingleLegController@{SingleLegController}!max\_pose\_vel@{max\_pose\_vel}}
+\index{max\_pose\_vel@{max\_pose\_vel}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{max\_pose\_vel}{max\_pose\_vel}}
+{\footnotesize\ttfamily double Single\+Leg\+Controller\+::max\+\_\+pose\+\_\+vel = \mbox{\hyperlink{namespacemath__utils_a61af5f1046b73d327241eb065f02c2ac}{math\+\_\+utils\+::deg\+To\+Rad}}(50)\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Max pose control joint angle velocity \mbox{[}rad/s\mbox{]}. 
+
+
+
+Definition at line 348 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_acc44e6ff0221abd5b1595b71c36cdf20}\label{classSingleLegController_acc44e6ff0221abd5b1595b71c36cdf20}} 
+\index{SingleLegController@{SingleLegController}!k\_p\_pos\_hy@{k\_p\_pos\_hy}}
+\index{k\_p\_pos\_hy@{k\_p\_pos\_hy}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{k\_p\_pos\_hy}{k\_p\_pos\_hy}}
+{\footnotesize\ttfamily double Single\+Leg\+Controller\+::k\+\_\+p\+\_\+pos\+\_\+hy\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Hip yaw joint motor position control proportional gain. 
+
+
+
+Definition at line 351 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_ab72a23f967203ff0ac05c66153bc3fb5}\label{classSingleLegController_ab72a23f967203ff0ac05c66153bc3fb5}} 
+\index{SingleLegController@{SingleLegController}!k\_i\_pos\_hy@{k\_i\_pos\_hy}}
+\index{k\_i\_pos\_hy@{k\_i\_pos\_hy}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{k\_i\_pos\_hy}{k\_i\_pos\_hy}}
+{\footnotesize\ttfamily double Single\+Leg\+Controller\+::k\+\_\+i\+\_\+pos\+\_\+hy\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Hip yaw joint motor position control integral gain. 
+
+
+
+Definition at line 354 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a960dbaefa2daced2473af80d1cd705e1}\label{classSingleLegController_a960dbaefa2daced2473af80d1cd705e1}} 
+\index{SingleLegController@{SingleLegController}!k\_p\_pos\_hp@{k\_p\_pos\_hp}}
+\index{k\_p\_pos\_hp@{k\_p\_pos\_hp}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{k\_p\_pos\_hp}{k\_p\_pos\_hp}}
+{\footnotesize\ttfamily double Single\+Leg\+Controller\+::k\+\_\+p\+\_\+pos\+\_\+hp\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Hip pitch joint motor position control proportional gain. 
+
+
+
+Definition at line 357 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_aee973906548bb210bcdc6b4b95d5cdab}\label{classSingleLegController_aee973906548bb210bcdc6b4b95d5cdab}} 
+\index{SingleLegController@{SingleLegController}!k\_i\_pos\_hp@{k\_i\_pos\_hp}}
+\index{k\_i\_pos\_hp@{k\_i\_pos\_hp}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{k\_i\_pos\_hp}{k\_i\_pos\_hp}}
+{\footnotesize\ttfamily double Single\+Leg\+Controller\+::k\+\_\+i\+\_\+pos\+\_\+hp\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Hip pitch joint motor position control integral gain. 
+
+
+
+Definition at line 360 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a61a3f4d50c50cff00e05b2ff0248e182}\label{classSingleLegController_a61a3f4d50c50cff00e05b2ff0248e182}} 
+\index{SingleLegController@{SingleLegController}!k\_p\_pos\_kp@{k\_p\_pos\_kp}}
+\index{k\_p\_pos\_kp@{k\_p\_pos\_kp}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{k\_p\_pos\_kp}{k\_p\_pos\_kp}}
+{\footnotesize\ttfamily double Single\+Leg\+Controller\+::k\+\_\+p\+\_\+pos\+\_\+kp\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Knee pitch joint motor position control proportional gain. 
+
+
+
+Definition at line 363 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_ae30ee9a0e4e085bcf04833f494f24a19}\label{classSingleLegController_ae30ee9a0e4e085bcf04833f494f24a19}} 
+\index{SingleLegController@{SingleLegController}!k\_i\_pos\_kp@{k\_i\_pos\_kp}}
+\index{k\_i\_pos\_kp@{k\_i\_pos\_kp}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{k\_i\_pos\_kp}{k\_i\_pos\_kp}}
+{\footnotesize\ttfamily double Single\+Leg\+Controller\+::k\+\_\+i\+\_\+pos\+\_\+kp\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Knee pitch joint motor position control integral gain. 
+
+
+
+Definition at line 366 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a30dff80a8cba95654afd7ebf79e4dc86}\label{classSingleLegController_a30dff80a8cba95654afd7ebf79e4dc86}} 
+\index{SingleLegController@{SingleLegController}!k\_p\_vel\_hy@{k\_p\_vel\_hy}}
+\index{k\_p\_vel\_hy@{k\_p\_vel\_hy}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{k\_p\_vel\_hy}{k\_p\_vel\_hy}}
+{\footnotesize\ttfamily double Single\+Leg\+Controller\+::k\+\_\+p\+\_\+vel\+\_\+hy\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Hip yaw joint motor velocity control proportional gain. 
+
+
+
+Definition at line 369 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a3980dc3548490e897fdbb2cdb9dd8699}\label{classSingleLegController_a3980dc3548490e897fdbb2cdb9dd8699}} 
+\index{SingleLegController@{SingleLegController}!k\_i\_vel\_hy@{k\_i\_vel\_hy}}
+\index{k\_i\_vel\_hy@{k\_i\_vel\_hy}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{k\_i\_vel\_hy}{k\_i\_vel\_hy}}
+{\footnotesize\ttfamily double Single\+Leg\+Controller\+::k\+\_\+i\+\_\+vel\+\_\+hy\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Hip yaw joint motor velocity control integral gain. 
+
+
+
+Definition at line 372 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a4d6444d7f4c7a26f560cdea085c0c068}\label{classSingleLegController_a4d6444d7f4c7a26f560cdea085c0c068}} 
+\index{SingleLegController@{SingleLegController}!k\_p\_vel\_hp@{k\_p\_vel\_hp}}
+\index{k\_p\_vel\_hp@{k\_p\_vel\_hp}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{k\_p\_vel\_hp}{k\_p\_vel\_hp}}
+{\footnotesize\ttfamily double Single\+Leg\+Controller\+::k\+\_\+p\+\_\+vel\+\_\+hp\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Hip pitch joint motor velocity control proportional gain. 
+
+
+
+Definition at line 375 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a392470da81eb7116d88b5109ff63f837}\label{classSingleLegController_a392470da81eb7116d88b5109ff63f837}} 
+\index{SingleLegController@{SingleLegController}!k\_i\_vel\_hp@{k\_i\_vel\_hp}}
+\index{k\_i\_vel\_hp@{k\_i\_vel\_hp}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{k\_i\_vel\_hp}{k\_i\_vel\_hp}}
+{\footnotesize\ttfamily double Single\+Leg\+Controller\+::k\+\_\+i\+\_\+vel\+\_\+hp\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Hip pitch joint motor velocity control integral gain. 
+
+
+
+Definition at line 378 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a6ee0802dc3eb74fc58c38009455dcc2f}\label{classSingleLegController_a6ee0802dc3eb74fc58c38009455dcc2f}} 
+\index{SingleLegController@{SingleLegController}!k\_p\_vel\_kp@{k\_p\_vel\_kp}}
+\index{k\_p\_vel\_kp@{k\_p\_vel\_kp}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{k\_p\_vel\_kp}{k\_p\_vel\_kp}}
+{\footnotesize\ttfamily double Single\+Leg\+Controller\+::k\+\_\+p\+\_\+vel\+\_\+kp\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Knee pitch joint motor velocity control proportional gain. 
+
+
+
+Definition at line 381 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_afe10da8eb153ab95e54f46ffb07c6f00}\label{classSingleLegController_afe10da8eb153ab95e54f46ffb07c6f00}} 
+\index{SingleLegController@{SingleLegController}!k\_i\_vel\_kp@{k\_i\_vel\_kp}}
+\index{k\_i\_vel\_kp@{k\_i\_vel\_kp}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{k\_i\_vel\_kp}{k\_i\_vel\_kp}}
+{\footnotesize\ttfamily double Single\+Leg\+Controller\+::k\+\_\+i\+\_\+vel\+\_\+kp\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Knee pitch joint motor velocity control integral gain. 
+
+
+
+Definition at line 384 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a22aa1970a3d9a7d05a38e4e686b50e50}\label{classSingleLegController_a22aa1970a3d9a7d05a38e4e686b50e50}} 
+\index{SingleLegController@{SingleLegController}!k\_p\_torque\_hy@{k\_p\_torque\_hy}}
+\index{k\_p\_torque\_hy@{k\_p\_torque\_hy}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{k\_p\_torque\_hy}{k\_p\_torque\_hy}}
+{\footnotesize\ttfamily double Single\+Leg\+Controller\+::k\+\_\+p\+\_\+torque\+\_\+hy\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Hip yaw motor torque control proportional gain. 
+
+
+
+Definition at line 387 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_ab858deb6bd3b6de90a75f1732e3dbfc8}\label{classSingleLegController_ab858deb6bd3b6de90a75f1732e3dbfc8}} 
+\index{SingleLegController@{SingleLegController}!k\_i\_torque\_hy@{k\_i\_torque\_hy}}
+\index{k\_i\_torque\_hy@{k\_i\_torque\_hy}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{k\_i\_torque\_hy}{k\_i\_torque\_hy}}
+{\footnotesize\ttfamily double Single\+Leg\+Controller\+::k\+\_\+i\+\_\+torque\+\_\+hy\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Hip yaw motor torque control integral gain. 
+
+
+
+Definition at line 390 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a1d17c6c67b0695bb88591819b2d5b196}\label{classSingleLegController_a1d17c6c67b0695bb88591819b2d5b196}} 
+\index{SingleLegController@{SingleLegController}!k\_p\_torque\_hp@{k\_p\_torque\_hp}}
+\index{k\_p\_torque\_hp@{k\_p\_torque\_hp}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{k\_p\_torque\_hp}{k\_p\_torque\_hp}}
+{\footnotesize\ttfamily double Single\+Leg\+Controller\+::k\+\_\+p\+\_\+torque\+\_\+hp\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Hip pitch motor torque control proportional gain. 
+
+
+
+Definition at line 393 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a10ebb4019d198c4090f8b82681a26075}\label{classSingleLegController_a10ebb4019d198c4090f8b82681a26075}} 
+\index{SingleLegController@{SingleLegController}!k\_i\_torque\_hp@{k\_i\_torque\_hp}}
+\index{k\_i\_torque\_hp@{k\_i\_torque\_hp}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{k\_i\_torque\_hp}{k\_i\_torque\_hp}}
+{\footnotesize\ttfamily double Single\+Leg\+Controller\+::k\+\_\+i\+\_\+torque\+\_\+hp\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Hip pitch motor torque control integral gain. 
+
+
+
+Definition at line 396 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a0423a7bdef2fcff2ba2f6560c81f5ad6}\label{classSingleLegController_a0423a7bdef2fcff2ba2f6560c81f5ad6}} 
+\index{SingleLegController@{SingleLegController}!k\_p\_torque\_kp@{k\_p\_torque\_kp}}
+\index{k\_p\_torque\_kp@{k\_p\_torque\_kp}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{k\_p\_torque\_kp}{k\_p\_torque\_kp}}
+{\footnotesize\ttfamily double Single\+Leg\+Controller\+::k\+\_\+p\+\_\+torque\+\_\+kp\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Knee pitch motor torque control proportional gain. 
+
+
+
+Definition at line 399 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a3bfd5bbc49d7c0ab117c8bd4049b48bd}\label{classSingleLegController_a3bfd5bbc49d7c0ab117c8bd4049b48bd}} 
+\index{SingleLegController@{SingleLegController}!k\_i\_torque\_kp@{k\_i\_torque\_kp}}
+\index{k\_i\_torque\_kp@{k\_i\_torque\_kp}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{k\_i\_torque\_kp}{k\_i\_torque\_kp}}
+{\footnotesize\ttfamily double Single\+Leg\+Controller\+::k\+\_\+i\+\_\+torque\+\_\+kp\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Knee pitch motor torque control integral gain. 
+
+
+
+Definition at line 402 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a0b907e0542a167b63f1878ec4550ac9f}\label{classSingleLegController_a0b907e0542a167b63f1878ec4550ac9f}} 
+\index{SingleLegController@{SingleLegController}!node\_handle@{node\_handle}}
+\index{node\_handle@{node\_handle}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{node\_handle}{node\_handle}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ros\+::\+Node\+Handle$>$ Single\+Leg\+Controller\+::node\+\_\+handle\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+ROS node handle. 
+
+
+
+Definition at line 409 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a5f764e7ce87ac6d8d8dcecdfb30f9c7c}\label{classSingleLegController_a5f764e7ce87ac6d8d8dcecdfb30f9c7c}} 
+\index{SingleLegController@{SingleLegController}!generalized\_coordinates\_subscriber@{generalized\_coordinates\_subscriber}}
+\index{generalized\_coordinates\_subscriber@{generalized\_coordinates\_subscriber}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{generalized\_coordinates\_subscriber}{generalized\_coordinates\_subscriber}}
+{\footnotesize\ttfamily ros\+::\+Subscriber Single\+Leg\+Controller\+::generalized\+\_\+coordinates\+\_\+subscriber\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Subscribes to generalized coordinates messages. 
+
+
+
+Definition at line 412 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a525563e99e73cab543a0899388f9b525}\label{classSingleLegController_a525563e99e73cab543a0899388f9b525}} 
+\index{SingleLegController@{SingleLegController}!generalized\_velocities\_subscriber@{generalized\_velocities\_subscriber}}
+\index{generalized\_velocities\_subscriber@{generalized\_velocities\_subscriber}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{generalized\_velocities\_subscriber}{generalized\_velocities\_subscriber}}
+{\footnotesize\ttfamily ros\+::\+Subscriber Single\+Leg\+Controller\+::generalized\+\_\+velocities\+\_\+subscriber\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Subscribes to generalized velocities messages. 
+
+
+
+Definition at line 415 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a0ac51dd91cece854c5554e9b279af7c7}\label{classSingleLegController_a0ac51dd91cece854c5554e9b279af7c7}} 
+\index{SingleLegController@{SingleLegController}!generalized\_forces\_subscriber@{generalized\_forces\_subscriber}}
+\index{generalized\_forces\_subscriber@{generalized\_forces\_subscriber}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{generalized\_forces\_subscriber}{generalized\_forces\_subscriber}}
+{\footnotesize\ttfamily ros\+::\+Subscriber Single\+Leg\+Controller\+::generalized\+\_\+forces\+\_\+subscriber\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Subscribes to generalized forces messages. 
+
+
+
+Definition at line 418 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_abb3cd5f4302dd625410e1834d260a0de}\label{classSingleLegController_abb3cd5f4302dd625410e1834d260a0de}} 
+\index{SingleLegController@{SingleLegController}!joint\_state\_subscriber@{joint\_state\_subscriber}}
+\index{joint\_state\_subscriber@{joint\_state\_subscriber}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{joint\_state\_subscriber}{joint\_state\_subscriber}}
+{\footnotesize\ttfamily ros\+::\+Subscriber Single\+Leg\+Controller\+::joint\+\_\+state\+\_\+subscriber\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Subscribes to joint state messages from the motors. 
+
+
+
+Definition at line 421 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a42a84c23c09832361880e97a01807439}\label{classSingleLegController_a42a84c23c09832361880e97a01807439}} 
+\index{SingleLegController@{SingleLegController}!ready\_to\_proceed\_subscriber@{ready\_to\_proceed\_subscriber}}
+\index{ready\_to\_proceed\_subscriber@{ready\_to\_proceed\_subscriber}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{ready\_to\_proceed\_subscriber}{ready\_to\_proceed\_subscriber}}
+{\footnotesize\ttfamily ros\+::\+Subscriber Single\+Leg\+Controller\+::ready\+\_\+to\+\_\+proceed\+\_\+subscriber\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Subscribes to messages deciding whether or not we should proceed in the script. 
+
+
+
+Definition at line 424 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a71acfb659750dafb0f20953ed42446ab}\label{classSingleLegController_a71acfb659750dafb0f20953ed42446ab}} 
+\index{SingleLegController@{SingleLegController}!joint\_setpoint\_subscriber@{joint\_setpoint\_subscriber}}
+\index{joint\_setpoint\_subscriber@{joint\_setpoint\_subscriber}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{joint\_setpoint\_subscriber}{joint\_setpoint\_subscriber}}
+{\footnotesize\ttfamily ros\+::\+Subscriber Single\+Leg\+Controller\+::joint\+\_\+setpoint\+\_\+subscriber\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Subscribes to joint setpoint messages. 
+
+
+
+Definition at line 427 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a0525553c4d0a90ff67be01590829b2ff}\label{classSingleLegController_a0525553c4d0a90ff67be01590829b2ff}} 
+\index{SingleLegController@{SingleLegController}!motor\_confirmation\_subscriber@{motor\_confirmation\_subscriber}}
+\index{motor\_confirmation\_subscriber@{motor\_confirmation\_subscriber}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{motor\_confirmation\_subscriber}{motor\_confirmation\_subscriber}}
+{\footnotesize\ttfamily ros\+::\+Subscriber Single\+Leg\+Controller\+::motor\+\_\+confirmation\+\_\+subscriber\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Subscribes to confirmation messages from the motor. 
+
+
+
+Definition at line 430 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a5875a17d12aeab4ce0c5728d3481b838}\label{classSingleLegController_a5875a17d12aeab4ce0c5728d3481b838}} 
+\index{SingleLegController@{SingleLegController}!joint\_state\_publisher@{joint\_state\_publisher}}
+\index{joint\_state\_publisher@{joint\_state\_publisher}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{joint\_state\_publisher}{joint\_state\_publisher}}
+{\footnotesize\ttfamily ros\+::\+Publisher Single\+Leg\+Controller\+::joint\+\_\+state\+\_\+publisher\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Publishes velocity commands to the teensy to control the motors. 
+
+
+
+Definition at line 433 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_ac1cccef3695042a38de31d21d6ca2bf8}\label{classSingleLegController_ac1cccef3695042a38de31d21d6ca2bf8}} 
+\index{SingleLegController@{SingleLegController}!motor\_gain\_publisher@{motor\_gain\_publisher}}
+\index{motor\_gain\_publisher@{motor\_gain\_publisher}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{motor\_gain\_publisher}{motor\_gain\_publisher}}
+{\footnotesize\ttfamily ros\+::\+Publisher Single\+Leg\+Controller\+::motor\+\_\+gain\+\_\+publisher\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Publishes desired motor gains to the motors. 
+
+
+
+Definition at line 436 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a23ef6a1389a4803159704c89d1bb104a}\label{classSingleLegController_a23ef6a1389a4803159704c89d1bb104a}} 
+\index{SingleLegController@{SingleLegController}!motor\_command\_msg@{motor\_command\_msg}}
+\index{motor\_command\_msg@{motor\_command\_msg}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{motor\_command\_msg}{motor\_command\_msg}}
+{\footnotesize\ttfamily sensor\+\_\+msgs\+::\+Joint\+State Single\+Leg\+Controller\+::motor\+\_\+command\+\_\+msg\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The joint state message that is sent to the Teensy. 
+
+
+
+Definition at line 439 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a46f0de7a43c6910349226245d4dc8128}\label{classSingleLegController_a46f0de7a43c6910349226245d4dc8128}} 
+\index{SingleLegController@{SingleLegController}!log\_joint\_states\_publisher@{log\_joint\_states\_publisher}}
+\index{log\_joint\_states\_publisher@{log\_joint\_states\_publisher}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{log\_joint\_states\_publisher}{log\_joint\_states\_publisher}}
+{\footnotesize\ttfamily ros\+::\+Publisher Single\+Leg\+Controller\+::log\+\_\+joint\+\_\+states\+\_\+publisher\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Publishes joint positions for logging. 
+
+
+
+Definition at line 442 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_ab33009754d047652cbfbdbd117408233}\label{classSingleLegController_ab33009754d047652cbfbdbd117408233}} 
+\index{SingleLegController@{SingleLegController}!joint\_state\_log\_msg@{joint\_state\_log\_msg}}
+\index{joint\_state\_log\_msg@{joint\_state\_log\_msg}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{joint\_state\_log\_msg}{joint\_state\_log\_msg}}
+{\footnotesize\ttfamily sensor\+\_\+msgs\+::\+Joint\+State Single\+Leg\+Controller\+::joint\+\_\+state\+\_\+log\+\_\+msg\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The joint state message that is used to log states. 
+
+
+
+Definition at line 445 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a22c5d4e611cfcb4adcbaef1d94d19d4d}\label{classSingleLegController_a22c5d4e611cfcb4adcbaef1d94d19d4d}} 
+\index{SingleLegController@{SingleLegController}!log\_joint\_references\_publisher@{log\_joint\_references\_publisher}}
+\index{log\_joint\_references\_publisher@{log\_joint\_references\_publisher}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{log\_joint\_references\_publisher}{log\_joint\_references\_publisher}}
+{\footnotesize\ttfamily ros\+::\+Publisher Single\+Leg\+Controller\+::log\+\_\+joint\+\_\+references\+\_\+publisher\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Publishes joint position references for logging. 
+
+
+
+Definition at line 448 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_ac710ba47a2b3578d5ac7b8c1b87fa4c9}\label{classSingleLegController_ac710ba47a2b3578d5ac7b8c1b87fa4c9}} 
+\index{SingleLegController@{SingleLegController}!joint\_reference\_log\_msg@{joint\_reference\_log\_msg}}
+\index{joint\_reference\_log\_msg@{joint\_reference\_log\_msg}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{joint\_reference\_log\_msg}{joint\_reference\_log\_msg}}
+{\footnotesize\ttfamily sensor\+\_\+msgs\+::\+Joint\+State Single\+Leg\+Controller\+::joint\+\_\+reference\+\_\+log\+\_\+msg\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The joint state message that is used to log references. 
+
+
+
+Definition at line 451 of file single\+\_\+leg\+\_\+controller.\+h.
+
+\mbox{\Hypertarget{classSingleLegController_a5bd286879d534f71b1938468472669f3}\label{classSingleLegController_a5bd286879d534f71b1938468472669f3}} 
+\index{SingleLegController@{SingleLegController}!kinematics@{kinematics}}
+\index{kinematics@{kinematics}!SingleLegController@{SingleLegController}}
+\doxysubsubsection{\texorpdfstring{kinematics}{kinematics}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classKinematics}{Kinematics}} Single\+Leg\+Controller\+::kinematics\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\mbox{\hyperlink{classKinematics}{Kinematics}} object. 
+
+
+
+Definition at line 456 of file single\+\_\+leg\+\_\+controller.\+h.
+
+>>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
+
+
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
+<<<<<<< HEAD
 catkin\+\_\+ws/src/control/single\+\_\+leg\+\_\+controller/include/single\+\_\+leg\+\_\+controller/single\+\_\+leg\+\_\+controller.\+h\item 
 catkin\+\_\+ws/src/control/single\+\_\+leg\+\_\+controller/src/single\+\_\+leg\+\_\+controller.\+cpp\end{DoxyCompactItemize}
+=======
+catkin\+\_\+ws/src/control/single\+\_\+leg\+\_\+controller/include/single\+\_\+leg\+\_\+controller/\mbox{\hyperlink{single__leg__controller_8h}{single\+\_\+leg\+\_\+controller.\+h}}\item 
+catkin\+\_\+ws/src/control/single\+\_\+leg\+\_\+controller/src/\mbox{\hyperlink{single__leg__controller_8cpp}{single\+\_\+leg\+\_\+controller.\+cpp}}\end{DoxyCompactItemize}
+>>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361

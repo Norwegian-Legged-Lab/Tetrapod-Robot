@@ -1,0 +1,92 @@
+\hypertarget{controller_8h}{}\doxysection{catkin\+\_\+ws/src/control/controller/include/controller/controller.h File Reference}
+\label{controller_8h}\index{catkin\_ws/src/control/controller/include/controller/controller.h@{catkin\_ws/src/control/controller/include/controller/controller.h}}
+{\ttfamily \#include \char`\"{}ros/ros.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}std\+\_\+msgs/\+Empty.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}std\+\_\+msgs/\+Bool.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}std\+\_\+msgs/\+Float64.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}std\+\_\+msgs/\+Float64\+Multi\+Array.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}sensor\+\_\+msgs/\+Joint\+State.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}geometry\+\_\+msgs/\+Twist.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}std\+\_\+srvs/\+Empty.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}eigen\+\_\+conversions/eigen\+\_\+msg.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$Eigen/\+Core$>$}\newline
+{\ttfamily \#include $<$thread$>$}\newline
+{\ttfamily \#include $<$functional$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$kinematics/kinematics.\+h$>$}\newline
+Include dependency graph for controller.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classController}{Controller}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{controller_8h_af13a068991bb960994138f296edbe1ca}{UNINITIALIZED\+\_\+\+JOINT\+\_\+\+STATE}}~10.\+0
+\item 
+\#define \mbox{\hyperlink{controller_8h_af1ae1efbf65c9fe5cbace9d0c592a2cf}{ROBOT\+\_\+\+NAME}}~\char`\"{}my\+\_\+robot\char`\"{}
+\item 
+\#define \mbox{\hyperlink{controller_8h_a2d7da076c74b9aaf3ac9dea2fb4c903c}{LEG\+\_\+\+OFFSET\+\_\+\+LENGTH}}~0.\+25
+\item 
+\#define \mbox{\hyperlink{controller_8h_a41e303f3b34872235c51e367c538c28c}{NUMBER\+\_\+\+OF\+\_\+\+LEGS}}~4
+\item 
+\#define \mbox{\hyperlink{controller_8h_a0f3a39eb4daa13693465d77adf4ce80c}{ACTUATORS\+\_\+\+PER\+\_\+\+LEG}}~3
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{controller_8h_af13a068991bb960994138f296edbe1ca}\label{controller_8h_af13a068991bb960994138f296edbe1ca}} 
+\index{controller.h@{controller.h}!UNINITIALIZED\_JOINT\_STATE@{UNINITIALIZED\_JOINT\_STATE}}
+\index{UNINITIALIZED\_JOINT\_STATE@{UNINITIALIZED\_JOINT\_STATE}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{UNINITIALIZED\_JOINT\_STATE}{UNINITIALIZED\_JOINT\_STATE}}
+{\footnotesize\ttfamily \#define UNINITIALIZED\+\_\+\+JOINT\+\_\+\+STATE~10.\+0}
+
+
+
+Definition at line 23 of file controller.\+h.
+
+\mbox{\Hypertarget{controller_8h_af1ae1efbf65c9fe5cbace9d0c592a2cf}\label{controller_8h_af1ae1efbf65c9fe5cbace9d0c592a2cf}} 
+\index{controller.h@{controller.h}!ROBOT\_NAME@{ROBOT\_NAME}}
+\index{ROBOT\_NAME@{ROBOT\_NAME}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{ROBOT\_NAME}{ROBOT\_NAME}}
+{\footnotesize\ttfamily \#define ROBOT\+\_\+\+NAME~\char`\"{}my\+\_\+robot\char`\"{}}
+
+
+
+Definition at line 24 of file controller.\+h.
+
+\mbox{\Hypertarget{controller_8h_a2d7da076c74b9aaf3ac9dea2fb4c903c}\label{controller_8h_a2d7da076c74b9aaf3ac9dea2fb4c903c}} 
+\index{controller.h@{controller.h}!LEG\_OFFSET\_LENGTH@{LEG\_OFFSET\_LENGTH}}
+\index{LEG\_OFFSET\_LENGTH@{LEG\_OFFSET\_LENGTH}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{LEG\_OFFSET\_LENGTH}{LEG\_OFFSET\_LENGTH}}
+{\footnotesize\ttfamily \#define LEG\+\_\+\+OFFSET\+\_\+\+LENGTH~0.\+25}
+
+
+
+Definition at line 25 of file controller.\+h.
+
+\mbox{\Hypertarget{controller_8h_a41e303f3b34872235c51e367c538c28c}\label{controller_8h_a41e303f3b34872235c51e367c538c28c}} 
+\index{controller.h@{controller.h}!NUMBER\_OF\_LEGS@{NUMBER\_OF\_LEGS}}
+\index{NUMBER\_OF\_LEGS@{NUMBER\_OF\_LEGS}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{NUMBER\_OF\_LEGS}{NUMBER\_OF\_LEGS}}
+{\footnotesize\ttfamily \#define NUMBER\+\_\+\+OF\+\_\+\+LEGS~4}
+
+
+
+Definition at line 26 of file controller.\+h.
+
+\mbox{\Hypertarget{controller_8h_a0f3a39eb4daa13693465d77adf4ce80c}\label{controller_8h_a0f3a39eb4daa13693465d77adf4ce80c}} 
+\index{controller.h@{controller.h}!ACTUATORS\_PER\_LEG@{ACTUATORS\_PER\_LEG}}
+\index{ACTUATORS\_PER\_LEG@{ACTUATORS\_PER\_LEG}!controller.h@{controller.h}}
+\doxysubsubsection{\texorpdfstring{ACTUATORS\_PER\_LEG}{ACTUATORS\_PER\_LEG}}
+{\footnotesize\ttfamily \#define ACTUATORS\+\_\+\+PER\+\_\+\+LEG~3}
+
+
+
+Definition at line 27 of file controller.\+h.
+

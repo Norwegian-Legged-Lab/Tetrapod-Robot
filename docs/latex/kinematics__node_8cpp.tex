@@ -1,0 +1,340 @@
+\hypertarget{kinematics__node_8cpp}{}\doxysection{catkin\+\_\+ws/src/control/kinematics/src/kinematics\+\_\+node.cpp File Reference}
+\label{kinematics__node_8cpp}\index{catkin\_ws/src/control/kinematics/src/kinematics\_node.cpp@{catkin\_ws/src/control/kinematics/src/kinematics\_node.cpp}}
+{\ttfamily \#include \char`\"{}ros/ros.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$kindr/\+Core$>$}\newline
+{\ttfamily \#include $<$Eigen/\+Core$>$}\newline
+{\ttfamily \#include $<$math\+\_\+utils/\+Core$>$}\newline
+{\ttfamily \#include $<$kinematics/kinematics.\+h$>$}\newline
+{\ttfamily \#include $<$debug\+\_\+utils/debug\+\_\+utils.\+h$>$}\newline
+Include dependency graph for kinematics\+\_\+node.\+cpp\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{kinematics__node_8cpp_ab40d233440204012960311cf4e83b6b8}{some\+Random\+Testing}} ()
+\item 
+void \mbox{\hyperlink{kinematics__node_8cpp_a8b6569a6f432b0753a8d242c1d21f53b}{test\+Kindr}} ()
+\item 
+void \mbox{\hyperlink{kinematics__node_8cpp_af560309c1eb5c2185e706d6c5c6c25fa}{test\+Dh\+Transform}} ()
+\item 
+void \mbox{\hyperlink{kinematics__node_8cpp_ae8373d9595502af15d3e92f8f30a4816}{test\+Single\+Leg\+Kinematics}} ()
+\item 
+void \mbox{\hyperlink{kinematics__node_8cpp_aa58e3c366d56333e638e0576222085cb}{test\+Eigen}} ()
+\item 
+void \mbox{\hyperlink{kinematics__node_8cpp_a03975e7dc333426f15aa8c4564bc0d6c}{test\+Hip\+To\+Foot\+Transform}} ()
+\item 
+void \mbox{\hyperlink{kinematics__node_8cpp_a900bab437947555775ee4d5c7e23fdc3}{test\+Forward\+Kinematics}} ()
+\item 
+void \mbox{\hyperlink{kinematics__node_8cpp_ae44200c2468051a86a744e0e8fffa4bb}{test\+Singe\+Leg\+Inverse\+Kinematics}} ()
+\item 
+void \mbox{\hyperlink{kinematics__node_8cpp_a491480774bb9006d2484d37147e6dccb}{test\+Inverse\+Kinematics}} ()
+\item 
+void \mbox{\hyperlink{kinematics__node_8cpp_a67ea72b0bba1bef853dbd50dd1fe6c69}{test\+Position\+Base\+To\+Foot}} ()
+\item 
+void \mbox{\hyperlink{kinematics__node_8cpp_ad096761d09570138eb3b87f5b0b85dcf}{test\+Translation\+Jacobian}} ()
+\item 
+void \mbox{\hyperlink{kinematics__node_8cpp_a9b83a1fc15da1ea3dfb4d5b3da37054d}{test\+Rotation\+Jacobian}} ()
+\item 
+void \mbox{\hyperlink{kinematics__node_8cpp_ac69ad28d29915fa3ad5e853587d18f73}{test\+Jacobian}} ()
+\item 
+void \mbox{\hyperlink{kinematics__node_8cpp_a60ee3c848cc16b73dcc986d1e0beecb4}{test\+Base\+Jacobian}} ()
+\item 
+void \mbox{\hyperlink{kinematics__node_8cpp_a9a9ff394ce69196ec7654e33053300cf}{test\+Mass\+Matrix}} ()
+\item 
+void \mbox{\hyperlink{kinematics__node_8cpp_a57374524f2b452f42fab8b7ebb761117}{test\+Gravitational\+Terms}} ()
+\item 
+void \mbox{\hyperlink{kinematics__node_8cpp_ace24ee2933445111cbdf1148510a42a8}{test\+Euler\+Diff}} ()
+\item 
+void \mbox{\hyperlink{kinematics__node_8cpp_ac65e27e0525d52f84ed70aa24a9b01c0}{test\+Coriolis\+And\+Centrifugal\+Terms}} ()
+\item 
+void \mbox{\hyperlink{kinematics__node_8cpp_a0a5c6490634027692e408d7ccb9267aa}{test\+Null\+Space\+Projector}} ()
+\item 
+void \mbox{\hyperlink{kinematics__node_8cpp_a9d2eb0ca75eb861e7e882ff83a3bbf8d}{test\+SVDNull\+Space\+Projector}} ()
+\item 
+void \mbox{\hyperlink{kinematics__node_8cpp_a68c89e613a91831f0cb31b86a81184d8}{test\+Contact\+Jacobian}} ()
+\item 
+void \mbox{\hyperlink{kinematics__node_8cpp_a013267f094bbed07b2d91b70c3d0038b}{test\+Eigen\+Stacking}} ()
+\item 
+void \mbox{\hyperlink{kinematics__node_8cpp_a0f2c6c73df95c264ce7a704dca1dea67}{test\+Rotation\+WToC}} ()
+\item 
+void \mbox{\hyperlink{kinematics__node_8cpp_a3348f3c7d11f530a35ddcee00149bb77}{test\+Contact\+Force\+Limits\+Matrix}} ()
+\item 
+void \mbox{\hyperlink{kinematics__node_8cpp_a072e61eead21e984d18189871c3b48b0}{test\+Control\+Frame}} ()
+\item 
+void \mbox{\hyperlink{kinematics__node_8cpp_a6507d7859074aef22016432daac4d0dc}{test\+EigenQ}} ()
+\item 
+int \mbox{\hyperlink{kinematics__node_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{kinematics__node_8cpp_ab40d233440204012960311cf4e83b6b8}\label{kinematics__node_8cpp_ab40d233440204012960311cf4e83b6b8}} 
+\index{kinematics\_node.cpp@{kinematics\_node.cpp}!someRandomTesting@{someRandomTesting}}
+\index{someRandomTesting@{someRandomTesting}!kinematics\_node.cpp@{kinematics\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{someRandomTesting()}{someRandomTesting()}}
+{\footnotesize\ttfamily void some\+Random\+Testing (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 15 of file kinematics\+\_\+node.\+cpp.
+
+\mbox{\Hypertarget{kinematics__node_8cpp_a8b6569a6f432b0753a8d242c1d21f53b}\label{kinematics__node_8cpp_a8b6569a6f432b0753a8d242c1d21f53b}} 
+\index{kinematics\_node.cpp@{kinematics\_node.cpp}!testKindr@{testKindr}}
+\index{testKindr@{testKindr}!kinematics\_node.cpp@{kinematics\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{testKindr()}{testKindr()}}
+{\footnotesize\ttfamily void test\+Kindr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 50 of file kinematics\+\_\+node.\+cpp.
+
+\mbox{\Hypertarget{kinematics__node_8cpp_af560309c1eb5c2185e706d6c5c6c25fa}\label{kinematics__node_8cpp_af560309c1eb5c2185e706d6c5c6c25fa}} 
+\index{kinematics\_node.cpp@{kinematics\_node.cpp}!testDhTransform@{testDhTransform}}
+\index{testDhTransform@{testDhTransform}!kinematics\_node.cpp@{kinematics\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{testDhTransform()}{testDhTransform()}}
+{\footnotesize\ttfamily void test\+Dh\+Transform (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 68 of file kinematics\+\_\+node.\+cpp.
+
+\mbox{\Hypertarget{kinematics__node_8cpp_ae8373d9595502af15d3e92f8f30a4816}\label{kinematics__node_8cpp_ae8373d9595502af15d3e92f8f30a4816}} 
+\index{kinematics\_node.cpp@{kinematics\_node.cpp}!testSingleLegKinematics@{testSingleLegKinematics}}
+\index{testSingleLegKinematics@{testSingleLegKinematics}!kinematics\_node.cpp@{kinematics\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{testSingleLegKinematics()}{testSingleLegKinematics()}}
+{\footnotesize\ttfamily void test\+Single\+Leg\+Kinematics (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 85 of file kinematics\+\_\+node.\+cpp.
+
+\mbox{\Hypertarget{kinematics__node_8cpp_aa58e3c366d56333e638e0576222085cb}\label{kinematics__node_8cpp_aa58e3c366d56333e638e0576222085cb}} 
+\index{kinematics\_node.cpp@{kinematics\_node.cpp}!testEigen@{testEigen}}
+\index{testEigen@{testEigen}!kinematics\_node.cpp@{kinematics\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{testEigen()}{testEigen()}}
+{\footnotesize\ttfamily void test\+Eigen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 103 of file kinematics\+\_\+node.\+cpp.
+
+\mbox{\Hypertarget{kinematics__node_8cpp_a03975e7dc333426f15aa8c4564bc0d6c}\label{kinematics__node_8cpp_a03975e7dc333426f15aa8c4564bc0d6c}} 
+\index{kinematics\_node.cpp@{kinematics\_node.cpp}!testHipToFootTransform@{testHipToFootTransform}}
+\index{testHipToFootTransform@{testHipToFootTransform}!kinematics\_node.cpp@{kinematics\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{testHipToFootTransform()}{testHipToFootTransform()}}
+{\footnotesize\ttfamily void test\+Hip\+To\+Foot\+Transform (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 127 of file kinematics\+\_\+node.\+cpp.
+
+\mbox{\Hypertarget{kinematics__node_8cpp_a900bab437947555775ee4d5c7e23fdc3}\label{kinematics__node_8cpp_a900bab437947555775ee4d5c7e23fdc3}} 
+\index{kinematics\_node.cpp@{kinematics\_node.cpp}!testForwardKinematics@{testForwardKinematics}}
+\index{testForwardKinematics@{testForwardKinematics}!kinematics\_node.cpp@{kinematics\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{testForwardKinematics()}{testForwardKinematics()}}
+{\footnotesize\ttfamily void test\+Forward\+Kinematics (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 146 of file kinematics\+\_\+node.\+cpp.
+
+\mbox{\Hypertarget{kinematics__node_8cpp_ae44200c2468051a86a744e0e8fffa4bb}\label{kinematics__node_8cpp_ae44200c2468051a86a744e0e8fffa4bb}} 
+\index{kinematics\_node.cpp@{kinematics\_node.cpp}!testSingeLegInverseKinematics@{testSingeLegInverseKinematics}}
+\index{testSingeLegInverseKinematics@{testSingeLegInverseKinematics}!kinematics\_node.cpp@{kinematics\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{testSingeLegInverseKinematics()}{testSingeLegInverseKinematics()}}
+{\footnotesize\ttfamily void test\+Singe\+Leg\+Inverse\+Kinematics (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 180 of file kinematics\+\_\+node.\+cpp.
+
+\mbox{\Hypertarget{kinematics__node_8cpp_a491480774bb9006d2484d37147e6dccb}\label{kinematics__node_8cpp_a491480774bb9006d2484d37147e6dccb}} 
+\index{kinematics\_node.cpp@{kinematics\_node.cpp}!testInverseKinematics@{testInverseKinematics}}
+\index{testInverseKinematics@{testInverseKinematics}!kinematics\_node.cpp@{kinematics\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{testInverseKinematics()}{testInverseKinematics()}}
+{\footnotesize\ttfamily void test\+Inverse\+Kinematics (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 196 of file kinematics\+\_\+node.\+cpp.
+
+\mbox{\Hypertarget{kinematics__node_8cpp_a67ea72b0bba1bef853dbd50dd1fe6c69}\label{kinematics__node_8cpp_a67ea72b0bba1bef853dbd50dd1fe6c69}} 
+\index{kinematics\_node.cpp@{kinematics\_node.cpp}!testPositionBaseToFoot@{testPositionBaseToFoot}}
+\index{testPositionBaseToFoot@{testPositionBaseToFoot}!kinematics\_node.cpp@{kinematics\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{testPositionBaseToFoot()}{testPositionBaseToFoot()}}
+{\footnotesize\ttfamily void test\+Position\+Base\+To\+Foot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 225 of file kinematics\+\_\+node.\+cpp.
+
+\mbox{\Hypertarget{kinematics__node_8cpp_ad096761d09570138eb3b87f5b0b85dcf}\label{kinematics__node_8cpp_ad096761d09570138eb3b87f5b0b85dcf}} 
+\index{kinematics\_node.cpp@{kinematics\_node.cpp}!testTranslationJacobian@{testTranslationJacobian}}
+\index{testTranslationJacobian@{testTranslationJacobian}!kinematics\_node.cpp@{kinematics\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{testTranslationJacobian()}{testTranslationJacobian()}}
+{\footnotesize\ttfamily void test\+Translation\+Jacobian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 268 of file kinematics\+\_\+node.\+cpp.
+
+\mbox{\Hypertarget{kinematics__node_8cpp_a9b83a1fc15da1ea3dfb4d5b3da37054d}\label{kinematics__node_8cpp_a9b83a1fc15da1ea3dfb4d5b3da37054d}} 
+\index{kinematics\_node.cpp@{kinematics\_node.cpp}!testRotationJacobian@{testRotationJacobian}}
+\index{testRotationJacobian@{testRotationJacobian}!kinematics\_node.cpp@{kinematics\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{testRotationJacobian()}{testRotationJacobian()}}
+{\footnotesize\ttfamily void test\+Rotation\+Jacobian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 305 of file kinematics\+\_\+node.\+cpp.
+
+\mbox{\Hypertarget{kinematics__node_8cpp_ac69ad28d29915fa3ad5e853587d18f73}\label{kinematics__node_8cpp_ac69ad28d29915fa3ad5e853587d18f73}} 
+\index{kinematics\_node.cpp@{kinematics\_node.cpp}!testJacobian@{testJacobian}}
+\index{testJacobian@{testJacobian}!kinematics\_node.cpp@{kinematics\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{testJacobian()}{testJacobian()}}
+{\footnotesize\ttfamily void test\+Jacobian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 341 of file kinematics\+\_\+node.\+cpp.
+
+\mbox{\Hypertarget{kinematics__node_8cpp_a60ee3c848cc16b73dcc986d1e0beecb4}\label{kinematics__node_8cpp_a60ee3c848cc16b73dcc986d1e0beecb4}} 
+\index{kinematics\_node.cpp@{kinematics\_node.cpp}!testBaseJacobian@{testBaseJacobian}}
+\index{testBaseJacobian@{testBaseJacobian}!kinematics\_node.cpp@{kinematics\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{testBaseJacobian()}{testBaseJacobian()}}
+{\footnotesize\ttfamily void test\+Base\+Jacobian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 379 of file kinematics\+\_\+node.\+cpp.
+
+\mbox{\Hypertarget{kinematics__node_8cpp_a9a9ff394ce69196ec7654e33053300cf}\label{kinematics__node_8cpp_a9a9ff394ce69196ec7654e33053300cf}} 
+\index{kinematics\_node.cpp@{kinematics\_node.cpp}!testMassMatrix@{testMassMatrix}}
+\index{testMassMatrix@{testMassMatrix}!kinematics\_node.cpp@{kinematics\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{testMassMatrix()}{testMassMatrix()}}
+{\footnotesize\ttfamily void test\+Mass\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 410 of file kinematics\+\_\+node.\+cpp.
+
+\mbox{\Hypertarget{kinematics__node_8cpp_a57374524f2b452f42fab8b7ebb761117}\label{kinematics__node_8cpp_a57374524f2b452f42fab8b7ebb761117}} 
+\index{kinematics\_node.cpp@{kinematics\_node.cpp}!testGravitationalTerms@{testGravitationalTerms}}
+\index{testGravitationalTerms@{testGravitationalTerms}!kinematics\_node.cpp@{kinematics\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{testGravitationalTerms()}{testGravitationalTerms()}}
+{\footnotesize\ttfamily void test\+Gravitational\+Terms (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 441 of file kinematics\+\_\+node.\+cpp.
+
+\mbox{\Hypertarget{kinematics__node_8cpp_ace24ee2933445111cbdf1148510a42a8}\label{kinematics__node_8cpp_ace24ee2933445111cbdf1148510a42a8}} 
+\index{kinematics\_node.cpp@{kinematics\_node.cpp}!testEulerDiff@{testEulerDiff}}
+\index{testEulerDiff@{testEulerDiff}!kinematics\_node.cpp@{kinematics\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{testEulerDiff()}{testEulerDiff()}}
+{\footnotesize\ttfamily void test\+Euler\+Diff (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 475 of file kinematics\+\_\+node.\+cpp.
+
+\mbox{\Hypertarget{kinematics__node_8cpp_ac65e27e0525d52f84ed70aa24a9b01c0}\label{kinematics__node_8cpp_ac65e27e0525d52f84ed70aa24a9b01c0}} 
+\index{kinematics\_node.cpp@{kinematics\_node.cpp}!testCoriolisAndCentrifugalTerms@{testCoriolisAndCentrifugalTerms}}
+\index{testCoriolisAndCentrifugalTerms@{testCoriolisAndCentrifugalTerms}!kinematics\_node.cpp@{kinematics\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{testCoriolisAndCentrifugalTerms()}{testCoriolisAndCentrifugalTerms()}}
+{\footnotesize\ttfamily void test\+Coriolis\+And\+Centrifugal\+Terms (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 529 of file kinematics\+\_\+node.\+cpp.
+
+\mbox{\Hypertarget{kinematics__node_8cpp_a0a5c6490634027692e408d7ccb9267aa}\label{kinematics__node_8cpp_a0a5c6490634027692e408d7ccb9267aa}} 
+\index{kinematics\_node.cpp@{kinematics\_node.cpp}!testNullSpaceProjector@{testNullSpaceProjector}}
+\index{testNullSpaceProjector@{testNullSpaceProjector}!kinematics\_node.cpp@{kinematics\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{testNullSpaceProjector()}{testNullSpaceProjector()}}
+{\footnotesize\ttfamily void test\+Null\+Space\+Projector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 579 of file kinematics\+\_\+node.\+cpp.
+
+\mbox{\Hypertarget{kinematics__node_8cpp_a9d2eb0ca75eb861e7e882ff83a3bbf8d}\label{kinematics__node_8cpp_a9d2eb0ca75eb861e7e882ff83a3bbf8d}} 
+\index{kinematics\_node.cpp@{kinematics\_node.cpp}!testSVDNullSpaceProjector@{testSVDNullSpaceProjector}}
+\index{testSVDNullSpaceProjector@{testSVDNullSpaceProjector}!kinematics\_node.cpp@{kinematics\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{testSVDNullSpaceProjector()}{testSVDNullSpaceProjector()}}
+{\footnotesize\ttfamily void test\+SVDNull\+Space\+Projector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 607 of file kinematics\+\_\+node.\+cpp.
+
+\mbox{\Hypertarget{kinematics__node_8cpp_a68c89e613a91831f0cb31b86a81184d8}\label{kinematics__node_8cpp_a68c89e613a91831f0cb31b86a81184d8}} 
+\index{kinematics\_node.cpp@{kinematics\_node.cpp}!testContactJacobian@{testContactJacobian}}
+\index{testContactJacobian@{testContactJacobian}!kinematics\_node.cpp@{kinematics\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{testContactJacobian()}{testContactJacobian()}}
+{\footnotesize\ttfamily void test\+Contact\+Jacobian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 643 of file kinematics\+\_\+node.\+cpp.
+
+\mbox{\Hypertarget{kinematics__node_8cpp_a013267f094bbed07b2d91b70c3d0038b}\label{kinematics__node_8cpp_a013267f094bbed07b2d91b70c3d0038b}} 
+\index{kinematics\_node.cpp@{kinematics\_node.cpp}!testEigenStacking@{testEigenStacking}}
+\index{testEigenStacking@{testEigenStacking}!kinematics\_node.cpp@{kinematics\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{testEigenStacking()}{testEigenStacking()}}
+{\footnotesize\ttfamily void test\+Eigen\+Stacking (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 676 of file kinematics\+\_\+node.\+cpp.
+
+\mbox{\Hypertarget{kinematics__node_8cpp_a0f2c6c73df95c264ce7a704dca1dea67}\label{kinematics__node_8cpp_a0f2c6c73df95c264ce7a704dca1dea67}} 
+\index{kinematics\_node.cpp@{kinematics\_node.cpp}!testRotationWToC@{testRotationWToC}}
+\index{testRotationWToC@{testRotationWToC}!kinematics\_node.cpp@{kinematics\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{testRotationWToC()}{testRotationWToC()}}
+{\footnotesize\ttfamily void test\+Rotation\+WToC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 782 of file kinematics\+\_\+node.\+cpp.
+
+\mbox{\Hypertarget{kinematics__node_8cpp_a3348f3c7d11f530a35ddcee00149bb77}\label{kinematics__node_8cpp_a3348f3c7d11f530a35ddcee00149bb77}} 
+\index{kinematics\_node.cpp@{kinematics\_node.cpp}!testContactForceLimitsMatrix@{testContactForceLimitsMatrix}}
+\index{testContactForceLimitsMatrix@{testContactForceLimitsMatrix}!kinematics\_node.cpp@{kinematics\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{testContactForceLimitsMatrix()}{testContactForceLimitsMatrix()}}
+{\footnotesize\ttfamily void test\+Contact\+Force\+Limits\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 799 of file kinematics\+\_\+node.\+cpp.
+
+\mbox{\Hypertarget{kinematics__node_8cpp_a072e61eead21e984d18189871c3b48b0}\label{kinematics__node_8cpp_a072e61eead21e984d18189871c3b48b0}} 
+\index{kinematics\_node.cpp@{kinematics\_node.cpp}!testControlFrame@{testControlFrame}}
+\index{testControlFrame@{testControlFrame}!kinematics\_node.cpp@{kinematics\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{testControlFrame()}{testControlFrame()}}
+{\footnotesize\ttfamily void test\+Control\+Frame (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 833 of file kinematics\+\_\+node.\+cpp.
+
+\mbox{\Hypertarget{kinematics__node_8cpp_a6507d7859074aef22016432daac4d0dc}\label{kinematics__node_8cpp_a6507d7859074aef22016432daac4d0dc}} 
+\index{kinematics\_node.cpp@{kinematics\_node.cpp}!testEigenQ@{testEigenQ}}
+\index{testEigenQ@{testEigenQ}!kinematics\_node.cpp@{kinematics\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{testEigenQ()}{testEigenQ()}}
+{\footnotesize\ttfamily void test\+EigenQ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 883 of file kinematics\+\_\+node.\+cpp.
+
+\mbox{\Hypertarget{kinematics__node_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{kinematics__node_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{kinematics\_node.cpp@{kinematics\_node.cpp}!main@{main}}
+\index{main@{main}!kinematics\_node.cpp@{kinematics\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Definition at line 901 of file kinematics\+\_\+node.\+cpp.
+

@@ -1,0 +1,86 @@
+\hypertarget{gaits_8cpp}{}\doxysection{catkin\+\_\+ws/src/control/modular\+\_\+gait\+\_\+controller/src/gaits.cpp File Reference}
+\label{gaits_8cpp}\index{catkin\_ws/src/control/modular\_gait\_controller/src/gaits.cpp@{catkin\_ws/src/control/modular\_gait\_controller/src/gaits.cpp}}
+{\ttfamily \#include \char`\"{}modular\+\_\+gait\+\_\+controller/gait\+\_\+controller.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}modular\+\_\+gait\+\_\+controller/gaits.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$list$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+Include dependency graph for gaits.\+cpp\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} \mbox{\hyperlink{gaits_8cpp_a6e236d3fde2fbb5f64f8c5fb7dbf0516}{mirror\+Offset}} (\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} offset, \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Kinematics\+::\+Leg\+Type}} leg)
+\item 
+\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} \mbox{\hyperlink{gaits_8cpp_a73c421eb5f961e20a38741b3c6718d61}{classic\+Gait}} (double t, \mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Kinematics\+::\+Leg\+Type}} leg)
+\item 
+double \mbox{\hyperlink{gaits_8cpp_ae6f5b1d2f6589c88811f88998392aaa9}{smallest\+Positive\+Root}} (Eigen\+::\+Matrix$<$ double, Eigen\+::\+Dynamic, 1 $>$ coeffs)
+\item 
+double \mbox{\hyperlink{gaits_8cpp_a0685d15e5ae874865a8fa86aa1516cfd}{polynomial\+Spine}} (double t, double t\+\_\+tot, double d\+\_\+tot, double a\+\_\+max, double v\+\_\+rob)
+\item 
+void \mbox{\hyperlink{gaits_8cpp_a7211b085fc350e462b9e161825006e7b}{Calculate\+Polynomial\+Trajectory}} (double t, double swing\+\_\+period, double rise\+\_\+percentage, double distance, double vel\+\_\+cmd, double \&\+\_\+pos, double \&\+\_\+vel, double \&\+\_\+acc, double \&\+\_\+jerk)
+\item 
+void \mbox{\hyperlink{gaits_8cpp_a08f7f74d4dcd26fe8c78369379f7436b}{Calculate\+Fourth\+Order\+Polynomial\+Trajectory}} (double t, double swing\+\_\+period, double distance, double \&\+\_\+pos, double \&\+\_\+vel, double \+\_\+acc)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{gaits_8cpp_a6e236d3fde2fbb5f64f8c5fb7dbf0516}\label{gaits_8cpp_a6e236d3fde2fbb5f64f8c5fb7dbf0516}} 
+\index{gaits.cpp@{gaits.cpp}!mirrorOffset@{mirrorOffset}}
+\index{mirrorOffset@{mirrorOffset}!gaits.cpp@{gaits.cpp}}
+\doxysubsubsection{\texorpdfstring{mirrorOffset()}{mirrorOffset()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} mirror\+Offset (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}}]{offset,  }\item[{\mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Kinematics\+::\+Leg\+Type}}}]{leg }\end{DoxyParamCaption})}
+
+
+
+Definition at line 5 of file gaits.\+cpp.
+
+\mbox{\Hypertarget{gaits_8cpp_a73c421eb5f961e20a38741b3c6718d61}\label{gaits_8cpp_a73c421eb5f961e20a38741b3c6718d61}} 
+\index{gaits.cpp@{gaits.cpp}!classicGait@{classicGait}}
+\index{classicGait@{classicGait}!gaits.cpp@{gaits.cpp}}
+\doxysubsubsection{\texorpdfstring{classicGait()}{classicGait()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} classic\+Gait (\begin{DoxyParamCaption}\item[{double}]{t,  }\item[{\mbox{\hyperlink{classKinematics_af4fe883429ced792a719f02b4dcc5e3a}{Kinematics\+::\+Leg\+Type}}}]{leg }\end{DoxyParamCaption})}
+
+
+
+Definition at line 27 of file gaits.\+cpp.
+
+\mbox{\Hypertarget{gaits_8cpp_ae6f5b1d2f6589c88811f88998392aaa9}\label{gaits_8cpp_ae6f5b1d2f6589c88811f88998392aaa9}} 
+\index{gaits.cpp@{gaits.cpp}!smallestPositiveRoot@{smallestPositiveRoot}}
+\index{smallestPositiveRoot@{smallestPositiveRoot}!gaits.cpp@{gaits.cpp}}
+\doxysubsubsection{\texorpdfstring{smallestPositiveRoot()}{smallestPositiveRoot()}}
+{\footnotesize\ttfamily double smallest\+Positive\+Root (\begin{DoxyParamCaption}\item[{Eigen\+::\+Matrix$<$ double, Eigen\+::\+Dynamic, 1 $>$}]{coeffs }\end{DoxyParamCaption})}
+
+
+
+Definition at line 72 of file gaits.\+cpp.
+
+\mbox{\Hypertarget{gaits_8cpp_a0685d15e5ae874865a8fa86aa1516cfd}\label{gaits_8cpp_a0685d15e5ae874865a8fa86aa1516cfd}} 
+\index{gaits.cpp@{gaits.cpp}!polynomialSpine@{polynomialSpine}}
+\index{polynomialSpine@{polynomialSpine}!gaits.cpp@{gaits.cpp}}
+\doxysubsubsection{\texorpdfstring{polynomialSpine()}{polynomialSpine()}}
+{\footnotesize\ttfamily double polynomial\+Spine (\begin{DoxyParamCaption}\item[{double}]{t,  }\item[{double}]{t\+\_\+tot,  }\item[{double}]{d\+\_\+tot,  }\item[{double}]{a\+\_\+max,  }\item[{double}]{v\+\_\+rob }\end{DoxyParamCaption})}
+
+
+
+Definition at line 95 of file gaits.\+cpp.
+
+\mbox{\Hypertarget{gaits_8cpp_a7211b085fc350e462b9e161825006e7b}\label{gaits_8cpp_a7211b085fc350e462b9e161825006e7b}} 
+\index{gaits.cpp@{gaits.cpp}!CalculatePolynomialTrajectory@{CalculatePolynomialTrajectory}}
+\index{CalculatePolynomialTrajectory@{CalculatePolynomialTrajectory}!gaits.cpp@{gaits.cpp}}
+\doxysubsubsection{\texorpdfstring{CalculatePolynomialTrajectory()}{CalculatePolynomialTrajectory()}}
+{\footnotesize\ttfamily void Calculate\+Polynomial\+Trajectory (\begin{DoxyParamCaption}\item[{double}]{t,  }\item[{double}]{swing\+\_\+period,  }\item[{double}]{rise\+\_\+percentage,  }\item[{double}]{distance,  }\item[{double}]{vel\+\_\+cmd,  }\item[{double \&}]{\+\_\+pos,  }\item[{double \&}]{\+\_\+vel,  }\item[{double \&}]{\+\_\+acc,  }\item[{double \&}]{\+\_\+jerk }\end{DoxyParamCaption})}
+
+
+
+Definition at line 196 of file gaits.\+cpp.
+
+\mbox{\Hypertarget{gaits_8cpp_a08f7f74d4dcd26fe8c78369379f7436b}\label{gaits_8cpp_a08f7f74d4dcd26fe8c78369379f7436b}} 
+\index{gaits.cpp@{gaits.cpp}!CalculateFourthOrderPolynomialTrajectory@{CalculateFourthOrderPolynomialTrajectory}}
+\index{CalculateFourthOrderPolynomialTrajectory@{CalculateFourthOrderPolynomialTrajectory}!gaits.cpp@{gaits.cpp}}
+\doxysubsubsection{\texorpdfstring{CalculateFourthOrderPolynomialTrajectory()}{CalculateFourthOrderPolynomialTrajectory()}}
+{\footnotesize\ttfamily void Calculate\+Fourth\+Order\+Polynomial\+Trajectory (\begin{DoxyParamCaption}\item[{double}]{t,  }\item[{double}]{swing\+\_\+period,  }\item[{double}]{distance,  }\item[{double \&}]{\+\_\+pos,  }\item[{double \&}]{\+\_\+vel,  }\item[{double}]{\+\_\+acc }\end{DoxyParamCaption})}
+
+
+
+Definition at line 277 of file gaits.\+cpp.
+

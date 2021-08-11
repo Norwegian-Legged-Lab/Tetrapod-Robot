@@ -1,0 +1,124 @@
+\hypertarget{namespacegazebo}{}\doxysection{gazebo Namespace Reference}
+\label{namespacegazebo}\index{gazebo@{gazebo}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classgazebo_1_1PendulumPlugin}{Pendulum\+Plugin}}
+\begin{DoxyCompactList}\small\item\em A plugin to control the pendulum robot. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classgazebo_1_1SingleLegPlugin}{Single\+Leg\+Plugin}}
+\begin{DoxyCompactList}\small\item\em A plugin to control the single\+\_\+leg robot. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classgazebo_1_1ContactPlugin}{Contact\+Plugin}}
+\begin{DoxyCompactList}\small\item\em A plugin for the contact sensors. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classgazebo_1_1FootstepPlannerPlugin}{Footstep\+Planner\+Plugin}}
+\item 
+class \mbox{\hyperlink{classgazebo_1_1TerrainPlugin}{Terrain\+Plugin}}
+\item 
+class \mbox{\hyperlink{classgazebo_1_1TetrapodPlugin}{Tetrapod\+Plugin}}
+\begin{DoxyCompactList}\small\item\em A plugin to control the tetrapod robot. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{namespacegazebo_a697e6e122f64fa28adbe81b86ccfb91f}{Joint\+Velocities}} = Eigen\+::\+Matrix$<$ double, 3, 1 $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespacegazebo_acc52afcf41283db259e08390fe039f34}{Control\+Mode}} \{ \mbox{\hyperlink{namespacegazebo_acc52afcf41283db259e08390fe039f34aa70ded99ed36cc10cbd49955f7b31088}{position}} = 1
+, \mbox{\hyperlink{namespacegazebo_acc52afcf41283db259e08390fe039f34a6086ad1afd03a28123de2efed3cbbfc4}{velocity}} = 2
+, \mbox{\hyperlink{namespacegazebo_acc52afcf41283db259e08390fe039f34a9708154d4bb004d79f07a6ab0ab0a5aa}{torque}} = 3
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr unsigned int \mbox{\hyperlink{namespacegazebo_abc8bafa1987c32600a921937689503e5}{NUMJOINTS}} = 1
+\begin{DoxyCompactList}\small\item\em Fixed variable for num joints. \end{DoxyCompactList}\item 
+static constexpr unsigned int \mbox{\hyperlink{namespacegazebo_abc8bafa1987c32600a921937689503e5}{NUMJOINTS}} = 3
+\begin{DoxyCompactList}\small\item\em Fixed variable for num joints. \end{DoxyCompactList}\item 
+static constexpr unsigned int \mbox{\hyperlink{namespacegazebo_abc8bafa1987c32600a921937689503e5}{NUMJOINTS}} = 12
+\begin{DoxyCompactList}\small\item\em Fixed variable for num joints. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{namespacegazebo_a697e6e122f64fa28adbe81b86ccfb91f}\label{namespacegazebo_a697e6e122f64fa28adbe81b86ccfb91f}} 
+\index{gazebo@{gazebo}!JointVelocities@{JointVelocities}}
+\index{JointVelocities@{JointVelocities}!gazebo@{gazebo}}
+\doxysubsubsection{\texorpdfstring{JointVelocities}{JointVelocities}}
+{\footnotesize\ttfamily typedef Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \mbox{\hyperlink{namespacegazebo_a697e6e122f64fa28adbe81b86ccfb91f}{gazebo\+::\+Joint\+Velocities}}}
+
+
+
+Definition at line 63 of file single\+\_\+leg\+\_\+plugin.\+h.
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{namespacegazebo_acc52afcf41283db259e08390fe039f34}\label{namespacegazebo_acc52afcf41283db259e08390fe039f34}} 
+\index{gazebo@{gazebo}!ControlMode@{ControlMode}}
+\index{ControlMode@{ControlMode}!gazebo@{gazebo}}
+\doxysubsubsection{\texorpdfstring{ControlMode}{ControlMode}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{namespacegazebo_acc52afcf41283db259e08390fe039f34}{gazebo\+::\+Control\+Mode}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{position@{position}!gazebo@{gazebo}}\index{gazebo@{gazebo}!position@{position}}}\mbox{\Hypertarget{namespacegazebo_acc52afcf41283db259e08390fe039f34aa70ded99ed36cc10cbd49955f7b31088}\label{namespacegazebo_acc52afcf41283db259e08390fe039f34aa70ded99ed36cc10cbd49955f7b31088}} 
+position&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{velocity@{velocity}!gazebo@{gazebo}}\index{gazebo@{gazebo}!velocity@{velocity}}}\mbox{\Hypertarget{namespacegazebo_acc52afcf41283db259e08390fe039f34a6086ad1afd03a28123de2efed3cbbfc4}\label{namespacegazebo_acc52afcf41283db259e08390fe039f34a6086ad1afd03a28123de2efed3cbbfc4}} 
+velocity&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{torque@{torque}!gazebo@{gazebo}}\index{gazebo@{gazebo}!torque@{torque}}}\mbox{\Hypertarget{namespacegazebo_acc52afcf41283db259e08390fe039f34a9708154d4bb004d79f07a6ab0ab0a5aa}\label{namespacegazebo_acc52afcf41283db259e08390fe039f34a9708154d4bb004d79f07a6ab0ab0a5aa}} 
+torque&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 65 of file single\+\_\+leg\+\_\+plugin.\+h.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespacegazebo_abc8bafa1987c32600a921937689503e5}\label{namespacegazebo_abc8bafa1987c32600a921937689503e5}} 
+\index{gazebo@{gazebo}!NUMJOINTS@{NUMJOINTS}}
+\index{NUMJOINTS@{NUMJOINTS}!gazebo@{gazebo}}
+\doxysubsubsection{\texorpdfstring{NUMJOINTS}{NUMJOINTS}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily constexpr unsigned int gazebo\+::\+NUMJOINTS = 1\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Fixed variable for num joints. 
+
+
+
+Definition at line 60 of file pendulum\+\_\+plugin.\+h.
+
+\mbox{\Hypertarget{namespacegazebo_abc8bafa1987c32600a921937689503e5}\label{namespacegazebo_abc8bafa1987c32600a921937689503e5}} 
+\index{gazebo@{gazebo}!NUMJOINTS@{NUMJOINTS}}
+\index{NUMJOINTS@{NUMJOINTS}!gazebo@{gazebo}}
+\doxysubsubsection{\texorpdfstring{NUMJOINTS}{NUMJOINTS}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily constexpr unsigned int gazebo\+::\+NUMJOINTS = 3\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Fixed variable for num joints. 
+
+
+
+Definition at line 61 of file single\+\_\+leg\+\_\+plugin.\+h.
+
+\mbox{\Hypertarget{namespacegazebo_abc8bafa1987c32600a921937689503e5}\label{namespacegazebo_abc8bafa1987c32600a921937689503e5}} 
+\index{gazebo@{gazebo}!NUMJOINTS@{NUMJOINTS}}
+\index{NUMJOINTS@{NUMJOINTS}!gazebo@{gazebo}}
+\doxysubsubsection{\texorpdfstring{NUMJOINTS}{NUMJOINTS}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily constexpr unsigned int gazebo\+::\+NUMJOINTS = 12\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+Fixed variable for num joints. 
+
+
+
+Definition at line 61 of file tetrapod\+\_\+plugin.\+h.
+

@@ -1,0 +1,19 @@
+digraph "catkin_ws/src/control/single_leg_controller/include" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_39a6819a370204bd812b58f2230e8cf2 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="single_leg_controller" fontname="Helvetica", fontsize="10", URL="dir_39a6819a370204bd812b58f2230e8cf2.html"]
+  subgraph clusterdir_035ea556fec93070d4ef345493e98a39 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_035ea556fec93070d4ef345493e98a39.html"];
+    dir_035ea556fec93070d4ef345493e98a39 [shape=plaintext label="include"];
+  dir_04675d5335644a9203ea510d6d1f143b [shape=box label="single_leg_controller" fillcolor="white" style="filled" URL="dir_04675d5335644a9203ea510d6d1f143b.html"];
+  }
+  }
+  dir_ec790efbf722e6db93e0634c133a57ed [shape=box label="kinematics" fillcolor="white" style="filled" color="red" URL="dir_ec790efbf722e6db93e0634c133a57ed.html"];
+  dir_ccddda87566ee263eec2f42a65371c71 [shape=box label="utilities" fillcolor="white" style="filled" color="red" URL="dir_ccddda87566ee263eec2f42a65371c71.html"];
+  dir_ccddda87566ee263eec2f42a65371c71->dir_ec790efbf722e6db93e0634c133a57ed [headlabel="1", labeldistance=1.5 headhref="dir_000034_000010.html"];
+  dir_ec790efbf722e6db93e0634c133a57ed->dir_ccddda87566ee263eec2f42a65371c71 [headlabel="2", labeldistance=1.5 headhref="dir_000010_000034.html"];
+  dir_04675d5335644a9203ea510d6d1f143b->dir_ccddda87566ee263eec2f42a65371c71 [headlabel="1", labeldistance=1.5 headhref="dir_000057_000034.html"];
+  dir_04675d5335644a9203ea510d6d1f143b->dir_ec790efbf722e6db93e0634c133a57ed [headlabel="1", labeldistance=1.5 headhref="dir_000057_000010.html"];
+}

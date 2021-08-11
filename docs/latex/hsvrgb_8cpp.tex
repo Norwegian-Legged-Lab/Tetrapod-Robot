@@ -1,0 +1,77 @@
+\hypertarget{hsvrgb_8cpp}{}\doxysection{catkin\+\_\+ws/src/utilities/visualization\+\_\+utils/src/hsvrgb.cpp File Reference}
+\label{hsvrgb_8cpp}\index{catkin\_ws/src/utilities/visualization\_utils/src/hsvrgb.cpp@{catkin\_ws/src/utilities/visualization\_utils/src/hsvrgb.cpp}}
+{\ttfamily \#include \char`\"{}visualization\+\_\+utils/hsvrgb.\+h\char`\"{}}\newline
+Include dependency graph for hsvrgb.\+cpp\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{hsvrgb_8cpp_a162351f4ad27d60f60ad488577a826d0}{RGBto\+HSV}} (double \&fR, double \&fG, double fB, double \&fH, double \&fS, double \&fV)
+\begin{DoxyCompactList}\small\item\em Convert RGB to HSV color space. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{hsvrgb_8cpp_a676fa0988098114a1ab3cad800a63091}{HSVto\+RGB}} (double \&fR, double \&fG, double \&fB, double \&fH, double \&fS, double \&fV)
+\begin{DoxyCompactList}\small\item\em Convert HSV to RGB color space. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{hsvrgb_8cpp_a162351f4ad27d60f60ad488577a826d0}\label{hsvrgb_8cpp_a162351f4ad27d60f60ad488577a826d0}} 
+\index{hsvrgb.cpp@{hsvrgb.cpp}!RGBtoHSV@{RGBtoHSV}}
+\index{RGBtoHSV@{RGBtoHSV}!hsvrgb.cpp@{hsvrgb.cpp}}
+\doxysubsubsection{\texorpdfstring{RGBtoHSV()}{RGBtoHSV()}}
+{\footnotesize\ttfamily void RGBto\+HSV (\begin{DoxyParamCaption}\item[{double \&}]{fR,  }\item[{double \&}]{fG,  }\item[{double}]{fB,  }\item[{double \&}]{fH,  }\item[{double \&}]{fS,  }\item[{double \&}]{fV }\end{DoxyParamCaption})}
+
+
+
+Convert RGB to HSV color space. 
+
+Converts a given set of RGB values `r', `g', `b' into HSV coordinates. The input RGB values are in the range \mbox{[}0, 1\mbox{]}, and the output HSV values are in the ranges h = \mbox{[}0, 360\mbox{]}, and s, v = \mbox{[}0, 1\mbox{]}, respectively.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fR} & Red component, used as input, range\+: \mbox{[}0, 1\mbox{]} \\
+\hline
+{\em fG} & Green component, used as input, range\+: \mbox{[}0, 1\mbox{]} \\
+\hline
+{\em fB} & Blue component, used as input, range\+: \mbox{[}0, 1\mbox{]} \\
+\hline
+{\em fH} & Hue component, used as output, range\+: \mbox{[}0, 360\mbox{]} \\
+\hline
+{\em fS} & Hue component, used as output, range\+: \mbox{[}0, 1\mbox{]} \\
+\hline
+{\em fV} & Hue component, used as output, range\+: \mbox{[}0, 1\mbox{]} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 49 of file hsvrgb.\+cpp.
+
+\mbox{\Hypertarget{hsvrgb_8cpp_a676fa0988098114a1ab3cad800a63091}\label{hsvrgb_8cpp_a676fa0988098114a1ab3cad800a63091}} 
+\index{hsvrgb.cpp@{hsvrgb.cpp}!HSVtoRGB@{HSVtoRGB}}
+\index{HSVtoRGB@{HSVtoRGB}!hsvrgb.cpp@{hsvrgb.cpp}}
+\doxysubsubsection{\texorpdfstring{HSVtoRGB()}{HSVtoRGB()}}
+{\footnotesize\ttfamily void HSVto\+RGB (\begin{DoxyParamCaption}\item[{double \&}]{fR,  }\item[{double \&}]{fG,  }\item[{double \&}]{fB,  }\item[{double \&}]{fH,  }\item[{double \&}]{fS,  }\item[{double \&}]{fV }\end{DoxyParamCaption})}
+
+
+
+Convert HSV to RGB color space. 
+
+Converts a given set of HSV values `h', `s', `v' into RGB coordinates. The output RGB values are in the range \mbox{[}0, 1\mbox{]}, and the input HSV values are in the ranges h = \mbox{[}0, 360\mbox{]}, and s, v = \mbox{[}0, 1\mbox{]}, respectively.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fR} & Red component, used as output, range\+: \mbox{[}0, 1\mbox{]} \\
+\hline
+{\em fG} & Green component, used as output, range\+: \mbox{[}0, 1\mbox{]} \\
+\hline
+{\em fB} & Blue component, used as output, range\+: \mbox{[}0, 1\mbox{]} \\
+\hline
+{\em fH} & Hue component, used as input, range\+: \mbox{[}0, 360\mbox{]} \\
+\hline
+{\em fS} & Hue component, used as input, range\+: \mbox{[}0, 1\mbox{]} \\
+\hline
+{\em fV} & Hue component, used as input, range\+: \mbox{[}0, 1\mbox{]} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 96 of file hsvrgb.\+cpp.
+

@@ -1,0 +1,358 @@
+\hypertarget{classSteppingStone}{}\doxysection{Stepping\+Stone Class Reference}
+\label{classSteppingStone}\index{SteppingStone@{SteppingStone}}
+
+
+{\ttfamily \#include $<$stepping\+\_\+stone.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSteppingStone_a3479d0de6852f18368603503015e4a8e}{Stepping\+Stone}} ()
+\item 
+\mbox{\hyperlink{classSteppingStone_a6b8a64d116ea585fed6b251f4f4a678f}{Stepping\+Stone}} (\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} \mbox{\hyperlink{classSteppingStone_aa132ad2934ca215bb504c9293e39cc3e}{center}}, double \mbox{\hyperlink{classSteppingStone_a4556fa11d1fe7ae52310d63197265002}{width}}, double \mbox{\hyperlink{classSteppingStone_ae1459d59a3b8351c03b8295aee008450}{height}}, std\+::string \mbox{\hyperlink{classSteppingStone_a0a424f98f81d48952a46ee6be25e7d55}{name}}=\char`\"{}\char`\"{})
+\item 
+virtual \mbox{\hyperlink{classSteppingStone_a8eddec91cee9a535a4bd65d9cac29655}{$\sim$\+Stepping\+Stone}} ()
+\item 
+const \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} \& \mbox{\hyperlink{classSteppingStone_a79368a435a77339b47d4b354a434af32}{get\+Center}} () const
+\item 
+const double \& \mbox{\hyperlink{classSteppingStone_a3addf728cbcc90fa953adc788b1efc2e}{get\+Width}} ()
+\item 
+const double \& \mbox{\hyperlink{classSteppingStone_a5a6314f1fc9fb847f420ba1e0a4dcb7e}{get\+Height}} ()
+\item 
+const std\+::string \& \mbox{\hyperlink{classSteppingStone_a504aaa8434f0182071b182231fa9a964}{get\+Name}} () const
+\item 
+const \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} \& \mbox{\hyperlink{classSteppingStone_abc48e65dcffe5a38e5b968b03444bb1f}{get\+Top\+Right}} () const
+\item 
+const \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} \& \mbox{\hyperlink{classSteppingStone_a0d26416b619ac4c29288bd2ceb27f6e3}{get\+Bottom\+Right}} () const
+\item 
+const \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} \& \mbox{\hyperlink{classSteppingStone_af9a3bddeee421b1f11ed2e9be00864fa}{get\+Top\+Left}} () const
+\item 
+const \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} \mbox{\hyperlink{classSteppingStone_a1993a8168d736140de9e6a4f141f5189}{get\+Bottom\+Left}} () const
+\item 
+const Eigen\+::\+Matrix$<$ double, 4, 3 $>$ \& \mbox{\hyperlink{classSteppingStone_a1d63cc86970882fc680181606cdebee2}{get\+AIneq}} () const
+\item 
+const Eigen\+::\+Matrix$<$ double, 4, 1 $>$ \& \mbox{\hyperlink{classSteppingStone_a93831ad10ae5d75d77dd0c6d94c407a9}{get\+BIneq}} () const
+\item 
+const Eigen\+::\+Matrix$<$ double, 1, 3 $>$ \& \mbox{\hyperlink{classSteppingStone_a53d8b2a9bed368dad157a0c421e65b92}{get\+AEq}} () const
+\item 
+const Eigen\+::\+Matrix$<$ double, 1, 1 $>$ \& \mbox{\hyperlink{classSteppingStone_ae9dbbfdafcfea624bacd8647bdcd802c}{get\+BEq}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} \mbox{\hyperlink{classSteppingStone_aa132ad2934ca215bb504c9293e39cc3e}{center}}
+\item 
+double \mbox{\hyperlink{classSteppingStone_a4556fa11d1fe7ae52310d63197265002}{width}}
+\item 
+double \mbox{\hyperlink{classSteppingStone_ae1459d59a3b8351c03b8295aee008450}{height}}
+\item 
+std\+::string \mbox{\hyperlink{classSteppingStone_a0a424f98f81d48952a46ee6be25e7d55}{name}}
+\item 
+\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} \mbox{\hyperlink{classSteppingStone_a7961c86145513be8f35529ca71e77028}{top\+\_\+right}}
+\item 
+\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} \mbox{\hyperlink{classSteppingStone_a6af34e839411da6288cb790593b285ca}{bottom\+\_\+right}}
+\item 
+\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} \mbox{\hyperlink{classSteppingStone_aa4150a8f5d3d6435eb44df171569dc0e}{top\+\_\+left}}
+\item 
+\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} \mbox{\hyperlink{classSteppingStone_a010183cf6ea3ff883efdbcb0d060e55b}{bottom\+\_\+left}}
+\item 
+Eigen\+::\+Matrix$<$ double, 4, 3 $>$ \mbox{\hyperlink{classSteppingStone_a0379027b966e8398f4b3384a67b56637}{A\+\_\+ineq}}
+\item 
+Eigen\+::\+Matrix$<$ double, 4, 1 $>$ \mbox{\hyperlink{classSteppingStone_a21ddc5f0240777d37e860d6b9cb56c13}{b\+\_\+ineq}}
+\item 
+Eigen\+::\+Matrix$<$ double, 1, 3 $>$ \mbox{\hyperlink{classSteppingStone_a61bcaf7b33e752a04228295115d57896}{A\+\_\+eq}}
+\item 
+Eigen\+::\+Matrix$<$ double, 1, 1 $>$ \mbox{\hyperlink{classSteppingStone_ae5d5740f25c3d23f1a0cb6e3dfadcedf}{b\+\_\+eq}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line 7 of file stepping\+\_\+stone.\+h.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classSteppingStone_a3479d0de6852f18368603503015e4a8e}\label{classSteppingStone_a3479d0de6852f18368603503015e4a8e}} 
+\index{SteppingStone@{SteppingStone}!SteppingStone@{SteppingStone}}
+\index{SteppingStone@{SteppingStone}!SteppingStone@{SteppingStone}}
+\doxysubsubsection{\texorpdfstring{SteppingStone()}{SteppingStone()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Stepping\+Stone\+::\+Stepping\+Stone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 41 of file stepping\+\_\+stone.\+cpp.
+
+\mbox{\Hypertarget{classSteppingStone_a6b8a64d116ea585fed6b251f4f4a678f}\label{classSteppingStone_a6b8a64d116ea585fed6b251f4f4a678f}} 
+\index{SteppingStone@{SteppingStone}!SteppingStone@{SteppingStone}}
+\index{SteppingStone@{SteppingStone}!SteppingStone@{SteppingStone}}
+\doxysubsubsection{\texorpdfstring{SteppingStone()}{SteppingStone()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Stepping\+Stone\+::\+Stepping\+Stone (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}}]{center,  }\item[{double}]{width,  }\item[{double}]{height,  }\item[{std\+::string}]{name = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 3 of file stepping\+\_\+stone.\+cpp.
+
+\mbox{\Hypertarget{classSteppingStone_a8eddec91cee9a535a4bd65d9cac29655}\label{classSteppingStone_a8eddec91cee9a535a4bd65d9cac29655}} 
+\index{SteppingStone@{SteppingStone}!````~SteppingStone@{$\sim$SteppingStone}}
+\index{````~SteppingStone@{$\sim$SteppingStone}!SteppingStone@{SteppingStone}}
+\doxysubsubsection{\texorpdfstring{$\sim$SteppingStone()}{~SteppingStone()}}
+{\footnotesize\ttfamily Stepping\+Stone\+::$\sim$\+Stepping\+Stone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 44 of file stepping\+\_\+stone.\+cpp.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSteppingStone_a79368a435a77339b47d4b354a434af32}\label{classSteppingStone_a79368a435a77339b47d4b354a434af32}} 
+\index{SteppingStone@{SteppingStone}!getCenter@{getCenter}}
+\index{getCenter@{getCenter}!SteppingStone@{SteppingStone}}
+\doxysubsubsection{\texorpdfstring{getCenter()}{getCenter()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}\& Stepping\+Stone\+::get\+Center (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 15 of file stepping\+\_\+stone.\+h.
+
+\mbox{\Hypertarget{classSteppingStone_a3addf728cbcc90fa953adc788b1efc2e}\label{classSteppingStone_a3addf728cbcc90fa953adc788b1efc2e}} 
+\index{SteppingStone@{SteppingStone}!getWidth@{getWidth}}
+\index{getWidth@{getWidth}!SteppingStone@{SteppingStone}}
+\doxysubsubsection{\texorpdfstring{getWidth()}{getWidth()}}
+{\footnotesize\ttfamily const double\& Stepping\+Stone\+::get\+Width (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 17 of file stepping\+\_\+stone.\+h.
+
+\mbox{\Hypertarget{classSteppingStone_a5a6314f1fc9fb847f420ba1e0a4dcb7e}\label{classSteppingStone_a5a6314f1fc9fb847f420ba1e0a4dcb7e}} 
+\index{SteppingStone@{SteppingStone}!getHeight@{getHeight}}
+\index{getHeight@{getHeight}!SteppingStone@{SteppingStone}}
+\doxysubsubsection{\texorpdfstring{getHeight()}{getHeight()}}
+{\footnotesize\ttfamily const double\& Stepping\+Stone\+::get\+Height (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 19 of file stepping\+\_\+stone.\+h.
+
+\mbox{\Hypertarget{classSteppingStone_a504aaa8434f0182071b182231fa9a964}\label{classSteppingStone_a504aaa8434f0182071b182231fa9a964}} 
+\index{SteppingStone@{SteppingStone}!getName@{getName}}
+\index{getName@{getName}!SteppingStone@{SteppingStone}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily const std\+::string\& Stepping\+Stone\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 21 of file stepping\+\_\+stone.\+h.
+
+\mbox{\Hypertarget{classSteppingStone_abc48e65dcffe5a38e5b968b03444bb1f}\label{classSteppingStone_abc48e65dcffe5a38e5b968b03444bb1f}} 
+\index{SteppingStone@{SteppingStone}!getTopRight@{getTopRight}}
+\index{getTopRight@{getTopRight}!SteppingStone@{SteppingStone}}
+\doxysubsubsection{\texorpdfstring{getTopRight()}{getTopRight()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}\& Stepping\+Stone\+::get\+Top\+Right (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 23 of file stepping\+\_\+stone.\+h.
+
+\mbox{\Hypertarget{classSteppingStone_a0d26416b619ac4c29288bd2ceb27f6e3}\label{classSteppingStone_a0d26416b619ac4c29288bd2ceb27f6e3}} 
+\index{SteppingStone@{SteppingStone}!getBottomRight@{getBottomRight}}
+\index{getBottomRight@{getBottomRight}!SteppingStone@{SteppingStone}}
+\doxysubsubsection{\texorpdfstring{getBottomRight()}{getBottomRight()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}\& Stepping\+Stone\+::get\+Bottom\+Right (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 25 of file stepping\+\_\+stone.\+h.
+
+\mbox{\Hypertarget{classSteppingStone_af9a3bddeee421b1f11ed2e9be00864fa}\label{classSteppingStone_af9a3bddeee421b1f11ed2e9be00864fa}} 
+\index{SteppingStone@{SteppingStone}!getTopLeft@{getTopLeft}}
+\index{getTopLeft@{getTopLeft}!SteppingStone@{SteppingStone}}
+\doxysubsubsection{\texorpdfstring{getTopLeft()}{getTopLeft()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}\& Stepping\+Stone\+::get\+Top\+Left (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 27 of file stepping\+\_\+stone.\+h.
+
+\mbox{\Hypertarget{classSteppingStone_a1993a8168d736140de9e6a4f141f5189}\label{classSteppingStone_a1993a8168d736140de9e6a4f141f5189}} 
+\index{SteppingStone@{SteppingStone}!getBottomLeft@{getBottomLeft}}
+\index{getBottomLeft@{getBottomLeft}!SteppingStone@{SteppingStone}}
+\doxysubsubsection{\texorpdfstring{getBottomLeft()}{getBottomLeft()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} Stepping\+Stone\+::get\+Bottom\+Left (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 29 of file stepping\+\_\+stone.\+h.
+
+\mbox{\Hypertarget{classSteppingStone_a1d63cc86970882fc680181606cdebee2}\label{classSteppingStone_a1d63cc86970882fc680181606cdebee2}} 
+\index{SteppingStone@{SteppingStone}!getAIneq@{getAIneq}}
+\index{getAIneq@{getAIneq}!SteppingStone@{SteppingStone}}
+\doxysubsubsection{\texorpdfstring{getAIneq()}{getAIneq()}}
+{\footnotesize\ttfamily const Eigen\+::\+Matrix$<$double, 4, 3$>$\& Stepping\+Stone\+::get\+AIneq (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 31 of file stepping\+\_\+stone.\+h.
+
+\mbox{\Hypertarget{classSteppingStone_a93831ad10ae5d75d77dd0c6d94c407a9}\label{classSteppingStone_a93831ad10ae5d75d77dd0c6d94c407a9}} 
+\index{SteppingStone@{SteppingStone}!getBIneq@{getBIneq}}
+\index{getBIneq@{getBIneq}!SteppingStone@{SteppingStone}}
+\doxysubsubsection{\texorpdfstring{getBIneq()}{getBIneq()}}
+{\footnotesize\ttfamily const Eigen\+::\+Matrix$<$double, 4, 1$>$\& Stepping\+Stone\+::get\+BIneq (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 33 of file stepping\+\_\+stone.\+h.
+
+\mbox{\Hypertarget{classSteppingStone_a53d8b2a9bed368dad157a0c421e65b92}\label{classSteppingStone_a53d8b2a9bed368dad157a0c421e65b92}} 
+\index{SteppingStone@{SteppingStone}!getAEq@{getAEq}}
+\index{getAEq@{getAEq}!SteppingStone@{SteppingStone}}
+\doxysubsubsection{\texorpdfstring{getAEq()}{getAEq()}}
+{\footnotesize\ttfamily const Eigen\+::\+Matrix$<$double, 1, 3$>$\& Stepping\+Stone\+::get\+AEq (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 35 of file stepping\+\_\+stone.\+h.
+
+\mbox{\Hypertarget{classSteppingStone_ae9dbbfdafcfea624bacd8647bdcd802c}\label{classSteppingStone_ae9dbbfdafcfea624bacd8647bdcd802c}} 
+\index{SteppingStone@{SteppingStone}!getBEq@{getBEq}}
+\index{getBEq@{getBEq}!SteppingStone@{SteppingStone}}
+\doxysubsubsection{\texorpdfstring{getBEq()}{getBEq()}}
+{\footnotesize\ttfamily const Eigen\+::\+Matrix$<$double, 1, 1$>$\& Stepping\+Stone\+::get\+BEq (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 37 of file stepping\+\_\+stone.\+h.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classSteppingStone_aa132ad2934ca215bb504c9293e39cc3e}\label{classSteppingStone_aa132ad2934ca215bb504c9293e39cc3e}} 
+\index{SteppingStone@{SteppingStone}!center@{center}}
+\index{center@{center}!SteppingStone@{SteppingStone}}
+\doxysubsubsection{\texorpdfstring{center}{center}}
+{\footnotesize\ttfamily \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} Stepping\+Stone\+::center\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 40 of file stepping\+\_\+stone.\+h.
+
+\mbox{\Hypertarget{classSteppingStone_a4556fa11d1fe7ae52310d63197265002}\label{classSteppingStone_a4556fa11d1fe7ae52310d63197265002}} 
+\index{SteppingStone@{SteppingStone}!width@{width}}
+\index{width@{width}!SteppingStone@{SteppingStone}}
+\doxysubsubsection{\texorpdfstring{width}{width}}
+{\footnotesize\ttfamily double Stepping\+Stone\+::width\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 42 of file stepping\+\_\+stone.\+h.
+
+\mbox{\Hypertarget{classSteppingStone_ae1459d59a3b8351c03b8295aee008450}\label{classSteppingStone_ae1459d59a3b8351c03b8295aee008450}} 
+\index{SteppingStone@{SteppingStone}!height@{height}}
+\index{height@{height}!SteppingStone@{SteppingStone}}
+\doxysubsubsection{\texorpdfstring{height}{height}}
+{\footnotesize\ttfamily double Stepping\+Stone\+::height\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 44 of file stepping\+\_\+stone.\+h.
+
+\mbox{\Hypertarget{classSteppingStone_a0a424f98f81d48952a46ee6be25e7d55}\label{classSteppingStone_a0a424f98f81d48952a46ee6be25e7d55}} 
+\index{SteppingStone@{SteppingStone}!name@{name}}
+\index{name@{name}!SteppingStone@{SteppingStone}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily std\+::string Stepping\+Stone\+::name\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 46 of file stepping\+\_\+stone.\+h.
+
+\mbox{\Hypertarget{classSteppingStone_a7961c86145513be8f35529ca71e77028}\label{classSteppingStone_a7961c86145513be8f35529ca71e77028}} 
+\index{SteppingStone@{SteppingStone}!top\_right@{top\_right}}
+\index{top\_right@{top\_right}!SteppingStone@{SteppingStone}}
+\doxysubsubsection{\texorpdfstring{top\_right}{top\_right}}
+{\footnotesize\ttfamily \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} Stepping\+Stone\+::top\+\_\+right\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 48 of file stepping\+\_\+stone.\+h.
+
+\mbox{\Hypertarget{classSteppingStone_a6af34e839411da6288cb790593b285ca}\label{classSteppingStone_a6af34e839411da6288cb790593b285ca}} 
+\index{SteppingStone@{SteppingStone}!bottom\_right@{bottom\_right}}
+\index{bottom\_right@{bottom\_right}!SteppingStone@{SteppingStone}}
+\doxysubsubsection{\texorpdfstring{bottom\_right}{bottom\_right}}
+{\footnotesize\ttfamily \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} Stepping\+Stone\+::bottom\+\_\+right\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 50 of file stepping\+\_\+stone.\+h.
+
+\mbox{\Hypertarget{classSteppingStone_aa4150a8f5d3d6435eb44df171569dc0e}\label{classSteppingStone_aa4150a8f5d3d6435eb44df171569dc0e}} 
+\index{SteppingStone@{SteppingStone}!top\_left@{top\_left}}
+\index{top\_left@{top\_left}!SteppingStone@{SteppingStone}}
+\doxysubsubsection{\texorpdfstring{top\_left}{top\_left}}
+{\footnotesize\ttfamily \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} Stepping\+Stone\+::top\+\_\+left\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 52 of file stepping\+\_\+stone.\+h.
+
+\mbox{\Hypertarget{classSteppingStone_a010183cf6ea3ff883efdbcb0d060e55b}\label{classSteppingStone_a010183cf6ea3ff883efdbcb0d060e55b}} 
+\index{SteppingStone@{SteppingStone}!bottom\_left@{bottom\_left}}
+\index{bottom\_left@{bottom\_left}!SteppingStone@{SteppingStone}}
+\doxysubsubsection{\texorpdfstring{bottom\_left}{bottom\_left}}
+{\footnotesize\ttfamily \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}} Stepping\+Stone\+::bottom\+\_\+left\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 54 of file stepping\+\_\+stone.\+h.
+
+\mbox{\Hypertarget{classSteppingStone_a0379027b966e8398f4b3384a67b56637}\label{classSteppingStone_a0379027b966e8398f4b3384a67b56637}} 
+\index{SteppingStone@{SteppingStone}!A\_ineq@{A\_ineq}}
+\index{A\_ineq@{A\_ineq}!SteppingStone@{SteppingStone}}
+\doxysubsubsection{\texorpdfstring{A\_ineq}{A\_ineq}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 4, 3$>$ Stepping\+Stone\+::\+A\+\_\+ineq\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 56 of file stepping\+\_\+stone.\+h.
+
+\mbox{\Hypertarget{classSteppingStone_a21ddc5f0240777d37e860d6b9cb56c13}\label{classSteppingStone_a21ddc5f0240777d37e860d6b9cb56c13}} 
+\index{SteppingStone@{SteppingStone}!b\_ineq@{b\_ineq}}
+\index{b\_ineq@{b\_ineq}!SteppingStone@{SteppingStone}}
+\doxysubsubsection{\texorpdfstring{b\_ineq}{b\_ineq}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 4, 1$>$ Stepping\+Stone\+::b\+\_\+ineq\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 58 of file stepping\+\_\+stone.\+h.
+
+\mbox{\Hypertarget{classSteppingStone_a61bcaf7b33e752a04228295115d57896}\label{classSteppingStone_a61bcaf7b33e752a04228295115d57896}} 
+\index{SteppingStone@{SteppingStone}!A\_eq@{A\_eq}}
+\index{A\_eq@{A\_eq}!SteppingStone@{SteppingStone}}
+\doxysubsubsection{\texorpdfstring{A\_eq}{A\_eq}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 1, 3$>$ Stepping\+Stone\+::\+A\+\_\+eq\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 60 of file stepping\+\_\+stone.\+h.
+
+\mbox{\Hypertarget{classSteppingStone_ae5d5740f25c3d23f1a0cb6e3dfadcedf}\label{classSteppingStone_ae5d5740f25c3d23f1a0cb6e3dfadcedf}} 
+\index{SteppingStone@{SteppingStone}!b\_eq@{b\_eq}}
+\index{b\_eq@{b\_eq}!SteppingStone@{SteppingStone}}
+\doxysubsubsection{\texorpdfstring{b\_eq}{b\_eq}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix$<$double, 1, 1$>$ Stepping\+Stone\+::b\+\_\+eq\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 62 of file stepping\+\_\+stone.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+catkin\+\_\+ws/src/guidance/footstep\+\_\+planner/include/footstep\+\_\+planner/\mbox{\hyperlink{stepping__stone_8h}{stepping\+\_\+stone.\+h}}\item 
+catkin\+\_\+ws/src/guidance/footstep\+\_\+planner/src/\mbox{\hyperlink{stepping__stone_8cpp}{stepping\+\_\+stone.\+cpp}}\end{DoxyCompactItemize}
