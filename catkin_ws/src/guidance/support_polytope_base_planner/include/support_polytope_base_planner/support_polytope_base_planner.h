@@ -50,6 +50,6 @@ void LegStretchMinimization(drake::solvers::MathematicalProgram &prog, drake::so
 /// \param[in] use_gurobi Parameter for toggling whether to use the Gurobi proprietary solver or the branch-and-bound solver freely available with Drake.
 /// The Gurobi solver is in practice necessary for even a moderate number of steps, but requires a license and building drake from source. Academic/Non-commercial license is freely available.
 /// \return Returns a matrix containing the solution to the optimization problem.
-Eigen::Matrix<double, Eigen::Dynamic, 2> PlanSequence(Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> &steps, Eigen::Vector2d init, bool use_gurobi=false);
+Eigen::Matrix<double, Eigen::Dynamic, 2> PlanSequence(Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> &steps, Eigen::Vector2d init, double epsilon=0.05, bool use_gurobi=false);
 
 } //namespace support_polytope_base_planner

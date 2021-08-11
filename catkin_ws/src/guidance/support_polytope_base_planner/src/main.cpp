@@ -83,7 +83,7 @@ int main(int argc, char **argv)
 
     Eigen::Vector2d init = foot_points.block(0, 0, 4, 2).transpose()*Eigen::Vector4d::Constant(0.25);
 
-    Eigen::Matrix<double, Eigen::Dynamic, 2> base_res = support_polytope_base_planner::PlanSequence(foot_points, init, true);
+    Eigen::Matrix<double, Eigen::Dynamic, 2> base_res = support_polytope_base_planner::PlanSequence(foot_points, init, 0.05, true);
 
     std::cout << base_res << std::endl;
 

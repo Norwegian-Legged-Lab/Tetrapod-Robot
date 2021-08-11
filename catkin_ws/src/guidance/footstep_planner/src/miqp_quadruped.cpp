@@ -226,7 +226,7 @@ void FootInSteppingStoneConstraints(drake::solvers::MathematicalProgram &prog, T
     int n_stones = terrain.GetSteppingStones().rows();
 
     Eigen::MatrixXd A_ineq, b_ineq, A_eq, b_eq;
-    for (int i = 0; i < n_steps; ++i)
+    for (int i = 4; i < n_steps; ++i)
     {
         for (int l = 0; l < n_stones ; ++l)
         {

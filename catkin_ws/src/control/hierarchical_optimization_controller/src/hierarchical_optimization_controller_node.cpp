@@ -50,10 +50,10 @@ int main(int argc, char **argv)
 
     //ho_controller.testDrakeQPOpt();
 
-    //ho_controller.StaticTorqueTest();
 
     ho_controller.WalkTest();
 
+    ho_controller.StaticTorqueTest();
     ros::spin();
 
     return 0;

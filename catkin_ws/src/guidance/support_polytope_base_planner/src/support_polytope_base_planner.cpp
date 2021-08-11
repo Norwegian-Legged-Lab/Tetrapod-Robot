@@ -54,29 +54,15 @@ void LegStretchMinimization(drake::solvers::MathematicalProgram &prog, drake::so
 
     for (int i = 0; i < num_dists; ++i)
     {
-        Eigen::Matrix<drake::symbolic::Expression, 2, 1> err = pos.row(i + 1).transpose() - steps.block(i + 1, 0, 1, 2).transpose();
+        Eigen::Matrix<drake::symbolic::Expression, 2, 1> err = pos.row(i + 1).transpose() - steps.block(i + 4, 0, 1, 2).transpose();
         
         prog.AddQuadraticCost(err.transpose()*err);
-
-        err = pos.row(i + 1).transpose() - steps.block(i + 2, 0, 1, 2).transpose();
-        
-        prog.AddQuadraticCost(err.transpose()*err);
-
-        err = pos.row(i + 1).transpose() - steps.block(i + 3, 0, 1, 2).transpose();
-        
-        prog.AddQuadraticCost(err.transpose()*err);
-
-        err = pos.row(i + 1).transpose() - steps.block(i + 4, 0, 1, 2).transpose();
-
-        prog.AddQuadraticCost(3*err.transpose()*err);
     }
 }
 
-Eigen::Matrix<double, Eigen::Dynamic, 2> PlanSequence(Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> &steps, Eigen::Vector2d init, bool use_gurobi)
+Eigen::Matrix<double, Eigen::Dynamic, 2> PlanSequence(Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> &steps, Eigen::Vector2d init, double epsilon, bool use_gurobi)
 {
     Eigen::Matrix<double, Eigen::Dynamic, 2> steps_2d(steps.leftCols(2));
-
-    double epsilon = 0.05;
 
     Polytopes polytopes(steps_2d, epsilon, true);
 

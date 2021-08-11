@@ -395,7 +395,7 @@ void HierarchicalOptimizationControl::SetBasePose(
 
         error = errorvec.norm();
 
-        if (error + energy > epsilon)
+        if (energy > epsilon)
         {
             t0 = ros::Time::now().toSec();
         }
@@ -463,7 +463,7 @@ void HierarchicalOptimizationControl::TakeStep(Eigen::Vector3d end_pos, int step
     TasksToBeIncluded include_tasks;
     //include_tasks.mt_body_position = false;
     //include_tasks.cmsp = true;
-    include_tasks.mt_body_orientation = false;
+    //include_tasks.mt_body_orientation = false;
     /*
     include_tasks.pt = false;
     */
@@ -542,14 +542,14 @@ void HierarchicalOptimizationControl::WalkTest()
 
     bool_bridge << true, true, true, true;
 
-    Terrain terrain(bool_bridge);
-    //Terrain terrain;
+    Terrain terrain(bool_bridge); //For four stepping stones
+    //Terrain terrain; //For corridor splitting in half
 
-    int n_steps = 4*50;
+    int n_steps = 4*23;
 
     int n_legs = 4;
 
-    HierarchicalOptimizationControl::LegType step_sequence[] = {frontLeft, rearLeft, rearRight, frontRight};
+    HierarchicalOptimizationControl::LegType step_sequence[] = {frontLeft, rearRight, frontRight, rearLeft};
 
     double angle_divided = 2*M_PI/n_legs;
 
@@ -602,18 +602,20 @@ void HierarchicalOptimizationControl::PlannedWalk(const Eigen::Matrix<Eigen::Vec
 
     footstep_pub.publish(msg);    
 
-    Eigen::Matrix<double, Eigen::Dynamic, 2> base_res = support_polytope_base_planner::PlanSequence(foot_points, init_base_pos.segment(0,2), true);
+    Eigen::Matrix<double, Eigen::Dynamic, 2> base_res = support_polytope_base_planner::PlanSequence(foot_points, init_base_pos.segment(0,2), 0.02, true);
 
     Eigen::Matrix<double, Eigen::Dynamic, 3> base_pos = Eigen::Matrix<double, Eigen::Dynamic, 3>::Constant(base_res.rows(), 3, desired_height);
 
     base_pos.leftCols(2) = base_res;
 
     int n_moving_steps = base_pos.rows() - 1;
+    
+    ros::Duration(15).sleep();
 
     SetBasePose(base_pos.row(0).transpose(), desired_base_ori, 0.02, 0.5);
 
     ROS_INFO_STREAM("ready to begin walk");
-
+    
     Eigen::Vector4d angle_offsets(M_PI/4, -M_PI/4, 3*M_PI/4, -3*M_PI/4);
 
     for (int i = 0; i < n_moving_steps; ++i)
@@ -621,15 +623,15 @@ void HierarchicalOptimizationControl::PlannedWalk(const Eigen::Matrix<Eigen::Vec
         
         desired_base_ori(2) = nominalOrientation(base_pos.row(i + 1).transpose(), this->fPos, angle_offsets);
         
-        SetBasePose(base_pos.row(i + 1).transpose(), desired_base_ori, 0.04, 0.01);
+        SetBasePose(base_pos.row(i + 1).transpose(), desired_base_ori, 0.008, 0.05);
         /*
         bool support_legs[] = {true, true, true, true};
         support_legs[step_sequence[i % 4] - 1] = false;
         ReachSupport(support_legs, desired_base_ori, 0.005, 0.1);
         */
-        TakeStep(foot_points.row(i + 4).transpose(), step_sequence[i % 4] - 1, 1.5, 0.05);
-        SetBasePose(this->genCoord.segment(0,3), this->genCoord.segment(3,3), 0.04, 0.01);
+        TakeStep(foot_points.row(i + 4).transpose(), step_sequence[i % 4] - 1, 1, 0.05);
     }
+    SetBasePose(this->genCoord.segment(0,3), this->genCoord.segment(3,3), 0.01, 5);
 }
 
 Eigen::MatrixXd HierarchicalOptimizationControl::GetSteps(const Eigen::Matrix<Eigen::Vector3d, 4, 1> &end_f_pos, Terrain terrain, int n_steps, LegType step_sequence[])
@@ -642,17 +644,17 @@ Eigen::MatrixXd HierarchicalOptimizationControl::GetSteps(const Eigen::Matrix<Ei
         init_f_pos(i)(2) = 0;
     }
 
-    double step_span = 0.4;
+    double step_span = 0.45;
 
     double step_height = 0.2;
 
-    double length_legs = 0.45;
+    double length_legs = 0.6;
 
-    double bbox_len = 0.25;
+    double bbox_len = 0.28;
 
     int n_legs = 4;
 
-    double ledge_margin = 0.05;
+    double ledge_margin = 0.02;
 
     footstep_planner::LegType step_sequence_footstep_planner[4];
     for (int i = 0; i < 4; ++i)
@@ -906,18 +908,18 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     double mu = 0.6;
 
     // Motion tracking gains
-    Eigen::Matrix3d k_p_fb_pos = 45*Eigen::Matrix3d::Identity(); // Floating base position proportional gain
+    Eigen::Matrix3d k_p_fb_pos = 40*Eigen::Matrix3d::Identity(); // Floating base position proportional gain
     Eigen::Matrix3d k_d_fb_pos = 18*Eigen::Matrix3d::Identity(); // Floating base position derivative gain
     Eigen::Matrix3d k_p_fb_rot = 30*Eigen::Matrix3d::Identity(); // Floating base rotation proportional gain
     Eigen::Matrix3d k_d_fb_rot = 18*Eigen::Matrix3d::Identity(); // Floating base rotation proportional gain
     Eigen::Matrix3d k_p_fl = 30*Eigen::Matrix3d::Identity();     // Front left foot proportional gain
-    Eigen::Matrix3d k_d_fl = 10*Eigen::Matrix3d::Identity();     // Front left foot derivative gain
+    Eigen::Matrix3d k_d_fl = 8*Eigen::Matrix3d::Identity();     // Front left foot derivative gain
     Eigen::Matrix3d k_p_fr = 30*Eigen::Matrix3d::Identity();     // Front right foot proportional gain
-    Eigen::Matrix3d k_d_fr = 10*Eigen::Matrix3d::Identity();     // Front right foot derivative gain
+    Eigen::Matrix3d k_d_fr = 8*Eigen::Matrix3d::Identity();     // Front right foot derivative gain
     Eigen::Matrix3d k_p_rl = 30*Eigen::Matrix3d::Identity();     // Rear left foot proportional gain
-    Eigen::Matrix3d k_d_rl = 10*Eigen::Matrix3d::Identity();     // Rear left foot derivative gain
+    Eigen::Matrix3d k_d_rl = 8*Eigen::Matrix3d::Identity();     // Rear left foot derivative gain
     Eigen::Matrix3d k_p_rr = 30*Eigen::Matrix3d::Identity();     // Rear right foot proportional gain
-    Eigen::Matrix3d k_d_rr = 10*Eigen::Matrix3d::Identity();     // Rear right foot derivative gain
+    Eigen::Matrix3d k_d_rr = 8*Eigen::Matrix3d::Identity();     // Rear right foot derivative gain
 
     // Posture tracking gains
     Eigen::Matrix<double, 12, 12> k_p_pt = 30*Eigen::Matrix<double, 12, 12>::Identity();      // Posture tracking proportional gain
@@ -925,7 +927,7 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
 
     // Support polygon gains
     double k_p_sp = 15;
-    Eigen::Matrix3d k_d_sp = 4*Eigen::Matrix3d::Identity(); // Support polygon position derivative gain
+    Eigen::Matrix3d k_d_sp = 2*Eigen::Matrix3d::Identity(); // Support polygon position derivative gain
     //*************************************************************************************
     // Updates
     //*************************************************************************************
@@ -1231,7 +1233,7 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
 
     Eigen::Matrix<double, 3, 2> support_points_2d;
 
-    double support_margin = 0.02;
+    double support_margin = 0.01;
 
     for (int i = 0; i < support_points_2d.rows(); ++i)
     {

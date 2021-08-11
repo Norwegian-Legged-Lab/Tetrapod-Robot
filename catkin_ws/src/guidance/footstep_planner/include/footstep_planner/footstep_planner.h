@@ -29,6 +29,7 @@ namespace footstep_planner{
 /// \return Returns a struct containing the solution to the optimization problem if such a solution is found, as well as a boolean indicating whether a solution was found.
 DecVarsRes PlanSequence(Terrain &terrain, Eigen::Matrix<Eigen::Vector3d, 4, 1> init_f_pos, Eigen::Matrix<Eigen::Vector3d, 4, 1> goal_f_pos, int n_steps, int n_legs, double length_legs, LegType step_sequence[], double bbox_len=0.3, double step_span=0.5, double step_height=0.2, double ledge_margin=0, bool enforce_goal_hard=true, bool use_gurobi=true);
 
+DecVarsRes PlanSequenceRecursive(Terrain &terrain, Eigen::Matrix<Eigen::Vector3d, 4, 1> init_f_pos, Eigen::Matrix<Eigen::Vector3d, 4, 1> goal_f_pos, int n_steps, int n_legs, double length_legs, LegType step_sequence[], double bbox_len=0.3, double step_span=0.5, double step_height=0.2, double ledge_margin=0, bool use_gurobi=true);
 } //namespace footstep_planner
 
 #endif
