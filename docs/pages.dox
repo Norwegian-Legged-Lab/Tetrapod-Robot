@@ -1,0 +1,193 @@
+/*!
+\mainpage Overview
+
+\section Tetrapod Project
+This library provides an integrated system for hardware drivers, hardware communication, low-level control, high-level control, and simulation for the tetrapod robot ASTRo.
+
+\section source_code Source Code
+The source code is available at <a href="https://github.com/Norwegian-Legged-Lab/Tetrapod-Robot">http://github.com/anybotics/kindr</a>
+
+\section license License
+This software is released under a [GNU General Public License](https://www.gnu.org/licenses/gpl-3.0.en.html).
+
+\section acknowledgement Acknowledgement
+Involved people:
+ - Adrian B. Ghansah
+ - Paal Arthur S. Thorseth
+ - Mads Erlend B. Lysø
+
+//-----------------------------------------------------------
+
+/*! \page getting_started Getting started
+
+The following introduces a short guide on how to get started with the source code for ASTRo.
+
+\section requirements Requirements
+This library is written in C++.
+
+ - [ROS Noetic](http://wiki.ros.org/noetic)
+ - [Gazebo 11.0.0](http://gazebosim.org/) (Usually comes as a part of the ROS installation)
+ - [Eigen 3.2.0](http://eigen.tuxfamily.org)
+ - [Kindr 1.0.0](https://github.com/anybotics/kindr) (Included in the catkin workspace's source code, i.e., it can be considered a ROS package built with catkin)
+ - [Drake Toolbox](https://drake.mit.edu/)
+ - [Ignition Citadel](https://ignitionrobotics.org/docs/citadel) (Only experimental code depends on Ignition (the new simulation environment succeeding Gazebo))
+ 
+\section install Installation
+
+\subsection build_catkin Build the source code using Catkin
+The source code for the project can be built using Catkin, the official build system for ROS.
+
+//\subsection build_lib_cmake Build the Library with CMake
+//
+//\code{.sh}
+//mkdir build
+//cd build
+//cmake ..
+//make
+//\endcode
+//
+//The library can additionally be installed by
+//\code{.sh}
+//sudo make install
+//\endcode
+//This will copy the file FindKindr.cmake to the module path of CMake.
+//
+//\subsection build_lib_ros Install the Library from Debian Package for ROS
+//
+//The maintainers of this project provide binary packages for ROS and Ubuntu
+//LTS releases. To install these packages, you may follow these instructions:
+//
+//- Add the project PPA to your APT sources by issuing
+//
+//\code{.sh}
+//  sudo add-apt-repository ppa:ethz-asl/common
+//\endcode
+//
+//  on the command line
+//
+//- To re-synchronize your package index files, run
+//
+//\code{.sh}
+//  sudo apt-get update
+//\endcode
+//
+//- Install all project packages and their dependencies through
+//
+//\code{.sh}
+//  sudo apt-get install ros-indigo-kindr-*
+//\endcode
+//
+//  or selected packages using your favorite package management tool. The package will be installed to the default ROS directory.
+//
+//
+//\subsection build_lib_catkin Build the Library with Catkin
+//
+//Build kindr with [catkin](wiki.ros.org/catkin):
+//
+//\code{.sh}
+//cd ~/catkin_ws/src
+//git clone git@github.com:anybotics/kindr.git
+//catkin_make_isolated -C ~/catkin_ws
+//\endcode
+//
+//or with [catkin command line tools](http://catkin-tools.readthedocs.org):
+//
+//\code{.sh}
+//cd ~/catkin_ws/src
+//git clone git@github.com:anybotics/kindr.git
+//catkin build -w ~/catkin_ws kindr
+//\endcode
+//
+//Kindr can be included in your catkin project with:
+//Add the following to your *CMakeLists.txt*:
+//
+//\code{.sh}
+//find_package(catkin COMPONENTS kindr)
+//include_directories(${catkin_INCLUDE_DIRS})
+//\endcode
+//
+//And to your *package.xml*:
+//
+//\code{.xml}
+//<package>
+//	<build_depend>kindr</build_depend>
+//</package>
+//\endcode
+//
+//\subsection build_doc Build this Documentation
+//<a href="http://www.stack.nl/~dimitri/doxygen/" >Doxygen</a> needs to be installed to create this documentation.
+//
+//\code{.sh}
+//mkdir build
+//cd build
+//cmake ..
+//make doc
+//\endcode
+//The doxygen documentation can be found here:
+//doc/doxygen/doc/html/index.html
+//
+//
+//\subsection build_tests Build Unit Tests
+//The unit tests depend on <a href="http://code.google.com/p/googletest/">google tests</a>.
+//The GTests are built as soon as the folder gtest exists in the root folder.
+//
+//Download and use GTest:
+//\code{.sh}
+//wget http://googletest.googlecode.com/files/gtest-1.7.0.zip
+//unzip gtest-1.7.0.zip
+//ln -s gtest-1.7.0 gtest
+//mkdir build
+//cd build
+//cmake .. -DBUILD_TEST=True
+//make
+//\endcode
+
+
+\\\section sec_continue How to Continue
+\\See \ref page_users "Users" to learn how to use this library.
+
+See \ref page_developers "Developers" to learn how to develop this library.
+*/
+
+//-----------------------------------------------------------
+
+///*!
+//\page page_users Users
+//
+//  Check the <a href="cheatsheet_latest.pdf" target="_blank"><b>cheatsheet</b></a> to understand the math behind.
+//
+// \section orientation_pose Rotations and Poses
+//  - \subpage page_rotations
+//  - \subpage page_poses
+//
+// \section velocities Time Derivatives of Rotations and Poses
+//  - \subpage page_rdiff
+//  - \subpage page_posesdiff
+//
+// \section misc Mathematical Tools
+//  - \subpage page_quaternion
+//
+// \section vectors Vectors
+//  - \subpage page_vector
+//
+//*/
+
+//-----------------------------------------------------------
+
+/*!
+\page page_developers Developers
+
+Any person is free to further develop the presented software within the rights of its license. 
+
+\section style_guide Style Guide
+The project follows two style guides for writing C++ code, namely:
+
+* [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html)
+* [ROS C++ Style Guide](http://wiki.ros.org/CppStyleGuide)
+
+Note that the [ROS C++ Style Guide](http://wiki.ros.org/CppStyleGuide) builds on the [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html). See [here](https://google.github.io/styleguide/cppguide.html#Background) for a detailed explanation on the reasons for using style guides.
+
+*/
+
+
+//-----------------------------------------------------------

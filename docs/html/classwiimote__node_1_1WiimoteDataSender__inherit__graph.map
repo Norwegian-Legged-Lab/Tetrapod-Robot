@@ -1,9 +1,0 @@
-<map id="wiimote_node.WiimoteDataSender" name="wiimote_node.WiimoteDataSender">
-<area shape="rect" id="node1" title=" " alt="" coords="120,99,324,141"/>
-<area shape="rect" id="node3" href="$classwiimote__node_1_1ClasSender.html" title=" " alt="" coords="372,5,563,32"/>
-<area shape="rect" id="node4" href="$classwiimote__node_1_1IMUSender.html" title=" " alt="" coords="373,56,562,83"/>
-<area shape="rect" id="node5" href="$classwiimote__node_1_1JoySender.html" title=" " alt="" coords="376,107,559,133"/>
-<area shape="rect" id="node6" href="$classwiimote__node_1_1NunSender.html" title=" " alt="" coords="373,157,562,184"/>
-<area shape="rect" id="node7" href="$classwiimote__node_1_1WiiSender.html" title=" " alt="" coords="375,208,559,235"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,107,72,133"/>
-</map>

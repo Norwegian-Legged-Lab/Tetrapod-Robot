@@ -1,0 +1,154 @@
+The following introduces a short guide on how to get started with the source code for ASTRo.\hypertarget{getting_started_requirements}{}\doxysection{Requirements}\label{getting_started_requirements}
+This library is written in C++.
+
+
+\begin{DoxyItemize}
+\item \href{http://wiki.ros.org/noetic}{\texttt{ ROS Noetic}}
+\item \href{http://gazebosim.org/}{\texttt{ Gazebo 11.\+0.\+0}} (Usually comes as a part of the ROS installation)
+\item \href{http://eigen.tuxfamily.org}{\texttt{ Eigen 3.\+2.\+0}}
+\item \href{https://github.com/anybotics/kindr}{\texttt{ Kindr 1.\+0.\+0}} (Included in the catkin workspace\textquotesingle{}s source code, i.\+e., it can be considered a ROS package built with catkin)
+\item \href{https://drake.mit.edu/}{\texttt{ Drake Toolbox}}
+\item \href{https://ignitionrobotics.org/docs/citadel}{\texttt{ Ignition Citadel}} (Only experimental code depends on Ignition (the new simulation environment succeeding Gazebo))
+\end{DoxyItemize}\hypertarget{getting_started_install}{}\doxysection{Installation}\label{getting_started_install}
+\hypertarget{getting_started_build_catkin}{}\doxysubsection{Build the source code using Catkin}\label{getting_started_build_catkin}
+The source code for the project can be built using Catkin, the official build system for ROS.\hypertarget{getting_started_build_lib_cmake}{}\doxysubsection{Build the Library with CMake}\label{getting_started_build_lib_cmake}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//mkdir build}
+\DoxyCodeLine{//cd build}
+\DoxyCodeLine{//cmake ..}
+\DoxyCodeLine{//make}
+\DoxyCodeLine{//}
+
+\end{DoxyCode}
+
+
+The library can additionally be installed by 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//sudo make install}
+\DoxyCodeLine{//}
+
+\end{DoxyCode}
+ This will copy the file Find\+Kindr.\+cmake to the module path of CMake.\hypertarget{getting_started_build_lib_ros}{}\doxysubsection{Install the Library from Debian Package for ROS}\label{getting_started_build_lib_ros}
+The maintainers of this project provide binary packages for ROS and Ubuntu LTS releases. To install these packages, you may follow these instructions\+:
+
+
+\begin{DoxyItemize}
+\item Add the project PPA to your APT sources by issuing
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//  sudo add-\/apt-\/repository ppa:ethz-\/asl/common}
+\DoxyCodeLine{//}
+
+\end{DoxyCode}
+
+
+on the command line
+
+
+\begin{DoxyItemize}
+\item To re-\/synchronize your package index files, run
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//  sudo apt-\/get update}
+\DoxyCodeLine{//}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item Install all project packages and their dependencies through
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//  sudo apt-\/get install ros-\/indigo-\/kindr-\/*}
+\DoxyCodeLine{//}
+
+\end{DoxyCode}
+
+
+or selected packages using your favorite package management tool. The package will be installed to the default ROS directory.\hypertarget{getting_started_build_lib_catkin}{}\doxysubsection{Build the Library with Catkin}\label{getting_started_build_lib_catkin}
+Build kindr with \href{wiki.ros.org/catkin}{\texttt{ catkin}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//cd \string~/catkin\_ws/src}
+\DoxyCodeLine{//git clone git@github.com:anybotics/kindr.git}
+\DoxyCodeLine{//catkin\_make\_isolated -\/C \string~/catkin\_ws}
+\DoxyCodeLine{//}
+
+\end{DoxyCode}
+
+
+or with \href{http://catkin-tools.readthedocs.org}{\texttt{ catkin command line tools}}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//cd \string~/catkin\_ws/src}
+\DoxyCodeLine{//git clone git@github.com:anybotics/kindr.git}
+\DoxyCodeLine{//catkin build -\/w \string~/catkin\_ws kindr}
+\DoxyCodeLine{//}
+
+\end{DoxyCode}
+
+
+Kindr can be included in your catkin project with\+: Add the following to your {\itshape CMake\+Lists.\+txt}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//find\_package(catkin COMPONENTS kindr)}
+\DoxyCodeLine{//include\_directories(\$\{catkin\_INCLUDE\_DIRS\})}
+\DoxyCodeLine{//}
+
+\end{DoxyCode}
+
+
+And to your {\itshape package.\+xml}\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//<\textcolor{keywordtype}{package}>}
+\DoxyCodeLine{//  <\textcolor{keywordtype}{build\_depend}>\textcolor{keyword}{kindr}</\textcolor{keywordtype}{build\_depend}>}
+\DoxyCodeLine{//</\textcolor{keywordtype}{package}>}
+\DoxyCodeLine{//}
+
+\end{DoxyCode}
+\hypertarget{getting_started_build_doc}{}\doxysubsection{Build this Documentation}\label{getting_started_build_doc}
+\href{http://www.stack.nl/~dimitri/doxygen/}{\texttt{ Doxygen}} needs to be installed to create this documentation.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//mkdir build}
+\DoxyCodeLine{//cd build}
+\DoxyCodeLine{//cmake ..}
+\DoxyCodeLine{//make doc}
+\DoxyCodeLine{//}
+
+\end{DoxyCode}
+ The doxygen documentation can be found here\+: doc/doxygen/doc/html/index.\+html\hypertarget{getting_started_build_tests}{}\doxysubsection{Build Unit Tests}\label{getting_started_build_tests}
+The unit tests depend on \href{http://code.google.com/p/googletest/}{\texttt{ google tests}}. The GTests are built as soon as the folder gtest exists in the root folder.
+
+Download and use GTest\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//wget http://googletest.googlecode.com/files/gtest-\/1.7.0.zip}
+\DoxyCodeLine{//unzip gtest-\/1.7.0.zip}
+\DoxyCodeLine{//ln -\/s gtest-\/1.7.0 gtest}
+\DoxyCodeLine{//mkdir build}
+\DoxyCodeLine{//cd build}
+\DoxyCodeLine{//cmake .. -\/DBUILD\_TEST=True}
+\DoxyCodeLine{//make}
+\DoxyCodeLine{//}
+
+\end{DoxyCode}
+
+
+\textbackslash{}\hypertarget{getting_started_sec_continue}{}\doxysection{How to Continue}\label{getting_started_sec_continue}
+\textbackslash{}See \mbox{\hyperlink{page_users}{Users}} to learn how to use this library.
+
+See \mbox{\hyperlink{page_developers}{Developers}} to learn how to develop this library. 

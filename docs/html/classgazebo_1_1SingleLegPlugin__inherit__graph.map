@@ -1,4 +1,0 @@
-<map id="gazebo::SingleLegPlugin" name="gazebo::SingleLegPlugin">
-<area shape="rect" id="node1" title="A plugin to control the single_leg robot." alt="" coords="5,80,185,107"/>
-<area shape="rect" id="node2" title=" " alt="" coords="44,5,147,32"/>
-</map>

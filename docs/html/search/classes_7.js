@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['logutils_1256',['LogUtils',['../classLogUtils.html',1,'']]]
+  ['logutils_1261',['LogUtils',['../classLogUtils.html',1,'']]]
 ];

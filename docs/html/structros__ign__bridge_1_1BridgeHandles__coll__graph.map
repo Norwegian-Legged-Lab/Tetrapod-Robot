@@ -1,5 +1,0 @@
-<map id="ros_ign_bridge::BridgeHandles" name="ros_ign_bridge::BridgeHandles">
-<area shape="rect" id="node1" title=" " alt="" coords="97,109,317,136"/>
-<area shape="rect" id="node2" href="$structros__ign__bridge_1_1BridgeRosToIgnHandles.html" title=" " alt="" coords="5,5,196,47"/>
-<area shape="rect" id="node3" href="$structros__ign__bridge_1_1BridgeIgnToRosHandles.html" title=" " alt="" coords="221,5,407,47"/>
-</map>

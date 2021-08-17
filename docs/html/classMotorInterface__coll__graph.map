@@ -1,4 +1,0 @@
-<map id="MotorInterface" name="MotorInterface">
-<area shape="rect" id="node1" title="A class to control and distribute motor position, velocity and torque information." alt="" coords="27,109,146,136"/>
-<area shape="rect" id="node2" href="$classSerialCommunication.html" title="A class for serial communication." alt="" coords="5,5,168,32"/>
-</map>
