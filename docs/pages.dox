@@ -5,7 +5,7 @@
 This library provides an integrated system for hardware drivers, hardware communication, low-level control, high-level control, and simulation for the tetrapod robot ASTRo.
 
 \section source_code Source Code
-The source code is available at <a href="https://github.com/Norwegian-Legged-Lab/Tetrapod-Robot">http://github.com/anybotics/kindr</a>
+The source code is available at <a href="https://github.com/Norwegian-Legged-Lab/Tetrapod-Robot">https://github.com/Norwegian-Legged-Lab/Tetrapod-Robot</a>
 
 \section license License
 This software is released under a [GNU General Public License](https://www.gnu.org/licenses/gpl-3.0.en.html).
@@ -18,7 +18,8 @@ Involved people:
 
 //-----------------------------------------------------------
 
-/*! \page getting_started Getting started
+/*! 
+\page getting_started Getting started
 
 The following introduces a short guide on how to get started with the source code for ASTRo.
 
