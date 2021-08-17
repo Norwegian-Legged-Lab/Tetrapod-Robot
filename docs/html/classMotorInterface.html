@@ -154,11 +154,21 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a92dc1d8ea5cbcb48acb70f75f1d165de"><td class="memItemLeft" align="right" valign="top">sensor_msgs::JointState&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorInterface.html#a92dc1d8ea5cbcb48acb70f75f1d165de">jointStateMsg</a></td></tr>
 <tr class="memdesc:a92dc1d8ea5cbcb48acb70f75f1d165de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Joint State Message.  <a href="classMotorInterface.html#a92dc1d8ea5cbcb48acb70f75f1d165de">More...</a><br /></td></tr>
 <tr class="separator:a92dc1d8ea5cbcb48acb70f75f1d165de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<<<<<<< HEAD
+<tr class="memitem:aa7536098e5030f042e3eceb1c201703e"><td class="memItemLeft" align="right" valign="top"><a id="aa7536098e5030f042e3eceb1c201703e"></a>
+ros::ServiceServer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorInterface.html#aa7536098e5030f042e3eceb1c201703e">shutdownService</a></td></tr>
+<tr class="memdesc:aa7536098e5030f042e3eceb1c201703e"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS Shutdown Service. <br /></td></tr>
+<tr class="separator:aa7536098e5030f042e3eceb1c201703e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa07b7b6b987594c573ca9b093a1e3b69"><td class="memItemLeft" align="right" valign="top"><a id="aa07b7b6b987594c573ca9b093a1e3b69"></a>
+ros::Subscriber&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorInterface.html#aa07b7b6b987594c573ca9b093a1e3b69">jointStateCmdSub</a></td></tr>
+<tr class="memdesc:aa07b7b6b987594c573ca9b093a1e3b69"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS Joint State Command Subscriber. <br /></td></tr>
+=======
 <tr class="memitem:aa7536098e5030f042e3eceb1c201703e"><td class="memItemLeft" align="right" valign="top">ros::ServiceServer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorInterface.html#aa7536098e5030f042e3eceb1c201703e">shutdownService</a></td></tr>
 <tr class="memdesc:aa7536098e5030f042e3eceb1c201703e"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS Shutdown Service.  <a href="classMotorInterface.html#aa7536098e5030f042e3eceb1c201703e">More...</a><br /></td></tr>
 <tr class="separator:aa7536098e5030f042e3eceb1c201703e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa07b7b6b987594c573ca9b093a1e3b69"><td class="memItemLeft" align="right" valign="top">ros::Subscriber&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorInterface.html#aa07b7b6b987594c573ca9b093a1e3b69">jointStateCmdSub</a></td></tr>
 <tr class="memdesc:aa07b7b6b987594c573ca9b093a1e3b69"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS Joint State Command Subscriber.  <a href="classMotorInterface.html#aa07b7b6b987594c573ca9b093a1e3b69">More...</a><br /></td></tr>
+>>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
 <tr class="separator:aa07b7b6b987594c573ca9b093a1e3b69"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8881cd754c5891b9af6b0cb9368d54cf"><td class="memItemLeft" align="right" valign="top">ros::Publisher&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorInterface.html#a8881cd754c5891b9af6b0cb9368d54cf">jointStatePub</a></td></tr>
 <tr class="memdesc:a8881cd754c5891b9af6b0cb9368d54cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">ROS Joint State Publisher.  <a href="classMotorInterface.html#a8881cd754c5891b9af6b0cb9368d54cf">More...</a><br /></td></tr>
@@ -977,6 +987,44 @@ Static Private Attributes</h2></td></tr>
 <p>Thread running the rosPublishQueue. </p>
 
 <p class="definition">Definition at line <a class="el" href="motor__interface_8h_source.html#l00155">155</a> of file <a class="el" href="motor__interface_8h_source.html">motor_interface.h</a>.</p>
+
+</div>
+</div>
+<a id="abf980218561d0226fac3823b59045113"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf980218561d0226fac3823b59045113">&#9670;&nbsp;</a></span>Shutdown()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MotorInterface::Shutdown </td>
+          <td>(</td>
+          <td class="paramtype">const std_srvs::Empty::Request &amp;&#160;</td>
+          <td class="paramname"><em>_req</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std_srvs::Empty::Response &amp;&#160;</td>
+          <td class="paramname"><em>_res</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The Shutdown function handles an incoming shutdown service request. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">_req</td><td>Service request. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">_res</td><td>Service response. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns true if success, and false if not. </dd></dl>
 
 </div>
 </div>

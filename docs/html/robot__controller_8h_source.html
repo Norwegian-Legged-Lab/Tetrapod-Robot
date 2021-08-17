@@ -86,6 +86,35 @@ $(function() {
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">public</span>: <a class="code" href="classRobotController.html#aaff6ee4f2b34409d88e2db0fe9b6d5c8">RobotController</a>(<span class="keywordtype">int</span> <a class="code" href="classController.html#a9a68485769c0b78bdd3c5e7050821f19">controller_freq</a>, <span class="keywordtype">double</span> gait_period);</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<<<<<<< HEAD
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">void</span> UpdateGuidanceCommands();</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">void</span> UpdateNonGuidanceCommands();</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">void</span> UpdateStepDistances();</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">bool</span> UpdateGaitState();</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">void</span> <a class="code" href="classRobotController.html#a1d1d88612826ea3f55904adc3d08d57b">UpdateFeetReferences</a>();</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">void</span> UpdateFeetTrajectories();</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">void</span> <a class="code" href="classRobotController.html#aa900b3483d9cbddbadd0aa38fedd16eb">UpdateFeetReferencesPoseControl</a>();</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">void</span> <a class="code" href="classRobotController.html#a9859f9c6c32e4716b996da4b51a70c43">UpdateFeetReferencesGaitControl</a>();</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">void</span> <a class="code" href="classRobotController.html#a0dd109e6d4abf8f77d9909a4f4c8bfaa">SetFeetPositionsGoalPose</a>();</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">public</span>: Eigen::Matrix&lt;double, 3, 1&gt; UpdateStanceFootPosition(<a class="code" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">Kinematics::LegType</a> _leg_type, <span class="keywordtype">double</span> _progress);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">public</span>: Eigen::Matrix&lt;double, 3, 1&gt; UpdateSwingFootPosition(<a class="code" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">Kinematics::LegType</a> _leg_type, <span class="keywordtype">double</span> _progress);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">void</span> UpdateSwingFootTrajectory(<a class="code" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">Kinematics::LegType</a> _leg_type, <span class="keywordtype">double</span> progress);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classRobotController.html#aaf2907bbd2010eef313b28d9dc355a01">   46</a></span>&#160;    <span class="keyword">private</span>: SuperState <a class="code" href="classRobotController.html#aaf2907bbd2010eef313b28d9dc355a01">super_state</a> = SuperState::kIdle;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classRobotController.html#a32ce63004e5d5eb8168fd3b755b1642f">   49</a></span>&#160;    <span class="keyword">private</span>: MotionState <a class="code" href="classRobotController.html#a32ce63004e5d5eb8168fd3b755b1642f">motion_state</a> = MotionState::kStancePreSwingFlRr;</div>
+=======
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">void</span> <a class="code" href="classRobotController.html#a931c7071f839d1c6ef2843458f2c44de">UpdateGuidanceCommands</a>();</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">void</span> <a class="code" href="classRobotController.html#a488fae1c35197f095ab7324abb126cb7">UpdateNonGuidanceCommands</a>();</div>
@@ -113,6 +142,7 @@ $(function() {
 <div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classRobotController.html#aaf2907bbd2010eef313b28d9dc355a01">   46</a></span>&#160;    <span class="keyword">private</span>: <a class="code" href="classRobotController.html#ad5b3f410c210fcfb5e0bdc6bd5b1ea63">SuperState</a> <a class="code" href="classRobotController.html#aaf2907bbd2010eef313b28d9dc355a01">super_state</a> = SuperState::kIdle;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
 <div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classRobotController.html#a32ce63004e5d5eb8168fd3b755b1642f">   49</a></span>&#160;    <span class="keyword">private</span>: <a class="code" href="classRobotController.html#a39cdb07b88efd22c4dc014380cd2cc78">MotionState</a> <a class="code" href="classRobotController.html#a32ce63004e5d5eb8168fd3b755b1642f">motion_state</a> = MotionState::kStancePreSwingFlRr;</div>
+>>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
 <div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classRobotController.html#aee8aa7a4916b3c2bf3a1c19bff175c57">   52</a></span>&#160;    <span class="keyword">private</span>: Eigen::Matrix&lt;double, 3, 1&gt; <a class="code" href="classRobotController.html#aee8aa7a4916b3c2bf3a1c19bff175c57">fl_goal_position</a>;</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
@@ -122,6 +152,71 @@ $(function() {
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
 <div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="classRobotController.html#aee81edb35892975a5155a8d82f1663c2">   61</a></span>&#160;    <span class="keyword">private</span>: Eigen::Matrix&lt;double, 3, 1&gt; <a class="code" href="classRobotController.html#aee81edb35892975a5155a8d82f1663c2">rr_goal_position</a>;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<<<<<<< HEAD
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">private</span>: Eigen::Matrix&lt;double, 12, 1&gt; initial_feet_positions_pose_control;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">double</span> hip_height = 0.35;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">double</span> step_distance_x_linear = 0.0;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">double</span> step_distance_y_linear = 0.0;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">double</span> step_distance_x_rotational = 0.0;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">double</span> step_distance_y_rotational = 0.0;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">double</span> gait_duration = 0.0;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">double</span> vel_x = 0.0;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">double</span> vel_y = 0.0;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">double</span> yaw_rate = 0.0;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">int</span> iteration = 0;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">double</span> max_step_height = 0.1;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">double</span> stance_phase_duration_percentage = 0.1;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">double</span> swing_rise_percentage = 0.3;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">double</span> swing_period; </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">double</span> stance_period;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">int</span> swing_iterations;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">int</span> stance_iterations; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">int</span> final_iteration;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">double</span> fl_step_distance_x;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">double</span> fl_step_distance_y;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">double</span> fr_step_distance_x;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">double</span> fr_step_distance_y;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">double</span> rl_step_distance_x;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">double</span> rl_step_distance_y;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">double</span> rr_step_distance_x;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">double</span> rr_step_distance_y;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">double</span> _lin_vel_x_command;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">double</span> _lin_vel_y_command;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">double</span> _ang_vel_z_command;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">double</span> _guidance_lin_vel_gain = 1.0;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">double</span> _guidance_ang_vel_gain = 1.0;</div>
+=======
 <div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="classRobotController.html#a6c68126c7187f3eb2ebd0675d422271e">   63</a></span>&#160;    <span class="keyword">private</span>: Eigen::Matrix&lt;double, 12, 1&gt; <a class="code" href="classRobotController.html#a6c68126c7187f3eb2ebd0675d422271e">initial_feet_positions_pose_control</a>;</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
 <div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="classRobotController.html#a6695eba2446d77622c5e979476ea5359">   65</a></span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">double</span> <a class="code" href="classRobotController.html#a6695eba2446d77622c5e979476ea5359">hip_height</a> = 0.35;</div>
@@ -185,6 +280,7 @@ $(function() {
 <div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="classRobotController.html#a2422e3590bdc5b30b520d15e31637406">  123</a></span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">double</span> <a class="code" href="classRobotController.html#a2422e3590bdc5b30b520d15e31637406">_guidance_lin_vel_gain</a> = 1.0;</div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
 <div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="classRobotController.html#a7ed3c9edf8762607006c9878e71343bb">  125</a></span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">double</span> <a class="code" href="classRobotController.html#a7ed3c9edf8762607006c9878e71343bb">_guidance_ang_vel_gain</a> = 1.0;</div>
+>>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <span class="comment">//private: std::vector&lt;double&gt; _lin_body_vel_x_history;</span></div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160; </div>
@@ -224,15 +320,39 @@ $(function() {
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="comment">    Eigen::Matrix&lt;double, 3, 1&gt; rr_trajectory_z;</span></div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="comment">    */</span></div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160; </div>
+<<<<<<< HEAD
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;   <span class="keyword">public</span>: <span class="keywordtype">void</span> PrintParameters();</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;   <span class="keyword">public</span>: <span class="keywordtype">void</span> PrintFootPositions();</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160; </div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;   <span class="keyword">public</span>: <span class="keywordtype">void</span> PrintVelCommands();</div>
+=======
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;   <span class="keyword">public</span>: <span class="keywordtype">void</span> <a class="code" href="classRobotController.html#a8de9a38ae6b026975e4206933525c6a4">PrintParameters</a>();</div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;   <span class="keyword">public</span>: <span class="keywordtype">void</span> <a class="code" href="classRobotController.html#a9478dac26a71f15702329037e64ed58f">PrintFootPositions</a>();</div>
 <div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160; </div>
 <div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;   <span class="keyword">public</span>: <span class="keywordtype">void</span> <a class="code" href="classRobotController.html#ae3ffbbad4ef0425815d30d3d5e99d9b6">PrintVelCommands</a>();</div>
+>>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
 <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
 <div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;};</div>
 <div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
 <div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="preprocessor">#endif</span></div>
+<<<<<<< HEAD
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclassRobotController_html_aa900b3483d9cbddbadd0aa38fedd16eb"><div class="ttname"><a href="classRobotController.html#aa900b3483d9cbddbadd0aa38fedd16eb">RobotController::UpdateFeetReferencesPoseControl</a></div><div class="ttdeci">void UpdateFeetReferencesPoseControl()</div><div class="ttdoc">A pose controller updating robot's foot positions to control its pose.</div></div>
+<div class="ttc" id="aclassRobotController_html_aee81edb35892975a5155a8d82f1663c2"><div class="ttname"><a href="classRobotController.html#aee81edb35892975a5155a8d82f1663c2">RobotController::rr_goal_position</a></div><div class="ttdeci">Eigen::Matrix&lt; double, 3, 1 &gt; rr_goal_position</div><div class="ttdoc">The rear right foot target position in the hip frame when using pose control.</div><div class="ttdef"><b>Definition:</b> robot_controller.h:61</div></div>
+<div class="ttc" id="aclassRobotController_html_aee8aa7a4916b3c2bf3a1c19bff175c57"><div class="ttname"><a href="classRobotController.html#aee8aa7a4916b3c2bf3a1c19bff175c57">RobotController::fl_goal_position</a></div><div class="ttdeci">Eigen::Matrix&lt; double, 3, 1 &gt; fl_goal_position</div><div class="ttdoc">The front left foot target position in the hip frame when using pose control.</div><div class="ttdef"><b>Definition:</b> robot_controller.h:52</div></div>
+<div class="ttc" id="aclassRobotController_html_a0dd109e6d4abf8f77d9909a4f4c8bfaa"><div class="ttname"><a href="classRobotController.html#a0dd109e6d4abf8f77d9909a4f4c8bfaa">RobotController::SetFeetPositionsGoalPose</a></div><div class="ttdeci">void SetFeetPositionsGoalPose()</div><div class="ttdoc">A function that sets the goal positions as the targets to reach eventually.</div></div>
+<div class="ttc" id="aclassRobotController_html_a1d1d88612826ea3f55904adc3d08d57b"><div class="ttname"><a href="classRobotController.html#a1d1d88612826ea3f55904adc3d08d57b">RobotController::UpdateFeetReferences</a></div><div class="ttdeci">void UpdateFeetReferences()</div><div class="ttdoc">A function updating the foot positions of the robot in the hip frames.</div><div class="ttdef"><b>Definition:</b> robot_controller.cpp:109</div></div>
+<div class="ttc" id="aclassController_html"><div class="ttname"><a href="classController.html">Controller</a></div><div class="ttdef"><b>Definition:</b> controller.h:29</div></div>
+<div class="ttc" id="aclassRobotController_html_aaf2907bbd2010eef313b28d9dc355a01"><div class="ttname"><a href="classRobotController.html#aaf2907bbd2010eef313b28d9dc355a01">RobotController::super_state</a></div><div class="ttdeci">SuperState super_state</div><div class="ttdoc">The main state of the robot deciding whether the robot is walking or not.</div><div class="ttdef"><b>Definition:</b> robot_controller.h:46</div></div>
+<div class="ttc" id="aclassRobotController_html_a9859f9c6c32e4716b996da4b51a70c43"><div class="ttname"><a href="classRobotController.html#a9859f9c6c32e4716b996da4b51a70c43">RobotController::UpdateFeetReferencesGaitControl</a></div><div class="ttdeci">void UpdateFeetReferencesGaitControl()</div><div class="ttdoc">A gait controller updating the robot's foot positions to walk.</div></div>
+<div class="ttc" id="aclassRobotController_html_a32ce63004e5d5eb8168fd3b755b1642f"><div class="ttname"><a href="classRobotController.html#a32ce63004e5d5eb8168fd3b755b1642f">RobotController::motion_state</a></div><div class="ttdeci">MotionState motion_state</div><div class="ttdoc">A variable deciding which of the four motion states we are currently in.</div><div class="ttdef"><b>Definition:</b> robot_controller.h:49</div></div>
+<div class="ttc" id="aclassKinematics_html_af4fe883429ced792a719f02b4dcc5e3a"><div class="ttname"><a href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">Kinematics::LegType</a></div><div class="ttdeci">LegType</div><div class="ttdoc">Leg type enumerator.</div><div class="ttdef"><b>Definition:</b> kinematics.h:56</div></div>
+<div class="ttc" id="aclassRobotController_html_a595acc2b6a0275dcc33a2f3fa2249bb2"><div class="ttname"><a href="classRobotController.html#a595acc2b6a0275dcc33a2f3fa2249bb2">RobotController::fr_goal_position</a></div><div class="ttdeci">Eigen::Matrix&lt; double, 3, 1 &gt; fr_goal_position</div><div class="ttdoc">The front right foot target position in the hip frame when using pose control.</div><div class="ttdef"><b>Definition:</b> robot_controller.h:55</div></div>
+<div class="ttc" id="aclassRobotController_html_a3971716c7229da45b7e233d5a8d19418"><div class="ttname"><a href="classRobotController.html#a3971716c7229da45b7e233d5a8d19418">RobotController::rl_goal_position</a></div><div class="ttdeci">Eigen::Matrix&lt; double, 3, 1 &gt; rl_goal_position</div><div class="ttdoc">The rear left foot target position in the hip frame when using pose control.</div><div class="ttdef"><b>Definition:</b> robot_controller.h:58</div></div>
+<div class="ttc" id="aclassRobotController_html"><div class="ttname"><a href="classRobotController.html">RobotController</a></div><div class="ttdef"><b>Definition:</b> robot_controller.h:7</div></div>
+=======
 <div class="ttc" id="aclassController_html"><div class="ttname"><a href="classController.html">Controller</a></div><div class="ttdef"><b>Definition:</b> <a href="controller_8h_source.html#l00029">controller.h:29</a></div></div>
 <div class="ttc" id="aclassController_html_a9a68485769c0b78bdd3c5e7050821f19"><div class="ttname"><a href="classController.html#a9a68485769c0b78bdd3c5e7050821f19">Controller::controller_freq</a></div><div class="ttdeci">int controller_freq</div><div class="ttdef"><b>Definition:</b> <a href="controller_8h_source.html#l00110">controller.h:110</a></div></div>
 <div class="ttc" id="aclassKinematics_html_af4fe883429ced792a719f02b4dcc5e3a"><div class="ttname"><a href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">Kinematics::LegType</a></div><div class="ttdeci">LegType</div><div class="ttdoc">Leg type enumerator.</div><div class="ttdef"><b>Definition:</b> <a href="kinematics_8h_source.html#l00056">kinematics.h:56</a></div></div>
@@ -308,6 +428,7 @@ $(function() {
 <div class="ttc" id="acontroller_8h_html"><div class="ttname"><a href="controller_8h.html">controller.h</a></div></div>
 <div class="ttc" id="agaits_8h_html"><div class="ttname"><a href="gaits_8h.html">gaits.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
+>>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1

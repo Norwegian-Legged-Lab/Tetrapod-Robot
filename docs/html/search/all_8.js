@@ -1,5 +1,6 @@
 var searchData=
 [
+<<<<<<< HEAD
   ['half_5fpi_349',['HALF_PI',['../namespacemath__utils.html#a0667b974bde8c7c206fd5ee18f583f91',1,'math_utils']]],
   ['has_5feq_5fconstraint_350',['has_eq_constraint',['../structHierarchicalOptimizationControl_1_1Task.html#a11dc6f5fd4494a4b42d559c380ac81fd',1,'HierarchicalOptimizationControl::Task']]],
   ['has_5fineq_5fconstraint_351',['has_ineq_constraint',['../structHierarchicalOptimizationControl_1_1Task.html#a84b6c5269a6ba5237988b680bff3504c',1,'HierarchicalOptimizationControl::Task']]],
@@ -18,4 +19,58 @@ var searchData=
   ['hsvrgb_2ecpp_364',['hsvrgb.cpp',['../hsvrgb_8cpp.html',1,'']]],
   ['hsvrgb_2eh_365',['hsvrgb.h',['../hsvrgb_8h.html',1,'']]],
   ['hsvtorgb_366',['HSVtoRGB',['../hsvrgb_8h.html#a676fa0988098114a1ab3cad800a63091',1,'HSVtoRGB(double &amp;fR, double &amp;fG, double &amp;fB, double &amp;fH, double &amp;fS, double &amp;fV):&#160;hsvrgb.cpp'],['../hsvrgb_8cpp.html#a676fa0988098114a1ab3cad800a63091',1,'HSVtoRGB(double &amp;fR, double &amp;fG, double &amp;fB, double &amp;fH, double &amp;fS, double &amp;fV):&#160;hsvrgb.cpp']]]
+=======
+<<<<<<< HEAD
+  ['joint_144',['joint',['../classgazebo_1_1PendulumPlugin.html#a8d811eae2374749ae3e89c79665b62a0',1,'gazebo::PendulumPlugin']]],
+  ['joint_5facc_5fref_145',['joint_acc_ref',['../classSingleLegController.html#a3ef1befaf2e65f02d10ab4387598e619',1,'SingleLegController']]],
+  ['joint_5fconfig_146',['joint_config',['../classgazebo_1_1SingleLegPlugin.html#a2d275a8f830d62aa0e1edacfecd53c70',1,'gazebo::SingleLegPlugin::joint_config()'],['../classgazebo_1_1TetrapodPlugin.html#af0aa95d81eff447619d54fef3ea3f350',1,'gazebo::TetrapodPlugin::joint_config()']]],
+  ['joint_5fnames_147',['joint_names',['../classgazebo_1_1SingleLegPlugin.html#aa9884dfbcb6e82577d34f1e3721879d8',1,'gazebo::SingleLegPlugin::joint_names()'],['../classgazebo_1_1TetrapodPlugin.html#adadbc95520c62bcdaaf7966cad3ed579',1,'gazebo::TetrapodPlugin::joint_names()']]],
+  ['joint_5fpos_148',['joint_pos',['../classSingleLegController.html#a3e52b8652d2660e57b4fe523048960af',1,'SingleLegController']]],
+  ['joint_5fpos_5fgoal_149',['joint_pos_goal',['../classSingleLegController.html#a386b8d073a06ddb3fc240e2fed525a5e',1,'SingleLegController']]],
+  ['joint_5fpos_5finitial_150',['joint_pos_initial',['../classSingleLegController.html#ac5919dbede31dc9178918196b364b8e0',1,'SingleLegController']]],
+  ['joint_5fpos_5fref_151',['joint_pos_ref',['../classSingleLegController.html#a47b7a0975f0255c614b8f2ddf4728393',1,'SingleLegController']]],
+  ['joint_5freference_5flog_5fmsg_152',['joint_reference_log_msg',['../classSingleLegController.html#ac710ba47a2b3578d5ac7b8c1b87fa4c9',1,'SingleLegController']]],
+  ['joint_5fsetpoint_5fsubscriber_153',['joint_setpoint_subscriber',['../classSingleLegController.html#a71acfb659750dafb0f20953ed42446ab',1,'SingleLegController']]],
+  ['joint_5fstate_5flog_5fmsg_154',['joint_state_log_msg',['../classSingleLegController.html#ab33009754d047652cbfbdbd117408233',1,'SingleLegController']]],
+  ['joint_5fstate_5fpublisher_155',['joint_state_publisher',['../classSingleLegController.html#a5875a17d12aeab4ce0c5728d3481b838',1,'SingleLegController']]],
+  ['joint_5fstate_5fsubscriber_156',['joint_state_subscriber',['../classSingleLegController.html#abb3cd5f4302dd625410e1834d260a0de',1,'SingleLegController']]],
+  ['joint_5ftorque_157',['joint_torque',['../classSingleLegController.html#a379fc2391ca36f1e580e405e520dc1e3',1,'SingleLegController']]],
+  ['joint_5ftorque_5fcommands_158',['joint_torque_commands',['../classSingleLegController.html#a39020eeb57a9dbb6db5f7cfa1ede91e5',1,'SingleLegController']]],
+  ['joint_5ftorque_5fref_159',['joint_torque_ref',['../classSingleLegController.html#a1592d781e7ed32db229ff163f94388e7',1,'SingleLegController']]],
+  ['joint_5fvel_160',['joint_vel',['../classSingleLegController.html#a7ac471ce6bf8e598d74cf23502301108',1,'SingleLegController']]],
+  ['joint_5fvel_5fcommands_161',['joint_vel_commands',['../classSingleLegController.html#aeb528f36ae245332672e1cb793bdf21d',1,'SingleLegController']]],
+  ['joint_5fvel_5fref_162',['joint_vel_ref',['../classSingleLegController.html#a1c00bef302e56d1fd13e8062759dd2b3',1,'SingleLegController']]],
+  ['jointforcepub_163',['jointForcePub',['../classgazebo_1_1PendulumPlugin.html#a34451bbe34d5b2dc2a1543f70f8e47fa',1,'gazebo::PendulumPlugin']]],
+  ['jointforcespub_164',['jointForcesPub',['../classgazebo_1_1SingleLegPlugin.html#a4d9486929c248421080dfb96a38aa494',1,'gazebo::SingleLegPlugin::jointForcesPub()'],['../classgazebo_1_1TetrapodPlugin.html#afa50f080448b899b847e8b403b088d0c',1,'gazebo::TetrapodPlugin::jointForcesPub()']]],
+  ['joints_165',['joints',['../classgazebo_1_1SingleLegPlugin.html#a79296c821ffaaa9db3d1b39d5c4356c3',1,'gazebo::SingleLegPlugin::joints()'],['../classgazebo_1_1TetrapodPlugin.html#ad635147502526459216c6c2156b3a0ec',1,'gazebo::TetrapodPlugin::joints()']]],
+  ['jointsetpointcallback_166',['jointSetpointCallback',['../classSingleLegController.html#a1416bcc7d48bd32ac977ecbc182dfade',1,'SingleLegController']]],
+  ['jointstate_167',['jointState',['../classLogUtils.html#a46658fc92e092bdfc1ee5c8d8e8b2416',1,'LogUtils']]],
+  ['jointstatecallback_168',['jointStateCallback',['../classSingleLegController.html#a7b4ea1c8e62e720596019700f364fa4c',1,'SingleLegController']]],
+  ['jointstatecmd_169',['jointStateCmd',['../classLogUtils.html#a1f4af56b539406e9a2872699c1f837b8',1,'LogUtils']]],
+  ['jointstatecmdpub_170',['jointStateCmdPub',['../classLogUtils.html#ac0b46a1cc8b4eb02798e79a7cbf7de43',1,'LogUtils']]],
+  ['jointstatecmdsub_171',['jointStateCmdSub',['../classMotorInterface.html#aa07b7b6b987594c573ca9b093a1e3b69',1,'MotorInterface::jointStateCmdSub()'],['../classgazebo_1_1TetrapodPlugin.html#aa46bc11cef3d7d92e2f00bcb89ed82f9',1,'gazebo::TetrapodPlugin::jointStateCmdSub()'],['../classLogUtils.html#ae5b2e838bf3149b0457474fcb2734b0e',1,'LogUtils::jointStateCmdSub()']]],
+  ['jointstatemsg_172',['jointStateMsg',['../classMotorInterface.html#a92dc1d8ea5cbcb48acb70f75f1d165de',1,'MotorInterface']]],
+  ['jointstatepub_173',['jointStatePub',['../classHierarchicalOptimizationControl.html#aa2a139ccf51e5752acb6444ba5538012',1,'HierarchicalOptimizationControl::jointStatePub()'],['../classMotorInterface.html#a8881cd754c5891b9af6b0cb9368d54cf',1,'MotorInterface::jointStatePub()'],['../classgazebo_1_1TetrapodPlugin.html#acb86ee69ad20bd52c8b46d8b8bfbaf91',1,'gazebo::TetrapodPlugin::jointStatePub()'],['../classLogUtils.html#aebb30b44bc3a2aa697b90e85c303ae18',1,'LogUtils::jointStatePub()']]],
+  ['jointstatesub_174',['jointStateSub',['../classgazebo_1_1PendulumPlugin.html#a9e41bb42b5fb17e675c86c58981c5b85',1,'gazebo::PendulumPlugin::jointStateSub()'],['../classgazebo_1_1SingleLegPlugin.html#a97760d277a68cb9e87269e46db176537',1,'gazebo::SingleLegPlugin::jointStateSub()'],['../classLogUtils.html#aa09263ffc83b24e77d676091ad8bf786',1,'LogUtils::jointStateSub()']]]
+=======
+  ['half_5fpi_347',['HALF_PI',['../namespacemath__utils.html#a0667b974bde8c7c206fd5ee18f583f91',1,'math_utils']]],
+  ['has_5feq_5fconstraint_348',['has_eq_constraint',['../structHierarchicalOptimizationControl_1_1Task.html#a11dc6f5fd4494a4b42d559c380ac81fd',1,'HierarchicalOptimizationControl::Task']]],
+  ['has_5fineq_5fconstraint_349',['has_ineq_constraint',['../structHierarchicalOptimizationControl_1_1Task.html#a84b6c5269a6ba5237988b680bff3504c',1,'HierarchicalOptimizationControl::Task']]],
+  ['height_350',['height',['../classSteppingStone.html#ae1459d59a3b8351c03b8295aee008450',1,'SteppingStone::height()'],['../classutils_1_1SteppingStone.html#a65f5cf57d5ca73c21835d2be8b2b3c0f',1,'utils.SteppingStone.height()']]],
+  ['height_5fcontrol_2ecpp_351',['height_control.cpp',['../height__control_8cpp.html',1,'']]],
+  ['heightrollyawtest_352',['HeightRollYawTest',['../classHierarchicalOptimizationControl.html#a4bba105a2a0ad4cd02ef8263f9d97c87',1,'HierarchicalOptimizationControl']]],
+  ['hierarchical_5foptimization_5fcontroller_2ecpp_353',['hierarchical_optimization_controller.cpp',['../hierarchical__optimization__controller_8cpp.html',1,'']]],
+  ['hierarchical_5foptimization_5fcontroller_2eh_354',['hierarchical_optimization_controller.h',['../hierarchical__optimization__controller_8h.html',1,'']]],
+  ['hierarchical_5foptimization_5fcontroller_5fnode_2ecpp_355',['hierarchical_optimization_controller_node.cpp',['../hierarchical__optimization__controller__node_8cpp.html',1,'']]],
+  ['hierarchicalleastsquareoptimization_356',['HierarchicalLeastSquareOptimization',['../classHierarchicalOptimizationControl.html#aa5be7152ab8fe0eb6dcb595aa5d961b5',1,'HierarchicalOptimizationControl']]],
+  ['hierarchicaloptimization_357',['HierarchicalOptimization',['../classHierarchicalOptimizationControl.html#a911cef032be8319e4ed16b0a26dd8804',1,'HierarchicalOptimizationControl']]],
+  ['hierarchicaloptimizationcontrol_358',['HierarchicalOptimizationControl',['../classHierarchicalOptimizationControl.html',1,'HierarchicalOptimizationControl'],['../classHierarchicalOptimizationControl.html#a2dcfaa71130d1c120477ab120589c662',1,'HierarchicalOptimizationControl::HierarchicalOptimizationControl()']]],
+  ['hierarchicalqpoptimization_359',['HierarchicalQPOptimization',['../classHierarchicalOptimizationControl.html#a64f7ef31eba78810a479bc70ecd26543',1,'HierarchicalOptimizationControl']]],
+  ['hip_360',['hip',['../classHierarchicalOptimizationControl.html#a6def6e783d9ce5400d931e7d6da2ad36ad65fc10dc5546d9e0188bf0643c60bd0',1,'HierarchicalOptimizationControl::hip()'],['../classKinematics.html#a390b699225b57bc303653caeb6039df3afc1f7117122a22edce014a96116cc3d3',1,'Kinematics::hip()']]],
+  ['hip_5fheight_361',['hip_height',['../classRobotController.html#a6695eba2446d77622c5e979476ea5359',1,'RobotController::hip_height()'],['../classSingleLegController.html#a9af55628c4322ff2afe9a7d03f78d8f1',1,'SingleLegController::hip_height()']]],
+  ['hsvrgb_2ecpp_362',['hsvrgb.cpp',['../hsvrgb_8cpp.html',1,'']]],
+  ['hsvrgb_2eh_363',['hsvrgb.h',['../hsvrgb_8h.html',1,'']]],
+  ['hsvtorgb_364',['HSVtoRGB',['../hsvrgb_8h.html#a676fa0988098114a1ab3cad800a63091',1,'HSVtoRGB(double &amp;fR, double &amp;fG, double &amp;fB, double &amp;fH, double &amp;fS, double &amp;fV):&#160;hsvrgb.cpp'],['../hsvrgb_8cpp.html#a676fa0988098114a1ab3cad800a63091',1,'HSVtoRGB(double &amp;fR, double &amp;fG, double &amp;fB, double &amp;fH, double &amp;fS, double &amp;fV):&#160;hsvrgb.cpp']]]
+>>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
+>>>>>>> ba386f8295e82f7ac8cf59b10da3273e9e85b083
 ];

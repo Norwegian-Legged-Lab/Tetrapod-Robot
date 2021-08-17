@@ -1,5 +1,8 @@
 var searchData=
 [
+<<<<<<< HEAD
+  ['encoder_5fturn_5fthreshold_28',['encoder_turn_threshold',['../classMotorControl.html#ab0c172ca680c38bdc09e96573c178056',1,'MotorControl']]]
+=======
   ['c_86',['c',['../namespacecalculate__polynomials.html#a66df1a70d317116e832b1ac83571b7e4',1,'calculate_polynomials']]],
   ['calculate_5fpolynomials_87',['calculate_polynomials',['../namespacecalculate__polynomials.html',1,'']]],
   ['calculate_5fpolynomials_2epy_88',['calculate_polynomials.py',['../calculate__polynomials_8py.html',1,'']]],
@@ -54,4 +57,5 @@ var searchData=
   ['cross_137',['CROSS',['../joystick__controller_8h.html#a315fd8facda6c3d020d328c5c4b07586ad699bdf1731bd839b56c299536ba1d9d',1,'joystick_controller.h']]],
   ['current_5fiteration_138',['current_iteration',['../classSingleLegController.html#abc288c445f45646cf114b7d383589fbb',1,'SingleLegController::current_iteration()'],['../classSingleMotorController.html#ab1efa501050708820de695948622e6a7',1,'SingleMotorController::current_iteration()']]],
   ['current_5fpose_5fiteration_139',['current_pose_iteration',['../classSingleLegController.html#a957a131e443d08ec0a352ee5fcd1cc2c',1,'SingleLegController']]]
+>>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
 ];

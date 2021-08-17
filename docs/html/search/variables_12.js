@@ -1,5 +1,6 @@
 var searchData=
 [
+<<<<<<< HEAD
   ['send_5ftime_2289',['send_time',['../classSubAndPub.html#a010baa35192526fa4e035b5ce1503828',1,'SubAndPub']]],
   ['sequence_5foffset_2290',['sequence_offset',['../structmiqp_1_1quadruped_1_1DecVars__res__raw.html#af8e0c1271db9c1f52a838a7c471db8ea',1,'miqp::quadruped::DecVars_res_raw']]],
   ['serial_5fport_2291',['serial_port',['../classSerialCommunication.html#ab5200e01361e330cd5ea8776f71428d5',1,'SerialCommunication']]],
@@ -32,4 +33,49 @@ var searchData=
   ['swing_5fiterations_2318',['swing_iterations',['../classRobotController.html#a0e4c36bca3e20729dfa0366b40c885a9',1,'RobotController']]],
   ['swing_5fperiod_2319',['swing_period',['../classRobotController.html#ae13042713837bc0d21ed0799b6392fcf',1,'RobotController']]],
   ['swing_5frise_5fpercentage_2320',['swing_rise_percentage',['../classRobotController.html#a1a458d25c1f50dbd3a927b0c2941393e',1,'RobotController']]]
+=======
+<<<<<<< HEAD
+  ['vel_5fd_5fgain_901',['vel_d_gain',['../classgazebo_1_1PendulumPlugin.html#a5bc17631437418437b91fb808b003dcf',1,'gazebo::PendulumPlugin']]],
+  ['vel_5fd_5fgains_902',['vel_d_gains',['../classgazebo_1_1SingleLegPlugin.html#acb184e43edbac43eb5e845bc966db425',1,'gazebo::SingleLegPlugin::vel_d_gains()'],['../classgazebo_1_1TetrapodPlugin.html#ac80108f47eea394d1a6d0853f7318a99',1,'gazebo::TetrapodPlugin::vel_d_gains()']]],
+  ['vel_5fi_5fgain_903',['vel_i_gain',['../classgazebo_1_1PendulumPlugin.html#a572a4268b6f15eb1349d74d6c757cd47',1,'gazebo::PendulumPlugin']]],
+  ['vel_5fi_5fgains_904',['vel_i_gains',['../classgazebo_1_1SingleLegPlugin.html#a29d9bca0a199606eef9aef8fbe1949ab',1,'gazebo::SingleLegPlugin::vel_i_gains()'],['../classgazebo_1_1TetrapodPlugin.html#a97a1b92e4b3e7a28ff428479c9147804',1,'gazebo::TetrapodPlugin::vel_i_gains()']]],
+  ['vel_5fp_5fgain_905',['vel_p_gain',['../classgazebo_1_1PendulumPlugin.html#ae377ca7d46942d849c1d1a7fd921b458',1,'gazebo::PendulumPlugin']]],
+  ['vel_5fp_5fgains_906',['vel_p_gains',['../classgazebo_1_1SingleLegPlugin.html#a7043bf33062c9c745f7df35b722e1253',1,'gazebo::SingleLegPlugin::vel_p_gains()'],['../classgazebo_1_1TetrapodPlugin.html#a1960f0cb557960a5b1543a1e9e259fed',1,'gazebo::TetrapodPlugin::vel_p_gains()']]],
+  ['velocity_5fcommand_907',['VELOCITY_COMMAND',['../classSingleLegController.html#ac5a6be5095664c0dd3c37a73159227d2',1,'SingleLegController']]],
+  ['velsub_908',['velSub',['../classgazebo_1_1SingleLegPlugin.html#ae02a966592d7e694dcc32e4f2f72104b',1,'gazebo::SingleLegPlugin::velSub()'],['../classgazebo_1_1TetrapodPlugin.html#a3911adb0099091fc8b138895d310186f',1,'gazebo::TetrapodPlugin::velSub()']]]
+=======
+  ['send_5ftime_2283',['send_time',['../classSubAndPub.html#a010baa35192526fa4e035b5ce1503828',1,'SubAndPub']]],
+  ['sequence_5foffset_2284',['sequence_offset',['../structmiqp_1_1quadruped_1_1DecVars__res__raw.html#af8e0c1271db9c1f52a838a7c471db8ea',1,'miqp::quadruped::DecVars_res_raw']]],
+  ['serial_5fport_2285',['serial_port',['../classSerialCommunication.html#ab5200e01361e330cd5ea8776f71428d5',1,'SerialCommunication']]],
+  ['serialinterface1_2286',['serialInterface1',['../classMotorInterface.html#ab6779402a5511b963602a80418bc5c19',1,'MotorInterface']]],
+  ['serialinterface2_2287',['serialInterface2',['../classMotorInterface.html#a348eb45a64dec3a31957c2daf6d81c55',1,'MotorInterface']]],
+  ['serialprocessqueuethread_2288',['serialProcessQueueThread',['../classMotorInterface.html#a93046b35c6caedeb7de250b0abbcad9f',1,'MotorInterface']]],
+  ['set_5fgoal_5fsubscriber_2289',['set_goal_subscriber',['../classSingleMotorController.html#a4d7f8f5f2c1aa121f7c9d7c5ccc24c1a',1,'SingleMotorController']]],
+  ['shutdownservice_2290',['shutdownService',['../classController.html#ad0befa1432680493812b0316a4497877',1,'Controller::shutdownService()'],['../classMotorInterface.html#aa7536098e5030f042e3eceb1c201703e',1,'MotorInterface::shutdownService()']]],
+  ['sixth_5fpi_2291',['SIXTH_PI',['../namespacemath__utils.html#a1b3995366b41539f48168aaef8779175',1,'math_utils']]],
+  ['speed_2292',['speed',['../classMotorControl.html#a75730853edf97afa2d2abd864311241e',1,'MotorControl']]],
+  ['stance_5fiterations_2293',['stance_iterations',['../classRobotController.html#a51f48fc4ef4cf4d55c9e9ebaa4d40531',1,'RobotController']]],
+  ['stance_5fperiod_2294',['stance_period',['../classRobotController.html#af4b1aae121fab3f3cab28b0fb5a79843',1,'RobotController']]],
+  ['stance_5fphase_5fduration_5fpercentage_2295',['stance_phase_duration_percentage',['../classRobotController.html#a5101224430a811b82547d1ed473150b1',1,'RobotController']]],
+  ['step_5fdistance_5fx_5flinear_2296',['step_distance_x_linear',['../classRobotController.html#a060949e5d54bd24037ca59e33dec4ae3',1,'RobotController']]],
+  ['step_5fdistance_5fx_5frotational_2297',['step_distance_x_rotational',['../classRobotController.html#a99a99287a939b53e5278f04c6eef929a',1,'RobotController']]],
+  ['step_5fdistance_5fy_5flinear_2298',['step_distance_y_linear',['../classRobotController.html#a19674b224b7eff5acaf49f4344af3fca',1,'RobotController']]],
+  ['step_5fdistance_5fy_5frotational_2299',['step_distance_y_rotational',['../classRobotController.html#aaad4f816216a6ef698d638efd98f100e',1,'RobotController']]],
+  ['step_5fspan_2300',['step_span',['../namespacevisualize.html#a80c1eec6aadd05fc20a3729cb382e7e6',1,'visualize']]],
+  ['stepping_5fstones_2301',['stepping_stones',['../classutils_1_1Terrain.html#a191e87d6d999c9c29202b1b676379f69',1,'utils.Terrain.stepping_stones()'],['../classTerrain.html#a450942ac710f7c19a3bf347de4694f7d',1,'Terrain::stepping_stones()']]],
+  ['stone_2302',['stone',['../structmiqp_1_1quadruped_1_1DecVars.html#a3c77ff51e44e48a2efecdcbc97a5eb59',1,'miqp::quadruped::DecVars::stone()'],['../structmiqp_1_1quadruped_1_1DecVars__res__raw.html#a9194f4e6c91eb5693799a12a968e779d',1,'miqp::quadruped::DecVars_res_raw::stone()']]],
+  ['stone_5ffront_5fleft_2303',['stone_front_left',['../structmiqp_1_1quadruped_1_1DecVars__res.html#aa6c04e8189e4cc56147b8afa0a3711d6',1,'miqp::quadruped::DecVars_res::stone_front_left()'],['../structmiqp_1_1waypoint_1_1DecVars.html#a0c3aaace62e9467b31c3653537d45ba3',1,'miqp::waypoint::DecVars::stone_front_left()'],['../structmiqp_1_1waypoint_1_1DecVars__res.html#a4ff3a79ae472df57ce3165c0eef7ba5c',1,'miqp::waypoint::DecVars_res::stone_front_left()']]],
+  ['stone_5ffront_5fright_2304',['stone_front_right',['../structmiqp_1_1quadruped_1_1DecVars__res.html#a69e876b0182b10694374c9d44de229c9',1,'miqp::quadruped::DecVars_res::stone_front_right()'],['../structmiqp_1_1waypoint_1_1DecVars.html#a73d0c5a26ba4874176993f3fab6dc5ae',1,'miqp::waypoint::DecVars::stone_front_right()'],['../structmiqp_1_1waypoint_1_1DecVars__res.html#ad26c716a0bbbe44ca2fa6258badee5b7',1,'miqp::waypoint::DecVars_res::stone_front_right()']]],
+  ['stone_5fleft_2305',['stone_left',['../structmiqp_1_1biped_1_1DecVars.html#ac58f6a53337b32fffd6fed49b028f8d8',1,'miqp::biped::DecVars::stone_left()'],['../structmiqp_1_1biped_1_1DecVars__res.html#ac223b2f339514e2de81a727bd574f2ef',1,'miqp::biped::DecVars_res::stone_left()']]],
+  ['stone_5frear_5fleft_2306',['stone_rear_left',['../structmiqp_1_1quadruped_1_1DecVars__res.html#a8cb10257a8cdbab0e0766ebca73d6907',1,'miqp::quadruped::DecVars_res::stone_rear_left()'],['../structmiqp_1_1waypoint_1_1DecVars.html#aeea2e2668fc9041b683183bf8cc1a824',1,'miqp::waypoint::DecVars::stone_rear_left()'],['../structmiqp_1_1waypoint_1_1DecVars__res.html#ab6ee2852efe0fde8e8d8b9ff86320c38',1,'miqp::waypoint::DecVars_res::stone_rear_left()']]],
+  ['stone_5frear_5fright_2307',['stone_rear_right',['../structmiqp_1_1quadruped_1_1DecVars__res.html#a0b5c9dd327ef3ecae296439c1c9a14a7',1,'miqp::quadruped::DecVars_res::stone_rear_right()'],['../structmiqp_1_1waypoint_1_1DecVars.html#ab25a04b198899d91c9eb0f2d4bc16c0c',1,'miqp::waypoint::DecVars::stone_rear_right()'],['../structmiqp_1_1waypoint_1_1DecVars__res.html#aaa67d82675450821571db3815f68ca2b',1,'miqp::waypoint::DecVars_res::stone_rear_right()']]],
+  ['stone_5fright_2308',['stone_right',['../structmiqp_1_1biped_1_1DecVars.html#a388b2b706f04b567827069bd3209322e',1,'miqp::biped::DecVars::stone_right()'],['../structmiqp_1_1biped_1_1DecVars__res.html#aaee4a2399be81603426c444f82944609',1,'miqp::biped::DecVars_res::stone_right()']]],
+  ['sub_2309',['sub',['../classSubAndPub.html#a6a487339a9081757484d8a511b4e031d',1,'SubAndPub']]],
+  ['success_2310',['success',['../structmiqp_1_1quadruped_1_1DecVars__res__raw.html#aa63f05b4de05d088e3db68073f171ad5',1,'miqp::quadruped::DecVars_res_raw::success()'],['../structmiqp_1_1quadruped_1_1DecVars__res.html#a158342f3ab220380a8ff8c936c3efaf2',1,'miqp::quadruped::DecVars_res::success()']]],
+  ['super_5fstate_2311',['super_state',['../classRobotController.html#aaf2907bbd2010eef313b28d9dc355a01',1,'RobotController']]],
+  ['swing_5fiterations_2312',['swing_iterations',['../classRobotController.html#a0e4c36bca3e20729dfa0366b40c885a9',1,'RobotController']]],
+  ['swing_5fperiod_2313',['swing_period',['../classRobotController.html#ae13042713837bc0d21ed0799b6392fcf',1,'RobotController']]],
+  ['swing_5frise_5fpercentage_2314',['swing_rise_percentage',['../classRobotController.html#a1a458d25c1f50dbd3a927b0c2941393e',1,'RobotController']]]
+>>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
+>>>>>>> ba386f8295e82f7ac8cf59b10da3273e9e85b083
 ];

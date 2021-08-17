@@ -1,5 +1,14 @@
 var indexSectionsWithContent =
 {
+<<<<<<< HEAD
+  0: "abcefghijklmnoprstuvwxy~",
+  1: "cfghklmprst",
+  2: "m",
+  3: "acghijklmoprstuvw~",
+  4: "abcefghijklmnprstuvwxy",
+  5: "bcgls",
+  6: "impt"
+=======
   0: "_abcdefghijklmnoprstuvwxy~",
   1: "cdfghjklmprst",
   2: "cdgmuvw",
@@ -10,7 +19,12 @@ var indexSectionsWithContent =
   7: "bcgjklms",
   8: "bcdefhklnoprstuv",
   9: "_abflmnprsu",
+<<<<<<< HEAD
   10: "dgimoptu"
+=======
+  10: "impt"
+>>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
+>>>>>>> ba386f8295e82f7ac8cf59b10da3273e9e85b083
 };
 
 var indexSectionNames =

@@ -69,6 +69,11 @@ We recommend adding the set of command lines to your `.bashrc` file for the ease
 
 The Drake toolbox can be installed using either a binary installation, or from source. The following lines of commands can be run to install Drake on Ubuntu 20.04 (Focal) from the latest binary release:
 
+For installing drake with Gurobi support (strongly recommended for the footstep planner):
+Install gurobi as described [here](http://drake.mit.edu/bazel.html?highlight=gurobi#install-on-ubuntu)
+Install drake from source as described [here](https://github.com/RobotLocomotion/drake-external-examples/tree/main/drake_cmake_installed)
+
+From binary:
 
 ```bash
 # Download and extract the latest Ubuntu 20.04 (Focal) release to /opt

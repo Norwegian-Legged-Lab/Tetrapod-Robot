@@ -60,7 +60,14 @@ void \mbox{\hyperlink{classHierarchicalOptimizationControl_ae2515ead8270fb9a8015
 \item 
 void \mbox{\hyperlink{classHierarchicalOptimizationControl_a4bba105a2a0ad4cd02ef8263f9d97c87}{Height\+Roll\+Yaw\+Test}} ()
 \item 
+<<<<<<< HEAD
+\mbox{\Hypertarget{classHierarchicalOptimizationControl_a4bba105a2a0ad4cd02ef8263f9d97c87}\label{classHierarchicalOptimizationControl_a4bba105a2a0ad4cd02ef8263f9d97c87}} 
+void {\bfseries Height\+Roll\+Yaw\+Test} ()
+\item 
+Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \mbox{\hyperlink{classHierarchicalOptimizationControl_a911cef032be8319e4ed16b0a26dd8804}{Hierarchical\+Optimization}} (const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+desired\+\_\+base\+\_\+pos, const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+desired\+\_\+base\+\_\+vel, const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+desired\+\_\+base\+\_\+acc, const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+desired\+\_\+base\+\_\+ori, const Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ \&\+\_\+desired\+\_\+f\+\_\+pos, const Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ \&\+\_\+desired\+\_\+f\+\_\+vel, const Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ \&\+\_\+desired\+\_\+f\+\_\+acc, const Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ \&\+\_\+f\+\_\+pos, const Eigen\+::\+Matrix$<$ Eigen\+::\+Vector3d, 4, 1 $>$ \&\+\_\+f\+\_\+vel, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+q, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+u, const int \&\+\_\+v=0)
+=======
 Eigen\+::\+Matrix$<$ double, 12, 1 $>$ \mbox{\hyperlink{classHierarchicalOptimizationControl_a911cef032be8319e4ed16b0a26dd8804}{Hierarchical\+Optimization}} (const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+desired\+\_\+base\+\_\+pos, const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+desired\+\_\+base\+\_\+vel, const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+desired\+\_\+base\+\_\+acc, const Eigen\+::\+Matrix$<$ double, 3, 1 $>$ \&\+\_\+desired\+\_\+base\+\_\+ori, const Eigen\+::\+Matrix$<$ \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}, 4, 1 $>$ \&\+\_\+desired\+\_\+f\+\_\+pos, const Eigen\+::\+Matrix$<$ \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}, 4, 1 $>$ \&\+\_\+desired\+\_\+f\+\_\+vel, const Eigen\+::\+Matrix$<$ \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}, 4, 1 $>$ \&\+\_\+desired\+\_\+f\+\_\+acc, const Eigen\+::\+Matrix$<$ \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}, 4, 1 $>$ \&\+\_\+f\+\_\+pos, const Eigen\+::\+Matrix$<$ \mbox{\hyperlink{kinematics_8h_a72422f584ada1c0faf04a2ba748f9b14}{Eigen\+::\+Vector3d}}, 4, 1 $>$ \&\+\_\+f\+\_\+vel, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+q, const Eigen\+::\+Matrix$<$ double, 18, 1 $>$ \&\+\_\+u, const int \&\+\_\+v=0)
+>>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
 \begin{DoxyCompactList}\small\item\em The Hierarchical\+Optimization function finds the optimal joint torques for a desired motion plan. It finds joint torques by finding optimal joint accelerations and contact forces for a set of whole-\/body control QP tasks, and leveraging inverse dynamics. \end{DoxyCompactList}\item 
 Eigen\+::\+Matrix$<$ double, Eigen\+::\+Dynamic, 1 $>$ \mbox{\hyperlink{classHierarchicalOptimizationControl_a64f7ef31eba78810a479bc70ecd26543}{Hierarchical\+QPOptimization}} (const int \&\+\_\+state\+\_\+dim, const std\+::vector$<$ \mbox{\hyperlink{structHierarchicalOptimizationControl_1_1Task}{Task}} $>$ \&\+\_\+tasks, const \mbox{\hyperlink{classHierarchicalOptimizationControl_ae49f08ceaee8df6933d8708fb68c3b99}{Solver\+Type}} \&\+\_\+solver=Solver\+Type\+::\+OSQP, const int \&\+\_\+v=0)
 \begin{DoxyCompactList}\small\item\em The Hierarchical\+QPOptimization function finds the optimal solution for a set of tasks in a strictly prioritized order. The method iterates through the set of tasks and searches for a new solution in the null-\/space of all higher priority equality constraints. At each iteration a QP problem is solved to find a vector lying in the row-\/space of the null-\/space of all equality constraints, which improve on the current solution. \end{DoxyCompactList}\item 
@@ -118,11 +125,22 @@ ros\+::\+Subscriber \mbox{\hyperlink{classHierarchicalOptimizationControl_a1aaae
 ros\+::\+Subscriber \mbox{\hyperlink{classHierarchicalOptimizationControl_ae96f07a84d44b9ef83e0a2743748d396}{contact\+State\+Sub}}
 \begin{DoxyCompactList}\small\item\em ROS Contact State Subscriber. \end{DoxyCompactList}\item 
 ros\+::\+Publisher \mbox{\hyperlink{classHierarchicalOptimizationControl_aa2a139ccf51e5752acb6444ba5538012}{joint\+State\+Pub}}
+<<<<<<< HEAD
+\begin{DoxyCompactList}\small\item\em R\+OS Joint State Publisher. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classHierarchicalOptimizationControl_ad90adf047dbfc7952c8a6bd7513c4bad}\label{classHierarchicalOptimizationControl_ad90adf047dbfc7952c8a6bd7513c4bad}} 
+ros\+::\+Publisher \mbox{\hyperlink{classHierarchicalOptimizationControl_ad90adf047dbfc7952c8a6bd7513c4bad}{base\+Pose\+Cmd\+Pub}}
+\begin{DoxyCompactList}\small\item\em R\+OS Base Position Command Publisher. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classHierarchicalOptimizationControl_aeead76f38c43d44bca1fa32db917facb}\label{classHierarchicalOptimizationControl_aeead76f38c43d44bca1fa32db917facb}} 
+ros\+::\+Publisher \mbox{\hyperlink{classHierarchicalOptimizationControl_aeead76f38c43d44bca1fa32db917facb}{base\+Twist\+Cmd\+Pub}}
+\begin{DoxyCompactList}\small\item\em R\+OS Base Position Command Publisher. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classHierarchicalOptimizationControl_a682c7813dae3fb5095471020aeacb66c}\label{classHierarchicalOptimizationControl_a682c7813dae3fb5095471020aeacb66c}} 
+=======
 \begin{DoxyCompactList}\small\item\em ROS Joint State Publisher. \end{DoxyCompactList}\item 
 ros\+::\+Publisher \mbox{\hyperlink{classHierarchicalOptimizationControl_ad90adf047dbfc7952c8a6bd7513c4bad}{base\+Pose\+Cmd\+Pub}}
 \begin{DoxyCompactList}\small\item\em ROS Base Position Command Publisher. \end{DoxyCompactList}\item 
 ros\+::\+Publisher \mbox{\hyperlink{classHierarchicalOptimizationControl_aeead76f38c43d44bca1fa32db917facb}{base\+Twist\+Cmd\+Pub}}
 \begin{DoxyCompactList}\small\item\em ROS Base Position Command Publisher. \end{DoxyCompactList}\item 
+>>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
 ros\+::\+Callback\+Queue \mbox{\hyperlink{classHierarchicalOptimizationControl_a682c7813dae3fb5095471020aeacb66c}{ros\+Process\+Queue}}
 \begin{DoxyCompactList}\small\item\em ROS callbackque that helps process messages. \end{DoxyCompactList}\item 
 ros\+::\+Callback\+Queue \mbox{\hyperlink{classHierarchicalOptimizationControl_ad0b6a8d56a87ee082fc449b1a04696c6}{ros\+Publish\+Queue}}

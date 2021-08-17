@@ -1,5 +1,15 @@
 var searchData=
 [
+<<<<<<< HEAD
+  ['b_5feq_5',['b_eq',['../structHierarchicalOptimizationControl_1_1Task.html#a75fa1fb54d3b625479b35dec0230d36f',1,'HierarchicalOptimizationControl::Task']]],
+  ['b_5fineq_6',['b_ineq',['../structHierarchicalOptimizationControl_1_1Task.html#a72ec1287c89ef88b093d5edde65c7bd2',1,'HierarchicalOptimizationControl::Task']]],
+  ['base_7',['base',['../classgazebo_1_1SingleLegPlugin.html#a5ffee69b6f2f49357ea08d9de8ed090f',1,'gazebo::SingleLegPlugin::base()'],['../classgazebo_1_1TetrapodPlugin.html#a1ed9828e7eaac1ffca1c63e3b1c57ab2',1,'gazebo::TetrapodPlugin::base()']]],
+  ['baseposecmdpub_8',['basePoseCmdPub',['../classHierarchicalOptimizationControl.html#ad90adf047dbfc7952c8a6bd7513c4bad',1,'HierarchicalOptimizationControl']]],
+  ['baseposepub_9',['basePosePub',['../classgazebo_1_1TetrapodPlugin.html#a2b9585a4695a7fc4802b9ed39be92d58',1,'gazebo::TetrapodPlugin']]],
+  ['basetwistcmdpub_10',['baseTwistCmdPub',['../classHierarchicalOptimizationControl.html#aeead76f38c43d44bca1fa32db917facb',1,'HierarchicalOptimizationControl']]],
+  ['basetwistpub_11',['baseTwistPub',['../classgazebo_1_1TetrapodPlugin.html#ab314704ae02b95b7b04b49067ce08fc9',1,'gazebo::TetrapodPlugin']]],
+  ['bodytype_12',['BodyType',['../classHierarchicalOptimizationControl.html#a6def6e783d9ce5400d931e7d6da2ad36',1,'HierarchicalOptimizationControl::BodyType()'],['../classKinematics.html#a390b699225b57bc303653caeb6039df3',1,'Kinematics::BodyType()']]]
+=======
   ['a_28',['A',['../classutils_1_1SteppingStone.html#aae779f167df95898ae42fb4d976a1380',1,'utils.SteppingStone.A()'],['../classpolytope.html#a3ff83835509477d225e0229f42e42113',1,'polytope::A()']]],
   ['a_29',['a',['../namespacecalculate__polynomials.html#a08a78f676995f3e1b013c7a5dbbf86bc',1,'calculate_polynomials']]],
   ['a_5fd_30',['A_d',['../classThirdOrderFilter.html#aa5c2fc3dea8c7d25558252c4e742c963',1,'ThirdOrderFilter']]],
@@ -31,4 +41,5 @@ var searchData=
   ['animate_5ffootstep_5fplan_56',['animate_footstep_plan',['../namespaceutils.html#af79dbcf0026714f06c7eaae6e18e5c40',1,'utils']]],
   ['arecontrolcommandsavailable_57',['areControlCommandsAvailable',['../classTeensySerial.html#a893027c99927bb0276fbda571478948b',1,'TeensySerial']]],
   ['automatic_5fsetpoint_5fpublisher_2ecpp_58',['automatic_setpoint_publisher.cpp',['../automatic__setpoint__publisher_8cpp.html',1,'']]]
+>>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
 ];

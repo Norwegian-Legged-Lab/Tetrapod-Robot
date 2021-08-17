@@ -93,7 +93,11 @@ ROS</h1>
 <div class="fragment"><div class="line">sudo apt install python3-rosdep -y</div>
 <div class="line">sudo rosdep init</div>
 <div class="line">rosdep update</div>
+<<<<<<< HEAD
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md19"></a>
+=======
 </div><!-- fragment --> <h1><a class="anchor" id="autotoc_md19"></a>
+>>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
 Gazebo</h1>
 <p>The Gazebo Simulator depends a number of environment variables to locate files, and set up communications between the server and clients and are explained in detail <a href="http://gazebosim.org/tutorials?tut=components&amp;cat=get_started">here</a>. For the current simulator iteration two enviroment variables are of interest, namely</p>
 <p><code>GAZEBO_MODEL_PATH</code>: A colon-separated set of directories where Gazebo will search for models.</p>
@@ -111,6 +115,8 @@ Gazebo</h1>
 <h1><a class="anchor" id="autotoc_md20"></a>
 Drake</h1>
 <p>The Drake toolbox can be installed using either a binary installation, or from source. The following lines of commands can be run to install Drake on Ubuntu 20.04 (Focal) from the latest binary release:</p>
+<p>For installing drake with Gurobi support (strongly recommended for the footstep planner): Install gurobi as described <a href="http://drake.mit.edu/bazel.html?highlight=gurobi#install-on-ubuntu">here</a> Install drake from source as described <a href="https://github.com/RobotLocomotion/drake-external-examples/tree/main/drake_cmake_installed">here</a></p>
+<p>From binary:</p>
 <div class="fragment"><div class="line"># Download and extract the latest Ubuntu 20.04 (Focal) release to /opt</div>
 <div class="line">curl -o drake.tar.gz https://drake-packages.csail.mit.edu/drake/nightly/drake-latest-focal.tar.gz</div>
 <div class="line">sudo rm -rf /opt/drake</div>
