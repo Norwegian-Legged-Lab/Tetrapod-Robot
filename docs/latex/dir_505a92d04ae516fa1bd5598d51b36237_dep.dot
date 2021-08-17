@@ -12,6 +12,6 @@ digraph "catkin_ws/src/hardware/actuators" {
   dir_dee39ade7a5baa4c1896d120f597b78f [shape=box label="src" fillcolor="white" style="filled" URL="dir_dee39ade7a5baa4c1896d120f597b78f.html"];
   }
   }
-  dir_dee39ade7a5baa4c1896d120f597b78f->dir_d395d6ca70d480966144fed78956b9d5 [headlabel="2", labeldistance=1.5 headhref="dir_000074_000072.html"];
-  dir_d395d6ca70d480966144fed78956b9d5->dir_1aa341485bb1ab881cf01e1913f76376 [headlabel="1", labeldistance=1.5 headhref="dir_000072_000021.html"];
+  dir_dee39ade7a5baa4c1896d120f597b78f->dir_d395d6ca70d480966144fed78956b9d5 [headlabel="2", labeldistance=1.5 headhref="dir_000070_000068.html"];
+  dir_d395d6ca70d480966144fed78956b9d5->dir_1aa341485bb1ab881cf01e1913f76376 [headlabel="1", labeldistance=1.5 headhref="dir_000068_000020.html"];
 }

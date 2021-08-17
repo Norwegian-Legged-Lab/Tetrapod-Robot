@@ -90,47 +90,6 @@ $(function() {
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;cmath&gt;</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">// Kinematics</span></div>
-<<<<<<< HEAD
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;kinematics/kinematics.h&gt;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#define UNINITIALIZED_JOINT_STATE 10.0</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#define ROBOT_NAME &quot;my_robot&quot;</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#define LEG_OFFSET_LENGTH 0.25</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define NUMBER_OF_LEGS 4</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#define ACTUATORS_PER_LEG 3</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classController.html">   29</a></span>&#160;<span class="keyword">class </span><a class="code" href="classController.html">Controller</a>{</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">protected</span>: <span class="keyword">using</span> JointState = Eigen::Matrix&lt;double, 12, 1&gt;;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">public</span>: <a class="code" href="classController.html">Controller</a>(<span class="keywordtype">int</span> controller_freq);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">public</span>: <span class="keyword">virtual</span> ~<a class="code" href="classController.html">Controller</a>();</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">    /*** Functions ***/</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">bool</span> RunStandUpSequence();</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">void</span> waitForReadyToProceed();</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">public</span>: <span class="keyword">virtual</span> <span class="keywordtype">void</span> UpdateFeetReferences() = 0;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">bool</span> UpdateJointCommands();</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">bool</span> UpdateVelocityCommands();</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">bool</span> sendJointPositionCommands();</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">void</span> StandStill(<span class="keyword">const</span> <span class="keywordtype">double</span> &amp;duration);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">public</span>: <span class="keyword">virtual</span> <span class="keywordtype">void</span> setInitialConfiguration();</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">void</span> SetTwistCommand(<span class="keywordtype">double</span> lin_vel_cmd_x, <span class="keywordtype">double</span> lin_vel_cmd_y, <span class="keywordtype">double</span> ang_vel_cmd_z);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">void</span> initROS();</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">void</span> WaitForInitialState();</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">bool</span> MoveFeetToPositions(Eigen::Matrix&lt;double, 3, 1&gt; fl_goal_foot_pos, </div>
-=======
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="kinematics_8h.html">kinematics/kinematics.h</a>&gt;</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
 <div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="controller_8h.html#af13a068991bb960994138f296edbe1ca">   23</a></span>&#160;<span class="preprocessor">#define UNINITIALIZED_JOINT_STATE 10.0</span></div>
@@ -170,34 +129,10 @@ $(function() {
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">void</span> <a class="code" href="classController.html#a8941a1168b1768a440c737eaa5c2f601">WaitForInitialState</a>();</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">bool</span> <a class="code" href="classController.html#ab862de42ac0183d8badaa9e1b8185d91">MoveFeetToPositions</a>(Eigen::Matrix&lt;double, 3, 1&gt; fl_goal_foot_pos, </div>
->>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                                     Eigen::Matrix&lt;double, 3, 1&gt; fr_goal_foot_pos, </div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                                     Eigen::Matrix&lt;double, 3, 1&gt; rl_goal_foot_pos, </div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                                     Eigen::Matrix&lt;double, 3, 1&gt; rr_goal_foot_pos);</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<<<<<<< HEAD
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">bool</span> MoveJointsToSetpoints(Eigen::Matrix&lt;double, 12, 1&gt; goal_joint_angles);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">bool</span> MoveFootToPosition(<span class="keyword">const</span> <a class="code" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">Kinematics::LegType</a> &amp;leg_type, <span class="keyword">const</span> Eigen::Matrix&lt;double, 3, 1&gt; &amp;goal_foot_position);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">void</span> UpdateFeetPositions();</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keyword">protected</span>: <span class="keywordtype">void</span> jointStateCallback(<span class="keyword">const</span> sensor_msgs::JointStatePtr &amp;msg);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keyword">protected</span>: <span class="keywordtype">void</span> readyToProceedCallback(<span class="keyword">const</span> std_msgs::Bool &amp;msg);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keyword">protected</span>: <span class="keywordtype">void</span> <a class="code" href="classController.html#a0a83e6773441e7419a912c06ea0feded">TwistCommandCallback</a>(<span class="keyword">const</span> geometry_msgs::TwistConstPtr &amp;_msg);</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keyword">protected</span>: <span class="keywordtype">void</span> TwistStateCallback(<span class="keyword">const</span> geometry_msgs::TwistConstPtr &amp;_msg);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keyword">protected</span>: <span class="keywordtype">void</span> BasePoseStateCallback(<span class="keyword">const</span> std_msgs::Float64MultiArrayConstPtr &amp;msg);</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">bool</span> CheckReadyToProceed(){<span class="keywordflow">return</span> ready_to_proceed;}</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">void</span> ResetReadyToProceedFlag(){ready_to_proceed = <span class="keyword">false</span>;}</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">void</span> SetReadyToProceedFlag(){ready_to_proceed = <span class="keyword">true</span>;}</div>
-=======
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">bool</span> <a class="code" href="classController.html#aef6b7991b879b8c9a3547816cf453aba">MoveJointsToSetpoints</a>(Eigen::Matrix&lt;double, 12, 1&gt; goal_joint_angles);</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">bool</span> <a class="code" href="classController.html#ab1d93485ede8521db41e792875928dcf">MoveFootToPosition</a>(<span class="keyword">const</span> <a class="code" href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">Kinematics::LegType</a> &amp;leg_type, <span class="keyword">const</span> Eigen::Matrix&lt;double, 3, 1&gt; &amp;goal_foot_position);</div>
@@ -219,7 +154,6 @@ $(function() {
 <div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="classController.html#a5d256ea0bc36f25c2e5c6cf5b354b0e3">   83</a></span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">void</span> <a class="code" href="classController.html#a5d256ea0bc36f25c2e5c6cf5b354b0e3">ResetReadyToProceedFlag</a>(){<a class="code" href="classController.html#a0f2aa2751bbccb7ef3a7f705827603ec">ready_to_proceed</a> = <span class="keyword">false</span>;}</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
 <div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="classController.html#a294977ab8c7acb44649d2811c26364e0">   85</a></span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">void</span> <a class="code" href="classController.html#a294977ab8c7acb44649d2811c26364e0">SetReadyToProceedFlag</a>(){<a class="code" href="classController.html#a0f2aa2751bbccb7ef3a7f705827603ec">ready_to_proceed</a> = <span class="keyword">true</span>;}</div>
->>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">bool</span> <a class="code" href="classController.html#a7890ffdc972c06f77fa8a7dfbbf7d35c">ReadyToProceed</a>(std_srvs::Empty::Request &amp;_req,</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                                std_srvs::Empty::Response &amp;_res);</div>
@@ -228,19 +162,6 @@ $(function() {
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                          std_srvs::Empty::Response &amp;_res);</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">    /*** Variables ***/</span></div>
-<<<<<<< HEAD
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">bool</span> ready_to_proceed = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keyword">protected</span>: std::string node_name = <span class="stringliteral">&quot;controller_node&quot;</span>;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keyword">protected</span>: std::string robot_name = ROBOT_NAME;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keyword">protected</span>: <span class="keywordtype">int</span> controller_freq;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keyword">protected</span>: <a class="code" href="classKinematics.html">Kinematics</a> kinematics;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keyword">protected</span>: ros::NodeHandlePtr nodeHandle;</div>
-=======
 <div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="classController.html#a0f2aa2751bbccb7ef3a7f705827603ec">  104</a></span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">bool</span> <a class="code" href="classController.html#a0f2aa2751bbccb7ef3a7f705827603ec">ready_to_proceed</a> = <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
 <div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="classController.html#ab708b9f0c358de5f24038848c033a3b6">  106</a></span>&#160;    <span class="keyword">protected</span>: std::string <a class="code" href="classController.html#ab708b9f0c358de5f24038848c033a3b6">node_name</a> = <span class="stringliteral">&quot;controller_node&quot;</span>;</div>
@@ -252,75 +173,11 @@ $(function() {
 <div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="classController.html#a90e10804b2d5186d39298152bc4d8172">  112</a></span>&#160;    <span class="keyword">protected</span>: <a class="code" href="classKinematics.html">Kinematics</a> <a class="code" href="classController.html#a90e10804b2d5186d39298152bc4d8172">kinematics</a>;</div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
 <div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="classController.html#a0a25cc4805c75c868e3c84b8a45e51ef">  114</a></span>&#160;    <span class="keyword">protected</span>: ros::NodeHandlePtr <a class="code" href="classController.html#a0a25cc4805c75c868e3c84b8a45e51ef">nodeHandle</a>;</div>
->>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
 <div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="classController.html#ad0befa1432680493812b0316a4497877">  117</a></span>&#160;    <span class="keyword">private</span>: ros::ServiceServer <a class="code" href="classController.html#ad0befa1432680493812b0316a4497877">shutdownService</a>;</div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
 <div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="classController.html#ad0c87b02d387f18d4282cdbbae2aad57">  120</a></span>&#160;    <span class="keyword">private</span>: ros::ServiceServer <a class="code" href="classController.html#ad0c87b02d387f18d4282cdbbae2aad57">readyToProceedService</a>;</div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
-<<<<<<< HEAD
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keyword">protected</span>: ros::Publisher joint_command_publisher;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keyword">protected</span>: ros::Subscriber joint_state_subscriber;</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keyword">protected</span>: ros::Subscriber base_pose_state_subscriber;</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keyword">protected</span>: ros::Subscriber ready_to_proceed_subscriber;</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
-<div class="line"><a name="l00131"></a><span class="lineno"><a class="line" href="classController.html#a4fba78e17b2518fafcd54239d39afaec">  131</a></span>&#160;    <span class="keyword">protected</span>: ros::Subscriber <a class="code" href="classController.html#a4fba78e17b2518fafcd54239d39afaec">twist_command_subscriber</a>;</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <span class="keyword">protected</span>: ros::Subscriber twist_state_subscriber;</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <span class="keyword">protected</span>: Eigen::Vector3d fl_offset = Eigen::Vector3d(LEG_OFFSET_LENGTH, LEG_OFFSET_LENGTH, 0);</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <span class="keyword">protected</span>: Eigen::Vector3d fr_offset = Eigen::Vector3d(LEG_OFFSET_LENGTH, -LEG_OFFSET_LENGTH, 0);</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <span class="keyword">protected</span>: Eigen::Vector3d rl_offset = Eigen::Vector3d(-LEG_OFFSET_LENGTH, LEG_OFFSET_LENGTH, 0);</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="keyword">protected</span>: Eigen::Vector3d rr_offset = Eigen::Vector3d(-LEG_OFFSET_LENGTH, -LEG_OFFSET_LENGTH, 0);</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160; </div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <span class="keyword">protected</span>: Eigen::Vector3d fl_position_body;</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <span class="keyword">protected</span>: Eigen::Vector3d fr_position_body;</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160; </div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <span class="keyword">protected</span>: Eigen::Vector3d rl_position_body;</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <span class="keyword">protected</span>: Eigen::Vector3d rr_position_body;</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160; </div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    <span class="keyword">protected</span>: Eigen::Vector3d fl_velocity_body;</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <span class="keyword">protected</span>: Eigen::Vector3d fr_velocity_body;</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="keyword">protected</span>: Eigen::Vector3d rl_velocity_body;</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    <span class="keyword">protected</span>: Eigen::Vector3d rr_velocity_body;</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <span class="keyword">protected</span>: Eigen::Vector3d fl_acceleration_body;</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <span class="keyword">protected</span>: Eigen::Vector3d fr_acceleration_body;</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    <span class="keyword">protected</span>: Eigen::Vector3d rl_acceleration_body;</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160; </div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <span class="keyword">protected</span>: Eigen::Vector3d rr_acceleration_body;</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <span class="keyword">protected</span>: JointState joint_angle_commands = JointState::Zero();</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160; </div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <span class="keyword">protected</span>: JointState joint_velocity_commands = JointState::Zero();</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    <span class="keyword">protected</span>: JointState joint_acceleration_commands = JointState::Zero();</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    <span class="keyword">protected</span>: JointState joint_torque_commands = JointState::Zero();</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160; </div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    <span class="keyword">protected</span>: JointState joint_angles = JointState::Constant(UNINITIALIZED_JOINT_STATE);</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160; </div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    <span class="keyword">protected</span>: JointState joint_velocities = JointState::Zero();</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    <span class="keyword">protected</span>: JointState joint_torques = JointState::Zero();</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160; </div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    <span class="keyword">protected</span>: Eigen::Matrix&lt;double, 6, 1&gt; base_pose_state = Eigen::Matrix&lt;double, 6, 1&gt;::Zero();</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160; </div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    <span class="keyword">protected</span>: Eigen::Matrix&lt;double, 6, 1&gt; base_pose_commands = Eigen::Matrix&lt;double, 6, 1&gt;::Zero();</div>
-=======
 <div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="classController.html#a5c885d5967551508449483dc9a1fd5c6">  122</a></span>&#160;    <span class="keyword">protected</span>: ros::Publisher <a class="code" href="classController.html#a5c885d5967551508449483dc9a1fd5c6">joint_command_publisher</a>;</div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
 <div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="classController.html#aced004f1811ea63a1029482527272bb2">  124</a></span>&#160;    <span class="keyword">protected</span>: ros::Subscriber <a class="code" href="classController.html#aced004f1811ea63a1029482527272bb2">joint_state_subscriber</a>;</div>
@@ -382,7 +239,6 @@ $(function() {
 <div class="line"><a name="l00181"></a><span class="lineno"><a class="line" href="classController.html#aa3e73a1554f479daf48d78875bd42797">  181</a></span>&#160;    <span class="keyword">protected</span>: Eigen::Matrix&lt;double, 6, 1&gt; <a class="code" href="classController.html#aa3e73a1554f479daf48d78875bd42797">base_pose_state</a> = Eigen::Matrix&lt;double, 6, 1&gt;::Zero();</div>
 <div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160; </div>
 <div class="line"><a name="l00183"></a><span class="lineno"><a class="line" href="classController.html#a8f6e61b4eec1187d68dd087a9f606dd6">  183</a></span>&#160;    <span class="keyword">protected</span>: Eigen::Matrix&lt;double, 6, 1&gt; <a class="code" href="classController.html#a8f6e61b4eec1187d68dd087a9f606dd6">base_pose_commands</a> = Eigen::Matrix&lt;double, 6, 1&gt;::Zero();</div>
->>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
 <div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160; </div>
 <div class="line"><a name="l00186"></a><span class="lineno"><a class="line" href="classController.html#abc876492f4e70d3c9be7b37681f2d926">  186</a></span>&#160;    <span class="keyword">protected</span>: <span class="keywordtype">double</span> <a class="code" href="classController.html#abc876492f4e70d3c9be7b37681f2d926">lin_vel_x</a> = 0.0;</div>
 <div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160; </div>
@@ -390,52 +246,6 @@ $(function() {
 <div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160; </div>
 <div class="line"><a name="l00192"></a><span class="lineno"><a class="line" href="classController.html#aa357248280438bae103c8da7ba5dacf3">  192</a></span>&#160;    <span class="keyword">protected</span>: <span class="keywordtype">double</span> <a class="code" href="classController.html#aa357248280438bae103c8da7ba5dacf3">ang_vel_z</a> = 0.0;</div>
 <div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160; </div>
-<<<<<<< HEAD
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    <span class="keyword">protected</span>: <span class="keywordtype">double</span> _lin_vel_x_estimated = 0.0;</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160; </div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    <span class="keyword">protected</span>: <span class="keywordtype">double</span> _lin_vel_y_estimated = 0.0;</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160; </div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    <span class="keyword">protected</span>: <span class="keywordtype">double</span> _ang_vel_z_estimated = 0.0;</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160; </div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    <span class="keyword">protected</span>: <span class="keywordtype">double</span> _lin_vel_z_measured = 0.0;</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160; </div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    <span class="keyword">protected</span>: <span class="keywordtype">double</span> _ang_vel_x_measured = 0.0;</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160; </div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    <span class="keyword">protected</span>: <span class="keywordtype">double</span> _ang_vel_y_measured = 0.0;</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160; </div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="keyword">protected</span>: <span class="keywordtype">double</span> nominal_base_height = 0.35;</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160; </div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    <span class="comment">// For logging</span></div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160; </div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">void</span> WriteToLog();</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160; </div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    <span class="keyword">private</span>: ros::Publisher joint_state_logger;</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160; </div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    <span class="keyword">private</span>: ros::Publisher joint_command_logger;</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160; </div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    <span class="keyword">private</span>: ros::Publisher base_twist_state_logger;</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160; </div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    <span class="keyword">private</span>: ros::Publisher base_pose_state_logger;</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160; </div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    <span class="keyword">private</span>: ros::Publisher base_twist_command_logger;</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160; </div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    <span class="keyword">private</span>: ros::Publisher base_pose_command_logger;</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160; </div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;};</div>
-</div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassController_html_a0a83e6773441e7419a912c06ea0feded"><div class="ttname"><a href="classController.html#a0a83e6773441e7419a912c06ea0feded">Controller::TwistCommandCallback</a></div><div class="ttdeci">void TwistCommandCallback(const geometry_msgs::TwistConstPtr &amp;_msg)</div><div class="ttdoc">Converts twist command messages into desired linear and angular body velocities.</div><div class="ttdef"><b>Definition:</b> controller.cpp:254</div></div>
-<div class="ttc" id="aclassController_html_ad0befa1432680493812b0316a4497877"><div class="ttname"><a href="classController.html#ad0befa1432680493812b0316a4497877">Controller::shutdownService</a></div><div class="ttdeci">ros::ServiceServer shutdownService</div><div class="ttdoc">ROS Shutdown Service.</div><div class="ttdef"><b>Definition:</b> controller.h:117</div></div>
-<div class="ttc" id="aclassController_html"><div class="ttname"><a href="classController.html">Controller</a></div><div class="ttdef"><b>Definition:</b> controller.h:29</div></div>
-<div class="ttc" id="aclassController_html_ab6d9cb349df5c57e76a42669ca99daa8"><div class="ttname"><a href="classController.html#ab6d9cb349df5c57e76a42669ca99daa8">Controller::Shutdown</a></div><div class="ttdeci">bool Shutdown(std_srvs::Empty::Request &amp;_req, std_srvs::Empty::Response &amp;_res)</div><div class="ttdoc">The Shutdown function handles an incoming shutdown service request.</div><div class="ttdef"><b>Definition:</b> controller.cpp:850</div></div>
-<div class="ttc" id="aclassController_html_a4fba78e17b2518fafcd54239d39afaec"><div class="ttname"><a href="classController.html#a4fba78e17b2518fafcd54239d39afaec">Controller::twist_command_subscriber</a></div><div class="ttdeci">ros::Subscriber twist_command_subscriber</div><div class="ttdoc">Subscribes to twist command messages from an external controller.</div><div class="ttdef"><b>Definition:</b> controller.h:131</div></div>
-<div class="ttc" id="aclassController_html_a2734d863bd86af8642cc8f7b6eb115d2"><div class="ttname"><a href="classController.html#a2734d863bd86af8642cc8f7b6eb115d2">Controller::lin_vel_y</a></div><div class="ttdeci">double lin_vel_y</div><div class="ttdoc">The desired linear robot velocity in the body frame's y direction.</div><div class="ttdef"><b>Definition:</b> controller.h:189</div></div>
-<div class="ttc" id="aclassKinematics_html_af4fe883429ced792a719f02b4dcc5e3a"><div class="ttname"><a href="classKinematics.html#af4fe883429ced792a719f02b4dcc5e3a">Kinematics::LegType</a></div><div class="ttdeci">LegType</div><div class="ttdoc">Leg type enumerator.</div><div class="ttdef"><b>Definition:</b> kinematics.h:56</div></div>
-<div class="ttc" id="aclassKinematics_html"><div class="ttname"><a href="classKinematics.html">Kinematics</a></div><div class="ttdoc">A class for analytical Kinematics Solving.</div><div class="ttdef"><b>Definition:</b> kinematics.h:53</div></div>
-<div class="ttc" id="aclassController_html_aa357248280438bae103c8da7ba5dacf3"><div class="ttname"><a href="classController.html#aa357248280438bae103c8da7ba5dacf3">Controller::ang_vel_z</a></div><div class="ttdeci">double ang_vel_z</div><div class="ttdoc">The desired angular robot velocity around the robot's z axis.</div><div class="ttdef"><b>Definition:</b> controller.h:192</div></div>
-<div class="ttc" id="aclassController_html_abc876492f4e70d3c9be7b37681f2d926"><div class="ttname"><a href="classController.html#abc876492f4e70d3c9be7b37681f2d926">Controller::lin_vel_x</a></div><div class="ttdeci">double lin_vel_x</div><div class="ttdoc">The desired linear robot velocity in the body frame's x direction.</div><div class="ttdef"><b>Definition:</b> controller.h:186</div></div>
-<div class="ttc" id="aclassController_html_ad0c87b02d387f18d4282cdbbae2aad57"><div class="ttname"><a href="classController.html#ad0c87b02d387f18d4282cdbbae2aad57">Controller::readyToProceedService</a></div><div class="ttdeci">ros::ServiceServer readyToProceedService</div><div class="ttdoc">ROS Ready to Proceed Service.</div><div class="ttdef"><b>Definition:</b> controller.h:120</div></div>
-<div class="ttc" id="aclassController_html_a7890ffdc972c06f77fa8a7dfbbf7d35c"><div class="ttname"><a href="classController.html#a7890ffdc972c06f77fa8a7dfbbf7d35c">Controller::ReadyToProceed</a></div><div class="ttdeci">bool ReadyToProceed(std_srvs::Empty::Request &amp;_req, std_srvs::Empty::Response &amp;_res)</div><div class="ttdoc">The ReadyToProceed function handles an incoming readyToProceed service request.</div><div class="ttdef"><b>Definition:</b> controller.cpp:842</div></div>
-=======
 <div class="line"><a name="l00194"></a><span class="lineno"><a class="line" href="classController.html#a140c18de6f9652cec886333fbc1dae08">  194</a></span>&#160;    <span class="keyword">protected</span>: <span class="keywordtype">double</span> <a class="code" href="classController.html#a140c18de6f9652cec886333fbc1dae08">_lin_vel_x_estimated</a> = 0.0;</div>
 <div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160; </div>
 <div class="line"><a name="l00196"></a><span class="lineno"><a class="line" href="classController.html#a186fa089bdadfead19d15b06af962072">  196</a></span>&#160;    <span class="keyword">protected</span>: <span class="keywordtype">double</span> <a class="code" href="classController.html#a186fa089bdadfead19d15b06af962072">_lin_vel_y_estimated</a> = 0.0;</div>
@@ -560,7 +370,6 @@ $(function() {
 <div class="ttc" id="akinematics_8h_html"><div class="ttname"><a href="kinematics_8h.html">kinematics.h</a></div></div>
 <div class="ttc" id="akinematics_8h_html_a72422f584ada1c0faf04a2ba748f9b14"><div class="ttname"><a href="kinematics_8h.html#a72422f584ada1c0faf04a2ba748f9b14">Vector3d</a></div><div class="ttdeci">Eigen::Vector3d Vector3d</div><div class="ttdef"><b>Definition:</b> <a href="kinematics_8h_source.html#l00049">kinematics.h:49</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
->>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1

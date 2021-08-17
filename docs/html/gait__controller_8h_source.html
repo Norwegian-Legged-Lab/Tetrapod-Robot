@@ -70,38 +70,6 @@ $(function() {
 <div class="title">gait_controller.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<<<<<<< HEAD
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;controller/controller.h&quot;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="classGaitController.html">    5</a></span>&#160;<span class="keyword">class </span><a class="code" href="classGaitController.html">GaitController</a> : <span class="keyword">public</span> <a class="code" href="classController.html">Controller</a> {</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <span class="keyword">public</span>: <a class="code" href="classGaitController.html">GaitController</a>(</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;        <span class="keywordtype">int</span> controller_freq, <span class="keywordtype">double</span> gait_period,</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        std::function&lt;Eigen::Vector3d(<span class="keywordtype">double</span>)&gt; fl_traj, std::function&lt;Eigen::Vector3d(<span class="keywordtype">double</span>)&gt; fr_traj,</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        std::function&lt;Eigen::Vector3d(<span class="keywordtype">double</span>)&gt; rl_traj, std::function&lt;Eigen::Vector3d(<span class="keywordtype">double</span>)&gt; rr_traj);</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    </div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">    /*** Functions ***/</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">void</span> increment();</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keyword">public</span>: <span class="keywordtype">void</span> UpdateFeetReferences();</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">    /*** Variables ***/</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">private</span>: std::function&lt;Eigen::Vector3d(<span class="keywordtype">double</span>)&gt; fl_traj;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">private</span>: std::function&lt;Eigen::Vector3d(<span class="keywordtype">double</span>)&gt; fr_traj;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">private</span>: std::function&lt;Eigen::Vector3d(<span class="keywordtype">double</span>)&gt; rl_traj;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">private</span>: std::function&lt;Eigen::Vector3d(<span class="keywordtype">double</span>)&gt; rr_traj;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">double</span> gait_period;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">private</span>: <span class="keywordtype">int</span> iteration = 0;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;};</div>
-</div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassController_html"><div class="ttname"><a href="classController.html">Controller</a></div><div class="ttdef"><b>Definition:</b> controller.h:29</div></div>
-<div class="ttc" id="aclassGaitController_html"><div class="ttname"><a href="classGaitController.html">GaitController</a></div><div class="ttdef"><b>Definition:</b> gait_controller.h:5</div></div>
-=======
 <a href="gait__controller_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="controller_8h.html">controller/controller.h</a>&quot;</span></div>
@@ -144,7 +112,6 @@ $(function() {
 <div class="ttc" id="acontroller_8h_html"><div class="ttname"><a href="controller_8h.html">controller.h</a></div></div>
 <div class="ttc" id="akinematics_8h_html_a72422f584ada1c0faf04a2ba748f9b14"><div class="ttname"><a href="kinematics_8h.html#a72422f584ada1c0faf04a2ba748f9b14">Vector3d</a></div><div class="ttdeci">Eigen::Vector3d Vector3d</div><div class="ttdef"><b>Definition:</b> <a href="kinematics_8h_source.html#l00049">kinematics.h:49</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
->>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1

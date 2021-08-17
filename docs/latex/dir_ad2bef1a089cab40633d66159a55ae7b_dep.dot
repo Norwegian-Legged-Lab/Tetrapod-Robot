@@ -11,5 +11,5 @@ digraph "catkin_ws/src/guidance/joystick_controller" {
   dir_5fa1cae3f2d328fac6155fa7f0f82bf6 [shape=box label="src" fillcolor="white" style="filled" URL="dir_5fa1cae3f2d328fac6155fa7f0f82bf6.html"];
   }
   }
-  dir_5fa1cae3f2d328fac6155fa7f0f82bf6->dir_b42d798363f73faaa5e7236a5f1daaba [headlabel="2", labeldistance=1.5 headhref="dir_000068_000066.html"];
+  dir_5fa1cae3f2d328fac6155fa7f0f82bf6->dir_b42d798363f73faaa5e7236a5f1daaba [headlabel="2", labeldistance=1.5 headhref="dir_000067_000065.html"];
 }

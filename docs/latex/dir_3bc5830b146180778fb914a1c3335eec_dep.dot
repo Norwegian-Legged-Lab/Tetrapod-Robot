@@ -10,8 +10,7 @@ digraph "catkin_ws/src/guidance" {
     dir_3bc5830b146180778fb914a1c3335eec [shape=plaintext label="guidance"];
   dir_e86b67af98557f3798d04913e7ff4fbf [shape=box label="footstep_planner" fillcolor="white" style="filled" color="red" URL="dir_e86b67af98557f3798d04913e7ff4fbf.html"];
   dir_ad2bef1a089cab40633d66159a55ae7b [shape=box label="joystick_controller" fillcolor="white" style="filled" color="red" URL="dir_ad2bef1a089cab40633d66159a55ae7b.html"];
-  dir_47daa6658bdb4e0f833f4fafb222ba74 [shape=box label="support_polytope_base_planner" fillcolor="white" style="filled" color="red" URL="dir_47daa6658bdb4e0f833f4fafb222ba74.html"];
   }
   }
-  dir_e86b67af98557f3798d04913e7ff4fbf->dir_ccddda87566ee263eec2f42a65371c71 [headlabel="2", labeldistance=1.5 headhref="dir_000016_000034.html"];
+  dir_e86b67af98557f3798d04913e7ff4fbf->dir_ccddda87566ee263eec2f42a65371c71 [headlabel="2", labeldistance=1.5 headhref="dir_000016_000033.html"];
 }

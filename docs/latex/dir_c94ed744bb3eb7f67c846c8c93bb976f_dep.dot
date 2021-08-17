@@ -8,7 +8,7 @@ digraph "catkin_ws/src/control/modular_gait_controller/include/modular_gait_cont
   }
   dir_ec790efbf722e6db93e0634c133a57ed [shape=box label="kinematics" fillcolor="white" style="filled" color="red" URL="dir_ec790efbf722e6db93e0634c133a57ed.html"];
   dir_f18325caa9b500100f9e41ac088b4b56 [shape=box label="controller" fillcolor="white" style="filled" color="red" URL="dir_f18325caa9b500100f9e41ac088b4b56.html"];
-  dir_c94ed744bb3eb7f67c846c8c93bb976f->dir_ec790efbf722e6db93e0634c133a57ed [headlabel="1", labeldistance=1.5 headhref="dir_000050_000010.html"];
-  dir_c94ed744bb3eb7f67c846c8c93bb976f->dir_f18325caa9b500100f9e41ac088b4b56 [headlabel="1", labeldistance=1.5 headhref="dir_000050_000008.html"];
+  dir_c94ed744bb3eb7f67c846c8c93bb976f->dir_ec790efbf722e6db93e0634c133a57ed [headlabel="1", labeldistance=1.5 headhref="dir_000049_000010.html"];
+  dir_c94ed744bb3eb7f67c846c8c93bb976f->dir_f18325caa9b500100f9e41ac088b4b56 [headlabel="1", labeldistance=1.5 headhref="dir_000049_000008.html"];
   dir_f18325caa9b500100f9e41ac088b4b56->dir_ec790efbf722e6db93e0634c133a57ed [headlabel="1", labeldistance=1.5 headhref="dir_000008_000010.html"];
 }

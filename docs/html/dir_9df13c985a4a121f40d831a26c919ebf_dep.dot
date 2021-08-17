@@ -14,8 +14,8 @@ digraph "catkin_ws/src/control/modular_gait_controller" {
   dir_8d8f35326d01fa0235950b8932d70767 [shape=box label="src" fillcolor="white" style="filled" URL="dir_8d8f35326d01fa0235950b8932d70767.html"];
   }
   }
-  dir_a19ea287388c4be6493f4742562ee17b->dir_f18325caa9b500100f9e41ac088b4b56 [headlabel="1", labeldistance=1.5 headhref="dir_000049_000008.html"];
-  dir_a19ea287388c4be6493f4742562ee17b->dir_ec790efbf722e6db93e0634c133a57ed [headlabel="1", labeldistance=1.5 headhref="dir_000049_000010.html"];
+  dir_a19ea287388c4be6493f4742562ee17b->dir_f18325caa9b500100f9e41ac088b4b56 [headlabel="1", labeldistance=1.5 headhref="dir_000048_000008.html"];
+  dir_a19ea287388c4be6493f4742562ee17b->dir_ec790efbf722e6db93e0634c133a57ed [headlabel="1", labeldistance=1.5 headhref="dir_000048_000010.html"];
   dir_f18325caa9b500100f9e41ac088b4b56->dir_ec790efbf722e6db93e0634c133a57ed [headlabel="1", labeldistance=1.5 headhref="dir_000008_000010.html"];
-  dir_8d8f35326d01fa0235950b8932d70767->dir_a19ea287388c4be6493f4742562ee17b [headlabel="5", labeldistance=1.5 headhref="dir_000052_000049.html"];
+  dir_8d8f35326d01fa0235950b8932d70767->dir_a19ea287388c4be6493f4742562ee17b [headlabel="5", labeldistance=1.5 headhref="dir_000051_000048.html"];
 }

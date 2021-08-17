@@ -7,5 +7,5 @@ digraph "catkin_ws/src/control/single_motor_controller/include/single_motor_cont
   dir_e4af1ffe472cb9660c924a8485f367dd [shape=box, label="single_motor_controller", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_e4af1ffe472cb9660c924a8485f367dd.html"];
   }
   dir_ec790efbf722e6db93e0634c133a57ed [shape=box label="kinematics" fillcolor="white" style="filled" color="red" URL="dir_ec790efbf722e6db93e0634c133a57ed.html"];
-  dir_e4af1ffe472cb9660c924a8485f367dd->dir_ec790efbf722e6db93e0634c133a57ed [headlabel="1", labeldistance=1.5 headhref="dir_000060_000010.html"];
+  dir_e4af1ffe472cb9660c924a8485f367dd->dir_ec790efbf722e6db93e0634c133a57ed [headlabel="1", labeldistance=1.5 headhref="dir_000059_000010.html"];
 }

@@ -7,5 +7,5 @@ digraph "catkin_ws/src/hardware/serial_communication/src" {
   dir_850e9c54412962a0184af129b2ae6c7e [shape=box label="include" fillcolor="white" style="filled" color="red" URL="dir_850e9c54412962a0184af129b2ae6c7e.html"];
   dir_2cbba142605c302d90413c4ac1a4721c [shape=box, label="src", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_2cbba142605c302d90413c4ac1a4721c.html"];
   }
-  dir_2cbba142605c302d90413c4ac1a4721c->dir_850e9c54412962a0184af129b2ae6c7e [headlabel="1", labeldistance=1.5 headhref="dir_000077_000075.html"];
+  dir_2cbba142605c302d90413c4ac1a4721c->dir_850e9c54412962a0184af129b2ae6c7e [headlabel="1", labeldistance=1.5 headhref="dir_000073_000071.html"];
 }

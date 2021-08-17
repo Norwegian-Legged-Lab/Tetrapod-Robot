@@ -12,8 +12,8 @@ digraph "catkin_ws/src/control/single_leg_controller/include" {
   }
   dir_ec790efbf722e6db93e0634c133a57ed [shape=box label="kinematics" fillcolor="white" style="filled" color="red" URL="dir_ec790efbf722e6db93e0634c133a57ed.html"];
   dir_ccddda87566ee263eec2f42a65371c71 [shape=box label="utilities" fillcolor="white" style="filled" color="red" URL="dir_ccddda87566ee263eec2f42a65371c71.html"];
-  dir_ccddda87566ee263eec2f42a65371c71->dir_ec790efbf722e6db93e0634c133a57ed [headlabel="1", labeldistance=1.5 headhref="dir_000034_000010.html"];
-  dir_ec790efbf722e6db93e0634c133a57ed->dir_ccddda87566ee263eec2f42a65371c71 [headlabel="2", labeldistance=1.5 headhref="dir_000010_000034.html"];
-  dir_04675d5335644a9203ea510d6d1f143b->dir_ccddda87566ee263eec2f42a65371c71 [headlabel="1", labeldistance=1.5 headhref="dir_000057_000034.html"];
-  dir_04675d5335644a9203ea510d6d1f143b->dir_ec790efbf722e6db93e0634c133a57ed [headlabel="1", labeldistance=1.5 headhref="dir_000057_000010.html"];
+  dir_ccddda87566ee263eec2f42a65371c71->dir_ec790efbf722e6db93e0634c133a57ed [headlabel="1", labeldistance=1.5 headhref="dir_000033_000010.html"];
+  dir_ec790efbf722e6db93e0634c133a57ed->dir_ccddda87566ee263eec2f42a65371c71 [headlabel="2", labeldistance=1.5 headhref="dir_000010_000033.html"];
+  dir_04675d5335644a9203ea510d6d1f143b->dir_ccddda87566ee263eec2f42a65371c71 [headlabel="1", labeldistance=1.5 headhref="dir_000056_000033.html"];
+  dir_04675d5335644a9203ea510d6d1f143b->dir_ec790efbf722e6db93e0634c133a57ed [headlabel="1", labeldistance=1.5 headhref="dir_000056_000010.html"];
 }

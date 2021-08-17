@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['button_5ferror_2485',['BUTTON_ERROR',['../joystick__controller_8h.html#af35c160dede38b4a0c1c7ab94f9cf78f',1,'joystick_controller.h']]]
+  ['button_5ferror_2463',['BUTTON_ERROR',['../joystick__controller_8h.html#af35c160dede38b4a0c1c7ab94f9cf78f',1,'joystick_controller.h']]]
 ];

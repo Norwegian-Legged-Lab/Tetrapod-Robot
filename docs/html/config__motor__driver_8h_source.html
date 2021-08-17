@@ -80,21 +80,12 @@ $(function() {
 <div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="config__motor__driver_8h.html#a119f4f090ee4672fddbcfd33d3c84ddf">    8</a></span>&#160;<span class="preprocessor">#define FRONT_LEGS true</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="config__motor__driver_8h.html#a20b4d9acaf359e3e51785cc1f39f3cd1">    9</a></span>&#160;<span class="preprocessor">#define REAR_LEGS false</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<<<<<<< HEAD
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">const</span> <span class="keywordtype">double</span> k_p_pos = 30.0;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">const</span> <span class="keywordtype">double</span> k_i_pos = 15.0;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">const</span> <span class="keywordtype">double</span> k_p_vel = 50.0;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">const</span> <span class="keywordtype">double</span> k_i_vel = 25.0;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">const</span> <span class="keywordtype">double</span> k_p_tor = 100.0;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">const</span> <span class="keywordtype">double</span> k_i_tor = 50.0;</div>
-=======
 <div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="config__motor__driver_8h.html#aec0320ea4b938e0ec7122f9eb40a8a40">   11</a></span>&#160;<span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="config__motor__driver_8h.html#aec0320ea4b938e0ec7122f9eb40a8a40">k_p_pos</a> = 30.0;</div>
 <div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="config__motor__driver_8h.html#aafd27d03779277825703fae242a36f54">   12</a></span>&#160;<span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="config__motor__driver_8h.html#aafd27d03779277825703fae242a36f54">k_i_pos</a> = 15.0;</div>
 <div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="config__motor__driver_8h.html#a99995560312bf9ca4e52e07b83cbe44f">   13</a></span>&#160;<span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="config__motor__driver_8h.html#a99995560312bf9ca4e52e07b83cbe44f">k_p_vel</a> = 50.0;</div>
 <div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="config__motor__driver_8h.html#a7a72b8277118e9f32d420682e50e0334">   14</a></span>&#160;<span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="config__motor__driver_8h.html#a7a72b8277118e9f32d420682e50e0334">k_i_vel</a> = 25.0;</div>
 <div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="config__motor__driver_8h.html#a0beac680ee4cf1fccdc5f569c47325e8">   15</a></span>&#160;<span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="config__motor__driver_8h.html#a0beac680ee4cf1fccdc5f569c47325e8">k_p_tor</a> = 100.0;</div>
 <div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="config__motor__driver_8h.html#a201f3bd3d38f190d34be0e38a0176cf6">   16</a></span>&#160;<span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="config__motor__driver_8h.html#a201f3bd3d38f190d34be0e38a0176cf6">k_i_tor</a> = 50.0;</div>
->>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">// Set the PID gains for the motors</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="config__motor__driver_8h.html#a7f51cb041197a056121df56fcef48b1c">   19</a></span>&#160;<span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="config__motor__driver_8h.html#a7f51cb041197a056121df56fcef48b1c">K_P_POS</a>[6] = {<a class="code" href="config__motor__driver_8h.html#aec0320ea4b938e0ec7122f9eb40a8a40">k_p_pos</a>, <a class="code" href="config__motor__driver_8h.html#aec0320ea4b938e0ec7122f9eb40a8a40">k_p_pos</a>, <a class="code" href="config__motor__driver_8h.html#aec0320ea4b938e0ec7122f9eb40a8a40">k_p_pos</a>, <a class="code" href="config__motor__driver_8h.html#aec0320ea4b938e0ec7122f9eb40a8a40">k_p_pos</a>, <a class="code" href="config__motor__driver_8h.html#aec0320ea4b938e0ec7122f9eb40a8a40">k_p_pos</a>, <a class="code" href="config__motor__driver_8h.html#aec0320ea4b938e0ec7122f9eb40a8a40">k_p_pos</a>};</div>
@@ -110,11 +101,7 @@ $(function() {
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">// An offset of -30 degrees is added to each actuator to compensate for the encoder zero position </span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#if (FRONT_LEGS)</span></div>
-<<<<<<< HEAD
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">    #define position_offset_motor_1 M_PI/4.0 // 45 degrees</span></div>
-=======
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">    #define position_offset_motor_1 M_PI/4.0 </span><span class="comment">// 45 degrees</span></div>
->>>>>>> d5d47fdb9aab0bc82199c57480e8fa0be3882361
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">    #define position_offset_motor_2 0.0</span></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">    #define position_offset_motor_3 0.0</span></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">    #define position_offset_motor_4 -M_PI/4.0 </span><span class="comment">// -45 degrees</span></div>
