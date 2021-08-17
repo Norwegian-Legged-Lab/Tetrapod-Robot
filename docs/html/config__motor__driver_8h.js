@@ -1,0 +1,26 @@
+var config__motor__driver_8h =
+[
+    [ "SERIAL_PRINT", "config__motor__driver_8h.html#ad42686b597ad3258d47e7ea54bd42bce", null ],
+    [ "FRONT_LEGS", "config__motor__driver_8h.html#a119f4f090ee4672fddbcfd33d3c84ddf", null ],
+    [ "REAR_LEGS", "config__motor__driver_8h.html#a20b4d9acaf359e3e51785cc1f39f3cd1", null ],
+    [ "position_offset_motor_1", "config__motor__driver_8h.html#a773c8897fbc9e32316184b9462e81af6", null ],
+    [ "position_offset_motor_2", "config__motor__driver_8h.html#ac367cb1ef2e74b873e5e9c2046962723", null ],
+    [ "position_offset_motor_3", "config__motor__driver_8h.html#a0fd704688d8608536d99157777e88549", null ],
+    [ "position_offset_motor_4", "config__motor__driver_8h.html#a8e4e97e12ca2246a89812d833063b90d", null ],
+    [ "position_offset_motor_5", "config__motor__driver_8h.html#aea959aaf4f6df674c238370a0d93942d", null ],
+    [ "position_offset_motor_6", "config__motor__driver_8h.html#aa04e63192dd0af348295b23233519318", null ],
+    [ "k_p_pos", "config__motor__driver_8h.html#aec0320ea4b938e0ec7122f9eb40a8a40", null ],
+    [ "k_i_pos", "config__motor__driver_8h.html#aafd27d03779277825703fae242a36f54", null ],
+    [ "k_p_vel", "config__motor__driver_8h.html#a99995560312bf9ca4e52e07b83cbe44f", null ],
+    [ "k_i_vel", "config__motor__driver_8h.html#a7a72b8277118e9f32d420682e50e0334", null ],
+    [ "k_p_tor", "config__motor__driver_8h.html#a0beac680ee4cf1fccdc5f569c47325e8", null ],
+    [ "k_i_tor", "config__motor__driver_8h.html#a201f3bd3d38f190d34be0e38a0176cf6", null ],
+    [ "K_P_POS", "config__motor__driver_8h.html#a7f51cb041197a056121df56fcef48b1c", null ],
+    [ "K_I_POS", "config__motor__driver_8h.html#a33275802b53954313645a04ce94ffc99", null ],
+    [ "K_P_VEL", "config__motor__driver_8h.html#aff62a573d86b0fc2c4bafecc42daf209", null ],
+    [ "K_I_VEL", "config__motor__driver_8h.html#a32bf71950e4347bde2f1f7c5bbaf0d73", null ],
+    [ "K_P_TOR", "config__motor__driver_8h.html#aa19dddd229cbd90971bef3b1c47683d7", null ],
+    [ "K_I_TOR", "config__motor__driver_8h.html#aa42f36d3d8dd3bdb211c46c8c6918689", null ],
+    [ "POSITION_OFFSET", "config__motor__driver_8h.html#a1455547e8077b299ceb028afcb067b7f", null ],
+    [ "INITIAL_NUMBER_OF_MOTOR_ROTATIONS", "config__motor__driver_8h.html#a0d41dc6c0ca5aabadaa9296e77ac975c", null ]
+];

@@ -1,0 +1,25 @@
+var calculate__polynomials_8py =
+[
+    [ "Ttot", "calculate__polynomials_8py.html#ac9dad17d6444ffe6ba3bde5f52489e8f", null ],
+    [ "amax", "calculate__polynomials_8py.html#ab33e9ec31c91f21e61a528f9bb936b0f", null ],
+    [ "Vrob", "calculate__polynomials_8py.html#a91946af146e44632841ff2143a9556ba", null ],
+    [ "dtot", "calculate__polynomials_8py.html#a856b31ea0fed20e6f2bf99854d5220bb", null ],
+    [ "Tr_poly_coeffs", "calculate__polynomials_8py.html#ac4c64e3f1ab034276699ee9c2e50fafb", null ],
+    [ "Tr_list", "calculate__polynomials_8py.html#aba9153e11fca3cbcc549595b6ae6d77f", null ],
+    [ "Tr", "calculate__polynomials_8py.html#a34ae6227c2018e98b6ee22f8ab3cb965", null ],
+    [ "Th", "calculate__polynomials_8py.html#acf9c70365555b99ac016257c1721c311", null ],
+    [ "a", "calculate__polynomials_8py.html#a08a78f676995f3e1b013c7a5dbbf86bc", null ],
+    [ "b", "calculate__polynomials_8py.html#a1df177963b8138e8a32214182097387b", null ],
+    [ "c", "calculate__polynomials_8py.html#a66df1a70d317116e832b1ac83571b7e4", null ],
+    [ "coeffs", "calculate__polynomials_8py.html#afef440babf8d1e51ca2ea3bbb9ce68d5", null ],
+    [ "t1", "calculate__polynomials_8py.html#ae8fb12c07d07bac895f7d5b0183e4411", null ],
+    [ "t2", "calculate__polynomials_8py.html#acedc14c21af1e06cd9dfbf6c5daed326", null ],
+    [ "t3", "calculate__polynomials_8py.html#a397e56bd5b88b8b2412afd4d237ba011", null ],
+    [ "f", "calculate__polynomials_8py.html#a5baa6b964beadb5713815286c7ab8293", null ],
+    [ "f_int", "calculate__polynomials_8py.html#a3910989afaa7fdc5b49c9860d6243362", null ],
+    [ "x1", "calculate__polynomials_8py.html#a9e457b939a5193994f132a15223439a6", null ],
+    [ "x2", "calculate__polynomials_8py.html#a9d26eef5294e4b2b00507571cca85046", null ],
+    [ "x3", "calculate__polynomials_8py.html#ab747c47bae3eed927f533011fa7fb2f7", null ],
+    [ "t", "calculate__polynomials_8py.html#a15a7e61640fba451bf494d8276bb9fee", null ],
+    [ "x", "calculate__polynomials_8py.html#a9f630785c83bcfdfe45dfd07b0355374", null ]
+];

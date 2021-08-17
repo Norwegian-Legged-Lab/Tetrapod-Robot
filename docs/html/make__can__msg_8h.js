@@ -1,0 +1,26 @@
+var make__can__msg_8h =
+[
+    [ "readPIDParameters", "make__can__msg_8h.html#a8eac2e3b71b4665ee27a801491b70f69", null ],
+    [ "writePIDParametersToRAM", "make__can__msg_8h.html#aa463b4b9e439e7d920738edefb0098cb", null ],
+    [ "writePIDParametersToROM", "make__can__msg_8h.html#a8eb6f31203ff8401d24ffa0f6eb0efc3", null ],
+    [ "readAcceleration", "make__can__msg_8h.html#a2137b5ce7abdfac529eeee6e42c22bc8", null ],
+    [ "writeAccelerationToRAM", "make__can__msg_8h.html#a2c9c3c7cfc9b88d9db5484d254a49b98", null ],
+    [ "readEncoderPosition", "make__can__msg_8h.html#a961fd0d11041c223a03d545670a87d11", null ],
+    [ "writeEncoderPositionOffset", "make__can__msg_8h.html#ac08bfde7a65190e9f3f46c1cfb3f12ed", null ],
+    [ "writeCurrentPositionToROM", "make__can__msg_8h.html#ab4a09b29de3b61657a4edf8a3b253fee", null ],
+    [ "readMultiTurnAngle", "make__can__msg_8h.html#a8abe606450a04893f2823a9641447a0f", null ],
+    [ "readCircleTurnAngle", "make__can__msg_8h.html#a534b2f49d254fb49d6690a35c88ebe64", null ],
+    [ "motorOff", "make__can__msg_8h.html#a80c9bcee24bbf464eaa9f973fe1943b8", null ],
+    [ "motorStop", "make__can__msg_8h.html#a0261dba88176df5f4e8cc31bce16d4b1", null ],
+    [ "motorRunning", "make__can__msg_8h.html#a43d1e03ba4fd5898260d169887e55624", null ],
+    [ "readMotorStatus1AndErrorFlag", "make__can__msg_8h.html#a01dbf6189885404200eb9e35f759c234", null ],
+    [ "clearMotorErrorFlag", "make__can__msg_8h.html#a827231a3819b73069db82380b87ba2bc", null ],
+    [ "readMotorStatus2", "make__can__msg_8h.html#a2484c037d756b16691866396779b9c91", null ],
+    [ "readMotorStatus3", "make__can__msg_8h.html#af32a724b4ed1552384628ee9957a97b0", null ],
+    [ "torqueCurrentControl", "make__can__msg_8h.html#a26b5469bdd4c4077e5478b0ae3166b36", null ],
+    [ "speedControl", "make__can__msg_8h.html#a2a1b74ce94fa701c43a8173283c7f7ea", null ],
+    [ "positionControl1", "make__can__msg_8h.html#a419e98a33746b6f4bd9db3f5fd09338a", null ],
+    [ "positionControl2", "make__can__msg_8h.html#af035fe7e98a70057c12fe18152f9f272", null ],
+    [ "positionControl3", "make__can__msg_8h.html#a0b400595e36b7b10841cb021ad6b4cb3", null ],
+    [ "positionControl4", "make__can__msg_8h.html#a7d903b4dff17bad58b5042dedf80c5ac", null ]
+];
