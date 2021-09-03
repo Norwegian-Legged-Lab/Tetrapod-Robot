@@ -116,3 +116,13 @@ git submodule update --init --recursive
 ## ROS package system dependencies
 
 Make sure rosdep is initialized by first running ```catkin_make``` and then ```source devel/setup.bash``` from the catkin workspace. Then run ```rosdep install --from-paths src --ignore-src -y``` to fulfill the system dependencies of all ros packages in the workspace.
+
+## System dependencies
+
+Install the necessary system dependencies by running:
+
+```
+sudo apt-get install libpugixml-dev
+sudo apt-get install ros-noetic-key-teleop
+sudo apt-get install libserial-dev
+```
