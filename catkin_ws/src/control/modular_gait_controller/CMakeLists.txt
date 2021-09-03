@@ -18,7 +18,7 @@ find_package(Eigen3 REQUIRED)
 catkin_package(
   INCLUDE_DIRS include
     ${EIGEN3_INCLUDE_DIR}
-  LIBRARIES gait_controller
+  LIBRARIES modular_gait_controller
   CATKIN_DEPENDS
     roscpp
     std_msgs
@@ -52,12 +52,12 @@ add_executable(modular_gait_controller_node
 
 target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
-  controller
+#  controller
 )
 
 target_link_libraries(modular_gait_controller_node
   ${catkin_LIBRARIES}
-  controller
+#  controller
 )
 
 install(TARGETS ${PROJECT_NAME}

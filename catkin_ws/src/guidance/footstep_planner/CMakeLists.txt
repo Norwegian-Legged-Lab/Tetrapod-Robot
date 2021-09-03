@@ -57,13 +57,13 @@ add_executable(${PROJECT_NAME}_node
 target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
   drake::drake
-  visualization_utils
+#  visualization_utils
 )
 
 target_link_libraries(${PROJECT_NAME}_node
   ${catkin_LIBRARIES}
   drake::drake
-  visualization_utils
+#  visualization_utils
 )
 
 install(TARGETS ${PROJECT_NAME}
