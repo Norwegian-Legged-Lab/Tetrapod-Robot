@@ -58,6 +58,8 @@ class Kinematics
     /// \brief Body type enumerator
     public: enum BodyType { base = 1, hip = 2, thigh = 3, leg = 4, foot = 5 };
 
+    public: const int nCoord = 18;
+    
     /// \brief Constructor
     public: Kinematics();
 

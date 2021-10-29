@@ -1,0 +1,5 @@
+<launch>
+
+      <node pkg="collocation_optimization_trajectory_planner" type="collocation_optimization_trajectory_planner_node" name="collocation_optimization_trajectory_planner_node" output="screen"/>
+
+</launch>
