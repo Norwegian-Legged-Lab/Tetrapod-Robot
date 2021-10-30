@@ -26,6 +26,7 @@
 
 #include <kinematics/kinematics.h>
 
+//TODO: Change all possible member functions to const (also in header)
 
 // Constructor
 Kinematics::Kinematics() 

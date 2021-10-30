@@ -50,7 +50,7 @@ using Vector3d = Eigen::Vector3d;
 using TransMatrix = kindr::HomTransformMatrixD;
 
 /// \brief A class for analytical Kinematics Solving
-class Kinematics
+class Kinematics //TODO: change all possible member functions to const
 {
     /// \brief Leg type enumerator
     public: enum LegType { frontLeft = 1, frontRight = 2, rearLeft = 3, rearRight = 4, NONE };
