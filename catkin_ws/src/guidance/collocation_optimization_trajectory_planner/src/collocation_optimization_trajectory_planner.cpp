@@ -1,6 +1,8 @@
-#include <include/collocation_optimization_trajectory_planner/collocation_optimization_trajectory_planner.h>
+#include <collocation_optimization_trajectory_planner/collocation_optimization_trajectory_planner.h>
 
-CollocationOptimizationTrajectoryPlanner::CollocationOptimizationTrajectoryPlanner(int domain_count, Eigen::VectorXd cardinal_point_counts)
+CollocationOptimizationTrajectoryPlanner::CollocationOptimizationTrajectoryPlanner(
+    int domain_count, Eigen::VectorXd cardinal_point_counts, Eigen::Matrix<Eigen::Matrix<Kinematics::LegType, Eigen::Dynamic, 1>, Eigen::Dynamic, 1> constraint_legs
+    )
 {
     return;
 }
@@ -11,15 +13,15 @@ void CollocationOptimizationTrajectoryPlanner::AddStateCollocationConstraintAtNo
 
     double delta_t;
 
-    Eigen::Matrix<drake::solvers::DecisionVariable, Eigen::Dynamic, 1> x_prev(2*this->kinematics.nCoord);
+    Eigen::Matrix<drake::solvers::DecisionVariable, Eigen::Dynamic, 1> x_prev(2*Kinematics::nCoord);
 
-    Eigen::Matrix<drake::solvers::DecisionVariable, Eigen::Dynamic, 1> x_current(2*this->kinematics.nCoord);
+    Eigen::Matrix<drake::solvers::DecisionVariable, Eigen::Dynamic, 1> x_current(2*Kinematics::nCoord);
 
-    Eigen::Matrix<drake::solvers::DecisionVariable, Eigen::Dynamic, 1> x_next(2*this->kinematics.nCoord);
+    Eigen::Matrix<drake::solvers::DecisionVariable, Eigen::Dynamic, 1> x_next(2*Kinematics::nCoord);
 
-    Eigen::Matrix<drake::solvers::DecisionVariable, Eigen::Dynamic, 1> dx_prev(2*this->kinematics.nCoord);
+    Eigen::Matrix<drake::solvers::DecisionVariable, Eigen::Dynamic, 1> dx_prev(2*Kinematics::nCoord);
 
-    Eigen::Matrix<drake::solvers::DecisionVariable, Eigen::Dynamic, 1> dx_next(2*this->kinematics.nCoord);
+    Eigen::Matrix<drake::solvers::DecisionVariable, Eigen::Dynamic, 1> dx_next(2*Kinematics::nCoord);
 
     prev_idx = node_idx - 1;
 
@@ -37,7 +39,7 @@ void CollocationOptimizationTrajectoryPlanner::AddStateCollocationConstraintAtNo
 
     dx_next << this->dq.col(next_idx), this->ddq.col(next_idx);
 
-    this->prog.AddLinearConstraint(x_current - (1/2)*(x_next + x_prev) - (delta_t/8)*(dx_prev - dx_next) == Eigen::VectorXd::Zero(2*this->kinematics.nCoord));
+    this->prog.AddLinearConstraint(x_current - (1/2)*(x_next + x_prev) - (delta_t/8)*(dx_prev - dx_next) == Eigen::VectorXd::Zero(2*Kinematics::nCoord));
 }
 
 void CollocationOptimizationTrajectoryPlanner::AddSlopeCollocationConstraintAtNode(int node_idx)
@@ -46,15 +48,15 @@ void CollocationOptimizationTrajectoryPlanner::AddSlopeCollocationConstraintAtNo
 
     double delta_t;
 
-    Eigen::Matrix<drake::solvers::DecisionVariable, Eigen::Dynamic, 1> x_prev(2*this->kinematics.nCoord);
+    Eigen::Matrix<drake::solvers::DecisionVariable, Eigen::Dynamic, 1> x_prev(2*Kinematics::nCoord);
 
-    Eigen::Matrix<drake::solvers::DecisionVariable, Eigen::Dynamic, 1> x_next(2*this->kinematics.nCoord);
+    Eigen::Matrix<drake::solvers::DecisionVariable, Eigen::Dynamic, 1> x_next(2*Kinematics::nCoord);
 
-    Eigen::Matrix<drake::solvers::DecisionVariable, Eigen::Dynamic, 1> dx_prev(2*this->kinematics.nCoord);
+    Eigen::Matrix<drake::solvers::DecisionVariable, Eigen::Dynamic, 1> dx_prev(2*Kinematics::nCoord);
 
-    Eigen::Matrix<drake::solvers::DecisionVariable, Eigen::Dynamic, 1> dx_current(2*this->kinematics.nCoord);
+    Eigen::Matrix<drake::solvers::DecisionVariable, Eigen::Dynamic, 1> dx_current(2*Kinematics::nCoord);
 
-    Eigen::Matrix<drake::solvers::DecisionVariable, Eigen::Dynamic, 1> dx_next(2*this->kinematics.nCoord);
+    Eigen::Matrix<drake::solvers::DecisionVariable, Eigen::Dynamic, 1> dx_next(2*Kinematics::nCoord);
 
     prev_idx = node_idx - 1;
 
@@ -77,7 +79,7 @@ void CollocationOptimizationTrajectoryPlanner::AddSlopeCollocationConstraintAtNo
 
 void CollocationOptimizationTrajectoryPlanner::AddDynamicConstraintAtNode(int node_idx)
 {
-    drake::solvers::
+    drake::solvers::DynamicsConstraint(this->constraintLegs);
 }
 
 void CollocationOptimizationTrajectoryPlanner::AddHolonomicConstraintAtNode(int node_idx)

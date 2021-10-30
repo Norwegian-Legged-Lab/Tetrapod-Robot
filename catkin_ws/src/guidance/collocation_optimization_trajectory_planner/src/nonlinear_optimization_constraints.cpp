@@ -1,11 +1,10 @@
-#include <include/collocation_optimization_trajectory_planner/nonlinear_optimization_constraints.h>
+#include <collocation_optimization_trajectory_planner/nonlinear_optimization_constraints.h>
  
 namespace drake{
 namespace solvers{
-namespace constraint{
 
-bool DynamicsConstraint::DoCheckSatisfied(const Eigen::Ref< const Eigen::VectorXd > & x, const double tol) const {
-    int nLambda = x.Rows() - 3*Kinematics::nCoord - Kinematics::nActuation;
+void DynamicsConstraint::DoEval(const Eigen::Ref< const Eigen::VectorXd > & x, Eigen::VectorXd *y) const {
+    int nLambda = x.rows() - 3*Kinematics::nCoord - Kinematics::nActuation;
     
     Eigen::VectorXd q = x.topRows(Kinematics::nCoord);
     
@@ -41,9 +40,10 @@ bool DynamicsConstraint::DoCheckSatisfied(const Eigen::Ref< const Eigen::VectorX
 
     F_dyn = M*ddq + H - B*u - J_v.transpose()*lambda;
 
-    return F_dyn.isZero(tol);
+    *y = F_dyn;
+
+    return;
 }
 
-}
-}
-}
+}//namespace solvers
+}//namespace drake

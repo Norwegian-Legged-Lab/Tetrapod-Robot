@@ -13,9 +13,16 @@ find_package(
   kinematics
   std_msgs
 )
-  
-  find_package(drake REQUIRED PATHS /opt/drake)
-  find_package(Eigen3 REQUIRED)
+
+find_package(ifopt REQUIRED)
+
+include(FindCASADI)
+find_package(CASADI REQUIRED)
+
+#include(FindIPOPT)
+#find_package(IPOPT REQUIRED)
+find_package(drake REQUIRED PATHS /opt/drake)
+find_package(Eigen3 REQUIRED)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -109,6 +116,7 @@ find_package(
 catkin_package(
   INCLUDE_DIRS include
     ${EIGEN3_INCLUDE_DIR}
+    ${CASADI_INCLUDE_DIR}
   LIBRARIES ${PROJECT_NAME}
   CATKIN_DEPENDS roscpp kinematics std_msgs
   #DEPENDS system_lib
@@ -124,6 +132,7 @@ include_directories(
   include
   ${catkin_INCLUDE_DIRS}
   ${EIGEN3_INCLUDE_DIR}
+  ${CASADI_INCLUDE_DIR}
 )
 
 #Declare a C++ library
@@ -155,6 +164,8 @@ add_executable(${PROJECT_NAME}_node src/collocation_optimization_trajectory_plan
 # Specify libraries to link a library or executable target against
 target_link_libraries(${PROJECT_NAME}_node
   ${catkin_LIBRARIES}
+  drake::drake
+  casadi
 )
 
 #############

@@ -17,6 +17,11 @@
 #include <kinematics/kinematics.h>
 #include <debug_utils/debug_utils.h>
 #include <math_utils/Core>
+#include <collocation_optimization_trajectory_planner/nonlinear_optimization_constraints.h>
+
+#include <ifopt/variable_set.h>
+#include <ifopt/constraint_set.h>
+#include <ifopt/cost_term.h>
 
 // Eigen
 #include <Eigen/Core>
@@ -34,7 +39,9 @@
 
 class CollocationOptimizationTrajectoryPlanner{
     // Member functions
-    public: CollocationOptimizationTrajectoryPlanner(int domain_count, Eigen::VectorXd cardinal_point_counts) ; //TODO: fill out necessary parameters to configure
+    public: CollocationOptimizationTrajectoryPlanner(
+            int domain_count, Eigen::VectorXd cardinal_point_counts, Eigen::Matrix<Eigen::Matrix<Kinematics::LegType, Eigen::Dynamic, 1>, Eigen::Dynamic, 1> constraint_legs
+    ) ; //TODO: fill out necessary parameters to configure
 
     public: void AddStateCollocationConstraintAtNode(int node_idx);
     
@@ -50,7 +57,7 @@ class CollocationOptimizationTrajectoryPlanner{
 
     public: void AddAdmissibilityConstraintAtNode(int node_idx);
 
-    public: void AddCostAtDomain(int domain_idx)
+    public: void AddCostAtDomain(int domain_idx);
 
     public: void AddCost();
     // Member variables
