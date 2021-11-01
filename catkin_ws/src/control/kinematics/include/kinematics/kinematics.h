@@ -658,11 +658,11 @@ class Kinematics //TODO: change all possible member functions to const
                                                           const double &_I_XZ,
                                                           const double &_I_YZ);
 
-    private: double GetBodyMass(BodyType _body);
+    protected: double GetBodyMass(BodyType _body);
 
-    private: Eigen::Matrix<double, 3, 3> GetBodyInertia(BodyType _body);
+    protected: Eigen::Matrix<double, 3, 3> GetBodyInertia(BodyType _body);
 
-    private: Eigen::Matrix<double, 3, 3> GetBodyInertia(BodyType _body, LegType _leg);
+    protected: Eigen::Matrix<double, 3, 3> GetBodyInertia(BodyType _body, LegType _leg);
 
     public: bool GetflOffset() {return flOffset;}
 

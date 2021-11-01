@@ -125,6 +125,6 @@ class HolonomicConstraintsConstraintSet: public NodeConstraintSet{
     private:
 
     Eigen::Matrix<Kinematics::LegType, Eigen::Dynamic, 1> constraintLegs;
-}
+};
 
 }//namespace ifopt

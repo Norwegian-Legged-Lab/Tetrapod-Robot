@@ -46,4 +46,23 @@ class ConstrainedDynamics: public Kinematics{
     Eigen::VectorXd GetConstraintDynamicsImplicitJacobianDdq(
         const Eigen::VectorXd& q, const Eigen::VectorXd& dq, const Eigen::VectorXd& ddq,
         Eigen::Matrix<Kinematics::LegType, Eigen::Dynamic, 1> constraint_legs);
+
+    // 3x18 Translation Hessian times generalized acceleration in world frame
+    Eigen::Matrix<double, 3, 18> GetTranslationHessianInWTimesAcceleration(const LegType &_leg,
+                                                                        const BodyType &_body,
+                                                                        const Eigen::Matrix<double, 18, 1> &_q,
+                                                                        const Eigen::Matrix<double, 18, 1> &_ddq);
+    // 3x18 Rotational Hessian times generalized acceleration in world frame
+    Eigen::Matrix<double, 3, 18> GetRotationHessianInWTimesAcceleration(const LegType &_leg,
+                                                                                    const BodyType &_body,
+                                                                                    const Eigen::Matrix<double, 18, 1> &_q,
+                                                                                    const Eigen::Matrix<double, 18, 1> &_ddq);
+
+    Eigen::Matrix<double, 18, 18> GetSingleBodyMassMatrixJacobianTimesAcceleration(const LegType &_leg,
+                                                                            const BodyType &_body,
+                                                                            const Eigen::Matrix<double, 18, 1> &_q,
+                                                                            const Eigen::Matrix<double, 18, 1> &_ddq);
+    
+    Eigen::Matrix<double, 18, 18> GetMassMatrixTimesJacobianTimesAcceleration(const Eigen::Matrix<double, 18, 1> &_q, const Eigen::Matrix<double, 18, 1> &_ddq);
+
 };
