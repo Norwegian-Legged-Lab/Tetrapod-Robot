@@ -8,7 +8,7 @@ end
 
 if nargin < 1
     cur = utils.get_root_path();
-    urdf = fullfile(cur,'urdf','ASTRo.urdf');
+    urdf_file = fullfile(cur,'urdf','ASTRo.urdf');
 end
 
 if nargin < 3
