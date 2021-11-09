@@ -31,5 +31,11 @@ end
 
 robot = ASTRoModel(urdf_file, base);
 
+if isempty(load_path)
+    configureDynamics(robot, 'DelayCoriolisSet', delay_set, 'OmitCoriolisSet', true);
+else
+    loadDynamics(robot, load_path, delay_set, 'OmitCoriolisSet', true);
+end
 
+end
 
