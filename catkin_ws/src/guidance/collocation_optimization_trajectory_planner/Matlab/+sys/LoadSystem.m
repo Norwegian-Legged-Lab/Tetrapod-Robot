@@ -14,9 +14,24 @@ diagonalImpact = RigidImpact('DiagonalImpact', diagonalStance, 'rearSwingFootHei
 
 parallelImpact = RigidImpact('ParallelImpact', parallelStance, 'frontSwingFootHeight'); %to diagonalStance
 
+%mirror relabeling for edge back to initial domain
+
+R = parallelImpact.R;
+
+R(2,2) = -R(2,2);
+
+R(4,4) = -R(4,4);
+
+R(6,6) = -R(6,6);
+
+R(7:12,7:12) = [zeros(3), -eye(3); -eye(3), zeros(3)];
+
+R(13:18, 13:18) = [zeros(3), -eye(3); -eye(3), zeros(3)];
+
+parallelImpact.R = R;
+
 diagonalImpact.addImpactConstraint(struct2array(parallelStance.HolonomicConstraints), load_path);
 
-%switch feet labels here somehow
 parallelImpact.addImpactConstraint(struct2array(diagonalStance.HolonomicConstraints), load_path);
 
 io_control = IOFeedback('IO');
