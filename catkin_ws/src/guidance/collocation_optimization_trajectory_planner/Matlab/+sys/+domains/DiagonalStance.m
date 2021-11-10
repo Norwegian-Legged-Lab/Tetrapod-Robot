@@ -15,8 +15,8 @@ end
 fr_foot_contact = ToContactFrame(fr_foot, 'PointContactWithFriction');
 rl_foot_contact = ToContactFrame(rl_foot, 'PointContactWithFriction');
 
-domain = addContact(domain, fr_foot_contact, fr_fric_coef, fr_geometry);
-domain = addContact(domain, rl_foot_contact, rl_fric_coef, rl_geometry);
+domain = addContact(domain, fr_foot_contact, fr_fric_coef, []); %Point contact, no geometry is necessary
+domain = addContact(domain, rl_foot_contact, rl_fric_coef, []); %Point contact, no geometry is necessary
 
 %Add event
 

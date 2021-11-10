@@ -37,7 +37,7 @@ else
     nlp.configure(bounds, load_path);
 end
 
-opt.cots.Torques(nlp, system);
+opt.cost.Torques(nlp, system);
 
 nlp.update;
 

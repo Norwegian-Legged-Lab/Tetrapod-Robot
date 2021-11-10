@@ -10,13 +10,13 @@ parallelStance = sys.domains.parallelStance(model, load_path);
 
 %Create rigid impact class with switching betweeen feet? or just change the
 %holonomic constraints
-diagonalImpact = RigidImpact('DiagonalImpact', diagonalStance, 'rearSwingFootHeight'); %to parallelStance
+parallelImpact = RigidImpact('ParallelImpact', diagonalStance, 'rearSwingFootHeight'); %to parallelStance
 
-parallelImpact = RigidImpact('ParallelImpact', parallelStance, 'frontSwingFootHeight'); %to diagonalStance
+diagonalImpact = RigidImpact('DiagonalImpact', parallelStance, 'frontSwingFootHeight'); %to diagonalStance
 
 %mirror relabeling for edge back to initial domain
 
-R = parallelImpact.R;
+R = diagonalImpact.R;
 
 R(2,2) = -R(2,2);
 
@@ -28,11 +28,11 @@ R(7:12,7:12) = [zeros(3), -eye(3); -eye(3), zeros(3)];
 
 R(13:18, 13:18) = [zeros(3), -eye(3); -eye(3), zeros(3)];
 
-parallelImpact.R = R;
+diagonalImpact.R = R;
 
-diagonalImpact.addImpactConstraint(struct2array(parallelStance.HolonomicConstraints), load_path);
+parallelImpact.addImpactConstraint(struct2array(parallelStance.HolonomicConstraints), load_path);
 
-parallelImpact.addImpactConstraint(struct2array(diagonalStance.HolonomicConstraints), load_path);
+diagonalImpact.addImpactConstraint(struct2array(diagonalStance.HolonomicConstraints), load_path);
 
 io_control = IOFeedback('IO');
 
@@ -47,6 +47,6 @@ srcs = {'DiagonalStance', 'ParallelStance'};
 tars = {'ParallelStance', 'DiagonalStance'};
 
 system = addEdge(system, srcs, tars);
-system = setEdgeProperties(system, srcs, tars, 'Guard', {diagonalImpact, parallelImpact});
+system = setEdgeProperties(system, srcs, tars, 'Guard', {parallelImpact, diagonalImpact});
 end
 
