@@ -1,6 +1,3 @@
-% Main script
-
-% Setting up path
 frost_setup;
 
 export_path = 'gen/opt'; %path to export compiled C++ and MEX files
@@ -24,49 +21,35 @@ end
 
 robot = sys.LoadModel(urdf, load_path, delay_set);
 
-system = sys.LoadSystem(robot, load_path);
+system = sys.LoadStandingSystem(robot, load_path);
 
-bounds = opt.GetBounds(robot);
+bounds = opt.GetStandingBounds(robot);
 
-%% Load Nlp
+%% load problem
+nlp = opt.LoadStandingProblem(system, bounds, load_path);
 
-nlp = opt.LoadProblem(system, bounds, load_path);
-%%
-compileObjective(nlp, [], [], export_path);
+%% Compile stuff if needed (only need to run for the first time)
+compileObjective(nlp,[],[],export_path);
 
-
-compileConstraint(nlp, [], [], export_path);
-
-%compileConstraint(nlp, [], {'y_position_DiagonalStance'
-%    'd1y_position_DiagonalStance'
-%    'position_output_dynamics'
-%    'y_position_ParallelStance'
-%    'd1y_position_ParallelStance'}, export_path);
+% % compile everything
+compileConstraint(nlp,[],[],export_path);
 
 load_path = 'gen/sym';
 utils.init_path(load_path);
 system.saveExpression(load_path);
-
-%% Get bounds
-
-% you can update bounds without reloading the problem. It is much much faster!!!
-bounds = opt.GetBounds(robot, [0, 0]);
-opt.updateVariableBounds(nlp, bounds);
-
-%Update initial condition if use pre-existing gaits
-%param = load('local/tmp_gait.mat');
-%opt.updateInitCondition(nlp, param.gait);
-
-%% Solve problem
-
+%%
 [gait, sol, info] = opt.solve(nlp);
 
-save('local/tmp_gait.mat', 'gait', 'sol', 'info', 'bounds');
+
+%% save
+save('local/good_gait.mat','gait','sol','info','bounds');
+
+
 
 %% animation
-anim = plot.LoadOptAnimator(robot, gait);%,'SkipExporting',true, 'UseExported', false);
+anim = plot.LoadOptAnimator(robot, gait,'SkipExporting',true);
 
-%%
+
 
 %% you can check the violation of constraints/variables and the value of each cost function by calling the following functions.
 tol = 1e-3;
@@ -80,5 +63,3 @@ checkCosts(nlp,sol,'local/cost_check.txt') %
 %% you can also plot the states and torques w.r.t upper/lower bounds.
 plot.plotOptStates(robot,nlp,gait);
 plot.plotOptTorques(robot,nlp,gait);
-
-

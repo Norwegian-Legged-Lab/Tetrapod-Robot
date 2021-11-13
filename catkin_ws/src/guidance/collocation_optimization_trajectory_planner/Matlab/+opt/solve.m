@@ -10,7 +10,7 @@ function [new_gait, sol, info, total_time] = solve(nlp, x0, info)
     solver.Options.ipopt.dual_inf_tol = 1e-3;
     solver.Options.ipopt.constr_viol_tol = 1e-3;
     solver.Options.ipopt.compl_inf_tol = 1e-3;
-    solver.Options.ipopt.max_iter = 1000;
+    solver.Options.ipopt.max_iter = 10000;
 
     if nargin > 2
         solver.Options.ipopt.point_perturbation_radius = 0;
@@ -33,7 +33,7 @@ function [new_gait, sol, info, total_time] = solve(nlp, x0, info)
         [sol, info] = optimize(solver, x0);
     end
     [tspan, states, inputs, params] = exportSolution(nlp, sol);
-    tspan{3} = tspan{1}(end) + tspan{3};
+    %tspan{3} = tspan{1}(end) + tspan{3};
 
     total_time = toc(start_time);
     new_gait = struct(...
