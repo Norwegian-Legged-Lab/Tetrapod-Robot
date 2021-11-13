@@ -21,7 +21,7 @@ domain = addContact(domain, rl_foot_contact, rl_fric_coef, []); %Point contact, 
 %Add event
 
 fl_foot = sys.frames.FlFoot(model);
-rr_foot = sys.frams.RrFoot(model);
+rr_foot = sys.frames.RrFoot(model);
 
 p_rear_swing_foot = getCartesianPosition(domain, rr_foot);
 p_front_swing_foot = getCartesianPosition(domain, fl_foot);
@@ -33,8 +33,8 @@ domain = addEvent(domain, h_rnsf);
 %are some conflicting claims in papers published both by Caltech about
 %whether one or the other is more robust
 
-x = domain.states.x;
-dx = domain.states.dx;
+x = domain.States.x;
+dx = domain.States.dx;
 
 %Time-based phase variable
 t = SymVariable('t');
@@ -49,7 +49,7 @@ p_rearStanceHipYawFrame = getCartesianPosition(domain, rearStanceHipYawFrame);
 
 
 body = sys.frames.Body(model);
-RPY_body = getRPY(domain, body);
+RPY_body = getEulerAngles(domain, body);
 p_body = getCartesianPosition(domain, body);
 
 y_frontSwingFootX = p_front_swing_foot(1);

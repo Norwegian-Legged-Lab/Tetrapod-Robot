@@ -10,7 +10,7 @@ function average_velocity(nlp, bounds)
     x0 = x;
     xf = SymVariable('xf', size(x));
     T = SymVariable('t', [2, 1]);
-    v_avg = [(xf(1) - x0(1))./(T(2) - T(1)),...
+    v_avg = [(xf(1) - x0(1))./(T(2) - T(1))
         xf(2) - x0(2)./(T(2) - T(1))];
     v_avg_fun = SymFunction(['avgStepVelocity_',domain.Name], v_avg, {T, x0, xf});
     x0_var = nlp.OptVarTable.x(1);

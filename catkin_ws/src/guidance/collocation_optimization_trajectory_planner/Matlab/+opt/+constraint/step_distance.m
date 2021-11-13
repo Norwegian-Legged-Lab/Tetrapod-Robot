@@ -12,9 +12,9 @@ function step_distance(nlp, bounds, stance_frame, swing_frame)
 
     constraint = tomatrix(stance_foot(1:2) - swing_foot(1:2));
     constraint_func = SymFunction(['step_distance_',domain.Name], constraint, {x});
-    lb = [bounds.constrBounds.stepLength.lb,...
+    lb = [bounds.constrBounds.stepLength.lb
         bounds.constrBounds.stepWidth.lb];
-    ub = [bounds.constrBounds.stepLength.ub,...
+    ub = [bounds.constrBounds.stepLength.ub
         bounds.constrBounds.stepWidth.ub];
     addNodeConstraint(nlp, constraint_func, {'x'}, 'first', lb, ub, 'NonLinear');
 end

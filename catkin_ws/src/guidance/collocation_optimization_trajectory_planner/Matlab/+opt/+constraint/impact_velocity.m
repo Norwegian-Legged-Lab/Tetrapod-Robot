@@ -16,8 +16,8 @@ function impact_velocity(nlp, bounds, ascending_frame, descending_frame)
     ascending_vel = J_ascending_pos * dx;
     descending_vel = J_descending_pos * dx;
 
-    ascending_constraint_func = SymFunction(['impact_velocity_',frame.Name,domain.Name], ascending_vel, {x, dx});
-    descending_constraint_func = SymFunction(['impact_velocity_',frame.Name,domain.Name], descending_vel, {x, dx});
+    ascending_constraint_func = SymFunction(['impact_velocity_',ascending_frame.Name,domain.Name], ascending_vel, {x, dx});
+    descending_constraint_func = SymFunction(['impact_velocity_',ascending_frame.Name,domain.Name], descending_vel, {x, dx});
 
     % Impact descending swing foot velocity
     % (Foot goes downward and slightly backward)

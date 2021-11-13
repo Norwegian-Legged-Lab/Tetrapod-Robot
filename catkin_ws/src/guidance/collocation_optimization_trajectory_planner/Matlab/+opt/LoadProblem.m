@@ -34,7 +34,7 @@ nlp = HybridTrajectoryOptimization('ASTRo_opt', system, num_grid, [], options{:}
 if isempty(load_path)
     nlp.configure(bounds);
 else
-    nlp.configure(bounds, load_path);
+    nlp.configure(bounds, 'LoadPath', load_path);
 end
 
 opt.cost.Torques(nlp, system);

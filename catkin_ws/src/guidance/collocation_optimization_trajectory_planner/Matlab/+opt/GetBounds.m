@@ -6,6 +6,23 @@ function bounds = GetBounds(model, speed)
 
     model_bounds = model.getLimits();
 
+    outer_hip_yaw_limit = deg2rad(30);
+    inner_hip_yaw_limit = deg2rad(0);
+    upper_hip_pitch_limit = deg2rad(10);
+    lower_hip_pitch_limit = deg2rad(60);
+    upper_knee_pitch_limit = deg2rad(5);
+    lower_knee_pitch_limit = deg2rad(75);
+
+    model_bounds.states.x.lb(7:end) = [-inner_hip_yaw_limit; -upper_hip_pitch_limit; -upper_knee_pitch_limit
+        -outer_hip_yaw_limit; -lower_hip_pitch_limit; -lower_knee_pitch_limit
+        -outer_hip_yaw_limit; -lower_hip_pitch_limit; -lower_knee_pitch_limit
+        -inner_hip_yaw_limit; -upper_hip_pitch_limit; -upper_knee_pitch_limit];
+    
+    model_bounds.states.x.ub(7:end) = [outer_hip_yaw_limit; lower_hip_pitch_limit; lower_knee_pitch_limit
+        inner_hip_yaw_limit; upper_hip_pitch_limit; upper_knee_pitch_limit
+        inner_hip_yaw_limit; upper_hip_pitch_limit; upper_knee_pitch_limit
+        outer_hip_yaw_limit; lower_hip_pitch_limit; lower_knee_pitch_limit];
+    
     model_bounds.options.enforceVirtualConstraints = true;
 
     model_bounds.inputs.pqfixed.lb = zeros(3,1);
@@ -15,7 +32,7 @@ function bounds = GetBounds(model, speed)
     model_bounds.gains.kp = 100;
     model_bounds.gains.kd = 20;
 
-    model_bounds.time.duration.lb = 0.2;
+    model_bounds.time.duration.lb = 0.5;
     model_bounds.time.duration.ub = 1;
 
     model_bounds.time.t0.lb = 0;
@@ -97,6 +114,9 @@ function bounds = GetBounds(model, speed)
     bounds.ParallelImpact.inputs = struct();
     bounds.ParallelImpact.inputs.ConstraintWrench.fFrFoot.lb = [-10000, -10000, 0]';
     bounds.ParallelImpact.inputs.ConstraintWrench.fFrFoot.ub = [10000, 10000, 10000]';
+
+    bounds.ParallelImpact.inputs.ConstraintWrench.fRrFoot.lb = [-10000, -10000, 0]';
+    bounds.ParallelImpact.inputs.ConstraintWrench.fRrFoot.ub = [10000, 10000, 10000]';
 
     bounds.ParallelImpact.params = struct();
 

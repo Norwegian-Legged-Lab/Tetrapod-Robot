@@ -5,8 +5,8 @@ if nargin
     load_path = [];
 end
 
-diagonalStance = sys.domains.diagonalStance(model, load_path);
-parallelStance = sys.domains.parallelStance(model, load_path);
+diagonalStance = sys.domains.DiagonalStance(model, load_path);
+parallelStance = sys.domains.ParallelStance(model, load_path);
 
 %Create rigid impact class with switching betweeen feet? or just change the
 %holonomic constraints
@@ -32,8 +32,8 @@ diagonalImpact.R = R;
 
 parallelImpact.addImpactConstraint(struct2array(parallelStance.HolonomicConstraints), load_path);
 
-diagonalImpact.addImpactConstraint(struct2array(diagonalStance.HolonomicConstraints), load_path);
-
+%diagonalImpact.addImpactConstraint(struct2array(diagonalStance.HolonomicConstraints), load_path);
+diagonalImpact.configure();
 io_control = IOFeedback('IO');
 
 system = HybridSystem('ASTRo');

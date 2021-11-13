@@ -5,6 +5,6 @@ param.bw = 0.5;
 param.mu = 0.1;
 param.gamma = 0;
 param.L3 = 0.3;
-param.Z3 = -0.17;
+param.Z3 = -0.017;
 end
 

@@ -18,10 +18,10 @@ end
 
 base = get_base_dofs('floating');
 
-limits = base.Limit;
+limits = [base.Limit];
 
 [limits.lower] = deal(-0.6, -0.3, 0.15, -0.1, -0.5, -0.1);
-[limits.upper] = deal(1.5, 0.3, 0.35, 0.1, 0.5, 0.1);
+[limits.upper] = deal(1.5, 0.3, 1, 0.1, 0.5, 0.1);
 [limits.velocity] = deal(2, 0.2, 0.5, 0.5, 0.5, 0.5);
 [limits.effort] = deal(0);
 
@@ -34,7 +34,7 @@ robot = ASTRoModel(urdf_file, base);
 if isempty(load_path)
     configureDynamics(robot, 'DelayCoriolisSet', delay_set, 'OmitCoriolisSet', true);
 else
-    loadDynamics(robot, load_path, delay_set, 'OmitCoriolisSet', true);
+    loadDynamics(robot, load_path, delay_set, {}, 'OmitCoriolisSet', true);
 end
 
 end
