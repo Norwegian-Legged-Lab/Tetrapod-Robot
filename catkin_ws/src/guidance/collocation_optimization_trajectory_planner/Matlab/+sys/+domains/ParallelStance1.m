@@ -1,4 +1,4 @@
-function [domain] = ParallelStance(model, load_path)
+function [domain] = ParallelStance1(model, load_path)
 %PARALLELSTANCE Summary of this function goes here
 %   Detailed explanation goes here
 domain = copy(model);

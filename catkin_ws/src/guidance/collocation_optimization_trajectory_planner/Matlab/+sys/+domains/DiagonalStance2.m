@@ -1,4 +1,4 @@
-function [domain] = DiagonalStance(model, load_path)
+function [domain] = DiagonalStance2(model, load_path)
 %DIAGONALSTANCE Summary of this function goes here
 %   Detailed explanation goes here
 domain = copy(model);
