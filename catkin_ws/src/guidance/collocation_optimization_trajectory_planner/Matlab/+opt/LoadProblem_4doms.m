@@ -15,7 +15,7 @@ parallel_stance_1.UserNlpConstraint = @opt.callback.ParallelStanceConstraints1;
 
 diagonal_impact_1 = system.Gamma.Edges.Guard{1};
 
-diagonal_impact_1.UserNlpConstraint = @opt.callback.DiagonalImpactConstraints;
+diagonal_impact_1.UserNlpConstraint = @opt.callback.DiagonalImpactConstraints1;
 
 parallel_impact_1 = system.Gamma.Edges.Guard{2};
 
@@ -31,7 +31,7 @@ parallel_stance_2.UserNlpConstraint = @opt.callback.ParallelStanceConstraints2;
 
 diagonal_impact_2 = system.Gamma.Edges.Guard{3};
 
-diagonal_impact_2.UserNlpConstraint = @opt.callback.DiagonalImpactConstraints;
+diagonal_impact_2.UserNlpConstraint = @opt.callback.DiagonalImpactConstraints2;
 
 parallel_impact_2 = system.Gamma.Edges.Guard{4};
 

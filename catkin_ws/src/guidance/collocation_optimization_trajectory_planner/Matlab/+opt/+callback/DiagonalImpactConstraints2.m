@@ -8,8 +8,6 @@ function DiagonalImpactConstraints(nlp, src, tar, bounds, varargin)
     removeConstraint(nlp, 'xDiscreteMapDiagonalImpact');
 
     R = plant.R;
-    R(7:12,7:12) = [zeros(3), -eye(3); -eye(3), zeros(3)];
-    R(13:18,13:18) = [zeros(3), -eye(3); -eye(3), zeros(3)];
     x = plant.States.x;
     xn = plant.States.xn;
     x_diff = R*x - xn;
