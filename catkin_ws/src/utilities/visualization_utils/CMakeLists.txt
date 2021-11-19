@@ -8,15 +8,19 @@ project(visualization_utils)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  kindr
-  roscpp
-  geometry_msgs
+kindr
+roscpp
+geometry_msgs
 )
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 find_package(Eigen3 REQUIRED)
 
+include(FindXercesC)
+find_package(XercesC REQUIRED)
+include_directories( ${XercesC_INCLUDE_DIR} )
+find_package(libpugixml1)
 
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
@@ -133,10 +137,6 @@ add_library(${PROJECT_NAME}
   src/eigen_geometry_msgs.cpp
 )
 
-include(FindXercesC)
-find_package(XercesC REQUIRED)
-include_directories( ${XercesC_INCLUDE_DIR} )
-find_package(libpugixml1)
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure

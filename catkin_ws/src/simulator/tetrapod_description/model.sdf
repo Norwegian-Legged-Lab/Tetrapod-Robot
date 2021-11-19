@@ -50,7 +50,7 @@ z_0 = 0.0
                 <pose>0 0 0 3.1415 0 0</pose>
                 <geometry>
                     <mesh>
-                        <uri>model://tetrapod_description/meshes/body.dae</uri>
+                        <uri>model://tetrapod_description/meshes/body.STL</uri>
                     </mesh>  
                 </geometry>
             </visual>
@@ -128,7 +128,7 @@ z_0 = 0.0
             <visual name="front_left_hip_visual">
                 <geometry>
                     <mesh>
-                        <uri>model://tetrapod_description/meshes/shoulder_left.dae</uri>
+                        <uri>model://tetrapod_description/meshes/shoulder_left.STL</uri>
                     </mesh>  
                 </geometry>
             </visual>
@@ -178,7 +178,7 @@ z_0 = 0.0
                 <pose>0 0 0 0 0 0</pose>
                 <geometry>
                     <mesh>
-                        <uri>model://tetrapod_description/meshes/leg_upper.dae</uri>
+                        <uri>model://tetrapod_description/meshes/leg_upper.STL</uri>
                     </mesh>                    
                 </geometry>
             </visual>
@@ -228,7 +228,7 @@ z_0 = 0.0
                 <pose>0 0 0 0 0 0</pose>
                 <geometry>
                     <mesh>
-                        <uri>model://tetrapod_description/meshes/leg_lower.dae</uri>
+                        <uri>model://tetrapod_description/meshes/leg_lower.STL</uri>
                     </mesh>
                 </geometry>
             </visual>
@@ -344,7 +344,7 @@ z_0 = 0.0
             <visual name="front_right_hip_visual">
                 <geometry>
                     <mesh>
-                        <uri>model://tetrapod_description/meshes/shoulder_right.dae</uri>
+                        <uri>model://tetrapod_description/meshes/shoulder_right.STL</uri>
                     </mesh>  
                 </geometry>
             </visual>
@@ -394,7 +394,7 @@ z_0 = 0.0
                 <pose>0 0 0 0 0 0</pose>
                 <geometry>
                     <mesh>
-                        <uri>model://tetrapod_description/meshes/leg_upper.dae</uri>
+                        <uri>model://tetrapod_description/meshes/leg_upper.STL</uri>
                     </mesh>                    
                 </geometry>
             </visual>
@@ -445,7 +445,7 @@ z_0 = 0.0
                 <pose>0 0 0 0 0 0</pose>
                 <geometry>
                     <mesh>
-                        <uri>model://tetrapod_description/meshes/leg_lower.dae</uri>
+                        <uri>model://tetrapod_description/meshes/leg_lower.STL</uri>
                     </mesh>
                 </geometry>
             </visual>
@@ -561,7 +561,7 @@ z_0 = 0.0
             <visual name="rear_left_hip_visual">
                 <geometry>
                     <mesh>
-                        <uri>model://tetrapod_description/meshes/shoulder_right.dae</uri>
+                        <uri>model://tetrapod_description/meshes/shoulder_right.STL</uri>
                     </mesh>  
                 </geometry>
             </visual>
@@ -611,7 +611,7 @@ z_0 = 0.0
                 <pose>0 0 0 0 0 0</pose>
                 <geometry>
                     <mesh>
-                        <uri>model://tetrapod_description/meshes/leg_upper.dae</uri>
+                        <uri>model://tetrapod_description/meshes/leg_upper.STL</uri>
                     </mesh>                    
                 </geometry>
             </visual>
@@ -661,7 +661,7 @@ z_0 = 0.0
                 <pose>0 0 0 0 0 0</pose>
                 <geometry>
                     <mesh>
-                        <uri>model://tetrapod_description/meshes/leg_lower.dae</uri>
+                        <uri>model://tetrapod_description/meshes/leg_lower.STL</uri>
                     </mesh>
                 </geometry>
             </visual>
@@ -777,7 +777,7 @@ z_0 = 0.0
             <visual name="rear_right_hip_visual">
                 <geometry>
                     <mesh>
-                        <uri>model://tetrapod_description/meshes/shoulder_left.dae</uri>
+                        <uri>model://tetrapod_description/meshes/shoulder_left.STL</uri>
                     </mesh>  
                 </geometry>
             </visual>
@@ -826,7 +826,7 @@ z_0 = 0.0
                 <pose>0 0 0 0 0 0</pose>
                 <geometry>
                     <mesh>
-                        <uri>model://tetrapod_description/meshes/leg_upper.dae</uri>
+                        <uri>model://tetrapod_description/meshes/leg_upper.STL</uri>
                     </mesh>                    
                 </geometry>
             </visual>
@@ -877,7 +877,7 @@ z_0 = 0.0
                 <pose>0 0 0 0 0 0</pose>
                 <geometry>
                     <mesh>
-                        <uri>model://tetrapod_description/meshes/leg_lower.dae</uri>
+                        <uri>model://tetrapod_description/meshes/leg_lower.STL</uri>
                     </mesh>
                 </geometry>
             </visual>

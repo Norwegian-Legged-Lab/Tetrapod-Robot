@@ -1,0 +1,3 @@
+float64[] t
+collocation_optimization_trajectory_planner/states states
+collocation_optimization_trajectory_planner/inputs inputs

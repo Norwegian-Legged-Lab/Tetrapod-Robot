@@ -1,0 +1,743 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="ASTRo">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.0018303 -0.0022636 -0.024028"
+        rpy="0 0 0" />
+      <mass
+        value="8.7385" />
+      <inertia
+        ixx="0.032841"
+        ixy="2.8455E-08"
+        ixz="5.1148E-07"
+        iyy="0.030732"
+        iyz="-1.2737E-05"
+        izz="0.061662" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ASTRo/meshes/base.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ASTRo/meshes/base.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="fl_hip">
+    <inertial>
+      <origin
+        xyz="0.0531583210571163 0.0366039141275337 -0.0363361635572401"
+        rpy="0 0 0" />
+      <mass
+        value="2.17455286863019" />
+      <inertia
+        ixx="0.00173280345342209"
+        ixy="-6.19129847878754E-05"
+        ixz="-1.21639437951916E-05"
+        iyy="0.00206600212782451"
+        iyz="6.94104691488328E-07"
+        izz="0.00205370170154333" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ASTRo/meshes/fl_hip.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ASTRo/meshes/fl_hip.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="fl_hip_yaw"
+    type="revolute">
+    <origin
+      xyz="0.15121 0.15121 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="fl_hip" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.7854"
+      upper="1.5708"
+      effort="40"
+      velocity="1000" />
+  </joint>
+  <link
+    name="fl_thigh">
+    <inertial>
+      <origin
+        xyz="0.027738 -2.8924E-05 -0.048016"
+        rpy="0 0 0" />
+      <mass
+        value="1.4824" />
+      <inertia
+        ixx="0.00087947"
+        ixy="6.7403E-09"
+        ixz="1.0751E-05"
+        iyy="0.0011475"
+        iyz="3.8014E-08"
+        izz="0.0017228" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ASTRo/meshes/fl_thigh.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ASTRo/meshes/fl_thigh.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="fl_hip_pitch"
+    type="revolute">
+    <origin
+      xyz="0.13 0.0755 -0.03875"
+      rpy="-1.5708 0 0" />
+    <parent
+      link="fl_hip" />
+    <child
+      link="fl_thigh" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.5708"
+      upper="1.5708"
+      effort="40"
+      velocity="1000" />
+  </joint>
+  <link
+    name="fl_calf">
+    <inertial>
+      <origin
+        xyz="0.31676 0.00044079 -0.07745"
+        rpy="0 0 0" />
+      <mass
+        value="0.31062" />
+      <inertia
+        ixx="4.0837E-05"
+        ixy="7.7987E-07"
+        ixz="1.6622E-10"
+        iyy="0.0002133"
+        iyz="2.688E-10"
+        izz="0.00022729" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ASTRo/meshes/fl_calf.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ASTRo/meshes/fl_calf.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="fl_knee_pitch"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="fl_thigh" />
+    <child
+      link="fl_calf" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.1"
+      upper="2.3562"
+      effort="40"
+      velocity="1000" />
+  </joint>
+  <link
+    name="fr_hip">
+    <inertial>
+      <origin
+        xyz="0.0531763939958359 -0.03641981103807 -0.0363952498647838"
+        rpy="0 0 0" />
+      <mass
+        value="2.18233968386848" />
+      <inertia
+        ixx="0.00173291318723781"
+        ixy="6.12775165299127E-05"
+        ixz="-1.21635823008675E-05"
+        iyy="0.00206624802392487"
+        iyz="6.94100265309046E-07"
+        izz="0.00205394759437429" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ASTRo/meshes/fr_hip.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ASTRo/meshes/fr_hip.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="fr_hip_yaw"
+    type="revolute">
+    <origin
+      xyz="0.15121 -0.15121 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="fr_hip" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.5708"
+      upper="0.7854"
+      effort="40"
+      velocity="1000" />
+  </joint>
+  <link
+    name="fr_thigh">
+    <inertial>
+      <origin
+        xyz="0.0277372167220385 -0.000149652238160158 -0.0480163340760356"
+        rpy="0 0 0" />
+      <mass
+        value="1.48239438165952" />
+      <inertia
+        ixx="0.000879475845940312"
+        ixy="1.17351324544697E-06"
+        ixz="1.07507726515436E-05"
+        iyy="0.00114753637734785"
+        iyz="-8.77874938440614E-09"
+        izz="0.00172276896297423" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ASTRo/meshes/fr_thigh.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ASTRo/meshes/fr_thigh.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="fr_hip_pitch"
+    type="revolute">
+    <origin
+      xyz="0.13 -0.0755 -0.03875"
+      rpy="1.5708 0 0" />
+    <parent
+      link="fr_hip" />
+    <child
+      link="fr_thigh" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.5708"
+      upper="1.5708"
+      effort="40"
+      velocity="1000" />
+  </joint>
+  <link
+    name="fr_calf">
+    <inertial>
+      <origin
+        xyz="0.0948140635086356 -0.000614776009034035 -0.0165503017818016"
+        rpy="0 0 0" />
+      <mass
+        value="0.310621805212083" />
+      <inertia
+        ixx="4.08365237189535E-05"
+        ixy="-7.79868537659727E-07"
+        ixz="-1.65503809227098E-10"
+        iyy="0.00021330337430835"
+        iyz="2.68862310727803E-10"
+        izz="0.000227294886976432" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ASTRo/meshes/fr_calf.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ASTRo/meshes/fr_calf.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="fr_knee_pitch"
+    type="revolute">
+    <origin
+      xyz="0.22194 -0.00114 -0.061"
+      rpy="0 0 -0.0043525" />
+    <parent
+      link="fr_thigh" />
+    <child
+      link="fr_calf" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-2.3562"
+      upper="0.1"
+      effort="40"
+      velocity="1000" />
+  </joint>
+  <link
+    name="rl_hip">
+    <inertial>
+      <origin
+        xyz="0.0531763939958355 -0.0364198110380691 -0.036395249864784"
+        rpy="0 0 0" />
+      <mass
+        value="2.18233968386848" />
+      <inertia
+        ixx="0.00173291318723781"
+        ixy="6.12775165299124E-05"
+        ixz="-1.21635823008672E-05"
+        iyy="0.00206624802392487"
+        iyz="6.94100265308955E-07"
+        izz="0.00205394759437429" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ASTRo/meshes/rl_hip.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ASTRo/meshes/rl_hip.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rl_hip_yaw"
+    type="revolute">
+    <origin
+      xyz="-0.15121 0.15121 0"
+      rpy="0 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="rl_hip" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.5708"
+      upper="0.7854"
+      effort="40"
+      velocity="1000" />
+  </joint>
+  <link
+    name="rl_thigh">
+    <inertial>
+      <origin
+        xyz="0.0277376055025215 -2.89239417923803E-05 -0.0480163343184047"
+        rpy="0 0 0" />
+      <mass
+        value="1.48239439114501" />
+      <inertia
+        ixx="0.000879470709552469"
+        ixy="6.74033378943963E-09"
+        ixz="1.07507095507878E-05"
+        iyy="0.00114754151657931"
+        iyz="3.80142785229693E-08"
+        izz="0.00172276896468826" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ASTRo/meshes/rl_thigh.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ASTRo/meshes/rl_thigh.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rl_hip_pitch"
+    type="revolute">
+    <origin
+      xyz="0.13 -0.0755 -0.03875"
+      rpy="1.5708 0 0" />
+    <parent
+      link="rl_hip" />
+    <child
+      link="rl_thigh" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.5708"
+      upper="1.5708"
+      effort="40"
+      velocity="1000" />
+  </joint>
+  <link
+    name="rl_calf">
+    <inertial>
+      <origin
+        xyz="0.0948140624508792 0.000614775850863336 -0.0164496981749044"
+        rpy="0 0 0" />
+      <mass
+        value="0.310621800156452" />
+      <inertia
+        ixx="4.08365242898525E-05"
+        ixy="7.79868437361702E-07"
+        ixz="1.66215196374788E-10"
+        iyy="0.000213303367897618"
+        iyz="2.68800644674563E-10"
+        izz="0.000227294880780061" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ASTRo/meshes/rl_calf.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ASTRo/meshes/rl_calf.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rl_knee_pitch"
+    type="revolute">
+    <origin
+      xyz="0.22194 -0.00017398 -0.061"
+      rpy="0 0 0" />
+    <parent
+      link="rl_thigh" />
+    <child
+      link="rl_calf" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-2.3562"
+      upper="0.1"
+      effort="40"
+      velocity="1000" />
+  </joint>
+  <link
+    name="rr_hip">
+    <inertial>
+      <origin
+        xyz="0.0531583210571163 0.0366039141275338 -0.0363361635572398"
+        rpy="0 0 0" />
+      <mass
+        value="2.17455286863019" />
+      <inertia
+        ixx="0.00173280345342208"
+        ixy="-6.19129847878762E-05"
+        ixz="-1.2163943795192E-05"
+        iyy="0.00206600212782451"
+        iyz="6.9410469148802E-07"
+        izz="0.00205370170154332" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ASTRo/meshes/rr_hip.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ASTRo/meshes/rr_hip.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rr_hip_yaw"
+    type="revolute">
+    <origin
+      xyz="-0.15121 -0.15121 0"
+      rpy="0 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="rr_hip" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.7854"
+      upper="1.5708"
+      effort="40"
+      velocity="1000" />
+  </joint>
+  <link
+    name="rr_thigh">
+    <inertial>
+      <origin
+        xyz="0.0277376055953963 -2.89239103958838E-05 -0.0480163341374775"
+        rpy="0 0 0" />
+      <mass
+        value="1.48239438395037" />
+      <inertia
+        ixx="0.000879470708893672"
+        ixy="6.74027458555017E-09"
+        ixz="1.07507093818394E-05"
+        iyy="0.00114754151588376"
+        iyz="3.80143535091579E-08"
+        izz="0.00172276896466383" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ASTRo/meshes/rr_thigh.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ASTRo/meshes/rr_thigh.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rr_hip_pitch"
+    type="revolute">
+    <origin
+      xyz="0.13 0.0755 -0.03875"
+      rpy="-1.5708 0 0" />
+    <parent
+      link="rr_hip" />
+    <child
+      link="rr_thigh" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.5708"
+      upper="1.5708"
+      effort="40"
+      velocity="1000" />
+  </joint>
+  <link
+    name="rr_calf">
+    <inertial>
+      <origin
+        xyz="0.0948140623926746 0.000614775847208981 -0.0164496981767596"
+        rpy="0 0 0" />
+      <mass
+        value="0.310621799877947" />
+      <inertia
+        ixx="4.08365242945811E-05"
+        ixy="7.79868417963329E-07"
+        ixz="1.66211905736855E-10"
+        iyy="0.000213303367890616"
+        iyz="2.68796940480024E-10"
+        izz="0.00022729488077842" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ASTRo/meshes/rr_calf.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ASTRo/meshes/rr_calf.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rr_knee_pitch"
+    type="revolute">
+    <origin
+      xyz="0.22194 -0.00017398 -0.061"
+      rpy="0 0 0" />
+    <parent
+      link="rr_thigh" />
+    <child
+      link="rr_calf" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.1"
+      upper="2.3562"
+      effort="40"
+      velocity="1000" />
+  </joint>
+</robot>

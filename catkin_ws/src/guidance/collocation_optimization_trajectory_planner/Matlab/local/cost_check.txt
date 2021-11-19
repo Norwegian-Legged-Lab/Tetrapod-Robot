@@ -1,0 +1,7 @@
+**************************************************
+Checking cost value of QuadrupleStance:
+**************************************************
+        Cost 	        Value
+Cost: torque_QuadrupleStance 
+torque_QuadrupleStance 	 4.85068460E+01
+**************************************************

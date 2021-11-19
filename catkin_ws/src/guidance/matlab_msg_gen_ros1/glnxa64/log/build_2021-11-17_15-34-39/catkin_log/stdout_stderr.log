@@ -1,0 +1,178 @@
+ROS_DISTRO was set to 'noetic' before. Please make sure that the environment does not mix paths from different distributions.
+CMake Warning (dev) in CMakeLists.txt:
+  No project() command is present.  The top-level CMakeLists.txt file must
+  contain a literal, direct call to the project() command.  Add a line of
+  code such as
+
+    project(ProjectName)
+
+  near the top of the file, but after cmake_minimum_required().
+
+  CMake is pretending there is a "project(Project)" command on the first
+  line.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- The C compiler identification is GNU 9.3.0
+-- The CXX compiler identification is GNU 9.3.0
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Using CATKIN_DEVEL_PREFIX: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/devel
+-- Using CMAKE_PREFIX_PATH: /usr/local/MATLAB/R2021a/sys/ros1/glnxa64/ros1;/usr/local/MATLAB/R2021a/toolbox/ros/mlroscpp/custom_messages
+-- This workspace overlays: /usr/local/MATLAB/R2021a/sys/ros1/glnxa64/ros1;/usr/local/MATLAB/R2021a/toolbox/ros/mlroscpp/custom_messages
+-- Found PythonInterp: /home/melyso/.matlab/R2021a/ros1/glnxa64/venv/bin/python2 (found suitable version "2.7.18", minimum required is "2") 
+-- Using PYTHON_EXECUTABLE: /home/melyso/.matlab/R2021a/ros1/glnxa64/venv/bin/python2
+-- Using Debian Python package layout
+-- Found PY_em: /home/melyso/.matlab/R2021a/ros1/glnxa64/venv/lib/python2.7/site-packages/em.pyc  
+-- Using empy: /home/melyso/.matlab/R2021a/ros1/glnxa64/venv/lib/python2.7/site-packages/em.pyc
+-- Using CATKIN_ENABLE_TESTING: off
+-- catkin 0.7.17
+-- BUILD_SHARED_LIBS is on
+-- BUILD_SHARED_LIBS is on
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- ~~  traversing 1 packages in topological order:
+-- ~~  - collocation_optimization_trajectory_planner
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- +++ processing catkin package: 'collocation_optimization_trajectory_planner'
+-- ==> add_subdirectory(collocation_optimization_trajectory_planner)
+-- Disabling the following message generators: geneus;genlisp;gennodejs
+-- Using these message generators: gencpp;genpy
+-- collocation_optimization_trajectory_planner: 6 messages, 0 services
+-- Configuring done
+-- Generating done
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    Boost_NAMESPACE
+
+
+-- Build files have been written to: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/build
+[1/27] cd /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/build/collocation_optimization_trajectory_planner && /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/melyso/.matlab/R2021a/ros1/glnxa64/venv/bin/python2 /usr/local/MATLAB/R2021a/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py collocation_optimization_trajectory_planner /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/src/collocation_optimization_trajectory_planner/msg/states.msg std_msgs/Float64MultiArray:std_msgs/MultiArrayDimension:std_msgs/MultiArrayLayout
+[2/27] cd /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/build/collocation_optimization_trajectory_planner && /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/melyso/.matlab/R2021a/ros1/glnxa64/venv/bin/python2 /usr/local/MATLAB/R2021a/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py collocation_optimization_trajectory_planner /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/src/collocation_optimization_trajectory_planner/msg/foot_input.msg std_msgs/Float64MultiArray:std_msgs/MultiArrayDimension:std_msgs/MultiArrayLayout
+[3/27] cd /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/build/collocation_optimization_trajectory_planner && /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/melyso/.matlab/R2021a/ros1/glnxa64/venv/bin/python2 /usr/local/MATLAB/R2021a/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py collocation_optimization_trajectory_planner /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/src/collocation_optimization_trajectory_planner/msg/init_pos.msg
+[4/27] cd /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/build/collocation_optimization_trajectory_planner && /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/melyso/.matlab/R2021a/ros1/glnxa64/venv/bin/python2 /usr/local/MATLAB/R2021a/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py collocation_optimization_trajectory_planner /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/src/collocation_optimization_trajectory_planner/msg/inputs.msg std_msgs/Float64MultiArray:std_msgs/MultiArrayDimension:collocation_optimization_trajectory_planner/foot_input:std_msgs/MultiArrayLayout
+[5/27] cd /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/build/collocation_optimization_trajectory_planner && /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/melyso/.matlab/R2021a/ros1/glnxa64/venv/bin/python2 /usr/local/MATLAB/R2021a/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py collocation_optimization_trajectory_planner /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/src/collocation_optimization_trajectory_planner/msg/solveMpcRequest.msg collocation_optimization_trajectory_planner/init_pos
+[6/27] cd /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/build/collocation_optimization_trajectory_planner && /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/melyso/.matlab/R2021a/ros1/glnxa64/venv/bin/python2 /usr/local/MATLAB/R2021a/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py collocation_optimization_trajectory_planner /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/src/collocation_optimization_trajectory_planner/msg/solveMpcResponse.msg std_msgs/MultiArrayDimension:collocation_optimization_trajectory_planner/inputs:std_msgs/Float64MultiArray:collocation_optimization_trajectory_planner/states:collocation_optimization_trajectory_planner/foot_input:std_msgs/MultiArrayLayout
+[7/27] Generating C++ code from collocation_optimization_trajectory_planner/solveMpcResponse.msg
+[8/27] Generating C++ code from collocation_optimization_trajectory_planner/init_pos.msg
+[9/27] Generating C++ code from collocation_optimization_trajectory_planner/inputs.msg
+[10/27] Generating C++ code from collocation_optimization_trajectory_planner/states.msg
+[11/27] Generating C++ code from collocation_optimization_trajectory_planner/solveMpcRequest.msg
+[12/27] Generating C++ code from collocation_optimization_trajectory_planner/foot_input.msg
+[13/27] Generating Python from MSG collocation_optimization_trajectory_planner/init_pos
+[14/27] Generating Python from MSG collocation_optimization_trajectory_planner/states
+[15/27] Generating Python from MSG collocation_optimization_trajectory_planner/solveMpcRequest
+[16/27] Generating Python from MSG collocation_optimization_trajectory_planner/foot_input
+[17/27] Generating Python from MSG collocation_optimization_trajectory_planner/solveMpcResponse
+[18/27] Generating Python from MSG collocation_optimization_trajectory_planner/inputs
+[19/27] Generating Python msg __init__.py for collocation_optimization_trajectory_planner
+[20/27] Building CXX object collocation_optimization_trajectory_planner/CMakeFiles/collocation_optimization_trajectory_planner_matlab.dir/src/collocation_optimization_trajectory_planner_init_pos_message.cpp.o
+[21/27] Building CXX object collocation_optimization_trajectory_planner/CMakeFiles/collocation_optimization_trajectory_planner_matlab.dir/src/collocation_optimization_trajectory_planner_solveMpcRequest_message.cpp.o
+[22/27] Building CXX object collocation_optimization_trajectory_planner/CMakeFiles/collocation_optimization_trajectory_planner_matlab.dir/src/collocation_optimization_trajectory_planner_inputs_message.cpp.o
+[23/27] Building CXX object collocation_optimization_trajectory_planner/CMakeFiles/collocation_optimization_trajectory_planner_matlab.dir/src/collocation_optimization_trajectory_planner_states_message.cpp.o
+[24/27] Building CXX object collocation_optimization_trajectory_planner/CMakeFiles/collocation_optimization_trajectory_planner_matlab.dir/src/collocation_optimization_trajectory_planner_solveMpcResponse_message.cpp.o
+[25/27] Building CXX object collocation_optimization_trajectory_planner/CMakeFiles/collocation_optimization_trajectory_planner_matlab.dir/src/collocation_optimization_trajectory_planner_foot_input_message.cpp.o
+[26/27] Linking CXX shared library /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/devel/lib/libcollocation_optimization_trajectory_planner_matlab.so
+[26/27] Install the project...
+-- Install configuration: "Release"
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/_setup_util.py
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/env.sh
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/setup.bash
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/local_setup.bash
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/setup.sh
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/local_setup.sh
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/setup.zsh
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/local_setup.zsh
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/.rosinstall
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/share/collocation_optimization_trajectory_planner/msg/foot_input.msg
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/share/collocation_optimization_trajectory_planner/msg/init_pos.msg
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/share/collocation_optimization_trajectory_planner/msg/inputs.msg
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/share/collocation_optimization_trajectory_planner/msg/solveMpcRequest.msg
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/share/collocation_optimization_trajectory_planner/msg/solveMpcResponse.msg
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/share/collocation_optimization_trajectory_planner/msg/states.msg
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/share/collocation_optimization_trajectory_planner/cmake/collocation_optimization_trajectory_planner-msg-paths.cmake
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/include/collocation_optimization_trajectory_planner
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/include/collocation_optimization_trajectory_planner/init_pos.h
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/include/collocation_optimization_trajectory_planner/solveMpcRequest.h
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/include/collocation_optimization_trajectory_planner/foot_input.h
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/include/collocation_optimization_trajectory_planner/solveMpcResponse.h
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/include/collocation_optimization_trajectory_planner/inputs.h
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/include/collocation_optimization_trajectory_planner/states.h
+Listing /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/collocation_optimization_trajectory_planner ...
+Compiling /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/collocation_optimization_trajectory_planner/__init__.py ...
+Listing /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/collocation_optimization_trajectory_planner/msg ...
+Compiling /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/collocation_optimization_trajectory_planner/msg/__init__.py ...
+Compiling /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/collocation_optimization_trajectory_planner/msg/_foot_input.py ...
+Compiling /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/collocation_optimization_trajectory_planner/msg/_init_pos.py ...
+Compiling /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/collocation_optimization_trajectory_planner/msg/_inputs.py ...
+Compiling /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/collocation_optimization_trajectory_planner/msg/_solveMpcRequest.py ...
+Compiling /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/collocation_optimization_trajectory_planner/msg/_solveMpcResponse.py ...
+Compiling /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/collocation_optimization_trajectory_planner/msg/_states.py ...
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/collocation_optimization_trajectory_planner
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/collocation_optimization_trajectory_planner/msg
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/collocation_optimization_trajectory_planner/msg/_solveMpcResponse.py
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/collocation_optimization_trajectory_planner/msg/_foot_input.py
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/collocation_optimization_trajectory_planner/msg/_states.pyc
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/collocation_optimization_trajectory_planner/msg/_solveMpcRequest.py
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/collocation_optimization_trajectory_planner/msg/_inputs.pyc
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/collocation_optimization_trajectory_planner/msg/_states.py
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/collocation_optimization_trajectory_planner/msg/_solveMpcRequest.pyc
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/collocation_optimization_trajectory_planner/msg/_solveMpcResponse.pyc
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/collocation_optimization_trajectory_planner/msg/_foot_input.pyc
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/collocation_optimization_trajectory_planner/msg/_init_pos.pyc
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/collocation_optimization_trajectory_planner/msg/_init_pos.py
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/collocation_optimization_trajectory_planner/msg/_inputs.py
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/collocation_optimization_trajectory_planner/msg/__init__.py
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/collocation_optimization_trajectory_planner/msg/__init__.pyc
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/collocation_optimization_trajectory_planner/__init__.py
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/collocation_optimization_trajectory_planner/__init__.pyc
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/lib/pkgconfig/collocation_optimization_trajectory_planner.pc
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/share/collocation_optimization_trajectory_planner/cmake/collocation_optimization_trajectory_planner-msg-extras.cmake
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/share/collocation_optimization_trajectory_planner/cmake/collocation_optimization_trajectory_plannerConfig.cmake
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/share/collocation_optimization_trajectory_planner/cmake/collocation_optimization_trajectory_plannerConfig-version.cmake
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/share/collocation_optimization_trajectory_planner/package.xml
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/include
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/include/collocation_optimization_trajectory_planner
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/include/collocation_optimization_trajectory_planner/visibility_control.h
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/lib/libcollocation_optimization_trajectory_planner_matlab.so
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/m/
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/m//+ros
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+collocation_optimization_trajectory_planner
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+collocation_optimization_trajectory_planner/init_pos.m
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+collocation_optimization_trajectory_planner/foot_input.m
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+collocation_optimization_trajectory_planner/solveMpcRequest.m
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+collocation_optimization_trajectory_planner/solveMpcResponse.m
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+collocation_optimization_trajectory_planner/states.m
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+collocation_optimization_trajectory_planner/inputs.m
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+collocation_optimization_trajectory_planner
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+collocation_optimization_trajectory_planner/init_pos.m
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+collocation_optimization_trajectory_planner/foot_input.m
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+collocation_optimization_trajectory_planner/solveMpcRequest.m
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+collocation_optimization_trajectory_planner/solveMpcResponse.m
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+collocation_optimization_trajectory_planner/states.m
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+collocation_optimization_trajectory_planner/inputs.m
+Base path: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64
+Source space: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/src
+Build space: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/build
+Devel space: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/devel
+Install space: /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install
+Creating symlink "/home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/src/CMakeLists.txt" pointing to "/usr/local/MATLAB/R2021a/sys/ros1/glnxa64/ros1/share/catkin/cmake/toplevel.cmake"
+####
+#### Running command: "cmake /home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/src -DBoost_NAMESPACE=mwboost -DCATKIN_ENABLE_TESTING=off -DCMAKE_PREFIX_PATH=/usr/local/MATLAB/R2021a/sys/ros1/glnxa64/ros1;/usr/local/MATLAB/R2021a/toolbox/ros/mlroscpp/custom_messages -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS_RELEASE=-O0 -DCATKIN_DEVEL_PREFIX=/home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/devel -DCMAKE_INSTALL_PREFIX=/home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install -G Ninja" in "/home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/build"
+####
+####
+#### Running command: "ninja install install -j12 -l12" in "/home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/build"
+####

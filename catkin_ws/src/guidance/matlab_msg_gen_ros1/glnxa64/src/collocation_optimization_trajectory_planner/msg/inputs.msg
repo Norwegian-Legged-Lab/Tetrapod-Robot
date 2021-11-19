@@ -1,0 +1,4 @@
+collocation_optimization_trajectory_planner/foot_input fl
+collocation_optimization_trajectory_planner/foot_input fr
+collocation_optimization_trajectory_planner/foot_input rl
+collocation_optimization_trajectory_planner/foot_input rr
