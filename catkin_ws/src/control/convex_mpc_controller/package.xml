@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>collocation_optimization_trajectory_planner</name>
+  <name>convex_mpc_controller</name>
   <version>0.0.0</version>
-  <description>The collocation_optimization_trajectory_planner package</description>
+  <description>The convex_mpc_controller package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
@@ -19,7 +19,7 @@
   <!-- Url tags are optional, but multiple are allowed, one per tag -->
   <!-- Optional attribute type can be: website, bugtracker, or repository -->
   <!-- Example: -->
-  <!-- <url type="website">http://wiki.ros.org/collocation_optimization_trajectory_planner</url> -->
+  <!-- <url type="website">http://wiki.ros.org/convex_mpc_controller</url> -->
 
 
   <!-- Author tags are optional, multiple are allowed, one per tag -->
@@ -49,23 +49,27 @@
   <!-- Use doc_depend for packages you need only for building documentation: -->
   <!--   <doc_depend>doxygen</doc_depend> -->
   <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>pinocchio</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>rospy</build_depend>
   <build_depend>Eigen3</build_depend>
   <build_depend>drake</build_depend>
-  <build_depend>kinematics</build_depend>
-  <build_depend>roscpp</build_depend>
   <build_depend>std_msgs</build_depend>
+  <build_depend>message_generation</build_depend>
+  <build_depend>kinematics</build_depend>
   <build_export_depend>Eigen3</build_export_depend>
   <build_export_depend>drake</build_export_depend>
-  <build_export_depend>kinematics</build_export_depend>
-  <build_export_depend>roscpp</build_export_depend>
   <build_export_depend>std_msgs</build_export_depend>
-  <build_depend>message_generation</build_depend>
-  <exec_depend>Eigen3</exec_depend>
-  <exec_depend>drake</exec_depend>
+  <build_export_depend>pinocchio</build_export_depend>
+  <build_export_depend>roscpp</build_export_depend>
+  <build_export_depend>rospy</build_export_depend>
+  <build_export_depend>kinematics</build_export_depend>
+  <exec_depend>pinocchio</exec_depend>
   <exec_depend>roscpp</exec_depend>
-  <exec_depend>kinematics</exec_depend>
+  <exec_depend>rospy</exec_depend>
   <exec_depend>std_msgs</exec_depend>
   <exec_depend>message_runtime</exec_depend>
+  <exec_depend>kinematics</exec_depend>
 
 
   <!-- The export tag contains other, unspecified, tags -->

@@ -10,8 +10,10 @@ project(collocation_optimization_trajectory_planner)
 find_package(
   catkin REQUIRED COMPONENTS
   roscpp
+  rospy
   kinematics
   std_msgs
+  message_generation
 )
 
 find_package(ifopt REQUIRED)
@@ -57,11 +59,9 @@ find_package(Eigen3 REQUIRED)
 ##   * uncomment the generate_messages entry below
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
-## Generate messages in the 'msg' folder
+##Generate messages in the 'msg' folder
 # add_message_files(
 #   FILES
-#   Message1.msg
-#   Message2.msg
 # )
 
 ## Generate services in the 'srv' folder
@@ -81,7 +81,6 @@ find_package(Eigen3 REQUIRED)
 ## Generate added messages and services with any dependencies listed here
 # generate_messages(
 #   DEPENDENCIES
-#   std_msgs
 # )
 
 ################################################
@@ -118,7 +117,7 @@ catkin_package(
     ${EIGEN3_INCLUDE_DIR}
     ${CASADI_INCLUDE_DIR}
   LIBRARIES ${PROJECT_NAME}
-  CATKIN_DEPENDS roscpp kinematics std_msgs
+  CATKIN_DEPENDS roscpp kinematics std_msgs message_runtime
   #DEPENDS system_lib
 )
 
