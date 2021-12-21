@@ -1,0 +1,5 @@
+<launch>
+
+      <node pkg="convex_mpc_controller" type="test_solver_node" name="test_solver_node" output="screen"/>
+
+</launch>

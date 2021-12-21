@@ -1,0 +1,12 @@
+<launch>
+
+
+      <rosparam command="load" file="$(find convex_mpc_controller)/config/controller_parameters.yaml" ns="convex_mpc"/>
+      <rosparam command="load" file="$(find convex_mpc_controller)/config/solver_parameters.yaml" ns="convex_mpc"/>
+      <node pkg="convex_mpc_controller" type="convex_mpc_solver_node" name="convex_mpc_solver_node" output="screen" ns="convex_mpc">
+      </node>
+ 
+      <node pkg="convex_mpc_controller" type="convex_mpc_controller_node" name="convex_mpc_controller_node" output="screen" ns="convex_mpc">
+      </node>
+
+</launch>
