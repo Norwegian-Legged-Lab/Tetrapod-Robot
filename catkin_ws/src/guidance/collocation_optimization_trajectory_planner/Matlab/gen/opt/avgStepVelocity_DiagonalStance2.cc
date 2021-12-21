@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sun 14 Nov 2021 17:31:19 GMT+01:00
+ * Fri 10 Dec 2021 20:19:04 GMT+01:00
  */
 
 #ifdef MATLAB_MEX_FILE
@@ -48,14 +48,14 @@ inline double Csc(double x) { return 1/sin(x); }
  */
 static void output1(double *p_output1,const double *var1,const double *var2,const double *var3)
 {
-  double t7;
-  double t19;
-  double t25;
-  t7 = -1.*var1[0];
-  t19 = t7 + var1[1];
-  t25 = 1/t19;
-  p_output1[0]=t25*(-1.*var2[0] + var3[0]);
-  p_output1[1]=-1.*t25*var2[1] + var3[1];
+  double t63;
+  double t126;
+  double t150;
+  t63 = -1.*var1[0];
+  t126 = t63 + var1[1];
+  t150 = 1/t126;
+  p_output1[0]=t150*(-1.*var2[0] + var3[0]);
+  p_output1[1]=-1.*t150*var2[1] + var3[1];
 }
 
 
@@ -133,7 +133,7 @@ void mexFunction( int nlhs, mxArray *plhs[],
 
 #include "avgStepVelocity_DiagonalStance2.hh"
 
-namespace DiagonalStance2
+namespace TrotStance2
 {
 
 void avgStepVelocity_DiagonalStance2_raw(double *p_output1, const double *var1,const double *var2,const double *var3)

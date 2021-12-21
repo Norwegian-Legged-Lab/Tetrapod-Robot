@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sun 14 Nov 2021 17:31:19 GMT+01:00
+ * Fri 10 Dec 2021 20:19:05 GMT+01:00
  */
 
 #ifdef MATLAB_MEX_FILE
@@ -48,27 +48,27 @@ inline double Csc(double x) { return 1/sin(x); }
  */
 static void output1(double *p_output1,const double *var1,const double *var2,const double *var3)
 {
-  double t38;
-  double t48;
-  double t63;
-  double t83;
-  double t116;
-  double t207;
-  double t209;
-  t38 = -1.*var1[0];
-  t48 = t38 + var1[1];
-  t63 = Power(t48,-2);
-  t83 = -1.*var2[0];
-  t116 = var3[0] + t83;
-  t207 = 1/t48;
-  t209 = -1.*t207;
-  p_output1[0]=t116*t63;
-  p_output1[1]=-1.*t116*t63;
-  p_output1[2]=t209;
-  p_output1[3]=t207;
-  p_output1[4]=-1.*t63*var2[1];
-  p_output1[5]=t63*var2[1];
-  p_output1[6]=t209;
+  double t152;
+  double t179;
+  double t189;
+  double t191;
+  double t224;
+  double t236;
+  double t243;
+  t152 = -1.*var1[0];
+  t179 = t152 + var1[1];
+  t189 = Power(t179,-2);
+  t191 = -1.*var2[0];
+  t224 = var3[0] + t191;
+  t236 = 1/t179;
+  t243 = -1.*t236;
+  p_output1[0]=t189*t224;
+  p_output1[1]=-1.*t189*t224;
+  p_output1[2]=t243;
+  p_output1[3]=t236;
+  p_output1[4]=-1.*t189*var2[1];
+  p_output1[5]=t189*var2[1];
+  p_output1[6]=t243;
   p_output1[7]=1.;
 }
 
@@ -147,7 +147,7 @@ void mexFunction( int nlhs, mxArray *plhs[],
 
 #include "J_avgStepVelocity_DiagonalStance2.hh"
 
-namespace DiagonalStance2
+namespace TrotStance2
 {
 
 void J_avgStepVelocity_DiagonalStance2_raw(double *p_output1, const double *var1,const double *var2,const double *var3)

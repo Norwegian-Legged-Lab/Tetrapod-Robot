@@ -314,15 +314,15 @@ classdef mpc_solver
         end
         
         function msg = solFootInputToRosFootInput(obj, input)
-            msg = rosmessage('collocation_optimization_trajectory_planner/foot_input');
+            msg = rosmessage('convex_mpc_controller/foot_input');
             msg.Forces = mpc.encodeFloatMultiArray(input.forces);
             msg.StanceVectors = mpc.encodeFloatMultiArray(input.stance_vectors);
-            msg.StanceIndices = input.stance_indices.stance;
+            msg.StanceIndices = int32(input.stance_indices.stance);
             msg.DStanceIndices = input.stance_indices.d_stance;
         end
         
         function msg = solToRosMsg(obj, sol)
-            msg = rosmessage('collocation_optimization_trajectory_planner/solveMpcResponse');
+            msg = rosmessage('convex_mpc_controller/solveMpcResponse');
             msg.T = sol.t;
             msg.States.X = mpc.encodeFloatMultiArray(sol.states.x);
             msg.States.Dx = mpc.encodeFloatMultiArray(sol.states.dx);

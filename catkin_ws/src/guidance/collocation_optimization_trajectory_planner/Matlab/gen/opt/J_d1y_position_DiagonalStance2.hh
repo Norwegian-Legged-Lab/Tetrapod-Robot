@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sun 14 Nov 2021 17:30:55 GMT+01:00
+ * Fri 10 Dec 2021 20:18:33 GMT+01:00
  */
 
 #ifndef J_D1Y_POSITION_DIAGONALSTANCE2_HH
@@ -14,7 +14,7 @@
 #include "math2mat.hpp"
 #include "mdefs.hpp"
 
-namespace DiagonalStance2
+namespace TrotStance2
 {
 
   void J_d1y_position_DiagonalStance2_raw(double *p_output1, const double *var1,const double *var2,const double *var3,const double *var4,const double *var5,const double *var6,const double *var7);

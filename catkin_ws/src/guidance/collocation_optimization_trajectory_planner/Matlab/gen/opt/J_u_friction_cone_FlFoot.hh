@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sun 14 Nov 2021 17:32:28 GMT+01:00
+ * Fri 10 Dec 2021 20:18:25 GMT+01:00
  */
 
 #ifndef J_U_FRICTION_CONE_FLFOOT_HH
@@ -14,7 +14,7 @@
 #include "math2mat.hpp"
 #include "mdefs.hpp"
 
-namespace ParallelStance2
+namespace TrotStance2
 {
 
   void J_u_friction_cone_FlFoot_raw(double *p_output1, const double *var1,const double *var2);

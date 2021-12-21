@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sun 14 Nov 2021 17:26:51 GMT+01:00
+ * Fri 10 Dec 2021 20:15:52 GMT+01:00
  */
 
 #ifdef MATLAB_MEX_FILE
@@ -865,7 +865,7 @@ void mexFunction( int nlhs, mxArray *plhs[],
 
 #include "Js_MmatDx_ASTRo_urdf.hh"
 
-namespace DiagonalStance1
+namespace TrotStance1
 {
 
 void Js_MmatDx_ASTRo_urdf_raw(double *p_output1, const double *var1)

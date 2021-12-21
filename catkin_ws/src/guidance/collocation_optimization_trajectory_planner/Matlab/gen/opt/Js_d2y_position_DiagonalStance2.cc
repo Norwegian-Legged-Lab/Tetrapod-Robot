@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sun 14 Nov 2021 17:31:01 GMT+01:00
+ * Fri 10 Dec 2021 20:18:39 GMT+01:00
  */
 
 #ifdef MATLAB_MEX_FILE
@@ -645,7 +645,7 @@ void mexFunction( int nlhs, mxArray *plhs[],
 
 #include "Js_d2y_position_DiagonalStance2.hh"
 
-namespace DiagonalStance2
+namespace TrotStance2
 {
 
 void Js_d2y_position_DiagonalStance2_raw(double *p_output1, const double *var1)

@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sun 14 Nov 2021 17:31:07 GMT+01:00
+ * Fri 10 Dec 2021 20:18:47 GMT+01:00
  */
 
 #ifndef JS_OUTPUT_BOUNDARY_DIAGONALSTANCE2_HH
@@ -14,7 +14,7 @@
 #include "math2mat.hpp"
 #include "mdefs.hpp"
 
-namespace DiagonalStance2
+namespace TrotStance2
 {
 
   void Js_output_boundary_DiagonalStance2_raw(double *p_output1, const double *var1);

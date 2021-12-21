@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sun 14 Nov 2021 17:31:16 GMT+01:00
+ * Fri 10 Dec 2021 12:55:38 GMT+01:00
  */
 
 #ifdef MATLAB_MEX_FILE
@@ -183,7 +183,7 @@ void mexFunction( int nlhs, mxArray *plhs[],
 
 #include "Js_impact_velocity_FrFootDiagonalStance2.hh"
 
-namespace DiagonalStance2
+namespace TrotStance2
 {
 
 void Js_impact_velocity_FrFootDiagonalStance2_raw(double *p_output1, const double *var1)

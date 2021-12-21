@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sun 14 Nov 2021 17:30:50 GMT+01:00
+ * Fri 10 Dec 2021 20:18:27 GMT+01:00
  */
 
 #ifdef MATLAB_MEX_FILE
@@ -48,13 +48,13 @@ inline double Csc(double x) { return 1/sin(x); }
  */
 static void output1(double *p_output1,const double *var1,const double *var2)
 {
-  double t17;
-  t17 = 0.7071065623731627*var1[2]*var2[0];
+  double t16;
+  t16 = 0.7071065623731627*var1[2]*var2[0];
   p_output1[0]=var1[2];
-  p_output1[1]=t17 + var1[0];
-  p_output1[2]=t17 - 1.*var1[0];
-  p_output1[3]=t17 + var1[1];
-  p_output1[4]=t17 - 1.*var1[1];
+  p_output1[1]=t16 + var1[0];
+  p_output1[2]=t16 - 1.*var1[0];
+  p_output1[3]=t16 + var1[1];
+  p_output1[4]=t16 - 1.*var1[1];
 }
 
 
@@ -123,7 +123,7 @@ void mexFunction( int nlhs, mxArray *plhs[],
 
 #include "u_friction_cone_RrFoot.hh"
 
-namespace DiagonalStance2
+namespace TrotStance2
 {
 
 void u_friction_cone_RrFoot_raw(double *p_output1, const double *var1,const double *var2)

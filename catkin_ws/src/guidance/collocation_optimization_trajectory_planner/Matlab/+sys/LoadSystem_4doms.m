@@ -34,13 +34,13 @@ io_control = IOFeedback('IO');
 
 system = HybridSystem('ASTRo');
 
-system = addVertex(system, 'DiagonalStance1', 'Domain', diagonalStance1, 'Control', io_control);
+system = addVertex(system, 'DiagonalStance1', 'Domain', diagonalStance1);%, 'Control', io_control);
 
-system = addVertex(system, 'ParallelStance1', 'Domain', parallelStance1, 'Control', io_control);
+system = addVertex(system, 'ParallelStance1', 'Domain', parallelStance1);%, 'Control', io_control);
 
-system = addVertex(system, 'DiagonalStance2', 'Domain', diagonalStance2, 'Control', io_control);
+system = addVertex(system, 'DiagonalStance2', 'Domain', diagonalStance2);%, 'Control', io_control);
 
-system = addVertex(system, 'ParallelStance2', 'Domain', parallelStance2, 'Control', io_control);
+system = addVertex(system, 'ParallelStance2', 'Domain', parallelStance2);%, 'Control', io_control);
 
 
 srcs = {'DiagonalStance1', 'ParallelStance1', 'DiagonalStance2', 'ParallelStance2'};

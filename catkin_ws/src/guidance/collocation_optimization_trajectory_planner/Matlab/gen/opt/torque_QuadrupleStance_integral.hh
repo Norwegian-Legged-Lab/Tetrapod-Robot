@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sat 13 Nov 2021 17:50:59 GMT+01:00
+ * Wed 8 Dec 2021 22:32:26 GMT+01:00
  */
 
 #ifndef TORQUE_QUADRUPLESTANCE_INTEGRAL_HH

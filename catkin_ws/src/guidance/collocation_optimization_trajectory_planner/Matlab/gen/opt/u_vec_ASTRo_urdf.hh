@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sun 14 Nov 2021 17:26:32 GMT+01:00
+ * Fri 10 Dec 2021 20:15:33 GMT+01:00
  */
 
 #ifndef U_VEC_ASTRO_URDF_HH
@@ -14,7 +14,7 @@
 #include "math2mat.hpp"
 #include "mdefs.hpp"
 
-namespace DiagonalStance1
+namespace TrotStance1
 {
 
   void u_vec_ASTRo_urdf_raw(double *p_output1, const double *var1,const double *var2);

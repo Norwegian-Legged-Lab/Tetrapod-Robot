@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sun 14 Nov 2021 17:32:29 GMT+01:00
+ * Fri 10 Dec 2021 20:18:26 GMT+01:00
  */
 
 #ifdef MATLAB_MEX_FILE
@@ -127,7 +127,7 @@ void mexFunction( int nlhs, mxArray *plhs[],
 
 #include "Js_u_friction_cone_FlFoot.hh"
 
-namespace ParallelStance2
+namespace TrotStance2
 {
 
 void Js_u_friction_cone_FlFoot_raw(double *p_output1, const double *var1)

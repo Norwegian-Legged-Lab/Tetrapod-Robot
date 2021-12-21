@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sun 14 Nov 2021 17:31:14 GMT+01:00
+ * Fri 10 Dec 2021 20:18:55 GMT+01:00
  */
 
 #ifdef MATLAB_MEX_FILE
@@ -69,21 +69,21 @@ static void output1(double *p_output1,const double *var1)
   p_output1[16]=2;
   p_output1[17]=5;
   p_output1[18]=6;
-  p_output1[19]=7;
-  p_output1[20]=8;
-  p_output1[21]=9;
-  p_output1[22]=10;
-  p_output1[23]=11;
-  p_output1[24]=12;
+  p_output1[19]=13;
+  p_output1[20]=14;
+  p_output1[21]=15;
+  p_output1[22]=16;
+  p_output1[23]=17;
+  p_output1[24]=18;
   p_output1[25]=4;
   p_output1[26]=5;
   p_output1[27]=6;
-  p_output1[28]=7;
-  p_output1[29]=8;
-  p_output1[30]=9;
-  p_output1[31]=10;
-  p_output1[32]=11;
-  p_output1[33]=12;
+  p_output1[28]=13;
+  p_output1[29]=14;
+  p_output1[30]=15;
+  p_output1[31]=16;
+  p_output1[32]=17;
+  p_output1[33]=18;
 }
 
 
@@ -143,7 +143,7 @@ void mexFunction( int nlhs, mxArray *plhs[],
 
 #include "Js_step_distance_DiagonalStance2.hh"
 
-namespace DiagonalStance2
+namespace TrotStance2
 {
 
 void Js_step_distance_DiagonalStance2_raw(double *p_output1, const double *var1)

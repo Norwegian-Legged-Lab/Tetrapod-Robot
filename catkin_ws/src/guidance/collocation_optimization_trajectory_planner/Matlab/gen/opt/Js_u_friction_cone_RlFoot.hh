@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sun 14 Nov 2021 17:32:31 GMT+01:00
+ * Fri 10 Dec 2021 20:16:24 GMT+01:00
  */
 
 #ifndef JS_U_FRICTION_CONE_RLFOOT_HH
@@ -14,7 +14,7 @@
 #include "math2mat.hpp"
 #include "mdefs.hpp"
 
-namespace ParallelStance2
+namespace TrotStance1
 {
 
   void Js_u_friction_cone_RlFoot_raw(double *p_output1, const double *var1);

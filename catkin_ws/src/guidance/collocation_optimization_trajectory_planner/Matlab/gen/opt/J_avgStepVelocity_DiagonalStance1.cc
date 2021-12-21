@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sun 14 Nov 2021 17:27:48 GMT+01:00
+ * Wed 8 Dec 2021 23:10:22 GMT+01:00
  */
 
 #ifdef MATLAB_MEX_FILE
@@ -48,27 +48,27 @@ inline double Csc(double x) { return 1/sin(x); }
  */
 static void output1(double *p_output1,const double *var1,const double *var2,const double *var3)
 {
-  double t40;
-  double t41;
-  double t70;
-  double t73;
-  double t74;
-  double t120;
-  double t143;
-  t40 = -1.*var1[0];
-  t41 = t40 + var1[1];
-  t70 = Power(t41,-2);
-  t73 = -1.*var2[0];
-  t74 = var3[0] + t73;
-  t120 = 1/t41;
-  t143 = -1.*t120;
-  p_output1[0]=t70*t74;
-  p_output1[1]=-1.*t70*t74;
-  p_output1[2]=t143;
-  p_output1[3]=t120;
-  p_output1[4]=-1.*t70*var2[1];
-  p_output1[5]=t70*var2[1];
-  p_output1[6]=t143;
+  double t66;
+  double t102;
+  double t156;
+  double t186;
+  double t216;
+  double t311;
+  double t317;
+  t66 = -1.*var1[0];
+  t102 = t66 + var1[1];
+  t156 = Power(t102,-2);
+  t186 = -1.*var2[0];
+  t216 = var3[0] + t186;
+  t311 = 1/t102;
+  t317 = -1.*t311;
+  p_output1[0]=t156*t216;
+  p_output1[1]=-1.*t156*t216;
+  p_output1[2]=t317;
+  p_output1[3]=t311;
+  p_output1[4]=-1.*t156*var2[1];
+  p_output1[5]=t156*var2[1];
+  p_output1[6]=t317;
   p_output1[7]=1.;
 }
 

@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sun 14 Nov 2021 17:33:40 GMT+01:00
+ * Wed 8 Dec 2021 23:16:40 GMT+01:00
  */
 
 #ifndef J_DXDISCRETEMAPDIAGONALIMPACT2_HH

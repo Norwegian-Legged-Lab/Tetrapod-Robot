@@ -30,4 +30,4 @@ function foot_clearance(nlp, bounds, ascending_frame, descending_frame)
         bounds.constrBounds.foot_clearance.lb,...
         bounds.constrBounds.foot_clearance.ub, 'NonLinear');
     addNodeConstraint(nlp, descending_constraint_func, {'x'}, 'last', 0, 0, 'NonLinear');
-    end
+end

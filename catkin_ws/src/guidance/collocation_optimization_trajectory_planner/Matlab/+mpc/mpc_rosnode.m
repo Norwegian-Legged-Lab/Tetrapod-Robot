@@ -9,16 +9,19 @@ urdf = fullfile(cur, 'urdf', 'ASTRo.urdf');
 
 robot = sys.LoadModel(urdf, load_path, delay_set);
 %%
-base_link = robot.Links(robot.getLinkIndices('base_link'));
+%base_link = robot.Links(robot.getLinkIndices('base_link'));
 
-m = base_link.Mass;
-
-I_b = base_link.Inertia;
+%m = base_link.Mass;
+m = 8.7385;
+%I_b = base_link.Inertia;
+I_b = [0.0328, 0, 0;
+        0, 0.0328, 0;
+        0, 0, 0.0617];
 
 mu = 0.3;
 
-r_body_to_fl_ref = robot.Joints(robot.getJointIndices('fl_hip_yaw')).Offset;
-
+%r_body_to_fl_ref = robot.Joints(robot.getJointIndices('fl_hip_yaw')).Offset;
+r_body_to_fl_ref = [0.4512; 0.1512; 0];
 r_body_to_fl_ref(1) = r_body_to_fl_ref(1) + 0.2;
 
 delta_t = 0.05;
@@ -43,15 +46,15 @@ catch exp   % Error from rosnode list
     rosinit  % only if error: rosinit
 end
 %%
-addpath('/home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/m');
+addpath('/home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/m');
 savepath;
 rehash toolboxcache
 
 
 %%
-mpcPub = rospublisher('/mpc/response_channel', 'collocation_optimization_trajectory_planner/solveMpcResponse');
+mpcPub = rospublisher('/mpc/response_channel', 'convex_mpc_controller/solveMpcResponse', 1);
 
-mpcSub = rossubscriber('/mpc/request_channel', 'collocation_optimization_trajectory_planner/solveMpcRequest', @(src, msg) calculation_callback(src, msg, mpcPub, solver), 'BufferSize', 1);
+mpcSub = rossubscriber('/mpc/request_channel', 'convex_mpc_controller/solveMpcRequest', @(src, msg) calculation_callback(src, msg, mpcPub, solver), 'BufferSize', 1);
 
 r = rosrate(200);
 t = tic;

@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sat 13 Nov 2021 18:01:48 GMT+01:00
+ * Fri 10 Dec 2021 23:17:54 GMT+01:00
  */
 
 #ifndef FRFOOT_SPHERE_CENTER_HH

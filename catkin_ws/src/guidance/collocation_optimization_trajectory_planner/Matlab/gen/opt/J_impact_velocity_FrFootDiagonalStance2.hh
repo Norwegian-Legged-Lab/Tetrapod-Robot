@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sun 14 Nov 2021 17:31:15 GMT+01:00
+ * Fri 10 Dec 2021 12:55:37 GMT+01:00
  */
 
 #ifndef J_IMPACT_VELOCITY_FRFOOTDIAGONALSTANCE2_HH
@@ -14,7 +14,7 @@
 #include "math2mat.hpp"
 #include "mdefs.hpp"
 
-namespace DiagonalStance2
+namespace TrotStance2
 {
 
   void J_impact_velocity_FrFootDiagonalStance2_raw(double *p_output1, const double *var1,const double *var2);

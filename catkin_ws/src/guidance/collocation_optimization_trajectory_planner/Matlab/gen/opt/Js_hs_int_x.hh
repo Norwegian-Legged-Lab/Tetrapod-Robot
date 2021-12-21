@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sun 14 Nov 2021 17:32:02 GMT+01:00
+ * Fri 10 Dec 2021 20:17:55 GMT+01:00
  */
 
 #ifndef JS_HS_INT_X_HH
@@ -14,7 +14,7 @@
 #include "math2mat.hpp"
 #include "mdefs.hpp"
 
-namespace ParallelStance2
+namespace TrotStance2
 {
 
   void Js_hs_int_x_raw(double *p_output1, const double *var1);

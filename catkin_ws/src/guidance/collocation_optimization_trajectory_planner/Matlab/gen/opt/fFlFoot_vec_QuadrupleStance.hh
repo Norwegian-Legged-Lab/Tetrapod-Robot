@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sat 13 Nov 2021 17:51:12 GMT+01:00
+ * Wed 8 Dec 2021 22:32:39 GMT+01:00
  */
 
 #ifndef FFLFOOT_VEC_QUADRUPLESTANCE_HH

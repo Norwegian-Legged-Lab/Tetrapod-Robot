@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sat 13 Nov 2021 17:52:32 GMT+01:00
+ * Wed 8 Dec 2021 22:33:57 GMT+01:00
  */
 
 #ifndef J_YAW_QUADRUPLESTANCE_HH

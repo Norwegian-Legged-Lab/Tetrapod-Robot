@@ -7,7 +7,7 @@ catch exp   % Error from rosnode list
     rosinit  % only if error: rosinit
 end
 %%
-addpath('/home/melyso/Tetrapod-Robot/catkin_ws/src/guidance/matlab_msg_gen_ros1/glnxa64/install/m');
+addpath('/home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/m');
 savepath;
 rehash toolboxcache
 %%
@@ -17,16 +17,17 @@ sol = handle_value;
 
 simCoordSub = rossubscriber('/my_robot/gen_coord', 'std_msgs/Float64MultiArray', @(src, msg) genCoordCallback(src, msg, coord), "BufferSize", 1);
 simVelSub = rossubscriber('/my_robot/gen_vel', 'std_msgs/Float64MultiArray', @(src, msg) genCoordCallback(src, msg, vel), "BufferSize", 1);
-mpcSub = rossubscriber('/mpc/response_channel', 'collocation_optimization_trajectory_planner/solveMpcResponse', @(src, msg) mpcCallback(src, msg, sol), "BufferSize", 1);
-mpcPub = rospublisher('/mpc/request_channel', 'collocation_optimization_trajectory_planner/solveMpcRequest');
+mpcSub = rossubscriber('/mpc/response_channel', 'convex_mpc_controller/solveMpcResponse', @(src, msg) mpcCallback(src, msg, sol), "BufferSize", 1);
+mpcPub = rospublisher('/mpc/request_channel', 'convex_mpc_controller/solveMpcRequest');
 triggerSub = rossubscriber('trigger', 'std_msgs/Bool', @(src, msg) triggerCallback(src, msg, mpcPub, coord, vel), "BufferSize", 1);
+
 
 r = rosrate(100);
 
 while true
     waitfor(r);
 end
-    
+
 function genCoordCallback(src, msg, coord)
     coord.data = msg.Data;
 end

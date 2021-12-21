@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sat 13 Nov 2021 17:51:43 GMT+01:00
+ * Wed 8 Dec 2021 22:33:09 GMT+01:00
  */
 
 #ifndef J_H_FLFOOT_QUADRUPLESTANCE_HH

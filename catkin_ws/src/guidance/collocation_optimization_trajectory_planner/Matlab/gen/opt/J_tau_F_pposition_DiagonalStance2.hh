@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sun 14 Nov 2021 17:31:04 GMT+01:00
+ * Fri 10 Dec 2021 20:18:44 GMT+01:00
  */
 
 #ifndef J_TAU_F_PPOSITION_DIAGONALSTANCE2_HH
@@ -14,7 +14,7 @@
 #include "math2mat.hpp"
 #include "mdefs.hpp"
 
-namespace DiagonalStance2
+namespace TrotStance2
 {
 
   void J_tau_F_pposition_DiagonalStance2_raw(double *p_output1, const double *var1,const double *var2);

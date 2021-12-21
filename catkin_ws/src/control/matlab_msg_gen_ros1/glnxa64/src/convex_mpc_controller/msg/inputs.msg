@@ -1,0 +1,4 @@
+convex_mpc_controller/foot_input fl
+convex_mpc_controller/foot_input fr
+convex_mpc_controller/foot_input rl
+convex_mpc_controller/foot_input rr
