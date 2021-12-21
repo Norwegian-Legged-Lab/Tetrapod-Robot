@@ -57,6 +57,8 @@
   <build_depend>std_msgs</build_depend>
   <build_depend>message_generation</build_depend>
   <build_depend>kinematics</build_depend>
+  <build_depend>controller</build_depend>
+  <build_depend>hierarchical_optimization_controller</build_depend>
   <build_export_depend>Eigen3</build_export_depend>
   <build_export_depend>drake</build_export_depend>
   <build_export_depend>std_msgs</build_export_depend>
@@ -64,12 +66,16 @@
   <build_export_depend>roscpp</build_export_depend>
   <build_export_depend>rospy</build_export_depend>
   <build_export_depend>kinematics</build_export_depend>
+  <build_export_depend>controller</build_export_depend>
+  <build_export_depend>hierarchical_optimization_controller</build_export_depend>
   <exec_depend>pinocchio</exec_depend>
   <exec_depend>roscpp</exec_depend>
   <exec_depend>rospy</exec_depend>
   <exec_depend>std_msgs</exec_depend>
   <exec_depend>message_runtime</exec_depend>
   <exec_depend>kinematics</exec_depend>
+  <exec_depend>controller</exec_depend>
+  <exec_depend>hierarchical_optimization_controller</exec_depend>
 
 
   <!-- The export tag contains other, unspecified, tags -->

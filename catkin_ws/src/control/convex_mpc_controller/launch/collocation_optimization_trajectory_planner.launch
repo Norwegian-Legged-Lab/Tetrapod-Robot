@@ -1,5 +1,0 @@
-<launch>
-
-      <node pkg="convex_mpc_controller" type="convex_mpc_controller_node" name="convex_mpc_controller_node" output="screen"/>
-
-</launch>

@@ -13,6 +13,8 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   message_generation
   kinematics
+  controller
+  hierarchical_optimization_controller
   )
 
 
@@ -115,7 +117,7 @@ catkin_package(
   INCLUDE_DIRS include
   ${EIGEN3_INCLUDE_DIR}
   LIBRARIES ${PROJECT_NAME}
-  CATKIN_DEPENDS roscpp rospy std_msgs message_runtime kinematics
+  CATKIN_DEPENDS roscpp rospy std_msgs message_runtime kinematics controller hierarchical_optimization_controller
   DEPENDS drake pinocchio
 )
 
@@ -144,10 +146,26 @@ include_directories(
 # Declare a C++ executable
 # With catkin_make all packages are built within a single CMake context
 # The recommended prefix ensures that target names across packages don't collide
+add_executable(convex_mpc_solver_node
+  src/convex_mpc_solver_node.cpp
+  src/convex_mpc_solver.cpp
+  src/stance.cpp
+  src/local_eigen_extensions.cpp)
+
+  add_executable(test_solver_node
+  src/mpc_solver_test.cpp
+  src/convex_mpc_solver.cpp
+  src/stance.cpp
+  src/local_eigen_extensions.cpp)
+
 add_executable(${PROJECT_NAME}_node
   src/convex_mpc_controller_node.cpp
+  src/convex_mpc_controller.cpp
   src/convex_mpc_solver.cpp
-  src/stance.cpp)
+  src/stance.cpp
+  src/contact_detector.cpp
+  src/swing_controller.cpp
+  src/local_eigen_extensions.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -161,6 +179,16 @@ add_executable(${PROJECT_NAME}_node
 
 # Specify libraries to link a library or executable target against
  target_link_libraries(${PROJECT_NAME}_node
+   ${catkin_LIBRARIES}
+   drake::drake
+   )
+   
+   target_link_libraries(convex_mpc_solver_node
+   ${catkin_LIBRARIES}
+   drake::drake
+ )
+
+ target_link_libraries(test_solver_node
    ${catkin_LIBRARIES}
    drake::drake
  )
