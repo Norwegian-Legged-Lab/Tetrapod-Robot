@@ -11,11 +11,11 @@ VectorXd Arange(const double &low, const double &high, const double &delta_t);
 }
 }
 
-namespace ConvexMpcController{
+namespace ConvexMpc{
 
 enum FootType {fl, fr, rl, rr};
 
-enum GaitType {Amble, Trot, FlyingTrot, Bound, Gallop};
+enum GaitType {Amble, Trot, FlyingTrot, Bound, Gallop, Stand};
 
 
 struct LegStanceInfo {
@@ -41,7 +41,13 @@ struct LegStanceIndices{
 using StanceInfo = Eigen::Array<LegStanceInfo, 4, 1>;
 using StanceIndices = Eigen::Array<LegStanceIndices, 4, 1>;
 
+bool isStance(const double &tau, const LegStanceInfo &info);
+
 StanceInfo getStanceInfo(GaitType gait_type);
 
 StanceIndices getStanceIndices(StanceInfo stance_info, double t0, double T_sim, double T_gait, double delta_t);
-} //ConvexMpcController
+
+StanceIndices getStanceIndices(StanceInfo stance_info, double t0, double T_sim, double T_gait, double delta_t, Eigen::Array4i contact_state);
+
+Eigen::Vector3d getNominalTranslationBaseToFoot(const Eigen::Vector3d &r_b_to_fl_ref, FootType foot);
+} //ConvexMpc
