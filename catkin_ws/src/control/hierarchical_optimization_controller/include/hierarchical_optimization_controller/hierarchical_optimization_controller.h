@@ -60,19 +60,12 @@
 #include <drake/solvers/scs_solver.h>
 #include <drake/solvers/snopt_solver.h>
 
+//Custom includes
+#include<hierarchical_optimization_controller/task.h>
+
 /// \brief A class for hierarchical optimization control
 class HierarchicalOptimizationControl
 {
-    /// \brief Task struct
-    public: struct Task {
-        bool has_eq_constraint = false;     ///< Bool indicating whether the task has a linear equality constraint.
-        bool has_ineq_constraint = false;   ///< Bool indicating whether the task has a linear inequality constraint.
-        Eigen::MatrixXd A_eq;               ///< Linear equality constraint matrix A.
-        Eigen::VectorXd b_eq;               ///< Linear equality constraint vector b.             
-        Eigen::MatrixXd A_ineq;             ///< Linear inequality constraint matrix A.
-        Eigen::VectorXd b_ineq;             ///< Linear inequality constraint vector b.
-    };
-
     /// \brief Drake Solver type enumerator
     public: enum SolverType { OSQP = 1, ECQP = 2, CLP = 3, SCS = 4, SNOPT = 5, UNSPECIFIED};
 
@@ -93,6 +86,35 @@ class HierarchicalOptimizationControl
 
     // TODO Remove
     public: void HeightRollYawTest();
+
+    public: Eigen::Matrix<double, 12, 1> ComputeTorque(const Eigen::Vector3d &_desired_base_pos,
+                                            const Eigen::Vector3d &_desired_base_vel,
+                                            const Eigen::Vector3d &_desired_base_acc,
+                                            const Eigen::Vector3d &_desired_base_ori,
+                                            const Eigen::Vector3d &_desired_base_omega,
+                                            const Eigen::Vector3d &_desired_base_alpha,
+                                            const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_pos,
+                                            const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_vel,
+                                            const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_acc,
+                                            const int (&_contact_state)[4]);
+
+    public: Eigen::Matrix<double, 12, 1> ComputeTorque(const Eigen::Vector3d &_desired_base_pos,
+                                            const Eigen::Vector3d &_desired_base_vel,
+                                            const Eigen::Vector3d &_desired_base_acc,
+                                            const Eigen::Vector3d &_desired_base_ori,
+                                            const Eigen::Vector3d &_desired_base_omega,
+                                            const Eigen::Vector3d &_desired_base_alpha,
+                                            const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_pos,
+                                            const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_vel,
+                                            const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_acc,
+                                            const Eigen::Array4i &_contact_states);
+
+    public: Eigen::Matrix<double, 12, 1> ComputeStandingTorque(const Eigen::Vector3d &_desired_base_pos,
+                                            const Eigen::Vector3d &_desired_base_vel,
+                                            const Eigen::Vector3d &_desired_base_acc,
+                                            const Eigen::Vector3d &_desired_base_ori,
+                                            const Eigen::Vector3d &_desired_base_omega,
+                                            const Eigen::Vector3d &_desired_base_alpha);
 
     /// \brief The HierarchicalOptimization function finds
     /// the optimal joint torques for a desired motion plan.
@@ -117,6 +139,8 @@ class HierarchicalOptimizationControl
                                                                   const Eigen::Matrix<double, 3, 1> &_desired_base_vel,
                                                                   const Eigen::Matrix<double, 3, 1> &_desired_base_acc,
                                                                   const Eigen::Matrix<double, 3, 1> &_desired_base_ori,
+                                                                  const Eigen::Matrix<double, 3, 1> &_desired_base_omega,
+                                                                  const Eigen::Matrix<double, 3, 1> &_desired_base_alpha,
                                                                   const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_pos,
                                                                   const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_vel,
                                                                   const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_acc,
@@ -124,7 +148,23 @@ class HierarchicalOptimizationControl
                                                                   const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_f_vel,
                                                                   const Eigen::Matrix<double, 18, 1> &_q,
                                                                   const Eigen::Matrix<double, 18, 1> &_u,
-                                                                  const int &_v = 0); 
+                                                                  const int (&_contact_state)[4],
+                                                                  const int &_v = 0);
+
+    public: Eigen::Matrix<double, 12, 1> HierarchicalOptimization(const Eigen::Matrix<double, 3, 1> &_desired_base_pos,
+                                                                                       const Eigen::Matrix<double, 3, 1> &_desired_base_vel,
+                                                                                       const Eigen::Matrix<double, 3, 1> &_desired_base_acc,
+                                                                                       const Eigen::Matrix<double, 3, 1> &_desired_base_ori,
+                                                                                       const Eigen::Matrix<double, 3, 1> &_desired_base_omega,
+                                                                                       const Eigen::Matrix<double, 3, 1> &_desired_base_alpha,
+                                                                                       const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_pos,
+                                                                                       const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_vel,
+                                                                                       const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_acc,
+                                                                                       const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_f_pos,
+                                                                                       const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_f_vel,
+                                                                                       const Eigen::Matrix<double, 18, 1> &_q,
+                                                                                       const Eigen::Matrix<double, 18, 1> &_u,
+                                                                                       const int &_v = 0);
 
     /// \brief The HierarchicalQPOptimization function finds the 
     /// optimal solution for a set of tasks in a strictly
@@ -142,7 +182,7 @@ class HierarchicalOptimizationControl
     /// \return Returns the optimal solution in a strict prioritized
     /// manner given a set of tasks. 
     public: Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalQPOptimization(const int &_state_dim,
-                                                                                const std::vector<Task> &_tasks,
+                                                                                const std::vector<TaskGenerator::Task> &_tasks,
                                                                                 const SolverType &_solver = SolverType::OSQP,
                                                                                 const int &_v = 0);
 

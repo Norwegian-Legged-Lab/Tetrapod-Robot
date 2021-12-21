@@ -56,6 +56,104 @@ HierarchicalOptimizationControl::~HierarchicalOptimizationControl()
     this->rosPublishQueueThread.join();
 }
 
+Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::ComputeTorque(const Eigen::Vector3d &_desired_base_pos,
+                                            const Eigen::Vector3d &_desired_base_vel,
+                                            const Eigen::Vector3d &_desired_base_acc,
+                                            const Eigen::Vector3d &_desired_base_ori,
+                                            const Eigen::Vector3d &_desired_base_omega,
+                                            const Eigen::Vector3d &_desired_base_alpha,
+                                            const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_pos,
+                                            const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_vel,
+                                            const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_acc,
+                                            const int (&_contact_state)[4])
+{
+    Eigen::Matrix<double, 12, 1> desired_tau;
+
+    auto start = std::chrono::steady_clock::now();
+
+    desired_tau = this->HierarchicalOptimization(_desired_base_pos,
+                                                _desired_base_vel,
+                                                _desired_base_acc,
+                                                _desired_base_ori,
+                                                _desired_base_omega,
+                                                _desired_base_alpha,
+                                                _desired_f_pos,
+                                                _desired_f_vel,
+                                                _desired_f_acc,
+                                                this->fPos,
+                                                this->fVel,
+                                                this->genCoord,
+                                                this->genVel,
+                                                _contact_state,
+                                                0);
+
+    auto end = std::chrono::steady_clock::now();
+
+    std::chrono::duration<double, std::micro> diff = end - start;
+
+    ROS_INFO_STREAM("HO run-time: " << diff.count() << " microseconds. \n");
+
+    return desired_tau;
+}
+
+Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::ComputeTorque(const Eigen::Vector3d &_desired_base_pos,
+                                            const Eigen::Vector3d &_desired_base_vel,
+                                            const Eigen::Vector3d &_desired_base_acc,
+                                            const Eigen::Vector3d &_desired_base_ori,
+                                            const Eigen::Vector3d &_desired_base_omega,
+                                            const Eigen::Vector3d &_desired_base_alpha,
+                                            const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_pos,
+                                            const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_vel,
+                                            const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_acc,
+                                            const Eigen::Array4i &_contact_state)
+{
+    int contact_state_c_arr[4];
+
+    Eigen::Array4i::Map(contact_state_c_arr) = _contact_state;
+
+    return ComputeTorque(_desired_base_pos,
+                        _desired_base_vel,
+                        _desired_base_acc,
+                        _desired_base_ori,
+                        _desired_base_omega,
+                        _desired_base_alpha,
+                        _desired_f_pos,
+                        _desired_f_vel,
+                        _desired_f_acc,
+                        contact_state_c_arr);
+}
+Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::ComputeStandingTorque(const Eigen::Vector3d &_desired_base_pos,
+                                            const Eigen::Vector3d &_desired_base_vel,
+                                            const Eigen::Vector3d &_desired_base_acc,
+                                            const Eigen::Vector3d &_desired_base_ori,
+                                            const Eigen::Vector3d &_desired_base_omega,
+                                            const Eigen::Vector3d &_desired_base_alpha)
+{
+    Eigen::Matrix<Eigen::Vector3d, 4, 1> desired_f_pos;
+    Eigen::Matrix<Eigen::Vector3d, 4, 1> desired_f_vel;
+    Eigen::Matrix<Eigen::Vector3d, 4, 1> desired_f_acc;
+    Eigen::Matrix<double, 12, 1> desired_tau;
+
+    desired_f_pos = this->fPos;
+
+    for(int i = 0; i < 4; ++i){
+        desired_f_vel(i).setZero();
+        desired_f_acc(i).setZero();
+    }
+
+    desired_tau = ComputeTorque(_desired_base_pos,
+                                _desired_base_vel,
+                                _desired_base_acc,
+                                _desired_base_ori,
+                                _desired_base_omega,
+                                _desired_base_alpha,
+                                desired_f_pos,
+                                desired_f_vel,
+                                desired_f_acc,
+                                this->contactState);
+
+    return desired_tau;
+}
 // TODO remove this
 void HierarchicalOptimizationControl::StaticTorqueTest()
 {
@@ -106,6 +204,8 @@ void HierarchicalOptimizationControl::StaticTorqueTest()
                                                      desired_base_vel,
                                                      desired_base_acc,
                                                      desired_base_ori,
+                                                     Eigen::Vector3d::Zero(),
+                                                     Eigen::Vector3d::Zero(),
                                                      desired_f_pos,
                                                      desired_f_vel,
                                                      desired_f_acc,
@@ -216,6 +316,8 @@ void HierarchicalOptimizationControl::HeightRollYawTest()
                                                      desired_base_vel,
                                                      desired_base_acc,
                                                      desired_base_ori,
+                                                     Eigen::Vector3d::Zero(),
+                                                     Eigen::Vector3d::Zero(),
                                                      desired_f_pos,
                                                      desired_f_vel,
                                                      desired_f_acc,
@@ -267,6 +369,8 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
                                                                                        const Eigen::Matrix<double, 3, 1> &_desired_base_vel,
                                                                                        const Eigen::Matrix<double, 3, 1> &_desired_base_acc,
                                                                                        const Eigen::Matrix<double, 3, 1> &_desired_base_ori,
+                                                                                       const Eigen::Matrix<double, 3, 1> &_desired_base_omega,
+                                                                                       const Eigen::Matrix<double, 3, 1> &_desired_base_alpha,
                                                                                        const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_pos,
                                                                                        const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_vel,
                                                                                        const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_acc,
@@ -274,7 +378,8 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
                                                                                        const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_f_vel,
                                                                                        const Eigen::Matrix<double, 18, 1> &_q,
                                                                                        const Eigen::Matrix<double, 18, 1> &_u,
-                                                                                       const int &_v) 
+                                                                                       const int (&_contact_state)[4],
+                                                                                       const int &_v)
 {
     //*************************************************************************************
     // Declarations
@@ -288,14 +393,14 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
 
     // Tasks used to formulate the hierarchical optimization
     // problem
-    Task t_eom;     // Task for the equations of motion
-    Task t_cmc;     // Task for the contact motion constraint
-    Task t_cftl;    // Task for the contact force and torque limits
-    Task t_mt;      // Task for the motion tracking of the floating base and swing legs
-    Task t_pt;      // Task for posture tracking, for a nominal posture
-    Task t_cfm;     // Task for the contact force minimization
+    TaskGenerator::Task t_eom;     // Task for the equations of motion
+    TaskGenerator::Task t_cmc;     // Task for the contact motion constraint
+    TaskGenerator::Task t_cftl;    // Task for the contact force and torque limits
+    TaskGenerator::Task t_mt;      // Task for the motion tracking of the floating base and swing legs
+    TaskGenerator::Task t_pt;      // Task for posture tracking, for a nominal posture
+    TaskGenerator::Task t_cfm;     // Task for the contact force minimization
 
-    std::vector<Task> tasks; // Set of tasks
+    std::vector<TaskGenerator::Task> tasks; // Set of tasks
 
     // Kinematic and dynamic matrices and terms used to
     // enforce constraints.
@@ -303,33 +408,6 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     Eigen::Matrix<double, 18, 1> b;                       // 18x1 Coriolis and centrifugal terms
     Eigen::Matrix<double, 18, 1> g;                       // 18x1 Gravitational terms
     Eigen::Matrix<double, Eigen::Dynamic, 18> J_c;        // (3*n_c)x18 Contact Jacobian
-    Eigen::Matrix<double, Eigen::Dynamic, 18> dot_J_c;    // (3*n_c)x18 Time derivative of the Contact Jacobian
-
-    // Matrices and parameters used to enfore motion tracking
-    Eigen::Matrix<double, 3, 18> J_P_fb;                   // 3x18 Floating base Translation Jacobian
-    Eigen::Matrix<double, 3, 18> J_R_fb;                   // 3x18 Floating base Rotation Jacobian
-    Eigen::Matrix<double, 3, 18> J_P_fl;                   // 3x18 Front left foot Translation Jacobian
-    Eigen::Matrix<double, 3, 18> J_P_fr;                   // 3x18 Front right foot Translation Jacobian
-    Eigen::Matrix<double, 3, 18> J_P_rl;                   // 3x18 Rear left foot Translation Jacobian
-    Eigen::Matrix<double, 3, 18> J_P_rr;                   // 3x18 Rear right foot Translation Jacobian
-
-    Eigen::Matrix<double, 3, 18> dot_J_P_fb;               // 3x18 Time derivative of the Floating base Translation Jacobian
-    Eigen::Matrix<double, 3, 18> dot_J_R_fb;               // 3x18 Time derivative of the Floating base Rotation Jacobian
-    Eigen::Matrix<double, 3, 18> dot_J_P_fl;               // 3x18 Time derivative of the Front left foot Translation Jacobian
-    Eigen::Matrix<double, 3, 18> dot_J_P_fr;               // 3x18 Time derivative of the Front right foot Translation Jacobian
-    Eigen::Matrix<double, 3, 18> dot_J_P_rl;               // 3x18 Time derivative of the Rear left foot Translation Jacobian
-    Eigen::Matrix<double, 3, 18> dot_J_P_rr;               // 3x18 Time derivative of the Rear right foot Translation Jacobian
-
-    // Terms used to enforce posture tracking
-    Eigen::Matrix<double, 12, 1> q_r_nom;                  // 12x1 Nominal posture configuration
-
-    // Terms used to enforce contact force and torque limits
-    Eigen::Vector3d h;                                    // 3x1 Heading direction of the control frame expressed in the inertial frame
-    Eigen::Vector3d l;                                    // 3x1 Lateral direction of the control frame expressed in the inertial frame
-    Eigen::Vector3d n;                                    // 3x1 Normal direction of the control frame expressed in the inertial frame
-    Eigen::Matrix<double, 3, 3> rotationWToC;             // 3x3 Rotation matrix from world to control frame (transform from control to world).
-    Eigen::Matrix<double, 12, 1> tau_min;                 // 18x1 Minimum actuator torques
-    Eigen::Matrix<double, 12, 1> tau_max;                 // 18x1 Maximum actuator torques
 
     std::vector<Kinematics::LegType> contact_legs; // Vector of contact points (legs)
     std::vector<Kinematics::LegType> swing_legs;   // Vector of swing legs
@@ -342,22 +420,22 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     double mu = 0.6;
 
     // Motion tracking gains
-    Eigen::Matrix3d k_p_fb_pos = 15*Eigen::Matrix3d::Identity(); // Floating base position proportional gain
-    Eigen::Matrix3d k_d_fb_pos = 2*Eigen::Matrix3d::Identity(); // Floating base position derivative gain
-    Eigen::Matrix3d k_p_fb_rot = 30*Eigen::Matrix3d::Identity(); // Floating base rotation proportional gain
-    Eigen::Matrix3d k_d_fb_rot = 2*Eigen::Matrix3d::Identity(); // Floating base rotation proportional gain
-    Eigen::Matrix3d k_p_fl = 2*Eigen::Matrix3d::Identity();     // Front left foot proportional gain
-    Eigen::Matrix3d k_d_fl = 2*Eigen::Matrix3d::Identity();     // Front left foot derivative gain
-    Eigen::Matrix3d k_p_fr = 2*Eigen::Matrix3d::Identity();     // Front right foot proportional gain
-    Eigen::Matrix3d k_d_fr = 2*Eigen::Matrix3d::Identity();     // Front right foot derivative gain
-    Eigen::Matrix3d k_p_rl = 2*Eigen::Matrix3d::Identity();     // Rear left foot proportional gain
-    Eigen::Matrix3d k_d_rl = 2*Eigen::Matrix3d::Identity();     // Rear left foot derivative gain
-    Eigen::Matrix3d k_p_rr = 2*Eigen::Matrix3d::Identity();     // Rear right foot proportional gain
-    Eigen::Matrix3d k_d_rr = 2*Eigen::Matrix3d::Identity();     // Rear right foot derivative gain
+    double k_p_fb_pos = 0;//15; // Floating base position proportional gain
+    double k_d_fb_pos = 0;//2; // Floating base position derivative gain
+    double k_p_fb_rot = 0;//30; // Floating base rotation proportional gain
+    double k_d_fb_rot = 0;//2; // Floating base rotation proportional gain
+    double k_p_fl = 250;     // Front left foot proportional gain
+    double k_d_fl = 249;     // Front left foot derivative gain
+    double k_p_fr = 250;     // Front right foot proportional gain
+    double k_d_fr = 249;     // Front right foot derivative gain
+    double k_p_rl = 250;     // Rear left foot proportional gain
+    double k_d_rl = 249;     // Rear left foot derivative gain
+    double k_p_rr = 250;     // Rear right foot proportional gain
+    double k_d_rr = 249;     // Rear right foot derivative gain
 
     // Posture tracking gains
-    Eigen::Matrix<double, 12, 12> k_p_pt = 15*Eigen::Matrix<double, 12, 12>::Identity();      // Posture tracking proportional gain
-    Eigen::Matrix<double, 12, 12> k_d_pt = 4*Eigen::Matrix<double, 12, 12>::Identity();      // Posture tracking derivative gain
+    double k_p_pt = 15;      // Posture tracking proportional gain
+    double k_d_pt = 4;      // Posture tracking derivative gain
 
     //*************************************************************************************
     // Updates
@@ -366,8 +444,9 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     // Fill contact and swing legs
     for (size_t i = 0; i < 4; i++)
     {
+        ROS_INFO_STREAM("Contact state: " << i << ": "<< _contact_state[i]);
         // Contact State is assumed sorted by fl, fr, rl, rr
-        if (contactState[i])
+        if (_contact_state[i])
         {
             // fl = 1, fr = 2, rl = 3, rr = 4
             contact_legs.push_back(Kinematics::LegType(i + 1));
@@ -382,42 +461,10 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     // Number of contact and swing legs, respectively
     const unsigned int n_c = contact_legs.size();
     const unsigned int n_s = swing_legs.size();
-
     // Update state dimension x = [dot_u, F_c]^T
     const unsigned int state_dim = 18 + 3*n_c;
 
-    // Resize task dimensions
-    t_eom.A_eq.resize(6, state_dim);
-    t_eom.b_eq.resize(6, 1);
-
-    t_cmc.A_eq.resize(3*n_c, state_dim);
-    t_cmc.b_eq.resize(3*n_c, 1);
-
-    t_cftl.A_ineq.resize(4*n_c + 24, state_dim);
-    t_cftl.b_ineq.resize(4*n_c + 24, 1);
-
-    t_mt.A_eq.resize(18, state_dim);
-    t_mt.b_eq.resize(18, 1);
-
-    t_pt.A_eq.resize(12, state_dim);
-    t_pt.b_eq.resize(12, 1);
-
-    t_cfm.A_eq.resize(3*n_c, state_dim);
-    t_cfm.b_eq.resize(3*n_c, 1);
-
-    // Resize dynamic matrices and terms
-    x_opt.resize(state_dim, 1);
-
     J_c.resize(3*n_c, 18);
-    dot_J_c.resize(3*n_c, 18);
-
-
-    // Get base orientation
-    kindr::EulerAnglesXyz<double> base_ori(_q.segment(3,3));
-    
-    kindr::EulerAnglesXyz<double> desired_base_ori_kindr(_desired_base_ori);
-    
-    Eigen::Vector3d orientation_error = desired_base_ori_kindr.boxMinus(base_ori);
 
     // Update matrices and terms
     M = kinematics.GetMassMatrix(_q);
@@ -428,203 +475,49 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
 
     J_c = kinematics.GetContactJacobianInW(contact_legs, _q);
 
-    dot_J_c = kinematics.GetContactJacobianInWDiff(contact_legs, _q, _u);
-
-    // Update matrices used by motion tracking constraints
-    J_P_fb = kinematics.GetTranslationJacobianInC(Kinematics::LegType::NONE,
-                                                  Kinematics::BodyType::base,
-                                                  _q);
-    J_R_fb = kinematics.GetRotationJacobianInC(Kinematics::LegType::NONE,
-                                               Kinematics::BodyType::base,
-                                               _q);
-    J_P_fl = kinematics.GetTranslationJacobianInC(Kinematics::LegType::frontLeft,
-                                                  Kinematics::BodyType::foot,
-                                                  _q);
-    J_P_fr = kinematics.GetTranslationJacobianInC(Kinematics::LegType::frontRight,
-                                                  Kinematics::BodyType::foot,
-                                                  _q);
-    J_P_rl = kinematics.GetTranslationJacobianInC(Kinematics::LegType::rearLeft,
-                                                  Kinematics::BodyType::foot,
-                                                  _q);
-    J_P_rr = kinematics.GetTranslationJacobianInC(Kinematics::LegType::rearRight,
-                                                  Kinematics::BodyType::foot,
-                                                  _q);
-
-    dot_J_P_fb = kinematics.GetTranslationJacobianInCDiff(Kinematics::LegType::NONE,
-                                                          Kinematics::BodyType::base,
-                                                          _q,
-                                                          _u);
-    dot_J_R_fb = kinematics.GetRotationJacobianInCDiff(Kinematics::LegType::NONE,
-                                                       Kinematics::BodyType::base,
-                                                       _q,
-                                                       _u);
-    dot_J_P_fl = kinematics.GetTranslationJacobianInCDiff(Kinematics::LegType::frontLeft,
-                                                          Kinematics::BodyType::foot,
-                                                          _q,
-                                                          _u);
-    dot_J_P_fr = kinematics.GetTranslationJacobianInCDiff(Kinematics::LegType::frontRight,
-                                                          Kinematics::BodyType::foot,
-                                                          _q,
-                                                          _u);
-    dot_J_P_rl = kinematics.GetTranslationJacobianInCDiff(Kinematics::LegType::rearLeft,
-                                                          Kinematics::BodyType::foot,
-                                                          _q,
-                                                          _u);
-    dot_J_P_rr = kinematics.GetTranslationJacobianInCDiff(Kinematics::LegType::rearRight,
-                                                          Kinematics::BodyType::foot,
-                                                          _q,
-                                                          _u);
-    // Update terms used by posture tracking constraints
-    q_r_nom << math_utils::degToRad(45),
-               math_utils::degToRad(-20),
-               math_utils::degToRad(90),
-               math_utils::degToRad(-45),
-               math_utils::degToRad(20),
-               math_utils::degToRad(-90),
-               math_utils::degToRad(135),
-               math_utils::degToRad(20),
-               math_utils::degToRad(-90),
-               math_utils::degToRad(-135),
-               math_utils::degToRad(-20),
-               math_utils::degToRad(90);
-    //q_r_nom << math_utils::degToRad(45),
-    //           math_utils::degToRad(40),
-    //           math_utils::degToRad(35),
-    //           math_utils::degToRad(-45),
-    //           math_utils::degToRad(-40),
-    //           math_utils::degToRad(-35),
-    //           math_utils::degToRad(135),
-    //           math_utils::degToRad(-40),
-    //           math_utils::degToRad(-35),
-    //           math_utils::degToRad(-135),
-    //           math_utils::degToRad(40),
-    //           math_utils::degToRad(35);
-
-    // Update terms used by the contact force and torque limits
-    rotationWToC = kinematics.GetRotationMatrixWToC(0, 0, _q(5));
-
-    h = rotationWToC * Eigen::Vector3d(1, 0, 0);
-    l = rotationWToC * Eigen::Vector3d(0, 1, 0);
-    n = Eigen::Vector3d(0, 0, 1);
-
-    tau_max.setConstant(40);
-    tau_min.setConstant(-40);
-
-    // Update equations of motion task
-    t_eom.A_eq.leftCols(18) = M.topRows(6);
-    t_eom.A_eq.rightCols(3*n_c) = - J_c.transpose().topRows(6);
-    t_eom.b_eq = - (b.topRows(6) + g.topRows(6));
-
-    // Update contact force and torque limits task
-        // Friction Cone
-    for (size_t i = 0; i < n_c; i++)
-    {
-        t_cftl.A_ineq.block(4*i, 0, 1, state_dim).setZero();
-        t_cftl.A_ineq.block(4*i, 18 + 3*i, 1, 3) = (h.transpose() - n.transpose() * mu);
-
-        t_cftl.A_ineq.block(4*i + 1, 0, 1, state_dim).setZero();
-        t_cftl.A_ineq.block(4*i + 1, 18 + 3*i, 1, 3) = - (h.transpose() + n.transpose() * mu);
-
-        t_cftl.A_ineq.block(4*i + 2, 0, 1, state_dim).setZero();
-        t_cftl.A_ineq.block(4*i + 2, 18 + 3*i, 1, 3) = (l.transpose() - n.transpose() * mu);
-
-        t_cftl.A_ineq.block(4*i + 3, 0, 1, state_dim).setZero();
-        t_cftl.A_ineq.block(4*i + 3, 18 + 3*i, 1, 3) = - (l.transpose() + n.transpose() * mu);
-    }
-
-    t_cftl.b_ineq.topRows(4*n_c).setZero();
-        // Max torque limit
-    //t_cftl.A_ineq.block(4*n_c, 0, 12, state_dim).leftCols(18) = M.bottomRows(12);
-    //t_cftl.A_ineq.block(4*n_c, 0, 12, state_dim).rightCols(3*n_c) = - J_c.transpose().bottomRows(12);
-    //t_cftl.b_ineq.block(4*n_c, 0, 12, state_dim) = tau_max - (b.bottomRows(12) + g.bottomRows(12));
-    t_cftl.A_ineq.block(4*n_c, 0, 12, 18) = M.bottomRows(12);
-    t_cftl.A_ineq.block(4*n_c, 18, 12, 3*n_c) = - J_c.transpose().bottomRows(12);
-    t_cftl.b_ineq.block(4*n_c, 0, 12, 1) = tau_max - (b.bottomRows(12) + g.bottomRows(12));
-
-    //    // Min torque limit
-    //t_cftl.A_ineq.block(4*n_c + 12, 0, 12, state_dim).leftCols(18) = - M.bottomRows(12);
-    //t_cftl.A_ineq.block(4*n_c + 12, 0, 12, state_dim).rightCols(3*n_c) = J_c.transpose().bottomRows(12);
-    //t_cftl.b_ineq.block(4*n_c + 12, 0, 12, state_dim) = - tau_min + (b.bottomRows(12) + g.bottomRows(12));
-    t_cftl.A_ineq.block(4*n_c + 12, 0, 12, 18) = - M.bottomRows(12);
-    t_cftl.A_ineq.block(4*n_c + 12, 18, 12, 3*n_c) = J_c.transpose().bottomRows(12);
-    t_cftl.b_ineq.block(4*n_c + 12, 0, 12, 1) = - tau_min + (b.bottomRows(12) + g.bottomRows(12));
-
-    // Update contact motion constraint task
-    t_cmc.A_eq.leftCols(18) = J_c;
-    t_cmc.A_eq.rightCols(3*n_c).setZero();
-    t_cmc.b_eq = - dot_J_c * _u;
-
-    // Update motion tracking task
-        // Floating base position
-    t_mt.A_eq.setZero();
-    t_mt.b_eq.setZero();
-    
-    t_mt.A_eq.block(0, 0, 3, state_dim).leftCols(18) = J_P_fb;
-    t_mt.A_eq.block(0, 0, 3, state_dim).rightCols(3*n_c).setZero();
-    t_mt.b_eq.block(0, 0, 3, 1) = _desired_base_acc + k_p_fb_pos * (_desired_base_pos - _q.topRows(3))
-                                  + k_d_fb_pos * (_desired_base_vel - _u.topRows(3)) - dot_J_P_fb * _u;
-    //t_mt.A_eq.block(0, 0, 3, state_dim).setZero();
-    //t_mt.b_eq.block(0, 0, 3, 1).setZero();
-        // Floating base orientation
-    t_mt.A_eq.block(3, 0, 3, state_dim).leftCols(18) = J_R_fb;
-    t_mt.A_eq.block(3, 0, 3, state_dim).rightCols(3*n_c).setZero();
-
-    //t_mt.b_eq.block(3, 0, 3, 1) = k_p_fb_rot * (_desired_base_ori - _q.segment(3,3)) 
-    //                              + k_d_fb_rot * (- _u.segment(3,3)) - dot_J_R_fb * _u;
-
-    t_mt.b_eq.block(3, 0, 3, 1) = k_p_fb_rot * (orientation_error)
-                                  + k_d_fb_rot * (- _u.segment(3,3)) - dot_J_R_fb * _u;
-    //t_mt.A_eq.block(3, 0, 3, state_dim).setZero();
-    //t_mt.b_eq.block(3, 0, 3, 1).setZero();
-
-        // Front-left foot
-    t_mt.A_eq.block(6, 0, 3, state_dim).leftCols(18) = J_P_fl;
-    t_mt.A_eq.block(6, 0, 3, state_dim).rightCols(3*n_c).setZero();
-    t_mt.b_eq.block(6, 0, 3, 1) = _desired_f_acc(0) + k_p_fl * (_desired_f_pos(0) - _f_pos(0))
-                                  + k_d_fl * (_desired_f_vel(0) - _f_vel(0)) - dot_J_P_fl * _u;
-
-        // Front-right foot
-    t_mt.A_eq.block(9, 0, 3, state_dim).leftCols(18) = J_P_fr;
-    t_mt.A_eq.block(9, 0, 3, state_dim).rightCols(3*n_c).setZero();
-    t_mt.b_eq.block(9, 0, 3, 1) = _desired_f_acc(1) + k_p_fr * (_desired_f_pos(1) - _f_pos(1))
-                                  + k_d_fr * (_desired_f_vel(1) - _f_vel(1)) - dot_J_P_fr * _u;
-
-        // Rear-left foot
-    t_mt.A_eq.block(12, 0, 3, state_dim).leftCols(18) = J_P_rl;
-    t_mt.A_eq.block(12, 0, 3, state_dim).rightCols(3*n_c).setZero();
-    t_mt.b_eq.block(12, 0, 3, 1) = _desired_f_acc(2) + k_p_rl * (_desired_f_pos(2) - _f_pos(2))
-                                  + k_d_rl * (_desired_f_vel(2) - _f_vel(2)) - dot_J_P_rl * _u;
-
-        // Rear-right foot
-    t_mt.A_eq.block(15, 0, 3, state_dim).leftCols(18) = J_P_rr;
-    t_mt.A_eq.block(15, 0, 3, state_dim).rightCols(3*n_c).setZero();
-    t_mt.b_eq.block(15, 0, 3, 1) = _desired_f_acc(3) + k_p_rr * (_desired_f_pos(3) - _f_pos(3))
-                                  + k_d_rr * (_desired_f_vel(3) - _f_vel(3)) - dot_J_P_rr * _u;
-
-    // Update posture tracking task
-    t_pt.A_eq.leftCols(6).setZero();
-    t_pt.A_eq.block(0, 6, 12, 12).setIdentity();
-    t_pt.A_eq.rightCols(3*n_c).setZero();
-    t_pt.b_eq = k_p_pt * (q_r_nom - _q.bottomRows(12)) + k_d_pt * (-_u.bottomRows(12));
-
-    // Update contact force minimization task
-    t_cfm.A_eq.leftCols(18).setZero();
-    t_cfm.A_eq.rightCols(3*n_c).setIdentity();
-    t_cfm.b_eq.setZero();
-
-    // Update task constraint setting
-    t_eom.has_eq_constraint = true;
-    t_cftl.has_ineq_constraint = true;
-    t_cmc.has_eq_constraint = true;
-    t_mt.has_eq_constraint = true;
-    t_pt.has_eq_constraint = true;
-    t_cfm.has_eq_constraint = true;
-
-    //*************************************************************************************
-    // Hierarchical QP Optimization
-    //*************************************************************************************
-
     // Add tasks in prioritized order
+    TaskGenerator task_generator(
+        kinematics,
+        _desired_base_pos,
+        _desired_base_vel,
+        _desired_base_acc,
+        _desired_base_ori,
+        _desired_base_omega,
+        _desired_base_alpha,
+        _desired_f_pos,
+        _desired_f_vel,
+        _desired_f_acc,
+        _f_pos,
+        _f_vel,
+        _q,
+        _u,
+        mu,
+        k_p_fb_pos,
+        k_d_fb_pos,
+        k_p_fb_rot,
+        k_d_fb_rot,
+        k_p_fl,
+        k_d_fl,
+        k_p_fr,
+        k_d_fr,
+        k_p_rl,
+        k_d_rl,
+        k_p_rr,
+        k_d_rr,
+        k_p_pt,
+        k_d_pt,
+        -40,
+        40,
+        contact_legs,
+        swing_legs);
+    
+    t_eom = task_generator.EomTask();
+    t_cftl = task_generator.CftlTask();
+    t_cmc = task_generator.CmcTask();
+    t_mt = task_generator.MtTask();
+    t_pt = task_generator.PtTask();
+    t_cfm = task_generator.CfmTask();
+
     tasks.push_back(t_eom);
     tasks.push_back(t_cftl);
     tasks.push_back(t_cmc);
@@ -675,9 +568,42 @@ Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimi
     return desired_tau;
 }
 
+// Hierarchical Optimization without specified contact states, using current contact states
+Eigen::Matrix<double, 12, 1> HierarchicalOptimizationControl::HierarchicalOptimization(const Eigen::Matrix<double, 3, 1> &_desired_base_pos,
+                                                                                       const Eigen::Matrix<double, 3, 1> &_desired_base_vel,
+                                                                                       const Eigen::Matrix<double, 3, 1> &_desired_base_acc,
+                                                                                       const Eigen::Matrix<double, 3, 1> &_desired_base_ori,
+                                                                                       const Eigen::Matrix<double, 3, 1> &_desired_base_omega,
+                                                                                       const Eigen::Matrix<double, 3, 1> &_desired_base_alpha,
+                                                                                       const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_pos,
+                                                                                       const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_vel,
+                                                                                       const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_desired_f_acc,
+                                                                                       const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_f_pos,
+                                                                                       const Eigen::Matrix<Eigen::Vector3d, 4, 1> &_f_vel,
+                                                                                       const Eigen::Matrix<double, 18, 1> &_q,
+                                                                                       const Eigen::Matrix<double, 18, 1> &_u,
+                                                                                       const int &_v)
+{
+    return HierarchicalOptimization(_desired_base_pos,
+                                    _desired_base_vel,
+                                    _desired_base_acc,
+                                    _desired_base_ori,
+                                    _desired_base_omega,
+                                    _desired_base_alpha,
+                                    _desired_f_pos,
+                                    _desired_f_vel,
+                                    _desired_f_acc,
+                                    _f_pos,
+                                    _f_vel,
+                                    _q,
+                                    _u,
+                                    this->contactState,
+                                    _v);
+}
+
 // Hierarchical QP Optimization
 Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalOptimizationControl::HierarchicalQPOptimization(const int &_state_dim,
-                                                                                                     const std::vector<Task> &_tasks,
+                                                                                                     const std::vector<TaskGenerator::Task> &_tasks,
                                                                                                      const SolverType &_solver,
                                                                                                      const int &_v)
 {
@@ -707,7 +633,7 @@ Eigen::Matrix<double, Eigen::Dynamic, 1> HierarchicalOptimizationControl::Hierar
     N.setIdentity();
 
     // Iterate over the set of tasks 
-    for (Task t : _tasks)
+    for (TaskGenerator::Task t : _tasks)
     {
         // Update count
         count += 1;
