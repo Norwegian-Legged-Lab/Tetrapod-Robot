@@ -36,7 +36,7 @@ SwingController::SwingController(){
     t0_ = -1;
 }
 
-Eigen::Vector3d SwingController::Pos(const double &t){
+Eigen::Vector3d SwingController::Pos(const double &t) const {
 
     double tau = GetTau(t);
 
@@ -44,31 +44,37 @@ Eigen::Vector3d SwingController::Pos(const double &t){
 
     double sine_height_component = h_*std::sin(M_PI*tau);
 
-    pos << init_pos_ + (final_pos_ - init_pos_)*tau + Eigen::Vector3d::Constant(0, 0, sine_height_component);
+    pos << init_pos_ + (final_pos_ - init_pos_)*tau;
+
+    pos(2) += sine_height_component;
+    
+    ROS_INFO_STREAM("SwingController: t is " << t << ", tau is " << tau);
 
     return pos;
 }
 
-Eigen::Vector3d SwingController::Vel(const double &t){
+Eigen::Vector3d SwingController::Vel(const double &t) const {
     double tau = GetTau(t);
 
     Eigen::Vector3d vel;
 
     double d_sine_height_component = h_*std::cos(M_PI*tau)*(M_PI/T_);
 
-    vel << (final_pos_ - init_pos_)/T_ + Eigen::Vector3d::Constant(0, 0, d_sine_height_component);
+    vel << (final_pos_ - init_pos_)/T_;
+    
+    vel(2) += d_sine_height_component;
 
     return vel;
 }
 
-Eigen::Vector3d SwingController::Acc(const double &t){
+Eigen::Vector3d SwingController::Acc(const double &t) const {
     double tau = GetTau(t);
 
     Eigen::Vector3d acc;
 
     double d2_sine_height_component = -h_*std::sin(M_PI*tau)*std::pow(M_PI/T_, 2);
 
-    acc << Eigen::Vector3d::Constant(0, 0, d2_sine_height_component);
+    acc << 0, 0, d2_sine_height_component;
 
     return acc;
 }
