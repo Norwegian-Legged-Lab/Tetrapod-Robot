@@ -46,6 +46,18 @@ ConvexMpcController::ConvexMpcController(
 
     gen_vel_sub_ = node_->subscribe<std_msgs::Float64MultiArray>("/my_robot/gen_vel", 1, &ConvexMpcController::GenVelCallback, this);
 
+    des_foot_pos_pub_ = node_->advertise<convex_mpc_controller::init_pos>("desired_foot_positions", 1);
+
+    des_foot_vel_pub_ = node_->advertise<convex_mpc_controller::init_pos>("desired_foot_velocities", 1);
+    
+    des_foot_acc_pub_ = node_->advertise<convex_mpc_controller::init_pos>("desired_foot_accelerations", 1);
+
+    foot_pos_pub_ = node_->advertise<convex_mpc_controller::init_pos>("foot_positions", 1);
+
+    des_base_pose_pub_ = node_->advertise<convex_mpc_controller::pose>("desired_base_pose", 1);
+    des_base_twist_pub_ = node_->advertise<convex_mpc_controller::pose>("desired_base_velocity", 1);
+    des_base_acc_pub_ = node_->advertise<convex_mpc_controller::pose>("desired_base_acceleration", 1);
+    
     t0_ = std::chrono::high_resolution_clock::now();
 
     gen_coord_.setConstant(std::numeric_limits<double>::quiet_NaN());
@@ -59,6 +71,7 @@ void ConvexMpcController::UpdateController(double t){
     StanceIndices idx = getStanceIndices(stance_info_, t, 0.05, gait_period_, 0.05);
     Eigen::Vector3d desired_foot_pos_in_b;
     Eigen::Vector3d desired_foot_pos_in_w;
+    Eigen::Vector3d current_foot_pos_in_b;
 
     double stance_time;
     double swing_time;
@@ -72,15 +85,21 @@ void ConvexMpcController::UpdateController(double t){
             }
         }else{
             //If controller is not active, check if corresponding leg is supposed to begin swinging since last update
-            if(idx(i).stance(0) == 0){
+            if(idx(i).stance_diff(0) == -1){
                 stance_time = stance_info_(i).durations.sum()*gait_period_;
                 swing_time = gait_period_ - stance_time;
                 desired_foot_pos_in_b = getNominalTranslationBaseToFoot(r_b_to_fl_ref_in_b_, static_cast<FootType>(i));
                 desired_foot_pos_in_b.head(2) += vel_des_*stance_time/2;
+                /*
                 desired_foot_pos_in_w = gen_coord_.head(3) + Eigen::LocalExtensions::EulerAnglesToRotMat(gen_coord_.middleRows(3,3), Eigen::LocalExtensions::intrinsic, 0, 1, 2)*desired_foot_pos_in_b;
                 desired_foot_pos_in_w(2) = 0;
 
                 swing_controllers_(i) = SwingController(f_pos_(i), desired_foot_pos_in_w, swing_height_, swing_time, t);
+                */
+                desired_foot_pos_in_b(2) = 0;
+                current_foot_pos_in_b = Eigen::LocalExtensions::EulerAnglesToRotMat(gen_coord_.middleRows(3,3), Eigen::LocalExtensions::intrinsic, 0, 1, 2).transpose()*(f_pos_(i) - gen_coord_.head(3));
+                current_foot_pos_in_b(2) = 0;
+                swing_controllers_(i) = SwingController(current_foot_pos_in_b, desired_foot_pos_in_b, swing_height_, swing_time, t);
             }
         }
     }
@@ -293,11 +312,12 @@ Eigen::Matrix<double, 6, 1> ConvexMpcController::GetPoseDes() const
     return gazebo_state.head(6);
 }
 
-FootstepPositions ConvexMpcController::GetFootstepPosDes(const double &t){
+FootstepPositions ConvexMpcController::GetFootstepPosDes(const double &t) const {
     FootstepPositions pos;
     for(int i = 0; i < swing_controllers_.size(); ++i){
         if(swing_controllers_(i).IsActive()){
-            pos(i) = swing_controllers_(i).Pos(t);
+            pos(i) = Eigen::LocalExtensions::EulerAnglesToRotMat(gen_coord_.middleRows(3,3), Eigen::LocalExtensions::intrinsic, 0, 1, 2)*swing_controllers_(i).Pos(t);
+            pos(i).head(2) += gen_coord_.head(2);
         }else{
             pos(i) = f_pos_(i);
         }
@@ -316,11 +336,12 @@ FootstepPositions ConvexMpcController::GetFootstepPosDes(const double &t){
     return pos;
 }
 
-FootstepPositions ConvexMpcController::GetFootstepVelDes(const double &t){
+FootstepPositions ConvexMpcController::GetFootstepVelDes(const double &t) const {
     FootstepPositions vel;
     for(int i = 0; i < swing_controllers_.size(); ++i){
         if(swing_controllers_(i).IsActive()){
-            vel(i) = swing_controllers_(i).Vel(t);
+            vel(i) = Eigen::LocalExtensions::EulerAnglesToRotMat(gen_coord_.middleRows(3,3), Eigen::LocalExtensions::intrinsic, 0, 1, 2)*swing_controllers_(i).Vel(t);
+            vel(i).head(2) += vel_des_;
         }else{
             vel(i) = Eigen::Vector3d::Zero();
         }
@@ -329,11 +350,11 @@ FootstepPositions ConvexMpcController::GetFootstepVelDes(const double &t){
     return vel;
 }
 
-FootstepPositions ConvexMpcController::GetFootstepAccDes(const double &t){
+FootstepPositions ConvexMpcController::GetFootstepAccDes(const double &t) const {
     FootstepPositions acc;
     for(int i = 0; i < swing_controllers_.size(); ++i){
         if(swing_controllers_(i).IsActive()){
-            acc(i) = swing_controllers_(i).Acc(t);
+            acc(i) = Eigen::LocalExtensions::EulerAnglesToRotMat(gen_coord_.middleRows(3,3), Eigen::LocalExtensions::intrinsic, 0, 1, 2)*swing_controllers_(i).Acc(t);
         }else{
             acc(i) = Eigen::Vector3d::Zero();
         }
@@ -360,4 +381,87 @@ void ConvexMpcController::PublishTorqueMsg(Eigen::Matrix<double, 12, 1> &desired
     // Publish
     torque_pub_.publish(joint_state_msg);
 }
+
+void ConvexMpcController::PublishFootStates() {
+
+    convex_mpc_controller::init_pos position_msg;
+
+    FootstepPositions positions;
+
+    kinematics_.SolveForwardKinematics(gen_coord_, positions);
+
+    Eigen::Vector3d::Map(position_msg.fl_pos.data()) = positions(0);
+    Eigen::Vector3d::Map(position_msg.fr_pos.data()) = positions(1);
+    Eigen::Vector3d::Map(position_msg.rl_pos.data()) = positions(2);
+    Eigen::Vector3d::Map(position_msg.rr_pos.data()) = positions(3);
+
+    foot_pos_pub_.publish(position_msg);
+}
+
+void ConvexMpcController::PublishDesiredFootStates(const double &t) const {
+    convex_mpc_controller::init_pos position_msg;
+    convex_mpc_controller::init_pos velocity_msg;
+    convex_mpc_controller::init_pos acceleration_msg;
+
+    convex_mpc_controller::pose base_pose_msg;
+    convex_mpc_controller::pose base_twist_msg;
+    convex_mpc_controller::pose base_acceleration_msg;
+
+    FootstepPositions desired_positions = GetFootstepPosDes(t);
+    FootstepPositions desired_velocities = GetFootstepVelDes(t);
+    FootstepPositions desired_accelerations = GetFootstepAccDes(t);
+
+    Eigen::Matrix<double, 6, 1> base_pose = GetPoseDes();
+    Eigen::Matrix<double, 6, 1> base_twist = GetTwistDes();
+    Eigen::Matrix<double, 6, 1> base_acceleration = GetAccelerationDes();
+
+    Eigen::Vector3d::Map(position_msg.fl_pos.data()) = desired_positions(0);
+    Eigen::Vector3d::Map(position_msg.fr_pos.data()) = desired_positions(1);
+    Eigen::Vector3d::Map(position_msg.rl_pos.data()) = desired_positions(2);
+    Eigen::Vector3d::Map(position_msg.rr_pos.data()) = desired_positions(3);
+
+    Eigen::Vector3d::Map(velocity_msg.fl_pos.data()) = desired_velocities(0);
+    Eigen::Vector3d::Map(velocity_msg.fr_pos.data()) = desired_velocities(1);
+    Eigen::Vector3d::Map(velocity_msg.rl_pos.data()) = desired_velocities(2);
+    Eigen::Vector3d::Map(velocity_msg.rr_pos.data()) = desired_velocities(3);
+
+    Eigen::Vector3d::Map(acceleration_msg.fl_pos.data()) = desired_accelerations(0);
+    Eigen::Vector3d::Map(acceleration_msg.fr_pos.data()) = desired_accelerations(1);
+    Eigen::Vector3d::Map(acceleration_msg.rl_pos.data()) = desired_accelerations(2);
+    Eigen::Vector3d::Map(acceleration_msg.rr_pos.data()) = desired_accelerations(3);
+
+    base_pose_msg.x = base_pose(0);
+    base_pose_msg.y = base_pose(1);
+    base_pose_msg.z = base_pose(2);
+    base_pose_msg.roll = base_pose(3);
+    base_pose_msg.pitch = base_pose(4);
+    base_pose_msg.yaw = base_pose(5);
+
+    base_twist_msg.x = base_twist(0);
+    base_twist_msg.y = base_twist(1);
+    base_twist_msg.z = base_twist(2);
+    base_twist_msg.roll = base_twist(3);
+    base_twist_msg.pitch = base_twist(4);
+    base_twist_msg.yaw = base_twist(5);
+
+    base_acceleration_msg.x = base_acceleration(0);
+    base_acceleration_msg.y = base_acceleration(1);
+    base_acceleration_msg.z = base_acceleration(2);
+    base_acceleration_msg.roll = base_acceleration(3);
+    base_acceleration_msg.pitch = base_acceleration(4);
+    base_acceleration_msg.yaw = base_acceleration(5);
+
+    des_foot_pos_pub_.publish(position_msg);
+
+    des_foot_vel_pub_.publish(velocity_msg);
+
+    des_foot_acc_pub_.publish(acceleration_msg);
+
+    des_base_pose_pub_.publish(base_pose_msg);
+
+    des_base_twist_pub_.publish(base_twist_msg);
+
+    des_base_acc_pub_.publish(base_acceleration_msg);
+}
+
 }//ConvexMpc

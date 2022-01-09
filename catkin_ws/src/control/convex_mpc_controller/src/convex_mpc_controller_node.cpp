@@ -33,6 +33,7 @@ int main(int argc, char **argv){
 
     ros::NodeHandle node;
 
+
     //Load parameters from config, use defaults if failing to load
     if(!node.getParam("real_time_factor", real_time_factor)){
         real_time_factor = 1;
@@ -123,9 +124,8 @@ int main(int argc, char **argv){
         ros::spinOnce();
         loop_rate.sleep();
     }
-
     convex_controller.ResetTime();
-
+    convex_controller.UpdateController(0);
     while(ros::ok()){
 
         t = convex_controller.GetT();
@@ -140,6 +140,8 @@ int main(int argc, char **argv){
 
         f_acc_des = convex_controller.GetFootstepAccDes(t);
 
+        convex_controller.PublishDesiredFootStates(t);
+        convex_controller.PublishFootStates();
 /*
         idx = convex_controller.GetSolutionIndex(t);
         switch(idx){
@@ -176,7 +178,13 @@ int main(int argc, char **argv){
             ", fr: " << sol.inputs(1).forces.bottomLeftCorner(1,1) <<
             std::endl << "rl: " << sol.inputs(2).forces.bottomLeftCorner(1,1) <<
             ", rr: " << sol.inputs(3).forces.bottomLeftCorner(1,1));
-        
+
+        ROS_INFO_STREAM("Convex Mpc Controller: desired foot accelerations:" <<
+            std::endl << "fl: " << f_acc_des(0).transpose() <<
+            ", fr: " << f_acc_des(1).transpose() <<
+            std::endl << "rl: " << f_acc_des(2).transpose() <<
+            ", rr: " << f_acc_des(3).transpose());
+/*        
         resulting_alpha.setZero();
         Eigen::Matrix<double, 3, 12> skew;
         Eigen::Matrix<double, 12, 1> f;
@@ -189,7 +197,7 @@ int main(int argc, char **argv){
             }
         ROS_INFO_STREAM("Resulting torque on body: " << std::endl << resulting_alpha.transpose());
         ROS_INFO_STREAM("Resulting torque on body from skew matrices: " << std::endl << (skew*f).transpose());
-
+*/
         body_pose_des = convex_controller.GetPoseDes();
         body_twist_des = convex_controller.GetTwistDes();
         body_acceleration_des = convex_controller.GetAccelerationDes();
@@ -212,7 +220,7 @@ int main(int argc, char **argv){
             ros::shutdown();
         }
 
-
+        ROS_INFO_STREAM("Time (ros): " << ros::Time::now());
         ros::spinOnce();
         loop_rate.sleep();
     }

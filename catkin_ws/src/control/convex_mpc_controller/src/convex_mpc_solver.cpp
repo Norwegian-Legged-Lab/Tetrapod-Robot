@@ -46,6 +46,7 @@ ConvexMpcSolver::ConvexMpcSolver(
     b_forces_ << f_min, f_max, Eigen::Vector4d::Zero();
 
     p_mpc_pub_ = p_mpc_pub;
+
 }
 
 ConvexMpcSolver::ConvexMpcSolver(
@@ -203,11 +204,11 @@ Eigen::Matrix<double, 12, Eigen::Dynamic> ConvexMpcSolver::GetReferenceTrajector
 
     reference_trajectory.middleRows(2, 1).setConstant(z_des);
 
-    reference_trajectory.topRows(3).colwise() = p_des_;
+    //reference_trajectory.middleRows(1,1).colwise() = p_des_.middleRows(1,1);
 
     reference_trajectory.row(3).setZero();
 
-    reference_trajectory.row(4).setZero();
+    reference_trajectory.row(4).setZero();//setConstant(-0.03);
 
     reference_trajectory.row(5) = yaw_des;
 
@@ -317,26 +318,28 @@ void ConvexMpcSolver::AddStateBounds(
     double lb_x = x0(0) - max_xy_displ - 0.2;
     double lb_y = x0(1) - max_xy_displ - 0.2;
     double lb_z = std::min(x0(2), z_des) - 0.03;
-    double lb_roll = x0(3) - 0.1;
-    double lb_pitch = x0(4) - 0.1;
+    double lb_roll = - 0.2;
+    double lb_pitch = - 0.5;
     double lb_yaw = x0(4) - max_yaw_displ - 0.1;
     double lb_dx = -vel_des.norm() - 2;
     double lb_dy = -vel_des.norm() - 2;
     double lb_dz = -3;
-    double lb_droll = -0.5;
-    double lb_dpitch = -0.5;
+    double lb_droll = -0.4;
+    double lb_dpitch = -0.4;
     double lb_dyaw = -std::abs(yaw_rate_des) - 1;
+
+
     double ub_x = x0(0) + max_xy_displ + 0.2;
     double ub_y = x0(1) + max_xy_displ + 0.2;
     double ub_z = std::max(x0(2), z_des) + 0.03;
-    double ub_roll = x0(3) + 0.1;
-    double ub_pitch = x0(4) + 0.1;
+    double ub_roll =  + 0.2;
+    double ub_pitch = + 0.5;
     double ub_yaw = x0(4) + max_yaw_displ + 0.1;
     double ub_dx = vel_des.norm() + 2;
     double ub_dy = vel_des.norm() + 2;
     double ub_dz = 3;
-    double ub_droll = +0.5;
-    double ub_dpitch = +0.5;
+    double ub_droll = +0.4;
+    double ub_dpitch = +0.4;
     double ub_dyaw = std::abs(yaw_rate_des) + 1;
 
     Eigen::Matrix<double, n_states_, 1> lb;
@@ -347,8 +350,8 @@ void ConvexMpcSolver::AddStateBounds(
     ub << ub_x, ub_y, ub_z, ub_roll, ub_pitch, ub_yaw, ub_dx, ub_dy, ub_dz, ub_droll, ub_dpitch, ub_dyaw;
 
     for(int i = 0; i < n_steps_; ++i){
-        prog.AddBoundingBoxConstraint(lb, ub, opt_vars.states.col(i));
-//        prog.AddBoundingBoxConstraint(lb.topRows(2), ub.topRows(2), opt_vars.states.col(i).topRows(2));
+//        prog.AddBoundingBoxConstraint(lb, ub, opt_vars.states.col(i));
+        prog.AddBoundingBoxConstraint(lb.middleRows(3, 2), ub.middleRows(3, 2), opt_vars.states.col(i).middleRows(3, 2));
 //        prog.AddBoundingBoxConstraint(lb.bottomRows(9), ub.bottomRows(9), opt_vars.states.col(i).bottomRows(9));
     }
 }
@@ -389,7 +392,7 @@ convex_mpc_controller::solveMpcResponse ConvexMpcSolver::Solve(
     AddForceConstraints(stance_indices, opt_vars, prog);
     AddInitialConditionConstraint(x0, opt_vars, prog);
 
-    //AddStateBounds(x0, z_des, vel_des, yaw_rate_des, opt_vars, prog);
+//    AddStateBounds(x0, z_des, vel_des, yaw_rate_des, opt_vars, prog);
 
     AddForceCost(opt_vars, prog);
     AddReferenceCost(reference_trajectory, opt_vars, prog);

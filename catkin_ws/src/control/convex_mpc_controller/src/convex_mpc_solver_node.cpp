@@ -118,6 +118,7 @@ int main(int argc, char **argv){
     
     cost_reference = Eigen::Matrix<double, ConvexMpc::ConvexMpcSolver::n_states_, 1>::Map(cost_reference_diagonal_elements.data()).asDiagonal();
 
+
     ros::Publisher mpc_pub = node.advertise<convex_mpc_controller::solveMpcResponse>("/mpc/response_channel", 1);
 
     ConvexMpc::ConvexMpcSolver solver = use_uniform_reference_cost ?
@@ -146,12 +147,11 @@ int main(int argc, char **argv){
             cost_force_scalar,
             gait_type,
             &mpc_pub);
-
     
 //    auto response_msg = solver.Solve(t0, x0, init_stance_pos, vel_des, yaw_rate_des);
 
     ros::Subscriber mpc_sub = node.subscribe<convex_mpc_controller::solveMpcRequest>("/mpc/request_channel", 1, &ConvexMpc::ConvexMpcSolver::RequestCallback, &solver);
-    ros::Rate loop_rate(200);
+    ros::Rate loop_rate(1000);
 
     ros::spin();
 }

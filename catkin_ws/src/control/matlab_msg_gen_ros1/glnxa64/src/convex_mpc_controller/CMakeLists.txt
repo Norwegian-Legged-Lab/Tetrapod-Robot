@@ -30,6 +30,7 @@ add_message_files(
     foot_input.msg
     init_pos.msg
     inputs.msg
+    pose.msg
     solveMpcRequest.msg
     solveMpcResponse.msg
     states.msg
@@ -92,6 +93,7 @@ add_library(
     src/convex_mpc_controller_foot_input_message.cpp
     src/convex_mpc_controller_init_pos_message.cpp
     src/convex_mpc_controller_inputs_message.cpp
+    src/convex_mpc_controller_pose_message.cpp
     src/convex_mpc_controller_solveMpcRequest_message.cpp
     src/convex_mpc_controller_solveMpcResponse_message.cpp
     src/convex_mpc_controller_states_message.cpp
@@ -132,5 +134,5 @@ install(
   RUNTIME DESTINATION bin
 )
 install (DIRECTORY m/ DESTINATION m/ FILES_MATCHING PATTERN "*.m")
-# Generated 21-Nov-2021 21:18:34
+# Generated 06-Jan-2022 12:29:39
 # Copyright 2019-2020 The MathWorks, Inc.
