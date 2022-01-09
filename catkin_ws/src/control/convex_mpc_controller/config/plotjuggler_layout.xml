@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<root version="2.3.8">
+ <tabbed_widget name="Main Window" parent="main_window">
+  <Tab tab_name="tab1" containers="1">
+   <Container>
+    <DockSplitter count="1" orientation="-" sizes="1">
+     <DockSplitter count="2" orientation="|" sizes="0.5;0.5">
+      <DockSplitter count="2" orientation="-" sizes="0.500497;0.499503">
+       <DockArea name="Front left">
+        <plot style="Lines" mode="TimeSeries">
+         <range left="0.000000" right="0.000000" bottom="-0.100000" top="0.100000"/>
+         <limitY/>
+         <curve name="/convex_mpc/foot_positions/fl_pos.2" color="#1f77b4"/>
+         <curve name="/convex_mpc/desired_foot_positions/fl_pos.2" color="#f14cc1"/>
+        </plot>
+       </DockArea>
+       <DockArea name="Rear left">
+        <plot style="Lines" mode="TimeSeries">
+         <range left="0.000000" right="0.000000" bottom="-0.100000" top="0.100000"/>
+         <limitY/>
+         <curve name="/convex_mpc/foot_positions/rl_pos.2" color="#1ac938"/>
+         <curve name="/convex_mpc/desired_foot_positions/rl_pos.2" color="#17becf"/>
+        </plot>
+       </DockArea>
+      </DockSplitter>
+      <DockSplitter count="2" orientation="-" sizes="0.500497;0.499503">
+       <DockArea name="Front right">
+        <plot style="Lines" mode="TimeSeries">
+         <range left="0.000000" right="0.000000" bottom="-0.100000" top="0.100000"/>
+         <limitY/>
+         <curve name="/convex_mpc/foot_positions/fr_pos.2" color="#d62728"/>
+         <curve name="/convex_mpc/desired_foot_positions/fr_pos.2" color="#9467bd"/>
+        </plot>
+       </DockArea>
+       <DockArea name="Rear right">
+        <plot style="Lines" mode="TimeSeries">
+         <range left="0.000000" right="0.000000" bottom="-0.100000" top="0.100000"/>
+         <limitY/>
+         <curve name="/convex_mpc/foot_positions/rr_pos.2" color="#ff7f0e"/>
+         <curve name="/convex_mpc/desired_foot_positions/rr_pos.2" color="#bcbd22"/>
+        </plot>
+       </DockArea>
+      </DockSplitter>
+     </DockSplitter>
+    </DockSplitter>
+   </Container>
+  </Tab>
+  <Tab tab_name="tab2" containers="1">
+   <Container>
+    <DockSplitter count="1" orientation="-" sizes="1">
+     <DockSplitter count="2" orientation="|" sizes="0.5;0.5">
+      <DockSplitter count="2" orientation="-" sizes="0.500497;0.499503">
+       <DockArea name="Front left">
+        <plot style="Lines" mode="TimeSeries">
+         <range left="0.000000" right="0.000000" bottom="-0.100000" top="0.100000"/>
+         <limitY/>
+         <curve name="/convex_mpc/desired_foot_positions/fl_pos.0" color="#1f77b4"/>
+         <curve name="/convex_mpc/foot_positions/fl_pos.0" color="#f14cc1"/>
+        </plot>
+       </DockArea>
+       <DockArea name="Rear left">
+        <plot style="Lines" mode="TimeSeries">
+         <range left="0.000000" right="0.000000" bottom="-0.100000" top="0.100000"/>
+         <limitY/>
+         <curve name="/convex_mpc/desired_foot_positions/rl_pos.0" color="#1ac938"/>
+         <curve name="/convex_mpc/foot_positions/rl_pos.0" color="#17becf"/>
+        </plot>
+       </DockArea>
+      </DockSplitter>
+      <DockSplitter count="2" orientation="-" sizes="0.500497;0.499503">
+       <DockArea name="Front right">
+        <plot style="Lines" mode="TimeSeries">
+         <range left="0.000000" right="0.000000" bottom="-0.100000" top="0.100000"/>
+         <limitY/>
+         <curve name="/convex_mpc/desired_foot_positions/fr_pos.0" color="#d62728"/>
+         <curve name="/convex_mpc/foot_positions/fr_pos.0" color="#9467bd"/>
+        </plot>
+       </DockArea>
+       <DockArea name="Rear right">
+        <plot style="Lines" mode="TimeSeries">
+         <range left="0.000000" right="0.000000" bottom="-0.100000" top="0.100000"/>
+         <limitY/>
+         <curve name="/convex_mpc/desired_foot_positions/rr_pos.0" color="#ff7f0e"/>
+         <curve name="/convex_mpc/foot_positions/rr_pos.0" color="#bcbd22"/>
+        </plot>
+       </DockArea>
+      </DockSplitter>
+     </DockSplitter>
+    </DockSplitter>
+   </Container>
+  </Tab>
+  <Tab tab_name="tab3" containers="1">
+   <Container>
+    <DockSplitter count="2" orientation="-" sizes="0.500497;0.499503">
+     <DockArea name="...">
+      <plot style="Lines" mode="TimeSeries">
+       <range left="0.000000" right="0.000000" bottom="-0.100000" top="0.100000"/>
+       <limitY/>
+       <curve name="/my_robot/base_pose/data.3" color="#1ac938"/>
+       <curve name="/convex_mpc/desired_base_pose/roll" color="#ff7f0e"/>
+       <curve name="/convex_mpc/desired_base_acceleration/roll" color="#f14cc1"/>
+      </plot>
+     </DockArea>
+     <DockArea name="...">
+      <plot style="Lines" mode="TimeSeries">
+       <range left="0.000000" right="0.000000" bottom="-0.100000" top="0.100000"/>
+       <limitY/>
+       <curve name="/my_robot/base_pose/data.0" color="#9467bd"/>
+       <curve name="/convex_mpc/desired_base_acceleration/x" color="#17becf"/>
+       <curve name="/convex_mpc/desired_base_pose/x" color="#bcbd22"/>
+      </plot>
+     </DockArea>
+    </DockSplitter>
+   </Container>
+  </Tab>
+  <currentTabIndex index="0"/>
+ </tabbed_widget>
+ <use_relative_time_offset enabled="1"/>
+ <!-- - - - - - - - - - - - - - - -->
+ <!-- - - - - - - - - - - - - - - -->
+ <Plugins>
+  <plugin ID="DataLoad CSV">
+   <default time_axis=""/>
+  </plugin>
+  <plugin ID="DataLoad ROS bags">
+   <use_header_stamp value="false"/>
+   <use_renaming_rules value="true"/>
+   <discard_large_arrays value="true"/>
+   <max_array_size value="100"/>
+  </plugin>
+  <plugin ID="DataLoad ULog"/>
+  <plugin ID="ROS Topic Subscriber">
+   <use_header_stamp value="false"/>
+   <use_renaming_rules value="true"/>
+   <discard_large_arrays value="true"/>
+   <max_array_size value="100"/>
+  </plugin>
+  <plugin ID="UDP Server"/>
+  <plugin ID="WebSocket Server"/>
+  <plugin ID="ZMQ Subscriber"/>
+  <plugin status="idle" ID="CSV Exporter"/>
+  <plugin status="idle" ID="ROS /rosout Visualization"/>
+  <plugin status="idle" ID="ROS Topic Re-Publisher"/>
+ </Plugins>
+ <!-- - - - - - - - - - - - - - - -->
+ <previouslyLoaded_Datafiles/>
+ <!-- - - - - - - - - - - - - - - -->
+ <customMathEquations/>
+ <snippets/>
+ <!-- - - - - - - - - - - - - - - -->
+</root>
+

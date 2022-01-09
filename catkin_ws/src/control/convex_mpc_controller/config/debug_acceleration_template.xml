@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<root version="2.3.8">
+ <tabbed_widget parent="main_window" name="Main Window">
+  <Tab tab_name="tab1" containers="1">
+   <Container>
+    <DockSplitter orientation="-" count="1" sizes="1">
+     <DockArea name="...">
+      <plot style="Lines" mode="TimeSeries">
+       <range left="12.267248" right="18.154021" bottom="-0.612744" top="0.449182"/>
+       <limitY/>
+       <curve color="#9467bd" name="normalized_base_acceleration"/>
+       <curve color="#17becf" name="normalized_x_alpha"/>
+       <curve color="#bcbd22" name="normalized_x_omega"/>
+       <curve color="#1f77b4" name="/my_robot/gen_coord/data.3"/>
+      </plot>
+     </DockArea>
+    </DockSplitter>
+   </Container>
+  </Tab>
+  <currentTabIndex index="0"/>
+ </tabbed_widget>
+ <use_relative_time_offset enabled="1"/>
+ <!-- - - - - - - - - - - - - - - -->
+ <!-- - - - - - - - - - - - - - - -->
+ <Plugins>
+  <plugin ID="DataLoad CSV">
+   <default time_axis=""/>
+  </plugin>
+  <plugin ID="DataLoad ROS bags">
+   <use_header_stamp value="false"/>
+   <use_renaming_rules value="true"/>
+   <discard_large_arrays value="true"/>
+   <max_array_size value="100"/>
+  </plugin>
+  <plugin ID="DataLoad ULog"/>
+  <plugin ID="ROS Topic Subscriber">
+   <use_header_stamp value="false"/>
+   <use_renaming_rules value="true"/>
+   <discard_large_arrays value="true"/>
+   <max_array_size value="100"/>
+  </plugin>
+  <plugin ID="UDP Server"/>
+  <plugin ID="WebSocket Server"/>
+  <plugin ID="ZMQ Subscriber"/>
+  <plugin ID="CSV Exporter" status="idle"/>
+  <plugin ID="ROS /rosout Visualization" status="idle"/>
+  <plugin ID="ROS Topic Re-Publisher" status="idle"/>
+ </Plugins>
+ <!-- - - - - - - - - - - - - - - -->
+ <!-- - - - - - - - - - - - - - - -->
+ <customMathEquations>
+  <snippet name="normalized_x_omega">
+   <global></global>
+   <function>return 0.05*value</function>
+   <linked_source>/my_robot/gen_vel/data.3</linked_source>
+  </snippet>
+  <snippet name="normalized_x_alpha">
+   <global></global>
+   <function>return 0.05*0.05*value</function>
+   <linked_source>actual_x_alpha</linked_source>
+  </snippet>
+  <snippet name="actual_x_alpha">
+   <global>prevX = 0
+prevY = 0
+is_first = true</global>
+   <function>if (is_first) then
+  is_first = false
+  prevX = time
+  prevY = value
+end
+
+dx = time - prevX
+dy = value - prevY
+prevX = time
+prevY = value
+
+return dy/dx</function>
+   <linked_source>/my_robot/gen_vel/data.3</linked_source>
+  </snippet>
+  <snippet name="normalized_base_acceleration">
+   <global></global>
+   <function>return 0.05*0.05*value</function>
+   <linked_source>/convex_mpc/desired_base_acceleration/roll</linked_source>
+  </snippet>
+ </customMathEquations>
+ <snippets/>
+ <!-- - - - - - - - - - - - - - - -->
+</root>
+

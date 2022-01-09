@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="plotjuggler" type="plotjuggler" name="plots" args="--layout $(find convex_mpc_controller)/config/plotjuggler_layout.xml" />
+</launch>
