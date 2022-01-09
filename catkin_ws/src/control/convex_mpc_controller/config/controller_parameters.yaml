@@ -1,14 +1,18 @@
-real_time_factor: 0.1
+real_time_factor: 1.0
 simulation_horizon: 0.5
 simulation_timestep: 0.05
 gait_period: 0.5
-vel_des: [0, 0]
+vel_des: [0.2, 0.0]
 yaw_rate_des: 0.0
 
 # Amble=0, Trot=1, FlyingTrot=2, Bound=3, Gallop=4, Stand=5
-gait_type: 1
+gait_type: 0
 mu: 0.3
-post_liftoff_contact_timeout: 0.2 #This is the value for tau, i.e. for time normalized by the period of the swing phase
-swing_height: 0.05
+post_liftoff_contact_timeout: 0.9 #This is the value for tau, i.e. for time normalized by the period of the swing phase
+swing_height: 0.02
 #nominal_translation_base_to_front_left_foot: [0.4512, 0.1512, 0]
-nominal_translation_base_to_front_left_foot: [0.506, 0.213, 0]
+#nominal_translation_base_to_front_left_foot: [0.506, 0.213, 0]
+#nominal_translation_base_to_front_left_foot: [0.451, 0.213, 0]
+nominal_translation_base_to_front_left_foot: [0.451, 0.18, 0]
+#nominal_translation_base_to_front_left_foot: [0.4, 0.213, 0]
+#nominal_translation_base_to_front_left_foot: [0.35, 0.3, 0]

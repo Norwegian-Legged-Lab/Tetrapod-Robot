@@ -1,6 +1,6 @@
-cost_force_scalar: 1
+cost_force_scalar: 1.0
 cost_reference_scalar: 5.e+5
-cost_reference_diagonal_elements: [5.e+5, 5.e+5, 5.e+5, 5.e+1, 5.e+1, 5.e+1, 5.e+5, 5.e+5, 5.e+5, 5.e+1, 5.e+1, 5.e+1]
+cost_reference_diagonal_elements: [5.e+5, 5.e+5, 5.e+6, 5.e+6, 5.e+5, 5.e+5, 5.e+5, 5.e+5, 5.e+5, 5.e+4, 5.e+4, 5.e+4]
 use_uniform_reference_cost: false
 
 cost_eom: 1

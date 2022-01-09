@@ -7,7 +7,7 @@
     </include>
     <!-- Remove shadows -->
     <scene>
-      <grid>false</grid>
+      <grid>true</grid>
       <origin_visual>false</origin_visual>
       <ambient>0 0 0 0.1</ambient>
       <shadows>0</shadows>
@@ -101,12 +101,13 @@
       <plugin name="tetrapod_control" filename="libtetrapod_plugin.so"/>
 
     </model>
-
+<!--
     <model name="terrain">
       <include>
         <uri>model://terrain_description</uri>
       </include>
     </model>
+-->
 <!--
     <model name="footsteps">
       <include>

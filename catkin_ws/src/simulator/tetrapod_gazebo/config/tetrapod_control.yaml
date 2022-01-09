@@ -29,6 +29,8 @@ gazebo_client:
 
     10, 35, 45, -10, -35, -45, 170, -35, -45, -170, 35, 45 # Mammal-like config
     
+    #10, 40, 50, -10, -40, -50, 170, -40, -50, -170, 40, 50 # Mammal-like config (straighter calves)
+    
     #170, 48, 65, -170, -48, -65, 170, -48, -65, -170, 48, 65 # Dog-like config (not even possible, only for testing)
   ]
 
