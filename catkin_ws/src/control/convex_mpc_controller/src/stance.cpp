@@ -8,14 +8,14 @@ namespace ConvexMpc{
 
 StanceInfo getStanceInfoAmble(){
     StanceInfo stance_info;
-
+/*
     stance_info(fl).starts = Eigen::ArrayXd::Constant(1, 0.5);
     
     stance_info(fl).durations = Eigen::ArrayXd::Constant(1, 0.5);
 
     stance_info(fr).starts = Eigen::ArrayXd::Zero(1);
 
-    stance_info(fr).durations = Eigen::ArrayXd::Constant(1, 0.5);;
+    stance_info(fr).durations = Eigen::ArrayXd::Constant(1, 0.5);
 
     stance_info(rl).starts = Eigen::ArrayXd::Zero(2);
     stance_info(rl).starts << 0, 0.75;
@@ -24,6 +24,26 @@ StanceInfo getStanceInfoAmble(){
 
     stance_info(rr).starts = Eigen::ArrayXd::Constant(1, 0.25);
     stance_info(rr).durations = Eigen::ArrayXd::Constant(1, 0.5);
+*/
+    stance_info(fl).starts.conservativeResize(2);
+    stance_info(fl).starts << 0, 0.5;
+    
+    stance_info(fl).durations.conservativeResize(2);
+    stance_info(fl).durations << 0.1, 0.5;
+
+    stance_info(fr).starts = Eigen::ArrayXd::Zero(1);
+
+    stance_info(fr).durations = Eigen::ArrayXd::Constant(1, 0.6);
+
+
+    stance_info(rl).starts = Eigen::ArrayXd::Zero(2);
+    stance_info(rl).starts << 0, 0.75;
+
+    stance_info(rl).durations = Eigen::ArrayXd::Zero(2);
+    stance_info(rl).durations << 0.35, 0.25;
+
+    stance_info(rr).starts = Eigen::ArrayXd::Constant(1, 0.25);
+    stance_info(rr).durations = Eigen::ArrayXd::Constant(1, 0.6);
 
     return stance_info;
 }
@@ -52,6 +72,24 @@ StanceInfo getStanceInfoTrot(){
     stance_info(rr).durations.conservativeResize(2);
     stance_info(rr).durations << 0.1, 0.5;
 
+/*
+    stance_info(fl).starts = Eigen::ArrayXd::Constant(1, 0.5);
+
+    stance_info(fl).durations = Eigen::ArrayXd::Constant(1, 0.5);
+    
+    stance_info(fr).starts = Eigen::ArrayXd::Zero(1);
+
+    stance_info(fr).durations = Eigen::ArrayXd::Constant(1, 0.5);
+
+    stance_info(rl).starts = Eigen::ArrayXd::Zero(1);
+
+    stance_info(rl).durations = Eigen::ArrayXd::Constant(1, 0.5);
+
+    stance_info(rr).starts = Eigen::ArrayXd::Constant(1, 0.5);
+
+    stance_info(rr).durations = Eigen::ArrayXd::Constant(1, 0.5);
+*/
+    
     return stance_info;
 }
 
@@ -78,11 +116,57 @@ StanceInfo getStanceInfoStand(){
 }
 //TODO: actually implement these other gaits!
 StanceInfo getStanceInfoFlyingTrot(){
-    return getStanceInfoAmble();
+    StanceInfo stance_info;
+
+    stance_info(fl).starts.conservativeResize(1);
+    stance_info(fl).starts << 0.5;
+    
+    stance_info(fl).durations.conservativeResize(1);
+    stance_info(fl).durations << 0.4;
+
+    stance_info(fr).starts = Eigen::ArrayXd::Zero(1);
+
+    stance_info(fr).durations = Eigen::ArrayXd::Constant(1, 0.4);
+
+
+    stance_info(rl).starts = Eigen::ArrayXd::Zero(1);
+
+    stance_info(rl).durations = Eigen::ArrayXd::Constant(1, 0.4);
+
+    stance_info(rr).starts.conservativeResize(1);
+    stance_info(rr).starts << 0.5;
+    
+    stance_info(rr).durations.conservativeResize(1);
+    stance_info(rr).durations << 0.4;
+
+    return stance_info;
 }
 
 StanceInfo getStanceInfoBound(){
-    return getStanceInfoAmble();
+    StanceInfo stance_info;
+
+    stance_info(fl).starts.conservativeResize(2);
+    stance_info(fl).starts << 0, 0.5;
+    
+    stance_info(fl).durations.conservativeResize(2);
+    stance_info(fl).durations << 0.1, 0.5;
+
+    stance_info(fr).starts.conservativeResize(2);
+    stance_info(fr).starts << 0, 0.5;
+    
+    stance_info(fr).durations.conservativeResize(2);
+    stance_info(fr).durations << 0.1, 0.5;
+
+
+    stance_info(rl).starts = Eigen::ArrayXd::Zero(1);
+
+    stance_info(rl).durations = Eigen::ArrayXd::Constant(1, 0.6);
+
+    stance_info(rr).starts = Eigen::ArrayXd::Zero(1);
+
+    stance_info(rr).durations = Eigen::ArrayXd::Constant(1, 0.6);
+
+    return stance_info;
 }
 
 StanceInfo getStanceInfoGallop(){
