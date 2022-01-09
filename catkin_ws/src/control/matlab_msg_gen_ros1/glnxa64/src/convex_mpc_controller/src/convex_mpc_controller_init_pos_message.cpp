@@ -77,46 +77,20 @@ class CONVEX_MPC_CONTROLLER_EXPORT convex_mpc_controller_msg_init_pos_common : p
         throw std::invalid_argument("Field 'RrPos' is wrong type; expected a double.");
     }
     try {
-        //fl_set
-        const matlab::data::TypedArray<bool> fl_set_arr = arr["FlSet"];
-        msg->fl_set = fl_set_arr[0];
+        //contact_state
+        const matlab::data::TypedArray<bool> contact_state_arr = arr["ContactState"];
+        size_t nelem = 4;
+        	std::copy(contact_state_arr.begin(), contact_state_arr.begin()+nelem, msg->contact_state.begin());
     } catch (matlab::data::InvalidFieldNameException&) {
-        throw std::invalid_argument("Field 'FlSet' is missing.");
+        throw std::invalid_argument("Field 'ContactState' is missing.");
     } catch (matlab::Exception&) {
-        throw std::invalid_argument("Field 'FlSet' is wrong type; expected a logical.");
-    }
-    try {
-        //fr_set
-        const matlab::data::TypedArray<bool> fr_set_arr = arr["FrSet"];
-        msg->fr_set = fr_set_arr[0];
-    } catch (matlab::data::InvalidFieldNameException&) {
-        throw std::invalid_argument("Field 'FrSet' is missing.");
-    } catch (matlab::Exception&) {
-        throw std::invalid_argument("Field 'FrSet' is wrong type; expected a logical.");
-    }
-    try {
-        //rl_set
-        const matlab::data::TypedArray<bool> rl_set_arr = arr["RlSet"];
-        msg->rl_set = rl_set_arr[0];
-    } catch (matlab::data::InvalidFieldNameException&) {
-        throw std::invalid_argument("Field 'RlSet' is missing.");
-    } catch (matlab::Exception&) {
-        throw std::invalid_argument("Field 'RlSet' is wrong type; expected a logical.");
-    }
-    try {
-        //rr_set
-        const matlab::data::TypedArray<bool> rr_set_arr = arr["RrSet"];
-        msg->rr_set = rr_set_arr[0];
-    } catch (matlab::data::InvalidFieldNameException&) {
-        throw std::invalid_argument("Field 'RrSet' is missing.");
-    } catch (matlab::Exception&) {
-        throw std::invalid_argument("Field 'RrSet' is wrong type; expected a logical.");
+        throw std::invalid_argument("Field 'ContactState' is wrong type; expected a logical.");
     }
   }
   //----------------------------------------------------------------------------
   MDArray_T convex_mpc_controller_msg_init_pos_common::get_arr(MDFactory_T& factory, const convex_mpc_controller::init_pos* msg,
        MultiLibLoader loader, size_t size) {
-    auto outArray = factory.createStructArray({size,1},{"MessageType","FlPos","FrPos","RlPos","RrPos","FlSet","FrSet","RlSet","RrSet"});
+    auto outArray = factory.createStructArray({size,1},{"MessageType","FlPos","FrPos","RlPos","RrPos","ContactState"});
     for(size_t ctr = 0; ctr < size; ctr++){
     outArray[ctr]["MessageType"] = factory.createCharArray("convex_mpc_controller/init_pos");
     // fl_pos
@@ -131,18 +105,10 @@ class CONVEX_MPC_CONTROLLER_EXPORT convex_mpc_controller_msg_init_pos_common : p
     // rr_pos
     auto currentElement_rr_pos = (msg + ctr)->rr_pos;
     outArray[ctr]["RrPos"] = factory.createArray<convex_mpc_controller::init_pos::_rr_pos_type::const_iterator, double>({currentElement_rr_pos.size(),1}, currentElement_rr_pos.begin(), currentElement_rr_pos.end());
-    // fl_set
-    auto currentElement_fl_set = (msg + ctr)->fl_set;
-    outArray[ctr]["FlSet"] = factory.createScalar(static_cast<bool>(currentElement_fl_set));
-    // fr_set
-    auto currentElement_fr_set = (msg + ctr)->fr_set;
-    outArray[ctr]["FrSet"] = factory.createScalar(static_cast<bool>(currentElement_fr_set));
-    // rl_set
-    auto currentElement_rl_set = (msg + ctr)->rl_set;
-    outArray[ctr]["RlSet"] = factory.createScalar(static_cast<bool>(currentElement_rl_set));
-    // rr_set
-    auto currentElement_rr_set = (msg + ctr)->rr_set;
-    outArray[ctr]["RrSet"] = factory.createScalar(static_cast<bool>(currentElement_rr_set));
+    // contact_state
+    auto currentElement_contact_state = (msg + ctr)->contact_state;
+    auto contact_state_bool = std::vector<bool>(std::begin(currentElement_contact_state),std::end(currentElement_contact_state));
+    outArray[ctr]["ContactState"] = factory.createArray<std::vector<bool>::const_iterator, bool>({contact_state_bool.size(),1}, contact_state_bool.begin(), contact_state_bool.end());
     }
     return std::move(outArray);
   } 

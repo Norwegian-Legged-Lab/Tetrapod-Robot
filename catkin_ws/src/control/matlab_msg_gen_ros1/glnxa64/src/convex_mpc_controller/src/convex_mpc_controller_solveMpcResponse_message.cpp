@@ -69,11 +69,20 @@ class CONVEX_MPC_CONTROLLER_EXPORT convex_mpc_controller_msg_solveMpcResponse_co
     } catch (matlab::Exception&) {
         throw std::invalid_argument("Field 'Inputs' is wrong type; expected a struct.");
     }
+    try {
+        //solved
+        const matlab::data::TypedArray<bool> solved_arr = arr["Solved"];
+        msg->solved = solved_arr[0];
+    } catch (matlab::data::InvalidFieldNameException&) {
+        throw std::invalid_argument("Field 'Solved' is missing.");
+    } catch (matlab::Exception&) {
+        throw std::invalid_argument("Field 'Solved' is wrong type; expected a logical.");
+    }
   }
   //----------------------------------------------------------------------------
   MDArray_T convex_mpc_controller_msg_solveMpcResponse_common::get_arr(MDFactory_T& factory, const convex_mpc_controller::solveMpcResponse* msg,
        MultiLibLoader loader, size_t size) {
-    auto outArray = factory.createStructArray({size,1},{"MessageType","T","States","Inputs"});
+    auto outArray = factory.createStructArray({size,1},{"MessageType","T","States","Inputs","Solved"});
     for(size_t ctr = 0; ctr < size; ctr++){
     outArray[ctr]["MessageType"] = factory.createCharArray("convex_mpc_controller/solveMpcResponse");
     // t
@@ -87,6 +96,9 @@ class CONVEX_MPC_CONTROLLER_EXPORT convex_mpc_controller_msg_solveMpcResponse_co
     auto currentElement_inputs = (msg + ctr)->inputs;
     static convex_mpc_controller_msg_inputs_common obj_inputs;
     outArray[ctr]["Inputs"] = obj_inputs.get_arr(factory, &currentElement_inputs, loader);
+    // solved
+    auto currentElement_solved = (msg + ctr)->solved;
+    outArray[ctr]["Solved"] = factory.createScalar(static_cast<bool>(currentElement_solved));
     }
     return std::move(outArray);
   } 

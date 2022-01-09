@@ -1,0 +1,158 @@
+ROS_DISTRO was set to 'noetic' before. Please make sure that the environment does not mix paths from different distributions.
+[0/1] Re-running CMake...
+CMake Warning (dev) in CMakeLists.txt:
+  No project() command is present.  The top-level CMakeLists.txt file must
+  contain a literal, direct call to the project() command.  Add a line of
+  code such as
+
+    project(ProjectName)
+
+  near the top of the file, but after cmake_minimum_required().
+
+  CMake is pretending there is a "project(Project)" command on the first
+  line.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Using CATKIN_DEVEL_PREFIX: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/devel
+-- Using CMAKE_PREFIX_PATH: /usr/local/MATLAB/R2021a/sys/ros1/glnxa64/ros1;/usr/local/MATLAB/R2021a/toolbox/ros/mlroscpp/custom_messages
+-- This workspace overlays: /usr/local/MATLAB/R2021a/sys/ros1/glnxa64/ros1;/usr/local/MATLAB/R2021a/toolbox/ros/mlroscpp/custom_messages
+-- Using PYTHON_EXECUTABLE: /home/melyso/.matlab/R2021a/ros1/glnxa64/venv/bin/python2
+-- Using Debian Python package layout
+-- Using empy: /home/melyso/.matlab/R2021a/ros1/glnxa64/venv/lib/python2.7/site-packages/em.pyc
+-- Using CATKIN_ENABLE_TESTING: off
+-- catkin 0.7.17
+-- BUILD_SHARED_LIBS is on
+-- BUILD_SHARED_LIBS is on
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- ~~  traversing 1 packages in topological order:
+-- ~~  - convex_mpc_controller
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- +++ processing catkin package: 'convex_mpc_controller'
+-- ==> add_subdirectory(convex_mpc_controller)
+-- Disabling the following message generators: geneus;genlisp;gennodejs
+-- Using these message generators: gencpp;genpy
+-- convex_mpc_controller: 7 messages, 0 services
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/build
+ninja: no work to do.
+[1/25] cd /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/build/convex_mpc_controller && /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/melyso/.matlab/R2021a/ros1/glnxa64/venv/bin/python2 /usr/local/MATLAB/R2021a/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py convex_mpc_controller /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/src/convex_mpc_controller/msg/init_pos.msg
+[2/25] cd /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/build/convex_mpc_controller && /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/melyso/.matlab/R2021a/ros1/glnxa64/venv/bin/python2 /usr/local/MATLAB/R2021a/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py convex_mpc_controller /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/src/convex_mpc_controller/msg/pose.msg
+[3/25] cd /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/build/convex_mpc_controller && /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/melyso/.matlab/R2021a/ros1/glnxa64/venv/bin/python2 /usr/local/MATLAB/R2021a/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py convex_mpc_controller /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/src/convex_mpc_controller/msg/states.msg std_msgs/Float64MultiArray:std_msgs/MultiArrayDimension:std_msgs/MultiArrayLayout
+[4/25] cd /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/build/convex_mpc_controller && /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/melyso/.matlab/R2021a/ros1/glnxa64/venv/bin/python2 /usr/local/MATLAB/R2021a/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py convex_mpc_controller /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/src/convex_mpc_controller/msg/solveMpcResponse.msg convex_mpc_controller/inputs:std_msgs/MultiArrayDimension:std_msgs/Float64MultiArray:convex_mpc_controller/foot_input:convex_mpc_controller/states:std_msgs/MultiArrayLayout
+[5/25] cd /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/build/convex_mpc_controller && /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/melyso/.matlab/R2021a/ros1/glnxa64/venv/bin/python2 /usr/local/MATLAB/R2021a/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py convex_mpc_controller /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/src/convex_mpc_controller/msg/foot_input.msg std_msgs/Float64MultiArray:std_msgs/MultiArrayDimension:std_msgs/MultiArrayLayout
+[6/25] cd /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/build/convex_mpc_controller && /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/melyso/.matlab/R2021a/ros1/glnxa64/venv/bin/python2 /usr/local/MATLAB/R2021a/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py convex_mpc_controller /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/src/convex_mpc_controller/msg/solveMpcRequest.msg convex_mpc_controller/init_pos
+[7/25] cd /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/build/convex_mpc_controller && /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/melyso/.matlab/R2021a/ros1/glnxa64/venv/bin/python2 /usr/local/MATLAB/R2021a/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py convex_mpc_controller /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/src/convex_mpc_controller/msg/inputs.msg std_msgs/Float64MultiArray:convex_mpc_controller/foot_input:std_msgs/MultiArrayDimension:std_msgs/MultiArrayLayout
+[8/25] Generating C++ code from convex_mpc_controller/solveMpcRequest.msg
+[9/25] Generating C++ code from convex_mpc_controller/init_pos.msg
+[10/25] Generating C++ code from convex_mpc_controller/pose.msg
+[11/25] Generating C++ code from convex_mpc_controller/solveMpcResponse.msg
+[12/25] Generating Python from MSG convex_mpc_controller/pose
+[13/25] Generating Python from MSG convex_mpc_controller/init_pos
+[14/25] Generating Python from MSG convex_mpc_controller/solveMpcRequest
+[15/25] Generating Python from MSG convex_mpc_controller/solveMpcResponse
+[16/25] Generating Python msg __init__.py for convex_mpc_controller
+[17/25] Building CXX object convex_mpc_controller/CMakeFiles/convex_mpc_controller_matlab.dir/src/convex_mpc_controller_pose_message.cpp.o
+[18/25] Building CXX object convex_mpc_controller/CMakeFiles/convex_mpc_controller_matlab.dir/src/convex_mpc_controller_inputs_message.cpp.o
+[19/25] Building CXX object convex_mpc_controller/CMakeFiles/convex_mpc_controller_matlab.dir/src/convex_mpc_controller_solveMpcRequest_message.cpp.o
+[20/25] Building CXX object convex_mpc_controller/CMakeFiles/convex_mpc_controller_matlab.dir/src/convex_mpc_controller_solveMpcResponse_message.cpp.o
+[21/25] Building CXX object convex_mpc_controller/CMakeFiles/convex_mpc_controller_matlab.dir/src/convex_mpc_controller_foot_input_message.cpp.o
+[22/25] Building CXX object convex_mpc_controller/CMakeFiles/convex_mpc_controller_matlab.dir/src/convex_mpc_controller_init_pos_message.cpp.o
+[23/25] Building CXX object convex_mpc_controller/CMakeFiles/convex_mpc_controller_matlab.dir/src/convex_mpc_controller_states_message.cpp.o
+[24/25] Linking CXX shared library /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/devel/lib/libconvex_mpc_controller_matlab.so
+[24/25] Install the project...
+-- Install configuration: "Release"
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/_setup_util.py
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/env.sh
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/setup.bash
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/local_setup.bash
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/setup.sh
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/local_setup.sh
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/setup.zsh
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/local_setup.zsh
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/.rosinstall
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/share/convex_mpc_controller/msg/foot_input.msg
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/share/convex_mpc_controller/msg/init_pos.msg
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/share/convex_mpc_controller/msg/inputs.msg
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/share/convex_mpc_controller/msg/pose.msg
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/share/convex_mpc_controller/msg/solveMpcRequest.msg
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/share/convex_mpc_controller/msg/solveMpcResponse.msg
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/share/convex_mpc_controller/msg/states.msg
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/share/convex_mpc_controller/cmake/convex_mpc_controller-msg-paths.cmake
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/include/convex_mpc_controller
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/include/convex_mpc_controller/init_pos.h
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/include/convex_mpc_controller/solveMpcRequest.h
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/include/convex_mpc_controller/foot_input.h
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/include/convex_mpc_controller/solveMpcResponse.h
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/include/convex_mpc_controller/inputs.h
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/include/convex_mpc_controller/pose.h
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/include/convex_mpc_controller/states.h
+Listing /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/convex_mpc_controller ...
+Listing /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/convex_mpc_controller/msg ...
+Compiling /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/convex_mpc_controller/msg/__init__.py ...
+Compiling /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/convex_mpc_controller/msg/_init_pos.py ...
+Compiling /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/convex_mpc_controller/msg/_pose.py ...
+Compiling /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/convex_mpc_controller/msg/_solveMpcRequest.py ...
+Compiling /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/convex_mpc_controller/msg/_solveMpcResponse.py ...
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/convex_mpc_controller
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/convex_mpc_controller/msg
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/convex_mpc_controller/msg/_solveMpcResponse.py
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/convex_mpc_controller/msg/_pose.py
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/convex_mpc_controller/msg/_foot_input.py
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/convex_mpc_controller/msg/_states.pyc
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/convex_mpc_controller/msg/_solveMpcRequest.py
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/convex_mpc_controller/msg/_inputs.pyc
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/convex_mpc_controller/msg/_states.py
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/convex_mpc_controller/msg/_solveMpcRequest.pyc
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/convex_mpc_controller/msg/_pose.pyc
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/convex_mpc_controller/msg/_solveMpcResponse.pyc
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/convex_mpc_controller/msg/_foot_input.pyc
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/convex_mpc_controller/msg/_init_pos.pyc
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/convex_mpc_controller/msg/_init_pos.py
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/convex_mpc_controller/msg/_inputs.py
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/convex_mpc_controller/msg/__init__.py
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/convex_mpc_controller/msg/__init__.pyc
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/convex_mpc_controller/__init__.py
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/convex_mpc_controller/__init__.pyc
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/lib/pkgconfig/convex_mpc_controller.pc
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/share/convex_mpc_controller/cmake/convex_mpc_controller-msg-extras.cmake
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/share/convex_mpc_controller/cmake/convex_mpc_controllerConfig.cmake
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/share/convex_mpc_controller/cmake/convex_mpc_controllerConfig-version.cmake
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/share/convex_mpc_controller/package.xml
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/include
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/include/convex_mpc_controller
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/include/convex_mpc_controller/visibility_control.h
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/lib/libconvex_mpc_controller_matlab.so
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/m/
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/m//+ros
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+convex_mpc_controller
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+convex_mpc_controller/init_pos.m
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+convex_mpc_controller/foot_input.m
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+convex_mpc_controller/solveMpcRequest.m
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+convex_mpc_controller/solveMpcResponse.m
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+convex_mpc_controller/pose.m
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+convex_mpc_controller/states.m
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+convex_mpc_controller/inputs.m
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+convex_mpc_controller
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+convex_mpc_controller/init_pos.m
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+convex_mpc_controller/foot_input.m
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+convex_mpc_controller/solveMpcRequest.m
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+convex_mpc_controller/solveMpcResponse.m
+-- Installing: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+convex_mpc_controller/pose.m
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+convex_mpc_controller/states.m
+-- Up-to-date: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+convex_mpc_controller/inputs.m
+Base path: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64
+Source space: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/src
+Build space: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/build
+Devel space: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/devel
+Install space: /home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/install
+####
+#### Running command: "ninja build.ninja" in "/home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/build"
+####
+####
+#### Running command: "ninja install install -j12 -l12" in "/home/melyso/Tetrapod-Robot/catkin_ws/src/control/matlab_msg_gen_ros1/glnxa64/build"
+####

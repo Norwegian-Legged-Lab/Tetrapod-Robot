@@ -8,11 +8,12 @@ classdef solveMpcResponse < ros.Message
         MessageType = 'convex_mpc_controller/solveMpcResponse' % The ROS message type
     end
     properties (Constant, Hidden)
-        MD5Checksum = '29123ad6fab5bad6742713516df6d66b' % The MD5 Checksum of the message definition
-        PropertyList = { 'States' 'Inputs' 'T' } % List of non-constant message properties
-        ROSPropertyList = { 'states' 'inputs' 't' } % List of non-constant ROS message properties
+        MD5Checksum = '71188c608e5be2f9e4024375eaafa50b' % The MD5 Checksum of the message definition
+        PropertyList = { 'States' 'Inputs' 'T' 'Solved' } % List of non-constant message properties
+        ROSPropertyList = { 'states' 'inputs' 't' 'solved' } % List of non-constant ROS message properties
         PropertyMessageTypes = { 'ros.msggen.convex_mpc_controller.states' ...
             'ros.msggen.convex_mpc_controller.inputs' ...
+            '' ...
             '' ...
             } % Types of contained nested messages
     end
@@ -22,6 +23,7 @@ classdef solveMpcResponse < ros.Message
         States
         Inputs
         T
+        Solved
     end
     methods
         function set.States(obj, val)
@@ -46,6 +48,12 @@ classdef solveMpcResponse < ros.Message
             validAttributes = {'vector'};
             validateattributes(val, validClasses, validAttributes, 'solveMpcResponse', 'T');
             obj.T = double(val);
+        end
+        function set.Solved(obj, val)
+            validClasses = {'logical', 'numeric'};
+            validAttributes = {'nonempty', 'scalar'};
+            validateattributes(val, validClasses, validAttributes, 'solveMpcResponse', 'Solved');
+            obj.Solved = logical(val);
         end
     end
     methods (Static, Access = {?matlab.unittest.TestCase, ?ros.Message})

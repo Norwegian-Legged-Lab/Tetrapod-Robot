@@ -62,6 +62,7 @@ add_message_files(
   solveMpcRequest.msg
   solveMpcResponse.msg
   states.msg
+  pose.msg
 )
 
 ## Generate services in the 'srv' folder

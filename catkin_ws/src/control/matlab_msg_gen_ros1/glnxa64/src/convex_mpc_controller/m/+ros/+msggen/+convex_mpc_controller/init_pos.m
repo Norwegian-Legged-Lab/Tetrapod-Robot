@@ -8,13 +8,10 @@ classdef init_pos < ros.Message
         MessageType = 'convex_mpc_controller/init_pos' % The ROS message type
     end
     properties (Constant, Hidden)
-        MD5Checksum = '94d6812bdd0904c75d77afaf7bf72b35' % The MD5 Checksum of the message definition
-        PropertyList = { 'FlPos' 'FrPos' 'RlPos' 'RrPos' 'FlSet' 'FrSet' 'RlSet' 'RrSet' } % List of non-constant message properties
-        ROSPropertyList = { 'fl_pos' 'fr_pos' 'rl_pos' 'rr_pos' 'fl_set' 'fr_set' 'rl_set' 'rr_set' } % List of non-constant ROS message properties
+        MD5Checksum = 'b33bc73d6352b15909d8ff9dac30f26a' % The MD5 Checksum of the message definition
+        PropertyList = { 'FlPos' 'FrPos' 'RlPos' 'RrPos' 'ContactState' } % List of non-constant message properties
+        ROSPropertyList = { 'fl_pos' 'fr_pos' 'rl_pos' 'rr_pos' 'contact_state' } % List of non-constant ROS message properties
         PropertyMessageTypes = { '' ...
-            '' ...
-            '' ...
-            '' ...
             '' ...
             '' ...
             '' ...
@@ -28,10 +25,7 @@ classdef init_pos < ros.Message
         FrPos
         RlPos
         RrPos
-        FlSet
-        FrSet
-        RlSet
-        RrSet
+        ContactState
     end
     methods
         function set.FlPos(obj, val)
@@ -62,29 +56,12 @@ classdef init_pos < ros.Message
             validateattributes(val, validClasses, validAttributes, 'init_pos', 'RrPos');
             obj.RrPos = double(val);
         end
-        function set.FlSet(obj, val)
+        function set.ContactState(obj, val)
             validClasses = {'logical', 'numeric'};
-            validAttributes = {'nonempty', 'scalar'};
-            validateattributes(val, validClasses, validAttributes, 'init_pos', 'FlSet');
-            obj.FlSet = logical(val);
-        end
-        function set.FrSet(obj, val)
-            validClasses = {'logical', 'numeric'};
-            validAttributes = {'nonempty', 'scalar'};
-            validateattributes(val, validClasses, validAttributes, 'init_pos', 'FrSet');
-            obj.FrSet = logical(val);
-        end
-        function set.RlSet(obj, val)
-            validClasses = {'logical', 'numeric'};
-            validAttributes = {'nonempty', 'scalar'};
-            validateattributes(val, validClasses, validAttributes, 'init_pos', 'RlSet');
-            obj.RlSet = logical(val);
-        end
-        function set.RrSet(obj, val)
-            validClasses = {'logical', 'numeric'};
-            validAttributes = {'nonempty', 'scalar'};
-            validateattributes(val, validClasses, validAttributes, 'init_pos', 'RrSet');
-            obj.RrSet = logical(val);
+            val = val(:);
+            validAttributes = {'vector', 'numel', 4};
+            validateattributes(val, validClasses, validAttributes, 'init_pos', 'ContactState');
+            obj.ContactState = logical(val);
         end
     end
     methods (Static, Access = {?matlab.unittest.TestCase, ?ros.Message})

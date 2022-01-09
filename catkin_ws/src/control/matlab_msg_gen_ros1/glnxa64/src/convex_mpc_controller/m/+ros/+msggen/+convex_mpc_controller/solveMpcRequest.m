@@ -8,7 +8,7 @@ classdef solveMpcRequest < ros.Message
         MessageType = 'convex_mpc_controller/solveMpcRequest' % The ROS message type
     end
     properties (Constant, Hidden)
-        MD5Checksum = '9f174717bb0ee4edf6ef0a4cca80bd32' % The MD5 Checksum of the message definition
+        MD5Checksum = '442fd7909894b4d888490af0f3537543' % The MD5 Checksum of the message definition
         PropertyList = { 'InitStancePos' 'X0' 'T0' 'VelDes' 'YawRateDes' } % List of non-constant message properties
         ROSPropertyList = { 'init_stance_pos' 'x0' 't0' 'vel_des' 'yaw_rate_des' } % List of non-constant ROS message properties
         PropertyMessageTypes = { 'ros.msggen.convex_mpc_controller.init_pos' ...
