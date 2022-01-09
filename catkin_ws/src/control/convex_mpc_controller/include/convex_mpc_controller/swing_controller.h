@@ -12,11 +12,11 @@ class SwingController{
 
     SwingController();
 
-    Eigen::Vector3d Pos(const double &t);
+    Eigen::Vector3d Pos(const double &t) const;
 
-    Eigen::Vector3d Vel(const double &t);
+    Eigen::Vector3d Vel(const double &t) const;
 
-    Eigen::Vector3d Acc(const double &t);
+    Eigen::Vector3d Acc(const double &t) const;
 
     double GetTau(double t) const {return (t - t0_)/T_;}
 

@@ -5,6 +5,7 @@
 #include<convex_mpc_controller/contact_detector.h>
 #include<convex_mpc_controller/swing_controller.h>
 #include<convex_mpc_controller/local_eigen_extensions.h>
+#include<convex_mpc_controller/pose.h>
 
 #include<ros/ros.h>
 #include<std_msgs/Bool.h>
@@ -88,13 +89,18 @@ class ConvexMpcController{
     
     Eigen::Matrix<double, 6, 1> GetAccelerationDes() const {return solution_.states.dx.bottomLeftCorner(6,1);}
 
-    FootstepPositions GetFootstepPosDes(const double &t);
+    FootstepPositions GetFootstepPosDes(const double &t) const;
     
-    FootstepPositions GetFootstepVelDes(const double &t);
+    FootstepPositions GetFootstepVelDes(const double &t) const;
     
-    FootstepPositions GetFootstepAccDes(const double &t);
+    FootstepPositions GetFootstepAccDes(const double &t) const;
 
     void PublishTorqueMsg(Eigen::Matrix<double, 12, 1> &desired_tau);
+
+    void PublishFootStates();
+
+    void PublishDesiredFootStates(const double &t) const;
+
     private:
 
     double real_time_factor_;
@@ -119,6 +125,16 @@ class ConvexMpcController{
     ros::Subscriber mpc_response_sub_;
     ros::Subscriber gen_coord_sub_;
     ros::Subscriber gen_vel_sub_;
+
+    ros::Publisher des_foot_pos_pub_;
+    ros::Publisher des_foot_vel_pub_;
+    ros::Publisher des_foot_acc_pub_;
+
+    ros::Publisher foot_pos_pub_;
+    ros::Publisher des_base_pose_pub_;
+    ros::Publisher des_base_twist_pub_;
+    ros::Publisher des_base_acc_pub_;
+
     std::chrono::time_point<std::chrono::system_clock> t0_;
     std::chrono::time_point<std::chrono::system_clock> t1_;
     std::chrono::time_point<std::chrono::system_clock> t2_;
