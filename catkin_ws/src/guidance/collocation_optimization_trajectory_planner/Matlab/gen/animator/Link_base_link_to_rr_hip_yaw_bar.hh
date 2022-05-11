@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Fri 10 Dec 2021 23:17:30 GMT+01:00
+ * Fri 4 Feb 2022 15:52:05 GMT+01:00
  */
 
 #ifndef LINK_BASE_LINK_TO_RR_HIP_YAW_BAR_HH
