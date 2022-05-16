@@ -150,7 +150,6 @@ include_directories(
 
 add_executable(${PROJECT_NAME}_node
   src/collocation_optimization_trajectory_planner_node.cpp
-  src/augmented_lagrangian.cpp
   )
 
 ## Rename C++ executable without prefix
