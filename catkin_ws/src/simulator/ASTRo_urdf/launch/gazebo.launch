@@ -10,7 +10,7 @@
     name="spawn_model"
     pkg="gazebo_ros"
     type="spawn_model"
-    args="-file $(find ASTRo_urdf)/urdf/vision_60.urdf -urdf -model vision60"
+    args="-file $(find ASTRo_urdf)/ASTRo_xacro/ASTRo.urdf -urdf -model ASTRo"
     output="screen" />
   <node
     name="fake_joint_calibration"
