@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sun 3 Apr 2022 21:48:57 GMT+02:00
+ * Thu 12 May 2022 11:34:31 GMT+02:00
  */
 
 #ifndef J_XPARTIALDISCRETEMAPDIAGONALIMPACT_HH
@@ -28,7 +28,7 @@ namespace DiagonalImpact
 
 	
     // - Outputs
-    assert_size_matrix(p_output1, 24, 1);
+    assert_size_matrix(p_output1, 28, 1);
 
 
     // set zero the matrix

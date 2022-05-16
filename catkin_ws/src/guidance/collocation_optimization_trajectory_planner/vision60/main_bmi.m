@@ -163,7 +163,7 @@ tic
 dphidtheta = sens.findiff(@(z) reshape(sens.calcFlowJacobianVariation(x0, system, intermediaryJacobians, cp, z), [], 1), theta_0, theta_idx);
 toc
 % tic
-% dphidtheta = sens.findiff(@(z) reshape(sens.calcFlowJacobian(x0, system, z), [], 1), theta_0, theta_idx);
+% dphidtheta = sens.findiff(@(z) reshape(sens.calcFlowJacobian(x0, system, z), [], 1), theta_0);%, theta_idx);
 % toc
 
 

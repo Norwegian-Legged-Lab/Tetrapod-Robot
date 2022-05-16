@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sun 3 Apr 2022 21:48:47 GMT+02:00
+ * Thu 12 May 2022 11:34:20 GMT+02:00
  */
 
 #ifndef JS_DXMINUSCONT_DIAGONALIMPACT_HH

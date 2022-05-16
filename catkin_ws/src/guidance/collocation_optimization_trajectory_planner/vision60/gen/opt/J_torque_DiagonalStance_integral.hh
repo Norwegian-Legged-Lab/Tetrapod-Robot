@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sun 3 Apr 2022 21:46:01 GMT+02:00
+ * Thu 12 May 2022 11:31:19 GMT+02:00
  */
 
 #ifndef J_TORQUE_DIAGONALSTANCE_INTEGRAL_HH

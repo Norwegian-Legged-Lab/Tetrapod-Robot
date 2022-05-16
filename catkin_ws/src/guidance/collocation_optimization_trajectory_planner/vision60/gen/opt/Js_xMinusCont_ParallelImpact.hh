@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sun 3 Apr 2022 21:47:22 GMT+02:00
+ * Thu 12 May 2022 11:32:49 GMT+02:00
  */
 
 #ifndef JS_XMINUSCONT_PARALLELIMPACT_HH

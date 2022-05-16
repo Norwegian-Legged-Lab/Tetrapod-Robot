@@ -6,15 +6,15 @@ domain.setName('DiagonalStance');
 
 % Alter the actuation mapping to avoid closed chain by removing rear stance
 % hip pitch actuation
-u = domain.Inputs.Control.u;
-domain.removeInput('Control', 'u');
-Be = [zeros(6,12); eye(12)];
-Be = [Be(:,1:4), Be(:, 6:end)];
-u = SymVariable('u', [11,1]);
-% Be(11, 5) = 0;
-Be = SymExpression(Be);
-
-domain.addInput('Control', 'u', u, Be);
+% u = domain.Inputs.Control.u;
+% domain.removeInput('Control', 'u');
+% Be = [zeros(6,12); eye(12)];
+% Be = [Be(:,1:4), Be(:, 6:end)];
+% u = SymVariable('u', [11,1]);
+% % Be(11, 5) = 0;
+% Be = SymExpression(Be);
+% 
+% domain.addInput('Control', 'u', u, Be);
 
 if nargin < 2
     load_path = [];

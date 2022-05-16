@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sun 3 Apr 2022 21:47:37 GMT+02:00
+ * Thu 12 May 2022 11:33:05 GMT+02:00
  */
 
 #ifndef JS_XPARTIALDISCRETEMAPPARALLELIMPACT_HH
@@ -27,7 +27,7 @@ namespace ParallelImpact
 
 	
     // - Outputs
-    assert_size_matrix(p_output1, 30, 2);
+    assert_size_matrix(p_output1, 36, 2);
 
 
     // set zero the matrix
