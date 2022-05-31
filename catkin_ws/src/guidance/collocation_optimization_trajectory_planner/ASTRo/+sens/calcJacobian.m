@@ -195,15 +195,29 @@ end
 A_mat = DLfy*gfc;
 Lf_mat = DLfy*vfc;
 
+decoupling_is_square = ~diff(size(A_mat));
+
 
 % feedforward controller
 if strcmp(y_i.PhaseType, 'TimeBased')
-    u_ff = - A_mat \ (Lf_mat - ddy);
+    if decoupling_is_square
+        u_ff = - A_mat \ (Lf_mat - ddy);
+    else
+        u_ff = - lsqminnorm(A_mat, (Lf_mat - ddy));
+    end
 else
-    u_ff = - A_mat \ Lf_mat;
+    if decoupling_is_square
+        u_ff = - A_mat \ Lf_mat;
+    else
+        u_ff = - lsqminnorm(A_mat, Lf_mat);
+    end
 end
 % feedback controller
-u_fb = -A_mat \ mu;
+if decoupling_is_square
+    u_fb = -A_mat \ mu;
+else
+    u_fb = -lsqminnorm(A_mat, mu);
+end
 
 u = u_ff + u_fb;
 
@@ -287,17 +301,23 @@ intermediary_jacobians.J_Lfmat = intermediary_jacobians.J_DLfy*vfc + DLfy*interm
 
 intermediary_jacobians.J_Amat = intermediary_jacobians.J_DLfy*gfc + DLfy*intermediary_jacobians.J_gfc;
 
-% A_matLinv = pinv(A_mat);
-% 
-% intermediary_jacobians.J_AmatLInv = -A_matLinv*intermediary_jacobians.J_Amat*A_matLinv ...
-%     + A_matLinv*A_matLinv'*(intermediary_jacobians.J_Amat')*(eye(size(A_mat,1)) - A_mat*A_matLinv) ...
-%     + (eye(size(A_mat,2)) - A_matLinv*A_mat)*(intermediary_jacobians.J_Amat')*(A_matLinv'*A_matLinv);
+if decoupling_is_square
+    intermediary_jacobians.J_AmatInv = -A_mat\intermediary_jacobians.J_Amat/A_mat;
 
-intermediary_jacobians.J_AmatInv = -A_mat\intermediary_jacobians.J_Amat/A_mat;
+    intermediary_jacobians.J_u_ff = -intermediary_jacobians.J_AmatInv*(Lf_mat - ddy) - A_mat\intermediary_jacobians.J_Lfmat;
 
-intermediary_jacobians.J_u_ff = -intermediary_jacobians.J_AmatInv*(Lf_mat - ddy) - A_mat\intermediary_jacobians.J_Lfmat;
+    intermediary_jacobians.J_u_fb = -intermediary_jacobians.J_AmatInv*mu - A_mat\(intermediary_jacobians.J_mu);
+else
+    A_matLinv = pinv(A_mat);
 
-intermediary_jacobians.J_u_fb = -intermediary_jacobians.J_AmatInv*mu - A_mat\(intermediary_jacobians.J_mu);
+    intermediary_jacobians.J_AmatLInv = -A_matLinv*intermediary_jacobians.J_Amat*A_matLinv ...
+        + A_matLinv*A_matLinv'*(intermediary_jacobians.J_Amat')*(eye(size(A_mat,1)) - A_mat*A_matLinv) ...
+        + (eye(size(A_mat,2)) - A_matLinv*A_mat)*(intermediary_jacobians.J_Amat')*(A_matLinv'*A_matLinv);
+
+    intermediary_jacobians.J_u_ff = -intermediary_jacobians.J_AmatLInv*(Lf_mat - ddy) - A_matLinv*intermediary_jacobians.J_Lfmat;
+
+    intermediary_jacobians.J_u_fb = -intermediary_jacobians.J_AmatLInv*mu - A_matLinv*intermediary_jacobians.J_mu;
+end
 
 intermediary_jacobians.J_Gv_u = Be*(intermediary_jacobians.J_u_ff + intermediary_jacobians.J_u_fb);
 
