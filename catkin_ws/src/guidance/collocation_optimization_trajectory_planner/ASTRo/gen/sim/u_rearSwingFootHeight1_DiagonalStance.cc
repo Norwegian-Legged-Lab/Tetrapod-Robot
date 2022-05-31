@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sat 14 May 2022 16:40:26 GMT+02:00
+ * Sun 22 May 2022 17:22:44 GMT+02:00
  */
 
 #ifdef MATLAB_MEX_FILE
@@ -48,67 +48,67 @@ inline double Csc(double x) { return 1/sin(x); }
  */
 static void output1(double *p_output1,const double *var1)
 {
-  double t3161;
-  double t5404;
-  double t5459;
-  double t5481;
-  double t5612;
-  double t22380;
-  double t37522;
-  double t38127;
-  double t37594;
-  double t38145;
-  double t38053;
-  double t38163;
-  double t38313;
-  double t38385;
-  double t38388;
-  double t38389;
-  double t3317;
-  double t4263;
-  double t38414;
-  double t38417;
-  double t38418;
-  double t38419;
-  double t38430;
-  double t38433;
-  double t38434;
-  double t38482;
-  double t38484;
-  double t38490;
-  double t38492;
-  double t38493;
-  t3161 = Cos(var1[3]);
-  t5404 = Cos(var1[15]);
-  t5459 = -1.*t5404;
-  t5481 = 1. + t5459;
-  t5612 = -0.15121*t5481;
-  t22380 = Sin(var1[15]);
-  t37522 = Cos(var1[5]);
-  t38127 = Sin(var1[3]);
-  t37594 = Sin(var1[4]);
-  t38145 = Sin(var1[5]);
-  t38053 = -1.*t3161*t37522*t37594;
-  t38163 = t38127*t38145;
-  t38313 = t38053 + t38163;
-  t38385 = t37522*t38127;
-  t38388 = t3161*t37594*t38145;
-  t38389 = t38385 + t38388;
-  t3317 = Cos(var1[4]);
-  t4263 = Sin(var1[16]);
-  t38414 = Cos(var1[16]);
-  t38417 = t5404*t38313;
-  t38418 = t22380*t38389;
-  t38419 = t38417 + t38418;
-  t38430 = Cos(var1[17]);
-  t38433 = t3161*t3317*t4263;
-  t38434 = t38414*t38419;
-  t38482 = t38433 + t38434;
-  t38484 = Sin(var1[17]);
-  t38490 = t38414*t3161*t3317;
-  t38492 = -1.*t4263*t38419;
-  t38493 = t38490 + t38492;
-  p_output1[0]=-0.28121*(1. - 1.*t38414)*t38419 - 0.50321*(1. - 1.*t38430)*t38482 - 0.50321*t38484*t38493 - 0.23321*(t38430*t38482 - 1.*t38484*t38493) + 0.28121*t3161*t3317*t4263 - 0.15121*(-1.*t22380*t38313 + t38389*t5404) + t38313*(-0.15121*t22380 + t5612) + t38389*(0.15121*t22380 + t5612) + var1[2];
+  double t3907;
+  double t3981;
+  double t6070;
+  double t6273;
+  double t6334;
+  double t6739;
+  double t6950;
+  double t7337;
+  double t7295;
+  double t7338;
+  double t7311;
+  double t7393;
+  double t7394;
+  double t7489;
+  double t7517;
+  double t7521;
+  double t3921;
+  double t3935;
+  double t7607;
+  double t7650;
+  double t7651;
+  double t7653;
+  double t7662;
+  double t7666;
+  double t7667;
+  double t7675;
+  double t7680;
+  double t7681;
+  double t7683;
+  double t7684;
+  t3907 = Cos(var1[3]);
+  t3981 = Cos(var1[15]);
+  t6070 = -1.*t3981;
+  t6273 = 1. + t6070;
+  t6334 = -0.15121*t6273;
+  t6739 = Sin(var1[15]);
+  t6950 = Cos(var1[5]);
+  t7337 = Sin(var1[3]);
+  t7295 = Sin(var1[4]);
+  t7338 = Sin(var1[5]);
+  t7311 = -1.*t3907*t6950*t7295;
+  t7393 = t7337*t7338;
+  t7394 = t7311 + t7393;
+  t7489 = t6950*t7337;
+  t7517 = t3907*t7295*t7338;
+  t7521 = t7489 + t7517;
+  t3921 = Cos(var1[4]);
+  t3935 = Sin(var1[16]);
+  t7607 = Cos(var1[16]);
+  t7650 = t3981*t7394;
+  t7651 = t6739*t7521;
+  t7653 = t7650 + t7651;
+  t7662 = Cos(var1[17]);
+  t7666 = t3907*t3921*t3935;
+  t7667 = t7607*t7653;
+  t7675 = t7666 + t7667;
+  t7680 = Sin(var1[17]);
+  t7681 = t7607*t3907*t3921;
+  t7683 = -1.*t3935*t7653;
+  t7684 = t7681 + t7683;
+  p_output1[0]=0.28121*t3907*t3921*t3935 + (t6334 - 0.15121*t6739)*t7394 + (t6334 + 0.15121*t6739)*t7521 - 0.15121*(-1.*t6739*t7394 + t3981*t7521) - 0.28121*(1. - 1.*t7607)*t7653 - 0.50321*(1. - 1.*t7662)*t7675 - 0.50321*t7680*t7684 - 0.23321*(t7662*t7675 - 1.*t7680*t7684) + var1[2];
 }
 
 

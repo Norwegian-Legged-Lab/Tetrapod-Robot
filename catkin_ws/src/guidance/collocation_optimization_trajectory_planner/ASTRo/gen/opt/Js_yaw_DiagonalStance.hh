@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sat 14 May 2022 15:42:35 GMT+02:00
+ * Sat 28 May 2022 16:59:58 GMT+02:00
  */
 
 #ifndef JS_YAW_DIAGONALSTANCE_HH

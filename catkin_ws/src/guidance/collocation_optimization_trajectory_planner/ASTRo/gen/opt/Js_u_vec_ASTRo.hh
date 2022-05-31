@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sat 14 May 2022 15:41:40 GMT+02:00
+ * Sat 28 May 2022 16:58:56 GMT+02:00
  */
 
 #ifndef JS_U_VEC_ASTRO_HH

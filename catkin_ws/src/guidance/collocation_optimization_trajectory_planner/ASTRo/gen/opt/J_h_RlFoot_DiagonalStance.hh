@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sat 14 May 2022 15:41:51 GMT+02:00
+ * Sat 28 May 2022 16:59:11 GMT+02:00
  */
 
 #ifndef J_H_RLFOOT_DIAGONALSTANCE_HH

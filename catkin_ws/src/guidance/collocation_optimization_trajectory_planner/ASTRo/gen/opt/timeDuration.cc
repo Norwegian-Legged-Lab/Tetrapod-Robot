@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sat 14 May 2022 15:42:57 GMT+02:00
+ * Sat 28 May 2022 17:14:19 GMT+02:00
  */
 
 #ifdef MATLAB_MEX_FILE
@@ -110,7 +110,7 @@ void mexFunction( int nlhs, mxArray *plhs[],
 
 #include "timeDuration.hh"
 
-namespace ParallelStance
+namespace DiagonalStance
 {
 
 void timeDuration_raw(double *p_output1, const double *var1)

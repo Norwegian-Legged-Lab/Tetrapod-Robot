@@ -3,7 +3,7 @@ Checking cost value of DiagonalStance:
 **************************************************
         Cost 	        Value
 Cost: torque_DiagonalStance 
-torque_DiagonalStance 	 6.85582279E+02
+torque_DiagonalStance 	 1.94582293E+03
 **************************************************
 **************************************************
 Checking cost value of ParallelImpact:
@@ -15,7 +15,7 @@ Checking cost value of ParallelStance:
 **************************************************
         Cost 	        Value
 Cost: torque_ParallelStance 
-torque_ParallelStance 	 2.27415464E+03
+torque_ParallelStance 	 4.21751738E+01
 **************************************************
 **************************************************
 Checking cost value of DiagonalImpact:
