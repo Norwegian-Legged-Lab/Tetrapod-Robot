@@ -25,10 +25,11 @@ limits = [base.Limit];
 
 param = sys.GetExtraParams;
 
-base_pos_slack = 0.2;
+base_pos_slack_x = 0.3;
+base_pos_slack_y = 0.1;
 
-[limits.lower] = deal(-param.hip_offset_x - base_pos_slack, param.hip_offset_y - base_pos_slack, 0.15, -0.3, -0.1, -0.4);
-[limits.upper] = deal(-param.hip_offset_x + base_pos_slack, param.hip_offset_y + base_pos_slack, 0.6, 0.3, 0.1, 0.4);
+[limits.lower] = deal(-param.hip_offset_x - base_pos_slack_x, param.hip_offset_y - base_pos_slack_y, 0.3, -0.2, -0.1, -0.3);
+[limits.upper] = deal(-param.hip_offset_x + base_pos_slack_x, param.hip_offset_y + base_pos_slack_y, 0.9, 0.2, 0.1, 0.3);
 
 [limits.velocity] = deal(4, 4, 4, 4, 4, 4);
 [limits.effort] = deal(0);

@@ -9,8 +9,12 @@ if nargin < 3
     closed_loop = true;
 end
 
-diagonalStance = sys.domains.DiagonalStance(model, load_path, closed_loop);
-parallelStance = sys.domains.ParallelStance(model, load_path, closed_loop);
+omitted_actuator_idx_diag = 5;
+omitted_actuator_idx_paral = 11;
+
+
+diagonalStance = sys.domains.DiagonalStance(model, load_path, closed_loop);%, omitted_actuator_idx_diag);
+parallelStance = sys.domains.ParallelStance(model, load_path, closed_loop);%, omitted_actuator_idx_paral);
 
 %Create rigid impact class with switching betweeen feet? or just change the
 %holonomic constraints
