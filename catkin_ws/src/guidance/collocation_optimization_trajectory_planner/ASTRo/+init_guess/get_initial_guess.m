@@ -39,7 +39,7 @@ l2 = params.L3;
 l3 = abs(params.Z3);
 x_offset = params.foot_offset_x;
 
-cp_diag = kin.GetBezierControlPointsJointSpace(dx, dz, z_des, l1, l2, l3, x_offset, 0, widening_angle);
+[cp_diag, cp_paral] = kin.GetBezierControlPointsJointSpace(dx, dz, z_des, l1, l2, l3, x_offset, 0, widening_angle);
 
 n_feet = length(cp_diag);
 
@@ -50,7 +50,6 @@ a_diag = cell(n_feet, 1);
 mirroring = [0, 1, 0, 1];
 offset_idx = [4, 1, 2, 3];
 
-cp_paral = cell(n_feet, 1);
 p_paral = cell(n_feet, 1);
 v_paral = cell(n_feet, 1);
 a_paral = cell(n_feet, 1);
@@ -62,16 +61,12 @@ for i = 1:n_feet
     p_diag{i} = p_temp;
     v_diag{i} = (1/T_phase)*v_temp;
     a_diag{i} = (1/T_phase^2)*a_temp;
-end
-
-for i = 1:n_feet
-    cp_paral{i} = (Sj^(mirroring(i)))*cp_diag{offset_idx(i)};
     
-    p_paral{i} = (Sj^(mirroring(i)))*p_diag{offset_idx(i)};
-    v_paral{i} = (Sj^(mirroring(i)))*v_diag{offset_idx(i)};
-    a_paral{i} = (Sj^(mirroring(i)))*a_diag{offset_idx(i)};
+    [p_temp, v_temp, a_temp] = kin.BezierCurve(num_steps, cp_paral{i});
+    p_paral{i} = p_temp;
+    v_paral{i} = (1/T_phase)*v_temp;
+    a_paral{i} = (1/T_phase^2)*a_temp;
 end
-
 
 %need to account for 1)tspan, 2)states, 3)inputs, 4)params
 %diagonal phase
