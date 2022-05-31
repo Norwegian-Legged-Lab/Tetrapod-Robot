@@ -21,6 +21,8 @@ function [new_gait, sol, info, total_time] = solve(nlp, x0, info)
         solver.Options.zu = info.zu;
         solver.Options.lambda = info.lambda;
     end
+    solver.Options.print_level = 12;
+    solver.Options.print_options_mode = 'latex';
 
     solver.Options.ipopt.print_timing_statistics = 'yes';
     solver.Options.ipopt.nlp_lower_bound_inf = -1e6;

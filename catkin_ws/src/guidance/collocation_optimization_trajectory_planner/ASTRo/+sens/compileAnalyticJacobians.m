@@ -19,8 +19,8 @@ end
 
 robot = sys.LoadModel(urdf, load_path, delay_set);
 
-system = sys.LoadBMISystem(robot, load_path);
-% system = sys.LoadSystem(robot, load_path);
+% system = sys.LoadBMISystemHalf(robot, load_path);
+system = sys.LoadSystem(robot, load_path);
 % system = sys.LoadReverseSystem(robot, load_path);
 
 %%

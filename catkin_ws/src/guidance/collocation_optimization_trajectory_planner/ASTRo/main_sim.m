@@ -19,11 +19,11 @@ end
 
 robot = sys.LoadModel(urdf, load_path, delay_set);
 
-system = sys.LoadSimSystem(robot, load_path);
-% system = sys.LoadSystem(robot, load_path);
+% system = sys.LoadSimSystem(robot, load_path);
+system = sys.LoadSystem(robot, load_path);
 % system = sys.LoadReverseSystem(robot, load_path);
 
-system.compile(export_path);
+% system.compile(export_path);
 
 param = load('local/tmp_gait.mat');
 %%
@@ -105,7 +105,7 @@ paral_stance.PreProcess = @sim.ParallelStancePreProcess;
 
 x0 = [gait(1).states.x(:,1); gait(1).states.dx(:,1)];
 tic
-logger = system.simulate(0, x0, [], [], 'NumCycle', 10);
+logger = system.simulate(0, x0, [], [], 'NumCycle', 1);
 toc
 
 %% finite diff
@@ -115,7 +115,29 @@ h_vecs = h*eye(36);
 
 x0 = [gait(1).states.x(:,1); gait(1).states.dx(:,1)];
 
-J = sens.calcFlowJacobian(x0, system);
+cp = cell(2,1);
+
+cp{1} = struct();
+
+t = gait(1).tspan;
+x = [gait(1).states.x; gait(1).states.dx];
+
+cp{1}.points = kin.bezierFit(t, x, 5);
+cp{1}.ts = [t(1), t(end)];
+
+cp{2} = struct();
+
+t = gait(3).tspan;
+x = [gait(3).states.x; gait(3).states.dx];
+
+cp{2}.points = kin.bezierFit(t, x, 5);
+cp{2}.ts = [t(1), t(end)];
+
+intermediaryJacobians = sens.getIntermediaryJacobians(system);
+
+% J = sens.calcFlowJacobianVariation(x0, system, intermediaryJacobians, cp);
+% J = sens.calcFlowJacobian(x0, system);
+
 %% Animation
 
 anim = plot.LoadSimAnimator(robot, logger, 'SkipExporting',true, 'UseExported', false);

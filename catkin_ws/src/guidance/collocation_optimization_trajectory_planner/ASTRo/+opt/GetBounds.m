@@ -7,7 +7,11 @@ function bounds = GetBounds(model, speed, closed_loop)
     if nargin < 3
         closed_loop = true;
     end
-
+    
+    tf_domain_ub = 0.15;
+    tf_domain_lb = 0.01;
+    tf_domain_x0 = 0.1;
+    
     model_bounds = model.getLimits();
     
     model_bounds.closed_loop = closed_loop;
@@ -15,14 +19,14 @@ function bounds = GetBounds(model, speed, closed_loop)
     model_bounds.states.ddx.lb(:) = -100;
     model_bounds.states.ddx.ub(:) = 100;
     
-    hip_yaw_inner = deg2rad(20);
-    hip_yaw_outer = deg2rad(40);
+    hip_yaw_inner = deg2rad(0);
+    hip_yaw_outer = deg2rad(60);
     
-    hip_pitch_upper = -pi/2;
-    hip_pitch_lower = 0;
+    hip_pitch_upper = -pi/4;
+    hip_pitch_lower = pi/8;
     
-    knee_pitch_inner = pi/8;
-    knee_pitch_outer = 7*pi/8;
+    knee_pitch_inner = deg2rad(60); %60 degrees is minimal physically feasible
+    knee_pitch_outer = pi;
     
     model_bounds.states.x.lb(7) = hip_yaw_inner;
     model_bounds.states.x.lb(8) = hip_pitch_upper;
@@ -58,8 +62,8 @@ function bounds = GetBounds(model, speed, closed_loop)
 
 
     
-    model_bounds.inputs.Control.u.lb = -80*ones(12,1);
-    model_bounds.inputs.Control.u.ub = 80*ones(12,1);
+    model_bounds.inputs.Control.u.lb = -500*ones(12,1);
+    model_bounds.inputs.Control.u.ub = 500*ones(12,1);
     
     model_bounds.states.dx.lb(7:end) = -6;
     model_bounds.states.dx.ub(7:end) = 6;
@@ -70,27 +74,27 @@ function bounds = GetBounds(model, speed, closed_loop)
     model_bounds.gains.kp = 100;
     model_bounds.gains.kd = 20;
 
-    model_bounds.time.duration.lb = 0.08;
-    model_bounds.time.duration.ub = 0.25;
-    model_bounds.time.duration.x0 = 0.15;
+    model_bounds.time.duration.lb = tf_domain_lb;
+    model_bounds.time.duration.ub = tf_domain_ub;
+    model_bounds.time.duration.x0 = tf_domain_x0;
 
     model_bounds.time.t0.lb = 0;
     model_bounds.time.t0.ub = 0;
-    model_bounds.time.tf.lb = 0.07;
-    model_bounds.time.tf.ub = 0.25;
+    model_bounds.time.tf.lb = tf_domain_lb;
+    model_bounds.time.tf.ub = tf_domain_ub;
 
-    model_bounds.constrBounds.foot_clearance.lb = 0.03;
-    model_bounds.constrBounds.foot_clearance.ub = 0.1;
+    model_bounds.constrBounds.foot_clearance.lb = 0.02;
+    model_bounds.constrBounds.foot_clearance.ub = 0.15;
     model_bounds.constrBounds.averageVelocity.lb = speed;
     model_bounds.constrBounds.averageVelocity.ub = speed;
 
     model_bounds.constrBounds.yaw_initial.lb = -0;
     model_bounds.constrBounds.yaw_initial.ub = 0;
 
-    model_bounds.constrBounds.footVelocityBeginning.lb = [-0.2, -0.05, 0]';
-    model_bounds.constrBounds.footVelocityBeginning.ub = [0.2, 0.05, 0.3]';
-    model_bounds.constrBounds.footVelocityEnd.lb = [-0.1, -0.05, -2]';
-    model_bounds.constrBounds.footVelocityEnd.ub = [0.4, 0.05, 0]';
+    model_bounds.constrBounds.footVelocityBeginning.lb = [-0.1, -0.1, 0]';
+    model_bounds.constrBounds.footVelocityBeginning.ub = [0.1, 0.1, 0.6]';
+    model_bounds.constrBounds.footVelocityEnd.lb = [-0.1, -0.1, -2]';
+    model_bounds.constrBounds.footVelocityEnd.ub = [0.2, 0.1, 0]';
 
     %Common Virtual Constraints
 
@@ -102,7 +106,7 @@ function bounds = GetBounds(model, speed, closed_loop)
     pms = sys.GetExtraParams();
     
     body_nominal_pos = [-pms.hip_offset_x - pms.foot_offset_x, pms.hip_offset_y, 0];
-    offset_vec = [0.6, 0.6, 0.1];
+    offset_vec = [0.2, 0.3, 0.1];
     % //TODO: Return to these and check if they're understood correctly
     model_bounds.params.pFlFoot.lb = body_nominal_pos + [(pms.hip_offset_x + pms.foot_offset_x), pms.hip_offset_y, 0] - offset_vec;
     model_bounds.params.pFlFoot.ub = body_nominal_pos + [(pms.hip_offset_x + pms.foot_offset_x), pms.hip_offset_y, 0] + offset_vec;
@@ -127,7 +131,7 @@ function bounds = GetBounds(model, speed, closed_loop)
     bounds.DiagonalStance.time.t0.lb = 0;
     bounds.DiagonalStance.time.t0.ub = 0;
     bounds.DiagonalStance.time.t0.x0 = 0;
-    bounds.DiagonalStance.time.tf.x0 = 0.15;
+    bounds.DiagonalStance.time.tf.x0 = tf_domain_x0;
 
     %//TODO: Check if z is defined upwards or downwards in the Atlas model
     bounds.DiagonalStance.inputs.ConstraintWrench.fFrFoot.lb = [-1000, -1000, 0]';
@@ -149,7 +153,7 @@ function bounds = GetBounds(model, speed, closed_loop)
     bounds.DiagonalStance.constrBounds.outputLimit.lb = [-hip_yaw_outer, knee_pitch_inner, -hip_yaw_outer, knee_pitch_inner]';
     bounds.DiagonalStance.constrBounds.outputLimit.ub = [-hip_yaw_inner, knee_pitch_outer, -hip_yaw_inner, knee_pitch_outer]'; %base yaw and pitch/roll outputs as well as front stance hip roll and pitch
 
-    bounds.DiagonalStance.params.pposition.x0 = [0, 0.15];
+    bounds.DiagonalStance.params.pposition.x0 = [0, tf_domain_x0];
 
     % Impact from diagonal to parallel stance
 
@@ -174,9 +178,9 @@ function bounds = GetBounds(model, speed, closed_loop)
     bounds.ParallelStance.time.t0.lb = 0;
     bounds.ParallelStance.time.t0.ub = 0;
     bounds.ParallelStance.time.t0.x0 = 0;
-    bounds.ParallelStance.time.tf.x0 = 0.15;
+    bounds.ParallelStance.time.tf.x0 = tf_domain_x0;
 
-    bounds.ParallelStance.params.pposition.x0 = [0, 0.15];
+    bounds.ParallelStance.params.pposition.x0 = [0, tf_domain_x0];
 
     bounds.ParallelStance.inputs.ConstraintWrench.fFrFoot.lb = [-1000, -1000, 0];
     bounds.ParallelStance.inputs.ConstraintWrench.fFrFoot.ub = [1000, 1000, 5000];

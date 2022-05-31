@@ -30,10 +30,10 @@ function DiagonalStanceConstraints(nlp, bounds, varargin)
     % experimental stance foot height constraints
     [fr_foot_frame] = sys.frames.FrFoot(domain);
     [rl_foot_frame] = sys.frames.RlFoot(domain);
-    opt.constraint.swing_position(nlp, fr_foot_frame, 'first');
-    opt.constraint.swing_position(nlp, rl_foot_frame, 'first');
+%     opt.constraint.swing_position(nlp, fr_foot_frame, 'first');
+%     opt.constraint.swing_position(nlp, rl_foot_frame, 'first');
     
-    opt.constraint.step_distance(nlp, bounds);
+%     opt.constraint.step_distance(nlp, bounds);
     %//TODO: Make sure you completely understand how the implementation of these constraints dictate signs in the getBounds function
     % swing foot velocity
     opt.constraint.impact_velocity(nlp, bounds, rr_foot_frame);

@@ -29,11 +29,11 @@ function ParallelStanceConstraints(nlp, bounds, varargin)
     % experimental stance foot height constraints
     [fr_foot_frame] = sys.frames.FrFoot(domain);
     [rr_foot_frame] = sys.frames.RrFoot(domain);
-    opt.constraint.swing_position(nlp, fr_foot_frame, 'first');
-    opt.constraint.swing_position(nlp, rr_foot_frame, 'first');
+%     opt.constraint.swing_position(nlp, fr_foot_frame, 'first');
+%     opt.constraint.swing_position(nlp, rr_foot_frame, 'first');
 
     
-    opt.constraint.step_distance(nlp, bounds);
+%     opt.constraint.step_distance(nlp, bounds);
 
     % Swing foot velocity
     opt.constraint.impact_velocity(nlp, bounds, fl_foot_frame);

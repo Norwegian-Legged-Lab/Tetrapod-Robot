@@ -10,6 +10,7 @@ if nargin > 6
     phi = reshape(z, 36, 36);
 
     A = sens.calcJacobian(t - cp.ts(1), x, domain, controller, params, intermediary_jacobians);
+% %     A = sens.findiff(@(y) domain.secondOrderDynamics(t - cp.ts(1), y, controller, params, []), x);
     dphi = A*phi;
     zdot = reshape(dphi,[],1);
 else

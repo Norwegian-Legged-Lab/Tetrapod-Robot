@@ -1,4 +1,4 @@
-function [J_s] = calcFluxJacobianTrajectory(flows, system, intermediary_jacobians)
+function [J_s, J_s_fin] = calcFluxJacobianTrajectory(flows, system, intermediary_jacobians)
 %CALCALLJACOBIANS Summary of this function goes here
 %   Detailed explanation goes here
 n_flows = length(flows);
