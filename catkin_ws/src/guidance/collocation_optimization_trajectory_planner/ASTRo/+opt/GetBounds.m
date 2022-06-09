@@ -62,11 +62,11 @@ function bounds = GetBounds(model, speed, closed_loop)
 
 
     
-    model_bounds.inputs.Control.u.lb = -500*ones(12,1);
-    model_bounds.inputs.Control.u.ub = 500*ones(12,1);
+    model_bounds.inputs.Control.u.lb = -50*ones(12,1);
+    model_bounds.inputs.Control.u.ub = 50*ones(12,1);
     
-    model_bounds.states.dx.lb(7:end) = -6;
-    model_bounds.states.dx.ub(7:end) = 6;
+    model_bounds.states.dx.lb(7:end) = -4;
+    model_bounds.states.dx.ub(7:end) = 4;
     
     model_bounds.options.enforceVirtualConstraints = true;
 

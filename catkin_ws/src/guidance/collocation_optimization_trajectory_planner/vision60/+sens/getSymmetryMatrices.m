@@ -14,6 +14,10 @@ S_pose = diag([1, -1, 1, -1, 1, -1]);
 S_q = blkdiag(S_pose, kron(S_j_outer, S_j));
 S_x = kron(eye(2), S_q);
 
-S_y = S_x(output_idx(:, 1), output_idx(:,2));
+if nargin < 1
+    S_y = [];
+else
+    S_y = S_x(output_idx(:, 1), output_idx(:,2));
+end
 end
 

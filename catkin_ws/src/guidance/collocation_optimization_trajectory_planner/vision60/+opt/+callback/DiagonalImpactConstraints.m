@@ -38,7 +38,7 @@ function DiagonalImpactConstraints(nlp, src, tar, bounds, varargin)
     R = plant.R;
     
     x_diff = R*x - xn;
-    x_map = SymFunction(['xPartialDiscreteMap' plant.Name], [x_diff(3:4); x_diff(7:end)], {x,xn});
+    x_map = SymFunction(['xPartialDiscreteMap' plant.Name], [x_diff(3:6); x_diff(7:end)], {x,xn});
         
     addNodeConstraint(nlp, x_map, {'x', 'xn'}, 'first', 0, 0, 'Linear');
     

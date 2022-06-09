@@ -4,16 +4,16 @@ function [domain] = ParallelStanceBMI(model, load_path)
 domain = copy(model);
 domain.setName('ParallelStance');
 
-u = domain.Inputs.Control.u;
-domain.removeInput('Control', 'u');
-Be = [zeros(6,12); eye(12)];
-Be = [Be(:,1:10), Be(:,12)];
-u = SymVariable('u', [11,1]);
-% Be(17,11) = 0;
-Be = SymExpression(Be);
-
-domain.addInput('Control', 'u', u, Be);
-
+% u = domain.Inputs.Control.u;
+% domain.removeInput('Control', 'u');
+% Be = [zeros(6,12); eye(12)];
+% Be = [Be(:,1:10), Be(:,12)];
+% u = SymVariable('u', [11,1]);
+% % Be(17,11) = 0;
+% Be = SymExpression(Be);
+% 
+% domain.addInput('Control', 'u', u, Be);
+% 
 if nargin < 2
     load_path = [];
 end
@@ -74,9 +74,10 @@ y_rshp = x(17);
 y_rskp = x(18);
 
 ya_2 = [
-    y_bh;
+%     y_bh;
     y_br;
     y_bp;
+    y_by;
     y_fshr;
     y_fshp;
     y_fskp;
@@ -90,9 +91,10 @@ ya_2 = [
     y_rnskp];
 
 y2_label = {
-    'BaseHeight', ...
+%     'BaseHeight', ...
     'BaseRoll', ...
     'BasePitch', ...
+    'BaseYaw', ...
     'FrontStanceHipRoll', ...
     'FrontStanceHipPitch', ...
     'FrontStanceKneePitch', ...

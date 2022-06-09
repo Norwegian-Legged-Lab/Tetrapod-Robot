@@ -1,4 +1,4 @@
-function [domain] = DiagonalStance2BMI(model, load_path, closed_loop, omitted_actuator_idx)
+function [domain] = DiagonalStance2BMI(model, load_path, closed_loop, omitted_actuator_idx, ground_type, ground_attributes)
 %DIAGONALSTANCE Summary of this function goes here
 %   Detailed explanation goes here
 domain = copy(model);
@@ -8,10 +8,20 @@ if nargin < 3
     closed_loop = true;
 end
 
-if nargin < 4
+if nargin < 4 || isempty(omitted_actuator_idx)
     omit_actuator = false;
 else
     omit_actuator = true;
+end
+
+if nargin < 6
+    ground_attributes = struct();
+end
+
+if nargin < 5
+    ground_type = 'flat';
+else
+    [ground_type, ground_attributes] = sys.SetGroundParams(ground_type, ground_attributes);
 end
 
 if omit_actuator
@@ -49,7 +59,9 @@ rl_foot = sys.frames.RlFoot(model);
 
 p_rear_swing_foot = getCartesianPosition(domain, rl_foot);
 
-h_rnsf = UnilateralConstraint(domain, p_rear_swing_foot(3), 'rearSwingFootHeight3', 'x');
+ground_expr = sys.GetGroundExpr(p_rear_swing_foot, ground_type, ground_attributes);
+
+h_rnsf = UnilateralConstraint(domain, p_rear_swing_foot(3) - ground_expr, 'rearSwingFootHeight3', 'x');
 
 domain = addEvent(domain, h_rnsf);
 
@@ -89,9 +101,10 @@ y_rnshp = x(11);
 y_rnskp = x(12);
 
 ya_2 = [
-    y_bh;
+%     y_bh;
     y_br;
     y_bp;
+    y_by;
     y_fshr;
     y_fshp;
     y_fskp;
@@ -105,9 +118,10 @@ ya_2 = [
     y_rnskp];
 
 y2_label = {
-    'BaseHeight', ...
+%     'BaseHeight', ...
     'BaseRoll', ...
     'BasePitch', ...
+    'BaseYaw', ...
     'FrontStanceHipRoll', ...
     'FrontStanceHipPitch', ...
     'FrontStanceKneePitch', ...

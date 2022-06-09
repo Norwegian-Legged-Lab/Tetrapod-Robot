@@ -12,26 +12,26 @@ function bounds = GetBounds(model, speed)
     model_bounds.states.x.lb(8) = 0;
     model_bounds.states.x.lb(9) = 0;
     
-    model_bounds.states.x.ub(8) = pi/2;
+    model_bounds.states.x.ub(8) = pi/6;
     model_bounds.states.x.ub(9) = 3*pi/4;
     
     
     model_bounds.states.x.lb(11) = 0;
     model_bounds.states.x.lb(12) = 0;
     
-    model_bounds.states.x.ub(11) = pi/2;
+    model_bounds.states.x.ub(11) = pi/6;
     model_bounds.states.x.ub(12) = 3*pi/4;
 
     model_bounds.states.x.lb(14) = 0;
     model_bounds.states.x.lb(15) = 0;
     
-    model_bounds.states.x.ub(14) = pi/2;
+    model_bounds.states.x.ub(14) = pi/6;
     model_bounds.states.x.ub(15) = 3*pi/4;
 
     model_bounds.states.x.lb(17) = 0;
     model_bounds.states.x.lb(18) = 0;
     
-    model_bounds.states.x.ub(17) = pi/2;
+    model_bounds.states.x.ub(17) = pi/6;
     model_bounds.states.x.ub(18) = 3*pi/4;
 
 
@@ -48,16 +48,16 @@ function bounds = GetBounds(model, speed)
     model_bounds.gains.kp = 100;
     model_bounds.gains.kd = 20;
 
-    model_bounds.time.duration.lb = 0.08;
-    model_bounds.time.duration.ub = 0.25;
-    model_bounds.time.duration.x0 = 0.15;
+    model_bounds.time.duration.lb = 0.02;
+    model_bounds.time.duration.ub = 0.2;
+    model_bounds.time.duration.x0 = 0.1;
 
     model_bounds.time.t0.lb = 0;
     model_bounds.time.t0.ub = 0;
-    model_bounds.time.tf.lb = 0.08;
-    model_bounds.time.tf.ub = 0.25;
+    model_bounds.time.tf.lb = 0.02;
+    model_bounds.time.tf.ub = 0.2;
 
-    model_bounds.constrBounds.foot_clearance.lb = 0.05;
+    model_bounds.constrBounds.foot_clearance.lb = 0.02;
     model_bounds.constrBounds.foot_clearance.ub = 0.1;
     model_bounds.constrBounds.averageVelocity.lb = speed;
     model_bounds.constrBounds.averageVelocity.ub = speed;
@@ -74,8 +74,8 @@ function bounds = GetBounds(model, speed)
 
     model_bounds.params.aposition.lb = -100;
     model_bounds.params.aposition.ub = 100;
-    model_bounds.params.pposition.lb = [0, 0];
-    model_bounds.params.pposition.ub = [2, 2];
+    model_bounds.params.pposition.lb = [0, 0.02];
+    model_bounds.params.pposition.ub = [0, 0.2];
     
     pms = sys.GetExtraParams();
     
@@ -105,7 +105,7 @@ function bounds = GetBounds(model, speed)
     bounds.DiagonalStance.time.t0.lb = 0;
     bounds.DiagonalStance.time.t0.ub = 0;
     bounds.DiagonalStance.time.t0.x0 = 0;
-    bounds.DiagonalStance.time.tf.x0 = 0.15;
+    bounds.DiagonalStance.time.tf.x0 = 0.1;
 
     %//TODO: Check if z is defined upwards or downwards in the Atlas model
     bounds.DiagonalStance.inputs.ConstraintWrench.fFrFoot.lb = [-1000, -1000, 0]';
@@ -127,7 +127,7 @@ function bounds = GetBounds(model, speed)
     bounds.DiagonalStance.constrBounds.outputLimit.lb = [-0.2, 0, -0.2, 0]';
     bounds.DiagonalStance.constrBounds.outputLimit.ub = [0.2, pi/2, 0.2, pi/2]'; %base yaw and pitch/roll outputs as well as front stance hip roll and pitch
 
-    bounds.DiagonalStance.params.pposition.x0 = [0, 0.15];
+    bounds.DiagonalStance.params.pposition.x0 = [0, 0.1];
 
     % Impact from diagonal to parallel stance
 
@@ -152,9 +152,9 @@ function bounds = GetBounds(model, speed)
     bounds.ParallelStance.time.t0.lb = 0;
     bounds.ParallelStance.time.t0.ub = 0;
     bounds.ParallelStance.time.t0.x0 = 0;
-    bounds.ParallelStance.time.tf.x0 = 0.15;
+    bounds.ParallelStance.time.tf.x0 = 0.1;
 
-    bounds.ParallelStance.params.pposition.x0 = [0, 0.15];
+    bounds.ParallelStance.params.pposition.x0 = [0, 0.1];
 
     bounds.ParallelStance.inputs.ConstraintWrench.fFrFoot.lb = [-1000, -1000, 0];
     bounds.ParallelStance.inputs.ConstraintWrench.fFrFoot.ub = [1000, 1000, 5000];

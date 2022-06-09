@@ -37,7 +37,8 @@ else
     nlp.configure(bounds, 'LoadPath', load_path);
 end
 
-opt.cost.Torques(nlp, system);
+% opt.cost.Torques(nlp, system);
+opt.cost.TorqueOverTime(nlp, system);
 % opt.cost.PowerOverTime(nlp, system);
 nlp.update;
 

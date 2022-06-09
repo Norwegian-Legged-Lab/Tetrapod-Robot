@@ -1,17 +1,27 @@
-function [domain] = DiagonalStanceBMI(model, load_path, closed_loop, omitted_actuator_idx)
+function [domain] = DiagonalStanceBMI(model, load_path, closed_loop, omitted_actuator_idx, ground_type, ground_attributes)
 %DIAGONALSTANCE Summary of this function goes here
 %   Detailed explanation goes here
 domain = copy(model);
 domain.setName('DiagonalStance');
 
-if nargin < 3
+if nargin < 3 || isempty(closed_loop)
     closed_loop = true;
 end
 
-if nargin < 4
+if nargin < 4 || isempty(omitted_actuator_idx)
     omit_actuator = false;
 else
     omit_actuator = true;
+end
+
+if nargin < 6 || isempty(ground_attributes)
+    ground_attributes = struct();
+end
+
+if nargin < 5 || isempty(ground_type)
+    ground_type = 'flat';
+else
+    [ground_type, ground_attributes] = sys.SetGroundParams(ground_type, ground_attributes);
 end
 
 if omit_actuator
@@ -42,13 +52,15 @@ rl_foot_contact = ToContactFrame(rl_foot, 'PointContactWithFriction');
 domain = addContact(domain, fr_foot_contact, fr_fric_coef, []); %Point contact, no geometry is necessary
 domain = addContact(domain, rl_foot_contact, rl_fric_coef, []); %Point contact, no geometry is necessary
 
-%Add event
+%Add event for ground contact
 
 rr_foot = sys.frames.RrFoot(model);
 
 p_rear_swing_foot = getCartesianPosition(domain, rr_foot);
 
-h_rnsf = UnilateralConstraint(domain, p_rear_swing_foot(3), 'rearSwingFootHeight1', 'x');
+ground_expr = sys.GetGroundExpr(p_rear_swing_foot, ground_type, ground_attributes);
+
+h_rnsf = UnilateralConstraint(domain, p_rear_swing_foot(3) - ground_expr, 'rearSwingFootHeight1', 'x');
 domain = addEvent(domain, h_rnsf);
 
 %% Add virtual constraints
@@ -89,10 +101,10 @@ y_rnshp = x(17);
 y_rnskp = x(18);
 
 ya_2 = [
-    y_bh;
+%     y_bh;
     y_br;
     y_bp;
-%     y_by;
+    y_by;
     y_fshr;
     y_fshp;
     y_fskp;
@@ -106,10 +118,10 @@ ya_2 = [
     y_rnskp];
 
 y2_label = {
-%     'BaseYaw', ...
-    'BaseHeight', ...
+%     'BaseHeight', ...
     'BaseRoll', ...
     'BasePitch', ...
+    'BaseYaw', ...
     'FrontStanceHipRoll', ...
     'FrontStanceHipPitch', ...
     'FrontStanceKneePitch', ...

@@ -27,8 +27,8 @@ param = sys.GetExtraParams;
 
 base_pos_slack = 0.2;
 
-[limits.lower] = deal(-param.hip_offset_x - base_pos_slack, param.hip_offset_y - base_pos_slack, 0.2, -0.3, -0.1, -0.3);
-[limits.upper] = deal(-param.hip_offset_x + base_pos_slack, param.hip_offset_y + base_pos_slack, 0.5, 0.3, 0.1, 0.3);
+[limits.lower] = deal(-param.hip_offset_x - base_pos_slack, param.hip_offset_y - base_pos_slack, 0.2, -0.2, -0.1, -0.3);
+[limits.upper] = deal(-param.hip_offset_x + base_pos_slack, param.hip_offset_y + base_pos_slack, 0.5, 0.2, 0.1, 0.3);
 
 [limits.velocity] = deal(4, 4, 4, 4, 4, 4);
 [limits.effort] = deal(0);

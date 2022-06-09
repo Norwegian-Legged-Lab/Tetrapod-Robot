@@ -1,4 +1,4 @@
-function [domain] = ParallelStanceBMI(model, load_path, closed_loop, omitted_actuator_idx)
+function [domain] = ParallelStanceBMI(model, load_path, closed_loop, omitted_actuator_idx, ground_type, ground_attributes)
 %PARALLELSTANCE Summary of this function goes here
 %   Detailed explanation goes here
 domain = copy(model);
@@ -8,10 +8,20 @@ if nargin < 3
     closed_loop = true;
 end
 
-if nargin < 4
+if nargin < 4 || isempty(omitted_actuator_idx)
     omit_actuator = false;
 else
     omit_actuator = true;
+end
+
+if nargin < 6
+    ground_attributes = struct();
+end
+
+if nargin < 5
+    ground_type = 'flat';
+else
+    [ground_type, ground_attributes] = sys.SetGroundParams(ground_type, ground_attributes);
 end
 
 if omit_actuator
@@ -48,7 +58,9 @@ fl_foot = sys.frames.FlFoot(model);
 
 p_front_swing_foot = getCartesianPosition(domain, fl_foot);
 
-h_fnsf = UnilateralConstraint(domain, p_front_swing_foot(3), 'frontSwingFootHeight2', 'x');
+ground_expr = sys.GetGroundExpr(p_front_swing_foot, ground_type, ground_attributes);
+
+h_fnsf = UnilateralConstraint(domain, p_front_swing_foot(3) - ground_expr, 'frontSwingFootHeight2', 'x');
 
 domain = addEvent(domain, h_fnsf);
 
@@ -88,9 +100,10 @@ y_rshp = x(17);
 y_rskp = x(18);
 
 ya_2 = [
-    y_bh;
+%     y_bh;
     y_br;
     y_bp;
+    y_by;
     y_fshr;
     y_fshp;
     y_fskp;
@@ -104,9 +117,10 @@ ya_2 = [
     y_rnskp];
 
 y2_label = {
-    'BaseHeight', ...
+%     'BaseHeight', ...
     'BaseRoll', ...
     'BasePitch', ...
+    'BaseYaw', ...
     'FrontStanceHipRoll', ...
     'FrontStanceHipPitch', ...
     'FrontStanceKneePitch', ...

@@ -14,7 +14,7 @@ classdef JacobianInterface < handle
     end
     
     methods
-        function obj = JacobianInterface(fun, domain_name)
+        function obj = JacobianInterface(fun, domain_name, export_path)
             %JACOBIANINTERFACE Construct an instance of this class
             %   Detailed explanation goes here
             obj.DomainName = domain_name;
@@ -41,7 +41,11 @@ classdef JacobianInterface < handle
                 end
             end    
             obj.Value = [];
-            obj.Path = 'gen/sens';
+            if nargin < 3
+                obj.Path = 'gen/sens';
+            else
+                obj.Path = export_path;
+            end
 
         end
         

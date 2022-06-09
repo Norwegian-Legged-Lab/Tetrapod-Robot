@@ -56,13 +56,13 @@ system.saveExpression(load_path);
 %% Get bounds
 
 % you can update bounds without reloading the problem. It is much much faster!!!
-bounds = opt.GetBounds(robot, [0, 0]);
+bounds = opt.GetBounds(robot, [0.2, 0]);
 
 opt.updateVariableBounds(nlp, bounds);
 
 %Update initial condition if use pre-existing gaits
 %param = load('local/tmp_gait.mat');
-my_gait = init_guess.get_initial_guess([0;0], 0.4, 0.08, 0.6, 15, robot);
+my_gait = init_guess.get_initial_guess([0.2;0], 0.3, 0.02, 0.4, 15, robot);
 param = load('local/tmp_gait.mat');
 opt.updateInitCondition(nlp, my_gait);
 
@@ -70,13 +70,13 @@ opt.updateInitCondition(nlp, my_gait);
 
 [gait, sol, info] = opt.solve(nlp);
 % [gait, sol, info] = opt.solve(nlp, param.sol, param.info);
-save('local/tmp_gait.mat', 'gait', 'sol', 'info', 'bounds');
+save('local/0_2_m_s_opt_gait.mat', 'gait', 'sol', 'info', 'bounds');
 
 
 %% animation
 my_gait_ext = utils.extend_gait(my_gait);
-% gait_ext = utils.extend_gait(gait);
-anim = plot.LoadOptAnimator(robot, gait_ext, 'UseExported', true);%,'SkipExporting',true, 'UseExported', false);
+gait_ext = utils.extend_gait(gait);
+anim = plot.LoadOptAnimator(robot, gait_ext,'SkipExporting', true, 'UseExported', true);%,'SkipExporting',true, 'UseExported', false);
 
 %%
 

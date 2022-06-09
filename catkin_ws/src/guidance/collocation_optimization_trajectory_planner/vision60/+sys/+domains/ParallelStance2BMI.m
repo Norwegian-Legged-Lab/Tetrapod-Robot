@@ -4,15 +4,15 @@ function [domain] = ParallelStance2(model, load_path)
 domain = copy(model);
 domain.setName('ParallelStance2');
 
-u = domain.Inputs.Control.u;
-domain.removeInput('Control', 'u');
-Be = [zeros(6,12); eye(12)];
-Be = [Be(:,1:4), Be(:, 6:end)];
-u = SymVariable('u', [11, 1]);
-
-% Be(11, 5) = 0;
-
-domain.addInput('Control', 'u', u, Be);
+% u = domain.Inputs.Control.u;
+% domain.removeInput('Control', 'u');
+% Be = [zeros(6,12); eye(12)];
+% Be = [Be(:,1:4), Be(:, 6:end)];
+% u = SymVariable('u', [11, 1]);
+% 
+% % Be(11, 5) = 0;
+% 
+% domain.addInput('Control', 'u', u, Be);
 
 
 if nargin < 2
@@ -76,9 +76,10 @@ y_rnshp = x(17);
 y_rnskp = x(18);
 
 ya_2 = [
-    y_bh;
+%     y_bh;
     y_br;
     y_bp;
+    y_by;
     y_fshr;
     y_fshp;
     y_fskp;
@@ -92,9 +93,10 @@ ya_2 = [
     y_rnskp];
 
 y2_label = {
-    'BaseHeight', ...
+%     'BaseHeight', ...
     'BaseRoll', ...
     'BasePitch', ...
+    'BaseYaw', ...
     'FrontStanceHipRoll', ...
     'FrontStanceHipPitch', ...
     'FrontStanceKneePitch', ...

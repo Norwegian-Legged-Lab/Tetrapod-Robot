@@ -74,8 +74,8 @@ opt.updateInitCondition(nlp, my_gait);
 
 [gait, sol, info] = opt.solve(nlp);
 % [gait, sol, info] = opt.solve(nlp, sol, info);
-save('local/tmp_gait.mat', 'gait', 'sol', 'info', 'bounds');
-% save('local/0_m_s_gait.mat', 'gait', 'sol', 'info', 'bounds');
+% save('local/tmp_gait.mat', 'gait', 'sol', 'info', 'bounds');
+save('local/0_2_m_s_gait.mat', 'gait', 'sol', 'info', 'bounds');
 
 %% animation
 my_gait_ext = utils.extend_gait(my_gait);

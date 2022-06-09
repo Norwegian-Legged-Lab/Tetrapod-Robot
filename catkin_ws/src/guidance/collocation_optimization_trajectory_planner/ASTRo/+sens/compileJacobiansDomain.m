@@ -1,6 +1,11 @@
-function compileJacobiansDomain(domain)
+function compileJacobiansDomain(domain, export_path)
 %COMPILEJACOBIANSDOMAIN Summary of this function goes here
 %   Detailed explanation goes here
+
+if nargin < 2
+    export_path = 'gen/sens';
+end
+
 nx = domain.numState;
 dname = domain.Name;
 q = domain.States.x;
@@ -55,12 +60,12 @@ for i = 1:ny
     nfun = length(y_i.ActualFuncs);
     y_a_intrf{i} = cell(nfun,1);
     for j = 1:nfun
-        y_a_intrf{i}{j} = sens.JacobianInterface(y_i.ActualFuncs{j}, dname);
+        y_a_intrf{i}{j} = sens.JacobianInterface(y_i.ActualFuncs{j}, dname, export_path);
         y_a_intrf{i}{j}.compileJacobian();
     end
     nfun_d = length(y_i.DesiredFuncs);
     for j = 1:nfun_d
-        y_d_intrf{i}{j} = sens.JacobianInterface(y_i.DesiredFuncs{j}, dname);
+        y_d_intrf{i}{j} = sens.JacobianInterface(y_i.DesiredFuncs{j}, dname, export_path);
         y_d_intrf{i}{j}.compileJacobian();
     end
 end
@@ -70,11 +75,11 @@ s = switching_funs(1);
 
 
 %%
-MmatIntrf = sens.JacobianInterface(Mmat, dname);
-JeIntrf = sens.JacobianInterface(Jefun, dname);
-JedotIntrf = sens.JacobianInterface(Jedotfun, dname);
-FvIntrf = sens.JacobianInterface(Fv, dname);
-SIntrf = sens.JacobianInterface(s.ConstrExpr, dname);
+MmatIntrf = sens.JacobianInterface(Mmat, dname, export_path);
+JeIntrf = sens.JacobianInterface(Jefun, dname, export_path);
+JedotIntrf = sens.JacobianInterface(Jedotfun, dname, export_path);
+FvIntrf = sens.JacobianInterface(Fv, dname, export_path);
+SIntrf = sens.JacobianInterface(s.ConstrExpr, dname, export_path);
 
 MmatIntrf.compileJacobian();
 JeIntrf.compileJacobian();

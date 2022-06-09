@@ -8,11 +8,22 @@ if nargin < 3
     closed_loop = true;
 end
 
-if nargin < 4
+if nargin < 4 || isempty(omitted_actuator_idx)
     omit_actuator = false;
 else
     omit_actuator = true;
 end
+
+if nargin < 6
+    ground_attributes = struct();
+end
+
+if nargin < 5
+    ground_type = 'flat';
+else
+    [ground_type, ground_attributes] = sys.SetGroundParams(ground_type, ground_attributes);
+end
+
 
 if omit_actuator
     % Alter the actuation mapping to avoid closed chain by removing rear stance
@@ -49,7 +60,9 @@ fr_foot = sys.frames.FrFoot(model);
 
 p_front_swing_foot = getCartesianPosition(domain, fr_foot);
 
-h_fnsf = UnilateralConstraint(domain, p_front_swing_foot(3), 'frontSwingFootHeight4', 'x');
+ground_expr = sys.GetGroundExpr(p_front_swing_foot, ground_type, ground_attributes);
+
+h_fnsf = UnilateralConstraint(domain, p_front_swing_foot(3) - ground_expr, 'frontSwingFootHeight4', 'x');
 
 domain = addEvent(domain, h_fnsf);
 
@@ -90,9 +103,10 @@ y_rnshp = x(17);
 y_rnskp = x(18);
 
 ya_2 = [
-    y_bh;
+%     y_bh;
     y_br;
     y_bp;
+    y_by;
     y_fshr;
     y_fshp;
     y_fskp;
@@ -106,9 +120,10 @@ ya_2 = [
     y_rnskp];
 
 y2_label = {
-    'BaseHeight', ...
+%     'BaseHeight', ...
     'BaseRoll', ...
     'BasePitch', ...
+    'BaseYaw', ...
     'FrontStanceHipRoll', ...
     'FrontStanceHipPitch', ...
     'FrontStanceKneePitch', ...
