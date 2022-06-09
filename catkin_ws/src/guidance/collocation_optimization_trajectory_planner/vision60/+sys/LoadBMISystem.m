@@ -1,15 +1,41 @@
-function [system] = LoadBMISystem(model, load_path)
+function [system] = LoadBMISystem(model, load_path, omit_actuators, ground_type, ground_attributes)
 %LOADSYSTSEEM Summary of this function goes here
 %   Detailed explanation goes here
-if nargin
+if nargin < 2
     load_path = [];
 end
 
-diagonalStance = sys.domains.DiagonalStanceBMI(model, load_path);
-parallelStance = sys.domains.ParallelStanceBMI(model, load_path);
+if nargin < 3 || isempty(omit_actuators)
+    omit_actuators = true;
+end
 
-diagonalStance2 = sys.domains.DiagonalStance2BMI(model, load_path);
-parallelStance2 = sys.domains.ParallelStance2BMI(model, load_path);
+if nargin < 4
+    ground_type = [];
+end
+
+if nargin < 5
+    ground_attributes = [];
+end
+
+closed_loop = true;
+
+if omit_actuators
+    omitted_actuator_idx_diag_1 = 5;
+    omitted_actuator_idx_paral_1 = 11;
+    omitted_actuator_idx_diag_2 = 11;
+    omitted_actuator_idx_paral_2 = 5;
+else
+    omitted_actuator_idx_diag_1 = [];
+    omitted_actuator_idx_paral_1 = [];
+    omitted_actuator_idx_diag_2 = [];
+    omitted_actuator_idx_paral_2 = [];
+end
+
+diagonalStance = sys.domains.DiagonalStanceBMI(model, load_path, closed_loop, omitted_actuator_idx_diag_1, ground_type, ground_attributes);
+parallelStance = sys.domains.ParallelStanceBMI(model, load_path, closed_loop, omitted_actuator_idx_paral_1, ground_type, ground_attributes);
+
+diagonalStance2 = sys.domains.DiagonalStance2BMI(model, load_path, closed_loop, omitted_actuator_idx_diag_2, ground_type, ground_attributes);
+parallelStance2 = sys.domains.ParallelStance2BMI(model, load_path, closed_loop, omitted_actuator_idx_paral_2, ground_type, ground_attributes);
 
 
 %Create rigid impact class with switching betweeen feet? or just change the
@@ -33,7 +59,7 @@ diagonalImpact2.addImpactConstraint(struct2array(diagonalStance.HolonomicConstra
 
 io_control = IOFeedback('IO');
 
-system = HybridSystem('ASTRo');
+system = HybridSystem('vision60');
 
 system = addVertex(system, 'DiagonalStance', 'Domain', diagonalStance, 'Control', io_control);
 

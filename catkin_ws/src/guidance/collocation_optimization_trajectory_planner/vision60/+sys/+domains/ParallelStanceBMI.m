@@ -1,19 +1,43 @@
-function [domain] = ParallelStanceBMI(model, load_path)
+function [domain] = ParallelStanceBMI(model, load_path, closed_loop, omitted_actuator_idx, ground_type, ground_attributes)
 %PARALLELSTANCE Summary of this function goes here
 %   Detailed explanation goes here
 domain = copy(model);
 domain.setName('ParallelStance');
 
-% u = domain.Inputs.Control.u;
-% domain.removeInput('Control', 'u');
-% Be = [zeros(6,12); eye(12)];
-% Be = [Be(:,1:10), Be(:,12)];
-% u = SymVariable('u', [11,1]);
-% % Be(17,11) = 0;
-% Be = SymExpression(Be);
-% 
-% domain.addInput('Control', 'u', u, Be);
-% 
+if nargin < 3
+    closed_loop = true;
+end
+
+if nargin < 4 || isempty(omitted_actuator_idx)
+    omit_actuator = false;
+else
+    omit_actuator = true;
+end
+
+if nargin < 6
+    ground_attributes = struct();
+end
+
+if nargin < 5
+    ground_type = 'flat';
+else
+    [ground_type, ground_attributes] = sys.SetGroundParams(ground_type, ground_attributes);
+end
+
+if omit_actuator
+    % Alter the actuation mapping to avoid closed chain by removing rear stance
+    % hip pitch actuation
+    u = domain.Inputs.Control.u;
+    domain.removeInput('Control', 'u');
+    Be = [zeros(6,12); eye(12)];
+    Be = [Be(:,1:(omitted_actuator_idx-1)), Be(:, (omitted_actuator_idx+1):end)];
+    u = SymVariable('u', [11,1]);
+    % Be(11, 5) = 0;
+    Be = SymExpression(Be);
+
+    domain.addInput('Control', 'u', u, Be);
+end
+
 if nargin < 2
     load_path = [];
 end
@@ -34,7 +58,9 @@ fl_foot = sys.frames.FlFoot(model);
 
 p_front_swing_foot = getCartesianPosition(domain, fl_foot);
 
-h_fnsf = UnilateralConstraint(domain, p_front_swing_foot(3), 'frontSwingFootHeight2', 'x');
+ground_expr = sys.GetGroundExpr(p_front_swing_foot, ground_type, ground_attributes);
+
+h_fnsf = UnilateralConstraint(domain, p_front_swing_foot(3) - ground_expr, 'frontSwingFootHeight2', 'x');
 
 domain = addEvent(domain, h_fnsf);
 
@@ -111,6 +137,8 @@ y2 = VirtualConstraint(domain, ya_2, 'position', 'DesiredType', 'Bezier', 'PolyD
     'RelativeDegree', 2, 'OutputLabel', {y2_label}, 'PhaseType', 'TimeBased', ...
     'PhaseVariable', tau, 'PhaseParams', p, 'Holonomic', true, 'LoadPath', load_path);
 
-domain = addVirtualConstraint(domain, y2);
+if closed_loop
+    domain = addVirtualConstraint(domain, y2);
+end
 end
 

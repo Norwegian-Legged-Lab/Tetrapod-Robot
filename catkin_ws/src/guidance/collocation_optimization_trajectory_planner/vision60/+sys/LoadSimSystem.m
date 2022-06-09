@@ -5,11 +5,17 @@ if nargin
     load_path = [];
 end
 
-diagonalStance = sys.domains.DiagonalStance(model, load_path);
-parallelStance = sys.domains.ParallelStance(model, load_path);
+closed_loop = true;
+omitted_actuator_idx_diag_1 = 5;
+omitted_actuator_idx_paral_1 = 11;
+omitted_actuator_idx_diag_2 = 11;
+omitted_actuator_idx_paral_2 = 5;
 
-diagonalStance2 = sys.domains.DiagonalStance2(model, load_path);
-parallelStance2 = sys.domains.ParallelStance2(model, load_path);
+diagonalStance = sys.domains.DiagonalStance(model, load_path, closed_loop, omitted_actuator_idx_diag_1);
+parallelStance = sys.domains.ParallelStance(model, load_path, closed_loop, omitted_actuator_idx_paral_1);
+
+diagonalStance2 = sys.domains.DiagonalStance2(model, load_path, closed_loop, omitted_actuator_idx_diag_2);
+parallelStance2 = sys.domains.ParallelStance2(model, load_path, closed_loop, omitted_actuator_idx_paral_2);
 
 
 %Create rigid impact class with switching betweeen feet? or just change the
@@ -33,7 +39,7 @@ diagonalImpact2.addImpactConstraint(struct2array(diagonalStance.HolonomicConstra
 
 io_control = IOFeedback('IO');
 
-system = HybridSystem('ASTRo');
+system = HybridSystem('vision60');
 
 system = addVertex(system, 'DiagonalStance', 'Domain', diagonalStance, 'Control', io_control);
 

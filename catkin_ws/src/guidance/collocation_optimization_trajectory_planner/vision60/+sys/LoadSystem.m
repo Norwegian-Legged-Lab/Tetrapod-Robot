@@ -1,12 +1,20 @@
-function [system] = LoadSystem(model, load_path)
+function [system] = LoadSystem(model, load_path, closed_loop)
 %LOADSYSTSEEM Summary of this function goes here
 %   Detailed explanation goes here
-if nargin
+if nargin < 2
     load_path = [];
 end
 
-diagonalStance = sys.domains.DiagonalStance(model, load_path);
-parallelStance = sys.domains.ParallelStance(model, load_path);
+if nargin < 3
+    closed_loop = true;
+end
+
+omitted_actuator_idx_diag = 5;
+omitted_actuator_idx_paral = 11;
+
+
+diagonalStance = sys.domains.DiagonalStance(model, load_path, closed_loop);%, omitted_actuator_idx_diag);
+parallelStance = sys.domains.ParallelStance(model, load_path, closed_loop);%, omitted_actuator_idx_paral);
 
 %Create rigid impact class with switching betweeen feet? or just change the
 %holonomic constraints
@@ -55,11 +63,17 @@ diagonalStance_n = addContact(diagonalStance_n, rr_foot_contact, rr_fric_coef, [
 % diagonalImpact.addImpactConstraint([diagonalStance_n.HolonomicConstraints.FlFoot], load_path);
 io_control = IOFeedback('IO');
 
-system = HybridSystem('ASTRo');
+system = HybridSystem('vision60');
 
-system = addVertex(system, 'DiagonalStance', 'Domain', diagonalStance, 'Control', io_control);
+if closed_loop
+    system = addVertex(system, 'DiagonalStance', 'Domain', diagonalStance, 'Control', io_control);
 
-system = addVertex(system, 'ParallelStance', 'Domain', parallelStance, 'Control', io_control);
+    system = addVertex(system, 'ParallelStance', 'Domain', parallelStance, 'Control', io_control);
+else
+    system = addVertex(system, 'DiagonalStance', 'Domain', diagonalStance);
+    
+    system = addVertex(system, 'ParallelStance', 'Domain', parallelStance);
+end
 
 
 srcs = {'DiagonalStance', 'ParallelStance'};
