@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sat 14 May 2022 16:52:40 GMT+02:00
+ * Sat 4 Jun 2022 19:00:07 GMT+02:00
  */
 
 #ifdef MATLAB_MEX_FILE
@@ -50,9 +50,9 @@ static void output1(double *p_output1,const double *var1,const double *var2)
 {
   double _NotUsed;
   NULL;
-  p_output1[0]=var2[2];
-  p_output1[1]=var2[3];
-  p_output1[2]=var2[4];
+  p_output1[0]=var2[3];
+  p_output1[1]=var2[4];
+  p_output1[2]=var2[5];
   p_output1[3]=var2[6];
   p_output1[4]=var2[7];
   p_output1[5]=var2[8];

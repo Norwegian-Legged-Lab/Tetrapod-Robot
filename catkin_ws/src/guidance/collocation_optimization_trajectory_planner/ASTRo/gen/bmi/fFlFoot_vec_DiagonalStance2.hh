@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sat 14 May 2022 16:52:32 GMT+02:00
+ * Sat 4 Jun 2022 18:59:59 GMT+02:00
  */
 
 #ifndef FFLFOOT_VEC_DIAGONALSTANCE2_HH

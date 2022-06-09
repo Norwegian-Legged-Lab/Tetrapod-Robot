@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sat 28 May 2022 17:14:19 GMT+02:00
+ * Thu 2 Jun 2022 14:54:03 GMT+02:00
  */
 
 #ifndef TIMEDURATION_HH
@@ -14,7 +14,7 @@
 #include "math2mat.hpp"
 #include "mdefs.hpp"
 
-namespace DiagonalStance
+namespace ParallelStance
 {
 
   void timeDuration_raw(double *p_output1, const double *var1);

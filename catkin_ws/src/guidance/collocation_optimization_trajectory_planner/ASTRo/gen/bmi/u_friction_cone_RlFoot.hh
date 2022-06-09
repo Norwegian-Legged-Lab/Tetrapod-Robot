@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sat 28 May 2022 18:51:08 GMT+02:00
+ * Tue 7 Jun 2022 17:58:28 GMT+02:00
  */
 
 #ifndef U_FRICTION_CONE_RLFOOT_HH

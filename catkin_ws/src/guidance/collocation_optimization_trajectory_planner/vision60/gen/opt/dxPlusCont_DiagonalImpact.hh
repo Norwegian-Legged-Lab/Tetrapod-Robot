@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Thu 12 May 2022 11:34:21 GMT+02:00
+ * Tue 7 Jun 2022 14:08:33 GMT+02:00
  */
 
 #ifndef DXPLUSCONT_DIAGONALIMPACT_HH

@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Thu 12 May 2022 11:33:19 GMT+02:00
+ * Tue 7 Jun 2022 14:07:41 GMT+02:00
  */
 
 #ifndef JS_H_FRFOOT_PARALLELSTANCE_HH

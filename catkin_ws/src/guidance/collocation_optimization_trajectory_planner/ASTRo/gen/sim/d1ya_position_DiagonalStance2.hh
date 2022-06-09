@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sun 22 May 2022 16:55:16 GMT+02:00
+ * Wed 8 Jun 2022 19:37:51 GMT+02:00
  */
 
 #ifndef D1YA_POSITION_DIAGONALSTANCE2_HH
@@ -28,7 +28,7 @@ namespace SymFunction
 
 	
     // - Outputs
-    assert_size_matrix(p_output1, 11, 1);
+    assert_size_matrix(p_output1, 14, 1);
 
 
     // set zero the matrix

@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sat 28 May 2022 16:59:55 GMT+02:00
+ * Thu 2 Jun 2022 14:53:30 GMT+02:00
  */
 
 #ifndef J_INITIAL_SWING_VELOCITY_FLFOOT_DIAGONALSTANCE_HH

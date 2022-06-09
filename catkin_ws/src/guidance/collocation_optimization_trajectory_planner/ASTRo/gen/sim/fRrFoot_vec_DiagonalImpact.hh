@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sun 22 May 2022 16:55:52 GMT+02:00
+ * Wed 8 Jun 2022 19:38:23 GMT+02:00
  */
 
 #ifndef FRRFOOT_VEC_DIAGONALIMPACT_HH

@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sun 3 Apr 2022 21:10:55 GMT+02:00
+ * Thu 2 Jun 2022 10:09:35 GMT+02:00
  */
 
 #ifndef JOINT_BASEROTZ_SPHERE_CENTER_HH

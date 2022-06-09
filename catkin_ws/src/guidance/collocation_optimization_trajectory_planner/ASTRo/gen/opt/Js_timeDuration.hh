@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sat 28 May 2022 17:00:28 GMT+02:00
+ * Thu 2 Jun 2022 14:54:05 GMT+02:00
  */
 
 #ifndef JS_TIMEDURATION_HH

@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sun 22 May 2022 17:22:46 GMT+02:00
+ * Wed 8 Jun 2022 18:55:58 GMT+02:00
  */
 
 #ifndef U_MAP_DIAGONALSTANCE_HH

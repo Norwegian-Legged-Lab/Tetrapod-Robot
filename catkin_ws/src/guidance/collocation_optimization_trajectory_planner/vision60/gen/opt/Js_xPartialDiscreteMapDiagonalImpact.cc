@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Thu 12 May 2022 11:34:32 GMT+02:00
+ * Tue 7 Jun 2022 14:08:44 GMT+02:00
  */
 
 #ifdef MATLAB_MEX_FILE
@@ -78,34 +78,42 @@ static void output1(double *p_output1,const double *var1)
   p_output1[25]=13;
   p_output1[26]=14;
   p_output1[27]=14;
-  p_output1[28]=3;
-  p_output1[29]=21;
-  p_output1[30]=4;
-  p_output1[31]=22;
-  p_output1[32]=13;
-  p_output1[33]=25;
-  p_output1[34]=14;
-  p_output1[35]=26;
-  p_output1[36]=15;
-  p_output1[37]=27;
-  p_output1[38]=16;
-  p_output1[39]=28;
-  p_output1[40]=17;
-  p_output1[41]=29;
-  p_output1[42]=18;
-  p_output1[43]=30;
-  p_output1[44]=7;
-  p_output1[45]=31;
-  p_output1[46]=8;
-  p_output1[47]=32;
-  p_output1[48]=9;
-  p_output1[49]=33;
-  p_output1[50]=10;
-  p_output1[51]=34;
-  p_output1[52]=11;
-  p_output1[53]=35;
-  p_output1[54]=12;
-  p_output1[55]=36;
+  p_output1[28]=15;
+  p_output1[29]=15;
+  p_output1[30]=16;
+  p_output1[31]=16;
+  p_output1[32]=3;
+  p_output1[33]=21;
+  p_output1[34]=4;
+  p_output1[35]=22;
+  p_output1[36]=5;
+  p_output1[37]=23;
+  p_output1[38]=6;
+  p_output1[39]=24;
+  p_output1[40]=13;
+  p_output1[41]=25;
+  p_output1[42]=14;
+  p_output1[43]=26;
+  p_output1[44]=15;
+  p_output1[45]=27;
+  p_output1[46]=16;
+  p_output1[47]=28;
+  p_output1[48]=17;
+  p_output1[49]=29;
+  p_output1[50]=18;
+  p_output1[51]=30;
+  p_output1[52]=7;
+  p_output1[53]=31;
+  p_output1[54]=8;
+  p_output1[55]=32;
+  p_output1[56]=9;
+  p_output1[57]=33;
+  p_output1[58]=10;
+  p_output1[59]=34;
+  p_output1[60]=11;
+  p_output1[61]=35;
+  p_output1[62]=12;
+  p_output1[63]=36;
 }
 
 
@@ -151,7 +159,7 @@ void mexFunction( int nlhs, mxArray *plhs[],
 
    
   /*  Create matrices for return arguments.  */
-  plhs[0] = mxCreateDoubleMatrix((mwSize) 28, (mwSize) 2, mxREAL);
+  plhs[0] = mxCreateDoubleMatrix((mwSize) 32, (mwSize) 2, mxREAL);
   p_output1 = mxGetPr(plhs[0]);
 
 

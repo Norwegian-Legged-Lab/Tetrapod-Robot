@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sat 28 May 2022 13:04:59 GMT+02:00
+ * Wed 8 Jun 2022 19:38:20 GMT+02:00
  */
 
 #ifndef FRRFOOT_VEC_PARALLELIMPACT_HH

@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sat 28 May 2022 16:59:50 GMT+02:00
+ * Thu 2 Jun 2022 14:53:25 GMT+02:00
  */
 
 #ifndef JS_SWING_POSITION_FLFOOT_DIAGONALSTANCE_HH

@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sat 28 May 2022 18:48:21 GMT+02:00
+ * Sat 4 Jun 2022 19:01:00 GMT+02:00
  */
 
 #ifndef J_MMAT_ASTRO_DIAGONALSTANCE_HH

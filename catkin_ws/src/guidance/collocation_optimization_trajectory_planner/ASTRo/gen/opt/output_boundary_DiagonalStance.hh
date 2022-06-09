@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Sat 28 May 2022 16:59:43 GMT+02:00
+ * Thu 2 Jun 2022 14:53:17 GMT+02:00
  */
 
 #ifndef OUTPUT_BOUNDARY_DIAGONALSTANCE_HH
