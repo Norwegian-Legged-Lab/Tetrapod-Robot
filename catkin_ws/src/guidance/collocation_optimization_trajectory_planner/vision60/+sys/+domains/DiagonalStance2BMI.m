@@ -14,11 +14,11 @@ else
     omit_actuator = true;
 end
 
-if nargin < 6
+if nargin < 6 || isempty(ground_attributes)
     ground_attributes = struct();
 end
 
-if nargin < 5
+if nargin < 5 || isempty(ground_type)
     ground_type = 'flat';
 else
     [ground_type, ground_attributes] = sys.SetGroundParams(ground_type, ground_attributes);
@@ -59,11 +59,11 @@ rl_foot = sys.frames.RlFoot(model);
 
 p_rear_swing_foot = getCartesianPosition(domain, rl_foot);
 
-ground_expr = sys.GetGroundExpr(p_rear_swing_foot, ground_type, ground_attributes);
+constr_name = 'rearSwingFootHeight';
 
-h_rnsf = UnilateralConstraint(domain, p_rear_swing_foot(3) - ground_expr, 'rearSwingFootHeight3', 'x');
+ground_constraint = sys.GetGroundConstraint(domain, p_rear_swing_foot, constr_name, ground_type, ground_attributes);
 
-domain = addEvent(domain, h_rnsf);
+domain = addEvent(domain, ground_constraint);
 
 %% Add virtual constraints
 %Consider whether to use state-based or time-based phase variable: There

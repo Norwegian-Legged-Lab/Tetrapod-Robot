@@ -58,10 +58,11 @@ rr_foot = sys.frames.RrFoot(model);
 
 p_rear_swing_foot = getCartesianPosition(domain, rr_foot);
 
-ground_expr = sys.GetGroundExpr(p_rear_swing_foot, ground_type, ground_attributes);
+constr_name = 'rearSwingFootHeight';
 
-h_rnsf = UnilateralConstraint(domain, p_rear_swing_foot(3) - ground_expr, 'rearSwingFootHeight1', 'x');
-domain = addEvent(domain, h_rnsf);
+ground_constraint = sys.GetGroundConstraint(domain, p_rear_swing_foot, constr_name, ground_type, ground_attributes);
+
+domain = addEvent(domain, ground_constraint);
 
 %% Add virtual constraints
 %Consider whether to use state-based or time-based phase variable: There

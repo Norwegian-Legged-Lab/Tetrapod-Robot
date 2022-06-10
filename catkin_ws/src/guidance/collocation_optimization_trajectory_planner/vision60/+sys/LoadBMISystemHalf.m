@@ -1,25 +1,42 @@
-function [system] = LoadBMISystemHalf(model, load_path)
+function [system] = LoadBMISystemHalf(model, load_path, omit_actuators)
 %LOADSYSTSEEM Summary of this function goes here
 %   Detailed explanation goes here
-if nargin
+if nargin < 2
     load_path = [];
+end
+
+if nargin < 3 || isempty(omit_actuators)
+    omit_actuators = true;
+end
+
+if nargin < 4
+    ground_type = 'flat';
+end
+
+if nargin < 5
+    ground_attributes = [];
 end
 
 closed_loop = true;
 
-omitted_actuator_idx_diag_1 = 5;
-omitted_actuator_idx_paral_1 = 11;
+if omit_actuators
+    omitted_actuator_idx_diag_1 = 5;
+    omitted_actuator_idx_paral_1 = 11;
+else
+    omitted_actuator_idx_diag_1 = [];
+    omitted_actuator_idx_paral_1 = [];
+end
 
+diagonalStance = sys.domains.DiagonalStanceBMI(model, load_path, closed_loop, omitted_actuator_idx_diag_1, ground_type, ground_attributes);
 
-diagonalStance = sys.domains.DiagonalStanceBMI(model, load_path, closed_loop, omitted_actuator_idx_diag_1);
+parallelStance = sys.domains.ParallelStanceBMI(model, load_path, closed_loop, omitted_actuator_idx_paral_1, ground_type, ground_attributes);
 
-parallelStance = sys.domains.ParallelStanceBMI(model, load_path, closed_loop, omitted_actuator_idx_paral_1);
 
 %Create rigid impact class with switching betweeen feet? or just change the
 %holonomic constraints
-parallelImpact = RigidImpact('ParallelImpact', diagonalStance, 'rearSwingFootHeight1'); %to parallelStance
+parallelImpact = RigidImpact('ParallelImpact', diagonalStance, 'rearSwingFootHeightflat'); %to parallelStance
 
-diagonalImpact = RigidImpact('DiagonalImpact', parallelStance, 'frontSwingFootHeight2'); %to diagonalStance2
+diagonalImpact = RigidImpact('DiagonalImpact', parallelStance, 'frontSwingFootHeightflat'); %to diagonalStance2
 
 
 R = diagonalImpact.R;

@@ -10,7 +10,7 @@ if nargin < 3 || isempty(omit_actuators)
 end
 
 if nargin < 4
-    ground_type = [];
+    ground_type = 'flat';
 end
 
 if nargin < 5
@@ -40,13 +40,13 @@ parallelStance2 = sys.domains.ParallelStance2BMI(model, load_path, closed_loop, 
 
 %Create rigid impact class with switching betweeen feet? or just change the
 %holonomic constraints
-parallelImpact = RigidImpact('ParallelImpact', diagonalStance, 'rearSwingFootHeight1'); %to parallelStance
+parallelImpact = RigidImpact('ParallelImpact', diagonalStance, ['rearSwingFootHeight' ground_type]); %to parallelStance
 
-diagonalImpact = RigidImpact('DiagonalImpact', parallelStance, 'frontSwingFootHeight2'); %to diagonalStance2
+diagonalImpact = RigidImpact('DiagonalImpact', parallelStance, ['frontSwingFootHeight' ground_type]); %to diagonalStance2
 
-parallelImpact2 = RigidImpact('ParallelImpact2', diagonalStance2, 'rearSwingFootHeight3'); %to parallelStance2
+parallelImpact2 = RigidImpact('ParallelImpact2', diagonalStance2, ['rearSwingFootHeight' ground_type]); %to parallelStance2
 
-diagonalImpact2 = RigidImpact('DiagonalImpact2', parallelStance2, 'frontSwingFootHeight4'); %to diagonalStance
+diagonalImpact2 = RigidImpact('DiagonalImpact2', parallelStance2, ['frontSwingFootHeight' ground_type]); %to diagonalStance
 
 
 parallelImpact.addImpactConstraint(struct2array(parallelStance.HolonomicConstraints), load_path);

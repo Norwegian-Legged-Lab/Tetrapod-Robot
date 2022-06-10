@@ -22,7 +22,6 @@ if omit_actuator
     Be = [zeros(6,12); eye(12)];
     Be = [Be(:,1:(omitted_actuator_idx-1)), Be(:, (omitted_actuator_idx+1):end)];
     u = SymVariable('u', [11,1]);
-    % Be(11, 5) = 0;
     Be = SymExpression(Be);
 
     domain.addInput('Control', 'u', u, Be);

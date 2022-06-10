@@ -1,4 +1,4 @@
-function [domain] = ParallelStance2BMI(model, load_path, closed_loop, omitted_actuator_idx)
+function [domain] = ParallelStance2BMI(model, load_path, closed_loop, omitted_actuator_idx, ground_type, ground_attributes)
 %PARALLELSTANCE Summary of this function goes here
 %   Detailed explanation goes here
 domain = copy(model);
@@ -14,11 +14,11 @@ else
     omit_actuator = true;
 end
 
-if nargin < 6
+if nargin < 6 || isempty(ground_attributes)
     ground_attributes = struct();
 end
 
-if nargin < 5
+if nargin < 5 || isempty(ground_type)
     ground_type = 'flat';
 else
     [ground_type, ground_attributes] = sys.SetGroundParams(ground_type, ground_attributes);
@@ -60,11 +60,11 @@ fr_foot = sys.frames.FrFoot(model);
 
 p_front_swing_foot = getCartesianPosition(domain, fr_foot);
 
-ground_expr = sys.GetGroundExpr(p_front_swing_foot, ground_type, ground_attributes);
+constr_name = 'frontSwingFootHeight';
 
-h_fnsf = UnilateralConstraint(domain, p_front_swing_foot(3) - ground_expr, 'frontSwingFootHeight4', 'x');
+ground_constraint = sys.GetGroundConstraint(domain, p_front_swing_foot, constr_name, ground_type, ground_attributes);
 
-domain = addEvent(domain, h_fnsf);
+domain = addEvent(domain, ground_constraint);
 
 
 %% Add virtual constraints
