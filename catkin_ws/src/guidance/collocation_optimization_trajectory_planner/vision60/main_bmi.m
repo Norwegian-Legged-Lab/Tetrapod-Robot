@@ -23,15 +23,16 @@ robot = sys.LoadModel(urdf, load_path, delay_set);
 
 system = sys.LoadBMISystemHalf(robot, load_path);
 
-compile_system = false;
+compile_system = true;
 
 if compile_system
     system.compile(export_path);
     sens.compileAnalyticJacobians(system, export_path);
 end
 
-param = load('local/0_2_m_s_opt_gait.mat');
+% param = load('local/0_2_m_s_opt_gait.mat');
 % param = load('local/tmp_gait.mat');
+param = load('local/0_m_s_gait.mat');
 
 %% bmi/yalmip stuff
 homestr = '/home/melyso';
@@ -196,7 +197,7 @@ dphidtheta_cell = dphi_interface.getCellMat();
 %%
 
 % savename = ['local/', 'BMI_results_', datestr(now())];
-savename = ['local/', 'BMI_results_0_2_m_s_3'];
+savename = ['local/', 'BMI_results_0_m_s_2'];
 
 thetas = [];
 
@@ -435,7 +436,7 @@ A_i = cell(n_dtheta, 1);
 %A_0 = P*phi([x_idx, n_x/2 + x_idx], [x_idx, n_x/2 + x_idx])*L;
 
 % Save to file
-save(savename, 'thetas', 'ws', 'delta_thetas', 'times', 'norms_A0', 'gait_params', 'cp');
+save(savename, 'thetas', 'ws', 'delta_thetas', 'times', 'norms_A0', 'gait_params', 'cp', 'gait');
 
 iter = iter + 1;
 end
