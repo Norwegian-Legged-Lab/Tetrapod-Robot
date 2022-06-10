@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Tue 7 Jun 2022 17:59:00 GMT+02:00
+ * Fri 10 Jun 2022 21:49:45 GMT+02:00
  */
 
 #ifndef FFRFOOT_MAP_DIAGONALIMPACT_HH

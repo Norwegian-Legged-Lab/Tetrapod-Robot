@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Wed 8 Jun 2022 18:38:40 GMT+02:00
+ * Fri 10 Jun 2022 22:25:13 GMT+02:00
  */
 
 #ifndef JS_MMAT_VISION60_DIAGONALSTANCE2_HH

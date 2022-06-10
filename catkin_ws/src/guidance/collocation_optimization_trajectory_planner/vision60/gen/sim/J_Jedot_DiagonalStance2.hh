@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Wed 8 Jun 2022 18:38:42 GMT+02:00
+ * Fri 10 Jun 2022 22:25:16 GMT+02:00
  */
 
 #ifndef J_JEDOT_DIAGONALSTANCE2_HH

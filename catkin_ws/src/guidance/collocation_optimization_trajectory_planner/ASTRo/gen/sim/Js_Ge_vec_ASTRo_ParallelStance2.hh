@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Wed 8 Jun 2022 19:39:49 GMT+02:00
+ * Fri 10 Jun 2022 21:32:07 GMT+02:00
  */
 
 #ifndef JS_GE_VEC_ASTRO_PARALLELSTANCE2_HH

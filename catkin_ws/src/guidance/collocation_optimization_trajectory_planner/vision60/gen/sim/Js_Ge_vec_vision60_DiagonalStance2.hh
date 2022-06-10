@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Wed 8 Jun 2022 18:38:44 GMT+02:00
+ * Fri 10 Jun 2022 22:25:18 GMT+02:00
  */
 
 #ifndef JS_GE_VEC_VISION60_DIAGONALSTANCE2_HH

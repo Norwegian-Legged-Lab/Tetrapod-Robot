@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Wed 8 Jun 2022 19:39:03 GMT+02:00
+ * Fri 10 Jun 2022 21:31:19 GMT+02:00
  */
 
 #ifndef J_MMAT_ASTRO_PARALLELSTANCE_HH
