@@ -3,7 +3,7 @@ function plotSimTorques(system, logger, indices)
     domain = system.Gamma.Nodes.Domain{1};
     act_joint_idx = find(arrayfun(@(x)~isempty(x.Actuator),domain.Joints));
     
-    if nargin < 4
+    if nargin < 3
         indices = act_joint_idx;
     else
         if isempty(indices), return; end

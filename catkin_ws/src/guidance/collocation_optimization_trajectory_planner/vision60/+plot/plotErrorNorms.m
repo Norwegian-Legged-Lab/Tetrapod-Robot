@@ -1,8 +1,16 @@
-function plotErrorNorms(logger, n_cycles, cycle_length, error_from_endpoint)
+function [state_norm, state_dot_norm, full_state_norm, state_diff_norm, state_dot_diff_norm, full_state_diff_norm] = plotErrorNorms(logger, n_cycles, cycle_length, error_from_endpoint, q_idx, dq_idx)
 %PLOTERRORNORMS Summary of this function goes here
 %   Detailed explanation goes here
 
-if nargin < 4
+if nargin < 5 ||isempty(q_idx)
+    q_idx = 3:18;
+end
+
+if nargin < 6 || isempty(dq_idx)
+    dq_idx = 1:18;
+end
+
+if nargin < 4 || isempty(error_from_endpoint)
     error_from_endpoint = false;
 end
 
@@ -18,13 +26,13 @@ end
 
 if error_from_endpoint
     idx = (n_cycles-1)*cycle_length + 1;
-    fixedpoint_q = logger(idx).flow.states.x(3:end,1);
-    fixedpoint_dq = logger(idx).flow.states.dx(:,1);
+    fixedpoint_q = logger(idx).flow.states.x(q_idx,1);
+    fixedpoint_dq = logger(idx).flow.states.dx(dq_idx,1);
     fixedpoint_x = [fixedpoint_q; fixedpoint_dq];
     q_str = 'q^{*}'; dq_str = '\dot{q}^{*}'; x_str = 'x^{*}';
 else
-    fixedpoint_q = logger(1).flow.states.x(3:end,1);
-    fixedpoint_dq = logger(1).flow.states.dx(:,1);
+    fixedpoint_q = logger(1).flow.states.x(q_idx,1);
+    fixedpoint_dq = logger(1).flow.states.dx(dq_idx,1);
     fixedpoint_x = [fixedpoint_q; fixedpoint_dq];
     q_str = 'q_{0}'; dq_str = '\dot{q}_{0}'; x_str = 'x_{0}';
 
@@ -34,15 +42,15 @@ state_norm = zeros(1,n_cycles); state_dot_norm = zeros(1,n_cycles); full_state_n
 state_diff_norm = zeros(1,n_cycles - 1); state_dot_diff_norm = zeros(1,n_cycles - 1); full_state_diff_norm = zeros(1,n_cycles - 1);
 
 for i = 1:cycle_length:cycle_length*n_cycles
-state_norm((i-1)/cycle_length+1) = vecnorm(logger(i).flow.states.x(3:end,1) - fixedpoint_q);
-state_dot_norm((i-1)/cycle_length+1) = vecnorm(logger(i).flow.states.dx(:,1) - fixedpoint_dq);
-full_state_norm((i-1)/cycle_length+1) = vecnorm([logger(i).flow.states.x(3:end,1);logger(i).flow.states.dx(:,1)]-fixedpoint_x);
+state_norm((i-1)/cycle_length+1) = vecnorm(logger(i).flow.states.x(q_idx,1) - fixedpoint_q);
+state_dot_norm((i-1)/cycle_length+1) = vecnorm(logger(i).flow.states.dx(dq_idx,1) - fixedpoint_dq);
+full_state_norm((i-1)/cycle_length+1) = vecnorm([logger(i).flow.states.x(q_idx,1);logger(i).flow.states.dx(dq_idx,1)]-fixedpoint_x);
 end
 
 for i = 1:cycle_length:cycle_length*(n_cycles-1)
-state_diff_norm((i-1)/cycle_length+1) = vecnorm(logger(i+cycle_length).flow.states.x(3:end,1) - logger(i).flow.states.x(3:end,1));
-state_dot_diff_norm((i-1)/cycle_length+1) = vecnorm(logger(i+cycle_length).flow.states.dx(:,1) - logger(i).flow.states.dx(:,1));
-full_state_diff_norm((i-1)/cycle_length+1) = vecnorm([logger(i+cycle_length).flow.states.x(3:end,1);logger(i+cycle_length).flow.states.dx(:,1)]-[logger(i).flow.states.x(3:end,1);logger(i).flow.states.dx(:,1)]);
+state_diff_norm((i-1)/cycle_length+1) = vecnorm(logger(i+cycle_length).flow.states.x(q_idx,1) - logger(i).flow.states.x(q_idx,1));
+state_dot_diff_norm((i-1)/cycle_length+1) = vecnorm(logger(i+cycle_length).flow.states.dx(dq_idx,1) - logger(i).flow.states.dx(dq_idx,1));
+full_state_diff_norm((i-1)/cycle_length+1) = vecnorm([logger(i+cycle_length).flow.states.x(q_idx,1);logger(i+cycle_length).flow.states.dx(dq_idx,1)]-[logger(i).flow.states.x(q_idx,1);logger(i).flow.states.dx(dq_idx,1)]);
 end
 f = figure;
 

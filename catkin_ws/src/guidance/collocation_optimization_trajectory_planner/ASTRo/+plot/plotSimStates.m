@@ -5,7 +5,7 @@ function plotSimStates(system, logger, indices)
     domain = system.Gamma.Nodes.Domain{1};
     joint_names = {domain.Joints.Name};
     
-    if nargin < 4
+    if nargin < 3
         indices = 1:length(domain.Joints);
     else
         if isempty(indices), return; end
