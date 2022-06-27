@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Fri 10 Jun 2022 23:04:39 GMT+02:00
+ * Mon 13 Jun 2022 13:20:46 GMT+02:00
  */
 
 #ifndef YA_POSITION_DIAGONALSTANCE2_HH

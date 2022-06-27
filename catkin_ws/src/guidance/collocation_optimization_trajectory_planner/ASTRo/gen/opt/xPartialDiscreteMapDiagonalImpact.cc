@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Thu 2 Jun 2022 14:55:36 GMT+02:00
+ * Sun 12 Jun 2022 14:38:27 GMT+02:00
  */
 
 #ifdef MATLAB_MEX_FILE
@@ -53,18 +53,19 @@ static void output1(double *p_output1,const double *var1,const double *var2)
   p_output1[0]=var1[2] - var2[2];
   p_output1[1]=-var1[3] - var2[3];
   p_output1[2]=var1[4] - var2[4];
-  p_output1[3]=-var1[12] - var2[6];
-  p_output1[4]=var1[13] - var2[7];
-  p_output1[5]=var1[14] - var2[8];
-  p_output1[6]=-var1[15] - var2[9];
-  p_output1[7]=var1[16] - var2[10];
-  p_output1[8]=var1[17] - var2[11];
-  p_output1[9]=-var1[6] - var2[12];
-  p_output1[10]=var1[7] - var2[13];
-  p_output1[11]=var1[8] - var2[14];
-  p_output1[12]=-var1[9] - var2[15];
-  p_output1[13]=var1[10] - var2[16];
-  p_output1[14]=var1[11] - var2[17];
+  p_output1[3]=-var1[5] - var2[5];
+  p_output1[4]=-var1[12] - var2[6];
+  p_output1[5]=var1[13] - var2[7];
+  p_output1[6]=var1[14] - var2[8];
+  p_output1[7]=-var1[15] - var2[9];
+  p_output1[8]=var1[16] - var2[10];
+  p_output1[9]=var1[17] - var2[11];
+  p_output1[10]=-var1[6] - var2[12];
+  p_output1[11]=var1[7] - var2[13];
+  p_output1[12]=var1[8] - var2[14];
+  p_output1[13]=-var1[9] - var2[15];
+  p_output1[14]=var1[10] - var2[16];
+  p_output1[15]=var1[11] - var2[17];
 }
 
 
@@ -119,7 +120,7 @@ void mexFunction( int nlhs, mxArray *plhs[],
 
    
   /*  Create matrices for return arguments.  */
-  plhs[0] = mxCreateDoubleMatrix((mwSize) 15, (mwSize) 1, mxREAL);
+  plhs[0] = mxCreateDoubleMatrix((mwSize) 16, (mwSize) 1, mxREAL);
   p_output1 = mxGetPr(plhs[0]);
 
 

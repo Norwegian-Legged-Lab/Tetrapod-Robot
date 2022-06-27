@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Thu 2 Jun 2022 14:53:27 GMT+02:00
+ * Sun 12 Jun 2022 14:36:13 GMT+02:00
  */
 
 #ifndef J_IMPACT_VELOCITY_RRFOOT_DIAGONALSTANCE_HH

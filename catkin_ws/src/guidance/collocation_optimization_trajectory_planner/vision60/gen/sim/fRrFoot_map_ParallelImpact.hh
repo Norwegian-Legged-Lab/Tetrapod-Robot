@@ -1,6 +1,6 @@
 /*
  * Automatically Generated from Mathematica.
- * Fri 10 Jun 2022 23:06:22 GMT+02:00
+ * Sat 11 Jun 2022 23:25:39 GMT+02:00
  */
 
 #ifndef FRRFOOT_MAP_PARALLELIMPACT_HH
