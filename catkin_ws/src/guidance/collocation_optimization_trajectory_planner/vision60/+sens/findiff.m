@@ -4,7 +4,7 @@ function [J] = findiff(f,x, idx, verbose)
 
 h = 1e-8;
 
-if nargin < 3
+if nargin < 3 || isempty(idx)
     idx = 1:length(x);
 end
 

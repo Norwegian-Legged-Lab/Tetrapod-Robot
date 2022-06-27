@@ -62,15 +62,15 @@ opt.updateVariableBounds(nlp, bounds);
 
 %Update initial condition if use pre-existing gaits
 %param = load('local/tmp_gait.mat');
-my_gait = init_guess.get_initial_guess([0.2;0], 0.3, 0.02, 0.4, 15, robot);
-param = load('local/tmp_gait.mat');
+my_gait = init_guess.get_initial_guess([0.2;0], 0.3, 0.05, 0.4, 15, robot);
+param = load('local/0_2_m_s_high_foot_gait.mat');
 opt.updateInitCondition(nlp, my_gait);
 
 %% Solve problem
 
 [gait, sol, info] = opt.solve(nlp);
 % [gait, sol, info] = opt.solve(nlp, param.sol, param.info);
-save('local/0_2_m_s_opt_gait.mat', 'gait', 'sol', 'info', 'bounds');
+save('local/0_2_m_s_high_foot_gait.mat', 'gait', 'sol', 'info', 'bounds');
 
 
 %% animation

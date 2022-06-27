@@ -57,7 +57,7 @@ function bounds = GetBounds(model, speed)
     model_bounds.time.tf.lb = 0.02;
     model_bounds.time.tf.ub = 0.2;
 
-    model_bounds.constrBounds.foot_clearance.lb = 0.02;
+    model_bounds.constrBounds.foot_clearance.lb = 0.05;
     model_bounds.constrBounds.foot_clearance.ub = 0.1;
     model_bounds.constrBounds.averageVelocity.lb = speed;
     model_bounds.constrBounds.averageVelocity.ub = speed;
@@ -65,8 +65,8 @@ function bounds = GetBounds(model, speed)
     model_bounds.constrBounds.yaw_initial.lb = -0;
     model_bounds.constrBounds.yaw_initial.ub = 0;
 
-    model_bounds.constrBounds.footVelocityBeginning.lb = [-0.2, -0.05, 0]';
-    model_bounds.constrBounds.footVelocityBeginning.ub = [0.2, 0.05, 0.3]';
+    model_bounds.constrBounds.footVelocityBeginning.lb = [-0.1, -0.05, 0]';
+    model_bounds.constrBounds.footVelocityBeginning.ub = [0.1, 0.05, 2]';
     model_bounds.constrBounds.footVelocityEnd.lb = [-0.1, -0.05, -2]';
     model_bounds.constrBounds.footVelocityEnd.ub = [0.4, 0.05, 0]';
 

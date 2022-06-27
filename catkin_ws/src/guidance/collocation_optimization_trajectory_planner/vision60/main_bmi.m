@@ -23,7 +23,7 @@ robot = sys.LoadModel(urdf, load_path, delay_set);
 
 system = sys.LoadBMISystemHalf(robot, load_path);
 
-compile_system = true;
+compile_system = false;
 
 if compile_system
     system.compile(export_path);
@@ -32,7 +32,8 @@ end
 
 % param = load('local/0_2_m_s_opt_gait.mat');
 % param = load('local/tmp_gait.mat');
-param = load('local/0_m_s_gait.mat');
+% param = load('local/0_m_s_gait.mat');
+param = load('local/0_2_m_s_high_foot_gait.mat');
 
 %% bmi/yalmip stuff
 homestr = '/home/melyso';
@@ -164,7 +165,7 @@ end
 %%
 tic
 if finite_diff
-    dphidtheta = sens.findiff(@(z) reshape(sens.calcFlowJacobian(x0, system, z), [], 1), theta_0);%, theta_idx);
+    dphidtheta = sens.findiff(@(z) reshape(sens.calcFlowJacobian(x0, system, z), [], 1), theta_0, theta_idx);
 else
     dphidtheta = sens.findiff(@(z) reshape(sens.calcFlowJacobianVariation(x0, system, intermediaryJacobians, cp, z), [], 1), theta_0, theta_idx, true);
 end
@@ -197,7 +198,8 @@ dphidtheta_cell = dphi_interface.getCellMat();
 %%
 
 % savename = ['local/', 'BMI_results_', datestr(now())];
-savename = ['local/', 'BMI_results_0_m_s_2'];
+% savename = ['local/', 'BMI_results_0_m_s_2'];
+savename = ['local/', 'BMI_results_0_2_m_s_high_gait'];
 
 thetas = [];
 
