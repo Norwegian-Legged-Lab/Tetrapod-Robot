@@ -91,10 +91,10 @@ function bounds = GetBounds(model, speed, closed_loop)
     model_bounds.constrBounds.yaw_initial.lb = -0;
     model_bounds.constrBounds.yaw_initial.ub = 0;
 
-    model_bounds.constrBounds.footVelocityBeginning.lb = [-0.1, -0.1, 0]';
-    model_bounds.constrBounds.footVelocityBeginning.ub = [0.1, 0.1, 0.6]';
-    model_bounds.constrBounds.footVelocityEnd.lb = [-0.1, -0.1, -2]';
-    model_bounds.constrBounds.footVelocityEnd.ub = [0.2, 0.1, 0]';
+    model_bounds.constrBounds.footVelocityBeginning.lb = [-0.2, -0.1, 0]';
+    model_bounds.constrBounds.footVelocityBeginning.ub = [0.2, 0.1, 0.8]';
+    model_bounds.constrBounds.footVelocityEnd.lb = [-0.2, -0.1, -2]';
+    model_bounds.constrBounds.footVelocityEnd.ub = [0.3, 0.1, 0]';
 
     %Common Virtual Constraints
 

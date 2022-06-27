@@ -26,8 +26,8 @@ system = sys.LoadBMISystemHalf(robot, load_path);
 % system = sys.LoadReverseSystem(robot, load_path);
 
 % system.compile(export_path);
-
-param = load('local/0_m_s_gait');
+param = load('local/0_5_m_s_gait');
+% param = load('local/0_m_s_gait');
 % param = load('local/0_2_m_s_gait');
 % param = load('local/tmp_gait.mat');
 
@@ -197,7 +197,8 @@ dphidtheta_cell = dphi_interface.getCellMat();
 
 % savename = ['local/', 'BMI_results_', datestr(now())];
 % savename = ['local/', 'BMI_results_0_2_m_s_3'];
-savename = ['local/', 'BMI_results_0_m_s_2'];
+% savename = ['local/', 'BMI_results_0_m_s_2'];
+savename = ['local/', 'BMI_results_0_5_m_s'];
 
 thetas = [];
 

@@ -23,9 +23,9 @@ robot = sys.LoadModel(urdf, load_path, delay_set);
 
 ground_attributes = struct();
 ground_attributes.delay_dist = 2;
-ground_attributes.scaling = 0.001;
+ground_attributes.scaling = 0.021;
 
-system = sys.LoadBMISystem(robot, load_path, false, 'curved', ground_attributes);
+system = sys.LoadBMISystem(robot, load_path, true, 'flat', ground_attributes);
 
 %% compilation
 system.compile(export_path);
@@ -33,11 +33,14 @@ system.compile(export_path);
 %%
 
 %%
-param = load('local/0_2_m_s_gait.mat');
-theta_param = load('local/BMI_results_0_2_m_s_3.mat');
+% param = load('local/0_2_m_s_gait.mat');
+% theta_param = load('local/BMI_results_0_2_m_s_3.mat');
+
+param = load('local/0_5_m_s_gait.mat');
+theta_param = load('local/BMI_results_0_5_m_s.mat');
 
 % param = load('local/0_m_s_gait.mat');
-% theta_param = load('local/BMI_results_31-May-2022 06:56:54.mat');
+% theta_param = load('local/BMI_results_0_m_s_2.mat');
 
 H = [zeros(11,3), eye(11)];
 
@@ -148,10 +151,10 @@ plot.PlotGroundSlope(system);
 
 %%
 x0 = [gait(1).states.x(:,1); gait(1).states.dx(:,1)];
-logger = system.simulate(0, x0, [], [], 'NumCycle', 700);
-
+logger = system.simulate(0, x0, [], [], 'NumCycle', 80);
+%%
 [cot, tau_rms, tau_peak] = plot.getPerformanceStats(system, logger);
-save([resfolder 'ASTRo_logger_0_2_m_s_0_1_percent_curve_12_actuators'], 'logger', 'system', 'cot', 'tau_rms', 'tau_peak');
+save([resfolder 'ASTRo_logger_0_m_s_flat_12_actuators'], 'logger', 'system', 'cot', 'tau_rms', 'tau_peak');
 %%
 x0 = [gait(1).states.x(:,1); gait(1).states.dx(:,1)];
 intermediaryJacobians = sens.getIntermediaryJacobians(system);
@@ -183,15 +186,15 @@ cp_post_stabilization = sens.getTrajectoryControlPoints(x0, system);
 phi_post_stabilization = sens.calcFlowJacobianVariation(x0, system, intermediaryJacobians, cp_post_stabilization);
 phi_proj_post_stabilization = P*phi_post_stabilization*L;
 spectral_radius_post_stabilization = abs(eig(phi_proj_post_stabilization));
-
-save([resfolder, 'ASTRo_stability_data_0_2_m_s'], ...
+%%
+save([resfolder, 'ASTRo_stability_data_0_m_s'], ...
     'phi_pre_stabilization', 'phi_proj_pre_stabilization', 'spectral_radius_pre_stabilization',...
     'phi_post_stabilization', 'phi_proj_post_stabilization', 'spectral_radius_post_stabilization',...
     'P', 'L');
 
 %% You can plot the error norms as function of poincare iterations
-q_idx = 4:18;
-dq_idx = 4:18;
+q_idx = 3:18;
+dq_idx = 1:18;
 
 [sn, sdotn, fsn, sdn, sddotn, fsdn] = plot.plotErrorNorms(logger, [], 4, [], q_idx, dq_idx);
 
@@ -200,7 +203,7 @@ dq_idx = 4:18;
 
 %% Animation
 
-anim = plot.LoadSimAnimator(robot, logger, 'SkipExporting',true, 'UseExported', false);
+anim = plot.LoadSimAnimator(robot, logger, 'SkipExporting',true, 'UseExported', true);
 
 %% you can also plot the states and torques
 plot.plotSimStates(system,logger);
