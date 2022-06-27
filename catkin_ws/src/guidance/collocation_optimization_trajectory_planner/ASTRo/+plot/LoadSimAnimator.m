@@ -16,6 +16,7 @@ function [conGUI] = LoadSimAnimator(robot, logger, varargin)
     anim = frost.Animator.AbstractAnimator(exo_disp, t, q);
     anim.isLooping = true;
     anim.speed = 1;
+    anim.updateWorldPosition = true;
     anim.pov = frost.Animator.AnimatorPointOfView.Free;
     anim.Animate(true);
     conGUI = frost.Animator.AnimatorControls();
